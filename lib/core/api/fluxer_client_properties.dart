@@ -148,11 +148,11 @@ String buildFluxerClientUserAgent({
   required String? releaseChannel,
 }) {
   final String clientName = switch (clientPlatform) {
-    'android' => 'Fluxer Android',
-    'ios' => 'Fluxer iOS',
-    'desktop' => 'Fluxer Desktop',
-    'client' => 'Fluxer Client',
-    _ => 'Fluxer Client',
+    'android' => 'Echowire Android',
+    'ios' => 'Echowire iOS',
+    'desktop' => 'Echowire Desktop',
+    'client' => 'Echowire Client',
+    _ => 'Echowire Client',
   };
   final String? version = normalizeOptionalString(clientVersion);
   final String? channel = normalizeOptionalString(releaseChannel);

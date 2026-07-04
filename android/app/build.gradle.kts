@@ -57,13 +57,13 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.fluxer"
+        applicationId = "org.echowire.twa"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         multiDexEnabled = true
-        manifestPlaceholders["appLabel"] = "Fluxer"
+        manifestPlaceholders["appLabel"] = "Echowire"
         manifestPlaceholders["buildEnvironment"] = "stable"
         manifestPlaceholders["pushProvider"] = "fcm"
     }
@@ -73,17 +73,17 @@ android {
             dimension = "environment"
             applicationIdSuffix = ".canary"
             versionNameSuffix = "-canary"
-            manifestPlaceholders["appLabel"] = "Fluxer Canary"
+            manifestPlaceholders["appLabel"] = "Echowire Canary"
             manifestPlaceholders["buildEnvironment"] = "canary"
         }
         create("stable") {
             dimension = "environment"
-            manifestPlaceholders["appLabel"] = "Fluxer"
+            manifestPlaceholders["appLabel"] = "Echowire"
             manifestPlaceholders["buildEnvironment"] = "stable"
         }
         create("beta") {
             dimension = "environment"
-            manifestPlaceholders["appLabel"] = "Fluxer Beta"
+            manifestPlaceholders["appLabel"] = "Echowire Beta"
             manifestPlaceholders["buildEnvironment"] = "beta"
         }
         create("fcm") {

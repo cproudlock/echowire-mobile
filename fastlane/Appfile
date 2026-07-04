@@ -1,2 +1,2 @@
-app_identifier("app.fluxer")
+app_identifier("org.echowire.ios")
 team_id(ENV["APPLE_TEAM_ID"])

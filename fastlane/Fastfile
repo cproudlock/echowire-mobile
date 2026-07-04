@@ -39,7 +39,7 @@ platform :ios do
       key_content: ENV.fetch("APPSTORE_PRIVATE_KEY")
     )
 
-    app_identifier = "com.fluxer"
+    app_identifier = "org.echowire.ios"
     flutter_build_name = flutter_marketing_version
     latest_build_number = latest_testflight_build_number(
       api_key: api_key,
@@ -106,9 +106,9 @@ platform :ios do
         teamID: ENV.fetch("APPLE_TEAM_ID"),
         signingCertificate: "Apple Distribution",
         provisioningProfiles: {
-          "com.fluxer" => runner_profile_uuid,
-          "com.fluxer.BroadcastExtension" => extension_profile_uuid,
-          "com.fluxer.NotificationService" => notification_service_profile_uuid
+          "org.echowire.ios" => runner_profile_uuid,
+          "org.echowire.ios.BroadcastExtension" => extension_profile_uuid,
+          "org.echowire.ios.NotificationService" => notification_service_profile_uuid
         }
       },
       xcargs: [
@@ -142,7 +142,7 @@ platform :ios do
     end
   end
 
-  desc "Build canary archive and upload to TestFlight (com.fluxer.canary)"
+  desc "Build canary archive and upload to TestFlight (org.echowire.ios.canary)"
   lane :testflight_canary do
     profile_path = File.expand_path("~/Library/MobileDevice/Provisioning Profiles/profile.mobileprovision")
     extension_profile_path = File.expand_path("~/Library/MobileDevice/Provisioning Profiles/broadcast_extension.mobileprovision")
@@ -160,7 +160,7 @@ platform :ios do
       key_content: ENV.fetch("APPSTORE_PRIVATE_KEY")
     )
 
-    app_identifier = "com.fluxer.canary"
+    app_identifier = "org.echowire.ios.canary"
     flutter_build_name = flutter_marketing_version
     latest_build_number = latest_testflight_build_number(
       api_key: api_key,
@@ -226,9 +226,9 @@ platform :ios do
         teamID: ENV.fetch("APPLE_TEAM_ID"),
         signingCertificate: "Apple Distribution",
         provisioningProfiles: {
-          "com.fluxer.canary" => runner_profile_uuid,
-          "com.fluxer.canary.BroadcastExtension" => extension_profile_uuid,
-          "com.fluxer.canary.NotificationService" => notification_service_profile_uuid
+          "org.echowire.ios.canary" => runner_profile_uuid,
+          "org.echowire.ios.canary.BroadcastExtension" => extension_profile_uuid,
+          "org.echowire.ios.canary.NotificationService" => notification_service_profile_uuid
         }
       },
       xcargs: [
@@ -379,7 +379,7 @@ platform :ios do
       key_content: ENV.fetch("APPSTORE_PRIVATE_KEY")
     )
 
-    app_identifier = "com.fluxer"
+    app_identifier = "org.echowire.ios"
     flutter_build_name = flutter_marketing_version
     latest_build_number = latest_testflight_build_number(
       api_key: api_key,
@@ -445,9 +445,9 @@ platform :ios do
         teamID: ENV.fetch("APPLE_TEAM_ID"),
         signingCertificate: "Apple Distribution",
         provisioningProfiles: {
-          "com.fluxer" => runner_profile_uuid,
-          "com.fluxer.BroadcastExtension" => extension_profile_uuid,
-          "com.fluxer.NotificationService" => notification_service_profile_uuid
+          "org.echowire.ios" => runner_profile_uuid,
+          "org.echowire.ios.BroadcastExtension" => extension_profile_uuid,
+          "org.echowire.ios.NotificationService" => notification_service_profile_uuid
         }
       },
       xcargs: [

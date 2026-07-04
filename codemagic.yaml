@@ -1,0 +1,72 @@
+# Codemagic CI — iOS only (Android is built on the Linux workstation).
+#
+# One-time setup in the Codemagic UI before the first run:
+#   1. Teams → Integrations → App Store Connect: add an API key (from
+#      App Store Connect → Users and Access → Integrations). Name it exactly
+#      "Echowire App Store Connect" (or change the name under `integrations` below).
+#      This key does automatic code signing for the app AND its two extensions
+#      (BroadcastExtension, NotificationService) — no manual .mobileprovision needed.
+#   2. App settings → Environment variables, group `echowire_ios`:
+#        GOOGLE_SERVICE_INFO_PLIST  = base64 of ios/Runner/GoogleService-Info.plist  (mark Secure)
+#        APP_STORE_APP_ID           = the numeric Apple ID of the app in App Store Connect
+#      Generate the plist value with:
+#        base64 -w0 ios/Runner/GoogleService-Info.plist
+#   3. Point this workflow at the `canary` branch (default) or `main`.
+
+workflows:
+  ios-testflight:
+    name: Echowire iOS — TestFlight
+    instance_type: mac_mini_m2
+    max_build_duration: 90
+    integrations:
+      app_store_connect: Echowire App Store Connect
+    environment:
+      groups:
+        - echowire_ios
+      vars:
+        BUNDLE_ID: "org.echowire.ios"
+        APP_STORE_APPLE_TEAM_ID: "34589PFK6A"
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Restore Firebase iOS config
+        script: |
+          echo "$GOOGLE_SERVICE_INFO_PLIST" | base64 --decode > "$CM_BUILD_DIR/ios/Runner/GoogleService-Info.plist"
+      - name: Flutter pub get
+        script: flutter pub get
+      - name: CocoaPods install
+        script: |
+          find . -name "Podfile" -execdir pod install \;
+      - name: Automatic code signing (app + extensions)
+        script: |
+          set -e
+          # Fetch/create App Store profiles for the main app and both extensions.
+          app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --create
+          app-store-connect fetch-signing-files "$BUNDLE_ID.BroadcastExtension" --type IOS_APP_STORE --create
+          app-store-connect fetch-signing-files "$BUNDLE_ID.NotificationService" --type IOS_APP_STORE --create
+          keychain initialize
+          keychain add-certificates
+          xcode-project use-profiles
+      - name: Build signed IPA (stable flavor)
+        script: |
+          set -e
+          # Next TestFlight build number for this app version.
+          NEXT=$(app-store-connect get-latest-testflight-build-number "$APP_STORE_APP_ID" 2>/dev/null || echo 56)
+          BUILD_NUMBER=$((NEXT + 1))
+          flutter build ipa --release \
+            --flavor stable \
+            --dart-define-from-file=tool/dart_defines/stable.json \
+            --dart-define=PUSH_PROVIDER=apns \
+            --build-number=$BUILD_NUMBER \
+            --export-options-plist="$HOME/export_options.plist"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - flutter_drive.log
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        beta_groups:
+          - Echowire Team

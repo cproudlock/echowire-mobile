@@ -9,6 +9,12 @@
 #   2. App settings → Environment variables, group `echowire_ios`:
 #        GOOGLE_SERVICE_INFO_PLIST  = base64 of ios/Runner/GoogleService-Info.plist  (mark Secure)
 #        APP_STORE_APP_ID           = the numeric Apple ID of the app in App Store Connect
+#        CERTIFICATE_PRIVATE_KEY    = raw PEM RSA private key, NOT base64 (mark Secure).
+#                                     Used by fetch-signing-files to create/save the iOS
+#                                     Distribution certificate. Without it the signing step
+#                                     fails: "Cannot save Signing Certificates without
+#                                     certificate private key". Generate a fresh one with:
+#                                       openssl genrsa 2048 | openssl rsa -traditional
 #      Generate the plist value with:
 #        base64 -w0 ios/Runner/GoogleService-Info.plist
 #   3. Point this workflow at the `canary` branch (default) or `main`.
@@ -42,9 +48,12 @@ workflows:
         script: |
           set -e
           # Fetch/create App Store profiles for the main app and both extensions.
-          app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --create
-          app-store-connect fetch-signing-files "$BUNDLE_ID.BroadcastExtension" --type IOS_APP_STORE --create
-          app-store-connect fetch-signing-files "$BUNDLE_ID.NotificationService" --type IOS_APP_STORE --create
+          # CERTIFICATE_PRIVATE_KEY (secure env var, group echowire_ios, raw PEM — NOT base64)
+          # is required to create/save the Distribution certificate. Without it the CLI aborts
+          # with "Cannot save Signing Certificates without certificate private key".
+          app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --certificate-key @env:CERTIFICATE_PRIVATE_KEY --create
+          app-store-connect fetch-signing-files "$BUNDLE_ID.BroadcastExtension" --type IOS_APP_STORE --certificate-key @env:CERTIFICATE_PRIVATE_KEY --create
+          app-store-connect fetch-signing-files "$BUNDLE_ID.NotificationService" --type IOS_APP_STORE --certificate-key @env:CERTIFICATE_PRIVATE_KEY --create
           keychain initialize
           keychain add-certificates
           xcode-project use-profiles

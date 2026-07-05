@@ -29,6 +29,7 @@ import package_info_plus
 import passkeys_darwin
 import record_macos
 import screen_retriever_macos
+import sentry_flutter
 import share_plus
 import shared_preferences_foundation
 import super_native_extensions
@@ -63,6 +64,7 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   PasskeysPlugin.register(with: registry.registrar(forPlugin: "PasskeysPlugin"))
   RecordMacOsPlugin.register(with: registry.registrar(forPlugin: "RecordMacOsPlugin"))
   ScreenRetrieverMacosPlugin.register(with: registry.registrar(forPlugin: "ScreenRetrieverMacosPlugin"))
+  SentryFlutterPlugin.register(with: registry.registrar(forPlugin: "SentryFlutterPlugin"))
   SharePlusMacosPlugin.register(with: registry.registrar(forPlugin: "SharePlusMacosPlugin"))
   SharedPreferencesPlugin.register(with: registry.registrar(forPlugin: "SharedPreferencesPlugin"))
   SuperNativeExtensionsPlugin.register(with: registry.registrar(forPlugin: "SuperNativeExtensionsPlugin"))

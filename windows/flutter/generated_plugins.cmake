@@ -20,6 +20,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   permission_handler_windows
   record_windows
   screen_retriever_windows
+  sentry_flutter
   share_plus
   super_native_extensions
   url_launcher_windows

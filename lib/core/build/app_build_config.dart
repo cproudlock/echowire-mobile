@@ -24,10 +24,12 @@ class AppBuildConfig {
   );
   // ignore: do_not_use_environment -- compile-time build flavor config
   static const String _betaNumberValue = String.fromEnvironment('BETA_NUMBER');
+  // Echowire: default OFF. Upstream shipped 'https://sgnz-otlp.fluxer.tools/v1/traces',
+  // which sent our users' OpenTelemetry traces to Fluxer's SigNoz. Empty disables tracing
+  // (see hasObservabilityConfig guard); set SIGNOZ_OTLP_TRACES_ENDPOINT to opt in to our own.
   // ignore: do_not_use_environment -- compile-time build flavor config
   static const String _signozOtlpTracesEndpointValue = String.fromEnvironment(
     'SIGNOZ_OTLP_TRACES_ENDPOINT',
-    defaultValue: 'https://sgnz-otlp.fluxer.tools/v1/traces',
   );
   static AppBuildEnvironment get environment {
     switch (_environmentValue) {
@@ -90,4 +92,23 @@ class AppBuildConfig {
   static String get signozOtlpTracesEndpoint =>
       _signozOtlpTracesEndpointValue.trim();
   static bool get hasObservabilityConfig => signozOtlpTracesEndpoint.isNotEmpty;
+
+  // ignore: do_not_use_environment -- compile-time build flavor config
+  static const String _sentryDsnValue = String.fromEnvironment('SENTRY_DSN');
+
+  /// GlitchTip (Sentry-protocol) DSN for crash/error reporting. Empty disables it.
+  static String get sentryDsn => _sentryDsnValue.trim();
+  static bool get hasCrashReporting => sentryDsn.isNotEmpty;
+
+  /// Environment tag reported to GlitchTip (canary/beta/stable).
+  static String get environmentName {
+    switch (environment) {
+      case AppBuildEnvironment.canary:
+        return 'canary';
+      case AppBuildEnvironment.beta:
+        return 'beta';
+      case AppBuildEnvironment.stable:
+        return 'stable';
+    }
+  }
 }

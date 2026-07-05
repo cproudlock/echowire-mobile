@@ -5,6 +5,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluxer_app/core/api/fluxer_client_properties.dart';
 import 'package:fluxer_app/core/build/app_build_config.dart';
+import 'package:fluxer_app/core/observability/fluxer_crash_reporting.dart';
 import 'package:fluxer_app/core/providers/app_runtime_info.dart';
 import 'package:opentelemetry/api.dart' as otel;
 import 'package:opentelemetry/sdk.dart' as otel_sdk;
@@ -127,6 +128,14 @@ class FluxerObservability {
     StackTrace? stackTrace,
     String? context,
   }) {
+    // Forward to GlitchTip crash reporting independently of OpenTelemetry:
+    // tracing may be disabled while crash reporting is on (or vice versa).
+    FluxerCrashReporting.captureError(
+      error,
+      stackTrace: stackTrace,
+      source: source,
+      context: context,
+    );
     final otel.Span? span = startSpan(
       'flutter.error',
       attributes: <otel.Attribute>[

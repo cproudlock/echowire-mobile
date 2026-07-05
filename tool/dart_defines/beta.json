@@ -1,1 +1,4 @@
-{"APP_ENVIRONMENT": "beta"}
+{
+  "APP_ENVIRONMENT": "beta",
+  "SENTRY_DSN": "https://612a895f-310b-4b3e-b9e2-9ee56ef8095a@glitchtip.echowire.org/7"
+}

@@ -474,7 +474,7 @@ class _GuildNavbarState extends ConsumerState<GuildNavbar> {
           label: l10n.guildNavbarHelp,
           icon: PhosphorIconsRegular.question,
           onTap: () =>
-              handleExternalLinkTap(context, 'https://help.fluxer.app'),
+              handleExternalLinkTap(context, 'https://echowire.org/help'),
         );
     }
   }

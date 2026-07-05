@@ -10,6 +10,7 @@ import 'package:fluxer_app/core/bootstrap/flutter_error_ui.dart';
 import 'package:fluxer_app/core/bootstrap/image_cache_config.dart';
 import 'package:fluxer_app/core/build/push_provider_assert.dart';
 import 'package:fluxer_app/core/build/push_provider_guard.dart';
+import 'package:fluxer_app/core/observability/fluxer_crash_reporting.dart';
 import 'package:fluxer_app/core/observability/fluxer_observability.dart';
 import 'package:fluxer_app/core/observability/observability_reporting_provider.dart';
 import 'package:fluxer_app/core/providers/app_startup_provider.dart';
@@ -62,6 +63,7 @@ Future<void> _bootstrapFluxer(List<String> args) async {
   configureFluxerImageCache();
   configureFluxerErrorUi();
   _configureFluxerErrorReporting();
+  await FluxerCrashReporting.initialize();
 
   final ProviderContainer container = ProviderContainer();
   await container.read(observabilityReportingProvider.notifier).load();

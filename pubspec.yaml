@@ -3,7 +3,7 @@ description: "Echowire — native chat client."
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # versionName + versionCode. Play floor is 56 (old TWA), so build number must stay > 56.
-version: 1.7.0+57
+version: 1.7.1+58
 
 environment:
   sdk: ^3.11.0
@@ -75,6 +75,7 @@ dependencies:
   riverpod: ^3.2.1
   riverpod_annotation: ^4.0.2
   scrollview_observer: ^1.27.0
+  sentry_flutter: ^9.23.0
   shared_preferences: ^2.5.3
   skeletonizer: ^2.1.3
   super_clipboard: ^0.9.1

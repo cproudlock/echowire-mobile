@@ -41,6 +41,12 @@ workflows:
           echo "$GOOGLE_SERVICE_INFO_PLIST" | base64 --decode > "$CM_BUILD_DIR/ios/Runner/GoogleService-Info.plist"
       - name: Flutter pub get
         script: flutter pub get
+      - name: Generate code (build_runner)
+        # *.g.dart / *.freezed.dart are gitignored, so CI must generate them
+        # (Riverpod providers, Drift DAOs, etc.) before compiling — same as the
+        # Android GitHub Actions workflow. Without this the archive fails with
+        # "ref/messageUploadSessionsProvider/channelDao isn't defined".
+        script: dart run build_runner build --delete-conflicting-outputs
       - name: CocoaPods install
         script: |
           find . -name "Podfile" -execdir pod install \;

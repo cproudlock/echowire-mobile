@@ -114,6 +114,41 @@ db.ChannelsCompanion channelFromSdk(ChannelResponse sdk, String guildId) {
       encodePermissionOverwritesJson(sdk.permissionOverwrites),
     ),
     userLimit: Value(sdk.userLimit),
+    // Echowire: thread + forum fields.
+    ownerId: Value(sdk.ownerId),
+    threadArchived: Value(sdk.threadMetadata?.archived),
+    threadAutoArchiveDuration: Value(sdk.threadMetadata?.autoArchiveDuration),
+    threadArchiveTimestamp: Value(
+      sdk.threadMetadata?.archiveTimestamp?.toIso8601String(),
+    ),
+    threadLocked: Value(sdk.threadMetadata?.locked),
+    threadInvitable: Value(sdk.threadMetadata?.invitable),
+    threadCreateTimestamp: Value(
+      sdk.threadMetadata?.createTimestamp?.toIso8601String(),
+    ),
+    threadMemberCount: Value(sdk.memberCount),
+    threadMessageCount: Value(sdk.messageCount),
+    threadPinned: Value(sdk.pinned),
+    appliedTagsJson: Value(
+      sdk.appliedTags == null ? null : jsonEncode(sdk.appliedTags),
+    ),
+    availableTagsJson: Value(
+      sdk.availableTags == null
+          ? null
+          : jsonEncode(
+              sdk.availableTags!
+                  .map((ForumTagResponse t) => t.toJson())
+                  .toList(),
+            ),
+    ),
+    defaultSortOrder: Value(sdk.defaultSortOrder),
+    forumDefaultAutoArchiveDuration: Value(sdk.defaultAutoArchiveDuration),
+    forumRequireTag: Value(sdk.requireTag),
+    defaultReactionEmojiJson: Value(
+      sdk.defaultReactionEmoji == null
+          ? null
+          : jsonEncode(sdk.defaultReactionEmoji!.toJson()),
+    ),
   );
 }
 

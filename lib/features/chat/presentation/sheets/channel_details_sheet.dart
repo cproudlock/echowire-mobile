@@ -3273,6 +3273,8 @@ String? _detailsSubtitle({
       ChannelType.guildVoice => 'Voice channel',
       ChannelType.guildCategory => 'Category',
       ChannelType.guildLink => 'Link channel',
+      ChannelType.guildForum => 'Forum channel',
+      ChannelType.publicThread || ChannelType.privateThread => 'Thread',
       ChannelType.dm ||
       ChannelType.groupDm ||
       ChannelType.dmPersonalNotes => 'Channel',

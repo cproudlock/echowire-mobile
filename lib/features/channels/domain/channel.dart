@@ -7,6 +7,11 @@ enum ChannelType {
   guildVoice(2),
   groupDm(3),
   guildCategory(4),
+  // Echowire: threads + forum channels (absent upstream). A thread IS a channel
+  // with a thread type and a parent_id; a forum is a container of thread posts.
+  publicThread(11),
+  privateThread(12),
+  guildForum(15),
   guildLink(998),
   dmPersonalNotes(999);
 
@@ -24,15 +29,30 @@ enum ChannelType {
   }
 }
 
-/// Guild channels that support text based unread tracking (text + voice).
+/// Echowire: channel types that are threads (public + private).
+const Set<ChannelType> threadChannelTypes = <ChannelType>{
+  ChannelType.publicThread,
+  ChannelType.privateThread,
+};
+
+bool isThreadChannelType(int type) =>
+    type == ChannelType.publicThread.wireValue ||
+    type == ChannelType.privateThread.wireValue;
+
+bool isForumChannelType(int type) => type == ChannelType.guildForum.wireValue;
+
+/// Guild channels that support text based unread tracking (text + voice + threads).
 const Set<ChannelType> guildTextBasedChannelTypes = <ChannelType>{
   ChannelType.guildText,
   ChannelType.guildVoice,
+  ChannelType.publicThread,
+  ChannelType.privateThread,
 };
 
 bool isGuildTextBasedChannel(int type) =>
     type == ChannelType.guildText.wireValue ||
-    type == ChannelType.guildVoice.wireValue;
+    type == ChannelType.guildVoice.wireValue ||
+    isThreadChannelType(type);
 
 bool isGuildTextBasedChannelType(ChannelType type) =>
     guildTextBasedChannelTypes.contains(type);
@@ -206,6 +226,9 @@ int _channelDisplayBucket(Channel channel) {
     case ChannelType.guildText:
     case ChannelType.guildLink:
     case ChannelType.guildCategory:
+    case ChannelType.guildForum:
+    case ChannelType.publicThread:
+    case ChannelType.privateThread:
     case ChannelType.dm:
     case ChannelType.groupDm:
     case ChannelType.dmPersonalNotes:

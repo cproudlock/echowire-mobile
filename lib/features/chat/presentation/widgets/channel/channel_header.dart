@@ -9,6 +9,7 @@ import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
+import 'package:fluxer_app/features/channels/presentation/sheets/thread_list_sheet.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/channel_icon.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
@@ -401,6 +402,14 @@ class ChannelHeader extends ConsumerWidget {
           if (showMessageActions) ...[
             if (_shouldShowFavoriteStar(ref, channel: channel, dm: dm))
               _buildFavoriteStar(context, ref, channel: channel, dm: dm),
+            if (channel != null && channel.type == ChannelType.guildText)
+              _topBarIcon(
+                context,
+                PhosphorIconsRegular.chatText,
+                'Threads',
+                onTap: () =>
+                    showThreadsSheet(context, parentChannel: channel),
+              ),
             if (channel != null)
               _topBarIcon(
                 context,

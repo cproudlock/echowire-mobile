@@ -856,6 +856,9 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get dmDebugChannel => '채널 디버그';
 
   @override
+  String get dmDebugCategory => 'Debug Category';
+
+  @override
   String get dmPinned => 'DM 고정됨';
 
   @override
@@ -3811,6 +3814,13 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get messagesMediaEditingPreserveDraftLabel => '취소 시 편집 초안 유지';
 
   @override
+  String get accessibilitySaturationTitle => 'Saturation';
+
+  @override
+  String get accessibilitySaturationDescription =>
+      'Adjust how vivid theme colors appear across the app.';
+
+  @override
   String get accessibilityUnreadGroupTitle => '읽지 않음 표시';
 
   @override
@@ -4855,6 +4865,64 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get addGuildJoinFailed => '커뮤니티에 참여할 수 없습니다. 다시 시도하세요.';
 
   @override
+  String get addGuildCreateTitle => 'Create a community';
+
+  @override
+  String get addGuildCreateDescription =>
+      'Create a community for you and your friends to chat.';
+
+  @override
+  String get addGuildCreateNameLabel => 'Community name';
+
+  @override
+  String get addGuildCreateSubmit => 'Create community';
+
+  @override
+  String get addGuildCreateFailed =>
+      'Could not create community. Please try again.';
+
+  @override
+  String get addGuildCreateClaimTitle => 'Claim your account';
+
+  @override
+  String get addGuildCreateClaimDescription =>
+      'You need to claim your account before you can create a community.';
+
+  @override
+  String get addGuildCreateVerifyTitle => 'Verify your email';
+
+  @override
+  String get addGuildCreateVerifyDescription =>
+      'You need to verify your email address before you can create a community.';
+
+  @override
+  String get addGuildCreateAnimatedIconUnsupported =>
+      'Animated icons are not supported when creating a new community. Use a static image.';
+
+  @override
+  String get addGuildCreateGuidelinesBefore =>
+      'By creating a community, you agree to follow and uphold the ';
+
+  @override
+  String addGuildCreateGuidelinesLink(String productName) {
+    return '$productName community guidelines';
+  }
+
+  @override
+  String get addGuildCreateSingleCommunityBlocked =>
+      'This instance is a single community, so additional communities cannot be created.';
+
+  @override
+  String get addGuildCreateChangeIcon => 'Change icon';
+
+  @override
+  String get addGuildCreateIconLabel => 'Community icon';
+
+  @override
+  String get addGuildCreateIconHint =>
+      'PNG, JPEG, WebP, AVIF, HEIC, HEIF, JXL, SVG. Max 10MB. Recommended: 512×512px';
+
+  @override
   String get addGuildPackInstalled => '팩이 성공적으로 설치되었습니다.';
 
   @override
@@ -5161,6 +5229,16 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get userSettingsNavLanguageAndTime => '언어 및 시간';
+
+  @override
+  String get languageAndTimeLanguageSectionTitle => 'Interface language';
+
+  @override
+  String get languageAndTimeLanguageSectionDescription =>
+      'Choose the language used throughout the app';
+
+  @override
+  String get languageAndTimeOpenLanguageSettings => 'Open language settings';
 
   @override
   String get languageAndTimeTimeFormatSectionTitle => 'Time format';

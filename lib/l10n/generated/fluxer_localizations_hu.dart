@@ -892,6 +892,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get dmDebugChannel => 'Csatorna hibakeresése';
 
   @override
+  String get dmDebugCategory => 'Debug Category';
+
+  @override
   String get dmPinned => 'Pinelt DM';
 
   @override
@@ -3996,6 +3999,13 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Szerkesztési piszkozat megőrzése törléskor';
 
   @override
+  String get accessibilitySaturationTitle => 'Saturation';
+
+  @override
+  String get accessibilitySaturationDescription =>
+      'Adjust how vivid theme colors appear across the app.';
+
+  @override
   String get accessibilityUnreadGroupTitle => 'Olvasatlan jelzők';
 
   @override
@@ -5115,6 +5125,64 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Nem sikerült csatlakozni a közösséghez. Kérjük, próbálja újra.';
 
   @override
+  String get addGuildCreateTitle => 'Create a community';
+
+  @override
+  String get addGuildCreateDescription =>
+      'Create a community for you and your friends to chat.';
+
+  @override
+  String get addGuildCreateNameLabel => 'Community name';
+
+  @override
+  String get addGuildCreateSubmit => 'Create community';
+
+  @override
+  String get addGuildCreateFailed =>
+      'Could not create community. Please try again.';
+
+  @override
+  String get addGuildCreateClaimTitle => 'Claim your account';
+
+  @override
+  String get addGuildCreateClaimDescription =>
+      'You need to claim your account before you can create a community.';
+
+  @override
+  String get addGuildCreateVerifyTitle => 'Verify your email';
+
+  @override
+  String get addGuildCreateVerifyDescription =>
+      'You need to verify your email address before you can create a community.';
+
+  @override
+  String get addGuildCreateAnimatedIconUnsupported =>
+      'Animated icons are not supported when creating a new community. Use a static image.';
+
+  @override
+  String get addGuildCreateGuidelinesBefore =>
+      'By creating a community, you agree to follow and uphold the ';
+
+  @override
+  String addGuildCreateGuidelinesLink(String productName) {
+    return '$productName community guidelines';
+  }
+
+  @override
+  String get addGuildCreateSingleCommunityBlocked =>
+      'This instance is a single community, so additional communities cannot be created.';
+
+  @override
+  String get addGuildCreateChangeIcon => 'Change icon';
+
+  @override
+  String get addGuildCreateIconLabel => 'Community icon';
+
+  @override
+  String get addGuildCreateIconHint =>
+      'PNG, JPEG, WebP, AVIF, HEIC, HEIF, JXL, SVG. Max 10MB. Recommended: 512×512px';
+
+  @override
   String get addGuildPackInstalled => 'A csomag sikeresen telepítve.';
 
   @override
@@ -5427,6 +5495,16 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get userSettingsNavLanguageAndTime => 'Nyelv és idő';
+
+  @override
+  String get languageAndTimeLanguageSectionTitle => 'Interface language';
+
+  @override
+  String get languageAndTimeLanguageSectionDescription =>
+      'Choose the language used throughout the app';
+
+  @override
+  String get languageAndTimeOpenLanguageSettings => 'Open language settings';
 
   @override
   String get languageAndTimeTimeFormatSectionTitle => 'Time format';

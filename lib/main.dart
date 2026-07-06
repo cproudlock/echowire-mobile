@@ -10,6 +10,7 @@ import 'package:fluxer_app/core/bootstrap/flutter_error_ui.dart';
 import 'package:fluxer_app/core/bootstrap/image_cache_config.dart';
 import 'package:fluxer_app/core/build/push_provider_assert.dart';
 import 'package:fluxer_app/core/build/push_provider_guard.dart';
+import 'package:fluxer_app/core/database/drift_stream_utils.dart';
 import 'package:fluxer_app/core/observability/fluxer_crash_reporting.dart';
 import 'package:fluxer_app/core/observability/fluxer_observability.dart';
 import 'package:fluxer_app/core/observability/observability_reporting_provider.dart';
@@ -48,6 +49,9 @@ void _configureFluxerErrorReporting() {
     FluxerObservability.instance.recordFlutterError(details);
   };
   PlatformDispatcher.instance.onError = (Object error, StackTrace stack) {
+    if (isDriftCancellation(error)) {
+      return true;
+    }
     FluxerObservability.instance.recordError(
       error,
       stackTrace: stack,
@@ -140,6 +144,9 @@ Future<void> main(List<String> args) async {
       await _bootstrapFluxer(args);
     },
     (Object error, StackTrace stack) {
+      if (isDriftCancellation(error)) {
+        return;
+      }
       FluxerObservability.instance.recordError(
         error,
         stackTrace: stack,

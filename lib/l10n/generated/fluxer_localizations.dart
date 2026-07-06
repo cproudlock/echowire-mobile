@@ -1897,13 +1897,13 @@ abstract class FluxerLocalizations {
   /// **'Send request'**
   String get addFriendSendRequest;
 
-  /// Error when no user matches the entered FluxerTag.
+  /// Error when no user matches the entered EchoTag.
   ///
   /// In en, this message translates to:
   /// **'No user found with that username.'**
   String get addFriendNoUserFound;
 
-  /// Error when the FluxerTag format is invalid.
+  /// Error when the EchoTag format is invalid.
   ///
   /// In en, this message translates to:
   /// **'Enter a valid username (Username#0000).'**
@@ -2230,16 +2230,16 @@ abstract class FluxerLocalizations {
   /// Upsell banner text in emoji picker for non-premium users.
   ///
   /// In en, this message translates to:
-  /// **'Unlock {emojiCount} from {communityCount} with Plutonium.'**
+  /// **'Unlock {emojiCount} from {communityCount} with Reverb.'**
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount);
 
-  /// Button label on the Plutonium upsell banner.
+  /// Button label on the Reverb upsell banner.
   ///
   /// In en, this message translates to:
-  /// **'Get Plutonium'**
+  /// **'Get Reverb'**
   String get emojiPlutoniumUpsellButton;
 
-  /// Dismiss link on the Plutonium upsell banner.
+  /// Dismiss link on the Reverb upsell banner.
   ///
   /// In en, this message translates to:
   /// **'Don\'t show this again'**
@@ -2266,7 +2266,7 @@ abstract class FluxerLocalizations {
   /// Primary warning text shown in the external link warning modal.
   ///
   /// In en, this message translates to:
-  /// **'You are about to leave Fluxer'**
+  /// **'You are about to leave Echowire'**
   String get externalLinkWarningLeaving;
 
   /// Supporting text shown in the external link warning modal.
@@ -2392,13 +2392,13 @@ abstract class FluxerLocalizations {
   /// Toast shown when non-premium user tries uploading animated avatar.
   ///
   /// In en, this message translates to:
-  /// **'Animated avatars require Plutonium'**
+  /// **'Animated avatars require Reverb'**
   String get animatedAvatarsRequirePlutonium;
 
   /// Toast shown when non-premium user tries uploading animated banner.
   ///
   /// In en, this message translates to:
-  /// **'Animated banners require Plutonium'**
+  /// **'Animated banners require Reverb'**
   String get animatedBannersRequirePlutonium;
 
   /// Title for animated AVIF confirmation sheet.
@@ -2449,19 +2449,19 @@ abstract class FluxerLocalizations {
   /// **'Crop'**
   String get crop;
 
-  /// Title for the FluxerTag change bottom sheet.
+  /// Title for the EchoTag change bottom sheet.
   ///
   /// In en, this message translates to:
-  /// **'Change Your FluxerTag'**
+  /// **'Change Your EchoTag'**
   String get changeYourFluxerTag;
 
   /// Label above the username and discriminator input fields.
   ///
   /// In en, this message translates to:
-  /// **'FluxerTag'**
+  /// **'EchoTag'**
   String get fluxerTagInputLabel;
 
-  /// Base description text on the FluxerTag change sheet.
+  /// Base description text on the EchoTag change sheet.
   ///
   /// In en, this message translates to:
   /// **'Usernames can only contain letters (a-z, A-Z), numbers (0-9), and underscores. Usernames are case-insensitive.'**
@@ -2494,19 +2494,19 @@ abstract class FluxerLocalizations {
   /// Tooltip on disabled discriminator field for non-premium users.
   ///
   /// In en, this message translates to:
-  /// **'Get Plutonium to customize your tag or keep it when changing your username'**
+  /// **'Get Reverb to customize your tag or keep it when changing your username'**
   String get discriminatorPremiumTooltip;
 
   /// Title for the tag-taken confirmation sheet.
   ///
   /// In en, this message translates to:
-  /// **'FluxerTag Already Taken'**
+  /// **'EchoTag Already Taken'**
   String get fluxerTagAlreadyTaken;
 
-  /// Body text when the requested FluxerTag is taken.
+  /// Body text when the requested EchoTag is taken.
   ///
   /// In en, this message translates to:
-  /// **'The FluxerTag {username}#{discriminator} is already taken. Continuing will reroll your discriminator automatically.'**
+  /// **'The EchoTag {username}#{discriminator} is already taken. Continuing will reroll your discriminator automatically.'**
   String fluxerTagAlreadyTakenBody(String username, String discriminator);
 
   /// Title for the temporary tag warning sheet.
@@ -2518,13 +2518,13 @@ abstract class FluxerLocalizations {
   /// Warning body when premium subscription has a known expiry date.
   ///
   /// In en, this message translates to:
-  /// **'Your custom 4-digit tag is only available while your Plutonium subscription is active. When your subscription expires on {date}, your tag will revert to a randomly assigned number after a 3-day grace period.'**
+  /// **'Your custom 4-digit tag is only available while your Reverb subscription is active. When your subscription expires on {date}, your tag will revert to a randomly assigned number after a 3-day grace period.'**
   String customTagTemporaryBodyWithDate(String date);
 
   /// Warning body when premium subscription expiry date is unknown.
   ///
   /// In en, this message translates to:
-  /// **'Your custom 4-digit tag is only available while your Plutonium subscription is active. When your subscription expires, your tag will revert to a randomly assigned number after a 3-day grace period.'**
+  /// **'Your custom 4-digit tag is only available while your Reverb subscription is active. When your subscription expires, your tag will revert to a randomly assigned number after a 3-day grace period.'**
   String get customTagTemporaryBody;
 
   /// Button to acknowledge a warning and proceed.
@@ -2536,16 +2536,16 @@ abstract class FluxerLocalizations {
   /// Warning shown when premium user is about to change their discriminator.
   ///
   /// In en, this message translates to:
-  /// **'If you save this FluxerTag, your custom 4-digit tag will revert to a random number when your Plutonium subscription ends. If your subscription fails to renew, you\'ll have a 3-day grace period before the tag changes.'**
+  /// **'If you save this EchoTag, your custom 4-digit tag will revert to a random number when your Reverb subscription ends. If your subscription fails to renew, you\'ll have a 3-day grace period before the tag changes.'**
   String get premiumWarningPendingDiscriminator;
 
   /// Warning shown when premium user already has a custom discriminator.
   ///
   /// In en, this message translates to:
-  /// **'Your custom 4-digit tag (#{discriminator}) is active while your Plutonium subscription is active. If your subscription ends or fails to renew after a 3-day grace period, your tag will revert to a random number.'**
+  /// **'Your custom 4-digit tag (#{discriminator}) is active while your Reverb subscription is active. If your subscription ends or fails to renew after a 3-day grace period, your tag will revert to a random number.'**
   String premiumWarningActiveDiscriminator(String discriminator);
 
-  /// Upsell text encouraging non-premium users to get Plutonium for tag customization.
+  /// Upsell text encouraging non-premium users to get Reverb for tag customization.
   ///
   /// In en, this message translates to:
   /// **'Customize your 4-digit tag or keep it when changing your username'**
@@ -2554,25 +2554,25 @@ abstract class FluxerLocalizations {
   /// Trial upsell with expiry date.
   ///
   /// In en, this message translates to:
-  /// **'Your Plutonium trial expires on {date}. Upgrade to keep your custom tag and earn a badge on your profile.'**
+  /// **'Your Reverb trial expires on {date}. Upgrade to keep your custom tag and earn a badge on your profile.'**
   String premiumTrialExpiresOn(String date);
 
   /// Trial upsell without specific expiry date.
   ///
   /// In en, this message translates to:
-  /// **'You\'re on a Plutonium trial. Upgrade to keep your custom tag and earn a badge on your profile.'**
+  /// **'You\'re on a Reverb trial. Upgrade to keep your custom tag and earn a badge on your profile.'**
   String get premiumTrialActive;
 
-  /// Success toast after FluxerTag change.
+  /// Success toast after EchoTag change.
   ///
   /// In en, this message translates to:
-  /// **'FluxerTag updated'**
+  /// **'EchoTag updated'**
   String get fluxerTagUpdated;
 
-  /// Error message when FluxerTag update fails.
+  /// Error message when EchoTag update fails.
   ///
   /// In en, this message translates to:
-  /// **'Failed to update FluxerTag. Please try again.'**
+  /// **'Failed to update EchoTag. Please try again.'**
   String get fluxerTagUpdateFailed;
 
   /// Generic continue button label.
@@ -2599,22 +2599,22 @@ abstract class FluxerLocalizations {
   /// **'Username'**
   String get usernameLabel;
 
-  /// Tooltip when unverified user hovers the disabled Change FluxerTag button.
+  /// Tooltip when unverified user hovers the disabled Change EchoTag button.
   ///
   /// In en, this message translates to:
-  /// **'Claim your account to change your FluxerTag'**
+  /// **'Claim your account to change your EchoTag'**
   String get claimAccountToChangeFluxerTag;
 
-  /// Button label to open the FluxerTag change flow.
+  /// Button label to open the EchoTag change flow.
   ///
   /// In en, this message translates to:
-  /// **'Change FluxerTag'**
+  /// **'Change EchoTag'**
   String get changeFluxerTag;
 
-  /// Tooltip on the crown upsell button next to the FluxerTag button.
+  /// Tooltip on the crown upsell button next to the EchoTag button.
   ///
   /// In en, this message translates to:
-  /// **'Customize your 4-digit tag (#{discriminator}) to your liking with Plutonium'**
+  /// **'Customize your 4-digit tag (#{discriminator}) to your liking with Reverb'**
   String customizeTagWithPlutoniumTooltip(String discriminator);
 
   /// Hint text below the username buttons.
@@ -2626,7 +2626,7 @@ abstract class FluxerLocalizations {
   /// Warning shown when user has a premium discriminator that is not lifetime.
   ///
   /// In en, this message translates to:
-  /// **'Your custom tag (#{discriminator}) is tied to your Plutonium subscription and will revert to a random tag if it expires.'**
+  /// **'Your custom tag (#{discriminator}) is tied to your Reverb subscription and will revert to a random tag if it expires.'**
   String customTagSubscriptionWarning(String discriminator);
 
   /// Label for the display name input.
@@ -2722,43 +2722,43 @@ abstract class FluxerLocalizations {
   /// Heading for the premium badge privacy settings section.
   ///
   /// In en, this message translates to:
-  /// **'Plutonium Badge Privacy'**
+  /// **'Reverb Badge Privacy'**
   String get plutoniumBadgePrivacyTitle;
 
   /// Subheading for the premium badge privacy settings section.
   ///
   /// In en, this message translates to:
-  /// **'Control how your Plutonium badge is displayed to others'**
+  /// **'Control how your Reverb badge is displayed to others'**
   String get plutoniumBadgePrivacyDescription;
 
-  /// Label for the toggle to hide the Plutonium badge.
+  /// Label for the toggle to hide the Reverb badge.
   ///
   /// In en, this message translates to:
-  /// **'Hide Plutonium badge entirely'**
+  /// **'Hide Reverb badge entirely'**
   String get hidePlutoniumBadgeLabel;
 
-  /// Description for the toggle to hide the Plutonium badge.
+  /// Description for the toggle to hide the Reverb badge.
   ///
   /// In en, this message translates to:
-  /// **'Completely hide your Plutonium badge from other users'**
+  /// **'Completely hide your Reverb badge from other users'**
   String get hidePlutoniumBadgeDescription;
 
-  /// Label for the toggle to hide the Plutonium purchase date.
+  /// Label for the toggle to hide the Reverb purchase date.
   ///
   /// In en, this message translates to:
-  /// **'Hide Plutonium purchase date'**
+  /// **'Hide Reverb purchase date'**
   String get hidePlutoniumPurchaseDate;
 
-  /// Label for the toggle to hide the Plutonium purchase date, showing the actual date.
+  /// Label for the toggle to hide the Reverb purchase date, showing the actual date.
   ///
   /// In en, this message translates to:
-  /// **'Hide Plutonium purchase date ({date})'**
+  /// **'Hide Reverb purchase date ({date})'**
   String hidePlutoniumPurchaseDateWithDate(String date);
 
-  /// Description for the toggle to hide the Plutonium purchase date.
+  /// Description for the toggle to hide the Reverb purchase date.
   ///
   /// In en, this message translates to:
-  /// **'Remove when you first bought Plutonium from your badge'**
+  /// **'Remove when you first bought Reverb from your badge'**
   String get hidePurchaseDateDescription;
 
   /// Label for the toggle to mask Visionary as a regular subscription.
@@ -2794,7 +2794,7 @@ abstract class FluxerLocalizations {
   /// Trial banner title when user has an active subscription pending after trial.
   ///
   /// In en, this message translates to:
-  /// **'You\'re on a Plutonium trial — your subscription starts on {date}'**
+  /// **'You\'re on a Reverb trial — your subscription starts on {date}'**
   String premiumTrialSubscriptionStarts(String date);
 
   /// Trial banner description when user has an active subscription pending after trial.
@@ -2806,19 +2806,19 @@ abstract class FluxerLocalizations {
   /// Trial banner title with expiry date.
   ///
   /// In en, this message translates to:
-  /// **'You\'re on a Plutonium trial that expires on {date}'**
+  /// **'You\'re on a Reverb trial that expires on {date}'**
   String premiumTrialExpiresOnProfile(String date);
 
   /// Trial banner title without specific expiry date.
   ///
   /// In en, this message translates to:
-  /// **'You\'re on a Plutonium trial'**
+  /// **'You\'re on a Reverb trial'**
   String get premiumTrialActiveProfile;
 
-  /// Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars.
+  /// Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars.
   ///
   /// In en, this message translates to:
-  /// **'JPEG, PNG, WebP. Max 10MB. Recommended: 512×512px. Animated avatars (GIF) require Plutonium.'**
+  /// **'JPEG, PNG, WebP. Max 10MB. Recommended: 512×512px. Animated avatars (GIF) require Reverb.'**
   String get avatarDescriptionNonPremium;
 
   /// Upsell text shown in place of banner upload for non-premium users.
@@ -2827,19 +2827,19 @@ abstract class FluxerLocalizations {
   /// **'Customize your profile with a static or animated banner image to make it stand out.'**
   String get bannerPlutoniumUpsell;
 
-  /// Button label for the Plutonium upsell call-to-action.
+  /// Button label for the Reverb upsell call-to-action.
   ///
   /// In en, this message translates to:
-  /// **'Get Plutonium'**
+  /// **'Get Reverb'**
   String get getPlutonium;
 
-  /// Title for the Plutonium not-available-yet bottom sheet.
+  /// Title for the Reverb not-available-yet bottom sheet.
   ///
   /// In en, this message translates to:
-  /// **'Plutonium'**
+  /// **'Reverb'**
   String get plutoniumNotAvailableTitle;
 
-  /// Body text for the Plutonium not-available-yet bottom sheet.
+  /// Body text for the Reverb not-available-yet bottom sheet.
   ///
   /// In en, this message translates to:
   /// **'In-app purchases are not available on this platform yet. Stay tuned — coming soon!'**
@@ -2860,7 +2860,7 @@ abstract class FluxerLocalizations {
   /// Label for the member-since date in the profile preview card.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Member Since'**
+  /// **'Echowire Member Since'**
   String get profilePreviewMemberSince;
 
   /// Title for the unclaimed account warning bar.
@@ -2908,7 +2908,7 @@ abstract class FluxerLocalizations {
   /// Upsell text for per-guild premium features
   ///
   /// In en, this message translates to:
-  /// **'Customizing your avatar, banner, accent color, and bio for individual communities requires Plutonium. Community nickname and pronouns are free for everyone.'**
+  /// **'Customizing your avatar, banner, accent color, and bio for individual communities requires Reverb. Community nickname and pronouns are free for everyone.'**
   String get perGuildPremiumUpsellText;
 
   /// Avatar/banner mode: inherit from global profile
@@ -3028,7 +3028,7 @@ abstract class FluxerLocalizations {
   /// Description for email settings section.
   ///
   /// In en, this message translates to:
-  /// **'Manage the email address you use to sign in to Fluxer'**
+  /// **'Manage the email address you use to sign in to Echowire'**
   String get securityLoginEmailSectionDescription;
 
   /// Label for email address row.
@@ -3730,7 +3730,7 @@ abstract class FluxerLocalizations {
   /// Warning about active subscription before deletion.
   ///
   /// In en, this message translates to:
-  /// **'Cancel your active Plutonium subscription in Plutonium settings before deleting your account.'**
+  /// **'Cancel your active Reverb subscription in Reverb settings before deleting your account.'**
   String get dangerZoneDeleteCancelSubscription;
 
   /// Title for the guild ownership warning modal when trying to delete account.
@@ -3898,7 +3898,7 @@ abstract class FluxerLocalizations {
   /// Description under the Authorized Applications section title.
   ///
   /// In en, this message translates to:
-  /// **'These applications have been granted access to your Fluxer account.'**
+  /// **'These applications have been granted access to your Echowire account.'**
   String get authorizedAppsDescription;
 
   /// Title shown when the user has no authorized OAuth2 applications.
@@ -4042,7 +4042,7 @@ abstract class FluxerLocalizations {
   /// Context menu item that copies the user's tag.
   ///
   /// In en, this message translates to:
-  /// **'Copy FluxerTag'**
+  /// **'Copy EchoTag'**
   String get blockedUsersCopyTag;
 
   /// Context menu item that copies the user's ID.
@@ -4090,49 +4090,49 @@ abstract class FluxerLocalizations {
   /// Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Staff'**
+  /// **'Echowire Staff'**
   String get userProfileStaffBadgeTooltip;
 
   /// Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Community Team'**
+  /// **'Echowire Community Team'**
   String get userProfileCtpBadgeTooltip;
 
   /// Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Partner'**
+  /// **'Echowire Partner'**
   String get userProfilePartnerBadgeTooltip;
 
   /// Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Bug Hunter'**
+  /// **'Echowire Bug Hunter'**
   String get userProfileBugHunterBadgeTooltip;
 
   /// Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Plutonium'**
+  /// **'Echowire Reverb'**
   String get userProfilePlutoniumBadgeTooltip;
 
   /// Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep "subscriber since" lowercase. Other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Plutonium subscriber since {date}'**
+  /// **'Echowire Reverb subscriber since {date}'**
   String userProfilePlutoniumSubscriberSinceTooltip(String date);
 
   /// Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Visionary'**
+  /// **'Echowire Visionary'**
   String get userProfileVisionaryBadgeTooltip;
 
   /// Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Visionary since {date}'**
+  /// **'Echowire Visionary since {date}'**
   String userProfileVisionaryBadgeSinceTooltip(String date);
 
   /// Short label in the user profile badges popout. Keep it concise. Preserve {sequence}; it is inserted by code.
@@ -5053,7 +5053,7 @@ abstract class FluxerLocalizations {
   /// **'You can\'t send messages in this channel.'**
   String get channelNoSendPermissionHint;
 
-  /// Read-only system DM barrier message. productName is the Fluxer product name.
+  /// Read-only system DM barrier message. productName is the Echowire product name.
   ///
   /// In en, this message translates to:
   /// **'System announcements from {productName} staff. You can\'t reply here.'**
@@ -5578,7 +5578,7 @@ abstract class FluxerLocalizations {
   /// Description shown under the Connections settings page title.
   ///
   /// In en, this message translates to:
-  /// **'Link external accounts and domains to your Fluxer profile. Verified connections will be displayed on your profile for others to see.'**
+  /// **'Link external accounts and domains to your Echowire profile. Verified connections will be displayed on your profile for others to see.'**
   String get connectionsDescription;
 
   /// Empty-state title when the user has no connections.
@@ -6175,7 +6175,7 @@ abstract class FluxerLocalizations {
   /// **'{count, plural, =1{1 community is temporarily unavailable due to a flux capacitor malfunction.} other{{count} communities are temporarily unavailable due to a flux capacitor malfunction.}}'**
   String guildUnavailableOutageTooltip(int count);
 
-  /// Toggle label — collapse unread DMs into the Fluxer button folder.
+  /// Toggle label — collapse unread DMs into the Echowire button folder.
   ///
   /// In en, this message translates to:
   /// **'Collapse DMs Into Folder'**
@@ -6184,7 +6184,7 @@ abstract class FluxerLocalizations {
   /// Toggle description for the DM folder collapse behavior.
   ///
   /// In en, this message translates to:
-  /// **'When enabled, unread DMs in the guild sidebar are collapsed into a folder on the Fluxer button. Click the Fluxer button while on the DMs page to expand or collapse the folder.'**
+  /// **'When enabled, unread DMs in the guild sidebar are collapsed into a folder on the Echowire button. Click the Echowire button while on the DMs page to expand or collapse the folder.'**
   String get lookAndFeelCollapseDMsDescription;
 
   /// Section title for channel list options.
@@ -6550,7 +6550,7 @@ abstract class FluxerLocalizations {
   /// Toggle label for inlining media for direct uploads.
   ///
   /// In en, this message translates to:
-  /// **'When uploaded directly to Fluxer'**
+  /// **'When uploaded directly to Echowire'**
   String get messagesMediaDisplayInlineAttachmentLabel;
 
   /// Section title for link preview settings.
@@ -7423,7 +7423,7 @@ abstract class FluxerLocalizations {
   /// **'Message is too long'**
   String get characterCounterTooLong;
 
-  /// Character counter tooltip with a Plutonium upsell when nearing the limit.
+  /// Character counter tooltip with a Reverb upsell when nearing the limit.
   ///
   /// In en, this message translates to:
   /// **'{remaining} characters left. Get {productName} to write up to {premiumMaxLength} characters.'**
@@ -7439,43 +7439,43 @@ abstract class FluxerLocalizations {
   /// **'Failed to send message'**
   String get chatMessageFailedToSend;
 
-  /// Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.
+  /// Echowirebot system message when a DM cannot be delivered due to privacy restrictions.
   ///
   /// In en, this message translates to:
   /// **'Your message could not be delivered. This is usually because you don\'t share a community with the recipient or the recipient is only accepting direct messages from friends. You may also need to adjust your own direct message privacy settings in {settingsPath}.'**
   String chatSendFailureDmRestricted(String settingsPath);
 
-  /// Fluxerbot system message when an unclaimed account tries to send a DM.
+  /// Echowirebot system message when an unclaimed account tries to send a DM.
   ///
   /// In en, this message translates to:
   /// **'Your message could not be delivered. You need to claim your account to send direct messages.'**
   String get chatSendFailureUnclaimedDm;
 
-  /// Fluxerbot system message when an unclaimed account tries to send a message.
+  /// Echowirebot system message when an unclaimed account tries to send a message.
   ///
   /// In en, this message translates to:
   /// **'Your message could not be delivered. You need to claim your account to send messages.'**
   String get chatSendFailureUnclaimedGeneral;
 
-  /// Fluxerbot system message when message content is blocked by safety systems.
+  /// Echowirebot system message when message content is blocked by safety systems.
   ///
   /// In en, this message translates to:
   /// **'Your message could not be delivered because it was flagged by our safety systems. If you believe this is a mistake, please contact support.'**
   String get chatSendFailureContentBlocked;
 
-  /// Fluxerbot system message when mature emoji or stickers are blocked.
+  /// Echowirebot system message when mature emoji or stickers are blocked.
   ///
   /// In en, this message translates to:
   /// **'Your message could not be delivered because it contains mature emoji or stickers that are not allowed in this context.'**
   String get chatSendFailureNsfwEmojiSticker;
 
-  /// Footer on ephemeral Fluxerbot client system messages.
+  /// Footer on ephemeral Echowirebot client system messages.
   ///
   /// In en, this message translates to:
   /// **'Only you can see this message.'**
   String get chatClientSystemOnlyYouCanSee;
 
-  /// Action to remove an ephemeral Fluxerbot client system message locally.
+  /// Action to remove an ephemeral Echowirebot client system message locally.
   ///
   /// In en, this message translates to:
   /// **'Dismiss'**
@@ -8000,7 +8000,7 @@ abstract class FluxerLocalizations {
   /// Rule-reason description for the catch-all option.
   ///
   /// In en, this message translates to:
-  /// **'Use only if it clearly breaks Fluxer\'s rules and doesn\'t fit above.'**
+  /// **'Use only if it clearly breaks Echowire\'s rules and doesn\'t fit above.'**
   String get iarReasonOtherDescription;
 
   /// Inline routing nudge shown under reasons (e.g. mature content) that overlap with child safety.
@@ -8811,10 +8811,10 @@ abstract class FluxerLocalizations {
   /// **'Security & Login'**
   String get userSettingsNavSecurityLogin;
 
-  /// User settings navigation item for Fluxer Plutonium subscription settings.
+  /// User settings navigation item for Echowire Reverb subscription settings.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Plutonium'**
+  /// **'Echowire Reverb'**
   String get userSettingsNavFluxerPlutonium;
 
   /// User settings navigation item for gifts and promo codes.
@@ -9264,7 +9264,7 @@ abstract class FluxerLocalizations {
   /// Advanced settings section description for crash and performance reporting.
   ///
   /// In en, this message translates to:
-  /// **'Help improve Fluxer by sharing anonymous crash and performance data.'**
+  /// **'Help improve Echowire by sharing anonymous crash and performance data.'**
   String get advancedPerformanceReportingSectionDescription;
 
   /// Toggle label for opting into crash and performance reporting.
@@ -9276,7 +9276,7 @@ abstract class FluxerLocalizations {
   /// Toggle description explaining anonymous self-hosted performance reporting.
   ///
   /// In en, this message translates to:
-  /// **'All reported data is anonymous and is sent only to Fluxer\'s own monitoring service — no third-party providers are used.'**
+  /// **'All reported data is anonymous and is sent only to Echowire\'s own monitoring service — no third-party providers are used.'**
   String get advancedPerformanceReportingDescription;
 
   /// User settings navigation item for developer applications.
@@ -9336,7 +9336,7 @@ abstract class FluxerLocalizations {
   /// Secondary message on the beta warning sheet about reporting issues.
   ///
   /// In en, this message translates to:
-  /// **'Please report any issues you find to the Fluxer Mobile community (you must have Plutonium to be able to join the community currently).'**
+  /// **'Please report any issues you find to the Echowire Mobile community (you must have Reverb to be able to join the community currently).'**
   String get betaWarningReportIssues;
 
   /// Link label on the beta warning sheet to the open-source repository.
@@ -9657,19 +9657,19 @@ abstract class FluxerLocalizations {
   /// **'Enter instance URL (e.g. fluxer.app)'**
   String get instanceUrlPlaceholder;
 
-  /// Tooltip for the button that resets the instance URL to the official Fluxer instance.
+  /// Tooltip for the button that resets the instance URL to the official Echowire instance.
   ///
   /// In en, this message translates to:
-  /// **'Reset to Fluxer'**
+  /// **'Reset to Echowire'**
   String get resetToDefaultInstance;
 
-  /// Button label to connect to a custom Fluxer instance.
+  /// Button label to connect to a custom Echowire instance.
   ///
   /// In en, this message translates to:
   /// **'Connect'**
   String get instanceConnect;
 
-  /// Status text while discovering a custom Fluxer instance.
+  /// Status text while discovering a custom Echowire instance.
   ///
   /// In en, this message translates to:
   /// **'Connecting…'**
@@ -9705,7 +9705,7 @@ abstract class FluxerLocalizations {
   /// **'Connect to a different instance'**
   String get connectToDifferentInstance;
 
-  /// Link to change the connected Fluxer instance.
+  /// Link to change the connected Echowire instance.
   ///
   /// In en, this message translates to:
   /// **'Change'**
@@ -10260,7 +10260,7 @@ abstract class FluxerLocalizations {
   /// Guild tooltip when the community is staff-only.
   ///
   /// In en, this message translates to:
-  /// **'Only accessible to Fluxer staff'**
+  /// **'Only accessible to Echowire staff'**
   String get guildNavbarStaffOnlyAccessible;
 
   /// Guild tooltip when invites are disabled.

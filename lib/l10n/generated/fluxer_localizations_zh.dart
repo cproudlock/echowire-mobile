@@ -1083,11 +1083,11 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return '通过 Plutonium 解锁 $communityCount 个社群中的 $emojiCount 个表情符号。';
+    return '通过 Reverb 解锁 $communityCount 个社群中的 $emojiCount 个表情符号。';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => '获取 Plutonium';
+  String get emojiPlutoniumUpsellButton => '获取 Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => '不再显示';
@@ -1118,7 +1118,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get externalLinkWarningTitle => '外部链接警告';
 
   @override
-  String get externalLinkWarningLeaving => '您即将离开 Fluxer';
+  String get externalLinkWarningLeaving => '您即将离开 Echowire';
 
   @override
   String get externalLinkWarningDescription => '外部链接可能存在风险。请小心。';
@@ -1187,10 +1187,10 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get imageFileTooLarge => '图片文件过大。请选择小于 10 MB 的文件。';
 
   @override
-  String get animatedAvatarsRequirePlutonium => '动态头像需要 Plutonium';
+  String get animatedAvatarsRequirePlutonium => '动态头像需要 Reverb';
 
   @override
-  String get animatedBannersRequirePlutonium => '动态横幅需要 Plutonium';
+  String get animatedBannersRequirePlutonium => '动态横幅需要 Reverb';
 
   @override
   String get animatedAvifNotSupported => '不支持动态 AVIF';
@@ -1218,10 +1218,10 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get crop => '裁剪';
 
   @override
-  String get changeYourFluxerTag => '更改您的 FluxerTag';
+  String get changeYourFluxerTag => '更改您的 EchoTag';
 
   @override
-  String get fluxerTagInputLabel => 'FluxerTag';
+  String get fluxerTagInputLabel => 'EchoTag';
 
   @override
   String get fluxerTagDescriptionBase =>
@@ -1244,14 +1244,14 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get validationAllowedChars => '仅限字母（a-z, A-Z）、数字（0-9）和下划线（_）';
 
   @override
-  String get discriminatorPremiumTooltip => '获取 Plutonium 以自定义您的标签或在更改用户名时保留它';
+  String get discriminatorPremiumTooltip => '获取 Reverb 以自定义您的标签或在更改用户名时保留它';
 
   @override
-  String get fluxerTagAlreadyTaken => 'FluxerTag 已被占用';
+  String get fluxerTagAlreadyTaken => 'EchoTag 已被占用';
 
   @override
   String fluxerTagAlreadyTakenBody(String username, String discriminator) {
-    return 'FluxerTag $username#$discriminator 已被占用。继续将自动重新分配您的数字标签。';
+    return 'EchoTag $username#$discriminator 已被占用。继续将自动重新分配您的数字标签。';
   }
 
   @override
@@ -1259,23 +1259,23 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return '您的自定义 4 位数字标签仅在您的 Plutonium 订阅有效期间可用。当您的订阅于 $date 到期后，您的标签将在 3 天宽限期后恢复为随机分配的数字。';
+    return '您的自定义 4 位数字标签仅在您的 Reverb 订阅有效期间可用。当您的订阅于 $date 到期后，您的标签将在 3 天宽限期后恢复为随机分配的数字。';
   }
 
   @override
   String get customTagTemporaryBody =>
-      '您的自定义 4 位数字标签仅在您的 Plutonium 订阅有效期间可用。当您的订阅到期后，您的标签将在 3 天宽限期后恢复为随机分配的数字。';
+      '您的自定义 4 位数字标签仅在您的 Reverb 订阅有效期间可用。当您的订阅到期后，您的标签将在 3 天宽限期后恢复为随机分配的数字。';
 
   @override
   String get iUnderstandContinue => '我明白了，继续';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      '如果您保存此 FluxerTag，您的自定义 4 位数字标签将在您的 Plutonium 订阅结束时恢复为随机数字。如果您的订阅未能续订，您将有 3 天宽限期，之后标签才会更改。';
+      '如果您保存此 EchoTag，您的自定义 4 位数字标签将在您的 Reverb 订阅结束时恢复为随机数字。如果您的订阅未能续订，您将有 3 天宽限期，之后标签才会更改。';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return '您的自定义 4 位数字标签（#$discriminator）在您的 Plutonium 订阅有效期间处于激活状态。如果您的订阅在 3 天宽限期后结束或未能续订，您的标签将恢复为随机数字。';
+    return '您的自定义 4 位数字标签（#$discriminator）在您的 Reverb 订阅有效期间处于激活状态。如果您的订阅在 3 天宽限期后结束或未能续订，您的标签将恢复为随机数字。';
   }
 
   @override
@@ -1283,18 +1283,18 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return '您的 Plutonium 试用版将于 $date 到期。升级以保留您的自定义标签并在您的个人资料上获得徽章。';
+    return '您的 Reverb 试用版将于 $date 到期。升级以保留您的自定义标签并在您的个人资料上获得徽章。';
   }
 
   @override
   String get premiumTrialActive =>
-      '您正在使用 Plutonium 试用版。升级以保留您的自定义标签并在您的个人资料上获得徽章。';
+      '您正在使用 Reverb 试用版。升级以保留您的自定义标签并在您的个人资料上获得徽章。';
 
   @override
-  String get fluxerTagUpdated => 'FluxerTag 已更新';
+  String get fluxerTagUpdated => 'EchoTag 已更新';
 
   @override
-  String get fluxerTagUpdateFailed => '更新 FluxerTag 失败。请重试。';
+  String get fluxerTagUpdateFailed => '更新 EchoTag 失败。请重试。';
 
   @override
   String get continueAction => '继续';
@@ -1309,14 +1309,14 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get usernameLabel => '用户名';
 
   @override
-  String get claimAccountToChangeFluxerTag => '认领您的账户以更改您的 FluxerTag';
+  String get claimAccountToChangeFluxerTag => '认领您的账户以更改您的 EchoTag';
 
   @override
-  String get changeFluxerTag => '更改 FluxerTag';
+  String get changeFluxerTag => '更改 EchoTag';
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return '使用 Plutonium 自定义你的 4 位数字标签 (#$discriminator)';
+    return '使用 Reverb 自定义你的 4 位数字标签 (#$discriminator)';
   }
 
   @override
@@ -1324,7 +1324,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return '你的自定义标签 (#$discriminator) 与你的 Plutonium 订阅绑定，如果订阅过期，它将恢复为随机标签。';
+    return '你的自定义标签 (#$discriminator) 与你的 Reverb 订阅绑定，如果订阅过期，它将恢复为随机标签。';
   }
 
   @override
@@ -1374,27 +1374,27 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get emojiPickerTitle => '表情符号';
 
   @override
-  String get plutoniumBadgePrivacyTitle => 'Plutonium 徽章隐私';
+  String get plutoniumBadgePrivacyTitle => 'Reverb 徽章隐私';
 
   @override
-  String get plutoniumBadgePrivacyDescription => '控制他人如何看到你的 Plutonium 徽章';
+  String get plutoniumBadgePrivacyDescription => '控制他人如何看到你的 Reverb 徽章';
 
   @override
-  String get hidePlutoniumBadgeLabel => '完全隐藏 Plutonium 徽章';
+  String get hidePlutoniumBadgeLabel => '完全隐藏 Reverb 徽章';
 
   @override
-  String get hidePlutoniumBadgeDescription => '从其他用户那里完全隐藏你的 Plutonium 徽章';
+  String get hidePlutoniumBadgeDescription => '从其他用户那里完全隐藏你的 Reverb 徽章';
 
   @override
-  String get hidePlutoniumPurchaseDate => '隐藏 Plutonium 购买日期';
+  String get hidePlutoniumPurchaseDate => '隐藏 Reverb 购买日期';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return '隐藏 Plutonium 购买日期 ($date)';
+    return '隐藏 Reverb 购买日期 ($date)';
   }
 
   @override
-  String get hidePurchaseDateDescription => '从你的徽章中移除 Plutonium 的首次购买日期';
+  String get hidePurchaseDateDescription => '从你的徽章中移除 Reverb 的首次购买日期';
 
   @override
   String get maskVisionaryAsSubscription => '将 Visionary 显示为订阅';
@@ -1415,7 +1415,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return '你正在试用 Plutonium — 你的订阅将于 $date 开始';
+    return '你正在试用 Reverb — 你的订阅将于 $date 开始';
   }
 
   @override
@@ -1424,24 +1424,24 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return '你正在试用 Plutonium，将于 $date 到期';
+    return '你正在试用 Reverb，将于 $date 到期';
   }
 
   @override
-  String get premiumTrialActiveProfile => '你正在试用 Plutonium';
+  String get premiumTrialActiveProfile => '你正在试用 Reverb';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG、PNG、WebP。最大 10MB。推荐：512×512px。动态头像 (GIF) 需要 Plutonium。';
+      'JPEG、PNG、WebP。最大 10MB。推荐：512×512px。动态头像 (GIF) 需要 Reverb。';
 
   @override
   String get bannerPlutoniumUpsell => '使用静态或动态横幅图片自定义你的个人资料，使其脱颖而出。';
 
   @override
-  String get getPlutonium => '获取 Plutonium';
+  String get getPlutonium => '获取 Reverb';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody => '应用内购买在此平台暂不可用。敬请期待 — 即将推出！';
@@ -1453,7 +1453,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get profilePreviewMessage => '消息';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer 会员自';
+  String get profilePreviewMemberSince => 'Echowire 会员自';
 
   @override
   String get unclaimedAccountTitle => '未认领的账户';
@@ -1480,7 +1480,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      '为单个社群自定义头像、横幅、强调色和个人简介需要 Plutonium。社群昵称和代词对所有人免费。';
+      '为单个社群自定义头像、横幅、强调色和个人简介需要 Reverb。社群昵称和代词对所有人免费。';
 
   @override
   String get avatarModeInherit => '使用全局资料';
@@ -1540,7 +1540,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get securityLoginEmailSectionTitle => '电子邮件设置';
 
   @override
-  String get securityLoginEmailSectionDescription => '管理你用于登录 Fluxer 的电子邮件地址';
+  String get securityLoginEmailSectionDescription => '管理你用于登录 Echowire 的电子邮件地址';
 
   @override
   String get securityLoginEmailAddressLabel => '电子邮件地址';
@@ -1914,7 +1914,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      '在删除账号前，请在 Plutonium 设置中取消您的有效 Plutonium 订阅。';
+      '在删除账号前，请在 Reverb 设置中取消您的有效 Reverb 订阅。';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => '无法删除账号';
@@ -2047,7 +2047,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get authorizedAppsTitle => '已授权的应用';
 
   @override
-  String get authorizedAppsDescription => '以下应用已被授予访问您的Fluxer账户的权限。';
+  String get authorizedAppsDescription => '以下应用已被授予访问您的Echowire账户的权限。';
 
   @override
   String get authorizedAppsEmptyTitle => '无已授权的应用';
@@ -2125,7 +2125,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => '复制FluxerTag';
+  String get blockedUsersCopyTag => '复制EchoTag';
 
   @override
   String get blockedUsersCopyId => '复制用户ID';
@@ -2149,31 +2149,31 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get userProfileEditProfile => '编辑个人资料';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer 员工';
+  String get userProfileStaffBadgeTooltip => 'Echowire 员工';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer 社区团队';
+  String get userProfileCtpBadgeTooltip => 'Echowire 社区团队';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer 合作伙伴';
+  String get userProfilePartnerBadgeTooltip => 'Echowire 合作伙伴';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer Bug Hunter';
+  String get userProfileBugHunterBadgeTooltip => 'Echowire Bug Hunter';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Echowire Reverb';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxer Plutonium 订阅者，始于 $date';
+    return 'Echowire Reverb 订阅者，始于 $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Echowire Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Visionary，始于 $date';
+    return 'Echowire Visionary，始于 $date';
   }
 
   @override
@@ -3111,7 +3111,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      '将外部账号和域名链接到您的 Fluxer 个人资料。已验证的连接将显示在您的个人资料上供他人查看。';
+      '将外部账号和域名链接到您的 Echowire 个人资料。已验证的连接将显示在您的个人资料上供他人查看。';
 
   @override
   String get connectionsEmptyTitle => '暂无连接';
@@ -3436,7 +3436,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      '启用后，服务器边栏中的未读私信将折叠到 Fluxer 按钮文件夹中。在私信页面上单击 Fluxer 按钮可展开或折叠文件夹。';
+      '启用后，服务器边栏中的未读私信将折叠到 Echowire 按钮文件夹中。在私信页面上单击 Echowire 按钮可展开或折叠文件夹。';
 
   @override
   String get lookAndFeelChannelListSectionTitle => '频道列表';
@@ -3629,7 +3629,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get messagesMediaDisplayInlineEmbedLabel => '作为链接发布到聊天时';
 
   @override
-  String get messagesMediaDisplayInlineAttachmentLabel => '直接上传到 Fluxer 时';
+  String get messagesMediaDisplayInlineAttachmentLabel => '直接上传到 Echowire 时';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => '链接预览';
@@ -4432,7 +4432,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Fluxerの規約に明確に違反し、上記に当てはまらない場合のみ使用してください。';
+      'Echowireの規約に明確に違反し、上記に当てはまらない場合のみ使用してください。';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -4870,7 +4870,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => '安全与登录';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => '礼物与兑换码';
@@ -5124,14 +5124,14 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      '通过分享匿名的崩溃和性能数据来帮助改进 Fluxer。';
+      '通过分享匿名的崩溃和性能数据来帮助改进 Echowire。';
 
   @override
   String get advancedPerformanceReportingLabel => '发送崩溃和性能报告';
 
   @override
   String get advancedPerformanceReportingDescription =>
-      '所有报告的数据都是匿名的，并且仅发送到 Fluxer 自有的监控服务——不使用任何第三方提供商。';
+      '所有报告的数据都是匿名的，并且仅发送到 Echowire 自有的监控服务——不使用任何第三方提供商。';
 
   @override
   String get userSettingsNavApplications => '应用';
@@ -5162,7 +5162,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      '请将你发现的任何问题报告给 Fluxer 移动社区（目前你必须拥有 Plutonium 才能加入该社区）。';
+      '请将你发现的任何问题报告给 Echowire 移动社区（目前你必须拥有 Reverb 才能加入该社区）。';
 
   @override
   String get betaWarningRepoLink => '在 GitHub 上查看源代码';
@@ -5328,7 +5328,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get instanceUrlPlaceholder => '输入实例 URL（例如 fluxer.app）';
 
   @override
-  String get resetToDefaultInstance => '重置为 Fluxer';
+  String get resetToDefaultInstance => '重置为 Echowire';
 
   @override
   String get instanceConnect => '连接';
@@ -5656,7 +5656,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   }
 
   @override
-  String get guildNavbarStaffOnlyAccessible => '仅限 Fluxer 员工访问';
+  String get guildNavbarStaffOnlyAccessible => '仅限 Echowire 员工访问';
 
   @override
   String get guildNavbarInvitesPaused => '此社群的邀请当前已暂停';
@@ -8044,11 +8044,11 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return '使用 Plutonium 解鎖 $communityCount 個社群中的 $emojiCount 個表情符號。';
+    return '使用 Reverb 解鎖 $communityCount 個社群中的 $emojiCount 個表情符號。';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => '取得 Plutonium';
+  String get emojiPlutoniumUpsellButton => '取得 Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => '不要再顯示此訊息';
@@ -8079,7 +8079,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get externalLinkWarningTitle => '外部連結警告';
 
   @override
-  String get externalLinkWarningLeaving => '您即將離開 Fluxer';
+  String get externalLinkWarningLeaving => '您即將離開 Echowire';
 
   @override
   String get externalLinkWarningDescription => '外部連結可能很危險。請小心。';
@@ -8148,10 +8148,10 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get imageFileTooLarge => '圖片檔案過大。請選擇小於 10 MB 的檔案。';
 
   @override
-  String get animatedAvatarsRequirePlutonium => '動態頭像需要 Plutonium';
+  String get animatedAvatarsRequirePlutonium => '動態頭像需要 Reverb';
 
   @override
-  String get animatedBannersRequirePlutonium => '動態橫幅需要 Plutonium';
+  String get animatedBannersRequirePlutonium => '動態橫幅需要 Reverb';
 
   @override
   String get animatedAvifNotSupported => '不支援動態 AVIF';
@@ -8179,10 +8179,10 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get crop => '裁切';
 
   @override
-  String get changeYourFluxerTag => '變更您的 FluxerTag';
+  String get changeYourFluxerTag => '變更您的 EchoTag';
 
   @override
-  String get fluxerTagInputLabel => 'FluxerTag';
+  String get fluxerTagInputLabel => 'EchoTag';
 
   @override
   String get fluxerTagDescriptionBase =>
@@ -8205,15 +8205,14 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get validationAllowedChars => '僅限字母 (a-z, A-Z)、數字 (0-9) 和底線 (_)';
 
   @override
-  String get discriminatorPremiumTooltip =>
-      '取得 Plutonium 以自訂您的標籤，或在變更使用者名稱時保留它';
+  String get discriminatorPremiumTooltip => '取得 Reverb 以自訂您的標籤，或在變更使用者名稱時保留它';
 
   @override
-  String get fluxerTagAlreadyTaken => 'FluxerTag 已被佔用';
+  String get fluxerTagAlreadyTaken => 'EchoTag 已被佔用';
 
   @override
   String fluxerTagAlreadyTakenBody(String username, String discriminator) {
-    return 'FluxerTag $username#$discriminator 已被佔用。繼續將會自動重新分配您的標籤。';
+    return 'EchoTag $username#$discriminator 已被佔用。繼續將會自動重新分配您的標籤。';
   }
 
   @override
@@ -8221,23 +8220,23 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return '您的自訂 4 位數字標籤僅在您的 Plutonium 訂閱有效期間內可用。當您的訂閱於 $date 到期後，您的標籤將在 3 天寬限期後恢復為隨機分配的號碼。';
+    return '您的自訂 4 位數字標籤僅在您的 Reverb 訂閱有效期間內可用。當您的訂閱於 $date 到期後，您的標籤將在 3 天寬限期後恢復為隨機分配的號碼。';
   }
 
   @override
   String get customTagTemporaryBody =>
-      '您的自訂 4 位數字標籤僅在您的 Plutonium 訂閱有效期間內可用。當您的訂閱到期後，您的標籤將在 3 天寬限期後恢復為隨機分配的號碼。';
+      '您的自訂 4 位數字標籤僅在您的 Reverb 訂閱有效期間內可用。當您的訂閱到期後，您的標籤將在 3 天寬限期後恢復為隨機分配的號碼。';
 
   @override
   String get iUnderstandContinue => '我了解，繼續';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      '如果您儲存此 FluxerTag，您的自訂 4 位數字標籤將在您的 Plutonium 訂閱結束時恢復為隨機號碼。如果您的訂閱未能續訂，您將有 3 天寬限期，之後標籤才會變更。';
+      '如果您儲存此 EchoTag，您的自訂 4 位數字標籤將在您的 Reverb 訂閱結束時恢復為隨機號碼。如果您的訂閱未能續訂，您將有 3 天寬限期，之後標籤才會變更。';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return '您的自訂 4 位數字標籤 (#$discriminator) 在您的 Plutonium 訂閱有效期間內有效。如果您的訂閱結束或在 3 天寬限期後未能續訂，您的標籤將恢復為隨機號碼。';
+    return '您的自訂 4 位數字標籤 (#$discriminator) 在您的 Reverb 訂閱有效期間內有效。如果您的訂閱結束或在 3 天寬限期後未能續訂，您的標籤將恢復為隨機號碼。';
   }
 
   @override
@@ -8245,18 +8244,17 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return '您的 Plutonium 試用將於 $date 到期。升級即可保留您的自訂標籤並在個人資料中獲得徽章。';
+    return '您的 Reverb 試用將於 $date 到期。升級即可保留您的自訂標籤並在個人資料中獲得徽章。';
   }
 
   @override
-  String get premiumTrialActive =>
-      '您目前處於 Plutonium 試用期。升級即可保留您的自訂標籤並在個人資料中獲得徽章。';
+  String get premiumTrialActive => '您目前處於 Reverb 試用期。升級即可保留您的自訂標籤並在個人資料中獲得徽章。';
 
   @override
-  String get fluxerTagUpdated => 'FluxerTag 已更新';
+  String get fluxerTagUpdated => 'EchoTag 已更新';
 
   @override
-  String get fluxerTagUpdateFailed => '更新 FluxerTag 失敗。請再試一次。';
+  String get fluxerTagUpdateFailed => '更新 EchoTag 失敗。請再試一次。';
 
   @override
   String get continueAction => '繼續';
@@ -8271,14 +8269,14 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get usernameLabel => '使用者名稱';
 
   @override
-  String get claimAccountToChangeFluxerTag => '請認領您的帳戶以變更您的 FluxerTag';
+  String get claimAccountToChangeFluxerTag => '請認領您的帳戶以變更您的 EchoTag';
 
   @override
-  String get changeFluxerTag => '更改 FluxerTag';
+  String get changeFluxerTag => '更改 EchoTag';
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return '使用 Plutonium 自訂您的 4 位數字標籤 (#$discriminator)';
+    return '使用 Reverb 自訂您的 4 位數字標籤 (#$discriminator)';
   }
 
   @override
@@ -8286,7 +8284,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return '您的自訂標籤 (#$discriminator) 與您的 Plutonium 訂閱綁定，若訂閱過期將會還原為隨機標籤。';
+    return '您的自訂標籤 (#$discriminator) 與您的 Reverb 訂閱綁定，若訂閱過期將會還原為隨機標籤。';
   }
 
   @override
@@ -8336,27 +8334,27 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get emojiPickerTitle => '表情符號';
 
   @override
-  String get plutoniumBadgePrivacyTitle => 'Plutonium 徽章隱私設定';
+  String get plutoniumBadgePrivacyTitle => 'Reverb 徽章隱私設定';
 
   @override
-  String get plutoniumBadgePrivacyDescription => '控制他人如何顯示您的 Plutonium 徽章';
+  String get plutoniumBadgePrivacyDescription => '控制他人如何顯示您的 Reverb 徽章';
 
   @override
-  String get hidePlutoniumBadgeLabel => '完全隱藏 Plutonium 徽章';
+  String get hidePlutoniumBadgeLabel => '完全隱藏 Reverb 徽章';
 
   @override
-  String get hidePlutoniumBadgeDescription => '完全向其他使用者隱藏您的 Plutonium 徽章';
+  String get hidePlutoniumBadgeDescription => '完全向其他使用者隱藏您的 Reverb 徽章';
 
   @override
-  String get hidePlutoniumPurchaseDate => '隱藏 Plutonium 購買日期';
+  String get hidePlutoniumPurchaseDate => '隱藏 Reverb 購買日期';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return '隱藏 Plutonium 購買日期 ($date)';
+    return '隱藏 Reverb 購買日期 ($date)';
   }
 
   @override
-  String get hidePurchaseDateDescription => '從您的徽章中移除首次購買 Plutonium 的日期';
+  String get hidePurchaseDateDescription => '從您的徽章中移除首次購買 Reverb 的日期';
 
   @override
   String get maskVisionaryAsSubscription => '將 Visionary 顯示為訂閱';
@@ -8377,7 +8375,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return '您目前處於 Plutonium 試用期 — 您的訂閱將於 $date 開始';
+    return '您目前處於 Reverb 試用期 — 您的訂閱將於 $date 開始';
   }
 
   @override
@@ -8386,24 +8384,24 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return '您目前處於 Plutonium 試用期，將於 $date 到期';
+    return '您目前處於 Reverb 試用期，將於 $date 到期';
   }
 
   @override
-  String get premiumTrialActiveProfile => '您目前處於 Plutonium 試用期';
+  String get premiumTrialActiveProfile => '您目前處於 Reverb 試用期';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG、PNG、WebP。上限 10MB。建議：512×512px。動態頭像 (GIF) 需要 Plutonium。';
+      'JPEG、PNG、WebP。上限 10MB。建議：512×512px。動態頭像 (GIF) 需要 Reverb。';
 
   @override
   String get bannerPlutoniumUpsell => '使用靜態或動態橫幅圖片自訂您的個人檔案，讓它脫穎而出。';
 
   @override
-  String get getPlutonium => '取得 Plutonium';
+  String get getPlutonium => '取得 Reverb';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody => '應用程式內購買在此平台尚未開放。敬請期待 — 即將推出！';
@@ -8415,7 +8413,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get profilePreviewMessage => '訊息';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer 會員自';
+  String get profilePreviewMemberSince => 'Echowire 會員自';
 
   @override
   String get unclaimedAccountTitle => '未認領帳戶';
@@ -8442,7 +8440,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get perGuildPremiumUpsellText =>
-      '個人化社群的個人頭像、橫幅、強調色和個人簡介需要 Plutonium。社群暱稱和代名詞對所有人免費。';
+      '個人化社群的個人頭像、橫幅、強調色和個人簡介需要 Reverb。社群暱稱和代名詞對所有人免費。';
 
   @override
   String get avatarModeInherit => '使用全域個人資料';
@@ -8502,7 +8500,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get securityLoginEmailSectionTitle => '電子郵件設定';
 
   @override
-  String get securityLoginEmailSectionDescription => '管理您用來登入 Fluxer 的電子郵件地址';
+  String get securityLoginEmailSectionDescription => '管理您用來登入 Echowire 的電子郵件地址';
 
   @override
   String get securityLoginEmailAddressLabel => '電子郵件地址';
@@ -8876,7 +8874,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      '刪除帳號前，請先在 Plutonium 設定中取消您的 Plutonium 付費方案。';
+      '刪除帳號前，請先在 Reverb 設定中取消您的 Reverb 付費方案。';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => '無法刪除帳號';
@@ -9009,7 +9007,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get authorizedAppsTitle => '已授權的應用程式';
 
   @override
-  String get authorizedAppsDescription => '這些應用程式已被授權存取你的 Fluxer 帳號。';
+  String get authorizedAppsDescription => '這些應用程式已被授權存取你的 Echowire 帳號。';
 
   @override
   String get authorizedAppsEmptyTitle => '沒有已授權的應用程式';
@@ -9087,7 +9085,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   }
 
   @override
-  String get blockedUsersCopyTag => '複製 FluxerTag';
+  String get blockedUsersCopyTag => '複製 EchoTag';
 
   @override
   String get blockedUsersCopyId => '複製使用者 ID';
@@ -9111,31 +9109,31 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get userProfileEditProfile => '編輯個人資料';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer 團隊成員';
+  String get userProfileStaffBadgeTooltip => 'Echowire 團隊成員';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer 社群團隊';
+  String get userProfileCtpBadgeTooltip => 'Echowire 社群團隊';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer 合作夥伴';
+  String get userProfilePartnerBadgeTooltip => 'Echowire 合作夥伴';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer 蟲蟲獵人';
+  String get userProfileBugHunterBadgeTooltip => 'Echowire 蟲蟲獵人';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Echowire Reverb';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxer Plutonium 訂閱者自 $date 起';
+    return 'Echowire Reverb 訂閱者自 $date 起';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Echowire Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Visionary 自 $date 起';
+    return 'Echowire Visionary 自 $date 起';
   }
 
   @override
@@ -10019,7 +10017,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get connectionsDescription =>
-      '連結外部帳號和網域至您的 Fluxer 個人檔案。已驗證的連線將顯示在您的個人檔案上供他人查看。';
+      '連結外部帳號和網域至您的 Echowire 個人檔案。已驗證的連線將顯示在您的個人檔案上供他人查看。';
 
   @override
   String get connectionsEmptyTitle => '尚未有連線';
@@ -10345,7 +10343,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      '啟用時，伺服器側邊欄中的未讀私訊會摺疊到 Fluxer 按鈕資料夾中。在私訊頁面上按一下 Fluxer 按鈕即可展開或摺疊資料夾。';
+      '啟用時，伺服器側邊欄中的未讀私訊會摺疊到 Echowire 按鈕資料夾中。在私訊頁面上按一下 Echowire 按鈕即可展開或摺疊資料夾。';
 
   @override
   String get lookAndFeelChannelListSectionTitle => '頻道列表';
@@ -10539,7 +10537,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get messagesMediaDisplayInlineEmbedLabel => '當以連結形式張貼到聊天時';
 
   @override
-  String get messagesMediaDisplayInlineAttachmentLabel => '當直接上傳到 Fluxer 時';
+  String get messagesMediaDisplayInlineAttachmentLabel => '當直接上傳到 Echowire 時';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => '連結預覽';
@@ -11329,7 +11327,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get iarReasonOtherLabel => '其他明顯的違規行為';
 
   @override
-  String get iarReasonOtherDescription => '僅在內容明顯違反 Fluxer 規定且不符合以上任何類別時使用。';
+  String get iarReasonOtherDescription => '僅在內容明顯違反 Echowire 規定且不符合以上任何類別時使用。';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -11766,7 +11764,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get userSettingsNavSecurityLogin => '安全性與登入';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => '禮物與代碼';
@@ -11815,14 +11813,14 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      '透過分享匿名的當機和效能資料，協助改進 Fluxer。';
+      '透過分享匿名的當機和效能資料，協助改進 Echowire。';
 
   @override
   String get advancedPerformanceReportingLabel => '傳送當機和效能報告';
 
   @override
   String get advancedPerformanceReportingDescription =>
-      '所有回報的資料均為匿名，且僅傳送至 Fluxer 自有的監控服務 — 不會使用任何第三方供應商。';
+      '所有回報的資料均為匿名，且僅傳送至 Echowire 自有的監控服務 — 不會使用任何第三方供應商。';
 
   @override
   String get userSettingsNavApplications => '應用程式';
@@ -11853,7 +11851,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get betaWarningReportIssues =>
-      '請將您發現的任何問題回報給 Fluxer Mobile 社群 (目前必須擁有 Plutonium 才能加入社群)。';
+      '請將您發現的任何問題回報給 Echowire Mobile 社群 (目前必須擁有 Reverb 才能加入社群)。';
 
   @override
   String get betaWarningRepoLink => '在 GitHub 上檢視原始碼';
@@ -12019,7 +12017,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get instanceUrlPlaceholder => '輸入伺服器網址 (例如 fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => '重設為 Fluxer';
+  String get resetToDefaultInstance => '重設為 Echowire';
 
   @override
   String get instanceConnect => '連線';
@@ -12348,7 +12346,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   }
 
   @override
-  String get guildNavbarStaffOnlyAccessible => '仅限 Fluxer 员工存取';
+  String get guildNavbarStaffOnlyAccessible => '仅限 Echowire 员工存取';
 
   @override
   String get guildNavbarInvitesPaused => '此社群的邀请目前已暂停';

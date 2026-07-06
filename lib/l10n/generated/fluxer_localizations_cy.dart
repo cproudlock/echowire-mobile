@@ -1140,11 +1140,11 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'Datgloi $emojiCount o $communityCount gyda Plutonium.';
+    return 'Datgloi $emojiCount o $communityCount gyda Reverb.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Sicrhewch Plutonium';
+  String get emojiPlutoniumUpsellButton => 'Sicrhewch Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Peidiwch â dangos hyn eto';
@@ -1175,7 +1175,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Rhybudd Dolenni Allanol';
 
   @override
-  String get externalLinkWarningLeaving => 'Rydych chi ar fin gadael Fluxer';
+  String get externalLinkWarningLeaving => 'Rydych chi ar fin gadael Echowire';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1252,11 +1252,11 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'Mae angen Plutonium ar gyfer avatars animeiddiedig';
+      'Mae angen Reverb ar gyfer avatars animeiddiedig';
 
   @override
   String get animatedBannersRequirePlutonium =>
-      'Mae angen Plutonium ar gyfer baneri animeiddiedig';
+      'Mae angen Reverb ar gyfer baneri animeiddiedig';
 
   @override
   String get animatedAvifNotSupported =>
@@ -1286,10 +1286,10 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   String get crop => 'Torri';
 
   @override
-  String get changeYourFluxerTag => 'Newid eich FluxerTag';
+  String get changeYourFluxerTag => 'Newid eich EchoTag';
 
   @override
-  String get fluxerTagInputLabel => 'FluxerTag';
+  String get fluxerTagInputLabel => 'EchoTag';
 
   @override
   String get fluxerTagDescriptionBase =>
@@ -1317,11 +1317,11 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
       'Sicrhewch blwtonium i addasu eich tag neu ei gadw wrth newid eich enw defnyddiwr';
 
   @override
-  String get fluxerTagAlreadyTaken => 'Mae\'r FluxerTag eisoes wedi\'i gymryd';
+  String get fluxerTagAlreadyTaken => 'Mae\'r EchoTag eisoes wedi\'i gymryd';
 
   @override
   String fluxerTagAlreadyTakenBody(String username, String discriminator) {
-    return 'Mae\'r FluxerTag $username#$discriminator eisoes wedi\'i gymryd. Bydd parhau yn ail-gylchu eich gwahaniaeth yn awtomatig.';
+    return 'Mae\'r EchoTag $username#$discriminator eisoes wedi\'i gymryd. Bydd parhau yn ail-gylchu eich gwahaniaeth yn awtomatig.';
   }
 
   @override
@@ -1329,23 +1329,23 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'Dim ond tra bod eich tanysgrifiad Plutonium yn weithredol y mae eich tag 4 digid personol ar gael. Pan ddaw eich tanysgrifiad i ben ar $date, bydd eich tag yn dychwelyd i rif a neilltuwyd ar hap ar ôl cyfnod gras o 3 diwrnod.';
+    return 'Dim ond tra bod eich tanysgrifiad Reverb yn weithredol y mae eich tag 4 digid personol ar gael. Pan ddaw eich tanysgrifiad i ben ar $date, bydd eich tag yn dychwelyd i rif a neilltuwyd ar hap ar ôl cyfnod gras o 3 diwrnod.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'Dim ond tra bod eich tanysgrifiad Plutonium yn weithredol y mae eich tag 4 digid personol ar gael. Pan ddaw eich tanysgrifiad i ben, bydd eich tag yn dychwelyd i rif a neilltuwyd ar hap ar ôl cyfnod gras o 3 diwrnod.';
+      'Dim ond tra bod eich tanysgrifiad Reverb yn weithredol y mae eich tag 4 digid personol ar gael. Pan ddaw eich tanysgrifiad i ben, bydd eich tag yn dychwelyd i rif a neilltuwyd ar hap ar ôl cyfnod gras o 3 diwrnod.';
 
   @override
   String get iUnderstandContinue => 'Rwy\'n Deall, Parhau';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Os byddwch yn cadw\'r FluxerTag hwn, bydd eich tag 4 digid personol yn dychwelyd i rif ar hap pan ddaw eich tanysgrifiad Plutonium i ben. Os bydd eich tanysgrifiad yn methu ag adnewyddu, bydd gennych gyfnod gras o 3 diwrnod cyn i\'r tag newid.';
+      'Os byddwch yn cadw\'r EchoTag hwn, bydd eich tag 4 digid personol yn dychwelyd i rif ar hap pan ddaw eich tanysgrifiad Reverb i ben. Os bydd eich tanysgrifiad yn methu ag adnewyddu, bydd gennych gyfnod gras o 3 diwrnod cyn i\'r tag newid.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Mae eich tag 4 digid personol (#$discriminator) yn weithredol tra bod eich tanysgrifiad Plutonium yn weithredol. Os daw eich tanysgrifiad i ben neu os bydd yn methu ag adnewyddu ar ôl cyfnod gras o 3 diwrnod, bydd eich tag yn dychwelyd i rif a neilltuwyd ar hap.';
+    return 'Mae eich tag 4 digid personol (#$discriminator) yn weithredol tra bod eich tanysgrifiad Reverb yn weithredol. Os daw eich tanysgrifiad i ben neu os bydd yn methu ag adnewyddu ar ôl cyfnod gras o 3 diwrnod, bydd eich tag yn dychwelyd i rif a neilltuwyd ar hap.';
   }
 
   @override
@@ -1354,19 +1354,19 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'Daw eich treial Plutonium i ben ar $date. Uwchratiwch i gadw eich tag personol a chael bathodyn ar eich proffil.';
+    return 'Daw eich treial Reverb i ben ar $date. Uwchratiwch i gadw eich tag personol a chael bathodyn ar eich proffil.';
   }
 
   @override
   String get premiumTrialActive =>
-      'Rydych chi ar dreial Plutonium. Uwchratiwch i gadw eich tag personol a chael bathodyn ar eich proffil.';
+      'Rydych chi ar dreial Reverb. Uwchratiwch i gadw eich tag personol a chael bathodyn ar eich proffil.';
 
   @override
-  String get fluxerTagUpdated => 'Mae\'r FluxerTag wedi\'i ddiweddaru';
+  String get fluxerTagUpdated => 'Mae\'r EchoTag wedi\'i ddiweddaru';
 
   @override
   String get fluxerTagUpdateFailed =>
-      'Methodd diweddaru\'r FluxerTag. Rhowch gynnig arall arni.';
+      'Methodd diweddaru\'r EchoTag. Rhowch gynnig arall arni.';
 
   @override
   String get continueAction => 'Parhau';
@@ -1383,10 +1383,10 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get claimAccountToChangeFluxerTag =>
-      'Hawlio eich cyfrif i newid eich FluxerTag';
+      'Hawlio eich cyfrif i newid eich EchoTag';
 
   @override
-  String get changeFluxerTag => 'Newch FluxerTag';
+  String get changeFluxerTag => 'Newch EchoTag';
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
@@ -1538,7 +1538,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   String get profilePreviewMessage => 'Neges';
 
   @override
-  String get profilePreviewMemberSince => 'Aelod Fluxer Ers';
+  String get profilePreviewMemberSince => 'Aelod Echowire Ers';
 
   @override
   String get unclaimedAccountTitle => 'Cyfrif Heb Hawlio';
@@ -1630,7 +1630,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Rheoli\'r cyfeiriad e-bost rydych chi\'n ei ddefnyddio i fewngofnodi i Fluxer';
+      'Rheoli\'r cyfeiriad e-bost rydych chi\'n ei ddefnyddio i fewngofnodi i Echowire';
 
   @override
   String get securityLoginEmailAddressLabel => 'Cyfeiriad E-bost';
@@ -2168,7 +2168,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Mae\'r cymhwysiadau hyn wedi cael caniatâd i gyrchu eich cyfrif Fluxer.';
+      'Mae\'r cymhwysiadau hyn wedi cael caniatâd i gyrchu eich cyfrif Echowire.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Dim Cymhwysiadau Awdurdodedig';
@@ -2254,7 +2254,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => 'Copïo FluxerTag';
+  String get blockedUsersCopyTag => 'Copïo EchoTag';
 
   @override
   String get blockedUsersCopyId => 'Copïo ID Defnyddiwr';
@@ -2278,27 +2278,27 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   String get userProfileEditProfile => 'Golygu Proffil';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Staff Fluxer';
+  String get userProfileStaffBadgeTooltip => 'Staff Echowire';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Tîm Cymuned Fluxer';
+  String get userProfileCtpBadgeTooltip => 'Tîm Cymuned Echowire';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Partner Fluxer';
+  String get userProfilePartnerBadgeTooltip => 'Partner Echowire';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Heliwr Bugiau Fluxer';
+  String get userProfileBugHunterBadgeTooltip => 'Heliwr Bugiau Echowire';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Plwtoniwm Fluxer';
+  String get userProfilePlutoniumBadgeTooltip => 'Plwtoniwm Echowire';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'tanysgrifiwr Plwtoniwm Fluxer er $date';
+    return 'tanysgrifiwr Plwtoniwm Echowire er $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Gweledydd Fluxer';
+  String get userProfileVisionaryBadgeTooltip => 'Gweledydd Echowire';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
@@ -3284,7 +3284,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Cysylltwch gyfrifon ac ardaloedd allanol i\'ch proffil Fluxer. Bydd cysylltiadau wedi\'u dilysu yn cael eu harddangos ar eich proffil i eraill eu gweld.';
+      'Cysylltwch gyfrifon ac ardaloedd allanol i\'ch proffil Echowire. Bydd cysylltiadau wedi\'u dilysu yn cael eu harddangos ar eich proffil i eraill eu gweld.';
 
   @override
   String get connectionsEmptyTitle => 'Dim cysylltiadau eto';
@@ -3638,7 +3638,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Pan fydd wedi\'i alluogi, mae DMau heb eu darllen yn y bar ochr achlysur yn cael eu crychu i mewn i ffolder ar y botwm Fluxer. Cliciwch y botwm Fluxer tra\'ch bod ar dudalen DMau i ehangu neu grychu\'r ffolder.';
+      'Pan fydd wedi\'i alluogi, mae DMau heb eu darllen yn y bar ochr achlysur yn cael eu crychu i mewn i ffolder ar y botwm Echowire. Cliciwch y botwm Echowire tra\'ch bod ar dudalen DMau i ehangu neu grychu\'r ffolder.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Rhestr Sianelau';
@@ -3848,7 +3848,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Pan fyddant wedi\'u huwchlwytho\'n uniongyrchol i Fluxer';
+      'Pan fyddant wedi\'u huwchlwytho\'n uniongyrchol i Echowire';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Rhagolygon dolen';
@@ -4725,7 +4725,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Defnyddiwch yn unig os yw\'n torri rheolau Fluxer yn amlwg ac nid yw\'n cyd-fynd â\'r uchod.';
+      'Defnyddiwch yn unig os yw\'n torri rheolau Echowire yn amlwg ac nid yw\'n cyd-fynd â\'r uchod.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -5198,7 +5198,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Diogelwch a Mewngofnodi';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Rhoddion a Chodau';
@@ -5452,7 +5452,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Helpwch i wella Fluxer trwy rannu data damweiniau a pherfformiad dienw.';
+      'Helpwch i wella Echowire trwy rannu data damweiniau a pherfformiad dienw.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -5460,7 +5460,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Mae\'r holl ddata a adroddir yn ddienw ac fe\'i hanfonir yn unig at wasanaeth monitro Fluxer ei hun - ni ddefnyddir darparwyr trydydd parti.';
+      'Mae\'r holl ddata a adroddir yn ddienw ac fe\'i hanfonir yn unig at wasanaeth monitro Echowire ei hun - ni ddefnyddir darparwyr trydydd parti.';
 
   @override
   String get userSettingsNavApplications => 'Cymhwysiadau';
@@ -5492,7 +5492,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Rhowch wybod am unrhyw broblemau a geir i gymuned Fluxer Mobile (mae\'n rhaid i chi fod â Plutonium i allu ymuno â\'r gymuned ar hyn o bryd).';
+      'Rhowch wybod am unrhyw broblemau a geir i gymuned Echowire Mobile (mae\'n rhaid i chi fod â Reverb i allu ymuno â\'r gymuned ar hyn o bryd).';
 
   @override
   String get betaWarningRepoLink => 'Gweld ffynhonnell ar GitHub';
@@ -5663,7 +5663,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   String get instanceUrlPlaceholder => 'Rhowch URL yr achos (ee fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Ailosod i Fluxer';
+  String get resetToDefaultInstance => 'Ailosod i Echowire';
 
   @override
   String get instanceConnect => 'Cysylltu';
@@ -6016,7 +6016,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Dim ond staff Fluxer all gyrchu';
+      'Dim ond staff Echowire all gyrchu';
 
   @override
   String get guildNavbarInvitesPaused =>

@@ -1138,11 +1138,11 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'Atbloķējiet $emojiCount no $communityCount ar Plutonium.';
+    return 'Atbloķējiet $emojiCount no $communityCount ar Reverb.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Iegūt Plutonium';
+  String get emojiPlutoniumUpsellButton => 'Iegūt Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Nekad vairs nerādīt';
@@ -1173,7 +1173,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Brīdinājums par ārējo saiti';
 
   @override
-  String get externalLinkWarningLeaving => 'Jūs gatavojaties pamest Fluxer';
+  String get externalLinkWarningLeaving => 'Jūs gatavojaties pamest Echowire';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1250,11 +1250,11 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'Animētiem avatariem nepieciešams Plutonium';
+      'Animētiem avatariem nepieciešams Reverb';
 
   @override
   String get animatedBannersRequirePlutonium =>
-      'Animētiem baneriem nepieciešams Plutonium';
+      'Animētiem baneriem nepieciešams Reverb';
 
   @override
   String get animatedAvifNotSupported => 'Animēts AVIF netiek atbalstīts';
@@ -1283,10 +1283,10 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
   String get crop => 'Apgriezt';
 
   @override
-  String get changeYourFluxerTag => 'Mainīt savu FluxerTag';
+  String get changeYourFluxerTag => 'Mainīt savu EchoTag';
 
   @override
-  String get fluxerTagInputLabel => 'FluxerTag';
+  String get fluxerTagInputLabel => 'EchoTag';
 
   @override
   String get fluxerTagDescriptionBase =>
@@ -1311,14 +1311,14 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Iegūstiet Plutonium, lai pielāgotu savu tagu vai saglabātu to, mainot lietotājvārdu';
+      'Iegūstiet Reverb, lai pielāgotu savu tagu vai saglabātu to, mainot lietotājvārdu';
 
   @override
-  String get fluxerTagAlreadyTaken => 'FluxerTag jau aizņemts';
+  String get fluxerTagAlreadyTaken => 'EchoTag jau aizņemts';
 
   @override
   String fluxerTagAlreadyTakenBody(String username, String discriminator) {
-    return 'FluxerTag $username#$discriminator jau ir aizņemts. Turpinot, jūsu diskriminators tiks automātiski pārrullēts.';
+    return 'EchoTag $username#$discriminator jau ir aizņemts. Turpinot, jūsu diskriminators tiks automātiski pārrullēts.';
   }
 
   @override
@@ -1326,23 +1326,23 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'Jūsu pielāgotais 4 ciparu tag ir pieejams tikai tad, kamēr ir aktīva jūsu Plutonium abonements. Kad jūsu abonements beigsies $date, jūsu tag pēc 3 dienu žēlastības perioda atgriezīsies pie nejauši piešķirta numura.';
+    return 'Jūsu pielāgotais 4 ciparu tag ir pieejams tikai tad, kamēr ir aktīva jūsu Reverb abonements. Kad jūsu abonements beigsies $date, jūsu tag pēc 3 dienu žēlastības perioda atgriezīsies pie nejauši piešķirta numura.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'Jūsu pielāgotais 4 ciparu tag ir pieejams tikai tad, kamēr ir aktīva jūsu Plutonium abonements. Kad jūsu abonements beigsies, jūsu tag pēc 3 dienu žēlastības perioda atgriezīsies pie nejauši piešķirta numura.';
+      'Jūsu pielāgotais 4 ciparu tag ir pieejams tikai tad, kamēr ir aktīva jūsu Reverb abonements. Kad jūsu abonements beigsies, jūsu tag pēc 3 dienu žēlastības perioda atgriezīsies pie nejauši piešķirta numura.';
 
   @override
   String get iUnderstandContinue => 'Saprotu, turpināt';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Ja saglabāsiet šo FluxerTag, jūsu pielāgotais 4 ciparu tag pēc Plutonium abonementa beigām atgriezīsies pie nejauša numura. Ja jūsu abonements netiks atjaunots, jums būs 3 dienu žēlastības periods pirms taga maiņas.';
+      'Ja saglabāsiet šo EchoTag, jūsu pielāgotais 4 ciparu tag pēc Reverb abonementa beigām atgriezīsies pie nejauša numura. Ja jūsu abonements netiks atjaunots, jums būs 3 dienu žēlastības periods pirms taga maiņas.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Jūsu pielāgotais 4 ciparu tag (#$discriminator) ir aktīvs, kamēr ir aktīvs jūsu Plutonium abonements. Ja jūsu abonements beigsies vai netiks atjaunots pēc 3 dienu žēlastības perioda, jūsu tag atgriezīsies pie nejauša numura.';
+    return 'Jūsu pielāgotais 4 ciparu tag (#$discriminator) ir aktīvs, kamēr ir aktīvs jūsu Reverb abonements. Ja jūsu abonements beigsies vai netiks atjaunots pēc 3 dienu žēlastības perioda, jūsu tag atgriezīsies pie nejauša numura.';
   }
 
   @override
@@ -1351,19 +1351,19 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'Jūsu Plutonium izmēģinājuma periods beidzas $date. Jauniniet, lai saglabātu savu pielāgoto tagu un iegūtu emblēmu savā profilā.';
+    return 'Jūsu Reverb izmēģinājuma periods beidzas $date. Jauniniet, lai saglabātu savu pielāgoto tagu un iegūtu emblēmu savā profilā.';
   }
 
   @override
   String get premiumTrialActive =>
-      'Jūs izmantojat Plutonium izmēģinājuma versiju. Jauniniet, lai saglabātu savu pielāgoto tagu un iegūtu emblēmu savā profilā.';
+      'Jūs izmantojat Reverb izmēģinājuma versiju. Jauniniet, lai saglabātu savu pielāgoto tagu un iegūtu emblēmu savā profilā.';
 
   @override
-  String get fluxerTagUpdated => 'FluxerTag atjaunināts';
+  String get fluxerTagUpdated => 'EchoTag atjaunināts';
 
   @override
   String get fluxerTagUpdateFailed =>
-      'Neizdevās atjaunināt FluxerTag. Lūdzu, mēģiniet vēlreiz.';
+      'Neizdevās atjaunināt EchoTag. Lūdzu, mēģiniet vēlreiz.';
 
   @override
   String get continueAction => 'Turpināt';
@@ -1380,14 +1380,14 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get claimAccountToChangeFluxerTag =>
-      'Pieprasiet savu kontu, lai mainītu savu FluxerTag';
+      'Pieprasiet savu kontu, lai mainītu savu EchoTag';
 
   @override
-  String get changeFluxerTag => 'Mainīt FluxerTag';
+  String get changeFluxerTag => 'Mainīt EchoTag';
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Pielāgojiet savu 4 ciparu tagu (#$discriminator) pēc savas gaumes ar Plutonium';
+    return 'Pielāgojiet savu 4 ciparu tagu (#$discriminator) pēc savas gaumes ar Reverb';
   }
 
   @override
@@ -1396,7 +1396,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'Jūsu pielāgotais tag (#$discriminator) ir saistīts ar jūsu Plutonium abonementu un tiks atjaunots uz nejaušu tagu, ja tas beigsies.';
+    return 'Jūsu pielāgotais tag (#$discriminator) ir saistīts ar jūsu Reverb abonementu un tiks atjaunots uz nejaušu tagu, ja tas beigsies.';
   }
 
   @override
@@ -1449,31 +1449,30 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
   String get emojiPickerTitle => 'Emocijzīmes';
 
   @override
-  String get plutoniumBadgePrivacyTitle =>
-      'Plutonium nozīmītes konfidencialitāte';
+  String get plutoniumBadgePrivacyTitle => 'Reverb nozīmītes konfidencialitāte';
 
   @override
   String get plutoniumBadgePrivacyDescription =>
-      'Kontrolējiet, kā jūsu Plutonium nozīmīte tiek rādīta citiem';
+      'Kontrolējiet, kā jūsu Reverb nozīmīte tiek rādīta citiem';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'Pilnībā paslēpt Plutonium nozīmīti';
+  String get hidePlutoniumBadgeLabel => 'Pilnībā paslēpt Reverb nozīmīti';
 
   @override
   String get hidePlutoniumBadgeDescription =>
-      'Pilnībā paslēpt savu Plutonium nozīmīti no citiem lietotājiem';
+      'Pilnībā paslēpt savu Reverb nozīmīti no citiem lietotājiem';
 
   @override
-  String get hidePlutoniumPurchaseDate => 'Paslēpt Plutonium iegādes datumu';
+  String get hidePlutoniumPurchaseDate => 'Paslēpt Reverb iegādes datumu';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'Paslēpt Plutonium iegādes datumu ($date)';
+    return 'Paslēpt Reverb iegādes datumu ($date)';
   }
 
   @override
   String get hidePurchaseDateDescription =>
-      'Noņemiet no savas nozīmītes informāciju par Plutonium iegādi';
+      'Noņemiet no savas nozīmītes informāciju par Reverb iegādi';
 
   @override
   String get maskVisionaryAsSubscription => 'Maskēt Visionary kā abonementu';
@@ -1496,7 +1495,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'Jūs izmantojat Plutonium izmēģinājuma versiju — jūsu abonements sāksies $date';
+    return 'Jūs izmantojat Reverb izmēģinājuma versiju — jūsu abonements sāksies $date';
   }
 
   @override
@@ -1505,26 +1504,26 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'Jūs izmantojat Plutonium izmēģinājuma versiju, kas beidzas $date';
+    return 'Jūs izmantojat Reverb izmēģinājuma versiju, kas beidzas $date';
   }
 
   @override
   String get premiumTrialActiveProfile =>
-      'Jūs izmantojat Plutonium izmēģinājuma versiju';
+      'Jūs izmantojat Reverb izmēģinājuma versiju';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. Maksimālais izmērs 10 MB. Ieteicams: 512×512 pikseļi. Animētiem ietvariem (GIF) nepieciešams Plutonium.';
+      'JPEG, PNG, WebP. Maksimālais izmērs 10 MB. Ieteicams: 512×512 pikseļi. Animētiem ietvariem (GIF) nepieciešams Reverb.';
 
   @override
   String get bannerPlutoniumUpsell =>
       'Pielāgojiet savu profilu ar statisku vai animētu banera attēlu, lai tas izceltos.';
 
   @override
-  String get getPlutonium => 'Iegūt Plutonium';
+  String get getPlutonium => 'Iegūt Reverb';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1537,7 +1536,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
   String get profilePreviewMessage => 'Ziņojums';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer dalībnieks kopš';
+  String get profilePreviewMemberSince => 'Echowire dalībnieks kopš';
 
   @override
   String get unclaimedAccountTitle => 'Nepieprasīts konts';
@@ -1628,7 +1627,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Pārvaldiet e-pasta adresi, ko izmantojat, lai pieteiktos Fluxer';
+      'Pārvaldiet e-pasta adresi, ko izmantojat, lai pieteiktos Echowire';
 
   @override
   String get securityLoginEmailAddressLabel => 'E-pasta adrese';
@@ -2028,7 +2027,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'Pirms konta dzēšanas atceliet savu aktīvo Plutonium abonementu Plutonium iestatījumos.';
+      'Pirms konta dzēšanas atceliet savu aktīvo Reverb abonementu Reverb iestatījumos.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => 'Nevar dzēst kontu';
@@ -2166,7 +2165,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Šīm lietojumprogrammām ir piešķirta piekļuve jūsu Fluxer kontam.';
+      'Šīm lietojumprogrammām ir piešķirta piekļuve jūsu Echowire kontam.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Nav autorizētu lietojumprogrammu';
@@ -2251,7 +2250,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => 'Kopēt FluxerTag';
+  String get blockedUsersCopyTag => 'Kopēt EchoTag';
 
   @override
   String get blockedUsersCopyId => 'Kopēt lietotāja ID';
@@ -2275,31 +2274,31 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
   String get userProfileEditProfile => 'Rediģēt profilu';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer personāls';
+  String get userProfileStaffBadgeTooltip => 'Echowire personāls';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer kopienas komanda';
+  String get userProfileCtpBadgeTooltip => 'Echowire kopienas komanda';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer partneris';
+  String get userProfilePartnerBadgeTooltip => 'Echowire partneris';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer Bug Hunter';
+  String get userProfileBugHunterBadgeTooltip => 'Echowire Bug Hunter';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Echowire Reverb';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxer Plutonium abonents kopš $date';
+    return 'Echowire Reverb abonents kopš $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Echowire Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Visionary kopš $date';
+    return 'Echowire Visionary kopš $date';
   }
 
   @override
@@ -3279,7 +3278,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Saistiet ārējos kontus un domēnus ar savu Fluxer profilu. Verificēti savienojumi tiks parādīti jūsu profilā, lai citi varētu tos redzēt.';
+      'Saistiet ārējos kontus un domēnus ar savu Echowire profilu. Verificēti savienojumi tiks parādīti jūsu profilā, lai citi varētu tos redzēt.';
 
   @override
   String get connectionsEmptyTitle => 'Vēl nav savienojumu';
@@ -3455,7 +3454,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
   String get connectionRemoveFailed => 'Nevarēja noņemt savienojumu';
 
   @override
-  String get connectionTokenSavedToast => 'Fluxer-verification saglabāts';
+  String get connectionTokenSavedToast => 'Echowire-verification saglabāts';
 
   @override
   String get connectionTokenSaveFailedToast => 'Nevarēja saglabāt failu';
@@ -3631,7 +3630,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Ja iespējots, nelasītie DM servera sānu joslā tiek sakļauti mapē zem Fluxer pogas. Noklikšķiniet uz Fluxer pogas, atrodoties DM lapā, lai atvērtu vai sakļautu mapi.';
+      'Ja iespējots, nelasītie DM servera sānu joslā tiek sakļauti mapē zem Echowire pogas. Noklikšķiniet uz Echowire pogas, atrodoties DM lapā, lai atvērtu vai sakļautu mapi.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Kanālu saraksts';
@@ -3842,7 +3841,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Kad augšupielādēts tieši uz Fluxer';
+      'Kad augšupielādēts tieši uz Echowire';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Saites priekšskatījumi';
@@ -4716,7 +4715,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Izmantojiet tikai tad, ja tas skaidri pārkāpj Fluxer noteikumus un nav piemērots iepriekš.';
+      'Izmantojiet tikai tad, ja tas skaidri pārkāpj Echowire noteikumus un nav piemērots iepriekš.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -5192,7 +5191,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Drošība un pieteikšanās';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Dāvanas un kodi';
@@ -5447,7 +5446,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Palīdziet uzlabot Fluxer, kopīgojot anonīmus datus par kļūmēm un veiktspēju.';
+      'Palīdziet uzlabot Echowire, kopīgojot anonīmus datus par kļūmēm un veiktspēju.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -5455,7 +5454,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Visi ziņotie dati ir anonīmi un tiek sūtīti tikai uz Fluxer pašu uzraudzības pakalpojumu — netiek izmantoti trešo pušu nodrošinātāji.';
+      'Visi ziņotie dati ir anonīmi un tiek sūtīti tikai uz Echowire pašu uzraudzības pakalpojumu — netiek izmantoti trešo pušu nodrošinātāji.';
 
   @override
   String get userSettingsNavApplications => 'Lietotnes';
@@ -5487,7 +5486,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Lūdzu, ziņojiet par visām problēmām, ko atradīsiet, Fluxer Mobile kopienai (pašlaik, lai pievienotos kopienai, ir nepieciešams Plutonium).';
+      'Lūdzu, ziņojiet par visām problēmām, ko atradīsiet, Echowire Mobile kopienai (pašlaik, lai pievienotos kopienai, ir nepieciešams Reverb).';
 
   @override
   String get betaWarningRepoLink => 'Skatīt avota kodu GitHub';
@@ -5657,7 +5656,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
       'Ievadiet instancēšanas URL (piemēram, fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Atiestatīt uz Fluxer';
+  String get resetToDefaultInstance => 'Atiestatīt uz Echowire';
 
   @override
   String get instanceConnect => 'Savienot';
@@ -6009,7 +6008,7 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Pieejams tikai Fluxer personālam';
+      'Pieejams tikai Echowire personālam';
 
   @override
   String get guildNavbarInvitesPaused =>

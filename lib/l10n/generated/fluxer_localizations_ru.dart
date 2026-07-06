@@ -1143,11 +1143,11 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'Разблокируйте $emojiCount из $communityCount с Plutonium.';
+    return 'Разблокируйте $emojiCount из $communityCount с Reverb.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Получить Plutonium';
+  String get emojiPlutoniumUpsellButton => 'Получить Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Больше не показывать';
@@ -1178,7 +1178,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Внимание: внешний сайт';
 
   @override
-  String get externalLinkWarningLeaving => 'Вы собираетесь покинуть Fluxer';
+  String get externalLinkWarningLeaving => 'Вы собираетесь покинуть Echowire';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1256,11 +1256,11 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'Анимированные аватары требуют Plutonium';
+      'Анимированные аватары требуют Reverb';
 
   @override
   String get animatedBannersRequirePlutonium =>
-      'Анимированные баннеры требуют Plutonium';
+      'Анимированные баннеры требуют Reverb';
 
   @override
   String get animatedAvifNotSupported => 'Анимированные AVIF не поддерживаются';
@@ -1289,10 +1289,10 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get crop => 'Обрезать';
 
   @override
-  String get changeYourFluxerTag => 'Изменить ваш FluxerTag';
+  String get changeYourFluxerTag => 'Изменить ваш EchoTag';
 
   @override
-  String get fluxerTagInputLabel => 'FluxerTag';
+  String get fluxerTagInputLabel => 'EchoTag';
 
   @override
   String get fluxerTagDescriptionBase =>
@@ -1317,14 +1317,14 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Получите Plutonium, чтобы настроить свой тег или сохранить его при изменении имени пользователя';
+      'Получите Reverb, чтобы настроить свой тег или сохранить его при изменении имени пользователя';
 
   @override
-  String get fluxerTagAlreadyTaken => 'FluxerTag уже занят';
+  String get fluxerTagAlreadyTaken => 'EchoTag уже занят';
 
   @override
   String fluxerTagAlreadyTakenBody(String username, String discriminator) {
-    return 'FluxerTag $username#$discriminator уже занят. Продолжение автоматически перевыберет ваш дискриминатор.';
+    return 'EchoTag $username#$discriminator уже занят. Продолжение автоматически перевыберет ваш дискриминатор.';
   }
 
   @override
@@ -1332,23 +1332,23 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'Ваш пользовательский 4-значный тег будет доступен только во время действия вашей подписки Plutonium. Когда ваша подписка истечет $date, ваш тег будет заменен на случайно назначенный номер после 3-дневного льготного периода.';
+    return 'Ваш пользовательский 4-значный тег будет доступен только во время действия вашей подписки Reverb. Когда ваша подписка истечет $date, ваш тег будет заменен на случайно назначенный номер после 3-дневного льготного периода.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'Ваш пользовательский 4-значный тег будет доступен только во время действия вашей подписки Plutonium. Когда ваша подписка истечет, ваш тег будет заменен на случайно назначенный номер после 3-дневного льготного периода.';
+      'Ваш пользовательский 4-значный тег будет доступен только во время действия вашей подписки Reverb. Когда ваша подписка истечет, ваш тег будет заменен на случайно назначенный номер после 3-дневного льготного периода.';
 
   @override
   String get iUnderstandContinue => 'Я понимаю, продолжить';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Если вы сохраните этот FluxerTag, ваш пользовательский 4-значный тег будет заменен на случайный номер по окончании вашей подписки Plutonium. Если ваша подписка не будет продлена, у вас будет 3-дневный льготный период до изменения тега.';
+      'Если вы сохраните этот EchoTag, ваш пользовательский 4-значный тег будет заменен на случайный номер по окончании вашей подписки Reverb. Если ваша подписка не будет продлена, у вас будет 3-дневный льготный период до изменения тега.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Ваш пользовательский 4-значный тег (#$discriminator) активен во время действия вашей подписки Plutonium. Если ваша подписка закончится или не будет продлена после 3-дневного льготного периода, ваш тег будет заменен на случайный номер.';
+    return 'Ваш пользовательский 4-значный тег (#$discriminator) активен во время действия вашей подписки Reverb. Если ваша подписка закончится или не будет продлена после 3-дневного льготного периода, ваш тег будет заменен на случайный номер.';
   }
 
   @override
@@ -1357,19 +1357,19 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'Ваша пробная версия Plutonium истекает $date. Обновитесь, чтобы сохранить свой пользовательский тег и получить значок в профиле.';
+    return 'Ваша пробная версия Reverb истекает $date. Обновитесь, чтобы сохранить свой пользовательский тег и получить значок в профиле.';
   }
 
   @override
   String get premiumTrialActive =>
-      'Вы используете пробную версию Plutonium. Обновитесь, чтобы сохранить свой пользовательский тег и получить значок в профиле.';
+      'Вы используете пробную версию Reverb. Обновитесь, чтобы сохранить свой пользовательский тег и получить значок в профиле.';
 
   @override
-  String get fluxerTagUpdated => 'FluxerTag обновлен';
+  String get fluxerTagUpdated => 'EchoTag обновлен';
 
   @override
   String get fluxerTagUpdateFailed =>
-      'Не удалось обновить FluxerTag. Пожалуйста, попробуйте еще раз.';
+      'Не удалось обновить EchoTag. Пожалуйста, попробуйте еще раз.';
 
   @override
   String get continueAction => 'Продолжить';
@@ -1386,14 +1386,14 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get claimAccountToChangeFluxerTag =>
-      'Подтвердите свою учетную запись, чтобы изменить FluxerTag';
+      'Подтвердите свою учетную запись, чтобы изменить EchoTag';
 
   @override
-  String get changeFluxerTag => 'Изменить FluxerTag';
+  String get changeFluxerTag => 'Изменить EchoTag';
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Настройте свой 4-значный тег (#$discriminator) по своему вкусу с помощью Plutonium';
+    return 'Настройте свой 4-значный тег (#$discriminator) по своему вкусу с помощью Reverb';
   }
 
   @override
@@ -1402,7 +1402,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'Ваш пользовательский тег (#$discriminator) привязан к вашей подписке Plutonium и будет заменен случайным тегом, если она истечет.';
+    return 'Ваш пользовательский тег (#$discriminator) привязан к вашей подписке Reverb и будет заменен случайным тегом, если она истечет.';
   }
 
   @override
@@ -1455,31 +1455,30 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get emojiPickerTitle => 'Эмодзи';
 
   @override
-  String get plutoniumBadgePrivacyTitle =>
-      'Конфиденциальность значка Plutonium';
+  String get plutoniumBadgePrivacyTitle => 'Конфиденциальность значка Reverb';
 
   @override
   String get plutoniumBadgePrivacyDescription =>
-      'Управляйте отображением вашего значка Plutonium для других';
+      'Управляйте отображением вашего значка Reverb для других';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'Полностью скрыть значок Plutonium';
+  String get hidePlutoniumBadgeLabel => 'Полностью скрыть значок Reverb';
 
   @override
   String get hidePlutoniumBadgeDescription =>
-      'Полностью скройте ваш значок Plutonium от других пользователей';
+      'Полностью скройте ваш значок Reverb от других пользователей';
 
   @override
-  String get hidePlutoniumPurchaseDate => 'Скрыть дату покупки Plutonium';
+  String get hidePlutoniumPurchaseDate => 'Скрыть дату покупки Reverb';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'Скрыть дату покупки Plutonium ($date)';
+    return 'Скрыть дату покупки Reverb ($date)';
   }
 
   @override
   String get hidePurchaseDateDescription =>
-      'Удалить дату первой покупки Plutonium из вашего значка';
+      'Удалить дату первой покупки Reverb из вашего значка';
 
   @override
   String get maskVisionaryAsSubscription =>
@@ -1502,7 +1501,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'У вас пробная версия Plutonium — ваша подписка начнется $date';
+    return 'У вас пробная версия Reverb — ваша подписка начнется $date';
   }
 
   @override
@@ -1511,25 +1510,25 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'У вас пробная версия Plutonium, которая истекает $date';
+    return 'У вас пробная версия Reverb, которая истекает $date';
   }
 
   @override
-  String get premiumTrialActiveProfile => 'У вас пробная версия Plutonium';
+  String get premiumTrialActiveProfile => 'У вас пробная версия Reverb';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. Макс. 10 МБ. Рекомендуется: 512×512px. Анимированные аватары (GIF) требуют Plutonium.';
+      'JPEG, PNG, WebP. Макс. 10 МБ. Рекомендуется: 512×512px. Анимированные аватары (GIF) требуют Reverb.';
 
   @override
   String get bannerPlutoniumUpsell =>
       'Настройте свой профиль с помощью статического или анимированного баннера, чтобы он выделялся.';
 
   @override
-  String get getPlutonium => 'Получить Plutonium';
+  String get getPlutonium => 'Получить Reverb';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1542,7 +1541,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get profilePreviewMessage => 'Сообщение';
 
   @override
-  String get profilePreviewMemberSince => 'Участник Fluxer с';
+  String get profilePreviewMemberSince => 'Участник Echowire с';
 
   @override
   String get unclaimedAccountTitle => 'Невостребованный аккаунт';
@@ -1569,7 +1568,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      'Настройка вашего аватара, баннера, основного цвета и биографии для отдельных сообществ требует Plutonium. Никнейм и местоимения в сообществе бесплатны для всех.';
+      'Настройка вашего аватара, баннера, основного цвета и биографии для отдельных сообществ требует Reverb. Никнейм и местоимения в сообществе бесплатны для всех.';
 
   @override
   String get avatarModeInherit => 'Использовать глобальный профиль';
@@ -1634,7 +1633,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Управляйте адресом электронной почты, который вы используете для входа в Fluxer';
+      'Управляйте адресом электронной почты, который вы используете для входа в Echowire';
 
   @override
   String get securityLoginEmailAddressLabel => 'Адрес электронной почты';
@@ -2038,7 +2037,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'Отмените вашу активную подписку Plutonium в настройках Plutonium перед удалением учетной записи.';
+      'Отмените вашу активную подписку Reverb в настройках Reverb перед удалением учетной записи.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount =>
@@ -2177,7 +2176,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Эти приложения получили доступ к вашей учетной записи Fluxer.';
+      'Эти приложения получили доступ к вашей учетной записи Echowire.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Нет авторизованных приложений';
@@ -2265,7 +2264,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => 'Копировать FluxerTag';
+  String get blockedUsersCopyTag => 'Копировать EchoTag';
 
   @override
   String get blockedUsersCopyId => 'Копировать ID пользователя';
@@ -2289,31 +2288,31 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get userProfileEditProfile => 'Редактировать профиль';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Сотрудник Fluxer';
+  String get userProfileStaffBadgeTooltip => 'Сотрудник Echowire';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Команда сообщества Fluxer';
+  String get userProfileCtpBadgeTooltip => 'Команда сообщества Echowire';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Партнер Fluxer';
+  String get userProfilePartnerBadgeTooltip => 'Партнер Echowire';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Охотник за ошибками Fluxer';
+  String get userProfileBugHunterBadgeTooltip => 'Охотник за ошибками Echowire';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Plutonium Fluxer';
+  String get userProfilePlutoniumBadgeTooltip => 'Reverb Echowire';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Подписчик Plutonium Fluxer с $date';
+    return 'Подписчик Reverb Echowire с $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Визионер Fluxer';
+  String get userProfileVisionaryBadgeTooltip => 'Визионер Echowire';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Визионер Fluxer с $date';
+    return 'Визионер Echowire с $date';
   }
 
   @override
@@ -3295,7 +3294,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Свяжите внешние учетные записи и домены с вашим профилем Fluxer. Подтвержденные подключения будут отображаться в вашем профиле для других.';
+      'Свяжите внешние учетные записи и домены с вашим профилем Echowire. Подтвержденные подключения будут отображаться в вашем профиле для других.';
 
   @override
   String get connectionsEmptyTitle => 'Пока нет подключений';
@@ -3649,7 +3648,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Когда включено, непрочитанные ЛС в боковой панели сервера сворачиваются в папку на кнопке Fluxer. Нажмите кнопку Fluxer, находясь на странице ЛС, чтобы развернуть или свернуть папку.';
+      'Когда включено, непрочитанные ЛС в боковой панели сервера сворачиваются в папку на кнопке Echowire. Нажмите кнопку Echowire, находясь на странице ЛС, чтобы развернуть или свернуть папку.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Список каналов';
@@ -3860,7 +3859,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'При прямой загрузке в Fluxer';
+      'При прямой загрузке в Echowire';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle =>
@@ -4734,7 +4733,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Используйте только в том случае, если это явно нарушает правила Fluxer и не подходит под другие категории.';
+      'Используйте только в том случае, если это явно нарушает правила Echowire и не подходит под другие категории.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -5209,7 +5208,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Безопасность и вход';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Подарки и коды';
@@ -5463,7 +5462,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Помогите улучшить Fluxer, делясь анонимными данными о сбоях и производительности.';
+      'Помогите улучшить Echowire, делясь анонимными данными о сбоях и производительности.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -5471,7 +5470,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Все отправляемые данные анонимны и отправляются только на собственный мониторинговый сервис Fluxer — сторонние поставщики не используются.';
+      'Все отправляемые данные анонимны и отправляются только на собственный мониторинговый сервис Echowire — сторонние поставщики не используются.';
 
   @override
   String get userSettingsNavApplications => 'Приложения';
@@ -5503,7 +5502,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Пожалуйста, сообщайте о любых найденных проблемах в сообщество Fluxer Mobile (для этого вам понадобится Plutonium, чтобы присоединиться к сообществу в настоящее время).';
+      'Пожалуйста, сообщайте о любых найденных проблемах в сообщество Echowire Mobile (для этого вам понадобится Reverb, чтобы присоединиться к сообществу в настоящее время).';
 
   @override
   String get betaWarningRepoLink => 'Посмотреть исходный код на GitHub';
@@ -5674,7 +5673,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
       'Введите URL экземпляра (например, fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Сбросить до Fluxer';
+  String get resetToDefaultInstance => 'Сбросить до Echowire';
 
   @override
   String get instanceConnect => 'Подключиться';
@@ -6025,7 +6024,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Доступно только сотрудникам Fluxer';
+      'Доступно только сотрудникам Echowire';
 
   @override
   String get guildNavbarInvitesPaused =>

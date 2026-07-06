@@ -1144,11 +1144,11 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'Díghlasáil $emojiCount ó $communityCount le Plutonium.';
+    return 'Díghlasáil $emojiCount ó $communityCount le Reverb.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Faigh Plutonium';
+  String get emojiPlutoniumUpsellButton => 'Faigh Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Ná taispeáin seo arís';
@@ -1179,7 +1179,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Rabhadh Nasc Seachtrach';
 
   @override
-  String get externalLinkWarningLeaving => 'Tá tú ar tí Fluxer a fhágáil';
+  String get externalLinkWarningLeaving => 'Tá tú ar tí Echowire a fhágáil';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1258,11 +1258,11 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'Teastaíonn Plutonium ó avatars beoite';
+      'Teastaíonn Reverb ó avatars beoite';
 
   @override
   String get animatedBannersRequirePlutonium =>
-      'Teastaíonn Plutonium ó bhratacha beoite';
+      'Teastaíonn Reverb ó bhratacha beoite';
 
   @override
   String get animatedAvifNotSupported => 'Ní thacaítear le AVIF beoite';
@@ -1291,10 +1291,10 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
   String get crop => 'Gearr';
 
   @override
-  String get changeYourFluxerTag => 'Athraigh Do FluxerTag';
+  String get changeYourFluxerTag => 'Athraigh Do EchoTag';
 
   @override
-  String get fluxerTagInputLabel => 'FluxerTag';
+  String get fluxerTagInputLabel => 'EchoTag';
 
   @override
   String get fluxerTagDescriptionBase =>
@@ -1319,14 +1319,14 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Faigh Plutonium chun do chlib a shaincheapadh nó coinnigh é nuair a athraíonn tú d\'ainm úsáideora';
+      'Faigh Reverb chun do chlib a shaincheapadh nó coinnigh é nuair a athraíonn tú d\'ainm úsáideora';
 
   @override
-  String get fluxerTagAlreadyTaken => 'FluxerTag Tógtha Cheana Féin';
+  String get fluxerTagAlreadyTaken => 'EchoTag Tógtha Cheana Féin';
 
   @override
   String fluxerTagAlreadyTakenBody(String username, String discriminator) {
-    return 'Tá an FluxerTag $username#$discriminator tógtha cheana féin. Má leanann tú ar aghaidh, déanfar do dhíograitheoir a athrollú go huathoibríoch.';
+    return 'Tá an EchoTag $username#$discriminator tógtha cheana féin. Má leanann tú ar aghaidh, déanfar do dhíograitheoir a athrollú go huathoibríoch.';
   }
 
   @override
@@ -1334,23 +1334,23 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'Níl do chlib 4-dhigit saincheaptha ar fáil ach fad is atá do shíntiús Plutonium gníomhach. Nuair a thiocfaidh deireadh le do shíntiús ar $date, fillfidh do chlib ar uimhir randamach tar éis tréimhse grásta 3 lá.';
+    return 'Níl do chlib 4-dhigit saincheaptha ar fáil ach fad is atá do shíntiús Reverb gníomhach. Nuair a thiocfaidh deireadh le do shíntiús ar $date, fillfidh do chlib ar uimhir randamach tar éis tréimhse grásta 3 lá.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'Níl do chlib 4-dhigit saincheaptha ar fáil ach fad is atá do shíntiús Plutonium gníomhach. Nuair a thiocfaidh deireadh le do shíntiús, fillfidh do chlib ar uimhir randamach tar éis tréimhse grásta 3 lá.';
+      'Níl do chlib 4-dhigit saincheaptha ar fáil ach fad is atá do shíntiús Reverb gníomhach. Nuair a thiocfaidh deireadh le do shíntiús, fillfidh do chlib ar uimhir randamach tar éis tréimhse grásta 3 lá.';
 
   @override
   String get iUnderstandContinue => 'Tuigim, Lean Ar Aghaidh';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Má shábhálann tú an FluxerTag seo, fillfidh do chlib 4-dhigit saincheaptha ar uimhir randamach nuair a bheidh deireadh le do shíntiús Plutonium. Má theipeann ar do shíntiús athnuachan, beidh tréimhse grásta 3 lá agat sula n-athróidh an chlib.';
+      'Má shábhálann tú an EchoTag seo, fillfidh do chlib 4-dhigit saincheaptha ar uimhir randamach nuair a bheidh deireadh le do shíntiús Reverb. Má theipeann ar do shíntiús athnuachan, beidh tréimhse grásta 3 lá agat sula n-athróidh an chlib.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Tá do chlib 4-dhigit saincheaptha (#$discriminator) gníomhach fad is atá do shíntiús Plutonium gníomhach. Má chríochnaíonn do shíntiús nó má theipeann air athnuachan tar éis tréimhse grásta 3 lá, fillfidh do chlib ar uimhir randamach.';
+    return 'Tá do chlib 4-dhigit saincheaptha (#$discriminator) gníomhach fad is atá do shíntiús Reverb gníomhach. Má chríochnaíonn do shíntiús nó má theipeann air athnuachan tar éis tréimhse grásta 3 lá, fillfidh do chlib ar uimhir randamach.';
   }
 
   @override
@@ -1359,19 +1359,19 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'Tiocfaidh do thriail Plutonium chun deiridh ar $date. Uasghrádaigh chun do chlib saincheaptha a choinneáil agus chun comhartha ar do phróifíl a thuilleamh.';
+    return 'Tiocfaidh do thriail Reverb chun deiridh ar $date. Uasghrádaigh chun do chlib saincheaptha a choinneáil agus chun comhartha ar do phróifíl a thuilleamh.';
   }
 
   @override
   String get premiumTrialActive =>
-      'Tá tú ar thriail Plutonium. Uasghrádaigh chun do chlib saincheaptha a choinneáil agus chun comhartha ar do phróifíl a thuilleamh.';
+      'Tá tú ar thriail Reverb. Uasghrádaigh chun do chlib saincheaptha a choinneáil agus chun comhartha ar do phróifíl a thuilleamh.';
 
   @override
-  String get fluxerTagUpdated => 'FluxerTag Nuashonraithe';
+  String get fluxerTagUpdated => 'EchoTag Nuashonraithe';
 
   @override
   String get fluxerTagUpdateFailed =>
-      'Teip ar FluxerTag a nuashonrú. Bain triail as arís.';
+      'Teip ar EchoTag a nuashonrú. Bain triail as arís.';
 
   @override
   String get continueAction => 'Lean Ar Aghaidh';
@@ -1388,14 +1388,14 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get claimAccountToChangeFluxerTag =>
-      'Éiligh do chuntas chun do FluxerTag a athrú';
+      'Éiligh do chuntas chun do EchoTag a athrú';
 
   @override
-  String get changeFluxerTag => 'Athraigh FluxerTag';
+  String get changeFluxerTag => 'Athraigh EchoTag';
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Saincheap do 4-dhigit tag (#$discriminator) mar is mian leat le Plutonium';
+    return 'Saincheap do 4-dhigit tag (#$discriminator) mar is mian leat le Reverb';
   }
 
   @override
@@ -1404,7 +1404,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'Tá do 4-dhigit tag féin (#$discriminator) ceangailte le do shíntiús Plutonium agus fillfidh sé ar thag randamach má théann sé in éag.';
+    return 'Tá do 4-dhigit tag féin (#$discriminator) ceangailte le do shíntiús Reverb agus fillfidh sé ar thag randamach má théann sé in éag.';
   }
 
   @override
@@ -1457,30 +1457,30 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
   String get emojiPickerTitle => 'Emoji';
 
   @override
-  String get plutoniumBadgePrivacyTitle => 'Príobháideacht Bhaiste Plutonium';
+  String get plutoniumBadgePrivacyTitle => 'Príobháideacht Bhaiste Reverb';
 
   @override
   String get plutoniumBadgePrivacyDescription =>
-      'Rialú conas a thaispeántar do bhaiste Plutonium do dhaoine eile';
+      'Rialú conas a thaispeántar do bhaiste Reverb do dhaoine eile';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'Folaigh baiste Plutonium go hiomlán';
+  String get hidePlutoniumBadgeLabel => 'Folaigh baiste Reverb go hiomlán';
 
   @override
   String get hidePlutoniumBadgeDescription =>
-      'Folaigh do bhaiste Plutonium go hiomlán ó úsáideoirí eile';
+      'Folaigh do bhaiste Reverb go hiomlán ó úsáideoirí eile';
 
   @override
-  String get hidePlutoniumPurchaseDate => 'Folaigh dáta ceannaigh Plutonium';
+  String get hidePlutoniumPurchaseDate => 'Folaigh dáta ceannaigh Reverb';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'Folaigh dáta ceannaigh Plutonium ($date)';
+    return 'Folaigh dáta ceannaigh Reverb ($date)';
   }
 
   @override
   String get hidePurchaseDateDescription =>
-      'Bain an t-am ar cheannaigh tú Plutonium den chéad uair ó do bhaiste';
+      'Bain an t-am ar cheannaigh tú Reverb den chéad uair ó do bhaiste';
 
   @override
   String get maskVisionaryAsSubscription => 'Maslaigh Visionary mar shíntiús';
@@ -1502,7 +1502,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'Tá tú ar thriail Plutonium — tosóidh do shíntiús ar $date';
+    return 'Tá tú ar thriail Reverb — tosóidh do shíntiús ar $date';
   }
 
   @override
@@ -1511,25 +1511,25 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'Tá tú ar thriail Plutonium a chríochnaíonn ar $date';
+    return 'Tá tú ar thriail Reverb a chríochnaíonn ar $date';
   }
 
   @override
-  String get premiumTrialActiveProfile => 'Tá tú ar thriail Plutonium';
+  String get premiumTrialActiveProfile => 'Tá tú ar thriail Reverb';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. Uasmhéid 10MB. Molta: 512×512px. Teastaíonn Plutonium le haghaidh avatars beoite (GIF).';
+      'JPEG, PNG, WebP. Uasmhéid 10MB. Molta: 512×512px. Teastaíonn Reverb le haghaidh avatars beoite (GIF).';
 
   @override
   String get bannerPlutoniumUpsell =>
       'Saincheap do phróifíl le híomhá bratach statach nó beoite chun í a dhéanamh seasamh amach.';
 
   @override
-  String get getPlutonium => 'Faigh Plutonium';
+  String get getPlutonium => 'Faigh Reverb';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1542,7 +1542,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
   String get profilePreviewMessage => 'Teachtaireacht';
 
   @override
-  String get profilePreviewMemberSince => 'Ball Fluxer Ó';
+  String get profilePreviewMemberSince => 'Ball Echowire Ó';
 
   @override
   String get unclaimedAccountTitle => 'Cuntas Neamh-éilithe';
@@ -1634,7 +1634,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Bainistigh an seoladh ríomhphoist a úsáideann tú chun logáil isteach i Fluxer';
+      'Bainistigh an seoladh ríomhphoist a úsáideann tú chun logáil isteach i Echowire';
 
   @override
   String get securityLoginEmailAddressLabel => 'Seoladh Ríomhphoist';
@@ -2038,7 +2038,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'Cealaigh d\' síntiús Plutonium gníomhach i socruithe Plutonium sula scriosann tú do chuntas.';
+      'Cealaigh d\' síntiús Reverb gníomhach i socruithe Reverb sula scriosann tú do chuntas.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount =>
@@ -2177,7 +2177,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Tá rochtain ar do chuntas Fluxer tugtha do na feidhmchláir seo.';
+      'Tá rochtain ar do chuntas Echowire tugtha do na feidhmchláir seo.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Gan Feidhmchláir Údaraithe';
@@ -2262,7 +2262,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => 'Cóipeáil FluxerTag';
+  String get blockedUsersCopyTag => 'Cóipeáil EchoTag';
 
   @override
   String get blockedUsersCopyId => 'Cóipeáil ID Úsáideora';
@@ -2286,27 +2286,27 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
   String get userProfileEditProfile => 'Cuir Próifíl in Eagar';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Foireann Fluxer';
+  String get userProfileStaffBadgeTooltip => 'Foireann Echowire';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Foireann Pobail Fluxer';
+  String get userProfileCtpBadgeTooltip => 'Foireann Pobail Echowire';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Comhpháirtí Fluxer';
+  String get userProfilePartnerBadgeTooltip => 'Comhpháirtí Echowire';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Sealgair Bugaí Fluxer';
+  String get userProfileBugHunterBadgeTooltip => 'Sealgair Bugaí Echowire';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Plútóniam Fluxer';
+  String get userProfilePlutoniumBadgeTooltip => 'Plútóniam Echowire';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Liostáil Plútóniam Fluxer ó $date';
+    return 'Liostáil Plútóniam Echowire ó $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Físghníomhaí Fluxer';
+  String get userProfileVisionaryBadgeTooltip => 'Físghníomhaí Echowire';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
@@ -3294,7 +3294,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Ceangail cuntais agus fearainn sheachtracha le do phróifíl Fluxer. Beidh naisc fhíoraithe le feiceáil ar do phróifíl do dhaoine eile.';
+      'Ceangail cuntais agus fearainn sheachtracha le do phróifíl Echowire. Beidh naisc fhíoraithe le feiceáil ar do phróifíl do dhaoine eile.';
 
   @override
   String get connectionsEmptyTitle => 'Gan naisc fós';
@@ -3650,7 +3650,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Nuair a bheidh sé cumasaithe, comhbhrúitear DManna gan léamh sa líne taoisigh pobail isteach i bhfillteán ar an gcnaipe Fluxer. Cliceáil ar an gcnaipe Fluxer agus tú ar an leathanach DManna chun an fillteán a leathnú nó a chomhbhrú.';
+      'Nuair a bheidh sé cumasaithe, comhbhrúitear DManna gan léamh sa líne taoisigh pobail isteach i bhfillteán ar an gcnaipe Echowire. Cliceáil ar an gcnaipe Echowire agus tú ar an leathanach DManna chun an fillteán a leathnú nó a chomhbhrú.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Liosta Cainéal';
@@ -3861,7 +3861,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Nuair a uaslódáiltear go díreach chuig Fluxer';
+      'Nuair a uaslódáiltear go díreach chuig Echowire';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Réamhamhairc Nasc';
@@ -4734,7 +4734,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Ná húsáid ach amháin má sháraíonn sé rialacha Fluxer go soiléir agus mura n-oirfeadh sé thuas.';
+      'Ná húsáid ach amháin má sháraíonn sé rialacha Echowire go soiléir agus mura n-oirfeadh sé thuas.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -5210,7 +5210,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Slándáil & Logáil Isteach';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Bronntanais & Códanna';
@@ -5464,7 +5464,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Cuidigh le Fluxer a fheabhsú trí shonraí timpiste agus feidhmíochta anaithnid a roinnt.';
+      'Cuidigh le Echowire a fheabhsú trí shonraí timpiste agus feidhmíochta anaithnid a roinnt.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -5472,7 +5472,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Tá gach sonraí tuairiscithe anaithnid agus ní sheoltar ach chuig seirbhís monatóireachta Fluxer féin — ní úsáidtear aon soláthraithe tríú páirtí.';
+      'Tá gach sonraí tuairiscithe anaithnid agus ní sheoltar ach chuig seirbhís monatóireachta Echowire féin — ní úsáidtear aon soláthraithe tríú páirtí.';
 
   @override
   String get userSettingsNavApplications => 'Aipeanna';
@@ -5504,7 +5504,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Tabhair tuairisc ar aon fhadhbanna a aimsíonn tú chuig pobal Fluxer Mobile (caithfidh Plutonium a bheith agat chun a bheith in ann an pobal a nascadh faoi láthair).';
+      'Tabhair tuairisc ar aon fhadhbanna a aimsíonn tú chuig pobal Echowire Mobile (caithfidh Reverb a bheith agat chun a bheith in ann an pobal a nascadh faoi láthair).';
 
   @override
   String get betaWarningRepoLink => 'Féach foinse ar GitHub';
@@ -5675,7 +5675,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
       'Iontráil URL an chórais (m.sh. fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Athshocraigh go Fluxer';
+  String get resetToDefaultInstance => 'Athshocraigh go Echowire';
 
   @override
   String get instanceConnect => 'Ceangail';
@@ -6029,7 +6029,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Naisc le foireann Fluxer amháin';
+      'Naisc le foireann Echowire amháin';
 
   @override
   String get guildNavbarInvitesPaused =>

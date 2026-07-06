@@ -1147,11 +1147,11 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return '$emojiCount darab emojit oldhatsz fel $communityCount közösségből a Plutoniummal.';
+    return '$emojiCount darab emojit oldhatsz fel $communityCount közösségből a Reverbmal.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Szerezz Plutoniumot';
+  String get emojiPlutoniumUpsellButton => 'Szerezz Reverbot';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Ne mutasd meg újra';
@@ -1182,7 +1182,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Külső hivatkozás figyelmeztetés';
 
   @override
-  String get externalLinkWarningLeaving => 'Elhagyod a Fluxert';
+  String get externalLinkWarningLeaving => 'Elhagyod a Echowiret';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1263,11 +1263,11 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'Az animált avatarokhoz Plutonium szükséges';
+      'Az animált avatarokhoz Reverb szükséges';
 
   @override
   String get animatedBannersRequirePlutonium =>
-      'Az animált bannerekhez Plutonium szükséges';
+      'Az animált bannerekhez Reverb szükséges';
 
   @override
   String get animatedAvifNotSupported => 'Animált AVIF nem támogatott';
@@ -1296,10 +1296,10 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get crop => 'Vágás';
 
   @override
-  String get changeYourFluxerTag => 'FluxerTag módosítása';
+  String get changeYourFluxerTag => 'EchoTag módosítása';
 
   @override
-  String get fluxerTagInputLabel => 'FluxerTag';
+  String get fluxerTagInputLabel => 'EchoTag';
 
   @override
   String get fluxerTagDescriptionBase =>
@@ -1324,14 +1324,14 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Szerezz Plutoniumot a tagod testreszabásához, vagy tartsd meg a felhasználóneved módosításakor';
+      'Szerezz Reverbot a tagod testreszabásához, vagy tartsd meg a felhasználóneved módosításakor';
 
   @override
-  String get fluxerTagAlreadyTaken => 'FluxerTag már foglalt';
+  String get fluxerTagAlreadyTaken => 'EchoTag már foglalt';
 
   @override
   String fluxerTagAlreadyTakenBody(String username, String discriminator) {
-    return 'A(z) $username#$discriminator FluxerTag már foglalt. A folytatás automatikusan újragenerálja a megkülönböztető jeledet.';
+    return 'A(z) $username#$discriminator EchoTag már foglalt. A folytatás automatikusan újragenerálja a megkülönböztető jeledet.';
   }
 
   @override
@@ -1339,23 +1339,23 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'Az egyéni 4 számjegyű tagod csak akkor érhető el, amíg a Plutonium előfizetésed aktív. Amikor az előfizetésed lejár $date napon, a tagod egy véletlenszerűen hozzárendelt számra változik egy 3 napos türelmi idő után.';
+    return 'Az egyéni 4 számjegyű tagod csak akkor érhető el, amíg a Reverb előfizetésed aktív. Amikor az előfizetésed lejár $date napon, a tagod egy véletlenszerűen hozzárendelt számra változik egy 3 napos türelmi idő után.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'Az egyéni 4 számjegyű tagod csak akkor érhető el, amíg a Plutonium előfizetésed aktív. Amikor az előfizetésed lejár, a tagod egy véletlenszerűen hozzárendelt számra változik egy 3 napos türelmi idő után.';
+      'Az egyéni 4 számjegyű tagod csak akkor érhető el, amíg a Reverb előfizetésed aktív. Amikor az előfizetésed lejár, a tagod egy véletlenszerűen hozzárendelt számra változik egy 3 napos türelmi idő után.';
 
   @override
   String get iUnderstandContinue => 'Értem, folytatás';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Ha elmented ezt a FluxerTag-et, az egyéni 4 számjegyű tagod véletlenszerű számra változik, amikor a Plutonium előfizetésed véget ér. Ha az előfizetésed nem újul meg, 3 napos türelmi időd lesz, mielőtt a tag megváltozik.';
+      'Ha elmented ezt a EchoTag-et, az egyéni 4 számjegyű tagod véletlenszerű számra változik, amikor a Reverb előfizetésed véget ér. Ha az előfizetésed nem újul meg, 3 napos türelmi időd lesz, mielőtt a tag megváltozik.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Az egyéni 4 számjegyű tagod (#$discriminator) aktív, amíg a Plutonium előfizetésed aktív. Ha az előfizetésed véget ér, vagy nem újul meg egy 3 napos türelmi idő után, a tagod véletlenszerű számra változik.';
+    return 'Az egyéni 4 számjegyű tagod (#$discriminator) aktív, amíg a Reverb előfizetésed aktív. Ha az előfizetésed véget ér, vagy nem újul meg egy 3 napos türelmi idő után, a tagod véletlenszerű számra változik.';
   }
 
   @override
@@ -1364,19 +1364,19 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'A Plutonium próbaidőszakod $date napon jár le. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.';
+    return 'A Reverb próbaidőszakod $date napon jár le. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.';
   }
 
   @override
   String get premiumTrialActive =>
-      'Plutonium próbaidőszakon vagy. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.';
+      'Reverb próbaidőszakon vagy. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.';
 
   @override
-  String get fluxerTagUpdated => 'FluxerTag frissítve';
+  String get fluxerTagUpdated => 'EchoTag frissítve';
 
   @override
   String get fluxerTagUpdateFailed =>
-      'A FluxerTag frissítése sikertelen. Kérlek, próbáld újra.';
+      'A EchoTag frissítése sikertelen. Kérlek, próbáld újra.';
 
   @override
   String get continueAction => 'Tovább';
@@ -1393,14 +1393,14 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get claimAccountToChangeFluxerTag =>
-      'Fiók igénylése a FluxerTag módosításához';
+      'Fiók igénylése a EchoTag módosításához';
 
   @override
-  String get changeFluxerTag => 'FluxerTag módosítása';
+  String get changeFluxerTag => 'EchoTag módosítása';
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Tetszés szerint alakítsd 4 számjegyű FluxerTagged (#$discriminator) Plutoniummal';
+    return 'Tetszés szerint alakítsd 4 számjegyű EchoTagged (#$discriminator) Reverbmal';
   }
 
   @override
@@ -1409,7 +1409,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'Az egyéni tagged (#$discriminator) Plutonium előfizetésedhez kötődik, és véletlenszerű tagra vált, ha lejár.';
+    return 'Az egyéni tagged (#$discriminator) Reverb előfizetésedhez kötődik, és véletlenszerű tagra vált, ha lejár.';
   }
 
   @override
@@ -1462,31 +1462,31 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get emojiPickerTitle => 'Emoji';
 
   @override
-  String get plutoniumBadgePrivacyTitle => 'Plutonium jelvény adatvédelme';
+  String get plutoniumBadgePrivacyTitle => 'Reverb jelvény adatvédelme';
 
   @override
   String get plutoniumBadgePrivacyDescription =>
-      'Szabályozd, hogyan jelenjen meg a Plutonium jelvényed mások számára';
+      'Szabályozd, hogyan jelenjen meg a Reverb jelvényed mások számára';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'Plutonium jelvény teljes elrejtése';
+  String get hidePlutoniumBadgeLabel => 'Reverb jelvény teljes elrejtése';
 
   @override
   String get hidePlutoniumBadgeDescription =>
-      'Teljesen rejtsd el a Plutonium jelvényedet más felhasználók elől';
+      'Teljesen rejtsd el a Reverb jelvényedet más felhasználók elől';
 
   @override
   String get hidePlutoniumPurchaseDate =>
-      'Plutonium vásárlási dátumának elrejtése';
+      'Reverb vásárlási dátumának elrejtése';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'Plutonium vásárlási dátumának elrejtése ($date)';
+    return 'Reverb vásárlási dátumának elrejtése ($date)';
   }
 
   @override
   String get hidePurchaseDateDescription =>
-      'Távolítsd el a Plutonium vásárlásának dátumát a jelvényedről';
+      'Távolítsd el a Reverb vásárlásának dátumát a jelvényedről';
 
   @override
   String get maskVisionaryAsSubscription =>
@@ -1510,7 +1510,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'Plutonium próbaidőszakon vagy – az előfizetésed $date-án kezdődik';
+    return 'Reverb próbaidőszakon vagy – az előfizetésed $date-án kezdődik';
   }
 
   @override
@@ -1519,25 +1519,25 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'Plutonium próbaidőszakon vagy, amely $date-án jár le';
+    return 'Reverb próbaidőszakon vagy, amely $date-án jár le';
   }
 
   @override
-  String get premiumTrialActiveProfile => 'Plutonium próbaidőszakon vagy';
+  String get premiumTrialActiveProfile => 'Reverb próbaidőszakon vagy';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. Max. 10 MB. Ajánlott: 512×512px. Animált profilképek (GIF) Plutoniumot igényelnek.';
+      'JPEG, PNG, WebP. Max. 10 MB. Ajánlott: 512×512px. Animált profilképek (GIF) Reverbot igényelnek.';
 
   @override
   String get bannerPlutoniumUpsell =>
       'Tedd egyedivé a profilodat egy álló vagy animált borítóképével, hogy kitűnjön.';
 
   @override
-  String get getPlutonium => 'Plutonium beszerzése';
+  String get getPlutonium => 'Reverb beszerzése';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1550,7 +1550,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get profilePreviewMessage => 'Üzenet';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer tag';
+  String get profilePreviewMemberSince => 'Echowire tag';
 
   @override
   String get unclaimedAccountTitle => 'Nem igényelt fiók';
@@ -1577,7 +1577,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      'Az avatar, a banner, a kiemelőszín és az életrajz testreszabása az egyes közösségekhez Plutoniumot igényel. A közösségi becenév és a névmások mindenki számára ingyenesek.';
+      'Az avatar, a banner, a kiemelőszín és az életrajz testreszabása az egyes közösségekhez Reverbot igényel. A közösségi becenév és a névmások mindenki számára ingyenesek.';
 
   @override
   String get avatarModeInherit => 'Globális profil használata';
@@ -1642,7 +1642,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Kezeld azt az e-mail címet, amellyel bejelentkezel a Fluxerbe';
+      'Kezeld azt az e-mail címet, amellyel bejelentkezel a Echowirebe';
 
   @override
   String get securityLoginEmailAddressLabel => 'E-mail cím';
@@ -2044,7 +2044,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'A fiókod törlése előtt mondd le az aktív Plutonium előfizetésedet a Plutonium beállításaiban.';
+      'A fiókod törlése előtt mondd le az aktív Reverb előfizetésedet a Reverb beállításaiban.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount =>
@@ -2183,7 +2183,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Ezek az alkalmazások kaptak hozzáférést a Fluxer-fiókodhoz.';
+      'Ezek az alkalmazások kaptak hozzáférést a Echowire-fiókodhoz.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Nincsenek engedélyezett alkalmazások';
@@ -2270,7 +2270,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => 'FluxerTag másolása';
+  String get blockedUsersCopyTag => 'EchoTag másolása';
 
   @override
   String get blockedUsersCopyId => 'Felhasználói azonosító másolása';
@@ -2294,31 +2294,31 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userProfileEditProfile => 'Profil szerkesztése';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer Csapat';
+  String get userProfileStaffBadgeTooltip => 'Echowire Csapat';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer Közösségi Csapat';
+  String get userProfileCtpBadgeTooltip => 'Echowire Közösségi Csapat';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer Partner';
+  String get userProfilePartnerBadgeTooltip => 'Echowire Partner';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer Bug Hunter';
+  String get userProfileBugHunterBadgeTooltip => 'Echowire Bug Hunter';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Echowire Reverb';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxer Plutonium előfizető $date óta';
+    return 'Echowire Reverb előfizető $date óta';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Echowire Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Visionary $date óta';
+    return 'Echowire Visionary $date óta';
   }
 
   @override
@@ -3299,7 +3299,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Külső fiókok és domainek összekapcsolása a Fluxer profiloddal. A hitelesített kapcsolatok megjelennek a profilodon, hogy mások is láthassák őket.';
+      'Külső fiókok és domainek összekapcsolása a Echowire profiloddal. A hitelesített kapcsolatok megjelennek a profilodon, hogy mások is láthassák őket.';
 
   @override
   String get connectionsEmptyTitle => 'Még nincsenek kapcsolatok';
@@ -3655,7 +3655,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Ha engedélyezve van, az olvasatlan DM-ek a kiszolgáló oldalsávban a Fluxer gomb mappájába lesznek összecsukva. Kattints a Fluxer gombra a DM-ek oldalon a mappa kibontásához vagy összecsukásához.';
+      'Ha engedélyezve van, az olvasatlan DM-ek a kiszolgáló oldalsávban a Echowire gomb mappájába lesznek összecsukva. Kattints a Echowire gombra a DM-ek oldalon a mappa kibontásához vagy összecsukásához.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Csatornalista';
@@ -3865,7 +3865,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Amikor közvetlenül a Fluxerbe van feltöltve';
+      'Amikor közvetlenül a Echowirebe van feltöltve';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Link előnézetek';
@@ -4743,7 +4743,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Csak akkor használd, ha egyértelműen megszegi a Fluxer szabályait, és nem illeszkedik a fentiekhez.';
+      'Csak akkor használd, ha egyértelműen megszegi a Echowire szabályait, és nem illeszkedik a fentiekhez.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -5219,7 +5219,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Biztonság és bejelentkezés';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Ajándékok és kódok';
@@ -5473,7 +5473,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Segíts a Fluxer fejlesztésében névtelen hiba- és teljesítményadatok megosztásával.';
+      'Segíts a Echowire fejlesztésében névtelen hiba- és teljesítményadatok megosztásával.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -5481,7 +5481,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Az összes jelentett adat névtelen, és csak a Fluxer saját felügyeleti szolgáltatásába kerül – nem használunk harmadik féltől származó szolgáltatókat.';
+      'Az összes jelentett adat névtelen, és csak a Echowire saját felügyeleti szolgáltatásába kerül – nem használunk harmadik féltől származó szolgáltatókat.';
 
   @override
   String get userSettingsNavApplications => 'Alkalmazások';
@@ -5513,7 +5513,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Kérjük, jelentsd az esetleges problémákat a Fluxer Mobile közösségnek (jelenleg Plutoniummal tudsz csak csatlakozni a közösséghez).';
+      'Kérjük, jelentsd az esetleges problémákat a Echowire Mobile közösségnek (jelenleg Reverbmal tudsz csak csatlakozni a közösséghez).';
 
   @override
   String get betaWarningRepoLink => 'Forrás megtekintése a GitHubon';
@@ -5684,7 +5684,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Add meg a példány URL-jét (pl. fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Visszaállítás Fluxer-re';
+  String get resetToDefaultInstance => 'Visszaállítás Echowire-re';
 
   @override
   String get instanceConnect => 'Csatlakozás';
@@ -6037,7 +6037,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Csak a Fluxer személyzetének hozzáférhető';
+      'Csak a Echowire személyzetének hozzáférhető';
 
   @override
   String get guildNavbarInvitesPaused =>

@@ -1134,11 +1134,11 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'Ava $emojiCount ${communityCount}st Plutoniumiga.';
+    return 'Ava $emojiCount ${communityCount}st Reverbiga.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Hangi Plutonium';
+  String get emojiPlutoniumUpsellButton => 'Hangi Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Ära näita seda uuesti';
@@ -1169,7 +1169,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Välislingi hoiatus';
 
   @override
-  String get externalLinkWarningLeaving => 'Olete lahkumas Fluxerist';
+  String get externalLinkWarningLeaving => 'Olete lahkumas Echowireist';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1246,11 +1246,11 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'Animeeritud avatari jaoks on vaja Plutoniumi';
+      'Animeeritud avatari jaoks on vaja Reverbi';
 
   @override
   String get animatedBannersRequirePlutonium =>
-      'Animeeritud bannerite jaoks on vaja Plutoniumi';
+      'Animeeritud bannerite jaoks on vaja Reverbi';
 
   @override
   String get animatedAvifNotSupported => 'Animeeritud AVIF ei toeta';
@@ -1279,10 +1279,10 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get crop => 'Kärbi';
 
   @override
-  String get changeYourFluxerTag => 'Muuda oma FluxerTagi';
+  String get changeYourFluxerTag => 'Muuda oma EchoTagi';
 
   @override
-  String get fluxerTagInputLabel => 'FluxerTag';
+  String get fluxerTagInputLabel => 'EchoTag';
 
   @override
   String get fluxerTagDescriptionBase =>
@@ -1307,14 +1307,14 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Hankige Plutonium, et kohandada oma silti või säilitada see kasutajanime muutmisel';
+      'Hankige Reverb, et kohandada oma silti või säilitada see kasutajanime muutmisel';
 
   @override
-  String get fluxerTagAlreadyTaken => 'FluxerTag on juba võetud';
+  String get fluxerTagAlreadyTaken => 'EchoTag on juba võetud';
 
   @override
   String fluxerTagAlreadyTakenBody(String username, String discriminator) {
-    return 'FluxerTag $username#$discriminator on juba võetud. Jätkamisel teie number juhitakse automaatselt uuesti.';
+    return 'EchoTag $username#$discriminator on juba võetud. Jätkamisel teie number juhitakse automaatselt uuesti.';
   }
 
   @override
@@ -1322,23 +1322,23 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'Teie kohandatud 4-kohaline silt on saadaval ainult teie Plutoniumi tellimuse kehtivuse ajal. Kui teie tellimus aegub $date, naaseb teie silt 3-päevase armuaja järel juhuslikult määratud numbrile.';
+    return 'Teie kohandatud 4-kohaline silt on saadaval ainult teie Reverbi tellimuse kehtivuse ajal. Kui teie tellimus aegub $date, naaseb teie silt 3-päevase armuaja järel juhuslikult määratud numbrile.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'Teie kohandatud 4-kohaline silt on saadaval ainult teie Plutoniumi tellimuse kehtivuse ajal. Kui teie tellimus aegub, naaseb teie silt 3-päevase armuaja järel juhuslikult määratud numbrile.';
+      'Teie kohandatud 4-kohaline silt on saadaval ainult teie Reverbi tellimuse kehtivuse ajal. Kui teie tellimus aegub, naaseb teie silt 3-päevase armuaja järel juhuslikult määratud numbrile.';
 
   @override
   String get iUnderstandContinue => 'Saan aru, jätka';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Kui salvestate selle FluxerTagi, naaseb teie kohandatud 4-kohaline silt juhuslikule numbrile, kui teie Plutoniumi tellimus lõpeb. Kui teie tellimus ei uuene, on teil enne sildi muutumist 3-päevane armuaeg.';
+      'Kui salvestate selle EchoTagi, naaseb teie kohandatud 4-kohaline silt juhuslikule numbrile, kui teie Reverbi tellimus lõpeb. Kui teie tellimus ei uuene, on teil enne sildi muutumist 3-päevane armuaeg.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Teie kohandatud 4-kohaline silt (#$discriminator) on aktiivne teie Plutoniumi tellimuse kehtivuse ajal. Kui teie tellimus lõpeb või ei uuene pärast 3-päevast armuaega, naaseb teie silt juhuslikule numbrile.';
+    return 'Teie kohandatud 4-kohaline silt (#$discriminator) on aktiivne teie Reverbi tellimuse kehtivuse ajal. Kui teie tellimus lõpeb või ei uuene pärast 3-päevast armuaega, naaseb teie silt juhuslikule numbrile.';
   }
 
   @override
@@ -1347,19 +1347,19 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'Teie Plutoniumi prooviversioon aegub $date. Uuendage, et säilitada oma kohandatud silt ja teenida oma profiilil märguanne.';
+    return 'Teie Reverbi prooviversioon aegub $date. Uuendage, et säilitada oma kohandatud silt ja teenida oma profiilil märguanne.';
   }
 
   @override
   String get premiumTrialActive =>
-      'Olete Plutoniumi prooviversioonil. Uuendage, et säilitada oma kohandatud silt ja teenida oma profiilil märguanne.';
+      'Olete Reverbi prooviversioonil. Uuendage, et säilitada oma kohandatud silt ja teenida oma profiilil märguanne.';
 
   @override
-  String get fluxerTagUpdated => 'FluxerTagi värskendati';
+  String get fluxerTagUpdated => 'EchoTagi värskendati';
 
   @override
   String get fluxerTagUpdateFailed =>
-      'FluxerTagi värskendamine ebaõnnestus. Proovige uuesti.';
+      'EchoTagi värskendamine ebaõnnestus. Proovige uuesti.';
 
   @override
   String get continueAction => 'Jätka';
@@ -1376,14 +1376,14 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get claimAccountToChangeFluxerTag =>
-      'Kinnitage oma konto, et muuta oma FluxerTagi';
+      'Kinnitage oma konto, et muuta oma EchoTagi';
 
   @override
-  String get changeFluxerTag => 'Muuda FluxerTagi';
+  String get changeFluxerTag => 'Muuda EchoTagi';
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Kohanda oma 4-kohaline tag (#$discriminator) Plutoniumiga oma maitse järgi';
+    return 'Kohanda oma 4-kohaline tag (#$discriminator) Reverbiga oma maitse järgi';
   }
 
   @override
@@ -1392,7 +1392,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'Sinu kohandatud tag (#$discriminator) on seotud sinu Plutoniumi tellimusega ja muutub juhuslikuks tagiks, kui see aegub.';
+    return 'Sinu kohandatud tag (#$discriminator) on seotud sinu Reverbi tellimusega ja muutub juhuslikuks tagiks, kui see aegub.';
   }
 
   @override
@@ -1445,30 +1445,30 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get emojiPickerTitle => 'Emotikonid';
 
   @override
-  String get plutoniumBadgePrivacyTitle => 'Plutoniumi märgi privaatsus';
+  String get plutoniumBadgePrivacyTitle => 'Reverbi märgi privaatsus';
 
   @override
   String get plutoniumBadgePrivacyDescription =>
-      'Kontrolli, kuidas sinu Plutoniumi märki teistele kuvatakse';
+      'Kontrolli, kuidas sinu Reverbi märki teistele kuvatakse';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'Peida Plutoniumi märgi täielikult';
+  String get hidePlutoniumBadgeLabel => 'Peida Reverbi märgi täielikult';
 
   @override
   String get hidePlutoniumBadgeDescription =>
-      'Peida oma Plutoniumi märgi täielikult teistelt kasutajatelt';
+      'Peida oma Reverbi märgi täielikult teistelt kasutajatelt';
 
   @override
-  String get hidePlutoniumPurchaseDate => 'Peida Plutoniumi ostukuupäev';
+  String get hidePlutoniumPurchaseDate => 'Peida Reverbi ostukuupäev';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'Peida Plutoniumi ostukuupäev ($date)';
+    return 'Peida Reverbi ostukuupäev ($date)';
   }
 
   @override
   String get hidePurchaseDateDescription =>
-      'Eemalda oma Plutoniumi ostukuupäev oma märgilt';
+      'Eemalda oma Reverbi ostukuupäev oma märgilt';
 
   @override
   String get maskVisionaryAsSubscription => 'Maskeeri Visionary tellimusena';
@@ -1490,7 +1490,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'Oled Plutoniumi prooviversioonil — sinu tellimus algab $date';
+    return 'Oled Reverbi prooviversioonil — sinu tellimus algab $date';
   }
 
   @override
@@ -1499,25 +1499,25 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'Oled Plutoniumi prooviversioonil, mis aegub $date';
+    return 'Oled Reverbi prooviversioonil, mis aegub $date';
   }
 
   @override
-  String get premiumTrialActiveProfile => 'Oled Plutoniumi prooviversioonil';
+  String get premiumTrialActiveProfile => 'Oled Reverbi prooviversioonil';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. Max 10MB. Soovitatav: 512×512px. Animeeritud avatarid (GIF) nõuavad Plutoniumi.';
+      'JPEG, PNG, WebP. Max 10MB. Soovitatav: 512×512px. Animeeritud avatarid (GIF) nõuavad Reverbi.';
 
   @override
   String get bannerPlutoniumUpsell =>
       'Kohanda oma profiili staatilise või animeeritud bänneriga, et see silma paistaks.';
 
   @override
-  String get getPlutonium => 'Hangi Plutoniumi';
+  String get getPlutonium => 'Hangi Reverbi';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1530,7 +1530,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get profilePreviewMessage => 'Sõnum';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxeri liige alates';
+  String get profilePreviewMemberSince => 'Echowirei liige alates';
 
   @override
   String get unclaimedAccountTitle => 'Nõudmata konto';
@@ -1621,7 +1621,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Hallake e-posti aadressi, mida kasutate Fluxerisse sisselogimiseks';
+      'Hallake e-posti aadressi, mida kasutate Echowireisse sisselogimiseks';
 
   @override
   String get securityLoginEmailAddressLabel => 'E-posti aadress';
@@ -2020,7 +2020,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'Enne konto kustutamist tühistage oma aktiivne Plutoniumi tellimus Plutoniumi seadetes.';
+      'Enne konto kustutamist tühistage oma aktiivne Reverbi tellimus Reverbi seadetes.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount =>
@@ -2159,7 +2159,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Nendel rakendustel on lubatud teie Fluxeri kontole juurde pääseda.';
+      'Nendel rakendustel on lubatud teie Echowirei kontole juurde pääseda.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Volitatud rakendusi pole';
@@ -2244,7 +2244,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => 'Kopeeri Fluxeri silt';
+  String get blockedUsersCopyTag => 'Kopeeri Echowirei silt';
 
   @override
   String get blockedUsersCopyId => 'Kopeeri kasutaja ID';
@@ -2268,31 +2268,31 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get userProfileEditProfile => 'Muuda profiili';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxeri personal';
+  String get userProfileStaffBadgeTooltip => 'Echowirei personal';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxeri kogukonnatiim';
+  String get userProfileCtpBadgeTooltip => 'Echowirei kogukonnatiim';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxeri partner';
+  String get userProfilePartnerBadgeTooltip => 'Echowirei partner';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxeri veehiilaja';
+  String get userProfileBugHunterBadgeTooltip => 'Echowirei veehiilaja';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxeri Plutoonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Echowirei Plutoonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxeri Plutooniumi liige alates $date';
+    return 'Echowirei Plutooniumi liige alates $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxeri visionäär';
+  String get userProfileVisionaryBadgeTooltip => 'Echowirei visionäär';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxeri visionäär alates $date';
+    return 'Echowirei visionäär alates $date';
   }
 
   @override
@@ -3270,7 +3270,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Linkige välised kontod ja domeenid oma Fluxeri profiiliga. Verifitseeritud ühendused kuvatakse teie profiilil.';
+      'Linkige välised kontod ja domeenid oma Echowirei profiiliga. Verifitseeritud ühendused kuvatakse teie profiilil.';
 
   @override
   String get connectionsEmptyTitle => 'Ühendusi pole veel';
@@ -3624,7 +3624,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Kui see on lubatud, pakitakse serveri külgribal olevad lugemata DM-id kausta Fluxeri nupu alla. Kausta laiendamiseks või kokku pakkimiseks klõpsake DM-ide lehel olles Fluxeri nuppu.';
+      'Kui see on lubatud, pakitakse serveri külgribal olevad lugemata DM-id kausta Echowirei nupu alla. Kausta laiendamiseks või kokku pakkimiseks klõpsake DM-ide lehel olles Echowirei nuppu.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Kanali loend';
@@ -3835,7 +3835,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Kui laaditakse otse Fluxerisse üles';
+      'Kui laaditakse otse Echowireisse üles';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Lingi eelvaated';
@@ -4703,7 +4703,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Kasutage ainult siis, kui see rikub selgelt Fluxeri reegleid ja ei sobi ülaltooduga.';
+      'Kasutage ainult siis, kui see rikub selgelt Echowirei reegleid ja ei sobi ülaltooduga.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -5175,7 +5175,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Turvalisus ja sisselogimine';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Kingitused ja koodid';
@@ -5429,7 +5429,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Aidake Fluxerit parandada, jagades anonüümseid krahhi- ja toimivusandmeid.';
+      'Aidake Echowireit parandada, jagades anonüümseid krahhi- ja toimivusandmeid.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -5437,7 +5437,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Kõik aruandluses olevad andmed on anonüümsed ja saadetakse ainult Fluxeri enda jälgimisteenusesse – kolmandate osapoolte pakkujaid ei kasutata.';
+      'Kõik aruandluses olevad andmed on anonüümsed ja saadetakse ainult Echowirei enda jälgimisteenusesse – kolmandate osapoolte pakkujaid ei kasutata.';
 
   @override
   String get userSettingsNavApplications => 'Rakendused';
@@ -5469,7 +5469,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Palun teatage kõigist leitud probleemidest Fluxeri mobiili kogukonnale (praegu saate kogukonnaga liitumiseks vajalik Plutonium).';
+      'Palun teatage kõigist leitud probleemidest Echowirei mobiili kogukonnale (praegu saate kogukonnaga liitumiseks vajalik Reverb).';
 
   @override
   String get betaWarningRepoLink => 'Vaata lähtekoodi GitHubis';
@@ -5639,7 +5639,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get instanceUrlPlaceholder => 'Sisesta eksemplari URL (nt fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Lähtesta Fluxerile';
+  String get resetToDefaultInstance => 'Lähtesta Echowireile';
 
   @override
   String get instanceConnect => 'Ühenda';
@@ -5987,7 +5987,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Ainult Fluxeri personali jaoks saadaval';
+      'Ainult Echowirei personali jaoks saadaval';
 
   @override
   String get guildNavbarInvitesPaused =>

@@ -122,6 +122,12 @@ class ChannelDao extends DatabaseAccessor<FluxerDatabase>
         ChannelsCompanion(lastPinTimestamp: Value(timestamp)),
       );
 
+  /// Echowire: update a thread's cached member count from THREAD_MEMBERS_UPDATE.
+  Future<void> updateThreadMemberCount(String channelId, int? memberCount) =>
+      (update(channels)..where((c) => c.id.equals(channelId))).write(
+        ChannelsCompanion(threadMemberCount: Value(memberCount)),
+      );
+
   Future<void> deleteChannel(String id) =>
       (delete(channels)..where((c) => c.id.equals(id))).go();
 

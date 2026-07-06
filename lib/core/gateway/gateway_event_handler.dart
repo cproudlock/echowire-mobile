@@ -264,6 +264,19 @@ class GatewayEventHandler {
           () => talker.debug('[Gateway] CHANNEL_DELETE: ${event.channel.id}'),
         );
         _handleChannelDelete(event);
+      case ThreadMembersUpdateEvent():
+        _logGatewayDebug(
+          () => talker.debug(
+            '[Gateway] THREAD_MEMBERS_UPDATE: ${event.id} '
+            '(count=${event.memberCount})',
+          ),
+        );
+        if (event.memberCount != null) {
+          await database.channelDao.updateThreadMemberCount(
+            event.id,
+            event.memberCount,
+          );
+        }
       case MessageReactionAddEvent():
         _logGatewayDebug(
           () => talker.debug(

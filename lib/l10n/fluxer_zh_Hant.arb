@@ -1234,11 +1234,11 @@
     },
     "addFriendNoUserFound": "找不到具有該使用者名稱的使用者。",
     "@addFriendNoUserFound": {
-        "description": "Error when no user matches the entered FluxerTag."
+        "description": "Error when no user matches the entered EchoTag."
     },
     "addFriendInvalidUsername": "請輸入有效的使用者名稱 (使用者名稱#0000)。",
     "@addFriendInvalidUsername": {
-        "description": "Error when the FluxerTag format is invalid."
+        "description": "Error when the EchoTag format is invalid."
     },
     "addFriendOutgoingSuccess": "朋友要求已送出",
     "@addFriendOutgoingSuccess": {
@@ -1472,7 +1472,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "使用 Plutonium 解鎖 {communityCount} 個社群中的 {emojiCount} 個表情符號。",
+    "emojiPlutoniumUpsellText": "使用 Reverb 解鎖 {communityCount} 個社群中的 {emojiCount} 個表情符號。",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -1484,13 +1484,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "取得 Plutonium",
+    "emojiPlutoniumUpsellButton": "取得 Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "不要再顯示此訊息",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 個自訂表情符號} other{{count} 個自訂表情符號}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1514,7 +1514,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "您即將離開 Fluxer",
+    "externalLinkWarningLeaving": "您即將離開 Echowire",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal."
     },
@@ -1603,11 +1603,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "動態頭像需要 Plutonium",
+    "animatedAvatarsRequirePlutonium": "動態頭像需要 Reverb",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "動態橫幅需要 Plutonium",
+    "animatedBannersRequirePlutonium": "動態橫幅需要 Reverb",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -1643,17 +1643,17 @@
     "@crop": {
         "description": "Button to confirm image crop."
     },
-    "changeYourFluxerTag": "變更您的 FluxerTag",
+    "changeYourFluxerTag": "變更您的 EchoTag",
     "@changeYourFluxerTag": {
-        "description": "Title for the FluxerTag change bottom sheet."
+        "description": "Title for the EchoTag change bottom sheet."
     },
-    "fluxerTagInputLabel": "FluxerTag",
+    "fluxerTagInputLabel": "EchoTag",
     "@fluxerTagInputLabel": {
         "description": "Label above the username and discriminator input fields."
     },
     "fluxerTagDescriptionBase": "使用者名稱只能包含字母 (a-z, A-Z)、數字 (0-9) 和底線。使用者名稱不區分大小寫。",
     "@fluxerTagDescriptionBase": {
-        "description": "Base description text on the FluxerTag change sheet."
+        "description": "Base description text on the EchoTag change sheet."
     },
     "fluxerTagDescriptionVisionary": "使用者名稱只能包含字母 (a-z, A-Z)、數字 (0-9) 和底線。使用者名稱不區分大小寫。您可以選擇 #0000 到 #9999 之間的任何可用 4 位數字標籤。",
     "@fluxerTagDescriptionVisionary": {
@@ -1679,17 +1679,17 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "取得 Plutonium 以自訂您的標籤，或在變更使用者名稱時保留它",
+    "discriminatorPremiumTooltip": "取得 Reverb 以自訂您的標籤，或在變更使用者名稱時保留它",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
-    "fluxerTagAlreadyTaken": "FluxerTag 已被佔用",
+    "fluxerTagAlreadyTaken": "EchoTag 已被佔用",
     "@fluxerTagAlreadyTaken": {
         "description": "Title for the tag-taken confirmation sheet."
     },
-    "fluxerTagAlreadyTakenBody": "FluxerTag {username}#{discriminator} 已被佔用。繼續將會自動重新分配您的標籤。",
+    "fluxerTagAlreadyTakenBody": "EchoTag {username}#{discriminator} 已被佔用。繼續將會自動重新分配您的標籤。",
     "@fluxerTagAlreadyTakenBody": {
-        "description": "Body text when the requested FluxerTag is taken.",
+        "description": "Body text when the requested EchoTag is taken.",
         "placeholders": {
             "username": {
                 "type": "String"
@@ -1703,7 +1703,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "您的自訂 4 位數字標籤僅在您的 Plutonium 訂閱有效期間內可用。當您的訂閱於 {date} 到期後，您的標籤將在 3 天寬限期後恢復為隨機分配的號碼。",
+    "customTagTemporaryBodyWithDate": "您的自訂 4 位數字標籤僅在您的 Reverb 訂閱有效期間內可用。當您的訂閱於 {date} 到期後，您的標籤將在 3 天寬限期後恢復為隨機分配的號碼。",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -1712,7 +1712,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "您的自訂 4 位數字標籤僅在您的 Plutonium 訂閱有效期間內可用。當您的訂閱到期後，您的標籤將在 3 天寬限期後恢復為隨機分配的號碼。",
+    "customTagTemporaryBody": "您的自訂 4 位數字標籤僅在您的 Reverb 訂閱有效期間內可用。當您的訂閱到期後，您的標籤將在 3 天寬限期後恢復為隨機分配的號碼。",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -1720,11 +1720,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "如果您儲存此 FluxerTag，您的自訂 4 位數字標籤將在您的 Plutonium 訂閱結束時恢復為隨機號碼。如果您的訂閱未能續訂，您將有 3 天寬限期，之後標籤才會變更。",
+    "premiumWarningPendingDiscriminator": "如果您儲存此 EchoTag，您的自訂 4 位數字標籤將在您的 Reverb 訂閱結束時恢復為隨機號碼。如果您的訂閱未能續訂，您將有 3 天寬限期，之後標籤才會變更。",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "您的自訂 4 位數字標籤 (#{discriminator}) 在您的 Plutonium 訂閱有效期間內有效。如果您的訂閱結束或在 3 天寬限期後未能續訂，您的標籤將恢復為隨機號碼。",
+    "premiumWarningActiveDiscriminator": "您的自訂 4 位數字標籤 (#{discriminator}) 在您的 Reverb 訂閱有效期間內有效。如果您的訂閱結束或在 3 天寬限期後未能續訂，您的標籤將恢復為隨機號碼。",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -1735,9 +1735,9 @@
     },
     "premiumUpsellCustomizeTag": "自訂您的 4 位數字標籤，或在變更使用者名稱時保留它",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "您的 Plutonium 試用將於 {date} 到期。升級即可保留您的自訂標籤並在個人資料中獲得徽章。",
+    "premiumTrialExpiresOn": "您的 Reverb 試用將於 {date} 到期。升級即可保留您的自訂標籤並在個人資料中獲得徽章。",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -1746,17 +1746,17 @@
             }
         }
     },
-    "premiumTrialActive": "您目前處於 Plutonium 試用期。升級即可保留您的自訂標籤並在個人資料中獲得徽章。",
+    "premiumTrialActive": "您目前處於 Reverb 試用期。升級即可保留您的自訂標籤並在個人資料中獲得徽章。",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
-    "fluxerTagUpdated": "FluxerTag 已更新",
+    "fluxerTagUpdated": "EchoTag 已更新",
     "@fluxerTagUpdated": {
-        "description": "Success toast after FluxerTag change."
+        "description": "Success toast after EchoTag change."
     },
-    "fluxerTagUpdateFailed": "更新 FluxerTag 失敗。請再試一次。",
+    "fluxerTagUpdateFailed": "更新 EchoTag 失敗。請再試一次。",
     "@fluxerTagUpdateFailed": {
-        "description": "Error message when FluxerTag update fails."
+        "description": "Error message when EchoTag update fails."
     },
     "continueAction": "繼續",
     "@continueAction": {
@@ -1774,17 +1774,17 @@
     "@usernameLabel": {
         "description": "Label for the username field in profile settings."
     },
-    "claimAccountToChangeFluxerTag": "請認領您的帳戶以變更您的 FluxerTag",
+    "claimAccountToChangeFluxerTag": "請認領您的帳戶以變更您的 EchoTag",
     "@claimAccountToChangeFluxerTag": {
-        "description": "Tooltip when unverified user hovers the disabled Change FluxerTag button."
+        "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
     },
-    "changeFluxerTag": "更改 FluxerTag",
+    "changeFluxerTag": "更改 EchoTag",
     "@changeFluxerTag": {
-        "description": "Button label to open the FluxerTag change flow."
+        "description": "Button label to open the EchoTag change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "使用 Plutonium 自訂您的 4 位數字標籤 (#{discriminator})",
+    "customizeTagWithPlutoniumTooltip": "使用 Reverb 自訂您的 4 位數字標籤 (#{discriminator})",
     "@customizeTagWithPlutoniumTooltip": {
-        "description": "Tooltip on the crown upsell button next to the FluxerTag button.",
+        "description": "Tooltip on the crown upsell button next to the EchoTag button.",
         "placeholders": {
             "discriminator": {
                 "type": "String"
@@ -1795,7 +1795,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "您的自訂標籤 (#{discriminator}) 與您的 Plutonium 訂閱綁定，若訂閱過期將會還原為隨機標籤。",
+    "customTagSubscriptionWarning": "您的自訂標籤 (#{discriminator}) 與您的 Reverb 訂閱綁定，若訂閱過期將會還原為隨機標籤。",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -1864,38 +1864,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Plutonium 徽章隱私設定",
+    "plutoniumBadgePrivacyTitle": "Reverb 徽章隱私設定",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "控制他人如何顯示您的 Plutonium 徽章",
+    "plutoniumBadgePrivacyDescription": "控制他人如何顯示您的 Reverb 徽章",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "完全隱藏 Plutonium 徽章",
+    "hidePlutoniumBadgeLabel": "完全隱藏 Reverb 徽章",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "完全向其他使用者隱藏您的 Plutonium 徽章",
+    "hidePlutoniumBadgeDescription": "完全向其他使用者隱藏您的 Reverb 徽章",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "隱藏 Plutonium 購買日期",
+    "hidePlutoniumPurchaseDate": "隱藏 Reverb 購買日期",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "隱藏 Plutonium 購買日期 ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "隱藏 Reverb 購買日期 ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "從您的徽章中移除首次購買 Plutonium 的日期",
+    "hidePurchaseDateDescription": "從您的徽章中移除首次購買 Reverb 的日期",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "將 Visionary 顯示為訂閱",
     "@maskVisionaryAsSubscription": {
@@ -1922,7 +1922,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "您目前處於 Plutonium 試用期 — 您的訂閱將於 {date} 開始",
+    "premiumTrialSubscriptionStarts": "您目前處於 Reverb 試用期 — 您的訂閱將於 {date} 開始",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -1935,7 +1935,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "您目前處於 Plutonium 試用期，將於 {date} 到期",
+    "premiumTrialExpiresOnProfile": "您目前處於 Reverb 試用期，將於 {date} 到期",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -1944,29 +1944,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "您目前處於 Plutonium 試用期",
+    "premiumTrialActiveProfile": "您目前處於 Reverb 試用期",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG、PNG、WebP。上限 10MB。建議：512×512px。動態頭像 (GIF) 需要 Plutonium。",
+    "avatarDescriptionNonPremium": "JPEG、PNG、WebP。上限 10MB。建議：512×512px。動態頭像 (GIF) 需要 Reverb。",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "使用靜態或動態橫幅圖片自訂您的個人檔案，讓它脫穎而出。",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "取得 Plutonium",
+    "getPlutonium": "取得 Reverb",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "應用程式內購買在此平台尚未開放。敬請期待 — 即將推出！",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "預覽",
     "@profilePreviewLabel": {
@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Fluxer 會員自",
+    "profilePreviewMemberSince": "Echowire 會員自",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2008,7 +2008,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "個人化社群的個人頭像、橫幅、強調色和個人簡介需要 Plutonium。社群暱稱和代名詞對所有人免費。",
+    "perGuildPremiumUpsellText": "個人化社群的個人頭像、橫幅、強調色和個人簡介需要 Reverb。社群暱稱和代名詞對所有人免費。",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -2088,7 +2088,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "管理您用來登入 Fluxer 的電子郵件地址",
+    "securityLoginEmailSectionDescription": "管理您用來登入 Echowire 的電子郵件地址",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section."
     },
@@ -2586,7 +2586,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "刪除帳號前，請先在 Plutonium 設定中取消您的 Plutonium 付費方案。",
+    "dangerZoneDeleteCancelSubscription": "刪除帳號前，請先在 Reverb 設定中取消您的 Reverb 付費方案。",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "這些應用程式已被授權存取你的 Fluxer 帳號。",
+    "authorizedAppsDescription": "這些應用程式已被授權存取你的 Echowire 帳號。",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2844,7 +2844,7 @@
             }
         }
     },
-    "blockedUsersCopyTag": "複製 FluxerTag",
+    "blockedUsersCopyTag": "複製 EchoTag",
     "@blockedUsersCopyTag": {
         "description": "Context menu item that copies the user's tag."
     },
@@ -2876,27 +2876,27 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Fluxer 團隊成員",
+    "userProfileStaffBadgeTooltip": "Echowire 團隊成員",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Fluxer 社群團隊",
+    "userProfileCtpBadgeTooltip": "Echowire 社群團隊",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Fluxer 合作夥伴",
+    "userProfilePartnerBadgeTooltip": "Echowire 合作夥伴",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Fluxer 蟲蟲獵人",
+    "userProfileBugHunterBadgeTooltip": "Echowire 蟲蟲獵人",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Fluxer Plutonium",
+    "userProfilePlutoniumBadgeTooltip": "Echowire Reverb",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "Fluxer Plutonium 訂閱者自 {date} 起",
+    "userProfilePlutoniumSubscriberSinceTooltip": "Echowire Reverb 訂閱者自 {date} 起",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,11 +2905,11 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Fluxer Visionary",
+    "userProfileVisionaryBadgeTooltip": "Echowire Visionary",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileVisionaryBadgeSinceTooltip": "Fluxer Visionary 自 {date} 起",
+    "userProfileVisionaryBadgeSinceTooltip": "Echowire Visionary 自 {date} 起",
     "@userProfileVisionaryBadgeSinceTooltip": {
         "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "{productName} 員工的系統公告。您無法在此回覆。",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "連結外部帳號和網域至您的 Fluxer 個人檔案。已驗證的連線將顯示在您的個人檔案上供他人查看。",
+    "connectionsDescription": "連結外部帳號和網域至您的 Echowire 個人檔案。已驗證的連線將顯示在您的個人檔案上供他人查看。",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "將私訊摺疊到資料夾",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "啟用時，伺服器側邊欄中的未讀私訊會摺疊到 Fluxer 按鈕資料夾中。在私訊頁面上按一下 Fluxer 按鈕即可展開或摺疊資料夾。",
+    "lookAndFeelCollapseDMsDescription": "啟用時，伺服器側邊欄中的未讀私訊會摺疊到 Echowire 按鈕資料夾中。在私訊頁面上按一下 Echowire 按鈕即可展開或摺疊資料夾。",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -4801,7 +4801,7 @@
     "@messagesMediaDisplayInlineEmbedLabel": {
         "description": "Toggle label for inlining media when posted as links."
     },
-    "messagesMediaDisplayInlineAttachmentLabel": "當直接上傳到 Fluxer 時",
+    "messagesMediaDisplayInlineAttachmentLabel": "當直接上傳到 Echowire 時",
     "@messagesMediaDisplayInlineAttachmentLabel": {
         "description": "Toggle label for inlining media for direct uploads."
     },
@@ -5467,7 +5467,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} 個字元剩餘。購買 {productName} 可撰寫最多 {premiumMaxLength} 個字元。",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -5486,7 +5486,7 @@
     },
     "chatSendFailureDmRestricted": "您的訊息無法送達。這通常是因為您與收件者沒有共同的社群，或是收件者僅接受朋友的直接訊息。您可能也需要在 {settingsPath} 中調整您自己的直接訊息隱私設定。",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5495,27 +5495,27 @@
     },
     "chatSendFailureUnclaimedDm": "您的訊息無法送達。您需要領取您的帳戶才能傳送直接訊息。",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "您的訊息無法送達。您需要領取您的帳戶才能傳送訊息。",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "Echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "您的訊息因被我們的安全系統標記而無法送達。如果您認為這是錯誤，請聯絡支援團隊。",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "Echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "您的訊息無法送達，因為其中包含在此情境不允許的成人表情符號或貼圖。",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "Echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "只有您能看到此訊息。",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral Echowirebot client system messages."
     },
     "chatClientSystemDismiss": "關閉",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral Echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "通訊",
     "@privacyDashboardCommunicationSection": {
@@ -5874,7 +5874,7 @@
     "@iarReasonOtherLabel": {
         "description": "Rule-reason label for the catch-all option in the IAR message flow."
     },
-    "iarReasonOtherDescription": "僅在內容明顯違反 Fluxer 規定且不符合以上任何類別時使用。",
+    "iarReasonOtherDescription": "僅在內容明顯違反 Echowire 規定且不符合以上任何類別時使用。",
     "@iarReasonOtherDescription": {
         "description": "Rule-reason description for the catch-all option."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "禮物與代碼",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "透過分享匿名的當機和效能資料，協助改進 Fluxer。",
+    "advancedPerformanceReportingSectionDescription": "透過分享匿名的當機和效能資料，協助改進 Echowire。",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "所有回報的資料均為匿名，且僅傳送至 Fluxer 自有的監控服務 — 不會使用任何第三方供應商。",
+    "advancedPerformanceReportingDescription": "所有回報的資料均為匿名，且僅傳送至 Echowire 自有的監控服務 — 不會使用任何第三方供應商。",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "請將您發現的任何問題回報給 Fluxer Mobile 社群 (目前必須擁有 Plutonium 才能加入社群)。",
+    "betaWarningReportIssues": "請將您發現的任何問題回報給 Echowire Mobile 社群 (目前必須擁有 Reverb 才能加入社群)。",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "重設為 Fluxer",
+    "resetToDefaultInstance": "重設為 Echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
     },
     "instanceConnect": "連線",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Echowire instance."
     },
     "instanceConnecting": "正在連線…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Echowire instance."
     },
     "instanceConnectFailed": "無法連線到此伺服器",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "變更",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Echowire instance."
     },
     "instanceConnectionRequired": "請先連線到伺服器才能登入",
     "@instanceConnectionRequired": {
@@ -7267,7 +7267,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "仅限 Fluxer 员工存取",
+    "guildNavbarStaffOnlyAccessible": "仅限 Echowire 员工存取",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only."
     },

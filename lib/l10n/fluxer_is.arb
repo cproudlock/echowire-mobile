@@ -1234,11 +1234,11 @@
     },
     "addFriendNoUserFound": "Enginn notandi fannst með því notandanafni.",
     "@addFriendNoUserFound": {
-        "description": "Error when no user matches the entered FluxerTag."
+        "description": "Error when no user matches the entered EchoTag."
     },
     "addFriendInvalidUsername": "Sláðu inn gilt notandanafn (Notandanafn#0000).",
     "@addFriendInvalidUsername": {
-        "description": "Error when the FluxerTag format is invalid."
+        "description": "Error when the EchoTag format is invalid."
     },
     "addFriendOutgoingSuccess": "Vinabeiðni send",
     "@addFriendOutgoingSuccess": {
@@ -1472,7 +1472,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Opnaðu {emojiCount} af {communityCount} með Plutonium.",
+    "emojiPlutoniumUpsellText": "Opnaðu {emojiCount} af {communityCount} með Reverb.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -1484,13 +1484,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Fá Plutonium",
+    "emojiPlutoniumUpsellButton": "Fá Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "Ekki sýna þetta aftur",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 sérsniðið emoji} other{{count} sérsniðin emoji}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1514,7 +1514,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "Þú ert að fara úr Fluxer",
+    "externalLinkWarningLeaving": "Þú ert að fara úr Echowire",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal."
     },
@@ -1603,11 +1603,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "Animeruð prófílmynd krefst Plutonium",
+    "animatedAvatarsRequirePlutonium": "Animeruð prófílmynd krefst Reverb",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "Animeruð borðar krefjast Plutonium",
+    "animatedBannersRequirePlutonium": "Animeruð borðar krefjast Reverb",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -1643,17 +1643,17 @@
     "@crop": {
         "description": "Button to confirm image crop."
     },
-    "changeYourFluxerTag": "Breyta FluxerTag þínum",
+    "changeYourFluxerTag": "Breyta EchoTag þínum",
     "@changeYourFluxerTag": {
-        "description": "Title for the FluxerTag change bottom sheet."
+        "description": "Title for the EchoTag change bottom sheet."
     },
-    "fluxerTagInputLabel": "FluxerTag",
+    "fluxerTagInputLabel": "EchoTag",
     "@fluxerTagInputLabel": {
         "description": "Label above the username and discriminator input fields."
     },
     "fluxerTagDescriptionBase": "Notendanöfn mega aðeins innihalda bókstafi (a-z, A-Z), tölur (0-9) og undirstrik. Notendanöfn eru ekki háð stafamun.",
     "@fluxerTagDescriptionBase": {
-        "description": "Base description text on the FluxerTag change sheet."
+        "description": "Base description text on the EchoTag change sheet."
     },
     "fluxerTagDescriptionVisionary": "Notendanöfn mega aðeins innihalda bókstafi (a-z, A-Z), tölur (0-9) og undirstrik. Notendanöfn eru ekki háð stafamun. Þú getur valið hvaða tiltæka 4-stafa merki sem er frá #0000 til #9999.",
     "@fluxerTagDescriptionVisionary": {
@@ -1679,17 +1679,17 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "Fáðu Plutonium til að sérsníða merkið þitt eða halda því þegar þú breytir notendanafni þínu",
+    "discriminatorPremiumTooltip": "Fáðu Reverb til að sérsníða merkið þitt eða halda því þegar þú breytir notendanafni þínu",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
-    "fluxerTagAlreadyTaken": "FluxerTag er þegar tekið",
+    "fluxerTagAlreadyTaken": "EchoTag er þegar tekið",
     "@fluxerTagAlreadyTaken": {
         "description": "Title for the tag-taken confirmation sheet."
     },
-    "fluxerTagAlreadyTakenBody": "FluxerTagið {username}#{discriminator} er þegar tekið. Ef þú heldur áfram verður diskrimínatorinn þinn sjálfkrafa endurvalinn.",
+    "fluxerTagAlreadyTakenBody": "EchoTagið {username}#{discriminator} er þegar tekið. Ef þú heldur áfram verður diskrimínatorinn þinn sjálfkrafa endurvalinn.",
     "@fluxerTagAlreadyTakenBody": {
-        "description": "Body text when the requested FluxerTag is taken.",
+        "description": "Body text when the requested EchoTag is taken.",
         "placeholders": {
             "username": {
                 "type": "String"
@@ -1703,7 +1703,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "Sérsniðið 4-stafa merkið þitt er aðeins fáanlegt á meðan Plutonium áskriftin þín er virk. Þegar áskriftin þín rennur út þann {date} mun merkið þitt fara aftur í handahófskennt númer eftir 3 daga viðbótartíma.",
+    "customTagTemporaryBodyWithDate": "Sérsniðið 4-stafa merkið þitt er aðeins fáanlegt á meðan Reverb áskriftin þín er virk. Þegar áskriftin þín rennur út þann {date} mun merkið þitt fara aftur í handahófskennt númer eftir 3 daga viðbótartíma.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -1712,7 +1712,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "Sérsniðið 4-stafa merkið þitt er aðeins fáanlegt á meðan Plutonium áskriftin þín er virk. Þegar áskriftin þín rennur út mun merkið þitt fara aftur í handahófskennt númer eftir 3 daga viðbótartíma.",
+    "customTagTemporaryBody": "Sérsniðið 4-stafa merkið þitt er aðeins fáanlegt á meðan Reverb áskriftin þín er virk. Þegar áskriftin þín rennur út mun merkið þitt fara aftur í handahófskennt númer eftir 3 daga viðbótartíma.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -1720,11 +1720,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "Ef þú vistar þetta FluxerTag mun sérsniðið 4-stafa merki þitt fara aftur í handahófskennt númer þegar Plutonium áskriftin þín rennur út. Ef áskriftin þín endurnýjast ekki, færðu 3 daga viðbótartíma áður en merkið breytist.",
+    "premiumWarningPendingDiscriminator": "Ef þú vistar þetta EchoTag mun sérsniðið 4-stafa merki þitt fara aftur í handahófskennt númer þegar Reverb áskriftin þín rennur út. Ef áskriftin þín endurnýjast ekki, færðu 3 daga viðbótartíma áður en merkið breytist.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "Sérsniðið 4-stafa merkið þitt (#{discriminator}) er virkt á meðan Plutonium áskriftin þín er virk. Ef áskriftin þín rennur út eða endurnýjast ekki eftir 3 daga viðbótartíma, mun merkið þitt fara aftur í handahófskennt númer.",
+    "premiumWarningActiveDiscriminator": "Sérsniðið 4-stafa merkið þitt (#{discriminator}) er virkt á meðan Reverb áskriftin þín er virk. Ef áskriftin þín rennur út eða endurnýjast ekki eftir 3 daga viðbótartíma, mun merkið þitt fara aftur í handahófskennt númer.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -1735,9 +1735,9 @@
     },
     "premiumUpsellCustomizeTag": "Sérsníðaðu 4-stafa merkið þitt eða haltu því þegar þú breytir notendanafni þínu",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "Plutonium prufuáskriftin þín rennur út þann {date}. Uppfærðu til að halda sérsniðna merkinu þínu og vinna þér inn merki á prófílnum þínum.",
+    "premiumTrialExpiresOn": "Reverb prufuáskriftin þín rennur út þann {date}. Uppfærðu til að halda sérsniðna merkinu þínu og vinna þér inn merki á prófílnum þínum.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -1746,17 +1746,17 @@
             }
         }
     },
-    "premiumTrialActive": "Þú ert í Plutonium prufuáskrift. Uppfærðu til að halda sérsniðna merkinu þínu og vinna þér inn merki á prófílnum þínum.",
+    "premiumTrialActive": "Þú ert í Reverb prufuáskrift. Uppfærðu til að halda sérsniðna merkinu þínu og vinna þér inn merki á prófílnum þínum.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
-    "fluxerTagUpdated": "FluxerTag uppfært",
+    "fluxerTagUpdated": "EchoTag uppfært",
     "@fluxerTagUpdated": {
-        "description": "Success toast after FluxerTag change."
+        "description": "Success toast after EchoTag change."
     },
-    "fluxerTagUpdateFailed": "Tókst ekki að uppfæra FluxerTag. Vinsamlegast reyndu aftur.",
+    "fluxerTagUpdateFailed": "Tókst ekki að uppfæra EchoTag. Vinsamlegast reyndu aftur.",
     "@fluxerTagUpdateFailed": {
-        "description": "Error message when FluxerTag update fails."
+        "description": "Error message when EchoTag update fails."
     },
     "continueAction": "Halda áfram",
     "@continueAction": {
@@ -1774,17 +1774,17 @@
     "@usernameLabel": {
         "description": "Label for the username field in profile settings."
     },
-    "claimAccountToChangeFluxerTag": "Kröfðu reikninginn þinn til að breyta FluxerTag þínu",
+    "claimAccountToChangeFluxerTag": "Kröfðu reikninginn þinn til að breyta EchoTag þínu",
     "@claimAccountToChangeFluxerTag": {
-        "description": "Tooltip when unverified user hovers the disabled Change FluxerTag button."
+        "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
     },
-    "changeFluxerTag": "Breyta FluxerTag",
+    "changeFluxerTag": "Breyta EchoTag",
     "@changeFluxerTag": {
-        "description": "Button label to open the FluxerTag change flow."
+        "description": "Button label to open the EchoTag change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "Sérsníddu 4-stafa merkið þitt (#{discriminator}) að vild með Plutonium",
+    "customizeTagWithPlutoniumTooltip": "Sérsníddu 4-stafa merkið þitt (#{discriminator}) að vild með Reverb",
     "@customizeTagWithPlutoniumTooltip": {
-        "description": "Tooltip on the crown upsell button next to the FluxerTag button.",
+        "description": "Tooltip on the crown upsell button next to the EchoTag button.",
         "placeholders": {
             "discriminator": {
                 "type": "String"
@@ -1795,7 +1795,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "Sérsniðna merkið þitt (#{discriminator}) er bundið Plutonium áskriftinni þinni og mun breytast í handahófskennt merki ef hún rennur út.",
+    "customTagSubscriptionWarning": "Sérsniðna merkið þitt (#{discriminator}) er bundið Reverb áskriftinni þinni og mun breytast í handahófskennt merki ef hún rennur út.",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -1864,38 +1864,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Persónuvernd Plutonium merkis",
+    "plutoniumBadgePrivacyTitle": "Persónuvernd Reverb merkis",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "Stjórnaðu hvernig Plutonium merkið þitt er sýnt öðrum",
+    "plutoniumBadgePrivacyDescription": "Stjórnaðu hvernig Reverb merkið þitt er sýnt öðrum",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "Fela Plutonium merki algjörlega",
+    "hidePlutoniumBadgeLabel": "Fela Reverb merki algjörlega",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "Fela Plutonium merkið þitt algjörlega fyrir öðrum notendum",
+    "hidePlutoniumBadgeDescription": "Fela Reverb merkið þitt algjörlega fyrir öðrum notendum",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "Fela Plutonium kaupdagsetningu",
+    "hidePlutoniumPurchaseDate": "Fela Reverb kaupdagsetningu",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "Fela Plutonium kaupdagsetningu ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "Fela Reverb kaupdagsetningu ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "Fjarlægja dagsetningu fyrstu Plutonium kaupa af merkinu þínu",
+    "hidePurchaseDateDescription": "Fjarlægja dagsetningu fyrstu Reverb kaupa af merkinu þínu",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "Fela Visionary sem áskrift",
     "@maskVisionaryAsSubscription": {
@@ -1922,7 +1922,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "Þú ert í Plutonium prufuáskrift — áskriftin þín hefst {date}",
+    "premiumTrialSubscriptionStarts": "Þú ert í Reverb prufuáskrift — áskriftin þín hefst {date}",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -1935,7 +1935,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "Þú ert í Plutonium prufuáskrift sem rennur út {date}",
+    "premiumTrialExpiresOnProfile": "Þú ert í Reverb prufuáskrift sem rennur út {date}",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -1944,29 +1944,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "Þú ert í Plutonium prufuáskrift",
+    "premiumTrialActiveProfile": "Þú ert í Reverb prufuáskrift",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max 10MB. Ráðlagt: 512×512px. Animeruð avatar (GIF) krefst Plutonium.",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max 10MB. Ráðlagt: 512×512px. Animeruð avatar (GIF) krefst Reverb.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "Sérsníddu prófílinn þinn með kyrrstæðu eða animeraðri borðamynd til að láta hann skera sig úr.",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "Fáðu Plutonium",
+    "getPlutonium": "Fáðu Reverb",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "Innkaup í forriti eru ekki fáanleg á þessum vettvangi ennþá. Fylgstu með — kemur bráðum!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "Forskoðun",
     "@profilePreviewLabel": {
@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Fluxer meðlimur síðan",
+    "profilePreviewMemberSince": "Echowire meðlimur síðan",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2008,7 +2008,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "Sérsniðnar persónur þínar, borðar, aukalitur og ævisögur fyrir einstök samfélög krefjast Plutonium. Nafn samfélags og fornafn eru ókeypis fyrir alla.",
+    "perGuildPremiumUpsellText": "Sérsniðnar persónur þínar, borðar, aukalitur og ævisögur fyrir einstök samfélög krefjast Reverb. Nafn samfélags og fornafn eru ókeypis fyrir alla.",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -2088,7 +2088,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "Stjórnaðu tölvupóstfanginu sem þú notar til að skrá þig inn á Fluxer",
+    "securityLoginEmailSectionDescription": "Stjórnaðu tölvupóstfanginu sem þú notar til að skrá þig inn á Echowire",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section."
     },
@@ -2586,7 +2586,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Afskrá virka Plutonium áskrift þína í Plutonium stillingum áður en þú eyðir reikningnum þínum.",
+    "dangerZoneDeleteCancelSubscription": "Afskrá virka Reverb áskrift þína í Reverb stillingum áður en þú eyðir reikningnum þínum.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "Þessi forrit hafa fengið aðgang að Fluxer reikningnum þínum.",
+    "authorizedAppsDescription": "Þessi forrit hafa fengið aðgang að Echowire reikningnum þínum.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2844,7 +2844,7 @@
             }
         }
     },
-    "blockedUsersCopyTag": "Afrita FluxerTag",
+    "blockedUsersCopyTag": "Afrita EchoTag",
     "@blockedUsersCopyTag": {
         "description": "Context menu item that copies the user's tag."
     },
@@ -2876,27 +2876,27 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Fluxer starfsfólk",
+    "userProfileStaffBadgeTooltip": "Echowire starfsfólk",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Fluxer samfélagsteymi",
+    "userProfileCtpBadgeTooltip": "Echowire samfélagsteymi",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Fluxer samstarfsaðili",
+    "userProfilePartnerBadgeTooltip": "Echowire samstarfsaðili",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Fluxer Bug Hunter",
+    "userProfileBugHunterBadgeTooltip": "Echowire Bug Hunter",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Fluxer Plutonium",
+    "userProfilePlutoniumBadgeTooltip": "Echowire Reverb",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "Fluxer Plutonium áskrifandi síðan {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "Echowire Reverb áskrifandi síðan {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,11 +2905,11 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Fluxer Visionary",
+    "userProfileVisionaryBadgeTooltip": "Echowire Visionary",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileVisionaryBadgeSinceTooltip": "Fluxer Visionary síðan {date}",
+    "userProfileVisionaryBadgeSinceTooltip": "Echowire Visionary síðan {date}",
     "@userProfileVisionaryBadgeSinceTooltip": {
         "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "Kerfisviðvaranir frá starfsfólki {productName}. Þú getur ekki svarað hér.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "Tengdu ytri reikninga og lén við Fluxer prófílinn þinn. Staðfestar tengingar verða sýndar á prófílnum þínum svo aðrir sjái.",
+    "connectionsDescription": "Tengdu ytri reikninga og lén við Echowire prófílinn þinn. Staðfestar tengingar verða sýndar á prófílnum þínum svo aðrir sjái.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "Fella saman bein skilaboð í möppu",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "Þegar þetta er virkt eru ólesin bein skilaboð í hliðarstiku samfélagsins felld saman í möppu á Fluxer hnappnum. Smelltu á Fluxer hnappinn á meðan þú ert á bein skilaboðasíðunni til að stækka eða fella saman möppuna.",
+    "lookAndFeelCollapseDMsDescription": "Þegar þetta er virkt eru ólesin bein skilaboð í hliðarstiku samfélagsins felld saman í möppu á Echowire hnappnum. Smelltu á Echowire hnappinn á meðan þú ert á bein skilaboðasíðunni til að stækka eða fella saman möppuna.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -4801,7 +4801,7 @@
     "@messagesMediaDisplayInlineEmbedLabel": {
         "description": "Toggle label for inlining media when posted as links."
     },
-    "messagesMediaDisplayInlineAttachmentLabel": "Þegar hlaðið er upp beint í Fluxer",
+    "messagesMediaDisplayInlineAttachmentLabel": "Þegar hlaðið er upp beint í Echowire",
     "@messagesMediaDisplayInlineAttachmentLabel": {
         "description": "Toggle label for inlining media for direct uploads."
     },
@@ -5467,7 +5467,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} stafir eftir. Fáðu {productName} til að skrifa allt að {premiumMaxLength} stafi.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -5486,7 +5486,7 @@
     },
     "chatSendFailureDmRestricted": "Ekki var hægt að afhenda skilaboðin þín. Þetta er venjulega vegna þess að þú deilir ekki samfélagi með viðtakandanum eða viðtakandinn tekur aðeins við beinum skilaboðum frá vinum. Þú gætir líka þurft að aðlaga eigin stillingar fyrir persónuleg skilaboð í {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5495,27 +5495,27 @@
     },
     "chatSendFailureUnclaimedDm": "Ekki var hægt að afhenda skilaboðin þín. Þú þarft að krefjast reikningsins þíns til að senda persónuleg skilaboð.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Ekki var hægt að afhenda skilaboðin þín. Þú þarft að krefjast reikningsins þíns til að senda skilaboð.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "Echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Ekki var hægt að afhenda skilaboðin þín vegna þess að þau voru merkt af öryggiskerfum okkar. Ef þú telur að þetta sé mistök, vinsamlegast hafðu samband við þjónustuver.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "Echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Ekki var hægt að afhenda skilaboðin þín vegna þess að þau innihalda fullorðinsemoji eða límmiða sem eru ekki leyfðir í þessu samhengi.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "Echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Aðeins þú getur séð þessi skilaboð.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral Echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Loka",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral Echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Samskipti",
     "@privacyDashboardCommunicationSection": {
@@ -5874,7 +5874,7 @@
     "@iarReasonOtherLabel": {
         "description": "Rule-reason label for the catch-all option in the IAR message flow."
     },
-    "iarReasonOtherDescription": "Notaðu aðeins ef það brýtur augljóslega gegn reglum Fluxer og passar ekki hér að ofan.",
+    "iarReasonOtherDescription": "Notaðu aðeins ef það brýtur augljóslega gegn reglum Echowire og passar ekki hér að ofan.",
     "@iarReasonOtherDescription": {
         "description": "Rule-reason description for the catch-all option."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Gjafir og kóðar",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "Hjálpaðu til við að bæta Fluxer með því að deila nafnlausum hrun- og afkomugögnum.",
+    "advancedPerformanceReportingSectionDescription": "Hjálpaðu til við að bæta Echowire með því að deila nafnlausum hrun- og afkomugögnum.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "Öll gögn sem tilkynnt eru eru nafnlaus og eru aðeins send til eigin eftirlitsþjónustu Fluxer — engir þriðju aðilar eru notaðir.",
+    "advancedPerformanceReportingDescription": "Öll gögn sem tilkynnt eru eru nafnlaus og eru aðeins send til eigin eftirlitsþjónustu Echowire — engir þriðju aðilar eru notaðir.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "Vinsamlegast tilkynntu öll vandamál sem þú finnur til samfélags Fluxer Mobile (þú verður að hafa Plutonium til að geta gengið í samfélagið eins og er).",
+    "betaWarningReportIssues": "Vinsamlegast tilkynntu öll vandamál sem þú finnur til samfélags Echowire Mobile (þú verður að hafa Reverb til að geta gengið í samfélagið eins og er).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Endurstilla á Fluxer",
+    "resetToDefaultInstance": "Endurstilla á Echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
     },
     "instanceConnect": "Tengjast",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Echowire instance."
     },
     "instanceConnecting": "Samskipti…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Echowire instance."
     },
     "instanceConnectFailed": "Tókst ekki að tengjast við tengingu",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "Breyta",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Echowire instance."
     },
     "instanceConnectionRequired": "Tengjast við tenginguna til að skrá þig inn",
     "@instanceConnectionRequired": {
@@ -7267,7 +7267,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "Aðeins aðgengilegt starfsfólki Fluxer",
+    "guildNavbarStaffOnlyAccessible": "Aðeins aðgengilegt starfsfólki Echowire",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only."
     },

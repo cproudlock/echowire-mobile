@@ -1234,11 +1234,11 @@
     },
     "addFriendNoUserFound": "هیچ کاربری با این نام کاربری یافت نشد.",
     "@addFriendNoUserFound": {
-        "description": "Error when no user matches the entered FluxerTag."
+        "description": "Error when no user matches the entered EchoTag."
     },
     "addFriendInvalidUsername": "یک نام کاربری معتبر وارد کنید (نام کاربری#0000).",
     "@addFriendInvalidUsername": {
-        "description": "Error when the FluxerTag format is invalid."
+        "description": "Error when the EchoTag format is invalid."
     },
     "addFriendOutgoingSuccess": "درخواست دوستی ارسال شد",
     "@addFriendOutgoingSuccess": {
@@ -1486,11 +1486,11 @@
     },
     "emojiPlutoniumUpsellButton": "پلوتونیوم را دریافت کنید",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "دیگر این را نشان نده",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{۱ ایموجی سفارشی} other{{count} ایموجی سفارشی}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1603,11 +1603,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "آواتارهای متحرک به Plutonium نیاز دارند",
+    "animatedAvatarsRequirePlutonium": "آواتارهای متحرک به Reverb نیاز دارند",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "بنرهای متحرک به Plutonium نیاز دارند",
+    "animatedBannersRequirePlutonium": "بنرهای متحرک به Reverb نیاز دارند",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -1643,17 +1643,17 @@
     "@crop": {
         "description": "Button to confirm image crop."
     },
-    "changeYourFluxerTag": "تغییر FluxerTag شما",
+    "changeYourFluxerTag": "تغییر EchoTag شما",
     "@changeYourFluxerTag": {
-        "description": "Title for the FluxerTag change bottom sheet."
+        "description": "Title for the EchoTag change bottom sheet."
     },
-    "fluxerTagInputLabel": "FluxerTag",
+    "fluxerTagInputLabel": "EchoTag",
     "@fluxerTagInputLabel": {
         "description": "Label above the username and discriminator input fields."
     },
     "fluxerTagDescriptionBase": "نام‌های کاربری فقط می‌توانند شامل حروف (a-z، A-Z)، اعداد (0-9) و خط زیر باشند. نام‌های کاربری به بزرگی و کوچکی حروف حساس نیستند.",
     "@fluxerTagDescriptionBase": {
-        "description": "Base description text on the FluxerTag change sheet."
+        "description": "Base description text on the EchoTag change sheet."
     },
     "fluxerTagDescriptionVisionary": "نام‌های کاربری فقط می‌توانند شامل حروف (a-z، A-Z)، اعداد (0-9) و خط زیر باشند. نام‌های کاربری به بزرگی و کوچکی حروف حساس نیستند. می‌توانید هر تگ ۴ رقمی موجود از #0000 تا #9999 را انتخاب کنید.",
     "@fluxerTagDescriptionVisionary": {
@@ -1679,17 +1679,17 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "برای سفارشی کردن تگ خود یا حفظ آن هنگام تغییر نام کاربری، Plutonium دریافت کنید",
+    "discriminatorPremiumTooltip": "برای سفارشی کردن تگ خود یا حفظ آن هنگام تغییر نام کاربری، Reverb دریافت کنید",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
-    "fluxerTagAlreadyTaken": "FluxerTag از قبل گرفته شده است",
+    "fluxerTagAlreadyTaken": "EchoTag از قبل گرفته شده است",
     "@fluxerTagAlreadyTaken": {
         "description": "Title for the tag-taken confirmation sheet."
     },
-    "fluxerTagAlreadyTakenBody": "FluxerTag {username}#{discriminator} از قبل گرفته شده است. ادامه دادن باعث می‌شود که دیسکریمییناتور شما به‌طور خودکار دوباره انتخاب شود.",
+    "fluxerTagAlreadyTakenBody": "EchoTag {username}#{discriminator} از قبل گرفته شده است. ادامه دادن باعث می‌شود که دیسکریمییناتور شما به‌طور خودکار دوباره انتخاب شود.",
     "@fluxerTagAlreadyTakenBody": {
-        "description": "Body text when the requested FluxerTag is taken.",
+        "description": "Body text when the requested EchoTag is taken.",
         "placeholders": {
             "username": {
                 "type": "String"
@@ -1703,7 +1703,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "تگ ۴ رقمی سفارشی شما فقط تا زمانی که اشتراک Plutonium شما فعال باشد در دسترس است. هنگامی که اشتراک شما در تاریخ {date} منقضی شود، تگ شما پس از یک دوره مهلت ۳ روزه به یک عدد تصادفی باز می‌گردد.",
+    "customTagTemporaryBodyWithDate": "تگ ۴ رقمی سفارشی شما فقط تا زمانی که اشتراک Reverb شما فعال باشد در دسترس است. هنگامی که اشتراک شما در تاریخ {date} منقضی شود، تگ شما پس از یک دوره مهلت ۳ روزه به یک عدد تصادفی باز می‌گردد.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -1712,7 +1712,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "تگ ۴ رقمی سفارشی شما فقط تا زمانی که اشتراک Plutonium شما فعال باشد در دسترس است. هنگامی که اشتراک شما منقضی شود، تگ شما پس از یک دوره مهلت ۳ روزه به یک عدد تصادفی باز می‌گردد.",
+    "customTagTemporaryBody": "تگ ۴ رقمی سفارشی شما فقط تا زمانی که اشتراک Reverb شما فعال باشد در دسترس است. هنگامی که اشتراک شما منقضی شود، تگ شما پس از یک دوره مهلت ۳ روزه به یک عدد تصادفی باز می‌گردد.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -1720,11 +1720,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "اگر این FluxerTag را ذخیره کنید، تگ ۴ رقمی سفارشی شما هنگام پایان اشتراک Plutonium به یک عدد تصادفی باز می‌گردد. اگر اشتراک شما تمدید نشود، قبل از تغییر تگ، ۳ روز مهلت خواهید داشت.",
+    "premiumWarningPendingDiscriminator": "اگر این EchoTag را ذخیره کنید، تگ ۴ رقمی سفارشی شما هنگام پایان اشتراک Reverb به یک عدد تصادفی باز می‌گردد. اگر اشتراک شما تمدید نشود، قبل از تغییر تگ، ۳ روز مهلت خواهید داشت.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "تگ ۴ رقمی سفارشی شما (#{discriminator}) تا زمانی که اشتراک Plutonium شما فعال باشد، فعال است. اگر اشتراک شما پس از ۳ روز مهلت منقضی شود یا تمدید نشود، تگ شما به یک عدد تصادفی باز می‌گردد.",
+    "premiumWarningActiveDiscriminator": "تگ ۴ رقمی سفارشی شما (#{discriminator}) تا زمانی که اشتراک Reverb شما فعال باشد، فعال است. اگر اشتراک شما پس از ۳ روز مهلت منقضی شود یا تمدید نشود، تگ شما به یک عدد تصادفی باز می‌گردد.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -1735,9 +1735,9 @@
     },
     "premiumUpsellCustomizeTag": "تگ ۴ رقمی خود را سفارشی کنید یا هنگام تغییر نام کاربری آن را حفظ کنید",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "دوره آزمایشی Plutonium شما در {date} منقضی می‌شود. برای حفظ تگ سفارشی خود و کسب نشان در پروفایل خود، ارتقا دهید.",
+    "premiumTrialExpiresOn": "دوره آزمایشی Reverb شما در {date} منقضی می‌شود. برای حفظ تگ سفارشی خود و کسب نشان در پروفایل خود، ارتقا دهید.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -1746,17 +1746,17 @@
             }
         }
     },
-    "premiumTrialActive": "شما در دوره آزمایشی Plutonium هستید. برای حفظ تگ سفارشی خود و کسب نشان در پروفایل خود، ارتقا دهید.",
+    "premiumTrialActive": "شما در دوره آزمایشی Reverb هستید. برای حفظ تگ سفارشی خود و کسب نشان در پروفایل خود، ارتقا دهید.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
-    "fluxerTagUpdated": "FluxerTag به‌روز شد",
+    "fluxerTagUpdated": "EchoTag به‌روز شد",
     "@fluxerTagUpdated": {
-        "description": "Success toast after FluxerTag change."
+        "description": "Success toast after EchoTag change."
     },
-    "fluxerTagUpdateFailed": "به‌روزرسانی FluxerTag ناموفق بود. لطفاً دوباره امتحان کنید.",
+    "fluxerTagUpdateFailed": "به‌روزرسانی EchoTag ناموفق بود. لطفاً دوباره امتحان کنید.",
     "@fluxerTagUpdateFailed": {
-        "description": "Error message when FluxerTag update fails."
+        "description": "Error message when EchoTag update fails."
     },
     "continueAction": "ادامه",
     "@continueAction": {
@@ -1774,17 +1774,17 @@
     "@usernameLabel": {
         "description": "Label for the username field in profile settings."
     },
-    "claimAccountToChangeFluxerTag": "برای تغییر FluxerTag خود حساب خود را ادعا کنید",
+    "claimAccountToChangeFluxerTag": "برای تغییر EchoTag خود حساب خود را ادعا کنید",
     "@claimAccountToChangeFluxerTag": {
-        "description": "Tooltip when unverified user hovers the disabled Change FluxerTag button."
+        "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
     },
-    "changeFluxerTag": "تغییر FluxerTag",
+    "changeFluxerTag": "تغییر EchoTag",
     "@changeFluxerTag": {
-        "description": "Button label to open the FluxerTag change flow."
+        "description": "Button label to open the EchoTag change flow."
     },
     "customizeTagWithPlutoniumTooltip": "تگ ۴ رقمی خود (#{discriminator}) را با پلوتونیوم شخصی‌سازی کنید",
     "@customizeTagWithPlutoniumTooltip": {
-        "description": "Tooltip on the crown upsell button next to the FluxerTag button.",
+        "description": "Tooltip on the crown upsell button next to the EchoTag button.",
         "placeholders": {
             "discriminator": {
                 "type": "String"
@@ -1874,19 +1874,19 @@
     },
     "hidePlutoniumBadgeLabel": "پنهان کردن کامل نشان پلوتونیوم",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
     "hidePlutoniumBadgeDescription": "نشان پلوتونیوم خود را کاملاً از سایر کاربران پنهان کنید",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
     "hidePlutoniumPurchaseDate": "تاریخ خرید پلوتونیوم را پنهان کنید",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
     "hidePlutoniumPurchaseDateWithDate": "تاریخ خرید پلوتونیوم را پنهان کنید ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
@@ -1895,7 +1895,7 @@
     },
     "hidePurchaseDateDescription": "تاریخ اولین خرید پلوتونیوم خود را از نشان خود حذف کنید",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "نمایش Visionary به عنوان اشتراک",
     "@maskVisionaryAsSubscription": {
@@ -1950,7 +1950,7 @@
     },
     "avatarDescriptionNonPremium": "JPEG، PNG، WebP. حداکثر ۱۰ مگابایت. توصیه شده: ۵۱۲×۵۱۲ پیکسل. آواتارهای متحرک (GIF) به پلوتونیوم نیاز دارند.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "پروفایل خود را با یک تصویر بنر ثابت یا متحرک سفارشی کنید تا برجسته شود.",
     "@bannerPlutoniumUpsell": {
@@ -1958,15 +1958,15 @@
     },
     "getPlutonium": "دریافت پلوتونیوم",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
     "plutoniumNotAvailableTitle": "پلوتونیوم",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "خرید درون برنامه‌ای هنوز در این پلتفرم در دسترس نیست. منتظر باشید — به زودی!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "پیش‌نمایش",
     "@profilePreviewLabel": {
@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "عضو Fluxer از",
+    "profilePreviewMemberSince": "عضو Echowire از",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2586,7 +2586,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "لطفاً قبل از حذف حساب، اشتراک فعال Plutonium خود را در تنظیمات Plutonium لغو کنید.",
+    "dangerZoneDeleteCancelSubscription": "لطفاً قبل از حذف حساب، اشتراک فعال Reverb خود را در تنظیمات Reverb لغو کنید.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "به این برنامه‌ها دسترسی به حساب Fluxer شما اعطا شده است.",
+    "authorizedAppsDescription": "به این برنامه‌ها دسترسی به حساب Echowire شما اعطا شده است.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2844,7 +2844,7 @@
             }
         }
     },
-    "blockedUsersCopyTag": "کپی کردن تگ Fluxer",
+    "blockedUsersCopyTag": "کپی کردن تگ Echowire",
     "@blockedUsersCopyTag": {
         "description": "Context menu item that copies the user's tag."
     },
@@ -2876,15 +2876,15 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "کارکنان Fluxer",
+    "userProfileStaffBadgeTooltip": "کارکنان Echowire",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "تیم انجمن Fluxer",
+    "userProfileCtpBadgeTooltip": "تیم انجمن Echowire",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "شریک Fluxer",
+    "userProfilePartnerBadgeTooltip": "شریک Echowire",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "اعلان‌های سیستمی از طرف کارکنان {productName}. شما نمی‌توانید اینجا پاسخ دهید.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "حساب ها و دامنه های خارجی را به پروفایل Fluxer خود پیوند دهید. اتصالات تأیید شده در پروفایل شما نمایش داده می شوند تا دیگران ببینند.",
+    "connectionsDescription": "حساب ها و دامنه های خارجی را به پروفایل Echowire خود پیوند دهید. اتصالات تأیید شده در پروفایل شما نمایش داده می شوند تا دیگران ببینند.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,7 +4555,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "پیام‌های مستقیم را در پوشه جمع کنید",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "وقتی فعال باشد، پیام‌های مستقیم خوانده نشده در نوار کناری انجمن در پوشه‌ای در دکمه فلاکسر جمع می‌شوند. برای باز کردن یا بستن پوشه، هنگام حضور در صفحه پیام‌های مستقیم روی دکمه فلاکسر کلیک کنید.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -5467,7 +5467,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} کاراکتر باقی مانده. برای نوشتن تا {premiumMaxLength} کاراکتر، {productName} را دریافت کنید.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -5486,7 +5486,7 @@
     },
     "chatSendFailureDmRestricted": "پیام شما تحویل داده نشد. این معمولاً به این دلیل است که شما با گیرنده انجمنی مشترک ندارید یا گیرنده فقط پیام‌های مستقیم را از دوستان دریافت می‌کند. همچنین ممکن است لازم باشد تنظیمات حریم خصوصی پیام مستقیم خود را در {settingsPath} تنظیم کنید.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5495,27 +5495,27 @@
     },
     "chatSendFailureUnclaimedDm": "پیام شما تحویل داده نشد. برای ارسال پیام‌های مستقیم باید حساب خود را ادعا کنید.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "پیام شما تحویل داده نشد. برای ارسال پیام باید حساب خود را ادعا کنید.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "Echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "پیام شما به دلیل مسدود شدن توسط سیستم‌های ایمنی ما تحویل داده نشد. اگر فکر می‌کنید این اشتباه است، لطفاً با پشتیبانی تماس بگیرید.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "Echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "پیام شما به دلیل داشتن ایموجی‌ها یا استیکرهای نامناسب که در این زمینه مجاز نیستند، تحویل داده نشد.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "Echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "فقط شما می‌توانید این پیام را ببینید.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral Echowirebot client system messages."
     },
     "chatClientSystemDismiss": "رد کردن",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral Echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "ارتباطات",
     "@privacyDashboardCommunicationSection": {
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "هدیه‌ها و کدها",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "با اشتراک‌گذاری داده‌های ناشناس خرابی و عملکرد، به بهبود Fluxer کمک کنید.",
+    "advancedPerformanceReportingSectionDescription": "با اشتراک‌گذاری داده‌های ناشناس خرابی و عملکرد، به بهبود Echowire کمک کنید.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "تمام داده‌های گزارش شده ناشناس هستند و فقط به سرویس نظارت خود Fluxer ارسال می‌شوند — هیچ ارائه‌دهنده شخص ثالثی استفاده نمی‌شود.",
+    "advancedPerformanceReportingDescription": "تمام داده‌های گزارش شده ناشناس هستند و فقط به سرویس نظارت خود Echowire ارسال می‌شوند — هیچ ارائه‌دهنده شخص ثالثی استفاده نمی‌شود.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "لطفاً هر مشکلی را که پیدا می‌کنید به جامعه موبایل Fluxer گزارش دهید (در حال حاضر برای پیوستن به جامعه باید Plutonium داشته باشید).",
+    "betaWarningReportIssues": "لطفاً هر مشکلی را که پیدا می‌کنید به جامعه موبایل Echowire گزارش دهید (در حال حاضر برای پیوستن به جامعه باید Reverb داشته باشید).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "بازنشانی به Fluxer",
+    "resetToDefaultInstance": "بازنشانی به Echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
     },
     "instanceConnect": "اتصال",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Echowire instance."
     },
     "instanceConnecting": "در حال اتصال…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Echowire instance."
     },
     "instanceConnectFailed": "اتصال به نمونه ناموفق بود",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "تغییر",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Echowire instance."
     },
     "instanceConnectionRequired": "برای ورود به سیستم به نمونه متصل شوید",
     "@instanceConnectionRequired": {

@@ -1234,11 +1234,11 @@
     },
     "addFriendNoUserFound": "Nie znaleziono użytkownika o tej nazwie.",
     "@addFriendNoUserFound": {
-        "description": "Error when no user matches the entered FluxerTag."
+        "description": "Error when no user matches the entered EchoTag."
     },
     "addFriendInvalidUsername": "Wprowadź prawidłową nazwę użytkownika (Nazwa użytkownika#0000).",
     "@addFriendInvalidUsername": {
-        "description": "Error when the FluxerTag format is invalid."
+        "description": "Error when the EchoTag format is invalid."
     },
     "addFriendOutgoingSuccess": "Wysłano prośbę o znajomość",
     "@addFriendOutgoingSuccess": {
@@ -1472,7 +1472,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Odblokuj {emojiCount} z {communityCount} dzięki Plutonium.",
+    "emojiPlutoniumUpsellText": "Odblokuj {emojiCount} z {communityCount} dzięki Reverb.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -1484,13 +1484,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Zdobądź Plutonium",
+    "emojiPlutoniumUpsellButton": "Zdobądź Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "Nie pokazuj ponownie",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 niestandardowa emotikona} other{{count} niestandardowych emotikon}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1514,7 +1514,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "Opuszczasz Fluxer",
+    "externalLinkWarningLeaving": "Opuszczasz Echowire",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal."
     },
@@ -1603,11 +1603,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "Animowane awatary wymagają Plutonium",
+    "animatedAvatarsRequirePlutonium": "Animowane awatary wymagają Reverb",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "Animowane banery wymagają Plutonium",
+    "animatedBannersRequirePlutonium": "Animowane banery wymagają Reverb",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -1643,17 +1643,17 @@
     "@crop": {
         "description": "Button to confirm image crop."
     },
-    "changeYourFluxerTag": "Zmień swój FluxerTag",
+    "changeYourFluxerTag": "Zmień swój EchoTag",
     "@changeYourFluxerTag": {
-        "description": "Title for the FluxerTag change bottom sheet."
+        "description": "Title for the EchoTag change bottom sheet."
     },
-    "fluxerTagInputLabel": "FluxerTag",
+    "fluxerTagInputLabel": "EchoTag",
     "@fluxerTagInputLabel": {
         "description": "Label above the username and discriminator input fields."
     },
     "fluxerTagDescriptionBase": "Nazwy użytkowników mogą zawierać tylko litery (a-z, A-Z), cyfry (0-9) i podkreślenia. Nazwy użytkowników nie rozróżniają wielkości liter.",
     "@fluxerTagDescriptionBase": {
-        "description": "Base description text on the FluxerTag change sheet."
+        "description": "Base description text on the EchoTag change sheet."
     },
     "fluxerTagDescriptionVisionary": "Nazwy użytkowników mogą zawierać tylko litery (a-z, A-Z), cyfry (0-9) i podkreślenia. Nazwy użytkowników nie rozróżniają wielkości liter. Możesz wybrać dowolny dostępny 4-cyfrowy tag od #0000 do #9999.",
     "@fluxerTagDescriptionVisionary": {
@@ -1679,17 +1679,17 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "Zdobądź Plutonium, aby dostosować swój tag lub zachować go podczas zmiany nazwy użytkownika",
+    "discriminatorPremiumTooltip": "Zdobądź Reverb, aby dostosować swój tag lub zachować go podczas zmiany nazwy użytkownika",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
-    "fluxerTagAlreadyTaken": "FluxerTag jest już zajęty",
+    "fluxerTagAlreadyTaken": "EchoTag jest już zajęty",
     "@fluxerTagAlreadyTaken": {
         "description": "Title for the tag-taken confirmation sheet."
     },
-    "fluxerTagAlreadyTakenBody": "FluxerTag {username}#{discriminator} jest już zajęty. Kontynuowanie spowoduje automatyczne ponowne wylosowanie Twojego dyskryminatora.",
+    "fluxerTagAlreadyTakenBody": "EchoTag {username}#{discriminator} jest już zajęty. Kontynuowanie spowoduje automatyczne ponowne wylosowanie Twojego dyskryminatora.",
     "@fluxerTagAlreadyTakenBody": {
-        "description": "Body text when the requested FluxerTag is taken.",
+        "description": "Body text when the requested EchoTag is taken.",
         "placeholders": {
             "username": {
                 "type": "String"
@@ -1703,7 +1703,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "Twój niestandardowy 4-cyfrowy tag jest dostępny tylko wtedy, gdy Twoja subskrypcja Plutonium jest aktywna. Kiedy Twoja subskrypcja wygaśnie {date}, Twój tag zostanie przywrócony do losowo przypisanej liczby po 3-dniowym okresie karencji.",
+    "customTagTemporaryBodyWithDate": "Twój niestandardowy 4-cyfrowy tag jest dostępny tylko wtedy, gdy Twoja subskrypcja Reverb jest aktywna. Kiedy Twoja subskrypcja wygaśnie {date}, Twój tag zostanie przywrócony do losowo przypisanej liczby po 3-dniowym okresie karencji.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -1712,7 +1712,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "Twój niestandardowy 4-cyfrowy tag jest dostępny tylko przez czas trwania aktywnej subskrypcji Plutonium. Po wygaśnięciu subskrypcji, po 3-dniowym okresie karencji, Twój tag zostanie zastąpiony losowo przypisanym numerem.",
+    "customTagTemporaryBody": "Twój niestandardowy 4-cyfrowy tag jest dostępny tylko przez czas trwania aktywnej subskrypcji Reverb. Po wygaśnięciu subskrypcji, po 3-dniowym okresie karencji, Twój tag zostanie zastąpiony losowo przypisanym numerem.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -1720,11 +1720,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "Jeśli zapiszesz ten FluxerTag, Twój niestandardowy 4-cyfrowy tag zostanie zastąpiony losowym numerem po zakończeniu subskrypcji Plutonium. Jeśli Twoja subskrypcja nie zostanie odnowiona, będziesz mieć 3-dniowy okres karencji, zanim tag się zmieni.",
+    "premiumWarningPendingDiscriminator": "Jeśli zapiszesz ten EchoTag, Twój niestandardowy 4-cyfrowy tag zostanie zastąpiony losowym numerem po zakończeniu subskrypcji Reverb. Jeśli Twoja subskrypcja nie zostanie odnowiona, będziesz mieć 3-dniowy okres karencji, zanim tag się zmieni.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "Twój niestandardowy 4-cyfrowy tag (#{discriminator}) jest aktywny podczas trwania subskrypcji Plutonium. Jeśli Twoja subskrypcja wygaśnie lub nie zostanie odnowiona po 3-dniowym okresie karencji, Twój tag zostanie zastąpiony losowym numerem.",
+    "premiumWarningActiveDiscriminator": "Twój niestandardowy 4-cyfrowy tag (#{discriminator}) jest aktywny podczas trwania subskrypcji Reverb. Jeśli Twoja subskrypcja wygaśnie lub nie zostanie odnowiona po 3-dniowym okresie karencji, Twój tag zostanie zastąpiony losowym numerem.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -1735,9 +1735,9 @@
     },
     "premiumUpsellCustomizeTag": "Dostosuj swój 4-cyfrowy tag lub zachowaj go podczas zmiany nazwy użytkownika",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "Twój okres próbny Plutonium wygasa {date}. Uaktualnij, aby zachować swój niestandardowy tag i zdobyć odznakę w swoim profilu.",
+    "premiumTrialExpiresOn": "Twój okres próbny Reverb wygasa {date}. Uaktualnij, aby zachować swój niestandardowy tag i zdobyć odznakę w swoim profilu.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -1746,17 +1746,17 @@
             }
         }
     },
-    "premiumTrialActive": "Jesteś w okresie próbnym Plutonium. Uaktualnij, aby zachować swój niestandardowy tag i zdobyć odznakę w swoim profilu.",
+    "premiumTrialActive": "Jesteś w okresie próbnym Reverb. Uaktualnij, aby zachować swój niestandardowy tag i zdobyć odznakę w swoim profilu.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
-    "fluxerTagUpdated": "FluxerTag zaktualizowany",
+    "fluxerTagUpdated": "EchoTag zaktualizowany",
     "@fluxerTagUpdated": {
-        "description": "Success toast after FluxerTag change."
+        "description": "Success toast after EchoTag change."
     },
-    "fluxerTagUpdateFailed": "Nie udało się zaktualizować FluxerTag. Spróbuj ponownie.",
+    "fluxerTagUpdateFailed": "Nie udało się zaktualizować EchoTag. Spróbuj ponownie.",
     "@fluxerTagUpdateFailed": {
-        "description": "Error message when FluxerTag update fails."
+        "description": "Error message when EchoTag update fails."
     },
     "continueAction": "Kontynuuj",
     "@continueAction": {
@@ -1774,17 +1774,17 @@
     "@usernameLabel": {
         "description": "Label for the username field in profile settings."
     },
-    "claimAccountToChangeFluxerTag": "Zweryfikuj konto, aby zmienić swój FluxerTag",
+    "claimAccountToChangeFluxerTag": "Zweryfikuj konto, aby zmienić swój EchoTag",
     "@claimAccountToChangeFluxerTag": {
-        "description": "Tooltip when unverified user hovers the disabled Change FluxerTag button."
+        "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
     },
-    "changeFluxerTag": "Zmień FluxerTag",
+    "changeFluxerTag": "Zmień EchoTag",
     "@changeFluxerTag": {
-        "description": "Button label to open the FluxerTag change flow."
+        "description": "Button label to open the EchoTag change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "Dostosuj swój 4-cyfrowy tag (#{discriminator}) do swoich potrzeb dzięki Plutonium",
+    "customizeTagWithPlutoniumTooltip": "Dostosuj swój 4-cyfrowy tag (#{discriminator}) do swoich potrzeb dzięki Reverb",
     "@customizeTagWithPlutoniumTooltip": {
-        "description": "Tooltip on the crown upsell button next to the FluxerTag button.",
+        "description": "Tooltip on the crown upsell button next to the EchoTag button.",
         "placeholders": {
             "discriminator": {
                 "type": "String"
@@ -1795,7 +1795,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "Twój niestandardowy tag (#{discriminator}) jest powiązany z Twoją subskrypcją Plutonium i po jej wygaśnięciu zostanie zastąpiony losowym tagiem.",
+    "customTagSubscriptionWarning": "Twój niestandardowy tag (#{discriminator}) jest powiązany z Twoją subskrypcją Reverb i po jej wygaśnięciu zostanie zastąpiony losowym tagiem.",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -1864,38 +1864,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Prywatność odznaki Plutonium",
+    "plutoniumBadgePrivacyTitle": "Prywatność odznaki Reverb",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "Kontroluj, jak Twoja odznaka Plutonium jest wyświetlana innym",
+    "plutoniumBadgePrivacyDescription": "Kontroluj, jak Twoja odznaka Reverb jest wyświetlana innym",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "Całkowicie ukryj odznakę Plutonium",
+    "hidePlutoniumBadgeLabel": "Całkowicie ukryj odznakę Reverb",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "Całkowicie ukryj swoją odznakę Plutonium przed innymi użytkownikami",
+    "hidePlutoniumBadgeDescription": "Całkowicie ukryj swoją odznakę Reverb przed innymi użytkownikami",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "Ukryj datę zakupu Plutonium",
+    "hidePlutoniumPurchaseDate": "Ukryj datę zakupu Reverb",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "Ukryj datę zakupu Plutonium ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "Ukryj datę zakupu Reverb ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "Usuń datę pierwszego zakupu Plutonium z Twojej odznaki",
+    "hidePurchaseDateDescription": "Usuń datę pierwszego zakupu Reverb z Twojej odznaki",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "Ukryj Visionary jako subskrypcję",
     "@maskVisionaryAsSubscription": {
@@ -1922,7 +1922,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "Jesteś na wersji próbnej Plutonium — Twoja subskrypcja rozpocznie się {date}",
+    "premiumTrialSubscriptionStarts": "Jesteś na wersji próbnej Reverb — Twoja subskrypcja rozpocznie się {date}",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -1935,7 +1935,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "Jesteś na wersji próbnej Plutonium, która wygasa {date}",
+    "premiumTrialExpiresOnProfile": "Jesteś na wersji próbnej Reverb, która wygasa {date}",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -1944,29 +1944,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "Jesteś na wersji próbnej Plutonium",
+    "premiumTrialActiveProfile": "Jesteś na wersji próbnej Reverb",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maks. 10 MB. Zalecane: 512×512 px. Animowane awatary (GIF) wymagają Plutonium.",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maks. 10 MB. Zalecane: 512×512 px. Animowane awatary (GIF) wymagają Reverb.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "Dostosuj swój profil za pomocą statycznego lub animowanego banera, aby się wyróżniał.",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "Zdobądź Plutonium",
+    "getPlutonium": "Zdobądź Reverb",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "Zakupy w aplikacji nie są jeszcze dostępne na tej platformie. Bądź na bieżąco — wkrótce!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "Podgląd",
     "@profilePreviewLabel": {
@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Członek Fluxer od",
+    "profilePreviewMemberSince": "Członek Echowire od",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2008,7 +2008,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "Dostosowywanie awatara, banera, koloru akcentu i bio dla poszczególnych społeczności wymaga Plutonium. Pseudonim i zaimki społeczności są bezpłatne dla wszystkich.",
+    "perGuildPremiumUpsellText": "Dostosowywanie awatara, banera, koloru akcentu i bio dla poszczególnych społeczności wymaga Reverb. Pseudonim i zaimki społeczności są bezpłatne dla wszystkich.",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -2088,7 +2088,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "Zarządzaj adresem e-mail używanym do logowania się do Fluxer",
+    "securityLoginEmailSectionDescription": "Zarządzaj adresem e-mail używanym do logowania się do Echowire",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section."
     },
@@ -2586,7 +2586,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Anuluj swoją aktywną subskrypcję Plutonium w ustawieniach Plutonium przed usunięciem konta.",
+    "dangerZoneDeleteCancelSubscription": "Anuluj swoją aktywną subskrypcję Reverb w ustawieniach Reverb przed usunięciem konta.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "Te aplikacje otrzymały dostęp do Twojego konta Fluxer.",
+    "authorizedAppsDescription": "Te aplikacje otrzymały dostęp do Twojego konta Echowire.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2844,7 +2844,7 @@
             }
         }
     },
-    "blockedUsersCopyTag": "Kopiuj FluxerTag",
+    "blockedUsersCopyTag": "Kopiuj EchoTag",
     "@blockedUsersCopyTag": {
         "description": "Context menu item that copies the user's tag."
     },
@@ -2876,27 +2876,27 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Zespół Fluxer",
+    "userProfileStaffBadgeTooltip": "Zespół Echowire",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Społeczność Fluxer",
+    "userProfileCtpBadgeTooltip": "Społeczność Echowire",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Partner Fluxer",
+    "userProfilePartnerBadgeTooltip": "Partner Echowire",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Łowca Błędów Fluxer",
+    "userProfileBugHunterBadgeTooltip": "Łowca Błędów Echowire",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Fluxer Plutonium",
+    "userProfilePlutoniumBadgeTooltip": "Echowire Reverb",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "subskrybent Fluxer Plutonium od {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "subskrybent Echowire Reverb od {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,11 +2905,11 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Wizjoner Fluxer",
+    "userProfileVisionaryBadgeTooltip": "Wizjoner Echowire",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileVisionaryBadgeSinceTooltip": "Wizjoner Fluxer od {date}",
+    "userProfileVisionaryBadgeSinceTooltip": "Wizjoner Echowire od {date}",
     "@userProfileVisionaryBadgeSinceTooltip": {
         "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "Ogłoszenia systemowe od pracowników {productName}. Nie możesz odpowiedzieć tutaj.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "Połącz zewnętrzne konta i domeny z profilem Fluxer. Zweryfikowane połączenia będą widoczne w Twoim profilu dla innych.",
+    "connectionsDescription": "Połącz zewnętrzne konta i domeny z profilem Echowire. Zweryfikowane połączenia będą widoczne w Twoim profilu dla innych.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "Zwiń DM do folderu",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "Gdy włączone, nieprzeczytane wiadomości DM na pasku bocznym społeczności są zwijane do folderu na przycisku Fluxer. Kliknij przycisk Fluxer, będąc na stronie DM, aby rozwinąć lub zwinąć folder.",
+    "lookAndFeelCollapseDMsDescription": "Gdy włączone, nieprzeczytane wiadomości DM na pasku bocznym społeczności są zwijane do folderu na przycisku Echowire. Kliknij przycisk Echowire, będąc na stronie DM, aby rozwinąć lub zwinąć folder.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -4801,7 +4801,7 @@
     "@messagesMediaDisplayInlineEmbedLabel": {
         "description": "Toggle label for inlining media when posted as links."
     },
-    "messagesMediaDisplayInlineAttachmentLabel": "Po przesłaniu bezpośrednio do Fluxera",
+    "messagesMediaDisplayInlineAttachmentLabel": "Po przesłaniu bezpośrednio do Echowirea",
     "@messagesMediaDisplayInlineAttachmentLabel": {
         "description": "Toggle label for inlining media for direct uploads."
     },
@@ -5467,7 +5467,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} znaków pozostało. Uzyskaj {productName}, aby pisać do {premiumMaxLength} znaków.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -5486,7 +5486,7 @@
     },
     "chatSendFailureDmRestricted": "Twoja wiadomość nie mogła zostać dostarczona. Zazwyczaj dzieje się tak, ponieważ nie dzielisz społeczności z odbiorcą lub odbiorca akceptuje wiadomości bezpośrednie tylko od znajomych. Może być również konieczne dostosowanie własnych ustawień prywatności wiadomości bezpośrednich w {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5495,27 +5495,27 @@
     },
     "chatSendFailureUnclaimedDm": "Twoja wiadomość nie mogła zostać dostarczona. Musisz odebrać swoje konto, aby wysyłać wiadomości bezpośrednie.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Twoja wiadomość nie mogła zostać dostarczona. Musisz odebrać swoje konto, aby wysyłać wiadomości.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "Echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Twoja wiadomość nie mogła zostać dostarczona, ponieważ została oznaczona przez nasze systemy bezpieczeństwa. Jeśli uważasz, że jest to błąd, skontaktuj się z pomocą techniczną.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "Echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Twoja wiadomość nie mogła zostać dostarczona, ponieważ zawiera dojrzałe emoji lub naklejki, które nie są dozwolone w tym kontekście.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "Echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Tylko Ty możesz zobaczyć tę wiadomość.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral Echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Odrzuć",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral Echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Komunikacja",
     "@privacyDashboardCommunicationSection": {
@@ -5874,7 +5874,7 @@
     "@iarReasonOtherLabel": {
         "description": "Rule-reason label for the catch-all option in the IAR message flow."
     },
-    "iarReasonOtherDescription": "Używaj tylko wtedy, gdy wyraźnie narusza zasady Fluxera i nie pasuje do powyższych kategorii.",
+    "iarReasonOtherDescription": "Używaj tylko wtedy, gdy wyraźnie narusza zasady Echowirea i nie pasuje do powyższych kategorii.",
     "@iarReasonOtherDescription": {
         "description": "Rule-reason description for the catch-all option."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Prezenty i kody",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "Pomóż ulepszyć Fluxera, udostępniając anonimowe dane o awariach i wydajności.",
+    "advancedPerformanceReportingSectionDescription": "Pomóż ulepszyć Echowirea, udostępniając anonimowe dane o awariach i wydajności.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "Wszystkie raportowane dane są anonimowe i wysyłane tylko do własnej usługi monitorowania Fluxera — nie są używani zewnętrzni dostawcy.",
+    "advancedPerformanceReportingDescription": "Wszystkie raportowane dane są anonimowe i wysyłane tylko do własnej usługi monitorowania Echowirea — nie są używani zewnętrzni dostawcy.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "Prosimy o zgłaszanie wszelkich napotkanych problemów społeczności Fluxer Mobile (obecnie musisz posiadać Plutonium, aby móc dołączyć do społeczności).",
+    "betaWarningReportIssues": "Prosimy o zgłaszanie wszelkich napotkanych problemów społeczności Echowire Mobile (obecnie musisz posiadać Reverb, aby móc dołączyć do społeczności).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Resetuj do Fluxer",
+    "resetToDefaultInstance": "Resetuj do Echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
     },
     "instanceConnect": "Połącz",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Echowire instance."
     },
     "instanceConnecting": "Łączenie…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Echowire instance."
     },
     "instanceConnectFailed": "Nie udało się połączyć z instancją",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "Zmień",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Echowire instance."
     },
     "instanceConnectionRequired": "Połącz z instancją, aby się zalogować",
     "@instanceConnectionRequired": {
@@ -7267,7 +7267,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "Dostępne tylko dla personelu Fluxer",
+    "guildNavbarStaffOnlyAccessible": "Dostępne tylko dla personelu Echowire",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only."
     },

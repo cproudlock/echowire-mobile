@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:fluxer_app/core/build/app_build_config.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -20,17 +21,25 @@ final class FluxerCrashReporting {
     if (_initialized || !AppBuildConfig.hasCrashReporting) {
       return;
     }
-    _initialized = true;
-    await SentryFlutter.init((SentryFlutterOptions options) {
-      options
-        ..dsn = AppBuildConfig.sentryDsn
-        ..environment = AppBuildConfig.environmentName
-        // Release/dist are auto-detected from the native build (build-name+number).
-        ..sendDefaultPii = false
-        // Crash/error reporting only — no performance tracing (GlitchTip's trace
-        // support is limited, and OpenTelemetry tracing is handled separately).
-        ..tracesSampleRate = 0.0;
-    });
+    // Crash reporting must NEVER crash the app. This runs inside main()'s
+    // runZonedGuarded, so a throw here would be re-thrown and kill startup with
+    // nothing captured. Swallow any init failure and continue unreported.
+    try {
+      await SentryFlutter.init((SentryFlutterOptions options) {
+        options
+          ..dsn = AppBuildConfig.sentryDsn
+          ..environment = AppBuildConfig.environmentName
+          // Release/dist are auto-detected from the native build (build-name+number).
+          ..sendDefaultPii = false
+          // Crash/error reporting only — no performance tracing (GlitchTip's trace
+          // support is limited, and OpenTelemetry tracing is handled separately).
+          ..tracesSampleRate = 0.0;
+      });
+      _initialized = true;
+    } catch (error, stackTrace) {
+      debugPrint('FluxerCrashReporting.initialize failed (continuing): $error');
+      debugPrintStack(stackTrace: stackTrace);
+    }
   }
 
   static void captureError(

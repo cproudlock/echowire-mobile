@@ -1234,11 +1234,11 @@
     },
     "addFriendNoUserFound": "Geen gebruiker gevind met daardie gebruikersnaam nie.",
     "@addFriendNoUserFound": {
-        "description": "Error when no user matches the entered FluxerTag."
+        "description": "Error when no user matches the entered EchoTag."
     },
     "addFriendInvalidUsername": "Voer 'n geldige gebruikersnaam in (Gebruikersnaam#0000).",
     "@addFriendInvalidUsername": {
-        "description": "Error when the FluxerTag format is invalid."
+        "description": "Error when the EchoTag format is invalid."
     },
     "addFriendOutgoingSuccess": "Vriendversoek gestuur",
     "@addFriendOutgoingSuccess": {
@@ -1472,7 +1472,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Unlock {emojiCount} from {communityCount} with Plutonium.",
+    "emojiPlutoniumUpsellText": "Unlock {emojiCount} from {communityCount} with Reverb.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -1484,13 +1484,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Get Plutonium",
+    "emojiPlutoniumUpsellButton": "Get Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "Don't show this again",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 custom emoji} other{{count} custom emojis}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1514,7 +1514,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "You are about to leave Fluxer",
+    "externalLinkWarningLeaving": "You are about to leave Echowire",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal."
     },
@@ -1603,11 +1603,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "Geanimeerde avatars vereis Plutonium",
+    "animatedAvatarsRequirePlutonium": "Geanimeerde avatars vereis Reverb",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "Geanimeerde baniere vereis Plutonium",
+    "animatedBannersRequirePlutonium": "Geanimeerde baniere vereis Reverb",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -1643,17 +1643,17 @@
     "@crop": {
         "description": "Button to confirm image crop."
     },
-    "changeYourFluxerTag": "Verander Jou FluxerTag",
+    "changeYourFluxerTag": "Verander Jou EchoTag",
     "@changeYourFluxerTag": {
-        "description": "Title for the FluxerTag change bottom sheet."
+        "description": "Title for the EchoTag change bottom sheet."
     },
-    "fluxerTagInputLabel": "FluxerTag",
+    "fluxerTagInputLabel": "EchoTag",
     "@fluxerTagInputLabel": {
         "description": "Label above the username and discriminator input fields."
     },
     "fluxerTagDescriptionBase": "Gebruikersname mag slegs letters (a-z, A-Z), nommers (0-9) en onderstreepies bevat. Gebruikersname is nie hoofletter-sensitief nie.",
     "@fluxerTagDescriptionBase": {
-        "description": "Base description text on the FluxerTag change sheet."
+        "description": "Base description text on the EchoTag change sheet."
     },
     "fluxerTagDescriptionVisionary": "Gebruikersname mag slegs letters (a-z, A-Z), nommers (0-9) en onderstreepies bevat. Gebruikersname is nie hoofletter-sensitief nie. Jy kan enige beskikbare 4-syfer tag van #0000 tot #9999 kies.",
     "@fluxerTagDescriptionVisionary": {
@@ -1679,17 +1679,17 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "Kry Plutonium om jou tag aan te pas of behou dit wanneer jy jou gebruikersnaam verander",
+    "discriminatorPremiumTooltip": "Kry Reverb om jou tag aan te pas of behou dit wanneer jy jou gebruikersnaam verander",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
-    "fluxerTagAlreadyTaken": "FluxerTag reeds geneem",
+    "fluxerTagAlreadyTaken": "EchoTag reeds geneem",
     "@fluxerTagAlreadyTaken": {
         "description": "Title for the tag-taken confirmation sheet."
     },
-    "fluxerTagAlreadyTakenBody": "Die FluxerTag {username}#{discriminator} is reeds geneem. Indien jy voortgaan, sal jou discriminator outomaties weer gerol word.",
+    "fluxerTagAlreadyTakenBody": "Die EchoTag {username}#{discriminator} is reeds geneem. Indien jy voortgaan, sal jou discriminator outomaties weer gerol word.",
     "@fluxerTagAlreadyTakenBody": {
-        "description": "Body text when the requested FluxerTag is taken.",
+        "description": "Body text when the requested EchoTag is taken.",
         "placeholders": {
             "username": {
                 "type": "String"
@@ -1703,7 +1703,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "Jou pasgemaakte 4-syfer tag is slegs beskikbaar solank jou Plutonium-intekening aktief is. Wanneer jou intekening op {date} verval, sal jou tag na 'n ewekansig-toegewysde nommer terugkeer na 'n genadeperiode van 3 dae.",
+    "customTagTemporaryBodyWithDate": "Jou pasgemaakte 4-syfer tag is slegs beskikbaar solank jou Reverb-intekening aktief is. Wanneer jou intekening op {date} verval, sal jou tag na 'n ewekansig-toegewysde nommer terugkeer na 'n genadeperiode van 3 dae.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -1712,7 +1712,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "Jou pasgemaakte 4-syfer tag is slegs beskikbaar solank jou Plutonium-intekening aktief is. Wanneer jou intekening verval, sal jou tag na 'n ewekansig-toegewysde nommer terugkeer na 'n genadeperiode van 3 dae.",
+    "customTagTemporaryBody": "Jou pasgemaakte 4-syfer tag is slegs beskikbaar solank jou Reverb-intekening aktief is. Wanneer jou intekening verval, sal jou tag na 'n ewekansig-toegewysde nommer terugkeer na 'n genadeperiode van 3 dae.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -1720,11 +1720,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "As jy hierdie FluxerTag stoor, sal jou pasgemaakte 4-syfer tag na 'n ewekansige nommer terugkeer wanneer jou Plutonium-intekening eindig. Indien jou intekening nie hernu word nie, sal jy 'n genadeperiode van 3 dae hê voordat die tag verander.",
+    "premiumWarningPendingDiscriminator": "As jy hierdie EchoTag stoor, sal jou pasgemaakte 4-syfer tag na 'n ewekansige nommer terugkeer wanneer jou Reverb-intekening eindig. Indien jou intekening nie hernu word nie, sal jy 'n genadeperiode van 3 dae hê voordat die tag verander.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "Jou pasgemaakte 4-syfer tag (#{discriminator}) is aktief solank jou Plutonium-intekening aktief is. Indien jou intekening eindig of nie hernu word na 'n genadeperiode van 3 dae nie, sal jou tag na 'n ewekansige nommer terugkeer.",
+    "premiumWarningActiveDiscriminator": "Jou pasgemaakte 4-syfer tag (#{discriminator}) is aktief solank jou Reverb-intekening aktief is. Indien jou intekening eindig of nie hernu word na 'n genadeperiode van 3 dae nie, sal jou tag na 'n ewekansige nommer terugkeer.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -1735,9 +1735,9 @@
     },
     "premiumUpsellCustomizeTag": "Pas jou 4-syfer tag aan of behou dit wanneer jy jou gebruikersnaam verander",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "Jou Plutonium-proeftydperk verval op {date}. Gradeer op om jou pasgemaakte tag te behou en 'n kenteken op jou profiel te verdien.",
+    "premiumTrialExpiresOn": "Jou Reverb-proeftydperk verval op {date}. Gradeer op om jou pasgemaakte tag te behou en 'n kenteken op jou profiel te verdien.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -1746,17 +1746,17 @@
             }
         }
     },
-    "premiumTrialActive": "Jy is op 'n Plutonium-proeftydperk. Gradeer op om jou pasgemaakte tag te behou en 'n kenteken op jou profiel te verdien.",
+    "premiumTrialActive": "Jy is op 'n Reverb-proeftydperk. Gradeer op om jou pasgemaakte tag te behou en 'n kenteken op jou profiel te verdien.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
-    "fluxerTagUpdated": "FluxerTag opgedateer",
+    "fluxerTagUpdated": "EchoTag opgedateer",
     "@fluxerTagUpdated": {
-        "description": "Success toast after FluxerTag change."
+        "description": "Success toast after EchoTag change."
     },
-    "fluxerTagUpdateFailed": "Kon nie FluxerTag opdateer nie. Probeer asseblief weer.",
+    "fluxerTagUpdateFailed": "Kon nie EchoTag opdateer nie. Probeer asseblief weer.",
     "@fluxerTagUpdateFailed": {
-        "description": "Error message when FluxerTag update fails."
+        "description": "Error message when EchoTag update fails."
     },
     "continueAction": "Gaan Voort",
     "@continueAction": {
@@ -1774,17 +1774,17 @@
     "@usernameLabel": {
         "description": "Label for the username field in profile settings."
     },
-    "claimAccountToChangeFluxerTag": "Eis jou rekening om jou FluxerTag te verander",
+    "claimAccountToChangeFluxerTag": "Eis jou rekening om jou EchoTag te verander",
     "@claimAccountToChangeFluxerTag": {
-        "description": "Tooltip when unverified user hovers the disabled Change FluxerTag button."
+        "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
     },
-    "changeFluxerTag": "Verander FluxerTag",
+    "changeFluxerTag": "Verander EchoTag",
     "@changeFluxerTag": {
-        "description": "Button label to open the FluxerTag change flow."
+        "description": "Button label to open the EchoTag change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "Pas jou 4-syfer tag (#{discriminator}) na wense aan met Plutonium",
+    "customizeTagWithPlutoniumTooltip": "Pas jou 4-syfer tag (#{discriminator}) na wense aan met Reverb",
     "@customizeTagWithPlutoniumTooltip": {
-        "description": "Tooltip on the crown upsell button next to the FluxerTag button.",
+        "description": "Tooltip on the crown upsell button next to the EchoTag button.",
         "placeholders": {
             "discriminator": {
                 "type": "String"
@@ -1795,7 +1795,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "Jou pasgemaakte tag (#{discriminator}) is gekoppel aan jou Plutonium-intekening en sal teruggkeer na 'n ewekansige tag indien dit verval.",
+    "customTagSubscriptionWarning": "Jou pasgemaakte tag (#{discriminator}) is gekoppel aan jou Reverb-intekening en sal teruggkeer na 'n ewekansige tag indien dit verval.",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -1864,38 +1864,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Plutonium-kentekenprivaatheid",
+    "plutoniumBadgePrivacyTitle": "Reverb-kentekenprivaatheid",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "Beheer hoe jou Plutonium-kenteken aan ander vertoon word",
+    "plutoniumBadgePrivacyDescription": "Beheer hoe jou Reverb-kenteken aan ander vertoon word",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "Versteek Plutonium-kenteken heeltemal",
+    "hidePlutoniumBadgeLabel": "Versteek Reverb-kenteken heeltemal",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "Versteek jou Plutonium-kenteken heeltemal vir ander gebruikers",
+    "hidePlutoniumBadgeDescription": "Versteek jou Reverb-kenteken heeltemal vir ander gebruikers",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "Versteek Plutonium-aankoopdatum",
+    "hidePlutoniumPurchaseDate": "Versteek Reverb-aankoopdatum",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "Versteek Plutonium-aankoopdatum ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "Versteek Reverb-aankoopdatum ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "Verwyder die datum waarop jy Plutonium eerste gekoop het van jou kenteken",
+    "hidePurchaseDateDescription": "Verwyder die datum waarop jy Reverb eerste gekoop het van jou kenteken",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "Masker Visionary as intekening",
     "@maskVisionaryAsSubscription": {
@@ -1922,7 +1922,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "Jy is op 'n Plutonium-proeflopie — jou intekening begin op {date}",
+    "premiumTrialSubscriptionStarts": "Jy is op 'n Reverb-proeflopie — jou intekening begin op {date}",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -1935,7 +1935,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "Jy is op 'n Plutonium-proeflopie wat verval op {date}",
+    "premiumTrialExpiresOnProfile": "Jy is op 'n Reverb-proeflopie wat verval op {date}",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -1944,29 +1944,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "Jy is op 'n Plutonium-proeflopie",
+    "premiumTrialActiveProfile": "Jy is op 'n Reverb-proeflopie",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maks 10MB. Aanbeveel: 512×512px. Geanimeerde avatars (GIF) vereis Plutonium.",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maks 10MB. Aanbeveel: 512×512px. Geanimeerde avatars (GIF) vereis Reverb.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "Pas jou profiel aan met 'n statiese of geanimeerde bannierbeeld om dit te laat uitstaan.",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "Kry Plutonium",
+    "getPlutonium": "Kry Reverb",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "Inprogram-aankope is nog nie op hierdie platform beskikbaar nie. Bly ingeskakel — kom binnekort!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "Voorskou",
     "@profilePreviewLabel": {
@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Fluxer Lid Sedert",
+    "profilePreviewMemberSince": "Echowire Lid Sedert",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2008,7 +2008,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "Die aanpassing van jou avatar, banier, aksentkleur en biografie vir individuele gemeenskappe vereis Plutonium. Gemeenskapsbynaam en voornaamwoorde is gratis vir almal.",
+    "perGuildPremiumUpsellText": "Die aanpassing van jou avatar, banier, aksentkleur en biografie vir individuele gemeenskappe vereis Reverb. Gemeenskapsbynaam en voornaamwoorde is gratis vir almal.",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -2088,7 +2088,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "Bestuur die e-posadres wat jy gebruik om by Fluxer aan te meld",
+    "securityLoginEmailSectionDescription": "Bestuur die e-posadres wat jy gebruik om by Echowire aan te meld",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section."
     },
@@ -2586,7 +2586,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Kanselleer jou aktiewe Plutonium-intekening in Plutonium-instellings voordat jy jou rekening uitvee.",
+    "dangerZoneDeleteCancelSubscription": "Kanselleer jou aktiewe Reverb-intekening in Reverb-instellings voordat jy jou rekening uitvee.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "Hierdie toepassings het toegang tot jou Fluxer-rekening verkry.",
+    "authorizedAppsDescription": "Hierdie toepassings het toegang tot jou Echowire-rekening verkry.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2844,7 +2844,7 @@
             }
         }
     },
-    "blockedUsersCopyTag": "Kopieer FluxerTag",
+    "blockedUsersCopyTag": "Kopieer EchoTag",
     "@blockedUsersCopyTag": {
         "description": "Context menu item that copies the user's tag."
     },
@@ -2876,27 +2876,27 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Fluxer Personeel",
+    "userProfileStaffBadgeTooltip": "Echowire Personeel",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Fluxer Gemeenskapsspan",
+    "userProfileCtpBadgeTooltip": "Echowire Gemeenskapsspan",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Fluxer Vennoot",
+    "userProfilePartnerBadgeTooltip": "Echowire Vennoot",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Fluxer Bugjagter",
+    "userProfileBugHunterBadgeTooltip": "Echowire Bugjagter",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Fluxer Plutonium",
+    "userProfilePlutoniumBadgeTooltip": "Echowire Reverb",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "Fluxer Plutonium-intekenaar sedert {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "Echowire Reverb-intekenaar sedert {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,11 +2905,11 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Fluxer Visioenêr",
+    "userProfileVisionaryBadgeTooltip": "Echowire Visioenêr",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileVisionaryBadgeSinceTooltip": "Fluxer Visioenêr sedert {date}",
+    "userProfileVisionaryBadgeSinceTooltip": "Echowire Visioenêr sedert {date}",
     "@userProfileVisionaryBadgeSinceTooltip": {
         "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "Stelselaankondigings van {productName} personeel. Jy kan nie hier antwoord nie.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "Koppel eksterne rekeninge en domeine aan jou Fluxer-profiel. Geverifieerde verbindings sal op jou profiel vertoon word sodat ander dit kan sien.",
+    "connectionsDescription": "Koppel eksterne rekeninge en domeine aan jou Echowire-profiel. Geverifieerde verbindings sal op jou profiel vertoon word sodat ander dit kan sien.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "Vou DM's in 'n Gids saam",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "Wanneer geaktiveer, word ongeleesde DM's in die groepsy-balk in 'n gids op die Fluxer-knoppie saamgevou. Klik die Fluxer-knoppie terwyl jy op die DM's-bladsy is om die gids oop te vou of toe te vou.",
+    "lookAndFeelCollapseDMsDescription": "Wanneer geaktiveer, word ongeleesde DM's in die groepsy-balk in 'n gids op die Echowire-knoppie saamgevou. Klik die Echowire-knoppie terwyl jy op die DM's-bladsy is om die gids oop te vou of toe te vou.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -4801,7 +4801,7 @@
     "@messagesMediaDisplayInlineEmbedLabel": {
         "description": "Toggle label for inlining media when posted as links."
     },
-    "messagesMediaDisplayInlineAttachmentLabel": "Wanneer direk na Fluxer opgelaai",
+    "messagesMediaDisplayInlineAttachmentLabel": "Wanneer direk na Echowire opgelaai",
     "@messagesMediaDisplayInlineAttachmentLabel": {
         "description": "Toggle label for inlining media for direct uploads."
     },
@@ -5467,7 +5467,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} karakters oor. Kry {productName} om tot {premiumMaxLength} karakters te skryf.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -5486,7 +5486,7 @@
     },
     "chatSendFailureDmRestricted": "Jou boodskap kon nie afgelewer word nie. Dit is gewoonlik omdat jy nie 'n gemeenskap met die ontvanger deel nie of die ontvanger slegs direkte boodskappe van vriende aanvaar nie. Jy moet dalk ook jou eie direkte boodskap-privaatheidinstellings in {settingsPath} aanpas.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5495,27 +5495,27 @@
     },
     "chatSendFailureUnclaimedDm": "Jou boodskap kon nie afgelewer word nie. Jy moet jou rekening eis om direkte boodskappe te stuur.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Jou boodskap kon nie afgelewer word nie. Jy moet jou rekening eis om boodskappe te stuur.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "Echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Jou boodskap kon nie afgelewer word nie omdat dit deur ons veiligheidstelsels gemerk is. As jy glo dit is 'n fout, kontak asseblief ondersteuning.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "Echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Jou boodskap kon nie afgelewer word nie omdat dit volwasse emoji of plakkers bevat wat nie in hierdie konteks toegelaat word nie.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "Echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Slegs jy kan hierdie boodskap sien.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral Echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Verwerp",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral Echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Kommunikasie",
     "@privacyDashboardCommunicationSection": {
@@ -5874,7 +5874,7 @@
     "@iarReasonOtherLabel": {
         "description": "Rule-reason label for the catch-all option in the IAR message flow."
     },
-    "iarReasonOtherDescription": "Gebruik slegs indien dit duidelik Fluxer se reëls breek en nie hierbo pas nie.",
+    "iarReasonOtherDescription": "Gebruik slegs indien dit duidelik Echowire se reëls breek en nie hierbo pas nie.",
     "@iarReasonOtherDescription": {
         "description": "Rule-reason description for the catch-all option."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Geskenke & Kodes",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "Help om Fluxer te verbeter deur anonieme fout- en prestasiedata te deel.",
+    "advancedPerformanceReportingSectionDescription": "Help om Echowire te verbeter deur anonieme fout- en prestasiedata te deel.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "Alle gerapporteerde data is anoniem en word slegs na Fluxer se eie monitordienste gestuur — geen derdeparty-verskaffers word gebruik nie.",
+    "advancedPerformanceReportingDescription": "Alle gerapporteerde data is anoniem en word slegs na Echowire se eie monitordienste gestuur — geen derdeparty-verskaffers word gebruik nie.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "Rapporteer asseblief enige probleme wat jy vind aan die Fluxer Mobile-gemeenskap (jy moet tans Plutonium hê om by die gemeenskap aan te sluit).",
+    "betaWarningReportIssues": "Rapporteer asseblief enige probleme wat jy vind aan die Echowire Mobile-gemeenskap (jy moet tans Reverb hê om by die gemeenskap aan te sluit).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Stel terug na Fluxer",
+    "resetToDefaultInstance": "Stel terug na Echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
     },
     "instanceConnect": "Koppel",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Echowire instance."
     },
     "instanceConnecting": "Koppel...",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Echowire instance."
     },
     "instanceConnectFailed": "Kon nie aan instansie koppel nie",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "Verander",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Echowire instance."
     },
     "instanceConnectionRequired": "Koppel aan die instansie om aan te meld",
     "@instanceConnectionRequired": {
@@ -7267,7 +7267,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "Slegs toeganklik vir Fluxer-personeel",
+    "guildNavbarStaffOnlyAccessible": "Slegs toeganklik vir Echowire-personeel",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only."
     },

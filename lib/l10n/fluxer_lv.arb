@@ -1234,11 +1234,11 @@
     },
     "addFriendNoUserFound": "Nav atrasts lietotājs ar šādu lietotājvārdu.",
     "@addFriendNoUserFound": {
-        "description": "Error when no user matches the entered FluxerTag."
+        "description": "Error when no user matches the entered EchoTag."
     },
     "addFriendInvalidUsername": "Ievadiet derīgu lietotājvārdu (Lietotājvārds#0000).",
     "@addFriendInvalidUsername": {
-        "description": "Error when the FluxerTag format is invalid."
+        "description": "Error when the EchoTag format is invalid."
     },
     "addFriendOutgoingSuccess": "Draudzības pieprasījums nosūtīts",
     "@addFriendOutgoingSuccess": {
@@ -1472,7 +1472,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Atbloķējiet {emojiCount} no {communityCount} ar Plutonium.",
+    "emojiPlutoniumUpsellText": "Atbloķējiet {emojiCount} no {communityCount} ar Reverb.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -1484,13 +1484,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Iegūt Plutonium",
+    "emojiPlutoniumUpsellButton": "Iegūt Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "Nekad vairs nerādīt",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 pielāgota emocijzīme} other{{count} pielāgotas emocijzīmes}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1514,7 +1514,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "Jūs gatavojaties pamest Fluxer",
+    "externalLinkWarningLeaving": "Jūs gatavojaties pamest Echowire",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal."
     },
@@ -1603,11 +1603,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "Animētiem avatariem nepieciešams Plutonium",
+    "animatedAvatarsRequirePlutonium": "Animētiem avatariem nepieciešams Reverb",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "Animētiem baneriem nepieciešams Plutonium",
+    "animatedBannersRequirePlutonium": "Animētiem baneriem nepieciešams Reverb",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -1643,17 +1643,17 @@
     "@crop": {
         "description": "Button to confirm image crop."
     },
-    "changeYourFluxerTag": "Mainīt savu FluxerTag",
+    "changeYourFluxerTag": "Mainīt savu EchoTag",
     "@changeYourFluxerTag": {
-        "description": "Title for the FluxerTag change bottom sheet."
+        "description": "Title for the EchoTag change bottom sheet."
     },
-    "fluxerTagInputLabel": "FluxerTag",
+    "fluxerTagInputLabel": "EchoTag",
     "@fluxerTagInputLabel": {
         "description": "Label above the username and discriminator input fields."
     },
     "fluxerTagDescriptionBase": "Lietotājvārdi var saturēt tikai burtus (a-z, A-Z), ciparus (0-9) un pasvītrojumus. Lietotājvārdi nav reģistrjutīgi.",
     "@fluxerTagDescriptionBase": {
-        "description": "Base description text on the FluxerTag change sheet."
+        "description": "Base description text on the EchoTag change sheet."
     },
     "fluxerTagDescriptionVisionary": "Lietotājvārdi var saturēt tikai burtus (a-z, A-Z), ciparus (0-9) un pasvītrojumus. Lietotājvārdi nav reģistrjutīgi. Jūs varat izvēlēties jebkuru pieejamo 4 ciparu tagu no #0000 līdz #9999.",
     "@fluxerTagDescriptionVisionary": {
@@ -1679,17 +1679,17 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "Iegūstiet Plutonium, lai pielāgotu savu tagu vai saglabātu to, mainot lietotājvārdu",
+    "discriminatorPremiumTooltip": "Iegūstiet Reverb, lai pielāgotu savu tagu vai saglabātu to, mainot lietotājvārdu",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
-    "fluxerTagAlreadyTaken": "FluxerTag jau aizņemts",
+    "fluxerTagAlreadyTaken": "EchoTag jau aizņemts",
     "@fluxerTagAlreadyTaken": {
         "description": "Title for the tag-taken confirmation sheet."
     },
-    "fluxerTagAlreadyTakenBody": "FluxerTag {username}#{discriminator} jau ir aizņemts. Turpinot, jūsu diskriminators tiks automātiski pārrullēts.",
+    "fluxerTagAlreadyTakenBody": "EchoTag {username}#{discriminator} jau ir aizņemts. Turpinot, jūsu diskriminators tiks automātiski pārrullēts.",
     "@fluxerTagAlreadyTakenBody": {
-        "description": "Body text when the requested FluxerTag is taken.",
+        "description": "Body text when the requested EchoTag is taken.",
         "placeholders": {
             "username": {
                 "type": "String"
@@ -1703,7 +1703,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "Jūsu pielāgotais 4 ciparu tag ir pieejams tikai tad, kamēr ir aktīva jūsu Plutonium abonements. Kad jūsu abonements beigsies {date}, jūsu tag pēc 3 dienu žēlastības perioda atgriezīsies pie nejauši piešķirta numura.",
+    "customTagTemporaryBodyWithDate": "Jūsu pielāgotais 4 ciparu tag ir pieejams tikai tad, kamēr ir aktīva jūsu Reverb abonements. Kad jūsu abonements beigsies {date}, jūsu tag pēc 3 dienu žēlastības perioda atgriezīsies pie nejauši piešķirta numura.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -1712,7 +1712,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "Jūsu pielāgotais 4 ciparu tag ir pieejams tikai tad, kamēr ir aktīva jūsu Plutonium abonements. Kad jūsu abonements beigsies, jūsu tag pēc 3 dienu žēlastības perioda atgriezīsies pie nejauši piešķirta numura.",
+    "customTagTemporaryBody": "Jūsu pielāgotais 4 ciparu tag ir pieejams tikai tad, kamēr ir aktīva jūsu Reverb abonements. Kad jūsu abonements beigsies, jūsu tag pēc 3 dienu žēlastības perioda atgriezīsies pie nejauši piešķirta numura.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -1720,11 +1720,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "Ja saglabāsiet šo FluxerTag, jūsu pielāgotais 4 ciparu tag pēc Plutonium abonementa beigām atgriezīsies pie nejauša numura. Ja jūsu abonements netiks atjaunots, jums būs 3 dienu žēlastības periods pirms taga maiņas.",
+    "premiumWarningPendingDiscriminator": "Ja saglabāsiet šo EchoTag, jūsu pielāgotais 4 ciparu tag pēc Reverb abonementa beigām atgriezīsies pie nejauša numura. Ja jūsu abonements netiks atjaunots, jums būs 3 dienu žēlastības periods pirms taga maiņas.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "Jūsu pielāgotais 4 ciparu tag (#{discriminator}) ir aktīvs, kamēr ir aktīvs jūsu Plutonium abonements. Ja jūsu abonements beigsies vai netiks atjaunots pēc 3 dienu žēlastības perioda, jūsu tag atgriezīsies pie nejauša numura.",
+    "premiumWarningActiveDiscriminator": "Jūsu pielāgotais 4 ciparu tag (#{discriminator}) ir aktīvs, kamēr ir aktīvs jūsu Reverb abonements. Ja jūsu abonements beigsies vai netiks atjaunots pēc 3 dienu žēlastības perioda, jūsu tag atgriezīsies pie nejauša numura.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -1735,9 +1735,9 @@
     },
     "premiumUpsellCustomizeTag": "Pielāgojiet savu 4 ciparu tagu vai saglabājiet to, mainot lietotājvārdu",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "Jūsu Plutonium izmēģinājuma periods beidzas {date}. Jauniniet, lai saglabātu savu pielāgoto tagu un iegūtu emblēmu savā profilā.",
+    "premiumTrialExpiresOn": "Jūsu Reverb izmēģinājuma periods beidzas {date}. Jauniniet, lai saglabātu savu pielāgoto tagu un iegūtu emblēmu savā profilā.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -1746,17 +1746,17 @@
             }
         }
     },
-    "premiumTrialActive": "Jūs izmantojat Plutonium izmēģinājuma versiju. Jauniniet, lai saglabātu savu pielāgoto tagu un iegūtu emblēmu savā profilā.",
+    "premiumTrialActive": "Jūs izmantojat Reverb izmēģinājuma versiju. Jauniniet, lai saglabātu savu pielāgoto tagu un iegūtu emblēmu savā profilā.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
-    "fluxerTagUpdated": "FluxerTag atjaunināts",
+    "fluxerTagUpdated": "EchoTag atjaunināts",
     "@fluxerTagUpdated": {
-        "description": "Success toast after FluxerTag change."
+        "description": "Success toast after EchoTag change."
     },
-    "fluxerTagUpdateFailed": "Neizdevās atjaunināt FluxerTag. Lūdzu, mēģiniet vēlreiz.",
+    "fluxerTagUpdateFailed": "Neizdevās atjaunināt EchoTag. Lūdzu, mēģiniet vēlreiz.",
     "@fluxerTagUpdateFailed": {
-        "description": "Error message when FluxerTag update fails."
+        "description": "Error message when EchoTag update fails."
     },
     "continueAction": "Turpināt",
     "@continueAction": {
@@ -1774,17 +1774,17 @@
     "@usernameLabel": {
         "description": "Label for the username field in profile settings."
     },
-    "claimAccountToChangeFluxerTag": "Pieprasiet savu kontu, lai mainītu savu FluxerTag",
+    "claimAccountToChangeFluxerTag": "Pieprasiet savu kontu, lai mainītu savu EchoTag",
     "@claimAccountToChangeFluxerTag": {
-        "description": "Tooltip when unverified user hovers the disabled Change FluxerTag button."
+        "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
     },
-    "changeFluxerTag": "Mainīt FluxerTag",
+    "changeFluxerTag": "Mainīt EchoTag",
     "@changeFluxerTag": {
-        "description": "Button label to open the FluxerTag change flow."
+        "description": "Button label to open the EchoTag change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "Pielāgojiet savu 4 ciparu tagu (#{discriminator}) pēc savas gaumes ar Plutonium",
+    "customizeTagWithPlutoniumTooltip": "Pielāgojiet savu 4 ciparu tagu (#{discriminator}) pēc savas gaumes ar Reverb",
     "@customizeTagWithPlutoniumTooltip": {
-        "description": "Tooltip on the crown upsell button next to the FluxerTag button.",
+        "description": "Tooltip on the crown upsell button next to the EchoTag button.",
         "placeholders": {
             "discriminator": {
                 "type": "String"
@@ -1795,7 +1795,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "Jūsu pielāgotais tag (#{discriminator}) ir saistīts ar jūsu Plutonium abonementu un tiks atjaunots uz nejaušu tagu, ja tas beigsies.",
+    "customTagSubscriptionWarning": "Jūsu pielāgotais tag (#{discriminator}) ir saistīts ar jūsu Reverb abonementu un tiks atjaunots uz nejaušu tagu, ja tas beigsies.",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -1864,38 +1864,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Plutonium nozīmītes konfidencialitāte",
+    "plutoniumBadgePrivacyTitle": "Reverb nozīmītes konfidencialitāte",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "Kontrolējiet, kā jūsu Plutonium nozīmīte tiek rādīta citiem",
+    "plutoniumBadgePrivacyDescription": "Kontrolējiet, kā jūsu Reverb nozīmīte tiek rādīta citiem",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "Pilnībā paslēpt Plutonium nozīmīti",
+    "hidePlutoniumBadgeLabel": "Pilnībā paslēpt Reverb nozīmīti",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "Pilnībā paslēpt savu Plutonium nozīmīti no citiem lietotājiem",
+    "hidePlutoniumBadgeDescription": "Pilnībā paslēpt savu Reverb nozīmīti no citiem lietotājiem",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "Paslēpt Plutonium iegādes datumu",
+    "hidePlutoniumPurchaseDate": "Paslēpt Reverb iegādes datumu",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "Paslēpt Plutonium iegādes datumu ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "Paslēpt Reverb iegādes datumu ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "Noņemiet no savas nozīmītes informāciju par Plutonium iegādi",
+    "hidePurchaseDateDescription": "Noņemiet no savas nozīmītes informāciju par Reverb iegādi",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "Maskēt Visionary kā abonementu",
     "@maskVisionaryAsSubscription": {
@@ -1922,7 +1922,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "Jūs izmantojat Plutonium izmēģinājuma versiju — jūsu abonements sāksies {date}",
+    "premiumTrialSubscriptionStarts": "Jūs izmantojat Reverb izmēģinājuma versiju — jūsu abonements sāksies {date}",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -1935,7 +1935,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "Jūs izmantojat Plutonium izmēģinājuma versiju, kas beidzas {date}",
+    "premiumTrialExpiresOnProfile": "Jūs izmantojat Reverb izmēģinājuma versiju, kas beidzas {date}",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -1944,29 +1944,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "Jūs izmantojat Plutonium izmēģinājuma versiju",
+    "premiumTrialActiveProfile": "Jūs izmantojat Reverb izmēģinājuma versiju",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maksimālais izmērs 10 MB. Ieteicams: 512×512 pikseļi. Animētiem ietvariem (GIF) nepieciešams Plutonium.",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maksimālais izmērs 10 MB. Ieteicams: 512×512 pikseļi. Animētiem ietvariem (GIF) nepieciešams Reverb.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "Pielāgojiet savu profilu ar statisku vai animētu banera attēlu, lai tas izceltos.",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "Iegūt Plutonium",
+    "getPlutonium": "Iegūt Reverb",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "Pirkumi lietotnē vēl nav pieejami šajā platformā. Sekojiet līdzi — drīzumā!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "Priekšskatījums",
     "@profilePreviewLabel": {
@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Fluxer dalībnieks kopš",
+    "profilePreviewMemberSince": "Echowire dalībnieks kopš",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2088,7 +2088,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "Pārvaldiet e-pasta adresi, ko izmantojat, lai pieteiktos Fluxer",
+    "securityLoginEmailSectionDescription": "Pārvaldiet e-pasta adresi, ko izmantojat, lai pieteiktos Echowire",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section."
     },
@@ -2586,7 +2586,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Pirms konta dzēšanas atceliet savu aktīvo Plutonium abonementu Plutonium iestatījumos.",
+    "dangerZoneDeleteCancelSubscription": "Pirms konta dzēšanas atceliet savu aktīvo Reverb abonementu Reverb iestatījumos.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "Šīm lietojumprogrammām ir piešķirta piekļuve jūsu Fluxer kontam.",
+    "authorizedAppsDescription": "Šīm lietojumprogrammām ir piešķirta piekļuve jūsu Echowire kontam.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2844,7 +2844,7 @@
             }
         }
     },
-    "blockedUsersCopyTag": "Kopēt FluxerTag",
+    "blockedUsersCopyTag": "Kopēt EchoTag",
     "@blockedUsersCopyTag": {
         "description": "Context menu item that copies the user's tag."
     },
@@ -2876,27 +2876,27 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Fluxer personāls",
+    "userProfileStaffBadgeTooltip": "Echowire personāls",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Fluxer kopienas komanda",
+    "userProfileCtpBadgeTooltip": "Echowire kopienas komanda",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Fluxer partneris",
+    "userProfilePartnerBadgeTooltip": "Echowire partneris",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Fluxer Bug Hunter",
+    "userProfileBugHunterBadgeTooltip": "Echowire Bug Hunter",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Fluxer Plutonium",
+    "userProfilePlutoniumBadgeTooltip": "Echowire Reverb",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "Fluxer Plutonium abonents kopš {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "Echowire Reverb abonents kopš {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,11 +2905,11 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Fluxer Visionary",
+    "userProfileVisionaryBadgeTooltip": "Echowire Visionary",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileVisionaryBadgeSinceTooltip": "Fluxer Visionary kopš {date}",
+    "userProfileVisionaryBadgeSinceTooltip": "Echowire Visionary kopš {date}",
     "@userProfileVisionaryBadgeSinceTooltip": {
         "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "Sistēmas paziņojumi no {productName} personāla. Jūs nevarat atbildēt šeit.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "Saistiet ārējos kontus un domēnus ar savu Fluxer profilu. Verificēti savienojumi tiks parādīti jūsu profilā, lai citi varētu tos redzēt.",
+    "connectionsDescription": "Saistiet ārējos kontus un domēnus ar savu Echowire profilu. Verificēti savienojumi tiks parādīti jūsu profilā, lai citi varētu tos redzēt.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4364,7 +4364,7 @@
     "@connectionRemoveFailed": {
         "description": "Toast shown when the delete request fails."
     },
-    "connectionTokenSavedToast": "Fluxer-verification saglabāts",
+    "connectionTokenSavedToast": "Echowire-verification saglabāts",
     "@connectionTokenSavedToast": {
         "description": "Toast shown after the token file is saved successfully."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "Sakļaut DM mapē",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "Ja iespējots, nelasītie DM servera sānu joslā tiek sakļauti mapē zem Fluxer pogas. Noklikšķiniet uz Fluxer pogas, atrodoties DM lapā, lai atvērtu vai sakļautu mapi.",
+    "lookAndFeelCollapseDMsDescription": "Ja iespējots, nelasītie DM servera sānu joslā tiek sakļauti mapē zem Echowire pogas. Noklikšķiniet uz Echowire pogas, atrodoties DM lapā, lai atvērtu vai sakļautu mapi.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -4801,7 +4801,7 @@
     "@messagesMediaDisplayInlineEmbedLabel": {
         "description": "Toggle label for inlining media when posted as links."
     },
-    "messagesMediaDisplayInlineAttachmentLabel": "Kad augšupielādēts tieši uz Fluxer",
+    "messagesMediaDisplayInlineAttachmentLabel": "Kad augšupielādēts tieši uz Echowire",
     "@messagesMediaDisplayInlineAttachmentLabel": {
         "description": "Toggle label for inlining media for direct uploads."
     },
@@ -5467,7 +5467,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} rakstzīmes atlikušas. Iegūstiet {productName}, lai rakstītu līdz {premiumMaxLength} rakstzīmēm.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -5486,7 +5486,7 @@
     },
     "chatSendFailureDmRestricted": "Jūsu ziņojums netika piegādāts. Tas parasti notiek tāpēc, ka jums nav kopīgas kopienas ar saņēmēju vai saņēmējs pieņem tiešos ziņojumus tikai no draugiem. Iespējams, jums arī būs jāpielāgo savi tiešo ziņojumu privātuma iestatījumi sadaļā {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5495,27 +5495,27 @@
     },
     "chatSendFailureUnclaimedDm": "Jūsu ziņojums netika piegādāts. Lai nosūtītu tiešos ziņojumus, jums ir jāpieprasa savs konts.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Jūsu ziņojums netika piegādāts. Lai nosūtītu ziņojumus, jums ir jāpieprasa savs konts.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "Echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Jūsu ziņojums netika piegādāts, jo to atzīmēja mūsu drošības sistēmas. Ja uzskatāt, ka tā ir kļūda, lūdzu, sazinieties ar atbalsta dienestu.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "Echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Jūsu ziņojums netika piegādāts, jo tas satur saturiski neatbilstošus emocijzīmes vai uzlīmes, kas nav atļautas šajā kontekstā.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "Echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Šo ziņojumu var redzēt tikai jūs.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral Echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Noraidīt",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral Echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Komunikācija",
     "@privacyDashboardCommunicationSection": {
@@ -5874,7 +5874,7 @@
     "@iarReasonOtherLabel": {
         "description": "Rule-reason label for the catch-all option in the IAR message flow."
     },
-    "iarReasonOtherDescription": "Izmantojiet tikai tad, ja tas skaidri pārkāpj Fluxer noteikumus un nav piemērots iepriekš.",
+    "iarReasonOtherDescription": "Izmantojiet tikai tad, ja tas skaidri pārkāpj Echowire noteikumus un nav piemērots iepriekš.",
     "@iarReasonOtherDescription": {
         "description": "Rule-reason description for the catch-all option."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Dāvanas un kodi",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "Palīdziet uzlabot Fluxer, kopīgojot anonīmus datus par kļūmēm un veiktspēju.",
+    "advancedPerformanceReportingSectionDescription": "Palīdziet uzlabot Echowire, kopīgojot anonīmus datus par kļūmēm un veiktspēju.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "Visi ziņotie dati ir anonīmi un tiek sūtīti tikai uz Fluxer pašu uzraudzības pakalpojumu — netiek izmantoti trešo pušu nodrošinātāji.",
+    "advancedPerformanceReportingDescription": "Visi ziņotie dati ir anonīmi un tiek sūtīti tikai uz Echowire pašu uzraudzības pakalpojumu — netiek izmantoti trešo pušu nodrošinātāji.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "Lūdzu, ziņojiet par visām problēmām, ko atradīsiet, Fluxer Mobile kopienai (pašlaik, lai pievienotos kopienai, ir nepieciešams Plutonium).",
+    "betaWarningReportIssues": "Lūdzu, ziņojiet par visām problēmām, ko atradīsiet, Echowire Mobile kopienai (pašlaik, lai pievienotos kopienai, ir nepieciešams Reverb).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Atiestatīt uz Fluxer",
+    "resetToDefaultInstance": "Atiestatīt uz Echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
     },
     "instanceConnect": "Savienot",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Echowire instance."
     },
     "instanceConnecting": "Notiek savienošana…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Echowire instance."
     },
     "instanceConnectFailed": "Neizdevās savienot ar instanci",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "Mainīt",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Echowire instance."
     },
     "instanceConnectionRequired": "Lai pieteiktos, savienojieties ar instanci",
     "@instanceConnectionRequired": {
@@ -7267,7 +7267,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "Pieejams tikai Fluxer personālam",
+    "guildNavbarStaffOnlyAccessible": "Pieejams tikai Echowire personālam",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only."
     },

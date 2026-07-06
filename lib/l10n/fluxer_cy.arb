@@ -1234,11 +1234,11 @@
     },
     "addFriendNoUserFound": "Ni chafwyd defnyddiwr gyda'r enw defnyddiwr hwnnw.",
     "@addFriendNoUserFound": {
-        "description": "Error when no user matches the entered FluxerTag."
+        "description": "Error when no user matches the entered EchoTag."
     },
     "addFriendInvalidUsername": "Rhowch enw defnyddiwr dilys (Defnyddiwr#0000).",
     "@addFriendInvalidUsername": {
-        "description": "Error when the FluxerTag format is invalid."
+        "description": "Error when the EchoTag format is invalid."
     },
     "addFriendOutgoingSuccess": "Anfonwyd y cais ffrind",
     "@addFriendOutgoingSuccess": {
@@ -1472,7 +1472,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Datgloi {emojiCount} o {communityCount} gyda Plutonium.",
+    "emojiPlutoniumUpsellText": "Datgloi {emojiCount} o {communityCount} gyda Reverb.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -1484,13 +1484,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Sicrhewch Plutonium",
+    "emojiPlutoniumUpsellButton": "Sicrhewch Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "Peidiwch â dangos hyn eto",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 emoji personoliad} other{{count} emojïau personoliad}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1514,7 +1514,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "Rydych chi ar fin gadael Fluxer",
+    "externalLinkWarningLeaving": "Rydych chi ar fin gadael Echowire",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal."
     },
@@ -1603,11 +1603,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "Mae angen Plutonium ar gyfer avatars animeiddiedig",
+    "animatedAvatarsRequirePlutonium": "Mae angen Reverb ar gyfer avatars animeiddiedig",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "Mae angen Plutonium ar gyfer baneri animeiddiedig",
+    "animatedBannersRequirePlutonium": "Mae angen Reverb ar gyfer baneri animeiddiedig",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -1643,17 +1643,17 @@
     "@crop": {
         "description": "Button to confirm image crop."
     },
-    "changeYourFluxerTag": "Newid eich FluxerTag",
+    "changeYourFluxerTag": "Newid eich EchoTag",
     "@changeYourFluxerTag": {
-        "description": "Title for the FluxerTag change bottom sheet."
+        "description": "Title for the EchoTag change bottom sheet."
     },
-    "fluxerTagInputLabel": "FluxerTag",
+    "fluxerTagInputLabel": "EchoTag",
     "@fluxerTagInputLabel": {
         "description": "Label above the username and discriminator input fields."
     },
     "fluxerTagDescriptionBase": "Dim ond llythrennau (a-z, A-Z), rhifau (0-9), ac islinellau y gellir eu defnyddio mewn enwau defnyddiwr. Nid yw enwau defnyddiwr yn wahanol i feintiau llythrennau.",
     "@fluxerTagDescriptionBase": {
-        "description": "Base description text on the FluxerTag change sheet."
+        "description": "Base description text on the EchoTag change sheet."
     },
     "fluxerTagDescriptionVisionary": "Dim ond llythrennau (a-z, A-Z), rhifau (0-9), ac islinellau y gellir eu defnyddio mewn enwau defnyddiwr. Nid yw enwau defnyddiwr yn wahanol i feintiau llythrennau. Gallwch ddewis unrhyw dag 4 digid ar gael o #0000 i #9999.",
     "@fluxerTagDescriptionVisionary": {
@@ -1683,13 +1683,13 @@
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
-    "fluxerTagAlreadyTaken": "Mae'r FluxerTag eisoes wedi'i gymryd",
+    "fluxerTagAlreadyTaken": "Mae'r EchoTag eisoes wedi'i gymryd",
     "@fluxerTagAlreadyTaken": {
         "description": "Title for the tag-taken confirmation sheet."
     },
-    "fluxerTagAlreadyTakenBody": "Mae'r FluxerTag {username}#{discriminator} eisoes wedi'i gymryd. Bydd parhau yn ail-gylchu eich gwahaniaeth yn awtomatig.",
+    "fluxerTagAlreadyTakenBody": "Mae'r EchoTag {username}#{discriminator} eisoes wedi'i gymryd. Bydd parhau yn ail-gylchu eich gwahaniaeth yn awtomatig.",
     "@fluxerTagAlreadyTakenBody": {
-        "description": "Body text when the requested FluxerTag is taken.",
+        "description": "Body text when the requested EchoTag is taken.",
         "placeholders": {
             "username": {
                 "type": "String"
@@ -1703,7 +1703,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "Dim ond tra bod eich tanysgrifiad Plutonium yn weithredol y mae eich tag 4 digid personol ar gael. Pan ddaw eich tanysgrifiad i ben ar {date}, bydd eich tag yn dychwelyd i rif a neilltuwyd ar hap ar ôl cyfnod gras o 3 diwrnod.",
+    "customTagTemporaryBodyWithDate": "Dim ond tra bod eich tanysgrifiad Reverb yn weithredol y mae eich tag 4 digid personol ar gael. Pan ddaw eich tanysgrifiad i ben ar {date}, bydd eich tag yn dychwelyd i rif a neilltuwyd ar hap ar ôl cyfnod gras o 3 diwrnod.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -1712,7 +1712,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "Dim ond tra bod eich tanysgrifiad Plutonium yn weithredol y mae eich tag 4 digid personol ar gael. Pan ddaw eich tanysgrifiad i ben, bydd eich tag yn dychwelyd i rif a neilltuwyd ar hap ar ôl cyfnod gras o 3 diwrnod.",
+    "customTagTemporaryBody": "Dim ond tra bod eich tanysgrifiad Reverb yn weithredol y mae eich tag 4 digid personol ar gael. Pan ddaw eich tanysgrifiad i ben, bydd eich tag yn dychwelyd i rif a neilltuwyd ar hap ar ôl cyfnod gras o 3 diwrnod.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -1720,11 +1720,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "Os byddwch yn cadw'r FluxerTag hwn, bydd eich tag 4 digid personol yn dychwelyd i rif ar hap pan ddaw eich tanysgrifiad Plutonium i ben. Os bydd eich tanysgrifiad yn methu ag adnewyddu, bydd gennych gyfnod gras o 3 diwrnod cyn i'r tag newid.",
+    "premiumWarningPendingDiscriminator": "Os byddwch yn cadw'r EchoTag hwn, bydd eich tag 4 digid personol yn dychwelyd i rif ar hap pan ddaw eich tanysgrifiad Reverb i ben. Os bydd eich tanysgrifiad yn methu ag adnewyddu, bydd gennych gyfnod gras o 3 diwrnod cyn i'r tag newid.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "Mae eich tag 4 digid personol (#{discriminator}) yn weithredol tra bod eich tanysgrifiad Plutonium yn weithredol. Os daw eich tanysgrifiad i ben neu os bydd yn methu ag adnewyddu ar ôl cyfnod gras o 3 diwrnod, bydd eich tag yn dychwelyd i rif a neilltuwyd ar hap.",
+    "premiumWarningActiveDiscriminator": "Mae eich tag 4 digid personol (#{discriminator}) yn weithredol tra bod eich tanysgrifiad Reverb yn weithredol. Os daw eich tanysgrifiad i ben neu os bydd yn methu ag adnewyddu ar ôl cyfnod gras o 3 diwrnod, bydd eich tag yn dychwelyd i rif a neilltuwyd ar hap.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -1735,9 +1735,9 @@
     },
     "premiumUpsellCustomizeTag": "Addaswch eich tag 4 digid neu cadwch ef wrth newid eich enw defnyddiwr",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "Daw eich treial Plutonium i ben ar {date}. Uwchratiwch i gadw eich tag personol a chael bathodyn ar eich proffil.",
+    "premiumTrialExpiresOn": "Daw eich treial Reverb i ben ar {date}. Uwchratiwch i gadw eich tag personol a chael bathodyn ar eich proffil.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -1746,17 +1746,17 @@
             }
         }
     },
-    "premiumTrialActive": "Rydych chi ar dreial Plutonium. Uwchratiwch i gadw eich tag personol a chael bathodyn ar eich proffil.",
+    "premiumTrialActive": "Rydych chi ar dreial Reverb. Uwchratiwch i gadw eich tag personol a chael bathodyn ar eich proffil.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
-    "fluxerTagUpdated": "Mae'r FluxerTag wedi'i ddiweddaru",
+    "fluxerTagUpdated": "Mae'r EchoTag wedi'i ddiweddaru",
     "@fluxerTagUpdated": {
-        "description": "Success toast after FluxerTag change."
+        "description": "Success toast after EchoTag change."
     },
-    "fluxerTagUpdateFailed": "Methodd diweddaru'r FluxerTag. Rhowch gynnig arall arni.",
+    "fluxerTagUpdateFailed": "Methodd diweddaru'r EchoTag. Rhowch gynnig arall arni.",
     "@fluxerTagUpdateFailed": {
-        "description": "Error message when FluxerTag update fails."
+        "description": "Error message when EchoTag update fails."
     },
     "continueAction": "Parhau",
     "@continueAction": {
@@ -1774,17 +1774,17 @@
     "@usernameLabel": {
         "description": "Label for the username field in profile settings."
     },
-    "claimAccountToChangeFluxerTag": "Hawlio eich cyfrif i newid eich FluxerTag",
+    "claimAccountToChangeFluxerTag": "Hawlio eich cyfrif i newid eich EchoTag",
     "@claimAccountToChangeFluxerTag": {
-        "description": "Tooltip when unverified user hovers the disabled Change FluxerTag button."
+        "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
     },
-    "changeFluxerTag": "Newch FluxerTag",
+    "changeFluxerTag": "Newch EchoTag",
     "@changeFluxerTag": {
-        "description": "Button label to open the FluxerTag change flow."
+        "description": "Button label to open the EchoTag change flow."
     },
     "customizeTagWithPlutoniumTooltip": "Addwch eich tag 4-digid (#{discriminator}) i'ch dant gyda Phlwtōniwm",
     "@customizeTagWithPlutoniumTooltip": {
-        "description": "Tooltip on the crown upsell button next to the FluxerTag button.",
+        "description": "Tooltip on the crown upsell button next to the EchoTag button.",
         "placeholders": {
             "discriminator": {
                 "type": "String"
@@ -1874,19 +1874,19 @@
     },
     "hidePlutoniumBadgeLabel": "Cuddio bathodyn Phlwtōniwm yn gyfan gwbl",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
     "hidePlutoniumBadgeDescription": "Cuddio'ch bathodyn Phlwtōniwm yn llwyr rhag defnyddwyr eraill",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
     "hidePlutoniumPurchaseDate": "Cuddio dyddiad prynu Phlwtōniwm",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
     "hidePlutoniumPurchaseDateWithDate": "Cuddio dyddiad prynu Phlwtōniwm ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
@@ -1895,7 +1895,7 @@
     },
     "hidePurchaseDateDescription": "Dileu pryd y prynoch Phlwtōniwm gyntaf o'ch bathodyn",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "Masgio Gweledydd fel tanysgrifiad",
     "@maskVisionaryAsSubscription": {
@@ -1950,7 +1950,7 @@
     },
     "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Uchafswm 10MB. Argymhellir: 512×512px. Mae angen Phlwtōniwm ar gyfer aelod-luniau animeiddiedig (GIF).",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "Personolwch eich proffil gyda delwedd faner statig neu animeiddiedig i'w gwneud yn arbennig.",
     "@bannerPlutoniumUpsell": {
@@ -1958,15 +1958,15 @@
     },
     "getPlutonium": "Cael Phlwtōniwm",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
     "plutoniumNotAvailableTitle": "Phlwtōniwm",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "Nid yw pryniannau yn yr ap ar gael ar y platfform hwn eto. Arhoswch yn tiwn — yn fuan!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "Rhagolwg",
     "@profilePreviewLabel": {
@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Aelod Fluxer Ers",
+    "profilePreviewMemberSince": "Aelod Echowire Ers",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2088,7 +2088,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "Rheoli'r cyfeiriad e-bost rydych chi'n ei ddefnyddio i fewngofnodi i Fluxer",
+    "securityLoginEmailSectionDescription": "Rheoli'r cyfeiriad e-bost rydych chi'n ei ddefnyddio i fewngofnodi i Echowire",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "Mae'r cymhwysiadau hyn wedi cael caniatâd i gyrchu eich cyfrif Fluxer.",
+    "authorizedAppsDescription": "Mae'r cymhwysiadau hyn wedi cael caniatâd i gyrchu eich cyfrif Echowire.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2844,7 +2844,7 @@
             }
         }
     },
-    "blockedUsersCopyTag": "Copïo FluxerTag",
+    "blockedUsersCopyTag": "Copïo EchoTag",
     "@blockedUsersCopyTag": {
         "description": "Context menu item that copies the user's tag."
     },
@@ -2876,27 +2876,27 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Staff Fluxer",
+    "userProfileStaffBadgeTooltip": "Staff Echowire",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Tîm Cymuned Fluxer",
+    "userProfileCtpBadgeTooltip": "Tîm Cymuned Echowire",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Partner Fluxer",
+    "userProfilePartnerBadgeTooltip": "Partner Echowire",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Heliwr Bugiau Fluxer",
+    "userProfileBugHunterBadgeTooltip": "Heliwr Bugiau Echowire",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Plwtoniwm Fluxer",
+    "userProfilePlutoniumBadgeTooltip": "Plwtoniwm Echowire",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "tanysgrifiwr Plwtoniwm Fluxer er {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "tanysgrifiwr Plwtoniwm Echowire er {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,7 +2905,7 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Gweledydd Fluxer",
+    "userProfileVisionaryBadgeTooltip": "Gweledydd Echowire",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "Cyhoeddiadau system gan staff {productName}. Ni allwch ymateb yma.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "Cysylltwch gyfrifon ac ardaloedd allanol i'ch proffil Fluxer. Bydd cysylltiadau wedi'u dilysu yn cael eu harddangos ar eich proffil i eraill eu gweld.",
+    "connectionsDescription": "Cysylltwch gyfrifon ac ardaloedd allanol i'ch proffil Echowire. Bydd cysylltiadau wedi'u dilysu yn cael eu harddangos ar eich proffil i eraill eu gweld.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "Crymchu DMau I Foldr",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "Pan fydd wedi'i alluogi, mae DMau heb eu darllen yn y bar ochr achlysur yn cael eu crychu i mewn i ffolder ar y botwm Fluxer. Cliciwch y botwm Fluxer tra'ch bod ar dudalen DMau i ehangu neu grychu'r ffolder.",
+    "lookAndFeelCollapseDMsDescription": "Pan fydd wedi'i alluogi, mae DMau heb eu darllen yn y bar ochr achlysur yn cael eu crychu i mewn i ffolder ar y botwm Echowire. Cliciwch y botwm Echowire tra'ch bod ar dudalen DMau i ehangu neu grychu'r ffolder.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -4801,7 +4801,7 @@
     "@messagesMediaDisplayInlineEmbedLabel": {
         "description": "Toggle label for inlining media when posted as links."
     },
-    "messagesMediaDisplayInlineAttachmentLabel": "Pan fyddant wedi'u huwchlwytho'n uniongyrchol i Fluxer",
+    "messagesMediaDisplayInlineAttachmentLabel": "Pan fyddant wedi'u huwchlwytho'n uniongyrchol i Echowire",
     "@messagesMediaDisplayInlineAttachmentLabel": {
         "description": "Toggle label for inlining media for direct uploads."
     },
@@ -5467,7 +5467,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} characters left. Get {productName} to write up to {premiumMaxLength} characters.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -5486,7 +5486,7 @@
     },
     "chatSendFailureDmRestricted": "Your message could not be delivered. This is usually because you don't share a community with the recipient or the recipient is only accepting direct messages from friends. You may also need to adjust your own direct message privacy settings in {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5495,27 +5495,27 @@
     },
     "chatSendFailureUnclaimedDm": "Your message could not be delivered. You need to claim your account to send direct messages.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Your message could not be delivered. You need to claim your account to send messages.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "Echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Your message could not be delivered because it was flagged by our safety systems. If you believe this is a mistake, please contact support.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "Echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Your message could not be delivered because it contains mature emoji or stickers that are not allowed in this context.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "Echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Only you can see this message.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral Echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Dismiss",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral Echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Cyfathrebu",
     "@privacyDashboardCommunicationSection": {
@@ -5874,7 +5874,7 @@
     "@iarReasonOtherLabel": {
         "description": "Rule-reason label for the catch-all option in the IAR message flow."
     },
-    "iarReasonOtherDescription": "Defnyddiwch yn unig os yw'n torri rheolau Fluxer yn amlwg ac nid yw'n cyd-fynd â'r uchod.",
+    "iarReasonOtherDescription": "Defnyddiwch yn unig os yw'n torri rheolau Echowire yn amlwg ac nid yw'n cyd-fynd â'r uchod.",
     "@iarReasonOtherDescription": {
         "description": "Rule-reason description for the catch-all option."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Rhoddion a Chodau",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "Helpwch i wella Fluxer trwy rannu data damweiniau a pherfformiad dienw.",
+    "advancedPerformanceReportingSectionDescription": "Helpwch i wella Echowire trwy rannu data damweiniau a pherfformiad dienw.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "Mae'r holl ddata a adroddir yn ddienw ac fe'i hanfonir yn unig at wasanaeth monitro Fluxer ei hun - ni ddefnyddir darparwyr trydydd parti.",
+    "advancedPerformanceReportingDescription": "Mae'r holl ddata a adroddir yn ddienw ac fe'i hanfonir yn unig at wasanaeth monitro Echowire ei hun - ni ddefnyddir darparwyr trydydd parti.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "Rhowch wybod am unrhyw broblemau a geir i gymuned Fluxer Mobile (mae'n rhaid i chi fod â Plutonium i allu ymuno â'r gymuned ar hyn o bryd).",
+    "betaWarningReportIssues": "Rhowch wybod am unrhyw broblemau a geir i gymuned Echowire Mobile (mae'n rhaid i chi fod â Reverb i allu ymuno â'r gymuned ar hyn o bryd).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Ailosod i Fluxer",
+    "resetToDefaultInstance": "Ailosod i Echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
     },
     "instanceConnect": "Cysylltu",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Echowire instance."
     },
     "instanceConnecting": "Yn cysylltu…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Echowire instance."
     },
     "instanceConnectFailed": "Methu cysylltu â'r parth",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "Newid",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Echowire instance."
     },
     "instanceConnectionRequired": "Cysylltu â'r parth i fewngofnodi",
     "@instanceConnectionRequired": {
@@ -7267,7 +7267,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "Dim ond staff Fluxer all gyrchu",
+    "guildNavbarStaffOnlyAccessible": "Dim ond staff Echowire all gyrchu",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only."
     },

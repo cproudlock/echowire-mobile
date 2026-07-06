@@ -1234,11 +1234,11 @@
     },
     "addFriendNoUserFound": "Sellise kasutajanimaga kasutajat ei leitud.",
     "@addFriendNoUserFound": {
-        "description": "Error when no user matches the entered FluxerTag."
+        "description": "Error when no user matches the entered EchoTag."
     },
     "addFriendInvalidUsername": "Sisestage kehtiv kasutajanimi (Kasutajanimi#0000).",
     "@addFriendInvalidUsername": {
-        "description": "Error when the FluxerTag format is invalid."
+        "description": "Error when the EchoTag format is invalid."
     },
     "addFriendOutgoingSuccess": "Sõbrakutse saadetud",
     "@addFriendOutgoingSuccess": {
@@ -1472,7 +1472,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Ava {emojiCount} {communityCount}st Plutoniumiga.",
+    "emojiPlutoniumUpsellText": "Ava {emojiCount} {communityCount}st Reverbiga.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -1484,13 +1484,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Hangi Plutonium",
+    "emojiPlutoniumUpsellButton": "Hangi Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "Ära näita seda uuesti",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 kohandatud emotikon} other{{count} kohandatud emotikoni}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1514,7 +1514,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "Olete lahkumas Fluxerist",
+    "externalLinkWarningLeaving": "Olete lahkumas Echowireist",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal."
     },
@@ -1603,11 +1603,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "Animeeritud avatari jaoks on vaja Plutoniumi",
+    "animatedAvatarsRequirePlutonium": "Animeeritud avatari jaoks on vaja Reverbi",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "Animeeritud bannerite jaoks on vaja Plutoniumi",
+    "animatedBannersRequirePlutonium": "Animeeritud bannerite jaoks on vaja Reverbi",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -1643,17 +1643,17 @@
     "@crop": {
         "description": "Button to confirm image crop."
     },
-    "changeYourFluxerTag": "Muuda oma FluxerTagi",
+    "changeYourFluxerTag": "Muuda oma EchoTagi",
     "@changeYourFluxerTag": {
-        "description": "Title for the FluxerTag change bottom sheet."
+        "description": "Title for the EchoTag change bottom sheet."
     },
-    "fluxerTagInputLabel": "FluxerTag",
+    "fluxerTagInputLabel": "EchoTag",
     "@fluxerTagInputLabel": {
         "description": "Label above the username and discriminator input fields."
     },
     "fluxerTagDescriptionBase": "Kasutajanimed võivad sisaldada ainult tähti (a-z, A-Z), numbreid (0-9) ja allkriipse. Kasutajanimed ei ole tõstutundlikud.",
     "@fluxerTagDescriptionBase": {
-        "description": "Base description text on the FluxerTag change sheet."
+        "description": "Base description text on the EchoTag change sheet."
     },
     "fluxerTagDescriptionVisionary": "Kasutajanimed võivad sisaldada ainult tähti (a-z, A-Z), numbreid (0-9) ja allkriipse. Kasutajanimed ei ole tõstutundlikud. Saate valida mis tahes saadaoleva 4-kohalise sildi vahemikus #0000 kuni #9999.",
     "@fluxerTagDescriptionVisionary": {
@@ -1679,17 +1679,17 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "Hankige Plutonium, et kohandada oma silti või säilitada see kasutajanime muutmisel",
+    "discriminatorPremiumTooltip": "Hankige Reverb, et kohandada oma silti või säilitada see kasutajanime muutmisel",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
-    "fluxerTagAlreadyTaken": "FluxerTag on juba võetud",
+    "fluxerTagAlreadyTaken": "EchoTag on juba võetud",
     "@fluxerTagAlreadyTaken": {
         "description": "Title for the tag-taken confirmation sheet."
     },
-    "fluxerTagAlreadyTakenBody": "FluxerTag {username}#{discriminator} on juba võetud. Jätkamisel teie number juhitakse automaatselt uuesti.",
+    "fluxerTagAlreadyTakenBody": "EchoTag {username}#{discriminator} on juba võetud. Jätkamisel teie number juhitakse automaatselt uuesti.",
     "@fluxerTagAlreadyTakenBody": {
-        "description": "Body text when the requested FluxerTag is taken.",
+        "description": "Body text when the requested EchoTag is taken.",
         "placeholders": {
             "username": {
                 "type": "String"
@@ -1703,7 +1703,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "Teie kohandatud 4-kohaline silt on saadaval ainult teie Plutoniumi tellimuse kehtivuse ajal. Kui teie tellimus aegub {date}, naaseb teie silt 3-päevase armuaja järel juhuslikult määratud numbrile.",
+    "customTagTemporaryBodyWithDate": "Teie kohandatud 4-kohaline silt on saadaval ainult teie Reverbi tellimuse kehtivuse ajal. Kui teie tellimus aegub {date}, naaseb teie silt 3-päevase armuaja järel juhuslikult määratud numbrile.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -1712,7 +1712,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "Teie kohandatud 4-kohaline silt on saadaval ainult teie Plutoniumi tellimuse kehtivuse ajal. Kui teie tellimus aegub, naaseb teie silt 3-päevase armuaja järel juhuslikult määratud numbrile.",
+    "customTagTemporaryBody": "Teie kohandatud 4-kohaline silt on saadaval ainult teie Reverbi tellimuse kehtivuse ajal. Kui teie tellimus aegub, naaseb teie silt 3-päevase armuaja järel juhuslikult määratud numbrile.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -1720,11 +1720,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "Kui salvestate selle FluxerTagi, naaseb teie kohandatud 4-kohaline silt juhuslikule numbrile, kui teie Plutoniumi tellimus lõpeb. Kui teie tellimus ei uuene, on teil enne sildi muutumist 3-päevane armuaeg.",
+    "premiumWarningPendingDiscriminator": "Kui salvestate selle EchoTagi, naaseb teie kohandatud 4-kohaline silt juhuslikule numbrile, kui teie Reverbi tellimus lõpeb. Kui teie tellimus ei uuene, on teil enne sildi muutumist 3-päevane armuaeg.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "Teie kohandatud 4-kohaline silt (#{discriminator}) on aktiivne teie Plutoniumi tellimuse kehtivuse ajal. Kui teie tellimus lõpeb või ei uuene pärast 3-päevast armuaega, naaseb teie silt juhuslikule numbrile.",
+    "premiumWarningActiveDiscriminator": "Teie kohandatud 4-kohaline silt (#{discriminator}) on aktiivne teie Reverbi tellimuse kehtivuse ajal. Kui teie tellimus lõpeb või ei uuene pärast 3-päevast armuaega, naaseb teie silt juhuslikule numbrile.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -1735,9 +1735,9 @@
     },
     "premiumUpsellCustomizeTag": "Kohandage oma 4-kohalist silti või säilitage see kasutajanime muutmisel",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "Teie Plutoniumi prooviversioon aegub {date}. Uuendage, et säilitada oma kohandatud silt ja teenida oma profiilil märguanne.",
+    "premiumTrialExpiresOn": "Teie Reverbi prooviversioon aegub {date}. Uuendage, et säilitada oma kohandatud silt ja teenida oma profiilil märguanne.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -1746,17 +1746,17 @@
             }
         }
     },
-    "premiumTrialActive": "Olete Plutoniumi prooviversioonil. Uuendage, et säilitada oma kohandatud silt ja teenida oma profiilil märguanne.",
+    "premiumTrialActive": "Olete Reverbi prooviversioonil. Uuendage, et säilitada oma kohandatud silt ja teenida oma profiilil märguanne.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
-    "fluxerTagUpdated": "FluxerTagi värskendati",
+    "fluxerTagUpdated": "EchoTagi värskendati",
     "@fluxerTagUpdated": {
-        "description": "Success toast after FluxerTag change."
+        "description": "Success toast after EchoTag change."
     },
-    "fluxerTagUpdateFailed": "FluxerTagi värskendamine ebaõnnestus. Proovige uuesti.",
+    "fluxerTagUpdateFailed": "EchoTagi värskendamine ebaõnnestus. Proovige uuesti.",
     "@fluxerTagUpdateFailed": {
-        "description": "Error message when FluxerTag update fails."
+        "description": "Error message when EchoTag update fails."
     },
     "continueAction": "Jätka",
     "@continueAction": {
@@ -1774,17 +1774,17 @@
     "@usernameLabel": {
         "description": "Label for the username field in profile settings."
     },
-    "claimAccountToChangeFluxerTag": "Kinnitage oma konto, et muuta oma FluxerTagi",
+    "claimAccountToChangeFluxerTag": "Kinnitage oma konto, et muuta oma EchoTagi",
     "@claimAccountToChangeFluxerTag": {
-        "description": "Tooltip when unverified user hovers the disabled Change FluxerTag button."
+        "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
     },
-    "changeFluxerTag": "Muuda FluxerTagi",
+    "changeFluxerTag": "Muuda EchoTagi",
     "@changeFluxerTag": {
-        "description": "Button label to open the FluxerTag change flow."
+        "description": "Button label to open the EchoTag change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "Kohanda oma 4-kohaline tag (#{discriminator}) Plutoniumiga oma maitse järgi",
+    "customizeTagWithPlutoniumTooltip": "Kohanda oma 4-kohaline tag (#{discriminator}) Reverbiga oma maitse järgi",
     "@customizeTagWithPlutoniumTooltip": {
-        "description": "Tooltip on the crown upsell button next to the FluxerTag button.",
+        "description": "Tooltip on the crown upsell button next to the EchoTag button.",
         "placeholders": {
             "discriminator": {
                 "type": "String"
@@ -1795,7 +1795,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "Sinu kohandatud tag (#{discriminator}) on seotud sinu Plutoniumi tellimusega ja muutub juhuslikuks tagiks, kui see aegub.",
+    "customTagSubscriptionWarning": "Sinu kohandatud tag (#{discriminator}) on seotud sinu Reverbi tellimusega ja muutub juhuslikuks tagiks, kui see aegub.",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -1864,38 +1864,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Plutoniumi märgi privaatsus",
+    "plutoniumBadgePrivacyTitle": "Reverbi märgi privaatsus",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "Kontrolli, kuidas sinu Plutoniumi märki teistele kuvatakse",
+    "plutoniumBadgePrivacyDescription": "Kontrolli, kuidas sinu Reverbi märki teistele kuvatakse",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "Peida Plutoniumi märgi täielikult",
+    "hidePlutoniumBadgeLabel": "Peida Reverbi märgi täielikult",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "Peida oma Plutoniumi märgi täielikult teistelt kasutajatelt",
+    "hidePlutoniumBadgeDescription": "Peida oma Reverbi märgi täielikult teistelt kasutajatelt",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "Peida Plutoniumi ostukuupäev",
+    "hidePlutoniumPurchaseDate": "Peida Reverbi ostukuupäev",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "Peida Plutoniumi ostukuupäev ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "Peida Reverbi ostukuupäev ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "Eemalda oma Plutoniumi ostukuupäev oma märgilt",
+    "hidePurchaseDateDescription": "Eemalda oma Reverbi ostukuupäev oma märgilt",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "Maskeeri Visionary tellimusena",
     "@maskVisionaryAsSubscription": {
@@ -1922,7 +1922,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "Oled Plutoniumi prooviversioonil — sinu tellimus algab {date}",
+    "premiumTrialSubscriptionStarts": "Oled Reverbi prooviversioonil — sinu tellimus algab {date}",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -1935,7 +1935,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "Oled Plutoniumi prooviversioonil, mis aegub {date}",
+    "premiumTrialExpiresOnProfile": "Oled Reverbi prooviversioonil, mis aegub {date}",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -1944,29 +1944,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "Oled Plutoniumi prooviversioonil",
+    "premiumTrialActiveProfile": "Oled Reverbi prooviversioonil",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max 10MB. Soovitatav: 512×512px. Animeeritud avatarid (GIF) nõuavad Plutoniumi.",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max 10MB. Soovitatav: 512×512px. Animeeritud avatarid (GIF) nõuavad Reverbi.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "Kohanda oma profiili staatilise või animeeritud bänneriga, et see silma paistaks.",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "Hangi Plutoniumi",
+    "getPlutonium": "Hangi Reverbi",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "Rakendusesisesed ostud pole sellel platvormil veel saadaval. Hoia silma peal — varsti tulemas!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "Eelvaade",
     "@profilePreviewLabel": {
@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Fluxeri liige alates",
+    "profilePreviewMemberSince": "Echowirei liige alates",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2088,7 +2088,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "Hallake e-posti aadressi, mida kasutate Fluxerisse sisselogimiseks",
+    "securityLoginEmailSectionDescription": "Hallake e-posti aadressi, mida kasutate Echowireisse sisselogimiseks",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section."
     },
@@ -2586,7 +2586,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Enne konto kustutamist tühistage oma aktiivne Plutoniumi tellimus Plutoniumi seadetes.",
+    "dangerZoneDeleteCancelSubscription": "Enne konto kustutamist tühistage oma aktiivne Reverbi tellimus Reverbi seadetes.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "Nendel rakendustel on lubatud teie Fluxeri kontole juurde pääseda.",
+    "authorizedAppsDescription": "Nendel rakendustel on lubatud teie Echowirei kontole juurde pääseda.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2844,7 +2844,7 @@
             }
         }
     },
-    "blockedUsersCopyTag": "Kopeeri Fluxeri silt",
+    "blockedUsersCopyTag": "Kopeeri Echowirei silt",
     "@blockedUsersCopyTag": {
         "description": "Context menu item that copies the user's tag."
     },
@@ -2876,27 +2876,27 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Fluxeri personal",
+    "userProfileStaffBadgeTooltip": "Echowirei personal",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Fluxeri kogukonnatiim",
+    "userProfileCtpBadgeTooltip": "Echowirei kogukonnatiim",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Fluxeri partner",
+    "userProfilePartnerBadgeTooltip": "Echowirei partner",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Fluxeri veehiilaja",
+    "userProfileBugHunterBadgeTooltip": "Echowirei veehiilaja",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Fluxeri Plutoonium",
+    "userProfilePlutoniumBadgeTooltip": "Echowirei Plutoonium",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "Fluxeri Plutooniumi liige alates {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "Echowirei Plutooniumi liige alates {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,11 +2905,11 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Fluxeri visionäär",
+    "userProfileVisionaryBadgeTooltip": "Echowirei visionäär",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileVisionaryBadgeSinceTooltip": "Fluxeri visionäär alates {date}",
+    "userProfileVisionaryBadgeSinceTooltip": "Echowirei visionäär alates {date}",
     "@userProfileVisionaryBadgeSinceTooltip": {
         "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "Süsteemiteated {productName} personalilt. Siia ei saa vastata.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "Linkige välised kontod ja domeenid oma Fluxeri profiiliga. Verifitseeritud ühendused kuvatakse teie profiilil.",
+    "connectionsDescription": "Linkige välised kontod ja domeenid oma Echowirei profiiliga. Verifitseeritud ühendused kuvatakse teie profiilil.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "Paki DM-id kausta",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "Kui see on lubatud, pakitakse serveri külgribal olevad lugemata DM-id kausta Fluxeri nupu alla. Kausta laiendamiseks või kokku pakkimiseks klõpsake DM-ide lehel olles Fluxeri nuppu.",
+    "lookAndFeelCollapseDMsDescription": "Kui see on lubatud, pakitakse serveri külgribal olevad lugemata DM-id kausta Echowirei nupu alla. Kausta laiendamiseks või kokku pakkimiseks klõpsake DM-ide lehel olles Echowirei nuppu.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -4801,7 +4801,7 @@
     "@messagesMediaDisplayInlineEmbedLabel": {
         "description": "Toggle label for inlining media when posted as links."
     },
-    "messagesMediaDisplayInlineAttachmentLabel": "Kui laaditakse otse Fluxerisse üles",
+    "messagesMediaDisplayInlineAttachmentLabel": "Kui laaditakse otse Echowireisse üles",
     "@messagesMediaDisplayInlineAttachmentLabel": {
         "description": "Toggle label for inlining media for direct uploads."
     },
@@ -5467,7 +5467,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} tähemärki jäänud. Hankige {productName}, et kirjutada kuni {premiumMaxLength} tähemärki.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -5486,7 +5486,7 @@
     },
     "chatSendFailureDmRestricted": "Sinu sõnumit ei saanud edastada. Tavaliselt on see nii, et sul ei ole adressaadiga ühist kogukonda või adressaat aktsepteerib otsesõnumeid ainult sõpradelt. Võib-olla peate oma otsesõnumite privaatsusseadeid muutma jaotises {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5495,27 +5495,27 @@
     },
     "chatSendFailureUnclaimedDm": "Sinu sõnumit ei saanud edastada. Otsesõnumite saatmiseks peate oma konto kinnitama.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Sõnumit ei saanud edastada. Sõnumite saatmiseks peate oma konto kinnitama.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "Echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Sinu sõnumit ei saanud edastada, kuna see märgiti meie turvasüsteemide poolt. Kui arvate, et see on viga, võtke ühendust tugiteenusega.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "Echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Sinu sõnumit ei saanud edastada, kuna see sisaldab täiskasvanutele mõeldud emotikone või kleebiseid, mida selles kontekstis ei lubata.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "Echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Ainult sina saad seda sõnumit näha.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral Echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Sulge",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral Echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Suhtlus",
     "@privacyDashboardCommunicationSection": {
@@ -5874,7 +5874,7 @@
     "@iarReasonOtherLabel": {
         "description": "Rule-reason label for the catch-all option in the IAR message flow."
     },
-    "iarReasonOtherDescription": "Kasutage ainult siis, kui see rikub selgelt Fluxeri reegleid ja ei sobi ülaltooduga.",
+    "iarReasonOtherDescription": "Kasutage ainult siis, kui see rikub selgelt Echowirei reegleid ja ei sobi ülaltooduga.",
     "@iarReasonOtherDescription": {
         "description": "Rule-reason description for the catch-all option."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Kingitused ja koodid",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "Aidake Fluxerit parandada, jagades anonüümseid krahhi- ja toimivusandmeid.",
+    "advancedPerformanceReportingSectionDescription": "Aidake Echowireit parandada, jagades anonüümseid krahhi- ja toimivusandmeid.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "Kõik aruandluses olevad andmed on anonüümsed ja saadetakse ainult Fluxeri enda jälgimisteenusesse – kolmandate osapoolte pakkujaid ei kasutata.",
+    "advancedPerformanceReportingDescription": "Kõik aruandluses olevad andmed on anonüümsed ja saadetakse ainult Echowirei enda jälgimisteenusesse – kolmandate osapoolte pakkujaid ei kasutata.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "Palun teatage kõigist leitud probleemidest Fluxeri mobiili kogukonnale (praegu saate kogukonnaga liitumiseks vajalik Plutonium).",
+    "betaWarningReportIssues": "Palun teatage kõigist leitud probleemidest Echowirei mobiili kogukonnale (praegu saate kogukonnaga liitumiseks vajalik Reverb).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Lähtesta Fluxerile",
+    "resetToDefaultInstance": "Lähtesta Echowireile",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
     },
     "instanceConnect": "Ühenda",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Echowire instance."
     },
     "instanceConnecting": "Ühendub…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Echowire instance."
     },
     "instanceConnectFailed": "Ühendus instansiga nurjus",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "Muuda",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Echowire instance."
     },
     "instanceConnectionRequired": "Logimiseks ühendu instansiga",
     "@instanceConnectionRequired": {
@@ -7267,7 +7267,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "Ainult Fluxeri personali jaoks saadaval",
+    "guildNavbarStaffOnlyAccessible": "Ainult Echowirei personali jaoks saadaval",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only."
     },

@@ -496,7 +496,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                       baseline: TextBaseline.alphabetic,
                       child: FluxerTextLink(
                         text: l10n.registerConsentTerms,
-                        url: 'https://fluxer.app/terms',
+                        url: 'https://echowire.org/terms',
                         style: textStyles.bodySmall,
                       ),
                     ),
@@ -506,7 +506,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                       baseline: TextBaseline.alphabetic,
                       child: FluxerTextLink(
                         text: l10n.registerConsentPrivacy,
-                        url: 'https://fluxer.app/privacy',
+                        url: 'https://echowire.org/privacy',
                         style: textStyles.bodySmall,
                       ),
                     ),

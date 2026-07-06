@@ -83,5 +83,8 @@ workflows:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
-        beta_groups:
-          - Testers
+        # NOTE: do NOT list internal groups (e.g. "Testers") here. Internal
+        # TestFlight groups auto-receive every uploaded build; the App Store
+        # Connect API rejects assigning a build to an internal group
+        # ("Cannot add internal group to a build"). Only list EXTERNAL groups
+        # here, and only after the group exists + has passed Beta App Review.

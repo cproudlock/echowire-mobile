@@ -21,6 +21,8 @@ Future<void> showThreadsSheet(
   );
 }
 
+enum _ThreadModAction { togglePin, toggleArchive, toggleLock, delete }
+
 class _ThreadListView extends ConsumerStatefulWidget {
   const _ThreadListView({required this.parentChannel, required this.close});
 
@@ -81,6 +83,57 @@ class _ThreadListViewState extends ConsumerState<_ThreadListView> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Could not create thread: $e')),
       );
+    }
+  }
+
+  Widget _buildModMenu(Channel t) {
+    return PopupMenuButton<_ThreadModAction>(
+      icon: const Icon(PhosphorIconsBold.dotsThreeVertical, size: 18),
+      tooltip: 'Manage',
+      onSelected: (_ThreadModAction a) => _moderate(t, a),
+      itemBuilder: (BuildContext context) =>
+          <PopupMenuEntry<_ThreadModAction>>[
+            PopupMenuItem<_ThreadModAction>(
+              value: _ThreadModAction.togglePin,
+              child: Text((t.threadPinned ?? false) ? 'Unpin' : 'Pin'),
+            ),
+            PopupMenuItem<_ThreadModAction>(
+              value: _ThreadModAction.toggleArchive,
+              child: Text(t.isArchived ? 'Unarchive' : 'Archive'),
+            ),
+            PopupMenuItem<_ThreadModAction>(
+              value: _ThreadModAction.toggleLock,
+              child: Text(t.isLocked ? 'Unlock' : 'Lock'),
+            ),
+            const PopupMenuItem<_ThreadModAction>(
+              value: _ThreadModAction.delete,
+              child: Text('Delete'),
+            ),
+          ],
+    );
+  }
+
+  Future<void> _moderate(Channel t, _ThreadModAction action) async {
+    final ThreadRepository repo = ref.read(threadRepositoryProvider);
+    try {
+      switch (action) {
+        case _ThreadModAction.togglePin:
+          await repo.updateThread(t.id, pinned: !(t.threadPinned ?? false));
+        case _ThreadModAction.toggleArchive:
+          await repo.updateThread(t.id, archived: !t.isArchived);
+        case _ThreadModAction.toggleLock:
+          await repo.updateThread(t.id, locked: !t.isLocked);
+        case _ThreadModAction.delete:
+          await repo.deleteThread(t.id);
+      }
+      _reload();
+    } on Exception catch (e) {
+      if (!mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Action failed: $e')));
     }
   }
 
@@ -166,9 +219,11 @@ class _ThreadListViewState extends ConsumerState<_ThreadListView> {
                             '${t.threadMessageCount} messages',
                           if (t.threadMemberCount != null)
                             '${t.threadMemberCount} members',
+                          if (t.isLocked) 'Locked',
                           if (t.isArchived) 'Archived',
                         ].join('  ·  '),
                       ),
+                      trailing: _buildModMenu(t),
                       onTap: () => _openThread(t),
                     );
                   },

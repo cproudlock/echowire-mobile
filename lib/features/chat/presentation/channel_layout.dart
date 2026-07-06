@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/category_channel_route_handler.dart';
+import 'package:fluxer_app/features/channels/presentation/widgets/forum_channel_view.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/link_channel_route_handler.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
@@ -41,6 +42,7 @@ class ChannelLayout extends ConsumerWidget {
     final bool isLinkChannel = channel?.type == ChannelType.guildLink;
     final bool isCategoryChannel = channel?.type == ChannelType.guildCategory;
     final bool isVoiceChannel = channel?.type == ChannelType.guildVoice;
+    final bool isForumChannel = channel?.type == ChannelType.guildForum;
     final isMobile = isMobileLayout(context);
     final AsyncValue<bool> showGateAsync = ref.watch(
       shouldShowMatureContentGateProvider(channelId),
@@ -67,6 +69,8 @@ class ChannelLayout extends ConsumerWidget {
           )
         : isVoiceChannel
         ? VoiceChannelPageView(guildId: guildId, channelId: channelId)
+        : isForumChannel && channel != null
+        ? ForumChannelView(channel: channel, guildId: guildId)
         : ChannelChatContent(
             channelId: channelId,
             targetMessageId: messageId,

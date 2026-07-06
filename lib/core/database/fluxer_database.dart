@@ -137,7 +137,7 @@ class FluxerDatabase extends _$FluxerDatabase {
   FluxerDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 69;
+  int get schemaVersion => 70;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -656,6 +656,25 @@ class FluxerDatabase extends _$FluxerDatabase {
           userPreferencesTable,
           userPreferencesTable.customThemeCss,
         );
+      }
+      if (from < 70) {
+        // Echowire: thread + forum channel columns.
+        await m.addColumn(channels, channels.ownerId);
+        await m.addColumn(channels, channels.threadArchived);
+        await m.addColumn(channels, channels.threadAutoArchiveDuration);
+        await m.addColumn(channels, channels.threadArchiveTimestamp);
+        await m.addColumn(channels, channels.threadLocked);
+        await m.addColumn(channels, channels.threadInvitable);
+        await m.addColumn(channels, channels.threadCreateTimestamp);
+        await m.addColumn(channels, channels.threadMemberCount);
+        await m.addColumn(channels, channels.threadMessageCount);
+        await m.addColumn(channels, channels.threadPinned);
+        await m.addColumn(channels, channels.appliedTagsJson);
+        await m.addColumn(channels, channels.availableTagsJson);
+        await m.addColumn(channels, channels.defaultSortOrder);
+        await m.addColumn(channels, channels.forumDefaultAutoArchiveDuration);
+        await m.addColumn(channels, channels.forumRequireTag);
+        await m.addColumn(channels, channels.defaultReactionEmojiJson);
       }
     },
   );

@@ -1,5 +1,28 @@
+import 'dart:convert';
+
 import 'package:drift/drift.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
+
+/// Echowire: a selectable tag on a forum channel (and applied to forum posts).
+class ForumTag {
+  final String id;
+  final String name;
+  final String? emojiName;
+
+  const ForumTag({required this.id, required this.name, this.emojiName});
+
+  factory ForumTag.fromJson(Map<String, dynamic> json) => ForumTag(
+    id: json['id'] as String,
+    name: json['name'] as String? ?? '',
+    emojiName: json['emoji_name'] as String?,
+  );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'id': id,
+    'name': name,
+    'emoji_name': emojiName,
+  };
+}
 
 enum ChannelType {
   guildText(0),
@@ -83,6 +106,24 @@ class Channel {
   final String? permissionOverwritesJson;
   final int? userLimit;
 
+  // Echowire: thread + forum fields (populated only on thread/forum channels).
+  final String? ownerId;
+  final bool? threadArchived;
+  final int? threadAutoArchiveDuration;
+  final String? threadArchiveTimestamp;
+  final bool? threadLocked;
+  final bool? threadInvitable;
+  final String? threadCreateTimestamp;
+  final int? threadMemberCount;
+  final int? threadMessageCount;
+  final bool? threadPinned;
+  final List<String>? appliedTags;
+  final List<ForumTag>? availableTags;
+  final int? defaultSortOrder;
+  final int? forumDefaultAutoArchiveDuration;
+  final bool? forumRequireTag;
+  final String? defaultReactionEmojiJson;
+
   const Channel({
     required this.id,
     required this.guildId,
@@ -99,6 +140,22 @@ class Channel {
     this.contentWarningText,
     this.permissionOverwritesJson,
     this.userLimit,
+    this.ownerId,
+    this.threadArchived,
+    this.threadAutoArchiveDuration,
+    this.threadArchiveTimestamp,
+    this.threadLocked,
+    this.threadInvitable,
+    this.threadCreateTimestamp,
+    this.threadMemberCount,
+    this.threadMessageCount,
+    this.threadPinned,
+    this.appliedTags,
+    this.availableTags,
+    this.defaultSortOrder,
+    this.forumDefaultAutoArchiveDuration,
+    this.forumRequireTag,
+    this.defaultReactionEmojiJson,
   });
 
   factory Channel.fromRow(db.Channel row) {
@@ -118,7 +175,48 @@ class Channel {
       contentWarningText: row.contentWarningText,
       permissionOverwritesJson: row.permissionOverwritesJson,
       userLimit: row.userLimit,
+      ownerId: row.ownerId,
+      threadArchived: row.threadArchived,
+      threadAutoArchiveDuration: row.threadAutoArchiveDuration,
+      threadArchiveTimestamp: row.threadArchiveTimestamp,
+      threadLocked: row.threadLocked,
+      threadInvitable: row.threadInvitable,
+      threadCreateTimestamp: row.threadCreateTimestamp,
+      threadMemberCount: row.threadMemberCount,
+      threadMessageCount: row.threadMessageCount,
+      threadPinned: row.threadPinned,
+      appliedTags: _decodeStringList(row.appliedTagsJson),
+      availableTags: _decodeForumTags(row.availableTagsJson),
+      defaultSortOrder: row.defaultSortOrder,
+      forumDefaultAutoArchiveDuration: row.forumDefaultAutoArchiveDuration,
+      forumRequireTag: row.forumRequireTag,
+      defaultReactionEmojiJson: row.defaultReactionEmojiJson,
     );
+  }
+
+  static List<String>? _decodeStringList(String? json) {
+    if (json == null || json.isEmpty) {
+      return null;
+    }
+    final Object? decoded = jsonDecode(json);
+    if (decoded is! List) {
+      return null;
+    }
+    return decoded.map((Object? e) => e.toString()).toList();
+  }
+
+  static List<ForumTag>? _decodeForumTags(String? json) {
+    if (json == null || json.isEmpty) {
+      return null;
+    }
+    final Object? decoded = jsonDecode(json);
+    if (decoded is! List) {
+      return null;
+    }
+    return decoded
+        .whereType<Map<String, dynamic>>()
+        .map(ForumTag.fromJson)
+        .toList();
   }
 
   db.ChannelsCompanion toCompanion() {
@@ -138,10 +236,46 @@ class Channel {
       contentWarningText: Value(contentWarningText),
       permissionOverwritesJson: Value(permissionOverwritesJson),
       userLimit: Value(userLimit),
+      ownerId: Value(ownerId),
+      threadArchived: Value(threadArchived),
+      threadAutoArchiveDuration: Value(threadAutoArchiveDuration),
+      threadArchiveTimestamp: Value(threadArchiveTimestamp),
+      threadLocked: Value(threadLocked),
+      threadInvitable: Value(threadInvitable),
+      threadCreateTimestamp: Value(threadCreateTimestamp),
+      threadMemberCount: Value(threadMemberCount),
+      threadMessageCount: Value(threadMessageCount),
+      threadPinned: Value(threadPinned),
+      appliedTagsJson: Value(
+        appliedTags == null ? null : jsonEncode(appliedTags),
+      ),
+      availableTagsJson: Value(
+        availableTags == null
+            ? null
+            : jsonEncode(
+                availableTags!.map((ForumTag t) => t.toJson()).toList(),
+              ),
+      ),
+      defaultSortOrder: Value(defaultSortOrder),
+      forumDefaultAutoArchiveDuration: Value(forumDefaultAutoArchiveDuration),
+      forumRequireTag: Value(forumRequireTag),
+      defaultReactionEmojiJson: Value(defaultReactionEmojiJson),
     );
   }
 
   bool get isCategory => type == ChannelType.guildCategory;
+
+  /// Echowire: this channel is a thread (public or private).
+  bool get isThread => threadChannelTypes.contains(type);
+
+  /// Echowire: this channel is a forum container.
+  bool get isForum => type == ChannelType.guildForum;
+
+  /// Echowire: an archived thread (composer should be disabled).
+  bool get isArchived => threadArchived ?? false;
+
+  /// Echowire: a locked thread (only moderators can send).
+  bool get isLocked => threadLocked ?? false;
 }
 
 class ChannelCategory {

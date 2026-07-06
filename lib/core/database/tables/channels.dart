@@ -21,6 +21,29 @@ class Channels extends Table {
   TextColumn get permissionOverwritesJson => text().nullable()();
   IntColumn get userLimit => integer().nullable()();
 
+  // Echowire: threads + forum channels. A thread is a channel with a thread type
+  // (11/12) and a parent_id; a forum (15) carries tag config. All nullable —
+  // populated only on thread/forum channels.
+  TextColumn get ownerId => text().nullable()();
+  // thread_metadata.* (flattened to columns, matching the server's storage)
+  BoolColumn get threadArchived => boolean().nullable()();
+  IntColumn get threadAutoArchiveDuration => integer().nullable()();
+  TextColumn get threadArchiveTimestamp => text().nullable()();
+  BoolColumn get threadLocked => boolean().nullable()();
+  BoolColumn get threadInvitable => boolean().nullable()();
+  TextColumn get threadCreateTimestamp => text().nullable()();
+  IntColumn get threadMemberCount => integer().nullable()();
+  IntColumn get threadMessageCount => integer().nullable()();
+  BoolColumn get threadPinned => boolean().nullable()();
+  // forum-post applied tag IDs (JSON array of strings)
+  TextColumn get appliedTagsJson => text().nullable()();
+  // forum-channel config
+  TextColumn get availableTagsJson => text().nullable()();
+  IntColumn get defaultSortOrder => integer().nullable()();
+  IntColumn get forumDefaultAutoArchiveDuration => integer().nullable()();
+  BoolColumn get forumRequireTag => boolean().nullable()();
+  TextColumn get defaultReactionEmojiJson => text().nullable()();
+
   @override
   Set<Column> get primaryKey => {id};
 }

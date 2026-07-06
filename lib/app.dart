@@ -67,7 +67,7 @@ class FluxerApp extends ConsumerWidget {
     }
 
     return MaterialApp.router(
-      title: 'Fluxer',
+      title: 'Echowire',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: FluxerLocalizations.localizationsDelegates,
       supportedLocales: FluxerLocalizations.supportedLocales,

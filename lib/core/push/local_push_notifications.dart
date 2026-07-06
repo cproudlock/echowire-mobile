@@ -18,7 +18,7 @@ final class LocalPushNotifications {
   static final LocalPushNotifications _instance = LocalPushNotifications._();
 
   static const String _channelId = 'fluxer_default_push';
-  static const String _channelName = 'Fluxer';
+  static const String _channelName = 'Echowire';
   static const String _channelDescription = 'Messages and alerts';
   static const String _androidNotificationIcon =
       '@drawable/fluxer_logo_monochrome';

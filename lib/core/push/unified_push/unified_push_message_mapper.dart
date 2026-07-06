@@ -5,7 +5,7 @@ import 'package:fluxer_app/core/push/push_message.dart';
 import 'package:fluxer_app/core/push/push_notification_payload.dart';
 import 'package:unifiedpush/unifiedpush.dart' as up;
 
-const String kUnifiedPushDefaultTitle = 'Fluxer';
+const String kUnifiedPushDefaultTitle = 'Echowire';
 
 PushMessage mapUnifiedPushMessage(up.PushMessage message) {
   final String id = DateTime.now().microsecondsSinceEpoch.toString();

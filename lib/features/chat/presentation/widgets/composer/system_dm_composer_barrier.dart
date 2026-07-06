@@ -7,7 +7,7 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 class SystemDmComposerBarrier extends StatelessWidget {
   const SystemDmComposerBarrier({super.key});
 
-  static const String _productName = 'Fluxer';
+  static const String _productName = 'Echowire';
 
   @override
   Widget build(BuildContext context) {

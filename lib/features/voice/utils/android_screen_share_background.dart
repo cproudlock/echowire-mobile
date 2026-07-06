@@ -40,7 +40,7 @@ Future<bool> enableAndroidScreenShareBackground({
     if (!isRetry) {
       final FlutterBackgroundAndroidConfig androidConfig =
           FlutterBackgroundAndroidConfig(
-            notificationTitle: 'Fluxer',
+            notificationTitle: 'Echowire',
             notificationText: notificationText,
           );
       hasPermissions = await FlutterBackground.initialize(

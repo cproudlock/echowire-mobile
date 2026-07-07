@@ -110,6 +110,7 @@ Future<void> showSystemMessageActionsSheet(
       );
     case MessageAction.reply:
     case MessageAction.forward:
+    case MessageAction.createThread:
     case MessageAction.edit:
     case MessageAction.pin:
     case MessageAction.bookmark:

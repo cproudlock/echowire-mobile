@@ -16,6 +16,7 @@ enum MessageAction {
   edit,
   reply,
   forward,
+  createThread,
   copyText,
   pin,
   bookmark,
@@ -41,6 +42,7 @@ Future<MessageAction?> showMessageBottomSheet(
   required bool canManageMessages,
   required bool canSendMessages,
   required bool developerMode,
+  bool canCreateThread = false,
   List<QuickReactionItem>? quickItems,
   ValueChanged<QuickReactionItem>? onQuickReaction,
 }) {
@@ -60,6 +62,7 @@ Future<MessageAction?> showMessageBottomSheet(
       canManageMessages: canManageMessages,
       canSendMessages: canSendMessages,
       developerMode: developerMode,
+      canCreateThread: canCreateThread,
       quickItems: quickItems ?? kQuickReactionDefaults,
       onQuickReaction: onQuickReaction,
       scrollController: scrollController,
@@ -78,6 +81,7 @@ class _MessageBottomSheetBody extends ConsumerWidget {
   final bool canManageMessages;
   final bool canSendMessages;
   final bool developerMode;
+  final bool canCreateThread;
   final List<QuickReactionItem> quickItems;
   final ValueChanged<QuickReactionItem>? onQuickReaction;
   final ScrollController scrollController;
@@ -93,6 +97,7 @@ class _MessageBottomSheetBody extends ConsumerWidget {
     required this.canManageMessages,
     required this.canSendMessages,
     required this.developerMode,
+    required this.canCreateThread,
     required this.quickItems,
     required this.onQuickReaction,
     required this.scrollController,
@@ -197,6 +202,12 @@ class _MessageBottomSheetBody extends ConsumerWidget {
           icon: PhosphorIconsRegular.shareFat,
           label: l10n.chatMessageForward,
           onTap: () => _pop(context, MessageAction.forward),
+        ),
+      if (canCreateThread)
+        FluxerBottomSheetMenuItem(
+          icon: PhosphorIconsRegular.chatText,
+          label: 'Create Thread',
+          onTap: () => _pop(context, MessageAction.createThread),
         ),
       if (canShowEdit)
         FluxerBottomSheetMenuItem(

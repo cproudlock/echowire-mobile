@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
+import 'package:fluxer_app/features/channels/data/thread_repository.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:go_router/go_router.dart';
@@ -89,6 +90,29 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
   Future<void> _onRefresh() => ref
       .read(threadRepositoryProvider)
       .refreshThreads(widget.channel.id, guildId: widget.guildId);
+
+  Future<void> _moderatePost(Channel post, _PostModAction action) async {
+    final ThreadRepository repo = ref.read(threadRepositoryProvider);
+    try {
+      switch (action) {
+        case _PostModAction.togglePin:
+          await repo.updateThread(post.id, pinned: !(post.threadPinned ?? false));
+        case _PostModAction.toggleArchive:
+          await repo.updateThread(post.id, archived: !post.isArchived);
+        case _PostModAction.toggleLock:
+          await repo.updateThread(post.id, locked: !post.isLocked);
+        case _PostModAction.delete:
+          await repo.deleteThread(post.id);
+      }
+    } on Exception catch (e) {
+      if (!mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Action failed: $e')));
+    }
+  }
 
   Future<void> _createPost() async {
     final _ForumPostDraft? draft = await showDialog<_ForumPostDraft>(
@@ -215,6 +239,8 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
                             post: posts[index],
                             resolveTag: _tagById,
                             onTap: () => _openPost(posts[index]),
+                            onManage: (_PostModAction a) =>
+                                _moderatePost(posts[index], a),
                           ),
                     ),
                   );
@@ -231,11 +257,13 @@ class _ForumPostTile extends StatelessWidget {
     required this.post,
     required this.resolveTag,
     required this.onTap,
+    required this.onManage,
   });
 
   final Channel post;
   final ForumTag? Function(String id) resolveTag;
   final VoidCallback onTap;
+  final void Function(_PostModAction action) onManage;
 
   @override
   Widget build(BuildContext context) {
@@ -283,10 +311,35 @@ class _ForumPostTile extends StatelessWidget {
         ],
       ),
       isThreeLine: tagNames.isNotEmpty,
+      trailing: PopupMenuButton<_PostModAction>(
+        icon: const Icon(PhosphorIconsBold.dotsThreeVertical, size: 18),
+        tooltip: 'Manage',
+        onSelected: onManage,
+        itemBuilder: (BuildContext context) => <PopupMenuEntry<_PostModAction>>[
+          PopupMenuItem<_PostModAction>(
+            value: _PostModAction.togglePin,
+            child: Text((post.threadPinned ?? false) ? 'Unpin' : 'Pin'),
+          ),
+          PopupMenuItem<_PostModAction>(
+            value: _PostModAction.toggleArchive,
+            child: Text(post.isArchived ? 'Unarchive' : 'Archive'),
+          ),
+          PopupMenuItem<_PostModAction>(
+            value: _PostModAction.toggleLock,
+            child: Text(post.isLocked ? 'Unlock' : 'Lock'),
+          ),
+          const PopupMenuItem<_PostModAction>(
+            value: _PostModAction.delete,
+            child: Text('Delete'),
+          ),
+        ],
+      ),
       onTap: onTap,
     );
   }
 }
+
+enum _PostModAction { togglePin, toggleArchive, toggleLock, delete }
 
 class _ForumPostDraft {
   const _ForumPostDraft({required this.title, required this.tagIds});

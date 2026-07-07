@@ -6,7 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
+import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
+import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
+import 'package:go_router/go_router.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/domain/message_avatar.dart';
@@ -290,6 +293,8 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         widget.onReply?.call();
       case MessageAction.forward:
         widget.onForward?.call();
+      case MessageAction.createThread:
+        unawaited(_createThreadFromMessage());
       case MessageAction.edit:
         widget.onEdit?.call();
       case MessageAction.delete:
@@ -449,6 +454,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       developerMode: ref.read(
         userSettingsViewModelProvider.select((s) => s.developerMode),
       ),
+      canCreateThread: !widget.isDmChannel && widget.canSendMessages,
       quickItems: frecent,
       onQuickReaction: _dispatchQuickReaction,
     );
@@ -456,6 +462,64 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       return;
     }
     _handleAction(action, isMobile: true);
+  }
+
+  Future<void> _createThreadFromMessage() async {
+    final String? name = await _promptThreadName(context);
+    if (name == null || name.trim().isEmpty) {
+      return;
+    }
+    try {
+      final thread = await ref
+          .read(threadRepositoryProvider)
+          .createThread(
+            parentChannelId: widget.message.channelId,
+            name: name.trim(),
+            messageId: widget.message.id,
+          );
+      if (!mounted) {
+        return;
+      }
+      final String guildId =
+          widget.previewRoleGuildId ??
+          ref.read(activeGuildIdProvider) ??
+          thread.guildId;
+      context.go(RoutePaths.guildChannel(guildId, thread.id));
+    } on Exception catch (e) {
+      if (!mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Could not create thread: $e')));
+    }
+  }
+
+  Future<String?> _promptThreadName(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('New thread'),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          maxLength: 100,
+          decoration: const InputDecoration(hintText: 'Thread name'),
+          onSubmitted: (String v) => Navigator.of(context).pop(v),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(controller.text),
+            child: const Text('Create'),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _showContextMenu(BuildContext context, Offset position) async {

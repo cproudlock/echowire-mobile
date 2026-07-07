@@ -10,6 +10,7 @@ import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/thread_list_sheet.dart';
+import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/channel_icon.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
@@ -297,6 +298,22 @@ class ChannelHeader extends ConsumerWidget {
               size: FluxerButtonSize.small,
               iconSize: 20,
               onPressed: () => showThreadsSheet(context, parentChannel: channel),
+            ),
+            const SizedBox(width: 8),
+          ],
+          if (showMessageActions &&
+              dm == null &&
+              channel != null &&
+              threadChannelTypes.contains(channel.type)) ...<Widget>[
+            FluxerButton.circle(
+              icon: (ref.watch(threadMembershipProvider(channel.id)) ?? false)
+                  ? PhosphorIconsFill.userMinus
+                  : PhosphorIconsFill.userPlus,
+              variant: FluxerButtonVariant.secondary,
+              size: FluxerButtonSize.small,
+              iconSize: 20,
+              onPressedAsync: () =>
+                  _toggleThreadMembership(ref, context, channel: channel),
             ),
             const SizedBox(width: 8),
           ],
@@ -745,6 +762,32 @@ class ChannelHeader extends ConsumerWidget {
       return;
     }
     unawaited(showChannelDetailsSheet(context, channel: channel, dm: dm));
+  }
+
+  Future<void> _toggleThreadMembership(
+    WidgetRef ref,
+    BuildContext context, {
+    required Channel channel,
+  }) async {
+    final bool isMember =
+        ref.read(threadMembershipProvider(channel.id)) ?? false;
+    try {
+      if (isMember) {
+        await ref.read(threadRepositoryProvider).leaveThread(channel.id);
+      } else {
+        await ref.read(threadRepositoryProvider).joinThread(channel.id);
+      }
+      ref.read(threadMembershipProvider(channel.id).notifier).state = !isMember;
+    } on Exception catch (e) {
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Could not ${isMember ? 'leave' : 'join'} thread: $e'),
+        ),
+      );
+    }
   }
 
   void _openSearch(BuildContext context, {required Channel channel}) {

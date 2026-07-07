@@ -1,3 +1,5 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/features/channels/data/thread_repository.dart';
@@ -12,3 +14,9 @@ ThreadRepository threadRepository(Ref ref) {
   final db = ref.watch(fluxerDatabaseProvider);
   return ThreadRepository(client, db);
 }
+
+/// Echowire: optimistic local membership for a thread (null = unknown until the
+/// user joins/leaves in this session). Keyed by thread channel id.
+final threadMembershipProvider = StateProvider.family<bool?, String>(
+  (Ref ref, String threadId) => null,
+);

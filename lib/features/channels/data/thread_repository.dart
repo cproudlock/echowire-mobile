@@ -155,6 +155,19 @@ class ThreadRepository {
     }
   }
 
+  /// List the user IDs of a thread's members.
+  Future<List<String>> listThreadMemberIds(String threadId) async {
+    try {
+      final List<ThreadMemberResponse> resp = await _client.channels
+          .listThreadMembers(channelId: threadId);
+      return resp.map((ThreadMemberResponse m) => m.userId).toList();
+    } on DioException catch (e) {
+      throw Exception(
+        e.response?.statusMessage ?? 'Failed to load thread members',
+      );
+    }
+  }
+
   Future<void> joinThread(String threadId) async {
     try {
       await _client.channels.joinThread(channelId: threadId);

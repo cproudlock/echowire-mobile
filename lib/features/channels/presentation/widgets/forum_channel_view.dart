@@ -1,7 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
-import 'package:fluxer_app/features/channels/data/thread_repository.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:go_router/go_router.dart';
@@ -25,7 +26,7 @@ class ForumChannelView extends ConsumerStatefulWidget {
 }
 
 class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
-  late Future<List<Channel>> _postsFuture;
+  late final Stream<List<Channel>> _threadsStream;
   bool _showArchived = false;
   final Set<String> _tagFilter = <String>{};
 
@@ -35,17 +36,21 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
   @override
   void initState() {
     super.initState();
-    _postsFuture = _load();
+    _threadsStream = ref
+        .read(threadRepositoryProvider)
+        .watchThreads(widget.channel.id);
+    _refresh();
   }
 
-  Future<List<Channel>> _load() {
-    final ThreadRepository repo = ref.read(threadRepositoryProvider);
-    return _showArchived
-        ? repo.listArchivedThreads(widget.channel.id, guildId: widget.guildId)
-        : repo.listActiveThreads(widget.channel.id, guildId: widget.guildId);
+  void _refresh() {
+    // Populate/refresh the cache from the API (fire-and-forget); the list itself
+    // watches the DB, so gateway-created posts also appear live.
+    unawaited(
+      ref
+          .read(threadRepositoryProvider)
+          .refreshThreads(widget.channel.id, guildId: widget.guildId),
+    );
   }
-
-  void _reload() => setState(() => _postsFuture = _load());
 
   void _openPost(Channel post) {
     context.go(RoutePaths.guildChannel(post.guildId, post.id));
@@ -60,17 +65,30 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
     return null;
   }
 
-  List<Channel> _applyTagFilter(List<Channel> posts) {
-    if (_tagFilter.isEmpty) {
-      return posts;
+  List<Channel> _visiblePosts(List<Channel> posts) {
+    Iterable<Channel> filtered = posts.where(
+      (Channel p) => p.isArchived == _showArchived,
+    );
+    if (_tagFilter.isNotEmpty) {
+      filtered = filtered.where(
+        (Channel p) =>
+            (p.appliedTags ?? const <String>[]).any(_tagFilter.contains),
+      );
     }
-    return posts
-        .where(
-          (Channel p) =>
-              (p.appliedTags ?? const <String>[]).any(_tagFilter.contains),
-        )
-        .toList();
+    final List<Channel> result = filtered.toList();
+    // Pinned posts first, then by id (recency) descending.
+    result.sort((Channel a, Channel b) {
+      final int pin =
+          ((b.threadPinned ?? false) ? 1 : 0) -
+          ((a.threadPinned ?? false) ? 1 : 0);
+      return pin != 0 ? pin : b.id.compareTo(a.id);
+    });
+    return result;
   }
+
+  Future<void> _onRefresh() => ref
+      .read(threadRepositoryProvider)
+      .refreshThreads(widget.channel.id, guildId: widget.guildId);
 
   Future<void> _createPost() async {
     final _ForumPostDraft? draft = await showDialog<_ForumPostDraft>(
@@ -117,8 +135,8 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
                   ],
                   selected: <bool>{_showArchived},
                   onSelectionChanged: (Set<bool> s) {
-                    _showArchived = s.first;
-                    _reload();
+                    setState(() => _showArchived = s.first);
+                    _refresh();
                   },
                 ),
               ),
@@ -159,32 +177,35 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
             ),
           ),
         Expanded(
-          child: FutureBuilder<List<Channel>>(
-            future: _postsFuture,
+          child: StreamBuilder<List<Channel>>(
+            stream: _threadsStream,
             builder:
                 (BuildContext context, AsyncSnapshot<List<Channel>> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
                   if (snapshot.hasError) {
                     return Center(child: Text('Failed to load: ${snapshot.error}'));
                   }
-                  final List<Channel> posts = _applyTagFilter(
+                  final List<Channel> posts = _visiblePosts(
                     snapshot.data ?? <Channel>[],
                   );
                   if (posts.isEmpty) {
                     return RefreshIndicator(
-                      onRefresh: () async => _reload(),
+                      onRefresh: _onRefresh,
                       child: ListView(
-                        children: const <Widget>[
-                          SizedBox(height: 120),
-                          Center(child: Text('No posts yet')),
+                        children: <Widget>[
+                          const SizedBox(height: 120),
+                          Center(
+                            child: Text(
+                              _showArchived
+                                  ? 'No archived posts'
+                                  : 'No posts yet',
+                            ),
+                          ),
                         ],
                       ),
                     );
                   }
                   return RefreshIndicator(
-                    onRefresh: () async => _reload(),
+                    onRefresh: _onRefresh,
                     child: ListView.separated(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       itemCount: posts.length,

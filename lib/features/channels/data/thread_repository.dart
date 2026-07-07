@@ -15,6 +15,20 @@ class ThreadRepository {
 
   const ThreadRepository(this._client, this._db);
 
+  /// Watch the cached thread/forum-post channels under [parentChannelId],
+  /// reacting to gateway inserts/updates so new posts appear without a refetch.
+  Stream<List<Channel>> watchThreads(String parentChannelId) {
+    return _db.channelDao
+        .watchThreadsForParent(parentChannelId)
+        .map((List<db.Channel> rows) => rows.map(Channel.fromRow).toList());
+  }
+
+  /// Fetch active + archived threads from the API to populate/refresh the cache.
+  Future<void> refreshThreads(String parentChannelId, {String? guildId}) async {
+    await listActiveThreads(parentChannelId, guildId: guildId);
+    await listArchivedThreads(parentChannelId, guildId: guildId);
+  }
+
   Future<Channel> _cacheAndReturn(
     ChannelResponse resp, {
     String? fallbackGuildId,

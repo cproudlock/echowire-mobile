@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
@@ -34,29 +36,41 @@ class _ThreadListView extends ConsumerStatefulWidget {
 }
 
 class _ThreadListViewState extends ConsumerState<_ThreadListView> {
-  late Future<List<Channel>> _threadsFuture;
+  late final Stream<List<Channel>> _threadsStream;
   bool _showArchived = false;
 
   @override
   void initState() {
     super.initState();
-    _threadsFuture = _load();
+    _threadsStream = ref
+        .read(threadRepositoryProvider)
+        .watchThreads(widget.parentChannel.id);
+    _refresh();
   }
 
-  Future<List<Channel>> _load() {
-    final ThreadRepository repo = ref.read(threadRepositoryProvider);
-    return _showArchived
-        ? repo.listArchivedThreads(
+  void _refresh() {
+    unawaited(
+      ref
+          .read(threadRepositoryProvider)
+          .refreshThreads(
             widget.parentChannel.id,
             guildId: widget.parentChannel.guildId,
-          )
-        : repo.listActiveThreads(
-            widget.parentChannel.id,
-            guildId: widget.parentChannel.guildId,
-          );
+          ),
+    );
   }
 
-  void _reload() => setState(() => _threadsFuture = _load());
+  List<Channel> _visibleThreads(List<Channel> threads) {
+    final List<Channel> result = threads
+        .where((Channel t) => t.isArchived == _showArchived)
+        .toList();
+    result.sort((Channel a, Channel b) {
+      final int pin =
+          ((b.threadPinned ?? false) ? 1 : 0) -
+          ((a.threadPinned ?? false) ? 1 : 0);
+      return pin != 0 ? pin : b.id.compareTo(a.id);
+    });
+    return result;
+  }
 
   void _openThread(Channel thread) {
     widget.close();
@@ -126,7 +140,7 @@ class _ThreadListViewState extends ConsumerState<_ThreadListView> {
         case _ThreadModAction.delete:
           await repo.deleteThread(t.id);
       }
-      _reload();
+      // The DB stream reactively reflects the change.
     } on Exception catch (e) {
       if (!mounted) {
         return;
@@ -155,8 +169,8 @@ class _ThreadListViewState extends ConsumerState<_ThreadListView> {
                   ],
                   selected: <bool>{_showArchived},
                   onSelectionChanged: (Set<bool> s) {
-                    _showArchived = s.first;
-                    _reload();
+                    setState(() => _showArchived = s.first);
+                    _refresh();
                   },
                 ),
               ),
@@ -169,16 +183,10 @@ class _ThreadListViewState extends ConsumerState<_ThreadListView> {
             ],
           ),
         ),
-        FutureBuilder<List<Channel>>(
-          future: _threadsFuture,
+        StreamBuilder<List<Channel>>(
+          stream: _threadsStream,
           builder:
               (BuildContext context, AsyncSnapshot<List<Channel>> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Padding(
-                    padding: EdgeInsets.all(32),
-                    child: Center(child: CircularProgressIndicator()),
-                  );
-                }
                 if (snapshot.hasError) {
                   return Padding(
                     padding: const EdgeInsets.all(24),
@@ -187,7 +195,9 @@ class _ThreadListViewState extends ConsumerState<_ThreadListView> {
                     ),
                   );
                 }
-                final List<Channel> threads = snapshot.data ?? <Channel>[];
+                final List<Channel> threads = _visibleThreads(
+                  snapshot.data ?? <Channel>[],
+                );
                 if (threads.isEmpty) {
                   return Padding(
                     padding: const EdgeInsets.all(32),

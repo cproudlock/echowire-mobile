@@ -287,6 +287,19 @@ class ChannelHeader extends ConsumerWidget {
               ),
             ),
           ],
+          if (showMessageActions &&
+              dm == null &&
+              channel != null &&
+              channel.type == ChannelType.guildText) ...<Widget>[
+            FluxerButton.circle(
+              icon: PhosphorIconsBold.chatText,
+              variant: FluxerButtonVariant.secondary,
+              size: FluxerButtonSize.small,
+              iconSize: 20,
+              onPressed: () => showThreadsSheet(context, parentChannel: channel),
+            ),
+            const SizedBox(width: 8),
+          ],
           if (showMessageActions && dm == null && channel != null)
             FluxerButton.circle(
               icon: PhosphorIconsBold.magnifyingGlass,

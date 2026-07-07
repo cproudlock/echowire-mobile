@@ -122,6 +122,16 @@ class ChannelDao extends DatabaseAccessor<FluxerDatabase>
         ChannelsCompanion(lastPinTimestamp: Value(timestamp)),
       );
 
+  /// Echowire: watch the thread/forum-post channels under a parent channel
+  /// (public + private threads), reacting to gateway inserts/updates.
+  Stream<List<Channel>> watchThreadsForParent(String parentId) =>
+      (select(channels)..where(
+            (c) =>
+                c.parentId.equals(parentId) &
+                (c.type.equals(11) | c.type.equals(12)),
+          ))
+          .watch();
+
   /// Echowire: update a thread's cached member count from THREAD_MEMBERS_UPDATE.
   Future<void> updateThreadMemberCount(String channelId, int? memberCount) =>
       (update(channels)..where((c) => c.id.equals(channelId))).write(

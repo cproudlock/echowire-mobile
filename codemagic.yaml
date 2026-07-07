@@ -71,6 +71,7 @@ workflows:
           BUILD_NUMBER=$((NEXT + 1))
           flutter build ipa --release \
             --flavor stable \
+            --no-tree-shake-icons \
             --dart-define-from-file=tool/dart_defines/stable.json \
             --dart-define=PUSH_PROVIDER=apns \
             --build-number=$BUILD_NUMBER \

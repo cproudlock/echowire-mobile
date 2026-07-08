@@ -1077,4 +1077,7 @@ bool _canMarkChannelRead(Channel channel) =>
 
 bool _canMuteChannel(Channel channel) =>
     channel.type == ChannelType.guildText ||
-    channel.type == ChannelType.guildVoice;
+    channel.type == ChannelType.guildVoice ||
+    channel.type == ChannelType.guildForum ||
+    channel.type == ChannelType.publicThread ||
+    channel.type == ChannelType.privateThread;

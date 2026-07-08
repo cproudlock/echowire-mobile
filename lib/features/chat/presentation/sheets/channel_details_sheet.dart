@@ -413,8 +413,16 @@ class _ChannelDetailsSheetState extends ConsumerState<ChannelDetailsSheet> {
                       false
                   ? 1
                   : 0);
+    final bool isThreadChannel =
+        widget.channel != null &&
+        threadChannelTypes.contains(widget.channel!.type);
     final tabs = <FluxerTab>[
-      const FluxerTab(label: 'Members', icon: PhosphorIconsFill.users),
+      FluxerTab(
+        label: isThreadChannel ? 'Thread Members' : 'Members',
+        icon: isThreadChannel
+            ? PhosphorIconsFill.usersThree
+            : PhosphorIconsFill.users,
+      ),
       if (hasPins)
         const FluxerTab(label: 'Pins', icon: PhosphorIconsFill.pushPin),
     ];

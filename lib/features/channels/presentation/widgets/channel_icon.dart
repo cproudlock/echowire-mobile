@@ -20,6 +20,7 @@ const String _kAssetVoiceE2ee = 'assets/images/icons/channels/voice_e2ee.svg';
 const String _kAssetLink = 'assets/images/icons/channels/link.svg';
 const String _kAssetLinkLocked = 'assets/images/icons/channels/link_locked.svg';
 const String _kAssetLinkNsfw = 'assets/images/icons/channels/link_nsfw.svg';
+const String _kAssetThread = 'assets/images/icons/channels/thread.svg';
 
 enum ChannelIconAccessOverlay { none, nsfw, lock, noConnect }
 
@@ -89,6 +90,9 @@ String? _svgAssetForChannelVisual({
       ChannelIconAccessOverlay.noConnect => _kAssetLink,
       ChannelIconAccessOverlay.none => _kAssetLink,
     };
+  }
+  if (type == ChannelType.publicThread || type == ChannelType.privateThread) {
+    return _kAssetThread;
   }
   return null;
 }

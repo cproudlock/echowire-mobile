@@ -669,8 +669,16 @@ class FluxerDatabase extends _$FluxerDatabase {
                 .map((QueryRow r) => r.read<String>('name'))
                 .toSet();
         Future<void> ensure(GeneratedColumn<Object> column) async {
-          if (!existing.contains(column.$name)) {
+          if (existing.contains(column.$name)) {
+            return;
+          }
+          try {
             await m.addColumn(channels, column);
+          } on Object {
+            // Belt-and-suspenders: if the column slipped past the existence
+            // check (e.g. added by a concurrent partial run), swallow the
+            // duplicate-column error so the migration still completes and the
+            // DB advances to v70 instead of staying stuck.
           }
         }
 

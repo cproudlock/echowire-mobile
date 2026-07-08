@@ -30,6 +30,8 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
   late final Stream<List<Channel>> _threadsStream;
   bool _showArchived = false;
   final Set<String> _tagFilter = <String>{};
+  String _searchQuery = '';
+  _ForumSort _sort = _ForumSort.recent;
 
   List<ForumTag> get _availableTags =>
       widget.channel.availableTags ?? const <ForumTag>[];
@@ -76,13 +78,24 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
             (p.appliedTags ?? const <String>[]).any(_tagFilter.contains),
       );
     }
+    if (_searchQuery.trim().isNotEmpty) {
+      final String q = _searchQuery.trim().toLowerCase();
+      filtered = filtered.where((Channel p) => p.name.toLowerCase().contains(q));
+    }
     final List<Channel> result = filtered.toList();
-    // Pinned posts first, then by id (recency) descending.
+    // Pinned posts first, then by the selected sort order.
     result.sort((Channel a, Channel b) {
       final int pin =
           ((b.threadPinned ?? false) ? 1 : 0) -
           ((a.threadPinned ?? false) ? 1 : 0);
-      return pin != 0 ? pin : b.id.compareTo(a.id);
+      if (pin != 0) {
+        return pin;
+      }
+      return switch (_sort) {
+        _ForumSort.recent => b.id.compareTo(a.id),
+        _ForumSort.name =>
+          a.name.toLowerCase().compareTo(b.name.toLowerCase()),
+      };
     });
     return result;
   }
@@ -169,6 +182,45 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
                 onPressed: _createPost,
                 icon: const Icon(PhosphorIconsBold.plus, size: 16),
                 label: const Text('Post'),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(12, 0, 12, 4),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: TextField(
+                  decoration: const InputDecoration(
+                    isDense: true,
+                    prefixIcon: Icon(
+                      PhosphorIconsBold.magnifyingGlass,
+                      size: 18,
+                    ),
+                    hintText: 'Search posts',
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (String v) => setState(() => _searchQuery = v),
+                ),
+              ),
+              const SizedBox(width: 8),
+              PopupMenuButton<_ForumSort>(
+                icon: const Icon(PhosphorIconsBold.arrowsDownUp),
+                tooltip: 'Sort & View',
+                initialValue: _sort,
+                onSelected: (_ForumSort s) => setState(() => _sort = s),
+                itemBuilder: (BuildContext context) =>
+                    const <PopupMenuEntry<_ForumSort>>[
+                      PopupMenuItem<_ForumSort>(
+                        value: _ForumSort.recent,
+                        child: Text('Recent activity'),
+                      ),
+                      PopupMenuItem<_ForumSort>(
+                        value: _ForumSort.name,
+                        child: Text('Name (A-Z)'),
+                      ),
+                    ],
               ),
             ],
           ),
@@ -340,6 +392,8 @@ class _ForumPostTile extends StatelessWidget {
 }
 
 enum _PostModAction { togglePin, toggleArchive, toggleLock, delete }
+
+enum _ForumSort { recent, name }
 
 class _ForumPostDraft {
   const _ForumPostDraft({required this.title, required this.tagIds});

@@ -3033,8 +3033,64 @@ Future<void> _showDetailsMoreSheet(
           ),
       ];
 
+      final Channel? threadChannel =
+          (channel != null && threadChannelTypes.contains(channel.type))
+          ? channel
+          : null;
+      final threadItems = <Widget>[
+        if (threadChannel != null) ...[
+          FluxerBottomSheetMenuItem(
+            label: threadChannel.isArchived ? 'Reopen Thread' : 'Close Thread',
+            icon: PhosphorIconsBold.archive,
+            onTap: () => run(() async {
+              await ref
+                  .read(threadRepositoryProvider)
+                  .updateThread(
+                    threadChannel.id,
+                    archived: !threadChannel.isArchived,
+                  );
+            }),
+          ),
+          if (canManageChannel)
+            FluxerBottomSheetMenuItem(
+              label: threadChannel.isLocked ? 'Unlock Thread' : 'Lock Thread',
+              icon: threadChannel.isLocked
+                  ? PhosphorIconsBold.lockOpen
+                  : PhosphorIconsBold.lock,
+              onTap: () => run(() async {
+                await ref
+                    .read(threadRepositoryProvider)
+                    .updateThread(
+                      threadChannel.id,
+                      locked: !threadChannel.isLocked,
+                    );
+              }),
+            ),
+          FluxerBottomSheetMenuItem(
+            label: 'Leave Thread',
+            icon: PhosphorIconsBold.signOut,
+            onTap: () => run(
+              () =>
+                  ref.read(threadRepositoryProvider).leaveThread(threadChannel.id),
+            ),
+          ),
+          if (canManageChannel)
+            FluxerBottomSheetMenuItem(
+              label: 'Delete Thread',
+              icon: PhosphorIconsBold.trash,
+              isDanger: true,
+              onTap: () => run(() async {
+                await ref
+                    .read(threadRepositoryProvider)
+                    .deleteThread(threadChannel.id);
+              }),
+            ),
+        ],
+      ];
+
       final groups = <Widget>[
         if (commonItems.isNotEmpty) FluxerMenuGroup(children: commonItems),
+        if (threadItems.isNotEmpty) FluxerMenuGroup(children: threadItems),
         if (isGroupDM)
           FluxerMenuGroup(
             children: [
@@ -3064,7 +3120,7 @@ Future<void> _showDetailsMoreSheet(
               ),
             ],
           ),
-        if (canManageChannel)
+        if (canManageChannel && threadChannel == null)
           FluxerMenuGroup(
             children: [
               FluxerBottomSheetMenuItem(

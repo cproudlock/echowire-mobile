@@ -382,6 +382,19 @@ class _GuildSidebarChannelListState
               guildId: entry.guildId!,
               channelId: entry.channel!.id,
             );
+          case GuildSidebarEntryKind.thread:
+            final String threadId = entry.channel!.id;
+            return Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: _ChannelTile(
+                key: ValueKey<String>('thread:$threadId'),
+                tileKey: _channelKeys.putIfAbsent(threadId, GlobalKey.new),
+                channel: entry.channel!,
+                isSelected: threadId == selectedId,
+                guildId: widget.guildId,
+                guild: widget.guild,
+              ),
+            );
         }
       },
     );

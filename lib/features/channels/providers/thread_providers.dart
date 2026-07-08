@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/legacy.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/features/channels/data/thread_repository.dart';
+import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -20,3 +21,10 @@ ThreadRepository threadRepository(Ref ref) {
 final threadMembershipProvider = StateProvider.family<bool?, String>(
   (Ref ref, String threadId) => null,
 );
+
+/// Echowire: active threads across a guild (for nesting under channels in the
+/// sidebar). Keyed by guild id.
+final guildActiveThreadsProvider =
+    StreamProvider.family<List<Channel>, String>((Ref ref, String guildId) {
+      return ref.watch(threadRepositoryProvider).watchGuildThreads(guildId);
+    });

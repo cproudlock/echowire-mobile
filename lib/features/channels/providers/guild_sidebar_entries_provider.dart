@@ -6,6 +6,7 @@ import 'package:fluxer_app/features/channels/domain/hide_muted_channels_filter.d
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_mute_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_collapsed_categories_provider.dart';
+import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_mute_provider.dart';
@@ -16,7 +17,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'guild_sidebar_entries_provider.g.dart';
 
-enum GuildSidebarEntryKind { categoryHeader, channel, voiceParticipants }
+enum GuildSidebarEntryKind { categoryHeader, channel, voiceParticipants, thread }
 
 class GuildSidebarEntry {
   const GuildSidebarEntry({
@@ -62,6 +63,7 @@ List<GuildSidebarEntry> flattenGuildSidebarEntries({
   required bool showFadedUnread,
   required String guildId,
   required UnreadState? Function(String channelId) unreadForChannel,
+  required Map<String, List<Channel>> threadsByParent,
 }) {
   final List<GuildSidebarEntry> entries = <GuildSidebarEntry>[];
   for (final ChannelCategory category in categories) {
@@ -145,6 +147,16 @@ List<GuildSidebarEntry> flattenGuildSidebarEntries({
           ),
         );
       }
+      // Echowire: nest active threads under their parent channel.
+      for (final Channel thread in threadsByParent[channel.id] ?? const <Channel>[]) {
+        entries.add(
+          GuildSidebarEntry(
+            kind: GuildSidebarEntryKind.thread,
+            channel: thread,
+            guildId: guildId,
+          ),
+        );
+      }
     }
   }
   return entries;
@@ -183,6 +195,16 @@ List<GuildSidebarEntry> guildSidebarEntries(Ref ref) {
       (AppearancePreferencesState s) => s.showFadedUnreadOnMutedChannels,
     ),
   );
+  final List<Channel> guildThreads =
+      ref.watch(guildActiveThreadsProvider(guildId)).value ??
+      const <Channel>[];
+  final Map<String, List<Channel>> threadsByParent = <String, List<Channel>>{};
+  for (final Channel t in guildThreads) {
+    final String? pid = t.parentId;
+    if (pid != null) {
+      (threadsByParent[pid] ??= <Channel>[]).add(t);
+    }
+  }
   return flattenGuildSidebarEntries(
     categories: categories,
     collapsed: collapsed,
@@ -194,5 +216,6 @@ List<GuildSidebarEntry> guildSidebarEntries(Ref ref) {
     guildId: guildId,
     unreadForChannel: (String channelId) =>
         ref.read(channelUnreadProvider(channelId)).value,
+    threadsByParent: threadsByParent,
   );
 }

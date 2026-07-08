@@ -23,6 +23,14 @@ class ThreadRepository {
         .map((List<db.Channel> rows) => rows.map(Channel.fromRow).toList());
   }
 
+  /// Watch active (non-archived) threads across the whole guild, for nesting
+  /// under their parent channel in the sidebar.
+  Stream<List<Channel>> watchGuildThreads(String guildId) {
+    return _db.channelDao
+        .watchActiveThreadsForGuild(guildId)
+        .map((List<db.Channel> rows) => rows.map(Channel.fromRow).toList());
+  }
+
   /// Fetch active + archived threads from the API to populate/refresh the cache.
   Future<void> refreshThreads(String parentChannelId, {String? guildId}) async {
     await listActiveThreads(parentChannelId, guildId: guildId);

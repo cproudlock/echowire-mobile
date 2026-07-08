@@ -132,6 +132,17 @@ class ChannelDao extends DatabaseAccessor<FluxerDatabase>
           ))
           .watch();
 
+  /// Echowire: active (non-archived) thread channels across a guild, for
+  /// nesting under their parent channel in the sidebar.
+  Stream<List<Channel>> watchActiveThreadsForGuild(String guildId) =>
+      (select(channels)..where(
+            (c) =>
+                c.guildId.equals(guildId) &
+                (c.type.equals(11) | c.type.equals(12)) &
+                (c.threadArchived.isNull() | c.threadArchived.equals(false)),
+          ))
+          .watch();
+
   /// Echowire: update a thread's cached member count from THREAD_MEMBERS_UPDATE.
   Future<void> updateThreadMemberCount(String channelId, int? memberCount) =>
       (update(channels)..where((c) => c.id.equals(channelId))).write(

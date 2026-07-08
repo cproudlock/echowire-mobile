@@ -658,23 +658,38 @@ class FluxerDatabase extends _$FluxerDatabase {
         );
       }
       if (from < 70) {
-        // Echowire: thread + forum channel columns.
-        await m.addColumn(channels, channels.ownerId);
-        await m.addColumn(channels, channels.threadArchived);
-        await m.addColumn(channels, channels.threadAutoArchiveDuration);
-        await m.addColumn(channels, channels.threadArchiveTimestamp);
-        await m.addColumn(channels, channels.threadLocked);
-        await m.addColumn(channels, channels.threadInvitable);
-        await m.addColumn(channels, channels.threadCreateTimestamp);
-        await m.addColumn(channels, channels.threadMemberCount);
-        await m.addColumn(channels, channels.threadMessageCount);
-        await m.addColumn(channels, channels.threadPinned);
-        await m.addColumn(channels, channels.appliedTagsJson);
-        await m.addColumn(channels, channels.availableTagsJson);
-        await m.addColumn(channels, channels.defaultSortOrder);
-        await m.addColumn(channels, channels.forumDefaultAutoArchiveDuration);
-        await m.addColumn(channels, channels.forumRequireTag);
-        await m.addColumn(channels, channels.defaultReactionEmojiJson);
+        // Echowire: thread + forum channel columns. IDEMPOTENT — a prior
+        // partial run may have added some of these already, and drift's
+        // addColumn is not transactional, so a plain re-run crashes with
+        // "duplicate column name" and the DB is stranded below v70 forever
+        // (which makes forum channels render as plain text). Only add the
+        // columns that are actually missing so the migration always completes.
+        final Set<String> existing =
+            (await customSelect('PRAGMA table_info(channels)').get())
+                .map((QueryRow r) => r.read<String>('name'))
+                .toSet();
+        Future<void> ensure(GeneratedColumn<Object> column) async {
+          if (!existing.contains(column.$name)) {
+            await m.addColumn(channels, column);
+          }
+        }
+
+        await ensure(channels.ownerId);
+        await ensure(channels.threadArchived);
+        await ensure(channels.threadAutoArchiveDuration);
+        await ensure(channels.threadArchiveTimestamp);
+        await ensure(channels.threadLocked);
+        await ensure(channels.threadInvitable);
+        await ensure(channels.threadCreateTimestamp);
+        await ensure(channels.threadMemberCount);
+        await ensure(channels.threadMessageCount);
+        await ensure(channels.threadPinned);
+        await ensure(channels.appliedTagsJson);
+        await ensure(channels.availableTagsJson);
+        await ensure(channels.defaultSortOrder);
+        await ensure(channels.forumDefaultAutoArchiveDuration);
+        await ensure(channels.forumRequireTag);
+        await ensure(channels.defaultReactionEmojiJson);
       }
     },
   );

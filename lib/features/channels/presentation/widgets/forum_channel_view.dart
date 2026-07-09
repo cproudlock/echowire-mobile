@@ -127,6 +127,36 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
     }
   }
 
+  Future<void> _manageTags() async {
+    final List<Map<String, Object?>>? result =
+        await showDialog<List<Map<String, Object?>>>(
+          context: context,
+          builder: (BuildContext context) =>
+              _ManageForumTagsDialog(tags: _availableTags),
+        );
+    if (result == null) {
+      return;
+    }
+    try {
+      await ref
+          .read(threadRepositoryProvider)
+          .updateForumTags(widget.channel.id, result);
+      if (!mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Tags updated')));
+    } on Exception catch (e) {
+      if (!mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Could not update tags: $e')));
+    }
+  }
+
   Future<void> _createPost() async {
     final _ForumPostDraft? draft = await showDialog<_ForumPostDraft>(
       context: context,
@@ -221,6 +251,11 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
                         child: Text('Name (A-Z)'),
                       ),
                     ],
+              ),
+              IconButton(
+                icon: const Icon(PhosphorIconsBold.tag),
+                tooltip: 'Manage tags',
+                onPressed: _manageTags,
               ),
             ],
           ),
@@ -392,6 +427,118 @@ class _ForumPostTile extends StatelessWidget {
 }
 
 enum _PostModAction { togglePin, toggleArchive, toggleLock, delete }
+
+class _EditableTag {
+  _EditableTag({required this.id, required this.name});
+  final String? id;
+  final String name;
+}
+
+class _ManageForumTagsDialog extends StatefulWidget {
+  const _ManageForumTagsDialog({required this.tags});
+
+  final List<ForumTag> tags;
+
+  @override
+  State<_ManageForumTagsDialog> createState() => _ManageForumTagsDialogState();
+}
+
+class _ManageForumTagsDialogState extends State<_ManageForumTagsDialog> {
+  late List<_EditableTag> _tags;
+  final TextEditingController _newTag = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _tags = widget.tags
+        .map((ForumTag t) => _EditableTag(id: t.id, name: t.name))
+        .toList();
+  }
+
+  @override
+  void dispose() {
+    _newTag.dispose();
+    super.dispose();
+  }
+
+  void _add() {
+    final String name = _newTag.text.trim();
+    if (name.isEmpty) {
+      return;
+    }
+    setState(() {
+      _tags.add(_EditableTag(id: null, name: name));
+      _newTag.clear();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Manage tags'),
+      content: SizedBox(
+        width: double.maxFinite,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            if (_tags.isEmpty)
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: Text('No tags yet'),
+              ),
+            for (int i = 0; i < _tags.length; i++)
+              ListTile(
+                dense: true,
+                contentPadding: EdgeInsets.zero,
+                title: Text(_tags[i].name),
+                trailing: IconButton(
+                  icon: const Icon(PhosphorIconsBold.x, size: 18),
+                  tooltip: 'Remove',
+                  onPressed: () => setState(() => _tags.removeAt(i)),
+                ),
+              ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    controller: _newTag,
+                    decoration: const InputDecoration(hintText: 'New tag name'),
+                    maxLength: 20,
+                    onSubmitted: (_) => _add(),
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(PhosphorIconsBold.plus),
+                  tooltip: 'Add tag',
+                  onPressed: _add,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('Cancel'),
+        ),
+        FilledButton(
+          onPressed: () {
+            final List<Map<String, Object?>> result = <Map<String, Object?>>[
+              for (final _EditableTag t in _tags)
+                <String, Object?>{
+                  'name': t.name,
+                  if (t.id != null) 'id': t.id,
+                },
+            ];
+            Navigator.of(context).pop(result);
+          },
+          child: const Text('Save'),
+        ),
+      ],
+    );
+  }
+}
 
 enum _ForumSort { recent, name }
 

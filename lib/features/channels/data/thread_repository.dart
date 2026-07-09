@@ -154,6 +154,25 @@ class ThreadRepository {
     }
   }
 
+  /// Replace a forum channel's full set of available tags. Each entry is
+  /// `{name, id?, emoji_name?}`; omit `id` to create a new tag.
+  Future<Channel> updateForumTags(
+    String forumId,
+    List<Map<String, Object?>> tags,
+  ) async {
+    try {
+      final ChannelResponse resp = await _client.channels.updateThread(
+        channelId: forumId,
+        body: ThreadUpdateRequest(availableTags: tags),
+      );
+      return _cacheAndReturn(resp);
+    } on DioException catch (e) {
+      throw Exception(
+        e.response?.statusMessage ?? 'Failed to update forum tags',
+      );
+    }
+  }
+
   Future<void> deleteThread(String threadId) async {
     try {
       await _client.channels.deleteThread(channelId: threadId);

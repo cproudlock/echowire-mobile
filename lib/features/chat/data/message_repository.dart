@@ -288,48 +288,24 @@ class MessageRepository {
         embeddedReplyParents: embeddedReplyParents,
       );
     } on DioException catch (e) {
-      // A genuine HTTP error (a real non-200 status) is a true failure — surface it.
-      final int? status = e.response?.statusCode;
-      if (status != null && status != 200) {
-        throw Exception(
-          e.error?.toString() ?? e.message ?? 'Failed to fetch messages',
+      // SDK deserialization can fail on a 200 response
+      // (e.g. missing fields). Fall back to manual parsing.
+      if (e.response?.statusCode == 200) {
+        talker.warning(
+          '[MessageRepo] SDK parse failed, '
+          'using fallback: ${e.error}',
         );
+        final messages = await _getMessagesFallback(
+          channelId: channelId,
+          limit: limit,
+          before: before,
+          after: after,
+          around: around,
+        );
+        return MessageListLoadResult(messages: messages);
       }
-      // Otherwise this is a deserialization failure on a 200 payload (the strict
-      // generated SDK model rejects something the server legitimately sends —
-      // e.g. `content: null` on attachment/embed/system messages). Under dio
-      // 5.10 that surfaces as a DioException with a null response, so we no
-      // longer gate on statusCode == 200. Fall back to lenient manual parsing.
-      talker.warning(
-        '[MessageRepo] SDK parse failed (Dio), using fallback: ${e.error}',
-      );
-      return MessageListLoadResult(
-        messages: await _getMessagesFallback(
-          channelId: channelId,
-          limit: limit,
-          before: before,
-          after: after,
-          around: around,
-        ),
-      );
-    } on Object catch (e) {
-      // The generated SDK model can also throw a NON-Dio error
-      // (CheckedFromJsonException / TypeError) directly out of retrofit when a
-      // field mismatches — again notably `content: null`, which the model types
-      // as a non-null String. The `on DioException` catch above misses these, so
-      // route them to the same lenient fallback (which tolerates null content
-      // and skips any individually unparseable row).
-      talker.warning(
-        '[MessageRepo] SDK parse threw ($e), using manual fallback',
-      );
-      return MessageListLoadResult(
-        messages: await _getMessagesFallback(
-          channelId: channelId,
-          limit: limit,
-          before: before,
-          after: after,
-          around: around,
-        ),
+      throw Exception(
+        e.error?.toString() ?? e.message ?? 'Failed to fetch messages',
       );
     }
   }

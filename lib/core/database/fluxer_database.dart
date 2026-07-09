@@ -137,7 +137,7 @@ class FluxerDatabase extends _$FluxerDatabase {
   FluxerDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 72;
+  int get schemaVersion => 73;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -743,6 +743,39 @@ class FluxerDatabase extends _$FluxerDatabase {
         await ensure(channels.forumDefaultAutoArchiveDuration);
         await ensure(channels.forumRequireTag);
         await ensure(channels.defaultReactionEmojiJson);
+      }
+      if (from < 73) {
+        // Echowire and upstream BOTH shipped a schemaVersion 70 migration:
+        // ours added the thread/forum columns to `channels`, upstream's added
+        // `messages.call_json` (and v71 `dm_channels.nicks_json`, v72
+        // `roles.hoist_position`). A DB that reached v70 through an Echowire
+        // build predating the upstream additions then upgrades straight to v72,
+        // and the `if (from < 70)` block holding `call_json` is skipped (70 is
+        // not < 70) — so the column is never created. Message upserts then fail
+        // with "table messages has no column named call_json" and every channel
+        // shows "Couldn't load messages". Re-ensure the v70-v72 columns here,
+        // idempotently, so collided DBs are repaired.
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'messages',
+          columnName: 'call_json',
+        )) {
+          await m.addColumn(messages, messages.callJson);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'dm_channels',
+          columnName: 'nicks_json',
+        )) {
+          await m.addColumn(dmChannels, dmChannels.nicksJson);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'roles',
+          columnName: 'hoist_position',
+        )) {
+          await m.addColumn(roles, roles.hoistPosition);
+        }
       }
     },
   );

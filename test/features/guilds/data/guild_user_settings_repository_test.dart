@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart' hide isNotNull, isNull;
-import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
@@ -12,6 +11,8 @@ import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_collapsed_categories_provider.dart';
 import 'package:fluxer_app/features/guilds/data/guild_user_settings_repository.dart';
 import 'package:fluxer_dart/export.dart';
+
+import '../../../helpers/open_test_database.dart';
 
 const GuildUserSettingsPersistenceOptions _immediateSync =
     GuildUserSettingsPersistenceOptions(persistImmediately: true);
@@ -125,14 +126,13 @@ void main() {
     late ProviderContainer container;
 
     setUp(() {
-      database = db.FluxerDatabase.forTesting(NativeDatabase.memory());
+      database = openTestDatabase();
       usersApi = _FakeUsersApi();
       container = _createContainer(database: database, usersApi: usersApi);
     });
 
-    tearDown(() async {
+    tearDown(() {
       container.dispose();
-      await database.close();
     });
 
     test(

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
@@ -11,6 +10,8 @@ import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/features/profile/providers/user_settings_status_provider.dart';
 import 'package:fluxer_app/features/profile/providers/user_status_service.dart';
 import 'package:fluxer_dart/export.dart';
+
+import '../../../helpers/open_test_database.dart';
 
 class _FakeUsersApi implements UsersApi {
   UserSettingsUpdateRequest? lastPushBody;
@@ -89,7 +90,7 @@ void main() {
     late ProviderContainer container;
 
     setUp(() async {
-      database = db.FluxerDatabase.forTesting(NativeDatabase.memory());
+      database = openTestDatabase();
       usersApi = _FakeUsersApi();
       await database.userSettingsDao.upsertSettings(
         db.UserSettingsTableCompanion.insert(
@@ -113,9 +114,8 @@ void main() {
       container.read(currentUserIdProvider.notifier).set('user-1');
     });
 
-    tearDown(() async {
+    tearDown(() {
       container.dispose();
-      await database.close();
     });
 
     test(

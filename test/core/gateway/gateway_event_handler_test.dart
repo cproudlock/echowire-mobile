@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/gateway/gateway_event_handler.dart';
@@ -8,6 +7,8 @@ import 'package:fluxer_app/features/chat/domain/message.dart' as domain;
 import 'package:fluxer_app/features/profile/domain/custom_status_utils.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:fluxer_dart/gateway.dart';
+
+import '../../helpers/open_test_database.dart';
 
 void main() {
   group('reaction remove', () {
@@ -20,8 +21,7 @@ void main() {
       required int count,
       required bool hasReacted,
     }) async {
-      final database = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(database.close);
+      final database = openTestDatabase();
       await database.messageDao.upsertMessage(
         domain.Message(
           id: messageId,
@@ -103,8 +103,7 @@ void main() {
   });
 
   test('READY persists guild stickers from raw guild payload', () async {
-    final database = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(database.close);
+    final database = openTestDatabase();
 
     final handler = GatewayEventHandler(database: database);
 
@@ -137,8 +136,7 @@ void main() {
     ({GatewayEventHandler handler, FluxerDatabase database}) build(
       List<String> captured,
     ) {
-      final database = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(database.close);
+      final database = openTestDatabase();
       final handler = GatewayEventHandler(
         database: database,
         currentUserId: '100',
@@ -214,8 +212,7 @@ void main() {
 
   group('presence update bulk', () {
     test('writes status and custom status for every presence', () async {
-      final database = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(database.close);
+      final database = openTestDatabase();
       await database.userDao.upsertUser(
         UsersCompanion.insert(id: 'u1', username: 'one'),
       );
@@ -253,8 +250,7 @@ void main() {
     });
 
     test('stores custom emoji custom status as json', () async {
-      final database = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(database.close);
+      final database = openTestDatabase();
       await database.userDao.upsertUser(
         UsersCompanion.insert(id: 'u3', username: 'three'),
       );
@@ -314,8 +310,7 @@ void main() {
     }
 
     test('hydrates the typer member when absent from cache', () async {
-      final database = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(database.close);
+      final database = openTestDatabase();
       final handler = GatewayEventHandler(
         database: database,
         currentUserId: '100',
@@ -341,8 +336,7 @@ void main() {
     });
 
     test('does not overwrite an already cached member', () async {
-      final database = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(database.close);
+      final database = openTestDatabase();
       final handler = GatewayEventHandler(
         database: database,
         currentUserId: '100',
@@ -372,8 +366,7 @@ void main() {
     });
 
     test('skips member hydration for DM typing without a guild', () async {
-      final database = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(database.close);
+      final database = openTestDatabase();
       final handler = GatewayEventHandler(
         database: database,
         currentUserId: '100',
@@ -391,8 +384,7 @@ void main() {
 
   group('USER_PINNED_DMS_UPDATE', () {
     test('replaces pinned DM rows with gateway order', () async {
-      final database = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(database.close);
+      final database = openTestDatabase();
       final handler = GatewayEventHandler(database: database);
 
       await handler.handle(
@@ -409,8 +401,7 @@ void main() {
     });
 
     test('clears pinned DM rows when list is empty', () async {
-      final database = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(database.close);
+      final database = openTestDatabase();
       final handler = GatewayEventHandler(database: database);
 
       await handler.handle(

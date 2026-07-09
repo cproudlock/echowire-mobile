@@ -1,14 +1,14 @@
 import 'package:drift/drift.dart' show Value;
-import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
+
+import '../../../helpers/open_test_database.dart';
 
 void main() {
   test(
     'setManualUnread writes both stickyUnreadMessageId and manual atomically',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
 
       await db.readStateDao.upsertReadState(
         const ReadStatesCompanion(
@@ -32,8 +32,7 @@ void main() {
   test(
     'clearStickyUnread clears both stickyUnreadMessageId and manual',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
 
       await db.readStateDao.upsertReadState(
         const ReadStatesCompanion(
@@ -52,8 +51,7 @@ void main() {
   );
 
   test('incrementMentionCount preserves stickyUnreadMessageId', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
 
     await db.readStateDao.upsertReadState(
       const ReadStatesCompanion(
@@ -75,8 +73,7 @@ void main() {
   });
 
   test('updatePinTimestamp preserves stickyUnreadMessageId', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
 
     await db.readStateDao.upsertReadState(
       const ReadStatesCompanion(

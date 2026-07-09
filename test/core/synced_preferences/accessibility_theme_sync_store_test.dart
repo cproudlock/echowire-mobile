@@ -1,9 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:drift/native.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
@@ -18,6 +17,8 @@ import 'package:fluxer_app/core/theme/providers/theme_preference_provider.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_sync_service.dart';
 import 'package:fluxer_dart/export.dart';
+
+import '../../helpers/open_test_database.dart';
 
 class _NoopUserSettingsSyncService extends UserSettingsSyncService {
   _NoopUserSettingsSyncService(super.ref);
@@ -163,14 +164,13 @@ void main() {
     late ProviderContainer container;
 
     setUp(() {
-      database = db.FluxerDatabase.forTesting(NativeDatabase.memory());
+      database = openTestDatabase();
       usersApi = _FakeUsersApi();
       container = _createContainer(database: database, usersApi: usersApi);
     });
 
-    tearDown(() async {
+    tearDown(() {
       container.dispose();
-      await database.close();
     });
 
     test('hydrate applies remote custom theme css and saturation', () async {
@@ -261,8 +261,6 @@ void main() {
             .read(themePreferenceProvider.notifier)
             .applySyncedThemeCustomization(
               saturationFactor: 1,
-              customThemeCss: null,
-              updateCustomThemeCss: true,
               clearCustomThemeCss: true,
             );
         store.markDirty(SyncedPreferenceField.accessibility);

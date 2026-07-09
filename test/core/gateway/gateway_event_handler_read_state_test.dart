@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart' show Value;
-import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/gateway/gateway_event_handler.dart';
@@ -10,6 +9,8 @@ import 'package:fluxer_app/features/channels/data/read_state_write_batcher.dart'
 import 'package:fluxer_app/shared/utils/snowflake_time.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:fluxer_dart/gateway.dart';
+
+import '../../helpers/open_test_database.dart';
 
 String _snowflakeForUtc(DateTime utc) {
   final int internal = (utc.millisecondsSinceEpoch - kSnowflakeEpochMs) << 22;
@@ -126,8 +127,7 @@ ReadyEvent _readyEvent({
 
 void main() {
   test('ready stores private settings under @me', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final handler = GatewayEventHandler(database: db, currentUserId: 'me');
 
     await handler.handle(
@@ -173,8 +173,7 @@ void main() {
   });
 
   test('user guild settings update merges partial payload', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     await db.userGuildSettingsDao.upsert(
       UserGuildSettingsTableCompanion.insert(
         guildId: 'guild-1',
@@ -243,8 +242,7 @@ void main() {
   test(
     'user guild settings update preserves overrides when channel_overrides is null',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       await db.userGuildSettingsDao.upsert(
         UserGuildSettingsTableCompanion.insert(
           guildId: 'guild-1',
@@ -297,8 +295,7 @@ void main() {
   );
 
   test('own created messages locally ack the channel', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final messageId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
     await db.channelDao.upsertChannel(
       ChannelsCompanion.insert(
@@ -327,8 +324,7 @@ void main() {
   });
 
   test('message ack stores manual state from gateway event', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final messageId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
     final handler = GatewayEventHandler(database: db, currentUserId: 'me');
 
@@ -361,8 +357,7 @@ void main() {
   });
 
   test('server ack with a stale version is ignored', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final ackId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
     await db.readStateDao.upsertReadState(
       ReadStatesCompanion(
@@ -405,8 +400,7 @@ void main() {
   });
 
   test('message ack ignores older non-manual ack', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final oldId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
     final currentId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
     await db.readStateDao.upsertReadState(
@@ -434,8 +428,7 @@ void main() {
   });
 
   test('message ack for same message updates mention count only', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final currentId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
     await db.readStateDao.upsertReadState(
       ReadStatesCompanion(
@@ -462,8 +455,7 @@ void main() {
   });
 
   test('role mentions increment guild channel mention count', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final messageId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
     await db.channelDao.upsertChannel(
       ChannelsCompanion.insert(
@@ -502,8 +494,7 @@ void main() {
   });
 
   test('suppressed role mentions do not increment mention count', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final messageId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
     await db.channelDao.upsertChannel(
       ChannelsCompanion.insert(
@@ -568,8 +559,7 @@ void main() {
   });
 
   test('channel pins update stores latest channel pin timestamp', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     const latestPin = '2026-05-06T12:00:00.000Z';
     await db.channelDao.upsertChannel(
       ChannelsCompanion.insert(
@@ -594,8 +584,7 @@ void main() {
   });
 
   test('channel pins ack falls back to latest channel pin timestamp', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     const latestPin = '2026-05-06T12:00:00.000Z';
     await db.channelDao.upsertChannel(
       ChannelsCompanion.insert(
@@ -614,8 +603,7 @@ void main() {
   });
 
   test('channel pins ack stores acknowledged pin timestamp', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     const latestPin = '2026-05-06T12:00:00.000Z';
     final handler = GatewayEventHandler(database: db, currentUserId: 'me');
 
@@ -631,8 +619,7 @@ void main() {
   });
 
   test('message delete keeps the stored mention count (notify-only)', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final ackId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
     final mentionId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
     await db.channelDao.upsertChannel(
@@ -680,8 +667,7 @@ void main() {
   test(
     'bulk message delete updates last message and keeps mention count',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       final ackId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
       final remainingId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11, 30));
       final deletedId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
@@ -731,8 +717,7 @@ void main() {
   test(
     'dm message delete keeps unread and mention counts (notify-only)',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       final ackId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 10));
       final remainingId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
       final deletedId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
@@ -770,8 +755,7 @@ void main() {
   );
 
   test('guild plain unread clears when only message is deleted', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final ackId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
     final messageId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
     await db.channelDao.upsertChannel(
@@ -826,8 +810,7 @@ void main() {
   test(
     'dm stays hoisted and unread when its newest message is deleted',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       final olderId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 10));
       final newerId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
       await db.dmChannelDao.upsertDmChannels([
@@ -871,8 +854,7 @@ void main() {
   test(
     'muted incoming DM updates unread presence without mention badge',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       final ackId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
       final messageId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
       await db.dmChannelDao.upsertDmChannels([
@@ -938,8 +920,7 @@ void main() {
   );
 
   test('incoming DM messages increment DM unread count', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final messageId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
     await db.dmChannelDao.upsertDmChannels([
       DmChannelsCompanion.insert(
@@ -966,8 +947,7 @@ void main() {
   test(
     'auto-acked channel suppresses incoming mention at the source',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       final messageId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
       await db.channelDao.upsertChannel(
         ChannelsCompanion.insert(
@@ -1007,8 +987,7 @@ void main() {
   );
 
   test('plain message marks never-acked guild channel unread', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final messageId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
     await db.channelDao.upsertChannel(
       ChannelsCompanion.insert(
@@ -1041,8 +1020,7 @@ void main() {
   });
 
   test('incremental ready preserves a local manual unread', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     final ackId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
     final stickyId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
     final handler = GatewayEventHandler(database: db, currentUserId: 'me');
@@ -1073,8 +1051,7 @@ void main() {
   test(
     'incremental ready clears manual unread when server ack advances',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       final ackId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
       final stickyId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
       final advancedAck = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 13));
@@ -1108,8 +1085,7 @@ void main() {
   test(
     'server ack does not double-count a mention still pending in the batcher',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       final batcher = ReadStateWriteBatcher(
         database: db,
         window: const Duration(hours: 1),

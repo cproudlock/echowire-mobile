@@ -1,4 +1,3 @@
-import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,6 +20,8 @@ import 'package:fluxer_app/features/settings/providers/appearance_preferences_pr
 import 'package:fluxer_app/features/ui/list/fluxer_list_row.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:riverpod/src/framework.dart' show Override;
+
+import '../../../../helpers/open_test_database.dart';
 
 const String _guildId = 'guild_1';
 const String _channelId = 'chan_1';
@@ -66,10 +67,7 @@ Widget _host(ProviderContainer container, {required Widget child}) {
 
 void main() {
   testWidgets('DM members tab shows the one-to-one recipient', (tester) async {
-    final FluxerDatabase database = FluxerDatabase.forTesting(
-      NativeDatabase.memory(),
-    );
-    addTearDown(database.close);
+    final FluxerDatabase database = openTestDatabase();
     final ProviderContainer container = _container(
       database,
       currentUserId: '1000000000000000001',
@@ -115,10 +113,7 @@ void main() {
   testWidgets(
     'disposing a guild-channel sheet clears member-list state without using ref',
     (tester) async {
-      final FluxerDatabase database = FluxerDatabase.forTesting(
-        NativeDatabase.memory(),
-      );
-      addTearDown(database.close);
+      final FluxerDatabase database = openTestDatabase();
       final ProviderContainer container = _container(database);
       addTearDown(container.dispose);
       final ScrollController scrollController = ScrollController();

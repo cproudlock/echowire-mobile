@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart' show Value;
-import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
@@ -10,6 +9,8 @@ import 'package:fluxer_app/features/chat/service/message_notification_sfx_gate.d
 import 'package:fluxer_app/features/settings/providers/sound_preferences_provider.dart';
 import 'package:fluxer_app/shared/utils/snowflake_time.dart';
 import 'package:fluxer_dart/export.dart';
+
+import '../../../helpers/open_test_database.dart';
 
 UserPartialResponse _user(String id) => UserPartialResponse(
   id: id,
@@ -49,7 +50,7 @@ Future<FluxerDatabase> _guildDb({
   bool suppressRoles = false,
   List<String> memberRoles = const ['role-1'],
 }) async {
-  final FluxerDatabase db = FluxerDatabase.forTesting(NativeDatabase.memory());
+  final FluxerDatabase db = openTestDatabase();
   await db.channelDao.upsertChannel(
     ChannelsCompanion.insert(
       id: 'channel-1',
@@ -90,7 +91,7 @@ Future<FluxerDatabase> _dmDb({
   UserNotificationSettings dmLevel = UserNotificationSettings.onlyMentions,
   bool muted = false,
 }) async {
-  final FluxerDatabase db = FluxerDatabase.forTesting(NativeDatabase.memory());
+  final FluxerDatabase db = openTestDatabase();
   await db.dmChannelDao.upsertDmChannels([
     DmChannelsCompanion.insert(id: 'dm-1', recipientId: 'other'),
   ]);
@@ -151,7 +152,6 @@ void main() {
   group('FluxerMessageNotificationSfxEvaluator', () {
     test('only mentions + plain guild message is silent', () async {
       final FluxerDatabase db = await _guildDb();
-      addTearDown(db.close);
       final MessageNotificationSfxPlayRequest? request = await _evaluate(
         db: db,
         message: _message(
@@ -165,7 +165,6 @@ void main() {
 
     test('only mentions + role mention plays guild message clip', () async {
       final FluxerDatabase db = await _guildDb();
-      addTearDown(db.close);
       final MessageNotificationSfxPlayRequest? request = await _evaluate(
         db: db,
         message: _message(
@@ -182,7 +181,6 @@ void main() {
       final FluxerDatabase db = await _guildDb(
         guildLevel: UserNotificationSettings.allMessages,
       );
-      addTearDown(db.close);
       final MessageNotificationSfxPlayRequest? request = await _evaluate(
         db: db,
         message: _message(
@@ -198,7 +196,6 @@ void main() {
       final FluxerDatabase db = await _guildDb(
         guildLevel: UserNotificationSettings.noMessages,
       );
-      addTearDown(db.close);
       final MessageNotificationSfxPlayRequest? request = await _evaluate(
         db: db,
         message: _message(
@@ -215,7 +212,6 @@ void main() {
       'only mentions + unmuted DM without mention plays direct clip',
       () async {
         final FluxerDatabase db = await _dmDb();
-        addTearDown(db.close);
         final MessageNotificationSfxPlayRequest? request = await _evaluate(
           db: db,
           message: _message(
@@ -230,7 +226,6 @@ void main() {
 
     test('muted DM is silent', () async {
       final FluxerDatabase db = await _dmDb(muted: true);
-      addTearDown(db.close);
       final MessageNotificationSfxPlayRequest? request = await _evaluate(
         db: db,
         message: _message(
@@ -246,7 +241,6 @@ void main() {
       final FluxerDatabase db = await _guildDb(
         guildLevel: UserNotificationSettings.allMessages,
       );
-      addTearDown(db.close);
       final MessageNotificationSfxPlayRequest? request = await _evaluate(
         db: db,
         message: _message(
@@ -263,7 +257,6 @@ void main() {
       final FluxerDatabase db = await _guildDb(
         guildLevel: UserNotificationSettings.allMessages,
       );
-      addTearDown(db.close);
       final MessageNotificationSfxPlayRequest? request = await _evaluate(
         db: db,
         message: _message(
@@ -279,7 +272,6 @@ void main() {
       final FluxerDatabase db = await _guildDb(
         guildLevel: UserNotificationSettings.allMessages,
       );
-      addTearDown(db.close);
       final MessageNotificationSfxPlayRequest? request = await _evaluate(
         db: db,
         selfIsDnd: true,
@@ -296,7 +288,6 @@ void main() {
       'foreground viewing channel without overlay uses same-channel clip',
       () async {
         final FluxerDatabase db = await _guildDb();
-        addTearDown(db.close);
         final MessageNotificationSfxPlayRequest? request = await _evaluate(
           db: db,
           foreground: true,
@@ -318,7 +309,6 @@ void main() {
       'foreground viewing channel with overlay still validates settings',
       () async {
         final FluxerDatabase db = await _guildDb();
-        addTearDown(db.close);
         final MessageNotificationSfxPlayRequest? request = await _evaluate(
           db: db,
           foreground: true,
@@ -338,7 +328,6 @@ void main() {
       final FluxerDatabase db = await _guildDb(
         guildLevel: UserNotificationSettings.allMessages,
       );
-      addTearDown(db.close);
       final MessageNotificationSfxDeduper deduper =
           MessageNotificationSfxDeduper(capacity: 50);
       final MessageResponseSchema message = _message(

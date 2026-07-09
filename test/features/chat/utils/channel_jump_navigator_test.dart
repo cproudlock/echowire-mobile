@@ -1,5 +1,4 @@
 import 'package:drift/drift.dart' show Value;
-import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
@@ -9,6 +8,8 @@ import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/utils/channel_jump_link.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/chat/utils/channel_jump_navigator.dart';
+
+import '../../../helpers/open_test_database.dart';
 
 void main() {
   group('buildChannelJumpRoutePath', () {
@@ -113,7 +114,7 @@ void main() {
     late ProviderContainer container;
 
     setUp(() {
-      database = FluxerDatabase.forTesting(NativeDatabase.memory());
+      database = openTestDatabase();
       container = ProviderContainer(
         overrides: [
           fluxerDatabaseProvider.overrideWithValue(database),
@@ -122,9 +123,8 @@ void main() {
       );
     });
 
-    tearDown(() async {
+    tearDown(() {
       container.dispose();
-      await database.close();
     });
 
     test(

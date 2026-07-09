@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:drift/drift.dart' show Value;
-import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,8 +20,7 @@ import 'package:fluxer_app/features/settings/providers/user_settings_sync_servic
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_dart/export.dart';
 
-FluxerDatabase _buildDatabase() =>
-    FluxerDatabase.forTesting(NativeDatabase.memory());
+import '../../helpers/open_test_database.dart';
 
 class _NoopUserSettingsSyncService extends UserSettingsSyncService {
   _NoopUserSettingsSyncService(super.ref);
@@ -171,11 +169,7 @@ void main() {
   late FluxerDatabase db;
 
   setUp(() {
-    db = _buildDatabase();
-  });
-
-  tearDown(() async {
-    await db.close();
+    db = openTestDatabase();
   });
 
   testWidgets('renders all section titles', (tester) async {

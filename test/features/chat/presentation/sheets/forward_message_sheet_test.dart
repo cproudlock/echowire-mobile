@@ -1,6 +1,6 @@
 import 'dart:async';
+
 import 'package:drift/drift.dart' show Value;
-import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -30,6 +30,8 @@ import 'package:fluxer_app/features/ui/spinner/fluxer_loading_spinner.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:riverpod/src/framework.dart' show Override;
+
+import '../../../../helpers/open_test_database.dart';
 
 // ---------------------------------------------------------------------------
 // Source media detection helpers (pure)
@@ -136,7 +138,7 @@ class _FakeDms extends DmViewModel {
 }
 
 Future<FluxerDatabase> _seedDb() async {
-  final FluxerDatabase db = FluxerDatabase.forTesting(NativeDatabase.memory());
+  final FluxerDatabase db = openTestDatabase();
   Future<void> channel(String id, int type) => db.channelDao.upsertChannel(
     ChannelsCompanion.insert(
       id: id,
@@ -281,7 +283,6 @@ void main() {
       WidgetTester tester,
     ) async {
       final FluxerDatabase db = await _seedDb();
-      addTearDown(db.close);
       await _openSheet(tester, db);
 
       expect(find.text('general'), findsOneWidget);
@@ -295,7 +296,6 @@ void main() {
       WidgetTester tester,
     ) async {
       final FluxerDatabase db = await _seedDb();
-      addTearDown(db.close);
       await _openSheet(tester, db);
 
       expect(find.text('Send (0/5)'), findsOneWidget);
@@ -318,7 +318,6 @@ void main() {
       WidgetTester tester,
     ) async {
       final FluxerDatabase db = await _seedDb();
-      addTearDown(db.close);
       await _openSheet(tester, db);
 
       await tester.enterText(find.byType(TextField).first, 'voice');
@@ -333,7 +332,6 @@ void main() {
       WidgetTester tester,
     ) async {
       final FluxerDatabase db = await _seedDb();
-      addTearDown(db.close);
 
       const ForwardDestination general = ForwardDestination(
         channelId: 'general',
@@ -392,7 +390,6 @@ void main() {
       WidgetTester tester,
     ) async {
       final FluxerDatabase db = await _seedDb();
-      addTearDown(db.close);
       await tester.pumpWidget(
         _app(
           db,
@@ -417,7 +414,6 @@ void main() {
       WidgetTester tester,
     ) async {
       final FluxerDatabase db = await _seedDb();
-      addTearDown(db.close);
       await _openSheet(tester, db);
 
       // Below 80% of the 2000-char limit the counter stays hidden.
@@ -436,7 +432,6 @@ void main() {
       WidgetTester tester,
     ) async {
       final FluxerDatabase db = await _seedDb();
-      addTearDown(db.close);
       await _openSheet(tester, db);
 
       // Issue 2: the comment affordance is not the anchored desktop popout.

@@ -1,10 +1,8 @@
 import 'dart:async';
 
-import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/theme/fluxer_layout_theme.dart';
@@ -18,6 +16,8 @@ import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_view_model.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/shared/utils/emoji_registry.dart';
+
+import '../../../../../helpers/open_test_database.dart';
 
 const String _channelId = 'general';
 const String _guildId = 'guild_1';
@@ -55,8 +55,7 @@ void main() {
     (tester) async {
       final emojis = StreamController<List<GuildEmojiEntry>>();
       addTearDown(emojis.close);
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       final textController = TextEditingController();
       addTearDown(textController.dispose);
       final focusNode = FocusNode();

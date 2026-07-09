@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart';
-import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
@@ -9,6 +8,8 @@ import 'package:fluxer_app/features/notifications/data/unread_inbox_calculator.d
 import 'package:fluxer_app/features/notifications/domain/unread_inbox_entry.dart';
 import 'package:fluxer_app/shared/utils/snowflake_time.dart';
 import 'package:fluxer_dart/export.dart';
+
+import '../../../helpers/open_test_database.dart';
 
 String _snowflakeForUtc(DateTime utc) {
   final int ms = utc.millisecondsSinceEpoch;
@@ -55,10 +56,7 @@ void main() {
   test(
     'guild channel with last message and no read state row appears as unread',
     () async {
-      final FluxerDatabase db = FluxerDatabase.forTesting(
-        NativeDatabase.memory(),
-      );
-      addTearDown(db.close);
+      final FluxerDatabase db = openTestDatabase();
 
       const String guildId = 'guild_test_1';
       const String channelId = 'channel_test_1';
@@ -99,8 +97,7 @@ void main() {
   test(
     'guild channel without view permission is excluded from unread inbox',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       const guildId = 'guild_test_1';
       final channelId = _snowflakeForUtc(DateTime.utc(2026, 5));
       const userId = 'user_test_1';
@@ -142,8 +139,7 @@ void main() {
   );
 
   test('guild channel uses join time when read state is missing', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     const guildId = 'guild_test_1';
     final channelId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
     const userId = 'user_test_1';
@@ -190,8 +186,7 @@ void main() {
   test(
     'guild unread inbox includes channel when last message is newer than ack',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       const guildId = 'guild_test_1';
       const userId = 'user_test_1';
       final now = DateTime.now().toUtc();
@@ -238,8 +233,7 @@ void main() {
   test(
     'guild unread inbox excludes channel when ack is newer than last message',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       const guildId = 'guild_test_1';
       const userId = 'user_test_1';
       final channelId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 10));
@@ -281,8 +275,7 @@ void main() {
   );
 
   test('unread inbox sorts newer channels before older channels', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     const guildId = 'guild_test_1';
     const userId = 'user_test_1';
     final now = DateTime.now().toUtc();
@@ -351,8 +344,7 @@ void main() {
 
   test('guild channel with mentions-only unread badges is excluded from unread '
       'inbox', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     const guildId = 'guild_test_1';
     final channelId = _snowflakeForUtc(DateTime.utc(2026, 5));
     const userId = 'user_test_1';
@@ -405,8 +397,7 @@ void main() {
   test(
     'muted guild channel with mentions is excluded from unread inbox',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       const guildId = 'guild_test_1';
       const channelId = 'channel_test_1';
       await db.guildDao.upsertServer(
@@ -457,8 +448,7 @@ void main() {
     'guild channel stays in unread inbox when notifications are mentions only '
     'and unread badges are unset',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       const guildId = 'guild_test_1';
       const channelId = 'channel_test_1';
       const userId = 'user_test_1';
@@ -503,8 +493,7 @@ void main() {
   );
 
   test('muted DM is excluded from unread inbox', () async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     await db.dmChannelDao.upsertDmChannels([
       DmChannelsCompanion.insert(
         id: 'dm-1',
@@ -547,8 +536,7 @@ void main() {
   test(
     'DM unread inbox entry is derived from read state mention count',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       await db.dmChannelDao.upsertDmChannels([
         DmChannelsCompanion.insert(
           id: 'dm-1',

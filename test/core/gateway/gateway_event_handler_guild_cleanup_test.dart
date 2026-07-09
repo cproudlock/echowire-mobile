@@ -1,10 +1,11 @@
 import 'package:drift/drift.dart' show Value;
-import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/gateway/gateway_event_handler.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:fluxer_dart/gateway.dart';
+
+import '../../helpers/open_test_database.dart';
 
 void main() {
   group('guild membership cleanup', () {
@@ -16,8 +17,7 @@ void main() {
       })
     >
     buildHandler() async {
-      final database = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(database.close);
+      final database = openTestDatabase();
       final evictedGuildIds = <String>[];
       final handler = GatewayEventHandler(
         database: database,

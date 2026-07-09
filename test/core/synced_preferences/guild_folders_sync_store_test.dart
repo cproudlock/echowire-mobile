@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
@@ -13,6 +12,8 @@ import 'package:fluxer_app/core/synced_preferences/generated/fluxer/user/prefere
     as pb;
 import 'package:fluxer_app/features/guilds/providers/organized_guild_list_provider.dart';
 import 'package:fluxer_dart/export.dart';
+
+import '../../helpers/open_test_database.dart';
 
 class _FakeUsersApi implements UsersApi {
   _FakeUsersApi();
@@ -146,14 +147,13 @@ void main() {
     late ProviderContainer container;
 
     setUp(() {
-      database = db.FluxerDatabase.forTesting(NativeDatabase.memory());
+      database = openTestDatabase();
       usersApi = _FakeUsersApi();
       container = _createContainer(database: database, usersApi: usersApi);
     });
 
-    tearDown(() async {
+    tearDown(() {
       container.dispose();
-      await database.close();
     });
 
     test('hydrate applies remote expanded folder ids', () async {

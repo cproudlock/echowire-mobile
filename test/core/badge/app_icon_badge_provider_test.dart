@@ -1,5 +1,4 @@
 import 'package:drift/drift.dart';
-import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/badge/app_icon_badge_provider.dart';
@@ -7,12 +6,13 @@ import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/providers/gateway_ready_provider.dart';
 
+import '../../helpers/open_test_database.dart';
+
 void main() {
   test(
     'badge does not re-emit on an unrelated (non-DM) read-state change',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       await db.dmChannelDao.upsertDmChannels([
         DmChannelsCompanion.insert(
           id: 'dm-1',

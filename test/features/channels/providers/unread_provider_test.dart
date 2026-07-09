@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart' show Value;
-import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
@@ -15,6 +14,8 @@ import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_view_model.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
 import 'package:fluxer_app/shared/utils/snowflake_time.dart';
+
+import '../../../helpers/open_test_database.dart';
 
 String _snowflakeForUtc(DateTime utc) {
   final int internal = (utc.millisecondsSinceEpoch - kSnowflakeEpochMs) << 22;
@@ -143,8 +144,7 @@ void main() {
   test(
     'channelUnreadProvider shows unread before member row is loaded',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       const guildId = 'guild-1';
       const channelId = 'channel-1';
       const userId = 'me';
@@ -188,8 +188,7 @@ void main() {
   test(
     'channelUnreadProvider recomputes after member row is inserted',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       const guildId = 'guild-1';
       const channelId = 'channel-1';
       const userId = 'me';
@@ -247,8 +246,7 @@ void main() {
   test(
     'channelUnreadProvider uses orphaned channel pointer when read state is behind',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       const guildId = 'guild-1';
       const channelId = 'channel-1';
       const userId = 'me';

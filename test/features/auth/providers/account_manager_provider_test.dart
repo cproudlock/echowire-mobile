@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
@@ -13,6 +12,8 @@ import 'package:fluxer_app/features/auth/data/auth_repository.dart';
 import 'package:fluxer_app/features/auth/domain/stored_account.dart';
 import 'package:fluxer_app/features/auth/providers/account_manager_provider.dart';
 import 'package:fluxer_app/features/auth/providers/auth_providers.dart';
+
+import '../../../helpers/open_test_database.dart';
 
 const String _userId = 'user-1';
 const String _token = 'token-1';
@@ -66,8 +67,7 @@ class _FakeAuthRepository implements AuthRepository {
 ({ProviderContainer container, FluxerDatabase db}) _harness({
   required String baseUrl,
 }) {
-  final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-  addTearDown(db.close);
+  final db = openTestDatabase();
   final container = ProviderContainer(
     overrides: [
       fluxerDatabaseProvider.overrideWithValue(db),

@@ -1,5 +1,4 @@
 import 'package:drift/drift.dart' show Value;
-import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
@@ -12,6 +11,8 @@ import 'package:fluxer_app/features/friends/domain/friend.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_view_model.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
+
+import '../../../../helpers/open_test_database.dart';
 
 const String _userId = 'user_1';
 const String _ownedGuild = 'guild_owned';
@@ -67,7 +68,7 @@ DmConversation _dm(String id, {int type = 1}) => DmConversation(
 );
 
 Future<FluxerDatabase> _seedDb() async {
-  final FluxerDatabase db = FluxerDatabase.forTesting(NativeDatabase.memory());
+  final FluxerDatabase db = openTestDatabase();
 
   Future<void> channel(
     String id,
@@ -185,7 +186,6 @@ void main() {
     'excludes the source channel and non-text-based channel types',
     () async {
       final FluxerDatabase db = await _seedDb();
-      addTearDown(db.close);
       final ProviderContainer container = _container(db, <DmConversation>[]);
       addTearDown(container.dispose);
 
@@ -201,7 +201,6 @@ void main() {
 
   test('maps guild channel kinds and keeps owner channels sendable', () async {
     final FluxerDatabase db = await _seedDb();
-    addTearDown(db.close);
     final ProviderContainer container = _container(db, <DmConversation>[]);
     addTearDown(container.dispose);
 
@@ -216,7 +215,6 @@ void main() {
 
   test('disables channels without send permission', () async {
     final FluxerDatabase db = await _seedDb();
-    addTearDown(db.close);
     final ProviderContainer container = _container(db, <DmConversation>[]);
     addTearDown(container.dispose);
 
@@ -230,7 +228,6 @@ void main() {
 
   test('flags slowmode only when the user cannot bypass it', () async {
     final FluxerDatabase db = await _seedDb();
-    addTearDown(db.close);
     final ProviderContainer container = _container(db, <DmConversation>[]);
     addTearDown(container.dispose);
 
@@ -246,7 +243,6 @@ void main() {
 
   test('requires attach-files permission when the message has media', () async {
     final FluxerDatabase db = await _seedDb();
-    addTearDown(db.close);
     final ProviderContainer container = _container(db, <DmConversation>[]);
     addTearDown(container.dispose);
 
@@ -266,7 +262,6 @@ void main() {
 
   test('includes DMs, group DMs and personal notes as enabled', () async {
     final FluxerDatabase db = await _seedDb();
-    addTearDown(db.close);
     final ProviderContainer container = _container(db, <DmConversation>[
       _dm('dm_1'),
       _dm('group_1', type: 3),
@@ -285,7 +280,6 @@ void main() {
 
   test('excludes a DM that is itself the forward source', () async {
     final FluxerDatabase db = await _seedDb();
-    addTearDown(db.close);
     final ProviderContainer container = _container(db, <DmConversation>[
       _dm('c_source'),
       _dm('dm_keep'),
@@ -301,10 +295,7 @@ void main() {
   });
 
   test('guild send-disabled pre-empts permissions for its channels', () async {
-    final FluxerDatabase db = FluxerDatabase.forTesting(
-      NativeDatabase.memory(),
-    );
-    addTearDown(db.close);
+    final FluxerDatabase db = openTestDatabase();
     await db.channelDao.upsertChannel(
       ChannelsCompanion.insert(
         id: 'c_src',
@@ -359,10 +350,7 @@ void main() {
   });
 
   test('member timeout disables channels in that guild', () async {
-    final FluxerDatabase db = FluxerDatabase.forTesting(
-      NativeDatabase.memory(),
-    );
-    addTearDown(db.close);
+    final FluxerDatabase db = openTestDatabase();
     await db.channelDao.upsertChannel(
       ChannelsCompanion.insert(
         id: 'c_src',
@@ -433,10 +421,7 @@ void main() {
   test(
     'does not block a destination when permission data is not loaded',
     () async {
-      final FluxerDatabase db = FluxerDatabase.forTesting(
-        NativeDatabase.memory(),
-      );
-      addTearDown(db.close);
+      final FluxerDatabase db = openTestDatabase();
       await db.channelDao.upsertChannel(
         ChannelsCompanion.insert(
           id: 'c_src',

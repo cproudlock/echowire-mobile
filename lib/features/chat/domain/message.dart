@@ -717,6 +717,101 @@ class MessageSnapshot {
       (flags & messageFlagCompactAttachments) != 0;
 }
 
+class MessageCall {
+  final List<String> participants;
+  final DateTime? endedTimestamp;
+
+  const MessageCall({required this.participants, this.endedTimestamp});
+
+  factory MessageCall.fromSdk({
+    required List<String> participants,
+    DateTime? endedTimestamp,
+  }) {
+    return MessageCall(
+      participants: participants,
+      endedTimestamp: endedTimestamp,
+    );
+  }
+
+  factory MessageCall.fromJson(Map<String, dynamic> json) {
+    return MessageCall(
+      participants:
+          (json['participants'] as List<dynamic>?)
+              ?.map((dynamic value) => value as String)
+              .toList() ??
+          const <String>[],
+      endedTimestamp: json['ended_timestamp'] == null
+          ? null
+          : DateTime.parse(json['ended_timestamp'] as String),
+    );
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'participants': participants,
+    if (endedTimestamp != null)
+      'ended_timestamp': endedTimestamp!.toIso8601String(),
+  };
+
+  bool get isEnded => endedTimestamp != null;
+}
+
+MessageCall? messageCallFromSdk(MessageResponseSchemaCall? call) {
+  if (call == null) {
+    return null;
+  }
+  return MessageCall.fromSdk(
+    participants: call.participants,
+    endedTimestamp: call.endedTimestamp,
+  );
+}
+
+MessageCall? messageCallFromPinSdk(ChannelPinResponseMessageCall? call) {
+  if (call == null) {
+    return null;
+  }
+  return MessageCall.fromSdk(
+    participants: call.participants,
+    endedTimestamp: call.endedTimestamp,
+  );
+}
+
+MessageCall? messageCallFromReferencedSdk(
+  MessageResponseSchemaReferencedMessageCall? call,
+) {
+  if (call == null) {
+    return null;
+  }
+  return MessageCall.fromSdk(
+    participants: call.participants,
+    endedTimestamp: call.endedTimestamp,
+  );
+}
+
+MessageCall? messageCallFromSearchSdk(
+  MessageSearchResultsResponseMessagesCall? call,
+) {
+  if (call == null) {
+    return null;
+  }
+  return MessageCall.fromSdk(
+    participants: call.participants,
+    endedTimestamp: call.endedTimestamp,
+  );
+}
+
+bool isKnownSystemMessageType(int type) {
+  return switch (type) {
+    messageTypeRecipientAdd ||
+    messageTypeRecipientRemove ||
+    messageTypeCall ||
+    messageTypeChannelNameChange ||
+    messageTypeChannelIconChange ||
+    messageTypeChannelPinnedMessage ||
+    messageTypeUserJoin => true,
+    _ => false,
+  };
+}
+
 class Message {
   final String id;
   final String channelId;
@@ -747,6 +842,7 @@ class Message {
   final MessageDeliveryState deliveryState;
   final String? clientNonce;
   final String? sendError;
+  final MessageCall? call;
 
   const Message({
     required this.id,
@@ -778,6 +874,7 @@ class Message {
     this.deliveryState = MessageDeliveryState.sent,
     this.clientNonce,
     this.sendError,
+    this.call,
   });
 
   factory Message.fromSdk(MessageResponseSchema sdk, {String? currentUserId}) {
@@ -820,6 +917,7 @@ class Message {
       type: sdk.type.json ?? 0,
       flags: sdk.flags,
       clientNonce: sdk.nonce,
+      call: messageCallFromSdk(sdk.call),
     );
   }
 
@@ -858,6 +956,7 @@ class Message {
       mentionChannels: parseMessageChannelMentions(sdk.mentionChannels),
       type: sdk.type.json ?? 0,
       flags: sdk.flags,
+      call: messageCallFromReferencedSdk(sdk.call),
     );
   }
 
@@ -903,6 +1002,7 @@ class Message {
       type: sdk.type.json ?? 0,
       flags: sdk.flags,
       clientNonce: sdk.nonce,
+      call: messageCallFromPinSdk(sdk.call),
     );
   }
 
@@ -949,6 +1049,7 @@ class Message {
       type: sdk.type.json ?? 0,
       flags: sdk.flags,
       clientNonce: sdk.nonce,
+      call: messageCallFromSearchSdk(sdk.call),
     );
   }
 
@@ -993,6 +1094,11 @@ class Message {
       deliveryState: MessageDeliveryState.values[row.deliveryState],
       clientNonce: row.clientNonce,
       sendError: row.sendError,
+      call: row.callJson == null
+          ? null
+          : MessageCall.fromJson(
+              jsonDecode(row.callJson!) as Map<String, dynamic>,
+            ),
     );
   }
 
@@ -1023,6 +1129,7 @@ class Message {
         deliveryState == other.deliveryState &&
         clientNonce == other.clientNonce &&
         sendError == other.sendError &&
+        _callEquals(call, other.call) &&
         _encodedListEquals<Embed>(embeds, other.embeds, (e) => e.toJson()) &&
         _encodedListEquals<Attachment>(
           attachments,
@@ -1072,6 +1179,16 @@ class Message {
   }
 
   static bool _referenceEquals(MessageReference? a, MessageReference? b) {
+    if (identical(a, b)) {
+      return true;
+    }
+    if (a == null || b == null) {
+      return false;
+    }
+    return jsonEncode(a.toJson()) == jsonEncode(b.toJson());
+  }
+
+  static bool _callEquals(MessageCall? a, MessageCall? b) {
     if (identical(a, b)) {
       return true;
     }
@@ -1139,6 +1256,7 @@ class Message {
       deliveryState: Value(deliveryState.index),
       clientNonce: Value(clientNonce),
       sendError: Value(sendError),
+      callJson: Value(call == null ? null : jsonEncode(call!.toJson())),
     );
   }
 
@@ -1172,6 +1290,7 @@ class Message {
     MessageDeliveryState? deliveryState,
     Object? clientNonce = _unset,
     Object? sendError = _unset,
+    Object? call = _unset,
   }) {
     return Message(
       id: id ?? this.id,
@@ -1205,6 +1324,7 @@ class Message {
           ? this.clientNonce
           : clientNonce as String?,
       sendError: sendError == _unset ? this.sendError : sendError as String?,
+      call: call == _unset ? this.call : call as MessageCall?,
     );
   }
 
@@ -1243,6 +1363,7 @@ class Message {
           : mentionChannels,
       type: incoming.type,
       flags: incoming.flags,
+      call: incoming.call ?? call,
     );
   }
 

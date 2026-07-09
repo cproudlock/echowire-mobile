@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart' show StateProvider;
 import 'package:flutter_test/flutter_test.dart';
@@ -18,6 +17,8 @@ import 'package:fluxer_app/features/dm/providers/dm_view_model.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_view_model.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
+
+import '../../../../helpers/open_test_database.dart';
 
 UserSettingsViewState _testUserSettings({required String userId}) {
   return UserSettingsViewState(
@@ -172,10 +173,7 @@ void main() {
       'grants all permissions for personal notes route without dm row',
       () async {
         const String userId = '1000000000000000001';
-        final FluxerDatabase db = FluxerDatabase.forTesting(
-          NativeDatabase.memory(),
-        );
-        addTearDown(db.close);
+        final FluxerDatabase db = openTestDatabase();
 
         final ProviderContainer container = ProviderContainer(
           overrides: [
@@ -201,10 +199,7 @@ void main() {
       'denies all permissions for system DM with Fluxerbot recipient',
       () async {
         const String channelId = '1000000000000000100';
-        final FluxerDatabase db = FluxerDatabase.forTesting(
-          NativeDatabase.memory(),
-        );
-        addTearDown(db.close);
+        final FluxerDatabase db = openTestDatabase();
 
         final ProviderContainer container = ProviderContainer(
           overrides: [
@@ -241,10 +236,7 @@ void main() {
 
     test('grants all permissions for regular DM', () async {
       const String channelId = '1000000000000000200';
-      final FluxerDatabase db = FluxerDatabase.forTesting(
-        NativeDatabase.memory(),
-      );
-      addTearDown(db.close);
+      final FluxerDatabase db = openTestDatabase();
 
       final ProviderContainer container = ProviderContainer(
         overrides: [
@@ -292,10 +284,7 @@ void main() {
 
   group('ChannelPermissionCache', () {
     test('does not cache bits when guild list is not hydrated', () async {
-      final FluxerDatabase db = FluxerDatabase.forTesting(
-        NativeDatabase.memory(),
-      );
-      addTearDown(db.close);
+      final FluxerDatabase db = openTestDatabase();
       const String guildId = 'guild_1';
       const String channelId = 'channel_1';
       const String userId = 'user_1';
@@ -339,10 +328,7 @@ void main() {
 
   group('computeEffectiveGuildChannelPermissionBitsOutcome', () {
     test('returns shouldCache false when guild is missing from list', () async {
-      final FluxerDatabase db = FluxerDatabase.forTesting(
-        NativeDatabase.memory(),
-      );
-      addTearDown(db.close);
+      final FluxerDatabase db = openTestDatabase();
       const String guildId = 'guild_1';
       const String channelId = 'channel_1';
       await db.channelDao.upsertChannel(

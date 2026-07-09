@@ -1,4 +1,3 @@
-import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
@@ -6,6 +5,8 @@ import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/features/gateway/providers/gateway_event_providers.dart';
 import 'package:fluxer_app/features/voice/providers/voice_channel_participants_provider.dart';
 import 'package:fluxer_dart/gateway.dart';
+
+import '../../../helpers/open_test_database.dart';
 
 void main() {
   ProviderContainer makeContainer(FluxerDatabase db) {
@@ -29,10 +30,7 @@ void main() {
   );
 
   test('returns empty list when channel has no voice states', () async {
-    final FluxerDatabase db = FluxerDatabase.forTesting(
-      NativeDatabase.memory(),
-    );
-    addTearDown(db.close);
+    final FluxerDatabase db = openTestDatabase();
     final ProviderContainer container = makeContainer(db);
 
     final List<VoiceChannelParticipantData> participants = await container.read(
@@ -47,10 +45,7 @@ void main() {
   test(
     'resolves display users for participants in the target channel',
     () async {
-      final FluxerDatabase db = FluxerDatabase.forTesting(
-        NativeDatabase.memory(),
-      );
-      addTearDown(db.close);
+      final FluxerDatabase db = openTestDatabase();
       await db.userDao.upsertUser(
         UsersCompanion.insert(id: 'u1', username: 'alice'),
       );
@@ -73,10 +68,7 @@ void main() {
   );
 
   test('does not invalidate channel states when another channel changes', () {
-    final FluxerDatabase db = FluxerDatabase.forTesting(
-      NativeDatabase.memory(),
-    );
-    addTearDown(db.close);
+    final FluxerDatabase db = openTestDatabase();
     final ProviderContainer container = makeContainer(db);
     container
         .read(voiceStatesMapProvider.notifier)

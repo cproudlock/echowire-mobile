@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart' show Value;
-import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
 import 'package:fluxer_app/features/channels/data/unread_permission_utils.dart';
+
+import '../../../helpers/open_test_database.dart';
 
 Future<Channel> _seedGuildChannel({
   required FluxerDatabase db,
@@ -57,8 +58,7 @@ void main() {
   test(
     'evaluateChannelUnreadPermission allows unread when member row is missing',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       const userId = 'me';
       const guildId = 'guild-1';
       const channelId = 'channel-1';
@@ -92,8 +92,7 @@ void main() {
   test(
     'evaluateChannelUnreadPermission denies unread when member cannot view channel',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       const userId = 'me';
       const guildId = 'guild-1';
       const channelId = 'channel-1';
@@ -118,8 +117,7 @@ void main() {
   test(
     'evaluateChannelUnreadPermission allows unread when member has view role',
     () async {
-      final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-      addTearDown(db.close);
+      final db = openTestDatabase();
       const userId = 'me';
       const guildId = 'guild-1';
       const channelId = 'channel-1';

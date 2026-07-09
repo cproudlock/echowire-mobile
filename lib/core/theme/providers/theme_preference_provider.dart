@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:drift/drift.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preference_field.dart';
@@ -266,8 +265,14 @@ class ThemePreference extends _$ThemePreference {
   Future<void> _applyRemoteUserSettings(UserSettingsResponse settings) async {
     await ref
         .read(syncedPreferencesStoreProvider)
-        .hydrateFromUserSettings(settings);
-    await applySyncedThemeFromUserSettings(ref, settings);
+        .hydrateFromUserSettings(
+          settings,
+          themeCustomizationApplier: applySyncedThemeCustomization,
+        );
+    await applySyncedThemeFromUserSettings(
+      settings,
+      applySyncedThemeCustomization,
+    );
     if (state.syncAcrossDevices && state.mode != FluxerThemeMode.system) {
       await applyServerSettings(settings);
     }

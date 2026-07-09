@@ -1,11 +1,12 @@
 import 'dart:convert';
 
-import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/gateway/gateway_event_handler.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart' as domain;
 import 'package:fluxer_dart/gateway.dart';
+
+import '../../helpers/open_test_database.dart';
 
 void main() {
   const channelId = '200';
@@ -14,8 +15,7 @@ void main() {
   Future<FluxerDatabase> seed({
     List<domain.Reaction> reactions = const [],
   }) async {
-    final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-    addTearDown(db.close);
+    final db = openTestDatabase();
     await db.messageDao.upsertMessage(
       domain.Message(
         id: messageId,

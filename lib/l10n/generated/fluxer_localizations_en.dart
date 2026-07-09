@@ -578,6 +578,16 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
       'This invite may be expired or invalid.';
 
   @override
+  String get invalidDeepLinkTitle => 'Link couldn\'t be opened';
+
+  @override
+  String get invalidDeepLinkDescription =>
+      'This link may be broken, only available on the web, or you might not have access. Check the link and try again.';
+
+  @override
+  String get invalidDeepLinkGoHomeButton => 'Go to home';
+
+  @override
   String get inviteAcceptJoinGroupButton => 'Join group';
 
   @override
@@ -844,6 +854,14 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
 
   @override
   String get dmUnpinGroupDm => 'Unpin Group DM';
+
+  @override
+  String get dmUnnamedGroup => 'Unnamed group';
+
+  @override
+  String dmOwnersGroup(String resolvedName) {
+    return '$resolvedName\'s group';
+  }
 
   @override
   String get dmFavoriteDm => 'Favorite DM';
@@ -2642,6 +2660,81 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   String get iarReportUserTitle => 'Report user';
 
   @override
+  String get iarReportGuildTitle => 'Report community';
+
+  @override
+  String get iarReportGuildPreconfirmBody =>
+      'If this report is about a specific message in this community, report that message instead. Message reports give our safety team the clearest context, and adding details in the comments can help us review it faster. Only continue with reporting the community as a whole if reporting a message would not capture the broader issue.';
+
+  @override
+  String get iarContinueToReportCommunity => 'Continue to report community';
+
+  @override
+  String get iarPreviewCommunitySubtitle => 'Community';
+
+  @override
+  String get iarReasonHarassmentGuildLabel => 'Harassment or targeted abuse';
+
+  @override
+  String get iarReasonHarassmentGuildDescription =>
+      'Community facilitates pile-ons or targeted abuse.';
+
+  @override
+  String get iarReasonHateGuildDescription =>
+      'Promotes hatred against protected groups.';
+
+  @override
+  String get iarReasonTerrorismLabel => 'Terrorism or violent extremism';
+
+  @override
+  String get iarReasonTerrorismDescription =>
+      'Promotes, recruits for, or coordinates violent extremist activity.';
+
+  @override
+  String get iarReasonMatureContentGuildLabel =>
+      'Mature content or unsafe gating';
+
+  @override
+  String get iarReasonMatureContentGuildDescription =>
+      'Mature content without proper gating.';
+
+  @override
+  String get iarReasonChildSafetyGuildDescription =>
+      'Endangers minors or hosts child-exploitation content.';
+
+  @override
+  String get iarReasonRaidLabel => 'Raid coordination';
+
+  @override
+  String get iarReasonRaidDescription =>
+      'Coordinates raids, brigading, or harassment against people or communities.';
+
+  @override
+  String get iarReasonSpamGuildDescription =>
+      'Community exists to spam, scam, or abuse the platform.';
+
+  @override
+  String get iarReasonMalwareGuildLabel => 'Malware distribution';
+
+  @override
+  String get iarReasonMalwareGuildDescription =>
+      'Distributes malware, credential theft, or harmful files.';
+
+  @override
+  String get iarReasonPrivacyGuildLabel => 'Privacy violation or doxxing';
+
+  @override
+  String get iarReasonPrivacyGuildDescription =>
+      'Shares personal info, stalks users, or coordinates privacy abuse.';
+
+  @override
+  String get iarReasonSelfHarmGuildLabel => 'Encourages self-harm';
+
+  @override
+  String get iarReasonSelfHarmGuildDescription =>
+      'Encourages suicide, self-harm, or eating disorders.';
+
+  @override
   String get iarReasonInappropriateProfile => 'Inappropriate profile';
 
   @override
@@ -3108,7 +3201,7 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   String get chatAttachmentSourceBrowse => 'Browse files';
 
   @override
-  String get chatAttachmentPasteTooltip => 'Paste image from clipboard';
+  String get chatAttachmentPasteTooltip => 'Paste file from clipboard';
 
   @override
   String get chatAttachmentSpoiler => 'Spoiler';
@@ -4058,6 +4151,80 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   @override
   String systemPreviewStartedCall(String username) {
     return '$username started a call.';
+  }
+
+  @override
+  String get systemCallJoinTheCall => 'Join the call';
+
+  @override
+  String systemCallStartedThatLasted(String username, String duration) {
+    return '$username started a call that lasted $duration.';
+  }
+
+  @override
+  String systemCallMissedWithDuration(String username, String duration) {
+    return 'You missed a call from $username that lasted $duration.';
+  }
+
+  @override
+  String systemCallMissed(String username) {
+    return 'You missed a call from $username.';
+  }
+
+  @override
+  String get systemCallDurationFewSeconds => 'a few seconds';
+
+  @override
+  String get systemCallDurationMinute => 'a minute';
+
+  @override
+  String get systemCallDurationOneYear => '1 year';
+
+  @override
+  String get systemCallDurationOneMonth => '1 month';
+
+  @override
+  String get systemCallDurationOneWeek => '1 week';
+
+  @override
+  String get systemCallDurationOneDay => '1 day';
+
+  @override
+  String get systemCallDurationOneHour => '1 hour';
+
+  @override
+  String systemCallDurationYears(String count) {
+    return '$count years';
+  }
+
+  @override
+  String systemCallDurationMonths(String count) {
+    return '$count months';
+  }
+
+  @override
+  String systemCallDurationWeeks(String count) {
+    return '$count weeks';
+  }
+
+  @override
+  String systemCallDurationDays(String count) {
+    return '$count days';
+  }
+
+  @override
+  String systemCallDurationHours(String count) {
+    return '$count hours';
+  }
+
+  @override
+  String systemCallDurationMinutes(String count) {
+    return '$count minutes';
+  }
+
+  @override
+  String systemUnknownMessage(String productName) {
+    return 'Update $productName to view this message.';
   }
 
   @override
@@ -5162,11 +5329,418 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   String get channelPinsEmptyDescription => 'Pinned messages show up here.';
 
   @override
+  String get channelDetailsFallbackTitle => 'Details';
+
+  @override
+  String channelDetailsGroupDmSubtitle(int count) {
+    return 'Group DM · $count members';
+  }
+
+  @override
+  String channelDetailsCloseDmDescription(String name) {
+    return 'Close your conversation with $name?';
+  }
+
+  @override
+  String channelDetailsLeaveGroupDescription(String name) {
+    return 'Leave $name?';
+  }
+
+  @override
+  String get channelDetailsChannelSettingsTitle => 'Channel Settings';
+
+  @override
+  String get channelDetailsGroupSettingsTitle => 'Group Settings';
+
+  @override
+  String get channelDetailsDmSettingsTitle => 'DM Settings';
+
+  @override
+  String get channelDetailsInvitePeople => 'Invite People';
+
+  @override
+  String get channelDetailsCopyLink => 'Copy Link';
+
+  @override
+  String get channelDetailsAddFriendsToGroup => 'Add Friends to Group';
+
+  @override
+  String get channelDetailsGroupInvites => 'Group Invites';
+
+  @override
+  String get channelDetailsEditChannel => 'Edit Channel';
+
+  @override
+  String get channelDetailsDeleteChannel => 'Delete Channel';
+
+  @override
+  String get channelMenuOpenChat => 'Open chat';
+
+  @override
+  String get channelMenuDuplicateChannel => 'Duplicate channel';
+
+  @override
+  String get channelMenuResetMatureContentAgreeState =>
+      'Reset mature content agreement state';
+
+  @override
+  String get channelMenuDeleteMyMessagesTitle =>
+      'Delete your messages in this channel?';
+
+  @override
+  String get channelMenuDeleteMyMessagesDescription =>
+      'This will permanently delete every message you have ever sent in this channel. This cannot be undone.';
+
+  @override
+  String get channelMenuDeleteMyMessagesConfirm => 'Delete My Messages';
+
+  @override
+  String get channelMenuDeletedYourMessages => 'Deleted your messages';
+
+  @override
+  String get channelMenuCouldNotDeleteYourMessages =>
+      'Couldn\'t delete your messages';
+
+  @override
+  String get channelDetailsSystemMessage => 'System message';
+
+  @override
+  String get channelDetailsTextChannel => 'Text channel';
+
+  @override
+  String get channelDetailsVoiceChannel => 'Voice channel';
+
+  @override
+  String get channelDetailsCategory => 'Category';
+
+  @override
+  String get channelDetailsLinkChannel => 'Link channel';
+
+  @override
+  String get channelDetailsGenericChannel => 'Channel';
+
+  @override
+  String get channelDetailsMutedConversation => 'Muted conversation';
+
+  @override
+  String get channelDetailsUnmutedConversation => 'Unmuted conversation';
+
+  @override
+  String get channelDetailsMutedChannel => 'Muted channel';
+
+  @override
+  String get channelDetailsUnmutedChannel => 'Unmuted channel';
+
+  @override
+  String get channelDetailsNotificationSettingsUpdated =>
+      'Notification settings updated';
+
+  @override
+  String get channelDetailsTabMembers => 'Members';
+
+  @override
+  String get channelDetailsTabPins => 'Pins';
+
+  @override
+  String get channelDetailsActionMute => 'Mute';
+
+  @override
+  String get channelDetailsActionUnmute => 'Unmute';
+
+  @override
+  String get channelDetailsActionSearch => 'Search';
+
+  @override
+  String get channelDetailsActionMore => 'More';
+
+  @override
+  String get channelDetailsMembersEmptyTitle => 'No members to show';
+
+  @override
+  String get channelDetailsMembersEmptyBody =>
+      'Members will appear here once the community data is loaded.';
+
+  @override
+  String get channelDetailsPinsLoadFailedTitle => 'Pins could not be loaded';
+
+  @override
+  String get channelDetailsPinsGuildEndHint =>
+      'Members with the \"Pin Messages\" permission can pin messages for everyone to see.';
+
+  @override
+  String get channelDetailsPinsDmEndHint =>
+      'You can pin messages in this conversation for everyone to see.';
+
+  @override
+  String get channelDetailsPinsEndReached => 'You\'ve reached the end';
+
+  @override
+  String get channelDetailsSearchTitle => 'Search';
+
+  @override
+  String get channelDetailsSearchHint => 'Search Messages';
+
+  @override
+  String get channelDetailsSearchFilterFrom => 'From';
+
+  @override
+  String get channelDetailsSearchFilterHas => 'Has';
+
+  @override
+  String get channelDetailsSearchFilterSort => 'Sort';
+
+  @override
+  String channelDetailsSearchResultCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Results',
+      one: '1 Result',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelDetailsSearchFilterByUser => 'Filter by user';
+
+  @override
+  String get channelDetailsSearchFilterByContent => 'Filter by content';
+
+  @override
+  String get channelDetailsSearchSortBy => 'Sort results by';
+
+  @override
+  String get channelDetailsSearchIn => 'Search In';
+
+  @override
+  String get channelDetailsSearchEmptyTitle => 'Search this conversation';
+
+  @override
+  String get channelDetailsSearchEmptyBody =>
+      'Enter text, an author, or a content filter to find messages.';
+
+  @override
+  String get channelDetailsSearchIndexingTitle => 'Messages are indexing';
+
+  @override
+  String get channelDetailsSearchIndexingBody =>
+      'Try again shortly once search finishes indexing this scope.';
+
+  @override
+  String get channelDetailsSearchNoResultsTitle => 'No results';
+
+  @override
+  String get channelDetailsSearchNoResultsBody =>
+      'Try different search terms or filters.';
+
+  @override
+  String get channelDetailsMembersOnline => 'Online';
+
+  @override
+  String get channelDetailsMembersOffline => 'Offline';
+
+  @override
+  String get channelDetailsMemberYou => 'You';
+
+  @override
+  String get channelDetailsSearchUsersHint => 'Search users';
+
+  @override
+  String get channelDetailsSearchUsersTypeToSearch => 'Type to search members';
+
+  @override
+  String get channelDetailsSearchUsersEmpty => 'No users found';
+
+  @override
+  String get channelDetailsSearchUsersNoAvailable => 'No users available';
+
+  @override
+  String get channelDetailsDone => 'Done';
+
+  @override
+  String get channelDetailsHasFilterPrompt => 'Show messages that contain:';
+
+  @override
+  String get channelDetailsRetry => 'Retry';
+
+  @override
+  String get channelDetailsPinnedMessageTitle => 'Pinned Message';
+
+  @override
+  String get channelDetailsSearchResultTitle => 'Search Result';
+
+  @override
+  String get channelDetailsJumpToMessage => 'Jump to Message';
+
+  @override
+  String get channelDetailsUnpinMessage => 'Unpin Message';
+
+  @override
+  String get channelDetailsCopyMessageLink => 'Copy Message Link';
+
+  @override
+  String get channelDetailsCopyMessageId => 'Copy Message ID';
+
+  @override
+  String get channelDetailsMessageUnpinned => 'Message unpinned';
+
+  @override
+  String get channelDetailsSearchScopeCurrentCommunity => 'Current Community';
+
+  @override
+  String get channelDetailsSearchScopeCurrentDm => 'Current DM';
+
+  @override
+  String get channelDetailsSearchScopeAllCommunities => 'All Communities';
+
+  @override
+  String get channelDetailsSearchScopeAllDmsOnlyGuild => 'All DMs Only';
+
+  @override
+  String get channelDetailsSearchScopeAllDms => 'All DMs';
+
+  @override
+  String get channelDetailsSearchScopeOpenDmsOnlyGuild => 'Open DMs Only';
+
+  @override
+  String get channelDetailsSearchScopeOpenDms => 'Open DMs';
+
+  @override
+  String get channelDetailsSearchScopeAllDmsAndCommunities =>
+      'All DMs + Communities';
+
+  @override
+  String get channelDetailsSearchScopeOpenDmsAndCommunities =>
+      'Open DMs + Communities';
+
+  @override
+  String get channelDetailsSearchScopeCurrentCommunityDescription =>
+      'Search only in the current Community';
+
+  @override
+  String get channelDetailsSearchScopeCurrentDmDescription =>
+      'Search only in the current DM';
+
+  @override
+  String get channelDetailsSearchScopeAllCommunitiesDescription =>
+      'Across all Communities you\'re currently in';
+
+  @override
+  String get channelDetailsSearchScopeAllDmsOnlyGuildDescription =>
+      'Across all DMs you\'ve ever been in only';
+
+  @override
+  String get channelDetailsSearchScopeAllDmsDescription =>
+      'Across all DMs you\'ve ever been in';
+
+  @override
+  String get channelDetailsSearchScopeOpenDmsOnlyGuildDescription =>
+      'Across all DMs you currently have open only';
+
+  @override
+  String get channelDetailsSearchScopeOpenDmsDescription =>
+      'Across all DMs you currently have open';
+
+  @override
+  String get channelDetailsSearchScopeAllDmsAndCommunitiesDescription =>
+      'Across all DMs you\'ve ever been in + all Communities you\'re currently in';
+
+  @override
+  String get channelDetailsSearchScopeOpenDmsAndCommunitiesDescription =>
+      'Across all DMs you currently have open + all Communities you\'re currently in';
+
+  @override
+  String get channelDetailsSearchSortNewest => 'Newest First';
+
+  @override
+  String get channelDetailsSearchSortOldest => 'Oldest First';
+
+  @override
+  String get channelDetailsSearchSortRelevance => 'Most Relevant';
+
+  @override
+  String get channelDetailsSearchSortNewestDescription =>
+      'Show most recent messages first';
+
+  @override
+  String get channelDetailsSearchSortOldestDescription =>
+      'Show oldest messages first';
+
+  @override
+  String get channelDetailsSearchSortRelevanceDescription =>
+      'Show most relevant messages first';
+
+  @override
+  String get channelDetailsSearchContentImage => 'Image Upload';
+
+  @override
+  String get channelDetailsSearchContentVideo => 'Video Upload';
+
+  @override
+  String get channelDetailsSearchContentAudio => 'Audio Upload';
+
+  @override
+  String get channelDetailsSearchContentFile => 'File Upload';
+
+  @override
+  String get channelDetailsSearchContentLink => 'Link';
+
+  @override
+  String get channelDetailsSearchContentEmbed => 'Link Preview or Embed';
+
+  @override
+  String get channelDetailsSearchContentSticker => 'Sticker';
+
+  @override
+  String get channelDetailsSearchContentImageDescription =>
+      'Uploaded image files only';
+
+  @override
+  String get channelDetailsSearchContentVideoDescription =>
+      'Uploaded video files only';
+
+  @override
+  String get channelDetailsSearchContentAudioDescription =>
+      'Uploaded audio files only';
+
+  @override
+  String get channelDetailsSearchContentFileDescription =>
+      'Any uploaded attachment';
+
+  @override
+  String get channelDetailsSearchContentLinkDescription =>
+      'Typed URL in the message text';
+
+  @override
+  String get channelDetailsSearchContentEmbedDescription =>
+      'Resolved previews and rich embeds, not uploads';
+
+  @override
+  String get channelDetailsSearchContentStickerDescription =>
+      'Sticker attached to the message';
+
+  @override
+  String channelDetailsSearchContentTypesCount(int count) {
+    return '$count types';
+  }
+
+  @override
   String get personalNotesTitle => 'Personal notes';
 
   @override
   String get personalNotesSubtitle =>
       'Your private space for thoughts and reminders';
+
+  @override
+  String groupDmWelcome(String displayName) {
+    return 'Welcome to $displayName. Add friends to get the group going.';
+  }
+
+  @override
+  String get groupDmWelcomeEditGroup => 'Edit group';
+
+  @override
+  String get groupDmWelcomeAddFriends => 'Add friends to group';
 
   @override
   String channelWelcomeHeading(String channelName) {
@@ -5890,10 +6464,10 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   String get guildNavbarGroupDm => 'Group DM';
 
   @override
-  String get guildNavbarCreateChannel => 'Create Channel';
+  String get guildNavbarCreateChannel => 'Create channel';
 
   @override
-  String get guildNavbarChannelType => 'Channel Type';
+  String get guildNavbarChannelType => 'Channel type';
 
   @override
   String get guildNavbarTextChannel => 'Text Channel';
@@ -5929,10 +6503,13 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   String get guildNavbarUrlHint => 'https://example.com';
 
   @override
-  String get guildNavbarCreateCategory => 'Create Category';
+  String get guildNavbarChannelTypeSelection => 'Channel type selection';
 
   @override
-  String get guildNavbarNewCategoryHint => 'New Category';
+  String get guildNavbarCreateCategory => 'Create category';
+
+  @override
+  String get guildNavbarNewCategoryHint => 'New category';
 
   @override
   String guildNavbarInviteFriendsTo(String communityName) {
@@ -6160,10 +6737,13 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   String get guildMenuSettingsMembers => 'Members';
 
   @override
-  String get guildMenuSettingsInviteLinks => 'Invite Links';
+  String get guildMenuSettingsInviteLinks => 'Invites';
 
   @override
   String get guildMenuSettingsBans => 'Bans';
+
+  @override
+  String get guildMenuSettingsChannels => 'Channels';
 
   @override
   String get guildSettingsNoPermission =>
@@ -6202,10 +6782,387 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
       'Use roles to group members and assign permissions.';
 
   @override
-  String get guildSettingsCreateRole => 'Create Role';
+  String get guildSettingsCreateRole => 'Create role';
 
   @override
   String get guildSettingsRolesListTitle => 'Roles';
+
+  @override
+  String get guildSettingsRolesNewRole => 'New role';
+
+  @override
+  String get guildSettingsRolesDeleteRole => 'Delete role';
+
+  @override
+  String get guildSettingsRolesBackToRoles => 'Back to roles';
+
+  @override
+  String guildSettingsRolesEditTitle(String name) {
+    return 'Edit \"$name\"';
+  }
+
+  @override
+  String get guildSettingsRolesEditSubtitle =>
+      'Configure role settings and permissions';
+
+  @override
+  String get guildSettingsRolesDisplaySection => 'Display';
+
+  @override
+  String get guildSettingsRolesRoleName => 'Role name';
+
+  @override
+  String get guildSettingsRolesRoleColor => 'Role color';
+
+  @override
+  String get guildSettingsRolesRoleColorHelper =>
+      'Type a color (hex, rgb(), hsl(), or name) or use the picker.';
+
+  @override
+  String get guildSettingsRolesShowSeparately => 'Show this role separately';
+
+  @override
+  String get guildSettingsRolesShowSeparatelyHelper =>
+      'Lists members with this role in their own section in the member list.';
+
+  @override
+  String get guildSettingsRolesAllowMentions => 'Allow mentions for this role';
+
+  @override
+  String guildSettingsRolesAllowMentionsHelper(String permission) {
+    return 'Members with the \"$permission\" permission can always mention roles, regardless of this setting.';
+  }
+
+  @override
+  String get guildSettingsRolesClearPermissionsHelp =>
+      'Use this button to quickly clear all permissions.';
+
+  @override
+  String get guildSettingsRolesClearPermissions => 'Clear permissions';
+
+  @override
+  String get guildSettingsRolesPermissionsSection => 'Permissions';
+
+  @override
+  String get guildSettingsRolesSearchPermissions => 'Search permissions';
+
+  @override
+  String get guildSettingsRolesDenseLayout => 'Dense layout';
+
+  @override
+  String get guildSettingsRolesComfyLayout => 'Comfy layout';
+
+  @override
+  String get guildSettingsRolesSwitchToDenseLayout => 'Switch to dense layout';
+
+  @override
+  String get guildSettingsRolesSwitchToComfyLayout => 'Switch to comfy layout';
+
+  @override
+  String get guildSettingsRolesSingleColumn => 'Single column';
+
+  @override
+  String get guildSettingsRolesTwoColumns => 'Two columns';
+
+  @override
+  String get guildSettingsRolesSwitchToSingleColumn =>
+      'Switch to single column';
+
+  @override
+  String get guildSettingsRolesSwitchToTwoColumns => 'Switch to two columns';
+
+  @override
+  String get guildSettingsRolesNoPermissionsFound => 'No permissions found';
+
+  @override
+  String get guildSettingsRolesCustomHoistOrder => 'Custom hoist order';
+
+  @override
+  String get guildSettingsRolesHoistOrder => 'Hoist order';
+
+  @override
+  String get guildSettingsRolesResetHoistOrder => 'Reset to default';
+
+  @override
+  String get guildSettingsRolesHoistOrderHelp =>
+      'Drag roles to customize the order they appear in the member list.';
+
+  @override
+  String get guildSettingsRolesNoHoistedRoles =>
+      'No hoisted roles. Enable \"Show this role separately\" on a role to see it here.';
+
+  @override
+  String get guildSettingsRolesLockedTooltip =>
+      'You cannot edit this role because it is your highest role or above you';
+
+  @override
+  String guildSettingsRolesNeedManageRolesPermission(String permission) {
+    return 'You need the \"$permission\" permission to edit these permissions';
+  }
+
+  @override
+  String get guildSettingsRolesCannotEditHigherRole =>
+      'You cannot edit a role at or above your highest role';
+
+  @override
+  String get guildSettingsRolesCannotGrantPermission =>
+      'You cannot grant a permission you don\'t have';
+
+  @override
+  String get guildSettingsRolesCannotRemoveOwnPermission =>
+      'You cannot remove this permission because it would remove it from yourself';
+
+  @override
+  String get guildSettingsRolesUpdatedSuccess => 'Roles updated successfully';
+
+  @override
+  String get guildSettingsRolesCreatedSuccess => 'Role created successfully';
+
+  @override
+  String get guildSettingsRolesDeletedSuccess => 'Role deleted successfully';
+
+  @override
+  String get guildSettingsRolesHoistResetSuccess =>
+      'Hoist order reset to default';
+
+  @override
+  String get guildSettingsRolesNameRequiredTitle => 'Role name is required';
+
+  @override
+  String get guildSettingsRolesNameRequiredBody =>
+      'Give the role a name before saving.';
+
+  @override
+  String get guildSettingsRolesCreateFailedTitle => 'Couldn\'t create role';
+
+  @override
+  String get guildSettingsRolesUpdateFailedTitle => 'Couldn\'t update roles';
+
+  @override
+  String get guildSettingsRolesDeleteFailedTitle => 'Couldn\'t delete role';
+
+  @override
+  String guildSettingsRolesDeleteFailedBody(String name) {
+    return '\"$name\" wouldn\'t delete. Try again.';
+  }
+
+  @override
+  String get guildSettingsRolesResetHoistFailedTitle =>
+      'Couldn\'t reset hoist order';
+
+  @override
+  String get guildSettingsRolesTryAgainInAMoment => 'Try again in a moment.';
+
+  @override
+  String guildSettingsRolesDeleteConfirm(String name) {
+    return 'Are you sure you want to delete the $name role? Any members with this role will no longer have it.';
+  }
+
+  @override
+  String get permissionCategoryCommunityWide => 'Community-wide';
+
+  @override
+  String get permissionCategoryMessagesMedia => 'Messages & media';
+
+  @override
+  String get permissionCategoryModeration => 'Moderation';
+
+  @override
+  String get permissionCategoryChannelAccess => 'Channel access';
+
+  @override
+  String get permissionCategoryAudioVideo => 'Audio & video';
+
+  @override
+  String get permissionUnknown => 'Unknown permission';
+
+  @override
+  String get permissionAdministrator => 'Administrator';
+
+  @override
+  String get permissionAdministratorDescription =>
+      'Grants all permissions and bypasses channel restrictions. Highly sensitive.';
+
+  @override
+  String get permissionViewActivityLog => 'View activity log';
+
+  @override
+  String get permissionViewActivityLogDescription =>
+      'Read the community\'s activity log of changes and moderation actions.';
+
+  @override
+  String get permissionManageCommunity => 'Manage community';
+
+  @override
+  String get permissionManageCommunityDescription =>
+      'Edit global settings like name, description, and icon.';
+
+  @override
+  String get permissionManageRoles => 'Manage roles';
+
+  @override
+  String get permissionManageRolesDescription =>
+      'Create, edit, or delete roles below your highest role. Also allows editing channel permission overwrites.';
+
+  @override
+  String get permissionManageChannels => 'Manage channels';
+
+  @override
+  String get permissionManageChannelsDescription =>
+      'Create, edit, or delete channels and categories.';
+
+  @override
+  String get permissionKickMembers => 'Kick members';
+
+  @override
+  String get permissionBanMembers => 'Ban members';
+
+  @override
+  String get permissionCreateInviteLinks => 'Create invite links';
+
+  @override
+  String get permissionChangeOwnNickname => 'Change own nickname';
+
+  @override
+  String get permissionChangeOwnNicknameDescription =>
+      'Update your own nickname.';
+
+  @override
+  String get permissionManageNicknames => 'Manage nicknames';
+
+  @override
+  String get permissionManageNicknamesDescription =>
+      'Change other members\' nicknames.';
+
+  @override
+  String get permissionCreateEmojiStickers => 'Create emoji & stickers';
+
+  @override
+  String get permissionCreateEmojiStickersDescription =>
+      'Upload new emoji and stickers, and manage your own creations.';
+
+  @override
+  String get permissionManageEmojiStickers => 'Manage emoji & stickers';
+
+  @override
+  String get permissionManageEmojiStickersDescription =>
+      'Edit or delete emoji and stickers created by other members.';
+
+  @override
+  String get permissionManageWebhooks => 'Manage webhooks';
+
+  @override
+  String get permissionManageWebhooksDescription =>
+      'Create, edit, or delete webhooks.';
+
+  @override
+  String get permissionSendMessages => 'Send messages';
+
+  @override
+  String get permissionSendTtsMessages => 'Send TTS messages';
+
+  @override
+  String get permissionSendTtsMessagesDescription =>
+      'Send text-to-speech messages.';
+
+  @override
+  String get permissionManageMessages => 'Manage messages';
+
+  @override
+  String get permissionManageMessagesDescription =>
+      'Delete other members\' messages. Pinning is controlled separately.';
+
+  @override
+  String get permissionPinMessages => 'Pin messages';
+
+  @override
+  String get permissionEmbedLinks => 'Embed links';
+
+  @override
+  String get permissionAttachFiles => 'Attach files';
+
+  @override
+  String get permissionMentionEveryone => 'Use @everyone/@here and @role';
+
+  @override
+  String get permissionMentionEveryoneDescription =>
+      'Mention everyone or any role (even if the role isn\'t set to be mentionable).';
+
+  @override
+  String get permissionUseExternalEmoji => 'Use external emoji';
+
+  @override
+  String get permissionUseExternalEmojiDescription =>
+      'Use emoji from other communities.';
+
+  @override
+  String get permissionUseExternalStickers => 'Use external stickers';
+
+  @override
+  String get permissionAddReactions => 'Add reactions';
+
+  @override
+  String get permissionAddReactionsDescription =>
+      'Add new reactions to messages.';
+
+  @override
+  String get permissionBypassSlowmode => 'Bypass slowmode';
+
+  @override
+  String get permissionBypassSlowmodeDescription =>
+      'Ignore per-channel message rate limits.';
+
+  @override
+  String get permissionTimeOutMembers => 'Time out members';
+
+  @override
+  String get permissionTimeOutMembersDescription =>
+      'Prevent members from sending messages, reacting, and joining voice for a duration.';
+
+  @override
+  String get permissionViewChannel => 'View channel';
+
+  @override
+  String get permissionViewChannelMembers => 'View channel members';
+
+  @override
+  String get permissionViewChannelMembersDescription =>
+      'See the member list for channels in this community.';
+
+  @override
+  String get permissionConnect => 'Connect';
+
+  @override
+  String get permissionSpeak => 'Speak';
+
+  @override
+  String get permissionStreamVideo => 'Stream video';
+
+  @override
+  String get permissionUseVoiceActivity => 'Use voice activity';
+
+  @override
+  String get permissionUseVoiceActivityDescription =>
+      'Without this permission, push-to-talk is required.';
+
+  @override
+  String get permissionPrioritySpeaker => 'Priority speaker';
+
+  @override
+  String get permissionMuteMembers => 'Mute members';
+
+  @override
+  String get permissionDeafenMembers => 'Deafen members';
+
+  @override
+  String get permissionMoveMembers => 'Move members';
+
+  @override
+  String get permissionMoveMembersDescription =>
+      'Drag members between channels they can access.';
+
+  @override
+  String get permissionSetVoiceRegion => 'Set voice region';
 
   @override
   String guildSettingsEmojiSlotInfo(int staticCount, int animatedCount) {
@@ -6947,11 +7904,109 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   }
 
   @override
-  String get guildSettingsInvitesDescription =>
-      'View and revoke active invite links.';
+  String get guildSettingsInvitesTitle => 'Invites';
 
   @override
-  String get guildSettingsInvitesEmpty => 'No active invites.';
+  String get guildSettingsInvitesDescription =>
+      'View all invites for this community. To create a new invite, go to a channel and use the invite button.';
+
+  @override
+  String get guildSettingsInvitesEmpty => 'No invite links';
+
+  @override
+  String get guildSettingsInvitesEmptyDescription =>
+      'This community doesn\'t have any invite links yet. Go to a channel and create an invite to invite people.';
+
+  @override
+  String get guildSettingsInvitesLoadFailedTitle => 'Failed to load invites';
+
+  @override
+  String get guildSettingsInvitesLoadFailedDescription =>
+      'There was an error loading the invites. Try again.';
+
+  @override
+  String get guildSettingsInvitesTryAgain => 'Try again';
+
+  @override
+  String get guildSettingsInvitesShowCreatedDate =>
+      'Show creation date instead of expiration date';
+
+  @override
+  String get guildSettingsInvitesPauseInvites => 'Pause invites';
+
+  @override
+  String get guildSettingsInvitesEnableInvites => 'Enable invites';
+
+  @override
+  String get guildSettingsInvitesPauseForCommunityTitle =>
+      'Pause invites for this community';
+
+  @override
+  String get guildSettingsInvitesEnableForCommunityTitle =>
+      'Enable invites for this community';
+
+  @override
+  String get guildSettingsInvitesPauseConfirmDescription =>
+      'Pause invites? New users won\'t be able to join through invite links until you re-enable them. Existing members won\'t be affected.';
+
+  @override
+  String get guildSettingsInvitesEnableConfirmDescription =>
+      'Enable invites? Users will be able to join this community through invite links again.';
+
+  @override
+  String get guildSettingsInvitesPause => 'Pause';
+
+  @override
+  String get guildSettingsInvitesPausedForCommunity =>
+      'Invites are paused for this community.';
+
+  @override
+  String guildSettingsInvitesPausedBecauseRaid(String productName) {
+    return 'Invites are paused because $productName detected a potential raid. New users can\'t join right now.';
+  }
+
+  @override
+  String get guildSettingsInvitesLabelInviter => 'Inviter:';
+
+  @override
+  String get guildSettingsInvitesLabelChannel => 'Channel:';
+
+  @override
+  String get guildSettingsInvitesLabelCode => 'Code:';
+
+  @override
+  String get guildSettingsInvitesLabelUses => 'Uses:';
+
+  @override
+  String get guildSettingsInvitesLabelCreated => 'Created:';
+
+  @override
+  String get guildSettingsInvitesLabelExpires => 'Expires:';
+
+  @override
+  String get guildSettingsInvitesUnknown => 'Unknown';
+
+  @override
+  String get guildSettingsInvitesNoCategory => 'No category';
+
+  @override
+  String get guildSettingsInvitesExpired => 'Expired';
+
+  @override
+  String get guildSettingsInvitesNever => 'Never';
+
+  @override
+  String get guildSettingsInvitesCopyLink => 'Copy invite link';
+
+  @override
+  String get guildSettingsInvitesRevoke => 'Revoke invite';
+
+  @override
+  String get guildSettingsInvitesRevokeFailedTitle => 'Couldn\'t revoke invite';
+
+  @override
+  String get guildSettingsInvitesRevokeFailedDescription =>
+      'The link may still work. Try again in a moment.';
 
   @override
   String guildSettingsInviteUses(int uses, int maxUses) {
@@ -7406,6 +8461,9 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   String get guildSettingsInvitesTableCreated => 'Created';
 
   @override
+  String get guildSettingsInvitesTableExpires => 'Expires';
+
+  @override
   String get guildSettingsMembersSortNewest => 'Newest first';
 
   @override
@@ -7413,6 +8471,106 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
 
   @override
   String get guildSettingsAuditLogFilterAction => 'Filter by action';
+
+  @override
+  String get createDm => 'Create DM';
+
+  @override
+  String get createGroupDm => 'Create group DM';
+
+  @override
+  String get createDmNewMessage => 'New message';
+
+  @override
+  String get createDmSelectFriends => 'Select friends';
+
+  @override
+  String get createDmChooseFriendsSubtitle => 'Choose friends to message.';
+
+  @override
+  String get createDmSearchFriends => 'Search friends';
+
+  @override
+  String get createDmNoFriendsFound => 'No friends found';
+
+  @override
+  String get createDmNoFriendsYet => 'You have no friends yet';
+
+  @override
+  String get createDmClaimToStartDms => 'Claim your account to start DMs.';
+
+  @override
+  String get createDmVerifyToStartDms => 'Verify your email to start DMs.';
+
+  @override
+  String get createDmVerifyYourEmail => 'Verify your email';
+
+  @override
+  String get createDmNewGroup => 'New group';
+
+  @override
+  String createDmCreateGroupWithRecipient(String userName) {
+    return 'Create a new group with $userName';
+  }
+
+  @override
+  String get createDmConfirmNewGroup => 'Confirm new group';
+
+  @override
+  String get createDmCreateNewGroup => 'Create new group';
+
+  @override
+  String createDmRemoveFriend(String displayName) {
+    return 'Remove $displayName';
+  }
+
+  @override
+  String get createDmDuplicateGroupDescription =>
+      'You already have a group with these users. Do you really want to create a new one? That\'s fine too!';
+
+  @override
+  String get createDmNoActivityYet => 'No activity yet';
+
+  @override
+  String get createDmSomeUsersCantBeAdded => 'Some users can\'t be added';
+
+  @override
+  String get createDmCreateWithoutThem => 'Create without them';
+
+  @override
+  String get createDmUnaddableIntro =>
+      'The following people can\'t be added to this group DM:';
+
+  @override
+  String createDmUnaddableProceed(int count) {
+    return 'Create the group DM with the remaining $count recipient(s) and skip the others?';
+  }
+
+  @override
+  String get createDmUnaddableNoneRemaining =>
+      'No remaining recipients to create a group DM with.';
+
+  @override
+  String get createDmUnaddableUserNotFound => 'User not found';
+
+  @override
+  String get createDmUnaddableBlocked => 'You can\'t message this user';
+
+  @override
+  String get createDmUnaddableNotFriends => 'Not on your friends list';
+
+  @override
+  String get createDmUnaddableGroupDisabled =>
+      'Doesn\'t allow being added to group DMs';
+
+  @override
+  String get createDmFailed => 'Couldn\'t create the conversation. Try again.';
+
+  @override
+  String get dmListMessagesTitle => 'Messages';
+
+  @override
+  String get dmListDirectMessagesTitle => 'Direct Messages';
 }
 
 /// The translations for English, as used in the United Kingdom (`en_GB`).

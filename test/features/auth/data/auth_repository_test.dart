@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
-import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/instance/instance_config_snapshot.dart';
@@ -14,6 +13,8 @@ import 'package:fluxer_app/features/auth/domain/ip_auth_poll_result.dart';
 import 'package:fluxer_app/features/auth/domain/login_result.dart';
 import 'package:fluxer_dart/export.dart';
 
+import '../../../helpers/open_test_database.dart';
+
 void main() {
   group('AuthRepository', () {
     late FluxerDatabase db;
@@ -21,7 +22,7 @@ void main() {
     late AuthRepository repository;
 
     setUp(() {
-      db = FluxerDatabase.forTesting(NativeDatabase.memory());
+      db = openTestDatabase();
       tokenStorage = MapAuthTokenStorage();
       repository = AuthRepository(
         FluxerClient(Dio(BaseOptions(baseUrl: 'https://api.fluxer.app/v1'))),
@@ -29,10 +30,6 @@ void main() {
         tokenStorage,
         readInstanceSnapshot: InstanceConfigSnapshot.officialDefault,
       );
-    });
-
-    tearDown(() async {
-      await db.close();
     });
 
     test('login returns an MFA challenge for MFA-required responses', () async {

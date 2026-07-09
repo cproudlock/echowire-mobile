@@ -5,7 +5,6 @@ import 'dart:typed_data';
 
 import 'package:cross_file/cross_file.dart';
 import 'package:dio/dio.dart';
-import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
@@ -27,6 +26,8 @@ import 'package:fluxer_app/features/chat/providers/upload/user_upload_limits_pro
 import 'package:fluxer_app/features/chat/utils/file_upload_validator.dart';
 import 'package:fluxer_app/shared/utils/snowflake_time.dart';
 import 'package:fluxer_dart/export.dart';
+
+import '../../../../helpers/open_test_database.dart';
 
 PendingAttachment _pendingAttachment({
   required int id,
@@ -170,8 +171,7 @@ void main() {
       'does not post message when multi-attachment upload is cancelled',
       () async {
         final Completer<void> uploadBlock = Completer<void>();
-        final db = FluxerDatabase.forTesting(NativeDatabase.memory());
-        addTearDown(db.close);
+        final db = openTestDatabase();
         await db.channelDao.upsertChannel(
           ChannelsCompanion.insert(id: 'channel-1', guildId: '', name: 'dm'),
         );

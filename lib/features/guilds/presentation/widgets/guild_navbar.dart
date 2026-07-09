@@ -2852,6 +2852,11 @@ class _GuildListItemState extends State<_GuildListItem>
                       label: l10n.guildNavbarVoiceChannel,
                       description: l10n.guildNavbarVoiceChannelDescription,
                     ),
+                    const FluxerRadioItem(
+                      value: 15,
+                      label: 'Forum',
+                      description: 'A space for organized, threaded posts',
+                    ),
                     FluxerRadioItem(
                       value: 998,
                       label: l10n.guildNavbarLinkChannel,
@@ -2925,6 +2930,14 @@ class _GuildListItemState extends State<_GuildListItem>
                         nsfwOverride: null,
                         contentWarningLevel: null,
                         contentWarningText: null,
+                      ),
+                      15 => ChannelCreateRequest15(
+                        name: name,
+                        topic: null,
+                        parentId: null,
+                        permissionOverwrites: const [],
+                        nsfw: false,
+                        nsfwOverride: null,
                       ),
                       _ => ChannelCreateRequest0(
                         name: name,

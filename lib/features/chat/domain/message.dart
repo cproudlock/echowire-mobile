@@ -29,6 +29,8 @@ const int messageTypeChannelNameChange = 4;
 const int messageTypeChannelIconChange = 5;
 const int messageTypeChannelPinnedMessage = 6;
 const int messageTypeUserJoin = 7;
+// Echowire: posted in the parent channel when a thread is started (Discord type 18).
+const int messageTypeThreadCreated = 18;
 const int messageTypeReply = 19;
 const int messageTypeClientSystem = 99;
 

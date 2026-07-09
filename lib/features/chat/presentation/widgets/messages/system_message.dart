@@ -271,6 +271,13 @@ class SystemMessage extends ConsumerWidget {
         return (PhosphorIconsFill.textAa, 'changed the channel name.');
       case messageTypeChannelIconChange:
         return (PhosphorIconsFill.image, 'changed the channel icon.');
+      case messageTypeThreadCreated:
+        return (
+          PhosphorIconsBold.chatText,
+          message.content.isEmpty
+              ? 'started a thread.'
+              : 'started a thread: ${message.content}',
+        );
       default:
         return (PhosphorIconsFill.info, message.content);
     }

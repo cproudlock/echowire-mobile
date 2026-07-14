@@ -39,6 +39,7 @@
     <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" />
 
     <application
+        android:name=".FluxerApplication"
         android:label="${appLabel}"
         android:icon="@mipmap/ic_launcher"
         android:localeConfig="@xml/locales_config"

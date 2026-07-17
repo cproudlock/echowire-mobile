@@ -28,12 +28,51 @@ typedef FluxerScrollableBottomSheetBuilder =
 
 enum FluxerBottomSheetVariant { content, menu }
 
+/// Provides bottom scroll inset for lists inside a [FluxerBottomSheet].
+class FluxerBottomSheetScope extends InheritedWidget {
+  const FluxerBottomSheetScope({
+    required this.bottomScrollPadding,
+    required super.child,
+    super.key,
+  });
+
+  final double bottomScrollPadding;
+
+  static FluxerBottomSheetScope? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<FluxerBottomSheetScope>();
+  }
+
+  @override
+  bool updateShouldNotify(FluxerBottomSheetScope oldWidget) {
+    return bottomScrollPadding != oldWidget.bottomScrollPadding;
+  }
+}
+
 /// Shows a styled modal bottom sheet with the app's standard appearance.
 ///
 /// The sheet builder receives a `close` callback so children can dismiss the
 /// sheet without needing their own `Navigator.pop` call.
 class FluxerBottomSheet {
   FluxerBottomSheet._();
+
+  /// Bottom inset to append to scrollable content inside a bottom sheet.
+  static double scrollBottomPaddingOf(BuildContext context) {
+    return FluxerBottomSheetScope.maybeOf(context)?.bottomScrollPadding ?? 0;
+  }
+
+  /// Merges [padding] with the bottom sheet scroll bottom inset.
+  static EdgeInsets scrollViewPadding(
+    BuildContext context, {
+    EdgeInsetsGeometry? padding,
+  }) {
+    final EdgeInsets resolved =
+        padding?.resolve(Directionality.of(context)) ?? EdgeInsets.zero;
+    final double bottom = scrollBottomPaddingOf(context);
+    if (bottom <= 0) {
+      return resolved;
+    }
+    return resolved.copyWith(bottom: resolved.bottom + bottom);
+  }
 
   static Future<T?> _showWithOverlayTracking<T>(
     BuildContext context,
@@ -74,14 +113,25 @@ class FluxerBottomSheet {
         enableDrag: false,
         isDismissible: isDismissible,
         elevation: 0,
+        backgroundColor: Colors.transparent,
+        useSafeArea: reserveBottomInset,
         builder: (sheetContext) {
           void close() =>
               Navigator.of(sheetContext, rootNavigator: useRootNavigator).pop();
 
           final mediaQuery = MediaQuery.of(sheetContext);
-          final bottomPadding = mediaQuery.viewPadding.bottom;
           final topPadding = mediaQuery.viewPadding.top;
           final bottomInset = mediaQuery.viewInsets.bottom;
+          final bottomPadding = _effectiveBottomSheetBottomPadding(
+            sheetContext,
+            reserveBottomInset,
+            keyboardBottomInset: bottomInset,
+          );
+          final bool useExternalBottomInset =
+              variant == FluxerBottomSheetVariant.menu && bottomPadding > 0;
+          final double bottomScrollPadding = useExternalBottomInset
+              ? 0
+              : bottomPadding;
           final hasHeader =
               title != null ||
               subtitle != null ||
@@ -96,9 +146,15 @@ class FluxerBottomSheet {
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 maxHeight: maxHeight != null
-                    ? (mediaQuery.size.height - topPadding - layout.s4) *
+                    ? (mediaQuery.size.height -
+                              topPadding -
+                              (useExternalBottomInset ? bottomPadding : 0) -
+                              layout.s4) *
                           maxHeight
-                    : mediaQuery.size.height - topPadding - layout.s4,
+                    : mediaQuery.size.height -
+                          topPadding -
+                          (useExternalBottomInset ? bottomPadding : 0) -
+                          layout.s4,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -121,25 +177,32 @@ class FluxerBottomSheet {
                           : layout.s2,
                     ),
                   ],
-                  Flexible(child: builder(sheetContext, close)),
-                  if (reserveBottomInset)
-                    SizedBox(
-                      height: bottomPadding > 0 ? bottomPadding : layout.s4,
+                  Flexible(
+                    child: _FluxerBottomSheetInsetChild(
+                      bottomPadding: bottomScrollPadding,
+                      child: builder(sheetContext, close),
                     ),
+                  ),
                 ],
               ),
             ),
           );
 
+          final sheetContent = _wrapBottomSheetSurface(
+            context: sheetContext,
+            insetBelowSurface: useExternalBottomInset ? bottomPadding : 0,
+            child: content,
+          );
+
           if (canDismissNotifier == null) {
-            return content;
+            return sheetContent;
           }
 
           return ValueListenableBuilder<bool>(
             valueListenable: canDismissNotifier,
             builder: (context, canDismiss, child) =>
                 PopScope(canPop: canDismiss, child: child!),
-            child: content,
+            child: sheetContent,
           );
         },
       ),
@@ -168,6 +231,7 @@ class FluxerBottomSheet {
     double? maxHeight,
     bool disableTopPadding = false,
     bool isDismissible = true,
+    bool reserveBottomInset = true,
   }) {
     final layout = context.layout;
 
@@ -180,13 +244,20 @@ class FluxerBottomSheet {
         enableDrag: false,
         isDismissible: isDismissible,
         elevation: 0,
+        backgroundColor: Colors.transparent,
+        useSafeArea: reserveBottomInset,
         builder: (sheetContext) {
           void close() =>
               Navigator.of(sheetContext, rootNavigator: useRootNavigator).pop();
 
           final mediaQuery = MediaQuery.of(sheetContext);
-          final bottomPadding = mediaQuery.viewPadding.bottom;
           final bottomInset = mediaQuery.viewInsets.bottom;
+          final bottomPadding = _effectiveBottomSheetBottomPadding(
+            sheetContext,
+            reserveBottomInset,
+            keyboardBottomInset: bottomInset,
+          );
+          final double bottomScrollPadding = bottomPadding;
           final hasHeader =
               title != null ||
               subtitle != null ||
@@ -215,8 +286,8 @@ class FluxerBottomSheet {
             leading: leading,
             trailing: trailing,
             onBack: onBack,
-            bottomPadding: bottomPadding,
             bottomInset: bottomInset,
+            bottomScrollPadding: bottomScrollPadding,
             sheetContext: sheetContext,
             builder: builder,
           );
@@ -240,6 +311,61 @@ class FluxerBottomSheet {
 // ---------------------------------------------------------------------------
 // Structural widgets
 // ---------------------------------------------------------------------------
+
+double _effectiveBottomSheetBottomPadding(
+  BuildContext context,
+  bool reserveBottomInset, {
+  required double keyboardBottomInset,
+}) {
+  if (!reserveBottomInset || keyboardBottomInset > 0) {
+    return 0;
+  }
+  return MediaQuery.viewPaddingOf(context).bottom;
+}
+
+Widget _wrapBottomSheetSurface({
+  required BuildContext context,
+  required Widget child,
+  double insetBelowSurface = 0,
+}) {
+  final BottomSheetThemeData bottomSheetTheme = Theme.of(
+    context,
+  ).bottomSheetTheme;
+  final Widget sheetBody = Material(
+    color:
+        bottomSheetTheme.modalBackgroundColor ??
+        bottomSheetTheme.backgroundColor,
+    surfaceTintColor: Colors.transparent,
+    shape: bottomSheetTheme.shape,
+    clipBehavior: bottomSheetTheme.clipBehavior ?? Clip.antiAlias,
+    child: child,
+  );
+  if (insetBelowSurface <= 0) {
+    return sheetBody;
+  }
+  return Padding(
+    padding: EdgeInsets.only(bottom: insetBelowSurface),
+    child: sheetBody,
+  );
+}
+
+class _FluxerBottomSheetInsetChild extends StatelessWidget {
+  const _FluxerBottomSheetInsetChild({
+    required this.bottomPadding,
+    required this.child,
+  });
+
+  final double bottomPadding;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: bottomPadding),
+      child: child,
+    );
+  }
+}
 
 const double _kDragHandleHitHeight = 28;
 
@@ -311,8 +437,8 @@ class _FluxerDraggableScrollableSheet extends StatefulWidget {
     required this.leading,
     required this.trailing,
     required this.onBack,
-    required this.bottomPadding,
     required this.bottomInset,
+    required this.bottomScrollPadding,
     required this.sheetContext,
     required this.builder,
   });
@@ -330,8 +456,8 @@ class _FluxerDraggableScrollableSheet extends StatefulWidget {
   final Widget? leading;
   final Widget? trailing;
   final VoidCallback? onBack;
-  final double bottomPadding;
   final double bottomInset;
+  final double bottomScrollPadding;
   final BuildContext sheetContext;
   final FluxerScrollableBottomSheetBuilder builder;
 
@@ -363,42 +489,43 @@ class _FluxerDraggableScrollableSheetState
         minChildSize: widget.minChildSize,
         maxChildSize: widget.maxChildSize,
         builder: (context, scrollController) {
-          return AnimatedPadding(
-            duration: widget.sheetContext.motion.normal,
-            curve: widget.sheetContext.motion.curve,
-            padding: EdgeInsets.only(bottom: widget.bottomInset),
-            child: Column(
-              children: [
-                if (widget.showDragHandle)
-                  FluxerBottomSheetDragHandle(
-                    sheetController: _sheetController,
-                    minChildSize: widget.minChildSize,
-                    maxChildSize: widget.maxChildSize,
-                    includeTopPadding: !widget.disableTopPadding,
+          return _wrapBottomSheetSurface(
+            context: widget.sheetContext,
+            child: AnimatedPadding(
+              duration: widget.sheetContext.motion.normal,
+              curve: widget.sheetContext.motion.curve,
+              padding: EdgeInsets.only(bottom: widget.bottomInset),
+              child: Column(
+                children: [
+                  if (widget.showDragHandle)
+                    FluxerBottomSheetDragHandle(
+                      sheetController: _sheetController,
+                      minChildSize: widget.minChildSize,
+                      maxChildSize: widget.maxChildSize,
+                      includeTopPadding: !widget.disableTopPadding,
+                    ),
+                  if (widget.hasHeader) ...[
+                    FluxerBottomSheetHeader(
+                      title: widget.title ?? '',
+                      subtitle: widget.subtitle,
+                      leading: widget.leading,
+                      trailing: widget.trailing,
+                      onBack: widget.onBack,
+                    ),
+                    SizedBox(height: layout.s2),
+                  ],
+                  Expanded(
+                    child: FluxerBottomSheetScope(
+                      bottomScrollPadding: widget.bottomScrollPadding,
+                      child: widget.builder(
+                        widget.sheetContext,
+                        scrollController,
+                        widget.onDismiss,
+                      ),
+                    ),
                   ),
-                if (widget.hasHeader) ...[
-                  FluxerBottomSheetHeader(
-                    title: widget.title ?? '',
-                    subtitle: widget.subtitle,
-                    leading: widget.leading,
-                    trailing: widget.trailing,
-                    onBack: widget.onBack,
-                  ),
-                  SizedBox(height: layout.s2),
                 ],
-                Expanded(
-                  child: widget.builder(
-                    widget.sheetContext,
-                    scrollController,
-                    widget.onDismiss,
-                  ),
-                ),
-                SizedBox(
-                  height: widget.bottomPadding > 0
-                      ? widget.bottomPadding
-                      : layout.s4,
-                ),
-              ],
+              ),
             ),
           );
         },
@@ -659,16 +786,16 @@ class FluxerBottomSheetContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final layout = context.layout;
-    final content = Padding(
+    final EdgeInsets resolvedPadding = FluxerBottomSheet.scrollViewPadding(
+      context,
       padding: padding ?? EdgeInsets.symmetric(horizontal: layout.s4),
-      child: child,
     );
 
     if (!scrollable) {
-      return SafeArea(child: content);
+      return Padding(padding: resolvedPadding, child: child);
     }
 
-    return SafeArea(child: SingleChildScrollView(child: content));
+    return SingleChildScrollView(padding: resolvedPadding, child: child);
   }
 }
 
@@ -809,6 +936,7 @@ class FluxerBottomSheetMenuItem extends StatelessWidget {
   final VoidCallback onTap;
   final Widget? leading;
   final IconData? icon;
+  final Color? iconColor;
   final bool isDanger;
   final bool isSelected;
   final bool enabled;
@@ -821,6 +949,7 @@ class FluxerBottomSheetMenuItem extends StatelessWidget {
     this.hint,
     this.leading,
     this.icon,
+    this.iconColor,
     this.isDanger = false,
     this.isSelected = false,
     this.enabled = true,
@@ -871,7 +1000,11 @@ class FluxerBottomSheetMenuItem extends StatelessWidget {
                       width: 20,
                       height: 20,
                       child: Center(
-                        child: PhosphorIcon(icon!, color: baseColor, size: 20),
+                        child: PhosphorIcon(
+                          icon!,
+                          color: iconColor ?? baseColor,
+                          size: 20,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 12),

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
@@ -683,6 +684,7 @@ class GatewayEventHandler {
           bot: Value(event.user.bot ?? false),
           system: Value(event.user.system ?? false),
           status: Value(selfStatus),
+          mobile: Value(Platform.isAndroid || Platform.isIOS),
           memberSince: Value(dateTimeFromUserSnowflakeOrNull(event.user.id)),
           bio: Value(event.user.bio),
           pronouns: Value(event.user.pronouns),
@@ -872,6 +874,7 @@ class GatewayEventHandler {
             userId,
             status: status,
             customStatus: _presenceCustomStatusFromMap(p),
+            mobile: p['mobile'] as bool? ?? false,
           );
         }
       }
@@ -1023,6 +1026,7 @@ class GatewayEventHandler {
       userId,
       status: event.settings.status,
       customStatus: serializeCustomStatus(event.settings.customStatus),
+      mobile: Platform.isAndroid || Platform.isIOS,
     );
     onUserSettingsHydrate?.call(event.settings);
   }
@@ -1316,7 +1320,10 @@ class GatewayEventHandler {
       decision: decision,
     );
 
-    if (mentionsCurrentUser && !isDm && !acknowledgedByGateway) {
+    if (mentionsCurrentUser &&
+        !isDm &&
+        !acknowledgedByGateway &&
+        !mentionCtx.blockedUserIds.contains(msg.authorId)) {
       if (mentionFeedWriteBatcher != null) {
         mentionFeedWriteBatcher!.enqueue(
           messageId: msg.id,
@@ -1701,6 +1708,7 @@ class GatewayEventHandler {
       userId: event.userId,
       status: event.status,
       customStatus: event.customStatus,
+      mobile: event.mobile,
     );
   }
 
@@ -1813,8 +1821,13 @@ class GatewayEventHandler {
     }
     final List<Map<String, dynamic>>? presences = event.presences;
     if (presences != null && presences.isNotEmpty) {
-      final List<({String userId, String status, String? customStatus})>
-      updates = <({String userId, String status, String? customStatus})>[];
+      final List<
+        ({String userId, String status, String? customStatus, bool mobile})
+      >
+      updates =
+          <
+            ({String userId, String status, String? customStatus, bool mobile})
+          >[];
       for (final Map<String, dynamic> presence in presences) {
         final String? userId =
             (presence['user'] as Map<String, dynamic>?)?['id'] as String?;
@@ -1826,6 +1839,7 @@ class GatewayEventHandler {
           userId: userId,
           status: status,
           customStatus: _presenceCustomStatusFromMap(presence),
+          mobile: presence['mobile'] as bool? ?? false,
         ));
       }
       if (updates.isNotEmpty) {
@@ -1849,7 +1863,8 @@ class GatewayEventHandler {
   }
 
   void _handlePresenceUpdateBulk(PresenceUpdateBulkEvent event) {
-    final updates = <({String userId, String status, String? customStatus})>[];
+    final updates =
+        <({String userId, String status, String? customStatus, bool mobile})>[];
     for (final p in event.presences) {
       final userId = (p['user'] as Map<String, dynamic>?)?['id'] as String?;
       final status = p['status'] as String?;
@@ -1858,6 +1873,7 @@ class GatewayEventHandler {
           userId: userId,
           status: status,
           customStatus: _presenceCustomStatusFromMap(p),
+          mobile: p['mobile'] as bool? ?? false,
         ));
       }
     }

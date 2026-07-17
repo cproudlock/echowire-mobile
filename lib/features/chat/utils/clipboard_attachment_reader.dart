@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:cross_file/cross_file.dart';
+import 'package:fluxer_app/features/chat/utils/attachment_filename_utils.dart';
+import 'package:fluxer_app/features/chat/utils/attachment_mime_utils.dart';
 import 'package:fluxer_app/features/chat/utils/file_upload_constants.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 
@@ -27,6 +29,43 @@ const Set<FileFormat> textClipboardFileFormats = <FileFormat>{
 
 bool isTextClipboardFileFormat(FileFormat format) {
   return textClipboardFileFormats.contains(format);
+}
+
+const List<FileFormat> _prioritizedClipboardFileFormats = <FileFormat>[
+  Formats.png,
+  Formats.jpeg,
+  Formats.gif,
+  Formats.webp,
+  Formats.heic,
+  Formats.heif,
+  Formats.tiff,
+  Formats.bmp,
+  Formats.svg,
+  Formats.ico,
+  Formats.mp4,
+  Formats.mov,
+  Formats.m4v,
+  Formats.webm,
+  Formats.avi,
+  Formats.mkv,
+  Formats.pdf,
+];
+
+List<DataFormat<Object>> orderClipboardFileFormats(
+  List<DataFormat<Object>> available,
+) {
+  final List<FileFormat> ordered = <FileFormat>[];
+  for (final FileFormat format in _prioritizedClipboardFileFormats) {
+    if (available.contains(format)) {
+      ordered.add(format);
+    }
+  }
+  for (final DataFormat<Object> format in available) {
+    if (format is FileFormat && !ordered.contains(format)) {
+      ordered.add(format);
+    }
+  }
+  return ordered;
 }
 
 bool shouldSkipClipboardFileFormat(
@@ -85,8 +124,8 @@ Future<List<XFile>> readClipboardAttachmentFiles() async {
     if (result.length >= kMaxAttachmentsPerMessage) {
       break;
     }
-    final List<DataFormat<Object>> available = item.getFormats(
-      _clipboardFileFormats,
+    final List<DataFormat<Object>> available = orderClipboardFileFormats(
+      item.getFormats(_clipboardFileFormats),
     );
     for (final DataFormat<Object> format in available) {
       if (format is! FileFormat) {
@@ -105,35 +144,23 @@ Future<List<XFile>> readClipboardAttachmentFiles() async {
         fileName: read.fileName,
         suggestedName: suggestedName,
       );
-      final String mime = mimeForClipboardFormat(format);
-      result.add(XFile.fromData(read.bytes, name: name, mimeType: mime));
+      final ({String name, String? mime}) metadata =
+          resolveClipboardAttachmentMetadata(
+            bytes: read.bytes,
+            format: format,
+            name: name,
+          );
+      result.add(
+        XFile.fromData(
+          read.bytes,
+          name: metadata.name,
+          mimeType: metadata.mime,
+        ),
+      );
       break;
     }
   }
   return result;
-}
-
-Future<bool> clipboardHasPasteableAttachments() async {
-  final SystemClipboard? clipboard = SystemClipboard.instance;
-  if (clipboard == null) {
-    return false;
-  }
-  final ClipboardReader reader = await clipboard.read();
-  for (final ClipboardDataReader item in reader.items) {
-    final List<DataFormat<Object>> available = item.getFormats(
-      _clipboardFileFormats,
-    );
-    for (final DataFormat<Object> format in available) {
-      if (format is! FileFormat) {
-        continue;
-      }
-      if (shouldSkipClipboardFileFormat(item, format)) {
-        continue;
-      }
-      return true;
-    }
-  }
-  return false;
 }
 
 String resolveClipboardFilename({
@@ -143,13 +170,46 @@ String resolveClipboardFilename({
 }) {
   final String? resolvedFileName = fileName?.trim();
   if (resolvedFileName != null && resolvedFileName.isNotEmpty) {
-    return resolvedFileName;
+    return _ensureClipboardFilenameExtension(resolvedFileName, format);
   }
   final String? resolvedSuggestedName = suggestedName?.trim();
   if (resolvedSuggestedName != null && resolvedSuggestedName.isNotEmpty) {
-    return resolvedSuggestedName;
+    return _ensureClipboardFilenameExtension(resolvedSuggestedName, format);
   }
   return 'clipboard.${extensionForClipboardFormat(format)}';
+}
+
+String _ensureClipboardFilenameExtension(String name, FileFormat format) {
+  if (_hasKnownFilenameExtension(name)) {
+    return name;
+  }
+  final String ext = extensionForClipboardFormat(format);
+  if (ext == 'bin') {
+    return name;
+  }
+  return '$name.$ext';
+}
+
+bool _hasKnownFilenameExtension(String name) {
+  final int dot = name.lastIndexOf('.');
+  if (dot <= 0 || dot >= name.length - 1) {
+    return false;
+  }
+  final String ext = name.substring(dot + 1).toLowerCase();
+  return ext.isNotEmpty && ext.length <= 12;
+}
+
+({String name, String? mime}) resolveClipboardAttachmentMetadata({
+  required Uint8List bytes,
+  required FileFormat format,
+  required String name,
+}) {
+  final String? mime =
+      mimeForClipboardFormat(format) ?? detectSupportedUploadMimeType(bytes);
+  return (
+    name: filenameForMimeType(name, mimeType: mime, defaultStem: 'clipboard'),
+    mime: mime,
+  );
 }
 
 String extensionForClipboardFormat(FileFormat format) {
@@ -159,15 +219,18 @@ String extensionForClipboardFormat(FileFormat format) {
     }
   }
   if (format is SimpleFileFormat) {
-    final String? fromMime = _extensionFromMimeTypes(format.mimeTypes);
-    if (fromMime != null) {
-      return fromMime;
+    final List<PlatformFormat>? mimeTypes = format.mimeTypes;
+    if (mimeTypes != null && mimeTypes.isNotEmpty) {
+      final String? fromMime = uploadMimeExtension(mimeTypes.first);
+      if (fromMime != null) {
+        return fromMime;
+      }
     }
   }
   return 'bin';
 }
 
-String mimeForClipboardFormat(FileFormat format) {
+String? mimeForClipboardFormat(FileFormat format) {
   for (final _ClipboardFormatInfo info in _clipboardFormatInfos) {
     if (identical(format, info.format)) {
       return info.mimeType;
@@ -179,33 +242,7 @@ String mimeForClipboardFormat(FileFormat format) {
       return mimeTypes.first;
     }
   }
-  return 'application/octet-stream';
-}
-
-String? _extensionFromMimeTypes(List<PlatformFormat>? mimeTypes) {
-  if (mimeTypes == null || mimeTypes.isEmpty) {
-    return null;
-  }
-  final String mime = mimeTypes.first;
-  const Map<String, String> mimeToExtension = <String, String>{
-    'image/png': 'png',
-    'image/jpeg': 'jpg',
-    'image/gif': 'gif',
-    'image/webp': 'webp',
-    'image/bmp': 'bmp',
-    'image/tiff': 'tif',
-    'image/heic': 'heic',
-    'image/heif': 'heif',
-    'image/svg+xml': 'svg',
-    'video/mp4': 'mp4',
-    'video/quicktime': 'mov',
-    'application/pdf': 'pdf',
-    'text/plain': 'txt',
-    'text/html': 'html',
-    'application/json': 'json',
-    'application/zip': 'zip',
-  };
-  return mimeToExtension[mime];
+  return null;
 }
 
 class _ClipboardFormatInfo {
@@ -513,10 +550,5 @@ const List<_ClipboardFormatInfo> _clipboardFormatInfos = <_ClipboardFormatInfo>[
     format: Formats.dll,
     extension: 'dll',
     mimeType: 'application/x-msdownload',
-  ),
-  _ClipboardFormatInfo(
-    format: Formats.webUnknown,
-    extension: 'bin',
-    mimeType: 'application/octet-stream',
   ),
 ];

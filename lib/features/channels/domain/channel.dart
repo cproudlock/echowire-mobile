@@ -105,6 +105,9 @@ class Channel {
   final String? contentWarningText;
   final String? permissionOverwritesJson;
   final int? userLimit;
+  final int? bitrate;
+  final String? rtcRegion;
+  final int? voiceConnectionLimit;
 
   // Echowire: thread + forum fields (populated only on thread/forum channels).
   final String? ownerId;
@@ -156,7 +159,53 @@ class Channel {
     this.forumDefaultAutoArchiveDuration,
     this.forumRequireTag,
     this.defaultReactionEmojiJson,
+    this.bitrate,
+    this.rtcRegion,
+    this.voiceConnectionLimit,
   });
+
+  Channel copyWith({
+    String? id,
+    String? guildId,
+    String? name,
+    String? url,
+    ChannelType? type,
+    String? topic,
+    String? parentId,
+    int? position,
+    int? rateLimitPerUser,
+    bool? nsfw,
+    bool? nsfwOverride,
+    int? contentWarningLevel,
+    String? contentWarningText,
+    String? permissionOverwritesJson,
+    int? userLimit,
+    int? bitrate,
+    String? rtcRegion,
+    int? voiceConnectionLimit,
+  }) {
+    return Channel(
+      id: id ?? this.id,
+      guildId: guildId ?? this.guildId,
+      name: name ?? this.name,
+      url: url ?? this.url,
+      type: type ?? this.type,
+      topic: topic ?? this.topic,
+      parentId: parentId ?? this.parentId,
+      position: position ?? this.position,
+      rateLimitPerUser: rateLimitPerUser ?? this.rateLimitPerUser,
+      nsfw: nsfw ?? this.nsfw,
+      nsfwOverride: nsfwOverride ?? this.nsfwOverride,
+      contentWarningLevel: contentWarningLevel ?? this.contentWarningLevel,
+      contentWarningText: contentWarningText ?? this.contentWarningText,
+      permissionOverwritesJson:
+          permissionOverwritesJson ?? this.permissionOverwritesJson,
+      userLimit: userLimit ?? this.userLimit,
+      bitrate: bitrate ?? this.bitrate,
+      rtcRegion: rtcRegion ?? this.rtcRegion,
+      voiceConnectionLimit: voiceConnectionLimit ?? this.voiceConnectionLimit,
+    );
+  }
 
   factory Channel.fromRow(db.Channel row) {
     return Channel(
@@ -191,6 +240,9 @@ class Channel {
       forumDefaultAutoArchiveDuration: row.forumDefaultAutoArchiveDuration,
       forumRequireTag: row.forumRequireTag,
       defaultReactionEmojiJson: row.defaultReactionEmojiJson,
+      bitrate: row.bitrate,
+      rtcRegion: row.rtcRegion,
+      voiceConnectionLimit: row.voiceConnectionLimit,
     );
   }
 
@@ -260,6 +312,9 @@ class Channel {
       forumDefaultAutoArchiveDuration: Value(forumDefaultAutoArchiveDuration),
       forumRequireTag: Value(forumRequireTag),
       defaultReactionEmojiJson: Value(defaultReactionEmojiJson),
+      bitrate: Value(bitrate),
+      rtcRegion: Value(rtcRegion),
+      voiceConnectionLimit: Value(voiceConnectionLimit),
     );
   }
 

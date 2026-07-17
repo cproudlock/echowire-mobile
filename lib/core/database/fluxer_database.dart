@@ -11,6 +11,7 @@ import 'package:fluxer_app/core/database/daos/guild_dao.dart';
 import 'package:fluxer_app/core/database/daos/guild_emoji_dao.dart';
 import 'package:fluxer_app/core/database/daos/guild_last_channel_dao.dart';
 import 'package:fluxer_app/core/database/daos/guild_sticker_dao.dart';
+import 'package:fluxer_app/core/database/daos/local_spam_overrides_dao.dart';
 import 'package:fluxer_app/core/database/daos/member_dao.dart';
 import 'package:fluxer_app/core/database/daos/message_dao.dart';
 import 'package:fluxer_app/core/database/daos/mobile_push_registration_dao.dart';
@@ -41,6 +42,7 @@ import 'package:fluxer_app/core/database/tables/favorite_settings.dart';
 import 'package:fluxer_app/core/database/tables/guild_emojis.dart';
 import 'package:fluxer_app/core/database/tables/guild_last_channels.dart';
 import 'package:fluxer_app/core/database/tables/guild_stickers.dart';
+import 'package:fluxer_app/core/database/tables/local_spam_overrides.dart';
 import 'package:fluxer_app/core/database/tables/member_cache_access.dart';
 import 'package:fluxer_app/core/database/tables/members.dart';
 import 'package:fluxer_app/core/database/tables/messages.dart';
@@ -96,6 +98,7 @@ part 'fluxer_database.g.dart';
     FavoriteChannels,
     FavoriteCategories,
     FavoriteSettings,
+    LocalSpamOverrides,
     MobilePushRegistrations,
     ComposerDrafts,
     RecentInstances,
@@ -128,6 +131,7 @@ part 'fluxer_database.g.dart';
     DmFolderSettingsDao,
     NotificationDao,
     FavoriteChannelsDao,
+    LocalSpamOverridesDao,
     RecentInstancesDao,
   ],
 )
@@ -137,7 +141,7 @@ class FluxerDatabase extends _$FluxerDatabase {
   FluxerDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 73;
+  int get schemaVersion => 77;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -776,6 +780,71 @@ class FluxerDatabase extends _$FluxerDatabase {
         )) {
           await m.addColumn(roles, roles.hoistPosition);
         }
+        // upstream's OWN schemaVersion-73 migration added dm_channels.owner_id.
+        // Merged in here (idempotently) so an Echowire DB below v73 gets it too.
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'dm_channels',
+          columnName: 'owner_id',
+        )) {
+          await m.addColumn(dmChannels, dmChannels.ownerId);
+        }
+      }
+      if (from < 74) {
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'messages',
+          columnName: 'author_public_flags',
+        )) {
+          await m.addColumn(messages, messages.authorPublicFlags);
+        }
+        await m.createTable(localSpamOverrides);
+      }
+      if (from < 75) {
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'bitrate',
+        )) {
+          await m.addColumn(channels, channels.bitrate);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'rtc_region',
+        )) {
+          await m.addColumn(channels, channels.rtcRegion);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'voice_connection_limit',
+        )) {
+          await m.addColumn(channels, channels.voiceConnectionLimit);
+        }
+      }
+      if (from < 76) {
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'users',
+          columnName: 'mobile',
+        )) {
+          await m.addColumn(users, users.mobile);
+        }
+      }
+      if (from < 77) {
+        // Echowire<->upstream schemaVersion-73 COLLISION repair. An Echowire DB
+        // that reached v73 via our own v73 migration (the v70-72 repair above)
+        // never ran upstream's v73 migration (dm_channels.owner_id), and on
+        // upgrade `from` is 73 so `if (from < 73)` is skipped entirely — the
+        // owner_id column would be missing forever. Ensure it idempotently.
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'dm_channels',
+          columnName: 'owner_id',
+        )) {
+          await m.addColumn(dmChannels, dmChannels.ownerId);
+        }
       }
     },
   );
@@ -807,6 +876,7 @@ class FluxerDatabase extends _$FluxerDatabase {
       await savedMessageDao.clearAll();
       await notificationDao.clearAllUserData();
       await favoriteChannelsDao.clearAll();
+      await localSpamOverridesDao.clearAll();
     });
   }
 

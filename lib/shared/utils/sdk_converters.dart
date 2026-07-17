@@ -149,6 +149,9 @@ db.ChannelsCompanion channelFromSdk(ChannelResponse sdk, String guildId) {
           ? null
           : jsonEncode(sdk.defaultReactionEmoji!.toJson()),
     ),
+    bitrate: Value(sdk.bitrate),
+    rtcRegion: Value(sdk.rtcRegion),
+    voiceConnectionLimit: Value(sdk.voiceConnectionLimit),
   );
 }
 
@@ -176,6 +179,9 @@ ChannelResponse channelResponseFromRow(db.Channel row) {
     contentWarningText: row.contentWarningText,
     rateLimitPerUser: row.rateLimitPerUser,
     userLimit: row.userLimit,
+    bitrate: row.bitrate,
+    rtcRegion: row.rtcRegion,
+    voiceConnectionLimit: row.voiceConnectionLimit,
   );
 }
 

@@ -207,6 +207,20 @@ void main() {
     expect(controller.toWireText(), '12:30:45 <:smile:9>');
   });
 
+  testWidgets('mentionWireToDisplayFragment chips pasted mention and emoji', (
+    WidgetTester tester,
+  ) async {
+    final ComposerMentionController controller = await _pumpController(tester);
+
+    final String display = await controller.mentionWireToDisplayFragment(
+      'hi <@123> :wave:',
+    );
+    controller.text = display;
+
+    expect(display, isNot(contains('<@123>')));
+    expect(controller.toWireText(), 'hi <@123> :wave:');
+  });
+
   testWidgets('keeps mention chip visible during IME composing', (
     WidgetTester tester,
   ) async {
@@ -227,5 +241,62 @@ void main() {
     await tester.pump();
 
     expect(find.text('@Alice'), findsOneWidget);
+  });
+
+  testWidgets('applyWireText swaps atomically without orphan sentinels', (
+    WidgetTester tester,
+  ) async {
+    final ComposerMentionController controller = await _pumpController(tester);
+
+    controller.insertEmoji('cool', '<:cool:123>');
+    await tester.pump();
+
+    final Future<void> apply = controller.applyWireText('next <:wave:9>');
+    expect(controller.toWireText().trim(), '<:cool:123>');
+    expect(
+      controller.toWireText().contains(String.fromCharCode(0xE000)),
+      isFalse,
+    );
+
+    await apply;
+    await tester.pump();
+
+    expect(controller.toWireText(), 'next <:wave:9>');
+    expect(
+      controller.toWireText().contains(String.fromCharCode(0xE000)),
+      isFalse,
+    );
+  });
+
+  testWidgets('custom emoji wire text never contains private-use sentinels', (
+    WidgetTester tester,
+  ) async {
+    final ComposerMentionController controller = await _pumpController(tester);
+
+    controller.insertEmoji('guild_emoji', '<:guild_emoji:999>');
+    await tester.pump();
+
+    final String wire = controller.toWireText();
+    expect(wire.trim(), '<:guild_emoji:999>');
+    for (final int code in wire.runes) {
+      expect(code >= 0xE000 && code <= 0xF8FF, isFalse);
+    }
+  });
+
+  testWidgets('stale applyWireText does not orphan tokens', (
+    WidgetTester tester,
+  ) async {
+    final ComposerMentionController controller = await _pumpController(tester);
+
+    final Future<void> first = controller.applyWireText('hi <:a:1>');
+    final Future<void> second = controller.applyWireText('bye <:b:2>');
+    await Future.wait(<Future<void>>[first, second]);
+    await tester.pump();
+
+    expect(controller.toWireText(), 'bye <:b:2>');
+    expect(
+      controller.toWireText().contains(String.fromCharCode(0xE000)),
+      isFalse,
+    );
   });
 }

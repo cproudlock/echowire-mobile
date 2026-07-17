@@ -18,6 +18,7 @@ import 'package:fluxer_app/features/channels/data/read_state_repository.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/domain/channel_unread_state.dart';
 import 'package:fluxer_app/features/channels/presentation/channel_menu_data.dart';
+import 'package:fluxer_app/features/channels/presentation/channel_settings/channel_settings_flow.dart';
 import 'package:fluxer_app/features/channels/presentation/modals/show_channel_invite_modal.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/channel_notification_settings_sheet.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/mute_duration_sheet.dart';
@@ -253,7 +254,7 @@ class _GuildSidebarChannelList extends ConsumerStatefulWidget {
 class _GuildSidebarChannelListState
     extends ConsumerState<_GuildSidebarChannelList> {
   late final ScrollController _scrollController;
-  late final UnreadScrollIndicatorController _scrollIndicator;
+  late final GuildScrollIndicatorController _scrollIndicator;
   final Map<String, GlobalKey> _channelKeys = <String, GlobalKey>{};
   bool _restoring = false;
   bool _needsScrollClamp = false;
@@ -267,7 +268,7 @@ class _GuildSidebarChannelListState
     _needsScrollClamp = savedOffset > 0;
     _scrollController = ScrollController(initialScrollOffset: savedOffset)
       ..addListener(_persistScroll);
-    _scrollIndicator = UnreadScrollIndicatorController(
+    _scrollIndicator = GuildScrollIndicatorController(
       scrollController: _scrollController,
       itemKeys: _channelKeys,
       resolveSeverity: _resolveChannelScrollSeverity,
@@ -297,7 +298,9 @@ class _GuildSidebarChannelListState
     super.dispose();
   }
 
-  ScrollIndicatorSeverity? _resolveChannelScrollSeverity(String channelId) {
+  GuildScrollIndicatorSeverity? _resolveChannelScrollSeverity(
+    String channelId,
+  ) {
     return channelScrollIndicatorSeverity(
       ref: ref,
       guildId: widget.guildId,
@@ -415,7 +418,7 @@ class _GuildSidebarChannelListState
     );
     return ScrollConfiguration(
       behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-      child: UnreadScrollIndicatorLayer(
+      child: GuildScrollIndicatorLayer(
         controller: _scrollIndicator,
         label: FluxerLocalizations.of(context).scrollIndicatorNewMessage,
         child: Opacity(
@@ -670,7 +673,9 @@ class _ChannelTile extends ConsumerWidget {
       context,
       position: position,
       builder: (menuContext, close) => channelMenuGroupsToWidgets(
+        context: menuContext,
         groups: groups,
+        menuState: menuState,
         onAction: (ChannelMenuAction action) => _handleChannelMenuAction(
           action,
           menuContext: menuContext,
@@ -780,7 +785,7 @@ class _ChannelTile extends ConsumerWidget {
         );
       case ChannelMenuAction.editChannel:
         close();
-        _showComingSoon(menuContext, ref);
+        unawaited(ChannelSettingsFlow.show(menuContext, channelId: channel.id));
       case ChannelMenuAction.duplicateChannel:
         close();
         _showComingSoon(menuContext, ref);

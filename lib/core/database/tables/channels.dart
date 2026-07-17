@@ -20,6 +20,9 @@ class Channels extends Table {
   TextColumn get contentWarningText => text().nullable()();
   TextColumn get permissionOverwritesJson => text().nullable()();
   IntColumn get userLimit => integer().nullable()();
+  IntColumn get bitrate => integer().nullable()();
+  TextColumn get rtcRegion => text().nullable()();
+  IntColumn get voiceConnectionLimit => integer().nullable()();
 
   // Echowire: threads + forum channels. A thread is a channel with a thread type
   // (11/12) and a parent_id; a forum (15) carries tag config. All nullable —

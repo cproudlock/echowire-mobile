@@ -369,6 +369,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+  country_flags:
+    dependency: "direct main"
+    description:
+      name: country_flags
+      sha256: f022d18337f3861f1f4e319b936cb53920de9259f38cb09e169eace9942e2b79
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.2"
   coverage:
     dependency: transitive
     description:
@@ -1241,6 +1249,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.14.2"
+  jovial_misc:
+    dependency: transitive
+    description:
+      name: jovial_misc
+      sha256: "065b5240badae6b13472efdea28fffe8baf914a7831361469a95c6456d9b8dc8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.0"
+  jovial_svg:
+    dependency: transitive
+    description:
+      name: jovial_svg
+      sha256: "99e9c3afcf7371ae38083ad52de23677d6d751f46150c3c6ae842e009e84d9f0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.29"
   js:
     dependency: transitive
     description:
@@ -1729,6 +1753,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.2"
+  phone_numbers_parser:
+    dependency: "direct main"
+    description:
+      name: phone_numbers_parser
+      sha256: f024c4003f2f186ac1ef8bbf56841b6409d4a9c84379df4e22cb50488aea5a31
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.0.24"
   phosphor_flutter:
     dependency: "direct main"
     description:
@@ -2062,18 +2094,18 @@ packages:
     dependency: transitive
     description:
       name: sentry
-      sha256: "2528b3d9550996b1f933270fabd13ad0f22aa05a19b46cb66afd05adcf313441"
+      sha256: "09c573f98ff6c5e98d527f351f037eb8ea9ff684a6e9e84b2e91357144016254"
       url: "https://pub.dev"
     source: hosted
-    version: "9.23.0"
+    version: "9.24.0"
   sentry_flutter:
     dependency: "direct main"
     description:
       name: sentry_flutter
-      sha256: "1e6c2950b944f512ad88b8c05e905849f25a5e9cecd3cad4c53e38e7cc679362"
+      sha256: "4a04b7e1901b8128df783b6d36d48706b07b0cd055e621517c998de87f5dafb9"
       url: "https://pub.dev"
     source: hosted
-    version: "9.23.0"
+    version: "9.24.0"
   share_plus:
     dependency: transitive
     description:
@@ -2199,6 +2231,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  smart_keyboard_insets:
+    dependency: "direct main"
+    description:
+      name: smart_keyboard_insets
+      sha256: "4eaddd3b17ccdfe71d45c9e4a1301fb0851c3a1333377509b8ad3af9ad1553c5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   source_gen:
     dependency: transitive
     description:

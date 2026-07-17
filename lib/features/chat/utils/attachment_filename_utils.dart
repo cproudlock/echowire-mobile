@@ -1,15 +1,39 @@
+import 'package:cross_file/cross_file.dart';
+import 'package:fluxer_app/features/chat/utils/attachment_mime_utils.dart';
 import 'package:path/path.dart' as path_lib;
 
-/// Picker plugins often put a generic or empty cross-file name while the real
-/// temp path still contains `image_picker`.
+final RegExp _genericImagePickerTempBasenamePattern = RegExp(
+  r'^image_picker(?:[._][^./\\]+)?\.\w+$',
+  caseSensitive: false,
+);
+
+bool isGenericImagePickerTempBasename(String basename) {
+  final String trimmed = basename.trim();
+  if (trimmed.isEmpty) {
+    return false;
+  }
+  return _genericImagePickerTempBasenamePattern.hasMatch(trimmed);
+}
+
 String rawUploadFilenameForSanitization({
   required String name,
   required String path,
+  String? explicitName,
 }) {
+  final String explicit = explicitName?.trim() ?? '';
+  if (explicit.isNotEmpty) {
+    return explicit;
+  }
   final String fromName = name.trim();
   final String fromPath = path.trim().isNotEmpty
       ? path_lib.basename(path.trim())
       : '';
+  if (fromPath.isNotEmpty && !isGenericImagePickerTempBasename(fromPath)) {
+    return fromPath;
+  }
+  if (fromName.isNotEmpty && !isGenericImagePickerTempBasename(fromName)) {
+    return fromName;
+  }
   String candidate = fromName.isNotEmpty ? fromName : fromPath;
   final String lower = candidate.toLowerCase();
   final String pathLower = fromPath.toLowerCase();
@@ -19,25 +43,66 @@ String rawUploadFilenameForSanitization({
   return candidate.isNotEmpty ? candidate : 'attachment.bin';
 }
 
-/// The gallery/camera picker often yields basenames containing the string
-/// `image_picker`, which is not appropriate for display or server filenames.
+String resolveUploadFilename({required XFile file, String? explicitName}) {
+  return sanitizeAttachmentFilename(
+    rawUploadFilenameForSanitization(
+      name: file.name,
+      path: file.path,
+      explicitName: explicitName,
+    ),
+    mimeType: file.mimeType,
+  );
+}
+
+String? uploadFilenameOverrideFromPickerXFile(XFile file) {
+  final String basename = path_lib.basename(file.path.trim());
+  if (basename.isEmpty || isGenericImagePickerTempBasename(basename)) {
+    return null;
+  }
+  return basename;
+}
+
 String sanitizeAttachmentFilename(String name, {String? mimeType}) {
   final String trimmed = name.trim();
-  final String lower = trimmed.toLowerCase();
-  final bool tainted = lower.contains('image_picker');
-  if (!tainted) {
-    return trimmed.isNotEmpty ? trimmed : _fallbackBasename(mimeType);
+  if (!isGenericImagePickerTempBasename(trimmed)) {
+    return filenameForMimeType(trimmed, mimeType: mimeType);
   }
   final String ext = _extensionFromFilename(trimmed);
-  final String fromMime = _extensionForMime(mimeType);
+  final String fromMime = attachmentExtensionForMime(mimeType);
   final String effectiveExt = ext.isNotEmpty ? ext : fromMime;
   final bool asVideo =
       _isVideoMime(mimeType) || _isVideoExtension(effectiveExt);
   final String prefix = asVideo ? 'video' : 'image';
-  if (effectiveExt.isNotEmpty) {
-    return '$prefix$effectiveExt';
+  final String resolved = effectiveExt.isNotEmpty
+      ? '$prefix$effectiveExt'
+      : (asVideo ? 'video.mp4' : 'image.jpg');
+  return filenameForMimeType(resolved, mimeType: mimeType);
+}
+
+String filenameForMimeType(
+  String name, {
+  String? mimeType,
+  String defaultStem = 'attachment',
+}) {
+  final String trimmed = name.trim();
+  if (mimeType == null || mimeType.isEmpty) {
+    return trimmed.isNotEmpty ? trimmed : '$defaultStem.bin';
   }
-  return asVideo ? 'video.mp4' : 'image.jpg';
+  final String dottedExt = attachmentExtensionForMime(mimeType);
+  if (dottedExt.isEmpty) {
+    return trimmed.isNotEmpty ? trimmed : defaultStem;
+  }
+  final String base = trimmed.isNotEmpty ? trimmed : defaultStem;
+  final String currentExt = _extensionFromFilename(base);
+  if (currentExt.isEmpty) {
+    return '$base$dottedExt';
+  }
+  if (currentExt == '.bin') {
+    final int dot = base.lastIndexOf('.');
+    final String stem = dot > 0 ? base.substring(0, dot) : defaultStem;
+    return '$stem$dottedExt';
+  }
+  return base;
 }
 
 String _extensionFromFilename(String name) {
@@ -50,41 +115,6 @@ String _extensionFromFilename(String name) {
     return '';
   }
   return ext;
-}
-
-String _extensionForMime(String? mimeType) {
-  if (mimeType == null) {
-    return '';
-  }
-  switch (mimeType.toLowerCase()) {
-    case 'image/jpeg':
-    case 'image/jpg':
-      return '.jpg';
-    case 'image/png':
-      return '.png';
-    case 'image/gif':
-      return '.gif';
-    case 'image/webp':
-      return '.webp';
-    case 'image/heic':
-    case 'image/heif':
-      return '.heic';
-    case 'video/mp4':
-      return '.mp4';
-    case 'video/quicktime':
-      return '.mov';
-    default:
-      return '';
-  }
-}
-
-String _fallbackBasename(String? mimeType) {
-  final String fromMime = _extensionForMime(mimeType);
-  if (fromMime.isNotEmpty) {
-    final String prefix = _isVideoMime(mimeType) ? 'video' : 'image';
-    return '$prefix$fromMime';
-  }
-  return 'attachment.bin';
 }
 
 bool _isVideoMime(String? mimeType) {

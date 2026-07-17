@@ -15,6 +15,10 @@ import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/auth/presentation/login_screen.dart';
 import 'package:fluxer_app/features/auth/providers/account_manager_provider.dart';
 import 'package:fluxer_app/features/auth/providers/add_account_instance_guard_provider.dart';
+import 'package:fluxer_app/features/channels/domain/channel_settings_tab.dart';
+import 'package:fluxer_app/features/channels/presentation/channel_settings/channel_settings_modal.dart';
+import 'package:fluxer_app/features/channels/presentation/channel_settings/channel_settings_nav_page.dart';
+import 'package:fluxer_app/features/channels/presentation/channel_settings/pages/channel_settings_tab_pages.dart';
 import 'package:fluxer_app/features/chat/presentation/channel_layout.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/chat_loading_spinner.dart';
 import 'package:fluxer_app/features/chat/utils/chat_spinner_debug.dart';
@@ -23,7 +27,10 @@ import 'package:fluxer_app/features/discovery/presentation/discovery_layout.dart
 import 'package:fluxer_app/features/dm/presentation/dm_layout.dart';
 import 'package:fluxer_app/features/favorites/presentation/favorites_layout.dart';
 import 'package:fluxer_app/features/guilds/presentation/pages/invite_accept_page.dart';
+import 'package:fluxer_app/features/members/presentation/pages/guild_members_page.dart';
+import 'package:fluxer_app/features/messaging/presentation/saved_messages_page.dart';
 import 'package:fluxer_app/features/notifications/presentation/notifications_page.dart';
+import 'package:fluxer_app/features/notifications/presentation/recent_mentions_page.dart';
 import 'package:fluxer_app/features/profile/presentation/profile_page.dart';
 import 'package:fluxer_app/features/settings/domain/guild/guild_settings_tab.dart';
 import 'package:fluxer_app/features/settings/presentation/guild_settings_modal.dart'
@@ -41,13 +48,11 @@ import 'package:fluxer_app/features/shell/presentation/invalid_deep_link_screen.
 import 'package:fluxer_app/features/shell/presentation/reconnecting_screen.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/shell/presentation/splash_screen.dart';
-import 'package:fluxer_app/features/shell/presentation/stub_screen.dart';
 import 'package:fluxer_app/features/shell/providers/shell_popup_overlay_provider.dart';
 import 'package:fluxer_app/features/ui/spinner/fluxer_loading_spinner.dart';
 import 'package:fluxer_app/features/voice/presentation/dm_voice_call_fullscreen_page.dart'
     deferred as dm_voice_call;
 import 'package:go_router/go_router.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 export 'package:fluxer_app/core/router/shell_navigator_keys.dart';
@@ -121,6 +126,16 @@ class ServerReachable extends _$ServerReachable {
 
 class _RouterRefreshNotifier extends ChangeNotifier {
   void notify() => notifyListeners();
+}
+
+CustomTransitionPage<void> _dmShellTransitionPage(GoRouterState state) {
+  final String? channelId = state.pathParameters['channelId'];
+  final String? messageId = state.pathParameters['messageId'];
+  return shellSlideTransitionPage(
+    key: state.pageKey,
+    parallaxOutgoing: true,
+    child: DMLayout(channelId: channelId, targetMessageId: messageId),
+  );
 }
 
 @Riverpod(keepAlive: true)
@@ -409,6 +424,92 @@ GoRouter fluxerRouter(Ref ref) {
         ),
       ),
 
+      // Channel settings (pushed on root navigator)
+      GoRoute(
+        path: '/settings/channel/:channelId',
+        name: RouteNames.channelSettings,
+        parentNavigatorKey: rootNavigatorKey,
+        redirect: (BuildContext context, GoRouterState state) {
+          final String? tab = state.uri.queryParameters['tab'];
+          if (tab == null || tab.isEmpty || !isMobileLayout(context)) {
+            return null;
+          }
+          final String channelId = state.pathParameters['channelId'] ?? '';
+          return channelSettingsTabPathFromQuery(channelId, tab);
+        },
+        pageBuilder: (BuildContext context, GoRouterState state) {
+          final String channelId = state.pathParameters['channelId'] ?? '';
+          if (isMobileLayout(context)) {
+            return shellMobileRootPushTransitionPage(
+              context: context,
+              key: state.pageKey,
+              child: ChannelSettingsNavPage(channelId: channelId),
+            );
+          }
+          return shellFadeTransitionPage(
+            key: state.pageKey,
+            child: ChannelSettingsModal(
+              channelId: channelId,
+              initialTab: channelSettingsTabFromQuery(
+                state.uri.queryParameters['tab'],
+              ),
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: '/settings/channel/:channelId/overview',
+        name: RouteNames.channelSettingsOverview,
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (BuildContext context, GoRouterState state) =>
+            shellMobileRootPushTransitionPage(
+              context: context,
+              key: state.pageKey,
+              child: ChannelSettingsOverviewPage(
+                channelId: state.pathParameters['channelId'] ?? '',
+              ),
+            ),
+      ),
+      GoRoute(
+        path: '/settings/channel/:channelId/permissions',
+        name: RouteNames.channelSettingsPermissions,
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (BuildContext context, GoRouterState state) =>
+            shellMobileRootPushTransitionPage(
+              context: context,
+              key: state.pageKey,
+              child: ChannelSettingsPermissionsPage(
+                channelId: state.pathParameters['channelId'] ?? '',
+              ),
+            ),
+      ),
+      GoRoute(
+        path: '/settings/channel/:channelId/invites',
+        name: RouteNames.channelSettingsInvites,
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (BuildContext context, GoRouterState state) =>
+            shellMobileRootPushTransitionPage(
+              context: context,
+              key: state.pageKey,
+              child: ChannelSettingsInvitesPage(
+                channelId: state.pathParameters['channelId'] ?? '',
+              ),
+            ),
+      ),
+      GoRoute(
+        path: '/settings/channel/:channelId/webhooks',
+        name: RouteNames.channelSettingsWebhooks,
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (BuildContext context, GoRouterState state) =>
+            shellMobileRootPushTransitionPage(
+              context: context,
+              key: state.pageKey,
+              child: ChannelSettingsWebhooksPage(
+                channelId: state.pathParameters['channelId'] ?? '',
+              ),
+            ),
+      ),
+
       // Discover (root navigator — slide on mobile, inline shell on desktop)
       GoRoute(
         path: '/channels/@discover',
@@ -446,21 +547,14 @@ GoRouter fluxerRouter(Ref ref) {
               GoRoute(
                 path: '/channels/@me',
                 name: RouteNames.dms,
-                pageBuilder: (context, state) => shellFadeTransitionPage(
-                  key: state.pageKey,
-                  child: const DMLayout(),
-                ),
+                pageBuilder: (BuildContext context, GoRouterState state) =>
+                    _dmShellTransitionPage(state),
                 routes: [
                   GoRoute(
                     path: ':channelId',
                     name: RouteNames.dmChannel,
-                    pageBuilder: (context, state) => shellSlideTransitionPage(
-                      key: state.pageKey,
-                      parallaxOutgoing: true,
-                      child: DMLayout(
-                        channelId: state.pathParameters['channelId'],
-                      ),
-                    ),
+                    pageBuilder: (BuildContext context, GoRouterState state) =>
+                        _dmShellTransitionPage(state),
                     routes: [
                       GoRoute(
                         path: 'call',
@@ -497,16 +591,9 @@ GoRouter fluxerRouter(Ref ref) {
                       GoRoute(
                         path: ':messageId',
                         name: RouteNames.dmMessage,
-                        pageBuilder: (context, state) =>
-                            shellSlideTransitionPage(
-                              key: state.pageKey,
-                              parallaxOutgoing: true,
-                              child: DMLayout(
-                                channelId: state.pathParameters['channelId'],
-                                targetMessageId:
-                                    state.pathParameters['messageId'],
-                              ),
-                            ),
+                        pageBuilder:
+                            (BuildContext context, GoRouterState state) =>
+                                _dmShellTransitionPage(state),
                       ),
                     ],
                   ),
@@ -602,9 +689,8 @@ GoRouter fluxerRouter(Ref ref) {
                     name: RouteNames.guildMembers,
                     pageBuilder: (context, state) => shellSlideTransitionPage(
                       key: state.pageKey,
-                      child: const StubScreen(
-                        title: 'Members',
-                        icon: PhosphorIconsFill.users,
+                      child: GuildMembersPage(
+                        guildId: state.pathParameters['guildId'] ?? '',
                       ),
                     ),
                   ),
@@ -651,10 +737,7 @@ GoRouter fluxerRouter(Ref ref) {
                 name: RouteNames.bookmarks,
                 pageBuilder: (context, state) => shellFadeTransitionPage(
                   key: state.pageKey,
-                  child: const StubScreen(
-                    title: 'Bookmarks',
-                    icon: PhosphorIconsFill.bookmarkSimple,
-                  ),
+                  child: const SavedMessagesPage(),
                 ),
               ),
               // /mentions
@@ -663,10 +746,7 @@ GoRouter fluxerRouter(Ref ref) {
                 name: RouteNames.mentions,
                 pageBuilder: (context, state) => shellFadeTransitionPage(
                   key: state.pageKey,
-                  child: const StubScreen(
-                    title: 'Mentions',
-                    icon: PhosphorIconsFill.at,
-                  ),
+                  child: const RecentMentionsPage(),
                 ),
               ),
             ],

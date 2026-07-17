@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
+import 'package:fluxer_app/core/limits/instance_limit_provider.dart';
+import 'package:fluxer_app/core/limits/limit_key.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/permissions/channel_effective_permissions.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
@@ -15,6 +17,8 @@ import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/core/utils/channel_jump_link.dart';
 import 'package:fluxer_app/features/channels/data/read_state_repository.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
+import 'package:fluxer_app/features/channels/presentation/channel_settings/channel_settings_flow.dart';
+import 'package:fluxer_app/features/channels/presentation/delete_channel_flow.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/channel_notification_settings_sheet.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/mute_duration_sheet.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/channel_icon.dart';
@@ -32,7 +36,11 @@ import 'package:fluxer_app/features/chat/utils/composer_mention_query.dart';
 import 'package:fluxer_app/features/chat/utils/message_link.dart';
 import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
 import 'package:fluxer_app/features/dm/domain/dm_conversation.dart';
+import 'package:fluxer_app/features/dm/domain/group_dm_utils.dart';
+import 'package:fluxer_app/features/dm/presentation/add_friends_to_group_flow.dart';
 import 'package:fluxer_app/features/dm/presentation/create_dm_flow.dart';
+import 'package:fluxer_app/features/dm/presentation/edit_group_dm_flow.dart';
+import 'package:fluxer_app/features/dm/presentation/group_dm_invites_flow.dart';
 import 'package:fluxer_app/features/dm/presentation/widgets/group_dm_avatar.dart';
 import 'package:fluxer_app/features/dm/providers/create_dm_view_model.dart';
 import 'package:fluxer_app/features/dm/providers/dm_mute_provider.dart';
@@ -747,7 +755,7 @@ class _DetailsAvatar extends ConsumerWidget {
               .getUserById(currentUserId),
           builder: (context, snapshot) {
             final user = snapshot.data;
-            return FluxerAvatar.user(
+            return FluxerAvatar.userPresence(
               fallbackText:
                   user?.globalName ??
                   user?.username ??
@@ -760,7 +768,6 @@ class _DetailsAvatar extends ConsumerWidget {
                       hash: user!.avatar,
                     ),
               avatarColor: user?.avatarColor,
-              status: user?.status ?? 'online',
               size: _size,
             );
           },
@@ -773,7 +780,7 @@ class _DetailsAvatar extends ConsumerWidget {
           status: dm.groupStatus,
         );
       }
-      return FluxerAvatar.user(
+      return FluxerAvatar.userPresence(
         fallbackText: dm.displayNameWith(
           ref.watch(friendNicknameProvider(dm.recipientId)).value,
         ),
@@ -782,7 +789,6 @@ class _DetailsAvatar extends ConsumerWidget {
           userId: dm.recipientId,
           hash: dm.recipientAvatar,
         ),
-        status: dm.recipientStatus,
         size: _size,
       );
     }
@@ -1864,12 +1870,11 @@ class _SimpleMemberRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FluxerListRow(
-      leading: FluxerAvatar.user(
+      leading: FluxerAvatar.userPresence(
         fallbackText: name,
         userId: userId,
         imageUrl: avatarUrl,
         avatarColor: avatarColor,
-        status: status,
         size: 36,
       ),
       title: name,
@@ -2986,6 +2991,20 @@ Future<void> _showDetailsMoreSheet(
             : l10n.channelDetailsDmSettingsTitle);
   final isDM = dm != null && !dm.isGroup && !dm.isPersonalNotes;
   final isGroupDM = dm != null && dm.isGroup;
+  final String? currentUserId = ref.read(currentUserIdProvider);
+  final bool isGroupDmOwner =
+      isGroupDM &&
+      dm.ownerId != null &&
+      currentUserId != null &&
+      dm.ownerId == currentUserId;
+  final bool isGroupDmFullState =
+      isGroupDM &&
+      isGroupDmFull(
+        memberCount: dm.recipientCount,
+        maxGroupDmRecipients: ref.read(
+          instanceLimitProvider(LimitKeys.maxGroupDmRecipients),
+        ),
+      );
   return FluxerBottomSheet.show<void>(
     context,
     title: title,
@@ -3156,31 +3175,33 @@ Future<void> _showDetailsMoreSheet(
         if (threadItems.isNotEmpty) FluxerMenuGroup(children: threadItems),
         if (isGroupDM)
           FluxerMenuGroup(
-            children: [
+            children: <Widget>[
               FluxerBottomSheetMenuItem(
                 label: l10n.dmEditGroup,
                 icon: PhosphorIconsBold.pencilSimple,
                 onTap: () {
                   close();
-                  _stubComingSoon(context, ref);
+                  unawaited(EditGroupDmFlow.show(context, dm: dm));
                 },
               ),
-              FluxerBottomSheetMenuItem(
-                label: l10n.channelDetailsAddFriendsToGroup,
-                icon: PhosphorIconsBold.userPlus,
-                onTap: () {
-                  close();
-                  _stubComingSoon(context, ref);
-                },
-              ),
-              FluxerBottomSheetMenuItem(
-                label: l10n.channelDetailsGroupInvites,
-                icon: PhosphorIconsBold.envelope,
-                onTap: () {
-                  close();
-                  _stubComingSoon(context, ref);
-                },
-              ),
+              if (!isGroupDmFullState)
+                FluxerBottomSheetMenuItem(
+                  label: l10n.channelDetailsAddFriendsToGroup,
+                  icon: PhosphorIconsBold.userPlus,
+                  onTap: () {
+                    close();
+                    unawaited(AddFriendsToGroupFlow.show(context, ref, dm: dm));
+                  },
+                ),
+              if (isGroupDmOwner)
+                FluxerBottomSheetMenuItem(
+                  label: l10n.channelDetailsGroupInvites,
+                  icon: PhosphorIconsBold.envelope,
+                  onTap: () {
+                    close();
+                    unawaited(GroupDmInvitesFlow.show(context, dm: dm));
+                  },
+                ),
             ],
           ),
         if (canManageChannel && threadChannel == null)
@@ -3191,7 +3212,11 @@ Future<void> _showDetailsMoreSheet(
                 icon: PhosphorIconsBold.pencilSimple,
                 onTap: () {
                   close();
-                  _stubComingSoon(context, ref);
+                  if (channelId != null) {
+                    unawaited(
+                      ChannelSettingsFlow.show(context, channelId: channelId),
+                    );
+                  }
                 },
               ),
               FluxerBottomSheetMenuItem(
@@ -3200,7 +3225,13 @@ Future<void> _showDetailsMoreSheet(
                 isDanger: true,
                 onTap: () {
                   close();
-                  _stubComingSoon(context, ref);
+                  unawaited(
+                    DeleteChannelFlow.confirmAndDelete(
+                      context,
+                      ref,
+                      channel: channel,
+                    ),
+                  );
                 },
               ),
             ],

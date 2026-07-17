@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
+import 'package:fluxer_app/features/chat/utils/attachment_display_utils.dart';
 import 'package:fluxer_app/features/chat/utils/url_sanitization_utils.dart';
 import 'package:fluxer_app/features/chat/utils/voice_message_constants.dart';
 import 'package:fluxer_app/shared/utils/guild_user_display.dart';
@@ -398,10 +399,8 @@ class Attachment {
         lowerFilename.endsWith('.aac');
   }
 
-  bool get isImage {
-    final ext = filename.split('.').last.toLowerCase();
-    return ['png', 'jpg', 'jpeg', 'gif', 'webp'].contains(ext);
-  }
+  bool get isImage =>
+      isImageAttachment(filename: filename, contentType: contentType);
 
   bool get isAnimated =>
       contentType?.toLowerCase() == 'image/gif' ||
@@ -821,6 +820,7 @@ class Message {
   final int? authorAvatarColor;
   final bool authorIsBot;
   final bool authorIsSystem;
+  final int authorPublicFlags;
   final String? webhookId;
   final String content;
   final DateTime timestamp;
@@ -855,6 +855,7 @@ class Message {
     this.authorAvatarColor,
     this.authorIsBot = false,
     this.authorIsSystem = false,
+    this.authorPublicFlags = 0,
     this.webhookId,
     this.editedTimestamp,
     this.embeds = const [],
@@ -892,6 +893,7 @@ class Message {
       authorAvatarColor: sdk.author.avatarColor,
       authorIsBot: sdk.author.bot ?? false,
       authorIsSystem: sdk.author.system ?? false,
+      authorPublicFlags: sdk.author.flags ?? 0,
       webhookId: sdk.webhookId,
       content: sdk.content,
       timestamp: sdk.timestamp,
@@ -939,6 +941,7 @@ class Message {
       authorAvatarColor: sdk.author.avatarColor,
       authorIsBot: sdk.author.bot ?? false,
       authorIsSystem: sdk.author.system ?? false,
+      authorPublicFlags: sdk.author.flags ?? 0,
       webhookId: sdk.webhookId,
       content: sdk.content,
       timestamp: sdk.timestamp,
@@ -978,6 +981,7 @@ class Message {
       authorAvatarColor: sdk.author.avatarColor,
       authorIsBot: sdk.author.bot ?? false,
       authorIsSystem: sdk.author.system ?? false,
+      authorPublicFlags: sdk.author.flags ?? 0,
       webhookId: sdk.webhookId,
       content: sdk.content,
       timestamp: sdk.timestamp,
@@ -1024,6 +1028,7 @@ class Message {
       authorAvatarColor: sdk.author.avatarColor,
       authorIsBot: sdk.author.bot ?? false,
       authorIsSystem: sdk.author.system ?? false,
+      authorPublicFlags: sdk.author.flags ?? 0,
       webhookId: sdk.webhookId,
       content: sdk.content,
       timestamp: sdk.timestamp,
@@ -1063,6 +1068,7 @@ class Message {
       authorAvatarColor: row.authorAvatarColor,
       authorIsBot: row.authorIsBot,
       authorIsSystem: row.authorIsSystem,
+      authorPublicFlags: row.authorPublicFlags,
       webhookId: row.webhookId,
       content: row.content,
       timestamp: row.timestamp,
@@ -1116,6 +1122,7 @@ class Message {
         authorAvatarColor == other.authorAvatarColor &&
         authorIsBot == other.authorIsBot &&
         authorIsSystem == other.authorIsSystem &&
+        authorPublicFlags == other.authorPublicFlags &&
         webhookId == other.webhookId &&
         content == other.content &&
         timestamp == other.timestamp &&
@@ -1223,6 +1230,7 @@ class Message {
       authorAvatarColor: Value(authorAvatarColor),
       authorIsBot: Value(authorIsBot),
       authorIsSystem: Value(authorIsSystem),
+      authorPublicFlags: Value(authorPublicFlags),
       webhookId: Value(webhookId),
       content: content,
       timestamp: timestamp,
@@ -1269,6 +1277,7 @@ class Message {
     int? authorAvatarColor,
     bool? authorIsBot,
     bool? authorIsSystem,
+    int? authorPublicFlags,
     Object? webhookId = _unset,
     String? content,
     DateTime? timestamp,
@@ -1301,6 +1310,7 @@ class Message {
       authorAvatarColor: authorAvatarColor ?? this.authorAvatarColor,
       authorIsBot: authorIsBot ?? this.authorIsBot,
       authorIsSystem: authorIsSystem ?? this.authorIsSystem,
+      authorPublicFlags: authorPublicFlags ?? this.authorPublicFlags,
       webhookId: webhookId == _unset ? this.webhookId : webhookId as String?,
       content: content ?? this.content,
       timestamp: timestamp ?? this.timestamp,
@@ -1341,6 +1351,7 @@ class Message {
       authorAvatarColor: incoming.authorAvatarColor,
       authorIsBot: incoming.authorIsBot,
       authorIsSystem: incoming.authorIsSystem,
+      authorPublicFlags: incoming.authorPublicFlags,
       webhookId: incoming.webhookId,
       content: incoming.content,
       editedTimestamp: incoming.editedTimestamp ?? editedTimestamp,

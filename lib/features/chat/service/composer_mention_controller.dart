@@ -86,6 +86,8 @@ class ComposerMentionController extends InlineTokenTextEditingController {
     '<@&([^>]+)>|<@!?([^>]+)>|<#([^>]+)>',
   );
 
+  int _applyWireTextGeneration = 0;
+
   /// Rebuilds the field from a wire string, re-chipping mentions and custom
   /// emoji. Plain `:name:` shortcodes are left as text (only explicitly
   /// inserted emoji chip) to avoid mis-chipping typed colons like `12:30:45`.
@@ -93,11 +95,76 @@ class ComposerMentionController extends InlineTokenTextEditingController {
     if (toWireText() == wire) {
       return;
     }
+    if (wire.isEmpty) {
+      _applyWireTextGeneration++;
+      replaceWireDisplay(
+        displayText: '',
+        tokens: const <String, InlineToken>{},
+        nextSentinelIndex: 0,
+      );
+      return;
+    }
+    final int generation = ++_applyWireTextGeneration;
+    final bundle = await buildWireDisplayBundle(
+      wire,
+      includePlainShortcodes: false,
+    );
+    if (generation != _applyWireTextGeneration) {
+      return;
+    }
+    replaceWireDisplay(
+      displayText: bundle.display,
+      tokens: bundle.tokens,
+      nextSentinelIndex: bundle.nextSentinelIndex,
+    );
+  }
+
+  Future<
+    ({String display, Map<String, InlineToken> tokens, int nextSentinelIndex})
+  >
+  buildWireDisplayBundle(
+    String wire, {
+    bool includePlainShortcodes = true,
+  }) async {
+    final Map<String, InlineToken> tokens = <String, InlineToken>{};
+    var nextSentinelIndex = 0;
+    String allocate(InlineToken token) {
+      final int codePoint = 0xE000 + nextSentinelIndex++;
+      assert(codePoint <= 0xF8FF, 'Inline token sentinel pool exhausted.');
+      final String sentinel = String.fromCharCode(codePoint);
+      tokens[sentinel] = token;
+      return sentinel;
+    }
+
+    final String display = await _mentionWireToDisplayFragment(
+      wire,
+      allocate,
+      includePlainShortcodes: includePlainShortcodes,
+    );
+    return (
+      display: display,
+      tokens: tokens,
+      nextSentinelIndex: nextSentinelIndex,
+    );
+  }
+
+  Future<String> mentionWireToDisplayFragment(
+    String wire, {
+    bool includePlainShortcodes = true,
+  }) {
+    return _mentionWireToDisplayFragment(
+      wire,
+      allocateToken,
+      includePlainShortcodes: includePlainShortcodes,
+    );
+  }
+
+  Future<String> _mentionWireToDisplayFragment(
+    String wire,
+    String Function(InlineToken token) allocate, {
+    bool includePlainShortcodes = true,
+  }) async {
     final List<RegExpMatch> matches = _wireMentions.allMatches(wire).toList();
-    // Resolve referenced roles up front so the rebuild below runs as a single
-    // synchronous mutation - no awaits between clearing and committing the new
-    // value, which would otherwise flash an empty or half-built field. Only
-    // touch the database when a role mention is actually present.
     final Map<String, db.Role?> rolesById = <String, db.Role?>{};
     if (matches.any((RegExpMatch m) => m.group(1) != null)) {
       final db.FluxerDatabase database = _ref.read(fluxerDatabaseProvider);
@@ -108,8 +175,6 @@ class ComposerMentionController extends InlineTokenTextEditingController {
         }
       }
     }
-
-    clearTokens();
     final StringBuffer display = StringBuffer();
     int start = 0;
     for (final RegExpMatch m in matches) {
@@ -122,7 +187,7 @@ class ComposerMentionController extends InlineTokenTextEditingController {
         final String label = row?.name ?? shortMentionWireIdFallback(roleId);
         final int? colorArgb = row?.color;
         display.write(
-          allocateToken(
+          allocate(
             MentionInlineToken(
               wireText: '<@&$roleId>',
               resolveVisibleText: () => '@$label',
@@ -132,7 +197,7 @@ class ComposerMentionController extends InlineTokenTextEditingController {
         );
       } else if (userId != null) {
         display.write(
-          allocateToken(
+          allocate(
             MentionInlineToken(
               wireText: '<@$userId>',
               resolveVisibleText: () =>
@@ -142,7 +207,7 @@ class ComposerMentionController extends InlineTokenTextEditingController {
         );
       } else if (channelId != null) {
         display.write(
-          allocateToken(
+          allocate(
             MentionInlineToken(
               wireText: '<#$channelId>',
               resolveVisibleText: () =>
@@ -154,14 +219,10 @@ class ComposerMentionController extends InlineTokenTextEditingController {
       start = m.end;
     }
     display.write(wire.substring(start));
-    final String next = substituteEmojiTokens(
+    return substituteEmojiTokens(
       display.toString(),
-      allocateToken,
-      includePlainShortcodes: false,
-    );
-    value = TextEditingValue(
-      text: next,
-      selection: TextSelection.collapsed(offset: next.length),
+      (EmojiInlineToken token) => allocate(token),
+      includePlainShortcodes: includePlainShortcodes,
     );
   }
 

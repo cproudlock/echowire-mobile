@@ -8,14 +8,18 @@ import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_mode.dart';
 import 'package:fluxer_app/core/theme/providers/theme_preference_provider.dart';
+import 'package:fluxer_app/features/profile/providers/user_settings_status_provider.dart';
 import 'package:fluxer_app/features/shell/presentation/native_titlebar.dart';
 import 'package:fluxer_app/features/shell/presentation/widgets/beta_warning_layer.dart';
+import 'package:fluxer_app/features/shell/presentation/widgets/required_action_gate.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast_overlay.dart';
 import 'package:fluxer_app/features/voice/presentation/widgets/incoming_voice_call_layer.dart';
 import 'package:fluxer_app/l10n/fluxer_localizations_utils.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/shared/widgets/beta_banner.dart';
 import 'package:fluxer_app/shared/widgets/input_modality_listener.dart';
+import 'package:fluxer_dart/export.dart' hide Locale;
+import 'package:fluxer_dart/models/locale.dart' as sdk;
 import 'package:window_manager/window_manager.dart';
 
 bool get _isDesktopPlatform =>
@@ -28,6 +32,13 @@ class FluxerApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(fluxerRouterProvider);
     final themePref = ref.watch(themePreferenceProvider);
+    final UserSettingsResponse? userSettings = ref.watch(
+      userSettingsStatusProvider,
+    );
+    final Locale? appLocale =
+        userSettings == null || userSettings.locale == sdk.Locale.$unknown
+        ? null
+        : flutterLocaleFromSdkLocale(userSettings.locale);
 
     final darkTheme = buildFluxerTheme(
       colorTheme: themePref.darkColorTheme,
@@ -73,6 +84,7 @@ class FluxerApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: FluxerLocalizations.localizationsDelegates,
       supportedLocales: FluxerLocalizations.supportedLocales,
+      locale: appLocale,
       localeResolutionCallback: (locale, supportedLocales) {
         if (locale == null) {
           return supportedLocales.first;
@@ -87,7 +99,9 @@ class FluxerApp extends ConsumerWidget {
         final Widget layered = InputModalityListener(
           child: AppUiLifecycleObserver(
             child: BetaWarningLayer(
-              child: IncomingVoiceCallLayer(child: child!),
+              child: RequiredActionGate(
+                child: IncomingVoiceCallLayer(child: child!),
+              ),
             ),
           ),
         );

@@ -12,13 +12,16 @@ import 'package:fluxer_app/core/theme/fluxer_text_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme.dart';
 import 'package:fluxer_app/core/theme/themes/dark.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
+import 'package:fluxer_app/features/channels/presentation/channel_settings/channel_settings_nav_page.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/guild_sidebar.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_mute_provider.dart';
+import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/channels/providers/channel_sidebar_icon_connect_bits_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_collapsed_categories_provider.dart';
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
+import 'package:fluxer_app/features/guilds/presentation/widgets/guild_scroll_indicator.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_mute_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_read_state_provider.dart';
 import 'package:fluxer_app/features/mature_content/domain/mature_content_types.dart';
@@ -179,7 +182,7 @@ void main() {
       expect(find.text('Delete My Messages'), findsOneWidget);
       expect(find.text('Open link'), findsNothing);
       expect(find.text('Debug Channel'), findsNothing);
-      expect(find.text('Delete Channel'), findsNothing);
+      expect(find.text('Delete channel'), findsNothing);
 
       double dy(String label) => tester.getTopLeft(find.text(label)).dy;
       expect(dy('Copy Link'), lessThan(dy('Mute Channel')));
@@ -288,7 +291,7 @@ void main() {
       expect(dy('Mute Category'), lessThan(dy('Copy Category ID')));
     });
 
-    testWidgets('channel menu shows Delete Channel for managers', (
+    testWidgets('channel menu shows "Delete channel" for managers', (
       tester,
     ) async {
       _setMobileSurface(tester);
@@ -306,14 +309,43 @@ void main() {
       await tester.longPress(find.text('general'));
       await tester.pumpAndSettle();
 
-      expect(find.text('Edit Channel'), findsOneWidget);
+      expect(find.text('Edit channel'), findsOneWidget);
       expect(find.text('Duplicate channel'), findsOneWidget);
-      expect(find.text('Delete Channel'), findsOneWidget);
+      expect(find.text('Delete channel'), findsOneWidget);
       double dy(String label) => tester.getTopLeft(find.text(label)).dy;
-      expect(dy('Edit Channel'), lessThan(dy('Duplicate channel')));
+      expect(dy('Edit channel'), lessThan(dy('Duplicate channel')));
       expect(dy('Duplicate channel'), lessThan(dy('Copy Channel ID')));
-      expect(dy('Copy Channel ID'), lessThan(dy('Delete Channel')));
-      expect(dy('Delete Channel'), lessThan(dy('Delete My Messages')));
+      expect(dy('Copy Channel ID'), lessThan(dy('Delete channel')));
+      expect(dy('Delete channel'), lessThan(dy('Delete My Messages')));
+    });
+
+    testWidgets('edit channel opens channel settings', (tester) async {
+      _setMobileSurface(tester);
+      final Channel channel = _channel('c1', 'general');
+      await tester.pumpWidget(
+        _buildTestApp(
+          overrides: <Override>[
+            ..._buildOverrides(
+              channelListState: _state(),
+              unread: const {'c1': UnreadState(), 'c2': UnreadState()},
+              permissionBits: {'c1': Permission.manageChannels.value},
+            ),
+            channelByIdProvider(
+              'c1',
+            ).overrideWith((Ref ref) => Stream<Channel?>.value(channel)),
+          ],
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.longPress(find.text('general'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Edit channel'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('general'), findsOneWidget);
+      expect(find.text('Overview'), findsOneWidget);
+      expect(find.text('Coming soon'), findsNothing);
     });
 
     testWidgets('channel menu shows Debug Channel in developer mode', (
@@ -490,7 +522,6 @@ void main() {
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(tester.view.resetDevicePixelRatio);
 
-      const String unreadChannelId = 'c20';
       final List<Channel> channels = List<Channel>.generate(
         20,
         (int index) => _channel('c${index + 1}', 'channel-${index + 1}'),
@@ -534,6 +565,70 @@ void main() {
 
       expect(find.text('channel-20'), findsOneWidget);
     });
+
+    testWidgets(
+      'shows only one NEW MESSAGE pill when unread channels exist above and below',
+      (tester) async {
+        tester.view.physicalSize = const Size(390, 220);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+
+        final List<Channel> channels = List<Channel>.generate(
+          20,
+          (int index) => _channel('c${index + 1}', 'channel-${index + 1}'),
+        );
+        final Map<String, UnreadState> unread = <String, UnreadState>{
+          for (int index = 1; index <= 20; index++)
+            'c$index': index == 1 || index == 20
+                ? const UnreadState(hasUnread: true, hasUnreadMessages: true)
+                : const UnreadState(),
+        };
+        await tester.pumpWidget(
+          _buildTestApp(
+            overrides: _buildOverrides(
+              channelListState: ChannelListState(
+                guild: const Guild(id: _guildId, name: 'Test Guild'),
+                categories: [
+                  ChannelCategory(
+                    id: 'cat1',
+                    name: 'My Category',
+                    channels: channels,
+                  ),
+                ],
+                selectedChannelId: 'c10',
+              ),
+              selectedChannelId: 'c10',
+              unread: unread,
+              guildReadState: {
+                _guildId: GuildReadStateEntry.empty.copyWith(hasUnread: true),
+              },
+            ),
+          ),
+        );
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 300));
+
+        final ScrollableState scrollable = tester.state<ScrollableState>(
+          find.byType(Scrollable).first,
+        );
+        scrollable.position.jumpTo(scrollable.position.maxScrollExtent / 2);
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 300));
+
+        final Iterable<AnimatedOpacity> opacities = tester
+            .widgetList<AnimatedOpacity>(
+              find.descendant(
+                of: find.byType(GuildScrollIndicatorLayer),
+                matching: find.byType(AnimatedOpacity),
+              ),
+            );
+        final int visibleCount = opacities
+            .where((AnimatedOpacity opacity) => opacity.opacity == 1.0)
+            .length;
+        expect(visibleCount, 1);
+      },
+    );
   });
 
   group('GuildSidebar scroll persistence', () {
@@ -930,6 +1025,12 @@ Widget _buildTestApp({required List<Override> overrides}) {
           GoRoute(
             path: '/channels/$_guildId/:channelId',
             builder: (context, state) => const Scaffold(body: GuildSidebar()),
+          ),
+          GoRoute(
+            path: '/settings/channel/:channelId',
+            builder: (context, state) => ChannelSettingsNavPage(
+              channelId: state.pathParameters['channelId'] ?? '',
+            ),
           ),
         ],
       ),

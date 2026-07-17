@@ -25,6 +25,7 @@ import 'package:fluxer_app/features/chat/service/composer_autocomplete_trigger.d
 import 'package:fluxer_app/features/chat/service/composer_mention_controller.dart';
 import 'package:fluxer_app/features/chat/utils/composer_mention_query.dart';
 import 'package:fluxer_app/features/chat/utils/emoji_autocomplete_search.dart';
+import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
 import 'package:fluxer_app/features/dm/domain/dm_conversation.dart';
 import 'package:fluxer_app/features/dm/providers/dm_view_model.dart';
 import 'package:fluxer_app/features/friends/domain/friend.dart';
@@ -147,6 +148,12 @@ bool get _composerAutocompleteKeyboardEnabled {
       defaultTargetPlatform == TargetPlatform.windows;
 }
 
+/// Whether [key] is the main or numpad Enter/Return key.
+bool isComposerSubmitKey(LogicalKeyboardKey key) {
+  return key == LogicalKeyboardKey.enter ||
+      key == LogicalKeyboardKey.numpadEnter;
+}
+
 /// Routes hardware-keyboard navigation keys to an open autocomplete menu.
 ///
 /// Returns [KeyEventResult.handled] when the key drove the menu (arrows move
@@ -184,7 +191,7 @@ KeyEventResult handleComposerAutocompleteKey(
     state.applyCurrentSelection();
     return KeyEventResult.handled;
   }
-  if (key == LogicalKeyboardKey.enter) {
+  if (isComposerSubmitKey(key)) {
     if (HardwareKeyboard.instance.isShiftPressed) {
       return KeyEventResult.ignored;
     }

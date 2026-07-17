@@ -26,11 +26,11 @@ import 'package:fluxer_app/features/chat/domain/message_upload_send_cancelled_ex
 import 'package:fluxer_app/features/chat/domain/message_window.dart';
 import 'package:fluxer_app/features/chat/domain/pending_attachment.dart';
 import 'package:fluxer_app/features/chat/providers/channel/channel_message_permissions_provider.dart';
-import 'package:fluxer_app/features/chat/providers/core/active_read_channel_provider.dart';
-import 'package:fluxer_app/features/chat/providers/core/chat_auto_ack_allowed_provider.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_providers.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_read_ack_gate.dart';
+import 'package:fluxer_app/features/chat/providers/core/chat_read_viewport_provider.dart';
 import 'package:fluxer_app/features/chat/providers/guild/guild_composer_access_provider.dart';
+import 'package:fluxer_app/features/chat/providers/messages/channel_message_stream_provider.dart';
 import 'package:fluxer_app/features/chat/providers/messages/message_length_limits_provider.dart';
 import 'package:fluxer_app/features/chat/providers/messages/message_realtime_events.dart';
 import 'package:fluxer_app/features/chat/providers/messages/message_realtime_frame_batcher.dart';
@@ -42,6 +42,7 @@ import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_indicator_s
 import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_tracker.dart';
 import 'package:fluxer_app/features/chat/providers/upload/cloud_upload_controller.dart';
 import 'package:fluxer_app/features/chat/utils/channel_jump_navigator.dart';
+import 'package:fluxer_app/features/chat/utils/channel_message_stream.dart';
 import 'package:fluxer_app/features/chat/utils/client_nonce.dart';
 import 'package:fluxer_app/features/chat/utils/client_system_message.dart';
 import 'package:fluxer_app/features/chat/utils/composer_command.dart';
@@ -53,8 +54,11 @@ import 'package:fluxer_app/features/chat/utils/message_send_failure_messages.dar
 import 'package:fluxer_app/features/chat/utils/uploading_attachment_utils.dart';
 import 'package:fluxer_app/features/chat/utils/url_sanitization_utils.dart';
 import 'package:fluxer_app/features/chat/utils/voice_message_constants.dart';
+import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
+import 'package:fluxer_app/features/dm/providers/dm_providers.dart';
 import 'package:fluxer_app/features/guilds/services/guild_verification.dart';
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
+import 'package:fluxer_app/features/ui/input/inline_token_clipboard.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/fluxer_localizations_utils.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
@@ -92,8 +96,10 @@ class ChatViewState {
   final int scrollToBottomSignal;
   final (String messageId, int version)? scrollToMessageSignal;
   final String? stickyUnreadMessageId;
+  final String? pendingAutoAckMessageId;
   final String? highlightedMessageId;
   final int jumpHighlightSequence;
+  final String? revealedCollapsedGroupKey;
   final bool isLoading;
   final bool isSyncingMessages;
   final bool isLoadingMore;
@@ -121,8 +127,10 @@ class ChatViewState {
     this.messageLoadFailed = false,
     this.scrollToMessageSignal,
     this.stickyUnreadMessageId,
+    this.pendingAutoAckMessageId,
     this.highlightedMessageId,
     this.jumpHighlightSequence = 0,
+    this.revealedCollapsedGroupKey,
   });
 
   bool get canSend => messageText.trim().isNotEmpty;
@@ -137,7 +145,9 @@ class ChatViewState {
     int? scrollToBottomSignal,
     Object? scrollToMessageSignal = _unset,
     Object? stickyUnreadMessageId = _unset,
+    Object? pendingAutoAckMessageId = _unset,
     Object? highlightedMessageId = _unset,
+    Object? revealedCollapsedGroupKey = _unset,
     int? jumpHighlightSequence,
     bool? isLoading,
     bool? isSyncingMessages,
@@ -166,9 +176,15 @@ class ChatViewState {
       stickyUnreadMessageId: stickyUnreadMessageId == _unset
           ? this.stickyUnreadMessageId
           : stickyUnreadMessageId as String?,
+      pendingAutoAckMessageId: pendingAutoAckMessageId == _unset
+          ? this.pendingAutoAckMessageId
+          : pendingAutoAckMessageId as String?,
       highlightedMessageId: highlightedMessageId == _unset
           ? this.highlightedMessageId
           : highlightedMessageId as String?,
+      revealedCollapsedGroupKey: revealedCollapsedGroupKey == _unset
+          ? this.revealedCollapsedGroupKey
+          : revealedCollapsedGroupKey as String?,
       jumpHighlightSequence:
           jumpHighlightSequence ?? this.jumpHighlightSequence,
       isLoading: isLoading ?? this.isLoading,
@@ -185,6 +201,47 @@ class ChatViewState {
   }
 }
 
+class _WindowContiguity {
+  String? channelId;
+  String? oldestId;
+  String? newestId;
+  bool verified = false;
+
+  void setVerified(String channel, List<Message> page) {
+    channelId = channel;
+    if (page.isEmpty) {
+      oldestId = null;
+      newestId = null;
+    } else {
+      oldestId = page.first.id;
+      newestId = page.last.id;
+    }
+    verified = true;
+  }
+
+  void extendOlder(String currentChannelId, String id) {
+    if (channelId != currentChannelId) {
+      return;
+    }
+    if (oldestId == null || compareSnowflakeIds(id, oldestId) < 0) {
+      oldestId = id;
+    }
+  }
+
+  void extendNewer(String currentChannelId, String id) {
+    if (channelId != currentChannelId) {
+      return;
+    }
+    if (newestId == null || compareSnowflakeIds(id, newestId) > 0) {
+      newestId = id;
+    }
+  }
+
+  void invalidate() {
+    verified = false;
+  }
+}
+
 @Riverpod(keepAlive: true)
 class ChatViewModel extends _$ChatViewModel {
   StreamSubscription<MessageRealtimeEvent>? _eventsSub;
@@ -196,19 +253,14 @@ class ChatViewModel extends _$ChatViewModel {
   Timer? _draftSaveTimer;
   Timer? _jumpHighlightTimer;
   final Set<String> _loadedUnreadBoundaryKeys = <String>{};
-  String? _contigChannelId;
-  String? _contigOldestId;
-  String? _contigNewestId;
-  bool _contiguityVerified = false;
+  final _WindowContiguity _contiguity = _WindowContiguity();
+  void Function()? _removeReadAckStateListener;
+  bool _autoAckEligible = false;
   int _foregroundResyncGeneration = 0;
   final Map<String, int> _lastReconciledGatewayGenerationByChannel =
       <String, int>{};
   final Map<String, int> _lastReconciledForegroundGenerationByChannel =
       <String, int>{};
-  bool _readViewportActive = false;
-  bool _readViewportNearBottom = true;
-  double _readViewportDistanceFromBottom = 0;
-  double _readViewportHeight = 0;
   // Guards against duplicate sends when send is triggered repeatedly before an
   // in-flight send finishes its async preparation (e.g. while the app lags).
   bool _isPreparingSend = false;
@@ -232,18 +284,15 @@ class ChatViewModel extends _$ChatViewModel {
     _eventsSub = bus.stream.listen((MessageRealtimeEvent event) {
       _frameBatcher?.onEvent(event);
     });
+    _removeReadAckStateListener?.call();
+    _removeReadAckStateListener = listenSelf((_, _) {
+      _syncReadAckEligibility(ref.read(chatReadViewportProvider));
+    });
     ref
-      ..listen<bool>(chatAutoAckAllowedProvider, (previous, next) {
-        unawaited(Future.microtask(_syncActiveReadChannel));
-        if (!next) {
-          _readAckRetryTimer?.cancel();
-          return;
-        }
-        if (previous == false) {
-          unawaited(refreshAfterSessionRecovery());
-        }
-        unawaited(ackCurrentChannel());
-      })
+      ..listen<ChatReadViewportState>(
+        chatReadViewportProvider,
+        (_, next) => _syncReadAckEligibility(next),
+      )
       ..listen<int>(gatewaySessionRecoveryProvider, (int? previous, int next) {
         if (next <= 0 || previous == next) {
           return;
@@ -281,6 +330,24 @@ class ChatViewModel extends _$ChatViewModel {
     );
   }
 
+  void _syncReadAckEligibility(ChatReadViewportState viewport) {
+    final bool nextEligible =
+        !state.isLoading &&
+        !state.isSyncingMessages &&
+        isAutoAckEligible(
+          viewport: viewport,
+          channelId: state.channelId,
+          hasMoreNewerMessages: state.hasMoreNewerMessages,
+        );
+    final bool becameEligible = nextEligible && !_autoAckEligible;
+    _autoAckEligible = nextEligible;
+    if (becameEligible) {
+      unawaited(ackCurrentChannel());
+    } else if (!nextEligible) {
+      _readAckRetryTimer?.cancel();
+    }
+  }
+
   void _onRealtimeEventsBatch(List<MessageRealtimeEvent> events) {
     if (events.length == 1) {
       unawaited(_onRealtimeEvent(events.first));
@@ -297,6 +364,7 @@ class ChatViewModel extends _$ChatViewModel {
     var droppedOlder = false;
     var shouldAck = false;
     var clearSticky = false;
+    String? ackWatermark;
     for (final MessageRealtimeEvent event in events) {
       if (event is! MessageCreated) {
         continue;
@@ -309,7 +377,8 @@ class ChatViewModel extends _$ChatViewModel {
         continue;
       }
       workingMessages = next;
-      if (!state.hasMoreNewerMessages) {
+      if (!state.hasMoreNewerMessages &&
+          ref.read(chatReadViewportProvider).nearLoadedTail) {
         final MessageWindowTrim trim = trimMessageWindow(
           next,
           keepNewest: true,
@@ -317,7 +386,12 @@ class ChatViewModel extends _$ChatViewModel {
         workingMessages = trim.messages;
         droppedOlder = droppedOlder || trim.droppedOlder;
       }
-      if (!event.snapshot.acknowledgedByGateway) {
+      if (event.snapshot.acknowledgedByGateway) {
+        final String messageId = event.event.message.id;
+        if (compareSnowflakeIds(messageId, ackWatermark) > 0) {
+          ackWatermark = messageId;
+        }
+      } else {
         shouldAck = true;
       }
       if (event.event.message.author.id == ref.read(currentUserIdProvider)) {
@@ -333,9 +407,14 @@ class ChatViewModel extends _$ChatViewModel {
       }
       return;
     }
+    var pendingAutoAckMessageId = state.pendingAutoAckMessageId;
+    if (compareSnowflakeIds(ackWatermark, pendingAutoAckMessageId) > 0) {
+      pendingAutoAckMessageId = ackWatermark;
+    }
     state = state.copyWith(
       messages: workingMessages,
       hasMoreMessages: droppedOlder || state.hasMoreMessages,
+      pendingAutoAckMessageId: pendingAutoAckMessageId,
     );
     if (clearSticky) {
       clearStickyUnread();
@@ -360,10 +439,19 @@ class ChatViewModel extends _$ChatViewModel {
     if (next != null) {
       var nextMessages = next;
       var droppedOlder = false;
-      if (ev is MessageCreated && !state.hasMoreNewerMessages) {
+      if (ev is MessageCreated &&
+          !state.hasMoreNewerMessages &&
+          ref.read(chatReadViewportProvider).nearLoadedTail) {
         final trim = trimMessageWindow(next, keepNewest: true);
         nextMessages = trim.messages;
         droppedOlder = trim.droppedOlder;
+      }
+      var pendingAutoAckMessageId = state.pendingAutoAckMessageId;
+      if (ev is MessageCreated &&
+          ev.snapshot.acknowledgedByGateway &&
+          compareSnowflakeIds(ev.event.message.id, pendingAutoAckMessageId) >
+              0) {
+        pendingAutoAckMessageId = ev.event.message.id;
       }
       state = state.copyWith(
         messages: nextMessages,
@@ -376,6 +464,7 @@ class ChatViewModel extends _$ChatViewModel {
         replyingTo: clearComposerForDelete ? null : state.replyingTo,
         replyMentioning: !clearComposerForDelete && state.replyMentioning,
         hasMoreMessages: droppedOlder || state.hasMoreMessages,
+        pendingAutoAckMessageId: pendingAutoAckMessageId,
       );
       if (clearComposerForDelete) {
         unawaited(_flushComposerDraftSave());
@@ -509,7 +598,7 @@ class ChatViewModel extends _$ChatViewModel {
         if (state.hasMoreNewerMessages) {
           return null;
         }
-        _extendNewer(msg.id);
+        _contiguity.extendNewer(state.channelId, msg.id);
         return <Message>[...messages, msg];
       case MessageUpdated(:final event):
         if (event.message.channelId != state.channelId) {
@@ -627,8 +716,9 @@ class ChatViewModel extends _$ChatViewModel {
     if (channelId.isEmpty) {
       return;
     }
+    final String sanitizedContent = stripPrivateUseCharacters(content);
     final String? replyId = reply?.id;
-    final bool hasDraft = content.isNotEmpty || replyId != null;
+    final bool hasDraft = sanitizedContent.isNotEmpty || replyId != null;
     final dao = ref.read(fluxerDatabaseProvider).composerDraftDao;
     if (!hasDraft) {
       await dao.deleteDraft(channelId);
@@ -636,7 +726,7 @@ class ChatViewModel extends _$ChatViewModel {
     }
     await dao.upsertDraft(
       channelId: channelId,
-      content: content,
+      content: sanitizedContent,
       replyToMessageId: replyId,
     );
   }
@@ -659,7 +749,7 @@ class ChatViewModel extends _$ChatViewModel {
       );
       reply = dbMsg == null ? null : Message.fromRow(dbMsg);
     }
-    return (text: row.content, reply: reply);
+    return (text: stripPrivateUseCharacters(row.content), reply: reply);
   }
 
   Future<void> _restoreComposerDraftFromDb() async {
@@ -716,6 +806,27 @@ class ChatViewModel extends _$ChatViewModel {
     );
   }
 
+  void setCollapsedGroupRevealed(String? groupKey) {
+    final String? current = state.revealedCollapsedGroupKey;
+    if (groupKey != null && groupKey == current) {
+      state = state.copyWith(revealedCollapsedGroupKey: null);
+      return;
+    }
+    state = state.copyWith(revealedCollapsedGroupKey: groupKey);
+  }
+
+  void _revealCollapsedGroupForMessageIfNeeded(String messageId) {
+    final String? groupKey = getCollapsedMessageGroupKey(
+      messages: state.messages,
+      messageId: messageId,
+      context: ref.read(channelCollapseContextProvider),
+    );
+    if (groupKey == null) {
+      return;
+    }
+    state = state.copyWith(revealedCollapsedGroupKey: groupKey);
+  }
+
   void highlightJumpMessage(String messageId) {
     _jumpHighlightTimer?.cancel();
     _jumpHighlightTimer = null;
@@ -770,12 +881,19 @@ class ChatViewModel extends _$ChatViewModel {
     final int switchGeneration = ++_channelSwitchGeneration;
     bool isCurrentSwitch() => switchGeneration == _channelSwitchGeneration;
     try {
-      if (state.channelId != channelId) {
-        _readViewportNearBottom = false;
-        _readViewportDistanceFromBottom = 0;
-        _readViewportHeight = 0;
+      final String? currentUserId = ref.read(currentUserIdProvider);
+      if (isPersonalNotesChannelRoute(
+        channelId: channelId,
+        currentUserId: currentUserId,
+      )) {
+        await ref
+            .read(dmRepositoryProvider)
+            .ensurePersonalNotesChannel(channelId);
+        if (!isCurrentSwitch()) {
+          return;
+        }
       }
-      _syncActiveReadChannel(channelId: channelId);
+      ref.read(chatReadViewportProvider.notifier).setActiveChannel(channelId);
       if (loadMessages) {
         _stickySnapshotArmed = true;
       }
@@ -783,7 +901,7 @@ class ChatViewModel extends _$ChatViewModel {
       final bool isChannelChange =
           previousChannelId.isNotEmpty && previousChannelId != channelId;
       if (isChannelChange) {
-        _contiguityVerified = false;
+        _contiguity.invalidate();
         final String previousText = state.messageText;
         final Message? previousReply = state.replyingTo;
         _draftSaveTimer?.cancel();
@@ -926,7 +1044,7 @@ class ChatViewModel extends _$ChatViewModel {
           hasMoreMessages: cached.length >= _kPageSize,
           hasMoreNewerMessages: false,
         );
-        _contiguityVerified = false;
+        _contiguity.invalidate();
         _deferMessageReferencesLoaded(channelId: channelId, messages: cached);
         if (willRefresh) {
           unawaited(
@@ -1095,6 +1213,22 @@ class ChatViewModel extends _$ChatViewModel {
       if (state.channelId != channelId || !shouldApply()) {
         return;
       }
+      if (preserveLoadedWindow &&
+          !networkPageOverlapsWindow(
+            window: state.messages,
+            networkPage: page.messages,
+          )) {
+        // Keep a detached window intact. Pagination or jump-to-present reaches
+        // the gap without presenting disjoint ranges as contiguous.
+        state = state.copyWith(
+          isLoading: false,
+          isSyncingMessages: false,
+          hasMoreNewerMessages: true,
+          errorMessage: null,
+          messageLoadFailed: false,
+        );
+        return;
+      }
       final String? syncBaselineOldestId = state.messages.isEmpty
           ? null
           : state.messages.first.id;
@@ -1108,9 +1242,10 @@ class ChatViewModel extends _$ChatViewModel {
               networkPage: page.messages,
               syncBaselineOldestId: syncBaselineOldestId,
             );
+      final String? mergedServerTailId = newestServerBackedMessageId(merged);
       final bool hasMoreNewer =
-          merged.isNotEmpty &&
-          await _hasNewerMessagesThanChannel(merged.last.id);
+          mergedServerTailId != null &&
+          await _hasNewerMessagesThanChannel(mergedServerTailId);
       if (state.channelId != channelId || !shouldApply()) {
         return;
       }
@@ -1130,7 +1265,7 @@ class ChatViewModel extends _$ChatViewModel {
         messageLoadFailed: false,
       );
       if (!preserveLoadedWindow) {
-        _setVerifiedContiguityWindow(channelId, page.messages);
+        _contiguity.setVerified(channelId, page.messages);
       }
       _notifyMessageReferencesLoaded(
         channelId: channelId,
@@ -1228,38 +1363,6 @@ class ChatViewModel extends _$ChatViewModel {
       }
       return;
     }
-    final db.Channel? channel = await ref
-        .read(fluxerDatabaseProvider)
-        .channelDao
-        .getChannelById(channelId);
-    final String? latestMessageId =
-        await resolveLatestMessageIdForUnreadDisplay(
-          ref.read(fluxerDatabaseProvider),
-          channelId,
-          channelLastMessageId: channel?.lastMessageId,
-          ackLastMessageId: readState?.lastMessageId,
-          mentionCount: readState?.mentionCount ?? 0,
-        );
-    final String? currentUserId = ref.read(currentUserIdProvider);
-    final int fallbackAckMs = channel == null
-        ? snowflakeTimestampMs(channelId)
-        : await guildChannelFallbackAckMs(
-            database: ref.read(fluxerDatabaseProvider),
-            channel: channel,
-            currentUserId: currentUserId,
-          );
-    final bool hasChannelLevelUnread = hasUnreadByReadState(
-      channelLastMessageId: latestMessageId,
-      ackLastMessageId: readState?.lastMessageId,
-      fallbackAckMs: fallbackAckMs,
-      mentionCount: readState?.mentionCount ?? 0,
-      isGuildChannel: channel != null,
-    );
-    if (hasChannelLevelUnread && channel != null) {
-      return;
-    }
-    _readViewportNearBottom = true;
-    unawaited(ackCurrentChannel());
   }
 
   Future<void> loadMore() async {
@@ -1270,69 +1373,100 @@ class ChatViewModel extends _$ChatViewModel {
     }
 
     final String channelId = state.channelId;
+    final String requestedBeforeId = state.messages.first.id;
     state = state.copyWith(isLoadingMore: true);
     try {
       final repo = ref.read(messageRepositoryProvider);
-      final oldestId = state.messages.first.id;
-      talker.debug('[ChatPagination] older request oldest=$oldestId');
-      if (_contiguityVerified &&
-          _contigChannelId == channelId &&
+      talker.debug('[ChatPagination] older request oldest=$requestedBeforeId');
+      if (_contiguity.verified &&
+          _contiguity.channelId == channelId &&
           canServeOlderFromCache(
-            windowOldestId: oldestId,
-            contigOldestId: _contigOldestId,
+            windowOldestId: requestedBeforeId,
+            contigOldestId: _contiguity.oldestId,
           )) {
         final cachedPage = await repo.getCachedMessagesBefore(
           channelId,
-          oldestId,
+          requestedBeforeId,
         );
         if (state.channelId != channelId) {
           return;
         }
         final olderInRange = cachedPage
-            .where((m) => compareSnowflakeIds(m.id, _contigOldestId) >= 0)
+            .where((m) => compareSnowflakeIds(m.id, _contiguity.oldestId) >= 0)
             .toList();
         if (olderInRange.isNotEmpty) {
-          // Pure prepend: older messages land above the viewport, so the
-          // reverse list keeps position for free. Never trim the newest here;
-          // trimToNewestWindow() reclaims memory at the live tail.
-          final merged = [...olderInRange, ...state.messages];
-          state = state.copyWith(
-            messages: merged,
-            isLoadingMore: false,
-            hasMoreMessages: true,
+          final WindowPageResult result = applyOlderPage(
+            window: MessageWindowSnapshot(
+              messages: state.messages,
+              hasMoreOlder: state.hasMoreMessages,
+              hasMoreNewer: state.hasMoreNewerMessages,
+            ),
+            page: olderInRange,
+            requestedBeforeId: requestedBeforeId,
+            pageIndicatesMoreOlder: true,
           );
-          _notifyMessageReferencesLoaded(
-            channelId: channelId,
-            messages: olderInRange,
-          );
-          return;
+          switch (result) {
+            case WindowPageSuperseded():
+              talker.debug('[ChatPagination] older page superseded');
+              state = state.copyWith(isLoadingMore: false);
+              return;
+            case WindowPageApplied(:final window):
+              state = state.copyWith(
+                messages: window.messages,
+                isLoadingMore: false,
+                hasMoreMessages: window.hasMoreOlder,
+                hasMoreNewerMessages: window.hasMoreNewer,
+              );
+              _notifyMessageReferencesLoaded(
+                channelId: channelId,
+                messages: olderInRange,
+              );
+              return;
+          }
         }
       }
       final page = await repo.loadMessagePage(
         channelId: channelId,
-        before: oldestId,
+        before: requestedBeforeId,
       );
       if (state.channelId != channelId) {
         return;
       }
-      if (page.messages.isNotEmpty) {
-        _extendOlder(page.messages.first.id);
+      final WindowPageResult result = applyOlderPage(
+        window: MessageWindowSnapshot(
+          messages: state.messages,
+          hasMoreOlder: state.hasMoreMessages,
+          hasMoreNewer: state.hasMoreNewerMessages,
+        ),
+        page: page.messages,
+        requestedBeforeId: requestedBeforeId,
+        pageIndicatesMoreOlder: page.messages.length >= _kPageSize,
+      );
+      switch (result) {
+        case WindowPageSuperseded():
+          talker.debug('[ChatPagination] older page superseded');
+          state = state.copyWith(isLoadingMore: false);
+          return;
+        case WindowPageApplied(:final window):
+          if (page.messages.isNotEmpty) {
+            _contiguity.extendOlder(channelId, page.messages.first.id);
+          }
+          state = state.copyWith(
+            messages: window.messages,
+            isLoadingMore: false,
+            hasMoreMessages: window.hasMoreOlder,
+            hasMoreNewerMessages: window.hasMoreNewer,
+          );
+          talker.debug(
+            '[ChatPagination] older loaded count=${page.messages.length} '
+            'hasMore=${window.hasMoreOlder}',
+          );
+          _notifyMessageReferencesLoaded(
+            channelId: channelId,
+            messages: page.messages,
+            embeddedReplyParents: page.embeddedReplyParents,
+          );
       }
-      final merged = [...page.messages, ...state.messages];
-      state = state.copyWith(
-        messages: merged,
-        isLoadingMore: false,
-        hasMoreMessages: page.messages.length >= _kPageSize,
-      );
-      talker.debug(
-        '[ChatPagination] older loaded count=${page.messages.length} '
-        'hasMore=${page.messages.length >= _kPageSize}',
-      );
-      _notifyMessageReferencesLoaded(
-        channelId: channelId,
-        messages: page.messages,
-        embeddedReplyParents: page.embeddedReplyParents,
-      );
     } on Exception catch (e) {
       talker.warning('[ChatPagination] older load failed', e);
       if (state.channelId == channelId) {
@@ -1352,85 +1486,116 @@ class ChatViewModel extends _$ChatViewModel {
       return;
     }
     final String channelId = state.channelId;
+    final String? requestedAfterId = newestServerBackedMessageId(
+      state.messages,
+    );
+    if (requestedAfterId == null) {
+      return;
+    }
     state = state.copyWith(isLoadingNewer: true);
     try {
       final repo = ref.read(messageRepositoryProvider);
-      final String newestId = state.messages.last.id;
-      talker.debug('[ChatPagination] newer request newest=$newestId');
-      if (_contiguityVerified &&
-          _contigChannelId == channelId &&
+      talker.debug('[ChatPagination] newer request newest=$requestedAfterId');
+      if (_contiguity.verified &&
+          _contiguity.channelId == channelId &&
           canServeNewerFromCache(
-            windowNewestId: newestId,
-            contigNewestId: _contigNewestId,
+            windowNewestId: requestedAfterId,
+            contigNewestId: _contiguity.newestId,
           )) {
         final cachedPage = await repo.getCachedMessagesAfter(
           channelId,
-          newestId,
+          requestedAfterId,
         );
         if (state.channelId != channelId) {
           return;
         }
         final newerInRange = cachedPage
-            .where((m) => compareSnowflakeIds(m.id, _contigNewestId) <= 0)
+            .where((m) => compareSnowflakeIds(m.id, _contiguity.newestId) <= 0)
             .toList();
         if (newerInRange.isNotEmpty) {
-          final mergedCache = mergeMessagesSorted(state.messages, newerInRange);
-          final trimCache = trimMessageWindow(mergedCache, keepNewest: true);
-          final bool hasMoreNewerCache = await _hasNewerMessagesThanChannel(
-            mergedCache.last.id,
-          );
+          final bool pageIndicatesMoreNewer =
+              await _hasNewerMessagesThanChannel(newerInRange.last.id);
           if (state.channelId != channelId) {
             return;
           }
-          state = state.copyWith(
-            messages: trimCache.messages,
-            isLoadingNewer: false,
-            hasMoreNewerMessages: hasMoreNewerCache,
-            hasMoreMessages: trimCache.droppedOlder || state.hasMoreMessages,
+          final WindowPageResult result = applyNewerPage(
+            window: MessageWindowSnapshot(
+              messages: state.messages,
+              hasMoreOlder: state.hasMoreMessages,
+              hasMoreNewer: state.hasMoreNewerMessages,
+            ),
+            page: newerInRange,
+            requestedAfterId: requestedAfterId,
+            pageIndicatesMoreNewer: pageIndicatesMoreNewer,
           );
-          _notifyMessageReferencesLoaded(
-            channelId: channelId,
-            messages: trimCache.messages,
-          );
-          return;
+          switch (result) {
+            case WindowPageSuperseded():
+              talker.debug('[ChatPagination] newer page superseded');
+              state = state.copyWith(isLoadingNewer: false);
+              return;
+            case WindowPageApplied(:final window):
+              state = state.copyWith(
+                messages: window.messages,
+                isLoadingNewer: false,
+                hasMoreMessages: window.hasMoreOlder,
+                hasMoreNewerMessages: window.hasMoreNewer,
+              );
+              _notifyMessageReferencesLoaded(
+                channelId: channelId,
+                messages: window.messages,
+              );
+              return;
+          }
         }
       }
       final page = await repo.loadMessagePage(
         channelId: channelId,
-        after: newestId,
+        after: requestedAfterId,
       );
       if (state.channelId != channelId) {
         return;
       }
-      if (page.messages.isNotEmpty) {
-        _extendNewer(page.messages.last.id);
-      }
-      final List<Message> merged = mergeMessagesSorted(
-        state.messages,
-        page.messages,
-      );
-      final bool hasMoreNewer =
+      final bool pageIndicatesMoreNewer =
           page.messages.length >= _kPageSize &&
-          await _hasNewerMessagesThanChannel(merged.last.id);
+          await _hasNewerMessagesThanChannel(page.messages.last.id);
       if (state.channelId != channelId) {
         return;
       }
-      final trim = trimMessageWindow(merged, keepNewest: true);
-      state = state.copyWith(
-        messages: trim.messages,
-        isLoadingNewer: false,
-        hasMoreNewerMessages: hasMoreNewer,
-        hasMoreMessages: trim.droppedOlder || state.hasMoreMessages,
+      final WindowPageResult result = applyNewerPage(
+        window: MessageWindowSnapshot(
+          messages: state.messages,
+          hasMoreOlder: state.hasMoreMessages,
+          hasMoreNewer: state.hasMoreNewerMessages,
+        ),
+        page: page.messages,
+        requestedAfterId: requestedAfterId,
+        pageIndicatesMoreNewer: pageIndicatesMoreNewer,
       );
-      talker.debug(
-        '[ChatPagination] newer loaded count=${page.messages.length} '
-        'hasMore=$hasMoreNewer',
-      );
-      _notifyMessageReferencesLoaded(
-        channelId: channelId,
-        messages: trim.messages,
-        embeddedReplyParents: page.embeddedReplyParents,
-      );
+      switch (result) {
+        case WindowPageSuperseded():
+          talker.debug('[ChatPagination] newer page superseded');
+          state = state.copyWith(isLoadingNewer: false);
+          return;
+        case WindowPageApplied(:final window):
+          if (page.messages.isNotEmpty) {
+            _contiguity.extendNewer(channelId, page.messages.last.id);
+          }
+          state = state.copyWith(
+            messages: window.messages,
+            isLoadingNewer: false,
+            hasMoreMessages: window.hasMoreOlder,
+            hasMoreNewerMessages: window.hasMoreNewer,
+          );
+          talker.debug(
+            '[ChatPagination] newer loaded count=${page.messages.length} '
+            'hasMore=${window.hasMoreNewer}',
+          );
+          _notifyMessageReferencesLoaded(
+            channelId: channelId,
+            messages: window.messages,
+            embeddedReplyParents: page.embeddedReplyParents,
+          );
+      }
     } on Exception catch (e) {
       talker.warning('[ChatPagination] newer load failed', e);
       if (state.channelId == channelId) {
@@ -1458,17 +1623,17 @@ class ChatViewModel extends _$ChatViewModel {
     );
   }
 
-  Future<void> jumpToLatestMessages() async {
+  Future<bool> jumpToLatestMessages() async {
     final String channelId = state.channelId;
     if (channelId.isEmpty) {
-      return;
+      return false;
     }
     if (!state.hasMoreNewerMessages) {
       scrollToBottom();
-      return;
+      return true;
     }
     if (state.isSyncingMessages || state.isLoading) {
-      return;
+      return false;
     }
     state = state.copyWith(isSyncingMessages: true);
     try {
@@ -1476,24 +1641,33 @@ class ChatViewModel extends _$ChatViewModel {
           .read(messageRepositoryProvider)
           .loadMessagePage(channelId: channelId);
       if (state.channelId != channelId) {
-        return;
+        return false;
       }
+      final List<Message> pendingLocal = state.messages
+          .where(isLocalOnlyMessage)
+          .toList();
+      final List<Message> merged = mergeMessagesSorted(
+        pendingLocal,
+        page.messages,
+      );
       state = state.copyWith(
-        messages: page.messages,
-        isSyncingMessages: false,
+        messages: merged,
         hasMoreMessages: page.messages.length >= _kPageSize,
         hasMoreNewerMessages: false,
       );
-      _setVerifiedContiguityWindow(channelId, page.messages);
+      _contiguity.setVerified(channelId, page.messages);
       _notifyMessageReferencesLoaded(
         channelId: channelId,
-        messages: page.messages,
+        messages: merged,
         embeddedReplyParents: page.embeddedReplyParents,
       );
       scrollToBottom();
+      return true;
     } on Exception catch (e) {
       talker.warning('[ChatPagination] jump to latest failed', e);
-      if (state.channelId == channelId) {
+      return false;
+    } finally {
+      if (state.channelId == channelId && state.isSyncingMessages) {
         state = state.copyWith(isSyncingMessages: false);
       }
     }
@@ -1511,70 +1685,37 @@ class ChatViewModel extends _$ChatViewModel {
     return compareSnowflakeIds(lastMessageId, messageId) > 0;
   }
 
-  void _syncActiveReadChannel({String? channelId}) {
-    ref
-        .read(activeReadChannelProvider.notifier)
-        .update(
-          channelId: channelId ?? state.channelId,
-          isAtBottom: _readViewportNearBottom,
-          canAutoAck:
-              _readViewportActive && ref.read(chatAutoAckAllowedProvider),
-          distanceFromBottom: _readViewportDistanceFromBottom,
-          viewportHeight: _readViewportHeight,
-        );
-  }
-
-  void setReadViewportActive({required bool isActive}) {
-    _readViewportActive = isActive;
-    if (!isActive) {
-      _readAckRetryTimer?.cancel();
-    }
-    // Callers include widget lifecycles (didUpdateWidget runs mid-build), so
-    // the activeReadChannelProvider write must leave the build phase.
-    unawaited(Future.microtask(_syncActiveReadChannel));
-    if (isActive) {
-      unawaited(ackCurrentChannel());
-    }
-  }
-
-  void updateReadViewport({
-    required bool isNearBottom,
-    double distanceFromBottom = 0,
-    double viewportHeight = 0,
-  }) {
-    _readViewportNearBottom = isNearBottom;
-    _readViewportDistanceFromBottom = distanceFromBottom;
-    _readViewportHeight = viewportHeight;
-    _syncActiveReadChannel();
-    if (!isNearBottom) {
-      _readAckRetryTimer?.cancel();
-      return;
-    }
-    unawaited(ackCurrentChannel());
-  }
-
   Future<void> ackCurrentChannel({bool force = false}) async {
     final channelId = state.channelId;
     if (!force && (state.isLoading || state.isSyncingMessages)) {
       return;
     }
+    if (!force && state.hasMoreNewerMessages) {
+      return;
+    }
+    final String? visibleTailId = newestServerBackedMessageId(state.messages);
+    if (!force && visibleTailId == null) {
+      return;
+    }
     final now = DateTime.now();
-    final isReadViewportEligible =
-        _readViewportActive && ref.read(chatAutoAckAllowedProvider);
+    final ChatReadViewportState viewport = ref.read(chatReadViewportProvider);
+    final bool isReadViewportEligible = viewport.canAutoAck;
+    final bool isAtLiveTail =
+        viewport.nearLoadedTail && !state.hasMoreNewerMessages;
     if (force) {
       _readAckGate.clearManualUnread(channelId);
     }
     if (!_readAckGate.canAttemptAck(
       channelId: channelId,
       isActive: isReadViewportEligible,
-      isNearBottom: _readViewportNearBottom,
+      isNearBottom: isAtLiveTail,
       now: now,
       force: force,
     )) {
       final retryDelay = _readAckGate.retryDelay(
         channelId: channelId,
         isActive: isReadViewportEligible,
-        isNearBottom: _readViewportNearBottom,
+        isNearBottom: isAtLiveTail,
         now: now,
       );
       if (retryDelay != null && retryDelay > Duration.zero) {
@@ -1613,7 +1754,9 @@ class ChatViewModel extends _$ChatViewModel {
         }
       }
       final repository = ref.read(readStateRepositoryProvider);
-      final ackedMessageId = await repository.applyLocalAckLatest(channelId);
+      final String? ackedMessageId = force
+          ? await repository.applyLocalAckLatest(channelId)
+          : await repository.applyLocalAckUpTo(channelId, visibleTailId!);
       if (ackedMessageId != null) {
         ref
             .read(ackBatcherProvider)
@@ -1629,6 +1772,15 @@ class ChatViewModel extends _$ChatViewModel {
       debugPrint('[ChatViewModel] Failed to ack channel: $e');
     } finally {
       _readAckGate.markAttemptFinished(channelId);
+      if (!force &&
+          ref.mounted &&
+          state.channelId == channelId &&
+          _autoAckEligible &&
+          newestServerBackedMessageId(state.messages) != visibleTailId) {
+        // The tail advanced while this attempt was pending and the gate
+        // swallowed any concurrent trigger. Re-run against the new tail.
+        unawaited(ackCurrentChannel());
+      }
     }
   }
 
@@ -1679,7 +1831,7 @@ class ChatViewModel extends _$ChatViewModel {
       state = state.copyWith(
         messages: mergeMessagesSorted(state.messages, messages),
       );
-      _extendNewer(messages.last.id);
+      _contiguity.extendNewer(channelId, messages.last.id);
     } on Exception catch (e) {
       debugPrint('[ChatViewModel] Failed to load unread boundary: $e');
     }
@@ -1714,42 +1866,6 @@ class ChatViewModel extends _$ChatViewModel {
           .map((message) => message.id),
       ackLastMessageId: ack,
     );
-  }
-
-  void _setContiguityWindow(String channelId, List<Message> page) {
-    _contigChannelId = channelId;
-    if (page.isEmpty) {
-      _contigOldestId = null;
-      _contigNewestId = null;
-      return;
-    }
-    _contigOldestId = page.first.id;
-    _contigNewestId = page.last.id;
-  }
-
-  void _setVerifiedContiguityWindow(String channelId, List<Message> page) {
-    _setContiguityWindow(channelId, page);
-    _contiguityVerified = true;
-  }
-
-  void _extendOlder(String id) {
-    if (_contigChannelId != state.channelId) {
-      return;
-    }
-    if (_contigOldestId == null ||
-        compareSnowflakeIds(id, _contigOldestId) < 0) {
-      _contigOldestId = id;
-    }
-  }
-
-  void _extendNewer(String id) {
-    if (_contigChannelId != state.channelId) {
-      return;
-    }
-    if (_contigNewestId == null ||
-        compareSnowflakeIds(id, _contigNewestId) > 0) {
-      _contigNewestId = id;
-    }
   }
 
   String _unreadBoundaryKey(String channelId, String ackMessageId) =>
@@ -2718,6 +2834,7 @@ class ChatViewModel extends _$ChatViewModel {
   }
 
   void scrollToMessage(String messageId) {
+    _revealCollapsedGroupForMessageIfNeeded(messageId);
     final version = (state.scrollToMessageSignal?.$2 ?? 0) + 1;
     state = state.copyWith(scrollToMessageSignal: (messageId, version));
   }
@@ -2755,16 +2872,21 @@ class ChatViewModel extends _$ChatViewModel {
       if (state.channelId != channelId) {
         return;
       }
+      if (page.messages.isEmpty) {
+        return;
+      }
       final bool hasMoreNewer = await _hasNewerMessagesThanChannel(
         page.messages.last.id,
       );
+      if (state.channelId != channelId) {
+        return;
+      }
       state = state.copyWith(
         messages: page.messages,
-        isSyncingMessages: false,
         hasMoreMessages: page.messages.length >= _kPageSize,
         hasMoreNewerMessages: hasMoreNewer,
       );
-      _setVerifiedContiguityWindow(channelId, page.messages);
+      _contiguity.setVerified(channelId, page.messages);
       _notifyMessageReferencesLoaded(
         channelId: channelId,
         messages: page.messages,
@@ -2773,7 +2895,8 @@ class ChatViewModel extends _$ChatViewModel {
       scrollToMessage(messageId);
     } on Exception catch (e) {
       debugPrint('[ChatViewModel] Failed to jump to replied message: $e');
-      if (state.channelId == channelId) {
+    } finally {
+      if (state.channelId == channelId && state.isSyncingMessages) {
         state = state.copyWith(isSyncingMessages: false);
       }
     }

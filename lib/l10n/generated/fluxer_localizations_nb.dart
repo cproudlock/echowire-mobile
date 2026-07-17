@@ -55,6 +55,126 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get splashIncidentHistory => 'Hendelseshistorikk';
 
   @override
+  String get nagbarLearnMore => 'Learn more';
+
+  @override
+  String nagbarMaintenanceScheduled(String localizedTime, String duration) {
+    return 'Maintenance is scheduled for $localizedTime. Expected duration: $duration.';
+  }
+
+  @override
+  String nagbarMaintenanceInProgress(String duration) {
+    return 'Maintenance is in progress. Expected duration: $duration.';
+  }
+
+  @override
+  String get nagbarMaintenanceComplete => 'Maintenance is complete.';
+
+  @override
+  String nagbarUnclaimedAccountMessage(String displayName) {
+    return 'Hey $displayName, claim your account to prevent losing access.';
+  }
+
+  @override
+  String nagbarEmailVerificationMessage(String displayName) {
+    return 'Hey $displayName, please verify your email address.';
+  }
+
+  @override
+  String get nagbarOpenSettings => 'Open settings';
+
+  @override
+  String get systemPermissionSettingsTitle => 'Enable permission';
+
+  @override
+  String get systemPermissionSettingsOpenSettings => 'Open settings';
+
+  @override
+  String get systemPermissionMicrophoneMessage =>
+      'Fluxer doesn\'t have access to your microphone. You can enable it in your device privacy settings.';
+
+  @override
+  String get systemPermissionCameraMessage =>
+      'Fluxer doesn\'t have access to your camera. You can enable it in your device privacy settings.';
+
+  @override
+  String get systemPermissionNotificationsMessage =>
+      'Fluxer doesn\'t have permission to send notifications. You can enable it in your device settings.';
+
+  @override
+  String nagbarPremiumGracePeriod(String productName, String graceDate) {
+    return 'Your subscription failed to renew, but you still have access to $productName perks until $graceDate. Take action now or you\'ll lose all perks.';
+  }
+
+  @override
+  String nagbarPremiumExpired(String productName) {
+    return 'Your $productName subscription has expired. Renew now to keep your perks.';
+  }
+
+  @override
+  String get nagbarManageSubscription => 'Manage subscription';
+
+  @override
+  String nagbarPremiumOnboardingDefault(
+    String productFullName,
+    String productName,
+  ) {
+    return 'Welcome to $productFullName. Explore your $productName perks and manage your subscription.';
+  }
+
+  @override
+  String nagbarViewPremiumFeatures(String productName) {
+    return 'View $productName features';
+  }
+
+  @override
+  String get nagbarGiftInventoryOne =>
+      'You have a new gift code waiting in your gift inventory.';
+
+  @override
+  String nagbarGiftInventoryMany(int count) {
+    return 'You have $count new gift codes waiting in your gift inventory.';
+  }
+
+  @override
+  String get nagbarViewGiftInventory => 'View gift inventory';
+
+  @override
+  String get nagbarVisionaryMfa =>
+      'Enable two-factor authentication to protect your Visionary account.';
+
+  @override
+  String get nagbarEnableMfa => 'Enable 2FA';
+
+  @override
+  String get nagbarTermsAcceptance =>
+      'We\'ve updated our terms. Please review and accept them to continue.';
+
+  @override
+  String get nagbarReviewTerms => 'Review terms';
+
+  @override
+  String nagbarGuildMembershipCta(String communityName) {
+    return 'Join $communityName to chat with the team and stay up to date.';
+  }
+
+  @override
+  String nagbarJoinCommunity(String communityName) {
+    return 'Join $communityName';
+  }
+
+  @override
+  String get nagbarPushNotification =>
+      'Enable notifications so you don\'t miss messages and mentions.';
+
+  @override
+  String get nagbarEnableNotifications => 'Enable notifications';
+
+  @override
+  String get nagbarBillingPortalFailed =>
+      'Couldn\'t open the billing portal. Please try again in a moment.';
+
+  @override
   String get welcomeBack => 'Velkommen tilbake';
 
   @override
@@ -2017,6 +2137,129 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get phoneAddSuccess => 'Telefonnummer lagt til';
+
+  @override
+  String get phoneCountryLabel => 'Country';
+
+  @override
+  String get phoneSearchCountries => 'Search countries...';
+
+  @override
+  String get phoneNumberRequired => 'Phone number is required';
+
+  @override
+  String get phoneEnterValidNumber => 'Enter a valid mobile phone number.';
+
+  @override
+  String get phoneCannotBeUsed =>
+      'This phone number cannot be used. Try another mobile number or contact support.';
+
+  @override
+  String get phoneAlreadyUsed =>
+      'This phone number has already been used. Try another number or contact support.';
+
+  @override
+  String get phoneCodeDidNotWork =>
+      'That code didn\'t work. Check it and try again.';
+
+  @override
+  String get phoneTooManyAttempts =>
+      'Too many attempts. Wait a bit, then try again.';
+
+  @override
+  String get phoneSmsUnavailable =>
+      'SMS verification is unavailable right now. Try again later or contact support.';
+
+  @override
+  String get phoneNotEligible =>
+      'Phone verification is not available for this account. Use another method or contact support.';
+
+  @override
+  String get phoneCaptchaRequired =>
+      'A browser check is required before phone verification. Try again from the sign-in page or contact support.';
+
+  @override
+  String get phoneSomethingWentWrong => 'Something went wrong. Try again.';
+
+  @override
+  String get phoneInboundExpensiveDescription =>
+      'Sending an SMS to this phone number is too expensive, so we need you to send us an SMS instead. You can also contact support to have us lift this requirement from your account.';
+
+  @override
+  String get phoneInboundDefaultDescription =>
+      'We need you to send us an SMS to verify your phone number.';
+
+  @override
+  String get phoneInboundStepOpenMessaging =>
+      'Open your phone\'s messaging app and create a new text message.';
+
+  @override
+  String phoneInboundStepSendCode(String code, String number) {
+    return 'Send the code $code to $number.';
+  }
+
+  @override
+  String get phoneInboundStepWait =>
+      'Wait for us to receive your message. This can take a minute.';
+
+  @override
+  String get phoneInboundGetNewCode => 'Get new code';
+
+  @override
+  String get phoneInboundChallengeCodeLabel => 'Code to send';
+
+  @override
+  String get phoneInboundOurNumberLabel => 'Send to';
+
+  @override
+  String get requiredActionTitle => 'Account verification required';
+
+  @override
+  String get requiredActionIntroGeneric =>
+      'Complete the required verification to continue using Fluxer.';
+
+  @override
+  String get requiredActionIntroPhone =>
+      'Your registration needs an extra anti-spam check before you can continue.';
+
+  @override
+  String get requiredActionIntroEmailOrPhone =>
+      'Verify your email or phone to continue using Fluxer.';
+
+  @override
+  String get requiredActionIntroEmailAndPhone =>
+      'Complete the required email and phone verification steps below to continue using Fluxer.';
+
+  @override
+  String get requiredActionChooseMethodTitle => 'Choose a verification method';
+
+  @override
+  String get requiredActionChooseMethodDescription =>
+      'Complete one of the verification paths below to continue using Fluxer.';
+
+  @override
+  String get requiredActionUseEmail => 'Use email';
+
+  @override
+  String get requiredActionUsePhone => 'Use phone';
+
+  @override
+  String get requiredActionCheckEmailTitle => 'Check your email';
+
+  @override
+  String get requiredActionCheckEmailDescription =>
+      'We sent a verification link to your email address. Open it to continue.';
+
+  @override
+  String get requiredActionResendVerificationEmail =>
+      'Resend verification email';
+
+  @override
+  String get requiredActionVerificationEmailSent =>
+      'Verification email sent. Check your inbox.';
+
+  @override
+  String get requiredActionSignOut => 'Sign out';
 
   @override
   String get dangerZoneSectionTitle => 'Fare-sone';
@@ -4381,7 +4624,48 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get voiceControlDisconnect => 'Koble fra';
 
   @override
+  String get voiceParticipantMenuViewProfile => 'View profile';
+
+  @override
+  String get voiceParticipantMenuFocus => 'Focus this person';
+
+  @override
+  String get voiceParticipantMenuUnfocus => 'Unfocus';
+
+  @override
+  String get voiceParticipantMenuCommunityMute => 'Mute';
+
+  @override
+  String get voiceParticipantMenuCommunityDeafen => 'Deafen';
+
+  @override
+  String get voiceParticipantMenuUserVolume => 'User volume';
+
+  @override
+  String get voiceParticipantMenuStreamVolume => 'Stream volume';
+
+  @override
+  String get voiceParticipantModerationFailed =>
+      'Couldn\'t update that member. Please try again.';
+
+  @override
   String get voiceControlChat => 'Chat';
+
+  @override
+  String get voicePanelSettingsSectionTitle => 'Voice settings';
+
+  @override
+  String get voicePanelUseEarpieceLabel => 'Use earpiece';
+
+  @override
+  String get voicePanelOnlyShowVideosLabel => 'Only show videos';
+
+  @override
+  String get voicePanelOnlyShowVideosDescription =>
+      'Only show participants who have their camera on.';
+
+  @override
+  String get voicePanelShowOwnCameraLabel => 'Show my own camera';
 
   @override
   String get voiceTextChatShow => 'Vis chat';
@@ -5099,6 +5383,42 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get chatReplyAttachedMedia => 'Meldingen inneholder vedlagt media';
 
   @override
+  String chatBlockedMessagesCollapsed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count blocked messages',
+      one: '1 blocked message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String chatSpammerMessagesCollapsed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count potential spammer messages',
+      one: '1 potential spammer message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get chatReplyHiddenBlockedAuthor =>
+      'Reply hidden because the original author is blocked.';
+
+  @override
+  String get chatReplyHiddenSpammerAuthor =>
+      'Reply hidden because the original author is marked as a spammer.';
+
+  @override
+  String get devMarkAsSpamLocally => 'Mark as spam locally';
+
+  @override
+  String get devIgnoreSpamFlag => 'Ignore spam flag';
+
+  @override
   String get chatMessagesLoadError => 'Kunne ikke laste meldinger.';
 
   @override
@@ -5171,6 +5491,12 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get mediaViewerOpenInBrowser => 'Åpne i nettleser';
+
+  @override
+  String get mediaViewerOptions => 'Media options';
+
+  @override
+  String get mediaViewerCopyLink => 'Copy link';
 
   @override
   String get mediaViewerForward => 'Videresend';
@@ -5370,7 +5696,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   }
 
   @override
-  String get channelDetailsChannelSettingsTitle => 'Channel Settings';
+  String get channelDetailsChannelSettingsTitle => 'Channel settings';
 
   @override
   String get channelDetailsGroupSettingsTitle => 'Group Settings';
@@ -5385,16 +5711,463 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get channelDetailsCopyLink => 'Copy Link';
 
   @override
-  String get channelDetailsAddFriendsToGroup => 'Add Friends to Group';
+  String get channelDetailsAddFriendsToGroup => 'Add friends to group';
 
   @override
-  String get channelDetailsGroupInvites => 'Group Invites';
+  String get channelDetailsGroupInvites => 'Group invites';
 
   @override
-  String get channelDetailsEditChannel => 'Edit Channel';
+  String get channelDetailsEditChannel => 'Edit channel';
 
   @override
-  String get channelDetailsDeleteChannel => 'Delete Channel';
+  String get channelDetailsDeleteChannel => 'Delete channel';
+
+  @override
+  String get channelSettingsCategorySettingsTitle => 'Category settings';
+
+  @override
+  String get channelSettingsEditCategory => 'Edit category';
+
+  @override
+  String get channelSettingsTabOverview => 'Overview';
+
+  @override
+  String get channelSettingsTabPermissions => 'Permissions';
+
+  @override
+  String get channelSettingsTabInvites => 'Invites';
+
+  @override
+  String get channelSettingsTabWebhooks => 'Webhooks';
+
+  @override
+  String get channelSettingsDeleteChannel => 'Delete channel';
+
+  @override
+  String channelSettingsDeleteChannelConfirm(String channelName) {
+    return 'Are you sure you want to delete $channelName? This cannot be undone.';
+  }
+
+  @override
+  String channelSettingsDeleteCategoryConfirm(String categoryName) {
+    return 'Are you sure you want to delete $categoryName? This cannot be undone.';
+  }
+
+  @override
+  String get channelSettingsDeleteCategory => 'Delete category';
+
+  @override
+  String get channelSettingsChannelUpdated => 'Channel updated';
+
+  @override
+  String get channelSettingsChannelName => 'Channel name';
+
+  @override
+  String get channelSettingsCategoryName => 'Category name';
+
+  @override
+  String get channelSettingsMyCategory => 'My category';
+
+  @override
+  String get channelSettingsChannelNamePlaceholder => 'general';
+
+  @override
+  String get channelSettingsUrl => 'URL';
+
+  @override
+  String get channelSettingsUrlPlaceholder => 'https://example.com';
+
+  @override
+  String get channelSettingsTopic => 'Topic';
+
+  @override
+  String get channelSettingsTopicPlaceholder => 'Add a topic to this channel';
+
+  @override
+  String get channelSettingsInsertEmoji => 'Insert emoji';
+
+  @override
+  String get channelSettingsTopicTooLongTitle => 'Channel topic is too long.';
+
+  @override
+  String get channelSettingsTopicTooLongMessage =>
+      'Shorten the topic and try again.';
+
+  @override
+  String get channelSettingsSlowmode => 'Slowmode';
+
+  @override
+  String channelSettingsSlowmodeDescription(
+    String bypassSlowmodePermissionLabel,
+  ) {
+    return 'Wait between messages. \"$bypassSlowmodePermissionLabel\" can bypass it.';
+  }
+
+  @override
+  String get channelSettingsSlowmodeOff => 'Off';
+
+  @override
+  String channelSettingsSlowmodeSeconds(int seconds) {
+    return '$seconds seconds';
+  }
+
+  @override
+  String channelSettingsSlowmodeMinutes(int minutes) {
+    return '$minutes minutes';
+  }
+
+  @override
+  String channelSettingsSlowmodeHours(int hours) {
+    return '$hours hours';
+  }
+
+  @override
+  String channelSettingsSlowmodeOneMinute(int oneMinute) {
+    return '$oneMinute minute';
+  }
+
+  @override
+  String channelSettingsSlowmodeOneHour(int oneHour) {
+    return '$oneHour hour';
+  }
+
+  @override
+  String get channelSettingsVoiceQuality => 'Voice quality';
+
+  @override
+  String get channelSettingsVoiceQualityDescription =>
+      'Higher bitrate = better quality and higher bandwidth usage.';
+
+  @override
+  String channelSettingsVoiceQualityKbps(int kilobits) {
+    return '$kilobits kbps';
+  }
+
+  @override
+  String get channelSettingsParticipantLimit => 'Participant limit';
+
+  @override
+  String get channelSettingsParticipantLimitDescription =>
+      'Maximum members who can join at once. 0 means unlimited.';
+
+  @override
+  String channelSettingsParticipantLimitValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count participants',
+      one: '1 participant',
+      zero: '∞ No limit',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelSettingsConnectionLimit => 'Connection limit';
+
+  @override
+  String get channelSettingsConnectionLimitDescription =>
+      'Maximum active connections one member can keep in this channel.';
+
+  @override
+  String channelSettingsConnectionLimitValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count connections',
+      one: '1 connection',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelSettingsVoiceRegion => 'Voice region';
+
+  @override
+  String get channelSettingsVoiceRegionDescription =>
+      'Select a voice region for this channel. Automatic uses the closest region.';
+
+  @override
+  String get channelSettingsVoiceRegionAutomatic => 'Automatic';
+
+  @override
+  String get channelSettingsVoiceRegionsLoadFailed =>
+      'Couldn\'t load voice regions';
+
+  @override
+  String get channelSettingsVoiceRegionsLoadFailedDescription =>
+      'Try again in a moment.';
+
+  @override
+  String get channelSettingsResetSlider => 'Reset slider to default value';
+
+  @override
+  String get channelSettingsAdvanced => 'Advanced';
+
+  @override
+  String get channelSettingsMatureContentOverride => 'Mature content override';
+
+  @override
+  String channelSettingsMatureContentSectionDescription(String scopeLevel) {
+    return 'Override the $scopeLevel-level setting for this channel. Mature content is shown behind a gate before entry.';
+  }
+
+  @override
+  String get channelSettingsMatureContentInherit => 'Inherit';
+
+  @override
+  String get channelSettingsMatureContentOn => 'On';
+
+  @override
+  String get channelSettingsMatureContentOff => 'Off';
+
+  @override
+  String get channelSettingsMatureContentOnDescription =>
+      'Marks this channel for mature content.';
+
+  @override
+  String get channelSettingsMatureContentOffDescription =>
+      'Leave this channel ungated for mature content.';
+
+  @override
+  String channelSettingsMatureContentInheritsOn(String inheritedSourceLabel) {
+    return 'Inherited from $inheritedSourceLabel: on';
+  }
+
+  @override
+  String channelSettingsMatureContentInheritsOff(String inheritedSourceLabel) {
+    return 'Inherited from $inheritedSourceLabel: off';
+  }
+
+  @override
+  String get channelSettingsMatureContentCategorySource => 'category';
+
+  @override
+  String get channelSettingsMatureContentCommunitySource => 'community';
+
+  @override
+  String get channelSettingsMatureContentCategoryScope => 'Category';
+
+  @override
+  String get channelSettingsMatureContentCommunityScope => 'Community';
+
+  @override
+  String get channelSettingsContentWarningToggle =>
+      'Show a content warning in this channel';
+
+  @override
+  String get channelSettingsContentWarningToggleDescription =>
+      'Turns on a consent prompt before entering this channel.';
+
+  @override
+  String get channelSettingsContentWarningText => 'Custom warning text';
+
+  @override
+  String get channelSettingsContentWarningDefault =>
+      'This contains sensitive content.';
+
+  @override
+  String channelSettingsPermissionsNeedManageChannels(
+    String manageChannelsPermissionLabel,
+  ) {
+    return 'You need the \"$manageChannelsPermissionLabel\" permission to edit these permissions.';
+  }
+
+  @override
+  String channelSettingsPermissionsNeedManageRoles(
+    String manageRolesPermissionLabel,
+  ) {
+    return 'You need the \"$manageRolesPermissionLabel\" permission to edit these permissions.';
+  }
+
+  @override
+  String get channelSettingsUnknownRole => 'Unknown role';
+
+  @override
+  String get channelSettingsUnknownUser => 'Unknown user';
+
+  @override
+  String get channelSettingsEveryoneRole => '@everyone';
+
+  @override
+  String get channelSettingsPermissionsAccessOverrides => 'Access overrides';
+
+  @override
+  String channelSettingsPermissionsEditAccessFor(String name) {
+    return 'Edit access for $name';
+  }
+
+  @override
+  String get channelSettingsPermissionsBackToOverrides => 'Back to overrides';
+
+  @override
+  String get channelSettingsPermissionsConfigureBaseAccess =>
+      'Configure base access for this channel';
+
+  @override
+  String get channelSettingsPermissionsConfigureRoleOverrides =>
+      'Configure overrides for this role';
+
+  @override
+  String get channelSettingsPermissionsConfigureMemberOverrides =>
+      'Configure overrides for this member';
+
+  @override
+  String get channelSettingsPermissionsSearchPlaceholder =>
+      'Search permissions…';
+
+  @override
+  String get channelSettingsPermissionsChannelAccessUpdated =>
+      'Channel access updated';
+
+  @override
+  String get channelSettingsPermissionsTitle => 'Access control';
+
+  @override
+  String get channelSettingsPermissionsSyncedWithParentPrefix =>
+      'This channel is synced with the parent category ';
+
+  @override
+  String get channelSettingsPermissionsSyncedWithParentSuffix => '.';
+
+  @override
+  String get channelSettingsPermissionsNotSyncedWithParentPrefix =>
+      'This channel is not synced with the parent category ';
+
+  @override
+  String get channelSettingsPermissionsNotSyncedWithParentSuffix => '.';
+
+  @override
+  String get channelSettingsPermissionsSyncWithCategory => 'Sync with category';
+
+  @override
+  String get channelSettingsPermissionsSyncedWithParentToast =>
+      'Channel synced with parent category';
+
+  @override
+  String get channelSettingsPermissionsAddOverride => 'Add override';
+
+  @override
+  String get channelSettingsPermissionsSearchRolesOrMembers =>
+      'Search roles or members…';
+
+  @override
+  String get channelSettingsPermissionsRolesAndMembers => 'Roles and members';
+
+  @override
+  String get channelSettingsDeleteInvite => 'Delete invite';
+
+  @override
+  String get channelSettingsDeleteInviteConfirm =>
+      'Delete this invite? Can\'t be undone.';
+
+  @override
+  String get channelSettingsCopyInviteCode => 'Copy invite code';
+
+  @override
+  String get channelSettingsCopyInviteUrl => 'Copy invite URL';
+
+  @override
+  String get channelSettingsWebhookCreated => 'Webhook created';
+
+  @override
+  String get channelSettingsWebhookCreateFailed => 'Failed to create webhook';
+
+  @override
+  String get channelSettingsCreateWebhook => 'Create webhook';
+
+  @override
+  String get channelSettingsInvitesDescription =>
+      'Manage invite links for this channel.';
+
+  @override
+  String get channelSettingsInvitesCreate => 'Create invite';
+
+  @override
+  String get channelSettingsInvitesEmpty => 'No invite links';
+
+  @override
+  String get channelSettingsInvitesEmptyDescription =>
+      'This channel doesn\'t have any invite links yet. Create one to invite people to this channel.';
+
+  @override
+  String get channelSettingsInvitesLoadFailedDescription =>
+      'There was an error loading the invite links for this channel. Try again.';
+
+  @override
+  String get channelSettingsWebhooksDescription =>
+      'Manage incoming webhooks that can post messages into this channel.';
+
+  @override
+  String get channelSettingsWebhooksEmpty => 'No webhooks';
+
+  @override
+  String get channelSettingsWebhooksEmptyDescription =>
+      'There are no webhooks configured for this channel. Create a webhook to allow external applications to post messages.';
+
+  @override
+  String get channelSettingsWebhooksUnsupported =>
+      'This channel does not support webhooks.';
+
+  @override
+  String channelSettingsWebhooksPermissionRequired(String permission) {
+    return 'You need the \"$permission\" permission to view and edit webhooks for this channel.';
+  }
+
+  @override
+  String get channelSettingsWebhooksLoadFailedTitle =>
+      'Failed to load webhooks';
+
+  @override
+  String get channelSettingsWebhooksLoadFailedDescription =>
+      'There was an error loading the webhooks for this channel. Try again.';
+
+  @override
+  String channelSettingsWebhooksCreatedBy(String creator, String date) {
+    return 'Created by $creator on $date';
+  }
+
+  @override
+  String get channelSettingsWebhooksUnknownUser => 'Unknown user';
+
+  @override
+  String get channelSettingsWebhooksAvatar => 'Avatar';
+
+  @override
+  String get channelSettingsWebhooksUploadImage => 'Upload image';
+
+  @override
+  String get channelSettingsWebhooksRemove => 'Remove';
+
+  @override
+  String get channelSettingsWebhooksName => 'Name';
+
+  @override
+  String get channelSettingsWebhooksNamePlaceholder => 'Webhook name';
+
+  @override
+  String get channelSettingsWebhooksChannel => 'Channel';
+
+  @override
+  String get channelSettingsWebhooksUrl => 'Webhook URL';
+
+  @override
+  String get channelSettingsWebhooksCopyUrl => 'Copy webhook URL';
+
+  @override
+  String get channelSettingsWebhooksDelete => 'Delete webhook';
+
+  @override
+  String get channelSettingsWebhooksDeleteFailed =>
+      'Couldn\'t delete this webhook';
+
+  @override
+  String get channelSettingsWebhooksDeleteConfirm =>
+      'Delete this webhook? Can\'t be undone.';
+
+  @override
+  String get channelSettingsWebhookTryAgainInAMoment =>
+      'Try again in a moment.';
 
   @override
   String get channelMenuOpenChat => 'Open chat';
@@ -5764,6 +6537,144 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get groupDmWelcomeAddFriends => 'Add friends to group';
+
+  @override
+  String get dmGroupInvites => 'Invites';
+
+  @override
+  String get groupDmEditTitle => 'Edit group';
+
+  @override
+  String get groupDmEditDetailsTooltip => 'Edit group details';
+
+  @override
+  String get groupDmGroupName => 'Group name';
+
+  @override
+  String get groupDmMyGroup => 'My group';
+
+  @override
+  String get groupDmGroupNameMaxLength =>
+      'Group name must not exceed 100 characters';
+
+  @override
+  String get groupDmGroupIcon => 'Group icon';
+
+  @override
+  String get groupDmUploadIcon => 'Upload icon';
+
+  @override
+  String get groupDmChangeIcon => 'Change icon';
+
+  @override
+  String get groupDmRemoveIcon => 'Remove icon';
+
+  @override
+  String get groupDmUpdated => 'Group updated';
+
+  @override
+  String get groupDmUpdateFailed => 'Couldn\'t update group. Try again.';
+
+  @override
+  String get groupDmAnimatedIconNotSupported =>
+      'Animated icons are not supported. Use a static image.';
+
+  @override
+  String get groupDmAnimatedIconNotSupportedTitle =>
+      'Animated icons are not supported';
+
+  @override
+  String get groupDmIconFileTooLargeTitle => 'Icon file is too large';
+
+  @override
+  String groupDmIconFileTooLargeBody(String maxSize) {
+    return 'Icon file is too large. Choose a file smaller than $maxSize.';
+  }
+
+  @override
+  String get groupDmUnsupportedIconFormat => 'Unsupported icon format';
+
+  @override
+  String get groupDmUnsupportedIconFormatBody => 'Unsupported file type.';
+
+  @override
+  String get groupDmCouldntProcessImage => 'Couldn\'t process image';
+
+  @override
+  String get groupDmFailedToProcessCroppedImage =>
+      'Failed to process the cropped image. Try again.';
+
+  @override
+  String get groupDmInvalidImage => 'Invalid image';
+
+  @override
+  String get groupDmInvalidImageBody =>
+      'That image is invalid. Try another one.';
+
+  @override
+  String get groupDmAddFriends => 'Add';
+
+  @override
+  String get groupDmOrSendInvite => 'or send an invite to a friend:';
+
+  @override
+  String get groupDmGenerateInviteLink => 'Generate invite link';
+
+  @override
+  String get groupDmCreateInvite => 'Create';
+
+  @override
+  String get groupDmInviteExpires24Hours => 'Your invite expires in 24 hours';
+
+  @override
+  String get groupDmAddFriendFailed =>
+      'Couldn\'t add this friend to the group. Please try again.';
+
+  @override
+  String get groupDmAddFailed => 'Couldn\'t add to group';
+
+  @override
+  String get groupDmGroupFull =>
+      'This group is full. Remove someone before adding more people.';
+
+  @override
+  String get groupDmRateLimited =>
+      'You\'re going too fast. Wait a moment and try again.';
+
+  @override
+  String get groupDmCreateInviteFailed => 'Couldn\'t create invite link';
+
+  @override
+  String get groupDmCreateInviteFailedBody =>
+      'Couldn\'t generate an invite link. Please try again.';
+
+  @override
+  String get groupDmCopyInviteFailed => 'Failed to copy invite link';
+
+  @override
+  String get groupDmInvitesOwnerOnly =>
+      'Only the group owner can manage invites.';
+
+  @override
+  String get groupDmNoInvitesCreated => 'No invites created';
+
+  @override
+  String get groupDmLoadingInvites => 'Loading invites...';
+
+  @override
+  String get groupDmInvitesLoadFailed => 'Failed to load invites. Try again.';
+
+  @override
+  String get groupDmInvitesRevokeConfirm =>
+      'Revoke this invite? Can\'t be undone.';
+
+  @override
+  String get groupDmInviteRevoked => 'Invite revoked';
+
+  @override
+  String groupDmInviteCreatedByExpires(String name, String time) {
+    return 'Created by $name. Expires in $time.';
+  }
 
   @override
   String channelWelcomeHeading(String channelName) {
@@ -6189,6 +7100,19 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get quickSwitcherBookmarksLabel => 'Bokmerker';
+
+  @override
+  String get savedMessagesEmptyTitle => 'No bookmarks';
+
+  @override
+  String get savedMessagesEmptyBody =>
+      'Bookmark messages to save them for later.';
+
+  @override
+  String get savedMessagesEndBody => 'There\'s nothing more to see here.';
+
+  @override
+  String get savedMessagesRemoveTooltip => 'Remove bookmark';
 
   @override
   String get quickSwitcherMentionsLabel => 'Nevnelser';
@@ -6999,6 +7923,9 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get permissionCategoryChannelAccess => 'Channel access';
 
   @override
+  String get permissionCategoryChannelManagement => 'Channel management';
+
+  @override
   String get permissionCategoryAudioVideo => 'Audio & video';
 
   @override
@@ -7034,6 +7961,45 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get permissionManageChannels => 'Manage channels';
+
+  @override
+  String get permissionManageChannel => 'Manage channel';
+
+  @override
+  String get permissionManageChannelDescription =>
+      'Rename and edit this channel\'s settings.';
+
+  @override
+  String get permissionManagePermissions => 'Manage permissions';
+
+  @override
+  String get permissionManagePermissionsDescription =>
+      'Edit overwrites for roles and members in this channel.';
+
+  @override
+  String get permissionManageWebhooksChannelDescription =>
+      'Create, edit, or delete webhooks for this channel.';
+
+  @override
+  String get permissionViewChannelMembersChannelDescription =>
+      'See the member list for this channel.';
+
+  @override
+  String get permissionCreateInviteLinksChannelDescription =>
+      'Manage invite links for this channel.';
+
+  @override
+  String get permissionOverwriteDeny => 'Deny';
+
+  @override
+  String get permissionOverwriteInherit => 'Neutral (inherit)';
+
+  @override
+  String get permissionOverwriteAllow => 'Allow';
+
+  @override
+  String get permissionOverwriteSetAllHelp =>
+      'Use these buttons to quickly set all permissions.';
 
   @override
   String get permissionManageChannelsDescription =>

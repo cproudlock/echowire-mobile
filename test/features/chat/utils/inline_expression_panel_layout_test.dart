@@ -10,6 +10,7 @@ void main() {
         keyboardInset: 320,
         topPadding: 24,
         topMargin: 8,
+        viewPaddingBottom: 0,
       ),
       448,
     );
@@ -23,27 +24,72 @@ void main() {
         keyboardInset: 320,
         topPadding: 24,
         topMargin: 8,
+        viewPaddingBottom: 0,
       ),
       448,
     );
   });
 
-  test('clamps expanded height to the keyboard safe maximum', () {
+  test('resolves unbounded layout height from the screen and safe areas', () {
+    expect(
+      inlineExpressionPanelResolveAvailableHeight(
+        layoutMaxHeight: double.infinity,
+        screenHeight: 800,
+        keyboardInset: 0,
+        viewPaddingTop: 24,
+        viewPaddingBottom: 34,
+      ),
+      742,
+    );
+  });
+
+  test('caps expanded height to 75% of the screen', () {
     expect(
       inlineExpressionPanelExpandedHeight(
-        availableHeight: 800,
+        availableHeight: 900,
         screenHeight: 800,
-        keyboardInset: 320,
-        topPadding: 24,
+        keyboardInset: 0,
+        topPadding: 0,
         topMargin: 8,
-        expandedFraction: 0.85,
+        viewPaddingBottom: 0,
       ),
-      448,
+      600,
     );
   });
 
-  test('anchors the panel above an open keyboard', () {
-    expect(inlineExpressionPanelBottomOffset(keyboardInset: 320), 320);
-    expect(inlineExpressionPanelBottomOffset(keyboardInset: 0), 0);
+  test('uses the inset slot height when the host reserves the header', () {
+    expect(
+      inlineExpressionPanelExpandedHeight(
+        availableHeight: 687,
+        screenHeight: 844,
+        keyboardInset: 0,
+        topPadding: 0,
+        topMargin: 8,
+        viewPaddingBottom: 34,
+      ),
+      633,
+    );
   });
+
+  test(
+    'dock content height subtracts the pull bar from the keyboard anchor',
+    () {
+      const double anchor = 291;
+      const double handle = 36;
+      expect(
+        inlineExpressionPanelDockedContentHeight(
+          keyboardAnchorNet: anchor,
+          dragHandleHeight: handle,
+        ),
+        255,
+      );
+      expect(
+        inlineExpressionPanelDockedTotalHeight(
+          contentHeight: 255,
+          dragHandleHeight: handle,
+        ),
+        anchor,
+      );
+    },
+  );
 }

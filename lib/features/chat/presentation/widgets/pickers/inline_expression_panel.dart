@@ -11,6 +11,7 @@ import 'package:fluxer_app/features/chat/providers/core/chat_view_model.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/emoji_picker_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/sticker_picker_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/shared/gestures/expandable_sheet_gestures.dart';
 
 const double kExpressionPanelSearchHorizontalPadding = 16;
 const double kExpressionPanelSearchTopPadding = 8;
@@ -25,6 +26,8 @@ class ExpressionPanelContent extends ConsumerStatefulWidget {
     this.onGifSelect,
     this.onStickerSelect,
     this.onFavoriteMemeSelect,
+    this.onSearchActivated,
+    this.sheetDragHandlers,
     super.key,
   });
 
@@ -34,6 +37,8 @@ class ExpressionPanelContent extends ConsumerStatefulWidget {
   final ValueChanged<FluxerSelectedGif>? onGifSelect;
   final ValueChanged<StickerEntry>? onStickerSelect;
   final ValueChanged<FavoriteMemeSelection>? onFavoriteMemeSelect;
+  final VoidCallback? onSearchActivated;
+  final ExpandableSheetDragHandlers? sheetDragHandlers;
 
   @override
   ConsumerState<ExpressionPanelContent> createState() =>
@@ -112,15 +117,7 @@ class _ExpressionPanelContentState extends ConsumerState<ExpressionPanelContent>
       opacity: _contentFade,
       child: Column(
         children: <Widget>[
-          _buildSegmentedTabs(context),
-          if (_selectedTab == ExpressionPickerTab.emojis)
-            EmojiSearchBar(
-              controller: _searchController,
-              skinTone: skinTone,
-              onSkinToneChanged: (String tone) =>
-                  unawaited(ref.read(emojiSkinToneProvider.notifier).set(tone)),
-              horizontalPadding: kExpressionPanelSearchHorizontalPadding,
-            ),
+          _buildDraggableChrome(context, skinTone),
           Expanded(
             child: ExpressionPicker(
               onClose: widget.onClose,
@@ -147,11 +144,37 @@ class _ExpressionPanelContentState extends ConsumerState<ExpressionPanelContent>
                   kExpressionPanelSearchHorizontalPadding,
               contentSearchTopPadding: kExpressionPanelSearchTopPadding,
               contentSearchBottomPadding: kExpressionPanelSearchBottomPadding,
+              onSearchActivated: widget.onSearchActivated,
+              sheetDragHandlers: widget.sheetDragHandlers,
             ),
           ),
         ],
       ),
     );
+  }
+
+  Widget _buildDraggableChrome(BuildContext context, String skinTone) {
+    final Widget chrome = Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildSegmentedTabs(context),
+        if (_selectedTab == ExpressionPickerTab.emojis)
+          EmojiSearchBar(
+            controller: _searchController,
+            skinTone: skinTone,
+            onSkinToneChanged: (String tone) =>
+                unawaited(ref.read(emojiSkinToneProvider.notifier).set(tone)),
+            horizontalPadding: kExpressionPanelSearchHorizontalPadding,
+            onActivated: widget.onSearchActivated,
+          ),
+      ],
+    );
+    final ExpandableSheetDragHandlers? handlers = widget.sheetDragHandlers;
+    if (handlers == null) {
+      return chrome;
+    }
+    return handlers.wrapChrome(chrome);
   }
 
   Widget _buildSegmentedTabs(BuildContext context) {

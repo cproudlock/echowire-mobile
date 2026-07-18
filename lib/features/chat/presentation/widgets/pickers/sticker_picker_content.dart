@@ -20,6 +20,7 @@ import 'package:fluxer_app/features/guilds/providers/organized_guild_list_provid
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
 import 'package:fluxer_app/features/ui/plutonium_upsell/fluxer_plutonium_upsell.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/shared/gestures/expandable_sheet_gestures.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 const _kDesktopStickerColumns = 4;
@@ -42,6 +43,8 @@ class StickerPickerContent extends ConsumerStatefulWidget {
     this.searchHorizontalPadding,
     this.searchTopPadding,
     this.searchBottomPadding,
+    this.onSearchActivated,
+    this.sheetDragHandlers,
     this.channelId,
     this.scrollController,
     super.key,
@@ -52,6 +55,8 @@ class StickerPickerContent extends ConsumerStatefulWidget {
   final double? searchHorizontalPadding;
   final double? searchTopPadding;
   final double? searchBottomPadding;
+  final VoidCallback? onSearchActivated;
+  final ExpandableSheetDragHandlers? sheetDragHandlers;
   final String? channelId;
   final ScrollController? scrollController;
 
@@ -412,17 +417,28 @@ class _StickerPickerContentState extends ConsumerState<StickerPickerContent> {
 
     return Column(
       children: [
-        PickerSearchInput(
-          controller: _searchController,
-          hintText: _hoveredSticker?.name ?? 'Find the perfect sticker',
-          horizontalPadding: widget.searchHorizontalPadding ?? 12,
-          topPadding: widget.searchTopPadding ?? (widget.isMobile ? 8 : 12),
-          bottomPadding:
-              widget.searchBottomPadding ?? (widget.isMobile ? 4 : 12),
+        _wrapSearchHeader(
+          PickerSearchInput(
+            controller: _searchController,
+            hintText: _hoveredSticker?.name ?? 'Find the perfect sticker',
+            horizontalPadding: widget.searchHorizontalPadding ?? 12,
+            topPadding: widget.searchTopPadding ?? (widget.isMobile ? 8 : 12),
+            bottomPadding:
+                widget.searchBottomPadding ?? (widget.isMobile ? 4 : 12),
+            onActivated: widget.onSearchActivated,
+          ),
         ),
         Expanded(child: _buildBody(context, colors, data)),
       ],
     );
+  }
+
+  Widget _wrapSearchHeader(Widget child) {
+    final ExpandableSheetDragHandlers? handlers = widget.sheetDragHandlers;
+    if (handlers == null) {
+      return child;
+    }
+    return handlers.wrapChrome(child);
   }
 
   Widget _buildBody(

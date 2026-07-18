@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
-          ref: ${{ github.event_name == 'workflow_call' && 'beta' || github.ref }}
+          ref: ${{ github.event_name == 'workflow_call' && 'canary' || github.ref }}
           submodules: recursive
 
       - name: Resolve beta version name

@@ -33,7 +33,7 @@ jobs:
 
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
-          ref: beta
+          ref: canary
           fetch-depth: 0
           fetch-tags: true
           token: ${{ steps.create-token.outputs.token }}
@@ -44,7 +44,7 @@ jobs:
         with:
           config-name: release-drafter-beta.yml
           token: ${{ steps.create-token.outputs.token }}
-          commitish: beta
+          commitish: canary
 
       - name: Append direct commits
         env:

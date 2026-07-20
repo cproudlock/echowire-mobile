@@ -3,12 +3,20 @@ description: "Echowire — native chat client."
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # versionName + versionCode. Play floor is 56 (old TWA), so build number must stay > 56.
-version: 1.7.11+83
+version: 1.7.11+84
 
 environment:
   sdk: ^3.11.0
 
 dependencies:
+# BEGIN firebase optional deps
+  firebase_core: ^4.11.0
+  # Pinned exactly: firebase_messaging 16.4.2 references FirebasePlugin/pluginConstants
+  firebase_messaging: 16.4.1
+  fluxer_fcm:
+    path: packages/fluxer_fcm
+# END firebase optional deps
+
 
 
 

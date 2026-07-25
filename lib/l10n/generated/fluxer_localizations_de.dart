@@ -16,25 +16,25 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Irgendetwas stimmt mit den Servern nicht.\nSollte gleich behoben sein!';
 
   @override
-  String get gatewayReconnectingToast => 'Verbinde erneut…';
+  String get gatewayReconnectingToast => 'Erneut verbinden…';
 
   @override
   String get gatewayConnectedToast => 'Verbunden';
 
   @override
   String get sessionExpiredToast =>
-      'Your session has expired. Please sign in again.';
+      'Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.';
 
   @override
   String splashStartupFailed(String error) {
-    return 'Start fehlgeschlagen: $error';
+    return 'Konnte nicht starten: $error';
   }
 
   @override
   String get retry => 'Erneut versuchen';
 
   @override
-  String get connectingCaps => 'CONNECTING';
+  String get connectingCaps => 'VERBINDEN';
 
   @override
   String get splashConnectionLost => 'Verbindung verloren';
@@ -49,10 +49,10 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get splashStatusPageLink => 'Statusseite';
 
   @override
-  String get splashReadIncident => 'Vorfall lesen';
+  String get splashReadIncident => 'Störung anzeigen';
 
   @override
-  String get splashIncidentHistory => 'Vorfallverlauf';
+  String get splashIncidentHistory => 'Störungsverlauf';
 
   @override
   String get nagbarLearnMore => 'Learn more';
@@ -206,7 +206,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get organizationSsoProvider =>
-      'Melde dich mit dem Single Sign-On-Anbieter deiner Organisation an.';
+      'Melde dich mit dem SSO-Anbieter deiner Organisation an.';
 
   @override
   String get failedToStartSso => 'SSO konnte nicht gestartet werden';
@@ -216,27 +216,27 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String preferSso(String provider) {
-    return 'Bevorzugst du SSO? Fahre mit $provider fort.';
+    return 'Bevorzugst du SSO? Mit $provider fortfahren.';
   }
 
   @override
   String get logInViaBrowser => 'Über Browser anmelden';
 
   @override
-  String get needAccountPrompt => 'Noch kein Konto? ';
+  String get needAccountPrompt => 'Noch keinen Account? ';
 
   @override
   String get register => 'Registrieren';
 
   @override
-  String get orDivider => 'OR';
+  String get orDivider => 'ODER';
 
   @override
-  String get captchaTitle => 'Verifiziere, dass du menschlich bist';
+  String get captchaTitle => 'Bestätige, dass du ein Mensch bist';
 
   @override
   String get captchaDescription =>
-      'Wir müssen sicherstellen, dass du kein Bot bist. Bitte schließe die Verifizierung unten ab.';
+      'Wir müssen sicherstellen, dass du kein Bot bist. Bitte führe folgende Überprüfung durch.';
 
   @override
   String get captchaSwitchToHcaptcha =>
@@ -250,7 +250,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get cancel => 'Abbrechen';
 
   @override
-  String get ipAuthCheckEmail => 'Überprüfe deine E-Mail';
+  String get ipAuthCheckEmail => 'Überprüfe deine E-Mails';
 
   @override
   String ipAuthDescription(String email) {
@@ -312,14 +312,14 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Sicherheitsschlüssel / Passkey stattdessen versuchen';
 
   @override
-  String get accountSelectorTitle => 'Konto auswählen';
+  String get accountSelectorTitle => 'Account auswählen';
 
   @override
   String get accountSelectorDescription =>
-      'Wähle ein Konto aus, um fortzufahren, oder füge ein anderes hinzu.';
+      'Wähle einen Account aus, um fortzufahren, oder füge einen anderen hinzu.';
 
   @override
-  String get accountAdd => 'Konto hinzufügen';
+  String get accountAdd => 'Account hinzufügen';
 
   @override
   String get accountRemove => 'Entfernen';
@@ -331,11 +331,11 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get accountRemoveDescription =>
-      'Dadurch wird die gespeicherte Sitzung für dieses Konto entfernt.';
+      'Dadurch wird die gespeicherte Sitzung für diesen Account entfernt.';
 
   @override
   String get accountRemoveOnlyDescription =>
-      'Dadurch wird das einzige gespeicherte Konto auf diesem Gerät entfernt.';
+      'Dadurch wird der einzige gespeicherte Account auf diesem Gerät entfernt.';
 
   @override
   String get accountExpired => 'Abgelaufen';
@@ -346,14 +346,14 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   }
 
   @override
-  String get accountManageTitle => 'Konten verwalten';
+  String get accountManageTitle => 'Accounts verwalten';
 
   @override
   String get accountSwitchFailed =>
-      'Konnte Konten nicht wechseln. Versuche es erneut.';
+      'Konnte Account nicht wechseln. Versuche es erneut.';
 
   @override
-  String get profileTabMenuSwitchAccounts => 'Konten wechseln';
+  String get profileTabMenuSwitchAccounts => 'Account wechseln';
 
   @override
   String get statusChangeSheetTitle => 'Status festlegen';
@@ -441,24 +441,24 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get customStatusSave => 'Speichern';
 
   @override
-  String get accountActive => 'Aktives Konto';
+  String get accountActive => 'Aktiver Account';
 
   @override
   String get signOut => 'Abmelden';
 
   @override
-  String get suspendedPermanentTitle => 'Konto dauerhaft gesperrt';
+  String get suspendedPermanentTitle => 'Account dauerhaft gesperrt';
 
   @override
-  String get suspendedTemporaryTitle => 'Konto gesperrt';
+  String get suspendedTemporaryTitle => 'Account gesperrt';
 
   @override
   String get suspendedPermanentDescription =>
-      'Dein Konto wurde dauerhaft wegen Verstoßes gegen unsere Nutzungsbedingungen gesperrt.';
+      'Dein Account wurde dauerhaft wegen Verstoßes gegen unsere Nutzungsbedingungen gesperrt.';
 
   @override
   String get suspendedTemporaryDescription =>
-      'Dein Konto wurde vorübergehend gesperrt. Du kannst auf dein Konto zugreifen, sobald die Sperrfrist abgelaufen ist.';
+      'Dein Account wurde vorübergehend gesperrt. Du kannst auf deinen Account zugreifen, sobald die Dauer der Sperrung abgelaufen ist.';
 
   @override
   String get suspendedIssuedAt => 'Ausgestellt';
@@ -470,7 +470,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get suspendedDuration => 'Dauer';
 
   @override
-  String get suspendedPermanent => 'Permanent';
+  String get suspendedPermanent => 'Dauerhaft';
 
   @override
   String get suspendedReason => 'Grund';
@@ -480,11 +480,11 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String suspendedDeletionWarning(String date) {
-    return 'Dein Konto wird am $date zur Löschung vorgemerkt.';
+    return 'Dein Account ist zur Löschung am $date vorgesehen.';
   }
 
   @override
-  String get suspendedRecheck => 'Aktualisierungen prüfen';
+  String get suspendedRecheck => 'Auf Updates überprüfen';
 
   @override
   String suspendedRecheckCooldown(int seconds) {
@@ -515,10 +515,10 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get suspendedAppealAcceptedDescription =>
-      'Deine Überprüfung wurde akzeptiert und dein Konto wurde wiederhergestellt.';
+      'Dein Einspruch wurde angenommen und dein Account wurde wiederhergestellt.';
 
   @override
-  String get suspendedSignIn => 'Melde dich bei deinem Konto an';
+  String get suspendedSignIn => 'Melde dich bei deinem Account an';
 
   @override
   String get forgotPasswordTitle => 'Passwort vergessen?';
@@ -560,7 +560,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get resetPasswordMismatch => 'Passwörter stimmen nicht überein.';
 
   @override
-  String get registerTitle => 'Konto erstellen';
+  String get registerTitle => 'Account erstellen';
 
   @override
   String get registerDisplayName => 'Anzeigename (Optional)';
@@ -611,10 +611,10 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get registerConfirmPassword => 'Passwort bestätigen';
 
   @override
-  String get registerSubmit => 'Konto erstellen';
+  String get registerSubmit => 'Account erstellen';
 
   @override
-  String get registerHaveAccount => 'Hast du bereits ein Konto? ';
+  String get registerHaveAccount => 'Hast du bereits einen Account? ';
 
   @override
   String get passkeyNoCredentials =>
@@ -642,7 +642,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get errorUnableToCreateAccount =>
-      'Konto konnte nicht erstellt werden. Bitte versuche es erneut.';
+      'Account konnte nicht erstellt werden. Bitte versuche es erneut.';
 
   @override
   String get errorUnableToSignIn =>
@@ -876,7 +876,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String dmCloseDmConfirmDescription(String username) {
-    return 'Möchtest du deine DM mit $username wirklich schließen? Du kannst sie jederzeit wieder öffnen.';
+    return 'Möchtest du deine Direktnachricht mit $username wirklich schließen? Du kannst sie jederzeit wieder öffnen.';
   }
 
   @override
@@ -944,7 +944,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get dmLeaveGroup => 'Gruppe verlassen';
 
   @override
-  String get dmNoCommunitiesAvailable => 'Keine Communities verfügbar';
+  String get dmNoCommunitiesAvailable => 'Keine Communitys verfügbar';
 
   @override
   String dmGroupMemberCount(int count) {
@@ -1005,7 +1005,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get dmUnfavoriteGroupDm => 'Gruppen-DM-Favorit entfernen';
 
   @override
-  String get dmChangeFriendNickname => 'Spitznamen des Freundes ändern';
+  String get dmChangeFriendNickname => 'Anzeigename des Freundes ändern';
 
   @override
   String get dmRemoveFriend => 'Freund entfernen';
@@ -1114,11 +1114,11 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get addFriendOutgoingSuccess => 'Freundschaftsanfrage gesendet';
 
   @override
-  String get addFriendClaimTitle => 'Konto beanspruchen';
+  String get addFriendClaimTitle => 'Account beanspruchen';
 
   @override
   String get addFriendClaimDescription =>
-      'Beanspruche dein Konto, um Freundschaftsanfragen zu senden.';
+      'Beanspruche deinen Account, um Freundschaftsanfragen zu senden.';
 
   @override
   String get addFriendVerifyTitle => 'E-Mail verifizieren';
@@ -1314,7 +1314,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count Communities',
+      other: '$count Communitys',
       one: '1 Community',
     );
     return '$_temp0';
@@ -1628,23 +1628,23 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Entferne das Datum deines ersten Reverb-Kaufs von deinem Badge';
 
   @override
-  String get maskVisionaryAsSubscription =>
-      'Visionary als Abonnement maskieren';
+  String get maskVisionaryAsSubscription => 'Visionary als Abo tarnen';
 
   @override
   String get maskVisionaryDescription =>
-      'Zeige dein Visionary als reguläres Abonnement an';
+      'Zeige dein Visionary als reguläres Abo an';
 
   @override
-  String get hideVisionaryIdBadge => 'Visionary-ID-Badge ausblenden';
+  String get hideVisionaryIdBadge => 'Visionary-ID-Abzeichen ausblenden';
 
   @override
   String hideVisionaryIdBadgeWithSequence(int sequence) {
-    return 'Visionary-ID-Badge ausblenden (#$sequence)';
+    return 'Visionary-ID-Abzeichen ausblenden (#$sequence)';
   }
 
   @override
-  String get hideVisionaryIdDescription => 'Entferne deinen Visionary-ID-Badge';
+  String get hideVisionaryIdDescription =>
+      'Entferne dein Visionary-ID-Abzeichen';
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
@@ -1653,7 +1653,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get premiumTrialSubscriptionStartsDescription =>
-      'Dein Abonnement beginnt automatisch, wenn deine Testphase endet. Keine Aktion erforderlich.';
+      'Dein Abo beginnt automatisch, wenn deine Testphase endet. Keine Aktion erforderlich.';
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
@@ -1691,14 +1691,14 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get profilePreviewMemberSince => 'Echowire-Mitglied seit';
 
   @override
-  String get unclaimedAccountTitle => 'Nicht beanspruchtes Konto';
+  String get unclaimedAccountTitle => 'Nicht beanspruchter Account';
 
   @override
   String get unclaimedAccountDescription =>
-      'Dein Konto wurde noch nicht beansprucht. Ohne E-Mail und Passwort könntest du den Zugriff verlieren. Beanspruche dein Konto jetzt, um es zu sichern.';
+      'Dein Account wurde noch nicht beansprucht. Ohne E-Mail und Passwort könntest du den Zugriff verlieren. Beanspruche deinen Account jetzt, um ihn zu sichern.';
 
   @override
-  String get claimAccount => 'Konto beanspruchen';
+  String get claimAccount => 'Account beanspruchen';
 
   @override
   String get profileTypeLabel => 'Profiltyp';
@@ -1711,7 +1711,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Du bearbeitest dein Profil pro Community. Dieses Profil ist nur in dieser Community sichtbar und überschreibt dein globales Profil.';
 
   @override
-  String get communityNicknameLabel => 'Community-Nickname';
+  String get communityNicknameLabel => 'Community-Anzeigename';
 
   @override
   String get perGuildPremiumUpsellText =>
@@ -1762,18 +1762,18 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Verifizierung fehlgeschlagen. Bitte versuche es erneut.';
 
   @override
-  String get securityAccountTitle => 'Konto';
+  String get securityAccountTitle => 'Account';
 
   @override
   String get securityAccountDescription =>
-      'Verwalte deine E-Mail-Adresse, dein Passwort und deine Kontoeinstellungen';
+      'Verwalte deine E-Mail-Adresse, dein Passwort und deine Accounteinstellungen';
 
   @override
   String get securitySectionTitle => 'Sicherheit';
 
   @override
   String get securitySectionDescription =>
-      'Schütze dein Konto mit Zwei-Faktor-Authentifizierung und Passkeys';
+      'Schütze deinen Account mit Zwei-Faktor-Authentifizierung und Passkeys';
 
   @override
   String get securityLoginEmailSectionTitle => 'E-Mail-Einstellungen';
@@ -1805,7 +1805,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get securityLoginPasswordSectionDescription =>
-      'Ändere dein Passwort, um dein Konto zu schützen';
+      'Ändere dein Passwort, um deinen Account zu schützen';
 
   @override
   String get securityLoginCurrentPasswordLabel => 'Aktuelles Passwort';
@@ -1881,7 +1881,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get emailChangeIntroDescription =>
-      'Wir senden Ihnen Verifizierungscodes, um Ihre Identität zu bestätigen, bevor wir Ihre E-Mail-Adresse ändern.';
+      'Wir senden dir Verifizierungscodes, um deine Identität zu bestätigen, bevor wir deine E-Mail-Adresse ändern.';
 
   @override
   String get emailChangeStart => 'Starten';
@@ -1950,7 +1950,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get securityTfaSectionDescription =>
-      'Füge deinem Konto eine zusätzliche Sicherheitsebene hinzu';
+      'Füge deinem Account eine zusätzliche Sicherheitsebene hinzu';
 
   @override
   String get securityTfaAuthenticatorApp => 'Authenticator-App';
@@ -1968,7 +1968,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get securityTfaBackupCodesDescription =>
-      'Zeige deine Backup-Codes zur Kontowiederherstellung an und verwalte sie';
+      'Zeige deine Backup-Codes zur Accountwiederherstellung an und verwalte sie';
 
   @override
   String get securityTfaViewCodes => 'Codes anzeigen';
@@ -2064,7 +2064,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get securityClaimDescription =>
-      'Fordere dein Konto an, um auf Sicherheitsfunktionen wie Zwei-Faktor-Authentifizierung und Passkeys zuzugreifen.';
+      'Beanspruche deinen Account, um auf Sicherheitsfunktionen wie Zwei-Faktor-Authentifizierung und Passkeys zuzugreifen.';
 
   @override
   String get securityVerifyEmailRequired =>
@@ -2103,7 +2103,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get backupCodesWarning =>
-      'Wenn du den Zugriff auf deine Authenticator-App verlierst und diese Codes nicht hast, wirst du dauerhaft von deinem Konto ausgesperrt. Lade sie herunter oder kopiere sie jetzt und bewahre sie sicher auf.';
+      'Wenn du den Zugriff auf deine Authenticator-App verlierst und diese Codes nicht hast, wirst du dauerhaft von deinem Account ausgesperrt. Lade sie herunter oder kopiere sie jetzt und bewahre sie sicher auf.';
 
   @override
   String get backupCodesDownload => 'Herunterladen';
@@ -2282,25 +2282,25 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get dangerZoneSectionDescription =>
-      'Irreversible und destruktive Aktionen';
+      'Dauerhafte und nicht rückgängig zu machende Aktionen';
 
   @override
-  String get dangerZoneDisableTitle => 'Konto deaktivieren';
+  String get dangerZoneDisableTitle => 'Account deaktivieren';
 
   @override
   String get dangerZoneDisableDescription =>
-      'Deaktiviere dein Konto vorübergehend. Du kannst es später reaktivieren, indem du dich wieder anmeldest.';
+      'Deaktiviere deinen Account vorübergehend. Du kannst ihn später reaktivieren, indem du dich wieder anmeldest.';
 
   @override
   String get dangerZoneDisableConfirmDescription =>
-      'Das Deaktivieren deines Kontos wird dich aus allen Sitzungen abmelden. Du kannst dein Konto jederzeit wieder aktivieren, indem du dich erneut anmeldest.';
+      'Das Deaktivieren deines Accounts wird dich aus allen Sitzungen abmelden. Du kannst deinen Account jederzeit wieder aktivieren, indem du dich erneut anmeldest.';
 
   @override
-  String get dangerZoneDeleteTitle => 'Konto löschen';
+  String get dangerZoneDeleteTitle => 'Account löschen';
 
   @override
   String get dangerZoneDeleteDescription =>
-      'Lösche dein Konto und alle zugehörigen Daten dauerhaft. Diese Aktion kann nicht rückgängig gemacht werden.';
+      'Lösche deinen Account und alle zugehörigen Daten dauerhaft. Diese Aktion kann nicht rückgängig gemacht werden.';
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
@@ -2308,11 +2308,11 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount =>
-      'Konto kann nicht gelöscht werden';
+      'Account kann nicht gelöscht werden';
 
   @override
   String get dangerZoneDeleteOwnsCommunities =>
-      'Du kannst dein Konto nicht löschen, solange du Communities besitzt. Übertrage zuerst den Besitz der folgenden Communities:';
+      'Du kannst deinen Account nicht löschen, solange du der Eigentümer von Communitys bist. Übertrage zuerst die Eigentümerschaft der folgenden Communitys:';
 
   @override
   String dangerZoneDeleteAndXMore(int count) {
@@ -2326,7 +2326,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteConfirmDescription =>
-      'Möchtest du dein Konto wirklich löschen? Diese Aktion plant dein Konto zur dauerhaften Löschung ein.';
+      'Möchtest du deinen Account wirklich löschen? Diese Aktion sieht die dauerhafte Löschung deines Accounts vor.';
 
   @override
   String get dangerZoneDeleteBullet1 =>
@@ -2334,26 +2334,26 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteBullet2 =>
-      'Nach 14 Tagen wird dein Konto dauerhaft gelöscht';
+      'Nach 14 Tagen wird dein Account dauerhaft gelöscht';
 
   @override
   String get dangerZoneDeleteBullet3 =>
-      'Nachdem die Löschung verarbeitet wurde, kannst du nicht mehr auf dein Konto zugreifen';
+      'Nachdem die Löschung verarbeitet wurde, kannst du nicht mehr auf deinen Account zugreifen';
 
   @override
   String get dangerZoneDeleteBullet4 =>
-      'Du kannst deine gesendeten Nachrichten nach der Löschung deines Kontos nicht mehr löschen';
+      'Du kannst deine gesendeten Nachrichten nach der Löschung deines Account nicht mehr löschen';
 
   @override
   String get dangerZoneDeleteDisclaimer =>
       'Wenn du deine Daten exportieren oder zuerst deine Nachrichten löschen möchtest, besuche bitte den Abschnitt „Datenschutz-Dashboard“ in den Benutzereinstellungen, bevor du fortfährst.';
 
   @override
-  String get claimAccountTitle => 'Fordere dein Konto an';
+  String get claimAccountTitle => 'Account beanspruchen';
 
   @override
   String get claimAccountDescription =>
-      'Fordere dein Konto an, indem du eine E-Mail-Adresse und ein Passwort hinzufügst. Wir senden dir einen Verifizierungscode, um deine E-Mail zu bestätigen, bevor wir fertig sind.';
+      'Beanspruche deinen Account, indem du eine E-Mail-Adresse und ein Passwort angibst. Wir senden dir einen Verifizierungscode, um deine E-Mail-Adresse zu bestätigen, bevor wir fertig sind.';
 
   @override
   String get claimAccountEmailLabel => 'E-Mail';
@@ -2369,7 +2369,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Gib den Code ein, den wir an deine E-Mail gesendet haben, um sie zu verifizieren. Dein Passwort wird festgelegt, sobald der Code bestätigt wurde.';
 
   @override
-  String get claimAccountSuccess => 'Konto erfolgreich beansprucht';
+  String get claimAccountSuccess => 'Account erfolgreich beansprucht';
 
   @override
   String get importantInformation => 'Wichtige Informationen:';
@@ -2450,7 +2450,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get authorizedAppsEmptyDescription =>
-      'Du hast noch keine Anwendungen autorisiert, auf dein Konto zuzugreifen.';
+      'Du hast noch keine Anwendungen autorisiert, auf deinen Account zuzugreifen.';
 
   @override
   String get authorizedAppsLoadError =>
@@ -2472,7 +2472,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String authorizedAppsRevokeDescription(String appName) {
-    return 'Möchtest du den Zugriff für $appName wirklich entziehen? Diese Anwendung hat dann keinen Zugriff mehr auf dein Konto.';
+    return 'Möchtest du den Zugriff für $appName wirklich entziehen? Diese Anwendung hat dann keinen Zugriff mehr auf deinen Account.';
   }
 
   @override
@@ -2484,11 +2484,11 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get authorizedAppsScopeGuilds =>
-      'Die Communities anzeigen, deren Mitglied du bist';
+      'Die Communitys anzeigen, in denen du Mitglied bist';
 
   @override
   String get authorizedAppsScopeConnections =>
-      'Deine verbundenen Konten anzeigen';
+      'Deine verbundenen Accounts anzeigen';
 
   @override
   String get authorizedAppsScopeBot =>
@@ -2594,14 +2594,14 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String userProfileMutualCommunities(int count) {
-    return 'Gemeinsame Communities ($count)';
+    return 'Gemeinsame Communitys ($count)';
   }
 
   @override
   String get userProfileMutualFriendsTitle => 'Gemeinsame Freunde';
 
   @override
-  String get userProfileMutualCommunitiesTitle => 'Gemeinsame Communities';
+  String get userProfileMutualCommunitiesTitle => 'Gemeinsame Communitys';
 
   @override
   String get userProfileNoMutualFriends =>
@@ -2609,11 +2609,11 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get userProfileNoMutualCommunities =>
-      'Keine gemeinsamen Communities gefunden.';
+      'Keine gemeinsamen Communitys gefunden.';
 
   @override
   String userProfileMutualCommunityNickname(String nickname) {
-    return 'Spitzname: $nickname';
+    return 'Anzeigename: $nickname';
   }
 
   @override
@@ -2652,19 +2652,19 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get userProfileAboutMe => 'Über mich';
 
   @override
-  String get userProfileLocalTime => 'Local time';
+  String get userProfileLocalTime => 'Ortszeit';
 
   @override
-  String get userProfileSameTimeAsYou => 'Same time as you';
+  String get userProfileSameTimeAsYou => 'Gleiche Zeitzone wie du';
 
   @override
   String userProfileTimeAheadOfYou(String duration) {
-    return '$duration ahead of you';
+    return '$duration voraus';
   }
 
   @override
   String userProfileTimeBehindYou(String duration) {
-    return '$duration behind you';
+    return '$duration zurück';
   }
 
   @override
@@ -2763,7 +2763,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Aktion fehlgeschlagen, bitte versuche es erneut';
 
   @override
-  String get userProfileChangeNickname => 'Spitznamen ändern';
+  String get userProfileChangeNickname => 'Anzeigename ändern';
 
   @override
   String get userProfileKick => 'Entfernen';
@@ -2793,7 +2793,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String userProfileKickConfirmDescription(String username) {
-    return 'Möchtest du $username wirklich entfernen? Sie können mit einer neuen Einladung wieder beitreten.';
+    return 'Möchtest du $username wirklich entfernen? Die Person kann mit einer neuen Einladung wieder beitreten.';
   }
 
   @override
@@ -2809,7 +2809,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String userProfileTransferConfirmDescription(String username) {
-    return 'Besitz dieser Community an $username übertragen? Dies ist unumkehrbar und Sie verlieren alle Inhaberprivilegien.';
+    return 'Eigentumsrechte dieser Community an $username übertragen? Das kann nicht rückgängig gemacht werden und du verlierst alle Eigentümerrechte.';
   }
 
   @override
@@ -2862,10 +2862,10 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get userProfileTimeoutSubmit => 'Mitglied stummschalten';
 
   @override
-  String get userProfileNicknameLabel => 'Spitzname';
+  String get userProfileNicknameLabel => 'Anzeigename';
 
   @override
-  String get userProfileNicknameHint => 'Spitznamen eingeben';
+  String get userProfileNicknameHint => 'Anzeigename eingeben';
 
   @override
   String get userProfileNicknameSave => 'Speichern';
@@ -2877,7 +2877,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String userProfileBanSuccess(String username) {
-    return '$username wurde gesperrt';
+    return '$username wurde gebannt';
   }
 
   @override
@@ -2891,7 +2891,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   }
 
   @override
-  String get userProfileNicknameSuccess => 'Spitzname aktualisiert';
+  String get userProfileNicknameSuccess => 'Anzeigename aktualisiert';
 
   @override
   String get userProfileTransferSuccess => 'Besitz übertragen';
@@ -3201,7 +3201,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get linkedDevicesDescription =>
-      'Alle Geräte anzeigen, die derzeit bei Ihrem Konto angemeldet sind. Widerrufen Sie alle Sitzungen, die Sie nicht erkennen.';
+      'Alle Geräte anzeigen, die derzeit bei deinem Account angemeldet sind. Melde alle Sitzungen ab, die du nicht erkennst.';
 
   @override
   String get linkedDevicesCurrentDevice => 'Aktuelles Gerät';
@@ -3259,30 +3259,30 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       count,
       locale: localeName,
       other:
-          'Dadurch werden die ausgewählten Geräte von Ihrem Konto abgemeldet. Sie müssen sich auf diesen Geräten erneut anmelden.',
+          'Dadurch werden die ausgewählten Geräte von deinem Account abgemeldet. Du musst dich auf diesen Geräten erneut anmelden.',
       one:
-          'Dadurch wird das ausgewählte Gerät von Ihrem Konto abgemeldet. Sie müssen sich auf diesem Gerät erneut anmelden.',
+          'Dadurch wird das ausgewählte Gerät von deinem Account abgemeldet. Du musst dich auf diesem Gerät erneut anmelden.',
     );
     return '$_temp0';
   }
 
   @override
   String get linkedDevicesSignOutAllSheetDescription =>
-      'Dadurch werden die ausgewählten Geräte von Ihrem Konto abgemeldet. Sie müssen sich auf diesen Geräten erneut anmelden.';
+      'Dadurch werden die ausgewählten Geräte von deinem Account abgemeldet. Du musst dich auf diesen Geräten erneut anmelden.';
 
   @override
   String get linkedDevicesSignOutConfirm => 'Fortfahren';
 
   @override
   String get linkedDevicesLogoutDisclaimer =>
-      'Sie müssen sich auf allen abgemeldeten Geräten erneut anmelden';
+      'Du musst dich auf allen abgemeldeten Geräten erneut anmelden';
 
   @override
   String get linkedDevicesLoadErrorTitle => 'Netzwerkfehler';
 
   @override
   String get linkedDevicesLoadErrorDescription =>
-      'Wir haben Probleme, eine Verbindung zum Raum-Zeit-Kontinuum herzustellen. Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.';
+      'Wir haben Probleme, eine Verbindung zum Raum-Zeit-Kontinuum herzustellen. Bitte überprüfe deine Verbindung und versuche es erneut.';
 
   @override
   String linkedDevicesRevokeSuccess(int count) {
@@ -3297,7 +3297,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get linkedDevicesRevokeError =>
-      'Abmeldung fehlgeschlagen. Versuchen Sie es erneut.';
+      'Abmeldung fehlgeschlagen. Versuche es erneut.';
 
   @override
   String get linkedDevicesUnknownOs => 'Unbekanntes Betriebssystem';
@@ -3307,16 +3307,16 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String slowmodeLabel(String duration) {
-    return '$duration Zeitlupenmodus';
+    return '$duration Slow-Modus';
   }
 
   @override
   String get slowmodeTooltipActive =>
-      'Sie befinden sich im Zeitlupenmodus. Bitte warten Sie, bevor Sie eine weitere Nachricht senden.';
+      'Du befindest dich im Slow-Modus. Bitte warte, bevor du eine weitere Nachricht sendest.';
 
   @override
   String get slowmodeTooltipImmune =>
-      'Zeitlupenmodus ist aktiviert, aber Sie sind immun.';
+      'Slow-Modus ist aktiviert, aber du bist ausgenommen.';
 
   @override
   String get channelNoSendPermissionHint =>
@@ -3337,7 +3337,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get channelComposerBarrierUnclaimedAccount =>
-      'Du musst dein Konto beanspruchen, um in dieser Community Nachrichten senden zu können.';
+      'Du musst deinen Account beanspruchen, um in dieser Community Nachrichten senden zu können.';
 
   @override
   String get channelComposerBarrierUnverifiedEmail =>
@@ -3345,7 +3345,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get channelComposerBarrierAccountTooNew =>
-      'Dein Konto ist zu neu, um in dieser Community Nachrichten senden zu können.';
+      'Dein Account ist zu neu, um in dieser Community Nachrichten senden zu können.';
 
   @override
   String get channelComposerBarrierNotMemberLongEnough =>
@@ -3427,7 +3427,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Ziehe die Regler zum Schneiden, dann drücke Senden.';
 
   @override
-  String get voiceMessageStop => 'Stopp';
+  String get voiceMessageStop => 'Abbrechen';
 
   @override
   String get voiceMessageStartRecording => 'Aufnahme starten';
@@ -3507,13 +3507,13 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get matureContentTitle => 'Inhalte für Erwachsene';
 
   @override
-  String get matureCommunityTitle => 'Reife Community';
+  String get matureCommunityTitle => 'Altersbeschränkte Community';
 
   @override
-  String get matureCategoryTitle => 'Reife Kategorie';
+  String get matureCategoryTitle => 'Altersbeschränkte Kategorie';
 
   @override
-  String get matureChannelTitle => 'Reifer Kanal';
+  String get matureChannelTitle => 'Altersbeschränkter Kanal';
 
   @override
   String get communityContentWarningTitle => 'Community-Inhaltswarnung';
@@ -3529,35 +3529,35 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get matureCommunityBody =>
-      'Diese Community ist für reife Inhalte gekennzeichnet und kann Material enthalten, das für einige Benutzer ungeeignet ist.';
+      'Diese Community ist für altersbeschränkte Inhalte gekennzeichnet und kann Material enthalten, dass für einige Nutzer ungeeignet ist.';
 
   @override
   String get matureCategoryBody =>
-      'Diese Kategorie ist für reife Inhalte gekennzeichnet und kann Material enthalten, das für einige Benutzer ungeeignet ist.';
+      'Diese Kategorie ist für altersbeschränkte Inhalte gekennzeichnet und kann Material enthalten, das für einige Nutzer ungeeignet ist.';
 
   @override
   String get matureChannelBody =>
-      'Dieser Kanal ist für reife Inhalte gekennzeichnet und kann Material enthalten, das für einige Benutzer ungeeignet ist.';
+      'Dieser Kanal ist für altersbeschränkte Inhalte gekennzeichnet und kann Material enthalten, das für einige Nutzer ungeeignet ist.';
 
   @override
   String get matureVoiceChannelBody =>
-      'Dieser Sprachkanal ist für reife Inhalte gekennzeichnet und kann Material enthalten, das für einige Benutzer ungeeignet ist.';
+      'Dieser Sprachkanal ist für altersbeschränkte Inhalte gekennzeichnet und kann Material enthalten, das für einige Nutzer ungeeignet ist.';
 
   @override
   String get matureLinkChannelBody =>
-      'Dieser Linkkanal ist für reife Inhalte gekennzeichnet und kann Material öffnen, das für einige Benutzer ungeeignet ist.';
+      'Dieser Linkkanal ist für altersbeschränkte Inhalte gekennzeichnet und kann Links öffnen, die für einige Nutzer ungeeignet ist.';
 
   @override
   String get matureCommunityUnavailableBody =>
-      'Diese reife Community ist für Ihr Konto nicht verfügbar.';
+      'Diese altersbeschränkte Community ist für deinen Account nicht verfügbar.';
 
   @override
   String get matureCategoryUnavailableBody =>
-      'Diese reife Kategorie ist für Ihr Konto nicht verfügbar.';
+      'Diese altersbeschränkte Kategorie ist für deinen Account nicht verfügbar.';
 
   @override
   String get matureChannelUnavailableBody =>
-      'Dieser reife Kanal ist für Ihr Konto nicht verfügbar.';
+      'Dieser altersbeschränkte Kanal ist für dein Konto nicht verfügbar.';
 
   @override
   String get matureContentProceedButton => 'Fortfahren';
@@ -3573,7 +3573,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get sensitiveContentSectionDescription =>
-      'Steuere, wie reife oder sensible Medien in verschiedenen Kontexten gefiltert werden';
+      'Lege fest, wie altersbeschränkte oder sensible Medien in verschiedenen Situationen gefiltert werden';
 
   @override
   String get sensitiveContentFriendDmLabel => 'Direktnachrichten von Freunden';
@@ -3604,7 +3604,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get sensitiveContentBlurUnscannedDescriptionMinor =>
-      'Diese Einstellung ist für Ihr Konto immer aktiviert.';
+      'Diese Einstellung ist für deinen Account immer aktiviert.';
 
   @override
   String get sensitiveContentResetButton => 'Zurücksetzen';
@@ -3648,7 +3648,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get connectionsEmptyDescriptionBluesky =>
-      'Verknüpfe dein Bluesky-Konto oder verifiziere den Domainbesitz, um sie auf deinem Profil anzuzeigen.';
+      'Verknüpfe deinen Bluesky-Account oder verifiziere den Besitz der Domain, um ihn auf deinem Profil anzuzeigen.';
 
   @override
   String get connectionsEmptyDescriptionDomainOnly =>
@@ -3781,7 +3781,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get connectionVisibilityCommunityMembersDesc =>
-      'Erlaube Mitgliedern aus Communities, in denen du bist, diese Verbindung zu sehen';
+      'Erlaube Mitgliedern aus Communitys, in denen du ein Mitglied bist, diese Verbindung zu sehen';
 
   @override
   String get connectionRemoveTitle => 'Verbindung entfernen';
@@ -3870,7 +3870,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get lookAndFeelThemeSyncFailed =>
-      'Das Design konnte nicht mit deinem Konto synchronisiert werden. Bitte versuche es erneut.';
+      'Das Theme konnte nicht mit deinem Account synchronisiert werden. Bitte versuche es erneut.';
 
   @override
   String get lookAndFeelChatFontScalingTitle => 'Chat-Schriftgröße';
@@ -3932,7 +3932,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get lookAndFeelKeyboardHintsDescription =>
-      'Steuere, ob Tastaturkürzel-Hinweise in Tooltips angezeigt werden.';
+      'Lege fest, ob Tastaturkürzel-Hinweise in Tooltips angezeigt werden.';
 
   @override
   String get lookAndFeelHideKeyboardHintsLabel =>
@@ -3961,7 +3961,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get lookAndFeelVoiceChannelJoinDescription =>
-      'Steuere, wie du Sprachkanälen in Communities beitrittst.';
+      'Lege fest, wie du Sprachkanälen in Communitys beitrittst.';
 
   @override
   String get lookAndFeelRequireDoubleClickJoinLabel =>
@@ -3988,9 +3988,9 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       count,
       locale: localeName,
       other:
-          '$count Communities sind aufgrund einer Störung des Flusskondensators vorübergehend nicht verfügbar.',
+          '$count Communitys sind aufgrund einer Störung des Fluxkondensators vorübergehend nicht verfügbar.',
       one:
-          '1 Community ist aufgrund einer Störung des Flusskondensators vorübergehend nicht verfügbar.',
+          '1 Community ist aufgrund einer Störung des Fluxkondensators vorübergehend nicht verfügbar.',
     );
     return '$_temp0';
   }
@@ -4007,7 +4007,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get lookAndFeelChannelListSectionDescription =>
-      'Steuere das Verhalten von ungelesenen Indikatoren für stummgeschaltete Kanäle in Kanallisten.';
+      'Lege das Verhalten von ungelesenen Indikatoren für stummgeschaltete Kanäle in Kanallisten fest.';
 
   @override
   String get lookAndFeelShowFadedUnreadOnMutedChannelsLabel =>
@@ -4022,7 +4022,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get lookAndFeelActiveNowSectionDescription =>
-      'Steuere, wie „Jetzt aktiv“ in der App angezeigt wird.';
+      'Lege fest, wie „Jetzt aktiv“ in der App angezeigt wird.';
 
   @override
   String get lookAndFeelShowActiveNowLabel =>
@@ -4037,7 +4037,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get lookAndFeelFavoritesSectionDescription =>
-      'Steuere die Sichtbarkeit von Favoriten in der gesamten App.';
+      'Lege die Sichtbarkeit von Favoriten in der gesamten App fest.';
 
   @override
   String get lookAndFeelEnableFavoritesLabel => 'Favoriten aktivieren';
@@ -4101,13 +4101,13 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get favoritesShowMutedChannels => 'Stummgeschaltete Kanäle anzeigen';
 
   @override
-  String get favoritesSetNickname => 'Spitznamen festlegen';
+  String get favoritesSetNickname => 'Anzeigename festlegen';
 
   @override
-  String get favoritesNicknameLabel => 'Spitzname';
+  String get favoritesNicknameLabel => 'Anzeigename';
 
   @override
-  String get favoritesSaveNickname => 'Spitznamen speichern';
+  String get favoritesSaveNickname => 'Anzeigename speichern';
 
   @override
   String get favoritesMoveToCategory => 'In Kategorie verschieben';
@@ -4132,14 +4132,14 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Dies blendet alle Favoriten-bezogenen UI-Elemente aus, einschließlich Schaltflächen und Menüpunkte. Deine vorhandenen Favoriten bleiben erhalten und können jederzeit unter Einstellungen > Erweitert > Darstellung wieder aktiviert werden.';
 
   @override
-  String get favoritesDirectMessageSubtitle => 'Direkte Nachricht';
+  String get favoritesDirectMessageSubtitle => 'Direktnachricht';
 
   @override
   String get messagesMediaDisplayGroupTitle => 'Anzeige';
 
   @override
   String get messagesMediaDisplayGroupDescription =>
-      'Steuere, wie Nachrichten, Medien und andere Inhalte angezeigt werden.';
+      'Lege fest, wie Nachrichten, Medien und andere Inhalte angezeigt werden.';
 
   @override
   String get messagesMediaMediaGroupTitle => 'Medien';
@@ -4168,7 +4168,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get messagesMediaDefaultHideMutedChannelsDescription =>
-      'Blendet stummgeschaltete Kanäle in der Seitenleiste automatisch aus, wenn du neuen Communities beitrittst';
+      'Blendet stummgeschaltete Kanäle in der Seitenleiste automatisch aus, wenn du neuen Communitys beitrittst';
 
   @override
   String get messagesMediaDefaultHideMutedChannelsEnableTitle =>
@@ -4176,7 +4176,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get messagesMediaDefaultHideMutedChannelsEnableDescription =>
-      'Neue Communities, denen du beitrittst, blenden stummgeschaltete Kanäle automatisch aus. Möchtest du diese Einstellung auch auf alle deine bestehenden Communities anwenden?';
+      'Neue Communitys, denen du beitrittst, blenden stummgeschaltete Kanäle automatisch aus. Möchtest du diese Einstellung auch auf alle deine bestehenden Communitys anwenden?';
 
   @override
   String get messagesMediaDefaultHideMutedChannelsDisableTitle =>
@@ -4184,26 +4184,26 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get messagesMediaDefaultHideMutedChannelsDisableDescription =>
-      'Neue Communities, denen du beitrittst, blenden stummgeschaltete Kanäle nicht mehr automatisch aus. Möchtest du stummgeschaltete Kanäle auch in allen deinen bestehenden Communities anzeigen?';
+      'Neue Communitys, denen du beitrittst, blenden stummgeschaltete Kanäle nicht mehr automatisch aus. Möchtest du stummgeschaltete Kanäle auch in allen deinen bestehenden Communitys anzeigen?';
 
   @override
   String get messagesMediaDefaultHideMutedChannelsApplyAllAction =>
-      'Auf alle Communities anwenden';
+      'Auf alle Communitys anwenden';
 
   @override
   String get messagesMediaDefaultHideMutedChannelsShowAllAction =>
-      'In allen Communities anzeigen';
+      'In allen Communitys anzeigen';
 
   @override
   String get messagesMediaDefaultHideMutedChannelsNewOnlyAction =>
-      'Nur neue Communities';
+      'Nur neue Communitys';
 
   @override
   String get messagesMediaDisplaySectionTitle => 'Medienanzeige';
 
   @override
   String get messagesMediaDisplaySectionDescription =>
-      'Steuere, wie Bilder, Videos und andere Medien angezeigt werden. Alle Medien werden in der Größe angepasst und konvertiert. Extrem große Dateien, die nicht in eine Vorschau komprimiert werden können, werden unabhängig von diesen Einstellungen nicht eingebettet.';
+      'Lege fest, wie Bilder, Videos und andere Medien angezeigt werden. Alle Medien werden in der Größe angepasst und konvertiert. Extrem große Dateien, die nicht in eine Vorschau komprimiert werden können, werden unabhängig von diesen Einstellungen nicht eingebettet.';
 
   @override
   String get messagesMediaDisplayInlineEmbedLabel =>
@@ -4214,11 +4214,11 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Wenn direkt zu Echowire hochgeladen';
 
   @override
-  String get messagesMediaLinkPreviewsSectionTitle => 'Link-Vorschauen';
+  String get messagesMediaLinkPreviewsSectionTitle => 'Linkvorschau';
 
   @override
   String get messagesMediaLinkPreviewsSectionDescription =>
-      'Steuere, wie Website-Links im Chat in der Vorschau angezeigt werden';
+      'Lege fest, wie Website-Links im Chat in der Vorschau angezeigt werden';
 
   @override
   String get messagesMediaLinkPreviewsToggleLabel =>
@@ -4272,7 +4272,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get messagesMediaSizeSectionDescription =>
-      'Passen Sie die maximale Anzeigegröße für eingebettete und angehängte Medien an. Kleinere Größen verbrauchen weniger Speicherplatz, während größere Größen mehr Details anzeigen.';
+      'Passe die maximale Anzeigegröße für eingebettete und angehängte Medien an. Kleinere Größen verbrauchen weniger Speicherplatz, während größere Größen mehr Details anzeigen.';
 
   @override
   String get messagesMediaSizeEmbedLabel => 'Medien aus Links (Embeds)';
@@ -4396,6 +4396,28 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Keine Nachrichten-Vorschauen in der DM-Liste anzeigen';
 
   @override
+  String get accessibilityMediaButtonsGroupTitle => 'Media Buttons';
+
+  @override
+  String get accessibilityMediaButtonsGroupDescription =>
+      'Customize which buttons appear on media attachments and embeds.';
+
+  @override
+  String get accessibilityShowMediaDeleteButtonLabel => 'Show delete button';
+
+  @override
+  String get accessibilityShowMediaDownloadButtonLabel =>
+      'Show download button';
+
+  @override
+  String get accessibilityShowMediaFavoriteButtonLabel =>
+      'Show favorite button';
+
+  @override
+  String get accessibilityShowSuppressEmbedsButtonLabel =>
+      'Show suppress embeds button';
+
+  @override
   String get dmListSentAnAttachment => 'Hat einen Anhang gesendet';
 
   @override
@@ -4488,32 +4510,32 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get systemCallDurationOneHour => '1 hour';
 
   @override
-  String systemCallDurationYears(String count) {
+  String systemCallDurationYears(int count) {
     return '$count years';
   }
 
   @override
-  String systemCallDurationMonths(String count) {
+  String systemCallDurationMonths(int count) {
     return '$count months';
   }
 
   @override
-  String systemCallDurationWeeks(String count) {
+  String systemCallDurationWeeks(int count) {
     return '$count weeks';
   }
 
   @override
-  String systemCallDurationDays(String count) {
+  String systemCallDurationDays(int count) {
     return '$count days';
   }
 
   @override
-  String systemCallDurationHours(String count) {
+  String systemCallDurationHours(int count) {
     return '$count hours';
   }
 
   @override
-  String systemCallDurationMinutes(String count) {
+  String systemCallDurationMinutes(int count) {
     return '$count minutes';
   }
 
@@ -4550,6 +4572,13 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Nichts tun, ich möchte nicht beitreten';
 
   @override
+  String get voiceJoinFailedTitle => 'Couldn\'t Join Voice';
+
+  @override
+  String get voiceMultiDeviceDisconnectFailed =>
+      'Couldn\'t disconnect your other devices. Try again in a moment.';
+
+  @override
   String get voiceChannelEmptyDescription =>
       'Dies ist ein Sprachkanal. Verbinde dich, um zu sprechen!';
 
@@ -4557,7 +4586,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get voiceChannelJoin => 'Sprachkanal beitreten';
 
   @override
-  String get voiceChannelJoinConnect => 'Mit Sprache verbinden';
+  String get voiceChannelJoinConnect => 'Sprachkanal beitreten';
 
   @override
   String get voiceChannelNoConnectPermission =>
@@ -4790,10 +4819,10 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get dmVoiceCallBarIssueFallback => 'Sprachproblem';
 
   @override
-  String get dmVoiceFullscreenTitle => 'Sprache';
+  String get dmVoiceFullscreenTitle => 'Sprachkanal';
 
   @override
-  String get voiceCallBarGuildConnectedFallback => 'Sprache verbunden';
+  String get voiceCallBarGuildConnectedFallback => 'Sprachkanal beigetreten';
 
   @override
   String get notificationsPageTitle => 'Benachrichtigungen';
@@ -4895,11 +4924,11 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get chatSendFailureUnclaimedDm =>
-      'Deine Nachricht konnte nicht zugestellt werden. Du musst dein Konto beanspruchen, um Direktnachrichten senden zu können.';
+      'Deine Nachricht konnte nicht zugestellt werden. Du musst deinen Account beanspruchen, um Direktnachrichten senden zu können.';
 
   @override
   String get chatSendFailureUnclaimedGeneral =>
-      'Deine Nachricht konnte nicht zugestellt werden. Du musst dein Konto beanspruchen, um Nachrichten senden zu können.';
+      'Deine Nachricht konnte nicht zugestellt werden. Du musst deinen Account beanspruchen, um Nachrichten senden zu können.';
 
   @override
   String get chatSendFailureContentBlocked =>
@@ -4964,6 +4993,26 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   @override
   String get forwardCommentSlowmodeDisabled =>
       'Kommentare sind nicht verfügbar, da in einem ausgewählten Kanal der Zeitlimit-Modus aktiviert ist.';
+
+  @override
+  String get shareMediaTitle => 'Share to';
+
+  @override
+  String get shareMediaMessageHint => 'Add an optional message…';
+
+  @override
+  String get shareMediaSendButton => 'Send';
+
+  @override
+  String get shareMediaSuccessToast => 'Media shared';
+
+  @override
+  String shareMediaPartialSuccessToast(int count) {
+    return 'Shared to $count destinations';
+  }
+
+  @override
+  String get shareMediaFailedToast => 'Failed to share media';
 
   @override
   String get forwardDestinationNoSendPermission =>
@@ -5171,7 +5220,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get iarReasonSpamMessageDescription =>
-      'Massen-Spam, Betrug, gefälschte Gewinnspiele oder Missbrauch von Konten.';
+      'Massen-Spam, Betrug, gefälschte Gewinnspiele oder Missbrauch von Accounts.';
 
   @override
   String get iarReasonMalwareLabel => 'Malware oder gefährliche Links';
@@ -5323,11 +5372,11 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get iarActionBanUserButton => 'Sperren';
 
   @override
-  String get iarActionBanUserBannedButton => 'Gesperrt';
+  String get iarActionBanUserBannedButton => 'Gebannt';
 
   @override
   String get iarActionBanUserBannedTooltip =>
-      'Dieser Nutzer ist bereits aus der Community gesperrt.';
+      'Dieser Nutzer ist bereits in der Community gebannt.';
 
   @override
   String get iarCloseDmConfirmTitle => 'DM schließen';
@@ -5412,6 +5461,12 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Möchtest du diese Nachricht wirklich löschen?';
 
   @override
+  String get chatMessageDeleteAttachment => 'Delete Attachment';
+
+  @override
+  String get chatMessageEditAttachmentAltText => 'Edit Alt Text';
+
+  @override
   String get chatMessageMore => 'Mehr';
 
   @override
@@ -5473,12 +5528,12 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String chatReplyMentionPrefersMentionBody(String authorNickname) {
-    return '$authorNickname möchte lieber mit @erwähnt werden, wenn auf Nachrichten geantwortet wird. Trotzdem ohne Erwähnung senden?';
+    return '$authorNickname möchte lieber mit @-erwähnt werden, wenn auf Nachrichten geantwortet wird. Trotzdem ohne Erwähnung senden?';
   }
 
   @override
   String chatReplyMentionPrefersNoMentionBody(String authorNickname) {
-    return '$authorNickname bevorzugt Antworten ohne @Erwähnung. Trotzdem mit Erwähnung senden?';
+    return '$authorNickname bevorzugt Antworten ohne @-Erwähnung. Trotzdem mit Erwähnung senden?';
   }
 
   @override
@@ -5761,6 +5816,12 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get channelDetailsCopyLink => 'Copy Link';
 
   @override
+  String get channelMenuCopyChannelLink => 'Copy channel link';
+
+  @override
+  String get channelMenuCopyRedirectLink => 'Copy redirect link';
+
+  @override
   String get channelDetailsAddFriendsToGroup => 'Add friends to group';
 
   @override
@@ -5817,6 +5878,30 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get channelSettingsMyCategory => 'My category';
+
+  @override
+  String get categoryExpandCategory => 'Expand category';
+
+  @override
+  String get categoryCollapseCategory => 'Collapse category';
+
+  @override
+  String get categoryExpandAllCategories => 'Expand all categories';
+
+  @override
+  String get categoryCollapseAllCategories => 'Collapse all categories';
+
+  @override
+  String get categoryMuteCategory => 'Mute category';
+
+  @override
+  String get categoryUnmuteCategory => 'Unmute category';
+
+  @override
+  String get categoryCopyCategoryId => 'Copy category ID';
+
+  @override
+  String get categoryIdCopied => 'Category ID copied';
 
   @override
   String get channelSettingsChannelNamePlaceholder => 'general';
@@ -6223,29 +6308,30 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get channelMenuOpenChat => 'Open chat';
 
   @override
-  String get channelMenuDuplicateChannel => 'Duplicate channel';
+  String get channelMenuDuplicateChannel => 'Kanal duplizieren';
 
   @override
   String get channelMenuResetMatureContentAgreeState =>
-      'Reset mature content agreement state';
+      'Zustimmung zu nicht jugendfreien Inhalten zurücksetzen';
 
   @override
   String get channelMenuDeleteMyMessagesTitle =>
-      'Delete your messages in this channel?';
+      'Deine Nachrichten in diesem Kanal löschen?';
 
   @override
   String get channelMenuDeleteMyMessagesDescription =>
-      'This will permanently delete every message you have ever sent in this channel. This cannot be undone.';
+      'Alle Nachrichten, die du jemals in diesem Kanal gesendet hast, werden endgültig gelöscht. Dieser Vorgang kann nicht rückgängig gemacht werden.';
 
   @override
   String get channelMenuDeleteMyMessagesConfirm => 'Delete My Messages';
 
   @override
-  String get channelMenuDeletedYourMessages => 'Deleted your messages';
+  String get channelMenuDeletedYourMessages =>
+      'Deine Nachrichten wurden gelöscht';
 
   @override
   String get channelMenuCouldNotDeleteYourMessages =>
-      'Couldn\'t delete your messages';
+      'Deine Nachrichten konnten nicht gelöscht werden';
 
   @override
   String get channelDetailsSystemMessage => 'System message';
@@ -6766,7 +6852,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Persönliche Notizen konnten nicht geleert werden';
 
   @override
-  String get userSettingsGroupYourAccount => 'DEIN KONTO';
+  String get userSettingsGroupYourAccount => 'DEIN ACCOUNT';
 
   @override
   String get userSettingsGroupApplication => 'APPLICATION';
@@ -6790,9 +6876,6 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get userSettingsNavGiftsAndCodes => 'Geschenke & Codes';
 
   @override
-  String get userSettingsNavExpressionPacks => 'Emoji-Pakete';
-
-  @override
   String get userSettingsNavPrivacyDashboard => 'Datenschutz-Dashboard';
 
   @override
@@ -6814,7 +6897,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get userSettingsNavAccessibility => 'Barrierefreiheit';
 
   @override
-  String get userSettingsNavMessagesAndMedia => 'Nachrichten & Medien';
+  String get userSettingsNavChat => 'Nachrichten & Medien';
 
   @override
   String get userSettingsNavAudioAndVideo => 'Audio & Video';
@@ -6988,7 +7071,216 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Don\'t ask when hiding my screen share';
 
   @override
-  String get userSettingsNavSoundsAndAlerts => 'Töne & Benachrichtigungen';
+  String get userSettingsNavNotifications => 'Notifications';
+
+  @override
+  String get notificationsGeneralSectionTitle => 'General';
+
+  @override
+  String get notificationsEnableNotificationsLabel => 'Enable notifications';
+
+  @override
+  String notificationsEnableNotificationsDescription(String productName) {
+    return 'Get notified when you receive messages. You may need to allow notifications for $productName in your device settings. For per-channel/per-community controls, open notification settings from a community\'s menu.';
+  }
+
+  @override
+  String get notificationsEnableDesktopNotificationsLabel =>
+      'Enable desktop notifications';
+
+  @override
+  String get notificationsEnableDesktopNotificationsDescription =>
+      'Uses the OS notification center. For per-channel/per-community controls, right-click a community icon and open notification settings.';
+
+  @override
+  String get notificationsEnableBrowserNotificationsLabel =>
+      'Enable browser notifications';
+
+  @override
+  String get notificationsEnableBrowserNotificationsDescription =>
+      'Get notified when you receive messages. You may need to allow notifications in your browser settings. For per-channel/per-community controls, right-click a community icon and open notification settings.';
+
+  @override
+  String get notificationsPushInactiveTimeoutLabel =>
+      'Push notification inactive timeout';
+
+  @override
+  String notificationsPushInactiveTimeoutDescription(String productName) {
+    return '$productName avoids sending push notifications to your mobile devices when you are at your computer. Choose how long you need to be inactive on desktop before you receive push notifications.';
+  }
+
+  @override
+  String notificationsPushInactiveTimeoutOneMinute(int oneMinute) {
+    return '$oneMinute minute';
+  }
+
+  @override
+  String notificationsPushInactiveTimeoutMinutes(int minutes) {
+    return '$minutes minutes';
+  }
+
+  @override
+  String get notificationsMentionPreferenceSectionTitle => 'Mention preference';
+
+  @override
+  String get notificationsReplyMentionPreferenceAriaLabel =>
+      'Reply mention preference';
+
+  @override
+  String get notificationsMentionNoPreferenceName => 'No preference';
+
+  @override
+  String get notificationsMentionNoPreferenceDescription =>
+      'Respect the sender\'s intent, with no warning when they toggle the @ mention';
+
+  @override
+  String get notificationsMentionPreferMentionName => 'Prefer @mention';
+
+  @override
+  String get notificationsMentionPreferMentionDescription =>
+      'Default replies to @mention you, and warn the sender if they disable it';
+
+  @override
+  String get notificationsMentionPreferNoMentionName => 'Prefer no @mention';
+
+  @override
+  String get notificationsMentionPreferNoMentionDescription =>
+      'Default replies to omit the @mention, and warn the sender if they enable it';
+
+  @override
+  String get notificationsSoundsSectionTitle => 'Sounds';
+
+  @override
+  String get notificationsMasterVolumeLabel => 'Master volume';
+
+  @override
+  String get notificationsMasterVolumeDescription =>
+      'Sets the level for every sound effect. Per-sound overrides ignore this.';
+
+  @override
+  String get notificationsResetToDefaultVolume => 'Reset to default volume';
+
+  @override
+  String get notificationsDisableAllSoundsLabel =>
+      'Disable all notification sounds';
+
+  @override
+  String get notificationsDisableAllSoundsDescription =>
+      'Your existing notification sound settings will be preserved.';
+
+  @override
+  String get notificationsShowMoreSoundEffects => 'Show more sound effects';
+
+  @override
+  String get notificationsShowFewerSoundEffects => 'Show fewer sound effects';
+
+  @override
+  String get notificationsPreviewSound => 'Preview sound';
+
+  @override
+  String get notificationsPerSoundVolumeTitle => 'Per-sound volume';
+
+  @override
+  String get notificationsPerSoundVolumeDescription =>
+      'Set custom volumes for individual sounds. Sounds without an override follow the master volume.';
+
+  @override
+  String notificationsPerSoundVolumeOverrideDescription(int overrideCount) {
+    return 'Active custom sound volume overrides: $overrideCount.';
+  }
+
+  @override
+  String notificationsFollowingMasterVolume(int effectiveValue) {
+    return 'Following master • $effectiveValue%';
+  }
+
+  @override
+  String notificationsResetSoundToMasterVolume(String label) {
+    return 'Reset $label to master volume';
+  }
+
+  @override
+  String get notificationsResetAllOverrides => 'Reset all overrides';
+
+  @override
+  String notificationsMuteSound(String label) {
+    return 'Mute $label';
+  }
+
+  @override
+  String notificationsUnmuteSound(String label) {
+    return 'Unmute $label';
+  }
+
+  @override
+  String get notificationsSoundMessage => 'Community message notifications';
+
+  @override
+  String get notificationsSoundDirectMessage => 'Direct message notifications';
+
+  @override
+  String get notificationsSoundSameChannelMessage =>
+      'Current channel message notifications';
+
+  @override
+  String get notificationsSoundMute => 'Voice mute';
+
+  @override
+  String get notificationsSoundUnmute => 'Voice unmute';
+
+  @override
+  String get notificationsSoundDeaf => 'Voice deafen';
+
+  @override
+  String get notificationsSoundUndeaf => 'Voice undeafen';
+
+  @override
+  String get notificationsSoundUserJoin => 'User joins channel';
+
+  @override
+  String get notificationsSoundUserLeave => 'User leaves channel';
+
+  @override
+  String get notificationsSoundUserMove => 'User moved channel';
+
+  @override
+  String get notificationsSoundViewerJoin => 'Viewer joins stream';
+
+  @override
+  String get notificationsSoundViewerLeave => 'Viewer leaves stream';
+
+  @override
+  String get notificationsSoundVoiceDisconnect => 'Voice disconnected';
+
+  @override
+  String get notificationsSoundIncomingRing => 'Incoming call';
+
+  @override
+  String get notificationsSoundCameraOn => 'Camera on';
+
+  @override
+  String get notificationsSoundCameraOff => 'Camera off';
+
+  @override
+  String get notificationsSoundScreenShareStart => 'Screen share start';
+
+  @override
+  String get notificationsSoundScreenShareStop => 'Screen share stop';
+
+  @override
+  String get notificationsAfkTimeoutSyncFailed =>
+      'Couldn\'t update push notification timeout. Try again.';
+
+  @override
+  String get notificationsMentionPreferenceSyncFailed =>
+      'Couldn\'t update mention preference. Try again.';
+
+  @override
+  String get notificationsPermissionDeniedTitle => 'Notifications blocked';
+
+  @override
+  String get notificationsEnableNotificationsPermissionDenied =>
+      'Couldn\'t enable notifications. Allow notification permission to continue.';
 
   @override
   String get userSettingsNavLanguageAndTime => 'Sprache & Uhrzeit';
@@ -7004,41 +7296,41 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get languageAndTimeOpenLanguageSettings => 'Open language settings';
 
   @override
-  String get languageAndTimeTimeFormatSectionTitle => 'Time format';
+  String get languageAndTimeTimeFormatSectionTitle => 'Zeitformat';
 
   @override
   String get languageAndTimeTimeFormatSectionDescription =>
       'Choose how times are displayed throughout the app';
 
   @override
-  String get languageAndTimeTimeFormatSelectionLabel => 'Time format selection';
+  String get languageAndTimeTimeFormatSelectionLabel => 'Zeitformat Auswahl';
 
   @override
   String get languageAndTimeTimeFormatAuto => 'Auto';
 
   @override
-  String get languageAndTimeTimeFormat12Hour => '12-hour';
+  String get languageAndTimeTimeFormat12Hour => '12-stündig';
 
   @override
-  String get languageAndTimeTimeFormat24Hour => '24-hour';
+  String get languageAndTimeTimeFormat24Hour => '24-stündig';
 
   @override
   String languageAndTimeTimeFormatAppLanguage(String format) {
-    return 'App language: $format';
+    return 'App-Sprache: $format';
   }
 
   @override
   String languageAndTimeTimeFormatSystemLocale(String format) {
-    return 'System locale: $format';
+    return 'System-Spracheinstellung: $format';
   }
 
   @override
   String get languageAndTimeUseSystemLocaleForTimeFormat =>
-      'Use system locale for time format';
+      'Nutze die System-Spracheinstellung für das Zeitformat';
 
   @override
   String get languageAndTimeTimeFormatSyncFailed =>
-      'Failed to update time format';
+      'Zeitformat konnte nicht aktualisiert werden';
 
   @override
   String get userSettingsNavAdvanced => 'Erweitert';
@@ -7104,7 +7396,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get quickSwitcherSearchPlaceholder =>
-      'Kanäle, Personen oder Communities suchen';
+      'Kanäle, Personen oder Communitys suchen';
 
   @override
   String get quickSwitcherSearchFriends => 'Freunde suchen';
@@ -7259,6 +7551,11 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   }
 
   @override
+  String mentionConfirmRoleBody(int count, String roleName) {
+    return 'This will notify $count members with the $roleName role. Continue?';
+  }
+
+  @override
   String get mentionConfirmButton => 'Erwähnen';
 
   @override
@@ -7314,21 +7611,21 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get guildNavbarExploreDiscoverableCommunities =>
-      'Entdeckbare Communities durchsuchen';
+      'Entdeckbare Communitys durchsuchen';
 
   @override
   String get discoveryExplore => 'Entdecken';
 
   @override
   String get discoveryExplorePublicCommunities =>
-      'Öffentliche Communities entdecken';
+      'Öffentliche Communitys entdecken';
 
   @override
   String get discoveryListingSubheading =>
       'Möchtest du deine Community hier auflisten? Bewirb dich, wenn du die Anforderungen in den Einstellungen deiner Community > Entdecken erfüllst.';
 
   @override
-  String get discoverySearchCommunities => 'Communities suchen';
+  String get discoverySearchCommunities => 'Communitys suchen';
 
   @override
   String get discoveryFilterByLanguage => 'Nach Sprache filtern';
@@ -7367,7 +7664,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get discoveryCategoryOther => 'Sonstiges';
 
   @override
-  String get discoveryNoCommunitiesMatch => 'Keine Communities gefunden.';
+  String get discoveryNoCommunitiesMatch => 'Keine Communitys gefunden.';
 
   @override
   String get discoveryJoinCommunity => 'Community beitreten';
@@ -7421,11 +7718,11 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get discoveryJoinErrorMaxGuildsTitle =>
-      'Du hast das Community-Limit erreicht';
+      'Du bist der maximalen Anzahl an Communitys beigetreten';
 
   @override
   String get discoveryJoinErrorMaxGuildsMessage =>
-      'Du bist in der maximalen Anzahl von Communities. Verlasse eine und versuche es erneut.';
+      'Du bist der maximalen Anzahl von Communitys beigetreten. Verlasse eine und versuche es erneut.';
 
   @override
   String get discoveryJoinErrorBannedTitle =>
@@ -7433,7 +7730,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get discoveryJoinErrorBannedMessage =>
-      'Du wurdest aus dieser Community gesperrt.';
+      'Du bist von dieser Community gebannt.';
 
   @override
   String get discoveryJoinErrorNotAvailableTitle =>
@@ -8247,22 +8544,22 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get guildSettingsModerationVerificationDiscoveryNote =>
-      'Communities, die in der Suche aufgeführt sind, benötigen mindestens eine verifizierte E-Mail-Adresse. „Keine“ kann nicht ausgewählt werden, wenn die Suche aktiviert ist.';
+      'Communitys die in der Suche aufgeführt sind, benötigen mindestens eine verifizierte E-Mail-Adresse. „Keine“ kann nicht ausgewählt werden, wenn die Suche aktiviert ist.';
 
   @override
   String get guildSettingsModerationMatureTitle =>
-      'Reife Inhalte & Inhaltswarnungen';
+      'Altersbeschränkte Inhalte & Inhaltswarnungen';
 
   @override
   String get guildSettingsModerationMatureSectionDescription =>
-      'Konfiguriere die Kennzeichnung reifer Inhalte und optionale Inhaltswarnungen für Mitglieder.';
+      'Konfiguriere die Kennzeichnung altersbeschränkter Inhalte und optionale Inhaltswarnungen für Mitglieder.';
 
   @override
-  String get guildSettingsModerationMatureToggle => 'Reife Inhalte';
+  String get guildSettingsModerationMatureToggle => 'Altersbeschränkte Inhalte';
 
   @override
   String get guildSettingsModerationMatureToggleDescription =>
-      'Markiere diese Community als reife Inhalte enthaltend.';
+      'Markiere diese Community als altersbeschränkte Inhalte enthaltend.';
 
   @override
   String get guildSettingsVerificationNone => 'Keine';
@@ -8283,7 +8580,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get guildSettingsVerificationMediumDescription =>
-      'Erfordert eine verifizierte E-Mail-Adresse und ein Konto, das mindestens 5 Minuten alt ist.';
+      'Erfordert eine verifizierte E-Mail-Adresse und einen Account, der mindestens 5 Minuten alt ist.';
 
   @override
   String get guildSettingsVerificationHigh => 'Hoch';
@@ -8379,7 +8676,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get auditLogActionMemberPrune => 'Mitglieder bereinigt';
 
   @override
-  String get auditLogActionMemberBanAdd => 'Mitglied gesperrt';
+  String get auditLogActionMemberBanAdd => 'Mitglied gebannt';
 
   @override
   String get auditLogActionMemberBanRemove => 'Mitglied entperrt';
@@ -8525,7 +8822,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String auditLogSummaryMemberBanAdd(String actor, String target) {
-    return '$actor hat $target gesperrt.';
+    return '$actor hat $target gebannt.';
   }
 
   @override
@@ -8772,7 +9069,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get auditLogChangeUpdatedCommunityIcon =>
-      'Das Community-Symbol wurde aktualisiert.';
+      'Das Community-Icon wurde aktualisiert.';
 
   @override
   String auditLogChangeRenamedChannel(String name) {
@@ -8797,12 +9094,12 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String auditLogChangeSetNickname(String nickname) {
-    return 'Spitzname auf $nickname gesetzt.';
+    return 'Anzeigename auf $nickname gesetzt.';
   }
 
   @override
   String auditLogChangeRemovedNickname(String nickname) {
-    return 'Spitzname $nickname entfernt.';
+    return 'Anzeigename $nickname entfernt.';
   }
 
   @override
@@ -8969,7 +9266,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Aktive Einladungslinks anzeigen und widerrufen.';
 
   @override
-  String get guildSettingsInvitesEmpty => 'Keine aktiven Einladungen.';
+  String get guildSettingsInvitesEmpty => 'Keine Einladungslinks';
 
   @override
   String get guildSettingsInvitesEmptyDescription =>
@@ -9078,13 +9375,13 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get guildSettingsBansDescription =>
-      'Gesperrte Benutzer anzeigen und verwalten.';
+      'Gebannte Nutzer anzeigen und verwalten.';
 
   @override
   String get guildSettingsBansSearchHint => 'Sperren suchen';
 
   @override
-  String get guildSettingsBansEmpty => 'Keine gesperrten Benutzer.';
+  String get guildSettingsBansEmpty => 'Keine gebannten Nutzer.';
 
   @override
   String get guildSettingsBanPermanent => 'Dauerhaft sperren';
@@ -9101,7 +9398,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get guildSettingsUnban => 'Entsperren';
 
   @override
-  String get guildSettingsBansLoading => 'Gesperrte Benutzer werden geladen';
+  String get guildSettingsBansLoading => 'Gebannte Nutzer werden geladen';
 
   @override
   String get guildSettingsBansNoSearchResults =>
@@ -9114,10 +9411,10 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get guildSettingsBanViewDetails => 'Details anzeigen';
 
   @override
-  String get guildSettingsBannedOn => 'Gesperrt am';
+  String get guildSettingsBannedOn => 'Gebannt am';
 
   @override
-  String get guildSettingsBannedBy => 'Gesperrt von';
+  String get guildSettingsBannedBy => 'Gebannt von';
 
   @override
   String get guildSettingsRevokeBanTitle => 'Sperre widerrufen';
@@ -9189,7 +9486,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get guildSettingsOverviewNotificationsLargeGuild =>
-      'Communities mit über 250 Personen werden auf die Einstellung „Nur Erwähnungen“ gesetzt. Deine ursprüngliche Einstellung bleibt erhalten und wird wiederhergestellt, wenn die Community unter 250 Mitglieder fällt.';
+      'Communitys mit über 250 Personen werden auf die Einstellung „Nur Erwähnungen“ gesetzt. Deine ursprüngliche Einstellung bleibt erhalten und wird wiederhergestellt, wenn die Community unter 250 Mitglieder fällt.';
 
   @override
   String get guildSettingsOverviewAdvancedTitle => 'Erweitert';
@@ -9402,7 +9699,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get guildSettingsModerationDiscoveryNotice =>
-      'In der Suche gelistete Communities haben eingeschränkte Moderationsoptionen.';
+      'In der Suche gelistete Communitys haben eingeschränkte Moderationsoptionen.';
 
   @override
   String get guildSettingsModerationContentFilterTitle => 'Inhaltsfilterung';
@@ -9413,7 +9710,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get guildSettingsModerationContentFilterDiscoveryNote =>
-      'In der Suche gelistete Communities müssen alle Mitglieder scannen. Diese Einstellung kann nicht geändert werden, solange die Suche aktiviert ist.';
+      'In der Suche gelistete Communitys müssen alle Mitglieder scannen. Diese Einstellung kann nicht geändert werden, solange die Suche aktiviert ist.';
 
   @override
   String get guildSettingsContentFilterOff => 'Aus';
@@ -9428,7 +9725,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get guildSettingsContentFilterNoRoleDescription =>
-      'Empfohlen für die meisten Communities';
+      'Empfohlen für die meisten Communitys';
 
   @override
   String get guildSettingsContentFilterAll => 'Alle filtern';
@@ -9474,7 +9771,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get guildSettingsModeration2faEnableFirstTooltip =>
-      'Aktiviere 2FA für dein Konto, um diese Einstellung zu ändern';
+      'Aktiviere 2FA für deinen Account, um diese Einstellung zu ändern';
 
   @override
   String get guildSettingsEmojiSearchHint => 'Emojis suchen';
@@ -9507,7 +9804,7 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get guildSettingsVanityUrlRemove => 'Entfernen';
 
   @override
-  String get guildSettingsBannedUsersTitle => 'Gesperrte Benutzer';
+  String get guildSettingsBannedUsersTitle => 'Gebannte Nutzer';
 
   @override
   String get guildSettingsInvitesTableInviter => 'Einlader';
@@ -14805,9 +15102,6 @@ class FluxerLocalizationsDeCh extends FluxerLocalizationsDe {
   String get userSettingsNavGiftsAndCodes => 'Geschenke & Codes';
 
   @override
-  String get userSettingsNavExpressionPacks => 'Emote-Pakete';
-
-  @override
   String get userSettingsNavPrivacyDashboard => 'Datenschutz-Dashboard';
 
   @override
@@ -14829,13 +15123,10 @@ class FluxerLocalizationsDeCh extends FluxerLocalizationsDe {
   String get userSettingsNavAccessibility => 'Bedienungshilfen';
 
   @override
-  String get userSettingsNavMessagesAndMedia => 'Nachrichten & Medien';
+  String get userSettingsNavChat => 'Nachrichten & Medien';
 
   @override
   String get userSettingsNavAudioAndVideo => 'Audio & Video';
-
-  @override
-  String get userSettingsNavSoundsAndAlerts => 'Töne & Benachrichtigungen';
 
   @override
   String get userSettingsNavLanguageAndTime => 'Sprache & Zeit';

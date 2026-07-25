@@ -4,7 +4,7 @@ import 'package:fluxer_app/core/push/services/firebase_messaging_push_service.da
 
 void main() {
   test('OSS stub tap host ignores callback registration', () {
-    const FcmTapBindingHost host = FirebaseMessagingPushService.tapHost;
+    final FcmTapBindingHost host = FirebaseMessagingPushService.tapHost;
     var callbackCount = 0;
     host
       ..setNotificationTapCallback((Map<String, String> payload) {

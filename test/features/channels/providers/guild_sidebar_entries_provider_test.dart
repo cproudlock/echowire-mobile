@@ -9,6 +9,7 @@ void main() {
       'keeps unread channel in collapsed category and hides read channel',
       () {
         final List<GuildSidebarEntry> entries = flattenGuildSidebarEntries(
+          threadsByParent: const <String, List<Channel>>{},
           categories: <ChannelCategory>[
             const ChannelCategory(
               id: 'cat1',
@@ -59,6 +60,7 @@ void main() {
 
     test('clears entries when categories are empty', () {
       final List<GuildSidebarEntry> entries = flattenGuildSidebarEntries(
+        threadsByParent: const <String, List<Channel>>{},
         categories: const <ChannelCategory>[],
         collapsed: const <String>{},
         mutedSet: const <String>{},

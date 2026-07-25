@@ -4,6 +4,7 @@ import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/bootstrap/image_cache_config.dart';
 import 'package:fluxer_app/core/providers/gateway_connection_provider.dart';
 import 'package:fluxer_app/features/profile/providers/user_settings_status_provider.dart';
+import 'package:fluxer_app/l10n/app_locale_provider.dart';
 import 'package:fluxer_dart/gateway.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -25,7 +26,7 @@ class AppUiForeground extends _$AppUiForeground {
   }
 }
 
-/// Pushes [WidgetsBindingObserver] lifecycle into [appUiForegroundProvider].
+/// Pushes platform lifecycle and locale changes into Riverpod state.
 class AppUiLifecycleObserver extends ConsumerStatefulWidget {
   const AppUiLifecycleObserver({required this.child, super.key});
 
@@ -60,6 +61,12 @@ class _AppUiLifecycleObserverState extends ConsumerState<AppUiLifecycleObserver>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     _syncLifecycle(state);
+  }
+
+  @override
+  void didChangeLocales(List<Locale>? locales) {
+    super.didChangeLocales(locales);
+    ref.read(systemLocalesProvider.notifier).updateFromPlatform(locales);
   }
 
   void _syncLifecycle(AppLifecycleState? state) {

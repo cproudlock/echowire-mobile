@@ -6496,10 +6496,6 @@
     "@userSettingsNavGiftsAndCodes": {
         "description": "User settings navigation item for gifts and promo codes."
     },
-    "userSettingsNavExpressionPacks": "Tjáningarpakkar",
-    "@userSettingsNavExpressionPacks": {
-        "description": "User settings navigation item for expression pack settings."
-    },
     "userSettingsNavPrivacyDashboard": "Persónuverndarstýring",
     "@userSettingsNavPrivacyDashboard": {
         "description": "User settings navigation item for the privacy dashboard."
@@ -6528,17 +6524,13 @@
     "@userSettingsNavAccessibility": {
         "description": "User settings navigation item for accessibility settings."
     },
-    "userSettingsNavMessagesAndMedia": "Skilaboð og miðlar",
-    "@userSettingsNavMessagesAndMedia": {
+    "userSettingsNavChat": "Skilaboð og miðlar",
+    "@userSettingsNavChat": {
         "description": "User settings navigation item for messages and media settings."
     },
     "userSettingsNavAudioAndVideo": "Hljóð og mynd",
     "@userSettingsNavAudioAndVideo": {
         "description": "User settings navigation item for audio and video settings."
-    },
-    "userSettingsNavSoundsAndAlerts": "Hljóð og tilkynningar",
-    "@userSettingsNavSoundsAndAlerts": {
-        "description": "User settings navigation item for sounds and alert settings."
     },
     "userSettingsNavLanguageAndTime": "Tungumál og tími",
     "@userSettingsNavLanguageAndTime": {

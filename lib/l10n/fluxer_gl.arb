@@ -6496,10 +6496,6 @@
     "@userSettingsNavGiftsAndCodes": {
         "description": "User settings navigation item for gifts and promo codes."
     },
-    "userSettingsNavExpressionPacks": "Packs de expresións",
-    "@userSettingsNavExpressionPacks": {
-        "description": "User settings navigation item for expression pack settings."
-    },
     "userSettingsNavPrivacyDashboard": "Panel de privacidade",
     "@userSettingsNavPrivacyDashboard": {
         "description": "User settings navigation item for the privacy dashboard."
@@ -6528,17 +6524,13 @@
     "@userSettingsNavAccessibility": {
         "description": "User settings navigation item for accessibility settings."
     },
-    "userSettingsNavMessagesAndMedia": "Mensaxes e multimedia",
-    "@userSettingsNavMessagesAndMedia": {
+    "userSettingsNavChat": "Mensaxes e multimedia",
+    "@userSettingsNavChat": {
         "description": "User settings navigation item for messages and media settings."
     },
     "userSettingsNavAudioAndVideo": "Audio e vídeo",
     "@userSettingsNavAudioAndVideo": {
         "description": "User settings navigation item for audio and video settings."
-    },
-    "userSettingsNavSoundsAndAlerts": "Sons e alertas",
-    "@userSettingsNavSoundsAndAlerts": {
-        "description": "User settings navigation item for sounds and alert settings."
     },
     "userSettingsNavLanguageAndTime": "Idioma e hora",
     "@userSettingsNavLanguageAndTime": {

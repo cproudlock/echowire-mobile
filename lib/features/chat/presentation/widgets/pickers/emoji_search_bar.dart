@@ -3,22 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/picker_search_input.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/shared/utils/emoji_utils.dart'
+    show kSkinToneSurrogates;
+import 'package:fluxer_app/shared/widgets/unicode_emoji_widget.dart';
 
-const List<String> kSkinToneSurrogates = [
-  '\u{1F3FB}', // light
-  '\u{1F3FC}', // medium-light
-  '\u{1F3FD}', // medium
-  '\u{1F3FE}', // medium-dark
-  '\u{1F3FF}', // dark
-];
-
-String? skinToneToName(String surrogate) {
-  final idx = kSkinToneSurrogates.indexOf(surrogate);
-  if (idx == -1) {
-    return null;
-  }
-  return 'skin-tone-${idx + 1}';
-}
+export 'package:fluxer_app/shared/utils/emoji_utils.dart'
+    show kSkinToneSurrogates, skinToneToName;
 
 const _kClapEmoji = '\u{1F44F}';
 
@@ -29,6 +19,7 @@ class EmojiSearchBar extends StatelessWidget {
     required this.onSkinToneChanged,
     this.hoveredEmojiName,
     this.horizontalPadding = 12.0,
+    this.focusNode,
     this.onActivated,
     super.key,
   });
@@ -38,6 +29,7 @@ class EmojiSearchBar extends StatelessWidget {
   final String skinTone;
   final ValueChanged<String> onSkinToneChanged;
   final VoidCallback? onActivated;
+  final FocusNode? focusNode;
 
   final double horizontalPadding;
 
@@ -59,6 +51,7 @@ class EmojiSearchBar extends StatelessWidget {
               rightPadding: 0,
               topPadding: 8,
               bottomPadding: 4,
+              focusNode: focusNode,
               onActivated: onActivated,
             ),
           ),
@@ -140,7 +133,7 @@ class _SkinToneButtonState extends State<_SkinToneButton> {
                     onTap: () => _select(tone),
                     child: Padding(
                       padding: const EdgeInsets.all(4),
-                      child: Text(emoji, style: const TextStyle(fontSize: 24)),
+                      child: UnicodeEmojiWidget(emoji: emoji, size: 24),
                     ),
                   );
                 }).toList(),
@@ -164,10 +157,7 @@ class _SkinToneButtonState extends State<_SkinToneButton> {
           width: 28,
           height: 28,
           child: Center(
-            child: Text(
-              _previewEmoji,
-              style: const TextStyle(fontSize: 26, height: 1),
-            ),
+            child: UnicodeEmojiWidget(emoji: _previewEmoji, size: 26),
           ),
         ),
       ),

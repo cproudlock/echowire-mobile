@@ -40,11 +40,13 @@ class ChannelReorderDropResult {
     required this.targetId,
     required this.position,
     this.targetParentId,
+    this.targetParentIdSpecified = false,
   });
 
   final String targetId;
   final ChannelReorderDropPosition position;
   final String? targetParentId;
+  final bool targetParentIdSpecified;
 }
 
 class ChannelReorderTarget {
@@ -102,20 +104,46 @@ bool _isTextType(int channelType) {
       channelType == ChannelType.guildLink.wireValue;
 }
 
-bool _isBeforeZone(double localY, double height) {
+const double kDropZoneBeforeRatio = 0.35;
+const double kDropZoneAfterRatio = 0.65;
+
+ChannelReorderIndicatorPosition _resolveDropZonePosition({
+  required double localY,
+  required double height,
+  required ChannelReorderIndicatorPosition? lastPosition,
+}) {
   final double offsetY = localY.clamp(0, height);
-  return offsetY < height / 2;
+  final double beforeThreshold = height * kDropZoneBeforeRatio;
+  final double afterThreshold = height * kDropZoneAfterRatio;
+
+  if (offsetY < beforeThreshold) {
+    return ChannelReorderIndicatorPosition.top;
+  }
+  if (offsetY > afterThreshold) {
+    return ChannelReorderIndicatorPosition.bottom;
+  }
+
+  if (lastPosition != null) {
+    return lastPosition;
+  }
+
+  return offsetY < height / 2
+      ? ChannelReorderIndicatorPosition.top
+      : ChannelReorderIndicatorPosition.bottom;
 }
 
 ChannelReorderIndicator _createIndicator({
   required double localY,
   required double height,
   required bool isValid,
+  required ChannelReorderIndicatorPosition? lastPosition,
 }) {
   return ChannelReorderIndicator(
-    position: _isBeforeZone(localY, height)
-        ? ChannelReorderIndicatorPosition.top
-        : ChannelReorderIndicatorPosition.bottom,
+    position: _resolveDropZonePosition(
+      localY: localY,
+      height: height,
+      lastPosition: lastPosition,
+    ),
     isValid: isValid,
   );
 }
@@ -150,6 +178,7 @@ ChannelReorderIntent? resolveChannelReorderHover({
   required ChannelReorderTarget target,
   required double localY,
   required double height,
+  ChannelReorderIndicatorPosition? lastPosition,
 }) {
   if (height <= 0) {
     return null;
@@ -159,11 +188,12 @@ ChannelReorderIntent? resolveChannelReorderHover({
     localY: localY,
     height: height,
     isValid: isValid,
+    lastPosition: lastPosition,
   );
   if (!isValid) {
     return null;
   }
-  final bool before = _isBeforeZone(localY, height);
+  final bool before = indicator.position == ChannelReorderIndicatorPosition.top;
   final bool targetIsCategory = _isCategoryType(target.channelType);
   final ChannelReorderDropResult result;
   if (targetIsCategory && item.kind != ChannelReorderDragKind.category) {
@@ -173,6 +203,7 @@ ChannelReorderIntent? resolveChannelReorderHover({
           ? ChannelReorderDropPosition.before
           : ChannelReorderDropPosition.inside,
       targetParentId: before ? target.parentId : target.id,
+      targetParentIdSpecified: true,
     );
   } else {
     result = ChannelReorderDropResult(
@@ -181,6 +212,7 @@ ChannelReorderIntent? resolveChannelReorderHover({
           ? ChannelReorderDropPosition.before
           : ChannelReorderDropPosition.after,
       targetParentId: target.parentId,
+      targetParentIdSpecified: true,
     );
   }
   return ChannelReorderIntent(indicator: indicator, result: result);

@@ -125,6 +125,64 @@ void main() {
       expect((segments[1] as MessageBlockMarkdownSegment).text, '- item');
     });
 
+    test('preserves intentional blank line after a list', () {
+      const String input = 'intro\n\n- item\n\ncloser';
+      final List<MessageContentSegment> segments = parseMessageContentStructure(
+        input,
+        features,
+      );
+      expect(segments, hasLength(3));
+      expect(segments[0], isA<MessageTextFlowSegment>());
+      expect((segments[0] as MessageTextFlowSegment).text, 'intro\n\n');
+      expect(segments[1], isA<MessageBlockMarkdownSegment>());
+      expect((segments[1] as MessageBlockMarkdownSegment).text, '- item');
+      expect(segments[2], isA<MessageTextFlowSegment>());
+      expect((segments[2] as MessageTextFlowSegment).text, '\n\ncloser');
+    });
+
+    test('preserves intentional blank line after a list without intro', () {
+      const String input = '- item\n\ncloser';
+      final List<MessageContentSegment> segments = parseMessageContentStructure(
+        input,
+        features,
+      );
+      expect(segments, hasLength(2));
+      expect(segments[0], isA<MessageBlockMarkdownSegment>());
+      expect((segments[0] as MessageBlockMarkdownSegment).text, '- item');
+      expect(segments[1], isA<MessageTextFlowSegment>());
+      expect((segments[1] as MessageTextFlowSegment).text, '\n\ncloser');
+    });
+
+    test('preserves intentional blank line after an ordered list', () {
+      const String input = 'intro\n\n1. item\n\ncloser';
+      final List<MessageContentSegment> segments = parseMessageContentStructure(
+        input,
+        features,
+      );
+      expect(segments, hasLength(3));
+      expect(segments[0], isA<MessageTextFlowSegment>());
+      expect((segments[0] as MessageTextFlowSegment).text, 'intro\n\n');
+      expect(segments[1], isA<MessageBlockMarkdownSegment>());
+      expect((segments[1] as MessageBlockMarkdownSegment).text, '1. item');
+      expect(segments[2], isA<MessageTextFlowSegment>());
+      expect((segments[2] as MessageTextFlowSegment).text, '\n\ncloser');
+    });
+
+    test('still strips blank line adjacent to a heading after a block', () {
+      const String input = 'before\n\n# heading\n\nafter';
+      final List<MessageContentSegment> segments = parseMessageContentStructure(
+        input,
+        features,
+      );
+      expect(segments, hasLength(3));
+      expect(segments[0], isA<MessageTextFlowSegment>());
+      expect((segments[0] as MessageTextFlowSegment).text, 'before\n');
+      expect(segments[1], isA<MessageBlockMarkdownSegment>());
+      expect((segments[1] as MessageBlockMarkdownSegment).text, '# heading');
+      expect(segments[2], isA<MessageTextFlowSegment>());
+      expect((segments[2] as MessageTextFlowSegment).text, 'after');
+    });
+
     test(
       'single line blockquote followed by non-blockquote lines splits correctly',
       () {
@@ -284,9 +342,22 @@ before
       expect(normalizeBlockquoteBarMarkdown('>>> a'), '> a');
     });
 
-    test('normalizes only the first line of a multi-line bar', () {
+    test('normalizes all lines of a multi-line bar', () {
       const String input = '>>> line one\nline two';
-      expect(normalizeBlockquoteBarMarkdown(input), '> line one\nline two');
+      expect(normalizeBlockquoteBarMarkdown(input), '> line one\n> line two');
+    });
+
+    test('normalizes blank lines in a multi-line bar', () {
+      const String input = '>>> line one\n\nline two';
+      expect(
+        normalizeBlockquoteBarMarkdown(input),
+        '> line one\n>\n> line two',
+      );
+    });
+
+    test('preserves leading indentation on continuation lines', () {
+      const String input = '  >>> indented\n  nested';
+      expect(normalizeBlockquoteBarMarkdown(input), '  > indented\n  > nested');
     });
 
     test('preserves leading indentation on the opener line', () {
@@ -300,6 +371,14 @@ before
 
     test('parsed bar blockquote has depth one not three', () {
       const String input = '>>> quoted text';
+      final String normalized = normalizeBlockquoteBarMarkdown(input);
+      final md.Document document = md.Document(encodeHtml: false);
+      final List<md.Node> nodes = document.parse(normalized);
+      expect(blockquoteNestingDepth(nodes), 1);
+    });
+
+    test('parsed multi-line bar blockquote has depth one', () {
+      const String input = '>>> line one\n\nline two';
       final String normalized = normalizeBlockquoteBarMarkdown(input);
       final md.Document document = md.Document(encodeHtml: false);
       final List<md.Node> nodes = document.parse(normalized);

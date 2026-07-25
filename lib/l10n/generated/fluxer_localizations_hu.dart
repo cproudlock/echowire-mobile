@@ -23,7 +23,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get sessionExpiredToast =>
-      'Your session has expired. Please sign in again.';
+      'A munkamenet lejárt. Kérlek, jelentkezz be újra.';
 
   @override
   String splashStartupFailed(String error) {
@@ -2653,19 +2653,19 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userProfileAboutMe => 'Rólam';
 
   @override
-  String get userProfileLocalTime => 'Local time';
+  String get userProfileLocalTime => 'Helyi idő';
 
   @override
   String get userProfileSameTimeAsYou => 'Same time as you';
 
   @override
   String userProfileTimeAheadOfYou(String duration) {
-    return '$duration ahead of you';
+    return 'Ennyivel előtted: $duration';
   }
 
   @override
   String userProfileTimeBehindYou(String duration) {
-    return '$duration behind you';
+    return 'Ennyivel mögötted: $duration';
   }
 
   @override
@@ -2673,14 +2673,14 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '$hours hours',
-      one: '1 hour',
+      other: '$hours óra',
+      one: '1 óra',
     );
     String _temp1 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '$minutes minutes',
-      one: '1 minute',
+      other: '$minutes perc',
+      one: '1 perc',
     );
     return '$_temp0 $_temp1';
   }
@@ -2690,8 +2690,8 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '$hours hours',
-      one: '1 hour',
+      other: '$hours óra',
+      one: '1 óra',
     );
     return '$_temp0';
   }
@@ -2701,8 +2701,8 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '$minutes minutes',
-      one: '1 minute',
+      other: '$minutes perc',
+      one: '1 perc',
     );
     return '$_temp0';
   }
@@ -4335,11 +4335,11 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Szerkesztési piszkozat megőrzése törléskor';
 
   @override
-  String get accessibilitySaturationTitle => 'Saturation';
+  String get accessibilitySaturationTitle => 'Telítettség';
 
   @override
   String get accessibilitySaturationDescription =>
-      'Adjust how vivid theme colors appear across the app.';
+      'Szabályozza, hogy mennyire élénken jelennek meg a témaszínek az alkalmazásban.';
 
   @override
   String get accessibilityUnreadGroupTitle => 'Olvasatlan jelzők';
@@ -4387,6 +4387,28 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get accessibilityDmMessagePreviewNoneDescription =>
       'Ne jelenítsen meg üzenetelőnézeteket a DM listában';
+
+  @override
+  String get accessibilityMediaButtonsGroupTitle => 'Media Buttons';
+
+  @override
+  String get accessibilityMediaButtonsGroupDescription =>
+      'Customize which buttons appear on media attachments and embeds.';
+
+  @override
+  String get accessibilityShowMediaDeleteButtonLabel => 'Show delete button';
+
+  @override
+  String get accessibilityShowMediaDownloadButtonLabel =>
+      'Show download button';
+
+  @override
+  String get accessibilityShowMediaFavoriteButtonLabel =>
+      'Show favorite button';
+
+  @override
+  String get accessibilityShowSuppressEmbedsButtonLabel =>
+      'Show suppress embeds button';
 
   @override
   String get dmListSentAnAttachment => 'Mellékletet küldött';
@@ -4481,32 +4503,32 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get systemCallDurationOneHour => '1 hour';
 
   @override
-  String systemCallDurationYears(String count) {
+  String systemCallDurationYears(int count) {
     return '$count years';
   }
 
   @override
-  String systemCallDurationMonths(String count) {
+  String systemCallDurationMonths(int count) {
     return '$count months';
   }
 
   @override
-  String systemCallDurationWeeks(String count) {
+  String systemCallDurationWeeks(int count) {
     return '$count weeks';
   }
 
   @override
-  String systemCallDurationDays(String count) {
+  String systemCallDurationDays(int count) {
     return '$count days';
   }
 
   @override
-  String systemCallDurationHours(String count) {
+  String systemCallDurationHours(int count) {
     return '$count hours';
   }
 
   @override
-  String systemCallDurationMinutes(String count) {
+  String systemCallDurationMinutes(int count) {
     return '$count minutes';
   }
 
@@ -4541,6 +4563,13 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get voiceConnectionConfirmDoNothing =>
       'Ne csinálj semmit, nem akarok csatlakozni';
+
+  @override
+  String get voiceJoinFailedTitle => 'Couldn\'t Join Voice';
+
+  @override
+  String get voiceMultiDeviceDisconnectFailed =>
+      'Couldn\'t disconnect your other devices. Try again in a moment.';
 
   @override
   String get voiceChannelEmptyDescription =>
@@ -4643,7 +4672,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get voiceControlVideo => 'Videó';
 
   @override
-  String get voiceControlFlipCamera => 'Flip camera';
+  String get voiceControlFlipCamera => 'Kamera váltása';
 
   @override
   String get voiceControlScreenShare => 'Képernyőmegosztás';
@@ -4954,6 +4983,26 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get forwardCommentSlowmodeDisabled =>
       'Megjegyzések nem érhetők el, mert a kiválasztott csatornán be van kapcsolva a lassú mód.';
+
+  @override
+  String get shareMediaTitle => 'Share to';
+
+  @override
+  String get shareMediaMessageHint => 'Add an optional message…';
+
+  @override
+  String get shareMediaSendButton => 'Send';
+
+  @override
+  String get shareMediaSuccessToast => 'Media shared';
+
+  @override
+  String shareMediaPartialSuccessToast(int count) {
+    return 'Shared to $count destinations';
+  }
+
+  @override
+  String get shareMediaFailedToast => 'Failed to share media';
 
   @override
   String get forwardDestinationNoSendPermission =>
@@ -5401,6 +5450,12 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Biztosan törölni szeretnéd ezt az üzenetet?';
 
   @override
+  String get chatMessageDeleteAttachment => 'Delete Attachment';
+
+  @override
+  String get chatMessageEditAttachmentAltText => 'Edit Alt Text';
+
+  @override
   String get chatMessageMore => 'Továbbiak';
 
   @override
@@ -5618,62 +5673,62 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Nem sikerült csatlakozni a közösséghez. Kérjük, próbálja újra.';
 
   @override
-  String get addGuildCreateTitle => 'Create a community';
+  String get addGuildCreateTitle => 'Közösség létrehozása';
 
   @override
   String get addGuildCreateDescription =>
-      'Create a community for you and your friends to chat.';
+      'Közösség létrehozása, ahol tudsz beszélgetni a barátaiddal.';
 
   @override
-  String get addGuildCreateNameLabel => 'Community name';
+  String get addGuildCreateNameLabel => 'Közösség neve';
 
   @override
-  String get addGuildCreateSubmit => 'Create community';
+  String get addGuildCreateSubmit => 'Közösség létrehozása';
 
   @override
   String get addGuildCreateFailed =>
-      'Could not create community. Please try again.';
+      'Nem sikerült létrehozni a közösséget. Kérlek, próbáld újra.';
 
   @override
-  String get addGuildCreateClaimTitle => 'Claim your account';
+  String get addGuildCreateClaimTitle => 'Igényeld a fiókod';
 
   @override
   String get addGuildCreateClaimDescription =>
-      'You need to claim your account before you can create a community.';
+      'Közösség létrehozása előtt igényelned kell a fiókodat.';
 
   @override
-  String get addGuildCreateVerifyTitle => 'Verify your email';
+  String get addGuildCreateVerifyTitle => 'Erősítsd meg az email címed';
 
   @override
   String get addGuildCreateVerifyDescription =>
-      'You need to verify your email address before you can create a community.';
+      'Közösség létrehozása előtt meg kell erősítened az email címedet.';
 
   @override
   String get addGuildCreateAnimatedIconUnsupported =>
-      'Animated icons are not supported when creating a new community. Use a static image.';
+      'Az animált ikonok nem támogatottak új közösség létrehozásakor. Használj statikus képet.';
 
   @override
   String get addGuildCreateGuidelinesBefore =>
-      'By creating a community, you agree to follow and uphold the ';
+      'A közösség létrehozásával beleegyezel, hogy betartod a ';
 
   @override
   String addGuildCreateGuidelinesLink(String productName) {
-    return '$productName community guidelines';
+    return '$productName közösségi irányelveket';
   }
 
   @override
   String get addGuildCreateSingleCommunityBlocked =>
-      'This instance is a single community, so additional communities cannot be created.';
+      'Ez a példány egyetlen közösség, így további közösségek nem hozhatók létre.';
 
   @override
-  String get addGuildCreateChangeIcon => 'Change icon';
+  String get addGuildCreateChangeIcon => 'Ikon módosítása';
 
   @override
-  String get addGuildCreateIconLabel => 'Community icon';
+  String get addGuildCreateIconLabel => 'Közösségi ikon';
 
   @override
   String get addGuildCreateIconHint =>
-      'PNG, JPEG, WebP, AVIF, HEIC, HEIF, JXL, SVG. Max 10MB. Recommended: 512×512px';
+      'PNG, JPEG, WebP, AVIF, HEIC, HEIF, JXL, SVG. Max 10MB. Javasolt: 512×512px';
 
   @override
   String get addGuildPackInstalled => 'A csomag sikeresen telepítve.';
@@ -5749,6 +5804,12 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get channelDetailsCopyLink => 'Copy Link';
 
   @override
+  String get channelMenuCopyChannelLink => 'Copy channel link';
+
+  @override
+  String get channelMenuCopyRedirectLink => 'Copy redirect link';
+
+  @override
   String get channelDetailsAddFriendsToGroup => 'Add friends to group';
 
   @override
@@ -5805,6 +5866,30 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get channelSettingsMyCategory => 'My category';
+
+  @override
+  String get categoryExpandCategory => 'Expand category';
+
+  @override
+  String get categoryCollapseCategory => 'Collapse category';
+
+  @override
+  String get categoryExpandAllCategories => 'Expand all categories';
+
+  @override
+  String get categoryCollapseAllCategories => 'Collapse all categories';
+
+  @override
+  String get categoryMuteCategory => 'Mute category';
+
+  @override
+  String get categoryUnmuteCategory => 'Unmute category';
+
+  @override
+  String get categoryCopyCategoryId => 'Copy category ID';
+
+  @override
+  String get categoryIdCopied => 'Category ID copied';
 
   @override
   String get channelSettingsChannelNamePlaceholder => 'general';
@@ -6778,9 +6863,6 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userSettingsNavGiftsAndCodes => 'Ajándékok és kódok';
 
   @override
-  String get userSettingsNavExpressionPacks => 'Emotikon csomagok';
-
-  @override
   String get userSettingsNavPrivacyDashboard => 'Adatvédelmi irányítópult';
 
   @override
@@ -6802,24 +6884,24 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userSettingsNavAccessibility => 'Kisegítő lehetőségek';
 
   @override
-  String get userSettingsNavMessagesAndMedia => 'Üzenetek és média';
+  String get userSettingsNavChat => 'Üzenetek és média';
 
   @override
   String get userSettingsNavAudioAndVideo => 'Hang és videó';
 
   @override
-  String get audioAndVideoAudioSectionTitle => 'Audio';
+  String get audioAndVideoAudioSectionTitle => 'Hang';
 
   @override
   String get audioAndVideoAudioSectionDescription =>
-      'Configure your microphone, speakers, and voice processing.';
+      'Állítsd be a mikrofonodat, hangszóróidat és a hangfeldolgozást.';
 
   @override
-  String get audioAndVideoVideoSectionTitle => 'Video';
+  String get audioAndVideoVideoSectionTitle => 'Videó';
 
   @override
   String get audioAndVideoVideoSectionDescription =>
-      'Configure your camera and screen sharing quality.';
+      'Állítsd be a kamerádat és a képernyőmegosztás minőségét.';
 
   @override
   String get audioAndVideoInCallBehaviorSectionTitle => 'In-call behavior';
@@ -6829,99 +6911,100 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Control confirmation prompts during voice and video calls.';
 
   @override
-  String get audioAndVideoInputDeviceLabel => 'Input device';
+  String get audioAndVideoInputDeviceLabel => 'Bemeneti eszköz';
 
   @override
-  String get audioAndVideoOutputDeviceLabel => 'Output device';
+  String get audioAndVideoOutputDeviceLabel => 'Kimeneti eszköz';
 
   @override
-  String get audioAndVideoDefaultDeviceLabel => 'Default';
+  String get audioAndVideoDefaultDeviceLabel => 'Alapértelmezet';
 
   @override
-  String get audioAndVideoUseSpeakerLabel => 'Use speaker';
+  String get audioAndVideoUseSpeakerLabel => 'Hangszóró használata';
 
   @override
   String get audioAndVideoUseSpeakerDescription =>
-      'When off, audio plays through the earpiece or connected headphones.';
+      'Amikor ki van kapcsolva, akkor a hang a beszédhangszórón vagy a csatlakoztatott fejhallgatón játszódik le.';
 
   @override
-  String get audioAndVideoInputVolumeLabel => 'Input volume';
+  String get audioAndVideoInputVolumeLabel => 'Bemeneti hangerő';
 
   @override
-  String get audioAndVideoOutputVolumeLabel => 'Output volume';
+  String get audioAndVideoOutputVolumeLabel => 'Kimeneti hangerő';
 
   @override
-  String get audioAndVideoVoiceProcessingSectionTitle => 'Voice processing';
+  String get audioAndVideoVoiceProcessingSectionTitle => 'Hangfeldolgozás';
 
   @override
-  String get audioAndVideoFocusedVoiceLabel => 'Focused voice';
+  String get audioAndVideoFocusedVoiceLabel => 'Fókuszált hang';
 
   @override
   String get audioAndVideoFocusedVoiceDescription =>
-      'Recommended. Cleans up your mic for clear speech.';
+      'Ajánlott. Megtisztítja a mikrofonod hangját a tiszta beszédhanghoz.';
 
   @override
-  String get audioAndVideoDirectInputLabel => 'Direct input';
+  String get audioAndVideoDirectInputLabel => 'Közvetlen bemenet';
 
   @override
   String get audioAndVideoDirectInputDescription =>
-      'Sends your audio untouched. Best if you\'re using external audio software.';
+      'Módosítás nélkül továbbítja a hangod. Akkor a legjobb, ha külső hangszoftvert használsz.';
 
   @override
-  String get audioAndVideoCustomProfileLabel => 'Custom';
+  String get audioAndVideoCustomProfileLabel => 'Egyedi';
 
   @override
   String get audioAndVideoCustomProfileDescription =>
-      'Adjust each setting yourself: noise suppression, echo cancellation, and gain.';
+      'Minden beállítást te állítasz be: zajcsökkentés, visszhangkioltás és erősítés.';
 
   @override
-  String get audioAndVideoNoiseSuppressionSectionTitle => 'Noise suppression';
+  String get audioAndVideoNoiseSuppressionSectionTitle => 'Zajcsökkentés';
 
   @override
-  String get audioAndVideoNoiseSuppressionEnhancedLabel => 'Enhanced';
+  String get audioAndVideoNoiseSuppressionEnhancedLabel => 'Fejlett';
 
   @override
-  String get audioAndVideoNoiseSuppressionStandardLabel => 'Standard';
+  String get audioAndVideoNoiseSuppressionStandardLabel => 'Szokványos';
 
   @override
-  String get audioAndVideoNoiseSuppressionNoneLabel => 'None';
+  String get audioAndVideoNoiseSuppressionNoneLabel => 'Nincs';
 
   @override
-  String get audioAndVideoEchoCancellationLabel => 'Echo cancellation';
+  String get audioAndVideoEchoCancellationLabel => 'Visszhangkioltás';
 
   @override
-  String get audioAndVideoAutomaticGainControlLabel => 'Automatic gain control';
+  String get audioAndVideoAutomaticGainControlLabel =>
+      'Erősítés automatikus beállítása';
 
   @override
   String get audioAndVideoAutomaticGainControlDescription =>
-      'Evens out your mic volume. Off when enhanced suppression is on.';
+      'Kiegyenlíti a mikrofonod hangerejét. Kikapcsolásra kerül, ha a fejlett zajcsökkentés aktív.';
 
   @override
-  String get audioAndVideoMicTestSectionTitle => 'Mic test';
+  String get audioAndVideoMicTestSectionTitle => 'Mikrofonpróba';
 
   @override
   String get audioAndVideoMicTestSectionDescription =>
-      'Listen to how you sound with your current settings.';
+      'Meghallgathatod, hogy a jelenlegi beállításokkal hogy hangzol.';
 
   @override
-  String get audioAndVideoMicTestStartLabel => 'Start mic test';
+  String get audioAndVideoMicTestStartLabel => 'Mikrofonpróba indítása';
 
   @override
-  String get audioAndVideoMicTestStopLabel => 'Stop mic test';
+  String get audioAndVideoMicTestStopLabel => 'Mikrofonpróba leállítása';
 
   @override
   String audioAndVideoMicTestPermissionRequired(String productName) {
-    return '$productName needs microphone access to test your input.';
+    return 'A $productName-nek mikrofon-hozzáférésre van szüksége a bemenet teszteléséhez.';
   }
 
   @override
-  String get audioAndVideoCameraLabel => 'Camera';
+  String get audioAndVideoCameraLabel => 'Kamera';
 
   @override
-  String get audioAndVideoMirrorCameraLabel => 'Mirror camera';
+  String get audioAndVideoMirrorCameraLabel => 'Kamera tükrözése';
 
   @override
-  String get audioAndVideoCameraQualitySectionTitle => 'Camera quality';
+  String get audioAndVideoCameraQualitySectionTitle => 'Kameraminőség';
 
   @override
   String get audioAndVideoCameraQuality480pLabel => '480p';
@@ -6934,10 +7017,10 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get audioAndVideoScreenShareQualitySectionTitle =>
-      'Screen share quality';
+      'Képernyőmegosztás minősége';
 
   @override
-  String get audioAndVideoFrameRateSectionTitle => 'Frame rate';
+  String get audioAndVideoFrameRateSectionTitle => 'Képkockasebesség';
 
   @override
   String get audioAndVideoFrameRate15Label => '15 FPS';
@@ -6950,16 +7033,16 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String audioAndVideoHigherQualityRequiresPremium(String premiumProductName) {
-    return '1080p and 60 FPS require $premiumProductName.';
+    return 'Az 1080p 60 FPS beállításhoz $premiumProductName szükséges.';
   }
 
   @override
   String get audioAndVideoInstanceVideoQualityLimit =>
-      'This instance currently allows screen share up to 720p at 30 FPS.';
+      'Ez a példány jelenleg legfeljebb 720p 30 FPS-t engedélyez.';
 
   @override
   String audioAndVideoMicrophonePermissionRequired(String productName) {
-    return '$productName needs microphone access to list your devices.';
+    return 'A $productName-nek mikrofon-hozzáférésre van szüksége az eszközeid listázásához.';
   }
 
   @override
@@ -6976,7 +7059,216 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Don\'t ask when hiding my screen share';
 
   @override
-  String get userSettingsNavSoundsAndAlerts => 'Hangok és riasztások';
+  String get userSettingsNavNotifications => 'Notifications';
+
+  @override
+  String get notificationsGeneralSectionTitle => 'General';
+
+  @override
+  String get notificationsEnableNotificationsLabel => 'Enable notifications';
+
+  @override
+  String notificationsEnableNotificationsDescription(String productName) {
+    return 'Get notified when you receive messages. You may need to allow notifications for $productName in your device settings. For per-channel/per-community controls, open notification settings from a community\'s menu.';
+  }
+
+  @override
+  String get notificationsEnableDesktopNotificationsLabel =>
+      'Enable desktop notifications';
+
+  @override
+  String get notificationsEnableDesktopNotificationsDescription =>
+      'Uses the OS notification center. For per-channel/per-community controls, right-click a community icon and open notification settings.';
+
+  @override
+  String get notificationsEnableBrowserNotificationsLabel =>
+      'Enable browser notifications';
+
+  @override
+  String get notificationsEnableBrowserNotificationsDescription =>
+      'Get notified when you receive messages. You may need to allow notifications in your browser settings. For per-channel/per-community controls, right-click a community icon and open notification settings.';
+
+  @override
+  String get notificationsPushInactiveTimeoutLabel =>
+      'Push notification inactive timeout';
+
+  @override
+  String notificationsPushInactiveTimeoutDescription(String productName) {
+    return '$productName avoids sending push notifications to your mobile devices when you are at your computer. Choose how long you need to be inactive on desktop before you receive push notifications.';
+  }
+
+  @override
+  String notificationsPushInactiveTimeoutOneMinute(int oneMinute) {
+    return '$oneMinute minute';
+  }
+
+  @override
+  String notificationsPushInactiveTimeoutMinutes(int minutes) {
+    return '$minutes minutes';
+  }
+
+  @override
+  String get notificationsMentionPreferenceSectionTitle => 'Mention preference';
+
+  @override
+  String get notificationsReplyMentionPreferenceAriaLabel =>
+      'Reply mention preference';
+
+  @override
+  String get notificationsMentionNoPreferenceName => 'No preference';
+
+  @override
+  String get notificationsMentionNoPreferenceDescription =>
+      'Respect the sender\'s intent, with no warning when they toggle the @ mention';
+
+  @override
+  String get notificationsMentionPreferMentionName => 'Prefer @mention';
+
+  @override
+  String get notificationsMentionPreferMentionDescription =>
+      'Default replies to @mention you, and warn the sender if they disable it';
+
+  @override
+  String get notificationsMentionPreferNoMentionName => 'Prefer no @mention';
+
+  @override
+  String get notificationsMentionPreferNoMentionDescription =>
+      'Default replies to omit the @mention, and warn the sender if they enable it';
+
+  @override
+  String get notificationsSoundsSectionTitle => 'Sounds';
+
+  @override
+  String get notificationsMasterVolumeLabel => 'Master volume';
+
+  @override
+  String get notificationsMasterVolumeDescription =>
+      'Sets the level for every sound effect. Per-sound overrides ignore this.';
+
+  @override
+  String get notificationsResetToDefaultVolume => 'Reset to default volume';
+
+  @override
+  String get notificationsDisableAllSoundsLabel =>
+      'Disable all notification sounds';
+
+  @override
+  String get notificationsDisableAllSoundsDescription =>
+      'Your existing notification sound settings will be preserved.';
+
+  @override
+  String get notificationsShowMoreSoundEffects => 'Show more sound effects';
+
+  @override
+  String get notificationsShowFewerSoundEffects => 'Show fewer sound effects';
+
+  @override
+  String get notificationsPreviewSound => 'Preview sound';
+
+  @override
+  String get notificationsPerSoundVolumeTitle => 'Per-sound volume';
+
+  @override
+  String get notificationsPerSoundVolumeDescription =>
+      'Set custom volumes for individual sounds. Sounds without an override follow the master volume.';
+
+  @override
+  String notificationsPerSoundVolumeOverrideDescription(int overrideCount) {
+    return 'Active custom sound volume overrides: $overrideCount.';
+  }
+
+  @override
+  String notificationsFollowingMasterVolume(int effectiveValue) {
+    return 'Following master • $effectiveValue%';
+  }
+
+  @override
+  String notificationsResetSoundToMasterVolume(String label) {
+    return 'Reset $label to master volume';
+  }
+
+  @override
+  String get notificationsResetAllOverrides => 'Reset all overrides';
+
+  @override
+  String notificationsMuteSound(String label) {
+    return 'Mute $label';
+  }
+
+  @override
+  String notificationsUnmuteSound(String label) {
+    return 'Unmute $label';
+  }
+
+  @override
+  String get notificationsSoundMessage => 'Community message notifications';
+
+  @override
+  String get notificationsSoundDirectMessage => 'Direct message notifications';
+
+  @override
+  String get notificationsSoundSameChannelMessage =>
+      'Current channel message notifications';
+
+  @override
+  String get notificationsSoundMute => 'Voice mute';
+
+  @override
+  String get notificationsSoundUnmute => 'Voice unmute';
+
+  @override
+  String get notificationsSoundDeaf => 'Voice deafen';
+
+  @override
+  String get notificationsSoundUndeaf => 'Voice undeafen';
+
+  @override
+  String get notificationsSoundUserJoin => 'User joins channel';
+
+  @override
+  String get notificationsSoundUserLeave => 'User leaves channel';
+
+  @override
+  String get notificationsSoundUserMove => 'User moved channel';
+
+  @override
+  String get notificationsSoundViewerJoin => 'Viewer joins stream';
+
+  @override
+  String get notificationsSoundViewerLeave => 'Viewer leaves stream';
+
+  @override
+  String get notificationsSoundVoiceDisconnect => 'Voice disconnected';
+
+  @override
+  String get notificationsSoundIncomingRing => 'Incoming call';
+
+  @override
+  String get notificationsSoundCameraOn => 'Camera on';
+
+  @override
+  String get notificationsSoundCameraOff => 'Camera off';
+
+  @override
+  String get notificationsSoundScreenShareStart => 'Screen share start';
+
+  @override
+  String get notificationsSoundScreenShareStop => 'Screen share stop';
+
+  @override
+  String get notificationsAfkTimeoutSyncFailed =>
+      'Couldn\'t update push notification timeout. Try again.';
+
+  @override
+  String get notificationsMentionPreferenceSyncFailed =>
+      'Couldn\'t update mention preference. Try again.';
+
+  @override
+  String get notificationsPermissionDeniedTitle => 'Notifications blocked';
+
+  @override
+  String get notificationsEnableNotificationsPermissionDenied =>
+      'Couldn\'t enable notifications. Allow notification permission to continue.';
 
   @override
   String get userSettingsNavLanguageAndTime => 'Nyelv és idő';
@@ -7244,6 +7536,11 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String mentionConfirmHereBody(int count) {
     return 'Ez $count online tagot értesít. Folytatod?';
+  }
+
+  @override
+  String mentionConfirmRoleBody(int count, String roleName) {
+    return 'This will notify $count members with the $roleName role. Continue?';
   }
 
   @override

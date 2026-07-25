@@ -6496,10 +6496,6 @@
     "@userSettingsNavGiftsAndCodes": {
         "description": "User settings navigation item for gifts and promo codes."
     },
-    "userSettingsNavExpressionPacks": "Наборы эмодзи",
-    "@userSettingsNavExpressionPacks": {
-        "description": "User settings navigation item for expression pack settings."
-    },
     "userSettingsNavPrivacyDashboard": "Панель конфиденциальности",
     "@userSettingsNavPrivacyDashboard": {
         "description": "User settings navigation item for the privacy dashboard."
@@ -6528,17 +6524,13 @@
     "@userSettingsNavAccessibility": {
         "description": "User settings navigation item for accessibility settings."
     },
-    "userSettingsNavMessagesAndMedia": "Сообщения и медиа",
-    "@userSettingsNavMessagesAndMedia": {
+    "userSettingsNavChat": "Сообщения и медиа",
+    "@userSettingsNavChat": {
         "description": "User settings navigation item for messages and media settings."
     },
     "userSettingsNavAudioAndVideo": "Аудио и видео",
     "@userSettingsNavAudioAndVideo": {
         "description": "User settings navigation item for audio and video settings."
-    },
-    "userSettingsNavSoundsAndAlerts": "Звуки и оповещения",
-    "@userSettingsNavSoundsAndAlerts": {
-        "description": "User settings navigation item for sounds and alert settings."
     },
     "userSettingsNavLanguageAndTime": "Язык и время",
     "@userSettingsNavLanguageAndTime": {

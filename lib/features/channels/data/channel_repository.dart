@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dio/dio.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/features/channels/domain/channel.dart';
@@ -53,7 +51,7 @@ class ChannelRepository {
     required ChannelOverviewFormState original,
     required bool canManageChannel,
     required bool canUpdateRtcRegion,
-  }) async {
+  }) {
     final ChannelUpdateRequest body = buildChannelOverviewUpdate(
       channel: channel,
       current: current,
@@ -67,7 +65,7 @@ class ChannelRepository {
   Future<Channel> updateChannelPermissionOverwrites({
     required Channel channel,
     required List<ChannelPermissionOverwriteEntry> overwrites,
-  }) async {
+  }) {
     final ChannelUpdateRequest body = buildChannelPermissionOverwritesUpdate(
       channel: channel,
       overwrites: overwrites,
@@ -125,7 +123,6 @@ class ChannelRepository {
           ),
         ],
       );
-      unawaited(getChannels(guildId));
     } on DioException catch (e) {
       if (rollbackChannels != null) {
         await applyLocalChannels(guildId, rollbackChannels);

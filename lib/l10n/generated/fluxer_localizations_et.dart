@@ -23,7 +23,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get sessionExpiredToast =>
-      'Your session has expired. Please sign in again.';
+      'Teie sessioon on aegunud. Palun logige uuesti sisse.';
 
   @override
   String splashStartupFailed(String error) {
@@ -698,11 +698,11 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
       'See kutse võib olla aegunud või vigane.';
 
   @override
-  String get invalidDeepLinkTitle => 'Link couldn\'t be opened';
+  String get invalidDeepLinkTitle => 'Linki ei õnnestunud avada';
 
   @override
   String get invalidDeepLinkDescription =>
-      'This link may be broken, only available on the web, or you might not have access. Check the link and try again.';
+      'See link võib olla katki, saadaval ainult veebis, või teil ei ole selleks juurdepääsu. Kontrollige linki ja proovige uuesti.';
 
   @override
   String get invalidDeepLinkGoHomeButton => 'Go to home';
@@ -976,11 +976,11 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get dmUnpinGroupDm => 'Eemalda grupivestluse kinnitus';
 
   @override
-  String get dmUnnamedGroup => 'Unnamed group';
+  String get dmUnnamedGroup => 'Nimetamata grupp';
 
   @override
   String dmOwnersGroup(String resolvedName) {
-    return '$resolvedName\'s group';
+    return '$resolvedName grupp';
   }
 
   @override
@@ -1023,7 +1023,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get dmDebugChannel => 'Debugi kanalit';
 
   @override
-  String get dmDebugCategory => 'Debug Category';
+  String get dmDebugCategory => 'Veaotsingu Kategooria';
 
   @override
   String get dmPinned => 'Kinnitatud vestlus';
@@ -2627,19 +2627,19 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get userProfileAboutMe => 'Minust';
 
   @override
-  String get userProfileLocalTime => 'Local time';
+  String get userProfileLocalTime => 'Kohalik aeg';
 
   @override
-  String get userProfileSameTimeAsYou => 'Same time as you';
+  String get userProfileSameTimeAsYou => 'Samal ajal kui sina';
 
   @override
   String userProfileTimeAheadOfYou(String duration) {
-    return '$duration ahead of you';
+    return '$duration ees sinust';
   }
 
   @override
   String userProfileTimeBehindYou(String duration) {
-    return '$duration behind you';
+    return '$duration taga sinust';
   }
 
   @override
@@ -2647,14 +2647,14 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '$hours hours',
-      one: '1 hour',
+      other: '$hours tundi',
+      one: '1 tund',
     );
     String _temp1 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '$minutes minutes',
-      one: '1 minute',
+      other: '$minutes minutit',
+      one: '1 minut',
     );
     return '$_temp0 $_temp1';
   }
@@ -2664,8 +2664,8 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '$hours hours',
-      one: '1 hour',
+      other: '$hours tundi',
+      one: '1 tund',
     );
     return '$_temp0';
   }
@@ -2675,8 +2675,8 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '$minutes minutes',
-      one: '1 minute',
+      other: '$minutes minutit',
+      one: '1 minut',
     );
     return '$_temp0';
   }
@@ -2922,7 +2922,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get iarContinueToReportCommunity => 'Continue to report community';
 
   @override
-  String get iarPreviewCommunitySubtitle => 'Community';
+  String get iarPreviewCommunitySubtitle => 'Kogukond';
 
   @override
   String get iarReasonHarassmentGuildLabel => 'Harassment or targeted abuse';
@@ -2966,7 +2966,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
       'Community exists to spam, scam, or abuse the platform.';
 
   @override
-  String get iarReasonMalwareGuildLabel => 'Malware distribution';
+  String get iarReasonMalwareGuildLabel => 'Pahavara levitamine';
 
   @override
   String get iarReasonMalwareGuildDescription =>
@@ -4302,11 +4302,11 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
       'Säilita redigeerimisversioon tühistamisel';
 
   @override
-  String get accessibilitySaturationTitle => 'Saturation';
+  String get accessibilitySaturationTitle => 'Küllastus';
 
   @override
   String get accessibilitySaturationDescription =>
-      'Adjust how vivid theme colors appear across the app.';
+      'Kohanda, kui erksad on teema värvid kogu rakenduses.';
 
   @override
   String get accessibilityUnreadGroupTitle => 'Lugemata indikaatorid';
@@ -4356,6 +4356,28 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   @override
   String get accessibilityDmMessagePreviewNoneDescription =>
       'Ära näita sõnumite eelvaateid privaatsõnumite loendis';
+
+  @override
+  String get accessibilityMediaButtonsGroupTitle => 'Media Buttons';
+
+  @override
+  String get accessibilityMediaButtonsGroupDescription =>
+      'Customize which buttons appear on media attachments and embeds.';
+
+  @override
+  String get accessibilityShowMediaDeleteButtonLabel => 'Show delete button';
+
+  @override
+  String get accessibilityShowMediaDownloadButtonLabel =>
+      'Show download button';
+
+  @override
+  String get accessibilityShowMediaFavoriteButtonLabel =>
+      'Show favorite button';
+
+  @override
+  String get accessibilityShowSuppressEmbedsButtonLabel =>
+      'Show suppress embeds button';
 
   @override
   String get dmListSentAnAttachment => 'Saatis manuse';
@@ -4411,77 +4433,77 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   }
 
   @override
-  String get systemCallJoinTheCall => 'Join the call';
+  String get systemCallJoinTheCall => 'Liitu kõnega';
 
   @override
   String systemCallStartedThatLasted(String username, String duration) {
-    return '$username started a call that lasted $duration.';
+    return '$username alustas kõnet, mis kestis $duration.';
   }
 
   @override
   String systemCallMissedWithDuration(String username, String duration) {
-    return 'You missed a call from $username that lasted $duration.';
+    return 'Jäite kõnest kasutajalt $username kõrvale, mis kestis $duration.';
   }
 
   @override
   String systemCallMissed(String username) {
-    return 'You missed a call from $username.';
+    return 'Teil oli vastamata kõne kasutajalt $username.';
   }
 
   @override
-  String get systemCallDurationFewSeconds => 'a few seconds';
+  String get systemCallDurationFewSeconds => 'Mõni sekund';
 
   @override
-  String get systemCallDurationMinute => 'a minute';
+  String get systemCallDurationMinute => 'minut';
 
   @override
-  String get systemCallDurationOneYear => '1 year';
+  String get systemCallDurationOneYear => '1 aasta';
 
   @override
-  String get systemCallDurationOneMonth => '1 month';
+  String get systemCallDurationOneMonth => '1 kuu';
 
   @override
-  String get systemCallDurationOneWeek => '1 week';
+  String get systemCallDurationOneWeek => '1 nädal';
 
   @override
-  String get systemCallDurationOneDay => '1 day';
+  String get systemCallDurationOneDay => '1 päev';
 
   @override
-  String get systemCallDurationOneHour => '1 hour';
+  String get systemCallDurationOneHour => '1 tund';
 
   @override
-  String systemCallDurationYears(String count) {
-    return '$count years';
+  String systemCallDurationYears(int count) {
+    return '$count aastat';
   }
 
   @override
-  String systemCallDurationMonths(String count) {
-    return '$count months';
+  String systemCallDurationMonths(int count) {
+    return '$count kuud';
   }
 
   @override
-  String systemCallDurationWeeks(String count) {
-    return '$count weeks';
+  String systemCallDurationWeeks(int count) {
+    return '$count nädalat';
   }
 
   @override
-  String systemCallDurationDays(String count) {
-    return '$count days';
+  String systemCallDurationDays(int count) {
+    return '$count päeva';
   }
 
   @override
-  String systemCallDurationHours(String count) {
-    return '$count hours';
+  String systemCallDurationHours(int count) {
+    return '$count tundi';
   }
 
   @override
-  String systemCallDurationMinutes(String count) {
-    return '$count minutes';
+  String systemCallDurationMinutes(int count) {
+    return '$count minutit';
   }
 
   @override
   String systemUnknownMessage(String productName) {
-    return 'Update $productName to view this message.';
+    return 'Uuendage $productName, et seda sõnumit vaadata.';
   }
 
   @override
@@ -4510,6 +4532,13 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   @override
   String get voiceConnectionConfirmDoNothing =>
       'Ära tee midagi, ma ei taha liituda';
+
+  @override
+  String get voiceJoinFailedTitle => 'Couldn\'t Join Voice';
+
+  @override
+  String get voiceMultiDeviceDisconnectFailed =>
+      'Couldn\'t disconnect your other devices. Try again in a moment.';
 
   @override
   String get voiceChannelEmptyDescription =>
@@ -4611,7 +4640,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get voiceControlVideo => 'Video';
 
   @override
-  String get voiceControlFlipCamera => 'Flip camera';
+  String get voiceControlFlipCamera => 'Vaheta kaamerat';
 
   @override
   String get voiceControlScreenShare => 'Ekraani jagamine';
@@ -4921,6 +4950,26 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   @override
   String get forwardCommentSlowmodeDisabled =>
       'Kommentaarid pole saadaval, kuna valitud kanalil on aegrežiim lubatud.';
+
+  @override
+  String get shareMediaTitle => 'Share to';
+
+  @override
+  String get shareMediaMessageHint => 'Add an optional message…';
+
+  @override
+  String get shareMediaSendButton => 'Send';
+
+  @override
+  String get shareMediaSuccessToast => 'Media shared';
+
+  @override
+  String shareMediaPartialSuccessToast(int count) {
+    return 'Shared to $count destinations';
+  }
+
+  @override
+  String get shareMediaFailedToast => 'Failed to share media';
 
   @override
   String get forwardDestinationNoSendPermission => 'Siia ei saa sõnumeid saata';
@@ -5361,6 +5410,12 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
       'Kas olete kindel, et soovite selle sõnumi kustutada?';
 
   @override
+  String get chatMessageDeleteAttachment => 'Delete Attachment';
+
+  @override
+  String get chatMessageEditAttachmentAltText => 'Edit Alt Text';
+
+  @override
   String get chatMessageMore => 'Rohkem';
 
   @override
@@ -5574,62 +5629,62 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
       'Kogukonnaga ei saanud liituda. Palun proovige uuesti.';
 
   @override
-  String get addGuildCreateTitle => 'Create a community';
+  String get addGuildCreateTitle => 'Loo kogukond';
 
   @override
   String get addGuildCreateDescription =>
-      'Create a community for you and your friends to chat.';
+      'Loo kogukond, kus sina ja su sõbrad saate suhelda.';
 
   @override
-  String get addGuildCreateNameLabel => 'Community name';
+  String get addGuildCreateNameLabel => 'Kogukonna nimi';
 
   @override
-  String get addGuildCreateSubmit => 'Create community';
+  String get addGuildCreateSubmit => 'Loo kogukond';
 
   @override
   String get addGuildCreateFailed =>
-      'Could not create community. Please try again.';
+      'Ei saanud luua kogukonda. Palun proovi uuesti.';
 
   @override
-  String get addGuildCreateClaimTitle => 'Claim your account';
+  String get addGuildCreateClaimTitle => 'Kinnita oma konto';
 
   @override
   String get addGuildCreateClaimDescription =>
-      'You need to claim your account before you can create a community.';
+      'Peate kinnitama oma konto, enne kui saate kogukonda luua.';
 
   @override
-  String get addGuildCreateVerifyTitle => 'Verify your email';
+  String get addGuildCreateVerifyTitle => 'Kinnitage oma e-post';
 
   @override
   String get addGuildCreateVerifyDescription =>
-      'You need to verify your email address before you can create a community.';
+      'Peate kinnitama oma e-posti aadressi, enne kui saate luua kogukonda.';
 
   @override
   String get addGuildCreateAnimatedIconUnsupported =>
-      'Animated icons are not supported when creating a new community. Use a static image.';
+      'Animeeritud ikoonid ei ole toetatud, kui loote uut kogukonda. Palun kasutage staatilist pilti.';
 
   @override
   String get addGuildCreateGuidelinesBefore =>
-      'By creating a community, you agree to follow and uphold the ';
+      'Kogukonda luues nõustute järgima ja täitma ';
 
   @override
   String addGuildCreateGuidelinesLink(String productName) {
-    return '$productName community guidelines';
+    return '$productName kogukonna reeglid';
   }
 
   @override
   String get addGuildCreateSingleCommunityBlocked =>
-      'This instance is a single community, so additional communities cannot be created.';
+      'See server toetab ainult ühte kogukonda, mistõttu täiendavaid kogukondi luua ei saa.';
 
   @override
-  String get addGuildCreateChangeIcon => 'Change icon';
+  String get addGuildCreateChangeIcon => 'Muutke ikooni';
 
   @override
-  String get addGuildCreateIconLabel => 'Community icon';
+  String get addGuildCreateIconLabel => 'Kogukonna ikoon';
 
   @override
   String get addGuildCreateIconHint =>
-      'PNG, JPEG, WebP, AVIF, HEIC, HEIF, JXL, SVG. Max 10MB. Recommended: 512×512px';
+      'PNG, JPEG, WebP, AVIF, HEIC, HEIF, JXL, SVG. Maksimaalselt 10 MB. Soovitatav: 512×512 px';
 
   @override
   String get addGuildPackInstalled => 'Pakett installitud edukalt.';
@@ -5672,7 +5727,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
       'Kinnitatud sõnumid kuvatakse siin.';
 
   @override
-  String get channelDetailsFallbackTitle => 'Details';
+  String get channelDetailsFallbackTitle => 'Detailid';
 
   @override
   String channelDetailsGroupDmSubtitle(int count) {
@@ -5690,31 +5745,37 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   }
 
   @override
-  String get channelDetailsChannelSettingsTitle => 'Channel settings';
+  String get channelDetailsChannelSettingsTitle => 'Kanali sätted';
 
   @override
-  String get channelDetailsGroupSettingsTitle => 'Group Settings';
+  String get channelDetailsGroupSettingsTitle => 'Grupi sätted';
 
   @override
   String get channelDetailsDmSettingsTitle => 'DM Settings';
 
   @override
-  String get channelDetailsInvitePeople => 'Invite People';
+  String get channelDetailsInvitePeople => 'Kutsu inimesi';
 
   @override
   String get channelDetailsCopyLink => 'Copy Link';
 
   @override
-  String get channelDetailsAddFriendsToGroup => 'Add friends to group';
+  String get channelMenuCopyChannelLink => 'Copy channel link';
 
   @override
-  String get channelDetailsGroupInvites => 'Group invites';
+  String get channelMenuCopyRedirectLink => 'Copy redirect link';
 
   @override
-  String get channelDetailsEditChannel => 'Edit channel';
+  String get channelDetailsAddFriendsToGroup => 'Lisage sõpru gruppi';
 
   @override
-  String get channelDetailsDeleteChannel => 'Delete channel';
+  String get channelDetailsGroupInvites => 'Grupi kutsed';
+
+  @override
+  String get channelDetailsEditChannel => 'Muuda kanalit';
+
+  @override
+  String get channelDetailsDeleteChannel => 'Kustuta kanal';
 
   @override
   String get channelSettingsCategorySettingsTitle => 'Category settings';
@@ -5761,6 +5822,30 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get channelSettingsMyCategory => 'My category';
+
+  @override
+  String get categoryExpandCategory => 'Expand category';
+
+  @override
+  String get categoryCollapseCategory => 'Collapse category';
+
+  @override
+  String get categoryExpandAllCategories => 'Expand all categories';
+
+  @override
+  String get categoryCollapseAllCategories => 'Collapse all categories';
+
+  @override
+  String get categoryMuteCategory => 'Mute category';
+
+  @override
+  String get categoryUnmuteCategory => 'Unmute category';
+
+  @override
+  String get categoryCopyCategoryId => 'Copy category ID';
+
+  @override
+  String get categoryIdCopied => 'Category ID copied';
 
   @override
   String get channelSettingsChannelNamePlaceholder => 'general';
@@ -6164,10 +6249,10 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
       'Try again in a moment.';
 
   @override
-  String get channelMenuOpenChat => 'Open chat';
+  String get channelMenuOpenChat => 'Ava vestlus';
 
   @override
-  String get channelMenuDuplicateChannel => 'Duplicate channel';
+  String get channelMenuDuplicateChannel => 'Dubleeri kanal';
 
   @override
   String get channelMenuResetMatureContentAgreeState =>
@@ -6195,19 +6280,19 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get channelDetailsSystemMessage => 'System message';
 
   @override
-  String get channelDetailsTextChannel => 'Text channel';
+  String get channelDetailsTextChannel => 'Tekstikanal';
 
   @override
-  String get channelDetailsVoiceChannel => 'Voice channel';
+  String get channelDetailsVoiceChannel => 'Häälekanal';
 
   @override
-  String get channelDetailsCategory => 'Category';
+  String get channelDetailsCategory => 'Kategooria';
 
   @override
   String get channelDetailsLinkChannel => 'Link channel';
 
   @override
-  String get channelDetailsGenericChannel => 'Channel';
+  String get channelDetailsGenericChannel => 'Kanal';
 
   @override
   String get channelDetailsMutedConversation => 'Muted conversation';
@@ -6216,7 +6301,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get channelDetailsUnmutedConversation => 'Unmuted conversation';
 
   @override
-  String get channelDetailsMutedChannel => 'Muted channel';
+  String get channelDetailsMutedChannel => 'Vaigistatud kanal';
 
   @override
   String get channelDetailsUnmutedChannel => 'Unmuted channel';
@@ -6523,14 +6608,14 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String groupDmWelcome(String displayName) {
-    return 'Welcome to $displayName. Add friends to get the group going.';
+    return 'Tere tulemast, $displayName. Lisage sõpru, et grupp käima saada.';
   }
 
   @override
-  String get groupDmWelcomeEditGroup => 'Edit group';
+  String get groupDmWelcomeEditGroup => 'Muutke gruppi';
 
   @override
-  String get groupDmWelcomeAddFriends => 'Add friends to group';
+  String get groupDmWelcomeAddFriends => 'Lisage sõpru gruppi';
 
   @override
   String get dmGroupInvites => 'Invites';
@@ -6734,9 +6819,6 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get userSettingsNavGiftsAndCodes => 'Kingitused ja koodid';
 
   @override
-  String get userSettingsNavExpressionPacks => 'Emotsioonipaketid';
-
-  @override
   String get userSettingsNavPrivacyDashboard => 'Privaatsusjuhtpaneel';
 
   @override
@@ -6758,7 +6840,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get userSettingsNavAccessibility => 'Ligipääsetavus';
 
   @override
-  String get userSettingsNavMessagesAndMedia => 'Sõnumid ja meedia';
+  String get userSettingsNavChat => 'Sõnumid ja meedia';
 
   @override
   String get userSettingsNavAudioAndVideo => 'Heli ja video';
@@ -6768,116 +6850,117 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get audioAndVideoAudioSectionDescription =>
-      'Configure your microphone, speakers, and voice processing.';
+      'Konfigureerige oma mikrofon, kõlarid ja häältöötlus.';
 
   @override
   String get audioAndVideoVideoSectionTitle => 'Video';
 
   @override
   String get audioAndVideoVideoSectionDescription =>
-      'Configure your camera and screen sharing quality.';
+      'Seadistage oma kaamera ja ekraanijagamise kvaliteet.';
 
   @override
-  String get audioAndVideoInCallBehaviorSectionTitle => 'In-call behavior';
+  String get audioAndVideoInCallBehaviorSectionTitle => 'Käitumine kõne ajal';
 
   @override
   String get audioAndVideoInCallBehaviorSectionDescription =>
-      'Control confirmation prompts during voice and video calls.';
+      'Hallake kinnitusteateid hääl- ja videokõnede ajal.';
 
   @override
-  String get audioAndVideoInputDeviceLabel => 'Input device';
+  String get audioAndVideoInputDeviceLabel => 'Sisendseade';
 
   @override
-  String get audioAndVideoOutputDeviceLabel => 'Output device';
+  String get audioAndVideoOutputDeviceLabel => 'Väljundseade';
 
   @override
-  String get audioAndVideoDefaultDeviceLabel => 'Default';
+  String get audioAndVideoDefaultDeviceLabel => 'Vaikimisi';
 
   @override
-  String get audioAndVideoUseSpeakerLabel => 'Use speaker';
+  String get audioAndVideoUseSpeakerLabel => 'Kasuta kõlarit';
 
   @override
   String get audioAndVideoUseSpeakerDescription =>
-      'When off, audio plays through the earpiece or connected headphones.';
+      'Kui väljas, mängitakse heli läbi kõrvaklapi või ühendatud kõrvaklappide.';
 
   @override
-  String get audioAndVideoInputVolumeLabel => 'Input volume';
+  String get audioAndVideoInputVolumeLabel => 'Sisendi helitugevus';
 
   @override
-  String get audioAndVideoOutputVolumeLabel => 'Output volume';
+  String get audioAndVideoOutputVolumeLabel => 'Väljundi helitugevus';
 
   @override
-  String get audioAndVideoVoiceProcessingSectionTitle => 'Voice processing';
+  String get audioAndVideoVoiceProcessingSectionTitle => 'Häältöötlus';
 
   @override
-  String get audioAndVideoFocusedVoiceLabel => 'Focused voice';
+  String get audioAndVideoFocusedVoiceLabel => 'Fokuseeritud hääl';
 
   @override
   String get audioAndVideoFocusedVoiceDescription =>
-      'Recommended. Cleans up your mic for clear speech.';
+      'Soovitatav. Puhastab teie mikrofoni selge kõne jaoks.';
 
   @override
-  String get audioAndVideoDirectInputLabel => 'Direct input';
+  String get audioAndVideoDirectInputLabel => 'Otsene sisend';
 
   @override
   String get audioAndVideoDirectInputDescription =>
-      'Sends your audio untouched. Best if you\'re using external audio software.';
+      'Saadab teie heli muutmata kujul. Parim valik, kui kasutate välist audiotarkvara.';
 
   @override
-  String get audioAndVideoCustomProfileLabel => 'Custom';
+  String get audioAndVideoCustomProfileLabel => 'Kohandatud';
 
   @override
   String get audioAndVideoCustomProfileDescription =>
-      'Adjust each setting yourself: noise suppression, echo cancellation, and gain.';
+      'Kohandage iga seadet ise: müra summutamine, kaja kõrvaldamine ja võimendus.';
 
   @override
-  String get audioAndVideoNoiseSuppressionSectionTitle => 'Noise suppression';
+  String get audioAndVideoNoiseSuppressionSectionTitle => 'Müra summutamine';
 
   @override
-  String get audioAndVideoNoiseSuppressionEnhancedLabel => 'Enhanced';
+  String get audioAndVideoNoiseSuppressionEnhancedLabel => 'Täiustatud';
 
   @override
-  String get audioAndVideoNoiseSuppressionStandardLabel => 'Standard';
+  String get audioAndVideoNoiseSuppressionStandardLabel => 'Standardne';
 
   @override
-  String get audioAndVideoNoiseSuppressionNoneLabel => 'None';
+  String get audioAndVideoNoiseSuppressionNoneLabel => 'Puudub';
 
   @override
-  String get audioAndVideoEchoCancellationLabel => 'Echo cancellation';
+  String get audioAndVideoEchoCancellationLabel => 'Kaja kõrvaldamine';
 
   @override
-  String get audioAndVideoAutomaticGainControlLabel => 'Automatic gain control';
+  String get audioAndVideoAutomaticGainControlLabel =>
+      'Automaatne võimenduse reguleerimine';
 
   @override
   String get audioAndVideoAutomaticGainControlDescription =>
-      'Evens out your mic volume. Off when enhanced suppression is on.';
+      'Ühtlustab teie mikrofoni helitugevust. Väljas, kui täiustatud summutamine on sisse lülitatud.';
 
   @override
-  String get audioAndVideoMicTestSectionTitle => 'Mic test';
+  String get audioAndVideoMicTestSectionTitle => 'Mikrofoni test';
 
   @override
   String get audioAndVideoMicTestSectionDescription =>
-      'Listen to how you sound with your current settings.';
+      'Kuulake, kuidas te kõlate praeguste sätetega.';
 
   @override
-  String get audioAndVideoMicTestStartLabel => 'Start mic test';
+  String get audioAndVideoMicTestStartLabel => 'Alustage mikrofoni testi';
 
   @override
-  String get audioAndVideoMicTestStopLabel => 'Stop mic test';
+  String get audioAndVideoMicTestStopLabel => 'Lõpetage mikrofoni testi';
 
   @override
   String audioAndVideoMicTestPermissionRequired(String productName) {
-    return '$productName needs microphone access to test your input.';
+    return '$productName vajab mikrofonile juurdepääsu, et testida teie sisendit.';
   }
 
   @override
-  String get audioAndVideoCameraLabel => 'Camera';
+  String get audioAndVideoCameraLabel => 'Kaamera';
 
   @override
-  String get audioAndVideoMirrorCameraLabel => 'Mirror camera';
+  String get audioAndVideoMirrorCameraLabel => 'Peegelda kaamerapilti';
 
   @override
-  String get audioAndVideoCameraQualitySectionTitle => 'Camera quality';
+  String get audioAndVideoCameraQualitySectionTitle => 'Kaamera kvaliteet';
 
   @override
   String get audioAndVideoCameraQuality480pLabel => '480p';
@@ -6890,10 +6973,10 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String get audioAndVideoScreenShareQualitySectionTitle =>
-      'Screen share quality';
+      'Ekraanijagamise kvaliteet';
 
   @override
-  String get audioAndVideoFrameRateSectionTitle => 'Frame rate';
+  String get audioAndVideoFrameRateSectionTitle => 'Kaadrisagedus';
 
   @override
   String get audioAndVideoFrameRate15Label => '15 FPS';
@@ -6906,83 +6989,293 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
 
   @override
   String audioAndVideoHigherQualityRequiresPremium(String premiumProductName) {
-    return '1080p and 60 FPS require $premiumProductName.';
+    return '1080p ja 60 FPS nõuavad $premiumProductName.';
   }
 
   @override
   String get audioAndVideoInstanceVideoQualityLimit =>
-      'This instance currently allows screen share up to 720p at 30 FPS.';
+      'See server lubab hetkel ekraanijagamist kuni 720p juures 30 FPS-iga.';
 
   @override
   String audioAndVideoMicrophonePermissionRequired(String productName) {
-    return '$productName needs microphone access to list your devices.';
+    return '$productName vajab mikrofonile juurdepääsu, et loetleda teie seadmeid.';
   }
 
   @override
   String audioAndVideoCameraPermissionRequired(String productName) {
-    return '$productName needs camera access to list your devices.';
+    return '$productName vajab kaamerale juurdepääsu, et loetleda teie seadmeid.';
   }
 
   @override
   String get audioAndVideoSkipHideOwnCameraConfirmLabel =>
-      'Don\'t ask when hiding my camera';
+      'Ärge küsige, kui peidan oma kaamera';
 
   @override
   String get audioAndVideoSkipHideOwnScreenshareConfirmLabel =>
-      'Don\'t ask when hiding my screen share';
+      'Ärge küsige, kui peidan oma ekraanijagamise';
 
   @override
-  String get userSettingsNavSoundsAndAlerts => 'Helid ja teavitused';
+  String get userSettingsNavNotifications => 'Notifications';
+
+  @override
+  String get notificationsGeneralSectionTitle => 'General';
+
+  @override
+  String get notificationsEnableNotificationsLabel => 'Enable notifications';
+
+  @override
+  String notificationsEnableNotificationsDescription(String productName) {
+    return 'Get notified when you receive messages. You may need to allow notifications for $productName in your device settings. For per-channel/per-community controls, open notification settings from a community\'s menu.';
+  }
+
+  @override
+  String get notificationsEnableDesktopNotificationsLabel =>
+      'Enable desktop notifications';
+
+  @override
+  String get notificationsEnableDesktopNotificationsDescription =>
+      'Uses the OS notification center. For per-channel/per-community controls, right-click a community icon and open notification settings.';
+
+  @override
+  String get notificationsEnableBrowserNotificationsLabel =>
+      'Enable browser notifications';
+
+  @override
+  String get notificationsEnableBrowserNotificationsDescription =>
+      'Get notified when you receive messages. You may need to allow notifications in your browser settings. For per-channel/per-community controls, right-click a community icon and open notification settings.';
+
+  @override
+  String get notificationsPushInactiveTimeoutLabel =>
+      'Push notification inactive timeout';
+
+  @override
+  String notificationsPushInactiveTimeoutDescription(String productName) {
+    return '$productName avoids sending push notifications to your mobile devices when you are at your computer. Choose how long you need to be inactive on desktop before you receive push notifications.';
+  }
+
+  @override
+  String notificationsPushInactiveTimeoutOneMinute(int oneMinute) {
+    return '$oneMinute minute';
+  }
+
+  @override
+  String notificationsPushInactiveTimeoutMinutes(int minutes) {
+    return '$minutes minutes';
+  }
+
+  @override
+  String get notificationsMentionPreferenceSectionTitle => 'Mention preference';
+
+  @override
+  String get notificationsReplyMentionPreferenceAriaLabel =>
+      'Reply mention preference';
+
+  @override
+  String get notificationsMentionNoPreferenceName => 'No preference';
+
+  @override
+  String get notificationsMentionNoPreferenceDescription =>
+      'Respect the sender\'s intent, with no warning when they toggle the @ mention';
+
+  @override
+  String get notificationsMentionPreferMentionName => 'Prefer @mention';
+
+  @override
+  String get notificationsMentionPreferMentionDescription =>
+      'Default replies to @mention you, and warn the sender if they disable it';
+
+  @override
+  String get notificationsMentionPreferNoMentionName => 'Prefer no @mention';
+
+  @override
+  String get notificationsMentionPreferNoMentionDescription =>
+      'Default replies to omit the @mention, and warn the sender if they enable it';
+
+  @override
+  String get notificationsSoundsSectionTitle => 'Sounds';
+
+  @override
+  String get notificationsMasterVolumeLabel => 'Master volume';
+
+  @override
+  String get notificationsMasterVolumeDescription =>
+      'Sets the level for every sound effect. Per-sound overrides ignore this.';
+
+  @override
+  String get notificationsResetToDefaultVolume => 'Reset to default volume';
+
+  @override
+  String get notificationsDisableAllSoundsLabel =>
+      'Disable all notification sounds';
+
+  @override
+  String get notificationsDisableAllSoundsDescription =>
+      'Your existing notification sound settings will be preserved.';
+
+  @override
+  String get notificationsShowMoreSoundEffects => 'Show more sound effects';
+
+  @override
+  String get notificationsShowFewerSoundEffects => 'Show fewer sound effects';
+
+  @override
+  String get notificationsPreviewSound => 'Preview sound';
+
+  @override
+  String get notificationsPerSoundVolumeTitle => 'Per-sound volume';
+
+  @override
+  String get notificationsPerSoundVolumeDescription =>
+      'Set custom volumes for individual sounds. Sounds without an override follow the master volume.';
+
+  @override
+  String notificationsPerSoundVolumeOverrideDescription(int overrideCount) {
+    return 'Active custom sound volume overrides: $overrideCount.';
+  }
+
+  @override
+  String notificationsFollowingMasterVolume(int effectiveValue) {
+    return 'Following master • $effectiveValue%';
+  }
+
+  @override
+  String notificationsResetSoundToMasterVolume(String label) {
+    return 'Reset $label to master volume';
+  }
+
+  @override
+  String get notificationsResetAllOverrides => 'Reset all overrides';
+
+  @override
+  String notificationsMuteSound(String label) {
+    return 'Mute $label';
+  }
+
+  @override
+  String notificationsUnmuteSound(String label) {
+    return 'Unmute $label';
+  }
+
+  @override
+  String get notificationsSoundMessage => 'Community message notifications';
+
+  @override
+  String get notificationsSoundDirectMessage => 'Direct message notifications';
+
+  @override
+  String get notificationsSoundSameChannelMessage =>
+      'Current channel message notifications';
+
+  @override
+  String get notificationsSoundMute => 'Voice mute';
+
+  @override
+  String get notificationsSoundUnmute => 'Voice unmute';
+
+  @override
+  String get notificationsSoundDeaf => 'Voice deafen';
+
+  @override
+  String get notificationsSoundUndeaf => 'Voice undeafen';
+
+  @override
+  String get notificationsSoundUserJoin => 'User joins channel';
+
+  @override
+  String get notificationsSoundUserLeave => 'User leaves channel';
+
+  @override
+  String get notificationsSoundUserMove => 'User moved channel';
+
+  @override
+  String get notificationsSoundViewerJoin => 'Viewer joins stream';
+
+  @override
+  String get notificationsSoundViewerLeave => 'Viewer leaves stream';
+
+  @override
+  String get notificationsSoundVoiceDisconnect => 'Voice disconnected';
+
+  @override
+  String get notificationsSoundIncomingRing => 'Incoming call';
+
+  @override
+  String get notificationsSoundCameraOn => 'Camera on';
+
+  @override
+  String get notificationsSoundCameraOff => 'Camera off';
+
+  @override
+  String get notificationsSoundScreenShareStart => 'Screen share start';
+
+  @override
+  String get notificationsSoundScreenShareStop => 'Screen share stop';
+
+  @override
+  String get notificationsAfkTimeoutSyncFailed =>
+      'Couldn\'t update push notification timeout. Try again.';
+
+  @override
+  String get notificationsMentionPreferenceSyncFailed =>
+      'Couldn\'t update mention preference. Try again.';
+
+  @override
+  String get notificationsPermissionDeniedTitle => 'Notifications blocked';
+
+  @override
+  String get notificationsEnableNotificationsPermissionDenied =>
+      'Couldn\'t enable notifications. Allow notification permission to continue.';
 
   @override
   String get userSettingsNavLanguageAndTime => 'Keel ja aeg';
 
   @override
-  String get languageAndTimeLanguageSectionTitle => 'Interface language';
+  String get languageAndTimeLanguageSectionTitle => 'Liidese keel';
 
   @override
   String get languageAndTimeLanguageSectionDescription =>
-      'Choose the language used throughout the app';
+      'Valige keel, mida kasutatakse kogu äpis';
 
   @override
-  String get languageAndTimeOpenLanguageSettings => 'Open language settings';
+  String get languageAndTimeOpenLanguageSettings => 'Avage keele sätted';
 
   @override
-  String get languageAndTimeTimeFormatSectionTitle => 'Time format';
+  String get languageAndTimeTimeFormatSectionTitle => 'Aja formaat';
 
   @override
   String get languageAndTimeTimeFormatSectionDescription =>
-      'Choose how times are displayed throughout the app';
+      'Valige, kuidas kellaaegu kogu äpis kuvatakse';
 
   @override
-  String get languageAndTimeTimeFormatSelectionLabel => 'Time format selection';
+  String get languageAndTimeTimeFormatSelectionLabel =>
+      'Kellaajaformaadi valik';
 
   @override
-  String get languageAndTimeTimeFormatAuto => 'Auto';
+  String get languageAndTimeTimeFormatAuto => 'Automaatne';
 
   @override
-  String get languageAndTimeTimeFormat12Hour => '12-hour';
+  String get languageAndTimeTimeFormat12Hour => '12-tunnine';
 
   @override
-  String get languageAndTimeTimeFormat24Hour => '24-hour';
+  String get languageAndTimeTimeFormat24Hour => '24-tunnine';
 
   @override
   String languageAndTimeTimeFormatAppLanguage(String format) {
-    return 'App language: $format';
+    return 'Äpi keel: $format';
   }
 
   @override
   String languageAndTimeTimeFormatSystemLocale(String format) {
-    return 'System locale: $format';
+    return 'Süsteemi keeleseade: $format';
   }
 
   @override
   String get languageAndTimeUseSystemLocaleForTimeFormat =>
-      'Use system locale for time format';
+      'Kasutage kellaajaformaadi jaoks süsteemi keeleseadet';
 
   @override
   String get languageAndTimeTimeFormatSyncFailed =>
-      'Failed to update time format';
+      'Kellaajaformaadi uuendamine ebaõnnestus';
 
   @override
   String get userSettingsNavAdvanced => 'Täpsemalt';
@@ -7199,6 +7492,11 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   @override
   String mentionConfirmHereBody(int count) {
     return 'See teavitab $count võrgus olevat liiget. Jätkata?';
+  }
+
+  @override
+  String mentionConfirmRoleBody(int count, String roleName) {
+    return 'This will notify $count members with the $roleName role. Continue?';
   }
 
   @override

@@ -33,6 +33,8 @@ Stream<List<ChannelCategory>> guildChannelSettingsCategories(
 @riverpod
 class GuildChannelSettingsActions extends _$GuildChannelSettingsActions {
   @override
+  // Action notifier base type for Riverpod mutations.
+  // ignore: avoid_futureor_void
   FutureOr<void> build(String guildId) {}
 
   Future<void> moveChannel({
@@ -41,21 +43,17 @@ class GuildChannelSettingsActions extends _$GuildChannelSettingsActions {
     required List<Channel> optimisticChannels,
   }) async {
     final ChannelRepository repository = ref.read(channelRepositoryProvider);
-    await repository.applyLocalChannels(guildId, optimisticChannels);
-    if (!ref.mounted) {
-      return;
-    }
+    final String targetGuildId = guildId;
+    final keepAlive = ref.keepAlive();
     try {
+      await repository.applyLocalChannels(targetGuildId, optimisticChannels);
       await repository.moveChannel(
-        guildId: guildId,
+        guildId: targetGuildId,
         operation: operation,
         rollbackChannels: currentChannels,
       );
-    } catch (_) {
-      if (!ref.mounted) {
-        return;
-      }
-      rethrow;
+    } finally {
+      keepAlive.close();
     }
   }
 
@@ -63,6 +61,8 @@ class GuildChannelSettingsActions extends _$GuildChannelSettingsActions {
     if (!ref.mounted) {
       return;
     }
+    // Async notifier loading state for void action providers.
+    // ignore: void_checks
     state = const AsyncLoading<void>();
     final AsyncValue<void> result = await AsyncValue.guard(() async {
       await ref
@@ -74,6 +74,8 @@ class GuildChannelSettingsActions extends _$GuildChannelSettingsActions {
     if (!ref.mounted) {
       return;
     }
+    // Async notifier result state for void action providers.
+    // ignore: void_checks
     state = result;
   }
 

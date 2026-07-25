@@ -171,9 +171,12 @@ class MessageItem extends ConsumerStatefulWidget {
   final VoidCallback? onViewReactions;
   final VoidCallback? onReport;
   final ReactionToggleCallback? onReaction;
+  final ValueChanged<Attachment>? onDeleteAttachment;
+  final ValueChanged<Attachment>? onEditAttachmentAltText;
   final bool inboxPreviewMode;
   final bool hideMentionHighlight;
   final bool isJumpHighlighted;
+  final bool isSendDisabled;
 
   /// When set, resolves author guild role highlight for inbox previews
   /// (active guild sheet may differ from the channel's guild).
@@ -199,6 +202,7 @@ class MessageItem extends ConsumerStatefulWidget {
     this.canManageMessages = false,
     this.canSendMessages = true,
     this.isDmChannel = false,
+    this.isSendDisabled = false,
     this.onRetry,
     this.onDeleteFailed,
     this.onDismissClientSystem,
@@ -206,6 +210,8 @@ class MessageItem extends ConsumerStatefulWidget {
     this.onViewReactions,
     this.onReport,
     this.onReaction,
+    this.onDeleteAttachment,
+    this.onEditAttachmentAltText,
     this.inboxPreviewMode = false,
     this.hideMentionHighlight = false,
     this.isJumpHighlighted = false,
@@ -333,6 +339,8 @@ class _MessageItemState extends ConsumerState<MessageItem> {
           context,
           channelId: widget.message.channelId,
         ),
+        onDeleteAttachment: widget.onDeleteAttachment,
+        onEditAttachmentAltText: widget.onEditAttachmentAltText,
       ),
       permissions: MessageActionPermissions(
         isOwnMessage:
@@ -348,6 +356,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         developerMode: ref.read(
           userSettingsViewModelProvider.select((s) => s.developerMode),
         ),
+        isSendDisabled: widget.isSendDisabled,
       ),
     );
   }
@@ -408,8 +417,10 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         userSettingsViewModelProvider.select((s) => s.developerMode),
       ),
       canCreateThread: !widget.isDmChannel && widget.canSendMessages,
+      isSendDisabled: widget.isSendDisabled,
       quickItems: frecent,
       onQuickReaction: _dispatchQuickReaction,
+      attachmentCallbacks: _videoActionScope.callbacks,
     );
     if (!context.mounted) {
       return;
@@ -485,8 +496,8 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       context,
       position: position,
       message: widget.message,
-      isOwnMessage: widget.message.authorId == widget.currentUserId,
-      canDelete: widget.canDelete,
+      permissions: _videoActionScope.permissions,
+      callbacks: _videoActionScope.callbacks,
       onQuickReaction: _dispatchQuickReaction,
       quickItems: frecent,
     );
@@ -849,7 +860,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
           messageNonce: msg.clientNonce,
           channelId: msg.channelId,
           messageFlags: msg.flags,
-          videoActionScope: _videoActionScope,
+          mediaActionScope: _videoActionScope,
         ),
       if (renderEmbeds && !msg.suppressEmbeds)
         ...() {
@@ -1391,6 +1402,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         channelId: channelId,
         messageId: messageId,
         embedIndex: embedIndex,
+        mediaActionScope: _videoActionScope,
       ),
       EmbedType.link => EmbedLink(
         embed: embed,

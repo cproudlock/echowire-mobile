@@ -11,6 +11,7 @@ import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/composer_autocomplete_field.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/message_character_counter.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/expression_picker.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/pickers/forward_destination_avatar.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/picker_search_input.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_providers.dart';
 import 'package:fluxer_app/features/chat/providers/messages/forward_destinations_provider.dart';
@@ -19,7 +20,6 @@ import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_tracker.dar
 import 'package:fluxer_app/features/chat/service/composer_mention_controller.dart';
 import 'package:fluxer_app/features/chat/utils/slowmode_format.dart';
 import 'package:fluxer_app/features/ui/input/fluxer_input_clipboard_scope.dart';
-import 'package:fluxer_app/features/ui/input/inline_token_paste_formatter.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -559,9 +559,6 @@ class _ForwardMessageSheetBodyState
                   textCapitalization: TextCapitalization.sentences,
                   contextMenuBuilder: clipboardScope.buildContextMenu,
                   inputFormatters: <TextInputFormatter>[
-                    ComposerMentionPasteFormatter(
-                      controller: _commentController,
-                    ),
                     LengthLimitingTextInputFormatter(maxMessageLength),
                   ],
                   decoration: InputDecoration(
@@ -687,23 +684,7 @@ class _DestinationTile extends StatelessWidget {
   }
 
   Widget _leading(BuildContext context) {
-    switch (destination.kind) {
-      case ForwardDestinationKind.dm:
-        return FluxerAvatar.user(
-          imageUrl: destination.avatarImageUrl,
-          userId: destination.avatarUserId,
-          fallbackText: destination.displayName,
-          showStatus: false,
-        );
-      case ForwardDestinationKind.group:
-        return const FluxerAvatar.icon(icon: PhosphorIconsFill.usersThree);
-      case ForwardDestinationKind.personalNotes:
-        return const FluxerAvatar.icon(icon: PhosphorIconsFill.note);
-      case ForwardDestinationKind.guildVoice:
-        return const FluxerAvatar.icon(icon: PhosphorIconsFill.speakerHigh);
-      case ForwardDestinationKind.guildText:
-        return const FluxerAvatar.icon(icon: PhosphorIconsRegular.hash);
-    }
+    return ForwardDestinationAvatar(destination: destination);
   }
 
   Widget _checkbox(FluxerColorTheme colors) {

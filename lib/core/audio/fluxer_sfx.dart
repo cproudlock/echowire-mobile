@@ -2,13 +2,21 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:fluxer_app/core/audio/enums/fluxer_sfx_clip.dart';
 
 const double _kDefaultSfxVolume = 0.4;
-final AudioContext _kOneShotSfxContext = AudioContext(
+final AudioContext _kNotificationSfxContext = AudioContext(
   android: const AudioContextAndroid(
     contentType: AndroidContentType.sonification,
     usageType: AndroidUsageType.notificationRingtone,
     audioFocus: AndroidAudioFocus.none,
   ),
   iOS: AudioContextIOS(category: AVAudioSessionCategory.ambient),
+);
+final AudioContext _kSessionFeedbackSfxContext = AudioContext(
+  android: const AudioContextAndroid(
+    contentType: AndroidContentType.sonification,
+    usageType: AndroidUsageType.assistanceSonification,
+    audioFocus: AndroidAudioFocus.none,
+  ),
+  iOS: AudioContextIOS(options: const {AVAudioSessionOptions.mixWithOthers}),
 );
 final AudioContext _kInterruptingIncomingRingContext = AudioContext(
   android: const AudioContextAndroid(
@@ -19,20 +27,47 @@ final AudioContext _kInterruptingIncomingRingContext = AudioContext(
   iOS: AudioContextIOS(category: AVAudioSessionCategory.ambient),
 );
 
+AudioContext _audioContextForClip(
+  FluxerSfxClip clip, {
+  required bool ignoreRingerPolicy,
+  required bool isIncomingRingLoop,
+}) {
+  if (isIncomingRingLoop) {
+    return _kInterruptingIncomingRingContext;
+  }
+  if (ignoreRingerPolicy || !clip.respectsRinger) {
+    return _kSessionFeedbackSfxContext;
+  }
+  return _kNotificationSfxContext;
+}
+
 class FluxerSFX {
-  FluxerSFX() : _loopPlayer = AudioPlayer(), _oneShotPlayer = AudioPlayer();
+  FluxerSFX({AudioPlayer? loopPlayer, AudioPlayer? oneShotPlayer})
+    : _loopPlayer = loopPlayer ?? AudioPlayer(),
+      _oneShotPlayer = oneShotPlayer ?? AudioPlayer();
 
   final AudioPlayer _loopPlayer;
   final AudioPlayer _oneShotPlayer;
   FluxerSfxClip? _activeLoopClip;
   bool _loopPlaybackActive = false;
+  AudioContext? _lastOneShotContext;
+  AudioContext? _lastLoopContext;
 
   Future<void> playOneShot(
     FluxerSfxClip clip, {
     double volume = _kDefaultSfxVolume,
+    bool ignoreRingerPolicy = false,
   }) async {
     try {
-      await _oneShotPlayer.setAudioContext(_kOneShotSfxContext);
+      final AudioContext context = _audioContextForClip(
+        clip,
+        ignoreRingerPolicy: ignoreRingerPolicy,
+        isIncomingRingLoop: false,
+      );
+      if (_lastOneShotContext != context) {
+        await _oneShotPlayer.setAudioContext(context);
+        _lastOneShotContext = context;
+      }
       await _oneShotPlayer.setReleaseMode(ReleaseMode.release);
       await _oneShotPlayer.stop();
       await _oneShotPlayer.setVolume(_clampVolume(volume));
@@ -51,10 +86,14 @@ class FluxerSFX {
     }
     _activeLoopClip = clip;
     try {
-      if (clip == FluxerSfxClip.incomingRing) {
-        await _loopPlayer.setAudioContext(_kInterruptingIncomingRingContext);
-      } else {
-        await _loopPlayer.setAudioContext(_kOneShotSfxContext);
+      final AudioContext context = _audioContextForClip(
+        clip,
+        ignoreRingerPolicy: false,
+        isIncomingRingLoop: clip == FluxerSfxClip.incomingRing,
+      );
+      if (_lastLoopContext != context) {
+        await _loopPlayer.setAudioContext(context);
+        _lastLoopContext = context;
       }
       await _loopPlayer.setReleaseMode(ReleaseMode.loop);
       await _loopPlayer.stop();
@@ -78,6 +117,8 @@ class FluxerSFX {
   }
 
   Future<void> dispose() async {
+    _lastOneShotContext = null;
+    _lastLoopContext = null;
     await _loopPlayer.dispose();
     await _oneShotPlayer.dispose();
   }

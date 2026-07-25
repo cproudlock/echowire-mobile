@@ -33,7 +33,9 @@ void main() {
             MethodCall methodCall,
           ) async {
             if (methodCall.method == 'Clipboard.setData') {
-              clipboardText = methodCall.arguments['text'] as String?;
+              final Map<dynamic, dynamic> args =
+                  methodCall.arguments as Map<dynamic, dynamic>;
+              clipboardText = args['text'] as String?;
             }
             return null;
           });
@@ -50,17 +52,25 @@ void main() {
     });
 
     test('returns false for plain controller', () async {
-      final TextEditingController controller = TextEditingController(
-        text: 'hi',
-      );
-      controller.selection = const TextSelection(
-        baseOffset: 0,
-        extentOffset: 2,
-      );
+      final TextEditingController controller = TextEditingController(text: 'hi')
+        ..selection = const TextSelection(baseOffset: 0, extentOffset: 2);
 
       final bool copied = await copyInlineTokenSelection(controller);
 
       expect(copied, isFalse);
+      controller.dispose();
+    });
+  });
+
+  group('projectedWireLengthAfterPaste', () {
+    test('projects wire length for insertion at caret', () {
+      final EmojiTextEditingController controller = EmojiTextEditingController()
+        ..text = 'hi'
+        ..selection = const TextSelection.collapsed(offset: 2);
+
+      final int projected = projectedWireLengthAfterPaste(controller, ' there');
+
+      expect(projected, 'hi there'.length);
       controller.dispose();
     });
   });
@@ -112,8 +122,7 @@ void main() {
       TestWidgetsFlutterBinding.ensureInitialized();
       final TextEditingController controller = TextEditingController(
         text: 'hello world',
-      );
-      controller.selection = const TextSelection.collapsed(offset: 5);
+      )..selection = const TextSelection.collapsed(offset: 5);
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
           .setMockMethodCallHandler(SystemChannels.platform, (
             MethodCall methodCall,

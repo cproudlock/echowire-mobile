@@ -68,7 +68,7 @@ String? resolveLatestMessageId({
   return null;
 }
 
-Future<String?> resolveLatestMessageIdForChannel(
+Future<({String? id, bool existsInCache})> resolveLatestMessageIdForChannel(
   FluxerDatabase db,
   String channelId, {
   String? channelLastMessageId,
@@ -79,11 +79,12 @@ Future<String?> resolveLatestMessageIdForChannel(
     channelLastExists =
         await db.messageDao.getMessage(channelLastMessageId) != null;
   }
-  return resolveLatestMessageId(
+  final id = resolveLatestMessageId(
     channelLastMessageId: channelLastMessageId,
     cachedLastMessageId: lastCachedMessage?.id,
     channelLastMessageExistsInCache: channelLastExists,
   );
+  return (id: id, existsInCache: channelLastExists);
 }
 
 String? resolveLatestMessageIdForUnread({
@@ -91,15 +92,24 @@ String? resolveLatestMessageIdForUnread({
   required String? channelLastMessageId,
   required String? ackLastMessageId,
   required int mentionCount,
+  bool channelLastMessageExistsInCache = true,
 }) {
   if (strictLatestMessageId != null && strictLatestMessageId.isNotEmpty) {
     if (channelLastMessageId != null &&
         channelLastMessageId.isNotEmpty &&
-        compareSnowflakeIds(strictLatestMessageId, channelLastMessageId) < 0 &&
-        (ackLastMessageId == null ||
-            ackLastMessageId.isEmpty ||
-            compareSnowflakeIds(ackLastMessageId, channelLastMessageId) < 0)) {
-      return channelLastMessageId;
+        compareSnowflakeIds(strictLatestMessageId, channelLastMessageId) < 0) {
+      final ackCaughtUpWithCache =
+          ackLastMessageId == null ||
+          ackLastMessageId.isEmpty ||
+          compareSnowflakeIds(ackLastMessageId, strictLatestMessageId) >= 0;
+      final ackBehindPointer =
+          ackLastMessageId == null ||
+          ackLastMessageId.isEmpty ||
+          compareSnowflakeIds(ackLastMessageId, channelLastMessageId) < 0;
+      if ((channelLastMessageExistsInCache || ackCaughtUpWithCache) &&
+          ackBehindPointer) {
+        return channelLastMessageId;
+      }
     }
     return strictLatestMessageId;
   }
@@ -125,16 +135,17 @@ Future<String?> resolveLatestMessageIdForUnreadDisplay(
   String? ackLastMessageId,
   int mentionCount = 0,
 }) async {
-  final strictLatestMessageId = await resolveLatestMessageIdForChannel(
+  final resolved = await resolveLatestMessageIdForChannel(
     db,
     channelId,
     channelLastMessageId: channelLastMessageId,
   );
   return resolveLatestMessageIdForUnread(
-    strictLatestMessageId: strictLatestMessageId,
+    strictLatestMessageId: resolved.id,
     channelLastMessageId: channelLastMessageId,
     ackLastMessageId: ackLastMessageId,
     mentionCount: mentionCount,
+    channelLastMessageExistsInCache: resolved.existsInCache,
   );
 }
 

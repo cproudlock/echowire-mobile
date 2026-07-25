@@ -6496,10 +6496,6 @@
     "@userSettingsNavGiftsAndCodes": {
         "description": "User settings navigation item for gifts and promo codes."
     },
-    "userSettingsNavExpressionPacks": "Paketi izraza",
-    "@userSettingsNavExpressionPacks": {
-        "description": "User settings navigation item for expression pack settings."
-    },
     "userSettingsNavPrivacyDashboard": "Kontrolna tabla privatnosti",
     "@userSettingsNavPrivacyDashboard": {
         "description": "User settings navigation item for the privacy dashboard."
@@ -6528,17 +6524,13 @@
     "@userSettingsNavAccessibility": {
         "description": "User settings navigation item for accessibility settings."
     },
-    "userSettingsNavMessagesAndMedia": "Poruke i mediji",
-    "@userSettingsNavMessagesAndMedia": {
+    "userSettingsNavChat": "Poruke i mediji",
+    "@userSettingsNavChat": {
         "description": "User settings navigation item for messages and media settings."
     },
     "userSettingsNavAudioAndVideo": "Audio i video",
     "@userSettingsNavAudioAndVideo": {
         "description": "User settings navigation item for audio and video settings."
-    },
-    "userSettingsNavSoundsAndAlerts": "Zvukovi i obaveštenja",
-    "@userSettingsNavSoundsAndAlerts": {
-        "description": "User settings navigation item for sounds and alert settings."
     },
     "userSettingsNavLanguageAndTime": "Jezik i vreme",
     "@userSettingsNavLanguageAndTime": {

@@ -11,6 +11,7 @@ import 'package:fluxer_app/core/permissions/channel_effective_permissions.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
 import 'package:fluxer_app/core/providers/app_ui_lifecycle_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
+import 'package:fluxer_app/core/providers/gateway_ready_provider.dart';
 import 'package:fluxer_app/core/providers/gateway_session_recovery_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/talker.dart';
@@ -20,8 +21,10 @@ import 'package:fluxer_app/features/channels/data/unread_permission_utils.dart';
 import 'package:fluxer_app/features/channels/data/unread_settings_resolver.dart';
 import 'package:fluxer_app/features/channels/providers/ack_batcher_provider.dart';
 import 'package:fluxer_app/features/channels/providers/read_state_repository_provider.dart';
+import 'package:fluxer_app/features/chat/data/message_repository.dart';
 import 'package:fluxer_app/features/chat/domain/favorite_meme.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
+import 'package:fluxer_app/features/chat/domain/message_attachment_update.dart';
 import 'package:fluxer_app/features/chat/domain/message_upload_send_cancelled_exception.dart';
 import 'package:fluxer_app/features/chat/domain/message_window.dart';
 import 'package:fluxer_app/features/chat/domain/pending_attachment.dart';
@@ -60,7 +63,7 @@ import 'package:fluxer_app/features/guilds/services/guild_verification.dart';
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
 import 'package:fluxer_app/features/ui/input/inline_token_clipboard.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
-import 'package:fluxer_app/l10n/fluxer_localizations_utils.dart';
+import 'package:fluxer_app/l10n/app_locale_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/shared/utils/emoji_registry.dart';
 import 'package:fluxer_app/shared/utils/guild_member_prefetch.dart';
@@ -71,6 +74,7 @@ part 'chat_view_model.g.dart';
 
 const _kPageSize = 30;
 const _kInitialPageSize = 50;
+const _kJumpToPresentPageSize = 50;
 const Duration _kChannelNetworkRefreshTtl = Duration(seconds: 30);
 const _kReadAckMinInterval = Duration(seconds: 1);
 const _kDraftSaveDebounce = Duration(milliseconds: 400);
@@ -254,12 +258,16 @@ class ChatViewModel extends _$ChatViewModel {
   Timer? _jumpHighlightTimer;
   final Set<String> _loadedUnreadBoundaryKeys = <String>{};
   final _WindowContiguity _contiguity = _WindowContiguity();
+  bool _contiguityTrusted = false;
   void Function()? _removeReadAckStateListener;
   bool _autoAckEligible = false;
   int _foregroundResyncGeneration = 0;
+  int _connectivityGapGeneration = 0;
   final Map<String, int> _lastReconciledGatewayGenerationByChannel =
       <String, int>{};
   final Map<String, int> _lastReconciledForegroundGenerationByChannel =
+      <String, int>{};
+  final Map<String, int> _lastReconciledConnectivityGapGenerationByChannel =
       <String, int>{};
   // Guards against duplicate sends when send is triggered repeatedly before an
   // in-flight send finishes its async preparation (e.g. while the app lags).
@@ -293,15 +301,23 @@ class ChatViewModel extends _$ChatViewModel {
         chatReadViewportProvider,
         (_, next) => _syncReadAckEligibility(next),
       )
+      ..listen<bool>(gatewayReadyProvider, (bool? previous, bool next) {
+        if ((previous ?? false) && !next) {
+          _connectivityGapGeneration++;
+          _invalidateMessageCacheTrust();
+        }
+      })
       ..listen<int>(gatewaySessionRecoveryProvider, (int? previous, int next) {
         if (next <= 0 || previous == next) {
           return;
         }
+        _invalidateMessageCacheTrust();
         _onSessionNeedsMessageResync();
       })
       ..listen<bool>(appUiForegroundProvider, (bool? previous, bool next) {
         if (previous == false && next) {
           _foregroundResyncGeneration++;
+          _invalidateMessageCacheTrust();
           _onSessionNeedsMessageResync();
         }
       })
@@ -524,13 +540,13 @@ class ChatViewModel extends _$ChatViewModel {
           messages: messages,
           embeddedReplyParents: embeddedReplyParents,
         );
-    unawaited(_prefetchMessageAuthors(channelId, messages));
   }
 
-  Future<void> _prefetchMessageAuthors(
+  Future<void> _hydrateGuildMembersForMessages(
     String channelId,
-    List<Message> messages,
-  ) async {
+    List<Message> messages, {
+    List<Message> embeddedReplyParents = const <Message>[],
+  }) async {
     if (messages.isEmpty) {
       return;
     }
@@ -542,10 +558,28 @@ class ChatViewModel extends _$ChatViewModel {
     if (guildId == null || guildId.isEmpty) {
       return;
     }
-    await prefetchGuildMembersForMessages(
+    await hydrateGuildMembersForMessages(
       ref: ref,
       guildId: guildId,
       messages: messages,
+      embeddedReplyParents: embeddedReplyParents,
+    );
+  }
+
+  Future<void> _onMessageBatchLoaded({
+    required String channelId,
+    required List<Message> messages,
+    List<Message> embeddedReplyParents = const <Message>[],
+  }) async {
+    await _hydrateGuildMembersForMessages(
+      channelId,
+      messages,
+      embeddedReplyParents: embeddedReplyParents,
+    );
+    _notifyMessageReferencesLoaded(
+      channelId: channelId,
+      messages: messages,
+      embeddedReplyParents: embeddedReplyParents,
     );
   }
 
@@ -828,6 +862,7 @@ class ChatViewModel extends _$ChatViewModel {
   }
 
   void highlightJumpMessage(String messageId) {
+    talker.debug('[ChatViewModel] highlightJumpMessage $messageId');
     _jumpHighlightTimer?.cancel();
     _jumpHighlightTimer = null;
     final int sequence = state.jumpHighlightSequence + 1;
@@ -866,6 +901,10 @@ class ChatViewModel extends _$ChatViewModel {
     String? targetMessageId,
     bool loadMessages = true,
   }) async {
+    talker.debug(
+      '[ChatViewModel] switchChannel channel=$channelId '
+      'target=$targetMessageId load=$loadMessages',
+    );
     final Stopwatch switchStopwatch = Stopwatch()..start();
     if (state.channelId == channelId &&
         targetMessageId != null &&
@@ -956,6 +995,9 @@ class ChatViewModel extends _$ChatViewModel {
         if (state.channelId == channelId &&
             state.isLoading &&
             !isChannelChange) {
+          talker.debug(
+            '[ChatViewModel] target load already in progress channel=$channelId',
+          );
           return;
         }
         if (state.channelId == channelId &&
@@ -963,6 +1005,10 @@ class ChatViewModel extends _$ChatViewModel {
             !state.isLoading &&
             !state.isSyncingMessages &&
             state.messages.any((Message m) => m.id == targetMessageId)) {
+          talker.debug(
+            '[ChatViewModel] target already in memory channel=$channelId '
+            'target=$targetMessageId',
+          );
           highlightJumpMessage(targetMessageId);
           scrollToMessage(targetMessageId);
           return;
@@ -987,7 +1033,16 @@ class ChatViewModel extends _$ChatViewModel {
           shouldApplyResult: isCurrentSwitch,
         );
         if (isCurrentSwitch() && state.channelId == channelId) {
+          talker.debug(
+            '[ChatViewModel] target loaded; scrollToMessage '
+            'channel=$channelId target=$targetMessageId',
+          );
           scrollToMessage(targetMessageId);
+        } else {
+          talker.debug(
+            '[ChatViewModel] target load superseded; skip scroll '
+            'channel=$channelId target=$targetMessageId',
+          );
         }
         return;
       }
@@ -1011,8 +1066,12 @@ class ChatViewModel extends _$ChatViewModel {
             channelId,
             limit: _kInitialPageSize,
             shouldApplyResult: isCurrentSwitch,
+            isDirectLatestLoad: false,
             preserveLoadedWindow: true,
           ).whenComplete(() {
+            if (!ref.mounted) {
+              return;
+            }
             if (isCurrentSwitch() && state.channelId == channelId) {
               _markMessagesReconciled(channelId);
             }
@@ -1033,26 +1092,32 @@ class ChatViewModel extends _$ChatViewModel {
         final bool willRefresh = _shouldRefreshChannelFromNetwork(channelId);
         state = _switchedChannelState(
           channelId: channelId,
-          messages: cached,
+          messages: willRefresh ? const [] : cached,
           draft: draft,
           replyMentioning: replyMentioning,
           scrollToBottomSignal: state.scrollToBottomSignal,
-          isLoading: false,
-          isSyncingMessages: willRefresh,
+          isLoading: willRefresh,
+          isSyncingMessages: false,
           isLoadingMore: false,
           isLoadingNewer: false,
           hasMoreMessages: cached.length >= _kPageSize,
           hasMoreNewerMessages: false,
         );
-        _contiguity.invalidate();
-        _deferMessageReferencesLoaded(channelId: channelId, messages: cached);
+        _invalidateMessageCacheTrust();
+        if (!willRefresh) {
+          _deferMessageReferencesLoaded(channelId: channelId, messages: cached);
+        }
         if (willRefresh) {
           unawaited(
             _refreshMessagesFromNetwork(
               channelId,
               limit: _kInitialPageSize,
+              isDirectLatestLoad: true,
               shouldApplyResult: isCurrentSwitch,
             ).whenComplete(() {
+              if (!ref.mounted) {
+                return;
+              }
               if (isCurrentSwitch() && state.channelId == channelId) {
                 _markMessagesReconciled(channelId);
               }
@@ -1093,6 +1158,7 @@ class ChatViewModel extends _$ChatViewModel {
         showLoadingSpinner: true,
         limit: _kInitialPageSize,
         aroundMessageId: aroundUnreadId,
+        isDirectLatestLoad: aroundUnreadId == null,
         shouldApplyResult: isCurrentSwitch,
       );
     } finally {
@@ -1108,14 +1174,14 @@ class ChatViewModel extends _$ChatViewModel {
     required List<Message> messages,
     List<Message>? embeddedReplyParents,
   }) {
-    scheduleMicrotask(() {
+    scheduleMicrotask(() async {
       if (state.channelId != channelId) {
         return;
       }
-      _notifyMessageReferencesLoaded(
+      await _onMessageBatchLoaded(
         channelId: channelId,
         messages: messages,
-        embeddedReplyParents: embeddedReplyParents ?? const [],
+        embeddedReplyParents: embeddedReplyParents ?? const <Message>[],
       );
     });
   }
@@ -1146,6 +1212,7 @@ class ChatViewModel extends _$ChatViewModel {
       await _refreshMessagesFromNetwork(
         channelId,
         limit: _kInitialPageSize,
+        isDirectLatestLoad: false,
         preserveLoadedWindow: state.messages.isNotEmpty,
       );
       if (state.channelId == channelId) {
@@ -1175,6 +1242,7 @@ class ChatViewModel extends _$ChatViewModel {
     await _refreshMessagesFromNetwork(
       channelId,
       targetMessageId: targetMessageId,
+      isDirectLatestLoad: false,
       showLoadingSpinner: true,
       shouldApplyResult: shouldApplyResult,
     );
@@ -1182,6 +1250,7 @@ class ChatViewModel extends _$ChatViewModel {
 
   Future<void> _refreshMessagesFromNetwork(
     String channelId, {
+    required bool isDirectLatestLoad,
     String? targetMessageId,
     String? aroundMessageId,
     bool showLoadingSpinner = false,
@@ -1204,12 +1273,33 @@ class ChatViewModel extends _$ChatViewModel {
     try {
       final String? effectiveAroundMessageId =
           targetMessageId ?? aroundMessageId;
+      final int effectiveLimit = limit;
       final repo = ref.read(messageRepositoryProvider);
-      final page = await repo.loadMessagePage(
-        channelId: channelId,
-        around: effectiveAroundMessageId,
-        limit: limit,
-      );
+      MessageListLoadResult page;
+      if (preserveLoadedWindow &&
+          state.messages.isNotEmpty &&
+          effectiveAroundMessageId == null) {
+        final List<VisibleWindowReconcileParams> windowParamsList =
+            reconcileParamsListForVisibleWindow(window: state.messages);
+        if (windowParamsList.isNotEmpty) {
+          page = await _loadReconcilePages(
+            repo: repo,
+            channelId: channelId,
+            paramsList: windowParamsList,
+          );
+        } else {
+          page = await repo.loadMessagePage(
+            channelId: channelId,
+            limit: effectiveLimit,
+          );
+        }
+      } else {
+        page = await repo.loadMessagePage(
+          channelId: channelId,
+          around: effectiveAroundMessageId,
+          limit: effectiveLimit,
+        );
+      }
       if (state.channelId != channelId || !shouldApply()) {
         return;
       }
@@ -1243,9 +1333,31 @@ class ChatViewModel extends _$ChatViewModel {
               syncBaselineOldestId: syncBaselineOldestId,
             );
       final String? mergedServerTailId = newestServerBackedMessageId(merged);
+      // Only direct latest-page loads can prove that a short page reaches the
+      // live tail. Reconcile and around-window pages must still consult the
+      // channel pointer so detached windows remain detached.
+      final bool shouldConsultPointer =
+          !isDirectLatestLoad || page.messages.length >= limit;
+      final bool isSealedLatestTail =
+          isDirectLatestLoad && page.messages.length < effectiveLimit;
       final bool hasMoreNewer =
+          shouldConsultPointer &&
           mergedServerTailId != null &&
-          await _hasNewerMessagesThanChannel(mergedServerTailId);
+          await _hasNewerMessagesThanChannel(
+            mergedServerTailId,
+            sealedTail: isSealedLatestTail,
+            knownLoadedMessageIds: merged
+                .map((Message message) => message.id)
+                .toSet(),
+          );
+      if (state.channelId != channelId || !shouldApply()) {
+        return;
+      }
+      await _hydrateGuildMembersForMessages(
+        channelId,
+        merged,
+        embeddedReplyParents: page.embeddedReplyParents,
+      );
       if (state.channelId != channelId || !shouldApply()) {
         return;
       }
@@ -1253,7 +1365,7 @@ class ChatViewModel extends _$ChatViewModel {
       // can be shorter than [limit] while older history still exists.
       final bool hasMoreOlder = preserveLoadedWindow
           ? state.hasMoreMessages
-          : page.messages.length >= limit ||
+          : page.messages.length >= effectiveLimit ||
                 (effectiveAroundMessageId != null && page.messages.isNotEmpty);
       state = state.copyWith(
         messages: merged,
@@ -1267,6 +1379,7 @@ class ChatViewModel extends _$ChatViewModel {
       if (!preserveLoadedWindow) {
         _contiguity.setVerified(channelId, page.messages);
       }
+      _contiguityTrusted = true;
       _notifyMessageReferencesLoaded(
         channelId: channelId,
         messages: merged,
@@ -1276,18 +1389,48 @@ class ChatViewModel extends _$ChatViewModel {
         _markChannelNetworkRefresh(channelId);
         _markMessagesReconciled(channelId);
         await _onMessagesLoaded(channelId);
+        if (isDirectLatestLoad && page.messages.length < effectiveLimit) {
+          await _reconcileReadStateAfterLatestLoad(channelId);
+        }
       }
     } on Exception catch (e) {
       debugPrint('[ChatViewModel] Failed to load messages: $e');
       if (state.channelId != channelId || !shouldApply()) {
         return;
       }
+      final bool hasCachedMessages = state.messages.isNotEmpty;
       state = state.copyWith(
         isLoading: false,
         isSyncingMessages: false,
-        messageLoadFailed: state.messages.isEmpty,
+        messageLoadFailed: !hasCachedMessages,
+        errorMessage: hasCachedMessages ? 'Failed to sync messages' : null,
       );
     }
+  }
+
+  Future<MessageListLoadResult> _loadReconcilePages({
+    required MessageRepository repo,
+    required String channelId,
+    required List<VisibleWindowReconcileParams> paramsList,
+  }) async {
+    List<Message> networkMessages = const <Message>[];
+    List<Message> embeddedReplyParents = const <Message>[];
+    for (final VisibleWindowReconcileParams params in paramsList) {
+      final MessageListLoadResult result = await repo.loadMessagePage(
+        channelId: channelId,
+        around: params.aroundId,
+        limit: params.limit,
+      );
+      networkMessages = mergeMessagesSorted(networkMessages, result.messages);
+      embeddedReplyParents = mergeMessagesSorted(
+        embeddedReplyParents,
+        result.embeddedReplyParents,
+      );
+    }
+    return MessageListLoadResult(
+      messages: networkMessages,
+      embeddedReplyParents: embeddedReplyParents,
+    );
   }
 
   Future<bool> _channelHasNewUnreadMessages(String channelId) async {
@@ -1365,6 +1508,39 @@ class ChatViewModel extends _$ChatViewModel {
     }
   }
 
+  Future<void> _reconcileReadStateAfterLatestLoad(String channelId) async {
+    if (state.channelId != channelId || !ref.mounted) {
+      return;
+    }
+    final repository = ref.read(readStateRepositoryProvider);
+    await repository.recomputeMentionsAfterBackfill(
+      channelId: channelId,
+      currentUserId: ref.read(currentUserIdProvider),
+      allowDecrease: true,
+    );
+    if (state.channelId != channelId || !ref.mounted) {
+      return;
+    }
+    final database = ref.read(fluxerDatabaseProvider);
+    final readState = await database.readStateDao.getReadState(channelId);
+    if ((readState?.mentionCount ?? 0) > 0 || (readState?.manual ?? false)) {
+      return;
+    }
+    final ackMessageId = readState?.lastMessageId;
+    if (ackMessageId == null || ackMessageId.isEmpty) {
+      return;
+    }
+    final messagesAfterAck = await database.messageDao.getMessagesAfter(
+      channelId,
+      ackMessageId,
+      limit: 1,
+    );
+    if (messagesAfterAck.isNotEmpty) {
+      return;
+    }
+    await repository.applyLocalAckLatest(channelId);
+  }
+
   Future<void> loadMore() async {
     if (state.isLoadingMore ||
         !state.hasMoreMessages ||
@@ -1378,7 +1554,9 @@ class ChatViewModel extends _$ChatViewModel {
     try {
       final repo = ref.read(messageRepositoryProvider);
       talker.debug('[ChatPagination] older request oldest=$requestedBeforeId');
-      if (_contiguity.verified &&
+      if (_contiguityTrusted &&
+          !_messagesNeedResync(channelId) &&
+          _contiguity.verified &&
           _contiguity.channelId == channelId &&
           canServeOlderFromCache(
             windowOldestId: requestedBeforeId,
@@ -1417,9 +1595,11 @@ class ChatViewModel extends _$ChatViewModel {
                 hasMoreMessages: window.hasMoreOlder,
                 hasMoreNewerMessages: window.hasMoreNewer,
               );
-              _notifyMessageReferencesLoaded(
-                channelId: channelId,
-                messages: olderInRange,
+              unawaited(
+                _onMessageBatchLoaded(
+                  channelId: channelId,
+                  messages: olderInRange,
+                ),
               );
               return;
           }
@@ -1451,6 +1631,7 @@ class ChatViewModel extends _$ChatViewModel {
           if (page.messages.isNotEmpty) {
             _contiguity.extendOlder(channelId, page.messages.first.id);
           }
+          _contiguityTrusted = true;
           state = state.copyWith(
             messages: window.messages,
             isLoadingMore: false,
@@ -1461,10 +1642,12 @@ class ChatViewModel extends _$ChatViewModel {
             '[ChatPagination] older loaded count=${page.messages.length} '
             'hasMore=${window.hasMoreOlder}',
           );
-          _notifyMessageReferencesLoaded(
-            channelId: channelId,
-            messages: page.messages,
-            embeddedReplyParents: page.embeddedReplyParents,
+          unawaited(
+            _onMessageBatchLoaded(
+              channelId: channelId,
+              messages: page.messages,
+              embeddedReplyParents: page.embeddedReplyParents,
+            ),
           );
       }
     } on Exception catch (e) {
@@ -1496,7 +1679,9 @@ class ChatViewModel extends _$ChatViewModel {
     try {
       final repo = ref.read(messageRepositoryProvider);
       talker.debug('[ChatPagination] newer request newest=$requestedAfterId');
-      if (_contiguity.verified &&
+      if (_contiguityTrusted &&
+          !_messagesNeedResync(channelId) &&
+          _contiguity.verified &&
           _contiguity.channelId == channelId &&
           canServeNewerFromCache(
             windowNewestId: requestedAfterId,
@@ -1512,7 +1697,10 @@ class ChatViewModel extends _$ChatViewModel {
         final newerInRange = cachedPage
             .where((m) => compareSnowflakeIds(m.id, _contiguity.newestId) <= 0)
             .toList();
-        if (newerInRange.isNotEmpty) {
+        if (newerInRange.isNotEmpty &&
+            newerInRange.length == cachedPage.length) {
+          // A partial cache page means the contiguity filter clipped verified-
+          // local rows; fall through to network instead of sealing the tail.
           final bool pageIndicatesMoreNewer =
               await _hasNewerMessagesThanChannel(newerInRange.last.id);
           if (state.channelId != channelId) {
@@ -1540,9 +1728,11 @@ class ChatViewModel extends _$ChatViewModel {
                 hasMoreMessages: window.hasMoreOlder,
                 hasMoreNewerMessages: window.hasMoreNewer,
               );
-              _notifyMessageReferencesLoaded(
-                channelId: channelId,
-                messages: window.messages,
+              unawaited(
+                _onMessageBatchLoaded(
+                  channelId: channelId,
+                  messages: window.messages,
+                ),
               );
               return;
           }
@@ -1555,6 +1745,8 @@ class ChatViewModel extends _$ChatViewModel {
       if (state.channelId != channelId) {
         return;
       }
+      // Short network page seals the server tail; full pages re-check the
+      // channel pointer (orphaned high pointers must not keep hasMoreNewer).
       final bool pageIndicatesMoreNewer =
           page.messages.length >= _kPageSize &&
           await _hasNewerMessagesThanChannel(page.messages.last.id);
@@ -1580,6 +1772,7 @@ class ChatViewModel extends _$ChatViewModel {
           if (page.messages.isNotEmpty) {
             _contiguity.extendNewer(channelId, page.messages.last.id);
           }
+          _contiguityTrusted = true;
           state = state.copyWith(
             messages: window.messages,
             isLoadingNewer: false,
@@ -1590,10 +1783,12 @@ class ChatViewModel extends _$ChatViewModel {
             '[ChatPagination] newer loaded count=${page.messages.length} '
             'hasMore=${window.hasMoreNewer}',
           );
-          _notifyMessageReferencesLoaded(
-            channelId: channelId,
-            messages: window.messages,
-            embeddedReplyParents: page.embeddedReplyParents,
+          unawaited(
+            _onMessageBatchLoaded(
+              channelId: channelId,
+              messages: window.messages,
+              embeddedReplyParents: page.embeddedReplyParents,
+            ),
           );
       }
     } on Exception catch (e) {
@@ -1632,14 +1827,20 @@ class ChatViewModel extends _$ChatViewModel {
       scrollToBottom();
       return true;
     }
-    if (state.isSyncingMessages || state.isLoading) {
+    if (state.isSyncingMessages ||
+        state.isLoading ||
+        state.isLoadingMore ||
+        state.isLoadingNewer) {
       return false;
     }
     state = state.copyWith(isSyncingMessages: true);
     try {
       final page = await ref
           .read(messageRepositoryProvider)
-          .loadMessagePage(channelId: channelId);
+          .loadMessagePage(
+            channelId: channelId,
+            limit: _kJumpToPresentPageSize,
+          );
       if (state.channelId != channelId) {
         return false;
       }
@@ -1650,12 +1851,21 @@ class ChatViewModel extends _$ChatViewModel {
         pendingLocal,
         page.messages,
       );
+      _contiguity.setVerified(channelId, page.messages);
+      _contiguityTrusted = true;
+      await _hydrateGuildMembersForMessages(
+        channelId,
+        merged,
+        embeddedReplyParents: page.embeddedReplyParents,
+      );
+      if (state.channelId != channelId) {
+        return false;
+      }
       state = state.copyWith(
         messages: merged,
-        hasMoreMessages: page.messages.length >= _kPageSize,
+        hasMoreMessages: page.messages.length >= _kJumpToPresentPageSize,
         hasMoreNewerMessages: false,
       );
-      _contiguity.setVerified(channelId, page.messages);
       _notifyMessageReferencesLoaded(
         channelId: channelId,
         messages: merged,
@@ -1673,7 +1883,11 @@ class ChatViewModel extends _$ChatViewModel {
     }
   }
 
-  Future<bool> _hasNewerMessagesThanChannel(String messageId) async {
+  Future<bool> _hasNewerMessagesThanChannel(
+    String messageId, {
+    bool sealedTail = false,
+    Set<String>? knownLoadedMessageIds,
+  }) async {
     final db.Channel? channel = await ref
         .read(fluxerDatabaseProvider)
         .channelDao
@@ -1682,7 +1896,56 @@ class ChatViewModel extends _$ChatViewModel {
     if (lastMessageId == null || lastMessageId.isEmpty) {
       return false;
     }
-    return compareSnowflakeIds(lastMessageId, messageId) > 0;
+    if (compareSnowflakeIds(lastMessageId, messageId) <= 0) {
+      return false;
+    }
+    if (knownLoadedMessageIds?.contains(lastMessageId) ?? false) {
+      return true;
+    }
+    final database = ref.read(fluxerDatabaseProvider);
+    final pointerExists =
+        await database.messageDao.getMessage(lastMessageId) != null;
+    if (pointerExists) {
+      return true;
+    }
+    if (sealedTail) {
+      return false;
+    }
+    final readState = await database.readStateDao.getReadState(state.channelId);
+    final String? ackMessageId = readState?.lastMessageId;
+    if (ackMessageId != null &&
+        ackMessageId.isNotEmpty &&
+        compareSnowflakeIds(ackMessageId, messageId) >= 0) {
+      return false;
+    }
+    return true;
+  }
+
+  /// Live-tail ack target: max(visibleTail, channel.lastMessageId) for web parity.
+  Future<String> _liveTailAckTargetId({
+    required String channelId,
+    required String visibleTailId,
+  }) async {
+    final database = ref.read(fluxerDatabaseProvider);
+    final db.Channel? channel = await database.channelDao.getChannelById(
+      channelId,
+    );
+    final db.DmChannel? dm = channel == null
+        ? await database.dmChannelDao.getDmChannelById(channelId)
+        : null;
+    final String? pointer = channel?.lastMessageId ?? dm?.lastMessageId;
+    if (pointer == null || pointer.isEmpty) {
+      return visibleTailId;
+    }
+    if (compareSnowflakeIds(pointer, visibleTailId) <= 0) {
+      return visibleTailId;
+    }
+    if (channelId == state.channelId &&
+        state.messages.any((Message message) => message.id == pointer)) {
+      return pointer;
+    }
+    final pointerExists = await database.messageDao.getMessage(pointer) != null;
+    return pointerExists ? pointer : visibleTailId;
   }
 
   Future<void> ackCurrentChannel({bool force = false}) async {
@@ -1695,6 +1958,17 @@ class ChatViewModel extends _$ChatViewModel {
     }
     final String? visibleTailId = newestServerBackedMessageId(state.messages);
     if (!force && visibleTailId == null) {
+      if (!state.hasMoreNewerMessages) {
+        final database = ref.read(fluxerDatabaseProvider);
+        final readState = await database.readStateDao.getReadState(channelId);
+        if (readState != null &&
+            !readState.manual &&
+            (readState.lastMessageId?.isNotEmpty ?? false)) {
+          await ref
+              .read(readStateRepositoryProvider)
+              .applyLocalAckLatest(channelId);
+        }
+      }
       return;
     }
     final now = DateTime.now();
@@ -1754,9 +2028,18 @@ class ChatViewModel extends _$ChatViewModel {
         }
       }
       final repository = ref.read(readStateRepositoryProvider);
+      // Web acks the channel last_message_id pointer at live tail. Equal to the
+      // visible id normally; when the pointer is an orphaned high id, acking it
+      // clears stuck unread the way desktop does.
+      final String? ackTargetId = force
+          ? null
+          : await _liveTailAckTargetId(
+              channelId: channelId,
+              visibleTailId: visibleTailId!,
+            );
       final String? ackedMessageId = force
           ? await repository.applyLocalAckLatest(channelId)
-          : await repository.applyLocalAckUpTo(channelId, visibleTailId!);
+          : await repository.applyLocalAckUpTo(channelId, ackTargetId!);
       if (ackedMessageId != null) {
         ref
             .read(ackBatcherProvider)
@@ -2121,9 +2404,7 @@ class ChatViewModel extends _$ChatViewModel {
     if (claimed.isEmpty) {
       return;
     }
-    final FluxerLocalizations l10n = lookupFluxerLocalizationsWithFallback(
-      PlatformDispatcher.instance.locale,
-    );
+    final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
     final List<Attachment> optimisticAttachments =
         buildUploadingPlaceholderAttachments(
           claimed: claimed,
@@ -2281,9 +2562,7 @@ class ChatViewModel extends _$ChatViewModel {
     if (hasPendingAttachments) {
       uploadNotifier.claimForMessage(clientNonce);
     }
-    final FluxerLocalizations l10n = lookupFluxerLocalizationsWithFallback(
-      PlatformDispatcher.instance.locale,
-    );
+    final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
     final List<Attachment> optimisticAttachments = hasPendingAttachments
         ? buildUploadingPlaceholderAttachments(
             claimed: pendingAttachments,
@@ -2504,9 +2783,7 @@ class ChatViewModel extends _$ChatViewModel {
       case _SendBlockReason.empty:
         return;
       case _SendBlockReason.noPermission:
-        final FluxerLocalizations l10n = lookupFluxerLocalizationsWithFallback(
-          PlatformDispatcher.instance.locale,
-        );
+        final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
         ref
             .read(toastProvider.notifier)
             .show(
@@ -2520,9 +2797,7 @@ class ChatViewModel extends _$ChatViewModel {
         if (blockReason == null) {
           return;
         }
-        final FluxerLocalizations l10n = lookupFluxerLocalizationsWithFallback(
-          PlatformDispatcher.instance.locale,
-        );
+        final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
         ref
             .read(toastProvider.notifier)
             .show(
@@ -2534,9 +2809,7 @@ class ChatViewModel extends _$ChatViewModel {
       case _SendBlockReason.slowmode:
         ref.read(slowmodeIndicatorShakeProvider.notifier).requestShake();
       case _SendBlockReason.channelNotReady:
-        final FluxerLocalizations l10n = lookupFluxerLocalizationsWithFallback(
-          PlatformDispatcher.instance.locale,
-        );
+        final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
         ref
             .read(toastProvider.notifier)
             .show(
@@ -2549,9 +2822,7 @@ class ChatViewModel extends _$ChatViewModel {
   }
 
   void _showUnexpectedSendError() {
-    final FluxerLocalizations l10n = lookupFluxerLocalizationsWithFallback(
-      PlatformDispatcher.instance.locale,
-    );
+    final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
     ref
         .read(toastProvider.notifier)
         .show(
@@ -2563,9 +2834,7 @@ class ChatViewModel extends _$ChatViewModel {
   }
 
   void _handleSendFailure(String optimisticMessageId, Object error) {
-    final FluxerLocalizations l10n = lookupFluxerLocalizationsWithFallback(
-      PlatformDispatcher.instance.locale,
-    );
+    final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
     final String failedMessage = l10n.chatMessageFailedToSend;
     final int optimisticIndex = state.messages.indexWhere(
       (Message m) => m.id == optimisticMessageId,
@@ -2683,9 +2952,7 @@ class ChatViewModel extends _$ChatViewModel {
       state = state.copyWith(messages: nextMessages);
     } on Object catch (e) {
       debugPrint('[ChatViewModel] Retry failed: $e');
-      final FluxerLocalizations l10n = lookupFluxerLocalizationsWithFallback(
-        PlatformDispatcher.instance.locale,
-      );
+      final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
       final String failedMessage = l10n.chatMessageFailedToSend;
       final List<Message> nextMessages = List<Message>.from(state.messages);
       final int latestIndex = nextMessages.indexWhere(
@@ -2744,6 +3011,18 @@ class ChatViewModel extends _$ChatViewModel {
     if (pending != null) {
       return pending;
     }
+    final int messageIndex = state.messages.indexWhere(
+      (Message message) => message.id == messageId,
+    );
+    final Message? deletedSnapshot = messageIndex == -1
+        ? null
+        : state.messages[messageIndex];
+    final List<Message>? optimisticallyRemoved = _removeIds(state.messages, {
+      messageId,
+    });
+    if (optimisticallyRemoved != null) {
+      state = state.copyWith(messages: optimisticallyRemoved);
+    }
     final Future<void> deleteFuture = () async {
       try {
         await ref
@@ -2751,13 +3030,131 @@ class ChatViewModel extends _$ChatViewModel {
             .deleteMessage(channelId: state.channelId, messageId: messageId);
       } on Exception catch (e) {
         debugPrint('[ChatViewModel] Failed to delete message: $e');
-        state = state.copyWith(errorMessage: 'Failed to delete message');
+        if (deletedSnapshot != null) {
+          state = state.copyWith(
+            messages: mergeMessagesSorted(state.messages, [deletedSnapshot]),
+            errorMessage: 'Failed to delete message',
+          );
+        } else {
+          state = state.copyWith(errorMessage: 'Failed to delete message');
+        }
       } finally {
         unawaited(_pendingDeleteFutures.remove(messageId));
       }
     }();
     _pendingDeleteFutures[messageId] = deleteFuture;
     return deleteFuture;
+  }
+
+  Future<void> deleteMessageAttachment({
+    required String messageId,
+    required String attachmentId,
+  }) async {
+    if (state.channelId.isEmpty) {
+      return;
+    }
+    final int messageIndex = state.messages.indexWhere(
+      (Message message) => message.id == messageId,
+    );
+    if (messageIndex == -1) {
+      return;
+    }
+    final Message message = state.messages[messageIndex];
+    Attachment? attachment;
+    for (final Attachment candidate in message.attachments) {
+      if (candidate.id == attachmentId) {
+        attachment = candidate;
+        break;
+      }
+    }
+    if (attachment == null) {
+      return;
+    }
+    final Message updatedMessage = message.copyWith(
+      attachments: message.attachments
+          .where((Attachment a) => a.id != attachmentId)
+          .toList(),
+    );
+    final List<Message> optimisticMessages = List<Message>.from(state.messages);
+    optimisticMessages[messageIndex] = updatedMessage;
+    state = state.copyWith(messages: optimisticMessages);
+    try {
+      await ref
+          .read(messageRepositoryProvider)
+          .deleteAttachment(
+            channelId: state.channelId,
+            messageId: messageId,
+            attachmentId: attachmentId,
+          );
+    } on Exception catch (e) {
+      debugPrint('[ChatViewModel] Failed to delete attachment: $e');
+      final List<Message> rollback = List<Message>.from(state.messages);
+      rollback[messageIndex] = message;
+      state = state.copyWith(
+        messages: rollback,
+        errorMessage: 'Failed to delete attachment',
+      );
+    }
+  }
+
+  Future<void> editAttachmentAltText({
+    required String messageId,
+    required String attachmentId,
+    required String? description,
+  }) async {
+    if (state.channelId.isEmpty) {
+      return;
+    }
+    final int messageIndex = state.messages.indexWhere(
+      (Message message) => message.id == messageId,
+    );
+    if (messageIndex == -1) {
+      return;
+    }
+    final Message message = state.messages[messageIndex];
+    final List<MessageAttachmentUpdate> updates = message.attachments.map((
+      Attachment attachment,
+    ) {
+      if (attachment.id == attachmentId) {
+        return MessageAttachmentUpdate.withDescription(
+          id: attachment.id,
+          description: description,
+        );
+      }
+      return MessageAttachmentUpdate(id: attachment.id);
+    }).toList();
+    final List<Attachment> updatedAttachments = message.attachments.map((
+      Attachment attachment,
+    ) {
+      if (attachment.id == attachmentId) {
+        return attachment.copyWithDescription(description);
+      }
+      return attachment;
+    }).toList();
+    final Message updatedMessage = message.copyWith(
+      attachments: updatedAttachments,
+    );
+    final List<Message> optimisticMessages = List<Message>.from(state.messages);
+    optimisticMessages[messageIndex] = updatedMessage;
+    state = state.copyWith(messages: optimisticMessages);
+    try {
+      await ref
+          .read(messageRepositoryProvider)
+          .editMessageAttachments(
+            channelId: state.channelId,
+            messageId: messageId,
+            content: message.content,
+            attachmentUpdates: updates,
+          );
+    } on Exception catch (e) {
+      debugPrint('[ChatViewModel] Failed to edit attachment alt text: $e');
+      final List<Message> rollback = List<Message>.from(state.messages);
+      rollback[messageIndex] = message;
+      state = state.copyWith(
+        messages: rollback,
+        errorMessage: 'Failed to edit attachment alt text',
+      );
+    }
   }
 
   void startReply(Message message) {
@@ -2834,6 +3231,7 @@ class ChatViewModel extends _$ChatViewModel {
   }
 
   void scrollToMessage(String messageId) {
+    talker.debug('[ChatViewModel] scrollToMessage $messageId');
     _revealCollapsedGroupForMessageIfNeeded(messageId);
     final version = (state.scrollToMessageSignal?.$2 ?? 0) + 1;
     state = state.copyWith(scrollToMessageSignal: (messageId, version));
@@ -2875,8 +3273,17 @@ class ChatViewModel extends _$ChatViewModel {
       if (page.messages.isEmpty) {
         return;
       }
+      // Around jumps consult the pointer: a short around page is not server tail.
       final bool hasMoreNewer = await _hasNewerMessagesThanChannel(
         page.messages.last.id,
+      );
+      if (state.channelId != channelId) {
+        return;
+      }
+      await _hydrateGuildMembersForMessages(
+        channelId,
+        page.messages,
+        embeddedReplyParents: page.embeddedReplyParents,
       );
       if (state.channelId != channelId) {
         return;
@@ -2887,6 +3294,7 @@ class ChatViewModel extends _$ChatViewModel {
         hasMoreNewerMessages: hasMoreNewer,
       );
       _contiguity.setVerified(channelId, page.messages);
+      _contiguityTrusted = true;
       _notifyMessageReferencesLoaded(
         channelId: channelId,
         messages: page.messages,
@@ -2964,7 +3372,11 @@ class ChatViewModel extends _$ChatViewModel {
     if (channelId.isEmpty) {
       return;
     }
-    await _refreshMessagesFromNetwork(channelId, showLoadingSpinner: true);
+    await _refreshMessagesFromNetwork(
+      channelId,
+      showLoadingSpinner: true,
+      isDirectLatestLoad: true,
+    );
   }
 
   Future<void> reloadCurrentChannel() async {
@@ -2976,6 +3388,7 @@ class ChatViewModel extends _$ChatViewModel {
       channelId,
       showLoadingSpinner: true,
       limit: _kInitialPageSize,
+      isDirectLatestLoad: true,
     );
   }
 
@@ -3050,9 +3463,7 @@ class ChatViewModel extends _$ChatViewModel {
         '[ChatViewModel] edit save noop messageId=${editingMessage.id}',
       );
       state = state.copyWith(editingMessage: null);
-      final FluxerLocalizations l10n = lookupFluxerLocalizationsWithFallback(
-        PlatformDispatcher.instance.locale,
-      );
+      final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
       ref
           .read(toastProvider.notifier)
           .show(
@@ -3426,6 +3837,10 @@ class ChatViewModel extends _$ChatViewModel {
         _foregroundResyncGeneration) {
       return true;
     }
+    if ((_lastReconciledConnectivityGapGenerationByChannel[channelId] ?? -1) <
+        _connectivityGapGeneration) {
+      return true;
+    }
     return false;
   }
 
@@ -3435,6 +3850,13 @@ class ChatViewModel extends _$ChatViewModel {
     );
     _lastReconciledForegroundGenerationByChannel[channelId] =
         _foregroundResyncGeneration;
+    _lastReconciledConnectivityGapGenerationByChannel[channelId] =
+        _connectivityGapGeneration;
+  }
+
+  void _invalidateMessageCacheTrust() {
+    _contiguity.invalidate();
+    _contiguityTrusted = false;
   }
 
   void _markChannelNetworkRefresh(String channelId) {

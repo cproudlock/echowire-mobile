@@ -14,16 +14,19 @@ import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/providers/gateway_session_recovery_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/features/channels/data/ack_batcher.dart';
+import 'package:fluxer_app/features/channels/data/read_state_utils.dart';
 import 'package:fluxer_app/features/channels/providers/ack_batcher_provider.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_read_viewport_provider.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_view_model.dart';
 import 'package:fluxer_app/features/chat/providers/messages/message_realtime_events.dart';
 import 'package:fluxer_app/features/chat/providers/messages/message_realtime_provider.dart';
+import 'package:fluxer_app/shared/services/guild_member_hydration_service.dart';
 import 'package:fluxer_app/shared/utils/snowflake_time.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:fluxer_dart/gateway.dart';
 
 import '../../../../helpers/message_realtime_test_helpers.dart';
+import '../../../../helpers/noop_guild_member_hydration_service.dart';
 import '../../../../helpers/open_test_database.dart';
 
 String _snowflakeForUtc(DateTime utc) {
@@ -35,6 +38,7 @@ Map<String, Object?> _messageJson({
   required String id,
   required String channelId,
   required String authorId,
+  String? content,
 }) => <String, Object?>{
   'id': id,
   'channel_id': channelId,
@@ -50,7 +54,7 @@ Map<String, Object?> _messageJson({
   'type': 0,
   'flags': 0,
   'tts': false,
-  'content': 'message $id',
+  'content': content ?? 'message $id',
   'timestamp': dateTimeFromUserSnowflakeOrNull(id)!.toIso8601String(),
   'pinned': false,
   'mention_everyone': false,
@@ -254,7 +258,7 @@ void main() {
   });
 
   test(
-    'cache hit shows messages immediately without loading spinner state',
+    'cache refresh shows loading skeleton while fetching from network',
     () async {
       final db = openTestDatabase();
       final cachedId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
@@ -294,20 +298,20 @@ void main() {
       await _flushAsync();
 
       final state = container.read(chatViewModelProvider);
-      expect(state.isLoading, isFalse);
-      expect(state.isSyncingMessages, isTrue);
-      expect(state.messages.map((m) => m.id), [cachedId]);
+      expect(state.isLoading, isTrue);
+      expect(state.isSyncingMessages, isFalse);
+      expect(state.messages, isEmpty);
       expect(adapter.messageRequestUris, isNotEmpty);
 
       adapter.releaseMessageFetch();
       await _flushAsync();
-      expect(container.read(chatViewModelProvider).isSyncingMessages, isFalse);
+      expect(container.read(chatViewModelProvider).isLoading, isFalse);
       expect(container.read(chatViewModelProvider).messages.last.id, networkId);
     },
   );
 
   test(
-    'auto ack does not run while cache-first messages are syncing',
+    'auto ack does not run while cache-first messages are loading',
     () async {
       final db = openTestDatabase();
       final latestId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
@@ -343,10 +347,11 @@ void main() {
       await _flushAsync();
 
       expect(adapter.ackedMessageIds, isEmpty);
-      expect(container.read(chatViewModelProvider).isSyncingMessages, isTrue);
+      expect(container.read(chatViewModelProvider).isLoading, isTrue);
+      expect(container.read(chatViewModelProvider).isSyncingMessages, isFalse);
       adapter.releaseMessageFetch();
       await _flushAsync();
-      expect(container.read(chatViewModelProvider).isSyncingMessages, isFalse);
+      expect(container.read(chatViewModelProvider).isLoading, isFalse);
     },
   );
 
@@ -433,14 +438,24 @@ void main() {
 
     final notifier = container.read(chatViewModelProvider.notifier);
     final load = notifier.switchChannel('channel-1');
-    await _flushAsync();
-
-    final state = container.read(chatViewModelProvider);
-    expect(state.isLoading, isTrue);
-    expect(state.isSyncingMessages, isFalse);
-    expect(state.messages, isEmpty);
-    adapter.releaseMessageFetch();
-    await load;
+    for (var i = 0; i < 20; i++) {
+      await _flushAsync();
+      final state = container.read(chatViewModelProvider);
+      if (state.channelId == 'channel-1' && state.isLoading) {
+        expect(state.isSyncingMessages, isFalse);
+        expect(state.messages, isEmpty);
+        adapter.releaseMessageFetch();
+        await load;
+        for (var j = 0; j < 20; j++) {
+          await _flushAsync();
+          if (!container.read(chatViewModelProvider).isLoading) {
+            return;
+          }
+        }
+        fail('expected channel load to finish');
+      }
+    }
+    fail('expected loading state for unread channel');
   });
 
   test(
@@ -485,21 +500,25 @@ void main() {
 
       final notifier = container.read(chatViewModelProvider.notifier);
       await notifier.switchChannel('channel-1');
+      final loadingState = container.read(chatViewModelProvider);
+      expect(loadingState.messages, isEmpty);
+      expect(loadingState.isLoading, isTrue);
+      expect(loadingState.isSyncingMessages, isFalse);
       expect(
-        container.read(chatViewModelProvider).messages.map((m) => m.id),
-        containsAll([anchorId, deletedId, keptId]),
+        loadingState.messages.map((m) => m.id),
+        isNot(contains(deletedId)),
       );
 
       adapter.releaseMessageFetch();
       for (var i = 0; i < 30; i++) {
         await _flushAsync();
-        if (!container.read(chatViewModelProvider).isSyncingMessages) {
+        if (!container.read(chatViewModelProvider).isLoading) {
           break;
         }
       }
 
       final state = container.read(chatViewModelProvider);
-      expect(state.isSyncingMessages, isFalse);
+      expect(state.isLoading, isFalse);
       expect(state.messages.map((m) => m.id), [anchorId, keptId]);
       expect(await db.messageDao.getMessage(deletedId), null);
       expect(await db.messageDao.getMessage(keptId), isNot(null));
@@ -684,6 +703,268 @@ void main() {
     },
   );
 
+  test('cache-first sync applies offline edits after reconcile', () async {
+    final db = openTestDatabase();
+    final anchorId = _snowflakeForUtc(DateTime.utc(2026, 5, 16, 10));
+    final editedId = _snowflakeForUtc(DateTime.utc(2026, 5, 16, 11));
+    final keptId = _snowflakeForUtc(DateTime.utc(2026, 5, 16, 12));
+    await db.messageDao.upsertMessages([
+      _cachedMessage(id: anchorId, channelId: 'channel-1', authorId: 'other'),
+      MessagesCompanion.insert(
+        id: editedId,
+        channelId: 'channel-1',
+        authorId: 'other',
+        content: 'old content',
+        timestamp: dateTimeFromUserSnowflakeOrNull(editedId)!,
+      ),
+      _cachedMessage(id: keptId, channelId: 'channel-1', authorId: 'other'),
+    ]);
+    await db.channelDao.upsertChannel(
+      ChannelsCompanion.insert(
+        id: 'channel-1',
+        guildId: 'guild-1',
+        name: 'general',
+        lastMessageId: Value(keptId),
+      ),
+    );
+    await db.readStateDao.upsertReadState(
+      ReadStatesCompanion(
+        channelId: const Value('channel-1'),
+        lastMessageId: Value(keptId),
+        mentionCount: const Value(0),
+      ),
+    );
+    final adapter = _ChatAdapter(
+      initialMessages: [
+        _messageJson(id: keptId, channelId: 'channel-1', authorId: 'other'),
+        _messageJson(
+          id: editedId,
+          channelId: 'channel-1',
+          authorId: 'other',
+          content: 'edited content',
+        ),
+        _messageJson(id: anchorId, channelId: 'channel-1', authorId: 'other'),
+      ],
+    )..holdMessageFetch = true;
+    final container = _container(db, adapter);
+    addTearDown(container.dispose);
+
+    final notifier = container.read(chatViewModelProvider.notifier);
+    await notifier.switchChannel('channel-1');
+    expect(container.read(chatViewModelProvider).messages, isEmpty);
+
+    adapter.releaseMessageFetch();
+    for (var i = 0; i < 30; i++) {
+      await _flushAsync();
+      if (!container.read(chatViewModelProvider).isLoading) {
+        break;
+      }
+    }
+
+    final edited = container
+        .read(chatViewModelProvider)
+        .messages
+        .firstWhere((message) => message.id == editedId);
+    expect(edited.content, 'edited content');
+  });
+
+  test(
+    'loadMore uses network after gateway recovery instead of stale cache',
+    () async {
+      final db = openTestDatabase();
+      final olderOlderId = _snowflakeForUtc(DateTime.utc(2026, 5, 1, 8));
+      final olderId = _snowflakeForUtc(DateTime.utc(2026, 5, 1, 9));
+      final ackId = _snowflakeForUtc(DateTime.utc(2026, 5, 1, 10));
+      final firstUnreadId = _snowflakeForUtc(DateTime.utc(2026, 5, 1, 11));
+      final latestId = _snowflakeForUtc(DateTime.utc(2026, 5, 1, 12));
+      await db.messageDao.upsertMessages([
+        _cachedMessage(
+          id: olderOlderId,
+          channelId: 'channel-1',
+          authorId: 'other',
+        ),
+        _cachedMessage(id: olderId, channelId: 'channel-1', authorId: 'other'),
+        _cachedMessage(id: ackId, channelId: 'channel-1', authorId: 'other'),
+        _cachedMessage(
+          id: firstUnreadId,
+          channelId: 'channel-1',
+          authorId: 'other',
+        ),
+        _cachedMessage(id: latestId, channelId: 'channel-1', authorId: 'other'),
+      ]);
+      await db.channelDao.upsertChannel(
+        ChannelsCompanion.insert(
+          id: 'channel-1',
+          guildId: 'guild-1',
+          name: 'general',
+          lastMessageId: Value(latestId),
+        ),
+      );
+      await db.readStateDao.upsertReadState(
+        ReadStatesCompanion(
+          channelId: const Value('channel-1'),
+          lastMessageId: Value(ackId),
+          mentionCount: const Value(0),
+          manual: const Value(true),
+        ),
+      );
+      final adapter = _ChatAdapter(
+        initialMessages: [
+          _messageJson(id: latestId, channelId: 'channel-1', authorId: 'other'),
+        ],
+        aroundMessages: [
+          _messageJson(id: latestId, channelId: 'channel-1', authorId: 'other'),
+          _messageJson(
+            id: firstUnreadId,
+            channelId: 'channel-1',
+            authorId: 'other',
+          ),
+          _messageJson(id: ackId, channelId: 'channel-1', authorId: 'other'),
+          _messageJson(id: olderId, channelId: 'channel-1', authorId: 'other'),
+        ],
+        messagesBefore: [
+          _messageJson(
+            id: olderOlderId,
+            channelId: 'channel-1',
+            authorId: 'other',
+          ),
+        ],
+      );
+      final container = _container(db, adapter);
+      addTearDown(container.dispose);
+
+      final notifier = container.read(chatViewModelProvider.notifier);
+      await notifier.switchChannel('channel-1');
+      await _flushAsync();
+      adapter.beforeQueries.clear();
+      container.read(gatewaySessionRecoveryProvider.notifier).bump();
+      await _flushAsync();
+
+      await notifier.loadMore();
+      await _flushAsync();
+
+      expect(adapter.beforeQueries, [olderId]);
+    },
+  );
+
+  test('gateway bump forces channel refresh even within ttl window', () async {
+    final db = openTestDatabase();
+    final anchorId = _snowflakeForUtc(DateTime.utc(2026, 5, 16, 10));
+    final keptId = _snowflakeForUtc(DateTime.utc(2026, 5, 16, 12));
+    await db.messageDao.upsertMessages([
+      _cachedMessage(id: anchorId, channelId: 'channel-1', authorId: 'other'),
+      _cachedMessage(id: keptId, channelId: 'channel-1', authorId: 'other'),
+    ]);
+    await db.channelDao.upsertChannel(
+      ChannelsCompanion.insert(
+        id: 'channel-1',
+        guildId: 'guild-1',
+        name: 'general',
+        lastMessageId: Value(keptId),
+      ),
+    );
+    await db.channelDao.upsertChannel(
+      ChannelsCompanion.insert(
+        id: 'channel-2',
+        guildId: 'guild-1',
+        name: 'other',
+        lastMessageId: Value(keptId),
+      ),
+    );
+    await db.readStateDao.upsertReadState(
+      ReadStatesCompanion(
+        channelId: const Value('channel-1'),
+        lastMessageId: Value(keptId),
+        mentionCount: const Value(0),
+      ),
+    );
+    await db.readStateDao.upsertReadState(
+      ReadStatesCompanion(
+        channelId: const Value('channel-2'),
+        lastMessageId: Value(keptId),
+        mentionCount: const Value(0),
+      ),
+    );
+    final adapter = _ChatAdapter(
+      messagesByChannel: <String, List<Map<String, Object?>>>{
+        'channel-1': <Map<String, Object?>>[
+          _messageJson(id: keptId, channelId: 'channel-1', authorId: 'other'),
+          _messageJson(id: anchorId, channelId: 'channel-1', authorId: 'other'),
+        ],
+        'channel-2': <Map<String, Object?>>[
+          _messageJson(id: keptId, channelId: 'channel-2', authorId: 'other'),
+        ],
+      },
+    );
+    final container = _container(db, adapter);
+    addTearDown(container.dispose);
+
+    final notifier = container.read(chatViewModelProvider.notifier);
+    await notifier.switchChannel('channel-1');
+    await _flushAsync();
+    expect(container.read(chatViewModelProvider).messages, isNotEmpty);
+
+    await notifier.switchChannel('channel-2');
+    await _flushAsync();
+    container.read(gatewaySessionRecoveryProvider.notifier).bump();
+    await notifier.switchChannel('channel-1');
+    await _flushAsync();
+
+    final state = container.read(chatViewModelProvider);
+    expect(state.isSyncingMessages, isFalse);
+    expect(state.messages.map((message) => message.id), [anchorId, keptId]);
+    expect(adapter.messageRequestUris.length, greaterThanOrEqualTo(2));
+  });
+
+  test(
+    'failed cache-first sync surfaces an error instead of stale cache',
+    () async {
+      final db = openTestDatabase();
+      final anchorId = _snowflakeForUtc(DateTime.utc(2026, 5, 16, 10));
+      final keptId = _snowflakeForUtc(DateTime.utc(2026, 5, 16, 12));
+      await db.messageDao.upsertMessages([
+        _cachedMessage(id: anchorId, channelId: 'channel-1', authorId: 'other'),
+        _cachedMessage(id: keptId, channelId: 'channel-1', authorId: 'other'),
+      ]);
+      await db.channelDao.upsertChannel(
+        ChannelsCompanion.insert(
+          id: 'channel-1',
+          guildId: 'guild-1',
+          name: 'general',
+          lastMessageId: Value(keptId),
+        ),
+      );
+      await db.readStateDao.upsertReadState(
+        ReadStatesCompanion(
+          channelId: const Value('channel-1'),
+          lastMessageId: Value(keptId),
+          mentionCount: const Value(0),
+        ),
+      );
+      final adapter = _ChatAdapter(
+        initialMessages: [
+          _messageJson(id: keptId, channelId: 'channel-1', authorId: 'other'),
+          _messageJson(id: anchorId, channelId: 'channel-1', authorId: 'other'),
+        ],
+      )..failMessageFetch = true;
+      final container = _container(db, adapter);
+      addTearDown(container.dispose);
+
+      final notifier = container.read(chatViewModelProvider.notifier);
+      await notifier.switchChannel('channel-1');
+      for (var i = 0; i < 30; i++) {
+        await _flushAsync();
+        if (!container.read(chatViewModelProvider).isLoading) {
+          break;
+        }
+      }
+
+      final state = container.read(chatViewModelProvider);
+      expect(state.messages, isEmpty);
+      expect(state.messageLoadFailed, isTrue);
+    },
+  );
+
   test(
     'app foreground resume removes deleted message from open channel',
     () async {
@@ -751,6 +1032,9 @@ void main() {
             });
             return batcher;
           }),
+          guildMemberHydrationServiceProvider.overrideWithValue(
+            NoopGuildMemberHydrationService(database: db),
+          ),
         ],
       );
       addTearDown(container.dispose);
@@ -890,10 +1174,7 @@ void main() {
     await _flushAsync();
 
     expect(container.read(chatViewModelProvider).channelId, 'channel-2');
-    expect(
-      container.read(chatViewModelProvider).messages.last.id,
-      channel2CachedId,
-    );
+    expect(container.read(chatViewModelProvider).messages, isEmpty);
 
     adapter.releaseMessageFetch();
     await _flushAsync();
@@ -1758,6 +2039,116 @@ void main() {
     expect(adapter.ackedMessageIds, <String>[state.messages.last.id]);
   });
 
+  test(
+    'at-tail ack with orphaned channel pointer acks the pointer id',
+    () async {
+      final db = openTestDatabase();
+      final String visibleTailId = _snowflakeForUtc(
+        DateTime.utc(2026, 5, 6, 12),
+      );
+      final String orphanedPointer = _snowflakeForUtc(
+        DateTime.utc(2026, 5, 6, 14),
+      );
+      final String priorAck = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
+      await db.channelDao.upsertChannel(
+        ChannelsCompanion.insert(
+          id: 'channel-1',
+          guildId: 'guild-1',
+          name: 'general',
+          // Orphaned high pointer (no local message row for it).
+          lastMessageId: Value(orphanedPointer),
+        ),
+      );
+      await db.readStateDao.upsertReadState(
+        ReadStatesCompanion(
+          channelId: const Value('channel-1'),
+          lastMessageId: Value(priorAck),
+          mentionCount: const Value(0),
+        ),
+      );
+      final adapter = _ChatAdapter(
+        initialMessages: <Map<String, Object?>>[
+          _messageJson(
+            id: visibleTailId,
+            channelId: 'channel-1',
+            authorId: 'other',
+          ),
+        ],
+      );
+      final container = _container(db, adapter);
+      addTearDown(container.dispose);
+
+      final notifier = container.read(chatViewModelProvider.notifier);
+      await notifier.switchChannel('channel-1');
+      _setViewportActive(container, channelId: 'channel-1');
+      await _flushAsync();
+
+      // Latest-page jump seals server-tail (short page); orphaned pointer alone
+      // must not keep hasMoreNewer after that.
+      expect(await notifier.jumpToLatestMessages(), isTrue);
+      await _flushAsync();
+
+      final state = container.read(chatViewModelProvider);
+      expect(state.hasMoreNewerMessages, isFalse);
+      expect(state.messages.last.id, visibleTailId);
+
+      _updateViewport(container, nearLoadedTail: true);
+      await _flushAsync();
+
+      final readState = await db.readStateDao.getReadState('channel-1');
+      expect(readState?.lastMessageId, visibleTailId);
+      expect(adapter.ackedMessageIds, <String>[visibleTailId]);
+    },
+  );
+
+  test('not-at-tail with real newer history does not auto-ack', () async {
+    final db = openTestDatabase();
+    // Full latest-page (initial size 50) with pointer still ahead.
+    final List<String> historyIds = <String>[
+      for (var i = 0; i < 50; i++)
+        _snowflakeForUtc(DateTime.utc(2026, 5, 6, 10, 0, i)),
+    ];
+    final String realNewerId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
+    final String priorAck = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 9));
+    await db.channelDao.upsertChannel(
+      ChannelsCompanion.insert(
+        id: 'channel-1',
+        guildId: 'guild-1',
+        name: 'general',
+        lastMessageId: Value(realNewerId),
+      ),
+    );
+    await db.readStateDao.upsertReadState(
+      ReadStatesCompanion(
+        channelId: const Value('channel-1'),
+        lastMessageId: Value(priorAck),
+        mentionCount: const Value(0),
+      ),
+    );
+    final adapter = _ChatAdapter(
+      initialMessages: [
+        for (final String id in historyIds)
+          _messageJson(id: id, channelId: 'channel-1', authorId: 'other'),
+      ],
+    );
+    final container = _container(db, adapter);
+    addTearDown(container.dispose);
+
+    final notifier = container.read(chatViewModelProvider.notifier);
+    await notifier.switchChannel('channel-1');
+    _setViewportActive(container, channelId: 'channel-1');
+    await _flushAsync();
+
+    expect(container.read(chatViewModelProvider).hasMoreNewerMessages, isTrue);
+
+    _updateViewport(container, nearLoadedTail: true);
+    await _flushAsync();
+
+    final readState = await db.readStateDao.getReadState('channel-1');
+    expect(readState?.lastMessageId, priorAck);
+    expect(adapter.ackedMessageIds, isEmpty);
+  });
+
   test('a tail arriving during an in-flight ack is eventually acked', () async {
     final db = openTestDatabase();
     final String priorId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
@@ -1957,6 +2348,109 @@ void main() {
       expect(adapter.ackedMessageIds, <String>[priorId]);
       expect(readState?.mentionCount, 0);
       expect(dm?.unreadCount, 0);
+    },
+  );
+
+  test(
+    'opening a guild channel clears unread after its newest message was deleted',
+    () async {
+      final db = openTestDatabase();
+      final priorId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
+      final deletedId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
+      await db.channelDao.upsertChannel(
+        ChannelsCompanion.insert(
+          id: 'channel-1',
+          guildId: 'guild-1',
+          name: 'general',
+          lastMessageId: Value(deletedId),
+        ),
+      );
+      await db.messageDao.upsertMessage(
+        _cachedMessage(id: priorId, channelId: 'channel-1', authorId: 'other'),
+      );
+      await db.readStateDao.upsertReadState(
+        ReadStatesCompanion(
+          channelId: const Value('channel-1'),
+          lastMessageId: Value(priorId),
+          mentionCount: const Value(0),
+        ),
+      );
+      final adapter = _ChatAdapter(
+        initialMessages: [
+          _messageJson(id: priorId, channelId: 'channel-1', authorId: 'other'),
+        ],
+      );
+      final container = _container(db, adapter);
+      addTearDown(container.dispose);
+
+      final notifier = container.read(chatViewModelProvider.notifier);
+      await notifier.switchChannel('channel-1');
+      _setViewportActive(container, channelId: 'channel-1');
+      _updateViewport(container, nearLoadedTail: true);
+      await _flushAsync();
+
+      final readState = await db.readStateDao.getReadState('channel-1');
+      expect(readState?.lastMessageId, priorId);
+      expect(
+        container.read(chatViewModelProvider).hasMoreNewerMessages,
+        isFalse,
+      );
+      expect(
+        hasUnreadByReadState(
+          channelLastMessageId: priorId,
+          ackLastMessageId: readState?.lastMessageId,
+          fallbackAckMs: 0,
+          mentionCount: 0,
+          isGuildChannel: true,
+        ),
+        isFalse,
+      );
+    },
+  );
+
+  test(
+    'opening an empty channel clears unread after only message was deleted',
+    () async {
+      final db = openTestDatabase();
+      final ackId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
+      final deletedId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
+      await db.channelDao.upsertChannel(
+        ChannelsCompanion.insert(
+          id: 'channel-1',
+          guildId: 'guild-1',
+          name: 'general',
+          lastMessageId: Value(deletedId),
+        ),
+      );
+      await db.readStateDao.upsertReadState(
+        ReadStatesCompanion(
+          channelId: const Value('channel-1'),
+          lastMessageId: Value(ackId),
+          mentionCount: const Value(0),
+        ),
+      );
+      final adapter = _ChatAdapter();
+      final container = _container(db, adapter);
+      addTearDown(container.dispose);
+
+      final notifier = container.read(chatViewModelProvider.notifier);
+      await notifier.switchChannel('channel-1');
+      _setViewportActive(container, channelId: 'channel-1');
+      _updateViewport(container, nearLoadedTail: true);
+      await _flushAsync();
+
+      final readState = await db.readStateDao.getReadState('channel-1');
+      expect(readState?.mentionCount, 0);
+      expect(
+        hasUnreadByReadState(
+          channelLastMessageId: deletedId,
+          ackLastMessageId: readState?.lastMessageId,
+          fallbackAckMs: 0,
+          mentionCount: 0,
+          isGuildChannel: true,
+        ),
+        isFalse,
+      );
     },
   );
 
@@ -2484,9 +2978,14 @@ void main() {
     'live message received while scrolled into history is dropped',
     () async {
       final db = openTestDatabase();
-      final olderId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 10));
-      final latestId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
-      final incomingId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 13));
+      // Full latest-page (initial size 50) while the channel pointer is still
+      // ahead: real newer messages remain.
+      final List<String> historyIds = <String>[
+        for (var i = 0; i < 50; i++)
+          _snowflakeForUtc(DateTime.utc(2026, 5, 6, 10, 0, i)),
+      ];
+      final String latestId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
+      final String incomingId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 13));
       await db.channelDao.upsertChannel(
         ChannelsCompanion.insert(
           id: 'channel-1',
@@ -2495,11 +2994,10 @@ void main() {
           lastMessageId: Value(latestId),
         ),
       );
-      // Channel's newest message is far ahead of the loaded page, so the
-      // window sits in history with hasMoreNewerMessages == true.
       final adapter = _ChatAdapter(
         initialMessages: [
-          _messageJson(id: olderId, channelId: 'channel-1', authorId: 'other'),
+          for (final String id in historyIds)
+            _messageJson(id: id, channelId: 'channel-1', authorId: 'other'),
         ],
       );
       final container = _container(db, adapter);
@@ -2511,7 +3009,7 @@ void main() {
 
       final loaded = container.read(chatViewModelProvider);
       expect(loaded.hasMoreNewerMessages, isTrue);
-      expect(loaded.messages.map((m) => m.id).toList(), [olderId]);
+      expect(loaded.messages.map((m) => m.id).toList(), historyIds);
 
       container
           .read(messageRealtimeBusProvider)
@@ -2538,7 +3036,7 @@ void main() {
             .messages
             .map((m) => m.id)
             .toList(),
-        [olderId],
+        historyIds,
       );
     },
   );
@@ -3132,6 +3630,9 @@ ProviderContainer _container(
         });
         return batcher;
       }),
+      guildMemberHydrationServiceProvider.overrideWithValue(
+        NoopGuildMemberHydrationService(database: db),
+      ),
     ],
   );
 }
@@ -3167,6 +3668,7 @@ class _ChatAdapter implements HttpClientAdapter {
   final List<String> aroundQueries = [];
   final List<String> ackedMessageIds = [];
   bool holdMessageFetch = false;
+  bool failMessageFetch = false;
   bool holdAck = false;
   Completer<void>? _messageFetchCompleter;
   Completer<int>? _ackCompleter;
@@ -3216,6 +3718,9 @@ class _ChatAdapter implements HttpClientAdapter {
       if (holdMessageFetch) {
         _messageFetchCompleter ??= Completer<void>();
         await _messageFetchCompleter!.future;
+      }
+      if (failMessageFetch) {
+        return ResponseBody.fromString('failed', 500);
       }
       final List<Map<String, Object?>> messages;
       if (around != null) {

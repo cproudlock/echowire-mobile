@@ -7396,6 +7396,42 @@ abstract class FluxerLocalizations {
   /// **'Don\'t show message previews in the DM list'**
   String get accessibilityDmMessagePreviewNoneDescription;
 
+  /// Section title for media button visibility settings on the accessibility settings page.
+  ///
+  /// In en, this message translates to:
+  /// **'Media Buttons'**
+  String get accessibilityMediaButtonsGroupTitle;
+
+  /// Section description for media button visibility settings on the accessibility settings page.
+  ///
+  /// In en, this message translates to:
+  /// **'Customize which buttons appear on media attachments and embeds.'**
+  String get accessibilityMediaButtonsGroupDescription;
+
+  /// Toggle label for showing the delete button on media.
+  ///
+  /// In en, this message translates to:
+  /// **'Show delete button'**
+  String get accessibilityShowMediaDeleteButtonLabel;
+
+  /// Toggle label for showing the download button on media.
+  ///
+  /// In en, this message translates to:
+  /// **'Show download button'**
+  String get accessibilityShowMediaDownloadButtonLabel;
+
+  /// Toggle label for showing the favorite button on media.
+  ///
+  /// In en, this message translates to:
+  /// **'Show favorite button'**
+  String get accessibilityShowMediaFavoriteButtonLabel;
+
+  /// Toggle label for showing the suppress embeds button on media.
+  ///
+  /// In en, this message translates to:
+  /// **'Show suppress embeds button'**
+  String get accessibilityShowSuppressEmbedsButtonLabel;
+
   /// DM list row preview text when the most recent message has only attachments.
   ///
   /// In en, this message translates to:
@@ -7532,37 +7568,37 @@ abstract class FluxerLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{count} years'**
-  String systemCallDurationYears(String count);
+  String systemCallDurationYears(int count);
 
   /// Duration label for multiple months in a call duration.
   ///
   /// In en, this message translates to:
   /// **'{count} months'**
-  String systemCallDurationMonths(String count);
+  String systemCallDurationMonths(int count);
 
   /// Duration label for multiple weeks in a call duration.
   ///
   /// In en, this message translates to:
   /// **'{count} weeks'**
-  String systemCallDurationWeeks(String count);
+  String systemCallDurationWeeks(int count);
 
   /// Duration label for multiple days in a call duration.
   ///
   /// In en, this message translates to:
   /// **'{count} days'**
-  String systemCallDurationDays(String count);
+  String systemCallDurationDays(int count);
 
   /// Duration label for multiple hours in a call duration.
   ///
   /// In en, this message translates to:
   /// **'{count} hours'**
-  String systemCallDurationHours(String count);
+  String systemCallDurationHours(int count);
 
   /// Duration label for multiple minutes in a call duration.
   ///
   /// In en, this message translates to:
   /// **'{count} minutes'**
-  String systemCallDurationMinutes(String count);
+  String systemCallDurationMinutes(int count);
 
   /// Fallback system message when the client does not recognize the message type.
   ///
@@ -7599,6 +7635,18 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Do nothing, I don\'t want to join'**
   String get voiceConnectionConfirmDoNothing;
+
+  /// Title for the modal shown when a voice join attempt fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t Join Voice'**
+  String get voiceJoinFailedTitle;
+
+  /// Shown when switch-to-this-device times out waiting for other sessions to leave.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t disconnect your other devices. Try again in a moment.'**
+  String get voiceMultiDeviceDisconnectFailed;
 
   /// Empty state body when viewing a guild voice channel while not in the call.
   ///
@@ -8311,6 +8359,42 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Comments are unavailable because a selected channel has slowmode enabled.'**
   String get forwardCommentSlowmodeDisabled;
+
+  /// Title of the share-media bottom sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Share to'**
+  String get shareMediaTitle;
+
+  /// Placeholder for the optional message field in the share-media sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an optional message…'**
+  String get shareMediaMessageHint;
+
+  /// Share-media sheet send button label.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get shareMediaSendButton;
+
+  /// Toast shown after shared media is sent to all selected destinations.
+  ///
+  /// In en, this message translates to:
+  /// **'Media shared'**
+  String get shareMediaSuccessToast;
+
+  /// Toast shown when shared media is sent to some but not all selected destinations.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared to {count} destinations'**
+  String shareMediaPartialSuccessToast(int count);
+
+  /// Toast shown when sharing media to all destinations fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to share media'**
+  String get shareMediaFailedToast;
 
   /// Reason shown on a disabled forward destination when the user lacks the send-messages permission.
   ///
@@ -9074,6 +9158,18 @@ abstract class FluxerLocalizations {
   /// **'Are you sure you want to delete this message?'**
   String get chatMessageDeleteConfirmDescription;
 
+  /// Action label for deleting an attachment from a sent message.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Attachment'**
+  String get chatMessageDeleteAttachment;
+
+  /// Action label for editing the alt text of a message attachment.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Alt Text'**
+  String get chatMessageEditAttachmentAltText;
+
   /// Tooltip label for additional message actions.
   ///
   /// In en, this message translates to:
@@ -9642,6 +9738,18 @@ abstract class FluxerLocalizations {
   /// **'Copy Link'**
   String get channelDetailsCopyLink;
 
+  /// Channel menu action to copy a link channel's channel link.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy channel link'**
+  String get channelMenuCopyChannelLink;
+
+  /// Channel menu action to copy a link channel's redirect URL.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy redirect link'**
+  String get channelMenuCopyRedirectLink;
+
   /// Group DM menu action to add friends to the group.
   ///
   /// In en, this message translates to:
@@ -9749,6 +9857,54 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'My category'**
   String get channelSettingsMyCategory;
+
+  /// Context menu action to expand a collapsed channel category.
+  ///
+  /// In en, this message translates to:
+  /// **'Expand category'**
+  String get categoryExpandCategory;
+
+  /// Context menu action to collapse an expanded channel category.
+  ///
+  /// In en, this message translates to:
+  /// **'Collapse category'**
+  String get categoryCollapseCategory;
+
+  /// Context menu action to expand every collapsed channel category.
+  ///
+  /// In en, this message translates to:
+  /// **'Expand all categories'**
+  String get categoryExpandAllCategories;
+
+  /// Context menu action to collapse every channel category.
+  ///
+  /// In en, this message translates to:
+  /// **'Collapse all categories'**
+  String get categoryCollapseAllCategories;
+
+  /// Context menu action to mute a channel category.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute category'**
+  String get categoryMuteCategory;
+
+  /// Context menu action to unmute a channel category.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute category'**
+  String get categoryUnmuteCategory;
+
+  /// Context menu action to copy a category ID to the clipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy category ID'**
+  String get categoryCopyCategoryId;
+
+  /// Toast confirming the category ID was copied to the clipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Category ID copied'**
+  String get categoryIdCopied;
 
   /// Placeholder for channel name field in channel settings.
   ///
@@ -11388,12 +11544,6 @@ abstract class FluxerLocalizations {
   /// **'Gifts & Codes'**
   String get userSettingsNavGiftsAndCodes;
 
-  /// User settings navigation item for expression pack settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Expression Packs'**
-  String get userSettingsNavExpressionPacks;
-
   /// User settings navigation item for the privacy dashboard.
   ///
   /// In en, this message translates to:
@@ -11436,11 +11586,11 @@ abstract class FluxerLocalizations {
   /// **'Accessibility'**
   String get userSettingsNavAccessibility;
 
-  /// User settings navigation item for messages and media settings.
+  /// User settings navigation item for chat settings.
   ///
   /// In en, this message translates to:
-  /// **'Messages & Media'**
-  String get userSettingsNavMessagesAndMedia;
+  /// **'Chat'**
+  String get userSettingsNavChat;
 
   /// User settings navigation item for audio and video settings.
   ///
@@ -11742,11 +11892,359 @@ abstract class FluxerLocalizations {
   /// **'Don\'t ask when hiding my screen share'**
   String get audioAndVideoSkipHideOwnScreenshareConfirmLabel;
 
-  /// User settings navigation item for sounds and alert settings.
+  /// User settings navigation item for notification settings.
   ///
   /// In en, this message translates to:
-  /// **'Sounds & Alerts'**
-  String get userSettingsNavSoundsAndAlerts;
+  /// **'Notifications'**
+  String get userSettingsNavNotifications;
+
+  /// Notifications settings section title for general notification controls.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get notificationsGeneralSectionTitle;
+
+  /// Toggle label for enabling push or system notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable notifications'**
+  String get notificationsEnableNotificationsLabel;
+
+  /// Description for the enable notifications toggle on mobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Get notified when you receive messages. You may need to allow notifications for {productName} in your device settings. For per-channel/per-community controls, open notification settings from a community\'s menu.'**
+  String notificationsEnableNotificationsDescription(String productName);
+
+  /// Toggle label for enabling desktop notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable desktop notifications'**
+  String get notificationsEnableDesktopNotificationsLabel;
+
+  /// Description for the enable desktop notifications toggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Uses the OS notification center. For per-channel/per-community controls, right-click a community icon and open notification settings.'**
+  String get notificationsEnableDesktopNotificationsDescription;
+
+  /// Toggle label for enabling browser notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable browser notifications'**
+  String get notificationsEnableBrowserNotificationsLabel;
+
+  /// Description for the enable browser notifications toggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Get notified when you receive messages. You may need to allow notifications in your browser settings. For per-channel/per-community controls, right-click a community icon and open notification settings.'**
+  String get notificationsEnableBrowserNotificationsDescription;
+
+  /// Label for push notification inactive timeout setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Push notification inactive timeout'**
+  String get notificationsPushInactiveTimeoutLabel;
+
+  /// Description for push notification inactive timeout setting.
+  ///
+  /// In en, this message translates to:
+  /// **'{productName} avoids sending push notifications to your mobile devices when you are at your computer. Choose how long you need to be inactive on desktop before you receive push notifications.'**
+  String notificationsPushInactiveTimeoutDescription(String productName);
+
+  /// Push notification inactive timeout option for one minute.
+  ///
+  /// In en, this message translates to:
+  /// **'{oneMinute} minute'**
+  String notificationsPushInactiveTimeoutOneMinute(int oneMinute);
+
+  /// Push notification inactive timeout option for multiple minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} minutes'**
+  String notificationsPushInactiveTimeoutMinutes(int minutes);
+
+  /// Notifications settings section title for reply mention preference.
+  ///
+  /// In en, this message translates to:
+  /// **'Mention preference'**
+  String get notificationsMentionPreferenceSectionTitle;
+
+  /// Accessibility label for the reply mention preference radio group.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply mention preference'**
+  String get notificationsReplyMentionPreferenceAriaLabel;
+
+  /// Mention preference option: no preference.
+  ///
+  /// In en, this message translates to:
+  /// **'No preference'**
+  String get notificationsMentionNoPreferenceName;
+
+  /// Description for the no preference mention option.
+  ///
+  /// In en, this message translates to:
+  /// **'Respect the sender\'s intent, with no warning when they toggle the @ mention'**
+  String get notificationsMentionNoPreferenceDescription;
+
+  /// Mention preference option: prefer @mention.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefer @mention'**
+  String get notificationsMentionPreferMentionName;
+
+  /// Description for the prefer @mention option.
+  ///
+  /// In en, this message translates to:
+  /// **'Default replies to @mention you, and warn the sender if they disable it'**
+  String get notificationsMentionPreferMentionDescription;
+
+  /// Mention preference option: prefer no @mention.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefer no @mention'**
+  String get notificationsMentionPreferNoMentionName;
+
+  /// Description for the prefer no @mention option.
+  ///
+  /// In en, this message translates to:
+  /// **'Default replies to omit the @mention, and warn the sender if they enable it'**
+  String get notificationsMentionPreferNoMentionDescription;
+
+  /// Notifications settings section title for sound controls.
+  ///
+  /// In en, this message translates to:
+  /// **'Sounds'**
+  String get notificationsSoundsSectionTitle;
+
+  /// Label for the master volume slider.
+  ///
+  /// In en, this message translates to:
+  /// **'Master volume'**
+  String get notificationsMasterVolumeLabel;
+
+  /// Description for the master volume slider.
+  ///
+  /// In en, this message translates to:
+  /// **'Sets the level for every sound effect. Per-sound overrides ignore this.'**
+  String get notificationsMasterVolumeDescription;
+
+  /// Accessibility label for resetting master volume to default.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset to default volume'**
+  String get notificationsResetToDefaultVolume;
+
+  /// Toggle label for disabling all notification sounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable all notification sounds'**
+  String get notificationsDisableAllSoundsLabel;
+
+  /// Description for the disable all notification sounds toggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your existing notification sound settings will be preserved.'**
+  String get notificationsDisableAllSoundsDescription;
+
+  /// Button label to reveal additional sound effect toggles.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more sound effects'**
+  String get notificationsShowMoreSoundEffects;
+
+  /// Button label to hide additional sound effect toggles.
+  ///
+  /// In en, this message translates to:
+  /// **'Show fewer sound effects'**
+  String get notificationsShowFewerSoundEffects;
+
+  /// Button label to preview a notification sound.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview sound'**
+  String get notificationsPreviewSound;
+
+  /// Accordion title for per-sound volume overrides.
+  ///
+  /// In en, this message translates to:
+  /// **'Per-sound volume'**
+  String get notificationsPerSoundVolumeTitle;
+
+  /// Accordion description when no per-sound volume overrides exist.
+  ///
+  /// In en, this message translates to:
+  /// **'Set custom volumes for individual sounds. Sounds without an override follow the master volume.'**
+  String get notificationsPerSoundVolumeDescription;
+
+  /// Accordion description when per-sound volume overrides exist.
+  ///
+  /// In en, this message translates to:
+  /// **'Active custom sound volume overrides: {overrideCount}.'**
+  String notificationsPerSoundVolumeOverrideDescription(int overrideCount);
+
+  /// Status text when a sound follows the master volume.
+  ///
+  /// In en, this message translates to:
+  /// **'Following master • {effectiveValue}%'**
+  String notificationsFollowingMasterVolume(int effectiveValue);
+
+  /// Accessibility label for resetting a per-sound volume override.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset {label} to master volume'**
+  String notificationsResetSoundToMasterVolume(String label);
+
+  /// Button label to reset all per-sound volume overrides.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset all overrides'**
+  String get notificationsResetAllOverrides;
+
+  /// Accessibility label for muting a sound type.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute {label}'**
+  String notificationsMuteSound(String label);
+
+  /// Accessibility label for unmuting a sound type.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute {label}'**
+  String notificationsUnmuteSound(String label);
+
+  /// Sound toggle label for community message notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Community message notifications'**
+  String get notificationsSoundMessage;
+
+  /// Sound toggle label for direct message notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct message notifications'**
+  String get notificationsSoundDirectMessage;
+
+  /// Sound toggle label for current channel message notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Current channel message notifications'**
+  String get notificationsSoundSameChannelMessage;
+
+  /// Sound toggle label for voice mute.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice mute'**
+  String get notificationsSoundMute;
+
+  /// Sound toggle label for voice unmute.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice unmute'**
+  String get notificationsSoundUnmute;
+
+  /// Sound toggle label for voice deafen.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice deafen'**
+  String get notificationsSoundDeaf;
+
+  /// Sound toggle label for voice undeafen.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice undeafen'**
+  String get notificationsSoundUndeaf;
+
+  /// Sound toggle label for user joins channel.
+  ///
+  /// In en, this message translates to:
+  /// **'User joins channel'**
+  String get notificationsSoundUserJoin;
+
+  /// Sound toggle label for user leaves channel.
+  ///
+  /// In en, this message translates to:
+  /// **'User leaves channel'**
+  String get notificationsSoundUserLeave;
+
+  /// Sound toggle label for user moved channel.
+  ///
+  /// In en, this message translates to:
+  /// **'User moved channel'**
+  String get notificationsSoundUserMove;
+
+  /// Sound toggle label for viewer joins stream.
+  ///
+  /// In en, this message translates to:
+  /// **'Viewer joins stream'**
+  String get notificationsSoundViewerJoin;
+
+  /// Sound toggle label for viewer leaves stream.
+  ///
+  /// In en, this message translates to:
+  /// **'Viewer leaves stream'**
+  String get notificationsSoundViewerLeave;
+
+  /// Sound toggle label for voice disconnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice disconnected'**
+  String get notificationsSoundVoiceDisconnect;
+
+  /// Sound toggle label for incoming call.
+  ///
+  /// In en, this message translates to:
+  /// **'Incoming call'**
+  String get notificationsSoundIncomingRing;
+
+  /// Sound toggle label for camera on.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera on'**
+  String get notificationsSoundCameraOn;
+
+  /// Sound toggle label for camera off.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera off'**
+  String get notificationsSoundCameraOff;
+
+  /// Sound toggle label for screen share start.
+  ///
+  /// In en, this message translates to:
+  /// **'Screen share start'**
+  String get notificationsSoundScreenShareStart;
+
+  /// Sound toggle label for screen share stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Screen share stop'**
+  String get notificationsSoundScreenShareStop;
+
+  /// Toast shown when push inactive timeout sync fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update push notification timeout. Try again.'**
+  String get notificationsAfkTimeoutSyncFailed;
+
+  /// Toast shown when mention preference update fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update mention preference. Try again.'**
+  String get notificationsMentionPreferenceSyncFailed;
+
+  /// Banner title when OS notification permission is denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications blocked'**
+  String get notificationsPermissionDeniedTitle;
+
+  /// Toast shown when enabling notifications fails because permission was denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t enable notifications. Allow notification permission to continue.'**
+  String get notificationsEnableNotificationsPermissionDenied;
 
   /// User settings navigation item for language and time settings.
   ///
@@ -12239,6 +12737,12 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'This will notify {count} online members. Continue?'**
   String mentionConfirmHereBody(int count);
+
+  /// Body of the large role mention confirmation dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'This will notify {count} members with the {roleName} role. Continue?'**
+  String mentionConfirmRoleBody(int count, String roleName);
 
   /// Confirm button label on the mention confirmation dialog.
   ///

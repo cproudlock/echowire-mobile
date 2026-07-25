@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/app.dart';
+import 'package:fluxer_app/core/bootstrap/display_refresh_rate_config.dart';
 import 'package:fluxer_app/core/bootstrap/flutter_error_ui.dart';
 import 'package:fluxer_app/core/bootstrap/image_cache_config.dart';
 import 'package:fluxer_app/core/build/push_provider_assert.dart';
@@ -14,6 +15,7 @@ import 'package:fluxer_app/core/database/drift_stream_utils.dart';
 import 'package:fluxer_app/core/observability/fluxer_crash_reporting.dart';
 import 'package:fluxer_app/core/observability/fluxer_observability.dart';
 import 'package:fluxer_app/core/observability/observability_reporting_provider.dart';
+import 'package:fluxer_app/core/platform/fluxer_platform.dart';
 import 'package:fluxer_app/core/providers/app_startup_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/push/fcm/fcm_entrypoint.dart';
@@ -65,6 +67,8 @@ void _configureFluxerErrorReporting() {
 
 Future<void> _bootstrapFluxer(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
+  configureFluxerDisplayRefreshRate();
+  configureFluxerMobileDetection();
   configureFluxerImageCache();
   configureFluxerErrorUi();
   _configureFluxerErrorReporting();
@@ -103,7 +107,7 @@ Future<void> _bootstrapFluxer(List<String> args) async {
     return;
   }
 
-  if (!kIsWeb && (Platform.isLinux || Platform.isMacOS || Platform.isWindows)) {
+  if (!kIsWeb && isFluxerDesktopOs) {
     await FluxerObservability.instance.traceAsync(
       'app.bootstrap.window',
       () async {

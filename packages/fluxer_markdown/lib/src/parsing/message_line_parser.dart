@@ -44,6 +44,16 @@ String normalizeBlockquoteBarMarkdown(String text) {
   }
   final content = trimmed.substring(contentStart);
   lines[0] = '${' ' * leadingSpaces}> $content';
+  for (var i = 1; i < lines.length; i++) {
+    final line = lines[i];
+    final lineLeadingSpaces = line.length - line.trimLeft().length;
+    final lineTrimmed = line.trimLeft();
+    if (lineTrimmed.isEmpty) {
+      lines[i] = '${' ' * lineLeadingSpaces}>';
+    } else {
+      lines[i] = '${' ' * lineLeadingSpaces}> $lineTrimmed';
+    }
+  }
   return lines.join('\n');
 }
 
@@ -85,11 +95,19 @@ List<MessageContentSegment> _parseMessageContentStructureUncached(
     final trimmed = line.trim();
     if (trimmed.isEmpty) {
       final blankCount = _countBlankLines(lines, i);
-      if (textFlowBuffer.isNotEmpty && i + blankCount < lines.length) {
+      if (i + blankCount < lines.length) {
         final nextTrimmed = lines[i + blankCount].trimLeft();
         final isNextHeading = _isHeadingStart(nextTrimmed, features);
-        if (!isNextHeading && !previousWasHeading) {
-          textFlowBuffer.write('\n' * blankCount);
+        if (_shouldPreserveBlankLines(
+          hasBufferedText: textFlowBuffer.isNotEmpty,
+          followsBlockSegment: _lastSegmentIsBlock(segments),
+          isNextHeading: isNextHeading,
+          previousWasHeading: previousWasHeading,
+        )) {
+          final bool followsBlock =
+              textFlowBuffer.isEmpty && _lastSegmentIsBlock(segments);
+          final int newlineCount = followsBlock ? blankCount + 1 : blankCount;
+          textFlowBuffer.write('\n' * newlineCount);
         }
       }
       i += blankCount;
@@ -158,6 +176,27 @@ int _countBlankLines(List<String> lines, int startIndex) {
     index++;
   }
   return count;
+}
+
+bool _lastSegmentIsBlock(List<MessageContentSegment> segments) {
+  if (segments.isEmpty) {
+    return false;
+  }
+  final MessageContentSegment last = segments.last;
+  return last is MessageBlockMarkdownSegment ||
+      last is MessageBlockSpoilerSegment;
+}
+
+bool _shouldPreserveBlankLines({
+  required bool hasBufferedText,
+  required bool followsBlockSegment,
+  required bool isNextHeading,
+  required bool previousWasHeading,
+}) {
+  if (isNextHeading || previousWasHeading) {
+    return false;
+  }
+  return hasBufferedText || followsBlockSegment;
 }
 
 _InlineLineGroup _parseInlineLineGroup(

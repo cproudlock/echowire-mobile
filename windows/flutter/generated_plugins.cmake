@@ -20,6 +20,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   passkeys_windows
   permission_handler_windows
   record_windows
+  refresh_rate
   screen_retriever_windows
   sentry_flutter
   share_plus

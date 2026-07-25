@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
@@ -651,7 +650,16 @@ class GatewayEventHandler {
     // Drop unread writes queued against the previous session. The snapshot
     // applied below is authoritative.
     readStateWriteBatcher?.clearAll();
+
+    var clearsMs = 0;
+    var guildsMs = 0;
+    var fanoutMs = 0;
+    var accountDataMs = 0;
+    var readstatesMs = 0;
+    var settingsMs = 0;
+
     await database.transaction(() async {
+      final Stopwatch phase = Stopwatch()..start();
       if (shouldFullWipe) {
         await database.userDao.clearAll();
         await database.guildDao.clearAll();
@@ -669,7 +677,9 @@ class GatewayEventHandler {
         await database.rtcRegionsDao.clearAll();
         await database.guildEmojiDao.clearAll();
         await database.guildStickerDao.clearAll();
+        await database.messageDao.clearAll();
       }
+      clearsMs = phase.elapsedMilliseconds;
 
       // Gateway never echoes the current user's own presence back.
       final selfStatus = event.userSettings?.status ?? 'online';
@@ -684,7 +694,7 @@ class GatewayEventHandler {
           bot: Value(event.user.bot ?? false),
           system: Value(event.user.system ?? false),
           status: Value(selfStatus),
-          mobile: Value(Platform.isAndroid || Platform.isIOS),
+          mobile: Value(isFluxerMobileClient),
           memberSince: Value(dateTimeFromUserSnowflakeOrNull(event.user.id)),
           bio: Value(event.user.bio),
           pronouns: Value(event.user.pronouns),
@@ -730,55 +740,66 @@ class GatewayEventHandler {
       }
 
       if (event.rawGuilds.isNotEmpty) {
+        phase
+          ..reset()
+          ..start();
         final List<ParsedReadyGuild> processedGuilds = await parseReadyGuilds(
           rawGuilds: event.rawGuilds,
           guildPositions: guildPositions,
         );
-        final List<db.ServersCompanion> guildCompanions = processedGuilds
-            .map(
-              (ParsedReadyGuild parsed) => guildFromSdk(
-                parsed.guildData.guild,
-                position: parsed.position,
-                memberCount: parsed.memberCount,
-                onlineCount: parsed.onlineCount,
-              ),
-            )
-            .toList();
-        if (guildCompanions.isNotEmpty) {
-          await database.guildDao.upsertServers(guildCompanions);
-        }
+        guildsMs = phase.elapsedMilliseconds;
+
+        phase
+          ..reset()
+          ..start();
+        final List<db.ServersCompanion> guildCompanions =
+            <db.ServersCompanion>[];
+        final List<db.ChannelsCompanion> channelCompanions =
+            <db.ChannelsCompanion>[];
+        final List<db.RolesCompanion> roleCompanions = <db.RolesCompanion>[];
+        final List<db.UsersCompanion> memberUserCompanions =
+            <db.UsersCompanion>[];
+        final List<db.MembersCompanion> memberCompanions =
+            <db.MembersCompanion>[];
+        final List<({String guildId, List<db.GuildEmojisCompanion> emojis})>
+        emojiReplacements =
+            <({String guildId, List<db.GuildEmojisCompanion> emojis})>[];
+        final List<({String guildId, List<db.GuildStickersCompanion> stickers})>
+        stickerReplacements =
+            <({String guildId, List<db.GuildStickersCompanion> stickers})>[];
 
         for (final ParsedReadyGuild parsed in processedGuilds) {
           final GuildCreateData guildData = parsed.guildData;
           final String guildId = guildData.guild.id;
-
+          guildCompanions.add(
+            guildFromSdk(
+              guildData.guild,
+              position: parsed.position,
+              memberCount: parsed.memberCount,
+              onlineCount: parsed.onlineCount,
+            ),
+          );
           for (final channel in guildData.channels) {
-            await database.channelDao.upsertChannel(
-              channelFromSdk(channel, guildId),
-            );
+            channelCompanions.add(channelFromSdk(channel, guildId));
           }
-
           if (guildData.roles.isNotEmpty) {
-            await database.roleDao.upsertRoles(
-              guildData.roles.map((r) => roleFromSdk(r, guildId)).toList(),
+            roleCompanions.addAll(
+              guildData.roles.map((r) => roleFromSdk(r, guildId)),
             );
           }
-
           for (final member in guildData.members) {
-            await database.userDao.upsertUser(userFromPartialSdk(member.user));
-            await database.memberDao.upsertMember(
+            memberUserCompanions.add(userFromPartialSdk(member.user));
+            memberCompanions.add(
               memberCompanionFromSdk(member, guildId: guildId),
             );
           }
-
           if (guildData.voiceStates.isNotEmpty) {
             onVoiceStatesBulk?.call(guildData.voiceStates);
           }
-
           if (guildData.emojis.isNotEmpty) {
-            await database.guildEmojiDao.replaceForGuild(
-              guildId,
-              guildData.emojis
+            emojiReplacements.add((
+              guildId: guildId,
+              emojis: guildData.emojis
                   .map(
                     (e) => db.GuildEmojisCompanion.insert(
                       id: e.id,
@@ -788,13 +809,12 @@ class GatewayEventHandler {
                     ),
                   )
                   .toList(),
-            );
+            ));
           }
-
           if (guildData.stickers.isNotEmpty) {
-            await database.guildStickerDao.replaceForGuild(
-              guildId,
-              guildData.stickers
+            stickerReplacements.add((
+              guildId: guildId,
+              stickers: guildData.stickers
                   .map(
                     (s) => db.GuildStickersCompanion.insert(
                       id: s.id,
@@ -806,8 +826,45 @@ class GatewayEventHandler {
                     ),
                   )
                   .toList(),
-            );
+            ));
           }
+        }
+
+        // Bulk hops: servers, channels, roles, users, members, then
+        // per-guild emoji/sticker replace (delete+batch each).
+        if (guildCompanions.isNotEmpty) {
+          await database.guildDao.upsertServers(guildCompanions);
+        }
+        if (channelCompanions.isNotEmpty) {
+          await database.channelDao.upsertChannelsMerged(
+            channelCompanions,
+            authoritativeTails: true,
+          );
+        }
+        if (roleCompanions.isNotEmpty) {
+          await database.roleDao.upsertRoles(roleCompanions);
+        }
+        if (memberUserCompanions.isNotEmpty) {
+          await database.userDao.upsertUsers(memberUserCompanions);
+        }
+        if (memberCompanions.isNotEmpty) {
+          await database.memberDao.upsertMembers(memberCompanions);
+        }
+        for (final ({String guildId, List<db.GuildEmojisCompanion> emojis})
+            replacement
+            in emojiReplacements) {
+          await database.guildEmojiDao.replaceForGuild(
+            replacement.guildId,
+            replacement.emojis,
+          );
+        }
+        for (final ({String guildId, List<db.GuildStickersCompanion> stickers})
+            replacement
+            in stickerReplacements) {
+          await database.guildStickerDao.replaceForGuild(
+            replacement.guildId,
+            replacement.stickers,
+          );
         }
 
         if (isSameUserReconnect) {
@@ -819,8 +876,13 @@ class GatewayEventHandler {
             await removeGuildsNotInLocalDb(database, readyGuildIds),
           );
         }
+
+        fanoutMs = phase.elapsedMilliseconds;
       }
 
+      phase
+        ..reset()
+        ..start();
       if (event.privateChannels.isNotEmpty) {
         final dmCompanions = <db.DmChannelsCompanion>[];
         final recipientUsers = <db.UsersCompanion>[];
@@ -866,46 +928,94 @@ class GatewayEventHandler {
         await database.relationshipDao.upsertRelationships(relCompanions);
       }
 
-      for (final p in event.presences) {
-        final userId = (p['user'] as Map<String, dynamic>?)?['id'] as String?;
-        final status = p['status'] as String?;
-        if (userId != null && status != null) {
-          await database.userDao.updateUserPresence(
-            userId,
-            status: status,
-            customStatus: _presenceCustomStatusFromMap(p),
-            mobile: p['mobile'] as bool? ?? false,
-          );
+      if (event.presences.isNotEmpty) {
+        final List<
+          ({String userId, String status, String? customStatus, bool mobile})
+        >
+        presenceUpdates =
+            <
+              ({
+                String userId,
+                String status,
+                String? customStatus,
+                bool mobile,
+              })
+            >[];
+        for (final p in event.presences) {
+          final userId = (p['user'] as Map<String, dynamic>?)?['id'] as String?;
+          final status = p['status'] as String?;
+          if (userId != null && status != null) {
+            presenceUpdates.add((
+              userId: userId,
+              status: status,
+              customStatus: _presenceCustomStatusFromMap(p),
+              mobile: p['mobile'] as bool? ?? false,
+            ));
+          }
+        }
+        if (presenceUpdates.isNotEmpty) {
+          await database.userDao.updateUserPresencesBatch(presenceUpdates);
         }
       }
 
+      accountDataMs = phase.elapsedMilliseconds;
+
+      phase
+        ..reset()
+        ..start();
       if (event.readStates.isNotEmpty) {
+        final Map<String, db.ReadState> existingByChannelId =
+            <String, db.ReadState>{
+              for (final db.ReadState row
+                  in await database.readStateDao.getReadStates())
+                row.channelId: row,
+            };
+        final List<db.ReadStatesCompanion> readStateCompanions =
+            <db.ReadStatesCompanion>[];
         for (final rs in event.readStates) {
-          final existing = await database.readStateDao.getReadState(rs.id);
+          final db.ReadState? existing = existingByChannelId[rs.id];
           // The server snapshot never carries the client-only manual-unread
-          // flag, so preserve a local manual mark (and its sticky divider) while
-          // the server ack has not advanced past where we left off.
+          // flag, so preserve a local manual mark (and its sticky divider)
+          // while the server ack has not advanced past where we left off.
           final manualMark = existing?.manual ?? false;
           final keepManual =
               manualMark &&
               compareSnowflakeIds(rs.lastMessageId, existing?.lastMessageId) <=
                   0;
-          await database.readStateDao.upsertReadState(
+          final String? sticky = keepManual
+              ? existing?.stickyUnreadMessageId
+              : null;
+          readStateCompanions.add(
             db.ReadStatesCompanion(
               channelId: Value(rs.id),
               lastMessageId: Value(rs.lastMessageId),
               mentionCount: Value(rs.mentionCount),
               lastPinTimestamp: Value(rs.lastPinTimestamp),
               manual: Value(keepManual),
-              stickyUnreadMessageId: keepManual
-                  ? Value(existing?.stickyUnreadMessageId)
-                  : const Value(null),
+              stickyUnreadMessageId: Value(sticky),
               version: Value(rs.version),
             ),
           );
+          // Fold into the preload map so duplicate channel ids in one READY
+          // match sequential single-row merges (later rows see earlier results).
+          existingByChannelId[rs.id] = db.ReadState(
+            channelId: rs.id,
+            lastMessageId: rs.lastMessageId,
+            mentionCount: rs.mentionCount,
+            lastPinTimestamp: rs.lastPinTimestamp,
+            manual: keepManual,
+            stickyUnreadMessageId: sticky,
+            version: rs.version,
+          );
         }
+        await database.readStateDao.upsertReadStates(readStateCompanions);
       }
 
+      readstatesMs = phase.elapsedMilliseconds;
+
+      phase
+        ..reset()
+        ..start();
       if (userSettings != null) {
         await database.userSettingsDao.upsertSettings(
           db.UserSettingsTableCompanion(
@@ -988,16 +1098,15 @@ class GatewayEventHandler {
               );
         }
       }
+
+      settingsMs = phase.elapsedMilliseconds;
     });
 
+    final Stopwatch postPhase = Stopwatch()..start();
     for (final guildId in prunedGuildIds) {
       onGuildPermissionsEvict?.call(guildId);
     }
 
-    talker.info(
-      '[Gateway] READY transaction committed successfully in '
-      '${readyStopwatch.elapsedMilliseconds}ms',
-    );
     _lastReadyUserId = event.user.id;
     _hasCommittedReady = true;
     final hydratedSettings = event.userSettings;
@@ -1009,6 +1118,21 @@ class GatewayEventHandler {
     }
     onUnavailableGuildsReady?.call(event.rawGuilds);
     onReady?.call();
+    final int postMs = postPhase.elapsedMilliseconds;
+
+    talker
+      ..info(
+        '[Gateway] READY transaction committed successfully in '
+        '${readyStopwatch.elapsedMilliseconds}ms',
+      )
+      ..info(
+        '[Gateway] READY split: '
+        'guilds=${guildsMs}ms clears=${clearsMs}ms fanout=${fanoutMs}ms '
+        'accountData=${accountDataMs}ms readstates=${readstatesMs}ms '
+        'settings=${settingsMs}ms post=${postMs}ms '
+        'total=${readyStopwatch.elapsedMilliseconds}ms '
+        'guildCount=${event.guilds.length}',
+      );
   }
 
   Future<void> _handleUserSettingsUpdate(UserSettingsUpdateEvent event) async {
@@ -1026,7 +1150,7 @@ class GatewayEventHandler {
       userId,
       status: event.settings.status,
       customStatus: serializeCustomStatus(event.settings.customStatus),
-      mobile: Platform.isAndroid || Platform.isIOS,
+      mobile: isFluxerMobileClient,
     );
     onUserSettingsHydrate?.call(event.settings);
   }
@@ -1297,6 +1421,7 @@ class GatewayEventHandler {
         database.userDao.upsertUser(userFromPartialSdk(event.message.author)),
       );
       unawaited(upsertMentionUsersFromSdk(database, event.message.mentions));
+      unawaited(upsertSupplementalUsersFromSdk(database, event.message.users));
     }
 
     final ReadStateIncomingMessageDecision decision =
@@ -1628,6 +1753,7 @@ class GatewayEventHandler {
         database.userDao.upsertUser(userFromPartialSdk(event.message.author)),
       );
       unawaited(upsertMentionUsersFromSdk(database, event.message.mentions));
+      unawaited(upsertSupplementalUsersFromSdk(database, event.message.users));
     }
     await database.messageDao.upsertMessage(
       msg.copyWith(isMentioned: mentionsCurrentUser).toCompanion(),
@@ -1666,15 +1792,18 @@ class GatewayEventHandler {
         await database.notificationDao.deleteMentionRow(messageId);
       }
       await database.messageDao.deleteMessages(messageIds);
-      await _refreshLastMessageAfterDelete(channelId);
     });
-  }
 
-  Future<void> _refreshLastMessageAfterDelete(String channelId) async {
-    final channel = await database.channelDao.getChannelById(channelId);
-    if (channel != null) {
-      final latest = await database.messageDao.getLastMessage(channelId);
-      await database.channelDao.setLastMessageId(channelId, latest?.id);
+    // Reconcile read state after the rows are removed. Only the tail is
+    // rewritten; deleting older messages in a jump window must not hide real
+    // unread below it.
+    final repository = readStateRepository;
+    if (repository != null) {
+      await repository.reconcileAfterMessageDelete(
+        channelId: channelId,
+        deletedMessageIds: messageIds,
+        currentUserId: currentUserId,
+      );
     }
   }
 

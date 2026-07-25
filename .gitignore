@@ -26,6 +26,7 @@ migrate_working_dir/
 # Generated files (build_runner / drift / riverpod)
 *.g.dart
 *.freezed.dart
+*.mocks.dart
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -72,3 +73,4 @@ vendor/
 
 # Local secrets ledger (never commit)
 .secrets
+ios/build/

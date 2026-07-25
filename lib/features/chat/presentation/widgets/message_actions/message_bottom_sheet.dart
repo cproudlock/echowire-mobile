@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
@@ -17,10 +16,10 @@ import 'package:fluxer_app/features/chat/utils/message_action_permissions.dart';
 import 'package:fluxer_app/features/chat/utils/message_link.dart';
 import 'package:fluxer_app/features/messaging/data/saved_messages_repository.dart';
 import 'package:fluxer_app/features/messaging/providers/saved_messages_sync_provider.dart';
+import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
-import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
-import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/shared/utils/clipboard_utils.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 enum MessageAction {
@@ -63,6 +62,8 @@ Future<MessageAction?> showMessageBottomSheet(
   bool canCreateThread = false,
   List<QuickReactionItem>? quickItems,
   ValueChanged<QuickReactionItem>? onQuickReaction,
+  MessageActionCallbacks? attachmentCallbacks,
+  bool isSendDisabled = false,
 }) {
   final MessageActionPermissions permissions = MessageActionPermissions(
     isOwnMessage: isOwnMessage,
@@ -74,6 +75,7 @@ Future<MessageAction?> showMessageBottomSheet(
     canManageMessages: canManageMessages,
     canSendMessages: canSendMessages,
     developerMode: developerMode,
+    isSendDisabled: isSendDisabled,
   );
   return FluxerBottomSheet.showScrollable<MessageAction>(
     context,
@@ -86,6 +88,7 @@ Future<MessageAction?> showMessageBottomSheet(
       canCreateThread: canCreateThread,
       quickItems: quickItems ?? kQuickReactionDefaults,
       onQuickReaction: onQuickReaction,
+      attachmentCallbacks: attachmentCallbacks,
       scrollController: scrollController,
     ),
   );
@@ -116,31 +119,22 @@ Future<void> dispatchMessageAction({
     case MessageAction.deleteFailed:
       callbacks.onDeleteFailed?.call();
     case MessageAction.copyText:
-      unawaited(Clipboard.setData(ClipboardData(text: message.content)));
+      unawaited(copyToClipboard(context: context, value: message.content));
     case MessageAction.copyMessageId:
-      unawaited(Clipboard.setData(ClipboardData(text: message.id)));
+      unawaited(copyToClipboard(context: context, value: message.id));
     case MessageAction.copyMessageLink:
       final String? guildId =
           previewRoleGuildId ?? ref.read(activeGuildIdProvider);
       unawaited(
-        Clipboard.setData(
-          ClipboardData(
-            text: messageLink(
-              channelId: message.channelId,
-              messageId: message.id,
-              guildId: guildId,
-            ),
+        copyToClipboard(
+          context: context,
+          value: messageLink(
+            channelId: message.channelId,
+            messageId: message.id,
+            guildId: guildId,
           ),
         ),
       );
-      ref
-          .read(toastProvider.notifier)
-          .show(
-            FluxerToast(
-              message: FluxerLocalizations.of(context).copiedToClipboard,
-              variant: FluxerToastVariant.success,
-            ),
-          );
     case MessageAction.bookmark:
       final SavedMessagesRepository repository = ref.read(
         savedMessagesRepositoryProvider,
@@ -216,6 +210,7 @@ List<Widget> buildMessageActionMenuGroups({
   required ValueChanged<MessageAction> onAction,
   // Echowire-only: not part of upstream's MessageActionPermissions.
   bool canCreateThread = false,
+  MessageActionCallbacks? attachmentCallbacks,
 }) {
   final FluxerLocalizations l10n = FluxerLocalizations.of(context);
 
@@ -233,7 +228,7 @@ List<Widget> buildMessageActionMenuGroups({
       FluxerMenuGroup(
         children: <Widget>[
           FluxerBottomSheetMenuItem(
-            icon: PhosphorIconsRegular.trash,
+            icon: PhosphorIconsFill.trash,
             label: l10n.chatMessageDeleteFailed,
             isDanger: true,
             onTap: () => onAction(MessageAction.deleteFailed),
@@ -251,6 +246,12 @@ List<Widget> buildMessageActionMenuGroups({
   final bool supportsInteractiveActions = message.supportsInteractiveActions;
   final bool canShowAddReaction =
       permissions.canAddReactions && supportsInteractiveActions;
+  final bool showMediaDeleteButton = ref.watch(
+    appearancePreferencesProvider.select((s) => s.showMediaDeleteButton),
+  );
+  final bool showSuppressEmbedsButton = ref.watch(
+    appearancePreferencesProvider.select((s) => s.showSuppressEmbedsButton),
+  );
   final bool canShowReply =
       isUserMessage &&
       supportsInteractiveActions &&
@@ -274,19 +275,19 @@ List<Widget> buildMessageActionMenuGroups({
   final List<Widget> reactionItems = <Widget>[
     if (canShowAddReaction)
       FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsRegular.smiley,
+        icon: PhosphorIconsFill.smiley,
         label: l10n.chatMessageAddReaction,
         onTap: () => onAction(MessageAction.addReaction),
       ),
     if (hasReactions)
       FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsRegular.users,
+        icon: PhosphorIconsFill.users,
         label: l10n.chatMessageViewReactions,
         onTap: () => onAction(MessageAction.viewReactions),
       ),
     if (canShowRemoveAllReactions)
       FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsRegular.smileyXEyes,
+        icon: PhosphorIconsFill.smileyXEyes,
         label: l10n.chatMessageRemoveAllReactions,
         isDanger: true,
         onTap: () => onAction(MessageAction.removeAllReactions),
@@ -301,13 +302,13 @@ List<Widget> buildMessageActionMenuGroups({
     ),
     if (canShowReply)
       FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsRegular.arrowBendUpLeft,
+        icon: PhosphorIconsFill.arrowBendUpLeft,
         label: l10n.chatMessageReply,
         onTap: () => onAction(MessageAction.reply),
       ),
     if (canShowForward)
       FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsRegular.shareFat,
+        icon: PhosphorIconsFill.shareFat,
         label: l10n.chatMessageForward,
         onTap: () => onAction(MessageAction.forward),
       ),
@@ -320,7 +321,7 @@ List<Widget> buildMessageActionMenuGroups({
       ),
     if (canShowEdit)
       FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsRegular.pencilSimple,
+        icon: PhosphorIconsFill.pencilSimple,
         label: l10n.chatMessageEdit,
         onTap: () => onAction(MessageAction.edit),
       ),
@@ -329,21 +330,19 @@ List<Widget> buildMessageActionMenuGroups({
   final List<Widget> managementItems = <Widget>[
     if (canShowPin)
       FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsRegular.pushPin,
+        icon: PhosphorIconsFill.pushPin,
         label: message.isPinned ? l10n.chatMessageUnpin : l10n.chatMessagePin,
         onTap: () => onAction(MessageAction.pin),
       ),
     if (canShowBookmark)
       FluxerBottomSheetMenuItem(
-        icon: isSaved
-            ? PhosphorIconsFill.bookmarkSimple
-            : PhosphorIconsRegular.bookmarkSimple,
+        icon: PhosphorIconsFill.bookmarkSimple,
         label: isSaved
             ? l10n.chatMessageRemoveBookmark
             : l10n.chatMessageBookmark,
         onTap: () => onAction(MessageAction.bookmark),
       ),
-    if (canShowSuppressEmbeds)
+    if (canShowSuppressEmbeds && showSuppressEmbedsButton)
       FluxerBottomSheetMenuItem(
         icon: PhosphorIconsRegular.eyeSlash,
         label: isEmbedsSuppressed
@@ -353,11 +352,48 @@ List<Widget> buildMessageActionMenuGroups({
       ),
     if (permissions.canDelete)
       FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsRegular.trash,
+        icon: PhosphorIconsFill.trash,
         label: l10n.chatMessageDelete,
         isDanger: true,
         onTap: () => onAction(MessageAction.delete),
       ),
+  ];
+
+  final List<Widget> attachmentItems = <Widget>[
+    for (final Attachment attachment in message.attachments) ...<Widget>[
+      if (showMediaDeleteButton &&
+          canDeleteAttachmentOnMessage(
+            message: message,
+            isOwnMessage: permissions.isOwnMessage,
+            isSendDisabled: permissions.isSendDisabled,
+          ))
+        FluxerBottomSheetMenuItem(
+          icon: PhosphorIconsFill.trash,
+          label: l10n.chatMessageDeleteAttachment,
+          hint: attachment.filename,
+          isDanger: true,
+          onTap: () {
+            attachmentCallbacks?.onDeleteAttachment?.call(attachment);
+            Navigator.of(context).pop();
+          },
+        ),
+      if (canEditAttachmentAltText(
+        message: message,
+        isOwnMessage: permissions.isOwnMessage,
+        attachment: attachment,
+        canManageMessages: permissions.canManageMessages,
+        isDmChannel: permissions.isDmChannel,
+      ))
+        FluxerBottomSheetMenuItem(
+          icon: PhosphorIconsFill.pencilSimple,
+          label: l10n.chatMessageEditAttachmentAltText,
+          hint: attachment.filename,
+          onTap: () {
+            attachmentCallbacks?.onEditAttachmentAltText?.call(attachment);
+            Navigator.of(context).pop();
+          },
+        ),
+    ],
   ];
 
   final List<Widget> utilityItems = <Widget>[
@@ -388,7 +424,7 @@ List<Widget> buildMessageActionMenuGroups({
   final List<Widget> reportItems = <Widget>[
     if (permissions.canReport)
       FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsRegular.flag,
+        icon: PhosphorIconsFill.flag,
         label: l10n.chatMessageReport,
         isDanger: true,
         onTap: () => onAction(MessageAction.report),
@@ -400,6 +436,7 @@ List<Widget> buildMessageActionMenuGroups({
       reactionItems,
       interactionItems,
       managementItems,
+      attachmentItems,
       utilityItems,
       reportItems,
     ])
@@ -415,6 +452,7 @@ class _MessageBottomSheetBody extends ConsumerWidget {
     required this.quickItems,
     required this.scrollController,
     this.onQuickReaction,
+    this.attachmentCallbacks,
   });
 
   final Message message;
@@ -423,6 +461,7 @@ class _MessageBottomSheetBody extends ConsumerWidget {
   final bool canCreateThread;
   final List<QuickReactionItem> quickItems;
   final ValueChanged<QuickReactionItem>? onQuickReaction;
+  final MessageActionCallbacks? attachmentCallbacks;
   final ScrollController scrollController;
 
   void _pop(BuildContext context, MessageAction action) =>
@@ -437,6 +476,7 @@ class _MessageBottomSheetBody extends ConsumerWidget {
       permissions: permissions,
       canCreateThread: canCreateThread,
       onAction: (MessageAction action) => _pop(context, action),
+      attachmentCallbacks: attachmentCallbacks,
     );
     final bool showQuickReactions =
         !message.hasFailed && !message.isSending && permissions.canAddReactions;
@@ -465,7 +505,7 @@ class _MessageBottomSheetBody extends ConsumerWidget {
   }
 }
 
-bool shouldCloseVideoViewerForMessageAction(MessageAction action) {
+bool shouldCloseMediaViewerForMessageAction(MessageAction action) {
   return switch (action) {
     MessageAction.reply ||
     MessageAction.forward ||

@@ -7,6 +7,7 @@ import 'package:fluxer_app/features/chat/utils/attachment_display_utils.dart';
 import 'package:fluxer_app/features/chat/utils/url_sanitization_utils.dart';
 import 'package:fluxer_app/features/chat/utils/voice_message_constants.dart';
 import 'package:fluxer_app/shared/utils/guild_user_display.dart';
+import 'package:fluxer_app/shared/utils/sdk_converters.dart';
 import 'package:fluxer_dart/export.dart';
 
 enum EmbedType { rich, image, gifv, link, video }
@@ -291,6 +292,7 @@ class Attachment {
   final String id;
   final String filename;
   final String? title;
+  final String? description;
   final String url;
   final String? proxyUrl;
   final String? contentType;
@@ -310,6 +312,7 @@ class Attachment {
     required this.filename,
     required this.url,
     this.title,
+    this.description,
     this.proxyUrl,
     this.contentType,
     this.placeholder,
@@ -329,6 +332,7 @@ class Attachment {
       id: sdk.id,
       filename: sdk.filename,
       title: sdk.title,
+      description: sdk.description,
       url: sdk.url ?? '',
       proxyUrl: sdk.proxyUrl,
       size: sdk.size,
@@ -350,6 +354,7 @@ class Attachment {
       id: json['id'] as String? ?? '',
       filename: json['filename'] as String? ?? '',
       title: json['title'] as String?,
+      description: json['description'] as String?,
       url: json['url'] as String? ?? '',
       proxyUrl: (json['proxy_url'] as String?) ?? (json['proxyUrl'] as String?),
       size: json['size'] as int?,
@@ -370,6 +375,7 @@ class Attachment {
     'id': id,
     'filename': filename,
     'title': title,
+    'description': description,
     'url': url,
     'proxy_url': proxyUrl,
     'size': size,
@@ -384,6 +390,28 @@ class Attachment {
     if (duration != null) 'duration': duration,
     if (waveform != null) 'waveform': waveform,
   };
+
+  Attachment copyWithDescription(String? description) {
+    return Attachment(
+      id: id,
+      filename: filename,
+      title: title,
+      description: description,
+      url: url,
+      proxyUrl: proxyUrl,
+      contentType: contentType,
+      placeholder: placeholder,
+      size: size,
+      width: width,
+      height: height,
+      flags: flags,
+      nsfw: nsfw,
+      expired: expired,
+      expiresAt: expiresAt,
+      duration: duration,
+      waveform: waveform,
+    );
+  }
 
   bool get isAudio {
     final String normalizedType = contentType?.toLowerCase() ?? '';
@@ -836,6 +864,7 @@ class Message {
   final bool isPinned;
   final bool isMentioned;
   final List<String> mentionedUserIds;
+  final List<String> supplementalUserIds;
   final List<MessageChannelMention> mentionChannels;
   final int type;
   final int flags;
@@ -869,6 +898,7 @@ class Message {
     this.isPinned = false,
     this.isMentioned = false,
     this.mentionedUserIds = const [],
+    this.supplementalUserIds = const [],
     this.mentionChannels = const [],
     this.type = 0,
     this.flags = 0,
@@ -893,7 +923,7 @@ class Message {
       authorAvatarColor: sdk.author.avatarColor,
       authorIsBot: sdk.author.bot ?? false,
       authorIsSystem: sdk.author.system ?? false,
-      authorPublicFlags: sdk.author.flags ?? 0,
+      authorPublicFlags: sdk.author.flags,
       webhookId: sdk.webhookId,
       content: sdk.content,
       timestamp: sdk.timestamp,
@@ -915,6 +945,7 @@ class Message {
       mentionedUserIds: sdk.mentions
           .map((user) => user.id)
           .toList(growable: false),
+      supplementalUserIds: supplementalUserIdsFromSdk(sdk.users),
       mentionChannels: parseMessageChannelMentions(sdk.mentionChannels),
       type: sdk.type.json ?? 0,
       flags: sdk.flags,
@@ -941,7 +972,7 @@ class Message {
       authorAvatarColor: sdk.author.avatarColor,
       authorIsBot: sdk.author.bot ?? false,
       authorIsSystem: sdk.author.system ?? false,
-      authorPublicFlags: sdk.author.flags ?? 0,
+      authorPublicFlags: sdk.author.flags,
       webhookId: sdk.webhookId,
       content: sdk.content,
       timestamp: sdk.timestamp,
@@ -956,6 +987,7 @@ class Message {
       mentionedUserIds: sdk.mentions
           .map((user) => user.id)
           .toList(growable: false),
+      supplementalUserIds: supplementalUserIdsFromSdk(sdk.users),
       mentionChannels: parseMessageChannelMentions(sdk.mentionChannels),
       type: sdk.type.json ?? 0,
       flags: sdk.flags,
@@ -981,7 +1013,7 @@ class Message {
       authorAvatarColor: sdk.author.avatarColor,
       authorIsBot: sdk.author.bot ?? false,
       authorIsSystem: sdk.author.system ?? false,
-      authorPublicFlags: sdk.author.flags ?? 0,
+      authorPublicFlags: sdk.author.flags,
       webhookId: sdk.webhookId,
       content: sdk.content,
       timestamp: sdk.timestamp,
@@ -1002,6 +1034,7 @@ class Message {
       mentionedUserIds: sdk.mentions
           .map((user) => user.id)
           .toList(growable: false),
+      supplementalUserIds: supplementalUserIdsFromSdk(sdk.users),
       mentionChannels: parseMessageChannelMentions(sdk.mentionChannels),
       type: sdk.type.json ?? 0,
       flags: sdk.flags,
@@ -1028,7 +1061,7 @@ class Message {
       authorAvatarColor: sdk.author.avatarColor,
       authorIsBot: sdk.author.bot ?? false,
       authorIsSystem: sdk.author.system ?? false,
-      authorPublicFlags: sdk.author.flags ?? 0,
+      authorPublicFlags: sdk.author.flags,
       webhookId: sdk.webhookId,
       content: sdk.content,
       timestamp: sdk.timestamp,
@@ -1050,6 +1083,7 @@ class Message {
       mentionedUserIds: sdk.mentions
           .map((user) => user.id)
           .toList(growable: false),
+      supplementalUserIds: supplementalUserIdsFromSdk(sdk.users),
       mentionChannels: parseMessageChannelMentions(sdk.mentionChannels),
       type: sdk.type.json ?? 0,
       flags: sdk.flags,
@@ -1293,6 +1327,7 @@ class Message {
     bool? isPinned,
     bool? isMentioned,
     List<String>? mentionedUserIds,
+    List<String>? supplementalUserIds,
     List<MessageChannelMention>? mentionChannels,
     int? type,
     int? flags,
@@ -1326,6 +1361,7 @@ class Message {
       isPinned: isPinned ?? this.isPinned,
       isMentioned: isMentioned ?? this.isMentioned,
       mentionedUserIds: mentionedUserIds ?? this.mentionedUserIds,
+      supplementalUserIds: supplementalUserIds ?? this.supplementalUserIds,
       mentionChannels: mentionChannels ?? this.mentionChannels,
       type: type ?? this.type,
       flags: flags ?? this.flags,
@@ -1369,6 +1405,9 @@ class Message {
       isPinned: incoming.isPinned,
       isMentioned: incoming.isMentioned,
       mentionedUserIds: incoming.mentionedUserIds,
+      supplementalUserIds: incoming.supplementalUserIds.isNotEmpty
+          ? incoming.supplementalUserIds
+          : supplementalUserIds,
       mentionChannels: incoming.mentionChannels.isNotEmpty
           ? incoming.mentionChannels
           : mentionChannels,

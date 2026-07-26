@@ -16,9 +16,12 @@
 		7884E8682EC3CC0700C636F2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884E8672EC3CC0400C636F2 /* SceneDelegate.swift */; };
 		78A318202AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 78A3181F2AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage */; };
 		81DF0AE8A8831D55E1700713 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78F37051FBD306F47D361D6 /* Pods_Runner.framework */; };
+		886B6B6DA5102111082B9FCE /* RSIShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D853A7E6480E636EEE5B96BA /* RSIShareViewController.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		9ECA1E538D98F6330F804AA5 /* RSIComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A39362C3AEF0BB2A1CCB64 /* RSIComposeView.swift */; };
+		A13A9CD5E13588FEA451348C /* RSISharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CDF280DD5CD2DE22D18ADC /* RSISharedModels.swift */; };
 		CA516A592BC72D8572BAC828 /* ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E44A624BDD91C694268C4324 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D24AF0B7FB6A521CFFB270A1 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4482A5829194929EAE90989 /* ShareViewController.swift */; };
 		FB0ADAC52F5C91D70078A4D4 /* ApplePushBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0ADAC42F5C91D70078A4D4 /* ApplePushBridge.swift */; };
@@ -146,11 +149,14 @@
 		9EF9BD4EDCA64BDB5D6883B5 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		A4482A5829194929EAE90989 /* ShareViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShareViewController.swift; path = ShareExtension/ShareViewController.swift; sourceTree = "<group>"; };
 		AA5B43809A2862FF18F30A8F /* Pods-Runner.profile-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-beta.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-beta.xcconfig"; sourceTree = "<group>"; };
+		B5A39362C3AEF0BB2A1CCB64 /* RSIComposeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSIComposeView.swift; path = ShareExtension/RSIComposeView.swift; sourceTree = "<group>"; };
 		B78F37051FBD306F47D361D6 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3CDF280DD5CD2DE22D18ADC /* RSISharedModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSISharedModels.swift; path = ShareExtension/RSISharedModels.swift; sourceTree = "<group>"; };
 		C7170A51AB1EC96079145955 /* Pods-Runner.release-canary.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-canary.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-canary.xcconfig"; sourceTree = "<group>"; };
 		C863794F24851E7182692BC1 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		D660DE6080E1112CA664935D /* Pods-Runner.profile-canary.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-canary.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-canary.xcconfig"; sourceTree = "<group>"; };
 		D7A01E2E239F3A1D9F299D9B /* Pods-Runner.debug-canary.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-canary.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-canary.xcconfig"; sourceTree = "<group>"; };
+		D853A7E6480E636EEE5B96BA /* RSIShareViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSIShareViewController.swift; path = ShareExtension/RSIShareViewController.swift; sourceTree = "<group>"; };
 		E234D355EEB026D81BF5DA2E /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44A624BDD91C694268C4324 /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5189A1D619D7FE382722087 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = ShareExtension/Info.plist; sourceTree = "<group>"; };
@@ -329,6 +335,9 @@
 				A4482A5829194929EAE90989 /* ShareViewController.swift */,
 				E5189A1D619D7FE382722087 /* Info.plist */,
 				2FCBC87086F71F299251D78B /* ShareExtension.entitlements */,
+				D853A7E6480E636EEE5B96BA /* RSIShareViewController.swift */,
+				B5A39362C3AEF0BB2A1CCB64 /* RSIComposeView.swift */,
+				C3CDF280DD5CD2DE22D18ADC /* RSISharedModels.swift */,
 			);
 			name = ShareExtension;
 			path = ShareExtension;
@@ -848,6 +857,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D24AF0B7FB6A521CFFB270A1 /* ShareViewController.swift in Sources */,
+				886B6B6DA5102111082B9FCE /* RSIShareViewController.swift in Sources */,
+				9ECA1E538D98F6330F804AA5 /* RSIComposeView.swift in Sources */,
+				A13A9CD5E13588FEA451348C /* RSISharedModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

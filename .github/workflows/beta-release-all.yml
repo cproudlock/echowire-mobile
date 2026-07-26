@@ -1,4 +1,4 @@
-name: Beta Release (iOS + Android)
+name: Beta Release (Android)
 
 on:
   workflow_dispatch:
@@ -22,12 +22,6 @@ jobs:
     name: Android OSS build
     needs: draft-release
     uses: ./.github/workflows/android-beta-oss.yml
-    secrets: inherit
-
-  ios-testflight:
-    name: iOS TestFlight build
-    needs: draft-release
-    uses: ./.github/workflows/ios-beta-testflight.yml
     secrets: inherit
 
   publish-release-assets:

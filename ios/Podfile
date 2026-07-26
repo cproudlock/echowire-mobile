@@ -45,6 +45,13 @@ target 'Runner' do
   end
 end
 
+# Echowire: the iOS Share Extension links receive_sharing_intent so shared
+# media/text handed off from other apps reaches the Flutter side via the app group.
+target 'ShareExtension' do
+  inherit! :search_paths
+  pod 'receive_sharing_intent', :path => '.symlinks/plugins/receive_sharing_intent/ios'
+end
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)

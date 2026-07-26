@@ -36,9 +36,15 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
-      - name: Restore Firebase iOS config
-        script: |
-          echo "$GOOGLE_SERVICE_INFO_PLIST" | base64 --decode > "$CM_BUILD_DIR/ios/Runner/GoogleService-Info.plist"
+      - name: Strip Firebase dependencies
+        # iOS is APNs-only (PUSH_PROVIDER=apns) — it does NOT use Firebase/FCM.
+        # This removes fluxer_fcm + firebase_core/messaging from pubspec.yaml and
+        # swaps in the stub push services, so the build never tries to compile
+        # `packages/fluxer_fcm/lib/firebase_options.dart` (a gitignored, generated
+        # file that isn't present in CI). Mirrors the GHA ios-*-testflight
+        # workflows. Without it the archive fails at kernel_snapshot with
+        # "firebase_options.dart: No such file or directory".
+        script: dart run tool/strip_firebase_deps.dart
       - name: Flutter pub get
         script: flutter pub get
       - name: Generate code (build_runner)

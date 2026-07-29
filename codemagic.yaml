@@ -59,13 +59,14 @@ workflows:
       - name: Automatic code signing (app + extensions)
         script: |
           set -e
-          # Fetch/create App Store profiles for the main app and both extensions.
+          # Fetch/create App Store profiles for the main app and all three extensions.
           # CERTIFICATE_PRIVATE_KEY (secure env var, group echowire_ios, raw PEM — NOT base64)
           # is required to create/save the Distribution certificate. Without it the CLI aborts
           # with "Cannot save Signing Certificates without certificate private key".
           app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --certificate-key @env:CERTIFICATE_PRIVATE_KEY --create
           app-store-connect fetch-signing-files "$BUNDLE_ID.BroadcastExtension" --type IOS_APP_STORE --certificate-key @env:CERTIFICATE_PRIVATE_KEY --create
           app-store-connect fetch-signing-files "$BUNDLE_ID.NotificationService" --type IOS_APP_STORE --certificate-key @env:CERTIFICATE_PRIVATE_KEY --create
+          app-store-connect fetch-signing-files "$BUNDLE_ID.ShareExtension" --type IOS_APP_STORE --certificate-key @env:CERTIFICATE_PRIVATE_KEY --create
           keychain initialize
           keychain add-certificates
           xcode-project use-profiles

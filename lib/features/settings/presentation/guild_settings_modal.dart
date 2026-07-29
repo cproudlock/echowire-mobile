@@ -7,8 +7,11 @@ import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/gateway/providers/guild_sync_provider.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_providers.dart';
+import 'package:fluxer_app/features/settings/domain/guild/expressions/guild_emoji_settings_state.dart';
+import 'package:fluxer_app/features/settings/domain/guild/expressions/guild_sticker_settings_state.dart';
 import 'package:fluxer_app/features/settings/domain/guild/guild_audit_log_state.dart';
 import 'package:fluxer_app/features/settings/domain/guild/guild_bans_state.dart';
+import 'package:fluxer_app/features/settings/domain/guild/guild_discovery_settings_state.dart';
 import 'package:fluxer_app/features/settings/domain/guild/guild_invites_state.dart';
 import 'package:fluxer_app/features/settings/domain/guild/guild_settings_details.dart';
 import 'package:fluxer_app/features/settings/domain/guild/guild_settings_tab.dart';
@@ -16,20 +19,31 @@ import 'package:fluxer_app/features/settings/presentation/pages/guild/guild_sett
 import 'package:fluxer_app/features/settings/presentation/widgets/guild/audit_log/guild_audit_log_widget.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/guild/bans/guild_bans_widget.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/guild/channels/guild_channels_settings_widget.dart';
+import 'package:fluxer_app/features/settings/presentation/widgets/guild/discovery/guild_discovery_settings_widget.dart';
+import 'package:fluxer_app/features/settings/presentation/widgets/guild/expressions/guild_emoji_settings_widget.dart';
+import 'package:fluxer_app/features/settings/presentation/widgets/guild/expressions/guild_sticker_settings_widget.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/guild/guild_settings_access_gate.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/guild/guild_settings_page_shell.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/guild/invites/guild_invites_widget.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/guild/moderation/guild_moderation_widget.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/guild/overview/guild_overview_widget.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/guild/roles/guild_roles_settings_widget.dart';
+import 'package:fluxer_app/features/settings/presentation/widgets/guild/webhooks/guild_webhooks_error_state.dart';
+import 'package:fluxer_app/features/settings/presentation/widgets/guild/webhooks/guild_webhooks_status_body.dart';
+import 'package:fluxer_app/features/settings/presentation/widgets/guild/webhooks/guild_webhooks_widget.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/settings_sidebar.dart';
 import 'package:fluxer_app/features/settings/providers/guild/guild_audit_log_provider.dart';
 import 'package:fluxer_app/features/settings/providers/guild/guild_bans_provider.dart';
+import 'package:fluxer_app/features/settings/providers/guild/guild_discovery_settings_provider.dart';
+import 'package:fluxer_app/features/settings/providers/guild/guild_emoji_settings_provider.dart';
 import 'package:fluxer_app/features/settings/providers/guild/guild_invites_provider.dart';
 import 'package:fluxer_app/features/settings/providers/guild/guild_settings_tab_providers.dart';
+import 'package:fluxer_app/features/settings/providers/guild/guild_sticker_settings_provider.dart';
+import 'package:fluxer_app/features/settings/providers/guild/guild_webhooks_provider.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_dart/export.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -169,7 +183,7 @@ class _GuildSettingsModalState extends ConsumerState<GuildSettingsModal> {
       width: 36,
       height: 36,
       child: PhosphorIcon(
-        PhosphorIconsRegular.x,
+        PhosphorIconsBold.x,
         size: 18,
         color: context.colors.interactiveNormal,
       ),
@@ -267,6 +281,62 @@ class GuildSettingsTabBody extends ConsumerWidget {
         guildId: guildId,
       ),
       GuildSettingsTab.roles => GuildRolesSettingsWidget(guildId: guildId),
+      GuildSettingsTab.emoji => GuildSettingsAsyncBody<GuildEmojiSettingsState>(
+        value: ref.watch(guildEmojiSettingsProvider(guildId)),
+        scrollController: scrollController,
+        usesSettingsSheet: true,
+        data: (GuildEmojiSettingsState state) => GuildEmojiSettingsWidget(
+          guildId: guildId,
+          state: state,
+          scrollController: scrollController,
+        ),
+      ),
+      GuildSettingsTab.stickers =>
+        GuildSettingsAsyncBody<GuildStickerSettingsState>(
+          value: ref.watch(guildStickerSettingsProvider(guildId)),
+          scrollController: scrollController,
+          usesSettingsSheet: true,
+          data: (GuildStickerSettingsState state) => GuildStickerSettingsWidget(
+            guildId: guildId,
+            state: state,
+            scrollController: scrollController,
+          ),
+        ),
+      GuildSettingsTab.webhooks =>
+        ref
+            .watch(guildWebhooksProvider(guildId))
+            .when(
+              loading: () =>
+                  GuildWebhooksLoadingBody(scrollController: scrollController),
+              error: (Object error, StackTrace stackTrace) =>
+                  GuildWebhooksStatusBody(
+                    scrollController: scrollController,
+                    child: GuildWebhooksErrorState(
+                      onRetry: () => unawaited(
+                        ref
+                            .read(guildWebhooksProvider(guildId).notifier)
+                            .reload(),
+                      ),
+                    ),
+                  ),
+              data: (List<WebhookResponse> webhooks) => GuildWebhooksWidget(
+                guildId: guildId,
+                webhooks: webhooks,
+                scrollController: scrollController,
+              ),
+            ),
+      GuildSettingsTab.discovery =>
+        GuildSettingsAsyncBody<GuildDiscoverySettingsState>(
+          value: ref.watch(guildDiscoverySettingsProvider(guildId)),
+          scrollController: scrollController,
+          usesSettingsSheet: true,
+          data: (GuildDiscoverySettingsState state) =>
+              GuildDiscoverySettingsWidget(
+                guildId: guildId,
+                state: state,
+                scrollController: scrollController,
+              ),
+        ),
       _ => const SizedBox.shrink(),
     };
   }

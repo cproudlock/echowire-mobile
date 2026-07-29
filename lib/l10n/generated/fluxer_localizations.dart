@@ -5836,6 +5836,18 @@ abstract class FluxerLocalizations {
   /// **'Download'**
   String get chatAttachmentDownload;
 
+  /// Toast shown after an attachment is saved to the device.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to photos'**
+  String get chatAttachmentDownloadedToast;
+
+  /// Toast shown when an attachment download fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t download attachment'**
+  String get chatAttachmentDownloadFailedToast;
+
   /// Tooltip when a file attachment link is no longer available.
   ///
   /// In en, this message translates to:
@@ -11454,6 +11466,36 @@ abstract class FluxerLocalizations {
   /// **'Message yourself'**
   String get personalNotesComposerHint;
 
+  /// Placeholder in the message composer for a text channel.
+  ///
+  /// In en, this message translates to:
+  /// **'Message #{channelName}'**
+  String channelComposerHint(String channelName);
+
+  /// Placeholder in the message composer for a one-to-one DM.
+  ///
+  /// In en, this message translates to:
+  /// **'Message @{recipientName}'**
+  String dmComposerHint(String recipientName);
+
+  /// Placeholder in the message composer for a named group DM.
+  ///
+  /// In en, this message translates to:
+  /// **'Message {groupName}'**
+  String groupDmNamedComposerHint(String groupName);
+
+  /// Placeholder in the message composer for a group DM without a custom name.
+  ///
+  /// In en, this message translates to:
+  /// **'Message group'**
+  String get groupDmComposerHint;
+
+  /// Generic fallback placeholder in the message composer.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get composerHint;
+
   /// Short subtitle in channel details for personal notes.
   ///
   /// In en, this message translates to:
@@ -13545,13 +13587,13 @@ abstract class FluxerLocalizations {
   /// Community settings tab for custom emoji.
   ///
   /// In en, this message translates to:
-  /// **'Custom Emoji'**
+  /// **'Emoji'**
   String get guildMenuSettingsEmoji;
 
   /// Community settings tab for custom stickers.
   ///
   /// In en, this message translates to:
-  /// **'Custom Stickers'**
+  /// **'Stickers'**
   String get guildMenuSettingsStickers;
 
   /// Community settings tab for safety and moderation.
@@ -15372,14 +15414,56 @@ abstract class FluxerLocalizations {
   /// Description for webhooks tab.
   ///
   /// In en, this message translates to:
-  /// **'Manage webhooks that post messages to channels.'**
+  /// **'View and manage every webhook configured across your community.'**
   String get guildSettingsWebhooksDescription;
 
-  /// Empty state for webhooks.
+  /// Empty state title for webhooks.
   ///
   /// In en, this message translates to:
-  /// **'No webhooks configured.'**
+  /// **'No webhooks'**
   String get guildSettingsWebhooksEmpty;
+
+  /// Empty state description for guild webhooks.
+  ///
+  /// In en, this message translates to:
+  /// **'This community doesn\'t have any webhooks yet. Go to {channelSettingsPath} to create one.'**
+  String guildSettingsWebhooksEmptyDescription(String channelSettingsPath);
+
+  /// Permission notice on guild webhooks tab.
+  ///
+  /// In en, this message translates to:
+  /// **'You need the \"{permission}\" permission to view and edit webhooks for this community.'**
+  String guildSettingsWebhooksPermissionRequired(String permission);
+
+  /// Error title when guild webhooks fail to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load webhooks'**
+  String get guildSettingsWebhooksLoadFailedTitle;
+
+  /// Error description when guild webhooks fail to load.
+  ///
+  /// In en, this message translates to:
+  /// **'There was an error loading the webhooks. Try again.'**
+  String get guildSettingsWebhooksLoadFailedDescription;
+
+  /// Success toast after saving guild webhook changes.
+  ///
+  /// In en, this message translates to:
+  /// **'Webhooks updated'**
+  String get guildSettingsWebhooksUpdated;
+
+  /// Error message when saving guild webhook changes fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update webhooks'**
+  String get guildSettingsWebhooksUpdateFailed;
+
+  /// Fallback label when a webhook channel name is unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown channel'**
+  String get guildSettingsUnknownChannel;
 
   /// Tooltip to copy a URL.
   ///
@@ -15429,29 +15513,71 @@ abstract class FluxerLocalizations {
   /// **'{count} uses'**
   String guildSettingsVanityUrlUses(int count);
 
-  /// Description for discovery tab.
+  /// Subtitle for the community Discovery settings tab.
   ///
   /// In en, this message translates to:
-  /// **'Apply to be listed in server discovery.'**
+  /// **'List your community in Discovery so others can find and join it.'**
   String get guildSettingsDiscoveryDescription;
+
+  /// Title for the eligibility warning when a community cannot apply for Discovery yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough members'**
+  String get guildSettingsDiscoveryNotEnoughMembersTitle;
 
   /// Discovery eligibility message.
   ///
   /// In en, this message translates to:
-  /// **'Requires at least {count} members to apply.'**
+  /// **'Your community needs at least {count} members before it can be listed in Discovery.'**
   String guildSettingsDiscoveryNotEligible(int count);
 
-  /// Title for discovery application form.
+  /// Label before the discovery application status badge.
   ///
   /// In en, this message translates to:
-  /// **'Application'**
-  String get guildSettingsDiscoveryFormTitle;
+  /// **'Status:'**
+  String get guildSettingsDiscoveryStatusLabel;
 
-  /// Title for discovery application status section.
+  /// Discovery application status badge when awaiting staff review.
   ///
   /// In en, this message translates to:
-  /// **'Status'**
-  String get guildSettingsDiscoveryStatusTitle;
+  /// **'Pending'**
+  String get guildSettingsDiscoveryStatusPending;
+
+  /// Discovery application status badge when approved and listed.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get guildSettingsDiscoveryStatusApproved;
+
+  /// Discovery application status badge when declined by staff.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get guildSettingsDiscoveryStatusRejected;
+
+  /// Discovery application status badge when delisted from Discovery.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed'**
+  String get guildSettingsDiscoveryStatusRemoved;
+
+  /// Review or removal reason shown on the discovery application status card.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason: {reason}'**
+  String guildSettingsDiscoveryReason(String reason);
+
+  /// Info banner when the community is approved and listed in Discovery.
+  ///
+  /// In en, this message translates to:
+  /// **'Your community is listed in Discovery. You can update your listing details below or withdraw to remove it.'**
+  String get guildSettingsDiscoveryApprovedInfo;
+
+  /// Info banner when the discovery application is pending review.
+  ///
+  /// In en, this message translates to:
+  /// **'Your application is pending review. You can still update your listing details or withdraw the application.'**
+  String get guildSettingsDiscoveryPendingInfo;
 
   /// Label for discovery category dropdown.
   ///
@@ -15459,35 +15585,149 @@ abstract class FluxerLocalizations {
   /// **'Category'**
   String get guildSettingsDiscoveryCategory;
 
+  /// Help text below the discovery category field.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the category that best describes your community. You can change this any time.'**
+  String get guildSettingsDiscoveryCategoryHelp;
+
+  /// Label for the primary language field on the discovery application form.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary language'**
+  String get guildSettingsDiscoveryPrimaryLanguage;
+
+  /// Help text below the primary language field.
+  ///
+  /// In en, this message translates to:
+  /// **'The language most of your community speaks. Used to filter Discovery results.'**
+  String get guildSettingsDiscoveryPrimaryLanguageHelp;
+
   /// Label for discovery description field.
   ///
   /// In en, this message translates to:
   /// **'Description'**
   String get guildSettingsDiscoveryDescriptionField;
 
-  /// Label for discovery tags field.
+  /// Placeholder in the discovery description field.
   ///
   /// In en, this message translates to:
-  /// **'Tags'**
+  /// **'Describe what your community is about'**
+  String get guildSettingsDiscoveryDescriptionPlaceholder;
+
+  /// Validation error when the discovery description is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'A description is required.'**
+  String get guildSettingsDiscoveryDescriptionRequired;
+
+  /// Validation error when the discovery description is too short.
+  ///
+  /// In en, this message translates to:
+  /// **'Description must be at least {minLength} characters.'**
+  String guildSettingsDiscoveryDescriptionMinLength(int minLength);
+
+  /// Validation error when the discovery description is too long.
+  ///
+  /// In en, this message translates to:
+  /// **'Description must be no more than {maxLength} characters.'**
+  String guildSettingsDiscoveryDescriptionMaxLength(int maxLength);
+
+  /// Label for discovery custom tags field.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom tags'**
   String get guildSettingsDiscoveryTags;
 
-  /// Hint for discovery tags field.
+  /// Help text below the custom tags field.
   ///
   /// In en, this message translates to:
-  /// **'gaming, art, music'**
+  /// **'Up to {maxTags} tags help people find your community. They show up in Discovery search.'**
+  String guildSettingsDiscoveryTagsHelp(int maxTags);
+
+  /// Placeholder in the custom tags input field.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a tag and press Enter'**
   String get guildSettingsDiscoveryTagsHint;
 
-  /// Button to submit discovery application.
+  /// Button to add a custom discovery tag.
   ///
   /// In en, this message translates to:
-  /// **'Submit Application'**
+  /// **'Add'**
+  String get guildSettingsDiscoveryAddTag;
+
+  /// Accessibility label for removing a custom discovery tag.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove tag {tag}'**
+  String guildSettingsDiscoveryRemoveTag(String tag);
+
+  /// Error modal title when a custom discovery tag cannot be added.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t add tag'**
+  String get guildSettingsDiscoveryTagErrorTitle;
+
+  /// Validation error for invalid custom discovery tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags must be 2 to {maxLength} characters and alphanumeric.'**
+  String guildSettingsDiscoveryTagRequirements(int maxLength);
+
+  /// Validation error when the custom tag limit is reached.
+  ///
+  /// In en, this message translates to:
+  /// **'You can only add up to {maxTags} tags.'**
+  String guildSettingsDiscoveryTagLimit(int maxTags);
+
+  /// Button to submit a new discovery application.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
   String get guildSettingsDiscoveryApply;
+
+  /// Button to save changes to an existing discovery listing.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get guildSettingsDiscoverySave;
 
   /// Button to withdraw discovery application.
   ///
   /// In en, this message translates to:
   /// **'Withdraw'**
   String get guildSettingsDiscoveryWithdraw;
+
+  /// Success toast after submitting a discovery application.
+  ///
+  /// In en, this message translates to:
+  /// **'Discovery application sent'**
+  String get guildSettingsDiscoveryApplicationSent;
+
+  /// Success toast after updating a discovery listing.
+  ///
+  /// In en, this message translates to:
+  /// **'Discovery listing updated'**
+  String get guildSettingsDiscoveryListingUpdated;
+
+  /// Success toast after withdrawing a discovery application.
+  ///
+  /// In en, this message translates to:
+  /// **'Discovery application withdrawn'**
+  String get guildSettingsDiscoveryApplicationWithdrawn;
+
+  /// Error modal title when withdrawing a discovery application fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t withdraw application'**
+  String get guildSettingsDiscoveryWithdrawErrorTitle;
+
+  /// Error modal body when withdrawing a discovery application fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again in a moment.'**
+  String get guildSettingsDiscoveryWithdrawErrorDescription;
 
   /// Description for members tab.
   ///
@@ -16392,8 +16632,254 @@ abstract class FluxerLocalizations {
   /// No description provided for @guildSettingsEmojiUploadTitle.
   ///
   /// In en, this message translates to:
-  /// **'Upload Emoji'**
+  /// **'Upload emoji'**
   String get guildSettingsEmojiUploadTitle;
+
+  /// No description provided for @guildSettingsEmojiSlotsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Emoji slots'**
+  String get guildSettingsEmojiSlotsTitle;
+
+  /// No description provided for @guildSettingsEmojiDropZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag and drop emoji files here'**
+  String get guildSettingsEmojiDropZone;
+
+  /// No description provided for @guildSettingsEmojiLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load emojis. Try again later.'**
+  String get guildSettingsEmojiLoadFailed;
+
+  /// No description provided for @guildSettingsEmojiSearchEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No emojis found matching your search.'**
+  String get guildSettingsEmojiSearchEmpty;
+
+  /// No description provided for @guildSettingsEmojiNoSlots.
+  ///
+  /// In en, this message translates to:
+  /// **'No emoji slots available'**
+  String get guildSettingsEmojiNoSlots;
+
+  /// No description provided for @guildSettingsEmojiSlotsFull.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve reached the maximum number of emojis. Delete some existing emojis to make room.'**
+  String get guildSettingsEmojiSlotsFull;
+
+  /// No description provided for @guildSettingsEmojiUploadRequirements.
+  ///
+  /// In en, this message translates to:
+  /// **'Emoji names need at least 2 characters and can use letters, numbers, and underscores. Emojis must be under {maxSize}. Static images are resized to 128x128 pixels and compressed automatically. Animated emojis and SVGs must already fit the limit.'**
+  String guildSettingsEmojiUploadRequirements(String maxSize);
+
+  /// No description provided for @guildSettingsEmojiUploadingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading emojis'**
+  String get guildSettingsEmojiUploadingTitle;
+
+  /// No description provided for @guildSettingsEmojiUploadingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading {count, plural, one {# emoji} other {# emojis}}. This may take a little while.'**
+  String guildSettingsEmojiUploadingBody(int count);
+
+  /// No description provided for @guildSettingsEmojiUploadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to upload emojis. Try again.'**
+  String get guildSettingsEmojiUploadFailed;
+
+  /// No description provided for @guildSettingsEmojiSomeFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Some emojis couldn\'t be added'**
+  String get guildSettingsEmojiSomeFailedTitle;
+
+  /// No description provided for @guildSettingsEmojiSomeFailedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Review these files and try again with smaller or simpler images.'**
+  String get guildSettingsEmojiSomeFailedBody;
+
+  /// No description provided for @guildSettingsEmojiRenameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename emoji'**
+  String get guildSettingsEmojiRenameTitle;
+
+  /// No description provided for @guildSettingsEmojiRenameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'2-32 characters, letters, numbers, underscores.'**
+  String get guildSettingsEmojiRenameHint;
+
+  /// No description provided for @guildSettingsEmojiColumnEmoji.
+  ///
+  /// In en, this message translates to:
+  /// **'Emoji'**
+  String get guildSettingsEmojiColumnEmoji;
+
+  /// No description provided for @guildSettingsEmojiColumnName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get guildSettingsEmojiColumnName;
+
+  /// No description provided for @guildSettingsEmojiColumnUploader.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploaded by'**
+  String get guildSettingsEmojiColumnUploader;
+
+  /// No description provided for @guildSettingsEmojiUnknownUploader.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get guildSettingsEmojiUnknownUploader;
+
+  /// No description provided for @guildSettingsEmojiDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete emoji'**
+  String get guildSettingsEmojiDeleteTitle;
+
+  /// No description provided for @guildSettingsEmojiDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete :{name}:? Can\'t be undone.'**
+  String guildSettingsEmojiDeleteBody(String name);
+
+  /// No description provided for @guildSettingsEmojiPurgeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Purge this emoji from storage and CDN'**
+  String get guildSettingsEmojiPurgeLabel;
+
+  /// No description provided for @guildSettingsEmojiNameTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Emoji name must be at least 2 characters long'**
+  String get guildSettingsEmojiNameTooShort;
+
+  /// No description provided for @guildSettingsEmojiNameTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Emoji name must be at most 32 characters long'**
+  String get guildSettingsEmojiNameTooLong;
+
+  /// No description provided for @guildSettingsEmojiInvalidNameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid emoji name'**
+  String get guildSettingsEmojiInvalidNameTitle;
+
+  /// No description provided for @guildSettingsEmojiRenameFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t rename this emoji'**
+  String get guildSettingsEmojiRenameFailedTitle;
+
+  /// No description provided for @guildSettingsEmojiRenameFailedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The name was reverted to what it was before. Please try again in a moment.'**
+  String get guildSettingsEmojiRenameFailedBody;
+
+  /// No description provided for @guildSettingsEmojiGoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This emoji no longer exists'**
+  String get guildSettingsEmojiGoneTitle;
+
+  /// No description provided for @guildSettingsEmojiGoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It may have been deleted. The name was reverted to what it was before.'**
+  String get guildSettingsEmojiGoneBody;
+
+  /// No description provided for @guildSettingsEmojiNoPermissionRenameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t rename this emoji'**
+  String get guildSettingsEmojiNoPermissionRenameTitle;
+
+  /// No description provided for @guildSettingsEmojiNoPermissionRenameBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have permission to rename this emoji. The name was reverted to what it was before.'**
+  String get guildSettingsEmojiNoPermissionRenameBody;
+
+  /// No description provided for @guildSettingsEmojiRateLimitedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re going too fast'**
+  String get guildSettingsEmojiRateLimitedTitle;
+
+  /// No description provided for @guildSettingsEmojiRateLimitedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait a moment and try renaming again.'**
+  String get guildSettingsEmojiRateLimitedBody;
+
+  /// No description provided for @guildSettingsEmojiDeleteFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t delete this emoji'**
+  String get guildSettingsEmojiDeleteFailedTitle;
+
+  /// No description provided for @guildSettingsEmojiDeleteNoPermissionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t delete this emoji'**
+  String get guildSettingsEmojiDeleteNoPermissionTitle;
+
+  /// No description provided for @guildSettingsCloneEmojiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow others to clone your emojis'**
+  String get guildSettingsCloneEmojiTitle;
+
+  /// No description provided for @guildSettingsCloneEmojiDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'When enabled, members of other communities can use the in-app one-click \"Clone\" shortcut on your custom emojis. This does not prevent them from saving the image and uploading it themselves.'**
+  String get guildSettingsCloneEmojiDescription;
+
+  /// No description provided for @guildSettingsCloneStickerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow others to clone your stickers'**
+  String get guildSettingsCloneStickerTitle;
+
+  /// No description provided for @guildSettingsCloneStickerDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'When enabled, members of other communities can use the in-app one-click \"Clone\" shortcut on your custom stickers. This does not prevent them from saving the image and uploading it themselves.'**
+  String get guildSettingsCloneStickerDescription;
+
+  /// No description provided for @guildSettingsClonePermissionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only members with the \"{permission}\" permission can change this.'**
+  String guildSettingsClonePermissionHint(String permission);
+
+  /// No description provided for @guildSettingsCloneEmojiUpdateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update emoji cloning'**
+  String get guildSettingsCloneEmojiUpdateFailed;
+
+  /// No description provided for @guildSettingsCloneStickerUpdateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update sticker cloning'**
+  String get guildSettingsCloneStickerUpdateFailed;
 
   /// No description provided for @guildSettingsNonAnimatedEmoji.
   ///
@@ -16413,11 +16899,221 @@ abstract class FluxerLocalizations {
   /// **'Search stickers'**
   String get guildSettingsStickersSearchHint;
 
-  /// No description provided for @guildSettingsWebhooksInfo.
+  /// No description provided for @guildSettingsStickerSlotsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Create webhooks from Channel settings. Edit them here.'**
-  String get guildSettingsWebhooksInfo;
+  /// **'Sticker slots'**
+  String get guildSettingsStickerSlotsTitle;
+
+  /// No description provided for @guildSettingsStickerUploadTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload sticker'**
+  String get guildSettingsStickerUploadTitle;
+
+  /// No description provided for @guildSettingsStickerDropZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag and drop a sticker file here (one at a time)'**
+  String get guildSettingsStickerDropZone;
+
+  /// No description provided for @guildSettingsStickerDensity.
+  ///
+  /// In en, this message translates to:
+  /// **'Sticker density'**
+  String get guildSettingsStickerDensity;
+
+  /// No description provided for @guildSettingsStickerDensityCozy.
+  ///
+  /// In en, this message translates to:
+  /// **'Cozy'**
+  String get guildSettingsStickerDensityCozy;
+
+  /// No description provided for @guildSettingsStickerDensityCompact.
+  ///
+  /// In en, this message translates to:
+  /// **'Compact'**
+  String get guildSettingsStickerDensityCompact;
+
+  /// No description provided for @guildSettingsStickersLoadFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load stickers'**
+  String get guildSettingsStickersLoadFailedTitle;
+
+  /// No description provided for @guildSettingsStickersLoadFailedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'There was an error loading the stickers. Try again.'**
+  String get guildSettingsStickersLoadFailedBody;
+
+  /// No description provided for @guildSettingsStickersSearchEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No stickers found matching your search.'**
+  String get guildSettingsStickersSearchEmpty;
+
+  /// No description provided for @guildSettingsStickersEmptySearch.
+  ///
+  /// In en, this message translates to:
+  /// **'No stickers found'**
+  String get guildSettingsStickersEmptySearch;
+
+  /// No description provided for @guildSettingsStickerNoSlots.
+  ///
+  /// In en, this message translates to:
+  /// **'No sticker slots available'**
+  String get guildSettingsStickerNoSlots;
+
+  /// No description provided for @guildSettingsStickerSlotsFull.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve reached the maximum number of stickers. Delete some existing stickers to make room.'**
+  String get guildSettingsStickerSlotsFull;
+
+  /// No description provided for @guildSettingsStickerUploadRequirements.
+  ///
+  /// In en, this message translates to:
+  /// **'Stickers are saved at 320x320 pixels and must be under {maxSize}. Static images are resized and compressed automatically. Animated stickers and SVGs must already fit the limit.'**
+  String guildSettingsStickerUploadRequirements(String maxSize);
+
+  /// No description provided for @guildSettingsStickerUnsupportedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsupported sticker file'**
+  String get guildSettingsStickerUnsupportedTitle;
+
+  /// No description provided for @guildSettingsStickerAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add sticker'**
+  String get guildSettingsStickerAddTitle;
+
+  /// No description provided for @guildSettingsStickerEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit sticker'**
+  String get guildSettingsStickerEditTitle;
+
+  /// No description provided for @guildSettingsStickerNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get guildSettingsStickerNameLabel;
+
+  /// No description provided for @guildSettingsStickerNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'My awesome sticker'**
+  String get guildSettingsStickerNameHint;
+
+  /// No description provided for @guildSettingsStickerDescriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get guildSettingsStickerDescriptionLabel;
+
+  /// No description provided for @guildSettingsStickerDescriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the sticker'**
+  String get guildSettingsStickerDescriptionHint;
+
+  /// No description provided for @guildSettingsStickerTagsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags ({count}/{limit})'**
+  String guildSettingsStickerTagsLabel(int count, int limit);
+
+  /// No description provided for @guildSettingsStickerTagHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a tag'**
+  String get guildSettingsStickerTagHint;
+
+  /// No description provided for @guildSettingsStickerTagAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get guildSettingsStickerTagAdd;
+
+  /// No description provided for @guildSettingsStickerNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Name is required'**
+  String get guildSettingsStickerNameRequired;
+
+  /// No description provided for @guildSettingsStickerNameTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Name must be at least 2 characters'**
+  String get guildSettingsStickerNameTooShort;
+
+  /// No description provided for @guildSettingsStickerNameTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Name must be 30 characters or less'**
+  String get guildSettingsStickerNameTooLong;
+
+  /// No description provided for @guildSettingsStickerDescriptionTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Description must be 500 characters or less'**
+  String get guildSettingsStickerDescriptionTooLong;
+
+  /// No description provided for @guildSettingsStickerCreateFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t create this sticker'**
+  String get guildSettingsStickerCreateFailedTitle;
+
+  /// No description provided for @guildSettingsStickerTooLargeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sticker is too large'**
+  String get guildSettingsStickerTooLargeTitle;
+
+  /// No description provided for @guildSettingsStickerCompressFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sticker couldn\'t be compressed enough'**
+  String get guildSettingsStickerCompressFailedTitle;
+
+  /// No description provided for @guildSettingsStickerDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete sticker'**
+  String get guildSettingsStickerDeleteTitle;
+
+  /// No description provided for @guildSettingsStickerDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete \"{name}\"? Can\'t be undone.'**
+  String guildSettingsStickerDeleteBody(String name);
+
+  /// No description provided for @guildSettingsStickerPurgeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Purge this sticker from storage and CDN'**
+  String get guildSettingsStickerPurgeLabel;
+
+  /// No description provided for @guildSettingsStickerDeleteFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t delete this sticker'**
+  String get guildSettingsStickerDeleteFailedTitle;
+
+  /// No description provided for @guildSettingsStickerDeleteNoPermissionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t delete this sticker'**
+  String get guildSettingsStickerDeleteNoPermissionTitle;
+
+  /// Info box on the guild webhooks tab.
+  ///
+  /// In en, this message translates to:
+  /// **'To create a webhook, open {channelSettingsPath}. You can still edit and organize all existing webhooks here.'**
+  String guildSettingsWebhooksInfo(String channelSettingsPath);
 
   /// No description provided for @guildSettingsVanityUrlWarning.
   ///

@@ -258,7 +258,7 @@ void main() {
   });
 
   test(
-    'cache refresh shows loading skeleton while fetching from network',
+    'cache refresh shows cached messages while syncing from network',
     () async {
       final db = openTestDatabase();
       final cachedId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
@@ -298,15 +298,18 @@ void main() {
       await _flushAsync();
 
       final state = container.read(chatViewModelProvider);
-      expect(state.isLoading, isTrue);
-      expect(state.isSyncingMessages, isFalse);
-      expect(state.messages, isEmpty);
+      expect(state.isLoading, isFalse);
+      expect(state.isSyncingMessages, isTrue);
+      expect(state.messages, hasLength(1));
+      expect(state.messages.first.id, cachedId);
       expect(adapter.messageRequestUris, isNotEmpty);
 
       adapter.releaseMessageFetch();
       await _flushAsync();
-      expect(container.read(chatViewModelProvider).isLoading, isFalse);
-      expect(container.read(chatViewModelProvider).messages.last.id, networkId);
+      final synced = container.read(chatViewModelProvider);
+      expect(synced.isSyncingMessages, isFalse);
+      expect(synced.messages, hasLength(1));
+      expect(synced.messages.first.id, cachedId);
     },
   );
 
@@ -347,11 +350,11 @@ void main() {
       await _flushAsync();
 
       expect(adapter.ackedMessageIds, isEmpty);
-      expect(container.read(chatViewModelProvider).isLoading, isTrue);
-      expect(container.read(chatViewModelProvider).isSyncingMessages, isFalse);
+      expect(container.read(chatViewModelProvider).isLoading, isFalse);
+      expect(container.read(chatViewModelProvider).isSyncingMessages, isTrue);
       adapter.releaseMessageFetch();
       await _flushAsync();
-      expect(container.read(chatViewModelProvider).isLoading, isFalse);
+      expect(container.read(chatViewModelProvider).isSyncingMessages, isFalse);
     },
   );
 
@@ -1097,6 +1100,67 @@ void main() {
     expect(loadedState.isSyncingMessages, isFalse);
     expect(loadedState.messages.last.id, latestId);
   });
+
+  test(
+    'superseded same-channel switch does not strand empty channel',
+    () async {
+      final db = openTestDatabase();
+      final latestId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
+      await db.channelDao.upsertChannel(
+        ChannelsCompanion.insert(
+          id: 'channel-1',
+          guildId: 'guild-1',
+          name: 'general',
+          lastMessageId: Value(latestId),
+        ),
+      );
+      await db.readStateDao.upsertReadState(
+        ReadStatesCompanion(
+          channelId: const Value('channel-1'),
+          lastMessageId: Value(latestId),
+          mentionCount: const Value(0),
+        ),
+      );
+      final adapter = _ChatAdapter(
+        initialMessages: [
+          _messageJson(id: latestId, channelId: 'channel-1', authorId: 'other'),
+        ],
+      )..holdMessageFetch = true;
+      final container = _container(db, adapter);
+      addTearDown(container.dispose);
+
+      final notifier = container.read(chatViewModelProvider.notifier);
+      final Future<void> firstLoad = notifier.switchChannel('channel-1');
+      await _flushAsync();
+
+      final ChatViewState loadingState = container.read(chatViewModelProvider);
+      expect(loadingState.channelId, 'channel-1');
+      expect(loadingState.isLoading, isTrue);
+      expect(loadingState.messages, isEmpty);
+
+      final Future<void> secondLoad = notifier.switchChannel('channel-1');
+      await _flushAsync();
+
+      final ChatViewState supersededState = container.read(
+        chatViewModelProvider,
+      );
+      expect(supersededState.channelId, 'channel-1');
+      expect(
+        supersededState.isLoading || supersededState.messages.isNotEmpty,
+        isTrue,
+        reason: 'must not strand empty idle channel during supersede',
+      );
+
+      adapter.releaseMessageFetch();
+      await Future.wait(<Future<void>>[firstLoad, secondLoad]);
+      await _flushAsync();
+
+      final ChatViewState loadedState = container.read(chatViewModelProvider);
+      expect(loadedState.isLoading, isFalse);
+      expect(loadedState.messages, isNotEmpty);
+      expect(loadedState.messages.last.id, latestId);
+    },
+  );
 
   test('stale channel fetch does not overwrite active channel state', () async {
     final db = openTestDatabase();

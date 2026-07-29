@@ -16,7 +16,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   media_kit_libs_linux
   media_kit_video
   record_linux
-  refresh_rate
   screen_retriever_linux
   sentry_flutter
   super_native_extensions

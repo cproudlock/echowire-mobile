@@ -4431,6 +4431,14 @@
   "@chatAttachmentDownload": {
     "description": "Tooltip and accessibility label for downloading a non-media file attachment."
   },
+  "chatAttachmentDownloadedToast": "Saved to photos",
+  "@chatAttachmentDownloadedToast": {
+    "description": "Toast shown after an attachment is saved to the device."
+  },
+  "chatAttachmentDownloadFailedToast": "Couldn't download attachment",
+  "@chatAttachmentDownloadFailedToast": {
+    "description": "Toast shown when an attachment download fails."
+  },
   "chatAttachmentExpiredTooltip": "Attachment expired",
   "@chatAttachmentExpiredTooltip": {
     "description": "Tooltip when a file attachment link is no longer available."
@@ -8593,6 +8601,41 @@
   "@personalNotesComposerHint": {
     "description": "Placeholder in the message composer when viewing personal notes."
   },
+  "channelComposerHint": "Message #{channelName}",
+  "@channelComposerHint": {
+    "description": "Placeholder in the message composer for a text channel.",
+    "placeholders": {
+      "channelName": {
+        "type": "String"
+      }
+    }
+  },
+  "dmComposerHint": "Message @{recipientName}",
+  "@dmComposerHint": {
+    "description": "Placeholder in the message composer for a one-to-one DM.",
+    "placeholders": {
+      "recipientName": {
+        "type": "String"
+      }
+    }
+  },
+  "groupDmNamedComposerHint": "Message {groupName}",
+  "@groupDmNamedComposerHint": {
+    "description": "Placeholder in the message composer for a named group DM.",
+    "placeholders": {
+      "groupName": {
+        "type": "String"
+      }
+    }
+  },
+  "groupDmComposerHint": "Message group",
+  "@groupDmComposerHint": {
+    "description": "Placeholder in the message composer for a group DM without a custom name."
+  },
+  "composerHint": "Message",
+  "@composerHint": {
+    "description": "Generic fallback placeholder in the message composer."
+  },
   "personalNotesPrivateSpace": "Your private space",
   "@personalNotesPrivateSpace": {
     "description": "Short subtitle in channel details for personal notes."
@@ -10152,11 +10195,11 @@
   "@guildMenuSettingsRoles": {
     "description": "Community settings tab for roles and permissions."
   },
-  "guildMenuSettingsEmoji": "Custom Emoji",
+  "guildMenuSettingsEmoji": "Emoji",
   "@guildMenuSettingsEmoji": {
     "description": "Community settings tab for custom emoji."
   },
-  "guildMenuSettingsStickers": "Custom Stickers",
+  "guildMenuSettingsStickers": "Stickers",
   "@guildMenuSettingsStickers": {
     "description": "Community settings tab for custom stickers."
   },
@@ -11834,13 +11877,51 @@
   "@guildSettingsLoadingMore": {
     "description": "Loading state for pagination."
   },
-  "guildSettingsWebhooksDescription": "Manage webhooks that post messages to channels.",
+  "guildSettingsWebhooksDescription": "View and manage every webhook configured across your community.",
   "@guildSettingsWebhooksDescription": {
     "description": "Description for webhooks tab."
   },
-  "guildSettingsWebhooksEmpty": "No webhooks configured.",
+  "guildSettingsWebhooksEmpty": "No webhooks",
   "@guildSettingsWebhooksEmpty": {
-    "description": "Empty state for webhooks."
+    "description": "Empty state title for webhooks."
+  },
+  "guildSettingsWebhooksEmptyDescription": "This community doesn't have any webhooks yet. Go to {channelSettingsPath} to create one.",
+  "@guildSettingsWebhooksEmptyDescription": {
+    "description": "Empty state description for guild webhooks.",
+    "placeholders": {
+      "channelSettingsPath": {
+        "type": "String"
+      }
+    }
+  },
+  "guildSettingsWebhooksPermissionRequired": "You need the \"{permission}\" permission to view and edit webhooks for this community.",
+  "@guildSettingsWebhooksPermissionRequired": {
+    "description": "Permission notice on guild webhooks tab.",
+    "placeholders": {
+      "permission": {
+        "type": "String"
+      }
+    }
+  },
+  "guildSettingsWebhooksLoadFailedTitle": "Failed to load webhooks",
+  "@guildSettingsWebhooksLoadFailedTitle": {
+    "description": "Error title when guild webhooks fail to load."
+  },
+  "guildSettingsWebhooksLoadFailedDescription": "There was an error loading the webhooks. Try again.",
+  "@guildSettingsWebhooksLoadFailedDescription": {
+    "description": "Error description when guild webhooks fail to load."
+  },
+  "guildSettingsWebhooksUpdated": "Webhooks updated",
+  "@guildSettingsWebhooksUpdated": {
+    "description": "Success toast after saving guild webhook changes."
+  },
+  "guildSettingsWebhooksUpdateFailed": "Failed to update webhooks",
+  "@guildSettingsWebhooksUpdateFailed": {
+    "description": "Error message when saving guild webhook changes fails."
+  },
+  "guildSettingsUnknownChannel": "Unknown channel",
+  "@guildSettingsUnknownChannel": {
+    "description": "Fallback label when a webhook channel name is unavailable."
   },
   "guildSettingsCopyUrl": "Copy URL",
   "@guildSettingsCopyUrl": {
@@ -11877,48 +11958,173 @@
       "count": {"type": "int"}
     }
   },
-  "guildSettingsDiscoveryDescription": "Apply to be listed in server discovery.",
+  "guildSettingsDiscoveryDescription": "List your community in Discovery so others can find and join it.",
   "@guildSettingsDiscoveryDescription": {
-    "description": "Description for discovery tab."
+    "description": "Subtitle for the community Discovery settings tab."
   },
-  "guildSettingsDiscoveryNotEligible": "Requires at least {count} members to apply.",
+  "guildSettingsDiscoveryNotEnoughMembersTitle": "Not enough members",
+  "@guildSettingsDiscoveryNotEnoughMembersTitle": {
+    "description": "Title for the eligibility warning when a community cannot apply for Discovery yet."
+  },
+  "guildSettingsDiscoveryNotEligible": "Your community needs at least {count} members before it can be listed in Discovery.",
   "@guildSettingsDiscoveryNotEligible": {
     "description": "Discovery eligibility message.",
     "placeholders": {
       "count": {"type": "int"}
     }
   },
-  "guildSettingsDiscoveryFormTitle": "Application",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
+  "guildSettingsDiscoveryStatusLabel": "Status:",
+  "@guildSettingsDiscoveryStatusLabel": {
+    "description": "Label before the discovery application status badge."
   },
-  "guildSettingsDiscoveryStatusTitle": "Status",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
+  "guildSettingsDiscoveryStatusPending": "Pending",
+  "@guildSettingsDiscoveryStatusPending": {
+    "description": "Discovery application status badge when awaiting staff review."
+  },
+  "guildSettingsDiscoveryStatusApproved": "Approved",
+  "@guildSettingsDiscoveryStatusApproved": {
+    "description": "Discovery application status badge when approved and listed."
+  },
+  "guildSettingsDiscoveryStatusRejected": "Rejected",
+  "@guildSettingsDiscoveryStatusRejected": {
+    "description": "Discovery application status badge when declined by staff."
+  },
+  "guildSettingsDiscoveryStatusRemoved": "Removed",
+  "@guildSettingsDiscoveryStatusRemoved": {
+    "description": "Discovery application status badge when delisted from Discovery."
+  },
+  "guildSettingsDiscoveryReason": "Reason: {reason}",
+  "@guildSettingsDiscoveryReason": {
+    "description": "Review or removal reason shown on the discovery application status card.",
+    "placeholders": {
+      "reason": {"type": "String"}
+    }
+  },
+  "guildSettingsDiscoveryApprovedInfo": "Your community is listed in Discovery. You can update your listing details below or withdraw to remove it.",
+  "@guildSettingsDiscoveryApprovedInfo": {
+    "description": "Info banner when the community is approved and listed in Discovery."
+  },
+  "guildSettingsDiscoveryPendingInfo": "Your application is pending review. You can still update your listing details or withdraw the application.",
+  "@guildSettingsDiscoveryPendingInfo": {
+    "description": "Info banner when the discovery application is pending review."
   },
   "guildSettingsDiscoveryCategory": "Category",
   "@guildSettingsDiscoveryCategory": {
     "description": "Label for discovery category dropdown."
   },
+  "guildSettingsDiscoveryCategoryHelp": "Choose the category that best describes your community. You can change this any time.",
+  "@guildSettingsDiscoveryCategoryHelp": {
+    "description": "Help text below the discovery category field."
+  },
+  "guildSettingsDiscoveryPrimaryLanguage": "Primary language",
+  "@guildSettingsDiscoveryPrimaryLanguage": {
+    "description": "Label for the primary language field on the discovery application form."
+  },
+  "guildSettingsDiscoveryPrimaryLanguageHelp": "The language most of your community speaks. Used to filter Discovery results.",
+  "@guildSettingsDiscoveryPrimaryLanguageHelp": {
+    "description": "Help text below the primary language field."
+  },
   "guildSettingsDiscoveryDescriptionField": "Description",
   "@guildSettingsDiscoveryDescriptionField": {
     "description": "Label for discovery description field."
   },
-  "guildSettingsDiscoveryTags": "Tags",
+  "guildSettingsDiscoveryDescriptionPlaceholder": "Describe what your community is about",
+  "@guildSettingsDiscoveryDescriptionPlaceholder": {
+    "description": "Placeholder in the discovery description field."
+  },
+  "guildSettingsDiscoveryDescriptionRequired": "A description is required.",
+  "@guildSettingsDiscoveryDescriptionRequired": {
+    "description": "Validation error when the discovery description is empty."
+  },
+  "guildSettingsDiscoveryDescriptionMinLength": "Description must be at least {minLength} characters.",
+  "@guildSettingsDiscoveryDescriptionMinLength": {
+    "description": "Validation error when the discovery description is too short.",
+    "placeholders": {
+      "minLength": {"type": "int"}
+    }
+  },
+  "guildSettingsDiscoveryDescriptionMaxLength": "Description must be no more than {maxLength} characters.",
+  "@guildSettingsDiscoveryDescriptionMaxLength": {
+    "description": "Validation error when the discovery description is too long.",
+    "placeholders": {
+      "maxLength": {"type": "int"}
+    }
+  },
+  "guildSettingsDiscoveryTags": "Custom tags",
   "@guildSettingsDiscoveryTags": {
-    "description": "Label for discovery tags field."
+    "description": "Label for discovery custom tags field."
   },
-  "guildSettingsDiscoveryTagsHint": "gaming, art, music",
+  "guildSettingsDiscoveryTagsHelp": "Up to {maxTags} tags help people find your community. They show up in Discovery search.",
+  "@guildSettingsDiscoveryTagsHelp": {
+    "description": "Help text below the custom tags field.",
+    "placeholders": {
+      "maxTags": {"type": "int"}
+    }
+  },
+  "guildSettingsDiscoveryTagsHint": "Add a tag and press Enter",
   "@guildSettingsDiscoveryTagsHint": {
-    "description": "Hint for discovery tags field."
+    "description": "Placeholder in the custom tags input field."
   },
-  "guildSettingsDiscoveryApply": "Submit Application",
+  "guildSettingsDiscoveryAddTag": "Add",
+  "@guildSettingsDiscoveryAddTag": {
+    "description": "Button to add a custom discovery tag."
+  },
+  "guildSettingsDiscoveryRemoveTag": "Remove tag {tag}",
+  "@guildSettingsDiscoveryRemoveTag": {
+    "description": "Accessibility label for removing a custom discovery tag.",
+    "placeholders": {
+      "tag": {"type": "String"}
+    }
+  },
+  "guildSettingsDiscoveryTagErrorTitle": "Couldn't add tag",
+  "@guildSettingsDiscoveryTagErrorTitle": {
+    "description": "Error modal title when a custom discovery tag cannot be added."
+  },
+  "guildSettingsDiscoveryTagRequirements": "Tags must be 2 to {maxLength} characters and alphanumeric.",
+  "@guildSettingsDiscoveryTagRequirements": {
+    "description": "Validation error for invalid custom discovery tags.",
+    "placeholders": {
+      "maxLength": {"type": "int"}
+    }
+  },
+  "guildSettingsDiscoveryTagLimit": "You can only add up to {maxTags} tags.",
+  "@guildSettingsDiscoveryTagLimit": {
+    "description": "Validation error when the custom tag limit is reached.",
+    "placeholders": {
+      "maxTags": {"type": "int"}
+    }
+  },
+  "guildSettingsDiscoveryApply": "Apply",
   "@guildSettingsDiscoveryApply": {
-    "description": "Button to submit discovery application."
+    "description": "Button to submit a new discovery application."
+  },
+  "guildSettingsDiscoverySave": "Save",
+  "@guildSettingsDiscoverySave": {
+    "description": "Button to save changes to an existing discovery listing."
   },
   "guildSettingsDiscoveryWithdraw": "Withdraw",
   "@guildSettingsDiscoveryWithdraw": {
     "description": "Button to withdraw discovery application."
+  },
+  "guildSettingsDiscoveryApplicationSent": "Discovery application sent",
+  "@guildSettingsDiscoveryApplicationSent": {
+    "description": "Success toast after submitting a discovery application."
+  },
+  "guildSettingsDiscoveryListingUpdated": "Discovery listing updated",
+  "@guildSettingsDiscoveryListingUpdated": {
+    "description": "Success toast after updating a discovery listing."
+  },
+  "guildSettingsDiscoveryApplicationWithdrawn": "Discovery application withdrawn",
+  "@guildSettingsDiscoveryApplicationWithdrawn": {
+    "description": "Success toast after withdrawing a discovery application."
+  },
+  "guildSettingsDiscoveryWithdrawErrorTitle": "Couldn't withdraw application",
+  "@guildSettingsDiscoveryWithdrawErrorTitle": {
+    "description": "Error modal title when withdrawing a discovery application fails."
+  },
+  "guildSettingsDiscoveryWithdrawErrorDescription": "Try again in a moment.",
+  "@guildSettingsDiscoveryWithdrawErrorDescription": {
+    "description": "Error modal body when withdrawing a discovery application fails."
   },
   "guildSettingsMembersDescription": "Search and manage server members.",
   "@guildSettingsMembersDescription": {
@@ -12428,7 +12634,60 @@
   "guildSettingsModeration2faOwnerOnlyTooltip": "Only the community owner can change this setting",
   "guildSettingsModeration2faEnableFirstTooltip": "Enable 2FA on your account to change this setting",
   "guildSettingsEmojiSearchHint": "Search emojis",
-  "guildSettingsEmojiUploadTitle": "Upload Emoji",
+  "guildSettingsEmojiUploadTitle": "Upload emoji",
+  "guildSettingsEmojiSlotsTitle": "Emoji slots",
+  "guildSettingsEmojiDropZone": "Drag and drop emoji files here",
+  "guildSettingsEmojiLoadFailed": "Failed to load emojis. Try again later.",
+  "guildSettingsEmojiSearchEmpty": "No emojis found matching your search.",
+  "guildSettingsEmojiNoSlots": "No emoji slots available",
+  "guildSettingsEmojiSlotsFull": "You've reached the maximum number of emojis. Delete some existing emojis to make room.",
+  "guildSettingsEmojiUploadRequirements": "Emoji names need at least 2 characters and can use letters, numbers, and underscores. Emojis must be under {maxSize}. Static images are resized to 128x128 pixels and compressed automatically. Animated emojis and SVGs must already fit the limit.",
+  "@guildSettingsEmojiUploadRequirements": {
+    "placeholders": { "maxSize": {"type": "String"} }
+  },
+  "guildSettingsEmojiUploadingTitle": "Uploading emojis",
+  "guildSettingsEmojiUploadingBody": "Uploading {count, plural, one {# emoji} other {# emojis}}. This may take a little while.",
+  "@guildSettingsEmojiUploadingBody": {
+    "placeholders": { "count": {"type": "int"} }
+  },
+  "guildSettingsEmojiUploadFailed": "Failed to upload emojis. Try again.",
+  "guildSettingsEmojiSomeFailedTitle": "Some emojis couldn't be added",
+  "guildSettingsEmojiSomeFailedBody": "Review these files and try again with smaller or simpler images.",
+  "guildSettingsEmojiRenameTitle": "Rename emoji",
+  "guildSettingsEmojiRenameHint": "2-32 characters, letters, numbers, underscores.",
+  "guildSettingsEmojiColumnEmoji": "Emoji",
+  "guildSettingsEmojiColumnName": "Name",
+  "guildSettingsEmojiColumnUploader": "Uploaded by",
+  "guildSettingsEmojiUnknownUploader": "Unknown",
+  "guildSettingsEmojiDeleteTitle": "Delete emoji",
+  "guildSettingsEmojiDeleteBody": "Delete :{name}:? Can't be undone.",
+  "@guildSettingsEmojiDeleteBody": {
+    "placeholders": { "name": {"type": "String"} }
+  },
+  "guildSettingsEmojiPurgeLabel": "Purge this emoji from storage and CDN",
+  "guildSettingsEmojiNameTooShort": "Emoji name must be at least 2 characters long",
+  "guildSettingsEmojiNameTooLong": "Emoji name must be at most 32 characters long",
+  "guildSettingsEmojiInvalidNameTitle": "Invalid emoji name",
+  "guildSettingsEmojiRenameFailedTitle": "Couldn't rename this emoji",
+  "guildSettingsEmojiRenameFailedBody": "The name was reverted to what it was before. Please try again in a moment.",
+  "guildSettingsEmojiGoneTitle": "This emoji no longer exists",
+  "guildSettingsEmojiGoneBody": "It may have been deleted. The name was reverted to what it was before.",
+  "guildSettingsEmojiNoPermissionRenameTitle": "You can't rename this emoji",
+  "guildSettingsEmojiNoPermissionRenameBody": "You don't have permission to rename this emoji. The name was reverted to what it was before.",
+  "guildSettingsEmojiRateLimitedTitle": "You're going too fast",
+  "guildSettingsEmojiRateLimitedBody": "Please wait a moment and try renaming again.",
+  "guildSettingsEmojiDeleteFailedTitle": "Couldn't delete this emoji",
+  "guildSettingsEmojiDeleteNoPermissionTitle": "You can't delete this emoji",
+  "guildSettingsCloneEmojiTitle": "Allow others to clone your emojis",
+  "guildSettingsCloneEmojiDescription": "When enabled, members of other communities can use the in-app one-click \"Clone\" shortcut on your custom emojis. This does not prevent them from saving the image and uploading it themselves.",
+  "guildSettingsCloneStickerTitle": "Allow others to clone your stickers",
+  "guildSettingsCloneStickerDescription": "When enabled, members of other communities can use the in-app one-click \"Clone\" shortcut on your custom stickers. This does not prevent them from saving the image and uploading it themselves.",
+  "guildSettingsClonePermissionHint": "Only members with the \"{permission}\" permission can change this.",
+  "@guildSettingsClonePermissionHint": {
+    "placeholders": { "permission": {"type": "String"} }
+  },
+  "guildSettingsCloneEmojiUpdateFailed": "Couldn't update emoji cloning",
+  "guildSettingsCloneStickerUpdateFailed": "Couldn't update sticker cloning",
   "guildSettingsNonAnimatedEmoji": "Non-animated emoji ({count})",
   "@guildSettingsNonAnimatedEmoji": {
     "placeholders": { "count": {"type": "int"} }
@@ -12438,7 +12697,62 @@
     "placeholders": { "count": {"type": "int"} }
   },
   "guildSettingsStickersSearchHint": "Search stickers",
-  "guildSettingsWebhooksInfo": "Create webhooks from Channel settings. Edit them here.",
+  "guildSettingsStickerSlotsTitle": "Sticker slots",
+  "guildSettingsStickerUploadTitle": "Upload sticker",
+  "guildSettingsStickerDropZone": "Drag and drop a sticker file here (one at a time)",
+  "guildSettingsStickerDensity": "Sticker density",
+  "guildSettingsStickerDensityCozy": "Cozy",
+  "guildSettingsStickerDensityCompact": "Compact",
+  "guildSettingsStickersLoadFailedTitle": "Failed to load stickers",
+  "guildSettingsStickersLoadFailedBody": "There was an error loading the stickers. Try again.",
+  "guildSettingsStickersSearchEmpty": "No stickers found matching your search.",
+  "guildSettingsStickersEmptySearch": "No stickers found",
+  "guildSettingsStickerNoSlots": "No sticker slots available",
+  "guildSettingsStickerSlotsFull": "You've reached the maximum number of stickers. Delete some existing stickers to make room.",
+  "guildSettingsStickerUploadRequirements": "Stickers are saved at 320x320 pixels and must be under {maxSize}. Static images are resized and compressed automatically. Animated stickers and SVGs must already fit the limit.",
+  "@guildSettingsStickerUploadRequirements": {
+    "placeholders": { "maxSize": {"type": "String"} }
+  },
+  "guildSettingsStickerUnsupportedTitle": "Unsupported sticker file",
+  "guildSettingsStickerAddTitle": "Add sticker",
+  "guildSettingsStickerEditTitle": "Edit sticker",
+  "guildSettingsStickerNameLabel": "Name",
+  "guildSettingsStickerNameHint": "My awesome sticker",
+  "guildSettingsStickerDescriptionLabel": "Description",
+  "guildSettingsStickerDescriptionHint": "Describe the sticker",
+  "guildSettingsStickerTagsLabel": "Tags ({count}/{limit})",
+  "@guildSettingsStickerTagsLabel": {
+    "placeholders": {
+      "count": {"type": "int"},
+      "limit": {"type": "int"}
+    }
+  },
+  "guildSettingsStickerTagHint": "Add a tag",
+  "guildSettingsStickerTagAdd": "Add",
+  "guildSettingsStickerNameRequired": "Name is required",
+  "guildSettingsStickerNameTooShort": "Name must be at least 2 characters",
+  "guildSettingsStickerNameTooLong": "Name must be 30 characters or less",
+  "guildSettingsStickerDescriptionTooLong": "Description must be 500 characters or less",
+  "guildSettingsStickerCreateFailedTitle": "Couldn't create this sticker",
+  "guildSettingsStickerTooLargeTitle": "Sticker is too large",
+  "guildSettingsStickerCompressFailedTitle": "Sticker couldn't be compressed enough",
+  "guildSettingsStickerDeleteTitle": "Delete sticker",
+  "guildSettingsStickerDeleteBody": "Delete \"{name}\"? Can't be undone.",
+  "@guildSettingsStickerDeleteBody": {
+    "placeholders": { "name": {"type": "String"} }
+  },
+  "guildSettingsStickerPurgeLabel": "Purge this sticker from storage and CDN",
+  "guildSettingsStickerDeleteFailedTitle": "Couldn't delete this sticker",
+  "guildSettingsStickerDeleteNoPermissionTitle": "You can't delete this sticker",
+  "guildSettingsWebhooksInfo": "To create a webhook, open {channelSettingsPath}. You can still edit and organize all existing webhooks here.",
+  "@guildSettingsWebhooksInfo": {
+    "description": "Info box on the guild webhooks tab.",
+    "placeholders": {
+      "channelSettingsPath": {
+        "type": "String"
+      }
+    }
+  },
   "guildSettingsVanityUrlWarning": "Your vanity URL won't work unless at least one channel is visible to everyone.",
   "guildSettingsVanityUrlRemove": "Remove",
   "guildSettingsBannedUsersTitle": "Banned users",

@@ -747,9 +747,14 @@ class _ChannelTile extends ConsumerWidget {
         await ref
             .read(favoriteChannelsRepositoryProvider)
             .isFavorite(channel.id);
+    final int? cachedPermissionBits = ref.read(
+      channelPermissionCacheProvider,
+    )[channel.id];
     final int? permissionBits =
-        ref.read(channelPermissionCacheProvider)[channel.id] ??
-        ref.read(effectiveGuildChannelPermissionBitsProvider(channel.id)).value;
+        cachedPermissionBits ??
+        await ref.read(
+          effectiveGuildChannelPermissionBitsProvider(channel.id).future,
+        );
     final Set<String> mutedIds =
         ref.read(mutedChannelIdsProvider(guildId)).value ?? const <String>{};
     final bool isMuted = mutedIds.contains(channel.id);
@@ -1173,8 +1178,8 @@ class _CategoryHeader extends ConsumerWidget {
             const SizedBox(width: 4),
             PhosphorIcon(
               isCollapsed
-                  ? PhosphorIconsRegular.caretRight
-                  : PhosphorIconsRegular.caretDown,
+                  ? PhosphorIconsBold.caretRight
+                  : PhosphorIconsBold.caretDown,
               size: 12,
               color: context.colors.textPrimaryMuted,
             ),
@@ -1269,6 +1274,7 @@ class _CategoryHeader extends ConsumerWidget {
             onAction: (CategoryMenuAction action) => _handleCategoryMenuAction(
               action,
               menuContext: sheetContext,
+              parentContext: context,
               ref: ref,
               close: close,
               menuState: menuState,
@@ -1289,6 +1295,7 @@ class _CategoryHeader extends ConsumerWidget {
         onAction: (CategoryMenuAction action) => _handleCategoryMenuAction(
           action,
           menuContext: menuContext,
+          parentContext: context,
           ref: ref,
           close: close,
           menuState: menuState,
@@ -1302,6 +1309,7 @@ class _CategoryHeader extends ConsumerWidget {
   void _handleCategoryMenuAction(
     CategoryMenuAction action, {
     required BuildContext menuContext,
+    required BuildContext parentContext,
     required WidgetRef ref,
     required VoidCallback close,
     required CategoryMenuState menuState,
@@ -1348,7 +1356,7 @@ class _CategoryHeader extends ConsumerWidget {
         );
       case CategoryMenuAction.deleteCategory:
         close();
-        unawaited(_deleteCategory(menuContext, ref));
+        unawaited(_deleteCategory(parentContext, ref));
       case CategoryMenuAction.copyCategoryId:
         close();
         unawaited(
@@ -1373,7 +1381,10 @@ class _CategoryHeader extends ConsumerWidget {
 
   Future<void> _deleteCategory(BuildContext context, WidgetRef ref) async {
     final Channel? channel = await _loadCategoryChannel(ref);
-    if (channel == null || !context.mounted) {
+    if (channel == null) {
+      return;
+    }
+    if (!context.mounted) {
       return;
     }
     await DeleteChannelFlow.confirmAndDelete(context, ref, channel: channel);

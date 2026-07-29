@@ -77,6 +77,20 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 const _kSheetLoadMoreThreshold = 160.0;
 
+Widget _scrollableSheetPlaceholder(
+  BuildContext context,
+  ScrollController scrollController,
+  Widget child,
+) {
+  return ListView(
+    controller: scrollController,
+    physics: const AlwaysScrollableScrollPhysics(),
+    children: [
+      SizedBox(height: MediaQuery.sizeOf(context).height * 0.25, child: child),
+    ],
+  );
+}
+
 enum ChannelDetailsInitialTab { members, pins }
 
 Future<void> showChannelDetailsSheet(
@@ -1072,7 +1086,7 @@ class _PinsEmptyState extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             PhosphorIcon(
-              PhosphorIconsRegular.sparkle,
+              PhosphorIconsBold.sparkle,
               size: 80,
               color: context.colors.textPrimaryMuted,
             ),
@@ -1558,35 +1572,56 @@ class _ChannelSearchSheetState extends ConsumerState<ChannelSearchSheet> {
   Widget _buildResults(BuildContext context, ChannelSearchState state) {
     final FluxerLocalizations l10n = FluxerLocalizations.of(context);
     if (!state.hasSearched) {
-      return _EmptySheetState(
-        icon: PhosphorIconsBold.magnifyingGlass,
-        title: l10n.channelDetailsSearchEmptyTitle,
-        body: l10n.channelDetailsSearchEmptyBody,
+      return _scrollableSheetPlaceholder(
+        context,
+        widget.scrollController,
+        _EmptySheetState(
+          icon: PhosphorIconsBold.magnifyingGlass,
+          title: l10n.channelDetailsSearchEmptyTitle,
+          body: l10n.channelDetailsSearchEmptyBody,
+        ),
       );
     }
     if (state.isSearching) {
-      return const Center(child: FluxerLoadingSpinner());
+      return _scrollableSheetPlaceholder(
+        context,
+        widget.scrollController,
+        const Center(child: FluxerLoadingSpinner()),
+      );
     }
     if (state.errorMessage != null) {
-      return _ErrorSheetState(title: state.errorMessage!, onRetry: _runSearch);
+      return _scrollableSheetPlaceholder(
+        context,
+        widget.scrollController,
+        _ErrorSheetState(title: state.errorMessage!, onRetry: _runSearch),
+      );
     }
     if (state.indexing) {
-      return _EmptySheetState(
-        icon: PhosphorIconsBold.clockCounterClockwise,
-        title: l10n.channelDetailsSearchIndexingTitle,
-        body: l10n.channelDetailsSearchIndexingBody,
+      return _scrollableSheetPlaceholder(
+        context,
+        widget.scrollController,
+        _EmptySheetState(
+          icon: PhosphorIconsBold.clockCounterClockwise,
+          title: l10n.channelDetailsSearchIndexingTitle,
+          body: l10n.channelDetailsSearchIndexingBody,
+        ),
       );
     }
     if (state.results.isEmpty) {
-      return _EmptySheetState(
-        icon: PhosphorIconsBold.magnifyingGlass,
-        title: l10n.channelDetailsSearchNoResultsTitle,
-        body: l10n.channelDetailsSearchNoResultsBody,
+      return _scrollableSheetPlaceholder(
+        context,
+        widget.scrollController,
+        _EmptySheetState(
+          icon: PhosphorIconsBold.magnifyingGlass,
+          title: l10n.channelDetailsSearchNoResultsTitle,
+          body: l10n.channelDetailsSearchNoResultsBody,
+        ),
       );
     }
 
     return ListView.builder(
       controller: widget.scrollController,
+      physics: const AlwaysScrollableScrollPhysics(),
       padding: EdgeInsets.symmetric(horizontal: context.layout.s3),
       itemCount: state.results.length + (state.isLoadingMore ? 1 : 0),
       itemBuilder: (context, index) {
@@ -2317,7 +2352,11 @@ class _DmUserFilterSheetLoaderState
       future: _usersFuture,
       builder: (BuildContext context, AsyncSnapshot<List<_PickerUser>> snap) {
         if (!snap.hasData) {
-          return const Center(child: FluxerLoadingSpinner());
+          return _scrollableSheetPlaceholder(
+            context,
+            widget.scrollController,
+            const Center(child: FluxerLoadingSpinner()),
+          );
         }
         return _UserFilterSheet(
           availableUsers: snap.data!,
@@ -2492,27 +2531,40 @@ class _GuildUserSearchFilterSheetState
           const SizedBox(height: 12),
           Expanded(
             child: _searchTerm.trim().isEmpty
-                ? Center(
-                    child: Text(
-                      l10n.channelDetailsSearchUsersTypeToSearch,
-                      style: context.textStyles.bodySmall.copyWith(
-                        color: colors.textSecondary,
+                ? _scrollableSheetPlaceholder(
+                    context,
+                    widget.scrollController,
+                    Center(
+                      child: Text(
+                        l10n.channelDetailsSearchUsersTypeToSearch,
+                        style: context.textStyles.bodySmall.copyWith(
+                          color: colors.textSecondary,
+                        ),
                       ),
                     ),
                   )
                 : _isLoading
-                ? const Center(child: FluxerLoadingSpinner())
+                ? _scrollableSheetPlaceholder(
+                    context,
+                    widget.scrollController,
+                    const Center(child: FluxerLoadingSpinner()),
+                  )
                 : _results.isEmpty
-                ? Center(
-                    child: Text(
-                      l10n.channelDetailsSearchUsersEmpty,
-                      style: context.textStyles.bodySmall.copyWith(
-                        color: colors.textSecondary,
+                ? _scrollableSheetPlaceholder(
+                    context,
+                    widget.scrollController,
+                    Center(
+                      child: Text(
+                        l10n.channelDetailsSearchUsersEmpty,
+                        style: context.textStyles.bodySmall.copyWith(
+                          color: colors.textSecondary,
+                        ),
                       ),
                     ),
                   )
                 : ListView.separated(
                     controller: widget.scrollController,
+                    physics: const AlwaysScrollableScrollPhysics(),
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     itemCount: _results.length,
                     separatorBuilder: (_, _) => const SizedBox(height: 4),
@@ -2647,18 +2699,23 @@ class _UserFilterSheetState extends State<_UserFilterSheet> {
           const SizedBox(height: 12),
           Expanded(
             child: filtered.isEmpty
-                ? Center(
-                    child: Text(
-                      _searchTerm.isNotEmpty
-                          ? l10n.channelDetailsSearchUsersEmpty
-                          : l10n.channelDetailsSearchUsersNoAvailable,
-                      style: context.textStyles.bodySmall.copyWith(
-                        color: colors.textSecondary,
+                ? _scrollableSheetPlaceholder(
+                    context,
+                    widget.scrollController,
+                    Center(
+                      child: Text(
+                        _searchTerm.isNotEmpty
+                            ? l10n.channelDetailsSearchUsersEmpty
+                            : l10n.channelDetailsSearchUsersNoAvailable,
+                        style: context.textStyles.bodySmall.copyWith(
+                          color: colors.textSecondary,
+                        ),
                       ),
                     ),
                   )
                 : ListView.separated(
                     controller: widget.scrollController,
+                    physics: const AlwaysScrollableScrollPhysics(),
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     itemCount: filtered.length,
                     separatorBuilder: (_, _) => const SizedBox(height: 4),
@@ -3116,13 +3173,13 @@ Future<void> _showDetailsMoreSheet(
         if (isDM)
           FluxerBottomSheetMenuItem(
             label: l10n.dmCopyUserId,
-            icon: PhosphorIconsRegular.snowflake,
+            icon: PhosphorIconsBold.snowflake,
             onTap: () => run(() => onCopy(dm.recipientId)),
           ),
         if (channelId != null)
           FluxerBottomSheetMenuItem(
             label: l10n.dmCopyChannelId,
-            icon: PhosphorIconsRegular.snowflake,
+            icon: PhosphorIconsBold.snowflake,
             onTap: () => run(() => onCopy(channelId)),
           ),
       ];
@@ -3354,7 +3411,7 @@ Future<void> _showPinnedMessageActions(
             ),
             FluxerBottomSheetMenuItem(
               label: l10n.channelDetailsCopyMessageId,
-              icon: PhosphorIconsRegular.snowflake,
+              icon: PhosphorIconsBold.snowflake,
               onTap: () => pop(_PinnedMessageAction.copyMessageId),
             ),
           ],
@@ -3424,7 +3481,7 @@ Future<void> _showSearchMessageActions(
             ),
             FluxerBottomSheetMenuItem(
               label: l10n.channelDetailsCopyMessageId,
-              icon: PhosphorIconsRegular.snowflake,
+              icon: PhosphorIconsBold.snowflake,
               onTap: () => pop(_PinnedMessageAction.copyMessageId),
             ),
           ],
@@ -3618,12 +3675,12 @@ String _scopeDescription(
 };
 
 IconData _scopeIcon(MessageSearchScopeFilter value) => switch (value) {
-  MessageSearchScopeFilter.current => PhosphorIconsRegular.hash,
-  MessageSearchScopeFilter.openDms => PhosphorIconsRegular.chatCenteredDots,
-  MessageSearchScopeFilter.allDms => PhosphorIconsRegular.envelopeSimple,
-  MessageSearchScopeFilter.allGuilds => PhosphorIconsRegular.globe,
-  MessageSearchScopeFilter.all => PhosphorIconsRegular.users,
-  MessageSearchScopeFilter.openDmsAndAllGuilds => PhosphorIconsRegular.users,
+  MessageSearchScopeFilter.current => PhosphorIconsBold.hash,
+  MessageSearchScopeFilter.openDms => PhosphorIconsBold.chatCenteredDots,
+  MessageSearchScopeFilter.allDms => PhosphorIconsBold.envelopeSimple,
+  MessageSearchScopeFilter.allGuilds => PhosphorIconsBold.globe,
+  MessageSearchScopeFilter.all => PhosphorIconsBold.users,
+  MessageSearchScopeFilter.openDmsAndAllGuilds => PhosphorIconsBold.users,
 };
 
 String _sortLabel(FluxerLocalizations l10n, MessageSearchSortFilter value) =>
@@ -3647,9 +3704,9 @@ String _sortDescription(
 };
 
 IconData _sortIcon(MessageSearchSortFilter value) => switch (value) {
-  MessageSearchSortFilter.newest => PhosphorIconsRegular.clockClockwise,
-  MessageSearchSortFilter.oldest => PhosphorIconsRegular.clockCounterClockwise,
-  MessageSearchSortFilter.relevance => PhosphorIconsRegular.sparkle,
+  MessageSearchSortFilter.newest => PhosphorIconsBold.clockClockwise,
+  MessageSearchSortFilter.oldest => PhosphorIconsBold.clockCounterClockwise,
+  MessageSearchSortFilter.relevance => PhosphorIconsBold.sparkle,
 };
 
 String _contentLabel(
@@ -3686,11 +3743,11 @@ String _contentDescription(
 };
 
 IconData _contentIcon(MessageSearchContentFilter value) => switch (value) {
-  MessageSearchContentFilter.image => PhosphorIconsRegular.image,
-  MessageSearchContentFilter.video => PhosphorIconsRegular.videoCamera,
-  MessageSearchContentFilter.audio => PhosphorIconsRegular.musicNote,
-  MessageSearchContentFilter.file => PhosphorIconsRegular.file,
-  MessageSearchContentFilter.link => PhosphorIconsRegular.link,
-  MessageSearchContentFilter.embed => PhosphorIconsRegular.browser,
-  MessageSearchContentFilter.sticker => PhosphorIconsRegular.sticker,
+  MessageSearchContentFilter.image => PhosphorIconsBold.image,
+  MessageSearchContentFilter.video => PhosphorIconsBold.videoCamera,
+  MessageSearchContentFilter.audio => PhosphorIconsBold.musicNote,
+  MessageSearchContentFilter.file => PhosphorIconsBold.file,
+  MessageSearchContentFilter.link => PhosphorIconsBold.link,
+  MessageSearchContentFilter.embed => PhosphorIconsBold.browser,
+  MessageSearchContentFilter.sticker => PhosphorIconsBold.sticker,
 };

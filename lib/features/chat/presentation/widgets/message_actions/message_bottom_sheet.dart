@@ -124,7 +124,7 @@ Future<void> dispatchMessageAction({
       unawaited(copyToClipboard(context: context, value: message.id));
     case MessageAction.copyMessageLink:
       final String? guildId =
-          previewRoleGuildId ?? ref.read(activeGuildIdProvider);
+          previewRoleGuildId ?? ref.read(contextualGuildIdProvider);
       unawaited(
         copyToClipboard(
           context: context,
@@ -219,7 +219,7 @@ List<Widget> buildMessageActionMenuGroups({
       FluxerMenuGroup(
         children: <Widget>[
           FluxerBottomSheetMenuItem(
-            icon: PhosphorIconsRegular.arrowClockwise,
+            icon: PhosphorIconsBold.arrowClockwise,
             label: l10n.retry,
             onTap: () => onAction(MessageAction.retry),
           ),
@@ -287,7 +287,7 @@ List<Widget> buildMessageActionMenuGroups({
       ),
     if (canShowRemoveAllReactions)
       FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsFill.smileyXEyes,
+        icon: PhosphorIconsBold.x,
         label: l10n.chatMessageRemoveAllReactions,
         isDanger: true,
         onTap: () => onAction(MessageAction.removeAllReactions),
@@ -344,7 +344,7 @@ List<Widget> buildMessageActionMenuGroups({
       ),
     if (canShowSuppressEmbeds && showSuppressEmbedsButton)
       FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsRegular.eyeSlash,
+        icon: PhosphorIconsBold.eyeSlash,
         label: isEmbedsSuppressed
             ? l10n.chatMessageUnsuppressEmbeds
             : l10n.chatMessageSuppressEmbeds,
@@ -398,7 +398,7 @@ List<Widget> buildMessageActionMenuGroups({
 
   final List<Widget> utilityItems = <Widget>[
     FluxerBottomSheetMenuItem(
-      icon: PhosphorIconsRegular.link,
+      icon: PhosphorIconsBold.link,
       label: l10n.chatMessageCopyMessageLink,
       onTap: () => onAction(MessageAction.copyMessageLink),
     ),
@@ -409,7 +409,7 @@ List<Widget> buildMessageActionMenuGroups({
         onTap: () => onAction(MessageAction.copyText),
       ),
     FluxerBottomSheetMenuItem(
-      icon: PhosphorIconsRegular.snowflake,
+      icon: PhosphorIconsBold.snowflake,
       label: l10n.chatMessageCopyMessageId,
       onTap: () => onAction(MessageAction.copyMessageId),
     ),

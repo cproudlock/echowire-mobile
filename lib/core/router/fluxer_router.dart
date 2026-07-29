@@ -39,10 +39,14 @@ import 'package:fluxer_app/features/settings/presentation/pages/guild/guild_sett
 import 'package:fluxer_app/features/settings/presentation/pages/guild/settings_audit_log_page.dart';
 import 'package:fluxer_app/features/settings/presentation/pages/guild/settings_bans_page.dart';
 import 'package:fluxer_app/features/settings/presentation/pages/guild/settings_channels_page.dart';
+import 'package:fluxer_app/features/settings/presentation/pages/guild/settings_discovery_page.dart';
+import 'package:fluxer_app/features/settings/presentation/pages/guild/settings_emoji_page.dart';
 import 'package:fluxer_app/features/settings/presentation/pages/guild/settings_invites_page.dart';
 import 'package:fluxer_app/features/settings/presentation/pages/guild/settings_moderation_page.dart';
 import 'package:fluxer_app/features/settings/presentation/pages/guild/settings_overview_page.dart';
 import 'package:fluxer_app/features/settings/presentation/pages/guild/settings_roles_page.dart';
+import 'package:fluxer_app/features/settings/presentation/pages/guild/settings_stickers_page.dart';
+import 'package:fluxer_app/features/settings/presentation/pages/guild/settings_webhooks_page.dart';
 import 'package:fluxer_app/features/shell/presentation/app_layout.dart';
 import 'package:fluxer_app/features/shell/presentation/invalid_deep_link_screen.dart';
 import 'package:fluxer_app/features/shell/presentation/reconnecting_screen.dart';
@@ -400,6 +404,30 @@ GoRouter fluxerRouter(Ref ref) {
         ),
       ),
       GoRoute(
+        path: '/settings/guild/:guildId/webhooks',
+        name: RouteNames.guildSettingsWebhooks,
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (context, state) => shellMobileRootPushTransitionPage(
+          context: context,
+          key: state.pageKey,
+          child: SettingsWebhooksPage(
+            guildId: state.pathParameters['guildId'] ?? '',
+          ),
+        ),
+      ),
+      GoRoute(
+        path: '/settings/guild/:guildId/discovery',
+        name: RouteNames.guildSettingsDiscovery,
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (context, state) => shellMobileRootPushTransitionPage(
+          context: context,
+          key: state.pageKey,
+          child: SettingsDiscoveryPage(
+            guildId: state.pathParameters['guildId'] ?? '',
+          ),
+        ),
+      ),
+      GoRoute(
         path: '/settings/guild/:guildId/channels',
         name: RouteNames.guildSettingsChannels,
         parentNavigatorKey: rootNavigatorKey,
@@ -419,6 +447,30 @@ GoRouter fluxerRouter(Ref ref) {
           context: context,
           key: state.pageKey,
           child: SettingsRolesPage(
+            guildId: state.pathParameters['guildId'] ?? '',
+          ),
+        ),
+      ),
+      GoRoute(
+        path: '/settings/guild/:guildId/emoji',
+        name: RouteNames.guildSettingsEmoji,
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (context, state) => shellMobileRootPushTransitionPage(
+          context: context,
+          key: state.pageKey,
+          child: SettingsEmojiPage(
+            guildId: state.pathParameters['guildId'] ?? '',
+          ),
+        ),
+      ),
+      GoRoute(
+        path: '/settings/guild/:guildId/stickers',
+        name: RouteNames.guildSettingsStickers,
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (context, state) => shellMobileRootPushTransitionPage(
+          context: context,
+          key: state.pageKey,
+          child: SettingsStickersPage(
             guildId: state.pathParameters['guildId'] ?? '',
           ),
         ),

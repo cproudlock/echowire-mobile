@@ -22,6 +22,7 @@ import flutter_local_notifications
 import flutter_secure_storage_darwin
 import flutter_web_auth_2
 import flutter_webrtc
+import gal
 import irondash_engine_context
 import livekit_client
 import livekit_noise_filter
@@ -30,7 +31,6 @@ import media_kit_video
 import package_info_plus
 import passkeys_darwin
 import record_macos
-import refresh_rate
 import screen_retriever_macos
 import sentry_flutter
 import share_plus
@@ -60,6 +60,7 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   FlutterSecureStorageDarwinPlugin.register(with: registry.registrar(forPlugin: "FlutterSecureStorageDarwinPlugin"))
   FlutterWebAuth2Plugin.register(with: registry.registrar(forPlugin: "FlutterWebAuth2Plugin"))
   FlutterWebRTCPlugin.register(with: registry.registrar(forPlugin: "FlutterWebRTCPlugin"))
+  GalPlugin.register(with: registry.registrar(forPlugin: "GalPlugin"))
   IrondashEngineContextPlugin.register(with: registry.registrar(forPlugin: "IrondashEngineContextPlugin"))
   LiveKitPlugin.register(with: registry.registrar(forPlugin: "LiveKitPlugin"))
   LiveKitKrispNoiseFilterPlugin.register(with: registry.registrar(forPlugin: "LiveKitKrispNoiseFilterPlugin"))
@@ -68,7 +69,6 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   FPPPackageInfoPlusPlugin.register(with: registry.registrar(forPlugin: "FPPPackageInfoPlusPlugin"))
   PasskeysPlugin.register(with: registry.registrar(forPlugin: "PasskeysPlugin"))
   RecordMacOsPlugin.register(with: registry.registrar(forPlugin: "RecordMacOsPlugin"))
-  RefreshRatePlugin.register(with: registry.registrar(forPlugin: "RefreshRatePlugin"))
   ScreenRetrieverMacosPlugin.register(with: registry.registrar(forPlugin: "ScreenRetrieverMacosPlugin"))
   SentryFlutterPlugin.register(with: registry.registrar(forPlugin: "SentryFlutterPlugin"))
   SharePlusMacosPlugin.register(with: registry.registrar(forPlugin: "SharePlusMacosPlugin"))

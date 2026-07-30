@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_context.dart';
 import 'package:fluxer_app/features/chat/domain/media_options_launch_context.dart';
+import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/message_bottom_sheet.dart';
 import 'package:fluxer_app/features/chat/utils/attachment_display_utils.dart';
 import 'package:fluxer_app/features/chat/utils/attachment_download_service.dart';
@@ -37,6 +38,8 @@ Future<void> showMobileMediaOptionsSheet({
           VoidCallback close,
         ) {
           return _MobileMediaOptionsSheetBody(
+            hostContext: context,
+            hostRef: ref,
             launchContext: launchContext,
             scrollController: scrollController,
             onCloseViewer: onCloseViewer,
@@ -48,12 +51,16 @@ Future<void> showMobileMediaOptionsSheet({
 
 class _MobileMediaOptionsSheetBody extends ConsumerWidget {
   const _MobileMediaOptionsSheetBody({
+    required this.hostContext,
+    required this.hostRef,
     required this.launchContext,
     required this.scrollController,
     required this.onCloseSheet,
     this.onCloseViewer,
   });
 
+  final BuildContext hostContext;
+  final WidgetRef hostRef;
   final MediaOptionsLaunchContext launchContext;
   final ScrollController scrollController;
   final VoidCallback onCloseSheet;
@@ -95,9 +102,17 @@ class _MobileMediaOptionsSheetBody extends ConsumerWidget {
           ref: ref,
           message: actionScope.message,
           permissions: actionScope.permissions,
-          onAction: (MessageAction action) => unawaited(
-            _handleMessageAction(context, ref, actionScope, action),
+          onAction: (MessageAction action) =>
+              unawaited(_handleMessageAction(actionScope, action)),
+          attachmentCallbacks: MessageActionCallbacks(
+            onDeleteAttachment: (Attachment attachment) {
+              actionScope.callbacks.onDeleteAttachment?.call(attachment);
+              onCloseViewer?.call();
+            },
+            onEditAttachmentAltText:
+                actionScope.callbacks.onEditAttachmentAltText,
           ),
+          onCloseMenu: onCloseSheet,
         ),
       );
     }
@@ -139,26 +154,24 @@ class _MobileMediaOptionsSheetBody extends ConsumerWidget {
   }
 
   Future<void> _handleMessageAction(
-    BuildContext context,
-    WidgetRef ref,
     MessageMediaActionScope actionScope,
     MessageAction action,
   ) async {
     onCloseSheet();
-    if (shouldCloseMediaViewerForMessageAction(action)) {
-      onCloseViewer?.call();
-    }
-    if (!context.mounted) {
+    if (!hostContext.mounted) {
       return;
     }
     await dispatchMessageAction(
-      ref: ref,
-      context: context,
+      ref: hostRef,
+      context: hostContext,
       message: actionScope.message,
       action: action,
       callbacks: actionScope.callbacks,
       previewRoleGuildId: actionScope.previewRoleGuildId,
     );
+    if (shouldCloseMediaViewerForMessageAction(action)) {
+      onCloseViewer?.call();
+    }
   }
 
   String? _downloadUrl() {

@@ -2514,6 +2514,43 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get userProfileAboutMe => '关于我';
 
   @override
+  String get userProfileRoles => 'Roles';
+
+  @override
+  String get memberRoleAdd => 'Add role';
+
+  @override
+  String memberRoleRemove(String roleName) {
+    return 'Remove role $roleName';
+  }
+
+  @override
+  String get userProfileNoRolesInCommunity =>
+      'This user has no roles in this community.';
+
+  @override
+  String memberRolesNoRolesYet(String rolesSettingsPath) {
+    return 'No roles yet. Add roles in $rolesSettingsPath';
+  }
+
+  @override
+  String get memberRolesNoRolesAvailable => 'No roles available';
+
+  @override
+  String memberRolesNoRolesAvailableDescription(String rolesSettingsPath) {
+    return 'There are no roles to assign in this community at this time, but you can create a new role in $rolesSettingsPath.';
+  }
+
+  @override
+  String get guildSettingsTitle => 'Community settings';
+
+  @override
+  String get guildSettingsRolesTab => 'Roles';
+
+  @override
+  String get memberRolesConfirmOk => 'OK';
+
+  @override
   String get userProfileLocalTime => 'Local time';
 
   @override
@@ -7247,22 +7284,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get userSettingsNavLogOut => '退出登录';
 
   @override
-  String get betaWarningTitle => 'Beta 版软件';
-
-  @override
-  String get betaWarningMessage => '这是 Beta 版软件。并非所有功能都已完成或添加。';
-
-  @override
-  String get betaWarningReportIssues =>
-      '请将你发现的任何问题报告给 Echowire 移动社区（目前你必须拥有 Reverb 才能加入该社区）。';
-
-  @override
-  String get betaWarningRepoLink => '在 GitHub 上查看源代码';
-
-  @override
-  String get betaWarningGotIt => '知道了';
-
-  @override
   String get quickSwitcherTabSearch => '搜索';
 
   @override
@@ -7617,6 +7638,85 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String guildNavbarCollapseFolder(String folderName) {
     return '$folderName 已折叠';
   }
+
+  @override
+  String get guildFolderSettingsTitle => 'Folder settings';
+
+  @override
+  String get guildFolderNameLabel => 'Folder name';
+
+  @override
+  String get guildFolderColorLabel => 'Folder color';
+
+  @override
+  String get guildFolderShowIconWhenCollapsed => 'Show icon when collapsed';
+
+  @override
+  String get guildFolderIconLabel => 'Folder icon';
+
+  @override
+  String get guildFolderDelete => 'Delete folder';
+
+  @override
+  String get guildFolderIconFolder => 'Folder';
+
+  @override
+  String get guildFolderIconStar => 'Star';
+
+  @override
+  String get guildFolderIconHeart => 'Heart';
+
+  @override
+  String get guildFolderIconBookmark => 'Bookmark';
+
+  @override
+  String get guildFolderIconGameController => 'Game controller';
+
+  @override
+  String get guildFolderIconShield => 'Shield';
+
+  @override
+  String get guildFolderIconMusicNote => 'Music note';
+
+  @override
+  String get guildFolderMarkAsRead => 'Mark folder as read';
+
+  @override
+  String get guildBulkMuteCommunities => 'Mute communities';
+
+  @override
+  String get guildBulkUnmuteCommunities => 'Unmute communities';
+
+  @override
+  String get guildBulkCommunityNotificationSettings =>
+      'Community notification settings';
+
+  @override
+  String get guildBulkCommunityPrivacySettings => 'Community privacy settings';
+
+  @override
+  String get guildBulkAllowEveryoneAndHere => 'Allow @everyone and @here';
+
+  @override
+  String get guildBulkAllowRoleMentions => 'Allow role mentions';
+
+  @override
+  String get guildBulkEnableMobilePush => 'Enable mobile push notifications';
+
+  @override
+  String get guildBulkDisableMobilePush => 'Disable mobile push notifications';
+
+  @override
+  String get guildBulkAllowDirectMessages => 'Allow direct messages';
+
+  @override
+  String get guildBulkBlockDirectMessages => 'Block direct messages';
+
+  @override
+  String get guildBulkAllowBotDirectMessages => 'Allow bot direct messages';
+
+  @override
+  String get guildBulkBlockBotDirectMessages => 'Block bot direct messages';
 
   @override
   String get guildNavbarGroupDm => '群聊';
@@ -15012,22 +15112,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get userSettingsNavLogOut => '登出';
-
-  @override
-  String get betaWarningTitle => '測試版軟體';
-
-  @override
-  String get betaWarningMessage => '這是測試版軟體。尚未完成或加入所有功能。';
-
-  @override
-  String get betaWarningReportIssues =>
-      '請將您發現的任何問題回報給 Echowire Mobile 社群 (目前必須擁有 Reverb 才能加入社群)。';
-
-  @override
-  String get betaWarningRepoLink => '在 GitHub 上檢視原始碼';
-
-  @override
-  String get betaWarningGotIt => '知道了';
 
   @override
   String get quickSwitcherTabSearch => '搜尋';

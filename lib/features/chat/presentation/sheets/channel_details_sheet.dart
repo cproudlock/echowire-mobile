@@ -89,22 +89,83 @@ Widget _scrollableSheetPlaceholder(
   return ListView(
     controller: scrollController,
     physics: const AlwaysScrollableScrollPhysics(),
+    padding: FluxerBottomSheet.scrollViewPadding(context),
     children: [
-      SizedBox(height: MediaQuery.sizeOf(context).height * 0.25, child: child),
+      ConstrainedBox(
+        // A floor, not a fixed height: placeholder content taller than a
+        // quarter screen (small viewports, long localizations) grows the item
+        // and scrolls instead of overflowing the flex.
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.sizeOf(context).height * 0.25,
+        ),
+        child: child,
+      ),
     ],
   );
 }
 
 enum ChannelDetailsInitialTab { members, pins }
 
-Future<void> showChannelDetailsSheet(
+/// Opens the details sheet and performs any jump it returns.
+///
+/// The jump runs only after this future completes, so both the details sheet
+/// and the search sheet nested inside it are off the navigator stack before
+/// any gate UI or route change appears.
+///
+/// Precisely: the sheet futures resolve on `Route.popped`, which fires when a
+/// route leaves the stack, not when its reverse animation finishes. That is
+/// enough to guarantee ordering between the routes, so a pop always targets
+/// the intended route, but it does not guarantee the previous sheet has
+/// finished animating out.
+Future<void> showChannelDetailsSheetAndJump(
+  BuildContext context, {
+  required ProviderContainer container,
+  required Channel? channel,
+  required DmConversation? dm,
+  ChannelDetailsInitialTab initialTab = ChannelDetailsInitialTab.members,
+  bool openSearchImmediately = false,
+}) async {
+  final ChannelDetailsJumpRequest? request = await showChannelDetailsSheet(
+    context,
+    channel: channel,
+    dm: dm,
+    initialTab: initialTab,
+    openSearchImmediately: openSearchImmediately,
+  );
+  if (request == null) {
+    return;
+  }
+  // Resolved here rather than in the sheet: doing it before the sheet pops
+  // would leave two awaits between the picked message and the pop, and a
+  // dismissal in that window would lose the jump with no route left to
+  // carry it out.
+  final db.FluxerDatabase database = container.read(fluxerDatabaseProvider);
+  await database.messageDao.upsertMessage(request.message.toCompanion());
+  final String? resolvedGuildId =
+      request.guildId ??
+      (await database.channelDao.getChannelById(
+        request.message.channelId,
+      ))?.guildId;
+  await navigateToChannelJumpLink(
+    container: container,
+    link: MessageJumpLink(
+      scope: resolvedGuildId ?? '@me',
+      channelId: request.message.channelId,
+      messageId: request.message.id,
+    ),
+  );
+}
+
+/// Returns the message the user picked, if any. Callers must not navigate
+/// before this future completes; prefer [showChannelDetailsSheetAndJump].
+Future<ChannelDetailsJumpRequest?> showChannelDetailsSheet(
   BuildContext context, {
   required Channel? channel,
   required DmConversation? dm,
   ChannelDetailsInitialTab initialTab = ChannelDetailsInitialTab.members,
   bool openSearchImmediately = false,
 }) {
-  return FluxerBottomSheet.showScrollable<void>(
+  return FluxerBottomSheet.showScrollable<ChannelDetailsJumpRequest>(
     context,
     maxHeight: 0.94,
     builder: (sheetContext, scrollController, close) => ChannelDetailsSheet(
@@ -118,7 +179,22 @@ Future<void> showChannelDetailsSheet(
   );
 }
 
-Future<void> showChannelSearchSheet(
+/// A message the user picked inside the details sheet, from search or pins.
+///
+/// The sheet returns this instead of navigating itself: each route pops
+/// itself, and the opener sequences the dismissal and the jump off the awaited
+/// result rather than off assumptions about pop ordering.
+class ChannelDetailsJumpRequest {
+  const ChannelDetailsJumpRequest({
+    required this.message,
+    required this.guildId,
+  });
+
+  final Message message;
+  final String? guildId;
+}
+
+Future<ChannelDetailsJumpRequest?> showChannelSearchSheet(
   BuildContext context, {
   required String channelId,
   required String? guildId,
@@ -126,7 +202,7 @@ Future<void> showChannelSearchSheet(
   Channel? channel,
   DmConversation? dm,
 }) {
-  return FluxerBottomSheet.showScrollable<void>(
+  return FluxerBottomSheet.showScrollable<ChannelDetailsJumpRequest>(
     context,
     title: FluxerLocalizations.of(context).channelDetailsSearchTitle,
     maxHeight: 0.96,
@@ -137,6 +213,48 @@ Future<void> showChannelSearchSheet(
       dm: dm,
       scrollController: scrollController,
       close: close,
+    ),
+  );
+}
+
+/// Opens the search sheet directly and performs any jump it returns.
+///
+/// Same contract as [showChannelDetailsSheetAndJump]: the jump runs only
+/// after the sheet is off the navigator stack, so no gate UI or route change
+/// races the dismissal.
+Future<void> showChannelSearchSheetAndJump(
+  BuildContext context, {
+  required ProviderContainer container,
+  required String channelId,
+  required String? guildId,
+  required String title,
+  Channel? channel,
+  DmConversation? dm,
+}) async {
+  final ChannelDetailsJumpRequest? request = await showChannelSearchSheet(
+    context,
+    channelId: channelId,
+    guildId: guildId,
+    title: title,
+    channel: channel,
+    dm: dm,
+  );
+  if (request == null) {
+    return;
+  }
+  final db.FluxerDatabase database = container.read(fluxerDatabaseProvider);
+  await database.messageDao.upsertMessage(request.message.toCompanion());
+  final String? resolvedGuildId =
+      request.guildId ??
+      (await database.channelDao.getChannelById(
+        request.message.channelId,
+      ))?.guildId;
+  await navigateToChannelJumpLink(
+    container: container,
+    link: MessageJumpLink(
+      scope: resolvedGuildId ?? '@me',
+      channelId: request.message.channelId,
+      messageId: request.message.id,
     ),
   );
 }
@@ -250,16 +368,34 @@ class _ChannelDetailsSheetState extends ConsumerState<ChannelDetailsSheet> {
       return;
     }
     _searchOpened = true;
-    unawaited(
-      showChannelSearchSheet(
-        context,
-        channelId: channelId,
-        guildId: _targetGuildId,
-        title: title,
-        channel: widget.channel,
-        dm: widget.dm,
-      ),
+    unawaited(_runSearch(channelId: channelId, title: title));
+  }
+
+  /// Owns the search sheet's lifetime and bubbles its result outward.
+  ///
+  /// Each route pops itself: the search sheet pops with the picked message,
+  /// and this sheet immediately pops that message onward. A sheet's `close`
+  /// pops whatever is topmost rather than the route that handed it out, so
+  /// chained pops would be timing dependent.
+  Future<void> _runSearch({
+    required String channelId,
+    required String title,
+  }) async {
+    final ChannelDetailsJumpRequest? request = await showChannelSearchSheet(
+      context,
+      channelId: channelId,
+      guildId: _targetGuildId,
+      title: title,
+      channel: widget.channel,
+      dm: widget.dm,
     );
+    if (request == null || !mounted) {
+      return;
+    }
+    // Pop immediately, with no await between the inner result and this pop:
+    // a dismissal in that window would leave no route to carry the jump out.
+    // Resolving the message is the helper's job, after both routes are gone.
+    Navigator.of(context).pop(request);
   }
 
   Future<void> _markRead() async {
@@ -876,7 +1012,10 @@ class _MembersTab extends ConsumerWidget {
 
       return ListView(
         controller: scrollController,
-        padding: EdgeInsets.symmetric(horizontal: context.layout.s4),
+        padding: FluxerBottomSheet.scrollViewPadding(
+          context,
+          padding: EdgeInsets.symmetric(horizontal: context.layout.s4),
+        ),
         children: [
           if (canShowNewGroupCta)
             _NewGroupCtaRow(
@@ -1035,7 +1174,10 @@ class _PinsTab extends ConsumerWidget {
 
         return ListView.builder(
           controller: scrollController,
-          padding: EdgeInsets.symmetric(horizontal: context.layout.s4),
+          padding: FluxerBottomSheet.scrollViewPadding(
+            context,
+            padding: EdgeInsets.symmetric(horizontal: context.layout.s4),
+          ),
           itemCount:
               state.items.length +
               (state.isLoadingMore ||
@@ -1065,15 +1207,17 @@ class _PinsTab extends ConsumerWidget {
             return MessagePreviewTile(
               message: entry.message,
               guildId: guildId,
-              onTap: () =>
-                  _jumpToMessage(context, ref, entry.message, close: close),
+              onTap: () => _popWithJumpRequest(
+                context,
+                message: entry.message,
+                guildId: guildId,
+              ),
               onLongPress: () => _showPinnedMessageActions(
                 context,
                 ref,
                 channelId: channelId,
                 guildId: guildId,
                 entry: entry,
-                close: close,
               ),
             );
           },
@@ -1736,7 +1880,10 @@ class _ChannelSearchSheetState extends ConsumerState<ChannelSearchSheet> {
     return ListView.builder(
       controller: widget.scrollController,
       physics: const AlwaysScrollableScrollPhysics(),
-      padding: EdgeInsets.symmetric(horizontal: context.layout.s3),
+      padding: FluxerBottomSheet.scrollViewPadding(
+        context,
+        padding: EdgeInsets.symmetric(horizontal: context.layout.s3),
+      ),
       itemCount: state.results.length + (state.isLoadingMore ? 1 : 0),
       itemBuilder: (context, index) {
         if (index >= state.results.length) {
@@ -1753,19 +1900,13 @@ class _ChannelSearchSheetState extends ConsumerState<ChannelSearchSheet> {
           message: entry.message,
           label: label,
           guildId: entry.guildId,
-          onTap: () => _jumpToMessage(
+          onTap: () => _popWithJumpRequest(
             context,
-            ref,
-            entry.message,
+            message: entry.message,
             guildId: entry.guildId,
-            close: widget.close,
           ),
-          onLongPress: () => _showSearchMessageActions(
-            context,
-            ref,
-            entry: entry,
-            close: widget.close,
-          ),
+          onLongPress: () =>
+              _showSearchMessageActions(context, ref, entry: entry),
         );
       },
     );
@@ -2624,7 +2765,10 @@ class _GuildUserSearchFilterSheetState
     final FluxerLocalizations l10n = FluxerLocalizations.of(context);
     final colors = context.colors;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      padding: FluxerBottomSheet.scrollViewPadding(
+        context,
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      ),
       child: Column(
         children: <Widget>[
           FluxerInput(
@@ -2679,7 +2823,10 @@ class _GuildUserSearchFilterSheetState
                 : ListView.separated(
                     controller: widget.scrollController,
                     physics: const AlwaysScrollableScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    padding: FluxerBottomSheet.scrollViewPadding(
+                      context,
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                    ),
                     itemCount: _results.length,
                     separatorBuilder: (_, _) => const SizedBox(height: 4),
                     itemBuilder: (BuildContext context, int index) {
@@ -2793,7 +2940,10 @@ class _UserFilterSheetState extends State<_UserFilterSheet> {
     final filtered = _filteredUsers;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      padding: FluxerBottomSheet.scrollViewPadding(
+        context,
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      ),
       child: Column(
         children: [
           FluxerInput(
@@ -2830,7 +2980,10 @@ class _UserFilterSheetState extends State<_UserFilterSheet> {
                 : ListView.separated(
                     controller: widget.scrollController,
                     physics: const AlwaysScrollableScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    padding: FluxerBottomSheet.scrollViewPadding(
+                      context,
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                    ),
                     itemCount: filtered.length,
                     separatorBuilder: (_, _) => const SizedBox(height: 4),
                     itemBuilder: (context, index) {
@@ -2986,7 +3139,10 @@ class _HasFilterSheetState extends State<_HasFilterSheet> {
     final colors = context.colors;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      padding: FluxerBottomSheet.scrollViewPadding(
+        context,
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      ),
       child: Column(
         children: [
           Padding(
@@ -3004,7 +3160,10 @@ class _HasFilterSheetState extends State<_HasFilterSheet> {
           Expanded(
             child: ListView.separated(
               controller: widget.scrollController,
-              padding: const EdgeInsets.symmetric(vertical: 4),
+              padding: FluxerBottomSheet.scrollViewPadding(
+                context,
+                padding: const EdgeInsets.symmetric(vertical: 4),
+              ),
               itemCount: MessageSearchContentFilter.values.length,
               separatorBuilder: (_, _) => const SizedBox(height: 8),
               itemBuilder: (context, index) {
@@ -3483,7 +3642,6 @@ Future<void> _showPinnedMessageActions(
   required String channelId,
   required String? guildId,
   required PinnedMessageEntry entry,
-  required VoidCallback close,
 }) async {
   final canUnpin = await _canUnpinMessage(
     ref,
@@ -3539,7 +3697,7 @@ Future<void> _showPinnedMessageActions(
   }
   switch (action) {
     case _PinnedMessageAction.jump:
-      await _jumpToMessage(context, ref, entry.message, close: close);
+      _popWithJumpRequest(context, message: entry.message, guildId: guildId);
     case _PinnedMessageAction.unpin:
       await ref.read(channelPinsProvider(channelId).notifier).unpin(entry);
       ref
@@ -3568,7 +3726,6 @@ Future<void> _showSearchMessageActions(
   BuildContext context,
   WidgetRef ref, {
   required MessageSearchResultEntry entry,
-  required VoidCallback close,
 }) async {
   final FluxerLocalizations l10n = FluxerLocalizations.of(context);
   final action = await FluxerBottomSheet.show<_PinnedMessageAction>(
@@ -3609,12 +3766,10 @@ Future<void> _showSearchMessageActions(
   }
   switch (action) {
     case _PinnedMessageAction.jump:
-      await _jumpToMessage(
+      _popWithJumpRequest(
         context,
-        ref,
-        entry.message,
+        message: entry.message,
         guildId: entry.guildId,
-        close: close,
       );
     case _PinnedMessageAction.copyMessageId:
       await copyToClipboard(context: context, value: entry.message.id);
@@ -3683,30 +3838,19 @@ String? _detailsSubtitle({
   return null;
 }
 
-Future<void> _jumpToMessage(
-  BuildContext context,
-  WidgetRef ref,
-  Message message, {
-  required VoidCallback close,
+/// Pops the current route, handing the picked message back to its opener.
+///
+/// The sheet must not navigate itself: it is about to be dismissed, so any
+/// context or ref it holds dies mid flight, and `close()` only starts the
+/// dismissal so navigating here would race the animation.
+void _popWithJumpRequest(
+  BuildContext context, {
+  required Message message,
   String? guildId,
-}) async {
-  final database = ref.read(fluxerDatabaseProvider);
-  await database.messageDao.upsertMessage(message.toCompanion());
-  final resolvedGuildId =
-      guildId ??
-      (await database.channelDao.getChannelById(message.channelId))?.guildId;
-
-  if (!context.mounted) {
-    return;
-  }
-
-  final ChannelJumpLink link = MessageJumpLink(
-    scope: resolvedGuildId ?? '@me',
-    channelId: message.channelId,
-    messageId: message.id,
-  );
-  await navigateToChannelJumpLink(ref: ref, context: context, link: link);
-  close();
+}) {
+  Navigator.of(
+    context,
+  ).pop(ChannelDetailsJumpRequest(message: message, guildId: guildId));
 }
 
 String _formatDate(DateTime dateTime) {

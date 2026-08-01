@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/providers/database_provider.dart';
+import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_providers.dart';
+import 'package:fluxer_app/features/guilds/utils/guild_features.dart';
 import 'package:fluxer_app/features/members/domain/member_list_group_names.dart';
 import 'package:fluxer_app/features/members/domain/member_list_layout.dart';
 import 'package:fluxer_app/features/members/domain/member_list_range_utils.dart';
@@ -14,6 +16,7 @@ import 'package:fluxer_app/features/members/providers/member_list_desired_ranges
 import 'package:fluxer_app/features/members/providers/member_list_subscription_provider.dart';
 import 'package:fluxer_app/features/members/providers/member_list_viewport_provider.dart';
 import 'package:fluxer_app/features/members/providers/member_providers.dart';
+import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
 import 'package:fluxer_dart/gateway.dart';
 
 class GuildMembersTabContent extends ConsumerStatefulWidget {
@@ -114,15 +117,18 @@ class _GuildMembersTabContentState
     final Map<String, db.Role> rolesById =
         ref.watch(guildRolesByIdProvider(widget.guildId)).value ??
         <String, db.Role>{};
-    final String? guildOwnerId = ref
+    final Guild? guild = ref
         .watch(guildByIdProvider(widget.guildId))
         .asData
-        ?.value
-        ?.ownerId;
+        ?.value;
+    final String? guildOwnerId = guild?.ownerId;
     if (listState == null || !listState.hasReceivedInitialPayload) {
       return ListView.builder(
         controller: widget.scrollController,
-        padding: EdgeInsets.zero,
+        padding: FluxerBottomSheet.scrollViewPadding(
+          context,
+          padding: EdgeInsets.zero,
+        ),
         itemCount: 12,
         itemBuilder: (BuildContext context, int index) {
           return MemberListSkeletonItem(
@@ -141,7 +147,10 @@ class _GuildMembersTabContentState
     WidgetsBinding.instance.addPostFrameCallback((_) => _updateDesiredRanges());
     return ListView.builder(
       controller: widget.scrollController,
-      padding: EdgeInsets.zero,
+      padding: FluxerBottomSheet.scrollViewPadding(
+        context,
+        padding: EdgeInsets.zero,
+      ),
       itemCount: totalRows,
       itemBuilder: (BuildContext context, int rowIndex) {
         final MemberListGroupHeaderData? header = resolveMemberListGroupHeader(
@@ -185,7 +194,10 @@ class _GuildMembersTabContentState
               userId: userId,
               rolesById: rolesById,
               dimmed: dimmed,
-              isOwner: guildOwnerId != null && userId == guildOwnerId,
+              isOwner: shouldShowOwnerCrown(
+                isOwner: guildOwnerId != null && userId == guildOwnerId,
+                features: guild?.features ?? const <String>[],
+              ),
             ),
           ),
         );

@@ -217,6 +217,7 @@ List<Widget> buildMessageActionMenuGroups({
   // Echowire-only: not part of upstream's MessageActionPermissions.
   bool canCreateThread = false,
   MessageActionCallbacks? attachmentCallbacks,
+  String? attachmentIdFilter,
   VoidCallback? onCloseMenu,
 }) {
   final FluxerLocalizations l10n = FluxerLocalizations.of(context);
@@ -370,40 +371,42 @@ List<Widget> buildMessageActionMenuGroups({
       onCloseMenu ?? () => Navigator.of(context).pop();
 
   final List<Widget> attachmentItems = <Widget>[
-    for (final Attachment attachment in message.attachments) ...<Widget>[
-      if (showMediaDeleteButton &&
-          canDeleteAttachmentOnMessage(
-            message: message,
-            isOwnMessage: permissions.isOwnMessage,
-            isSendDisabled: permissions.isSendDisabled,
-          ))
-        FluxerBottomSheetMenuItem(
-          icon: PhosphorIconsFill.trash,
-          label: l10n.chatMessageDeleteAttachment,
-          hint: attachment.filename,
-          isDanger: true,
-          onTap: () {
-            attachmentCallbacks?.onDeleteAttachment?.call(attachment);
-            closeMenu();
-          },
-        ),
-      if (canEditAttachmentAltText(
-        message: message,
-        isOwnMessage: permissions.isOwnMessage,
-        attachment: attachment,
-        canManageMessages: permissions.canManageMessages,
-        isDmChannel: permissions.isDmChannel,
-      ))
-        FluxerBottomSheetMenuItem(
-          icon: PhosphorIconsFill.pencilSimple,
-          label: l10n.chatMessageEditAttachmentAltText,
-          hint: attachment.filename,
-          onTap: () {
-            attachmentCallbacks?.onEditAttachmentAltText?.call(attachment);
-            closeMenu();
-          },
-        ),
-    ],
+    for (final Attachment attachment in message.attachments)
+      if (attachmentIdFilter == null ||
+          attachment.id == attachmentIdFilter) ...<Widget>[
+        if (showMediaDeleteButton &&
+            canDeleteAttachmentOnMessage(
+              message: message,
+              isOwnMessage: permissions.isOwnMessage,
+              isSendDisabled: permissions.isSendDisabled,
+            ))
+          FluxerBottomSheetMenuItem(
+            icon: PhosphorIconsFill.trash,
+            label: l10n.chatMessageDeleteAttachment,
+            hint: attachment.filename,
+            isDanger: true,
+            onTap: () {
+              attachmentCallbacks?.onDeleteAttachment?.call(attachment);
+              closeMenu();
+            },
+          ),
+        if (canEditAttachmentAltText(
+          message: message,
+          isOwnMessage: permissions.isOwnMessage,
+          attachment: attachment,
+          canManageMessages: permissions.canManageMessages,
+          isDmChannel: permissions.isDmChannel,
+        ))
+          FluxerBottomSheetMenuItem(
+            icon: PhosphorIconsFill.pencilSimple,
+            label: l10n.chatMessageEditAttachmentAltText,
+            hint: attachment.filename,
+            onTap: () {
+              attachmentCallbacks?.onEditAttachmentAltText?.call(attachment);
+              closeMenu();
+            },
+          ),
+      ],
   ];
 
   final List<Widget> utilityItems = <Widget>[
@@ -493,7 +496,10 @@ class _MessageBottomSheetBody extends ConsumerWidget {
 
     return SingleChildScrollView(
       controller: scrollController,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: FluxerBottomSheet.scrollViewPadding(
+        context,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

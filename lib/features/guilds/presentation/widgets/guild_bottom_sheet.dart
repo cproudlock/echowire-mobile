@@ -55,7 +55,6 @@ Future<GuildAction?> showGuildBottomSheet(
     leading: GuildBottomSheetAvatar(guild: guild),
     subtitle: GuildBottomSheetStats(guildId: guild.id, fallbackGuild: guild),
     initialChildSize: 0.7,
-    maxChildSize: 0.85,
     builder: (sheetContext, scrollController, close) {
       final layout = sheetContext.layout;
       void pop(GuildAction action) => Navigator.of(sheetContext).pop(action);
@@ -73,7 +72,10 @@ Future<GuildAction?> showGuildBottomSheet(
 
       return ListView(
         controller: scrollController,
-        padding: EdgeInsets.fromLTRB(layout.s4, 0, layout.s4, layout.s4),
+        padding: FluxerBottomSheet.scrollViewPadding(
+          sheetContext,
+          padding: EdgeInsets.fromLTRB(layout.s4, 0, layout.s4, layout.s4),
+        ),
         children: [FluxerBottomSheetGroupColumn(children: menuGroups)],
       );
     },
@@ -138,14 +140,16 @@ void _openMuteSubmenu(BuildContext context, GuildMenuSubmenu submenu) {
       title: submenu.label,
       onBack: () => Navigator.of(context).pop(),
       initialChildSize: 0.5,
-      maxChildSize: 0.85,
       builder: (sheetContext, scrollController, close) {
         final layout = sheetContext.layout;
         void pop(GuildAction action) => Navigator.of(sheetContext).pop(action);
 
         return ListView(
           controller: scrollController,
-          padding: EdgeInsets.fromLTRB(layout.s4, 0, layout.s4, layout.s4),
+          padding: FluxerBottomSheet.scrollViewPadding(
+            sheetContext,
+            padding: EdgeInsets.fromLTRB(layout.s4, 0, layout.s4, layout.s4),
+          ),
           children: [
             FluxerBottomSheetGroupColumn(
               children: [
@@ -180,14 +184,16 @@ void _openGenericSubmenu(BuildContext context, GuildMenuSubmenu submenu) {
       title: submenu.label,
       onBack: () => Navigator.of(context).pop(),
       initialChildSize: 0.5,
-      maxChildSize: 0.85,
       builder: (sheetContext, scrollController, close) {
         final layout = sheetContext.layout;
         void pop(GuildAction action) => Navigator.of(sheetContext).pop(action);
 
         return ListView(
           controller: scrollController,
-          padding: EdgeInsets.fromLTRB(layout.s4, 0, layout.s4, layout.s4),
+          padding: FluxerBottomSheet.scrollViewPadding(
+            sheetContext,
+            padding: EdgeInsets.fromLTRB(layout.s4, 0, layout.s4, layout.s4),
+          ),
           children: [
             FluxerBottomSheetGroupColumn(
               children: [

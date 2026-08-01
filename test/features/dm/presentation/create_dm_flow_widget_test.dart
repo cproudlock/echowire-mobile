@@ -223,7 +223,7 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byType(FloatingActionButton));
+      await tester.tap(find.bySemanticsLabel('New message'));
       await tester.pumpAndSettle();
 
       expect(find.text('Select friends'), findsOneWidget);
@@ -261,6 +261,7 @@ const UserSettingsViewState _unverifiedSettings = UserSettingsViewState(
   developerMode: false,
   trustedDomains: <String>[],
   email: 'user@example.com',
+  isProfileLoaded: true,
 );
 
 const List<Friend> _sampleFriends = <Friend>[

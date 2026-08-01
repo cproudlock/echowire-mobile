@@ -11,7 +11,6 @@ import 'package:go_router/go_router.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_context.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
-import 'package:fluxer_app/features/chat/domain/message_avatar.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/attachments/attachment_list_renderer.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_image.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_invite.dart';
@@ -1142,21 +1141,12 @@ class _MessageItemState extends ConsumerState<MessageItem> {
             padding: const EdgeInsets.only(top: kMessageAvatarTopPadding),
             child: FluxerAvatar.user(
               key: ValueKey<String>(
-                messageAuthorAvatarKeyFromDisplay(
-                  authorId: msg.authorId,
-                  displayAvatarHash: authorDisplay.avatarHash,
-                  messageAvatarHash: msg.authorAvatar,
-                ),
+                'msg-avatar-${msg.authorId}-${authorDisplay.avatarUrl ?? ''}',
               ),
               fallbackText: authorDisplay.displayName,
               userId: msg.authorId,
               imageUrl: authorDisplay.avatarUrl,
               avatarColor: authorDisplay.avatarColor,
-              cacheKey: messageAuthorAvatarKeyFromDisplay(
-                authorId: msg.authorId,
-                displayAvatarHash: authorDisplay.avatarHash,
-                messageAvatarHash: msg.authorAvatar,
-              ),
             ),
           ),
         ),

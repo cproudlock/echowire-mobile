@@ -87,6 +87,20 @@ const double _kMobileComposerSuffixHeight =
     _kMobileComposerSuffixVerticalPadding * 2 +
     _kMobileComposerSuffixButtonExtent;
 
+OutlineInputBorder _composerInputOutlineBorder(
+  BuildContext context, {
+  required bool focused,
+}) {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(24),
+    borderSide: BorderSide(
+      color: focused
+          ? context.colors.backgroundModifierAccentFocus
+          : context.colors.backgroundModifierAccent,
+    ),
+  );
+}
+
 final RegExp _customEmojiIdPattern = RegExp(r'<a?:[^:]+:(\d+)>');
 
 final class _CustomEmojiSendContext {
@@ -791,17 +805,17 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea> {
                       horizontal: 12,
                       vertical: 10,
                     ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(24),
-                      borderSide: BorderSide.none,
+                    border: _composerInputOutlineBorder(
+                      context,
+                      focused: false,
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(24),
-                      borderSide: BorderSide.none,
+                    enabledBorder: _composerInputOutlineBorder(
+                      context,
+                      focused: false,
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(24),
-                      borderSide: BorderSide.none,
+                    focusedBorder: _composerInputOutlineBorder(
+                      context,
+                      focused: true,
                     ),
                   ),
                 ),
@@ -1070,17 +1084,17 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea> {
                       horizontal: 12,
                       vertical: 8,
                     ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(24),
-                      borderSide: BorderSide.none,
+                    border: _composerInputOutlineBorder(
+                      context,
+                      focused: false,
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(24),
-                      borderSide: BorderSide.none,
+                    enabledBorder: _composerInputOutlineBorder(
+                      context,
+                      focused: false,
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(24),
-                      borderSide: BorderSide.none,
+                    focusedBorder: _composerInputOutlineBorder(
+                      context,
+                      focused: true,
                     ),
                     isDense: true,
                     suffixIcon: Padding(
@@ -1625,13 +1639,16 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea> {
         builder: (BuildContext sheetContext, VoidCallback close) {
           final FluxerLocalizations l10n = FluxerLocalizations.of(sheetContext);
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: FluxerBottomSheet.scrollViewPadding(
+              sheetContext,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+            ),
             child: FluxerBottomSheetGroupColumn(
               children: [
                 FluxerMenuGroup(
                   children: [
                     FluxerBottomSheetMenuItem(
-                      icon: PhosphorIconsBold.images,
+                      icon: PhosphorIconsFill.image,
                       label: l10n.chatAttachmentSourceGallery,
                       onTap: () async {
                         close();
@@ -1656,7 +1673,7 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea> {
                       },
                     ),
                     FluxerBottomSheetMenuItem(
-                      icon: PhosphorIconsBold.camera,
+                      icon: PhosphorIconsFill.camera,
                       label: l10n.chatAttachmentSourceCamera,
                       onTap: () async {
                         close();
@@ -1680,7 +1697,7 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea> {
                       },
                     ),
                     FluxerBottomSheetMenuItem(
-                      icon: PhosphorIconsBold.folderOpen,
+                      icon: PhosphorIconsFill.folder,
                       label: l10n.chatAttachmentSourceBrowse,
                       onTap: () async {
                         close();

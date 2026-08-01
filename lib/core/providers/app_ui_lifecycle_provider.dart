@@ -10,13 +10,18 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_ui_lifecycle_provider.g.dart';
 
-/// True while [AppLifecycleState.resumed]
+bool isAppUiForegroundLifecycle(AppLifecycleState state) {
+  return state == AppLifecycleState.resumed ||
+      state == AppLifecycleState.inactive;
+}
+
+/// True while the app is visible (resumed or briefly inactive)
 @Riverpod(keepAlive: true)
 class AppUiForeground extends _$AppUiForeground {
   @override
   bool build() {
     final AppLifecycleState? s = WidgetsBinding.instance.lifecycleState;
-    return s == null || s == AppLifecycleState.resumed;
+    return s == null || isAppUiForegroundLifecycle(s);
   }
 
   // Keep the notifier API stable for tests and lifecycle call sites.
@@ -79,7 +84,7 @@ class _AppUiLifecycleObserverState extends ConsumerState<AppUiLifecycleObserver>
     }
     ref
         .read(appUiForegroundProvider.notifier)
-        .setResumed(state == AppLifecycleState.resumed);
+        .setResumed(isAppUiForegroundLifecycle(state));
     _syncAfkPresence(state);
   }
 

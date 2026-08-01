@@ -183,6 +183,137 @@ void main() {
 
       expect(backPressed, isTrue);
     });
+
+    testWidgets('android back dismisses the modal', (tester) async {
+      useMobileSurface(tester);
+
+      await tester.pumpWidget(
+        buildTestApp(
+          Builder(
+            builder: (context) {
+              return ElevatedButton(
+                onPressed: () {
+                  unawaited(
+                    FluxerModal.show(
+                      context,
+                      title: 'Dismissible Modal',
+                      builder: (context, close) {
+                        return const Text('Body');
+                      },
+                    ),
+                  );
+                },
+                child: const Text('Open'),
+              );
+            },
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Open'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Dismissible Modal'), findsOneWidget);
+
+      final bool handled = await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+
+      expect(handled, isTrue);
+      expect(find.text('Dismissible Modal'), findsNothing);
+    });
+
+    testWidgets('moves centered dialog above keyboard when visible', (
+      tester,
+    ) async {
+      useMobileSurface(tester);
+
+      await tester.pumpWidget(
+        buildTestApp(
+          Builder(
+            builder: (context) {
+              return ElevatedButton(
+                onPressed: () {
+                  unawaited(
+                    FluxerModal.show(
+                      context,
+                      title: 'Keyboard Modal',
+                      centered: true,
+                      builder: (context, close) {
+                        return const TextField(
+                          autofocus: true,
+                          decoration: InputDecoration(labelText: 'Name'),
+                        );
+                      },
+                    ),
+                  );
+                },
+                child: const Text('Open'),
+              );
+            },
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Open'));
+      await tester.pumpAndSettle();
+
+      tester.view.viewInsets = const FakeViewPadding(bottom: 300);
+      addTearDown(tester.view.resetViewInsets);
+      await tester.pumpAndSettle();
+
+      final Finder alignFinder = find.byWidgetPredicate(
+        (Widget widget) =>
+            widget is Align && widget.alignment == Alignment.bottomCenter,
+      );
+      expect(alignFinder, findsOneWidget);
+
+      final Rect dialogRect = tester.getRect(find.byType(Dialog));
+      expect(
+        dialogRect.bottom,
+        lessThanOrEqualTo(tester.view.physicalSize.height - 300),
+      );
+    });
+
+    testWidgets('android back invokes onBack instead of dismissing', (
+      tester,
+    ) async {
+      useMobileSurface(tester);
+      var backPressed = false;
+
+      await tester.pumpWidget(
+        buildTestApp(
+          Builder(
+            builder: (context) {
+              return ElevatedButton(
+                onPressed: () {
+                  unawaited(
+                    FluxerModal.show(
+                      context,
+                      title: 'Back Modal',
+                      onBack: () => backPressed = true,
+                      builder: (context, close) {
+                        return const Text('Body');
+                      },
+                    ),
+                  );
+                },
+                child: const Text('Open'),
+              );
+            },
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Open'));
+      await tester.pumpAndSettle();
+
+      final bool handled = await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+
+      expect(handled, isTrue);
+      expect(backPressed, isTrue);
+      expect(find.text('Back Modal'), findsOneWidget);
+    });
   });
 
   group('FluxerConfirmModal', () {

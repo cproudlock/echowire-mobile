@@ -6,6 +6,7 @@ import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
+import 'package:fluxer_app/features/dm/domain/dm_conversation.dart';
 import 'package:fluxer_app/features/dm/providers/dm_view_model.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_view_model.dart';
 import 'package:fluxer_app/features/members/providers/member_providers.dart';
@@ -179,5 +180,88 @@ ChannelMessagePermissions channelMessagePermissionsForComposer(
     data: (ChannelMessagePermissions value) => value,
     error: (Object _, StackTrace _) => ChannelMessagePermissions.unresolved,
     loading: () => ChannelMessagePermissions.unresolved,
+  );
+}
+
+/// Resolves composer permissions synchronously when possible
+ChannelMessagePermissions? syncChannelMessagePermissions(
+  WidgetRef ref,
+  String channelId, {
+  required bool watch,
+}) {
+  if (channelId.isEmpty) {
+    return ChannelMessagePermissions.none;
+  }
+  final DmViewState dmState = watch
+      ? ref.watch(dmViewModelProvider)
+      : ref.read(dmViewModelProvider);
+  final DmConversation? dm = findDmById(dmState.conversations, channelId);
+  if (dm != null) {
+    if (isSystemDmConversation(dm)) {
+      return ChannelMessagePermissions.none;
+    }
+    return ChannelMessagePermissions.all;
+  }
+  final String? currentUserId = watch
+      ? ref.watch(currentUserIdProvider)
+      : ref.read(currentUserIdProvider);
+  if (isPersonalNotesChannelRoute(
+    channelId: channelId,
+    currentUserId: currentUserId,
+  )) {
+    return ChannelMessagePermissions.all;
+  }
+  final int? cachedBits = watch
+      ? ref.watch(
+          channelPermissionCacheProvider.select(
+            (ChannelPermissionCaches caches) => caches.effective[channelId],
+          ),
+        )
+      : ref.read(
+          channelPermissionCacheProvider.select(
+            (ChannelPermissionCaches caches) => caches.effective[channelId],
+          ),
+        );
+  if (cachedBits != null) {
+    return channelMessagePermissionsFromBits(
+      bits: cachedBits,
+      channelType: ChannelType.guildText,
+    );
+  }
+  return null;
+}
+
+ChannelMessagePermissions watchChannelMessagePermissionsForComposer(
+  WidgetRef ref,
+  String channelId,
+) {
+  final ChannelMessagePermissions? sync = syncChannelMessagePermissions(
+    ref,
+    channelId,
+    watch: true,
+  );
+  if (sync != null) {
+    ref.watch(channelMessagePermissionsProvider(channelId));
+    return sync;
+  }
+  return channelMessagePermissionsForComposer(
+    ref.watch(channelMessagePermissionsProvider(channelId)),
+  );
+}
+
+ChannelMessagePermissions readChannelMessagePermissionsForComposer(
+  WidgetRef ref,
+  String channelId,
+) {
+  final ChannelMessagePermissions? sync = syncChannelMessagePermissions(
+    ref,
+    channelId,
+    watch: false,
+  );
+  if (sync != null) {
+    return sync;
+  }
+  return channelMessagePermissionsForComposer(
+    ref.read(channelMessagePermissionsProvider(channelId)),
   );
 }

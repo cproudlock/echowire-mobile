@@ -13,7 +13,7 @@ import 'package:riverpod/misc.dart' show FutureProviderFamily;
 import 'package:riverpod/riverpod.dart';
 
 /// Result of channel permission resolution. When `shouldCache` is false, `value`
-/// may be 0 only because guild membership or roles are not loaded yet.
+/// may be 0 because the guild or current user's membership is not loaded yet.
 typedef ChannelPermissionBitsOutcome = ({int value, bool shouldCache});
 
 Future<ChannelPermissionBitsOutcome>
@@ -62,9 +62,6 @@ computeEffectiveGuildChannelPermissionBitsOutcome({
   if (memberRow == null) {
     return (value: 0, shouldCache: false);
   }
-  final List<String> memberRoleIds = memberRow.roleIdsJson.isNotEmpty
-      ? List<String>.from(jsonDecode(memberRow.roleIdsJson) as List<dynamic>)
-      : <String>[];
   Role? everyoneRole;
   for (final Role r in allRoles) {
     if (r.id == guildId) {
@@ -72,8 +69,12 @@ computeEffectiveGuildChannelPermissionBitsOutcome({
       break;
     }
   }
-  final int everyonePermissions =
-      int.tryParse(everyoneRole?.permissions ?? '0') ?? 0;
+  final int everyonePermissions = everyoneRolePermissionsFromString(
+    everyoneRole?.permissions,
+  );
+  final List<String> memberRoleIds = memberRow.roleIdsJson.isNotEmpty
+      ? List<String>.from(jsonDecode(memberRow.roleIdsJson) as List<dynamic>)
+      : <String>[];
   final List<MemberRole> memberRoles = allRoles
       .where((r) => memberRoleIds.contains(r.id))
       .map(MemberRole.fromRow)
@@ -162,9 +163,6 @@ computeChannelLocalGuildChannelPermissionBitsOutcome({
   if (memberRow == null) {
     return (value: 0, shouldCache: false);
   }
-  final List<String> memberRoleIds = memberRow.roleIdsJson.isNotEmpty
-      ? List<String>.from(jsonDecode(memberRow.roleIdsJson) as List<dynamic>)
-      : <String>[];
   Role? everyoneRole;
   for (final Role r in allRoles) {
     if (r.id == guildId) {
@@ -172,8 +170,12 @@ computeChannelLocalGuildChannelPermissionBitsOutcome({
       break;
     }
   }
-  final int everyonePermissions =
-      int.tryParse(everyoneRole?.permissions ?? '0') ?? 0;
+  final int everyonePermissions = everyoneRolePermissionsFromString(
+    everyoneRole?.permissions,
+  );
+  final List<String> memberRoleIds = memberRow.roleIdsJson.isNotEmpty
+      ? List<String>.from(jsonDecode(memberRow.roleIdsJson) as List<dynamic>)
+      : <String>[];
   final List<MemberRole> memberRoles = allRoles
       .where((r) => memberRoleIds.contains(r.id))
       .map(MemberRole.fromRow)

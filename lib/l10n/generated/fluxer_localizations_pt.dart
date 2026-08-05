@@ -2530,6 +2530,9 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
   String get userProfileLoadError => 'Não foi possível carregar o perfil';
 
   @override
+  String get userProfileLoading => 'Loading profile';
+
+  @override
   String get userProfileRetry => 'Tentar novamente';
 
   @override
@@ -7236,10 +7239,6 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
   String get audioAndVideoMicTestSectionTitle => 'Mic test';
 
   @override
-  String get audioAndVideoMicTestSectionDescription =>
-      'Listen to how you sound with your current settings.';
-
-  @override
   String get audioAndVideoMicTestStartLabel => 'Start mic test';
 
   @override
@@ -11380,6 +11379,10 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
 
   @override
   String get dmListDirectMessagesTitle => 'Direct Messages';
+
+  @override
+  String get audioAndVideoMicTestSectionDescription =>
+      'Listen to how you sound with your current settings.';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).

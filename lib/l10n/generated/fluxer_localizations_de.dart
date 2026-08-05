@@ -2546,6 +2546,9 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get userProfileLoadError => 'Profil konnte nicht geladen werden';
 
   @override
+  String get userProfileLoading => 'Loading profile';
+
+  @override
   String get userProfileRetry => 'Erneut versuchen';
 
   @override
@@ -7270,10 +7273,6 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get audioAndVideoMicTestSectionTitle => 'Mic test';
 
   @override
-  String get audioAndVideoMicTestSectionDescription =>
-      'Listen to how you sound with your current settings.';
-
-  @override
   String get audioAndVideoMicTestStartLabel => 'Start mic test';
 
   @override
@@ -11417,4 +11416,8 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get dmListDirectMessagesTitle => 'Direct Messages';
+
+  @override
+  String get audioAndVideoMicTestSectionDescription =>
+      'Listen to how you sound with your current settings.';
 }

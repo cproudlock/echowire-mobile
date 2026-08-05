@@ -2438,6 +2438,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get userProfileLoadError => 'プロフィールを読み込めませんでした';
 
   @override
+  String get userProfileLoading => 'Loading profile';
+
+  @override
   String get userProfileRetry => '再試行';
 
   @override
@@ -7000,10 +7003,6 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get audioAndVideoMicTestSectionTitle => 'Mic test';
 
   @override
-  String get audioAndVideoMicTestSectionDescription =>
-      'Listen to how you sound with your current settings.';
-
-  @override
   String get audioAndVideoMicTestStartLabel => 'Start mic test';
 
   @override
@@ -11070,4 +11069,8 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get dmListDirectMessagesTitle => 'Direct Messages';
+
+  @override
+  String get audioAndVideoMicTestSectionDescription =>
+      'Listen to how you sound with your current settings.';
 }

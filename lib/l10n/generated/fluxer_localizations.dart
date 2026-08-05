@@ -4462,6 +4462,12 @@ abstract class FluxerLocalizations {
   /// **'Couldn\'t load profile'**
   String get userProfileLoadError;
 
+  /// Accessible label for the user profile skeleton while profile data is loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading profile'**
+  String get userProfileLoading;
+
   /// Retry button on the profile load-error state.
   ///
   /// In en, this message translates to:
@@ -12222,12 +12228,6 @@ abstract class FluxerLocalizations {
   /// **'Mic test'**
   String get audioAndVideoMicTestSectionTitle;
 
-  /// Subsection description for microphone test controls.
-  ///
-  /// In en, this message translates to:
-  /// **'Listen to how you sound with your current settings.'**
-  String get audioAndVideoMicTestSectionDescription;
-
   /// Button label to start the microphone test.
   ///
   /// In en, this message translates to:
@@ -19114,6 +19114,12 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Direct Messages'**
   String get dmListDirectMessagesTitle;
+
+  /// Subsection description for microphone test controls.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen to how you sound with your current settings.'**
+  String get audioAndVideoMicTestSectionDescription;
 }
 
 class _FluxerLocalizationsDelegate

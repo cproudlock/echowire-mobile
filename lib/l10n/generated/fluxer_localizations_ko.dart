@@ -2435,6 +2435,9 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get userProfileLoadError => '프로필을 불러올 수 없습니다';
 
   @override
+  String get userProfileLoading => 'Loading profile';
+
+  @override
   String get userProfileRetry => '다시 시도';
 
   @override
@@ -6991,10 +6994,6 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get audioAndVideoMicTestSectionTitle => 'Mic test';
 
   @override
-  String get audioAndVideoMicTestSectionDescription =>
-      'Listen to how you sound with your current settings.';
-
-  @override
   String get audioAndVideoMicTestStartLabel => 'Start mic test';
 
   @override
@@ -11054,4 +11053,8 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get dmListDirectMessagesTitle => 'Direct Messages';
+
+  @override
+  String get audioAndVideoMicTestSectionDescription =>
+      'Listen to how you sound with your current settings.';
 }

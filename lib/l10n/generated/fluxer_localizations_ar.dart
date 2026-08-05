@@ -2511,6 +2511,9 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   String get userProfileLoadError => 'تعذر تحميل الملف الشخصي';
 
   @override
+  String get userProfileLoading => 'Loading profile';
+
+  @override
   String get userProfileRetry => 'إعادة المحاولة';
 
   @override
@@ -7179,10 +7182,6 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   String get audioAndVideoMicTestSectionTitle => 'Mic test';
 
   @override
-  String get audioAndVideoMicTestSectionDescription =>
-      'Listen to how you sound with your current settings.';
-
-  @override
   String get audioAndVideoMicTestStartLabel => 'Start mic test';
 
   @override
@@ -11290,4 +11289,8 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
 
   @override
   String get dmListDirectMessagesTitle => 'Direct Messages';
+
+  @override
+  String get audioAndVideoMicTestSectionDescription =>
+      'Listen to how you sound with your current settings.';
 }

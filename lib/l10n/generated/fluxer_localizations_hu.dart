@@ -2549,6 +2549,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userProfileLoadError => 'Nem sikerült betölteni a profil';
 
   @override
+  String get userProfileLoading => 'Loading profile';
+
+  @override
   String get userProfileRetry => 'Újrapróbálkozás';
 
   @override
@@ -7258,10 +7261,6 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get audioAndVideoMicTestSectionTitle => 'Mikrofonpróba';
 
   @override
-  String get audioAndVideoMicTestSectionDescription =>
-      'Meghallgathatod, hogy a jelenlegi beállításokkal hogy hangzol.';
-
-  @override
   String get audioAndVideoMicTestStartLabel => 'Mikrofonpróba indítása';
 
   @override
@@ -11400,4 +11399,8 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get dmListDirectMessagesTitle => 'Direct Messages';
+
+  @override
+  String get audioAndVideoMicTestSectionDescription =>
+      'Meghallgathatod, hogy a jelenlegi beállításokkal hogy hangzol.';
 }

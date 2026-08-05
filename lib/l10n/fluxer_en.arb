@@ -2845,8 +2845,12 @@
   "@phoneInboundStepSendCode": {
     "description": "Inbound verification step 2.",
     "placeholders": {
-      "code": {"type": "String"},
-      "number": {"type": "String"}
+      "code": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
     }
   },
   "phoneInboundStepWait": "Wait for us to receive your message. This can take a minute.",
@@ -3218,6 +3222,10 @@
   "userProfileLoadError": "Couldn't load profile",
   "@userProfileLoadError": {
     "description": "Empty-state title shown when the user profile sheet fails to fetch."
+  },
+  "userProfileLoading": "Loading profile",
+  "@userProfileLoading": {
+    "description": "Accessible label for the user profile skeleton while profile data is loading."
   },
   "userProfileRetry": "Retry",
   "@userProfileRetry": {
@@ -8809,7 +8817,9 @@
   "@groupDmIconFileTooLargeBody": {
     "description": "Body when the selected group icon exceeds the size limit.",
     "placeholders": {
-      "maxSize": {"type": "String"}
+      "maxSize": {
+        "type": "String"
+      }
     }
   },
   "groupDmUnsupportedIconFormat": "Unsupported icon format",
@@ -9189,10 +9199,6 @@
   "audioAndVideoMicTestSectionTitle": "Mic test",
   "@audioAndVideoMicTestSectionTitle": {
     "description": "Subsection title for microphone test controls."
-  },
-  "audioAndVideoMicTestSectionDescription": "Listen to how you sound with your current settings.",
-  "@audioAndVideoMicTestSectionDescription": {
-    "description": "Subsection description for microphone test controls."
   },
   "audioAndVideoMicTestStartLabel": "Start mic test",
   "@audioAndVideoMicTestStartLabel": {
@@ -10895,7 +10901,9 @@
   "@guildSettingsRolesEditTitle": {
     "description": "Title for the role editor panel.",
     "placeholders": {
-      "name": {"type": "String"}
+      "name": {
+        "type": "String"
+      }
     }
   },
   "guildSettingsRolesEditSubtitle": "Configure role settings and permissions",
@@ -10934,7 +10942,9 @@
   "@guildSettingsRolesAllowMentionsHelper": {
     "description": "Helper text under the mentionable toggle.",
     "placeholders": {
-      "permission": {"type": "String"}
+      "permission": {
+        "type": "String"
+      }
     }
   },
   "guildSettingsRolesClearPermissionsHelp": "Use this button to quickly clear all permissions.",
@@ -11017,7 +11027,9 @@
   "@guildSettingsRolesNeedManageRolesPermission": {
     "description": "Tooltip when user lacks manage roles permission.",
     "placeholders": {
-      "permission": {"type": "String"}
+      "permission": {
+        "type": "String"
+      }
     }
   },
   "guildSettingsRolesCannotEditHigherRole": "You cannot edit a role at or above your highest role",
@@ -11072,7 +11084,9 @@
   "@guildSettingsRolesDeleteFailedBody": {
     "description": "Error modal body when role deletion fails.",
     "placeholders": {
-      "name": {"type": "String"}
+      "name": {
+        "type": "String"
+      }
     }
   },
   "guildSettingsRolesResetHoistFailedTitle": "Couldn't reset hoist order",
@@ -11087,7 +11101,9 @@
   "@guildSettingsRolesDeleteConfirm": {
     "description": "Delete role confirmation message.",
     "placeholders": {
-      "name": {"type": "String"}
+      "name": {
+        "type": "String"
+      }
     }
   },
   "permissionCategoryCommunityWide": "Community-wide",
@@ -11390,8 +11406,12 @@
   "@guildSettingsEmojiSlotInfo": {
     "description": "Emoji slot usage summary.",
     "placeholders": {
-      "staticCount": {"type": "int"},
-      "animatedCount": {"type": "int"}
+      "staticCount": {
+        "type": "int"
+      },
+      "animatedCount": {
+        "type": "int"
+      }
     }
   },
   "guildSettingsEmojiEmpty": "No custom emoji yet.",
@@ -11402,7 +11422,9 @@
   "@guildSettingsStickersSlotInfo": {
     "description": "Sticker slot usage summary.",
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "guildSettingsStickersEmpty": "No custom stickers yet.",
@@ -12543,7 +12565,9 @@
   "@guildSettingsVanityUrlUses": {
     "description": "Vanity URL usage count.",
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "guildSettingsDiscoveryDescription": "List your community in Discovery so others can find and join it.",
@@ -12558,7 +12582,9 @@
   "@guildSettingsDiscoveryNotEligible": {
     "description": "Discovery eligibility message.",
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "guildSettingsDiscoveryStatusLabel": "Status:",
@@ -12585,7 +12611,9 @@
   "@guildSettingsDiscoveryReason": {
     "description": "Review or removal reason shown on the discovery application status card.",
     "placeholders": {
-      "reason": {"type": "String"}
+      "reason": {
+        "type": "String"
+      }
     }
   },
   "guildSettingsDiscoveryApprovedInfo": "Your community is listed in Discovery. You can update your listing details below or withdraw to remove it.",
@@ -12628,14 +12656,18 @@
   "@guildSettingsDiscoveryDescriptionMinLength": {
     "description": "Validation error when the discovery description is too short.",
     "placeholders": {
-      "minLength": {"type": "int"}
+      "minLength": {
+        "type": "int"
+      }
     }
   },
   "guildSettingsDiscoveryDescriptionMaxLength": "Description must be no more than {maxLength} characters.",
   "@guildSettingsDiscoveryDescriptionMaxLength": {
     "description": "Validation error when the discovery description is too long.",
     "placeholders": {
-      "maxLength": {"type": "int"}
+      "maxLength": {
+        "type": "int"
+      }
     }
   },
   "guildSettingsDiscoveryTags": "Custom tags",
@@ -12646,7 +12678,9 @@
   "@guildSettingsDiscoveryTagsHelp": {
     "description": "Help text below the custom tags field.",
     "placeholders": {
-      "maxTags": {"type": "int"}
+      "maxTags": {
+        "type": "int"
+      }
     }
   },
   "guildSettingsDiscoveryTagsHint": "Add a tag and press Enter",
@@ -12661,7 +12695,9 @@
   "@guildSettingsDiscoveryRemoveTag": {
     "description": "Accessibility label for removing a custom discovery tag.",
     "placeholders": {
-      "tag": {"type": "String"}
+      "tag": {
+        "type": "String"
+      }
     }
   },
   "guildSettingsDiscoveryTagErrorTitle": "Couldn't add tag",
@@ -12672,14 +12708,18 @@
   "@guildSettingsDiscoveryTagRequirements": {
     "description": "Validation error for invalid custom discovery tags.",
     "placeholders": {
-      "maxLength": {"type": "int"}
+      "maxLength": {
+        "type": "int"
+      }
     }
   },
   "guildSettingsDiscoveryTagLimit": "You can only add up to {maxTags} tags.",
   "@guildSettingsDiscoveryTagLimit": {
     "description": "Validation error when the custom tag limit is reached.",
     "placeholders": {
-      "maxTags": {"type": "int"}
+      "maxTags": {
+        "type": "int"
+      }
     }
   },
   "guildSettingsDiscoveryApply": "Apply",
@@ -12726,7 +12766,9 @@
   "@guildSettingsMembersResultsTitle": {
     "description": "Title for member search results.",
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "guildMembersRecentTitle": "Recent members",
@@ -12737,8 +12779,12 @@
   "@guildMembersShowingCount": {
     "description": "Subtitle showing pagination count on the community members page.",
     "placeholders": {
-      "displayedCount": {"type": "int"},
-      "totalCount": {"type": "int"}
+      "displayedCount": {
+        "type": "int"
+      },
+      "totalCount": {
+        "type": "int"
+      }
     }
   },
   "guildMembersSort": "Sort",
@@ -12765,7 +12811,9 @@
   "@guildMembersColumnJoinedProduct": {
     "description": "Table column header for account creation date on the community members page.",
     "placeholders": {
-      "productName": {"type": "String"}
+      "productName": {
+        "type": "String"
+      }
     }
   },
   "guildMembersColumnJoinMethod": "Join method",
@@ -12872,7 +12920,9 @@
   "@guildMembersGoToPageItem": {
     "description": "Accessibility label for a pagination page button.",
     "placeholders": {
-      "page": {"type": "int"}
+      "page": {
+        "type": "int"
+      }
     }
   },
   "guildMembersJumpToPage": "Jump to page",
@@ -12891,14 +12941,18 @@
   "@guildMembersJoinSourceInviteCode": {
     "description": "Join method label with invite code on the community members page.",
     "placeholders": {
-      "code": {"type": "String"}
+      "code": {
+        "type": "String"
+      }
     }
   },
   "guildMembersJoinSourceInvitedBy": "Invited by {name}",
   "@guildMembersJoinSourceInvitedBy": {
     "description": "Join method label with inviter on the community members page.",
     "placeholders": {
-      "name": {"type": "String"}
+      "name": {
+        "type": "String"
+      }
     }
   },
   "guildMembersJoinSourceVanityUrl": "Vanity URL",
@@ -12937,21 +12991,27 @@
   "@guildMembersJoinedMinutesAgo": {
     "description": "Relative join time on the community members page.",
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "guildMembersJoinedHoursAgo": "{count, plural, one {1 hour ago} other {{count} hours ago}}",
   "@guildMembersJoinedHoursAgo": {
     "description": "Relative join time on the community members page.",
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "guildMembersJoinedDaysAgo": "{count, plural, one {1 day ago} other {{count} days ago}}",
   "@guildMembersJoinedDaysAgo": {
     "description": "Relative join time on the community members page.",
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "guildMembersChannelListLabel": "Members",
@@ -13030,7 +13090,9 @@
   "@guildSettingsInvitesPausedBecauseRaid": {
     "description": "Status message when invites are paused due to raid detection.",
     "placeholders": {
-      "productName": {"type": "String"}
+      "productName": {
+        "type": "String"
+      }
     }
   },
   "guildSettingsInvitesLabelInviter": "Inviter:",
@@ -13093,15 +13155,21 @@
   "@guildSettingsInviteUses": {
     "description": "Invite usage count.",
     "placeholders": {
-      "uses": {"type": "int"},
-      "maxUses": {"type": "int"}
+      "uses": {
+        "type": "int"
+      },
+      "maxUses": {
+        "type": "int"
+      }
     }
   },
   "guildSettingsInviteExpires": "Expires {date}",
   "@guildSettingsInviteExpires": {
     "description": "Invite expiration date.",
     "placeholders": {
-      "date": {"type": "String"}
+      "date": {
+        "type": "String"
+      }
     }
   },
   "guildSettingsBansDescription": "View and manage banned users.",
@@ -13124,7 +13192,9 @@
   "@guildSettingsBanExpires": {
     "description": "Ban expiration date.",
     "placeholders": {
-      "date": {"type": "String"}
+      "date": {
+        "type": "String"
+      }
     }
   },
   "guildSettingsBanExpiresLabel": "Expires",
@@ -13167,14 +13237,18 @@
   "@guildSettingsRevokeBanDescription": {
     "description": "Confirmation message when revoking a ban.",
     "placeholders": {
-      "displayName": {"type": "String"}
+      "displayName": {
+        "type": "String"
+      }
     }
   },
   "guildSettingsRevokeBanSuccess": "Revoked ban for {displayName}",
   "@guildSettingsRevokeBanSuccess": {
     "description": "Toast shown after successfully revoking a ban.",
     "placeholders": {
-      "displayName": {"type": "String"}
+      "displayName": {
+        "type": "String"
+      }
     }
   },
   "guildSettingsBansLoadError": "Couldn't load bans. Try again.",
@@ -13464,12 +13538,20 @@
   "guildSettingsEmojiSlotsFull": "You've reached the maximum number of emojis. Delete some existing emojis to make room.",
   "guildSettingsEmojiUploadRequirements": "Emoji names need at least 2 characters and can use letters, numbers, and underscores. Emojis must be under {maxSize}. Static images are resized to 128x128 pixels and compressed automatically. Animated emojis and SVGs must already fit the limit.",
   "@guildSettingsEmojiUploadRequirements": {
-    "placeholders": { "maxSize": {"type": "String"} }
+    "placeholders": {
+      "maxSize": {
+        "type": "String"
+      }
+    }
   },
   "guildSettingsEmojiUploadingTitle": "Uploading emojis",
   "guildSettingsEmojiUploadingBody": "Uploading {count, plural, one {# emoji} other {# emojis}}. This may take a little while.",
   "@guildSettingsEmojiUploadingBody": {
-    "placeholders": { "count": {"type": "int"} }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "guildSettingsEmojiUploadFailed": "Failed to upload emojis. Try again.",
   "guildSettingsEmojiSomeFailedTitle": "Some emojis couldn't be added",
@@ -13483,7 +13565,11 @@
   "guildSettingsEmojiDeleteTitle": "Delete emoji",
   "guildSettingsEmojiDeleteBody": "Delete :{name}:? Can't be undone.",
   "@guildSettingsEmojiDeleteBody": {
-    "placeholders": { "name": {"type": "String"} }
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   },
   "guildSettingsEmojiPurgeLabel": "Purge this emoji from storage and CDN",
   "guildSettingsEmojiNameTooShort": "Emoji name must be at least 2 characters long",
@@ -13505,17 +13591,29 @@
   "guildSettingsCloneStickerDescription": "When enabled, members of other communities can use the in-app one-click \"Clone\" shortcut on your custom stickers. This does not prevent them from saving the image and uploading it themselves.",
   "guildSettingsClonePermissionHint": "Only members with the \"{permission}\" permission can change this.",
   "@guildSettingsClonePermissionHint": {
-    "placeholders": { "permission": {"type": "String"} }
+    "placeholders": {
+      "permission": {
+        "type": "String"
+      }
+    }
   },
   "guildSettingsCloneEmojiUpdateFailed": "Couldn't update emoji cloning",
   "guildSettingsCloneStickerUpdateFailed": "Couldn't update sticker cloning",
   "guildSettingsNonAnimatedEmoji": "Non-animated emoji ({count})",
   "@guildSettingsNonAnimatedEmoji": {
-    "placeholders": { "count": {"type": "int"} }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "guildSettingsAnimatedEmoji": "Animated emoji ({count})",
   "@guildSettingsAnimatedEmoji": {
-    "placeholders": { "count": {"type": "int"} }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "guildSettingsStickersSearchHint": "Search stickers",
   "guildSettingsStickerSlotsTitle": "Sticker slots",
@@ -13532,7 +13630,11 @@
   "guildSettingsStickerSlotsFull": "You've reached the maximum number of stickers. Delete some existing stickers to make room.",
   "guildSettingsStickerUploadRequirements": "Stickers are saved at 320x320 pixels and must be under {maxSize}. Static images are resized and compressed automatically. Animated stickers and SVGs must already fit the limit.",
   "@guildSettingsStickerUploadRequirements": {
-    "placeholders": { "maxSize": {"type": "String"} }
+    "placeholders": {
+      "maxSize": {
+        "type": "String"
+      }
+    }
   },
   "guildSettingsStickerUnsupportedTitle": "Unsupported sticker file",
   "guildSettingsStickerAddTitle": "Add sticker",
@@ -13544,8 +13646,12 @@
   "guildSettingsStickerTagsLabel": "Tags ({count}/{limit})",
   "@guildSettingsStickerTagsLabel": {
     "placeholders": {
-      "count": {"type": "int"},
-      "limit": {"type": "int"}
+      "count": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
     }
   },
   "guildSettingsStickerTagHint": "Add a tag",
@@ -13560,7 +13666,11 @@
   "guildSettingsStickerDeleteTitle": "Delete sticker",
   "guildSettingsStickerDeleteBody": "Delete \"{name}\"? Can't be undone.",
   "@guildSettingsStickerDeleteBody": {
-    "placeholders": { "name": {"type": "String"} }
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   },
   "guildSettingsStickerPurgeLabel": "Purge this sticker from storage and CDN",
   "guildSettingsStickerDeleteFailedTitle": "Couldn't delete this sticker",
@@ -13725,5 +13835,9 @@
   "dmListDirectMessagesTitle": "Direct Messages",
   "@dmListDirectMessagesTitle": {
     "description": "Desktop section header for the DM conversation list."
+  },
+  "audioAndVideoMicTestSectionDescription": "Listen to how you sound with your current settings.",
+  "@audioAndVideoMicTestSectionDescription": {
+    "description": "Subsection description for microphone test controls."
   }
 }

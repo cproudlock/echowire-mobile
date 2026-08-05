@@ -2550,6 +2550,9 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   String get userProfileLoadError => 'No se ha podido cargar el perfil';
 
   @override
+  String get userProfileLoading => 'Loading profile';
+
+  @override
   String get userProfileRetry => 'Reintentar';
 
   @override
@@ -7287,10 +7290,6 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   String get audioAndVideoMicTestSectionTitle => 'Prueba de micrófono';
 
   @override
-  String get audioAndVideoMicTestSectionDescription =>
-      'Escucha cómo suenas con tu configuración actual.';
-
-  @override
   String get audioAndVideoMicTestStartLabel => 'Probar micrófono';
 
   @override
@@ -11442,6 +11441,10 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
 
   @override
   String get dmListDirectMessagesTitle => 'Mensajes directos';
+
+  @override
+  String get audioAndVideoMicTestSectionDescription =>
+      'Escucha cómo suenas con tu configuración actual.';
 }
 
 /// The translations for Spanish Castilian, as used in Latin America and the Caribbean (`es_419`).

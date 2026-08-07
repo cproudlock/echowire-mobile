@@ -8636,14 +8636,6 @@
       }
     }
   },
-  "guildSettingsDiscoveryFormTitle": "Solicitud",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
-  },
-  "guildSettingsDiscoveryStatusTitle": "Estado",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
-  },
   "guildSettingsDiscoveryCategory": "Categoría",
   "@guildSettingsDiscoveryCategory": {
     "description": "Label for discovery category dropdown."
@@ -9639,5 +9631,13 @@
   "channelDetailsSearchScopeAllDmsDescription": "En todos los chats privados en los que has estado",
   "@channelDetailsSearchScopeAllDmsDescription": {
     "description": "Description for all DMs scope when searching from a DM."
+  },
+  "guildSettingsDiscoveryFormTitle": "Solicitud",
+  "@guildSettingsDiscoveryFormTitle": {
+    "description": "Title for discovery application form."
+  },
+  "guildSettingsDiscoveryStatusTitle": "Estado",
+  "@guildSettingsDiscoveryStatusTitle": {
+    "description": "Title for discovery application status section."
   }
 }

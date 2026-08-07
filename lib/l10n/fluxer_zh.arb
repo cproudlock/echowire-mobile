@@ -8636,14 +8636,6 @@
       }
     }
   },
-  "guildSettingsDiscoveryFormTitle": "申请",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
-  },
-  "guildSettingsDiscoveryStatusTitle": "状态",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
-  },
   "guildSettingsDiscoveryCategory": "类别",
   "@guildSettingsDiscoveryCategory": {
     "description": "Label for discovery category dropdown."
@@ -9106,5 +9098,13 @@
   "guildSettingsAuditLogFilterAction": "按操作筛选",
   "@guildSettingsAuditLogFilterAction": {
     "description": "Label of the action-type filter dropdown in the activity log tab."
+  },
+  "guildSettingsDiscoveryFormTitle": "申请",
+  "@guildSettingsDiscoveryFormTitle": {
+    "description": "Title for discovery application form."
+  },
+  "guildSettingsDiscoveryStatusTitle": "状态",
+  "@guildSettingsDiscoveryStatusTitle": {
+    "description": "Title for discovery application status section."
   }
 }

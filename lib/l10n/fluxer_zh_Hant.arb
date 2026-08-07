@@ -8636,14 +8636,6 @@
       }
     }
   },
-  "guildSettingsDiscoveryFormTitle": "申請",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
-  },
-  "guildSettingsDiscoveryStatusTitle": "狀態",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
-  },
   "guildSettingsDiscoveryCategory": "類別",
   "@guildSettingsDiscoveryCategory": {
     "description": "Label for discovery category dropdown."
@@ -9106,5 +9098,13 @@
   "guildSettingsAuditLogFilterAction": "依動作篩選",
   "@guildSettingsAuditLogFilterAction": {
     "description": "Label of the action-type filter dropdown in the activity log tab."
+  },
+  "guildSettingsDiscoveryFormTitle": "申請",
+  "@guildSettingsDiscoveryFormTitle": {
+    "description": "Title for discovery application form."
+  },
+  "guildSettingsDiscoveryStatusTitle": "狀態",
+  "@guildSettingsDiscoveryStatusTitle": {
+    "description": "Title for discovery application status section."
   }
 }

@@ -13,6 +13,7 @@ import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_context.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/attachments/attachment_list_renderer.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_gift.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_image.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_invite.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_link.dart';
@@ -37,6 +38,7 @@ import 'package:fluxer_app/features/chat/presentation/widgets/messages/spoiler_o
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/expression_picker.dart';
 import 'package:fluxer_app/features/chat/providers/messages/spoiler_reveal_provider.dart';
 import 'package:fluxer_app/features/chat/utils/embed_gallery_utils.dart';
+import 'package:fluxer_app/features/chat/utils/message_accessibility_summary.dart';
 import 'package:fluxer_app/features/chat/utils/message_timestamp_format.dart';
 import 'package:fluxer_app/features/chat/utils/spoiler_utils.dart';
 import 'package:fluxer_app/features/chat/utils/uploading_attachment_utils.dart';
@@ -47,8 +49,6 @@ import 'package:fluxer_app/features/settings/providers/chat_preferences_provider
 import 'package:fluxer_app/features/settings/providers/use_12_hour_time_format_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
-import 'package:fluxer_app/features/shell/presentation/sidebar_drawer.dart';
-import 'package:fluxer_app/features/shell/providers/reveal_side_provider.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/shared/providers/guild_user_display_provider.dart';
@@ -181,6 +181,9 @@ class MessageItem extends ConsumerStatefulWidget {
   final bool isJumpHighlighted;
   final bool isSendDisabled;
 
+  /// False in compact drawer peek; set by the message list.
+  final bool swipeToReplyEnabled;
+
   /// When set, resolves author guild role highlight for inbox previews
   /// (active guild sheet may differ from the channel's guild).
   final String? previewRoleGuildId;
@@ -217,6 +220,7 @@ class MessageItem extends ConsumerStatefulWidget {
     this.inboxPreviewMode = false,
     this.hideMentionHighlight = false,
     this.isJumpHighlighted = false,
+    this.swipeToReplyEnabled = true,
     this.previewRoleGuildId,
     this.renderSettings,
     super.key,
@@ -231,11 +235,20 @@ class _MessageItemState extends ConsumerState<MessageItem> {
   final _reactionPickerKey = GlobalKey<FluxerEmojiPickerPopoutState>();
   final _spoilerSyncController = FluxerSpoilerSyncController();
   final _reactionPickerOpen = ValueNotifier<bool>(false);
+  bool _animateJumpHighlight = false;
 
   late final Listenable _actionBarVisibility = Listenable.merge([
     _hovered,
     _reactionPickerOpen,
   ]);
+
+  @override
+  void didUpdateWidget(MessageItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isJumpHighlighted != widget.isJumpHighlighted) {
+      _animateJumpHighlight = true;
+    }
+  }
 
   @override
   void dispose() {
@@ -615,9 +628,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
             _hovered.value = false;
           }
         },
-        child: AnimatedContainer(
-          duration: _kJumpHighlightFadeDuration,
-          curve: _kJumpHighlightFadeCurve,
+        child: _messageRowChrome(
           decoration: BoxDecoration(
             color: rowBackgroundColor,
             border: rowBorder,
@@ -708,17 +719,29 @@ class _MessageItemState extends ConsumerState<MessageItem> {
               if (!isMobile && !isFailed && !widget.inboxPreviewMode)
                 Consumer(
                   builder: (context, ref, _) {
-                    final AdvancedPreferencesState advanced = ref.watch(
-                      advancedPreferencesProvider,
+                    final (
+                      bool showMessageActionBar,
+                      bool showMessageActionBarShiftExpand,
+                      bool showMessageActionBarOnlyMoreButton,
+                      bool showMessageActionBarQuickReactions,
+                    ) = ref.watch(
+                      advancedPreferencesProvider.select(
+                        (AdvancedPreferencesState s) => (
+                          s.showMessageActionBar,
+                          s.showMessageActionBarShiftExpand,
+                          s.showMessageActionBarOnlyMoreButton,
+                          s.showMessageActionBarQuickReactions,
+                        ),
+                      ),
                     );
-                    if (!advanced.showMessageActionBar) {
+                    if (!showMessageActionBar) {
                       return const SizedBox.shrink();
                     }
                     return ListenableBuilder(
                       listenable: _actionBarVisibility,
                       builder: (context, _) {
                         final bool shiftExpand =
-                            advanced.showMessageActionBarShiftExpand &&
+                            showMessageActionBarShiftExpand &&
                             HardwareKeyboard.instance.isShiftPressed;
                         final bool showBar =
                             _hovered.value ||
@@ -730,7 +753,12 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                         return Positioned(
                           top: 0,
                           right: 0,
-                          child: _buildActions(context, advanced: advanced),
+                          child: _buildActions(
+                            context,
+                            onlyMoreButton: showMessageActionBarOnlyMoreButton,
+                            showQuickReactions:
+                                showMessageActionBarQuickReactions,
+                          ),
                         );
                       },
                     );
@@ -742,8 +770,18 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       ),
     );
     final onReply = widget.onReply;
+    final Widget semanticBody = Semantics(
+      container: true,
+      label: _messageSemanticLabel(
+        context,
+        msg,
+        isSending: isSending,
+        isFailed: isFailed,
+      ),
+      child: body,
+    );
     if (!isTouch || onReply == null || widget.inboxPreviewMode) {
-      return _wrapMessageSendingDim(dim: dimEntireMessage, child: body);
+      return _wrapMessageSendingDim(dim: dimEntireMessage, child: semanticBody);
     }
     final bool canEditOwnMessage =
         widget.onEdit != null &&
@@ -753,18 +791,34 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     return _wrapMessageSendingDim(
       dim: dimEntireMessage,
       child: SwipeToReply(
-        enabled:
-            widget.canSendMessages &&
-            !isCompactWideDrawerPeekMode(
-              context,
-              shellLocation: ref.watch(shellLocationProvider),
-              revealSide: ref.watch(currentRevealSideProvider),
-            ),
+        enabled: widget.canSendMessages && widget.swipeToReplyEnabled,
         onReply: onReply,
         onEdit: canEditOwnMessage ? widget.onEdit : null,
-        child: body,
+        child: semanticBody,
       ),
     );
+  }
+
+  String _messageSemanticLabel(
+    BuildContext context,
+    Message msg, {
+    required bool isSending,
+    required bool isFailed,
+  }) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final String author = msg.authorName.isNotEmpty
+        ? msg.authorName
+        : msg.authorId;
+    final String summary = messageAccessibilitySummary(msg, l10n);
+    final StringBuffer label = StringBuffer(
+      l10n.messageAccessibilityLabel(author, summary),
+    );
+    if (isSending) {
+      label.write(l10n.messageAccessibilitySendingSuffix);
+    } else if (isFailed) {
+      label.write(l10n.messageAccessibilityFailedSuffix);
+    }
+    return label.toString();
   }
 
   bool _hasUploadingPlaceholderAttachments(Message msg) {
@@ -776,6 +830,33 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       return child;
     }
     return Opacity(opacity: _kMessageSendingOpacity, child: child);
+  }
+
+  /// Animates only while jump highlight is entering or leaving.
+  Widget _messageRowChrome({
+    required Decoration decoration,
+    required EdgeInsets padding,
+    required Widget child,
+  }) {
+    if (!_animateJumpHighlight && !widget.isJumpHighlighted) {
+      return DecoratedBox(
+        decoration: decoration,
+        child: Padding(padding: padding, child: child),
+      );
+    }
+    return AnimatedContainer(
+      duration: _kJumpHighlightFadeDuration,
+      curve: _kJumpHighlightFadeCurve,
+      decoration: decoration,
+      padding: padding,
+      onEnd: () {
+        if (!mounted || widget.isJumpHighlighted) {
+          return;
+        }
+        setState(() => _animateJumpHighlight = false);
+      },
+      child: child,
+    );
   }
 
   /// Builds the reply preview row with space for the
@@ -869,6 +950,14 @@ class _MessageItemState extends ConsumerState<MessageItem> {
           Padding(
             padding: const EdgeInsets.only(top: 4),
             child: EmbedInvite(code: code),
+          ),
+        ),
+      ),
+      ...msg.gifts.map(
+        (code) => wrapPart(
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: EmbedGift(code: code),
           ),
         ),
       ),
@@ -967,10 +1056,8 @@ class _MessageItemState extends ConsumerState<MessageItem> {
               const SizedBox(width: 4),
               Text(
                 FluxerLocalizations.of(context).chatMessageFailedToSend,
-                style: TextStyle(
+                style: context.textStyles.smallText.copyWith(
                   color: context.colors.textDanger,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
                 ),
               ),
             ],
@@ -990,7 +1077,11 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       data: msg.content,
       messageId: msg.id,
       selectable:
-          ref.watch(advancedPreferencesProvider).enableTextSelection &&
+          ref.watch(
+            advancedPreferencesProvider.select(
+              (AdvancedPreferencesState s) => s.enableTextSelection,
+            ),
+          ) &&
           !isMobile,
       channelId: msg.channelId,
       mentionChannels: msg.mentionChannels,
@@ -1002,7 +1093,9 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     );
     if (msg.hasFailed && msg.content.trim().isNotEmpty) {
       markdown = DefaultTextStyle(
-        style: TextStyle(color: context.colors.textDanger),
+        style: context.textStyles.messageText.copyWith(
+          color: context.colors.textDanger,
+        ),
         child: markdown,
       );
     }
@@ -1089,7 +1182,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                   children: [
                     Text(
                       _formatShortTimestamp(msg.timestamp.toLocal()),
-                      style: TextStyle(
+                      style: context.textStyles.timestamp.copyWith(
                         color: context.colors.textTertiaryMuted,
                         fontSize: 10,
                       ),
@@ -1128,16 +1221,23 @@ class _MessageItemState extends ConsumerState<MessageItem> {
 
   Widget _buildSilentIndicator(BuildContext context) {
     final String message = FluxerLocalizations.of(context).chatMessageSilent;
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () =>
-          ref.read(toastProvider.notifier).show(FluxerToast(message: message)),
-      child: Tooltip(
-        message: message,
-        child: PhosphorIcon(
-          PhosphorIconsFill.bellSlash,
-          size: 14,
-          color: context.textStyles.timestamp.color,
+    return Semantics(
+      button: true,
+      label: message,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => ref
+            .read(toastProvider.notifier)
+            .show(FluxerToast(message: message)),
+        child: Tooltip(
+          message: message,
+          child: ExcludeSemantics(
+            child: PhosphorIcon(
+              PhosphorIconsFill.bellSlash,
+              size: 14,
+              color: context.textStyles.timestamp.color,
+            ),
+          ),
         ),
       ),
     );
@@ -1162,21 +1262,30 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     children: [
       _wrapMessageSendingDim(
         dim: dimMessagePartsExceptAttachments,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: _canOpenAuthorProfile(msg)
-              ? () => _openAuthorProfile(context, msg)
+        child: Semantics(
+          button: _canOpenAuthorProfile(msg),
+          label: _canOpenAuthorProfile(msg)
+              ? FluxerLocalizations.of(context).voiceParticipantMenuViewProfile
               : null,
-          child: Padding(
-            padding: const EdgeInsets.only(top: kMessageAvatarTopPadding),
-            child: FluxerAvatar.user(
-              key: ValueKey<String>(
-                'msg-avatar-${msg.authorId}-${authorDisplay.avatarUrl ?? ''}',
+          image: true,
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: _canOpenAuthorProfile(msg)
+                ? () => _openAuthorProfile(context, msg)
+                : null,
+            child: Padding(
+              padding: const EdgeInsets.only(top: kMessageAvatarTopPadding),
+              child: ExcludeSemantics(
+                child: FluxerAvatar.user(
+                  key: ValueKey<String>(
+                    'msg-avatar-${msg.authorId}-${authorDisplay.avatarUrl ?? ''}',
+                  ),
+                  fallbackText: authorDisplay.displayName,
+                  userId: msg.authorId,
+                  imageUrl: authorDisplay.avatarUrl,
+                  avatarColor: authorDisplay.avatarColor,
+                ),
               ),
-              fallbackText: authorDisplay.displayName,
-              userId: msg.authorId,
-              imageUrl: authorDisplay.avatarUrl,
-              avatarColor: authorDisplay.avatarColor,
             ),
           ),
         ),
@@ -1198,9 +1307,8 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                           : null,
                       child: Text(
                         authorDisplay.displayName,
-                        style: TextStyle(
+                        style: context.textStyles.username.copyWith(
                           color: roleColor ?? context.colors.textChat,
-                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
                         overflow: TextOverflow.ellipsis,
@@ -1268,9 +1376,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     final TextStyle dismissTextStyle = context.textStyles.timestamp.copyWith(
       color: context.colors.textLink,
     );
-    return AnimatedContainer(
-      duration: _kJumpHighlightFadeDuration,
-      curve: _kJumpHighlightFadeCurve,
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: _kJumpHighlightBg,
         border: Border(
@@ -1280,111 +1386,112 @@ class _MessageItemState extends ConsumerState<MessageItem> {
           ),
         ),
       ),
-      padding: EdgeInsets.only(
-        left: kMessageRowPaddingHorizontal + _kJumpHighlightBarWidth,
-        right: kMessageRowPaddingHorizontal,
-        top: isGrouped ? 2 : 8,
-        bottom: isGrouped ? 2 : 8,
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (!isGrouped)
-            Padding(
-              padding: const EdgeInsets.only(top: kMessageAvatarTopPadding),
-              child: FluxerAvatar.user(
-                fallbackText: msg.authorName,
-                userId: msg.authorId,
-              ),
-            ),
-          if (!isGrouped) const SizedBox(width: kMessageAvatarTextGap),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (!isGrouped)
-                  Row(
-                    children: [
-                      Flexible(
-                        child: Text(
-                          msg.authorName,
-                          style: TextStyle(
-                            color: context.colors.textChat,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                        ),
-                      ),
-                      if (messageAuthorShowsUserTag(
-                        authorIsBot: msg.authorIsBot,
-                        authorIsSystem: msg.authorIsSystem,
-                      )) ...[
-                        const SizedBox(width: 6),
-                        FluxerUserTag(
-                          isSystem: messageAuthorUserTagIsSystem(
-                            authorIsSystem: msg.authorIsSystem,
-                          ),
-                        ),
-                      ],
-                      const SizedBox(width: 8),
-                      Text(
-                        formatMessageTimestamp(
-                          msg.timestamp.toLocal(),
-                          l10n,
-                          Localizations.localeOf(context).toString(),
-                          use12Hour: use12Hour,
-                        ),
-                        style: context.textStyles.timestamp,
-                      ),
-                    ],
-                  ),
-                if (!isGrouped) const SizedBox(height: 2),
-                MessageMarkdown(
-                  data: msg.content,
-                  messageId: msg.id,
-                  selectable: !isMobileLayout(context),
-                  channelId: msg.channelId,
-                  mentionChannels: msg.mentionChannels,
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: kMessageRowPaddingHorizontal + _kJumpHighlightBarWidth,
+          right: kMessageRowPaddingHorizontal,
+          top: isGrouped ? 2 : 8,
+          bottom: isGrouped ? 2 : 8,
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (!isGrouped)
+              Padding(
+                padding: const EdgeInsets.only(top: kMessageAvatarTopPadding),
+                child: FluxerAvatar.user(
+                  fallbackText: msg.authorName,
+                  userId: msg.authorId,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text.rich(
-                    TextSpan(
-                      style: footerTextStyle,
+              ),
+            if (!isGrouped) const SizedBox(width: kMessageAvatarTextGap),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (!isGrouped)
+                    Row(
                       children: [
-                        WidgetSpan(
-                          alignment: PlaceholderAlignment.middle,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 6),
-                            child: PhosphorIcon(
-                              PhosphorIconsBold.eye,
-                              size: 14,
-                              color: footerTextStyle.color,
+                        Flexible(
+                          child: Text(
+                            msg.authorName,
+                            style: context.textStyles.username.copyWith(
+                              color: context.colors.textChat,
+                              fontWeight: FontWeight.w600,
                             ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                           ),
                         ),
-                        TextSpan(text: l10n.chatClientSystemOnlyYouCanSee),
-                        const TextSpan(text: ' '),
-                        WidgetSpan(
-                          alignment: PlaceholderAlignment.middle,
-                          child: GestureDetector(
-                            onTap: widget.onDismissClientSystem,
-                            child: Text(
-                              l10n.chatClientSystemDismiss,
-                              style: dismissTextStyle,
+                        if (messageAuthorShowsUserTag(
+                          authorIsBot: msg.authorIsBot,
+                          authorIsSystem: msg.authorIsSystem,
+                        )) ...[
+                          const SizedBox(width: 6),
+                          FluxerUserTag(
+                            isSystem: messageAuthorUserTagIsSystem(
+                              authorIsSystem: msg.authorIsSystem,
                             ),
                           ),
+                        ],
+                        const SizedBox(width: 8),
+                        Text(
+                          formatMessageTimestamp(
+                            msg.timestamp.toLocal(),
+                            l10n,
+                            Localizations.localeOf(context).toString(),
+                            use12Hour: use12Hour,
+                          ),
+                          style: context.textStyles.timestamp,
                         ),
                       ],
                     ),
+                  if (!isGrouped) const SizedBox(height: 2),
+                  MessageMarkdown(
+                    data: msg.content,
+                    messageId: msg.id,
+                    selectable: !isMobileLayout(context),
+                    channelId: msg.channelId,
+                    mentionChannels: msg.mentionChannels,
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text.rich(
+                      TextSpan(
+                        style: footerTextStyle,
+                        children: [
+                          WidgetSpan(
+                            alignment: PlaceholderAlignment.middle,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 6),
+                              child: PhosphorIcon(
+                                PhosphorIconsBold.eye,
+                                size: 14,
+                                color: footerTextStyle.color,
+                              ),
+                            ),
+                          ),
+                          TextSpan(text: l10n.chatClientSystemOnlyYouCanSee),
+                          const TextSpan(text: ' '),
+                          WidgetSpan(
+                            alignment: PlaceholderAlignment.middle,
+                            child: GestureDetector(
+                              onTap: widget.onDismissClientSystem,
+                              child: Text(
+                                l10n.chatClientSystemDismiss,
+                                style: dismissTextStyle,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -1515,9 +1622,10 @@ class _MessageItemState extends ConsumerState<MessageItem> {
 
   Widget _buildActions(
     BuildContext context, {
-    required AdvancedPreferencesState advanced,
+    required bool onlyMoreButton,
+    required bool showQuickReactions,
   }) {
-    if (advanced.showMessageActionBarOnlyMoreButton) {
+    if (onlyMoreButton) {
       return Material(
         color: context.colors.backgroundPrimary,
         borderRadius: BorderRadius.circular(4),
@@ -1546,7 +1654,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (advanced.showMessageActionBarQuickReactions)
+            if (showQuickReactions)
               FluxerEmojiPickerPopout(
                 key: _reactionPickerKey,
                 closeOnEmojiSelect: true,

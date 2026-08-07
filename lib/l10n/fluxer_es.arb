@@ -8636,14 +8636,6 @@
       }
     }
   },
-  "guildSettingsDiscoveryFormTitle": "Solicitud",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
-  },
-  "guildSettingsDiscoveryStatusTitle": "Estado",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
-  },
   "guildSettingsDiscoveryCategory": "Categoría",
   "@guildSettingsDiscoveryCategory": {
     "description": "Label for discovery category dropdown."
@@ -10818,5 +10810,13 @@
   "iarReasonHarassmentGuildDescription": "La comunidad facilita el acoso colectivo o el abuso dirigido.",
   "@iarReasonHarassmentGuildDescription": {
     "description": "Community-report reason description for harassment or targeted abuse."
+  },
+  "guildSettingsDiscoveryFormTitle": "Solicitud",
+  "@guildSettingsDiscoveryFormTitle": {
+    "description": "Title for discovery application form."
+  },
+  "guildSettingsDiscoveryStatusTitle": "Estado",
+  "@guildSettingsDiscoveryStatusTitle": {
+    "description": "Title for discovery application status section."
   }
 }

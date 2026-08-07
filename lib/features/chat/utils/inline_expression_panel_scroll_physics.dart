@@ -1,19 +1,11 @@
-import 'dart:math' as math;
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluxer_app/features/chat/utils/bottom_input_slot_layout.dart';
 
 const double kInlineExpressionPanelScrollTopTolerance = 0.5;
 
-double expressionPanelBottomSystemInset(MediaQueryData mediaQuery) {
-  return math.max(
-    mediaQuery.viewPadding.bottom,
-    math.max(mediaQuery.padding.bottom, mediaQuery.systemGestureInsets.bottom),
-  );
-}
-
 double inlineExpressionPanelHomeIndicatorInset(MediaQueryData mediaQuery) {
-  return mediaQuery.viewPadding.bottom;
+  return bottomInputHomeIndicatorInset(mediaQuery);
 }
 
 ScrollPhysics inlineExpressionPanelScrollPhysics() {

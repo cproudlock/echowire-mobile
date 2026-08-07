@@ -77,6 +77,8 @@ import 'package:fluxer_app/features/settings/providers/appearance_preferences_pr
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
+import 'package:fluxer_app/features/shell/presentation/sidebar_drawer.dart';
+import 'package:fluxer_app/features/shell/providers/reveal_side_provider.dart';
 import 'package:fluxer_app/features/ui/button/fluxer_button.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
@@ -182,7 +184,6 @@ class _MessageListState extends ConsumerState<MessageList> {
   final MessageListPin _pin = MessageListPin();
   final AnimatedImagePlaybackController _animatedImagePlaybackController =
       AnimatedImagePlaybackController();
-  final Map<String, GlobalKey> _itemKeys = <String, GlobalKey>{};
   final MessageTileCache _tileCache = MessageTileCache();
   late final ChatViewModel _chatViewModel;
   late final ChatReadViewport _readViewport;
@@ -314,10 +315,10 @@ class _MessageListState extends ConsumerState<MessageList> {
     _demandSource.resetApproachVelocity();
     // A rebase keeps pixels identical: the fraction was MEASURED off the
     // live layout, so the half-height center correction (which centers a
-    // jump target's rect) and the unread underfill fallback must not run.
+    // jump target's rect) and the underfill fallback must not run.
     if (!rebase && anchorId != null && fraction < 1.0) {
       _scheduleAnchorCenterCorrection(anchorId);
-      _scheduleUnreadUnderfillReanchor();
+      _scheduleUnderfillBottomReanchor();
     }
   }
 
@@ -332,8 +333,7 @@ class _MessageListState extends ConsumerState<MessageList> {
         if (!_scrollController.hasClients) {
           return;
         }
-        final GlobalKey? key = _itemKeys[anchorId];
-        final BuildContext? itemContext = key?.currentContext;
+        final BuildContext? itemContext = _findStreamTileContext(anchorId);
         // debugIsActive is constant-false in profile/release; use mounted.
         if (itemContext == null || !itemContext.mounted) {
           return;
@@ -360,11 +360,46 @@ class _MessageListState extends ConsumerState<MessageList> {
     });
   }
 
-  /// A short block can't fill the viewport below a centered anchor: the
-  /// trailing side clamps to zero extent, leaving an unscrollable gap under
-  /// the newest message. Once the open frame lays out, re-anchor bottom -
-  /// unless newer pagination is about to fill the trailing half.
-  void _scheduleUnreadUnderfillReanchor() {
+  BuildContext? _findStreamTileContext(String messageId) {
+    final BuildContext? root =
+        _scrollController.position.context.notificationContext;
+    if (root == null) {
+      return null;
+    }
+    final Key target = ValueKey<String>('msg-$messageId');
+    BuildContext? found;
+    void visitor(Element element) {
+      if (found != null) {
+        return;
+      }
+      if (element.widget.key == target) {
+        found = element;
+        return;
+      }
+      element.visitChildren(visitor);
+    }
+
+    root.visitChildElements(visitor);
+    return found;
+  }
+
+  /// A fractional anchor only holds while the content below it can fill
+  /// `(1 - fraction) * viewportExtent`: once the trailing side clamps to zero
+  /// extent no offset pulls the content down, so the band under the newest
+  /// message is dead and undraggable. Re-anchor bottom when that happens -
+  /// unless newer pagination is about to fill the trailing side.
+  ///
+  /// Only for a reader AT the trailing edge: the shrink that opens the band
+  /// clamps an at-tail offset onto the collapsed maximum, while a reader deep
+  /// in history keeps pixels below it and is left where they are - a re-anchor
+  /// would remount at the tail and yank them out of history. Their own scroll
+  /// back to the edge arms this again.
+  ///
+  /// Re-armed on later geometry, not just at anchor time: a bulk delete, a
+  /// trim or a viewport growth invalidates a fraction that was valid when it
+  /// was measured. Idempotent - the re-anchor it performs sets the fraction to
+  /// 1.0, which the guard below then rejects.
+  void _scheduleUnderfillBottomReanchor() {
     final int epoch = _uiEpoch;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _runIfSameEpoch(epoch, () {
@@ -377,7 +412,9 @@ class _MessageListState extends ConsumerState<MessageList> {
         if (state.hasMoreNewerMessages) {
           return;
         }
-        if (_scrollController.position.maxScrollExtent > 0) {
+        final ScrollPosition position = _scrollController.position;
+        if (position.maxScrollExtent > 0 ||
+            position.pixels < position.maxScrollExtent - 0.5) {
           return;
         }
         final List<Message> messages = state.messages;
@@ -613,6 +650,11 @@ class _MessageListState extends ConsumerState<MessageList> {
     } else {
       _maybeTrimDetachedWindow(state);
     }
+    // A reader who scrolled back to the edge is the one the underfill repair
+    // was withheld from while they were in history.
+    if (_anchorId != null && _anchorFraction < 1.0) {
+      _scheduleUnderfillBottomReanchor();
+    }
     // Inactive is reported LAST so a deferred recovery resync lands on the
     // trimmed window.
     _chatViewModel.setUserScrollActive(
@@ -644,21 +686,35 @@ class _MessageListState extends ConsumerState<MessageList> {
     int visibleIdx = -1;
     double visibleTop = 0;
     double bestDistance = double.infinity;
-    for (final MapEntry<String, GlobalKey> entry in _itemKeys.entries) {
-      final BuildContext? itemContext = entry.value.currentContext;
-      // debugIsActive is constant-false in profile/release; use mounted.
-      if (itemContext == null || !itemContext.mounted) {
-        continue;
+    final BuildContext? scrollRoot =
+        _scrollController.position.context.notificationContext;
+    if (scrollRoot == null) {
+      return;
+    }
+    void visitor(Element element) {
+      final Key? key = element.widget.key;
+      if (key is! ValueKey<String>) {
+        element.visitChildren(visitor);
+        return;
       }
+      final String value = key.value;
+      if (value.startsWith('group-')) {
+        return;
+      }
+      if (!value.startsWith('msg-')) {
+        element.visitChildren(visitor);
+        return;
+      }
+      final String messageId = value.substring('msg-'.length);
       final int idx = state.messages.indexWhere(
-        (Message m) => m.id == entry.key,
+        (Message m) => m.id == messageId,
       );
       if (idx < 0) {
-        continue;
+        return;
       }
-      final RenderObject? inner = itemContext.findRenderObject();
+      final RenderObject? inner = element.renderObject;
       if (inner is! RenderBox || !inner.hasSize || !inner.attached) {
-        continue;
+        return;
       }
       // The anchor positions the OUTER sliver child (the separator wrapper
       // around this MessageItem, dividers included) - ascend to it, or the
@@ -669,18 +725,21 @@ class _MessageListState extends ConsumerState<MessageList> {
         node = node.parent;
       }
       if (node is! RenderBox || !node.hasSize) {
-        continue;
+        return;
       }
       final double top = node.localToGlobal(Offset.zero).dy;
       final double distance = (top - centerY).abs();
       if (distance < bestDistance) {
         bestDistance = distance;
-        visibleId = entry.key;
+        visibleId = messageId;
         visibleIdx = idx;
         visibleTop = top;
       }
     }
-    if (visibleId == null) {
+
+    scrollRoot.visitChildElements(visitor);
+    final String? nearestId = visibleId;
+    if (nearestId == null) {
       // Nothing measurable this cycle; the next scroll end retries.
       return;
     }
@@ -694,13 +753,13 @@ class _MessageListState extends ConsumerState<MessageList> {
         : state.messages.indexWhere((Message m) => m.id == _anchorId);
     if (anchorIdx < start || anchorIdx >= start + kTrimmedMessageWindowSize) {
       _reanchor(
-        visibleId,
+        nearestId,
         ((visibleTop - viewportTop) / viewportH).clamp(0.0, 1.0),
         edge: MessageListAnchorEdge.before,
         rebase: true,
       );
     }
-    _chatViewModel.trimAroundVisible(visibleId);
+    _chatViewModel.trimAroundVisible(nearestId);
     // Re-arm pagination on the post-trim layout: the revision bump releases
     // idle pumps; onWindowTrimmed buys parked ones (capped mid-fling) one
     // retry. Epoch captured AFTER any rebase so the callback runs on the
@@ -809,6 +868,18 @@ class _MessageListState extends ConsumerState<MessageList> {
           }
         });
       });
+    }
+    // The fraction was measured against content that may since have shrunk
+    // (bulk delete, trim, collapse) or a viewport that grew. Metrics
+    // notifications also fire per scrolling frame (extentBefore/extentAfter
+    // move with pixels), so the condition is pre-read off the notification
+    // instead of arming a post-frame pass on every one.
+    final ScrollMetrics metrics = notification.metrics;
+    if (_anchorId != null &&
+        _anchorFraction < 1.0 &&
+        metrics.maxScrollExtent <= 0 &&
+        metrics.pixels >= metrics.maxScrollExtent - 0.5) {
+      _scheduleUnderfillBottomReanchor();
     }
     return false;
   }
@@ -1144,6 +1215,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     required MessageRenderSettings renderSettings,
     required Set<String> blockedUserIds,
     required bool isGuildSendDisabled,
+    required bool swipeToReplyEnabled,
     bool renderDaySeparator = true,
     bool prependUnreadSeparator = false,
   }) {
@@ -1188,6 +1260,7 @@ class _MessageListState extends ConsumerState<MessageList> {
       renderSettings,
       leading,
       isGuildSendDisabled,
+      swipeToReplyEnabled,
     );
     return _tileCache.resolve(message.id, signature, () {
       if (message.isSystemMessage) {
@@ -1269,10 +1342,6 @@ class _MessageListState extends ConsumerState<MessageList> {
           ),
         );
       }
-      final GlobalKey itemKey = _itemKeys.putIfAbsent(
-        message.id,
-        GlobalKey.new,
-      );
       final bool canDelete = canDeleteMessage(
         message: message,
         currentUserId: currentUserId,
@@ -1287,7 +1356,6 @@ class _MessageListState extends ConsumerState<MessageList> {
         leadingGroupSpacing: leading,
         child: RepaintBoundary(
           child: MessageItem(
-            key: itemKey,
             message: message,
             isGrouped: isGrouped,
             renderSettings: renderSettings,
@@ -1300,6 +1368,7 @@ class _MessageListState extends ConsumerState<MessageList> {
             canSendMessages: channelCanSendMessages,
             isDmChannel: isDmChannel,
             isSendDisabled: isGuildSendDisabled,
+            swipeToReplyEnabled: swipeToReplyEnabled,
             onReply: () =>
                 ref.read(chatViewModelProvider.notifier).startReply(message),
             onForward: () =>
@@ -1389,6 +1458,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     required Set<String> blockedUserIds,
     required String? revealedCollapsedGroupKey,
     required bool isGuildSendDisabled,
+    required bool swipeToReplyEnabled,
   }) {
     final ChannelStreamItem item = stream[dataIndex];
     final bool streamOwnsUnreadBoundary =
@@ -1413,6 +1483,7 @@ class _MessageListState extends ConsumerState<MessageList> {
           item.messages.length,
           isRevealed,
           highlightedMessageId,
+          swipeToReplyEnabled,
         );
         return _tileCache.resolve('group-$groupKey', signature, () {
           return _wrapWithUnreadSeparator(
@@ -1453,6 +1524,7 @@ class _MessageListState extends ConsumerState<MessageList> {
                   renderDaySeparator: false,
                   prependUnreadSeparator: streamOwnsUnreadBoundary,
                   isGuildSendDisabled: isGuildSendDisabled,
+                  swipeToReplyEnabled: swipeToReplyEnabled,
                 );
               },
             ),
@@ -1489,6 +1561,7 @@ class _MessageListState extends ConsumerState<MessageList> {
             renderDaySeparator: false,
             prependUnreadSeparator: streamOwnsUnreadBoundary,
             isGuildSendDisabled: isGuildSendDisabled,
+            swipeToReplyEnabled: swipeToReplyEnabled,
           ),
           show: item.showUnreadDividerBefore,
         );
@@ -1513,6 +1586,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     required Set<String> blockedUserIds,
     required String? revealedCollapsedGroupKey,
     required bool isGuildSendDisabled,
+    required bool swipeToReplyEnabled,
   }) {
     final ChannelStreamItem item = stream[dataIndex];
     final String keyValue = item.type.isCollapsedGroup
@@ -1538,6 +1612,7 @@ class _MessageListState extends ConsumerState<MessageList> {
         blockedUserIds: blockedUserIds,
         revealedCollapsedGroupKey: revealedCollapsedGroupKey,
         isGuildSendDisabled: isGuildSendDisabled,
+        swipeToReplyEnabled: swipeToReplyEnabled,
       ),
     );
   }
@@ -1673,6 +1748,27 @@ class _MessageListState extends ConsumerState<MessageList> {
                   _scrollController.jumpTo(
                     _scrollController.position.maxScrollExtent,
                   );
+                }
+              });
+            });
+          }
+          if (origin == MessagesOrigin.realtimeEvent && _pin.pinned) {
+            // A delete or an edit changes the trailing extent under a reader
+            // sitting AT the tail. The framework clamps an offset that grew
+            // too large but never grows one that got too small, so a row that
+            // got taller pushes the newest message below the fold. jumpTo goes
+            // idle first, so a live drag or fling must own the position.
+            final int glueEpoch = _uiEpoch;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              _runIfSameEpoch(glueEpoch, () {
+                if (!_scrollController.hasClients ||
+                    !_pin.pinned ||
+                    _isUserDrivenScroll) {
+                  return;
+                }
+                final ScrollPosition position = _scrollController.position;
+                if (position.pixels < position.maxScrollExtent) {
+                  position.jumpTo(position.maxScrollExtent);
                 }
               });
             });
@@ -1829,7 +1925,7 @@ class _MessageListState extends ConsumerState<MessageList> {
           _anchorId = unreadAnchorId;
           _anchorFraction = _kUnreadOpenAnchor;
           _anchorEdge = MessageListAnchorEdge.before;
-          _scheduleUnreadUnderfillReanchor();
+          _scheduleUnderfillBottomReanchor();
         } else {
           _anchorId = messages.isEmpty ? null : messages.last.id;
           _anchorFraction = 1.0;
@@ -1888,7 +1984,6 @@ class _MessageListState extends ConsumerState<MessageList> {
     );
 
     if (messages.isEmpty) {
-      _itemKeys.clear();
       _tileCache.clear();
     }
 
@@ -1908,7 +2003,7 @@ class _MessageListState extends ConsumerState<MessageList> {
         _uiEpoch++;
         _demandSource.resetApproachVelocity();
         _scheduleAnchorCenterCorrection(target);
-        _scheduleUnreadUnderfillReanchor();
+        _scheduleUnderfillBottomReanchor();
       } else if (messageLoadFailed) {
         // The page that would carry the target will not arrive.
         talker.debug(
@@ -1955,6 +2050,11 @@ class _MessageListState extends ConsumerState<MessageList> {
             })
             channelActions,
           ) {
+            final bool swipeToReplyEnabled = !isCompactWideDrawerPeekMode(
+              context,
+              shellLocation: ref.watch(shellLocationProvider),
+              revealSide: ref.watch(currentRevealSideProvider),
+            );
             final Widget body;
             if (messages.isEmpty &&
                 (isLoading || (!_anchorResolved && hasJumpTarget))) {
@@ -2023,17 +2123,15 @@ class _MessageListState extends ConsumerState<MessageList> {
                       const SizedBox(height: 16),
                       Text(
                         'No messages yet',
-                        style: TextStyle(
+                        style: context.textStyles.bodyMedium.copyWith(
                           color: context.colors.textPrimaryMuted,
-                          fontSize: 16,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         'Be the first to send a message!',
-                        style: TextStyle(
+                        style: context.textStyles.bodySmall.copyWith(
                           color: context.colors.textTertiaryMuted,
-                          fontSize: 14,
                         ),
                       ),
                     ],
@@ -2079,6 +2177,7 @@ class _MessageListState extends ConsumerState<MessageList> {
                         blockedUserIds: blockedUserIds,
                         revealedCollapsedGroupKey: revealedCollapsedGroupKey,
                         isGuildSendDisabled: isGuildSendDisabled,
+                        swipeToReplyEnabled: swipeToReplyEnabled,
                       ),
                   childIndexForKey:
                       (
@@ -2367,7 +2466,8 @@ class _MessageListSettingsLayer extends ConsumerWidget {
               (ref.watch(spoilerAutoRevealProvider(channelId)).value ?? false),
         RenderSpoilers.onClick || RenderSpoilers.$unknown => false,
       },
-      chatPreferences: ref.watch(chatPreferencesProvider),
+      // Rebuild only when media sizes change.
+      chatPreferences: _watchChatMediaPreferences(ref),
       messageGroupSpacing: ref.watch(
         appearancePreferencesProvider.select((s) => s.messageGroupSpacing),
       ),
@@ -2390,4 +2490,14 @@ class _MessageListSettingsLayer extends ConsumerWidget {
       ),
     ));
   }
+}
+
+ChatPreferencesState _watchChatMediaPreferences(WidgetRef ref) {
+  ref.watch(
+    chatPreferencesProvider.select(
+      (ChatPreferencesState s) =>
+          (s.embedMediaDimensionSize, s.attachmentMediaDimensionSize),
+    ),
+  );
+  return ref.read(chatPreferencesProvider);
 }

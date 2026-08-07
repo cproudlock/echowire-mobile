@@ -7,11 +7,13 @@ abstract final class InstanceEndpoints {
   static const String defaultMedia = 'https://echowire.org/media';
   static const String defaultStaticCdn = 'https://echowire.org';
   static const String defaultInvite = 'https://echowire.org/invite';
+  static const String defaultGift = 'https://echowire.org/gift';
   static const String defaultWebApp = 'https://echowire.org';
 
   static String staticCdn = defaultStaticCdn;
   static String media = defaultMedia;
   static String invite = defaultInvite;
+  static String gift = defaultGift;
   static String webApp = defaultWebApp;
   static String api = '';
   static String gateway = '';
@@ -24,6 +26,7 @@ abstract final class InstanceEndpoints {
     );
     media = _normalizeBaseUrl(endpoints.media, fallback: defaultMedia);
     invite = _normalizeBaseUrl(endpoints.invite, fallback: defaultInvite);
+    gift = _normalizeBaseUrl(endpoints.gift, fallback: defaultGift);
     webApp = _normalizeBaseUrl(endpoints.webapp, fallback: defaultWebApp);
     final String resolvedApi = endpoints.apiClient.isNotEmpty
         ? endpoints.apiClient
@@ -44,6 +47,7 @@ abstract final class InstanceEndpoints {
     staticCdn = defaultStaticCdn;
     media = defaultMedia;
     invite = defaultInvite;
+    gift = defaultGift;
     webApp = defaultWebApp;
     api = '';
     gateway = '';

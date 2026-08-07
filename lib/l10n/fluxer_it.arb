@@ -8636,14 +8636,6 @@
       }
     }
   },
-  "guildSettingsDiscoveryFormTitle": "Domanda",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
-  },
-  "guildSettingsDiscoveryStatusTitle": "Stato",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
-  },
   "guildSettingsDiscoveryCategory": "Categoria",
   "@guildSettingsDiscoveryCategory": {
     "description": "Label for discovery category dropdown."
@@ -9118,5 +9110,13 @@
   "nagbarLearnMore": "Scopri di più",
   "@nagbarLearnMore": {
     "description": "CTA on maintenance and other nagbars that open an external link."
+  },
+  "guildSettingsDiscoveryFormTitle": "Domanda",
+  "@guildSettingsDiscoveryFormTitle": {
+    "description": "Title for discovery application form."
+  },
+  "guildSettingsDiscoveryStatusTitle": "Stato",
+  "@guildSettingsDiscoveryStatusTitle": {
+    "description": "Title for discovery application status section."
   }
 }

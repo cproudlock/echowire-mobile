@@ -8636,14 +8636,6 @@
       }
     }
   },
-  "guildSettingsDiscoveryFormTitle": "Bewerbung",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
-  },
-  "guildSettingsDiscoveryStatusTitle": "Status",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
-  },
   "guildSettingsDiscoveryCategory": "Kategorie",
   "@guildSettingsDiscoveryCategory": {
     "description": "Label for discovery category dropdown."
@@ -9206,5 +9198,13 @@
   "channelMenuCouldNotDeleteYourMessages": "Deine Nachrichten konnten nicht gelöscht werden",
   "@channelMenuCouldNotDeleteYourMessages": {
     "description": "Error toast when deleting messages in a channel fails."
+  },
+  "guildSettingsDiscoveryFormTitle": "Bewerbung",
+  "@guildSettingsDiscoveryFormTitle": {
+    "description": "Title for discovery application form."
+  },
+  "guildSettingsDiscoveryStatusTitle": "Status",
+  "@guildSettingsDiscoveryStatusTitle": {
+    "description": "Title for discovery application status section."
   }
 }

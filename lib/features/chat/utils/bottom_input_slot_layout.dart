@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:flutter/widgets.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet_drag.dart';
 import 'package:fluxer_app/shared/gestures/expandable_sheet_gestures.dart';
 
@@ -18,6 +19,13 @@ const double kInlineExpressionPanelExpandedSnapMidpointFraction =
 
 const double kIosFallbackKeyboardHeight = 291;
 const double kAndroidFallbackKeyboardHeightFraction = 0.38;
+
+double quantizeBottomInputHeight(double height) {
+  if (height <= 0) {
+    return 0;
+  }
+  return height.roundToDouble();
+}
 
 double fallbackKeyboardHeightForScreen({
   required double screenHeight,
@@ -92,17 +100,17 @@ double resolveBottomInputSlotHeight({
   required double safeAreaBottom,
 }) {
   if (transition != BottomInputTransition.idle) {
-    return lockedHeight;
+    return quantizeBottomInputHeight(lockedHeight);
   }
   if (isPanelOpen) {
-    return bottomInputSlotContentHeight(
-      rawHeight: anchorHeight,
-      safeAreaBottom: safeAreaBottom,
-    );
+    if (panelHeight > 0 &&
+        panelHeight <= anchorHeight + kKeyboardHeightQuantizeThreshold) {
+      return quantizeBottomInputHeight(panelHeight);
+    }
+    return quantizeBottomInputHeight(anchorHeight);
   }
   if (isKeyboardVisible && liveKeyboardHeight > 0) {
-    // Already IME-only; pad fully. Outer SafeArea collapses under the keyboard.
-    return liveKeyboardHeight;
+    return quantizeBottomInputHeight(liveKeyboardHeight);
   }
   return 0;
 }
@@ -228,7 +236,8 @@ bool hasKeyboardReachedLockedNetHeight({
     rawHeight: liveKeyboardHeight,
     safeAreaBottom: safeAreaBottom,
   );
-  return liveNetHeight >= lockedNetHeight - kKeyboardHeightQuantizeThreshold;
+  return quantizeBottomInputHeight(liveNetHeight) >=
+      quantizeBottomInputHeight(lockedNetHeight);
 }
 
 double resolvePanelReservedLayoutHeight({
@@ -246,4 +255,22 @@ double resolvePanelReservedLayoutHeight({
     return grossAnchorHeight;
   }
   return 0;
+}
+
+double bottomInputHomeIndicatorInset(MediaQueryData mediaQuery) {
+  return mediaQuery.viewPadding.bottom;
+}
+
+double bottomInputKeyboardSpacerHeight({
+  required double slotHeight,
+  required double homeIndicatorInset,
+}) {
+  return math.max(slotHeight, homeIndicatorInset);
+}
+
+bool chatLayoutReservesBottomSafeArea({
+  required bool isMobile,
+  required bool keyboardSlotOccupied,
+}) {
+  return !isMobile && !keyboardSlotOccupied;
 }

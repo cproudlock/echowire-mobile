@@ -1,3 +1,5 @@
+import 'dart:ui' show BoxWidthStyle;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -28,6 +30,7 @@ class FluxerInput extends StatelessWidget {
     this.helperText,
     this.onChanged,
     this.onSubmitted,
+    this.onTapOutside,
     this.validator,
     this.keyboardType,
     this.textInputAction,
@@ -65,6 +68,7 @@ class FluxerInput extends StatelessWidget {
     this.helperText,
     this.onChanged,
     this.onSubmitted,
+    this.onTapOutside,
     this.validator,
     this.keyboardType,
     this.textInputAction,
@@ -112,6 +116,7 @@ class FluxerInput extends StatelessWidget {
   final String? helperText;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
+  final TapRegionCallback? onTapOutside;
   final FormFieldValidator<String>? validator;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
@@ -126,6 +131,19 @@ class FluxerInput extends StatelessWidget {
   final bool enableSuggestions;
 
   bool get _isMultiline => minLines != null && minLines! > 1;
+
+  bool get _usesTightSelectionWidth {
+    if (maxLines == null) {
+      return true;
+    }
+    if (maxLines! > 1) {
+      return true;
+    }
+    if (minLines != null && minLines! > 1) {
+      return true;
+    }
+    return false;
+  }
 
   static Widget _defaultContextMenuBuilder(
     BuildContext context,
@@ -198,6 +216,7 @@ class FluxerInput extends StatelessWidget {
           maxLength: maxLength,
           onChanged: onChanged,
           onFieldSubmitted: onSubmitted,
+          onTapOutside: onTapOutside,
           validator: validator,
           keyboardType: keyboardType,
           textCapitalization: textCapitalization ?? TextCapitalization.none,
@@ -207,6 +226,9 @@ class FluxerInput extends StatelessWidget {
           contextMenuBuilder: contextMenuBuilder,
           maxLines: maxLines,
           minLines: minLines,
+          selectionWidthStyle: _usesTightSelectionWidth
+              ? BoxWidthStyle.tight
+              : null,
         ),
         if (helperText != null)
           Padding(
@@ -279,6 +301,7 @@ class FluxerInput extends StatelessWidget {
                       maxLength: maxLength,
                       onChanged: onChanged,
                       onFieldSubmitted: onSubmitted,
+                      onTapOutside: onTapOutside,
                       validator: validator,
                       keyboardType: keyboardType,
                       textCapitalization:
@@ -289,6 +312,9 @@ class FluxerInput extends StatelessWidget {
                       contextMenuBuilder: contextMenuBuilder,
                       maxLines: maxLines,
                       minLines: minLines,
+                      selectionWidthStyle: _usesTightSelectionWidth
+                          ? BoxWidthStyle.tight
+                          : null,
                     ),
                   ),
                   SizedBox(
@@ -353,6 +379,7 @@ class FluxerInput extends StatelessWidget {
               maxLength: maxLength,
               onChanged: onChanged,
               onFieldSubmitted: onSubmitted,
+              onTapOutside: onTapOutside,
               validator: validator,
               keyboardType: keyboardType,
               textCapitalization: textCapitalization ?? TextCapitalization.none,
@@ -362,6 +389,9 @@ class FluxerInput extends StatelessWidget {
               contextMenuBuilder: contextMenuBuilder,
               maxLines: maxLines,
               minLines: minLines,
+              selectionWidthStyle: _usesTightSelectionWidth
+                  ? BoxWidthStyle.tight
+                  : null,
             ),
             if (suffix != null)
               Positioned(top: layout.s2, right: layout.s2, child: suffix),

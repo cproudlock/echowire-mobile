@@ -72,7 +72,6 @@ const _kMentionColor = Color.from(
 const _kJumpHighlightBg = Color.fromRGBO(59, 130, 246, 0.1);
 
 const _kJumpHighlightBarWidth = 2.0;
-const _kJumpHighlightFadeDuration = Duration(milliseconds: 320);
 const _kJumpHighlightFadeCurve = Cubic(0.32, 0.72, 0, 1);
 
 /// Height of the compact reply-preview row.
@@ -108,6 +107,7 @@ class MessageRenderSettings {
     required this.revealSpoilers,
     required this.chatPreferences,
     required this.messageGroupSpacing,
+    this.messageDisplayCompact = false,
   });
 
   final String? activeGuildId;
@@ -118,6 +118,7 @@ class MessageRenderSettings {
   final bool revealSpoilers;
   final ChatPreferencesState chatPreferences;
   final double messageGroupSpacing;
+  final bool messageDisplayCompact;
 
   @override
   bool operator ==(Object other) =>
@@ -131,7 +132,8 @@ class MessageRenderSettings {
           renderSpoilers == other.renderSpoilers &&
           revealSpoilers == other.revealSpoilers &&
           chatPreferences == other.chatPreferences &&
-          messageGroupSpacing == other.messageGroupSpacing;
+          messageGroupSpacing == other.messageGroupSpacing &&
+          messageDisplayCompact == other.messageDisplayCompact;
 
   @override
   int get hashCode => Object.hash(
@@ -143,6 +145,7 @@ class MessageRenderSettings {
     revealSpoilers,
     chatPreferences,
     messageGroupSpacing,
+    messageDisplayCompact,
   );
 }
 
@@ -845,7 +848,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       );
     }
     return AnimatedContainer(
-      duration: _kJumpHighlightFadeDuration,
+      duration: context.motion.slow,
       curve: _kJumpHighlightFadeCurve,
       decoration: decoration,
       padding: padding,
@@ -1174,7 +1177,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                 valueListenable: _hovered,
                 builder: (context, hovered, child) => AnimatedOpacity(
                   opacity: hovered ? 1.0 : 0.0,
-                  duration: const Duration(milliseconds: 100),
+                  duration: context.motion.fast,
                   child: child,
                 ),
                 child: Row(

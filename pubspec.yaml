@@ -3,7 +3,7 @@ description: "Echowire — native chat client."
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # versionName + versionCode. Play floor is 56 (old TWA), so build number must stay > 56.
-version: 1.7.17+92
+version: 1.7.18+93
 
 environment:
   sdk: ^3.12.0
@@ -45,6 +45,8 @@ dependencies:
   app_badge_plus: ^1.3.0
   app_links: ^7.2.0
   app_settings: ^8.0.0
+  audio_service: ^0.18.19
+  audio_session: ^0.2.2
   audioplayers: ^6.8.1
   cached_network_image_ce: ^4.10.0
   clock: ^1.1.2
@@ -199,6 +201,7 @@ flutter:
     - assets/images/icons/channels/
     - assets/images/badges/
     - assets/images/connections/
+    - assets/images/browsers/
     - assets/emojis.json
     - assets/emoji-sprites/
 

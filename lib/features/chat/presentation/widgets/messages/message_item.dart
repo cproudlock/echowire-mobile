@@ -54,6 +54,7 @@ import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/shared/providers/guild_user_display_provider.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:fluxer_app/shared/providers/member_role_color.dart';
+import 'package:fluxer_app/shared/utils/fluxer_haptics.dart';
 import 'package:fluxer_app/shared/utils/guild_user_display.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:fluxer_markdown/fluxer_markdown.dart';
@@ -419,6 +420,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     if (!context.mounted) {
       return;
     }
+    FluxerHaptics.medium();
     final action = await showMessageBottomSheet(
       context,
       message: widget.message,
@@ -1586,6 +1588,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
           staticUrl: FluxerMediaUrl.sticker(id: sticker.id),
           visibilityKey:
               '${widget.message.channelId}_${widget.message.id}_${sticker.id}',
+          useStickerAnimationPreference: true,
           fit: BoxFit.contain,
           placeholder: const SizedBox(
             width: _kMessageStickerSize,

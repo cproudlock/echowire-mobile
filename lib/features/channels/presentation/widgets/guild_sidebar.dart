@@ -68,7 +68,7 @@ import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart'
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
 import 'package:fluxer_app/features/voice/utils/voice_e2ee_display.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
-import 'package:fluxer_app/shared/external_links/external_url_launcher.dart';
+import 'package:fluxer_app/shared/external_links/external_link_handler.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:fluxer_app/shared/utils/clipboard_utils.dart';
 import 'package:fluxer_app/shared/utils/navigation_item_semantics.dart';
@@ -906,6 +906,7 @@ class _ChannelTile extends ConsumerWidget {
             menuState: menuState,
             onAction: (ChannelMenuAction action) => _handleChannelMenuAction(
               action,
+              hostContext: context,
               menuContext: sheetContext,
               ref: ref,
               close: close,
@@ -924,6 +925,7 @@ class _ChannelTile extends ConsumerWidget {
         menuState: menuState,
         onAction: (ChannelMenuAction action) => _handleChannelMenuAction(
           action,
+          hostContext: context,
           menuContext: menuContext,
           ref: ref,
           close: close,
@@ -951,6 +953,7 @@ class _ChannelTile extends ConsumerWidget {
 
   void _handleChannelMenuAction(
     ChannelMenuAction action, {
+    required BuildContext hostContext,
     required BuildContext menuContext,
     required WidgetRef ref,
     required VoidCallback close,
@@ -970,7 +973,7 @@ class _ChannelTile extends ConsumerWidget {
         close();
         unawaited(
           showChannelInviteModal(
-            menuContext,
+            hostContext,
             ref,
             channelId: channel.id,
             channelName: channel.name,
@@ -981,14 +984,9 @@ class _ChannelTile extends ConsumerWidget {
         );
       case ChannelMenuAction.openLink:
         close();
-        final uri = Uri.tryParse(channel.url ?? '');
-        if (uri != null) {
-          unawaited(
-            openExternalUrl(
-              uri,
-              style: ExternalUrlBrowserStyle.fromColorTheme(menuContext.colors),
-            ),
-          );
+        final url = channel.url;
+        if (url != null && url.isNotEmpty) {
+          unawaited(handleExternalLinkTap(menuContext, url));
         }
       case ChannelMenuAction.copyLink:
         close();

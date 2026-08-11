@@ -83,6 +83,88 @@ bool aroundPageReachesLiveTail({
   return sawAnchor && newerCount < expectedNewer;
 }
 
+/// Scroll target for a message jump: [jumpTargetId] when it is already loaded,
+/// otherwise the nearest snowflake neighbour (prefer newer, then older).
+///
+/// An `around=<id>` fetch whose target was deleted or filtered returns the
+/// neighbouring window with no error. Scrolling to the requested id would park
+/// forever and the list would fall back to the live tail; resolving to a
+/// neighbour keeps the jump near where the message was.
+String? resolveJumpScrollTargetId({
+  required String jumpTargetId,
+  required Iterable<String> messageIds,
+  int jumpTargetOffset = 0,
+}) {
+  final List<String> ids = messageIds.toList(growable: false);
+  if (ids.isEmpty) {
+    return null;
+  }
+  final int exactIndex = ids.indexWhere((String id) => id == jumpTargetId);
+  if (exactIndex >= 0) {
+    if (jumpTargetOffset == 0) {
+      return jumpTargetId;
+    }
+    final int offsetIndex = exactIndex + jumpTargetOffset;
+    if (offsetIndex >= 0 && offsetIndex < ids.length) {
+      return ids[offsetIndex];
+    }
+    return jumpTargetId;
+  }
+  final List<String> allIds = <String>[jumpTargetId, ...ids]
+    ..sort(compareSnowflakeIds);
+  final int jumpIndex = allIds.indexOf(jumpTargetId);
+  final int offset = jumpTargetOffset.abs() > 0 ? jumpTargetOffset : 1;
+  final int forward = jumpIndex + offset;
+  if (forward >= 0 && forward < allIds.length) {
+    return allIds[forward];
+  }
+  final int backward = jumpIndex - 1;
+  if (backward >= 0 && backward < allIds.length) {
+    return allIds[backward];
+  }
+  return null;
+}
+
+/// Whether the page that would carry [jumpTargetId] has landed: the id falls
+/// inside the loaded snowflake span, or beyond an edge that is already sealed,
+/// so no further page can bring it.
+///
+/// Until then a jump must park: [resolveJumpScrollTargetId] would settle on
+/// the nearest row of the window the reader is leaving, nowhere near the
+/// message they asked for.
+bool jumpTargetWindowSettled({
+  required String jumpTargetId,
+  required Iterable<String> messageIds,
+  required bool hasMoreOlder,
+  required bool hasMoreNewer,
+}) {
+  String? oldest;
+  String? newest;
+  for (final String id in messageIds) {
+    if (id == jumpTargetId) {
+      return true;
+    }
+    if (oldest == null || compareSnowflakeIds(id, oldest) < 0) {
+      oldest = id;
+    }
+    if (newest == null || compareSnowflakeIds(id, newest) > 0) {
+      newest = id;
+    }
+  }
+  if (oldest == null) {
+    return false;
+  }
+  if (compareSnowflakeIds(jumpTargetId, oldest) < 0) {
+    return !hasMoreOlder;
+  }
+  if (compareSnowflakeIds(jumpTargetId, newest) > 0) {
+    return !hasMoreNewer;
+  }
+  // Inside the span with no exact row: deleted or filtered, so the neighbour
+  // is where the message was.
+  return true;
+}
+
 bool isLocalOnlyMessage(Message message) =>
     message.isClientSystemMessage ||
     message.deliveryState == MessageDeliveryState.sending ||

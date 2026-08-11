@@ -874,7 +874,7 @@ class _TopicCard extends StatelessWidget {
                 child: MessageMarkdown(
                   data: topic,
                   channelId: channelId,
-                  markdownContext: FluxerMarkdownContext.restrictedInlineReply,
+                  markdownContext: FluxerMarkdownContext.restrictedChannelTopic,
                   baseStyle: context.textStyles.bodySmall.copyWith(
                     color: context.colors.textSecondary,
                   ),

@@ -1286,6 +1286,69 @@ void main() {
       },
     );
 
+    testWidgets(
+      'mark-read lands at the tail after a deliberate drag away, inside the '
+      'jump-button threshold',
+      (WidgetTester tester) async {
+        tester.view.physicalSize = const Size(420, 640);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+
+        final _AroundAckMessageListHarness harness =
+            await _createBottomMessageListHarness();
+        await tester.pumpWidget(
+          _messageListApp(
+            database: harness.database,
+            chatViewModel: harness.chatViewModel,
+          ),
+        );
+        await pumpFluxerFrames(tester);
+        for (int frame = 0; frame < 4; frame += 1) {
+          await tester.pump();
+        }
+        final ScrollPosition position = _messageListScrollPosition(tester);
+
+        // A finger drag, not a programmatic jump, is what disarms follow.
+        await tester.drag(_messageListScrollable(), const Offset(0, 120));
+        await pumpFluxerFrames(tester);
+        final double distance = position.maxScrollExtent - position.pixels;
+        expect(
+          distance,
+          greaterThan(kMessageListReadBottomThreshold),
+          reason: 'the unread bar only renders away from the tail',
+        );
+        expect(
+          distance,
+          lessThan(position.viewportDimension * kJumpToBottomViewportFraction),
+          reason:
+              'mark-read is the only to-tail intent reachable from inside '
+              'the jump button threshold',
+        );
+
+        harness.appendRealtimeMessage(acknowledgedByGateway: false);
+        await tester.pump();
+        await tester.pump();
+        expect(find.byType(MessageListNewMessagesBar), findsOneWidget);
+        expect(
+          position.maxScrollExtent - position.pixels,
+          greaterThan(kMessageListReadBottomThreshold),
+          reason: 'a disarmed leave must not follow the live arrival',
+        );
+
+        await tester.tap(find.text('Mark Read'));
+        await pumpFluxerFrames(tester);
+
+        expect(
+          position.pixels,
+          moreOrLessEquals(position.maxScrollExtent, epsilon: 1),
+          reason: 'mark-read is a to-tail intent, not glue',
+        );
+
+        await _disposeMessageList(tester);
+      },
+    );
+
     testWidgets('manual unread rollback ignores the auto-ack watermark', (
       WidgetTester tester,
     ) async {
@@ -2021,9 +2084,11 @@ void main() {
         );
 
         final int loadNewerBefore = harness.chatViewModel._loadNewerCallCount;
-        // Out-of-window ask: the target parks; the viewport is mid-jump and
-        // its position is not where the user is reading.
-        harness.chatViewModel.scrollToMessage('999999999999999999');
+        // Ask past the OPEN older edge: the page that carries it is still in
+        // flight, so the target parks and the viewport is mid-jump.
+        harness.chatViewModel.scrollToMessage(
+          _snowflakeForUtc(DateTime.utc(2020)),
+        );
         await tester.pump();
         // Force a republish while parked: geometry keeps flowing, but the
         // ack-bearing tail flag is the one thing a parked jump may not
@@ -2398,13 +2463,12 @@ void main() {
     );
 
     testWidgets(
-      'a target that never arrives still shows and serves jump-to-bottom',
+      'a missing jump target still settles and serves jump-to-bottom',
       (WidgetTester tester) async {
-        // #415. An `around=<id>` fetch whose target was deleted returns the
-        // neighbour window with no error, so the parked target is never
-        // consumed. It used to latch _hasActiveJumpTarget forever, which
-        // suppressed the read-viewport publish (no viewportHeight, so the
-        // button could not appear) and made the button's action a no-op.
+        // #415. An `around=<id>` fetch whose target was deleted or filtered
+        // returns the neighbouring window with no error. The list lands on the
+        // closest snowflake neighbour instead of latching a pending target
+        // forever (which used to suppress the jump-to-bottom escape hatch).
         tester.view.physicalSize = const Size(420, 640);
         tester.view.devicePixelRatio = 1;
         addTearDown(tester.view.resetPhysicalSize);
@@ -2452,8 +2516,8 @@ void main() {
         );
         await tester.pump();
 
-        // The around window lands without the target, then the signal parks
-        // while open mode is still unresolved.
+        // The around window lands without the target; scroll settles on a
+        // neighbour rather than parking forever.
         chatViewModel._testState = chatViewModel._testState.copyWith(
           write: (messages: source.messages, origin: MessagesOrigin.windowSwap),
           isLoading: false,
@@ -2476,7 +2540,7 @@ void main() {
         expect(
           viewport.viewportHeight,
           greaterThan(0),
-          reason: 'a parked target must not withhold viewport geometry',
+          reason: 'a settled neighbour jump must publish viewport geometry',
         );
         expect(
           shouldShowJumpToBottomButton(
@@ -2488,7 +2552,7 @@ void main() {
             hasMoreNewerMessages: chatViewModel._testState.hasMoreNewerMessages,
           ),
           isTrue,
-          reason: 'the escape hatch must be reachable while a target is parked',
+          reason: 'the escape hatch must stay reachable after a neighbour land',
         );
 
         // Tapping the button routes through scrollToBottom(); with the tail
@@ -3393,6 +3457,62 @@ void main() {
         );
 
         await tester.pump(const Duration(milliseconds: 2000));
+        await _disposeMessageList(tester);
+      },
+    );
+
+    testWidgets(
+      'a jump signalled after its window landed settles on the neighbour '
+      'instead of waiting for the park to expire',
+      (WidgetTester tester) async {
+        tester.view.physicalSize = const Size(420, 640);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+
+        final _AroundAckMessageListHarness harness =
+            await _createBottomMessageListHarness();
+        await tester.pumpWidget(
+          _messageListApp(
+            database: harness.database,
+            chatViewModel: harness.chatViewModel,
+          ),
+        );
+        await pumpFluxerFrames(tester);
+
+        // The view model swaps the around page in and signals afterwards, so
+        // the epoch recorded at park time is already that install's. The page
+        // omits the target: deleted or filtered server-side.
+        final List<Message> loaded = harness.chatViewModel._testState.messages;
+        final String missingId = loaded[25].id;
+        final String neighbourId = loaded[26].id;
+        harness.chatViewModel._testState = harness.chatViewModel._testState
+            .copyWith(
+              write: (
+                messages: <Message>[
+                  for (final Message message in loaded)
+                    if (message.id != missingId) message,
+                ],
+                origin: MessagesOrigin.windowSwap,
+              ),
+              windowEpoch: harness.chatViewModel._testState.windowEpoch + 1,
+            );
+        await tester.pump();
+
+        harness.chatViewModel.scrollToMessage(missingId);
+        await pumpFluxerFrames(tester);
+
+        expect(_messageItemFor(neighbourId), findsOneWidget);
+        final Rect viewport = tester.getRect(_messageListScrollable());
+        final Rect neighbour = tester.getRect(_messageItemFor(neighbourId));
+        expect(
+          (neighbour.center.dy - viewport.center.dy).abs(),
+          lessThanOrEqualTo(16),
+          reason:
+              'the jump settles on the nearest loaded neighbour, not on the '
+              'live tail after a timeout',
+        );
+
         await _disposeMessageList(tester);
       },
     );

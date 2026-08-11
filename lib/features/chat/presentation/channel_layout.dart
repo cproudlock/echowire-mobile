@@ -72,12 +72,17 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
   @override
   Widget build(BuildContext context) {
     final bool isWide = isWideLayout(context);
-    final bool isMemberListVisible = ref.watch(
-      channelListViewModelProvider.select((s) => s.isMemberListVisible),
-    );
     final Channel? channel = ref
         .watch(channelByIdProvider(widget.channelId))
         .value;
+    final bool isMemberListVisible = ref.watch(
+      channelListViewModelProvider.select(
+        (ChannelListState state) => state.isMemberListVisibleForChannel(
+          channelId: widget.channelId,
+          channelType: channel?.type,
+        ),
+      ),
+    );
     final bool isLinkChannel = channel?.type == ChannelType.guildLink;
     final bool isCategoryChannel = channel?.type == ChannelType.guildCategory;
     final bool isVoiceChannel = channel?.type == ChannelType.guildVoice;
@@ -101,29 +106,18 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
         voice.channelId == widget.channelId &&
         voice.guildId == widget.guildId;
 
+    void scheduleSearchContextSync(String? previous, String? next) {
+      if (previous == next) {
+        return;
+      }
+      // A route listener can fire while the scope is flushing mid-build, and a
+      // provider write there throws: bind the pair after the frame instead.
+      WidgetsBinding.instance.addPostFrameCallback((_) => _syncSearchContext());
+    }
+
     ref
-      ..listen<String?>(activeGuildIdProvider, (
-        String? previous,
-        String? next,
-      ) {
-        if (previous == next) {
-          return;
-        }
-        WidgetsBinding.instance.addPostFrameCallback(
-          (_) => _syncSearchContext(),
-        );
-      })
-      ..listen<String?>(activeChannelIdProvider, (
-        String? previous,
-        String? next,
-      ) {
-        if (next == null || next.isEmpty) {
-          return;
-        }
-        ref
-            .read(channelHeaderSearchProvider.notifier)
-            .bindChannel(channelId: next, guildId: widget.guildId);
-      });
+      ..listen<String?>(activeGuildIdProvider, scheduleSearchContextSync)
+      ..listen<String?>(activeChannelIdProvider, scheduleSearchContextSync);
 
     final Widget primaryContent = showMatureContentGate
         ? MatureContentChannelGate(
@@ -180,11 +174,6 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
           child: Stack(
             clipBehavior: Clip.none,
             children: [
-              if (isWide)
-                _WideChannelMemberListSync(
-                  key: ValueKey<String>(widget.channelId),
-                  channelId: widget.channelId,
-                ),
               LayoutBuilder(
                 builder: (context, constraints) {
                   final bool showMemberList =
@@ -226,58 +215,5 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
         ),
       ),
     );
-  }
-}
-
-class _WideChannelMemberListSync extends ConsumerStatefulWidget {
-  const _WideChannelMemberListSync({required this.channelId, super.key});
-
-  final String channelId;
-
-  @override
-  ConsumerState<_WideChannelMemberListSync> createState() =>
-      _WideChannelMemberListSyncState();
-}
-
-class _WideChannelMemberListSyncState
-    extends ConsumerState<_WideChannelMemberListSync> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => _applyForLoadedChannel(),
-    );
-  }
-
-  void _applyForLoadedChannel() {
-    if (!mounted) {
-      return;
-    }
-    final ChannelType? type = ref
-        .read(channelByIdProvider(widget.channelId))
-        .value
-        ?.type;
-    if (type == null) {
-      return;
-    }
-    ref
-        .read(channelListViewModelProvider.notifier)
-        .applyAutoMemberListForChannel(type);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    ref.listen<ChannelType?>(
-      channelByIdProvider(widget.channelId).select((a) => a.value?.type),
-      (ChannelType? previous, ChannelType? next) {
-        if (next == null) {
-          return;
-        }
-        ref
-            .read(channelListViewModelProvider.notifier)
-            .applyAutoMemberListForChannel(next);
-      },
-    );
-    return const SizedBox.shrink();
   }
 }

@@ -420,8 +420,8 @@ List<Widget> buildMessageActionMenuGroups({
             label: l10n.chatMessageEditAttachmentAltText,
             hint: attachment.filename,
             onTap: () {
-              attachmentCallbacks?.onEditAttachmentAltText?.call(attachment);
               closeMenu();
+              attachmentCallbacks?.onEditAttachmentAltText?.call(attachment);
             },
           ),
       ],

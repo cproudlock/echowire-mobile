@@ -412,6 +412,54 @@ void main() {
     },
   );
 
+  test('a duplicate switch joins the running one instead of replacing the '
+      'window again', () async {
+    // A rebuild storm re-enters switchChannel a few frames later, before any
+    // state flag says a switch is running and while the window is still empty
+    // (nothing cached). Each duplicate used to wipe the window and bump
+    // windowEpoch, which cancels the scroll effects keyed to it.
+    final db = openTestDatabase();
+    final latestId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));
+    await db.channelDao.upsertChannel(
+      ChannelsCompanion.insert(
+        id: 'channel-1',
+        guildId: 'guild-1',
+        name: 'general',
+        lastMessageId: Value(latestId),
+      ),
+    );
+    final adapter = _ChatAdapter(
+      initialMessages: <Map<String, Object?>>[
+        _messageJson(id: latestId, channelId: 'channel-1', authorId: 'other'),
+      ],
+    )..holdMessageFetch = true;
+    final container = _container(db, adapter);
+    addTearDown(container.dispose);
+
+    final notifier = container.read(chatViewModelProvider.notifier);
+    final Future<void> first = notifier.switchChannel('channel-1');
+    await _flushAsync();
+    final int epochAfterFirst = container
+        .read(chatViewModelProvider)
+        .windowEpoch;
+
+    final Future<void> second = notifier.switchChannel('channel-1');
+    await _flushAsync();
+    expect(
+      container.read(chatViewModelProvider).windowEpoch,
+      epochAfterFirst,
+      reason: 'the running switch owns the window',
+    );
+
+    adapter.releaseMessageFetch();
+    await Future.wait(<Future<void>>[first, second]);
+    await _flushAsync();
+
+    expect(container.read(chatViewModelProvider).messages.map((m) => m.id), [
+      latestId,
+    ]);
+  });
+
   test(
     'auto ack does not run while cache-first messages are loading',
     () async {
@@ -3544,6 +3592,76 @@ void main() {
         expect(state.isLoading, false);
         expect(state.highlightedMessageId, targetId);
         expect(state.scrollToMessageSignal?.$1, targetId);
+      },
+    );
+
+    test(
+      'switchChannel keeps both edges open when around omits the target',
+      () async {
+        final db = openTestDatabase();
+        final String missingTargetId = _snowflakeForUtc(
+          DateTime.utc(2026, 5, 6, 12),
+        );
+        final String olderId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 11));
+        final String newerId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 13));
+        final String liveTailId = _snowflakeForUtc(
+          DateTime.utc(2026, 5, 6, 20),
+        );
+        await db.channelDao.upsertChannel(
+          ChannelsCompanion.insert(
+            id: 'channel-1',
+            guildId: 'guild-1',
+            name: 'general',
+            lastMessageId: Value(liveTailId),
+          ),
+        );
+        // Neighbour window only: the requested target is filtered/deleted.
+        final adapter = _ChatAdapter(
+          aroundMessages: <Map<String, Object?>>[
+            _messageJson(
+              id: olderId,
+              channelId: 'channel-1',
+              authorId: 'other',
+            ),
+            _messageJson(
+              id: newerId,
+              channelId: 'channel-1',
+              authorId: 'other',
+            ),
+          ],
+        );
+        final container = _container(db, adapter);
+        addTearDown(container.dispose);
+        final notifier = container.read(chatViewModelProvider.notifier);
+        await notifier.switchChannel(
+          'channel-1',
+          targetMessageId: missingTargetId,
+        );
+        await _flushAsync();
+
+        final ChatViewState state = container.read(chatViewModelProvider);
+        expect(adapter.aroundQueries, <String>[missingTargetId]);
+        expect(state.messages.map((m) => m.id), <String>[olderId, newerId]);
+        expect(state.messages.any((m) => m.id == missingTargetId), isFalse);
+        expect(
+          state.hasMoreMessages,
+          isTrue,
+          reason: 'missing around target keeps older pagination open',
+        );
+        expect(
+          state.hasMoreNewerMessages,
+          isTrue,
+          reason: 'missing around target keeps newer pagination open',
+        );
+        expect(state.scrollToMessageSignal?.$1, missingTargetId);
+        expect(
+          resolveJumpScrollTargetId(
+            jumpTargetId: missingTargetId,
+            messageIds: state.messages.map((m) => m.id),
+          ),
+          newerId,
+          reason: 'scroll settles on the next newer neighbour',
+        );
       },
     );
 

@@ -23,13 +23,13 @@ import 'package:fluxer_app/features/settings/domain/user_settings_section.dart';
 import 'package:fluxer_app/features/settings/presentation/user_settings_nav.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/settings_sidebar.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/user_accessibility.dart';
-import 'package:fluxer_app/features/settings/presentation/widgets/user_default_apps.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/user_advanced_settings.dart';
-import 'package:fluxer_app/features/settings/presentation/widgets/user_appearance.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/user_audio_and_video.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/user_authorized_apps.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/user_blocked_users.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/user_connections.dart';
+import 'package:fluxer_app/features/settings/presentation/widgets/user_default_apps.dart';
+import 'package:fluxer_app/features/settings/presentation/widgets/user_developer_tools.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/user_language_and_time.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/user_linked_devices.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/user_look_and_feel.dart';
@@ -42,6 +42,7 @@ import 'package:fluxer_app/features/settings/presentation/widgets/wide_settings_
 import 'package:fluxer_app/features/settings/presentation/widgets/wide_settings_modal_frame.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
 import 'package:fluxer_app/features/settings/utils/user_settings_nav_l10n.dart';
+import 'package:fluxer_app/features/settings/utils/user_settings_section_scroll.dart';
 import 'package:fluxer_app/features/settings/utils/user_settings_staff_only_utils.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
@@ -74,6 +75,7 @@ class UserSettingsModal extends ConsumerStatefulWidget {
     this.openProfileSection = false,
     this.openSecuritySection = false,
     this.initialSection,
+    this.initialFieldId,
     this.guildId,
     super.key,
   });
@@ -81,6 +83,7 @@ class UserSettingsModal extends ConsumerStatefulWidget {
   final bool openProfileSection;
   final bool openSecuritySection;
   final UserSettingsSection? initialSection;
+  final String? initialFieldId;
   final String? guildId;
 
   static Future<void> show(
@@ -88,6 +91,7 @@ class UserSettingsModal extends ConsumerStatefulWidget {
     bool openProfileSection = false,
     bool openSecuritySection = false,
     UserSettingsSection? initialSection,
+    String? initialFieldId,
     String? guildId,
   }) {
     if (isMobileLayout(context)) {
@@ -96,6 +100,7 @@ class UserSettingsModal extends ConsumerStatefulWidget {
         openProfileSection: openProfileSection,
         openSecuritySection: openSecuritySection,
         initialSection: initialSection,
+        initialFieldId: initialFieldId,
         guildId: guildId,
       );
     }
@@ -106,6 +111,7 @@ class UserSettingsModal extends ConsumerStatefulWidget {
         openProfileSection: openProfileSection,
         openSecuritySection: openSecuritySection,
         initialSection: initialSection,
+        initialFieldId: initialFieldId,
         guildId: guildId,
       ),
     );
@@ -116,6 +122,7 @@ class UserSettingsModal extends ConsumerStatefulWidget {
     bool openProfileSection = false,
     bool openSecuritySection = false,
     UserSettingsSection? initialSection,
+    String? initialFieldId,
     String? guildId,
   }) async {
     await FluxerPageSheet.showScrollable<void>(
@@ -129,6 +136,7 @@ class UserSettingsModal extends ConsumerStatefulWidget {
             openProfileSection: openProfileSection,
             openSecuritySection: openSecuritySection,
             initialSection: initialSection,
+            initialFieldId: initialFieldId,
             guildId: guildId,
           ),
     );
@@ -167,6 +175,21 @@ class _UserSettingsModalState extends ConsumerState<UserSettingsModal> {
         }
       });
     }
+
+    _scheduleInitialFieldScroll();
+  }
+
+  void _scheduleInitialFieldScroll() {
+    final String? fieldId = widget.initialFieldId;
+    if (fieldId == null) {
+      return;
+    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) {
+        return;
+      }
+      UserSettingsSectionScrollKeys.scheduleScrollToField(context, fieldId);
+    });
   }
 
   @override
@@ -337,6 +360,7 @@ class _MobileSettingsNavBody extends ConsumerStatefulWidget {
     this.openProfileSection = false,
     this.openSecuritySection = false,
     this.initialSection,
+    this.initialFieldId,
     this.guildId,
   });
 
@@ -345,6 +369,7 @@ class _MobileSettingsNavBody extends ConsumerStatefulWidget {
   final bool openProfileSection;
   final bool openSecuritySection;
   final UserSettingsSection? initialSection;
+  final String? initialFieldId;
   final String? guildId;
 
   @override
@@ -370,7 +395,10 @@ class _MobileSettingsNavBodyState
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted && !_didOpenInitialSection) {
           _didOpenInitialSection = true;
-          _openSettingsPage(initialSection);
+          _openSettingsPage(
+            initialSection,
+            initialFieldId: widget.initialFieldId,
+          );
         }
       });
     }
@@ -411,7 +439,10 @@ class _MobileSettingsNavBodyState
     );
   }
 
-  void _openSettingsPage(UserSettingsSection section) {
+  void _openSettingsPage(
+    UserSettingsSection section, {
+    String? initialFieldId,
+  }) {
     if (!isUserSettingsStaffOnlySectionAvailable(section)) {
       return;
     }
@@ -428,6 +459,7 @@ class _MobileSettingsNavBodyState
               onClose: close,
               scrollController: scrollController,
               canDismissNotifier: canDismiss,
+              initialFieldId: initialFieldId,
             ),
       ),
     );
@@ -477,26 +509,49 @@ class _MobileSettingsNavBodyState
   }
 }
 
-class _MobileSettingsContentBody extends ConsumerWidget {
+class _MobileSettingsContentBody extends ConsumerStatefulWidget {
   const _MobileSettingsContentBody({
     required this.section,
     required this.onClose,
     required this.scrollController,
     this.canDismissNotifier,
+    this.initialFieldId,
   });
 
   final UserSettingsSection section;
   final VoidCallback onClose;
   final ScrollController scrollController;
   final ValueNotifier<bool>? canDismissNotifier;
+  final String? initialFieldId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_MobileSettingsContentBody> createState() =>
+      _MobileSettingsContentBodyState();
+}
+
+class _MobileSettingsContentBodyState
+    extends ConsumerState<_MobileSettingsContentBody> {
+  @override
+  void initState() {
+    super.initState();
+    final String? fieldId = widget.initialFieldId;
+    if (fieldId != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) {
+          return;
+        }
+        UserSettingsSectionScrollKeys.scheduleScrollToField(context, fieldId);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final state = ref.watch(userSettingsViewModelProvider);
 
     ref.listen(userSettingsViewModelProvider, (_, next) {
-      if (canDismissNotifier != null) {
-        canDismissNotifier!.value = !next.isDirty;
+      if (widget.canDismissNotifier != null) {
+        widget.canDismissNotifier!.value = !next.isDirty;
       }
     });
 
@@ -504,8 +559,8 @@ class _MobileSettingsContentBody extends ConsumerWidget {
       context: context,
       ref: ref,
       state: state,
-      section: section,
-      scrollController: scrollController,
+      section: widget.section,
+      scrollController: widget.scrollController,
     );
   }
 }
@@ -532,13 +587,6 @@ Widget _buildUserSettingsSectionContent({
             : UserProfile(scrollController: scrollController),
       );
     case UserSettingsSection.lookAndFeel:
-      if (scrollController == null) {
-        return UserAppearance(
-          isCompact: state.messageDisplayCompact,
-          onToggleCompact: () =>
-              ref.read(userSettingsViewModelProvider.notifier).toggleCompact(),
-        );
-      }
       return UserLookAndFeel(scrollController: scrollController);
     case UserSettingsSection.securityLogin:
       return scrollController == null
@@ -599,7 +647,6 @@ Widget _buildUserSettingsSectionContent({
           : UserNotificationsSettings(scrollController: scrollController);
     case UserSettingsSection.keybinds:
     case UserSettingsSection.applications:
-    case UserSettingsSection.developerTools:
     case UserSettingsSection.limitsConfig:
     case UserSettingsSection.featureFlags:
     case UserSettingsSection.whatsNew:
@@ -608,6 +655,10 @@ Widget _buildUserSettingsSectionContent({
         section,
         scrollController: scrollController,
       );
+    case UserSettingsSection.developerTools:
+      return scrollController == null
+          ? const UserDeveloperTools()
+          : UserDeveloperTools(scrollController: scrollController);
   }
 }
 
@@ -652,7 +703,7 @@ class _SettingsBuildInfoFooter extends ConsumerWidget {
         final Widget buildInfo = Semantics(
           button: true,
           label: 'Copy app info',
-          child: GestureDetector(
+          child: FluxerGestureDetector(
             onTap: () => _copyBuildInfoToClipboard(context, info),
             child: Text(
               text,

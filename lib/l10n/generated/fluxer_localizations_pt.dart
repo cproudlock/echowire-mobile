@@ -12696,6 +12696,99 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
   @override
   String get audioAndVideoMicTestSectionDescription =>
       'Listen to how you sound with your current settings.';
+
+  @override
+  String get cropTouchHint => 'Pinch to zoom, drag to reposition';
+
+  @override
+  String get cropMouseHint => 'Drag corners to resize, drag inside to move';
+
+  @override
+  String get channelDetailsSearchFilterIn => 'In';
+
+  @override
+  String get channelDetailsSearchFilterMentions => 'Mentions';
+
+  @override
+  String get channelDetailsSearchFilterMore => 'More';
+
+  @override
+  String get channelDetailsSearchMoreFiltersActive => 'Active';
+
+  @override
+  String channelDetailsSearchChannelsCount(int count) {
+    return '$count channels';
+  }
+
+  @override
+  String channelDetailsSearchUsersCount(int count) {
+    return '$count users';
+  }
+
+  @override
+  String get channelDetailsSearchAuthorTypeUser => 'User';
+
+  @override
+  String get channelDetailsSearchAuthorTypeBot => 'Bot';
+
+  @override
+  String get channelDetailsSearchAuthorTypeWebhook => 'Webhook';
+
+  @override
+  String get channelDetailsSearchFilterByChannel => 'Filter by channel';
+
+  @override
+  String get channelDetailsSearchChannelsHint => 'Search channels';
+
+  @override
+  String get channelDetailsSearchChannelsEmpty => 'No channels found';
+
+  @override
+  String get channelDetailsSearchMoreFiltersPinned => 'Pinned';
+
+  @override
+  String get channelDetailsSearchPinnedTrue => 'Pinned only';
+
+  @override
+  String get channelDetailsSearchPinnedFalse => 'Exclude pinned';
+
+  @override
+  String get channelDetailsSearchClearFilter => 'Clear';
+
+  @override
+  String get channelDetailsSearchMoreFiltersAuthorType => 'Author type';
+
+  @override
+  String get channelDetailsSearchMoreFiltersDate => 'Date';
+
+  @override
+  String get channelDetailsSearchMoreFiltersDateMode => 'Date mode';
+
+  @override
+  String get channelDetailsSearchMoreFiltersPickDate => 'Pick a date';
+
+  @override
+  String get channelDetailsSearchMoreFiltersLink => 'Link hostname';
+
+  @override
+  String get channelDetailsSearchMoreFiltersFileName => 'Filename contains';
+
+  @override
+  String get channelDetailsSearchMoreFiltersFileType => 'File extension';
+
+  @override
+  String get channelDetailsSearchContentPoll => 'Poll';
+
+  @override
+  String get channelDetailsSearchContentPollDescription =>
+      'Messages with a poll';
+
+  @override
+  String get channelDetailsSearchContentForward => 'Forward';
+
+  @override
+  String get channelDetailsSearchContentForwardDescription =>
+      'Forwarded messages';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -19924,4 +20017,10 @@ class FluxerLocalizationsPtBr extends FluxerLocalizationsPt {
   @override
   String get accessibilityShowFadedUnreadOnMutedChannelsDescription =>
       'Exiba um indicador de não lidas atenuado ao lado de mensagens diretas e canais silenciados para que você ainda possa ver rapidamente quando há atividade.';
+
+  @override
+  String get cropTouchHint => 'Pinch to zoom, drag to reposition';
+
+  @override
+  String get cropMouseHint => 'Drag corners to resize, drag inside to move';
 }

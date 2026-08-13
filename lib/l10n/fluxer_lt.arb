@@ -9323,5 +9323,7 @@
   "guildSettingsDiscoveryStatusTitle": "Būsena",
   "@guildSettingsDiscoveryStatusTitle": {
     "description": "Title for discovery application status section."
-  }
+  },
+  "cropTouchHint": "Pinch to zoom, drag to reposition",
+  "cropMouseHint": "Drag corners to resize, drag inside to move"
 }

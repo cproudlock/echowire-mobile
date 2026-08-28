@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
 import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_context.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/forward_message_sheet.dart';
 import 'package:fluxer_app/features/chat/utils/embed_animated_image_url.dart';
 import 'package:fluxer_app/features/ui/media_viewer/attachment_media_viewer.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 String embedMediaEffectiveUrl(EmbedMedia media) {
   return media.proxyUrl ?? media.url;
@@ -41,19 +42,21 @@ void openEmbedMediaViewer(
   if (items.isEmpty) {
     return;
   }
-  showAttachmentMediaViewer(
-    context,
-    items: items,
-    initialIndex: initialIndex.clamp(0, items.length - 1),
-    onForward: (channelId != null && messageId != null && embedIndex != null)
-        ? (int _) => showForwardMediaSheet(
-            context,
-            sourceChannelId: channelId,
-            sourceMessageId: messageId,
-            embedIndices: <int>[embedIndex],
-          )
-        : null,
-    actionScope: actionScope,
+  unawaited(
+    showAttachmentMediaViewer(
+      context,
+      items: items,
+      initialIndex: initialIndex.clamp(0, items.length - 1),
+      onForward: (channelId != null && messageId != null && embedIndex != null)
+          ? (int _) => showForwardMediaSheet(
+              context,
+              sourceChannelId: channelId,
+              sourceMessageId: messageId,
+              embedIndices: <int>[embedIndex],
+            )
+          : null,
+      actionScope: actionScope,
+    ),
   );
 }
 
@@ -72,6 +75,9 @@ AttachmentMediaViewerItem buildEmbedMediaViewerItem({
     width: media.width,
     height: media.height,
     embedIndex: embedIndex,
+    proxyUrl: media.proxyUrl,
+    contentType: media.contentType,
+    contentHash: media.contentHash,
   );
 }
 

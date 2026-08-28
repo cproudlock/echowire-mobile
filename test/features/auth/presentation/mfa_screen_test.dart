@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/theme/fluxer_layout_theme.dart';
@@ -8,8 +8,9 @@ import 'package:fluxer_app/core/theme/themes/dark.dart';
 import 'package:fluxer_app/features/auth/domain/mfa_challenge.dart';
 import 'package:fluxer_app/features/auth/presentation/mfa_screen.dart';
 import 'package:fluxer_app/features/auth/providers/mfa_view_model.dart';
-import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/keyboard_focus_restore.dart';
+
 import '../../../helpers/test_l10n.dart';
 
 const _challenge = MfaChallenge(
@@ -65,6 +66,58 @@ void main() {
       expect(container.read(provider).canSubmitCode, isTrue);
     },
   );
+
+  testWidgets('TOTP field uses a numeric keyboard', (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        child: _app(
+          MfaScreen(challenge: _challenge, onBack: () {}, onAuthorized: () {}),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    final TextField field = tester.widget(find.byType(TextField));
+    expect(field.keyboardType, TextInputType.number);
+  });
+
+  testWidgets('TOTP field accepts an alphanumeric backup code', (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        child: _app(
+          MfaScreen(challenge: _challenge, onBack: () {}, onAuthorized: () {}),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    final container = ProviderScope.containerOf(
+      tester.element(find.byType(MfaScreen)),
+    );
+    await tester.enterText(find.byType(TextFormField), 'ab12-cd34');
+    await tester.pump();
+
+    expect(container.read(mfaViewModelProvider(_challenge)).code, 'ab12-cd34');
+  });
+
+  testWidgets('context menu paste fills the TOTP field', (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        child: _app(
+          MfaScreen(challenge: _challenge, onBack: () {}, onAuthorized: () {}),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    _mockClipboardText('123456');
+    await _pasteViaToolbar(tester, find.byType(EditableText));
+
+    final container = ProviderScope.containerOf(
+      tester.element(find.byType(MfaScreen)),
+    );
+    expect(container.read(mfaViewModelProvider(_challenge)).code, '123456');
+  });
 
   testWidgets('clearing the view model code resets the input field', (
     tester,
@@ -147,24 +200,49 @@ void main() {
     final EditableText editable = tester.widget<EditableText>(
       find.byType(EditableText),
     );
-    final FocusNode focusNode = editable.focusNode!;
-
-    focusNode.requestFocus();
+    final FocusNode focusNode = editable.focusNode..requestFocus();
     await tester.pumpAndSettle();
     expect(focusNode.hasFocus, isTrue);
 
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    tester.binding
+      ..handleAppLifecycleStateChanged(AppLifecycleState.inactive)
+      ..handleAppLifecycleStateChanged(AppLifecycleState.hidden)
+      ..handleAppLifecycleStateChanged(AppLifecycleState.paused);
     focusNode.unfocus();
     await tester.pump();
 
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    tester.binding
+      ..handleAppLifecycleStateChanged(AppLifecycleState.hidden)
+      ..handleAppLifecycleStateChanged(AppLifecycleState.inactive)
+      ..handleAppLifecycleStateChanged(AppLifecycleState.resumed);
     await tester.pump();
     await tester.pump(kKeyboardFocusRestoreRetryDelay);
 
     expect(focusNode.hasFocus, isTrue);
   });
+}
+
+void _mockClipboardText(String text) {
+  TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+      .setMockMethodCallHandler(SystemChannels.platform, (
+        MethodCall methodCall,
+      ) async {
+        if (methodCall.method == 'Clipboard.getData') {
+          return <String, String>{'text': text};
+        }
+        if (methodCall.method == 'Clipboard.hasStrings') {
+          return <String, bool>{'value': true};
+        }
+        return null;
+      });
+}
+
+Future<void> _pasteViaToolbar(
+  WidgetTester tester,
+  Finder editableFinder,
+) async {
+  await tester.longPress(editableFinder);
+  await tester.pumpAndSettle();
+  await tester.tap(find.text('Paste'));
+  await tester.pumpAndSettle();
 }

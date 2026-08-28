@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/system_permissions/system_permission_kind.dart';
 import 'package:fluxer_app/core/system_permissions/system_permission_service.dart';
@@ -22,6 +21,7 @@ import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/fluxer_haptics.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -129,7 +129,7 @@ class _VoiceMessageRecorderState extends ConsumerState<VoiceMessageRecorder>
     if (reduceMotion) {
       controller.value = 1;
     } else {
-      unawaited(controller.forward(from: 0));
+      controller.forward(from: 0);
     }
   }
 
@@ -266,7 +266,7 @@ class _VoiceMessageRecorderState extends ConsumerState<VoiceMessageRecorder>
       }
       await _cancelGesture();
       return;
-    } on VoiceMessageRecordingPermissionException catch (error, _) {
+    } on VoiceMessageRecordingPermissionException catch (error) {
       talker.warning(
         '[VoiceMessageRecorder] Microphone permission denied (channel=${widget.channelId})',
         error,

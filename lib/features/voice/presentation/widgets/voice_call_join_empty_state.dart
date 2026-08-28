@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
+import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
 import 'package:fluxer_app/features/dm/domain/dm_conversation.dart';
 import 'package:fluxer_app/features/dm/presentation/widgets/group_dm_avatar.dart';
 import 'package:fluxer_app/features/dm/providers/dm_view_model.dart';
@@ -13,6 +13,7 @@ import 'package:fluxer_app/features/voice/presentation/widgets/voice_e2ee_indica
 import 'package:fluxer_app/features/voice/presentation/widgets/voice_join_empty_state.dart';
 import 'package:fluxer_app/features/voice/utils/voice_connection_actions.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/chat_context_utils.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -34,6 +35,7 @@ class VoiceCallJoinEmptyState extends ConsumerWidget {
     );
     final DmConversation? dm = findDmById(conversations, channelId);
     final String headline = dm?.displayName ?? l10n.dmVoiceFullscreenTitle;
+    final bool canJoinVoice = dm != null && canStartDmCall(dm);
 
     return VoiceJoinEmptyState(
       childBuilder: (VoiceJoinEmptyLayout layout) => <Widget>[
@@ -48,16 +50,21 @@ class VoiceCallJoinEmptyState extends ConsumerWidget {
           ),
         VoiceChannelJoinButton(
           label: l10n.voiceCallJoin,
-          onPressed: () {
-            unawaited(
-              joinVoiceChannelWithConfirmation(
-                ref: ref,
-                context: context,
-                guildId: null,
-                channelId: channelId,
-              ),
-            );
-          },
+          disabledTooltip: canJoinVoice
+              ? null
+              : l10n.directVoiceCallNotEligible,
+          onPressed: canJoinVoice
+              ? () {
+                  unawaited(
+                    joinVoiceChannelWithConfirmation(
+                      ref: ref,
+                      context: context,
+                      guildId: null,
+                      channelId: channelId,
+                    ),
+                  );
+                }
+              : null,
         ),
         VoiceE2eeIndicator(
           guildId: null,

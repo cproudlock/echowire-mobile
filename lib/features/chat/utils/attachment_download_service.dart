@@ -1,15 +1,16 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:cross_file/cross_file.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/platform/fluxer_platform.dart';
 import 'package:fluxer_app/features/chat/utils/attachment_display_utils.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/external_links/external_link_handler.dart';
 import 'package:gal/gal.dart';
 import 'package:path/path.dart' as p;
@@ -54,6 +55,49 @@ Future<void> downloadChatAttachmentMedia({
   await handleExternalLinkTap(context, trimmedUrl);
 }
 
+/// Saves a local attachment file to the device gallery on native mobile.
+Future<void> saveLocalAttachmentToDeviceGallery(XFile file) async {
+  if (!isFluxerNativeMobileOs) {
+    return;
+  }
+  final String filePath = file.path.trim();
+  if (filePath.isEmpty) {
+    return;
+  }
+  try {
+    if (!await _ensureGalleryAccess()) {
+      return;
+    }
+    await _putLocalFileInGallery(
+      filePath: filePath,
+      filename: file.name.trim(),
+    );
+  } on GalException {
+    // Optional save; ignore gallery failures.
+  } on Object {
+    // Optional save; ignore gallery failures.
+  }
+}
+
+Future<bool> _ensureGalleryAccess() async {
+  if (await Gal.hasAccess()) {
+    return true;
+  }
+  await Gal.requestAccess();
+  return Gal.hasAccess();
+}
+
+Future<void> _putLocalFileInGallery({
+  required String filePath,
+  required String filename,
+}) async {
+  if (isVideoAttachment(filename: filename)) {
+    await Gal.putVideo(filePath);
+  } else {
+    await Gal.putImage(filePath);
+  }
+}
+
 Future<void> _downloadToGallery({
   required BuildContext context,
   required WidgetRef ref,
@@ -62,12 +106,9 @@ Future<void> _downloadToGallery({
 }) async {
   final FluxerLocalizations l10n = FluxerLocalizations.of(context);
   try {
-    if (!await Gal.hasAccess()) {
-      await Gal.requestAccess();
-      if (!await Gal.hasAccess()) {
-        _showFailureToast(ref, l10n.chatAttachmentDownloadFailedToast);
-        return;
-      }
+    if (!await _ensureGalleryAccess()) {
+      _showFailureToast(ref, l10n.chatAttachmentDownloadFailedToast);
+      return;
     }
     final String resolvedFilename = resolveAttachmentDownloadFilename(
       url: url,
@@ -76,11 +117,10 @@ Future<void> _downloadToGallery({
     final Directory tempDir = await getTemporaryDirectory();
     final String filePath = p.join(tempDir.path, resolvedFilename);
     await _attachmentDownloadDio.download(url, filePath);
-    if (isVideoAttachment(filename: resolvedFilename)) {
-      await Gal.putVideo(filePath);
-    } else {
-      await Gal.putImage(filePath);
-    }
+    await _putLocalFileInGallery(
+      filePath: filePath,
+      filename: resolvedFilename,
+    );
     _showSuccessToast(ref, l10n.chatAttachmentDownloadedToast);
   } on GalException {
     _showFailureToast(ref, l10n.chatAttachmentDownloadFailedToast);
@@ -111,7 +151,7 @@ Future<void> _downloadToFilePicker({
       _showFailureToast(ref, l10n.chatAttachmentDownloadFailedToast);
       return;
     }
-    final String? path = await FilePicker.saveFile(
+    final Uri? path = await FilePicker.saveFile(
       dialogTitle: l10n.chatAttachmentDownload,
       fileName: resolvedFilename,
       bytes: Uint8List.fromList(bytes),

@@ -1234,11 +1234,11 @@
   },
   "addFriendNoUserFound": "そのユーザー名ではユーザーが見つかりませんでした。",
   "@addFriendNoUserFound": {
-    "description": "Error when no user matches the entered EchoTag."
+    "description": "Error when no user matches the entered username."
   },
   "addFriendInvalidUsername": "有効なユーザー名（ユーザー名#0000）を入力してください。",
   "@addFriendInvalidUsername": {
-    "description": "Error when the EchoTag format is invalid."
+    "description": "Error when the username format is invalid."
   },
   "addFriendOutgoingSuccess": "フレンドリクエストを送信しました",
   "@addFriendOutgoingSuccess": {
@@ -1356,10 +1356,6 @@
   "@addFriendClaimToSend": {
     "description": "Error when an unclaimed account tries to send a friend request."
   },
-  "addFriendSendFailedGeneric": "友達リクエストを送信できませんでした。もう一度お試しください。",
-  "@addFriendSendFailedGeneric": {
-    "description": "Generic error when sending a friend request fails."
-  },
   "userTagBot": "BOT",
   "@userTagBot": {
     "description": "Tag label shown next to bot user names."
@@ -1472,7 +1468,7 @@
   "@emojiCategoryFlags": {
     "description": "Flags category."
   },
-  "emojiPlutoniumUpsellText": "Reverbで{emojiCount}個の絵文字を{communityCount}個のコミュニティからアンロック。",
+  "emojiPlutoniumUpsellText": "Plutoniumで{emojiCount}個の絵文字を{communityCount}個のコミュニティからアンロック。",
   "@emojiPlutoniumUpsellText": {
     "description": "Upsell banner text in emoji picker for non-premium users.",
     "placeholders": {
@@ -1484,13 +1480,13 @@
       }
     }
   },
-  "emojiPlutoniumUpsellButton": "Reverbを入手",
+  "emojiPlutoniumUpsellButton": "Plutoniumを入手",
   "@emojiPlutoniumUpsellButton": {
-    "description": "Button label on the Reverb upsell banner."
+    "description": "Button label on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellDismiss": "これを再度表示しない",
   "@emojiPlutoniumUpsellDismiss": {
-    "description": "Dismiss link on the Reverb upsell banner."
+    "description": "Dismiss link on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{カスタム絵文字1個} other{カスタム絵文字#個}}",
   "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1603,11 +1599,11 @@
   "@imageFileTooLarge": {
     "description": "Error when a selected image exceeds the maximum file size."
   },
-  "animatedAvatarsRequirePlutonium": "アニメーションアバターにはReverbが必要です",
+  "animatedAvatarsRequirePlutonium": "アニメーションアバターにはPlutoniumが必要です",
   "@animatedAvatarsRequirePlutonium": {
     "description": "Toast shown when non-premium user tries uploading animated avatar."
   },
-  "animatedBannersRequirePlutonium": "アニメーションバナーにはReverbが必要です",
+  "animatedBannersRequirePlutonium": "アニメーションバナーにはPlutoniumが必要です",
   "@animatedBannersRequirePlutonium": {
     "description": "Toast shown when non-premium user tries uploading animated banner."
   },
@@ -1643,17 +1639,19 @@
   "@crop": {
     "description": "Button to confirm image crop."
   },
-  "changeYourFluxerTag": "EchoTagを変更する",
+  "cropTouchHint": "Pinch to zoom, drag to reposition",
+  "cropMouseHint": "Drag corners to resize, drag inside to move",
+  "changeYourFluxerTag": "ユーザー名",
   "@changeYourFluxerTag": {
-    "description": "Title for the EchoTag change bottom sheet."
+    "description": "Title for the username change bottom sheet."
   },
-  "fluxerTagInputLabel": "EchoTag",
+  "fluxerTagInputLabel": "ユーザー名",
   "@fluxerTagInputLabel": {
     "description": "Label above the username and discriminator input fields."
   },
   "fluxerTagDescriptionBase": "ユーザー名は、文字（a-z、A-Z）、数字（0-9）、およびアンダースコアのみを含むことができます。ユーザー名は大文字と小文字を区別しません。",
   "@fluxerTagDescriptionBase": {
-    "description": "Base description text on the EchoTag change sheet."
+    "description": "Base description text on the username change sheet."
   },
   "fluxerTagDescriptionVisionary": "ユーザー名は、文字（a-z、A-Z）、数字（0-9）、およびアンダースコアのみを含むことができます。ユーザー名は大文字と小文字を区別しません。#0000から#9999までの任意の4桁のタグを選択できます。",
   "@fluxerTagDescriptionVisionary": {
@@ -1679,17 +1677,17 @@
   "@validationAllowedChars": {
     "description": "Validation rule for allowed username characters."
   },
-  "discriminatorPremiumTooltip": "Reverbを入手してタグをカスタマイズするか、ユーザー名を変更するときに保持してください",
+  "discriminatorPremiumTooltip": "Plutoniumを入手してタグをカスタマイズするか、ユーザー名を変更するときに保持してください",
   "@discriminatorPremiumTooltip": {
     "description": "Tooltip on disabled discriminator field for non-premium users."
   },
-  "fluxerTagAlreadyTaken": "EchoTagは既に使用されています",
+  "fluxerTagAlreadyTaken": "ユーザー名",
   "@fluxerTagAlreadyTaken": {
     "description": "Title for the tag-taken confirmation sheet."
   },
-  "fluxerTagAlreadyTakenBody": "EchoTag {username}#{discriminator}は既に使用されています。続行すると、ディスクリミネータは自動的に再ロールされます。",
+  "fluxerTagAlreadyTakenBody": "ユーザー名 {username}#{discriminator}は既に使用されています。続行すると、ディスクリミネータは自動的に再ロールされます。",
   "@fluxerTagAlreadyTakenBody": {
-    "description": "Body text when the requested EchoTag is taken.",
+    "description": "Body text when the requested username is taken.",
     "placeholders": {
       "username": {
         "type": "String"
@@ -1703,7 +1701,7 @@
   "@customTagIsTemporary": {
     "description": "Title for the temporary tag warning sheet."
   },
-  "customTagTemporaryBodyWithDate": "カスタムの4桁タグは、Reverbサブスクリプションがアクティブな間のみ利用可能です。サブスクリプションが{date}に期限切れになると、3日間の猶予期間の後、タグはランダムに割り当てられた番号に戻ります。",
+  "customTagTemporaryBodyWithDate": "カスタムの4桁タグは、Plutoniumサブスクリプションがアクティブな間のみ利用可能です。サブスクリプションが{date}に期限切れになると、3日間の猶予期間の後、タグはランダムに割り当てられた番号に戻ります。",
   "@customTagTemporaryBodyWithDate": {
     "description": "Warning body when premium subscription has a known expiry date.",
     "placeholders": {
@@ -1712,7 +1710,7 @@
       }
     }
   },
-  "customTagTemporaryBody": "カスタムの4桁タグは、Reverbサブスクリプションがアクティブな間のみ利用可能です。サブスクリプションが期限切れになると、3日間の猶予期間の後、タグはランダムに割り当てられた番号に戻ります。",
+  "customTagTemporaryBody": "カスタムの4桁タグは、Plutoniumサブスクリプションがアクティブな間のみ利用可能です。サブスクリプションが期限切れになると、3日間の猶予期間の後、タグはランダムに割り当てられた番号に戻ります。",
   "@customTagTemporaryBody": {
     "description": "Warning body when premium subscription expiry date is unknown."
   },
@@ -1720,11 +1718,11 @@
   "@iUnderstandContinue": {
     "description": "Button to acknowledge a warning and proceed."
   },
-  "premiumWarningPendingDiscriminator": "このEchoTagを保存すると、Reverbサブスクリプションが終了したときにカスタムの4桁タグはランダムな番号に戻ります。サブスクリプションの更新に失敗した場合、タグが変更される前に3日間の猶予期間があります。",
+  "premiumWarningPendingDiscriminator": "このユーザー名、Plutoniumサブスクリプションが終了したときにカスタムの4桁タグはランダムな番号に戻ります。サブスクリプションの更新に失敗した場合、タグが変更される前に3日間の猶予期間があります。",
   "@premiumWarningPendingDiscriminator": {
     "description": "Warning shown when premium user is about to change their discriminator."
   },
-  "premiumWarningActiveDiscriminator": "カスタムの4桁タグ（#{discriminator}）は、Reverbサブスクリプションがアクティブな間有効です。サブスクリプションが終了するか、3日間の猶予期間後に更新に失敗した場合、タグはランダムな番号に戻ります。",
+  "premiumWarningActiveDiscriminator": "カスタムの4桁タグ（#{discriminator}）は、Plutoniumサブスクリプションがアクティブな間有効です。サブスクリプションが終了するか、3日間の猶予期間後に更新に失敗した場合、タグはランダムな番号に戻ります。",
   "@premiumWarningActiveDiscriminator": {
     "description": "Warning shown when premium user already has a custom discriminator.",
     "placeholders": {
@@ -1735,9 +1733,9 @@
   },
   "premiumUpsellCustomizeTag": "4桁のタグをカスタマイズするか、ユーザー名を変更するときに保持してください",
   "@premiumUpsellCustomizeTag": {
-    "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
+    "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
   },
-  "premiumTrialExpiresOn": "Reverbトライアルは{date}に期限切れになります。カスタムタグを保持し、プロフィールにバッジを獲得するにはアップグレードしてください。",
+  "premiumTrialExpiresOn": "Plutoniumトライアルは{date}に期限切れになります。カスタムタグを保持し、プロフィールにバッジを獲得するにはアップグレードしてください。",
   "@premiumTrialExpiresOn": {
     "description": "Trial upsell with expiry date.",
     "placeholders": {
@@ -1746,17 +1744,17 @@
       }
     }
   },
-  "premiumTrialActive": "Reverbトライアル中です。カスタムタグを保持し、プロフィールにバッジを獲得するにはアップグレードしてください。",
+  "premiumTrialActive": "Plutoniumトライアル中です。カスタムタグを保持し、プロフィールにバッジを獲得するにはアップグレードしてください。",
   "@premiumTrialActive": {
     "description": "Trial upsell without specific expiry date."
   },
-  "fluxerTagUpdated": "EchoTagが更新されました",
+  "fluxerTagUpdated": "ユーザー名",
   "@fluxerTagUpdated": {
-    "description": "Success toast after EchoTag change."
+    "description": "Success toast after username change."
   },
-  "fluxerTagUpdateFailed": "EchoTagの更新に失敗しました。もう一度お試しください。",
+  "fluxerTagUpdateFailed": "ユーザー名。もう一度お試しください。",
   "@fluxerTagUpdateFailed": {
-    "description": "Error message when EchoTag update fails."
+    "description": "Error message when username update fails."
   },
   "continueAction": "続行",
   "@continueAction": {
@@ -1774,17 +1772,17 @@
   "@usernameLabel": {
     "description": "Label for the username field in profile settings."
   },
-  "claimAccountToChangeFluxerTag": "アカウントを請求してEchoTagを変更してください",
+  "claimAccountToChangeFluxerTag": "アカウントを請求してユーザー名",
   "@claimAccountToChangeFluxerTag": {
-    "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
+    "description": "Tooltip when unverified user hovers the disabled Change username button."
   },
-  "changeFluxerTag": "EchoTagを変更",
+  "changeFluxerTag": "ユーザー名",
   "@changeFluxerTag": {
-    "description": "Button label to open the EchoTag change flow."
+    "description": "Button label to open the username change flow."
   },
-  "customizeTagWithPlutoniumTooltip": "Reverbを使って、お好みの4桁のタグ（#{discriminator}）にカスタマイズ",
+  "customizeTagWithPlutoniumTooltip": "Plutoniumを使って、お好みの4桁のタグ（#{discriminator}）にカスタマイズ",
   "@customizeTagWithPlutoniumTooltip": {
-    "description": "Tooltip on the crown upsell button next to the EchoTag button.",
+    "description": "Tooltip on the crown upsell button next to the username button.",
     "placeholders": {
       "discriminator": {
         "type": "String"
@@ -1795,7 +1793,7 @@
   "@changeUsernameAndTagHint": {
     "description": "Hint text below the username buttons."
   },
-  "customTagSubscriptionWarning": "カスタムタグ（#{discriminator}）はReverbサブスクリプションに紐づいています。期限が切れるとランダムなタグに戻ります。",
+  "customTagSubscriptionWarning": "カスタムタグ（#{discriminator}）はPlutoniumサブスクリプションに紐づいています。期限が切れるとランダムなタグに戻ります。",
   "@customTagSubscriptionWarning": {
     "description": "Warning shown when user has a premium discriminator that is not lifetime.",
     "placeholders": {
@@ -1864,38 +1862,38 @@
   "@emojiPickerTitle": {
     "description": "Title for the emoji picker sheet."
   },
-  "plutoniumBadgePrivacyTitle": "Reverbバッジのプライバシー",
+  "plutoniumBadgePrivacyTitle": "Plutoniumバッジのプライバシー",
   "@plutoniumBadgePrivacyTitle": {
     "description": "Heading for the premium badge privacy settings section."
   },
-  "plutoniumBadgePrivacyDescription": "Reverbバッジが他者にどのように表示されるかを制御",
+  "plutoniumBadgePrivacyDescription": "Plutoniumバッジが他者にどのように表示されるかを制御",
   "@plutoniumBadgePrivacyDescription": {
     "description": "Subheading for the premium badge privacy settings section."
   },
-  "hidePlutoniumBadgeLabel": "Reverbバッジを完全に非表示",
+  "hidePlutoniumBadgeLabel": "Plutoniumバッジを完全に非表示",
   "@hidePlutoniumBadgeLabel": {
-    "description": "Label for the toggle to hide the Reverb badge."
+    "description": "Label for the toggle to hide the Plutonium badge."
   },
-  "hidePlutoniumBadgeDescription": "Reverbバッジを他のユーザーから完全に非表示にする",
+  "hidePlutoniumBadgeDescription": "Plutoniumバッジを他のユーザーから完全に非表示にする",
   "@hidePlutoniumBadgeDescription": {
-    "description": "Description for the toggle to hide the Reverb badge."
+    "description": "Description for the toggle to hide the Plutonium badge."
   },
-  "hidePlutoniumPurchaseDate": "Reverb購入日を非表示",
+  "hidePlutoniumPurchaseDate": "Plutonium購入日を非表示",
   "@hidePlutoniumPurchaseDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date."
+    "description": "Label for the toggle to hide the Plutonium purchase date."
   },
-  "hidePlutoniumPurchaseDateWithDate": "Reverb購入日（{date}）を非表示",
+  "hidePlutoniumPurchaseDateWithDate": "Plutonium購入日（{date}）を非表示",
   "@hidePlutoniumPurchaseDateWithDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
+    "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
     "placeholders": {
       "date": {
         "type": "String"
       }
     }
   },
-  "hidePurchaseDateDescription": "Reverbを最初に購入した日付をバッジから削除",
+  "hidePurchaseDateDescription": "Plutoniumを最初に購入した日付をバッジから削除",
   "@hidePurchaseDateDescription": {
-    "description": "Description for the toggle to hide the Reverb purchase date."
+    "description": "Description for the toggle to hide the Plutonium purchase date."
   },
   "maskVisionaryAsSubscription": "Visionaryをサブスクリプションとしてマスク",
   "@maskVisionaryAsSubscription": {
@@ -1922,7 +1920,7 @@
   "@hideVisionaryIdDescription": {
     "description": "Description for the toggle to hide the Visionary ID badge."
   },
-  "premiumTrialSubscriptionStarts": "Reverbのトライアル中です — サブスクリプションは{date}から開始されます",
+  "premiumTrialSubscriptionStarts": "Plutoniumのトライアル中です — サブスクリプションは{date}から開始されます",
   "@premiumTrialSubscriptionStarts": {
     "description": "Trial banner title when user has an active subscription pending after trial.",
     "placeholders": {
@@ -1935,7 +1933,7 @@
   "@premiumTrialSubscriptionStartsDescription": {
     "description": "Trial banner description when user has an active subscription pending after trial."
   },
-  "premiumTrialExpiresOnProfile": "Reverbのトライアルは{date}に期限切れになります",
+  "premiumTrialExpiresOnProfile": "Plutoniumのトライアルは{date}に期限切れになります",
   "@premiumTrialExpiresOnProfile": {
     "description": "Trial banner title with expiry date.",
     "placeholders": {
@@ -1944,29 +1942,29 @@
       }
     }
   },
-  "premiumTrialActiveProfile": "Reverbのトライアル中です",
+  "premiumTrialActiveProfile": "Plutoniumのトライアル中です",
   "@premiumTrialActiveProfile": {
     "description": "Trial banner title without specific expiry date."
   },
-  "avatarDescriptionNonPremium": "JPEG、PNG、WebP。最大10MB。推奨：512×512px。アニメーションアバター（GIF）にはReverbが必要です。",
+  "avatarDescriptionNonPremium": "JPEG、PNG、WebP。最大10MB。推奨：512×512px。アニメーションアバター（GIF）にはPlutoniumが必要です。",
   "@avatarDescriptionNonPremium": {
-    "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
+    "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
   },
   "bannerPlutoniumUpsell": "静止画またはアニメーションバナー画像でプロフィールをカスタマイズして目立たせましょう。",
   "@bannerPlutoniumUpsell": {
     "description": "Upsell text shown in place of banner upload for non-premium users."
   },
-  "getPlutonium": "Reverbを入手",
+  "getPlutonium": "Plutoniumを入手",
   "@getPlutonium": {
-    "description": "Button label for the Reverb upsell call-to-action."
+    "description": "Button label for the Plutonium upsell call-to-action."
   },
-  "plutoniumNotAvailableTitle": "Reverb",
+  "plutoniumNotAvailableTitle": "Plutonium",
   "@plutoniumNotAvailableTitle": {
-    "description": "Title for the Reverb not-available-yet bottom sheet."
+    "description": "Title for the Plutonium not-available-yet bottom sheet."
   },
   "plutoniumNotAvailableBody": "このプラットフォームでは、アプリ内購入はまだ利用できません。近日公開予定ですので、続報にご期待ください！",
   "@plutoniumNotAvailableBody": {
-    "description": "Body text for the Reverb not-available-yet bottom sheet."
+    "description": "Body text for the Plutonium not-available-yet bottom sheet."
   },
   "profilePreviewLabel": "プレビュー",
   "@profilePreviewLabel": {
@@ -2008,7 +2006,7 @@
   "@communityNicknameLabel": {
     "description": "Label for the community nickname field"
   },
-  "perGuildPremiumUpsellText": "コミュニティごとのアバター、バナー、アクセントカラー、自己紹介のカスタマイズにはReverbが必要です。コミュニティのニックネームと代名詞は誰でも無料で利用できます。",
+  "perGuildPremiumUpsellText": "コミュニティごとのアバター、バナー、アクセントカラー、自己紹介のカスタマイズにはPlutoniumが必要です。コミュニティのニックネームと代名詞は誰でも無料で利用できます。",
   "@perGuildPremiumUpsellText": {
     "description": "Upsell text for per-guild premium features"
   },
@@ -2586,7 +2584,7 @@
   "@dangerZoneDeleteDescription": {
     "description": "Description for account delete."
   },
-  "dangerZoneDeleteCancelSubscription": "アカウントを削除する前に、Reverbの設定でアクティブなReverbサブスクリプションをキャンセルしてください。",
+  "dangerZoneDeleteCancelSubscription": "アカウントを削除する前に、Plutoniumの設定でアクティブなPlutoniumサブスクリプションをキャンセルしてください。",
   "@dangerZoneDeleteCancelSubscription": {
     "description": "Warning about active subscription before deletion."
   },
@@ -3814,7 +3812,7 @@
       }
     }
   },
-  "chatAttachmentFileTooLarge": "1つ以上のファイルがサイズ制限を超えています",
+  "chatAttachmentFileTooLarge": "{fileName} はサイズ制限を超えています ({fileSize})",
   "@chatAttachmentFileTooLarge": {
     "description": "Shown when a selected file is larger than allowed."
   },
@@ -4945,22 +4943,6 @@
   "@messagesMediaEditingPreserveDraftLabel": {
     "description": "Toggle label for preserving edit drafts on cancel."
   },
-  "accessibilityUnreadGroupTitle": "未読インジケーター",
-  "@accessibilityUnreadGroupTitle": {
-    "description": "Section title for unread-indicator accessibility settings."
-  },
-  "accessibilityUnreadGroupDescription": "未読メッセージインジケーターの表示方法を制御します。",
-  "@accessibilityUnreadGroupDescription": {
-    "description": "Section description for unread-indicator accessibility settings."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsLabel": "ミュート中のチャンネルに薄い未読インジケーターを表示",
-  "@accessibilityShowFadedUnreadOnMutedChannelsLabel": {
-    "description": "Toggle label for showing a faded unread indicator on muted channels."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsDescription": "ミュート中のダイレクトメッセージやチャンネルの横に薄い未読インジケーターを表示し、アクティビティがあった場合に一目でわかるようにします。",
-  "@accessibilityShowFadedUnreadOnMutedChannelsDescription": {
-    "description": "Toggle description for showing a faded unread indicator on muted channels."
-  },
   "accessibilityDmMessagePreviewGroupTitle": "DMメッセージプレビュー",
   "@accessibilityDmMessagePreviewGroupTitle": {
     "description": "Section title for DM message preview accessibility settings."
@@ -5467,7 +5449,7 @@
   },
   "characterCounterRemainingPlutoniumUpsell": "{remaining}文字残っています。{productName}を入手すると、最大{premiumMaxLength}文字まで書けます。",
   "@characterCounterRemainingPlutoniumUpsell": {
-    "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
+    "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
     "placeholders": {
       "remaining": {
         "type": "int"
@@ -9154,15 +9136,5 @@
   "dmDebugCategory": "カテゴリーをデバッグ",
   "@dmDebugCategory": {
     "description": "Category context menu action to debug category data."
-  },
-  "guildSettingsDiscoveryFormTitle": "申請",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
-  },
-  "guildSettingsDiscoveryStatusTitle": "ステータス",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
-  },
-  "cropTouchHint": "Pinch to zoom, drag to reposition",
-  "cropMouseHint": "Drag corners to resize, drag inside to move"
+  }
 }

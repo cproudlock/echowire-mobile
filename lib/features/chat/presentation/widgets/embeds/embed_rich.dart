@@ -1,18 +1,20 @@
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_context.dart';
 import 'package:fluxer_app/features/chat/domain/chat_video_source.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_gallery_media.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_shared.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_youtube.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/media/chat_inline_video_player.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_markdown.dart';
 import 'package:fluxer_app/features/chat/utils/embed_gallery_utils.dart';
 import 'package:fluxer_app/features/chat/utils/embed_media_viewer_utils.dart';
+import 'package:fluxer_app/features/chat/utils/embed_youtube_utils.dart';
 import 'package:fluxer_app/features/chat/utils/media_dimension_utils.dart';
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_markdown/fluxer_markdown.dart';
 
 /// A rich embed card
@@ -49,8 +51,21 @@ class EmbedRich extends StatelessWidget {
     final ChatVideoSource? videoSource = embed.video != null
         ? ChatVideoSource.fromEmbed(embed)
         : null;
-    final bool hasVideo = videoSource != null && videoSource.hasPlayableContent;
-    final ChatFullscreenVideoLaunchContext? videoLaunchContext = hasVideo
+    final bool isYouTube = isYouTubeEmbed(embed);
+    final ChatFullscreenVideoLaunchContext? youtubeLaunchContext =
+        canRenderYouTubeEmbed(embed)
+        ? ChatFullscreenVideoLaunchContext.fromYouTubeEmbed(
+            embed: embed,
+            embedIndex: embedIndex,
+            actionScope: videoActionScope,
+          )
+        : null;
+    final bool hasYouTubePlayer = youtubeLaunchContext != null;
+    final bool hasVideo =
+        hasYouTubePlayer ||
+        (videoSource != null && videoSource.hasPlayableContent && !isYouTube);
+    final ChatFullscreenVideoLaunchContext? videoLaunchContext =
+        hasVideo && !hasYouTubePlayer
         ? ChatFullscreenVideoLaunchContext.fromEmbed(
             embed: embed,
             embedIndex: embedIndex,
@@ -107,7 +122,7 @@ class EmbedRich extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 4),
                       child: EmbedTitle(title: embed.title!, url: embed.url),
                     ),
-                  if (embed.description != null)
+                  if (embed.description != null && !isYouTube)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 6),
                       child: MessageMarkdown(
@@ -128,7 +143,16 @@ class EmbedRich extends StatelessWidget {
                         spoilerSyncController: spoilerSyncController,
                       ),
                     ),
-                  if (hasVideo)
+                  if (youtubeLaunchContext != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4, bottom: 4),
+                      child: EmbedYouTube(
+                        embed: embed,
+                        launchContext: youtubeLaunchContext,
+                        dimensionSize: dimensionSize,
+                      ),
+                    )
+                  else if (hasVideo)
                     Padding(
                       padding: const EdgeInsets.only(top: 4, bottom: 4),
                       child: ClipRRect(
@@ -195,10 +219,14 @@ class EmbedRich extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(4),
                   child: CachedNetworkImage(
-                    imageUrl: embed.thumbnail!.proxyUrl ?? embed.thumbnail!.url,
+                    imageUrl: embedMediaEffectiveUrl(embed.thumbnail!),
                     width: 72,
                     height: 72,
+                    memCacheWidth: (72 * MediaQuery.devicePixelRatioOf(context))
+                        .round(),
                     fit: BoxFit.cover,
+                    fadeInDuration: Duration.zero,
+                    fadeOutDuration: Duration.zero,
                     errorBuilder: (_, e, s) => const SizedBox.shrink(),
                   ),
                 ),
@@ -342,31 +370,54 @@ class _EmbedMediaImage extends StatelessWidget {
       width: media.width,
       height: media.height,
     );
+    final double dpr = MediaQuery.devicePixelRatioOf(context);
     final Widget image;
     if (displaySize != null) {
+      final ({int? width, int? height}) cache = coverDecodeCacheSize(
+        cellWidth: displaySize.width,
+        cellHeight: displaySize.height,
+        devicePixelRatio: dpr,
+        sourceWidth: media.width,
+        sourceHeight: media.height,
+      );
       image = ClipRRect(
         borderRadius: BorderRadius.circular(4),
         child: SizedBox(
           width: displaySize.width,
           height: displaySize.height,
           child: CachedNetworkImage(
-            imageUrl: media.proxyUrl ?? media.url,
+            imageUrl: embedMediaEffectiveUrl(media),
             width: displaySize.width,
             height: displaySize.height,
+            memCacheWidth: cache.width,
+            memCacheHeight: cache.height,
             fit: BoxFit.cover,
+            fadeInDuration: Duration.zero,
+            fadeOutDuration: Duration.zero,
             errorBuilder: (_, e, s) => const SizedBox.shrink(),
           ),
         ),
       );
     } else {
+      final ({int? width, int? height}) cache = containDecodeCacheSize(
+        cellWidth: dimensions.maxWidth,
+        cellHeight: kEmbedMediaFallbackHeight,
+        devicePixelRatio: dpr,
+        sourceWidth: media.width,
+        sourceHeight: media.height,
+      );
       image = ClipRRect(
         borderRadius: BorderRadius.circular(4),
         child: SizedBox(
           width: dimensions.maxWidth,
           height: kEmbedMediaFallbackHeight,
           child: CachedNetworkImage(
-            imageUrl: media.proxyUrl ?? media.url,
+            imageUrl: embedMediaEffectiveUrl(media),
             fit: BoxFit.contain,
+            memCacheWidth: cache.width,
+            memCacheHeight: cache.height,
+            fadeInDuration: Duration.zero,
+            fadeOutDuration: Duration.zero,
             errorBuilder: (_, e, s) => const SizedBox.shrink(),
           ),
         ),

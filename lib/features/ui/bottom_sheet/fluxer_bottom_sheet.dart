@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/providers/obscuring_overlay_tracker_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_color_theme.dart';
@@ -13,6 +12,7 @@ import 'package:fluxer_app/features/ui/overlay/fluxer_overlay_back_handler.dart'
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_tappable.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 // ---------------------------------------------------------------------------
@@ -78,6 +78,25 @@ class FluxerBottomSheet {
       return resolved;
     }
     return resolved.copyWith(bottom: resolved.bottom + bottom);
+  }
+
+  static double systemBottomInsetOf(BuildContext context) {
+    return _fluxerSystemBottomInset(MediaQuery.of(context));
+  }
+
+  static double systemEndInsetOf(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
+    if (isRtl) {
+      return math.max(
+        mediaQuery.viewPadding.left,
+        math.max(mediaQuery.padding.left, mediaQuery.systemGestureInsets.left),
+      );
+    }
+    return math.max(
+      mediaQuery.viewPadding.right,
+      math.max(mediaQuery.padding.right, mediaQuery.systemGestureInsets.right),
+    );
   }
 
   static Future<T?> _showWithOverlayTracking<T>(
@@ -178,21 +197,15 @@ class FluxerBottomSheet {
                     ),
                   ],
                   Flexible(
-                    child: isMenuVariant
-                        ? FluxerBottomSheetScope(
-                            bottomScrollPadding: bottomPadding,
-                            child: _FluxerBottomSheetInsetChild(
-                              bottomPadding: 0,
-                              child: Builder(
-                                builder: (scopedContext) =>
-                                    builder(scopedContext, close),
-                              ),
-                            ),
-                          )
-                        : _FluxerBottomSheetInsetChild(
-                            bottomPadding: bottomPadding,
-                            child: builder(sheetContext, close),
-                          ),
+                    child: _FluxerBottomSheetInsetChild(
+                      bottomPadding: bottomPadding,
+                      child: isMenuVariant
+                          ? Builder(
+                              builder: (scopedContext) =>
+                                  builder(scopedContext, close),
+                            )
+                          : builder(sheetContext, close),
+                    ),
                   ),
                 ],
               ),
@@ -740,13 +753,7 @@ class _FluxerBottomSheetDragHandleState
       return;
     }
     final FluxerMotionTheme motion = context.motion;
-    unawaited(
-      controller.animateTo(
-        target,
-        duration: motion.normal,
-        curve: motion.curve,
-      ),
-    );
+    controller.animateTo(target, duration: motion.normal, curve: motion.curve);
   }
 
   @override

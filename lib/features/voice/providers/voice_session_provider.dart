@@ -6,9 +6,9 @@ import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/audio/enums/fluxer_sfx_clip.dart';
 import 'package:fluxer_app/core/permissions/channel_permission_cache_provider.dart';
-import 'package:fluxer_app/core/permissions/channel_permission_reads.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
 import 'package:fluxer_app/core/platform/fluxer_platform.dart';
+import 'package:fluxer_app/core/providers/app_ui_lifecycle_provider.dart';
 import 'package:fluxer_app/core/providers/fluxer_sfx_provider.dart';
 import 'package:fluxer_app/core/providers/gateway_connection_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
@@ -27,6 +27,9 @@ import 'package:fluxer_app/features/voice/providers/local_voice_state_provider.d
 import 'package:fluxer_app/features/voice/providers/screen_share_capability_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_call_display_preferences_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_call_layout_provider.dart';
+import 'package:fluxer_app/features/voice/providers/voice_channel_permissions_provider.dart';
+import 'package:fluxer_app/features/voice/providers/voice_join_eligibility_provider.dart';
+import 'package:fluxer_app/features/voice/providers/voice_priority_speaker_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_screen_share_watch_tile_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
 import 'package:fluxer_app/features/voice/services/voice_settings_applicator.dart';
@@ -36,6 +39,7 @@ import 'package:fluxer_app/features/voice/utils/microphone_permission.dart';
 import 'package:fluxer_app/features/voice/utils/voice_audio_route_recovery.dart';
 import 'package:fluxer_app/features/voice/utils/voice_camera_platform.dart';
 import 'package:fluxer_app/features/voice/utils/voice_channel_join_guard.dart';
+import 'package:fluxer_app/features/voice/utils/voice_channel_permissions.dart';
 import 'package:fluxer_app/features/voice/utils/voice_connection_voice_state.dart';
 import 'package:fluxer_app/features/voice/utils/voice_effective_audio_state.dart';
 import 'package:fluxer_app/features/voice/utils/voice_participant_volume_utils.dart';
@@ -101,6 +105,7 @@ class VoiceSession extends _$VoiceSession {
   bool _intentionalLiveKitTeardown = false;
   ChannelE2eeStatus? _lastLoggedE2eeChannelStatus;
   Future<void>? _connectLiveKitInFlight;
+  Future<void>? _leaveVoiceInFlight;
   Timer? _deferredServerDisconnectTimer;
   String? _pendingServerDisconnectConnectionId;
   int? _boundRoomAttemptId;
@@ -112,6 +117,7 @@ class VoiceSession extends _$VoiceSession {
   Set<String>? _lastKnownInputDeviceIds;
   Set<String>? _pendingRecoveryInputIds;
   bool _isRecoveringAudioRoute = false;
+  VoiceChannelPermissions? _channelPermissions;
 
   @override
   VoiceSessionState build() {
@@ -462,38 +468,24 @@ class VoiceSession extends _$VoiceSession {
       );
       return false;
     }
-    if (guildId != null) {
-      int? permissionBits = ref
-          .read(channelPermissionCacheProvider.notifier)
-          .getChannelBits(channelId);
-      if (permissionBits == null) {
-        await ref
-            .read(channelPermissionCacheProvider.notifier)
-            .rebuildChannel(channelId);
-        if (!ref.mounted) {
-          return false;
-        }
-        permissionBits = ref
-            .read(channelPermissionCacheProvider.notifier)
-            .getChannelBits(channelId);
-      }
-      final int localConnectBits = await readLocalGuildChannelPermissionBitsRef(
-        ref: ref,
-        channelId: channelId,
+    final bool isGuildVoiceJoin = guildId != null && guildId.isNotEmpty;
+    final VoiceJoinEligibility eligibility = isGuildVoiceJoin
+        ? await readVoiceJoinEligibility(ref, channelId)
+        : await readPrivateVoiceConnectPreflight(ref, channelId);
+    if (!ref.mounted) {
+      return false;
+    }
+    if (!eligibility.canJoin) {
+      talker.warning(
+        '[Voice] Join aborted: not eligible to join '
+        '(channelId=$channelId, guildId=$guildId).',
       );
-      if (!ref.mounted) {
-        return false;
-      }
-      if (!hasPermission(localConnectBits, Permission.connect)) {
-        talker.warning(
-          '[Voice] Join aborted: missing Connect permission '
-          '(channelId=$channelId, guildId=$guildId).',
-        );
-        state = state.copyWith(
-          errorMessage: kVoiceSessionErrorNoConnectPermission,
-        );
-        return false;
-      }
+      state = state.copyWith(
+        errorMessage: isGuildVoiceJoin
+            ? kVoiceSessionErrorNoConnectPermission
+            : kVoiceSessionErrorDirectCallNotEligible,
+      );
+      return false;
     }
     final DateTime now = DateTime.now();
     if (!forceJoin &&
@@ -1211,6 +1203,25 @@ class VoiceSession extends _$VoiceSession {
   }
 
   Future<void> leaveVoice({bool endCall = true}) async {
+    if (_leaveVoiceInFlight != null) {
+      await _leaveVoiceInFlight;
+      return;
+    }
+    final Completer<void> leaveCompleter = Completer<void>();
+    _leaveVoiceInFlight = leaveCompleter.future;
+    try {
+      await _leaveVoiceImpl(endCall: endCall);
+    } finally {
+      if (!leaveCompleter.isCompleted) {
+        leaveCompleter.complete();
+      }
+      _leaveVoiceInFlight = null;
+      _intentionalLiveKitTeardown = false;
+    }
+  }
+
+  Future<void> _leaveVoiceImpl({required bool endCall}) async {
+    _intentionalLiveKitTeardown = true;
     _cancelConnectWatchdog();
     _cancelLiveKitConnectWatchdog();
     _cancelDeferredServerDisconnect();
@@ -1225,6 +1236,8 @@ class VoiceSession extends _$VoiceSession {
     ref.read(voiceScreenShareWatchTileProvider.notifier).setActiveTileId(null);
     ref.read(voiceCallLayoutProvider.notifier).reset();
     ref.read(voiceCallDisplayPreferencesProvider.notifier).reset();
+    ref.read(voicePrioritySpeakerProvider.notifier).resetPrioritySpeakerState();
+    _channelPermissions = null;
     await disableAndroidScreenShareBackground();
     final String? channelId = state.channelId;
     final String? guildId = state.guildId;
@@ -1237,6 +1250,9 @@ class VoiceSession extends _$VoiceSession {
     _outboundRingRecipients = null;
     _lastLoggedE2eeChannelStatus = null;
     _resetPendingSelfAudioFlags();
+    while (_connectLiveKitInFlight != null) {
+      await _connectLiveKitInFlight;
+    }
     if (channelId != null) {
       _clearOutgoingCallInitiator(channelId);
     }
@@ -1279,6 +1295,7 @@ class VoiceSession extends _$VoiceSession {
   }
 
   Future<void> _disconnectAndDisposeRoom(Room room, {String? reason}) async {
+    final bool teardownAlreadyArmed = _intentionalLiveKitTeardown;
     _intentionalLiveKitTeardown = true;
     final String reasonSuffix = reason == null ? '' : ' after $reason';
     try {
@@ -1291,7 +1308,9 @@ class VoiceSession extends _$VoiceSession {
       } on Object catch (e) {
         talker.warning('[Voice] failed to dispose room$reasonSuffix: $e');
       }
-      _intentionalLiveKitTeardown = false;
+      if (!teardownAlreadyArmed) {
+        _intentionalLiveKitTeardown = false;
+      }
     }
   }
 
@@ -1310,13 +1329,15 @@ class VoiceSession extends _$VoiceSession {
     if (roomToDisconnect == null) {
       return;
     }
-    final LocalParticipant? localParticipant =
-        roomToDisconnect.localParticipant;
-    if (localParticipant != null) {
-      try {
-        await localParticipant.setMicrophoneEnabled(false);
-      } on Object catch (error) {
-        talker.debug('[Voice] failed to disable mic on disconnect: $error');
+    if (!_intentionalLiveKitTeardown) {
+      final LocalParticipant? localParticipant =
+          roomToDisconnect.localParticipant;
+      if (localParticipant != null) {
+        try {
+          await localParticipant.setMicrophoneEnabled(false);
+        } on Object catch (error) {
+          talker.debug('[Voice] failed to disable mic on disconnect: $error');
+        }
       }
     }
     if (!skipGatewayDisconnect) {
@@ -2026,6 +2047,7 @@ class VoiceSession extends _$VoiceSession {
       activeConnectionId: connectionId,
       clearError: true,
     );
+    _refreshChannelPermissionsSnapshot();
     SchedulerBinding.instance.addPostFrameCallback((_) {
       unawaited(
         playFluxerSoundEffect(
@@ -2112,27 +2134,21 @@ class VoiceSession extends _$VoiceSession {
 
     _isRecoveringAudioRoute = true;
     try {
-      if (inputChanged) {
-        await _runAudioRouteRecoveryStep('setEngineAvailability', () {
-          // LiveKit CallKit audio ownership APIs are marked @experimental.
-          // ignore: experimental_member_use
-          return AudioManager.instance.setEngineAvailability(
-            // ignore: experimental_member_use
-            AudioEngineAvailability.defaultAvailability,
-          );
-        });
-      }
       await _runAudioRouteRecoveryStep(
         'applySpeakerOutput',
         () => applicator.applySpeakerOutput(settings: settings),
       );
-      if (inputChanged && _shouldPublishMicrophone()) {
+      if (inputChanged &&
+          shouldRefreshMicrophoneOnAudioRouteChange(
+            isIos: Platform.isIOS,
+            isForeground: ref.read(appUiForegroundProvider),
+          ) &&
+          _shouldPublishMicrophone()) {
         await _runAudioRouteRecoveryStep(
           'refreshMicrophone',
-          () => applicator.refreshMicrophone(
+          () => applicator.refreshMicrophoneAfterRouteChange(
             room: room!,
             settings: settings,
-            microphoneEnabled: true,
           ),
         );
       }
@@ -2476,7 +2492,30 @@ class VoiceSession extends _$VoiceSession {
     if (!state.isConnected || state.channelId == null) {
       return;
     }
+    _refreshChannelPermissionsSnapshot();
     await _reconcileLocalAudioPublish(reason: 'permission_cache_changed');
+  }
+
+  void _refreshChannelPermissionsSnapshot() {
+    final String? channelId = state.channelId;
+    if (channelId == null) {
+      return;
+    }
+    final VoiceChannelPermissions? next = ref.read(
+      voiceChannelPermissionsProvider(channelId),
+    );
+    if (next == null) {
+      return;
+    }
+    final VoiceChannelPermissions? previous = _channelPermissions;
+    _channelPermissions = next;
+    if (previous != null &&
+        previous.canPrioritySpeaker != next.canPrioritySpeaker) {
+      talker.debug(
+        '[Voice] canPrioritySpeaker changed: ${previous.canPrioritySpeaker} -> '
+        '${next.canPrioritySpeaker} (channelId=$channelId)',
+      );
+    }
   }
 
   void _bindVoiceRoomEvents({

@@ -2,24 +2,28 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/providers/app_ui_lifecycle_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/favorite_meme.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/media/fluxer_animated_image.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/picker_search_input.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/saved_media/saved_media_form_content.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/favorite_media_provider.dart';
 import 'package:fluxer_app/features/chat/utils/gif_media_selection.dart';
 import 'package:fluxer_app/features/chat/utils/gif_preview_playback_policy.dart';
 import 'package:fluxer_app/features/chat/utils/gif_preview_player_config.dart';
 import 'package:fluxer_app/features/chat/utils/media_dimension_utils.dart';
+import 'package:fluxer_app/features/chat/utils/media_kit_player_lifecycle.dart';
 import 'package:fluxer_app/features/chat/utils/media_proxy_url.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
 import 'package:fluxer_app/features/ui/button/fluxer_button.dart';
 import 'package:fluxer_app/features/ui/spinner/fluxer_loading_spinner.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
+import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/gestures/expandable_sheet_gestures.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:media_kit_video/media_kit_video.dart' as mkv;
@@ -348,91 +352,44 @@ class _FavoriteMediaEditSheet extends ConsumerStatefulWidget {
 
 class _FavoriteMediaEditSheetState
     extends ConsumerState<_FavoriteMediaEditSheet> {
-  late final TextEditingController _nameController;
-  late final TextEditingController _altTextController;
-  late final TextEditingController _tagsController;
   String? _errorText;
 
-  @override
-  void initState() {
-    super.initState();
-    _nameController = TextEditingController(text: widget.meme.name);
-    _altTextController = TextEditingController(text: widget.meme.altText ?? '');
-    _tagsController = TextEditingController(text: widget.meme.tags.join(', '));
-  }
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _altTextController.dispose();
-    _tagsController.dispose();
-    super.dispose();
-  }
-
-  Future<void> _save() async {
+  Future<void> _save({
+    required String name,
+    required String altText,
+    required List<String> tags,
+  }) async {
     setState(() => _errorText = null);
     try {
       await ref
           .read(favoriteMediaRepositoryProvider)
           .updateFavoriteMeme(
             meme: widget.meme,
-            name: _nameController.text,
-            altText: _altTextController.text,
-            tags: _parseTags(_tagsController.text),
+            name: name,
+            altText: altText,
+            tags: tags,
           );
       if (mounted) {
         widget.close();
       }
     } on Object {
       if (mounted) {
-        setState(() => _errorText = 'Could not update saved media.');
+        setState(
+          () =>
+              _errorText = FluxerLocalizations.of(context).savedMediaSaveError,
+        );
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final layout = context.layout;
-    final colors = context.colors;
-
-    return FluxerBottomSheetContent(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _SavedMediaTextField(
-            controller: _nameController,
-            label: 'Name',
-            textInputAction: TextInputAction.next,
-          ),
-          SizedBox(height: layout.s3),
-          _SavedMediaTextField(
-            controller: _altTextController,
-            label: 'Alt text',
-            maxLines: 2,
-            textInputAction: TextInputAction.next,
-          ),
-          SizedBox(height: layout.s3),
-          _SavedMediaTextField(
-            controller: _tagsController,
-            label: 'Tags',
-            hintText: 'funny, reaction, work',
-            textInputAction: TextInputAction.done,
-          ),
-          if (_errorText != null) ...[
-            SizedBox(height: layout.s3),
-            Text(
-              _errorText!,
-              style: context.textStyles.bodySmall.copyWith(
-                color: colors.accentDanger,
-                fontSize: 13,
-              ),
-            ),
-          ],
-          SizedBox(height: layout.s4),
-          FluxerButton.primary(label: 'Save', onPressedAsync: _save),
-        ],
-      ),
+    return SavedMediaFormContent(
+      initialName: widget.meme.name,
+      initialAltText: widget.meme.altText ?? '',
+      initialTags: widget.meme.tags,
+      errorText: _errorText,
+      onSave: _save,
     );
   }
 }
@@ -504,50 +461,6 @@ class _FavoriteMediaDeleteSheetState
     );
   }
 }
-
-class _SavedMediaTextField extends StatelessWidget {
-  const _SavedMediaTextField({
-    required this.controller,
-    required this.label,
-    this.hintText,
-    this.maxLines = 1,
-    this.textInputAction,
-  });
-
-  final TextEditingController controller;
-  final String label;
-  final String? hintText;
-  final int maxLines;
-  final TextInputAction? textInputAction;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-    return TextField(
-      controller: controller,
-      maxLines: maxLines,
-      textInputAction: textInputAction,
-      style: context.textStyles.inputText.copyWith(color: colors.textPrimary),
-      decoration: InputDecoration(
-        labelText: label,
-        hintText: hintText,
-        filled: true,
-        fillColor: colors.backgroundTertiary,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: colors.backgroundModifierAccent),
-        ),
-      ),
-    );
-  }
-}
-
-List<String> _parseTags(String value) => value
-    .split(',')
-    .map((tag) => tag.trim())
-    .where((tag) => tag.isNotEmpty)
-    .toSet()
-    .toList(growable: false);
 
 class _FavoriteMediaMasonryGrid extends StatefulWidget {
   const _FavoriteMediaMasonryGrid({
@@ -1050,7 +963,7 @@ class _FavoriteMediaPreview extends StatelessWidget {
   );
 }
 
-class _FavoriteMediaVideoPreview extends StatefulWidget {
+class _FavoriteMediaVideoPreview extends ConsumerStatefulWidget {
   const _FavoriteMediaVideoPreview({
     required this.url,
     required this.isVisible,
@@ -1062,12 +975,12 @@ class _FavoriteMediaVideoPreview extends StatefulWidget {
   final bool allowPlayback;
 
   @override
-  State<_FavoriteMediaVideoPreview> createState() =>
+  ConsumerState<_FavoriteMediaVideoPreview> createState() =>
       _FavoriteMediaVideoPreviewState();
 }
 
 class _FavoriteMediaVideoPreviewState
-    extends State<_FavoriteMediaVideoPreview> {
+    extends ConsumerState<_FavoriteMediaVideoPreview> {
   Player? _player;
   mkv.VideoController? _controller;
   String? _openedUrl;
@@ -1080,10 +993,16 @@ class _FavoriteMediaVideoPreviewState
   }
 
   @override
+  void dispose() {
+    unawaited(_disposePlayer());
+    super.dispose();
+  }
+
+  @override
   void didUpdateWidget(_FavoriteMediaVideoPreview oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.url != widget.url) {
-      _disposePlayer();
+      unawaited(_disposePlayer());
       _failed = false;
     }
     if (oldWidget.url != widget.url ||
@@ -1091,12 +1010,6 @@ class _FavoriteMediaVideoPreviewState
         oldWidget.allowPlayback != widget.allowPlayback) {
       _syncPlayback();
     }
-  }
-
-  @override
-  void dispose() {
-    _disposePlayer();
-    super.dispose();
   }
 
   void _syncPlayback() {
@@ -1118,7 +1031,9 @@ class _FavoriteMediaVideoPreviewState
   }
 
   void _openVideoPlayer(String url) {
-    final player = Player(configuration: gifPreviewPlayerConfiguration);
+    final player = MediaKitPlayerLifecycleCoordinator.instance.createPlayer(
+      configuration: gifPreviewPlayerConfiguration,
+    );
     _player = player;
     _controller = mkv.VideoController(
       player,
@@ -1150,18 +1065,23 @@ class _FavoriteMediaVideoPreviewState
     }
   }
 
-  void _disposePlayer() {
+  Future<void> _disposePlayer() async {
     final player = _player;
     _player = null;
     _controller = null;
     _openedUrl = null;
     if (player != null) {
-      unawaited(player.dispose());
+      await MediaKitPlayerLifecycleCoordinator.instance.stopAndDispose(player);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<bool>(appUiForegroundProvider, (bool? previous, bool next) {
+      if (next) {
+        _syncPlayback();
+      }
+    });
     if (_failed) {
       return const _PreviewPlaceholder();
     }

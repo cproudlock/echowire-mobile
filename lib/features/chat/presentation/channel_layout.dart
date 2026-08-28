@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
@@ -15,6 +14,12 @@ import 'package:fluxer_app/features/chat/providers/channel/channel_details_provi
 import 'package:fluxer_app/features/chat/providers/channel/channel_header_search_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/bottom_input_slot_provider.dart';
 import 'package:fluxer_app/features/chat/utils/bottom_input_slot_layout.dart';
+import 'package:fluxer_app/features/guilds/domain/guild.dart';
+import 'package:fluxer_app/features/guilds/presentation/widgets/guild_unavailable_screen.dart';
+import 'package:fluxer_app/features/guilds/presentation/widgets/staff_only_guild_nagbar.dart';
+import 'package:fluxer_app/features/guilds/providers/guild_availability_provider.dart';
+import 'package:fluxer_app/features/guilds/providers/guild_providers.dart';
+import 'package:fluxer_app/features/guilds/utils/guild_outage_availability.dart';
 import 'package:fluxer_app/features/mature_content/presentation/widgets/mature_content_channel_gate.dart';
 import 'package:fluxer_app/features/mature_content/providers/mature_content_agreements_provider.dart';
 import 'package:fluxer_app/features/members/presentation/widgets/channel_members.dart';
@@ -24,6 +29,7 @@ import 'package:fluxer_app/features/voice/presentation/voice_channel_page_view.d
 import 'package:fluxer_app/features/voice/providers/voice_call_overlay_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 /// Wrapper screen for the chat area content.
 /// Takes guildId and channelId from go_router params.
@@ -73,6 +79,37 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
   @override
   Widget build(BuildContext context) {
     final bool isWide = isWideLayout(context);
+    final Set<String> trackedUnavailableGuildIds = ref.watch(
+      guildAvailabilityProvider,
+    );
+    final AsyncValue<Guild?> guildAsync = ref.watch(
+      guildByIdProvider(widget.guildId),
+    );
+    final Guild? guild = guildAsync.value;
+    final bool guildOutageUnavailable = isGuildOutageUnavailable(
+      guildId: widget.guildId,
+      trackedUnavailableGuildIds: trackedUnavailableGuildIds,
+      guild: guild,
+    );
+    final bool guildNotFound = isGuildConfirmedMissingForRoute(
+      guildAsync: guildAsync,
+      guildId: widget.guildId,
+      trackedUnavailableGuildIds: trackedUnavailableGuildIds,
+    );
+    if (guildAsync.isLoading) {
+      return MobileChatBackScope(
+        child: GuildRouteLoadingShell(channelIdForBackUnread: widget.channelId),
+      );
+    }
+    if (guildOutageUnavailable || guildNotFound) {
+      return MobileChatBackScope(
+        child: guildOutageUnavailable
+            ? GuildOutageUnavailableScreen(
+                channelIdForBackUnread: widget.channelId,
+              )
+            : const GuildNotFoundScreen(),
+      );
+    }
     final Channel? channel = ref
         .watch(channelByIdProvider(widget.channelId))
         .value;
@@ -185,6 +222,8 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
                           ChannelLayout._minWidthForMemberList;
                   return Column(
                     children: [
+                      if (isGuildStaffOnlyAccessible(guild))
+                        StaffOnlyGuildNagbar(guildId: widget.guildId),
                       header,
                       Expanded(
                         child: Row(

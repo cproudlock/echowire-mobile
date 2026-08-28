@@ -1,3 +1,7 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
@@ -6,6 +10,12 @@ import 'package:fluxer_app/core/providers/gateway_connection_provider.dart';
 import 'package:fluxer_app/features/profile/providers/user_settings_status_provider.dart';
 import 'package:fluxer_app/l10n/app_locale_provider.dart';
 import 'package:fluxer_dart/gateway.dart';
+import 'package:fluxer_app/core/audio/app_media_audio_session.dart';
+import 'package:fluxer_app/core/bootstrap/image_cache_config.dart';
+import 'package:fluxer_app/core/providers/well_known_provider.dart';
+import 'package:fluxer_app/features/chat/utils/media_kit_player_lifecycle.dart';
+import 'package:fluxer_app/l10n/app_locale_provider.dart';
+import 'package:fluxer_app/shared/external_links/external_url_launcher.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_ui_lifecycle_provider.g.dart';
@@ -13,6 +23,13 @@ part 'app_ui_lifecycle_provider.g.dart';
 bool isAppUiForegroundLifecycle(AppLifecycleState state) {
   return state == AppLifecycleState.resumed ||
       state == AppLifecycleState.inactive;
+}
+
+bool shouldCloseInAppBrowserOnLifecycleResume({
+  required bool wasForeground,
+  required AppLifecycleState state,
+}) {
+  return !wasForeground && isAppUiForegroundLifecycle(state);
 }
 
 /// True while the app is visible (resumed or briefly inactive)
@@ -81,6 +98,25 @@ class _AppUiLifecycleObserverState extends ConsumerState<AppUiLifecycleObserver>
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.hidden) {
       clearFluxerImageCache();
+      unawaited(MediaKitPlayerLifecycleCoordinator.instance.pauseAll());
+    }
+    final bool wasForeground = ref.read(appUiForegroundProvider);
+    final bool isForeground = isAppUiForegroundLifecycle(state);
+    if (shouldCloseInAppBrowserOnLifecycleResume(
+      wasForeground: wasForeground,
+      state: state,
+    )) {
+      unawaited(closeInAppBrowserIfOpen());
+    }
+    ref.read(appUiForegroundProvider.notifier).setResumed(isForeground);
+    if (!wasForeground && isForeground) {
+      unawaited(ref.read(wellKnownProvider.notifier).refresh());
+    }
+    if (!kIsWeb &&
+        (Platform.isIOS || Platform.isAndroid) &&
+        isForeground &&
+        !wasForeground) {
+      unawaited(prepareAppMediaAudioSession());
     }
     ref
         .read(appUiForegroundProvider.notifier)

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 class AuthViewport extends StatelessWidget {
   const AuthViewport({

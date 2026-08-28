@@ -425,6 +425,7 @@ class UserSettingsViewState {
       type: GuildMemberMediaType.banner,
       hash: hash,
       size: MediaProxySizes.profileBannerModal,
+      animated: true,
     );
   }
 
@@ -900,6 +901,8 @@ class UserSettingsViewModel extends _$UserSettingsViewModel {
         animateStickers: _parseStickerAnimation(data['animate_stickers']),
         defaultHideMutedChannels:
             data['default_hide_muted_channels'] as bool? ?? false,
+        messageDisplayCompact:
+            data['message_display_compact'] as bool? ?? false,
       );
     });
     ref.onDispose(subscription.cancel);
@@ -1000,6 +1003,10 @@ class UserSettingsViewModel extends _$UserSettingsViewModel {
 
   void updateAccentColor(int value) {
     state = state.copyWith(editedAccentColor: value);
+  }
+
+  void resetAccentColor() {
+    state = state.copyWith(editedAccentColor: null);
   }
 
   void setPremiumBadgeHidden({required bool value}) {
@@ -1137,6 +1144,10 @@ class UserSettingsViewModel extends _$UserSettingsViewModel {
 
   void updateGuildAccentColor(int value) {
     state = state.copyWith(editedGuildAccentColor: value);
+  }
+
+  void resetGuildAccentColor() {
+    state = state.copyWith(editedGuildAccentColor: null);
   }
 
   void setGuildAvatar(String base64) {
@@ -1449,6 +1460,21 @@ class UserSettingsViewModel extends _$UserSettingsViewModel {
 
   void toggleCompact() {
     state = state.copyWith(messageDisplayCompact: !state.messageDisplayCompact);
+  }
+
+  Future<void> setMessageDisplayCompact({required bool value}) async {
+    final bool previous = state.messageDisplayCompact;
+    state = state.copyWith(messageDisplayCompact: value);
+    try {
+      final client = ref.read(fluxerClientProvider);
+      await client.users.updateCurrentUserSettings(
+        body: UserSettingsUpdateRequest(messageDisplayCompact: value),
+      );
+    } on Object catch (e, st) {
+      state = state.copyWith(messageDisplayCompact: previous);
+      talker.error('Failed to update messageDisplayCompact', e, st);
+      rethrow;
+    }
   }
 
   bool isTrustedDomain(String hostname) {

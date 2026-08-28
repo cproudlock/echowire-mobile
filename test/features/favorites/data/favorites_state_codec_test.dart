@@ -2,8 +2,9 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
+import 'package:fluxer_app/core/synced_preferences/engine/synced_preference_field.dart';
+import 'package:fluxer_app/core/synced_preferences/engine/synced_preferences_wire_codec.dart';
 import 'package:fluxer_app/core/synced_preferences/favorites_state_codec.dart';
-import 'package:fluxer_app/core/synced_preferences/synced_preferences_wire_codec.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -147,6 +148,60 @@ void main() {
       expect(merged.muted, isTrue);
     });
 
+    test('mergeForMigration drops categories deleted on another client', () {
+      const local = FavoritesLocalState(
+        channels: [],
+        categories: [
+          db.FavoriteCategory(id: 'cat-1', name: 'Work', position: 0),
+        ],
+        collapsedCategoryIds: ['cat-1'],
+        hideMutedChannels: false,
+        muted: false,
+      );
+      const syncedLocal = FavoritesLocalState(
+        channels: [],
+        categories: [
+          db.FavoriteCategory(id: 'cat-1', name: 'Work', position: 0),
+        ],
+        collapsedCategoryIds: ['cat-1'],
+        hideMutedChannels: false,
+        muted: false,
+      );
+      const server = FavoritesLocalState.empty;
+
+      final merged = FavoritesStateCodec.mergeForMigration(
+        local: local,
+        server: server,
+        syncedLocal: syncedLocal,
+      );
+
+      expect(merged.categories, isEmpty);
+      expect(merged.collapsedCategoryIds, isEmpty);
+    });
+
+    test('mergeForMigration preserves unsynced local categories', () {
+      const local = FavoritesLocalState(
+        channels: [],
+        categories: [
+          db.FavoriteCategory(id: 'cat-new', name: 'New', position: 0),
+        ],
+        collapsedCategoryIds: ['cat-new'],
+        hideMutedChannels: false,
+        muted: false,
+      );
+      const syncedLocal = FavoritesLocalState.empty;
+      const server = syncedLocal;
+
+      final merged = FavoritesStateCodec.mergeForMigration(
+        local: local,
+        server: server,
+        syncedLocal: syncedLocal,
+      );
+
+      expect(merged.categories.single.id, 'cat-new');
+      expect(merged.collapsedCategoryIds, ['cat-new']);
+    });
+
     test('decode failure does not masquerade as empty server', () {
       final result = FavoritesStateCodec.decodeFavoritesFromWireResult(
         'not-valid-base64!!!',
@@ -208,6 +263,7 @@ void main() {
         SyncedPreferencesWireCodec.verifyWirePreservesForeignFields(
           before: combined,
           after: updated,
+          replacedFieldNumber: SyncedPreferenceField.favorites.fieldNumber,
         ),
         isTrue,
       );

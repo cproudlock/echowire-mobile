@@ -1,8 +1,8 @@
 enum UserSettingsSection {
   profile,
   securityLogin,
-  // fluxerPlutonium,
-  // giftsAndCodes,
+  fluxerPlutonium,
+  giftsAndCodes,
   privacyDashboard,
   authorizedApps,
   blockedUsers,
@@ -12,7 +12,7 @@ enum UserSettingsSection {
   accessibility,
   chat,
   audioAndVideo,
-  keybinds,
+  shortcuts,
   notifications,
   languageAndTime,
   defaultApps,
@@ -22,4 +22,5 @@ enum UserSettingsSection {
   limitsConfig,
   featureFlags,
   whatsNew,
+  appLicenses,
 }

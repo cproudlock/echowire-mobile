@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/friends/domain/friend.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class UserProfileRelationshipButton extends StatelessWidget {
@@ -14,6 +13,7 @@ class UserProfileRelationshipButton extends StatelessWidget {
     required this.onAcceptRequest,
     required this.onCancelRequest,
     required this.onSendFriendRequest,
+    this.allowFriendRequests = true,
     super.key,
   });
 
@@ -24,6 +24,7 @@ class UserProfileRelationshipButton extends StatelessWidget {
   final VoidCallback onAcceptRequest;
   final VoidCallback onCancelRequest;
   final VoidCallback onSendFriendRequest;
+  final bool allowFriendRequests;
 
   ({PhosphorIconData icon, VoidCallback onTap, String semanticLabel})? _resolve(
     FluxerLocalizations l10n,
@@ -43,21 +44,30 @@ class UserProfileRelationshipButton extends StatelessWidget {
         onTap: onUnblock,
         semanticLabel: l10n.profileUnblockUser,
       ),
-      FriendStatus.pendingIncoming => (
-        icon: PhosphorIconsFill.checkCircle,
-        onTap: onAcceptRequest,
-        semanticLabel: l10n.profileAcceptFriendRequest,
-      ),
-      FriendStatus.pendingOutgoing => (
-        icon: PhosphorIconsFill.clockCounterClockwise,
-        onTap: onCancelRequest,
-        semanticLabel: l10n.profileCancelFriendRequest,
-      ),
-      null => (
-        icon: PhosphorIconsFill.userPlus,
-        onTap: onSendFriendRequest,
-        semanticLabel: l10n.profileSendFriendRequest,
-      ),
+      FriendStatus.pendingIncoming =>
+        allowFriendRequests
+            ? (
+                icon: PhosphorIconsFill.checkCircle,
+                onTap: onAcceptRequest,
+                semanticLabel: l10n.profileAcceptFriendRequest,
+              )
+            : null,
+      FriendStatus.pendingOutgoing =>
+        allowFriendRequests
+            ? (
+                icon: PhosphorIconsFill.clockCounterClockwise,
+                onTap: onCancelRequest,
+                semanticLabel: l10n.profileCancelFriendRequest,
+              )
+            : null,
+      null =>
+        allowFriendRequests
+            ? (
+                icon: PhosphorIconsFill.userPlus,
+                onTap: onSendFriendRequest,
+                semanticLabel: l10n.profileSendFriendRequest,
+              )
+            : null,
     };
   }
 
@@ -68,20 +78,10 @@ class UserProfileRelationshipButton extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    final colors = context.colors;
-    return FluxerTappable(
-      onTap: action.onTap,
+    return FluxerButton.circleAlt(
+      icon: action.icon,
+      onPressed: action.onTap,
       semanticLabel: action.semanticLabel,
-      builder: (context, _) => Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          color: colors.backgroundTertiary,
-          shape: BoxShape.circle,
-        ),
-        alignment: Alignment.center,
-        child: PhosphorIcon(action.icon, size: 20, color: colors.textPrimary),
-      ),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/theme/fluxer_layout_theme.dart';
@@ -9,8 +8,9 @@ import 'package:fluxer_app/core/theme/fluxer_text_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme.dart';
 import 'package:fluxer_app/core/theme/themes/dark.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
-import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+
 import '../../../helpers/test_l10n.dart';
 
 void _noop() {}
@@ -430,7 +430,6 @@ void main() {
                     FluxerBottomSheet.showScrollable(
                       context,
                       initialChildSize: 0.4,
-                      maxChildSize: 0.8,
                       builder: (context, scrollController, close) {
                         return ListView.builder(
                           controller: scrollController,
@@ -922,7 +921,7 @@ void main() {
       expect(mergedBottom, 42);
     });
 
-    testWidgets('menu sheet exposes system inset via scope', (tester) async {
+    testWidgets('menu sheet applies system inset on content', (tester) async {
       const double systemInset = 34;
       double? capturedInset;
 
@@ -962,7 +961,14 @@ void main() {
       await tester.tap(find.text('Open Menu'));
       await tester.pumpAndSettle();
 
-      expect(capturedInset, systemInset);
+      expect(capturedInset, 0);
+
+      final Finder insetChild = find.byWidgetPredicate(
+        (Widget widget) =>
+            widget is Padding &&
+            widget.padding == const EdgeInsets.only(bottom: systemInset),
+      );
+      expect(insetChild, findsOneWidget);
     });
 
     testWidgets('showScrollable uses max of system bottom inset sources', (
@@ -1034,7 +1040,6 @@ void main() {
                           context,
                           maxHeight: maxHeight,
                           maxChildSize: maxChildSize,
-                          initialChildSize: cap,
                           builder: (context, scrollController, close) {
                             return ListView(
                               controller: scrollController,
@@ -1068,10 +1073,7 @@ void main() {
       }
 
       final double maxChildOnlyHeight = await measureSheetHeight();
-      final double bothParamsHeight = await measureSheetHeight(
-        maxHeight: cap,
-        maxChildSize: cap,
-      );
+      final double bothParamsHeight = await measureSheetHeight(maxHeight: cap);
 
       expect(bothParamsHeight, closeTo(maxChildOnlyHeight, 1));
     });

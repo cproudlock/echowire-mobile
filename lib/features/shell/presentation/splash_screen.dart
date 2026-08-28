@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/api/dio_error_message.dart';
 import 'package:fluxer_app/core/constants/external_urls.dart';
 import 'package:fluxer_app/core/providers/active_instance_provider.dart';
 import 'package:fluxer_app/core/providers/app_startup_provider.dart';
@@ -12,15 +12,17 @@ import 'package:fluxer_app/core/theme/color_utils.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/auth/presentation/widgets/instance_domain_icon.dart';
 import 'package:fluxer_app/features/auth/presentation/widgets/offline_account_switcher_link.dart';
+import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/shell/domain/service_status_incident.dart';
 import 'package:fluxer_app/features/shell/presentation/splash_reveal_overlay.dart';
 import 'package:fluxer_app/features/shell/providers/service_status_incident_provider.dart';
 import 'package:fluxer_app/features/shell/utils/splash_quotes.dart';
 import 'package:fluxer_app/features/ui/animation/animation_controller_visibility_extension.dart';
 import 'package:fluxer_app/features/ui/background/starfield_background.dart';
-import 'package:fluxer_app/features/ui/icons/fluxer_brand_logo.dart';
+import 'package:fluxer_app/features/ui/icons/instance_branding_image.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/external_links/external_link_handler.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
@@ -35,6 +37,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   static const double _logoHeight = 85;
   static const Duration _pulseDuration = Duration(milliseconds: 1300);
   static const Duration _statusPageDisplayDelay = Duration(seconds: 5);
+  // Fires late enough that fast startups never fetch, early enough that the
+  // incident text is ready when _statusPageDisplayDelay reveals it.
+  static const Duration _statusPrefetchDelay = Duration(milliseconds: 3500);
   static const Duration _problemsDelay = Duration(seconds: 10);
   static const Duration _footerFadeDuration = Duration(milliseconds: 400);
   static const Color _splashMutedText = Color(0xFF9B94B8);
@@ -44,11 +49,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   late final AnimationController _pulseController;
   late final SplashQuote _selectedQuote;
   Timer? _statusTimer;
+  Timer? _statusPrefetchTimer;
   Timer? _problemsTimer;
   bool _showStatusData = false;
   bool _showProblems = false;
   bool _timersStarted = false;
   bool _exitRevealStarted = false;
+  SplashRevealComplete? _revealComplete;
   final GlobalKey _logoKey = GlobalKey();
   ServiceStatusIncident? _frozenIncident;
   String _frozenDisplayText = '';
@@ -66,8 +73,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
         return;
       }
       ref.read(splashExitAllowedProvider.notifier).reset();
+      final SplashRevealComplete revealComplete = ref.read(
+        splashRevealCompleteProvider.notifier,
+      );
+      _revealComplete = revealComplete;
+      revealComplete.reset();
       final AsyncValue<void> startup = ref.read(appStartupProvider);
       if (startup is AsyncError<dynamic>) {
+        revealComplete.complete();
         return;
       }
       _ensureSplashTimers();
@@ -80,10 +93,20 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   void dispose() {
     _cancelSplashTimers();
     _pulseController.dispose();
+    final SplashRevealComplete? revealComplete = _revealComplete;
+    // dispose runs while the element tree is being finalized, when Riverpod
+    // rejects provider writes, so release the gate on the next frame.
+    if (!_exitRevealStarted && revealComplete != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        revealComplete.complete();
+      });
+    }
     super.dispose();
   }
 
   void _cancelSplashTimers() {
+    _statusPrefetchTimer?.cancel();
+    _statusPrefetchTimer = null;
     _statusTimer?.cancel();
     _statusTimer = null;
     _problemsTimer?.cancel();
@@ -100,6 +123,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
 
   void _allowSplashExit() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) {
+        return;
+      }
       ref.read(splashExitAllowedProvider.notifier).allow();
     });
   }
@@ -117,11 +143,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     if (_exitRevealStarted) {
       return;
     }
+    _revealComplete ??= ref.read(splashRevealCompleteProvider.notifier);
     final AsyncValue<void> startup = ref.read(appStartupProvider);
     if (startup is! AsyncData<void> || !ref.read(gatewayReadyProvider)) {
       return;
     }
     if (!ref.read(authStateProvider)) {
+      _revealComplete?.complete();
       return;
     }
 
@@ -129,8 +157,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     _cancelSplashTimers();
     _pulseController.stop();
 
-    final bool animationsEnabled = !MediaQuery.disableAnimationsOf(context);
-    final Offset? logoCenter = _logoCenterGlobal();
     final Color brand = context.colors.brandPrimary;
     SplashRevealOverlay.show(
       context: context,
@@ -138,8 +164,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
       logoBrandColor: brand,
       logoBrandSymbolColor: ColorUtils.bestContrastColor(brand.toARGB32()),
       logoCenterGlobal:
-          logoCenter ?? MediaQuery.sizeOf(context).center(Offset.zero),
-      animationsEnabled: animationsEnabled,
+          _logoCenterGlobal() ?? MediaQuery.sizeOf(context).center(Offset.zero),
+      useLogoZoomTransition: ref.read(
+        appearancePreferencesProvider.select(
+          (AppearancePreferencesState state) => state.mobileSplashZoomAnimation,
+        ),
+      ),
+      animationsEnabled: !MediaQuery.disableAnimationsOf(context),
+      onComplete: _revealComplete?.complete,
     );
     _allowSplashExit();
     setState(() {});
@@ -170,7 +202,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
       return;
     }
     _timersStarted = true;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    _statusPrefetchTimer = Timer(_statusPrefetchDelay, () {
       if (!mounted) {
         return;
       }
@@ -207,7 +239,12 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
         ? startup
         : null;
     final String statusText = strings.splashStartupFailed(
-      startupError?.error.toString() ?? '',
+      startupError?.error == null
+          ? ''
+          : userFacingErrorMessage(
+              startupError!.error,
+              strings.networkErrorMessage,
+            ),
     );
     final bool isStartupComplete = startup is AsyncData<void>;
     final bool isGatewayReady = ref.watch(gatewayReadyProvider);
@@ -349,7 +386,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                             if (!_exitRevealStarted)
                               KeyedSubtree(
                                 key: _logoKey,
-                                child: FluxerBrandLogo(
+                                child: InstanceBrandMark(
                                   size: _logoHeight,
                                   backgroundColor: context.colors.brandPrimary,
                                 ),

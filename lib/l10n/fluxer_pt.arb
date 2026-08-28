@@ -1234,11 +1234,11 @@
   },
   "addFriendNoUserFound": "Nenhum usuário encontrado com este nome de usuário.",
   "@addFriendNoUserFound": {
-    "description": "Error when no user matches the entered EchoTag."
+    "description": "Error when no user matches the entered username."
   },
   "addFriendInvalidUsername": "Insira um nome de usuário válido (NomeDeUsuário#0000).",
   "@addFriendInvalidUsername": {
-    "description": "Error when the EchoTag format is invalid."
+    "description": "Error when the username format is invalid."
   },
   "addFriendOutgoingSuccess": "Solicitação de amizade enviada",
   "@addFriendOutgoingSuccess": {
@@ -1356,10 +1356,6 @@
   "@addFriendClaimToSend": {
     "description": "Error when an unclaimed account tries to send a friend request."
   },
-  "addFriendSendFailedGeneric": "Não foi possível enviar a solicitação de amizade. Tente novamente.",
-  "@addFriendSendFailedGeneric": {
-    "description": "Generic error when sending a friend request fails."
-  },
   "userTagBot": "BOT",
   "@userTagBot": {
     "description": "Tag label shown next to bot user names."
@@ -1472,7 +1468,7 @@
   "@emojiCategoryFlags": {
     "description": "Flags category."
   },
-  "emojiPlutoniumUpsellText": "Desbloqueie {emojiCount} de {communityCount} com Reverb.",
+  "emojiPlutoniumUpsellText": "Desbloqueie {emojiCount} de {communityCount} com Plutonium.",
   "@emojiPlutoniumUpsellText": {
     "description": "Upsell banner text in emoji picker for non-premium users.",
     "placeholders": {
@@ -1486,11 +1482,11 @@
   },
   "emojiPlutoniumUpsellButton": "Obter Plutonium",
   "@emojiPlutoniumUpsellButton": {
-    "description": "Button label on the Reverb upsell banner."
+    "description": "Button label on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellDismiss": "Não mostrar novamente",
   "@emojiPlutoniumUpsellDismiss": {
-    "description": "Dismiss link on the Reverb upsell banner."
+    "description": "Dismiss link on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 emoji personalizado} other{{count} emojis personalizados}}",
   "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1643,17 +1639,19 @@
   "@crop": {
     "description": "Button to confirm image crop."
   },
+  "cropTouchHint": "Pinch to zoom, drag to reposition",
+  "cropMouseHint": "Drag corners to resize, drag inside to move",
   "changeYourFluxerTag": "Alterar sua FluxerTag",
   "@changeYourFluxerTag": {
-    "description": "Title for the EchoTag change bottom sheet."
+    "description": "Title for the username change bottom sheet."
   },
-  "fluxerTagInputLabel": "EchoTag",
+  "fluxerTagInputLabel": "Nome de usuário",
   "@fluxerTagInputLabel": {
     "description": "Label above the username and discriminator input fields."
   },
   "fluxerTagDescriptionBase": "Nomes de usuário só podem conter letras (a-z, A-Z), números (0-9) e underscores. Nomes de usuário não diferenciam maiúsculas de minúsculas.",
   "@fluxerTagDescriptionBase": {
-    "description": "Base description text on the EchoTag change sheet."
+    "description": "Base description text on the username change sheet."
   },
   "fluxerTagDescriptionVisionary": "Nomes de usuário só podem conter letras (a-z, A-Z), números (0-9) e underscores. Nomes de usuário não diferenciam maiúsculas de minúsculas. Você pode escolher qualquer tag de 4 dígitos disponível de #0000 a #9999.",
   "@fluxerTagDescriptionVisionary": {
@@ -1683,13 +1681,13 @@
   "@discriminatorPremiumTooltip": {
     "description": "Tooltip on disabled discriminator field for non-premium users."
   },
-  "fluxerTagAlreadyTaken": "EchoTag já em uso",
+  "fluxerTagAlreadyTaken": "Nome de usuário já em uso",
   "@fluxerTagAlreadyTaken": {
     "description": "Title for the tag-taken confirmation sheet."
   },
   "fluxerTagAlreadyTakenBody": "A FluxerTag {username}#{discriminator} já está em uso. Continuar irá gerar automaticamente um novo discriminador.",
   "@fluxerTagAlreadyTakenBody": {
-    "description": "Body text when the requested EchoTag is taken.",
+    "description": "Body text when the requested username is taken.",
     "placeholders": {
       "username": {
         "type": "String"
@@ -1735,7 +1733,7 @@
   },
   "premiumUpsellCustomizeTag": "Personalize sua tag de 4 dígitos ou mantenha-a ao alterar seu nome de usuário",
   "@premiumUpsellCustomizeTag": {
-    "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
+    "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
   },
   "premiumTrialExpiresOn": "Seu teste Plutonium expira em {date}. Faça upgrade para manter sua tag personalizada e ganhar um distintivo em seu perfil.",
   "@premiumTrialExpiresOn": {
@@ -1752,11 +1750,11 @@
   },
   "fluxerTagUpdated": "FluxerTag atualizada",
   "@fluxerTagUpdated": {
-    "description": "Success toast after EchoTag change."
+    "description": "Success toast after username change."
   },
   "fluxerTagUpdateFailed": "Falha ao atualizar FluxerTag. Por favor, tente novamente.",
   "@fluxerTagUpdateFailed": {
-    "description": "Error message when EchoTag update fails."
+    "description": "Error message when username update fails."
   },
   "continueAction": "Continuar",
   "@continueAction": {
@@ -1776,15 +1774,15 @@
   },
   "claimAccountToChangeFluxerTag": "Reivindique sua conta para alterar sua FluxerTag",
   "@claimAccountToChangeFluxerTag": {
-    "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
+    "description": "Tooltip when unverified user hovers the disabled Change username button."
   },
-  "changeFluxerTag": "Alterar EchoTag",
+  "changeFluxerTag": "Alterar Nome de usuário",
   "@changeFluxerTag": {
-    "description": "Button label to open the EchoTag change flow."
+    "description": "Button label to open the username change flow."
   },
   "customizeTagWithPlutoniumTooltip": "Personalize sua tag de 4 dígitos (#{discriminator}) como quiser com Plutonium",
   "@customizeTagWithPlutoniumTooltip": {
-    "description": "Tooltip on the crown upsell button next to the EchoTag button.",
+    "description": "Tooltip on the crown upsell button next to the username button.",
     "placeholders": {
       "discriminator": {
         "type": "String"
@@ -1864,7 +1862,7 @@
   "@emojiPickerTitle": {
     "description": "Title for the emoji picker sheet."
   },
-  "plutoniumBadgePrivacyTitle": "Privacidade do Selo Reverb",
+  "plutoniumBadgePrivacyTitle": "Privacidade do Selo Plutonium",
   "@plutoniumBadgePrivacyTitle": {
     "description": "Heading for the premium badge privacy settings section."
   },
@@ -1874,19 +1872,19 @@
   },
   "hidePlutoniumBadgeLabel": "Ocultar selo Plutonium completamente",
   "@hidePlutoniumBadgeLabel": {
-    "description": "Label for the toggle to hide the Reverb badge."
+    "description": "Label for the toggle to hide the Plutonium badge."
   },
   "hidePlutoniumBadgeDescription": "Oculte completamente seu selo Plutonium de outros usuários",
   "@hidePlutoniumBadgeDescription": {
-    "description": "Description for the toggle to hide the Reverb badge."
+    "description": "Description for the toggle to hide the Plutonium badge."
   },
   "hidePlutoniumPurchaseDate": "Ocultar data de compra do Plutonium",
   "@hidePlutoniumPurchaseDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date."
+    "description": "Label for the toggle to hide the Plutonium purchase date."
   },
   "hidePlutoniumPurchaseDateWithDate": "Ocultar data de compra do Plutonium ({date})",
   "@hidePlutoniumPurchaseDateWithDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
+    "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
     "placeholders": {
       "date": {
         "type": "String"
@@ -1895,7 +1893,7 @@
   },
   "hidePurchaseDateDescription": "Remova a data em que você comprou o Plutonium pela primeira vez do seu selo",
   "@hidePurchaseDateDescription": {
-    "description": "Description for the toggle to hide the Reverb purchase date."
+    "description": "Description for the toggle to hide the Plutonium purchase date."
   },
   "maskVisionaryAsSubscription": "Mascarar Visionary como assinatura",
   "@maskVisionaryAsSubscription": {
@@ -1950,23 +1948,23 @@
   },
   "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Máx. 10MB. Recomendado: 512×512px. Avatares animados (GIF) exigem Plutonium.",
   "@avatarDescriptionNonPremium": {
-    "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
+    "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
   },
   "bannerPlutoniumUpsell": "Personalize seu perfil com uma imagem de banner estática ou animada para destacá-lo.",
   "@bannerPlutoniumUpsell": {
     "description": "Upsell text shown in place of banner upload for non-premium users."
   },
-  "getPlutonium": "Obter Reverb",
+  "getPlutonium": "Obter Plutonium",
   "@getPlutonium": {
-    "description": "Button label for the Reverb upsell call-to-action."
+    "description": "Button label for the Plutonium upsell call-to-action."
   },
-  "plutoniumNotAvailableTitle": "Reverb",
+  "plutoniumNotAvailableTitle": "Plutonium",
   "@plutoniumNotAvailableTitle": {
-    "description": "Title for the Reverb not-available-yet bottom sheet."
+    "description": "Title for the Plutonium not-available-yet bottom sheet."
   },
   "plutoniumNotAvailableBody": "Compras no aplicativo ainda não estão disponíveis nesta plataforma. Fique ligado — em breve!",
   "@plutoniumNotAvailableBody": {
-    "description": "Body text for the Reverb not-available-yet bottom sheet."
+    "description": "Body text for the Plutonium not-available-yet bottom sheet."
   },
   "profilePreviewLabel": "Prévia",
   "@profilePreviewLabel": {
@@ -2844,7 +2842,7 @@
       }
     }
   },
-  "blockedUsersCopyTag": "Copiar EchoTag",
+  "blockedUsersCopyTag": "Copiar Nome de usuário",
   "@blockedUsersCopyTag": {
     "description": "Context menu item that copies the user's tag."
   },
@@ -3814,7 +3812,7 @@
       }
     }
   },
-  "chatAttachmentFileTooLarge": "Um ou mais arquivos excedem o limite de tamanho",
+  "chatAttachmentFileTooLarge": "{fileName} excede o limite de tamanho ({fileSize})",
   "@chatAttachmentFileTooLarge": {
     "description": "Shown when a selected file is larger than allowed."
   },
@@ -4945,22 +4943,6 @@
   "@messagesMediaEditingPreserveDraftLabel": {
     "description": "Toggle label for preserving edit drafts on cancel."
   },
-  "accessibilityUnreadGroupTitle": "Indicadores de não lidas",
-  "@accessibilityUnreadGroupTitle": {
-    "description": "Section title for unread-indicator accessibility settings."
-  },
-  "accessibilityUnreadGroupDescription": "Controle como os indicadores de mensagens não lidas são exibidos.",
-  "@accessibilityUnreadGroupDescription": {
-    "description": "Section description for unread-indicator accessibility settings."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsLabel": "Mostrar indicador de não lidas esmaecido em canais silenciados",
-  "@accessibilityShowFadedUnreadOnMutedChannelsLabel": {
-    "description": "Toggle label for showing a faded unread indicator on muted channels."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsDescription": "Exiba um indicador de não lidas atenuado ao lado de mensagens diretas e canais silenciados para que você ainda possa ver rapidamente quando há atividade.",
-  "@accessibilityShowFadedUnreadOnMutedChannelsDescription": {
-    "description": "Toggle description for showing a faded unread indicator on muted channels."
-  },
   "accessibilityDmMessagePreviewGroupTitle": "Pré-visualizações de mensagens diretas",
   "@accessibilityDmMessagePreviewGroupTitle": {
     "description": "Section title for DM message preview accessibility settings."
@@ -5467,7 +5449,7 @@
   },
   "characterCounterRemainingPlutoniumUpsell": "{remaining} caracteres restantes. Obtenha o {productName} para escrever até {premiumMaxLength} caracteres.",
   "@characterCounterRemainingPlutoniumUpsell": {
-    "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
+    "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
     "placeholders": {
       "remaining": {
         "type": "int"
@@ -9239,15 +9221,5 @@
   "guildSettingsInvitesCopyLink": "Copiar link de convite",
   "@guildSettingsInvitesCopyLink": {
     "description": "Action to copy an invite link."
-  },
-  "guildSettingsDiscoveryFormTitle": "Inscrição",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
-  },
-  "guildSettingsDiscoveryStatusTitle": "Status",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
-  },
-  "cropTouchHint": "Pinch to zoom, drag to reposition",
-  "cropMouseHint": "Drag corners to resize, drag inside to move"
+  }
 }

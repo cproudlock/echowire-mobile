@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
+import 'package:fluxer_app/features/chat/presentation/sheets/message_reactions_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_reactions_bar.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_row_layout.dart';
 import 'package:fluxer_app/features/chat/utils/message_timestamp_format.dart';
@@ -17,8 +17,10 @@ import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/utils/voice_connection_actions.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/guild_user_display_provider.dart';
 import 'package:fluxer_app/shared/providers/member_role_color.dart';
+import 'package:fluxer_app/shared/utils/user_date_formatting.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 const Color _kSystemMessageOnlineIconColor = Color(0xFF22C55E);
@@ -155,73 +157,184 @@ class SystemMessage extends ConsumerWidget {
       userSettingsViewModelProvider.select((s) => s.renderReactions),
     );
     final bool showReactions = renderReactions && message.reactions.isNotEmpty;
-    Widget content = Padding(
-      padding: const EdgeInsets.fromLTRB(
-        kMessageRowPaddingHorizontal,
-        kMessageRowPaddingVertical,
-        kMessageRowPaddingHorizontal,
-        kMessageRowPaddingVertical,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: kMessageAvatarSize,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: kMessageAvatarTopPadding),
+    final bool messageDisplayCompact = ref.watch(
+      userSettingsViewModelProvider.select((s) => s.messageDisplayCompact),
+    );
+    final bool use12Hour = ref.watch(use12HourTimeFormatProvider);
+    final String locale = Localizations.localeOf(context).toString();
+    Widget content;
+    if (messageDisplayCompact) {
+      final String compactTime = formatUserTime(
+        message.timestamp.toLocal(),
+        locale,
+        use12Hour: use12Hour,
+      );
+      final TextStyle compactTimestampStyle = compactTimestampTextStyle(
+        base: context.textStyles.timestamp,
+        color: context.colors.textPrimaryMuted,
+      );
+      final double timestampColumnWidth = measureCompactTimestampColumnWidth(
+        compactTimestampStyle,
+        locale,
+        use12Hour: use12Hour,
+      );
+      content = Padding(
+        padding: const EdgeInsets.fromLTRB(
+          kMessageRowPaddingHorizontal,
+          kMessageRowPaddingVertical,
+          kMessageRowPaddingHorizontal,
+          kMessageRowPaddingVertical,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: timestampColumnWidth,
                   child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Opacity(
-                      opacity: _kSystemMessageIconOpacity,
-                      child: Transform(
-                        alignment: Alignment.center,
-                        transform: flipIcon
-                            ? (Matrix4.identity()..scaleByDouble(-1, 1, 1, 1))
-                            : Matrix4.identity(),
-                        child: PhosphorIcon(
-                          icon,
-                          size: kSystemMessageIconSize,
-                          color: iconColor,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      compactTime,
+                      style: compactTimestampStyle,
+                      softWrap: false,
+                      maxLines: 1,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: kCompactTimestampGap),
+                Opacity(
+                  opacity: _kSystemMessageIconOpacity,
+                  child: Transform(
+                    alignment: Alignment.center,
+                    transform: flipIcon
+                        ? (Matrix4.identity()..scaleByDouble(-1, 1, 1, 1))
+                        : Matrix4.identity(),
+                    child: PhosphorIcon(
+                      icon,
+                      size: kCompactSystemIconSize,
+                      color: iconColor,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: kCompactTimestampGap),
+                Expanded(
+                  child: Text.rich(
+                    TextSpan(children: textSpans),
+                    overflow: TextOverflow.clip,
+                  ),
+                ),
+              ],
+            ),
+            if (showReactions)
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: MessageReactionsBar(
+                  reactions: message.reactions,
+                  channelId: message.channelId,
+                  onReactionTap: (emoji, {emojiId, animated = false}) =>
+                      onReaction?.call(
+                        emoji,
+                        emojiId: emojiId,
+                        animated: animated,
+                      ),
+                  onReactionLongPress: (reaction) {
+                    unawaited(
+                      showMessageReactionsSheet(
+                        context,
+                        message: message,
+                        initialReaction: reaction,
+                      ),
+                    );
+                  },
+                  showAddReaction: canAddReactions && onReaction != null,
+                  isMobile: isMobileLayout(context),
+                ),
+              ),
+          ],
+        ),
+      );
+    } else {
+      content = Padding(
+        padding: const EdgeInsets.fromLTRB(
+          kMessageRowPaddingHorizontal,
+          kMessageRowPaddingVertical,
+          kMessageRowPaddingHorizontal,
+          kMessageRowPaddingVertical,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: kMessageAvatarSize,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: kMessageAvatarTopPadding,
+                    ),
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Opacity(
+                        opacity: _kSystemMessageIconOpacity,
+                        child: Transform(
+                          alignment: Alignment.center,
+                          transform: flipIcon
+                              ? (Matrix4.identity()..scaleByDouble(-1, 1, 1, 1))
+                              : Matrix4.identity(),
+                          child: PhosphorIcon(
+                            icon,
+                            size: kSystemMessageIconSize,
+                            color: iconColor,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(width: kMessageAvatarTextGap),
-              Expanded(
-                child: Text.rich(
-                  TextSpan(children: spansWithTimestamp),
-                  overflow: TextOverflow.clip,
+                const SizedBox(width: kMessageAvatarTextGap),
+                Expanded(
+                  child: Text.rich(
+                    TextSpan(children: spansWithTimestamp),
+                    overflow: TextOverflow.clip,
+                  ),
+                ),
+              ],
+            ),
+            if (showReactions)
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: kMessageAvatarColumnWidth,
+                  top: 4,
+                ),
+                child: MessageReactionsBar(
+                  reactions: message.reactions,
+                  channelId: message.channelId,
+                  onReactionTap: (emoji, {emojiId, animated = false}) =>
+                      onReaction?.call(
+                        emoji,
+                        emojiId: emojiId,
+                        animated: animated,
+                      ),
+                  onReactionLongPress: (reaction) {
+                    unawaited(
+                      showMessageReactionsSheet(
+                        context,
+                        message: message,
+                        initialReaction: reaction,
+                      ),
+                    );
+                  },
+                  showAddReaction: canAddReactions && onReaction != null,
+                  isMobile: isMobileLayout(context),
                 ),
               ),
-            ],
-          ),
-          if (showReactions)
-            Padding(
-              padding: const EdgeInsets.only(
-                left: kMessageAvatarColumnWidth,
-                top: 4,
-              ),
-              child: MessageReactionsBar(
-                reactions: message.reactions,
-                channelId: message.channelId,
-                onReactionTap: (emoji, {emojiId, animated = false}) =>
-                    onReaction?.call(
-                      emoji,
-                      emojiId: emojiId,
-                      animated: animated,
-                    ),
-                showAddReaction: canAddReactions && onReaction != null,
-                isMobile: isMobileLayout(context),
-              ),
-            ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    }
     if (onLongPress != null) {
       content = _PointerLongPressDetector(
         onLongPress: onLongPress!,

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/color_utils.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
@@ -6,6 +5,7 @@ import 'package:fluxer_app/features/members/domain/member.dart';
 import 'package:fluxer_app/features/members/presentation/widgets/member_role_color_dot.dart';
 import 'package:fluxer_app/features/members/utils/member_role_actions.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/role_color_utils.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -93,6 +93,7 @@ class MemberRoleBadge extends ConsumerWidget {
                     fontWeight: FontWeight.w600,
                     height: 1.33,
                   ),
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

@@ -56,7 +56,6 @@ class ChatAttachmentAudioBinding {
     required Duration bufferedPosition,
     required double speed,
     bool loading = false,
-    bool completed = false,
   }) {
     if (!isAvailable) {
       return;
@@ -69,7 +68,24 @@ class ChatAttachmentAudioBinding {
       bufferedPosition: bufferedPosition,
       speed: speed,
       loading: loading,
-      completed: completed,
+    );
+  }
+
+  void updatePosition({
+    required bool playing,
+    required Duration position,
+    required Duration bufferedPosition,
+    required double speed,
+  }) {
+    if (!isAvailable) {
+      return;
+    }
+    _session.updatePosition(
+      hostId: hostId,
+      playing: playing,
+      position: position,
+      bufferedPosition: bufferedPosition,
+      speed: speed,
     );
   }
 

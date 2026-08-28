@@ -1,10 +1,8 @@
-import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_motion_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/core/widgets/fluxer_widget_preview.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_tappable.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class FluxerAccordion extends StatefulWidget {
@@ -61,9 +59,9 @@ class _FluxerAccordionState extends State<FluxerAccordion>
     setState(() {
       _isExpanded = !_isExpanded;
       if (_isExpanded) {
-        unawaited(_controller.forward());
+        _controller.forward();
       } else {
-        unawaited(_controller.reverse());
+        _controller.reverse();
       }
     });
   }

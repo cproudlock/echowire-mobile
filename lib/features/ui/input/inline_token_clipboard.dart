@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/features/chat/service/composer_mention_controller.dart';
 import 'package:fluxer_app/features/ui/input/inline_token_text_editing_controller.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 
 const int _kComposerPrivateUseStart = 0xE000;
@@ -111,6 +112,69 @@ int projectedWireLengthAfterPaste(
   return (beforeWire + sanitized + afterWire).trim().length;
 }
 
+String extractInsertedDisplayText({
+  required String textBefore,
+  required String textAfter,
+  required TextSelection selectionBefore,
+}) {
+  final int start = selectionBefore.isValid
+      ? selectionBefore.start
+      : textBefore.length;
+  final int end = selectionBefore.isValid ? selectionBefore.end : start;
+  final String prefix = textBefore.substring(0, start);
+  final String suffix = textBefore.substring(end);
+  if (textAfter.startsWith(prefix) && textAfter.endsWith(suffix)) {
+    return textAfter.substring(prefix.length, textAfter.length - suffix.length);
+  }
+  if (textBefore.isEmpty) {
+    return textAfter;
+  }
+  if (textAfter.length > textBefore.length &&
+      textAfter.startsWith(textBefore)) {
+    return textAfter.substring(textBefore.length);
+  }
+  return textAfter;
+}
+
+Future<bool> reprocessNativeTextPaste({
+  required TextEditingController controller,
+  required String textBefore,
+  required TextSelection selectionBefore,
+  required Future<bool> Function(String inserted) applyPaste,
+}) async {
+  if (controller.text == textBefore) {
+    return false;
+  }
+  final String inserted = extractInsertedDisplayText(
+    textBefore: textBefore,
+    textAfter: controller.text,
+    selectionBefore: selectionBefore,
+  );
+  if (inserted.isEmpty) {
+    return true;
+  }
+  controller.value = controller.value.copyWith(
+    text: textBefore,
+    selection: selectionBefore,
+    composing: TextRange.empty,
+  );
+  return applyPaste(inserted);
+}
+
+Future<bool> reprocessNativeInlineTokenPaste({
+  required InlineTokenTextEditingController controller,
+  required String textBefore,
+  required TextSelection selectionBefore,
+}) {
+  return reprocessNativeTextPaste(
+    controller: controller,
+    textBefore: textBefore,
+    selectionBefore: selectionBefore,
+    applyPaste: (String inserted) =>
+        pasteWireTextIntoInlineTokenController(controller, inserted),
+  );
+}
+
 Future<bool> pasteWireTextIntoInlineTokenController(
   TextEditingController controller,
   String clipboardText,
@@ -146,50 +210,56 @@ Future<bool> pasteWireTextIntoInlineTokenController(
 }
 
 Future<String?> readClipboardPlainText() async {
-  final ClipboardData? data = await Clipboard.getData(Clipboard.kTextPlain);
-  final String? platformText = data?.text;
-  if (platformText != null && platformText.isNotEmpty) {
-    return platformText;
-  }
-  final SystemClipboard? clipboard = SystemClipboard.instance;
-  if (clipboard == null) {
+  try {
+    final ClipboardData? data = await Clipboard.getData(Clipboard.kTextPlain);
+    final String? platformText = data?.text;
+    if (platformText != null && platformText.isNotEmpty) {
+      return platformText;
+    }
+    final SystemClipboard? clipboard = SystemClipboard.instance;
+    if (clipboard == null) {
+      return null;
+    }
+    final ClipboardReader reader = await clipboard.read();
+    for (final ClipboardDataReader item in reader.items) {
+      if (!item.canProvide(Formats.plainText)) {
+        continue;
+      }
+      final String? text = await item.readValue(Formats.plainText);
+      if (text != null && text.isNotEmpty) {
+        return text;
+      }
+    }
+    return null;
+  } on Object catch (error, stack) {
+    talker.warning('[Clipboard] read failed', error, stack);
     return null;
   }
-  final ClipboardReader reader = await clipboard.read();
-  for (final ClipboardDataReader item in reader.items) {
-    if (!item.canProvide(Formats.plainText)) {
-      continue;
-    }
-    final String? text = await item.readValue(Formats.plainText);
-    if (text != null && text.isNotEmpty) {
-      return text;
-    }
-  }
-  return null;
 }
 
-Future<void> pasteIntoTextController(TextEditingController controller) async {
+Future<bool> pasteIntoTextController(TextEditingController controller) async {
   final String? text = await readClipboardPlainText();
   if (text == null || text.isEmpty) {
-    return;
+    return false;
   }
   if (controller is InlineTokenTextEditingController) {
-    await pasteWireTextIntoInlineTokenController(controller, text);
-    return;
+    return pasteWireTextIntoInlineTokenController(controller, text);
   }
   final TextEditingValue oldValue = controller.value;
   final TextSelection selection = oldValue.selection;
-  if (!selection.isValid) {
-    return;
-  }
+  final int insertStart = selection.isValid
+      ? selection.start
+      : oldValue.text.length;
+  final int insertEnd = selection.isValid ? selection.end : insertStart;
   final String newText = oldValue.text.replaceRange(
-    selection.start,
-    selection.end,
+    insertStart,
+    insertEnd,
     text,
   );
   controller.value = oldValue.copyWith(
     text: newText,
-    selection: TextSelection.collapsed(offset: selection.start + text.length),
+    selection: TextSelection.collapsed(offset: insertStart + text.length),
     composing: TextRange.empty,
   );
+  return true;
 }

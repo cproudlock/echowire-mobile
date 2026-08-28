@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/router/navigate_to_content.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
@@ -21,7 +21,9 @@ import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_confirm_sheet.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/user_profile.dart';
+import 'package:fluxer_app/shared/sheets/add_friend_sheet.dart';
 import 'package:fluxer_app/shared/widgets/custom_status_display.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -94,7 +96,7 @@ class FriendsList extends ConsumerWidget {
     FriendsTab activeTab, {
     required bool showActiveNow,
   }) => Container(
-    height: 56,
+    constraints: const BoxConstraints(minHeight: 56),
     padding: EdgeInsets.symmetric(horizontal: context.layout.s4),
     child: Row(
       children: [
@@ -133,26 +135,19 @@ class FriendsList extends ConsumerWidget {
                   FriendsTab.pending,
                   activeTab,
                 ),
-                Material(
-                  color: context.colors.brandPrimary,
-                  borderRadius: BorderRadius.circular(6),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(6),
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 4,
-                      ),
-                      child: Text(
-                        'Add Friend',
-                        style: context.textStyles.channelName.copyWith(
-                          color: context.colors.brandPrimaryFill,
-                        ),
-                      ),
-                    ),
+                if (!ref.watch(
+                  instanceRuntimeConfigProvider.select(
+                    (config) => config.directMessagesDisabled,
                   ),
-                ),
+                ))
+                  FluxerButton.primary(
+                    label: FluxerLocalizations.of(
+                      context,
+                    ).profileSendFriendRequest,
+                    size: FluxerButtonSize.compact,
+                    fitContent: true,
+                    onPressed: () => AddFriendSheet.show(context),
+                  ),
               ],
             ),
           ),
@@ -274,18 +269,15 @@ class FriendsList extends ConsumerWidget {
       right: context.layout.s4,
       top: context.layout.s3,
     ),
-    child: TextField(
+    child: FluxerInput(
+      hint: _searchHint(activeTab),
       onChanged: ref.read(dmViewModelProvider.notifier).updateSearch,
-      style: context.textStyles.inputText.copyWith(fontSize: 14),
-      decoration: InputDecoration(
-        hintText: _searchHint(activeTab),
-        hintStyle: context.textStyles.bodySmall,
-        prefixIcon: PhosphorIcon(
-          PhosphorIconsBold.magnifyingGlass,
-          size: 20,
-          color: context.colors.textSecondary,
-        ),
+      prefixIcon: PhosphorIcon(
+        PhosphorIconsBold.magnifyingGlass,
+        size: 20,
+        color: context.colors.textSecondary,
       ),
+      style: context.textStyles.inputText.copyWith(fontSize: 14),
     ),
   );
 
@@ -534,11 +526,9 @@ class FriendsList extends ConsumerWidget {
                     ),
                   ),
                   if (friend.friendStatus == FriendStatus.accepted) ...[
-                    _actionButton(
-                      context,
+                    FluxerButton.circleAlt(
                       icon: PhosphorIconsFill.chatCircle,
-                      color: context.colors.textPrimaryMuted,
-                      backgroundColor: context.colors.backgroundModifierHover,
+                      size: FluxerButtonSize.compact,
                       semanticLabel: FluxerLocalizations.of(
                         context,
                       ).friendsMessageFriend,
@@ -546,11 +536,9 @@ class FriendsList extends ConsumerWidget {
                           unawaited(_openFriendChat(context, ref, friend)),
                     ),
                     SizedBox(width: context.layout.s2),
-                    _actionButton(
-                      context,
+                    FluxerButton.circleAlt(
                       icon: PhosphorIconsBold.dotsThreeVertical,
-                      color: context.colors.textPrimaryMuted,
-                      backgroundColor: context.colors.backgroundModifierHover,
+                      size: FluxerButtonSize.compact,
                       semanticLabel: FluxerLocalizations.of(
                         context,
                       ).friendsFriendActions,
@@ -559,11 +547,9 @@ class FriendsList extends ConsumerWidget {
                     ),
                   ],
                   if (friend.friendStatus == FriendStatus.pendingIncoming) ...[
-                    _actionButton(
-                      context,
+                    FluxerButton.circle(
                       icon: PhosphorIconsBold.check,
-                      color: context.colors.brandPrimaryFill,
-                      backgroundColor: context.colors.brandPrimary,
+                      size: FluxerButtonSize.compact,
                       semanticLabel: FluxerLocalizations.of(
                         context,
                       ).friendsAcceptRequest,
@@ -574,11 +560,10 @@ class FriendsList extends ConsumerWidget {
                       ),
                     ),
                     SizedBox(width: context.layout.s2),
-                    _actionButton(
-                      context,
+                    FluxerButton.circle(
                       icon: PhosphorIconsBold.x,
-                      color: context.colors.textPrimary,
-                      backgroundColor: context.colors.statusDanger,
+                      variant: FluxerButtonVariant.dangerPrimary,
+                      size: FluxerButtonSize.compact,
                       semanticLabel: FluxerLocalizations.of(
                         context,
                       ).friendsDeclineRequest,
@@ -588,11 +573,9 @@ class FriendsList extends ConsumerWidget {
                     ),
                   ],
                   if (friend.friendStatus == FriendStatus.pendingOutgoing) ...[
-                    _actionButton(
-                      context,
+                    FluxerButton.circleAlt(
                       icon: PhosphorIconsBold.x,
-                      color: context.colors.textPrimary,
-                      backgroundColor: context.colors.backgroundTertiary,
+                      size: FluxerButtonSize.compact,
                       semanticLabel: FluxerLocalizations.of(
                         context,
                       ).friendsCancelRequest,
@@ -607,33 +590,6 @@ class FriendsList extends ConsumerWidget {
           ),
         ),
       );
-
-  Widget _actionButton(
-    BuildContext context, {
-    required IconData icon,
-    required Color color,
-    required Color backgroundColor,
-    required VoidCallback onPressed,
-    required String semanticLabel,
-  }) => Semantics(
-    button: true,
-    label: semanticLabel,
-    child: ExcludeSemantics(
-      child: Material(
-        color: backgroundColor,
-        shape: const CircleBorder(),
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: onPressed,
-          child: SizedBox(
-            width: 36,
-            height: 36,
-            child: Center(child: PhosphorIcon(icon, size: 20, color: color)),
-          ),
-        ),
-      ),
-    ),
-  );
 
   String _emptyTitle({
     required FriendsTab activeTab,
@@ -695,6 +651,9 @@ class FriendsList extends ConsumerWidget {
     WidgetRef ref,
     Friend friend,
   ) async {
+    if (ref.read(instanceRuntimeConfigProvider).directMessagesDisabled) {
+      return;
+    }
     final String channelId = await ref
         .read(dmRepositoryProvider)
         .ensureDmChannel(friend.id);

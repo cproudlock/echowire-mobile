@@ -1,11 +1,11 @@
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/channel_icon.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 enum ChannelSearchAutocompleteSection {
@@ -348,7 +348,6 @@ class _AutocompleteLabel extends StatelessWidget {
       ChannelSearchAutocompleteSection.dates => _IconTextOptionLabel(
         label: entry.label,
         icon: entry.icon,
-        iconSize: 20,
         textColor: textColor,
         mutedColor: mutedColor,
         fontWeight: FontWeight.w500,
@@ -474,13 +473,11 @@ class _IconTextOptionLabel extends StatelessWidget {
     required this.textColor,
     required this.mutedColor,
     this.icon,
-    this.iconSize = 20,
     this.fontWeight,
   });
 
   final String label;
   final IconData? icon;
-  final double iconSize;
   final Color textColor;
   final Color mutedColor;
   final FontWeight? fontWeight;
@@ -490,7 +487,7 @@ class _IconTextOptionLabel extends StatelessWidget {
     return Row(
       children: <Widget>[
         if (icon != null) ...<Widget>[
-          PhosphorIcon(icon!, size: iconSize, color: mutedColor),
+          PhosphorIcon(icon!, size: 20, color: mutedColor),
           const SizedBox(width: 8),
         ],
         Expanded(

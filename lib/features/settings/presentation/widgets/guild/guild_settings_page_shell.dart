@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/api/dio_error_message.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/settings/domain/guild/guild_settings_tab.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/guild/guild_settings_access_gate.dart';
@@ -10,6 +10,7 @@ import 'package:fluxer_app/features/ui/settings/fluxer_settings_sheet.dart'
 import 'package:fluxer_app/features/ui/spinner/fluxer_loading_spinner.dart';
 import 'package:fluxer_app/features/ui/ui.dart' show FluxerSettingsSheet;
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -83,6 +84,7 @@ class GuildSettingsAsyncBody<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
     final layout = context.layout;
     return value.when(
       loading: () => const Center(child: FluxerLoadingSpinner()),
@@ -90,7 +92,7 @@ class GuildSettingsAsyncBody<T> extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(layout.s4),
           child: Text(
-            error.toString(),
+            userFacingErrorMessage(error, l10n.networkErrorMessage),
             style: context.textStyles.bodyMedium.copyWith(
               color: context.colors.statusDanger,
             ),
@@ -103,7 +105,6 @@ class GuildSettingsAsyncBody<T> extends StatelessWidget {
   }
 
   Widget _buildChild(BuildContext context, T item) {
-    final layout = context.layout;
     final Widget content = data(item);
     if (usesSettingsSheet) {
       if (isWideLayout(context)) {

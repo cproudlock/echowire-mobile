@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:math' show max;
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/api/dio_error_message.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
@@ -25,6 +25,7 @@ import 'package:fluxer_app/features/ui/settings/fluxer_settings_sheet.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -218,7 +219,7 @@ class _ChannelOverviewWidgetState extends ConsumerState<ChannelOverviewWidget> {
           .read(toastProvider.notifier)
           .show(
             FluxerToast(
-              message: error.toString(),
+              message: userFacingErrorMessage(error, l10n.networkErrorMessage),
               variant: FluxerToastVariant.danger,
             ),
           );

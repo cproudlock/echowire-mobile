@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/features/guilds/presentation/widgets/guild_icon_peek_menu.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_drag_provider.dart';
 import 'package:fluxer_app/features/ui/action_menu/context_menu_widgets.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/fluxer_haptics.dart';
 
 class GuildIconPeekGestureHost extends ConsumerStatefulWidget {
@@ -60,30 +60,29 @@ class _GuildIconPeekGestureHostState
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        IgnorePointer(
-          child: UnconstrainedBox(
-            child: CompositedTransformFollower(
-              link: _layerLink,
-              targetAnchor: Alignment.centerRight,
-              followerAnchor: Alignment.centerLeft,
-              offset: const Offset(8, 0),
-              showWhenUnlinked: false,
-              child: ContextMenuEntranceAnimationHost(
-                alignment: Alignment.centerLeft,
-                child: GuildIconPeekMenuPanel(
-                  guildName: widget.peekMenu.guildName,
-                  hasUnread: widget.peekMenu.hasUnread,
-                  itemKeys: _itemKeys,
-                ),
-              ),
-            ),
-          ),
-        ),
         Positioned.fill(
           child: Listener(
             behavior: HitTestBehavior.translucent,
             onPointerDown: _handleOverlayPointerDown,
             child: const ColoredBox(color: Colors.transparent),
+          ),
+        ),
+        CompositedTransformFollower(
+          link: _layerLink,
+          targetAnchor: Alignment.centerRight,
+          followerAnchor: Alignment.centerLeft,
+          offset: const Offset(8, 0),
+          showWhenUnlinked: false,
+          child: ContextMenuEntranceAnimationHost(
+            alignment: Alignment.centerLeft,
+            child: GuildIconPeekMenuPanel(
+              guildName: widget.peekMenu.guildName,
+              hasUnread: widget.peekMenu.hasUnread,
+              itemKeys: _itemKeys,
+              onActionTap: (GuildIconPeekAction action) {
+                unawaited(_handleItemTap(action));
+              },
+            ),
           ),
         ),
       ],

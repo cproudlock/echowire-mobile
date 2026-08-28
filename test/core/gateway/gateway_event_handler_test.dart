@@ -288,7 +288,15 @@ void main() {
         ),
       );
       expect(captured, <String>[memberGuildId]);
-      await ctx.database.memberDao.countMembers(memberGuildId);
+      expect(
+        await ctx.database.memberDao.getMemberByUserId('111', memberGuildId),
+        isNotNull,
+      );
+      expect(
+        await ctx.database.memberDao.getMemberByUserId('100', memberGuildId),
+        isNotNull,
+      );
+      expect(await ctx.database.userDao.getUserById('111'), isNotNull);
     });
 
     test('members chunk without the current user does not refresh', () async {
@@ -303,7 +311,14 @@ void main() {
         ),
       );
       expect(captured, isEmpty);
-      await ctx.database.memberDao.countMembers(memberGuildId);
+      expect(
+        await ctx.database.memberDao.getMemberByUserId('111', memberGuildId),
+        isNotNull,
+      );
+      expect(
+        await ctx.database.memberDao.getMemberByUserId('222', memberGuildId),
+        isNotNull,
+      );
     });
   });
 
@@ -812,6 +827,49 @@ void main() {
       expect(row?.lastMessageId, tailId);
       expect(await database.messageDao.getMessage(olderId), isNull);
       expect(await database.messageDao.getMessage(tailId), isNotNull);
+    });
+  });
+
+  group('GUILD_SYNC persistence', () {
+    Future<void> waitFor(Future<bool> Function() condition) async {
+      for (var i = 0; i < 50; i++) {
+        if (await condition()) {
+          return;
+        }
+        await Future<void>.delayed(const Duration(milliseconds: 10));
+      }
+      fail('condition not met within timeout');
+    }
+
+    test('persists guild, channel, member, and user rows', () async {
+      final database = openTestDatabase();
+      final handler = GatewayEventHandler(database: database);
+
+      await handler.handle(
+        GuildSyncEvent(
+          guild: GuildCreateData.fromJson(
+            _guildWithChannelAndMember(
+              guildId: 'g-sync',
+              channelId: 'c-sync',
+              memberUserId: 'u-sync',
+            ),
+          ),
+        ),
+      );
+
+      await waitFor(
+        () async =>
+            (await database.memberDao.getMemberByUserId('u-sync', 'g-sync')) !=
+            null,
+      );
+      final servers = await database.guildDao.watchServers().first;
+      expect(servers.map((s) => s.id), contains('g-sync'));
+      final Channel? channel = await database.channelDao.getChannelById(
+        'c-sync',
+      );
+      expect(channel?.guildId, 'g-sync');
+      expect(channel?.name, 'general');
+      expect(await database.userDao.getUserById('u-sync'), isNotNull);
     });
   });
 }

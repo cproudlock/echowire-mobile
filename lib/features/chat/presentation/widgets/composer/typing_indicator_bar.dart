@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/providers/channel_typing_provider.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/chat_loading_spinner.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/composer/wide_composer_layout.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_view_model.dart';
 import 'package:fluxer_app/features/chat/utils/chat_spinner_debug.dart';
 import 'package:fluxer_app/features/chat/utils/typing_indicator_text.dart';
@@ -13,12 +13,15 @@ import 'package:fluxer_app/features/settings/providers/blocked_users_view_model.
 import 'package:fluxer_app/features/ui/avatar/fluxer_avatar.dart';
 import 'package:fluxer_app/features/ui/avatar/fluxer_avatar_stack.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/guild_user_display_provider.dart';
 import 'package:fluxer_app/shared/providers/member_role_color.dart';
 import 'package:fluxer_app/shared/utils/guild_user_display.dart';
+import 'package:material_ui/material_ui.dart' as material;
 
 const double _kAvatarSize = 12;
 const int _kMaxVisibleAvatars = 5;
+const double _kStatusFontSize = 12;
 
 /// Floating pill shown over the chat area when other users are typing.
 class TypingIndicatorBar extends ConsumerWidget {
@@ -126,57 +129,58 @@ class _TypingPill extends ConsumerWidget {
     final total = userIds.length;
     final l10n = FluxerLocalizations.of(context);
     final String typingLabel = _typingLabel(l10n, total, resolvedUsers);
-    final Widget content = Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ChatLoadingSpinner(
-          reason: ChatSpinnerReason.typing,
-          color: colors.textSecondary,
-        ),
-        const SizedBox(width: 8),
-        FluxerAvatarStack(
-          size: _kAvatarSize,
-          maxVisible: _kMaxVisibleAvatars,
-          avatars: [
-            for (final user in resolvedUsers)
-              FluxerAvatar.user(
-                userId: user.userId,
-                imageUrl: user.display.avatarUrl,
-                fallbackText: user.display.displayName,
-                avatarColor: user.display.avatarColor,
-                size: _kAvatarSize,
-                showStatus: false,
-              ),
-          ],
-        ),
-        const SizedBox(width: 8),
-        Flexible(
-          child: _buildText(context, ref, total, resolvedUsers, guildId),
-        ),
-      ],
+    final Color surfaceColor = composerStatusSurfaceColor(context);
+    final Widget indicator = ChatLoadingSpinner(
+      reason: ChatSpinnerReason.typing,
+      color: compact ? colors.textSecondary : colors.textChat,
     );
-    final Widget pill = compact
+    final Widget avatarStack = ColoredBox(
+      color: compact ? Colors.transparent : surfaceColor,
+      child: FluxerAvatarStack(
+        size: _kAvatarSize,
+        maxVisible: _kMaxVisibleAvatars,
+        overlap: -4,
+        outlineWidth: 1,
+        avatars: [
+          for (final user in resolvedUsers)
+            FluxerAvatar.user(
+              userId: user.userId,
+              imageUrl: user.display.avatarUrl,
+              fallbackText: user.display.displayName,
+              avatarColor: user.display.avatarColor,
+              size: _kAvatarSize,
+              showStatus: false,
+            ),
+        ],
+      ),
+    );
+    final Widget content = SizedBox(
+      height: WideComposerLayout.statusLineHeight,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          indicator,
+          SizedBox(width: compact ? 8 : 6),
+          avatarStack,
+          SizedBox(width: compact ? 8 : 8),
+          Flexible(
+            child: _buildText(context, ref, total, resolvedUsers, guildId),
+          ),
+        ],
+      ),
+    );
+    final Widget body = compact
         ? content
-        : Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-            decoration: BoxDecoration(
-              color: colors.chatInputBackground,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: colors.userAreaDividerColor),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
+        : ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: WideComposerLayout.typingMaxWidth,
             ),
             child: content,
           );
     return Semantics(
       liveRegion: true,
       label: typingLabel,
-      child: ExcludeSemantics(child: pill),
+      child: ExcludeSemantics(child: body),
     );
   }
 
@@ -214,19 +218,19 @@ class _TypingPill extends ConsumerWidget {
   ) {
     final l10n = FluxerLocalizations.of(context);
     final colors = context.colors;
+    final Color surfaceColor = composerStatusSurfaceColor(context);
+    final List<Shadow>? shadows = compact
+        ? null
+        : wideComposerStatusTextShadows(surfaceColor);
     final baseStyle = context.textStyles.timestamp.copyWith(
-      color: colors.textSecondary,
-      fontSize: 12,
+      color: compact ? colors.textSecondary : colors.textPrimaryMuted,
+      fontSize: _kStatusFontSize,
       fontWeight: FontWeight.w600,
+      shadows: shadows,
     );
     final bulkText = resolveTypingIndicatorBulkText(l10n, total);
     if (bulkText != null) {
-      return Text(
-        bulkText,
-        style: baseStyle,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-      );
+      return _statusLabelText(text: bulkText, style: baseStyle);
     }
     final names = resolved.take(total).toList();
     final raw = typingIndicatorNamedTemplate(l10n, total);
@@ -252,10 +256,33 @@ class _TypingPill extends ConsumerWidget {
         );
       }
     }
-    return Text.rich(
-      TextSpan(style: baseStyle, children: spans),
+    return _statusLabelText(
+      textSpan: TextSpan(style: baseStyle, children: spans),
+      style: baseStyle,
+    );
+  }
+
+  Widget _statusLabelText({
+    required TextStyle style,
+    String? text,
+    InlineSpan? textSpan,
+  }) {
+    assert(text != null || textSpan != null);
+    if (textSpan != null) {
+      return material.Text.rich(
+        textSpan,
+        style: style,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        textScaler: TextScaler.noScaling,
+      );
+    }
+    return material.Text(
+      text!,
+      style: style,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
+      textScaler: TextScaler.noScaling,
     );
   }
 }

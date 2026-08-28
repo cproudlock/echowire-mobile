@@ -1,35 +1,37 @@
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
-import 'package:fluxer_app/features/channels/domain/channel.dart';
-import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/composer_autocomplete_field.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/composer/composer_status_row.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/slowmode_indicator.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/typing_indicator_bar.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/composer/wide_composer_layout.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_list.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_list_unread_review.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/neko_sprite.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/pickers/attachment_panel_content.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/chat_composer_column.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/chat_expression_expandable_sheet.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_read_viewport_provider.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_view_model.dart';
+import 'package:fluxer_app/features/chat/providers/pickers/attachment_panel_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/bottom_input_slot_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/expression_panel_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/mobile_keyboard_metrics_provider.dart';
 import 'package:fluxer_app/features/chat/utils/bottom_input_slot_layout.dart';
+import 'package:fluxer_app/features/chat/utils/composer_panel.dart';
 import 'package:fluxer_app/features/chat/utils/inline_expression_panel_layout.dart';
 import 'package:fluxer_app/features/chat/utils/inline_expression_panel_scroll_physics.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/shell/utils/mobile_scaffold_resize_policy.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
+import 'package:fluxer_app/material_ui.dart';
 
-const double _kChannelChatStatusRailMinHeight = 32;
-const double _kChannelChatStatusMessageInset =
-    _kChannelChatStatusRailMinHeight / 2;
-const double _kChannelChatNekoVerticalOffset = -4;
+const double _kChannelChatNekoBottom = 0;
+const double _kChannelChatNekoBottomAboveSlowmode =
+    WideComposerLayout.statusLineHeight;
 
 void listenChatViewModelErrors(WidgetRef ref) {
   ref.listen<String?>(
@@ -79,32 +81,17 @@ class _ChannelChatPanelState extends ConsumerState<ChannelChatPanel> {
     super.dispose();
   }
 
-  Widget _buildComposerSection({
-    required bool isMobile,
+  Widget _buildStatusOverlay({
     required bool showNeko,
-    required bool showInlineEmojiPicker,
+    required bool showSlowmode,
   }) {
-    final Widget composer = ChatComposerColumn(
-      autocompletePanelHost: _composerAutocompletePanelHost,
-      autocompletePanelScrollController: _composerAutocompletePanelScroll,
-      showInlineEmojiPicker: showInlineEmojiPicker,
-    );
-    if (isMobile && !showNeko) {
-      return composer;
-    }
     return ChannelChatComposerBoundary(
-      composer: composer,
-      leadingStatus: isMobile
-          ? const SizedBox.shrink()
-          : const TypingIndicatorBar(),
-      trailingStatuses: <Widget>[
-        if (showNeko)
-          Transform.translate(
-            offset: const Offset(0, _kChannelChatNekoVerticalOffset),
-            child: const NekoSprite(),
-          ),
-        if (!isMobile) SlowmodeIndicator(leadingSpacing: showNeko ? 8 : 0),
-      ],
+      leadingStatus: const TypingIndicatorBar(),
+      trailingStatuses: const <Widget>[SlowmodeIndicator()],
+      neko: showNeko ? const NekoSprite() : null,
+      nekoBottom: showSlowmode
+          ? _kChannelChatNekoBottomAboveSlowmode
+          : _kChannelChatNekoBottom,
     );
   }
 
@@ -114,14 +101,10 @@ class _ChannelChatPanelState extends ConsumerState<ChannelChatPanel> {
     final bool showNeko = ref.watch(
       appearancePreferencesProvider.select((state) => state.showNeko),
     );
-    final bool showSlowmodeIndicator =
-        listChannelId.isNotEmpty &&
-        ref.watch(
-          channelByIdProvider(listChannelId).select(
-            (AsyncValue<Channel?> channel) =>
-                (channel.value?.rateLimitPerUser ?? 0) > 0,
-          ),
-        );
+    final bool showSlowmode = composerSlowmodeIndicatorVisible(
+      ref,
+      listChannelId,
+    );
     final VoidCallback? onClose = widget.onClose;
     final bool stripKeyboardInsets =
         mobileChannelScaffoldShouldRemoveKeyboardInset(
@@ -129,10 +112,16 @@ class _ChannelChatPanelState extends ConsumerState<ChannelChatPanel> {
           isExpressionPanelOpen: false,
         );
     final bool isMobile = isMobileLayout(context);
-    final bool isPanelOpen =
+    final bool isExpressionOpen =
         isMobile &&
         widget.showInlineEmojiPicker &&
         ref.watch(expressionPanelProvider);
+    final bool isAttachmentOpen =
+        isMobile && ref.watch(attachmentPanelProvider);
+    final bool isPanelOpen = isComposerPanelOpen(
+      expressionPanelOpen: isExpressionOpen,
+      attachmentPanelOpen: isAttachmentOpen,
+    );
     final Widget messageList = MessageList(
       key: ValueKey<String>(listChannelId),
       expectedChannelId: listChannelId,
@@ -192,6 +181,7 @@ class _ChannelChatPanelState extends ConsumerState<ChannelChatPanel> {
                 children: <Widget>[
                   Expanded(
                     child: Stack(
+                      clipBehavior: Clip.none,
                       children: <Widget>[
                         Positioned.fill(
                           child: Listener(
@@ -207,12 +197,22 @@ class _ChannelChatPanelState extends ConsumerState<ChannelChatPanel> {
                                 : messageList,
                           ),
                         ),
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          height: WideComposerLayout.fadeHeightFor(
+                            isMobile: isMobile,
+                          ),
+                          child: _buildStatusOverlay(
+                            showNeko: showNeko,
+                            showSlowmode: showSlowmode,
+                          ),
+                        ),
                         _ChannelChatScrollOverlay(
                           channelId: listChannelId,
                           loadMessages: widget.loadMessages,
                           onClose: onClose,
-                          showSlowmodeIndicator:
-                              showSlowmodeIndicator && !isMobile,
                         ),
                         Positioned(
                           left: 0,
@@ -226,9 +226,10 @@ class _ChannelChatPanelState extends ConsumerState<ChannelChatPanel> {
                       ],
                     ),
                   ),
-                  _buildComposerSection(
-                    isMobile: isMobile,
-                    showNeko: showNeko,
+                  ChatComposerColumn(
+                    autocompletePanelHost: _composerAutocompletePanelHost,
+                    autocompletePanelScrollController:
+                        _composerAutocompletePanelScroll,
                     showInlineEmojiPicker: widget.showInlineEmojiPicker,
                   ),
                 ],
@@ -245,6 +246,13 @@ class _ChannelChatPanelState extends ConsumerState<ChannelChatPanel> {
                     ),
                     dragHandleHeight: dragHandleHeight,
                     parentHeight: constraints.maxHeight,
+                    contentBuilder: isAttachmentOpen
+                        ? (BuildContext context, ScrollController controller) {
+                            return AttachmentPanelContent(
+                              scrollController: controller,
+                            );
+                          }
+                        : null,
                   ),
                 ),
             ],
@@ -259,13 +267,11 @@ class _ChannelChatScrollOverlay extends ConsumerWidget {
   const _ChannelChatScrollOverlay({
     required this.channelId,
     required this.loadMessages,
-    required this.showSlowmodeIndicator,
     this.onClose,
   });
 
   final String channelId;
   final bool loadMessages;
-  final bool showSlowmodeIndicator;
   final VoidCallback? onClose;
 
   @override
@@ -309,7 +315,9 @@ class _ChannelChatScrollOverlay extends ConsumerWidget {
         );
     return Positioned(
       right: 8,
-      bottom: showSlowmodeIndicator ? _kChannelChatStatusMessageInset : 0,
+      bottom: WideComposerLayout.fadeHeightFor(
+        isMobile: isMobileLayout(context),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
@@ -349,50 +357,51 @@ class _ChannelChatScrollOverlay extends ConsumerWidget {
 
 class ChannelChatComposerBoundary extends StatelessWidget {
   const ChannelChatComposerBoundary({
-    required this.composer,
     required this.leadingStatus,
     required this.trailingStatuses,
+    this.neko,
+    this.nekoBottom = _kChannelChatNekoBottom,
     super.key,
   });
 
-  final Widget composer;
   final Widget leadingStatus;
   final List<Widget> trailingStatuses;
+  final Widget? neko;
+  final double nekoBottom;
 
   @override
   Widget build(BuildContext context) {
+    final bool isMobile = isMobileLayout(context);
+    final double statusRailPadding =
+        WideComposerLayout.statusRailPaddingInlineFor(isMobile: isMobile);
     return Stack(
       clipBehavior: Clip.none,
       children: <Widget>[
-        composer,
+        WideComposerFade(surfaceColor: context.colors.chatBackground),
         Positioned(
-          top: -_kChannelChatStatusMessageInset,
-          left: 0,
-          right: 0,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              minHeight: _kChannelChatStatusRailMinHeight,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Row(
-                spacing: 8,
-                children: <Widget>[
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: leadingStatus,
-                    ),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: trailingStatuses,
-                  ),
-                ],
+          left: statusRailPadding,
+          right: statusRailPadding,
+          bottom: 0,
+          height: WideComposerLayout.statusLineHeight,
+          child: Row(
+            spacing: WideComposerLayout.statusRailGap,
+            children: <Widget>[
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: leadingStatus,
+                ),
               ),
-            ),
+              Row(mainAxisSize: MainAxisSize.min, children: trailingStatuses),
+            ],
           ),
         ),
+        if (neko != null)
+          Positioned(
+            right: statusRailPadding,
+            bottom: nekoBottom,
+            child: neko!,
+          ),
       ],
     );
   }

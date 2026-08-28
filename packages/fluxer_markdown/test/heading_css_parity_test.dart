@@ -1,14 +1,24 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_markdown/src/config/fluxer_markdown_config.dart';
 import 'package:fluxer_markdown/src/contexts/fluxer_markdown_context.dart';
 import 'package:fluxer_markdown/src/utils/markup_spacing.dart';
 import 'package:fluxer_markdown/src/widgets/fluxer_markdown.dart';
+import 'package:material_ui/material_ui.dart';
 
 const FluxerMarkdownConfig _testMarkdownConfig = FluxerMarkdownConfig(
   resolveEmojiShortcode: _noopEmojiShortcode,
   unicodeEmojiUrlBuilder: _noopUnicodeEmojiUrl,
   customEmojiUrlBuilder: _noopCustomEmojiUrl,
+);
+const TextStyle _codeTextStyle = TextStyle(
+  fontFamily: 'monospace',
+  fontSize: 16,
+);
+const FluxerMarkdownConfig _headingMarkdownConfig = FluxerMarkdownConfig(
+  resolveEmojiShortcode: _noopEmojiShortcode,
+  unicodeEmojiUrlBuilder: _noopUnicodeEmojiUrl,
+  customEmojiUrlBuilder: _noopCustomEmojiUrl,
+  codeTextStyle: _codeTextStyle,
 );
 const TextStyle _baseStyle = TextStyle(fontSize: 16, height: 1.375);
 
@@ -61,7 +71,24 @@ EdgeInsets _headingPadding(WidgetTester tester, String headingText) {
     ),
   );
   expect(paddingFinder, findsOneWidget);
-  return (tester.widget<Padding>(paddingFinder).padding as EdgeInsets);
+  return tester.widget<Padding>(paddingFinder).padding as EdgeInsets;
+}
+
+double? _textSpanFontSize(InlineSpan root, String text) {
+  double? result;
+  void visit(InlineSpan span) {
+    if (span is TextSpan) {
+      if (span.text == text) {
+        result = span.style?.fontSize;
+      }
+      for (final InlineSpan child in span.children ?? const <InlineSpan>[]) {
+        visit(child);
+      }
+    }
+  }
+
+  visit(root);
+  return result;
 }
 
 void main() {
@@ -127,6 +154,36 @@ void main() {
         find.textContaining('Bold heading', findRichText: true),
       );
       expect(richText.text.style?.fontWeight, FontWeight.w600);
+    });
+
+    testWidgets('inline code in headings scales with heading size', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: SizedBox(
+              width: 320,
+              child: FluxerMarkdown(
+                data: '# header 1 `with code text`',
+                config: _headingMarkdownConfig,
+                baseStyle: _baseStyle,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final RichText richText = tester.widget<RichText>(
+        find.textContaining('header 1', findRichText: true),
+      );
+      const double headingFontSize = 16 * 1.375;
+      expect(richText.text.style?.fontSize, headingFontSize);
+      expect(
+        _textSpanFontSize(richText.text, 'with code text'),
+        closeTo(headingFontSize * 0.85, 0.01),
+      );
     });
   });
 }

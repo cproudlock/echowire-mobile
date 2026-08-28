@@ -1,4 +1,5 @@
 import 'package:fluxer_app/features/chat/domain/message.dart';
+import 'package:fluxer_app/features/chat/utils/attachment_display_utils.dart';
 
 final RegExp _spoilerRegex = RegExp(r'\|\|([\s\S]*?)\|\|');
 final RegExp _urlRegex = RegExp(
@@ -65,4 +66,29 @@ List<String> spoilerSyncKeysForEmbed(Embed embed, Set<String> spoileredUrls) {
 
 bool isEmbedSpoilered(Embed embed, Set<String> spoileredUrls) {
   return spoilerSyncKeysForEmbed(embed, spoileredUrls).isNotEmpty;
+}
+
+String forwardedSnapshotScope(String messageId) => '$messageId-forward';
+
+List<String> spoilerSyncKeysForAttachment({
+  required String scope,
+  required Attachment attachment,
+}) {
+  if (!attachment.isSpoiler || scope.isEmpty) {
+    return const [];
+  }
+
+  final String effectiveUrl = attachmentEffectiveUrl(attachment);
+  final String attachmentKey = attachment.id.isNotEmpty
+      ? attachment.id
+      : effectiveUrl.isNotEmpty
+      ? effectiveUrl
+      : attachment.filename;
+  if (attachmentKey.isEmpty) {
+    return const [];
+  }
+
+  return List<String>.unmodifiable(<String>[
+    'attachment:$scope:$attachmentKey',
+  ]);
 }

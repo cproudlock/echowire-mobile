@@ -1,12 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart' as l10n;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/platform/fluxer_platform.dart';
 import 'package:fluxer_app/core/providers/app_ui_lifecycle_provider.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_mode.dart';
 import 'package:fluxer_app/core/theme/providers/theme_preference_provider.dart';
 import 'package:fluxer_app/features/accessibility/resolve_reduced_motion.dart';
+import 'package:fluxer_app/features/accessibility/text_scale.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/shell/presentation/native_titlebar.dart';
 import 'package:fluxer_app/features/shell/presentation/widgets/required_action_gate.dart';
@@ -14,6 +16,7 @@ import 'package:fluxer_app/features/ui/toast/fluxer_toast_overlay.dart';
 import 'package:fluxer_app/features/voice/presentation/widgets/incoming_voice_call_layer.dart';
 import 'package:fluxer_app/l10n/app_locale_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/widgets/beta_banner.dart';
 import 'package:fluxer_app/shared/widgets/input_modality_listener.dart';
 import 'package:window_manager/window_manager.dart';
@@ -73,9 +76,15 @@ class FluxerApp extends ConsumerWidget {
     }
 
     return MaterialApp.router(
-      title: 'Echowire',
+      title: ref.watch(
+        instanceRuntimeConfigProvider.select((config) => config.productName),
+      ),
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: FluxerLocalizations.localizationsDelegates,
+      localizationsDelegates: const [
+        FluxerLocalizations.delegate,
+        ...GlobalMaterialLocalizations.delegates,
+        l10n.GlobalMaterialLocalizations.delegate,
+      ],
       supportedLocales: FluxerLocalizations.supportedLocales,
       locale: appLocale,
       theme: theme,
@@ -115,13 +124,14 @@ class FluxerApp extends ConsumerWidget {
           reducedMotionOverride: reducedMotionPrefs.override,
           platformReducedMotion: platformReducedMotion,
         );
-        if (!disableAnimations) {
-          return content;
+        Widget scaled = FluxerAppTextScale(child: content);
+        if (disableAnimations) {
+          scaled = MediaQuery(
+            data: MediaQuery.of(context).copyWith(disableAnimations: true),
+            child: scaled,
+          );
         }
-        return MediaQuery(
-          data: MediaQuery.of(context).copyWith(disableAnimations: true),
-          child: content,
-        );
+        return scaled;
       },
     );
   }

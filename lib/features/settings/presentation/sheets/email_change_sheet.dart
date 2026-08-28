@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/api/dio_error_message.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/resend_timer_mixin.dart';
@@ -13,6 +13,7 @@ import 'package:fluxer_app/features/ui/input/fluxer_input.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart';
 
 enum _Stage { intro, verifyOriginal, newEmail, verifyNew }
@@ -57,14 +58,7 @@ class _EmailChangeSheetState extends ConsumerState<EmailChangeSheet>
   }
 
   String _extractErrorMessage(DioException e) {
-    final data = e.response?.data;
-    if (data is Map<String, dynamic>) {
-      final message = data['message'] as String?;
-      if (message != null && message.isNotEmpty) {
-        return message;
-      }
-    }
-    return e.message ?? 'An error occurred';
+    return userFacingErrorMessage(e, 'An error occurred');
   }
 
   Future<void> _handleStart() async {

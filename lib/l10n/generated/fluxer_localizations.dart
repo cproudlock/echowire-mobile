@@ -295,6 +295,12 @@ abstract class FluxerLocalizations {
   /// **'Fluxer doesn\'t have access to your camera. You can enable it in your device privacy settings.'**
   String get systemPermissionCameraMessage;
 
+  /// Body text when photo library access must be enabled in system settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Fluxer doesn\'t have access to your photo library. You can enable it in your device privacy settings.'**
+  String get systemPermissionPhotosMessage;
+
   /// Body text when notification permission must be enabled in system settings.
   ///
   /// In en, this message translates to:
@@ -1210,6 +1216,18 @@ abstract class FluxerLocalizations {
   /// **'Already have an account? '**
   String get registerHaveAccount;
 
+  /// Notice shown after registering on an instance that requires admin approval.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account request is pending approval. You can sign in after an admin approves it.'**
+  String get registerPendingApproval;
+
+  /// Notice shown on the register screen when the instance has registration closed.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration is currently closed. Use a registration link from an admin to create an account.'**
+  String get registerClosed;
+
   /// Error when user has no passkeys registered and tries passkey login.
   ///
   /// In en, this message translates to:
@@ -1876,6 +1894,18 @@ abstract class FluxerLocalizations {
   /// **'Are you sure you want to close your DM with {username}? You can always reopen it later.'**
   String dmCloseDmConfirmDescription(String username);
 
+  /// Confirmation title for deleting all of the caller's messages in a DM or group DM.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete your messages in this conversation?'**
+  String get dmDeleteMyMessagesTitle;
+
+  /// Confirmation description for deleting all of the caller's messages in a DM or group DM.
+  ///
+  /// In en, this message translates to:
+  /// **'This will permanently delete every message you have ever sent in this conversation. This cannot be undone.'**
+  String get dmDeleteMyMessagesDescription;
+
   /// DM context menu action to copy the channel ID.
   ///
   /// In en, this message translates to:
@@ -2290,13 +2320,13 @@ abstract class FluxerLocalizations {
   /// **'Send request'**
   String get addFriendSendRequest;
 
-  /// Error when no user matches the entered EchoTag.
+  /// Error when no user matches the entered username.
   ///
   /// In en, this message translates to:
   /// **'No user found with that username.'**
   String get addFriendNoUserFound;
 
-  /// Error when the EchoTag format is invalid.
+  /// Error when the username format is invalid.
   ///
   /// In en, this message translates to:
   /// **'Enter a valid username (Username#0000).'**
@@ -2446,11 +2476,17 @@ abstract class FluxerLocalizations {
   /// **'Finish signing up to send friend requests.'**
   String get addFriendClaimToSend;
 
-  /// Generic error when sending a friend request fails.
+  /// Error when an unverified account tries to send a friend request.
   ///
   /// In en, this message translates to:
-  /// **'Couldn\'t send the friend request. Try again.'**
-  String get addFriendSendFailedGeneric;
+  /// **'Verify your email before sending friend requests.'**
+  String get addFriendVerifyToSend;
+
+  /// Error when either user's friends list is at the limit.
+  ///
+  /// In en, this message translates to:
+  /// **'Your friends list is full, or theirs is. Remove someone and try again.'**
+  String get addFriendFriendsListFull;
 
   /// Tag label shown next to bot user names.
   ///
@@ -2481,6 +2517,66 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Default emoji'**
   String get emojiAutocompleteDefaultLabel;
+
+  /// Emoji info sheet description for built-in unicode emoji.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a default emoji on {productName}.'**
+  String emojiInfoDefaultDescription(String productName);
+
+  /// Emoji info sheet description when the user can use a custom emoji from their community.
+  ///
+  /// In en, this message translates to:
+  /// **'This emoji is from this community. You can use it everywhere.'**
+  String get emojiInfoCustomGuildDescription;
+
+  /// Emoji info sheet description when the source community is unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a custom emoji from a community.'**
+  String get emojiInfoCustomUnknownDescription;
+
+  /// Emoji info sheet description when the user is not in the source community.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a custom emoji from a community. Ask the author for an invite to use this emoji.'**
+  String get emojiInfoCustomInviteRequiredDescription;
+
+  /// Section header above the source community in the emoji info sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'This emoji is from'**
+  String get emojiInfoFromHeader;
+
+  /// Subtitle for a discoverable source community in the emoji info sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Discoverable community'**
+  String get emojiInfoDiscoverableCommunity;
+
+  /// Subtitle for a non-discoverable source community in the emoji info sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Private community'**
+  String get emojiInfoPrivateCommunity;
+
+  /// Tooltip for the verified badge on a source community in the emoji info sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified community'**
+  String get emojiInfoVerifiedCommunity;
+
+  /// Accessibility label for adding an emoji to favorites from the emoji info sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Favorites'**
+  String get emojiInfoAddToFavorites;
+
+  /// Accessibility label for removing an emoji from favorites from the emoji info sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from Favorites'**
+  String get emojiInfoRemoveFromFavorites;
 
   /// Frequently used emojis section.
   ///
@@ -2623,16 +2719,16 @@ abstract class FluxerLocalizations {
   /// Upsell banner text in emoji picker for non-premium users.
   ///
   /// In en, this message translates to:
-  /// **'Unlock {emojiCount} from {communityCount} with Reverb.'**
+  /// **'Unlock {emojiCount} from {communityCount} with Plutonium.'**
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount);
 
-  /// Button label on the Reverb upsell banner.
+  /// Button label on the Plutonium upsell banner.
   ///
   /// In en, this message translates to:
-  /// **'Get Reverb'**
+  /// **'Get Plutonium'**
   String get emojiPlutoniumUpsellButton;
 
-  /// Dismiss link on the Reverb upsell banner.
+  /// Dismiss link on the Plutonium upsell banner.
   ///
   /// In en, this message translates to:
   /// **'Don\'t show this again'**
@@ -2785,13 +2881,13 @@ abstract class FluxerLocalizations {
   /// Toast shown when non-premium user tries uploading animated avatar.
   ///
   /// In en, this message translates to:
-  /// **'Animated avatars require Reverb'**
+  /// **'Animated avatars require Plutonium'**
   String get animatedAvatarsRequirePlutonium;
 
   /// Toast shown when non-premium user tries uploading animated banner.
   ///
   /// In en, this message translates to:
-  /// **'Animated banners require Reverb'**
+  /// **'Animated banners require Plutonium'**
   String get animatedBannersRequirePlutonium;
 
   /// Title for animated AVIF confirmation sheet.
@@ -2842,19 +2938,31 @@ abstract class FluxerLocalizations {
   /// **'Crop'**
   String get crop;
 
-  /// Title for the EchoTag change bottom sheet.
+  /// Hint shown in the image crop sheet on touch devices.
   ///
   /// In en, this message translates to:
-  /// **'Change Your EchoTag'**
+  /// **'Pinch to zoom, drag to reposition'**
+  String get cropTouchHint;
+
+  /// Hint shown in the image crop sheet on mouse devices.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag corners to resize, drag inside to move'**
+  String get cropMouseHint;
+
+  /// Title for the username change bottom sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Your Username'**
   String get changeYourFluxerTag;
 
   /// Label above the username and discriminator input fields.
   ///
   /// In en, this message translates to:
-  /// **'EchoTag'**
+  /// **'Username'**
   String get fluxerTagInputLabel;
 
-  /// Base description text on the EchoTag change sheet.
+  /// Base description text on the username change sheet.
   ///
   /// In en, this message translates to:
   /// **'Usernames can only contain letters (a-z, A-Z), numbers (0-9), and underscores. Usernames are case-insensitive.'**
@@ -2887,19 +2995,19 @@ abstract class FluxerLocalizations {
   /// Tooltip on disabled discriminator field for non-premium users.
   ///
   /// In en, this message translates to:
-  /// **'Get Reverb to customize your tag or keep it when changing your username'**
+  /// **'Get Plutonium to customize your tag or keep it when changing your username'**
   String get discriminatorPremiumTooltip;
 
   /// Title for the tag-taken confirmation sheet.
   ///
   /// In en, this message translates to:
-  /// **'EchoTag Already Taken'**
+  /// **'Username Already Taken'**
   String get fluxerTagAlreadyTaken;
 
-  /// Body text when the requested EchoTag is taken.
+  /// Body text when the requested username is taken.
   ///
   /// In en, this message translates to:
-  /// **'The EchoTag {username}#{discriminator} is already taken. Continuing will reroll your discriminator automatically.'**
+  /// **'The username {username}#{discriminator} is already taken. Continuing will reroll your discriminator automatically.'**
   String fluxerTagAlreadyTakenBody(String username, String discriminator);
 
   /// Title for the temporary tag warning sheet.
@@ -2911,13 +3019,13 @@ abstract class FluxerLocalizations {
   /// Warning body when premium subscription has a known expiry date.
   ///
   /// In en, this message translates to:
-  /// **'Your custom 4-digit tag is only available while your Reverb subscription is active. When your subscription expires on {date}, your tag will revert to a randomly assigned number after a 3-day grace period.'**
+  /// **'Your custom 4-digit tag is only available while your Plutonium subscription is active. When your subscription expires on {date}, your tag will revert to a randomly assigned number after a 3-day grace period.'**
   String customTagTemporaryBodyWithDate(String date);
 
   /// Warning body when premium subscription expiry date is unknown.
   ///
   /// In en, this message translates to:
-  /// **'Your custom 4-digit tag is only available while your Reverb subscription is active. When your subscription expires, your tag will revert to a randomly assigned number after a 3-day grace period.'**
+  /// **'Your custom 4-digit tag is only available while your Plutonium subscription is active. When your subscription expires, your tag will revert to a randomly assigned number after a 3-day grace period.'**
   String get customTagTemporaryBody;
 
   /// Button to acknowledge a warning and proceed.
@@ -2929,16 +3037,16 @@ abstract class FluxerLocalizations {
   /// Warning shown when premium user is about to change their discriminator.
   ///
   /// In en, this message translates to:
-  /// **'If you save this EchoTag, your custom 4-digit tag will revert to a random number when your Reverb subscription ends. If your subscription fails to renew, you\'ll have a 3-day grace period before the tag changes.'**
+  /// **'If you save this username, your custom 4-digit tag will revert to a random number when your Plutonium subscription ends. If your subscription fails to renew, you\'ll have a 3-day grace period before the tag changes.'**
   String get premiumWarningPendingDiscriminator;
 
   /// Warning shown when premium user already has a custom discriminator.
   ///
   /// In en, this message translates to:
-  /// **'Your custom 4-digit tag (#{discriminator}) is active while your Reverb subscription is active. If your subscription ends or fails to renew after a 3-day grace period, your tag will revert to a random number.'**
+  /// **'Your custom 4-digit tag (#{discriminator}) is active while your Plutonium subscription is active. If your subscription ends or fails to renew after a 3-day grace period, your tag will revert to a random number.'**
   String premiumWarningActiveDiscriminator(String discriminator);
 
-  /// Upsell text encouraging non-premium users to get Reverb for tag customization.
+  /// Upsell text encouraging non-premium users to get Plutonium for tag customization.
   ///
   /// In en, this message translates to:
   /// **'Customize your 4-digit tag or keep it when changing your username'**
@@ -2947,25 +3055,25 @@ abstract class FluxerLocalizations {
   /// Trial upsell with expiry date.
   ///
   /// In en, this message translates to:
-  /// **'Your Reverb trial expires on {date}. Upgrade to keep your custom tag and earn a badge on your profile.'**
+  /// **'Your Plutonium trial expires on {date}. Upgrade to keep your custom tag and earn a badge on your profile.'**
   String premiumTrialExpiresOn(String date);
 
   /// Trial upsell without specific expiry date.
   ///
   /// In en, this message translates to:
-  /// **'You\'re on a Reverb trial. Upgrade to keep your custom tag and earn a badge on your profile.'**
+  /// **'You\'re on a Plutonium trial. Upgrade to keep your custom tag and earn a badge on your profile.'**
   String get premiumTrialActive;
 
-  /// Success toast after EchoTag change.
+  /// Success toast after username change.
   ///
   /// In en, this message translates to:
-  /// **'EchoTag updated'**
+  /// **'Username updated'**
   String get fluxerTagUpdated;
 
-  /// Error message when EchoTag update fails.
+  /// Error message when username update fails.
   ///
   /// In en, this message translates to:
-  /// **'Failed to update EchoTag. Please try again.'**
+  /// **'Failed to update username. Please try again.'**
   String get fluxerTagUpdateFailed;
 
   /// Generic continue button label.
@@ -2992,22 +3100,22 @@ abstract class FluxerLocalizations {
   /// **'Username'**
   String get usernameLabel;
 
-  /// Tooltip when unverified user hovers the disabled Change EchoTag button.
+  /// Tooltip when unverified user hovers the disabled Change Username button.
   ///
   /// In en, this message translates to:
-  /// **'Claim your account to change your EchoTag'**
+  /// **'Claim your account to change your username'**
   String get claimAccountToChangeFluxerTag;
 
-  /// Button label to open the EchoTag change flow.
+  /// Button label to open the username change flow.
   ///
   /// In en, this message translates to:
-  /// **'Change EchoTag'**
+  /// **'Change Username'**
   String get changeFluxerTag;
 
-  /// Tooltip on the crown upsell button next to the EchoTag button.
+  /// Tooltip on the crown upsell button next to the username button.
   ///
   /// In en, this message translates to:
-  /// **'Customize your 4-digit tag (#{discriminator}) to your liking with Reverb'**
+  /// **'Customize your 4-digit tag (#{discriminator}) to your liking with Plutonium'**
   String customizeTagWithPlutoniumTooltip(String discriminator);
 
   /// Hint text below the username buttons.
@@ -3019,7 +3127,7 @@ abstract class FluxerLocalizations {
   /// Warning shown when user has a premium discriminator that is not lifetime.
   ///
   /// In en, this message translates to:
-  /// **'Your custom tag (#{discriminator}) is tied to your Reverb subscription and will revert to a random tag if it expires.'**
+  /// **'Your custom tag (#{discriminator}) is tied to your Plutonium subscription and will revert to a random tag if it expires.'**
   String customTagSubscriptionWarning(String discriminator);
 
   /// Label for the display name input.
@@ -3115,43 +3223,43 @@ abstract class FluxerLocalizations {
   /// Heading for the premium badge privacy settings section.
   ///
   /// In en, this message translates to:
-  /// **'Reverb Badge Privacy'**
+  /// **'Plutonium Badge Privacy'**
   String get plutoniumBadgePrivacyTitle;
 
   /// Subheading for the premium badge privacy settings section.
   ///
   /// In en, this message translates to:
-  /// **'Control how your Reverb badge is displayed to others'**
+  /// **'Control how your Plutonium badge is displayed to others'**
   String get plutoniumBadgePrivacyDescription;
 
-  /// Label for the toggle to hide the Reverb badge.
+  /// Label for the toggle to hide the Plutonium badge.
   ///
   /// In en, this message translates to:
-  /// **'Hide Reverb badge entirely'**
+  /// **'Hide Plutonium badge entirely'**
   String get hidePlutoniumBadgeLabel;
 
-  /// Description for the toggle to hide the Reverb badge.
+  /// Description for the toggle to hide the Plutonium badge.
   ///
   /// In en, this message translates to:
-  /// **'Completely hide your Reverb badge from other users'**
+  /// **'Completely hide your Plutonium badge from other users'**
   String get hidePlutoniumBadgeDescription;
 
-  /// Label for the toggle to hide the Reverb purchase date.
+  /// Label for the toggle to hide the Plutonium purchase date.
   ///
   /// In en, this message translates to:
-  /// **'Hide Reverb purchase date'**
+  /// **'Hide Plutonium purchase date'**
   String get hidePlutoniumPurchaseDate;
 
-  /// Label for the toggle to hide the Reverb purchase date, showing the actual date.
+  /// Label for the toggle to hide the Plutonium purchase date, showing the actual date.
   ///
   /// In en, this message translates to:
-  /// **'Hide Reverb purchase date ({date})'**
+  /// **'Hide Plutonium purchase date ({date})'**
   String hidePlutoniumPurchaseDateWithDate(String date);
 
-  /// Description for the toggle to hide the Reverb purchase date.
+  /// Description for the toggle to hide the Plutonium purchase date.
   ///
   /// In en, this message translates to:
-  /// **'Remove when you first bought Reverb from your badge'**
+  /// **'Remove when you first bought Plutonium from your badge'**
   String get hidePurchaseDateDescription;
 
   /// Label for the toggle to mask Visionary as a regular subscription.
@@ -3187,7 +3295,7 @@ abstract class FluxerLocalizations {
   /// Trial banner title when user has an active subscription pending after trial.
   ///
   /// In en, this message translates to:
-  /// **'You\'re on a Reverb trial — your subscription starts on {date}'**
+  /// **'You\'re on a Plutonium trial — your subscription starts on {date}'**
   String premiumTrialSubscriptionStarts(String date);
 
   /// Trial banner description when user has an active subscription pending after trial.
@@ -3199,19 +3307,19 @@ abstract class FluxerLocalizations {
   /// Trial banner title with expiry date.
   ///
   /// In en, this message translates to:
-  /// **'You\'re on a Reverb trial that expires on {date}'**
+  /// **'You\'re on a Plutonium trial that expires on {date}'**
   String premiumTrialExpiresOnProfile(String date);
 
   /// Trial banner title without specific expiry date.
   ///
   /// In en, this message translates to:
-  /// **'You\'re on a Reverb trial'**
+  /// **'You\'re on a Plutonium trial'**
   String get premiumTrialActiveProfile;
 
-  /// Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars.
+  /// Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars.
   ///
   /// In en, this message translates to:
-  /// **'JPEG, PNG, WebP. Max 10MB. Recommended: 512×512px. Animated avatars (GIF) require Reverb.'**
+  /// **'JPEG, PNG, WebP. Max 10MB. Recommended: 512×512px. Animated avatars (GIF) require Plutonium.'**
   String get avatarDescriptionNonPremium;
 
   /// Upsell text shown in place of banner upload for non-premium users.
@@ -3220,19 +3328,19 @@ abstract class FluxerLocalizations {
   /// **'Customize your profile with a static or animated banner image to make it stand out.'**
   String get bannerPlutoniumUpsell;
 
-  /// Button label for the Reverb upsell call-to-action.
+  /// Button label for the Plutonium upsell call-to-action.
   ///
   /// In en, this message translates to:
-  /// **'Get Reverb'**
+  /// **'Get Plutonium'**
   String get getPlutonium;
 
-  /// Title for the Reverb not-available-yet bottom sheet.
+  /// Title for the Plutonium not-available-yet bottom sheet.
   ///
   /// In en, this message translates to:
-  /// **'Reverb'**
+  /// **'Plutonium'**
   String get plutoniumNotAvailableTitle;
 
-  /// Body text for the Reverb not-available-yet bottom sheet.
+  /// Body text for the Plutonium not-available-yet bottom sheet.
   ///
   /// In en, this message translates to:
   /// **'In-app purchases are not available on this platform yet. Stay tuned — coming soon!'**
@@ -3301,7 +3409,7 @@ abstract class FluxerLocalizations {
   /// Upsell text for per-guild premium features
   ///
   /// In en, this message translates to:
-  /// **'Customizing your avatar, banner, accent color, and bio for individual communities requires Reverb. Community nickname and pronouns are free for everyone.'**
+  /// **'Customizing your avatar, banner, accent color, and bio for individual communities requires Plutonium. Community nickname and pronouns are free for everyone.'**
   String get perGuildPremiumUpsellText;
 
   /// Avatar/banner mode: inherit from global profile
@@ -4327,7 +4435,7 @@ abstract class FluxerLocalizations {
   /// Warning about active subscription before deletion.
   ///
   /// In en, this message translates to:
-  /// **'Cancel your active Reverb subscription in Reverb settings before deleting your account.'**
+  /// **'Cancel your active Plutonium subscription in Plutonium settings before deleting your account.'**
   String get dangerZoneDeleteCancelSubscription;
 
   /// Title for the guild ownership warning modal when trying to delete account.
@@ -4443,6 +4551,12 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'An error occurred'**
   String get genericError;
+
+  /// Generic message shown when a network request fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get networkErrorMessage;
 
   /// Error message when a verification code is invalid.
   ///
@@ -4639,7 +4753,7 @@ abstract class FluxerLocalizations {
   /// Context menu item that copies the user's tag.
   ///
   /// In en, this message translates to:
-  /// **'Copy EchoTag'**
+  /// **'Copy username'**
   String get blockedUsersCopyTag;
 
   /// Context menu item that copies the user's ID.
@@ -5836,6 +5950,36 @@ abstract class FluxerLocalizations {
   /// **'Slowmode is enabled, but you are immune.'**
   String get slowmodeTooltipImmune;
 
+  /// Short label in the wide composer slowmode indicator when the reader is free to send.
+  ///
+  /// In en, this message translates to:
+  /// **'Slowmode is enabled'**
+  String get slowmodeStatusEnabled;
+
+  /// Short label in the wide composer slowmode indicator while the countdown runs.
+  ///
+  /// In en, this message translates to:
+  /// **'Slowmode is active ({remaining})'**
+  String slowmodeStatusActive(String remaining);
+
+  /// Tooltip on the wide composer slowmode indicator when the reader can bypass slowmode.
+  ///
+  /// In en, this message translates to:
+  /// **'Slowmode is set to {durationLabel}, but you are immune.'**
+  String slowmodeTooltipSetImmune(String durationLabel);
+
+  /// Tooltip on the wide composer slowmode indicator while the reader is counting down.
+  ///
+  /// In en, this message translates to:
+  /// **'Slowmode is set to {durationLabel}. Wait before sending another message.'**
+  String slowmodeTooltipSetWait(String durationLabel);
+
+  /// Tooltip on the wide composer slowmode indicator when the reader is free to send.
+  ///
+  /// In en, this message translates to:
+  /// **'Slowmode is set to {durationLabel} for this channel.'**
+  String slowmodeTooltipSetChannel(String durationLabel);
+
   /// Placeholder text in the channel message input when the user lacks Send Messages permission.
   ///
   /// In en, this message translates to:
@@ -5911,8 +6055,8 @@ abstract class FluxerLocalizations {
   /// Shown when a selected file is larger than allowed.
   ///
   /// In en, this message translates to:
-  /// **'One or more files exceed the size limit'**
-  String get chatAttachmentFileTooLarge;
+  /// **'{fileName} exceeds the size limit ({fileSize})'**
+  String chatAttachmentFileTooLarge(String fileName, String fileSize);
 
   /// Shown when the estimated multipart request exceeds the limit.
   ///
@@ -6856,6 +7000,48 @@ abstract class FluxerLocalizations {
   /// **'Choose between dark, coal, or light appearance.'**
   String get lookAndFeelThemeSectionDescription;
 
+  /// Appearance section title for HDR image and video display.
+  ///
+  /// In en, this message translates to:
+  /// **'High dynamic range'**
+  String get lookAndFeelHdrSectionTitle;
+
+  /// Appearance section description for HDR display mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Control how HDR images are displayed on HDR-capable monitors.'**
+  String get lookAndFeelHdrSectionDescription;
+
+  /// HDR radio option that keeps full HDR brightness and color.
+  ///
+  /// In en, this message translates to:
+  /// **'Full dynamic range'**
+  String get lookAndFeelHdrFullName;
+
+  /// Description for the full dynamic range HDR option.
+  ///
+  /// In en, this message translates to:
+  /// **'Display HDR images at full brightness and color range.'**
+  String get lookAndFeelHdrFullDescription;
+
+  /// HDR radio option that tone-maps HDR content to SDR.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard range'**
+  String get lookAndFeelHdrStandardName;
+
+  /// Description for the standard-range HDR option.
+  ///
+  /// In en, this message translates to:
+  /// **'Tone-map HDR images to standard range, reducing peak brightness.'**
+  String get lookAndFeelHdrStandardDescription;
+
+  /// Accessibility label for the HDR display mode radio group.
+  ///
+  /// In en, this message translates to:
+  /// **'High dynamic range display mode'**
+  String get lookAndFeelHdrDisplayModeLabel;
+
   /// Label on the dark theme swatch button.
   ///
   /// In en, this message translates to:
@@ -6904,17 +7090,95 @@ abstract class FluxerLocalizations {
   /// **'Couldn\'t sync theme to your account. Please try again.'**
   String get lookAndFeelThemeSyncFailed;
 
-  /// Section title for the chat font size slider.
+  /// Search label for chat font size within the Messages section.
   ///
   /// In en, this message translates to:
-  /// **'Chat Font Scaling'**
+  /// **'Chat font scaling'**
   String get lookAndFeelChatFontScalingTitle;
 
-  /// Section description for the chat font size slider.
+  /// Search description for chat font size.
   ///
   /// In en, this message translates to:
   /// **'Adjust the font size in the chat area.'**
   String get lookAndFeelChatFontScalingDescription;
+
+  /// Label for the chat font size select in Look & Feel.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat font size'**
+  String get lookAndFeelChatFontSizeLabel;
+
+  /// Section title for the app zoom slider.
+  ///
+  /// In en, this message translates to:
+  /// **'App zoom level'**
+  String get lookAndFeelAppZoomTitle;
+
+  /// Section description for the app zoom slider.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust the application\'s zoom level.'**
+  String get lookAndFeelAppZoomDescription;
+
+  /// Section title for message layout settings in Look & Feel.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get lookAndFeelMessagesSectionTitle;
+
+  /// Section description for message layout settings in Look & Feel.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how messages are displayed in chat channels.'**
+  String get lookAndFeelMessagesSectionDescription;
+
+  /// Label for message group spacing select in Look & Feel.
+  ///
+  /// In en, this message translates to:
+  /// **'Space between message groups'**
+  String get lookAndFeelMessageGroupSpacingLabel;
+
+  /// Message group spacing option label.
+  ///
+  /// In en, this message translates to:
+  /// **'{spacing}px'**
+  String lookAndFeelMessageGroupSpacingValue(int spacing);
+
+  /// Accessibility label for message display mode radio group.
+  ///
+  /// In en, this message translates to:
+  /// **'Message display mode'**
+  String get lookAndFeelMessageDisplayModeLabel;
+
+  /// Comfy message display mode option name.
+  ///
+  /// In en, this message translates to:
+  /// **'Comfy'**
+  String get lookAndFeelMessageDisplayComfyName;
+
+  /// Comfy message display mode option description.
+  ///
+  /// In en, this message translates to:
+  /// **'Spacious layout with clear visual separation between messages.'**
+  String get lookAndFeelMessageDisplayComfyDescription;
+
+  /// Dense message display mode option name.
+  ///
+  /// In en, this message translates to:
+  /// **'Dense'**
+  String get lookAndFeelMessageDisplayDenseName;
+
+  /// Dense message display mode option description.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximizes visible messages with minimal spacing.'**
+  String get lookAndFeelMessageDisplayDenseDescription;
+
+  /// Toggle to hide user avatars in dense message display mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide user avatars'**
+  String get lookAndFeelHideUserAvatarsLabel;
 
   /// Section title for interface customization.
   ///
@@ -7089,6 +7353,45 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'{count, plural, =1{1 community is temporarily unavailable due to a flux capacitor malfunction.} other{{count} communities are temporarily unavailable due to a flux capacitor malfunction.}}'**
   String guildUnavailableOutageTooltip(int count);
+
+  /// Title shown when a community is temporarily offline.
+  ///
+  /// In en, this message translates to:
+  /// **'Community temporarily unavailable'**
+  String get communityTemporarilyUnavailable;
+
+  /// Body shown when a community is temporarily offline.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. We\'re working on it.'**
+  String get guildUnavailableDescription;
+
+  /// Title shown when the active community is missing.
+  ///
+  /// In en, this message translates to:
+  /// **'This is not the community you\'re looking for.'**
+  String get guildNotFoundTitle;
+
+  /// Body shown when the active community is missing.
+  ///
+  /// In en, this message translates to:
+  /// **'The community you\'re looking for may have been deleted or you may not have access to it.'**
+  String get guildNotFoundDescription;
+
+  /// Nagbar shown when a community is only accessible to staff.
+  ///
+  /// In en, this message translates to:
+  /// **'{communityName} is currently only accessible to {productName} staff members'**
+  String guildStaffOnlyAccessibleNagbar(
+    String communityName,
+    String productName,
+  );
+
+  /// Accessibility label suffix for unavailable guild icons.
+  ///
+  /// In en, this message translates to:
+  /// **'temporarily unavailable'**
+  String get guildNavbarTemporarilyUnavailable;
 
   /// Toggle label — collapse unread DMs into the Echowire button folder.
   ///
@@ -7323,6 +7626,126 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Add to Favorites'**
   String get favoritesAddToFavorites;
+
+  /// Action that adds the selected media to saved media.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to saved media'**
+  String get favoritesAddToSavedMedia;
+
+  /// Action that removes the selected media from saved media.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from saved media'**
+  String get favoritesRemoveFromSavedMedia;
+
+  /// Media context menu action that saves a GIF favorite by URL without uploading it.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to URL-only GIF favorites'**
+  String get favoritesAddToUrlOnlyGifFavorites;
+
+  /// Media context menu action that removes a GIF favorite saved by URL.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from URL-only GIF favorites'**
+  String get favoritesRemoveFromUrlOnlyGifFavorites;
+
+  /// Title for the add saved media form.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to saved media'**
+  String get savedMediaAddTitle;
+
+  /// Form field label for saved media name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get savedMediaFormNameLabel;
+
+  /// Placeholder for saved media name input.
+  ///
+  /// In en, this message translates to:
+  /// **'My awesome media'**
+  String get savedMediaFormNameHint;
+
+  /// Form field label for saved media alt text.
+  ///
+  /// In en, this message translates to:
+  /// **'Alt text'**
+  String get savedMediaFormAltTextLabel;
+
+  /// Placeholder for saved media alt text input.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the media'**
+  String get savedMediaFormAltTextHint;
+
+  /// Form field label for saved media tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get savedMediaFormTagsLabel;
+
+  /// Placeholder for saved media tags input.
+  ///
+  /// In en, this message translates to:
+  /// **'funny, reaction, work'**
+  String get savedMediaFormTagsHint;
+
+  /// Error shown when saving saved media fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not update saved media.'**
+  String get savedMediaSaveError;
+
+  /// Validation error when saved media name is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Name is required.'**
+  String get savedMediaNameRequired;
+
+  /// Title for the first-time GIF favorite storage prompt.
+  ///
+  /// In en, this message translates to:
+  /// **'How should we save your GIF favorites?'**
+  String get gifFavoriteFirstTimeTitle;
+
+  /// Description for the first-time GIF favorite storage prompt.
+  ///
+  /// In en, this message translates to:
+  /// **'You can store starred GIFs as URL-only favorites or upload them to your saved media. Pick the one that fits how you use them. You can change it any time in Settings > Advanced > Media.'**
+  String get gifFavoriteFirstTimeDescription;
+
+  /// Details for URL-only GIF favorite storage option.
+  ///
+  /// In en, this message translates to:
+  /// **'URL-only favorites (default): synced across your devices, no upload, doesn\'t count against saved media. The original media may disappear if its host removes it.'**
+  String get gifFavoriteFirstTimeUrlOnlyDetails;
+
+  /// Details for saved media GIF favorite storage option.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved media: uploaded, taggable, searchable, and persistent, but counts against your saved media limit.'**
+  String get gifFavoriteFirstTimeSavedMediaDetails;
+
+  /// Hint shown on the first-time GIF favorite storage prompt.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll only ask once.'**
+  String get gifFavoriteFirstTimeHint;
+
+  /// Primary action on the first-time GIF favorite storage prompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Use URL-only (recommended)'**
+  String get gifFavoriteFirstTimeUseUrlOnly;
+
+  /// Secondary action on the first-time GIF favorite storage prompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Use saved media'**
+  String get gifFavoriteFirstTimeUseSavedMedia;
 
   /// Title for hide favorites confirmation.
   ///
@@ -7623,6 +8046,24 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Automatically send GIFs when selected'**
   String get messagesMediaGifsAutoSendLabel;
+
+  /// Section title for camera capture upload settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera uploads'**
+  String get messagesMediaCameraUploadsSectionTitle;
+
+  /// Section description for camera capture upload settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose whether photos and videos taken with the in-app camera are kept on your device'**
+  String get messagesMediaCameraUploadsSectionDescription;
+
+  /// Toggle label for saving camera captures to the device gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Save to device'**
+  String get messagesMediaCameraUploadsSaveToDeviceLabel;
 
   /// Section title for expression autocomplete settings.
   ///
@@ -8777,13 +9218,13 @@ abstract class FluxerLocalizations {
   /// Voice participant context menu item to community-mute another member.
   ///
   /// In en, this message translates to:
-  /// **'Mute'**
+  /// **'Community mute'**
   String get voiceParticipantMenuCommunityMute;
 
   /// Voice participant context menu item to community-deafen another member.
   ///
   /// In en, this message translates to:
-  /// **'Deafen'**
+  /// **'Community deafen'**
   String get voiceParticipantMenuCommunityDeafen;
 
   /// Voice participant context menu slider label for per-user volume.
@@ -8839,6 +9280,12 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Show my own camera'**
   String get voicePanelShowOwnCameraLabel;
+
+  /// Voice display preference that moves active speakers toward the front of the call grid when enabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Prioritize speakers'**
+  String get voicePrioritizeSpeakersLabel;
 
   /// Accessibility label for opening voice channel text chat.
   ///
@@ -9128,7 +9575,7 @@ abstract class FluxerLocalizations {
   /// **'Message is too long'**
   String get characterCounterTooLong;
 
-  /// Character counter tooltip with a Reverb upsell when nearing the limit.
+  /// Character counter tooltip with a Plutonium upsell when nearing the limit.
   ///
   /// In en, this message translates to:
   /// **'{remaining} characters left. Get {productName} to write up to {premiumMaxLength} characters.'**
@@ -10242,6 +10689,48 @@ abstract class FluxerLocalizations {
   /// **'Copy Message'**
   String get chatMessageCopyText;
 
+  /// Action label for translating a message on-device.
+  ///
+  /// In en, this message translates to:
+  /// **'Translate'**
+  String get chatMessageTranslate;
+
+  /// Footer shown under a translated message.
+  ///
+  /// In en, this message translates to:
+  /// **'Translated from {language}'**
+  String chatMessageTranslatedFrom(String language);
+
+  /// Toggles a translated message back to the original text.
+  ///
+  /// In en, this message translates to:
+  /// **'See original'**
+  String get chatMessageSeeOriginal;
+
+  /// Toggles a message back to the stored translation.
+  ///
+  /// In en, this message translates to:
+  /// **'See translation'**
+  String get chatMessageSeeTranslation;
+
+  /// Shown under a message while on-device translation is in progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Translating…'**
+  String get chatMessageTranslating;
+
+  /// Toast shown when on-device translation fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t translate this message.'**
+  String get chatMessageTranslateFailed;
+
+  /// Toast shown when no translation source is available.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation isn\'t available on this device.'**
+  String get chatMessageTranslateUnavailable;
+
   /// Action label for reading a message aloud.
   ///
   /// In en, this message translates to:
@@ -11115,13 +11604,13 @@ abstract class FluxerLocalizations {
   /// On state suffix appended to the reply bar mention toggle label.
   ///
   /// In en, this message translates to:
-  /// **'On'**
+  /// **'ON'**
   String get chatReplyMentionOn;
 
   /// Off state suffix appended to the reply bar mention toggle label.
   ///
   /// In en, this message translates to:
-  /// **'Off'**
+  /// **'OFF'**
   String get chatReplyMentionOff;
 
   /// Accessible label for the cancel-reply button in the reply bar.
@@ -11297,6 +11786,255 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Notify users with this role who have permission to view this channel.'**
   String get composerAutocompleteRoleMentionDescription;
+
+  /// Accessibility label for the composer autocomplete list.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestions'**
+  String get composerAutocompleteSuggestions;
+
+  /// Section heading in composer autocomplete for slash commands.
+  ///
+  /// In en, this message translates to:
+  /// **'Commands'**
+  String get composerAutocompleteCommandsHeading;
+
+  /// Section heading in composer autocomplete for slash-command argument choices.
+  ///
+  /// In en, this message translates to:
+  /// **'Choices'**
+  String get composerAutocompleteChoicesHeading;
+
+  /// Section heading in composer autocomplete for adding optional slash-command arguments.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional arguments'**
+  String get composerAutocompleteOptionalArgumentsHeading;
+
+  /// Section heading in composer autocomplete for channel suggestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Channels'**
+  String get composerAutocompleteChannelsHeading;
+
+  /// Section heading in composer autocomplete for member suggestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get composerAutocompleteMembersHeading;
+
+  /// Section heading in composer autocomplete for user suggestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Users'**
+  String get composerAutocompleteUsersHeading;
+
+  /// Section heading in composer autocomplete for mixed mention suggestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentions'**
+  String get composerAutocompleteMentionsHeading;
+
+  /// Section heading in composer autocomplete for role suggestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Roles'**
+  String get composerAutocompleteRolesHeading;
+
+  /// Section heading in composer autocomplete for saved media.
+  ///
+  /// In en, this message translates to:
+  /// **'Media'**
+  String get composerAutocompleteMediaHeading;
+
+  /// Section heading in composer autocomplete for stickers.
+  ///
+  /// In en, this message translates to:
+  /// **'Stickers'**
+  String get composerAutocompleteStickersHeading;
+
+  /// Heading above GIF autocomplete results.
+  ///
+  /// In en, this message translates to:
+  /// **'GIFs'**
+  String get composerAutocompleteGifsHeading;
+
+  /// Empty-state title when GIF autocomplete finds no results.
+  ///
+  /// In en, this message translates to:
+  /// **'No GIFs found'**
+  String get composerAutocompleteNoGifs;
+
+  /// Slash-command description for /shrug.
+  ///
+  /// In en, this message translates to:
+  /// **'Appends ¯\\_(ツ)_/¯ to your message.'**
+  String get composerCommandShrugDescription;
+
+  /// Slash-command description for /tableflip.
+  ///
+  /// In en, this message translates to:
+  /// **'Appends (╯°□°)╯︵ ┻━┻ to your message.'**
+  String get composerCommandTableflipDescription;
+
+  /// Slash-command description for /unflip.
+  ///
+  /// In en, this message translates to:
+  /// **'Appends ┬─┬ ノ( ゜-゜ノ) to your message.'**
+  String get composerCommandUnflipDescription;
+
+  /// Slash-command description for /me.
+  ///
+  /// In en, this message translates to:
+  /// **'Send an action message (wraps in italics).'**
+  String get composerCommandMeDescription;
+
+  /// Slash-command description for /spoiler.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a spoiler message (wraps in spoiler tags).'**
+  String get composerCommandSpoilerDescription;
+
+  /// Slash-command description for /tts.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a text-to-speech message.'**
+  String get composerCommandTtsDescription;
+
+  /// Slash-command description for /nick.
+  ///
+  /// In en, this message translates to:
+  /// **'Change your nickname in this community.'**
+  String get composerCommandNickDescription;
+
+  /// Slash-command description for /kick.
+  ///
+  /// In en, this message translates to:
+  /// **'Kick a member from this community.'**
+  String get composerCommandKickDescription;
+
+  /// Slash-command description for /ban.
+  ///
+  /// In en, this message translates to:
+  /// **'Ban a member from this community.'**
+  String get composerCommandBanDescription;
+
+  /// Slash-command description for /msg.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a direct message to a user.'**
+  String get composerCommandMsgDescription;
+
+  /// Slash-command description for /saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a saved media item.'**
+  String get composerCommandSavedDescription;
+
+  /// Slash-command description for /sticker.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a sticker.'**
+  String get composerCommandStickerDescription;
+
+  /// Slash-command description for /gif.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for and send a GIF.'**
+  String get composerCommandGifDescription;
+
+  /// Description for the member option of a moderation slash command.
+  ///
+  /// In en, this message translates to:
+  /// **'The member to target.'**
+  String get composerCommandMemberOption;
+
+  /// Description for an optional moderation slash-command reason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason (optional).'**
+  String get composerCommandReasonOption;
+
+  /// Description for a required message option in a slash command.
+  ///
+  /// In en, this message translates to:
+  /// **'The message to send.'**
+  String get composerCommandMessageOption;
+
+  /// Description for a media search slash-command query.
+  ///
+  /// In en, this message translates to:
+  /// **'What to search for.'**
+  String get composerCommandQueryOption;
+
+  /// Description for the /nick nickname option.
+  ///
+  /// In en, this message translates to:
+  /// **'Your new nickname, or leave blank to reset it.'**
+  String get composerCommandNicknameOption;
+
+  /// Description for the /ban delete_messages option.
+  ///
+  /// In en, this message translates to:
+  /// **'How much of the member\'s recent message history to delete.'**
+  String get composerCommandDeleteMessagesOption;
+
+  /// Choice label for retaining all messages when banning a member.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t delete any'**
+  String get composerCommandDeleteMessagesNone;
+
+  /// Choice label for deleting multiple days of messages when banning a member.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous {count} days'**
+  String composerCommandDeleteMessagesDays(int count);
+
+  /// Choice label for deleting one day of messages when banning a member.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous 24 hours'**
+  String get composerCommandDeleteMessagesOneDay;
+
+  /// Notice shown when a required slash-command argument was left empty.
+  ///
+  /// In en, this message translates to:
+  /// **'This option is required. Please provide a value.'**
+  String get composerCommandOptionRequired;
+
+  /// Accessible label for the button that clears the slash command being composed.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear command'**
+  String get composerCommandClear;
+
+  /// Local system message after the user changes their community nickname with a slash command.
+  ///
+  /// In en, this message translates to:
+  /// **'You changed your nickname in this community from **{previousNickname}** to **{newNickname}**.'**
+  String composerCommandNicknameChanged(
+    String previousNickname,
+    String newNickname,
+  );
+
+  /// Fallback name in local command system messages when the current user is unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown user'**
+  String get composerCommandUnknownUser;
+
+  /// Local system message when /msg cannot open a DM.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to send a message to **{username}**. They may have DMs disabled or you may be blocked.'**
+  String composerCommandMsgFailed(String username);
+
+  /// Hint shown after required slash-command slots for remaining optional arguments.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} more'**
+  String composerCommandOptionalMore(int count);
 
   /// Landing-view title of the add community modal.
   ///
@@ -12544,6 +13282,30 @@ abstract class FluxerLocalizations {
   /// **'Members will appear here once the community data is loaded.'**
   String get channelDetailsMembersEmptyBody;
 
+  /// Title when the user lacks permission to view a channel member list.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t view members'**
+  String get memberListPermissionDeniedTitle;
+
+  /// Body when the user lacks permission to view a channel member list.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t view the members of this channel in this community'**
+  String get memberListPermissionDeniedBody;
+
+  /// Title when member list updates are disabled for the community.
+  ///
+  /// In en, this message translates to:
+  /// **'Member list unavailable'**
+  String get memberListUnavailableTitle;
+
+  /// Body when member list updates are disabled for the community.
+  ///
+  /// In en, this message translates to:
+  /// **'Member lists are temporarily unavailable in this community'**
+  String get memberListUnavailableBody;
+
   /// Error title when pinned messages fail to load in channel details.
   ///
   /// In en, this message translates to:
@@ -12627,6 +13389,168 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Has'**
   String get channelDetailsSearchFilterHas;
+
+  /// Channel filter chip label in channel message search.
+  ///
+  /// In en, this message translates to:
+  /// **'In'**
+  String get channelDetailsSearchFilterIn;
+
+  /// Mentions filter chip label in channel message search.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentions'**
+  String get channelDetailsSearchFilterMentions;
+
+  /// Additional filters chip label in channel message search.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get channelDetailsSearchFilterMore;
+
+  /// Value shown on the More filters chip when additional filters are set.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get channelDetailsSearchMoreFiltersActive;
+
+  /// Channel filter chip value when multiple channels are selected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} channels'**
+  String channelDetailsSearchChannelsCount(int count);
+
+  /// User filter chip value when multiple users are selected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} users'**
+  String channelDetailsSearchUsersCount(int count);
+
+  /// Author type filter option for regular users.
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get channelDetailsSearchAuthorTypeUser;
+
+  /// Author type filter option for bots.
+  ///
+  /// In en, this message translates to:
+  /// **'Bot'**
+  String get channelDetailsSearchAuthorTypeBot;
+
+  /// Author type filter option for webhooks.
+  ///
+  /// In en, this message translates to:
+  /// **'Webhook'**
+  String get channelDetailsSearchAuthorTypeWebhook;
+
+  /// Title for the channel filter sheet in message search.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by channel'**
+  String get channelDetailsSearchFilterByChannel;
+
+  /// Search field hint in the channel filter sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Search channels'**
+  String get channelDetailsSearchChannelsHint;
+
+  /// Empty state in the channel filter sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'No channels found'**
+  String get channelDetailsSearchChannelsEmpty;
+
+  /// Pinned filter section in the More filters sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinned'**
+  String get channelDetailsSearchMoreFiltersPinned;
+
+  /// Pinned true option in More filters.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinned only'**
+  String get channelDetailsSearchPinnedTrue;
+
+  /// Pinned false option in More filters.
+  ///
+  /// In en, this message translates to:
+  /// **'Exclude pinned'**
+  String get channelDetailsSearchPinnedFalse;
+
+  /// Clears a selected filter option.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get channelDetailsSearchClearFilter;
+
+  /// Author type section in the More filters sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Author type'**
+  String get channelDetailsSearchMoreFiltersAuthorType;
+
+  /// Date filter section in the More filters sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get channelDetailsSearchMoreFiltersDate;
+
+  /// Date mode dropdown label in the More filters sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Date mode'**
+  String get channelDetailsSearchMoreFiltersDateMode;
+
+  /// Prompt to pick a date in the More filters sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a date'**
+  String get channelDetailsSearchMoreFiltersPickDate;
+
+  /// Link hostname field in the More filters sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Link hostname'**
+  String get channelDetailsSearchMoreFiltersLink;
+
+  /// Filename filter field in the More filters sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Filename contains'**
+  String get channelDetailsSearchMoreFiltersFileName;
+
+  /// File extension filter field in the More filters sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'File extension'**
+  String get channelDetailsSearchMoreFiltersFileType;
+
+  /// Poll content filter label.
+  ///
+  /// In en, this message translates to:
+  /// **'Poll'**
+  String get channelDetailsSearchContentPoll;
+
+  /// Poll content filter description.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages with a poll'**
+  String get channelDetailsSearchContentPollDescription;
+
+  /// Forwarded message content filter label.
+  ///
+  /// In en, this message translates to:
+  /// **'Forward'**
+  String get channelDetailsSearchContentForward;
+
+  /// Forwarded message content filter description.
+  ///
+  /// In en, this message translates to:
+  /// **'Forwarded messages'**
+  String get channelDetailsSearchContentForwardDescription;
 
   /// Sort filter chip label in channel message search.
   ///
@@ -13510,6 +14434,42 @@ abstract class FluxerLocalizations {
   /// **'Show keyboard'**
   String get composerShowKeyboard;
 
+  /// Accessibility label for the composer button that closes the attachment gallery panel.
+  ///
+  /// In en, this message translates to:
+  /// **'Close attachment picker'**
+  String get composerCloseAttachmentPanel;
+
+  /// Label for the native photo picker action on the attachment panel.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get chatAttachmentPanelPhotos;
+
+  /// Label for the native file picker action on the attachment panel.
+  ///
+  /// In en, this message translates to:
+  /// **'Files'**
+  String get chatAttachmentPanelFiles;
+
+  /// Title shown when the attachment gallery cannot read the photo library.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo library access needed'**
+  String get chatAttachmentLibraryPermissionTitle;
+
+  /// Body text when the attachment gallery is blocked by photo library permission.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow photo library access to browse and attach recent photos and videos.'**
+  String get chatAttachmentLibraryPermissionBody;
+
+  /// Button that opens system settings so the user can grant photo library access.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings'**
+  String get chatAttachmentLibraryPermissionSettings;
+
   /// Screen reader label for a chat message row.
   ///
   /// In en, this message translates to:
@@ -13636,6 +14596,12 @@ abstract class FluxerLocalizations {
   /// **'YOUR ACCOUNT'**
   String get userSettingsGroupYourAccount;
 
+  /// Section heading for billing items in user settings navigation.
+  ///
+  /// In en, this message translates to:
+  /// **'BILLING'**
+  String get userSettingsGroupBilling;
+
   /// Section heading for app preference items in user settings navigation.
   ///
   /// In en, this message translates to:
@@ -13653,6 +14619,30 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'STAFF-ONLY'**
   String get userSettingsGroupStaffOnly;
+
+  /// Placeholder for the user settings search field.
+  ///
+  /// In en, this message translates to:
+  /// **'Search settings...'**
+  String get userSettingsSearchPlaceholder;
+
+  /// Accessibility label for the user settings search field.
+  ///
+  /// In en, this message translates to:
+  /// **'Search settings'**
+  String get userSettingsSearchFieldLabel;
+
+  /// Accessibility label for clearing the user settings search field.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search'**
+  String get userSettingsSearchClear;
+
+  /// Empty state shown when user settings search has no matches.
+  ///
+  /// In en, this message translates to:
+  /// **'No settings found'**
+  String get userSettingsSearchNoResults;
 
   /// User settings navigation item for profile settings.
   ///
@@ -13675,8 +14665,746 @@ abstract class FluxerLocalizations {
   /// User settings navigation item for gifts and promo codes.
   ///
   /// In en, this message translates to:
-  /// **'Gifts & Codes'**
+  /// **'Gifts'**
   String get userSettingsNavGiftsAndCodes;
+
+  /// No description provided for @giftSettingsClaimAccountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim your account'**
+  String get giftSettingsClaimAccountTitle;
+
+  /// No description provided for @giftSettingsClaimAccountDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim your account to redeem or manage Plutonium gift codes.'**
+  String get giftSettingsClaimAccountDescription;
+
+  /// No description provided for @giftSettingsRedeemTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem a gift'**
+  String get giftSettingsRedeemTitle;
+
+  /// No description provided for @giftSettingsRedeemDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a gift code to redeem Plutonium for your account.'**
+  String get giftSettingsRedeemDescription;
+
+  /// No description provided for @giftSettingsRedeemPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter gift code…'**
+  String get giftSettingsRedeemPlaceholder;
+
+  /// No description provided for @giftSettingsRedeemButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem'**
+  String get giftSettingsRedeemButton;
+
+  /// No description provided for @giftSettingsRedeemSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Gift redeemed successfully. Enjoy your Plutonium.'**
+  String get giftSettingsRedeemSuccess;
+
+  /// No description provided for @giftSettingsPurchasedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchased gifts'**
+  String get giftSettingsPurchasedTitle;
+
+  /// No description provided for @giftSettingsPurchasedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your purchased Plutonium gift codes. Share the gift URL with someone special or redeem it for yourself!'**
+  String get giftSettingsPurchasedDescription;
+
+  /// No description provided for @giftSettingsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No gifts yet'**
+  String get giftSettingsEmptyTitle;
+
+  /// No description provided for @giftSettingsEmptyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy a Plutonium gift from the Plutonium tab to share with friends.'**
+  String get giftSettingsEmptyDescription;
+
+  /// No description provided for @giftSettingsGoToPlutonium.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Plutonium'**
+  String get giftSettingsGoToPlutonium;
+
+  /// No description provided for @giftSettingsLoadFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load gift inventory'**
+  String get giftSettingsLoadFailedTitle;
+
+  /// No description provided for @giftSettingsLoadFailedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again later.'**
+  String get giftSettingsLoadFailedDescription;
+
+  /// No description provided for @giftSettingsTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get giftSettingsTryAgain;
+
+  /// No description provided for @giftSettingsGiftUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Gift URL'**
+  String get giftSettingsGiftUrl;
+
+  /// No description provided for @giftSettingsCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get giftSettingsCopy;
+
+  /// No description provided for @giftSettingsCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get giftSettingsCopied;
+
+  /// No description provided for @giftSettingsGiftUrlCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Gift URL copied to clipboard!'**
+  String get giftSettingsGiftUrlCopied;
+
+  /// No description provided for @giftSettingsGiftUrlCopyFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t copy gift URL'**
+  String get giftSettingsGiftUrlCopyFailed;
+
+  /// No description provided for @giftSettingsPurchasedDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchased {date}'**
+  String giftSettingsPurchasedDate(String date);
+
+  /// No description provided for @giftSettingsRedeemedDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeemed {date}'**
+  String giftSettingsRedeemedDate(String date);
+
+  /// No description provided for @giftSettingsRedeemedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeemed by {name}'**
+  String giftSettingsRedeemedBy(String name);
+
+  /// No description provided for @giftSettingsAlreadyRedeemed.
+  ///
+  /// In en, this message translates to:
+  /// **'This gift has been redeemed'**
+  String get giftSettingsAlreadyRedeemed;
+
+  /// No description provided for @giftSettingsRedeemForYourself.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem for yourself'**
+  String get giftSettingsRedeemForYourself;
+
+  /// No description provided for @giftSettingsShareWithFriend.
+  ///
+  /// In en, this message translates to:
+  /// **'Share with a friend'**
+  String get giftSettingsShareWithFriend;
+
+  /// No description provided for @premiumPlutoniumTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock higher limits and exclusive features while supporting an independent communication platform.'**
+  String get premiumPlutoniumTagline;
+
+  /// No description provided for @premiumPurchaseMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase mode'**
+  String get premiumPurchaseMode;
+
+  /// No description provided for @premiumForMe.
+  ///
+  /// In en, this message translates to:
+  /// **'For me'**
+  String get premiumForMe;
+
+  /// No description provided for @premiumAsAGift.
+  ///
+  /// In en, this message translates to:
+  /// **'As a gift'**
+  String get premiumAsAGift;
+
+  /// No description provided for @premiumMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly'**
+  String get premiumMonthly;
+
+  /// No description provided for @premiumYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly'**
+  String get premiumYearly;
+
+  /// No description provided for @premiumPerMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'per month'**
+  String get premiumPerMonth;
+
+  /// No description provided for @premiumPerYear.
+  ///
+  /// In en, this message translates to:
+  /// **'per year'**
+  String get premiumPerYear;
+
+  /// No description provided for @premiumOneTimePurchase.
+  ///
+  /// In en, this message translates to:
+  /// **'one-time purchase'**
+  String get premiumOneTimePurchase;
+
+  /// No description provided for @premiumSave17.
+  ///
+  /// In en, this message translates to:
+  /// **'Save 17%'**
+  String get premiumSave17;
+
+  /// No description provided for @premiumUpgradeNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade now'**
+  String get premiumUpgradeNow;
+
+  /// No description provided for @premiumBuyGift.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy gift'**
+  String get premiumBuyGift;
+
+  /// No description provided for @premiumOneYearGift.
+  ///
+  /// In en, this message translates to:
+  /// **'1 year gift'**
+  String get premiumOneYearGift;
+
+  /// No description provided for @premiumOneMonthGift.
+  ///
+  /// In en, this message translates to:
+  /// **'1 month gift'**
+  String get premiumOneMonthGift;
+
+  /// No description provided for @premiumMostPopular.
+  ///
+  /// In en, this message translates to:
+  /// **'Most popular'**
+  String get premiumMostPopular;
+
+  /// No description provided for @premiumScrollPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Scroll down to view all the perks included with Plutonium'**
+  String get premiumScrollPrompt;
+
+  /// No description provided for @premiumFreeVsPlutonium.
+  ///
+  /// In en, this message translates to:
+  /// **'Free vs Plutonium'**
+  String get premiumFreeVsPlutonium;
+
+  /// No description provided for @premiumFreeColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get premiumFreeColumn;
+
+  /// No description provided for @premiumGiftSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gift Plutonium'**
+  String get premiumGiftSectionTitle;
+
+  /// No description provided for @premiumGiftSectionDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Share the Plutonium experience with your friends by purchasing a gift subscription.'**
+  String get premiumGiftSectionDescription;
+
+  /// No description provided for @premiumGiftBannerOne.
+  ///
+  /// In en, this message translates to:
+  /// **'You have a new gift code waiting for you!'**
+  String get premiumGiftBannerOne;
+
+  /// No description provided for @premiumGiftBannerMany.
+  ///
+  /// In en, this message translates to:
+  /// **'You have {count} new gift codes waiting for you!'**
+  String premiumGiftBannerMany(int count);
+
+  /// No description provided for @premiumViewGifts.
+  ///
+  /// In en, this message translates to:
+  /// **'View gifts'**
+  String get premiumViewGifts;
+
+  /// No description provided for @premiumReadyToUpgrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to upgrade?'**
+  String get premiumReadyToUpgrade;
+
+  /// No description provided for @premiumReadyToBuyGift.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to buy a gift?'**
+  String get premiumReadyToBuyGift;
+
+  /// No description provided for @premiumMonthlyPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly {price}'**
+  String premiumMonthlyPrice(String price);
+
+  /// No description provided for @premiumYearlyPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly {price}'**
+  String premiumYearlyPrice(String price);
+
+  /// No description provided for @premiumOneYearPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'1 year {price}'**
+  String premiumOneYearPrice(String price);
+
+  /// No description provided for @premiumOneMonthPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'1 month {price}'**
+  String premiumOneMonthPrice(String price);
+
+  /// No description provided for @premiumManageSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage subscription'**
+  String get premiumManageSubscription;
+
+  /// No description provided for @premiumRedeemGiftCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem gift code'**
+  String get premiumRedeemGiftCode;
+
+  /// No description provided for @premiumGiftBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Gift'**
+  String get premiumGiftBadge;
+
+  /// No description provided for @premiumCancelSubscriptionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel subscription?'**
+  String get premiumCancelSubscriptionTitle;
+
+  /// No description provided for @premiumCancelSubscriptionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You keep your perks until your next renewal date, then have a 3-day grace period to resubscribe and keep your subscriber history.'**
+  String get premiumCancelSubscriptionBody;
+
+  /// No description provided for @premiumCancelSubscriptionConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel subscription'**
+  String get premiumCancelSubscriptionConfirm;
+
+  /// No description provided for @premiumKeepSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep subscription'**
+  String get premiumKeepSubscription;
+
+  /// No description provided for @premiumPurchaseHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase history'**
+  String get premiumPurchaseHistoryTitle;
+
+  /// No description provided for @premiumPurchaseHistoryDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your recent invoices. To change the payment method for your subscription, add or choose one in the billing portal and make it the default.'**
+  String get premiumPurchaseHistoryDescription;
+
+  /// No description provided for @premiumManagePaymentMethods.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage payment methods'**
+  String get premiumManagePaymentMethods;
+
+  /// No description provided for @premiumBillingHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Billing history'**
+  String get premiumBillingHistory;
+
+  /// No description provided for @premiumSelfServeRefundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Self-serve refund'**
+  String get premiumSelfServeRefundTitle;
+
+  /// No description provided for @premiumSelfServeRefundButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund latest purchase'**
+  String get premiumSelfServeRefundButton;
+
+  /// No description provided for @premiumDisclaimerAgreementPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'By purchasing, you agree to our '**
+  String get premiumDisclaimerAgreementPrefix;
+
+  /// No description provided for @premiumDisclaimerAgreementPastPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'By purchasing, you agreed to our '**
+  String get premiumDisclaimerAgreementPastPrefix;
+
+  /// No description provided for @premiumDisclaimerAgreementMiddle.
+  ///
+  /// In en, this message translates to:
+  /// **' and '**
+  String get premiumDisclaimerAgreementMiddle;
+
+  /// No description provided for @premiumActiveUntil.
+  ///
+  /// In en, this message translates to:
+  /// **'Active until {date}'**
+  String premiumActiveUntil(String date);
+
+  /// No description provided for @premiumSubscriptionCanceling.
+  ///
+  /// In en, this message translates to:
+  /// **'Canceling'**
+  String get premiumSubscriptionCanceling;
+
+  /// No description provided for @premiumCancelsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancels on {date}. Perks remain active until then.'**
+  String premiumCancelsOn(String date);
+
+  /// No description provided for @premiumReactivateSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Reactivate'**
+  String get premiumReactivateSubscription;
+
+  /// No description provided for @premiumGiftedUntil.
+  ///
+  /// In en, this message translates to:
+  /// **'Gifted until {date}. Does not renew automatically.'**
+  String premiumGiftedUntil(String date);
+
+  /// No description provided for @premiumComparisonFeatureColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Feature'**
+  String get premiumComparisonFeatureColumn;
+
+  /// No description provided for @premiumDisclaimerPurchased.
+  ///
+  /// In en, this message translates to:
+  /// **'By purchasing, you agreed to our {terms} and {privacy}.'**
+  String premiumDisclaimerPurchased(String terms, String privacy);
+
+  /// No description provided for @premiumDisclaimerRefund.
+  ///
+  /// In en, this message translates to:
+  /// **'Self-serve refunds available within 3 days of payment, once every 30 days. Refunding a subscription cancels it. EU/EEA buyers waive the 14-day right of withdrawal at checkout to access content immediately. Use the in-app refund button instead of a chargeback. Chargebacks can permanently restrict your account. Stripe handles payment securely. We never see your full card number.'**
+  String get premiumDisclaimerRefund;
+
+  /// No description provided for @premiumTermsOfService.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of service'**
+  String get premiumTermsOfService;
+
+  /// No description provided for @premiumPrivacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy policy'**
+  String get premiumPrivacyPolicy;
+
+  /// No description provided for @premiumCheckoutStartFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t start checkout'**
+  String get premiumCheckoutStartFailedTitle;
+
+  /// No description provided for @premiumCheckoutStartFailedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong while starting checkout. Please try again in a moment.'**
+  String get premiumCheckoutStartFailedBody;
+
+  /// No description provided for @premiumGiftSubscriptionBlocksRecurring.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re currently on a gift subscription. It won\'t renew. You can redeem more gift codes to extend it. Recurring subscriptions can be started after your gift time ends.'**
+  String get premiumGiftSubscriptionBlocksRecurring;
+
+  /// No description provided for @premiumPlanUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This plan isn\'t available. Contact support.'**
+  String get premiumPlanUnavailable;
+
+  /// No description provided for @premiumCompletePaymentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete payment'**
+  String get premiumCompletePaymentTitle;
+
+  /// No description provided for @premiumCompletePaymentBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You are now navigating to Stripe to complete the payment. Return to Fluxer once you\'ve completed it.'**
+  String get premiumCompletePaymentBody;
+
+  /// No description provided for @premiumChoosePaymentMethodTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose payment method'**
+  String get premiumChoosePaymentMethodTitle;
+
+  /// No description provided for @premiumPixPaymentPromptDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay with Pix automático to authorize recurring charges directly from your Brazilian bank. Or choose use card to enter a credit card on Stripe\'s next screen.'**
+  String get premiumPixPaymentPromptDescription;
+
+  /// No description provided for @premiumUsePix.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Pix'**
+  String get premiumUsePix;
+
+  /// No description provided for @premiumUpiPaymentPromptDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay with UPI to set up an RBI-compliant e-mandate from your Indian bank. Or choose use card to enter a credit card on Stripe\'s next screen.'**
+  String get premiumUpiPaymentPromptDescription;
+
+  /// No description provided for @premiumUseUpi.
+  ///
+  /// In en, this message translates to:
+  /// **'Use UPI'**
+  String get premiumUseUpi;
+
+  /// No description provided for @premiumUseCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Use card'**
+  String get premiumUseCard;
+
+  /// No description provided for @premiumCustomerPortalOpenFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open the billing portal'**
+  String get premiumCustomerPortalOpenFailedTitle;
+
+  /// No description provided for @premiumCustomerPortalOpenFailedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong while opening the billing portal. Please try again in a moment.'**
+  String get premiumCustomerPortalOpenFailedBody;
+
+  /// No description provided for @premiumAlreadyVisionaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re already Visionary'**
+  String get premiumAlreadyVisionaryTitle;
+
+  /// No description provided for @premiumAlreadyVisionaryBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Visionary already includes permanent access, so a recurring subscription isn\'t needed. You can still buy gifts for others.'**
+  String get premiumAlreadyVisionaryBody;
+
+  /// No description provided for @premiumExistingSubscriptionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription already exists'**
+  String get premiumExistingSubscriptionTitle;
+
+  /// No description provided for @premiumExistingSubscriptionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We found an existing Fluxer Plutonium subscription for this account. Manage it in the secure billing portal to update payment details or check renewal status. If you just paid, wait a minute and reopen this page.'**
+  String get premiumExistingSubscriptionBody;
+
+  /// No description provided for @premiumPurchasesDisabledTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases unavailable'**
+  String get premiumPurchasesDisabledTitle;
+
+  /// No description provided for @premiumPurchasesDisabledBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases are disabled for this account. Contact support@fluxer.app if this looks wrong.'**
+  String get premiumPurchasesDisabledBody;
+
+  /// No description provided for @premiumClaimAccountToPurchase.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim your account to purchase Fluxer Plutonium.'**
+  String get premiumClaimAccountToPurchase;
+
+  /// No description provided for @premiumVerifyEmailToPurchase.
+  ///
+  /// In en, this message translates to:
+  /// **'You need to verify your email before you can purchase Fluxer Plutonium.'**
+  String get premiumVerifyEmailToPurchase;
+
+  /// No description provided for @premiumPerkCustomUsernameTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom username tag'**
+  String get premiumPerkCustomUsernameTag;
+
+  /// No description provided for @premiumPerkPerCommunityProfiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Per-community profiles'**
+  String get premiumPerkPerCommunityProfiles;
+
+  /// No description provided for @premiumPerkMessageScheduling.
+  ///
+  /// In en, this message translates to:
+  /// **'Message scheduling'**
+  String get premiumPerkMessageScheduling;
+
+  /// No description provided for @premiumPerkProfileBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile badge'**
+  String get premiumPerkProfileBadge;
+
+  /// No description provided for @premiumPerkCustomVideoBackgrounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom video backgrounds'**
+  String get premiumPerkCustomVideoBackgrounds;
+
+  /// No description provided for @premiumPerkEntranceSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Entrance sounds'**
+  String get premiumPerkEntranceSounds;
+
+  /// No description provided for @premiumPerkCommunities.
+  ///
+  /// In en, this message translates to:
+  /// **'Communities'**
+  String get premiumPerkCommunities;
+
+  /// No description provided for @premiumPerkMessageCharacterLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Message character limit'**
+  String get premiumPerkMessageCharacterLimit;
+
+  /// No description provided for @premiumPerkBookmarkedMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmarked messages'**
+  String get premiumPerkBookmarkedMessages;
+
+  /// No description provided for @premiumPerkFileUploadSize.
+  ///
+  /// In en, this message translates to:
+  /// **'File upload size'**
+  String get premiumPerkFileUploadSize;
+
+  /// No description provided for @premiumPerkEmojiStickerPacks.
+  ///
+  /// In en, this message translates to:
+  /// **'Emoji & sticker packs'**
+  String get premiumPerkEmojiStickerPacks;
+
+  /// No description provided for @premiumPerkSavedMedia.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved media'**
+  String get premiumPerkSavedMedia;
+
+  /// No description provided for @premiumPerkUseAnimatedEmojis.
+  ///
+  /// In en, this message translates to:
+  /// **'Use animated emojis'**
+  String get premiumPerkUseAnimatedEmojis;
+
+  /// No description provided for @premiumPerkGlobalEmojiStickerAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Global emoji & sticker access'**
+  String get premiumPerkGlobalEmojiStickerAccess;
+
+  /// No description provided for @premiumPerkVideoQuality.
+  ///
+  /// In en, this message translates to:
+  /// **'Video quality'**
+  String get premiumPerkVideoQuality;
+
+  /// No description provided for @premiumPerkAnimatedAvatarsBanners.
+  ///
+  /// In en, this message translates to:
+  /// **'Animated avatars & profile banners'**
+  String get premiumPerkAnimatedAvatarsBanners;
+
+  /// No description provided for @premiumPerkEarlyAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Early access to new features'**
+  String get premiumPerkEarlyAccess;
+
+  /// No description provided for @premiumPerkCustomThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom themes'**
+  String get premiumPerkCustomThemes;
+
+  /// No description provided for @premiumPerkVideoQualityRestricted.
+  ///
+  /// In en, this message translates to:
+  /// **'720p/30fps'**
+  String get premiumPerkVideoQualityRestricted;
+
+  /// No description provided for @premiumPerkVideoQualityStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to 4K/60fps'**
+  String get premiumPerkVideoQualityStock;
 
   /// User settings navigation item for the privacy dashboard.
   ///
@@ -13731,6 +15459,12 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Audio & Video'**
   String get userSettingsNavAudioAndVideo;
+
+  /// User settings navigation item for keyboard shortcuts.
+  ///
+  /// In en, this message translates to:
+  /// **'Shortcuts'**
+  String get userSettingsNavShortcuts;
 
   /// Settings section title for audio settings in the voice and video tab.
   ///
@@ -14686,6 +16420,18 @@ abstract class FluxerLocalizations {
   /// **'Thumbnail or live frame while scrubbing video'**
   String get advancedSettingVideoSeekThumbnailsDescription;
 
+  /// Toggle label for enabling haptic feedback in advanced settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Haptic feedback'**
+  String get advancedSettingHapticFeedbackLabel;
+
+  /// Toggle description for the local-only haptic feedback setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Vibration feedback for taps and actions. Won\'t sync across devices.'**
+  String get advancedSettingHapticFeedbackDescription;
+
   /// No description provided for @advancedSettingShowNekoLabel.
   ///
   /// In en, this message translates to:
@@ -14703,6 +16449,18 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Show Neko on your chat input'**
   String get advancedSettingShowNekoDescriptionTouch;
+
+  /// No description provided for @advancedSettingMobileSplashZoomAnimationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Splash zoom animation'**
+  String get advancedSettingMobileSplashZoomAnimationLabel;
+
+  /// No description provided for @advancedSettingMobileSplashZoomAnimationDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Zoom the logo out when leaving the splash screen'**
+  String get advancedSettingMobileSplashZoomAnimationDescription;
 
   /// No description provided for @advancedSettingKeyboardHintsLabel.
   ///
@@ -15533,6 +17291,36 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'What\'s New'**
   String get userSettingsNavWhatsNew;
+
+  /// User settings What's New action to join the Fluxer Labs community.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Fluxer Labs'**
+  String get userSettingsJoinFluxerLabs;
+
+  /// User settings navigation item to open open-source app licenses.
+  ///
+  /// In en, this message translates to:
+  /// **'App Licenses'**
+  String get userSettingsNavAppLicenses;
+
+  /// Description shown at the top of the app licenses settings page.
+  ///
+  /// In en, this message translates to:
+  /// **'Open-source software used by this app. This app is built with Flutter.'**
+  String get userSettingsAppLicensesDescription;
+
+  /// Error message when the app licenses list fails to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load app licenses.'**
+  String get userSettingsAppLicensesLoadError;
+
+  /// Subtitle on an app licenses list row showing how many license entries apply to a package.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 license} other{{count} licenses}}'**
+  String userSettingsAppLicensesPackageCount(int count);
 
   /// User settings navigation item to sign out of the account.
   ///
@@ -21033,257 +22821,437 @@ abstract class FluxerLocalizations {
   /// **'Direct Messages'**
   String get dmListDirectMessagesTitle;
 
-  /// No description provided for @advancedSettingSequentialFileSendLabel.
+  /// Placeholder for the shortcuts settings search field.
   ///
   /// In en, this message translates to:
-  /// **'Send file messages in order'**
-  String get advancedSettingSequentialFileSendLabel;
+  /// **'Search shortcuts'**
+  String get keybindsSearchShortcuts;
 
-  /// No description provided for @advancedSettingSequentialFileSendDescription.
+  /// No description provided for @keybindSectionDefaults.
   ///
   /// In en, this message translates to:
-  /// **'Ensures file messages appear in the order you sent them'**
-  String get advancedSettingSequentialFileSendDescription;
+  /// **'Defaults'**
+  String get keybindSectionDefaults;
 
-  /// Section title for unread-indicator accessibility settings.
+  /// No description provided for @keybindSectionMessages.
   ///
   /// In en, this message translates to:
-  /// **'Unread indicators'**
-  String get accessibilityUnreadGroupTitle;
+  /// **'Messages'**
+  String get keybindSectionMessages;
 
-  /// Section description for unread-indicator accessibility settings.
+  /// No description provided for @keybindSectionNavigation.
   ///
   /// In en, this message translates to:
-  /// **'Control how unread message indicators are displayed.'**
-  String get accessibilityUnreadGroupDescription;
+  /// **'Navigation'**
+  String get keybindSectionNavigation;
 
-  /// Toggle label for showing a faded unread indicator on muted channels.
+  /// No description provided for @keybindSectionDragAndDrop.
   ///
   /// In en, this message translates to:
-  /// **'Show faded unread indicator on muted channels'**
-  String get accessibilityShowFadedUnreadOnMutedChannelsLabel;
+  /// **'Drag and drop'**
+  String get keybindSectionDragAndDrop;
 
-  /// Toggle description for showing a faded unread indicator on muted channels.
+  /// No description provided for @keybindSectionChat.
   ///
   /// In en, this message translates to:
-  /// **'Display a dimmed unread indicator next to muted direct messages and channels so you can still see at a glance when there\'s activity.'**
-  String get accessibilityShowFadedUnreadOnMutedChannelsDescription;
+  /// **'Chat'**
+  String get keybindSectionChat;
 
-  /// Section title for media button visibility settings on the accessibility settings page.
+  /// No description provided for @keybindSectionVoiceAndVideo.
   ///
   /// In en, this message translates to:
-  /// **'Media Buttons'**
-  String get accessibilityMediaButtonsGroupTitle;
+  /// **'Voice and video'**
+  String get keybindSectionVoiceAndVideo;
 
-  /// Section description for media button visibility settings on the accessibility settings page.
+  /// No description provided for @keybindSectionMisc.
   ///
   /// In en, this message translates to:
-  /// **'Customize which buttons appear on media attachments and embeds.'**
-  String get accessibilityMediaButtonsGroupDescription;
+  /// **'Miscellaneous'**
+  String get keybindSectionMisc;
 
-  /// Toggle label for showing the delete button on media.
+  /// No description provided for @keybindActionShowShortcutsList.
   ///
   /// In en, this message translates to:
-  /// **'Show delete button'**
-  String get accessibilityShowMediaDeleteButtonLabel;
+  /// **'Show keyboard shortcuts list'**
+  String get keybindActionShowShortcutsList;
 
-  /// Toggle label for showing the download button on media.
+  /// No description provided for @keybindActionCopyText.
   ///
   /// In en, this message translates to:
-  /// **'Show download button'**
-  String get accessibilityShowMediaDownloadButtonLabel;
+  /// **'Copy text'**
+  String get keybindActionCopyText;
 
-  /// Toggle label for showing the favorite button on media.
+  /// No description provided for @keybindActionMarkUnread.
   ///
   /// In en, this message translates to:
-  /// **'Show favorite button'**
-  String get accessibilityShowMediaFavoriteButtonLabel;
+  /// **'Mark as unread'**
+  String get keybindActionMarkUnread;
 
-  /// Toggle label for showing the suppress embeds button on media.
+  /// No description provided for @keybindActionFocusTextarea.
   ///
   /// In en, this message translates to:
-  /// **'Show suppress embeds button'**
-  String get accessibilityShowSuppressEmbedsButtonLabel;
+  /// **'Focus text area'**
+  String get keybindActionFocusTextarea;
 
-  /// Subsection description for microphone test controls.
+  /// No description provided for @keybindActionSwitchCommunities.
   ///
   /// In en, this message translates to:
-  /// **'Listen to how you sound with your current settings.'**
-  String get audioAndVideoMicTestSectionDescription;
+  /// **'Switch between communities'**
+  String get keybindActionSwitchCommunities;
 
-  /// Hint shown in the image crop sheet on touch devices.
+  /// No description provided for @keybindActionSwitchChannels.
   ///
   /// In en, this message translates to:
-  /// **'Pinch to zoom, drag to reposition'**
-  String get cropTouchHint;
+  /// **'Switch between channels'**
+  String get keybindActionSwitchChannels;
 
-  /// Hint shown in the image crop sheet on mouse devices.
+  /// No description provided for @keybindActionHistoryBack.
   ///
   /// In en, this message translates to:
-  /// **'Drag corners to resize, drag inside to move'**
-  String get cropMouseHint;
+  /// **'Move back through viewed channel history'**
+  String get keybindActionHistoryBack;
 
-  /// Channel filter chip label in channel message search.
+  /// No description provided for @keybindActionHistoryForward.
   ///
   /// In en, this message translates to:
-  /// **'In'**
-  String get channelDetailsSearchFilterIn;
+  /// **'Move forward through viewed channel history'**
+  String get keybindActionHistoryForward;
 
-  /// Mentions filter chip label in channel message search.
+  /// No description provided for @keybindActionJumpUnreadChannels.
   ///
   /// In en, this message translates to:
-  /// **'Mentions'**
-  String get channelDetailsSearchFilterMentions;
+  /// **'Jump between unread channels'**
+  String get keybindActionJumpUnreadChannels;
 
-  /// Additional filters chip label in channel message search.
+  /// No description provided for @keybindActionJumpMentionChannels.
   ///
   /// In en, this message translates to:
-  /// **'More'**
-  String get channelDetailsSearchFilterMore;
+  /// **'Jump between unread channels with mentions'**
+  String get keybindActionJumpMentionChannels;
 
-  /// Value shown on the More filters chip when additional filters are set.
+  /// No description provided for @keybindActionJumpCurrentCall.
   ///
   /// In en, this message translates to:
-  /// **'Active'**
-  String get channelDetailsSearchMoreFiltersActive;
+  /// **'Jump to the current call'**
+  String get keybindActionJumpCurrentCall;
 
-  /// Channel filter chip value when multiple channels are selected.
+  /// No description provided for @keybindActionToggleLastGuildDms.
   ///
   /// In en, this message translates to:
-  /// **'{count} channels'**
-  String channelDetailsSearchChannelsCount(int count);
+  /// **'Toggle between last community and DMs'**
+  String get keybindActionToggleLastGuildDms;
 
-  /// User filter chip value when multiple users are selected.
+  /// No description provided for @keybindActionPreviousCommunityOrDms.
   ///
   /// In en, this message translates to:
-  /// **'{count} users'**
-  String channelDetailsSearchUsersCount(int count);
+  /// **'Switch to previous community or DMs'**
+  String get keybindActionPreviousCommunityOrDms;
 
-  /// Author type filter option for regular users.
+  /// No description provided for @keybindActionNextCommunityOrDms.
   ///
   /// In en, this message translates to:
-  /// **'User'**
-  String get channelDetailsSearchAuthorTypeUser;
+  /// **'Switch to next community or DMs'**
+  String get keybindActionNextCommunityOrDms;
 
-  /// Author type filter option for bots.
+  /// No description provided for @keybindActionGoToDms.
   ///
   /// In en, this message translates to:
-  /// **'Bot'**
-  String get channelDetailsSearchAuthorTypeBot;
+  /// **'Go to Direct Messages'**
+  String get keybindActionGoToDms;
 
-  /// Author type filter option for webhooks.
+  /// No description provided for @keybindActionGoToFirstCommunity.
   ///
   /// In en, this message translates to:
-  /// **'Webhook'**
-  String get channelDetailsSearchAuthorTypeWebhook;
+  /// **'Go to first community'**
+  String get keybindActionGoToFirstCommunity;
 
-  /// Title for the channel filter sheet in message search.
+  /// No description provided for @keybindActionGoToSecondCommunity.
   ///
   /// In en, this message translates to:
-  /// **'Filter by channel'**
-  String get channelDetailsSearchFilterByChannel;
+  /// **'Go to second community'**
+  String get keybindActionGoToSecondCommunity;
 
-  /// Search field hint in the channel filter sheet.
+  /// No description provided for @keybindActionGoToThirdCommunity.
   ///
   /// In en, this message translates to:
-  /// **'Search channels'**
-  String get channelDetailsSearchChannelsHint;
+  /// **'Go to third community'**
+  String get keybindActionGoToThirdCommunity;
 
-  /// Empty state in the channel filter sheet.
+  /// No description provided for @keybindActionGoToFourthCommunity.
   ///
   /// In en, this message translates to:
-  /// **'No channels found'**
-  String get channelDetailsSearchChannelsEmpty;
+  /// **'Go to fourth community'**
+  String get keybindActionGoToFourthCommunity;
 
-  /// Pinned filter section in the More filters sheet.
+  /// No description provided for @keybindActionGoToFifthCommunity.
   ///
   /// In en, this message translates to:
-  /// **'Pinned'**
-  String get channelDetailsSearchMoreFiltersPinned;
+  /// **'Go to fifth community'**
+  String get keybindActionGoToFifthCommunity;
 
-  /// Pinned true option in More filters.
+  /// No description provided for @keybindActionGoToSixthCommunity.
   ///
   /// In en, this message translates to:
-  /// **'Pinned only'**
-  String get channelDetailsSearchPinnedTrue;
+  /// **'Go to sixth community'**
+  String get keybindActionGoToSixthCommunity;
 
-  /// Pinned false option in More filters.
+  /// No description provided for @keybindActionGoToSeventhCommunity.
   ///
   /// In en, this message translates to:
-  /// **'Exclude pinned'**
-  String get channelDetailsSearchPinnedFalse;
+  /// **'Go to seventh community'**
+  String get keybindActionGoToSeventhCommunity;
 
-  /// Clears a selected filter option.
+  /// No description provided for @keybindActionGoToEighthCommunity.
   ///
   /// In en, this message translates to:
-  /// **'Clear'**
-  String get channelDetailsSearchClearFilter;
+  /// **'Go to eighth community'**
+  String get keybindActionGoToEighthCommunity;
 
-  /// Author type section in the More filters sheet.
+  /// No description provided for @keybindActionToggleQuickSwitcher.
   ///
   /// In en, this message translates to:
-  /// **'Author type'**
-  String get channelDetailsSearchMoreFiltersAuthorType;
+  /// **'Toggle quick switcher'**
+  String get keybindActionToggleQuickSwitcher;
 
-  /// Date filter section in the More filters sheet.
+  /// No description provided for @keybindActionCreateOrJoinCommunity.
   ///
   /// In en, this message translates to:
-  /// **'Date'**
-  String get channelDetailsSearchMoreFiltersDate;
+  /// **'Create or join a community'**
+  String get keybindActionCreateOrJoinCommunity;
 
-  /// Date mode dropdown label in the More filters sheet.
+  /// No description provided for @keybindActionStartDragAndDrop.
   ///
   /// In en, this message translates to:
-  /// **'Date mode'**
-  String get channelDetailsSearchMoreFiltersDateMode;
+  /// **'Start drag and drop'**
+  String get keybindActionStartDragAndDrop;
 
-  /// Prompt to pick a date in the More filters sheet.
+  /// No description provided for @keybindActionMove.
   ///
   /// In en, this message translates to:
-  /// **'Pick a date'**
-  String get channelDetailsSearchMoreFiltersPickDate;
+  /// **'Move'**
+  String get keybindActionMove;
 
-  /// Link hostname field in the More filters sheet.
+  /// No description provided for @keybindActionDropItem.
   ///
   /// In en, this message translates to:
-  /// **'Link hostname'**
-  String get channelDetailsSearchMoreFiltersLink;
+  /// **'Drop item'**
+  String get keybindActionDropItem;
 
-  /// Filename filter field in the More filters sheet.
+  /// No description provided for @keybindActionCancel.
   ///
   /// In en, this message translates to:
-  /// **'Filename contains'**
-  String get channelDetailsSearchMoreFiltersFileName;
+  /// **'Cancel'**
+  String get keybindActionCancel;
 
-  /// File extension filter field in the More filters sheet.
+  /// No description provided for @keybindActionMarkCommunityRead.
   ///
   /// In en, this message translates to:
-  /// **'File extension'**
-  String get channelDetailsSearchMoreFiltersFileType;
+  /// **'Mark community as read'**
+  String get keybindActionMarkCommunityRead;
 
-  /// Poll content filter label.
+  /// No description provided for @keybindActionMarkChannelRead.
   ///
   /// In en, this message translates to:
-  /// **'Poll'**
-  String get channelDetailsSearchContentPoll;
+  /// **'Mark channel as read'**
+  String get keybindActionMarkChannelRead;
 
-  /// Poll content filter description.
+  /// No description provided for @keybindActionStartGroupDm.
   ///
   /// In en, this message translates to:
-  /// **'Messages with a poll'**
-  String get channelDetailsSearchContentPollDescription;
+  /// **'Start a group DM'**
+  String get keybindActionStartGroupDm;
 
-  /// Forwarded message content filter label.
+  /// No description provided for @keybindActionTogglePinnedMessages.
   ///
   /// In en, this message translates to:
-  /// **'Forward'**
-  String get channelDetailsSearchContentForward;
+  /// **'Toggle pinned messages'**
+  String get keybindActionTogglePinnedMessages;
 
-  /// Forwarded message content filter description.
+  /// No description provided for @keybindActionToggleInbox.
   ///
   /// In en, this message translates to:
-  /// **'Forwarded messages'**
-  String get channelDetailsSearchContentForwardDescription;
+  /// **'Toggle the inbox'**
+  String get keybindActionToggleInbox;
+
+  /// No description provided for @keybindActionMarkTopInboxRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark top inbox channel as read'**
+  String get keybindActionMarkTopInboxRead;
+
+  /// No description provided for @keybindActionMarkAllInboxRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark all inbox channels as read'**
+  String get keybindActionMarkAllInboxRead;
+
+  /// No description provided for @keybindActionToggleMemberList.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle the member list or voice chat'**
+  String get keybindActionToggleMemberList;
+
+  /// No description provided for @keybindActionToggleEmojiPicker.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle the emoji picker'**
+  String get keybindActionToggleEmojiPicker;
+
+  /// No description provided for @keybindActionToggleGifPicker.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle the GIF picker'**
+  String get keybindActionToggleGifPicker;
+
+  /// No description provided for @keybindActionToggleStickerPicker.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle the sticker picker'**
+  String get keybindActionToggleStickerPicker;
+
+  /// No description provided for @keybindActionScrollChatUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Scroll chat up'**
+  String get keybindActionScrollChatUp;
+
+  /// No description provided for @keybindActionScrollChatDown.
+  ///
+  /// In en, this message translates to:
+  /// **'Scroll chat down'**
+  String get keybindActionScrollChatDown;
+
+  /// No description provided for @keybindActionJumpOldestUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'Jump to the oldest unread message'**
+  String get keybindActionJumpOldestUnread;
+
+  /// No description provided for @keybindActionFocusComposer.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus the text area'**
+  String get keybindActionFocusComposer;
+
+  /// No description provided for @keybindActionUploadFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload a file'**
+  String get keybindActionUploadFile;
+
+  /// No description provided for @keybindActionCopyChannelLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy channel link'**
+  String get keybindActionCopyChannelLink;
+
+  /// No description provided for @keybindActionToggleSavedMedia.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle saved media'**
+  String get keybindActionToggleSavedMedia;
+
+  /// No description provided for @keybindActionSendVoiceMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Send voice message'**
+  String get keybindActionSendVoiceMessage;
+
+  /// No description provided for @keybindActionAnswerCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer the incoming call'**
+  String get keybindActionAnswerCall;
+
+  /// No description provided for @keybindActionDeclineCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline the incoming call'**
+  String get keybindActionDeclineCall;
+
+  /// No description provided for @keybindActionStartDmCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a call in a DM or group'**
+  String get keybindActionStartDmCall;
+
+  /// No description provided for @keybindActionToggleSoundboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle the soundboard'**
+  String get keybindActionToggleSoundboard;
+
+  /// No description provided for @keybindActionToggleCompactCallView.
+  ///
+  /// In en, this message translates to:
+  /// **'Expand or collapse compact call view'**
+  String get keybindActionToggleCompactCallView;
+
+  /// No description provided for @keybindActionPushToTalkPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'Push to talk (priority)'**
+  String get keybindActionPushToTalkPriority;
+
+  /// No description provided for @keybindActionVoiceActivityPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice activity priority'**
+  String get keybindActionVoiceActivityPriority;
+
+  /// No description provided for @keybindActionOpenHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Open help'**
+  String get keybindActionOpenHelp;
+
+  /// No description provided for @keybindActionSearchMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Search messages'**
+  String get keybindActionSearchMessages;
+
+  /// No description provided for @keybindActionOpenContextMenu.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the context menu'**
+  String get keybindActionOpenContextMenu;
+
+  /// No description provided for @keybindActionOpenSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open your settings'**
+  String get keybindActionOpenSettings;
+
+  /// No description provided for @keybindActionOpenThemeStudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Open theme studio popout'**
+  String get keybindActionOpenThemeStudio;
+
+  /// No description provided for @keybindActionZoomIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Zoom in'**
+  String get keybindActionZoomIn;
+
+  /// No description provided for @keybindActionZoomOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Zoom out'**
+  String get keybindActionZoomOut;
+
+  /// No description provided for @keybindActionZoomReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset zoom'**
+  String get keybindActionZoomReset;
+
+  /// Shown when a context-menu paste finds no readable clipboard text.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t paste. The clipboard was empty or blocked for this app.'**
+  String get clipboardPasteFailed;
 }
 
 class _FluxerLocalizationsDelegate

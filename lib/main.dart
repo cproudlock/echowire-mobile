@@ -3,9 +3,9 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/app.dart';
+import 'package:fluxer_app/core/audio/app_media_audio_session.dart';
 import 'package:fluxer_app/core/audio/chat_attachment/chat_attachment_audio_entrypoint.dart';
 import 'package:fluxer_app/core/bootstrap/flutter_error_ui.dart';
 import 'package:fluxer_app/core/bootstrap/image_cache_config.dart';
@@ -20,6 +20,8 @@ import 'package:fluxer_app/core/providers/app_startup_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/push/fcm/fcm_entrypoint.dart';
 import 'package:fluxer_app/core/push/services/unified_push_service.dart';
+import 'package:fluxer_app/features/settings/providers/haptics_preferences_provider.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:image_picker_android/image_picker_android.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'package:media_kit/media_kit.dart';
@@ -67,6 +69,15 @@ void _configureFluxerErrorReporting() {
 
 Future<void> _bootstrapFluxer(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
+  assertPushProviderBuildConfig();
+  if (!kIsWeb &&
+      Platform.isAndroid &&
+      PushProviderGuard.isUnifiedPush &&
+      args.contains('--unifiedpush-bg')) {
+    await UnifiedPushService.ensureBackgroundInitialized();
+    return;
+  }
+
   configureFluxerMobileDetection();
   configureFluxerImageCache();
   configureFluxerErrorUi();
@@ -78,37 +89,37 @@ Future<void> _bootstrapFluxer(List<String> args) async {
       'app.bootstrap.media_kit',
       MediaKit.ensureInitialized,
     );
-    await FluxerObservability.instance.traceAsync(
-      'app.bootstrap.chat_attachment_audio',
-      bootstrapChatAttachmentAudio,
-    );
   }
 
   final ProviderContainer container = ProviderContainer();
-  await container.read(observabilityReportingProvider.notifier).load();
-  FluxerObservability.instance.traceSync(
-    'app.bootstrap.push_provider_assert',
-    assertPushProviderBuildConfig,
-  );
-  await FluxerObservability.instance.traceAsync(
-    'app.bootstrap.fcm',
-    bootstrapFcmIfNeeded,
-  );
+  // Chat-attachment audio is platform-channel bound and independent of the
+  // observability/FCM chain; observability consent stays ahead of Firebase.
+  await Future.wait<void>([
+    if (!kIsWeb)
+      FluxerObservability.instance.traceAsync(
+        'app.bootstrap.chat_attachment_audio',
+        bootstrapChatAttachmentAudio,
+      ),
+    () async {
+      await Future.wait<void>([
+        container.read(observabilityReportingProvider.notifier).load(),
+        container.read(hapticsPreferencesProvider.notifier).load(),
+      ]);
+      await FluxerObservability.instance.traceAsync(
+        'app.bootstrap.fcm',
+        bootstrapFcmIfNeeded,
+      );
+    }(),
+    if (!kIsWeb && (Platform.isIOS || Platform.isAndroid))
+      FluxerObservability.instance.traceAsync(
+        'app.bootstrap.app_media_audio_session',
+        prepareAppMediaAudioSession,
+      ),
+  ]);
   FluxerObservability.instance.traceSync(
     'app.bootstrap.image_picker',
     _configureImagePicker,
   );
-  final bool isUnifiedPushBackground =
-      args.contains('--unifiedpush-bg') &&
-      Platform.isAndroid &&
-      PushProviderGuard.isUnifiedPush;
-  if (isUnifiedPushBackground) {
-    await FluxerObservability.instance.traceAsync(
-      'app.bootstrap.unifiedpush_background',
-      UnifiedPushService.ensureBackgroundInitialized,
-    );
-    return;
-  }
 
   if (!kIsWeb && isFluxerDesktopOs) {
     await FluxerObservability.instance.traceAsync(
@@ -143,15 +154,18 @@ Future<void> _bootstrapFluxer(List<String> args) async {
     );
   }
 
-  await FluxerObservability.instance.traceAsync(
-    'app.startup.provider',
-    () async {
+  // First frame no longer waits for session validation: the router keeps the
+  // splash up until startup settles and the gateway delivers READY, and the
+  // splash surfaces startup errors as a retry. Engine warmup (shaders, fonts,
+  // first raster) overlaps the network round-trips instead of following them.
+  unawaited(
+    FluxerObservability.instance.traceAsync('app.startup.provider', () async {
       try {
         await container.read(appStartupProvider.future);
       } on Object {
-        // Startup failed; still launch so splash can show retry.
+        // Surfaced on the splash screen as a retry affordance.
       }
-    },
+    }),
   );
   FluxerObservability.instance.traceSync(
     'app.run',

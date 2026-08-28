@@ -1234,11 +1234,11 @@
   },
   "addFriendNoUserFound": "Nessun utente trovato con quel nome utente.",
   "@addFriendNoUserFound": {
-    "description": "Error when no user matches the entered EchoTag."
+    "description": "Error when no user matches the entered username."
   },
   "addFriendInvalidUsername": "Inserisci un nome utente valido (Nomeutente#0000).",
   "@addFriendInvalidUsername": {
-    "description": "Error when the EchoTag format is invalid."
+    "description": "Error when the username format is invalid."
   },
   "addFriendOutgoingSuccess": "Richiesta di amicizia inviata",
   "@addFriendOutgoingSuccess": {
@@ -1356,10 +1356,6 @@
   "@addFriendClaimToSend": {
     "description": "Error when an unclaimed account tries to send a friend request."
   },
-  "addFriendSendFailedGeneric": "Impossibile inviare la richiesta di amicizia. Riprova.",
-  "@addFriendSendFailedGeneric": {
-    "description": "Generic error when sending a friend request fails."
-  },
   "userTagBot": "BOT",
   "@userTagBot": {
     "description": "Tag label shown next to bot user names."
@@ -1472,7 +1468,7 @@
   "@emojiCategoryFlags": {
     "description": "Flags category."
   },
-  "emojiPlutoniumUpsellText": "Sblocca {emojiCount} da {communityCount} con Reverb.",
+  "emojiPlutoniumUpsellText": "Sblocca {emojiCount} da {communityCount} con Plutonium.",
   "@emojiPlutoniumUpsellText": {
     "description": "Upsell banner text in emoji picker for non-premium users.",
     "placeholders": {
@@ -1484,13 +1480,13 @@
       }
     }
   },
-  "emojiPlutoniumUpsellButton": "Ottieni Reverb",
+  "emojiPlutoniumUpsellButton": "Ottieni Plutonium",
   "@emojiPlutoniumUpsellButton": {
-    "description": "Button label on the Reverb upsell banner."
+    "description": "Button label on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellDismiss": "Non mostrarlo più",
   "@emojiPlutoniumUpsellDismiss": {
-    "description": "Dismiss link on the Reverb upsell banner."
+    "description": "Dismiss link on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 emoji personalizzata} other{{count} emoji personalizzate}}",
   "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1603,11 +1599,11 @@
   "@imageFileTooLarge": {
     "description": "Error when a selected image exceeds the maximum file size."
   },
-  "animatedAvatarsRequirePlutonium": "Gli avatar animati richiedono Reverb",
+  "animatedAvatarsRequirePlutonium": "Gli avatar animati richiedono Plutonium",
   "@animatedAvatarsRequirePlutonium": {
     "description": "Toast shown when non-premium user tries uploading animated avatar."
   },
-  "animatedBannersRequirePlutonium": "I banner animati richiedono Reverb",
+  "animatedBannersRequirePlutonium": "I banner animati richiedono Plutonium",
   "@animatedBannersRequirePlutonium": {
     "description": "Toast shown when non-premium user tries uploading animated banner."
   },
@@ -1643,17 +1639,19 @@
   "@crop": {
     "description": "Button to confirm image crop."
   },
-  "changeYourFluxerTag": "Cambia il tuo EchoTag",
+  "cropTouchHint": "Pinch to zoom, drag to reposition",
+  "cropMouseHint": "Drag corners to resize, drag inside to move",
+  "changeYourFluxerTag": "Cambia il tuo Nome utente",
   "@changeYourFluxerTag": {
-    "description": "Title for the EchoTag change bottom sheet."
+    "description": "Title for the username change bottom sheet."
   },
-  "fluxerTagInputLabel": "EchoTag",
+  "fluxerTagInputLabel": "Nome utente",
   "@fluxerTagInputLabel": {
     "description": "Label above the username and discriminator input fields."
   },
   "fluxerTagDescriptionBase": "I nomi utente possono contenere solo lettere (a-z, A-Z), numeri (0-9) e underscore. I nomi utente non fanno distinzione tra maiuscole e minuscole.",
   "@fluxerTagDescriptionBase": {
-    "description": "Base description text on the EchoTag change sheet."
+    "description": "Base description text on the username change sheet."
   },
   "fluxerTagDescriptionVisionary": "I nomi utente possono contenere solo lettere (a-z, A-Z), numeri (0-9) e underscore. I nomi utente non fanno distinzione tra maiuscole e minuscole. Puoi scegliere qualsiasi tag di 4 cifre disponibile da #0000 a #9999.",
   "@fluxerTagDescriptionVisionary": {
@@ -1679,17 +1677,17 @@
   "@validationAllowedChars": {
     "description": "Validation rule for allowed username characters."
   },
-  "discriminatorPremiumTooltip": "Ottieni Reverb per personalizzare il tuo tag o mantenerlo quando cambi nome utente",
+  "discriminatorPremiumTooltip": "Ottieni Plutonium per personalizzare il tuo tag o mantenerlo quando cambi nome utente",
   "@discriminatorPremiumTooltip": {
     "description": "Tooltip on disabled discriminator field for non-premium users."
   },
-  "fluxerTagAlreadyTaken": "EchoTag già preso",
+  "fluxerTagAlreadyTaken": "Nome utente già preso",
   "@fluxerTagAlreadyTaken": {
     "description": "Title for the tag-taken confirmation sheet."
   },
-  "fluxerTagAlreadyTakenBody": "Il EchoTag {username}#{discriminator} è già in uso. Continuando, il tuo discriminatore verrà rigenerato automaticamente.",
+  "fluxerTagAlreadyTakenBody": "Il Nome utente {username}#{discriminator} è già in uso. Continuando, il tuo discriminatore verrà rigenerato automaticamente.",
   "@fluxerTagAlreadyTakenBody": {
-    "description": "Body text when the requested EchoTag is taken.",
+    "description": "Body text when the requested username is taken.",
     "placeholders": {
       "username": {
         "type": "String"
@@ -1703,7 +1701,7 @@
   "@customTagIsTemporary": {
     "description": "Title for the temporary tag warning sheet."
   },
-  "customTagTemporaryBodyWithDate": "Il tuo tag personalizzato di 4 cifre è disponibile solo finché il tuo abbonamento Reverb è attivo. Alla scadenza del tuo abbonamento il {date}, il tuo tag tornerà a un numero assegnato casualmente dopo un periodo di grazia di 3 giorni.",
+  "customTagTemporaryBodyWithDate": "Il tuo tag personalizzato di 4 cifre è disponibile solo finché il tuo abbonamento Plutonium è attivo. Alla scadenza del tuo abbonamento il {date}, il tuo tag tornerà a un numero assegnato casualmente dopo un periodo di grazia di 3 giorni.",
   "@customTagTemporaryBodyWithDate": {
     "description": "Warning body when premium subscription has a known expiry date.",
     "placeholders": {
@@ -1712,7 +1710,7 @@
       }
     }
   },
-  "customTagTemporaryBody": "Il tuo tag personalizzato di 4 cifre è disponibile solo finché il tuo abbonamento Reverb è attivo. Alla scadenza del tuo abbonamento, il tuo tag tornerà a un numero assegnato casualmente dopo un periodo di grazia di 3 giorni.",
+  "customTagTemporaryBody": "Il tuo tag personalizzato di 4 cifre è disponibile solo finché il tuo abbonamento Plutonium è attivo. Alla scadenza del tuo abbonamento, il tuo tag tornerà a un numero assegnato casualmente dopo un periodo di grazia di 3 giorni.",
   "@customTagTemporaryBody": {
     "description": "Warning body when premium subscription expiry date is unknown."
   },
@@ -1720,11 +1718,11 @@
   "@iUnderstandContinue": {
     "description": "Button to acknowledge a warning and proceed."
   },
-  "premiumWarningPendingDiscriminator": "Se salvi questo EchoTag, il tuo tag personalizzato di 4 cifre tornerà a essere un numero casuale al termine del tuo abbonamento Reverb. Se il tuo abbonamento non si rinnova, avrai un periodo di grazia di 3 giorni prima che il tag cambi.",
+  "premiumWarningPendingDiscriminator": "Se salvi questo Nome utente, il tuo tag personalizzato di 4 cifre tornerà a essere un numero casuale al termine del tuo abbonamento Plutonium. Se il tuo abbonamento non si rinnova, avrai un periodo di grazia di 3 giorni prima che il tag cambi.",
   "@premiumWarningPendingDiscriminator": {
     "description": "Warning shown when premium user is about to change their discriminator."
   },
-  "premiumWarningActiveDiscriminator": "Il tuo tag personalizzato di 4 cifre (#{discriminator}) è attivo finché il tuo abbonamento Reverb è attivo. Se il tuo abbonamento termina o non si rinnova dopo un periodo di grazia di 3 giorni, il tuo tag tornerà a essere un numero casuale.",
+  "premiumWarningActiveDiscriminator": "Il tuo tag personalizzato di 4 cifre (#{discriminator}) è attivo finché il tuo abbonamento Plutonium è attivo. Se il tuo abbonamento termina o non si rinnova dopo un periodo di grazia di 3 giorni, il tuo tag tornerà a essere un numero casuale.",
   "@premiumWarningActiveDiscriminator": {
     "description": "Warning shown when premium user already has a custom discriminator.",
     "placeholders": {
@@ -1735,9 +1733,9 @@
   },
   "premiumUpsellCustomizeTag": "Personalizza il tuo tag di 4 cifre o mantienilo quando cambi nome utente",
   "@premiumUpsellCustomizeTag": {
-    "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
+    "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
   },
-  "premiumTrialExpiresOn": "La tua prova di Reverb scade il {date}. Esegui l'upgrade per mantenere il tuo tag personalizzato e ottenere un badge sul tuo profilo.",
+  "premiumTrialExpiresOn": "La tua prova di Plutonium scade il {date}. Esegui l'upgrade per mantenere il tuo tag personalizzato e ottenere un badge sul tuo profilo.",
   "@premiumTrialExpiresOn": {
     "description": "Trial upsell with expiry date.",
     "placeholders": {
@@ -1746,17 +1744,17 @@
       }
     }
   },
-  "premiumTrialActive": "Sei in prova con Reverb. Esegui l'upgrade per mantenere il tuo tag personalizzato e ottenere un badge sul tuo profilo.",
+  "premiumTrialActive": "Sei in prova con Plutonium. Esegui l'upgrade per mantenere il tuo tag personalizzato e ottenere un badge sul tuo profilo.",
   "@premiumTrialActive": {
     "description": "Trial upsell without specific expiry date."
   },
-  "fluxerTagUpdated": "EchoTag aggiornato",
+  "fluxerTagUpdated": "Nome utente aggiornato",
   "@fluxerTagUpdated": {
-    "description": "Success toast after EchoTag change."
+    "description": "Success toast after username change."
   },
-  "fluxerTagUpdateFailed": "Impossibile aggiornare EchoTag. Riprova.",
+  "fluxerTagUpdateFailed": "Impossibile aggiornare Nome utente. Riprova.",
   "@fluxerTagUpdateFailed": {
-    "description": "Error message when EchoTag update fails."
+    "description": "Error message when username update fails."
   },
   "continueAction": "Continua",
   "@continueAction": {
@@ -1774,17 +1772,17 @@
   "@usernameLabel": {
     "description": "Label for the username field in profile settings."
   },
-  "claimAccountToChangeFluxerTag": "Rivendica il tuo account per cambiare il tuo EchoTag",
+  "claimAccountToChangeFluxerTag": "Rivendica il tuo account per cambiare il tuo Nome utente",
   "@claimAccountToChangeFluxerTag": {
-    "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
+    "description": "Tooltip when unverified user hovers the disabled Change username button."
   },
-  "changeFluxerTag": "Cambia EchoTag",
+  "changeFluxerTag": "Cambia Nome utente",
   "@changeFluxerTag": {
-    "description": "Button label to open the EchoTag change flow."
+    "description": "Button label to open the username change flow."
   },
-  "customizeTagWithPlutoniumTooltip": "Personalizza il tuo tag a 4 cifre (#{discriminator}) come preferisci con Reverb",
+  "customizeTagWithPlutoniumTooltip": "Personalizza il tuo tag a 4 cifre (#{discriminator}) come preferisci con Plutonium",
   "@customizeTagWithPlutoniumTooltip": {
-    "description": "Tooltip on the crown upsell button next to the EchoTag button.",
+    "description": "Tooltip on the crown upsell button next to the username button.",
     "placeholders": {
       "discriminator": {
         "type": "String"
@@ -1795,7 +1793,7 @@
   "@changeUsernameAndTagHint": {
     "description": "Hint text below the username buttons."
   },
-  "customTagSubscriptionWarning": "Il tuo tag personalizzato (#{discriminator}) è legato al tuo abbonamento Reverb e tornerà a essere un tag casuale se scade.",
+  "customTagSubscriptionWarning": "Il tuo tag personalizzato (#{discriminator}) è legato al tuo abbonamento Plutonium e tornerà a essere un tag casuale se scade.",
   "@customTagSubscriptionWarning": {
     "description": "Warning shown when user has a premium discriminator that is not lifetime.",
     "placeholders": {
@@ -1864,38 +1862,38 @@
   "@emojiPickerTitle": {
     "description": "Title for the emoji picker sheet."
   },
-  "plutoniumBadgePrivacyTitle": "Privacy badge Reverb",
+  "plutoniumBadgePrivacyTitle": "Privacy badge Plutonium",
   "@plutoniumBadgePrivacyTitle": {
     "description": "Heading for the premium badge privacy settings section."
   },
-  "plutoniumBadgePrivacyDescription": "Controlla come viene visualizzato il tuo badge Reverb agli altri",
+  "plutoniumBadgePrivacyDescription": "Controlla come viene visualizzato il tuo badge Plutonium agli altri",
   "@plutoniumBadgePrivacyDescription": {
     "description": "Subheading for the premium badge privacy settings section."
   },
-  "hidePlutoniumBadgeLabel": "Nascondi completamente il badge Reverb",
+  "hidePlutoniumBadgeLabel": "Nascondi completamente il badge Plutonium",
   "@hidePlutoniumBadgeLabel": {
-    "description": "Label for the toggle to hide the Reverb badge."
+    "description": "Label for the toggle to hide the Plutonium badge."
   },
-  "hidePlutoniumBadgeDescription": "Nascondi completamente il tuo badge Reverb agli altri utenti",
+  "hidePlutoniumBadgeDescription": "Nascondi completamente il tuo badge Plutonium agli altri utenti",
   "@hidePlutoniumBadgeDescription": {
-    "description": "Description for the toggle to hide the Reverb badge."
+    "description": "Description for the toggle to hide the Plutonium badge."
   },
-  "hidePlutoniumPurchaseDate": "Nascondi data acquisto Reverb",
+  "hidePlutoniumPurchaseDate": "Nascondi data acquisto Plutonium",
   "@hidePlutoniumPurchaseDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date."
+    "description": "Label for the toggle to hide the Plutonium purchase date."
   },
-  "hidePlutoniumPurchaseDateWithDate": "Nascondi data acquisto Reverb ({date})",
+  "hidePlutoniumPurchaseDateWithDate": "Nascondi data acquisto Plutonium ({date})",
   "@hidePlutoniumPurchaseDateWithDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
+    "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
     "placeholders": {
       "date": {
         "type": "String"
       }
     }
   },
-  "hidePurchaseDateDescription": "Rimuovi dal tuo badge quando hai acquistato Reverb per la prima volta",
+  "hidePurchaseDateDescription": "Rimuovi dal tuo badge quando hai acquistato Plutonium per la prima volta",
   "@hidePurchaseDateDescription": {
-    "description": "Description for the toggle to hide the Reverb purchase date."
+    "description": "Description for the toggle to hide the Plutonium purchase date."
   },
   "maskVisionaryAsSubscription": "Maschera Visionary come abbonamento",
   "@maskVisionaryAsSubscription": {
@@ -1922,7 +1920,7 @@
   "@hideVisionaryIdDescription": {
     "description": "Description for the toggle to hide the Visionary ID badge."
   },
-  "premiumTrialSubscriptionStarts": "Sei in prova Reverb: il tuo abbonamento inizierà il {date}",
+  "premiumTrialSubscriptionStarts": "Sei in prova Plutonium: il tuo abbonamento inizierà il {date}",
   "@premiumTrialSubscriptionStarts": {
     "description": "Trial banner title when user has an active subscription pending after trial.",
     "placeholders": {
@@ -1935,7 +1933,7 @@
   "@premiumTrialSubscriptionStartsDescription": {
     "description": "Trial banner description when user has an active subscription pending after trial."
   },
-  "premiumTrialExpiresOnProfile": "Sei in prova Reverb, che scade il {date}",
+  "premiumTrialExpiresOnProfile": "Sei in prova Plutonium, che scade il {date}",
   "@premiumTrialExpiresOnProfile": {
     "description": "Trial banner title with expiry date.",
     "placeholders": {
@@ -1944,29 +1942,29 @@
       }
     }
   },
-  "premiumTrialActiveProfile": "Sei in prova Reverb",
+  "premiumTrialActiveProfile": "Sei in prova Plutonium",
   "@premiumTrialActiveProfile": {
     "description": "Trial banner title without specific expiry date."
   },
-  "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max 10MB. Consigliato: 512×512px. Avatar animati (GIF) richiedono Reverb.",
+  "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max 10MB. Consigliato: 512×512px. Avatar animati (GIF) richiedono Plutonium.",
   "@avatarDescriptionNonPremium": {
-    "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
+    "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
   },
   "bannerPlutoniumUpsell": "Personalizza il tuo profilo con un'immagine banner statica o animata per farlo risaltare.",
   "@bannerPlutoniumUpsell": {
     "description": "Upsell text shown in place of banner upload for non-premium users."
   },
-  "getPlutonium": "Ottieni Reverb",
+  "getPlutonium": "Ottieni Plutonium",
   "@getPlutonium": {
-    "description": "Button label for the Reverb upsell call-to-action."
+    "description": "Button label for the Plutonium upsell call-to-action."
   },
-  "plutoniumNotAvailableTitle": "Reverb",
+  "plutoniumNotAvailableTitle": "Plutonium",
   "@plutoniumNotAvailableTitle": {
-    "description": "Title for the Reverb not-available-yet bottom sheet."
+    "description": "Title for the Plutonium not-available-yet bottom sheet."
   },
   "plutoniumNotAvailableBody": "Gli acquisti in-app non sono ancora disponibili su questa piattaforma. Resta sintonizzato: in arrivo!",
   "@plutoniumNotAvailableBody": {
-    "description": "Body text for the Reverb not-available-yet bottom sheet."
+    "description": "Body text for the Plutonium not-available-yet bottom sheet."
   },
   "profilePreviewLabel": "Anteprima",
   "@profilePreviewLabel": {
@@ -2008,7 +2006,7 @@
   "@communityNicknameLabel": {
     "description": "Label for the community nickname field"
   },
-  "perGuildPremiumUpsellText": "La personalizzazione del tuo avatar, banner, colore d'accento e bio per le singole community richiede Reverb. Soprannome e pronomi della community sono gratuiti per tutti.",
+  "perGuildPremiumUpsellText": "La personalizzazione del tuo avatar, banner, colore d'accento e bio per le singole community richiede Plutonium. Soprannome e pronomi della community sono gratuiti per tutti.",
   "@perGuildPremiumUpsellText": {
     "description": "Upsell text for per-guild premium features"
   },
@@ -2586,7 +2584,7 @@
   "@dangerZoneDeleteDescription": {
     "description": "Description for account delete."
   },
-  "dangerZoneDeleteCancelSubscription": "Annulla il tuo abbonamento Reverb attivo nelle impostazioni di Reverb prima di eliminare il tuo account.",
+  "dangerZoneDeleteCancelSubscription": "Annulla il tuo abbonamento Plutonium attivo nelle impostazioni di Plutonium prima di eliminare il tuo account.",
   "@dangerZoneDeleteCancelSubscription": {
     "description": "Warning about active subscription before deletion."
   },
@@ -2844,7 +2842,7 @@
       }
     }
   },
-  "blockedUsersCopyTag": "Copia EchoTag",
+  "blockedUsersCopyTag": "Copia Nome utente",
   "@blockedUsersCopyTag": {
     "description": "Context menu item that copies the user's tag."
   },
@@ -3814,7 +3812,7 @@
       }
     }
   },
-  "chatAttachmentFileTooLarge": "Uno o più file superano il limite di dimensione",
+  "chatAttachmentFileTooLarge": "{fileName} supera il limite di dimensione ({fileSize})",
   "@chatAttachmentFileTooLarge": {
     "description": "Shown when a selected file is larger than allowed."
   },
@@ -4945,22 +4943,6 @@
   "@messagesMediaEditingPreserveDraftLabel": {
     "description": "Toggle label for preserving edit drafts on cancel."
   },
-  "accessibilityUnreadGroupTitle": "Indicatori non letti",
-  "@accessibilityUnreadGroupTitle": {
-    "description": "Section title for unread-indicator accessibility settings."
-  },
-  "accessibilityUnreadGroupDescription": "Controlla come vengono visualizzati gli indicatori di messaggi non letti.",
-  "@accessibilityUnreadGroupDescription": {
-    "description": "Section description for unread-indicator accessibility settings."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsLabel": "Mostra indicatore non letto sbiadito nei canali con notifiche disattivate",
-  "@accessibilityShowFadedUnreadOnMutedChannelsLabel": {
-    "description": "Toggle label for showing a faded unread indicator on muted channels."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsDescription": "Visualizza un indicatore non letto attenuato accanto ai messaggi diretti e ai canali con notifiche disattivate, in modo da poter comunque vedere a colpo d'occhio quando c'è attività.",
-  "@accessibilityShowFadedUnreadOnMutedChannelsDescription": {
-    "description": "Toggle description for showing a faded unread indicator on muted channels."
-  },
   "accessibilityDmMessagePreviewGroupTitle": "Anteprime messaggi DM",
   "@accessibilityDmMessagePreviewGroupTitle": {
     "description": "Section title for DM message preview accessibility settings."
@@ -5467,7 +5449,7 @@
   },
   "characterCounterRemainingPlutoniumUpsell": "{remaining} caratteri rimasti. Ottieni {productName} per scrivere fino a {premiumMaxLength} caratteri.",
   "@characterCounterRemainingPlutoniumUpsell": {
-    "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
+    "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
     "placeholders": {
       "remaining": {
         "type": "int"
@@ -9110,15 +9092,5 @@
   "nagbarLearnMore": "Scopri di più",
   "@nagbarLearnMore": {
     "description": "CTA on maintenance and other nagbars that open an external link."
-  },
-  "guildSettingsDiscoveryFormTitle": "Domanda",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
-  },
-  "guildSettingsDiscoveryStatusTitle": "Stato",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
-  },
-  "cropTouchHint": "Pinch to zoom, drag to reposition",
-  "cropMouseHint": "Drag corners to resize, drag inside to move"
+  }
 }

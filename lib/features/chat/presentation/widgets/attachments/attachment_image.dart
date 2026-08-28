@@ -1,5 +1,5 @@
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_thumbhash/flutter_thumbhash.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_context.dart';
@@ -7,15 +7,19 @@ import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/forward_message_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/media/embed_animated_image.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/spoiler_overlay.dart';
+import 'package:fluxer_app/features/chat/utils/attachment_display_utils.dart';
 import 'package:fluxer_app/features/chat/utils/embed_animated_image_url.dart';
+import 'package:fluxer_app/features/chat/utils/hdr_aware_image_url.dart';
 import 'package:fluxer_app/features/chat/utils/media_dimension_utils.dart';
+import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
 import 'package:fluxer_app/features/ui/media_viewer/attachment_media_viewer.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class AttachmentImage extends StatelessWidget {
+class AttachmentImage extends ConsumerWidget {
   static const double _defaultAspectRatio = 16 / 9;
 
   final Attachment attachment;
@@ -53,7 +57,12 @@ class AttachmentImage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final HdrDisplayMode hdrDisplayMode = ref.watch(
+      appearancePreferencesProvider.select(
+        (AppearancePreferencesState state) => state.hdrDisplayMode,
+      ),
+    );
     final FluxerMediaDimensions dimensions = mediaDimensionsForSize(
       dimensionSize,
     );
@@ -64,7 +73,7 @@ class AttachmentImage extends StatelessWidget {
       height: attachment.height,
     );
     final bool animate = attachment.isAnimated;
-    final String effectiveUrl = attachment.proxyUrl ?? attachment.url;
+    final String effectiveUrl = attachmentEffectiveUrl(attachment);
     final Widget image = Stack(
       clipBehavior: Clip.none,
       children: [
@@ -114,7 +123,11 @@ class AttachmentImage extends StatelessWidget {
                           placeholder: _buildImagePlaceholder(context),
                         )
                       : _AttachmentStaticImage(
-                          imageUrl: attachment.url,
+                          imageUrl: buildHdrAwareImageUrl(
+                            url: effectiveUrl,
+                            mode: hdrDisplayMode,
+                            contentType: attachment.contentType,
+                          ),
                           displaySize: displaySize,
                           dimensions: dimensions,
                           sourceWidth: attachment.width,
@@ -194,7 +207,7 @@ class AttachmentImage extends StatelessWidget {
     if (imageGallery != null && imageGallery!.isNotEmpty) {
       return imageGallery!;
     }
-    if (attachment.url.isEmpty) {
+    if (!attachmentHasLoadableUrl(attachment)) {
       return const <Attachment>[];
     }
     return <Attachment>[attachment];
@@ -209,7 +222,9 @@ class AttachmentImage extends StatelessWidget {
       isMatureMedia: value.isMatureMedia,
       attachmentId: value.id,
       proxyUrl: value.proxyUrl,
+      contentType: value.contentType,
       isExpired: value.expired ?? false,
+      contentHash: value.contentHash,
     );
   }
 }
@@ -261,6 +276,8 @@ class _AttachmentStaticImage extends StatelessWidget {
           memCacheWidth: memCacheWidth,
           memCacheHeight: memCacheHeight,
           fit: BoxFit.contain,
+          fadeInDuration: Duration.zero,
+          fadeOutDuration: Duration.zero,
           placeholder: (BuildContext _, String _) => placeholder,
         );
       },

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/features/channels/domain/channel_reorder_drop.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/fluxer_haptics.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 

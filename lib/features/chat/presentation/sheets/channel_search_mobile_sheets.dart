@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
@@ -7,6 +6,7 @@ import 'package:fluxer_app/features/chat/presentation/widgets/channel/search/cha
 import 'package:fluxer_app/features/chat/utils/channel_search_utils.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class ChannelSearchMoreFiltersResult {
@@ -134,7 +134,7 @@ class _ChannelSearchMoreFiltersSheetState
                 ChannelSearchOptionCard(
                   icon: PhosphorIconsFill.pushPin,
                   label: l10n.channelDetailsSearchPinnedTrue,
-                  isSelected: _pinned == true,
+                  isSelected: _pinned ?? false,
                   onTap: () => setState(() => _pinned = true),
                 ),
                 const SizedBox(height: 8),
@@ -181,7 +181,7 @@ class _ChannelSearchMoreFiltersSheetState
                 ),
                 const SizedBox(height: 8),
                 DropdownButtonFormField<String>(
-                  value: _dateFilterKey,
+                  initialValue: _dateFilterKey,
                   decoration: InputDecoration(
                     labelText: l10n.channelDetailsSearchMoreFiltersDateMode,
                   ),

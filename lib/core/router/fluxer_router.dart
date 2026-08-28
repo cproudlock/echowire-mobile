@@ -1,6 +1,5 @@
 import 'dart:async' show unawaited;
 
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/observability/fluxer_route_trace_observer.dart';
 import 'package:fluxer_app/core/providers/app_startup_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
@@ -14,7 +13,6 @@ import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/router/shell_navigator_keys.dart';
 import 'package:fluxer_app/core/router/shell_popup_route_observer.dart';
 import 'package:fluxer_app/core/router/shell_transition_page.dart';
-import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/auth/presentation/login_screen.dart';
 import 'package:fluxer_app/features/auth/providers/account_manager_provider.dart';
 import 'package:fluxer_app/features/auth/providers/add_account_instance_guard_provider.dart';
@@ -23,14 +21,14 @@ import 'package:fluxer_app/features/channels/presentation/channel_settings/chann
 import 'package:fluxer_app/features/channels/presentation/channel_settings/channel_settings_nav_page.dart';
 import 'package:fluxer_app/features/channels/presentation/channel_settings/pages/channel_settings_tab_pages.dart';
 import 'package:fluxer_app/features/chat/presentation/channel_layout.dart';
-import 'package:fluxer_app/features/chat/presentation/widgets/chat_loading_spinner.dart';
-import 'package:fluxer_app/features/chat/utils/chat_spinner_debug.dart';
 import 'package:fluxer_app/features/discovery/presentation/discovery_desktop_shell.dart';
 import 'package:fluxer_app/features/discovery/presentation/discovery_layout.dart';
 import 'package:fluxer_app/features/dm/presentation/dm_layout.dart';
 import 'package:fluxer_app/features/favorites/presentation/favorites_layout.dart';
 import 'package:fluxer_app/features/gifts/presentation/pages/gift_accept_page.dart';
 import 'package:fluxer_app/features/guilds/presentation/pages/invite_accept_page.dart';
+import 'package:fluxer_app/features/guilds/presentation/widgets/guild_root_placeholder.dart';
+import 'package:fluxer_app/features/guilds/providers/guild_availability_provider.dart';
 import 'package:fluxer_app/features/members/presentation/pages/guild_members_page.dart';
 import 'package:fluxer_app/features/messaging/presentation/saved_messages_page.dart';
 import 'package:fluxer_app/features/notifications/presentation/notifications_page.dart';
@@ -63,6 +61,7 @@ import 'package:fluxer_app/features/shell/providers/shell_popup_overlay_provider
 import 'package:fluxer_app/features/ui/spinner/fluxer_loading_spinner.dart';
 import 'package:fluxer_app/features/voice/presentation/dm_voice_call_fullscreen_page.dart'
     deferred as dm_voice_call;
+import 'package:fluxer_app/material_ui.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -763,19 +762,16 @@ GoRouter fluxerRouter(Ref ref) {
                     guildId: state.pathParameters['guildId'],
                     fullPath: state.uri.path,
                     db: ref.read(fluxerDatabaseProvider),
+                    trackedUnavailableGuildIds: ref.read(
+                      guildAvailabilityProvider,
+                    ),
                   );
                 },
                 pageBuilder: (context, state) => shellFadeTransitionPage(
                   context: context,
                   key: state.pageKey,
-                  child: Scaffold(
-                    backgroundColor: context.colors.backgroundPrimary,
-                    body: Center(
-                      child: ChatLoadingSpinner(
-                        reason: ChatSpinnerReason.panelNotReady,
-                        color: context.colors.brandPrimary,
-                      ),
-                    ),
+                  child: GuildRootPlaceholder(
+                    guildId: state.pathParameters['guildId'] ?? '',
                   ),
                 ),
                 routes: [

@@ -128,6 +128,10 @@
   "@systemPermissionCameraMessage": {
     "description": "Body text when camera access must be enabled in system settings."
   },
+  "systemPermissionPhotosMessage": "Fluxer doesn't have access to your photo library. You can enable it in your device privacy settings.",
+  "@systemPermissionPhotosMessage": {
+    "description": "Body text when photo library access must be enabled in system settings."
+  },
   "systemPermissionNotificationsMessage": "Fluxer doesn't have permission to send notifications. You can enable it in your device settings.",
   "@systemPermissionNotificationsMessage": {
     "description": "Body text when notification permission must be enabled in system settings."
@@ -817,6 +821,14 @@
   "@registerHaveAccount": {
     "description": "Text before the login link on the register screen."
   },
+  "registerPendingApproval": "Your account request is pending approval. You can sign in after an admin approves it.",
+  "@registerPendingApproval": {
+    "description": "Notice shown after registering on an instance that requires admin approval."
+  },
+  "registerClosed": "Registration is currently closed. Use a registration link from an admin to create an account.",
+  "@registerClosed": {
+    "description": "Notice shown on the register screen when the instance has registration closed."
+  },
   "passkeyNoCredentials": "No passkeys found for this app. Log in with email and password instead.",
   "@passkeyNoCredentials": {
     "description": "Error when user has no passkeys registered and tries passkey login."
@@ -1339,6 +1351,14 @@
       }
     }
   },
+  "dmDeleteMyMessagesTitle": "Delete your messages in this conversation?",
+  "@dmDeleteMyMessagesTitle": {
+    "description": "Confirmation title for deleting all of the caller's messages in a DM or group DM."
+  },
+  "dmDeleteMyMessagesDescription": "This will permanently delete every message you have ever sent in this conversation. This cannot be undone.",
+  "@dmDeleteMyMessagesDescription": {
+    "description": "Confirmation description for deleting all of the caller's messages in a DM or group DM."
+  },
   "dmCopyChannelId": "Copy Channel ID",
   "@dmCopyChannelId": {
     "description": "DM context menu action to copy the channel ID."
@@ -1638,11 +1658,11 @@
   },
   "addFriendNoUserFound": "No user found with that username.",
   "@addFriendNoUserFound": {
-    "description": "Error when no user matches the entered EchoTag."
+    "description": "Error when no user matches the entered username."
   },
   "addFriendInvalidUsername": "Enter a valid username (Username#0000).",
   "@addFriendInvalidUsername": {
-    "description": "Error when the EchoTag format is invalid."
+    "description": "Error when the username format is invalid."
   },
   "addFriendOutgoingSuccess": "Friend request sent",
   "@addFriendOutgoingSuccess": {
@@ -1760,9 +1780,13 @@
   "@addFriendClaimToSend": {
     "description": "Error when an unclaimed account tries to send a friend request."
   },
-  "addFriendSendFailedGeneric": "Couldn't send the friend request. Try again.",
-  "@addFriendSendFailedGeneric": {
-    "description": "Generic error when sending a friend request fails."
+  "addFriendVerifyToSend": "Verify your email before sending friend requests.",
+  "@addFriendVerifyToSend": {
+    "description": "Error when an unverified account tries to send a friend request."
+  },
+  "addFriendFriendsListFull": "Your friends list is full, or theirs is. Remove someone and try again.",
+  "@addFriendFriendsListFull": {
+    "description": "Error when either user's friends list is at the limit."
   },
   "userTagBot": "BOT",
   "@userTagBot": {
@@ -1783,6 +1807,51 @@
   "emojiAutocompleteDefaultLabel": "Default emoji",
   "@emojiAutocompleteDefaultLabel": {
     "description": "Short right-side label in the chat composer emoji autocomplete shown for built-in (unicode) emoji; custom emoji show their guild name instead. Keep it concise."
+  },
+  "emojiInfoDefaultDescription": "This is a default emoji on {productName}.",
+  "@emojiInfoDefaultDescription": {
+    "description": "Emoji info sheet description for built-in unicode emoji.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
+  },
+  "emojiInfoCustomGuildDescription": "This emoji is from this community. You can use it everywhere.",
+  "@emojiInfoCustomGuildDescription": {
+    "description": "Emoji info sheet description when the user can use a custom emoji from their community."
+  },
+  "emojiInfoCustomUnknownDescription": "This is a custom emoji from a community.",
+  "@emojiInfoCustomUnknownDescription": {
+    "description": "Emoji info sheet description when the source community is unknown."
+  },
+  "emojiInfoCustomInviteRequiredDescription": "This is a custom emoji from a community. Ask the author for an invite to use this emoji.",
+  "@emojiInfoCustomInviteRequiredDescription": {
+    "description": "Emoji info sheet description when the user is not in the source community."
+  },
+  "emojiInfoFromHeader": "This emoji is from",
+  "@emojiInfoFromHeader": {
+    "description": "Section header above the source community in the emoji info sheet."
+  },
+  "emojiInfoDiscoverableCommunity": "Discoverable community",
+  "@emojiInfoDiscoverableCommunity": {
+    "description": "Subtitle for a discoverable source community in the emoji info sheet."
+  },
+  "emojiInfoPrivateCommunity": "Private community",
+  "@emojiInfoPrivateCommunity": {
+    "description": "Subtitle for a non-discoverable source community in the emoji info sheet."
+  },
+  "emojiInfoVerifiedCommunity": "Verified community",
+  "@emojiInfoVerifiedCommunity": {
+    "description": "Tooltip for the verified badge on a source community in the emoji info sheet."
+  },
+  "emojiInfoAddToFavorites": "Add to Favorites",
+  "@emojiInfoAddToFavorites": {
+    "description": "Accessibility label for adding an emoji to favorites from the emoji info sheet."
+  },
+  "emojiInfoRemoveFromFavorites": "Remove from Favorites",
+  "@emojiInfoRemoveFromFavorites": {
+    "description": "Accessibility label for removing an emoji from favorites from the emoji info sheet."
   },
   "emojiFrequentlyUsed": "Frequently Used",
   "@emojiFrequentlyUsed": {
@@ -1876,7 +1945,7 @@
   "@emojiCategoryFlags": {
     "description": "Flags category."
   },
-  "emojiPlutoniumUpsellText": "Unlock {emojiCount} from {communityCount} with Reverb.",
+  "emojiPlutoniumUpsellText": "Unlock {emojiCount} from {communityCount} with Plutonium.",
   "@emojiPlutoniumUpsellText": {
     "description": "Upsell banner text in emoji picker for non-premium users.",
     "placeholders": {
@@ -1888,13 +1957,13 @@
       }
     }
   },
-  "emojiPlutoniumUpsellButton": "Get Reverb",
+  "emojiPlutoniumUpsellButton": "Get Plutonium",
   "@emojiPlutoniumUpsellButton": {
-    "description": "Button label on the Reverb upsell banner."
+    "description": "Button label on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellDismiss": "Don't show this again",
   "@emojiPlutoniumUpsellDismiss": {
-    "description": "Dismiss link on the Reverb upsell banner."
+    "description": "Dismiss link on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 custom emoji} other{{count} custom emojis}}",
   "@emojiPlutoniumUpsellCustomEmoji": {
@@ -2007,11 +2076,11 @@
   "@imageFileTooLarge": {
     "description": "Error when a selected image exceeds the maximum file size."
   },
-  "animatedAvatarsRequirePlutonium": "Animated avatars require Reverb",
+  "animatedAvatarsRequirePlutonium": "Animated avatars require Plutonium",
   "@animatedAvatarsRequirePlutonium": {
     "description": "Toast shown when non-premium user tries uploading animated avatar."
   },
-  "animatedBannersRequirePlutonium": "Animated banners require Reverb",
+  "animatedBannersRequirePlutonium": "Animated banners require Plutonium",
   "@animatedBannersRequirePlutonium": {
     "description": "Toast shown when non-premium user tries uploading animated banner."
   },
@@ -2047,17 +2116,25 @@
   "@crop": {
     "description": "Button to confirm image crop."
   },
-  "changeYourFluxerTag": "Change Your EchoTag",
-  "@changeYourFluxerTag": {
-    "description": "Title for the EchoTag change bottom sheet."
+  "cropTouchHint": "Pinch to zoom, drag to reposition",
+  "@cropTouchHint": {
+    "description": "Hint shown in the image crop sheet on touch devices."
   },
-  "fluxerTagInputLabel": "EchoTag",
+  "cropMouseHint": "Drag corners to resize, drag inside to move",
+  "@cropMouseHint": {
+    "description": "Hint shown in the image crop sheet on mouse devices."
+  },
+  "changeYourFluxerTag": "Change Your Username",
+  "@changeYourFluxerTag": {
+    "description": "Title for the username change bottom sheet."
+  },
+  "fluxerTagInputLabel": "Username",
   "@fluxerTagInputLabel": {
     "description": "Label above the username and discriminator input fields."
   },
   "fluxerTagDescriptionBase": "Usernames can only contain letters (a-z, A-Z), numbers (0-9), and underscores. Usernames are case-insensitive.",
   "@fluxerTagDescriptionBase": {
-    "description": "Base description text on the EchoTag change sheet."
+    "description": "Base description text on the username change sheet."
   },
   "fluxerTagDescriptionVisionary": "Usernames can only contain letters (a-z, A-Z), numbers (0-9), and underscores. Usernames are case-insensitive. You can pick any available 4-digit tag from #0000 to #9999.",
   "@fluxerTagDescriptionVisionary": {
@@ -2083,17 +2160,17 @@
   "@validationAllowedChars": {
     "description": "Validation rule for allowed username characters."
   },
-  "discriminatorPremiumTooltip": "Get Reverb to customize your tag or keep it when changing your username",
+  "discriminatorPremiumTooltip": "Get Plutonium to customize your tag or keep it when changing your username",
   "@discriminatorPremiumTooltip": {
     "description": "Tooltip on disabled discriminator field for non-premium users."
   },
-  "fluxerTagAlreadyTaken": "EchoTag Already Taken",
+  "fluxerTagAlreadyTaken": "Username Already Taken",
   "@fluxerTagAlreadyTaken": {
     "description": "Title for the tag-taken confirmation sheet."
   },
-  "fluxerTagAlreadyTakenBody": "The EchoTag {username}#{discriminator} is already taken. Continuing will reroll your discriminator automatically.",
+  "fluxerTagAlreadyTakenBody": "The username {username}#{discriminator} is already taken. Continuing will reroll your discriminator automatically.",
   "@fluxerTagAlreadyTakenBody": {
-    "description": "Body text when the requested EchoTag is taken.",
+    "description": "Body text when the requested username is taken.",
     "placeholders": {
       "username": {
         "type": "String"
@@ -2107,7 +2184,7 @@
   "@customTagIsTemporary": {
     "description": "Title for the temporary tag warning sheet."
   },
-  "customTagTemporaryBodyWithDate": "Your custom 4-digit tag is only available while your Reverb subscription is active. When your subscription expires on {date}, your tag will revert to a randomly assigned number after a 3-day grace period.",
+  "customTagTemporaryBodyWithDate": "Your custom 4-digit tag is only available while your Plutonium subscription is active. When your subscription expires on {date}, your tag will revert to a randomly assigned number after a 3-day grace period.",
   "@customTagTemporaryBodyWithDate": {
     "description": "Warning body when premium subscription has a known expiry date.",
     "placeholders": {
@@ -2116,7 +2193,7 @@
       }
     }
   },
-  "customTagTemporaryBody": "Your custom 4-digit tag is only available while your Reverb subscription is active. When your subscription expires, your tag will revert to a randomly assigned number after a 3-day grace period.",
+  "customTagTemporaryBody": "Your custom 4-digit tag is only available while your Plutonium subscription is active. When your subscription expires, your tag will revert to a randomly assigned number after a 3-day grace period.",
   "@customTagTemporaryBody": {
     "description": "Warning body when premium subscription expiry date is unknown."
   },
@@ -2124,11 +2201,11 @@
   "@iUnderstandContinue": {
     "description": "Button to acknowledge a warning and proceed."
   },
-  "premiumWarningPendingDiscriminator": "If you save this EchoTag, your custom 4-digit tag will revert to a random number when your Reverb subscription ends. If your subscription fails to renew, you'll have a 3-day grace period before the tag changes.",
+  "premiumWarningPendingDiscriminator": "If you save this username, your custom 4-digit tag will revert to a random number when your Plutonium subscription ends. If your subscription fails to renew, you'll have a 3-day grace period before the tag changes.",
   "@premiumWarningPendingDiscriminator": {
     "description": "Warning shown when premium user is about to change their discriminator."
   },
-  "premiumWarningActiveDiscriminator": "Your custom 4-digit tag (#{discriminator}) is active while your Reverb subscription is active. If your subscription ends or fails to renew after a 3-day grace period, your tag will revert to a random number.",
+  "premiumWarningActiveDiscriminator": "Your custom 4-digit tag (#{discriminator}) is active while your Plutonium subscription is active. If your subscription ends or fails to renew after a 3-day grace period, your tag will revert to a random number.",
   "@premiumWarningActiveDiscriminator": {
     "description": "Warning shown when premium user already has a custom discriminator.",
     "placeholders": {
@@ -2139,9 +2216,9 @@
   },
   "premiumUpsellCustomizeTag": "Customize your 4-digit tag or keep it when changing your username",
   "@premiumUpsellCustomizeTag": {
-    "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
+    "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
   },
-  "premiumTrialExpiresOn": "Your Reverb trial expires on {date}. Upgrade to keep your custom tag and earn a badge on your profile.",
+  "premiumTrialExpiresOn": "Your Plutonium trial expires on {date}. Upgrade to keep your custom tag and earn a badge on your profile.",
   "@premiumTrialExpiresOn": {
     "description": "Trial upsell with expiry date.",
     "placeholders": {
@@ -2150,17 +2227,17 @@
       }
     }
   },
-  "premiumTrialActive": "You're on a Reverb trial. Upgrade to keep your custom tag and earn a badge on your profile.",
+  "premiumTrialActive": "You're on a Plutonium trial. Upgrade to keep your custom tag and earn a badge on your profile.",
   "@premiumTrialActive": {
     "description": "Trial upsell without specific expiry date."
   },
-  "fluxerTagUpdated": "EchoTag updated",
+  "fluxerTagUpdated": "Username updated",
   "@fluxerTagUpdated": {
-    "description": "Success toast after EchoTag change."
+    "description": "Success toast after username change."
   },
-  "fluxerTagUpdateFailed": "Failed to update EchoTag. Please try again.",
+  "fluxerTagUpdateFailed": "Failed to update username. Please try again.",
   "@fluxerTagUpdateFailed": {
-    "description": "Error message when EchoTag update fails."
+    "description": "Error message when username update fails."
   },
   "continueAction": "Continue",
   "@continueAction": {
@@ -2178,17 +2255,17 @@
   "@usernameLabel": {
     "description": "Label for the username field in profile settings."
   },
-  "claimAccountToChangeFluxerTag": "Claim your account to change your EchoTag",
+  "claimAccountToChangeFluxerTag": "Claim your account to change your username",
   "@claimAccountToChangeFluxerTag": {
-    "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
+    "description": "Tooltip when unverified user hovers the disabled Change Username button."
   },
-  "changeFluxerTag": "Change EchoTag",
+  "changeFluxerTag": "Change Username",
   "@changeFluxerTag": {
-    "description": "Button label to open the EchoTag change flow."
+    "description": "Button label to open the username change flow."
   },
-  "customizeTagWithPlutoniumTooltip": "Customize your 4-digit tag (#{discriminator}) to your liking with Reverb",
+  "customizeTagWithPlutoniumTooltip": "Customize your 4-digit tag (#{discriminator}) to your liking with Plutonium",
   "@customizeTagWithPlutoniumTooltip": {
-    "description": "Tooltip on the crown upsell button next to the EchoTag button.",
+    "description": "Tooltip on the crown upsell button next to the username button.",
     "placeholders": {
       "discriminator": {
         "type": "String"
@@ -2199,7 +2276,7 @@
   "@changeUsernameAndTagHint": {
     "description": "Hint text below the username buttons."
   },
-  "customTagSubscriptionWarning": "Your custom tag (#{discriminator}) is tied to your Reverb subscription and will revert to a random tag if it expires.",
+  "customTagSubscriptionWarning": "Your custom tag (#{discriminator}) is tied to your Plutonium subscription and will revert to a random tag if it expires.",
   "@customTagSubscriptionWarning": {
     "description": "Warning shown when user has a premium discriminator that is not lifetime.",
     "placeholders": {
@@ -2268,38 +2345,38 @@
   "@emojiPickerTitle": {
     "description": "Title for the emoji picker sheet."
   },
-  "plutoniumBadgePrivacyTitle": "Reverb Badge Privacy",
+  "plutoniumBadgePrivacyTitle": "Plutonium Badge Privacy",
   "@plutoniumBadgePrivacyTitle": {
     "description": "Heading for the premium badge privacy settings section."
   },
-  "plutoniumBadgePrivacyDescription": "Control how your Reverb badge is displayed to others",
+  "plutoniumBadgePrivacyDescription": "Control how your Plutonium badge is displayed to others",
   "@plutoniumBadgePrivacyDescription": {
     "description": "Subheading for the premium badge privacy settings section."
   },
-  "hidePlutoniumBadgeLabel": "Hide Reverb badge entirely",
+  "hidePlutoniumBadgeLabel": "Hide Plutonium badge entirely",
   "@hidePlutoniumBadgeLabel": {
-    "description": "Label for the toggle to hide the Reverb badge."
+    "description": "Label for the toggle to hide the Plutonium badge."
   },
-  "hidePlutoniumBadgeDescription": "Completely hide your Reverb badge from other users",
+  "hidePlutoniumBadgeDescription": "Completely hide your Plutonium badge from other users",
   "@hidePlutoniumBadgeDescription": {
-    "description": "Description for the toggle to hide the Reverb badge."
+    "description": "Description for the toggle to hide the Plutonium badge."
   },
-  "hidePlutoniumPurchaseDate": "Hide Reverb purchase date",
+  "hidePlutoniumPurchaseDate": "Hide Plutonium purchase date",
   "@hidePlutoniumPurchaseDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date."
+    "description": "Label for the toggle to hide the Plutonium purchase date."
   },
-  "hidePlutoniumPurchaseDateWithDate": "Hide Reverb purchase date ({date})",
+  "hidePlutoniumPurchaseDateWithDate": "Hide Plutonium purchase date ({date})",
   "@hidePlutoniumPurchaseDateWithDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
+    "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
     "placeholders": {
       "date": {
         "type": "String"
       }
     }
   },
-  "hidePurchaseDateDescription": "Remove when you first bought Reverb from your badge",
+  "hidePurchaseDateDescription": "Remove when you first bought Plutonium from your badge",
   "@hidePurchaseDateDescription": {
-    "description": "Description for the toggle to hide the Reverb purchase date."
+    "description": "Description for the toggle to hide the Plutonium purchase date."
   },
   "maskVisionaryAsSubscription": "Mask Visionary as subscription",
   "@maskVisionaryAsSubscription": {
@@ -2326,7 +2403,7 @@
   "@hideVisionaryIdDescription": {
     "description": "Description for the toggle to hide the Visionary ID badge."
   },
-  "premiumTrialSubscriptionStarts": "You're on a Reverb trial — your subscription starts on {date}",
+  "premiumTrialSubscriptionStarts": "You're on a Plutonium trial — your subscription starts on {date}",
   "@premiumTrialSubscriptionStarts": {
     "description": "Trial banner title when user has an active subscription pending after trial.",
     "placeholders": {
@@ -2339,7 +2416,7 @@
   "@premiumTrialSubscriptionStartsDescription": {
     "description": "Trial banner description when user has an active subscription pending after trial."
   },
-  "premiumTrialExpiresOnProfile": "You're on a Reverb trial that expires on {date}",
+  "premiumTrialExpiresOnProfile": "You're on a Plutonium trial that expires on {date}",
   "@premiumTrialExpiresOnProfile": {
     "description": "Trial banner title with expiry date.",
     "placeholders": {
@@ -2348,29 +2425,29 @@
       }
     }
   },
-  "premiumTrialActiveProfile": "You're on a Reverb trial",
+  "premiumTrialActiveProfile": "You're on a Plutonium trial",
   "@premiumTrialActiveProfile": {
     "description": "Trial banner title without specific expiry date."
   },
-  "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max 10MB. Recommended: 512×512px. Animated avatars (GIF) require Reverb.",
+  "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max 10MB. Recommended: 512×512px. Animated avatars (GIF) require Plutonium.",
   "@avatarDescriptionNonPremium": {
-    "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
+    "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
   },
   "bannerPlutoniumUpsell": "Customize your profile with a static or animated banner image to make it stand out.",
   "@bannerPlutoniumUpsell": {
     "description": "Upsell text shown in place of banner upload for non-premium users."
   },
-  "getPlutonium": "Get Reverb",
+  "getPlutonium": "Get Plutonium",
   "@getPlutonium": {
-    "description": "Button label for the Reverb upsell call-to-action."
+    "description": "Button label for the Plutonium upsell call-to-action."
   },
-  "plutoniumNotAvailableTitle": "Reverb",
+  "plutoniumNotAvailableTitle": "Plutonium",
   "@plutoniumNotAvailableTitle": {
-    "description": "Title for the Reverb not-available-yet bottom sheet."
+    "description": "Title for the Plutonium not-available-yet bottom sheet."
   },
   "plutoniumNotAvailableBody": "In-app purchases are not available on this platform yet. Stay tuned — coming soon!",
   "@plutoniumNotAvailableBody": {
-    "description": "Body text for the Reverb not-available-yet bottom sheet."
+    "description": "Body text for the Plutonium not-available-yet bottom sheet."
   },
   "profilePreviewLabel": "Preview",
   "@profilePreviewLabel": {
@@ -2412,7 +2489,7 @@
   "@communityNicknameLabel": {
     "description": "Label for the community nickname field"
   },
-  "perGuildPremiumUpsellText": "Customizing your avatar, banner, accent color, and bio for individual communities requires Reverb. Community nickname and pronouns are free for everyone.",
+  "perGuildPremiumUpsellText": "Customizing your avatar, banner, accent color, and bio for individual communities requires Plutonium. Community nickname and pronouns are free for everyone.",
   "@perGuildPremiumUpsellText": {
     "description": "Upsell text for per-guild premium features"
   },
@@ -3134,7 +3211,7 @@
   "@dangerZoneDeleteDescription": {
     "description": "Description for account delete."
   },
-  "dangerZoneDeleteCancelSubscription": "Cancel your active Reverb subscription in Reverb settings before deleting your account.",
+  "dangerZoneDeleteCancelSubscription": "Cancel your active Plutonium subscription in Plutonium settings before deleting your account.",
   "@dangerZoneDeleteCancelSubscription": {
     "description": "Warning about active subscription before deletion."
   },
@@ -3223,6 +3300,10 @@
   "genericError": "An error occurred",
   "@genericError": {
     "description": "Generic fallback error message."
+  },
+  "networkErrorMessage": "Something went wrong. Please try again.",
+  "@networkErrorMessage": {
+    "description": "Generic message shown when a network request fails."
   },
   "invalidCode": "Invalid code",
   "@invalidCode": {
@@ -3392,7 +3473,7 @@
       }
     }
   },
-  "blockedUsersCopyTag": "Copy EchoTag",
+  "blockedUsersCopyTag": "Copy username",
   "@blockedUsersCopyTag": {
     "description": "Context menu item that copies the user's tag."
   },
@@ -4503,6 +4584,50 @@
   "@slowmodeTooltipImmune": {
     "description": "Tooltip shown on the slowmode indicator when slowmode is on but the current user bypasses it."
   },
+  "slowmodeStatusEnabled": "Slowmode is enabled",
+  "@slowmodeStatusEnabled": {
+    "description": "Short label in the wide composer slowmode indicator when the reader is free to send."
+  },
+  "slowmodeStatusActive": "Slowmode is active ({remaining})",
+  "@slowmodeStatusActive": {
+    "description": "Short label in the wide composer slowmode indicator while the countdown runs.",
+    "placeholders": {
+      "remaining": {
+        "type": "String",
+        "example": "00:30"
+      }
+    }
+  },
+  "slowmodeTooltipSetImmune": "Slowmode is set to {durationLabel}, but you are immune.",
+  "@slowmodeTooltipSetImmune": {
+    "description": "Tooltip on the wide composer slowmode indicator when the reader can bypass slowmode.",
+    "placeholders": {
+      "durationLabel": {
+        "type": "String",
+        "example": "30 seconds"
+      }
+    }
+  },
+  "slowmodeTooltipSetWait": "Slowmode is set to {durationLabel}. Wait before sending another message.",
+  "@slowmodeTooltipSetWait": {
+    "description": "Tooltip on the wide composer slowmode indicator while the reader is counting down.",
+    "placeholders": {
+      "durationLabel": {
+        "type": "String",
+        "example": "30 seconds"
+      }
+    }
+  },
+  "slowmodeTooltipSetChannel": "Slowmode is set to {durationLabel} for this channel.",
+  "@slowmodeTooltipSetChannel": {
+    "description": "Tooltip on the wide composer slowmode indicator when the reader is free to send.",
+    "placeholders": {
+      "durationLabel": {
+        "type": "String",
+        "example": "30 seconds"
+      }
+    }
+  },
   "channelNoSendPermissionHint": "You can't send messages in this channel.",
   "@channelNoSendPermissionHint": {
     "description": "Placeholder text in the channel message input when the user lacks Send Messages permission."
@@ -4561,9 +4686,17 @@
       }
     }
   },
-  "chatAttachmentFileTooLarge": "One or more files exceed the size limit",
+  "chatAttachmentFileTooLarge": "{fileName} exceeds the size limit ({fileSize})",
   "@chatAttachmentFileTooLarge": {
-    "description": "Shown when a selected file is larger than allowed."
+    "description": "Shown when a selected file is larger than allowed.",
+    "placeholders": {
+      "fileName": {
+        "type": "String"
+      },
+      "fileSize": {
+        "type": "String"
+      }
+    }
   },
   "chatAttachmentPayloadTooLarge": "Those files are too large to send together",
   "@chatAttachmentPayloadTooLarge": {
@@ -5258,6 +5391,34 @@
   "@lookAndFeelThemeSectionDescription": {
     "description": "Section description for theme selection."
   },
+  "lookAndFeelHdrSectionTitle": "High dynamic range",
+  "@lookAndFeelHdrSectionTitle": {
+    "description": "Appearance section title for HDR image and video display."
+  },
+  "lookAndFeelHdrSectionDescription": "Control how HDR images are displayed on HDR-capable monitors.",
+  "@lookAndFeelHdrSectionDescription": {
+    "description": "Appearance section description for HDR display mode."
+  },
+  "lookAndFeelHdrFullName": "Full dynamic range",
+  "@lookAndFeelHdrFullName": {
+    "description": "HDR radio option that keeps full HDR brightness and color."
+  },
+  "lookAndFeelHdrFullDescription": "Display HDR images at full brightness and color range.",
+  "@lookAndFeelHdrFullDescription": {
+    "description": "Description for the full dynamic range HDR option."
+  },
+  "lookAndFeelHdrStandardName": "Standard range",
+  "@lookAndFeelHdrStandardName": {
+    "description": "HDR radio option that tone-maps HDR content to SDR."
+  },
+  "lookAndFeelHdrStandardDescription": "Tone-map HDR images to standard range, reducing peak brightness.",
+  "@lookAndFeelHdrStandardDescription": {
+    "description": "Description for the standard-range HDR option."
+  },
+  "lookAndFeelHdrDisplayModeLabel": "High dynamic range display mode",
+  "@lookAndFeelHdrDisplayModeLabel": {
+    "description": "Accessibility label for the HDR display mode radio group."
+  },
   "lookAndFeelThemeDark": "Dark Theme",
   "@lookAndFeelThemeDark": {
     "description": "Label on the dark theme swatch button."
@@ -5290,13 +5451,70 @@
   "@lookAndFeelThemeSyncFailed": {
     "description": "Toast message shown when the server PATCH for a theme change or sync toggle fails."
   },
-  "lookAndFeelChatFontScalingTitle": "Chat Font Scaling",
+  "lookAndFeelChatFontScalingTitle": "Chat font scaling",
   "@lookAndFeelChatFontScalingTitle": {
-    "description": "Section title for the chat font size slider."
+    "description": "Search label for chat font size within the Messages section."
   },
   "lookAndFeelChatFontScalingDescription": "Adjust the font size in the chat area.",
   "@lookAndFeelChatFontScalingDescription": {
-    "description": "Section description for the chat font size slider."
+    "description": "Search description for chat font size."
+  },
+  "lookAndFeelChatFontSizeLabel": "Chat font size",
+  "@lookAndFeelChatFontSizeLabel": {
+    "description": "Label for the chat font size select in Look & Feel."
+  },
+  "lookAndFeelAppZoomTitle": "App zoom level",
+  "@lookAndFeelAppZoomTitle": {
+    "description": "Section title for the app zoom slider."
+  },
+  "lookAndFeelAppZoomDescription": "Adjust the application's zoom level.",
+  "@lookAndFeelAppZoomDescription": {
+    "description": "Section description for the app zoom slider."
+  },
+  "lookAndFeelMessagesSectionTitle": "Messages",
+  "@lookAndFeelMessagesSectionTitle": {
+    "description": "Section title for message layout settings in Look & Feel."
+  },
+  "lookAndFeelMessagesSectionDescription": "Choose how messages are displayed in chat channels.",
+  "@lookAndFeelMessagesSectionDescription": {
+    "description": "Section description for message layout settings in Look & Feel."
+  },
+  "lookAndFeelMessageGroupSpacingLabel": "Space between message groups",
+  "@lookAndFeelMessageGroupSpacingLabel": {
+    "description": "Label for message group spacing select in Look & Feel."
+  },
+  "lookAndFeelMessageGroupSpacingValue": "{spacing}px",
+  "@lookAndFeelMessageGroupSpacingValue": {
+    "description": "Message group spacing option label.",
+    "placeholders": {
+      "spacing": {
+        "type": "int"
+      }
+    }
+  },
+  "lookAndFeelMessageDisplayModeLabel": "Message display mode",
+  "@lookAndFeelMessageDisplayModeLabel": {
+    "description": "Accessibility label for message display mode radio group."
+  },
+  "lookAndFeelMessageDisplayComfyName": "Comfy",
+  "@lookAndFeelMessageDisplayComfyName": {
+    "description": "Comfy message display mode option name."
+  },
+  "lookAndFeelMessageDisplayComfyDescription": "Spacious layout with clear visual separation between messages.",
+  "@lookAndFeelMessageDisplayComfyDescription": {
+    "description": "Comfy message display mode option description."
+  },
+  "lookAndFeelMessageDisplayDenseName": "Dense",
+  "@lookAndFeelMessageDisplayDenseName": {
+    "description": "Dense message display mode option name."
+  },
+  "lookAndFeelMessageDisplayDenseDescription": "Maximizes visible messages with minimal spacing.",
+  "@lookAndFeelMessageDisplayDenseDescription": {
+    "description": "Dense message display mode option description."
+  },
+  "lookAndFeelHideUserAvatarsLabel": "Hide user avatars",
+  "@lookAndFeelHideUserAvatarsLabel": {
+    "description": "Toggle to hide user avatars in dense message display mode."
   },
   "lookAndFeelInterfaceTitle": "Interface",
   "@lookAndFeelInterfaceTitle": {
@@ -5418,6 +5636,38 @@
         "type": "int"
       }
     }
+  },
+  "communityTemporarilyUnavailable": "Community temporarily unavailable",
+  "@communityTemporarilyUnavailable": {
+    "description": "Title shown when a community is temporarily offline."
+  },
+  "guildUnavailableDescription": "Something went wrong. We're working on it.",
+  "@guildUnavailableDescription": {
+    "description": "Body shown when a community is temporarily offline."
+  },
+  "guildNotFoundTitle": "This is not the community you're looking for.",
+  "@guildNotFoundTitle": {
+    "description": "Title shown when the active community is missing."
+  },
+  "guildNotFoundDescription": "The community you're looking for may have been deleted or you may not have access to it.",
+  "@guildNotFoundDescription": {
+    "description": "Body shown when the active community is missing."
+  },
+  "guildStaffOnlyAccessibleNagbar": "{communityName} is currently only accessible to {productName} staff members",
+  "@guildStaffOnlyAccessibleNagbar": {
+    "description": "Nagbar shown when a community is only accessible to staff.",
+    "placeholders": {
+      "communityName": {
+        "type": "String"
+      },
+      "productName": {
+        "type": "String"
+      }
+    }
+  },
+  "guildNavbarTemporarilyUnavailable": "temporarily unavailable",
+  "@guildNavbarTemporarilyUnavailable": {
+    "description": "Accessibility label suffix for unavailable guild icons."
   },
   "lookAndFeelCollapseDMsLabel": "Collapse DMs Into Folder",
   "@lookAndFeelCollapseDMsLabel": {
@@ -5574,6 +5824,86 @@
   "favoritesAddToFavorites": "Add to Favorites",
   "@favoritesAddToFavorites": {
     "description": "Action to add a channel to favorites."
+  },
+  "favoritesAddToSavedMedia": "Add to saved media",
+  "@favoritesAddToSavedMedia": {
+    "description": "Action that adds the selected media to saved media."
+  },
+  "favoritesRemoveFromSavedMedia": "Remove from saved media",
+  "@favoritesRemoveFromSavedMedia": {
+    "description": "Action that removes the selected media from saved media."
+  },
+  "favoritesAddToUrlOnlyGifFavorites": "Add to URL-only GIF favorites",
+  "@favoritesAddToUrlOnlyGifFavorites": {
+    "description": "Media context menu action that saves a GIF favorite by URL without uploading it."
+  },
+  "favoritesRemoveFromUrlOnlyGifFavorites": "Remove from URL-only GIF favorites",
+  "@favoritesRemoveFromUrlOnlyGifFavorites": {
+    "description": "Media context menu action that removes a GIF favorite saved by URL."
+  },
+  "savedMediaAddTitle": "Add to saved media",
+  "@savedMediaAddTitle": {
+    "description": "Title for the add saved media form."
+  },
+  "savedMediaFormNameLabel": "Name",
+  "@savedMediaFormNameLabel": {
+    "description": "Form field label for saved media name."
+  },
+  "savedMediaFormNameHint": "My awesome media",
+  "@savedMediaFormNameHint": {
+    "description": "Placeholder for saved media name input."
+  },
+  "savedMediaFormAltTextLabel": "Alt text",
+  "@savedMediaFormAltTextLabel": {
+    "description": "Form field label for saved media alt text."
+  },
+  "savedMediaFormAltTextHint": "Describe the media",
+  "@savedMediaFormAltTextHint": {
+    "description": "Placeholder for saved media alt text input."
+  },
+  "savedMediaFormTagsLabel": "Tags",
+  "@savedMediaFormTagsLabel": {
+    "description": "Form field label for saved media tags."
+  },
+  "savedMediaFormTagsHint": "funny, reaction, work",
+  "@savedMediaFormTagsHint": {
+    "description": "Placeholder for saved media tags input."
+  },
+  "savedMediaSaveError": "Could not update saved media.",
+  "@savedMediaSaveError": {
+    "description": "Error shown when saving saved media fails."
+  },
+  "savedMediaNameRequired": "Name is required.",
+  "@savedMediaNameRequired": {
+    "description": "Validation error when saved media name is empty."
+  },
+  "gifFavoriteFirstTimeTitle": "How should we save your GIF favorites?",
+  "@gifFavoriteFirstTimeTitle": {
+    "description": "Title for the first-time GIF favorite storage prompt."
+  },
+  "gifFavoriteFirstTimeDescription": "You can store starred GIFs as URL-only favorites or upload them to your saved media. Pick the one that fits how you use them. You can change it any time in Settings > Advanced > Media.",
+  "@gifFavoriteFirstTimeDescription": {
+    "description": "Description for the first-time GIF favorite storage prompt."
+  },
+  "gifFavoriteFirstTimeUrlOnlyDetails": "URL-only favorites (default): synced across your devices, no upload, doesn't count against saved media. The original media may disappear if its host removes it.",
+  "@gifFavoriteFirstTimeUrlOnlyDetails": {
+    "description": "Details for URL-only GIF favorite storage option."
+  },
+  "gifFavoriteFirstTimeSavedMediaDetails": "Saved media: uploaded, taggable, searchable, and persistent, but counts against your saved media limit.",
+  "@gifFavoriteFirstTimeSavedMediaDetails": {
+    "description": "Details for saved media GIF favorite storage option."
+  },
+  "gifFavoriteFirstTimeHint": "We'll only ask once.",
+  "@gifFavoriteFirstTimeHint": {
+    "description": "Hint shown on the first-time GIF favorite storage prompt."
+  },
+  "gifFavoriteFirstTimeUseUrlOnly": "Use URL-only (recommended)",
+  "@gifFavoriteFirstTimeUseUrlOnly": {
+    "description": "Primary action on the first-time GIF favorite storage prompt."
+  },
+  "gifFavoriteFirstTimeUseSavedMedia": "Use saved media",
+  "@gifFavoriteFirstTimeUseSavedMedia": {
+    "description": "Secondary action on the first-time GIF favorite storage prompt."
   },
   "favoritesHideConfirmTitle": "Hide favorites",
   "@favoritesHideConfirmTitle": {
@@ -5774,6 +6104,18 @@
   "messagesMediaGifsAutoSendLabel": "Automatically send GIFs when selected",
   "@messagesMediaGifsAutoSendLabel": {
     "description": "Toggle label for auto-sending GIFs from picker."
+  },
+  "messagesMediaCameraUploadsSectionTitle": "Camera uploads",
+  "@messagesMediaCameraUploadsSectionTitle": {
+    "description": "Section title for camera capture upload settings."
+  },
+  "messagesMediaCameraUploadsSectionDescription": "Choose whether photos and videos taken with the in-app camera are kept on your device",
+  "@messagesMediaCameraUploadsSectionDescription": {
+    "description": "Section description for camera capture upload settings."
+  },
+  "messagesMediaCameraUploadsSaveToDeviceLabel": "Save to device",
+  "@messagesMediaCameraUploadsSaveToDeviceLabel": {
+    "description": "Toggle label for saving camera captures to the device gallery."
   },
   "messagesMediaAutocompleteSectionTitle": "Expression autocomplete (colon autocomplete)",
   "@messagesMediaAutocompleteSectionTitle": {
@@ -6762,11 +7104,11 @@
   "@voiceParticipantMenuUnfocus": {
     "description": "Voice participant context menu item to return to grid layout."
   },
-  "voiceParticipantMenuCommunityMute": "Mute",
+  "voiceParticipantMenuCommunityMute": "Community mute",
   "@voiceParticipantMenuCommunityMute": {
     "description": "Voice participant context menu item to community-mute another member."
   },
-  "voiceParticipantMenuCommunityDeafen": "Deafen",
+  "voiceParticipantMenuCommunityDeafen": "Community deafen",
   "@voiceParticipantMenuCommunityDeafen": {
     "description": "Voice participant context menu item to community-deafen another member."
   },
@@ -6805,6 +7147,10 @@
   "voicePanelShowOwnCameraLabel": "Show my own camera",
   "@voicePanelShowOwnCameraLabel": {
     "description": "Switch label to show or hide the local camera tile in the voice call grid."
+  },
+  "voicePrioritizeSpeakersLabel": "Prioritize speakers",
+  "@voicePrioritizeSpeakersLabel": {
+    "description": "Voice display preference that moves active speakers toward the front of the call grid when enabled."
   },
   "voiceTextChatShow": "Show chat",
   "@voiceTextChatShow": {
@@ -7010,7 +7356,7 @@
   },
   "characterCounterRemainingPlutoniumUpsell": "{remaining} characters left. Get {productName} to write up to {premiumMaxLength} characters.",
   "@characterCounterRemainingPlutoniumUpsell": {
-    "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
+    "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
     "placeholders": {
       "remaining": {
         "type": "int"
@@ -7843,6 +8189,39 @@
   "@chatMessageCopyText": {
     "description": "Action label for copying message text."
   },
+  "chatMessageTranslate": "Translate",
+  "@chatMessageTranslate": {
+    "description": "Action label for translating a message on-device."
+  },
+  "chatMessageTranslatedFrom": "Translated from {language}",
+  "@chatMessageTranslatedFrom": {
+    "description": "Footer shown under a translated message.",
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "chatMessageSeeOriginal": "See original",
+  "@chatMessageSeeOriginal": {
+    "description": "Toggles a translated message back to the original text."
+  },
+  "chatMessageSeeTranslation": "See translation",
+  "@chatMessageSeeTranslation": {
+    "description": "Toggles a message back to the stored translation."
+  },
+  "chatMessageTranslating": "Translating…",
+  "@chatMessageTranslating": {
+    "description": "Shown under a message while on-device translation is in progress."
+  },
+  "chatMessageTranslateFailed": "Couldn't translate this message.",
+  "@chatMessageTranslateFailed": {
+    "description": "Toast shown when on-device translation fails."
+  },
+  "chatMessageTranslateUnavailable": "Translation isn't available on this device.",
+  "@chatMessageTranslateUnavailable": {
+    "description": "Toast shown when no translation source is available."
+  },
   "chatMessageSpeak": "Speak message",
   "@chatMessageSpeak": {
     "description": "Action label for reading a message aloud."
@@ -8463,11 +8842,11 @@
   "@chatReplyMentionAccessibilityLabel": {
     "description": "Accessibility label for the reply bar mention toggle."
   },
-  "chatReplyMentionOn": "On",
+  "chatReplyMentionOn": "ON",
   "@chatReplyMentionOn": {
     "description": "On state suffix appended to the reply bar mention toggle label."
   },
-  "chatReplyMentionOff": "Off",
+  "chatReplyMentionOff": "OFF",
   "@chatReplyMentionOff": {
     "description": "Off state suffix appended to the reply bar mention toggle label."
   },
@@ -8609,6 +8988,193 @@
   "composerAutocompleteRoleMentionDescription": "Notify users with this role who have permission to view this channel.",
   "@composerAutocompleteRoleMentionDescription": {
     "description": "Secondary line in the @ mention autocomplete when the row is a mentionable guild role."
+  },
+  "composerAutocompleteSuggestions": "Suggestions",
+  "@composerAutocompleteSuggestions": {
+    "description": "Accessibility label for the composer autocomplete list."
+  },
+  "composerAutocompleteCommandsHeading": "Commands",
+  "@composerAutocompleteCommandsHeading": {
+    "description": "Section heading in composer autocomplete for slash commands."
+  },
+  "composerAutocompleteChoicesHeading": "Choices",
+  "@composerAutocompleteChoicesHeading": {
+    "description": "Section heading in composer autocomplete for slash-command argument choices."
+  },
+  "composerAutocompleteOptionalArgumentsHeading": "Optional arguments",
+  "@composerAutocompleteOptionalArgumentsHeading": {
+    "description": "Section heading in composer autocomplete for adding optional slash-command arguments."
+  },
+  "composerAutocompleteChannelsHeading": "Channels",
+  "@composerAutocompleteChannelsHeading": {
+    "description": "Section heading in composer autocomplete for channel suggestions."
+  },
+  "composerAutocompleteMembersHeading": "Members",
+  "@composerAutocompleteMembersHeading": {
+    "description": "Section heading in composer autocomplete for member suggestions."
+  },
+  "composerAutocompleteUsersHeading": "Users",
+  "@composerAutocompleteUsersHeading": {
+    "description": "Section heading in composer autocomplete for user suggestions."
+  },
+  "composerAutocompleteMentionsHeading": "Mentions",
+  "@composerAutocompleteMentionsHeading": {
+    "description": "Section heading in composer autocomplete for mixed mention suggestions."
+  },
+  "composerAutocompleteRolesHeading": "Roles",
+  "@composerAutocompleteRolesHeading": {
+    "description": "Section heading in composer autocomplete for role suggestions."
+  },
+  "composerAutocompleteMediaHeading": "Media",
+  "@composerAutocompleteMediaHeading": {
+    "description": "Section heading in composer autocomplete for saved media."
+  },
+  "composerAutocompleteStickersHeading": "Stickers",
+  "@composerAutocompleteStickersHeading": {
+    "description": "Section heading in composer autocomplete for stickers."
+  },
+  "composerAutocompleteGifsHeading": "GIFs",
+  "@composerAutocompleteGifsHeading": {
+    "description": "Heading above GIF autocomplete results."
+  },
+  "composerAutocompleteNoGifs": "No GIFs found",
+  "@composerAutocompleteNoGifs": {
+    "description": "Empty-state title when GIF autocomplete finds no results."
+  },
+  "composerCommandShrugDescription": "Appends ¯\\_(ツ)_/¯ to your message.",
+  "@composerCommandShrugDescription": {
+    "description": "Slash-command description for /shrug."
+  },
+  "composerCommandTableflipDescription": "Appends (╯°□°)╯︵ ┻━┻ to your message.",
+  "@composerCommandTableflipDescription": {
+    "description": "Slash-command description for /tableflip."
+  },
+  "composerCommandUnflipDescription": "Appends ┬─┬ ノ( ゜-゜ノ) to your message.",
+  "@composerCommandUnflipDescription": {
+    "description": "Slash-command description for /unflip."
+  },
+  "composerCommandMeDescription": "Send an action message (wraps in italics).",
+  "@composerCommandMeDescription": {
+    "description": "Slash-command description for /me."
+  },
+  "composerCommandSpoilerDescription": "Send a spoiler message (wraps in spoiler tags).",
+  "@composerCommandSpoilerDescription": {
+    "description": "Slash-command description for /spoiler."
+  },
+  "composerCommandTtsDescription": "Send a text-to-speech message.",
+  "@composerCommandTtsDescription": {
+    "description": "Slash-command description for /tts."
+  },
+  "composerCommandNickDescription": "Change your nickname in this community.",
+  "@composerCommandNickDescription": {
+    "description": "Slash-command description for /nick."
+  },
+  "composerCommandKickDescription": "Kick a member from this community.",
+  "@composerCommandKickDescription": {
+    "description": "Slash-command description for /kick."
+  },
+  "composerCommandBanDescription": "Ban a member from this community.",
+  "@composerCommandBanDescription": {
+    "description": "Slash-command description for /ban."
+  },
+  "composerCommandMsgDescription": "Send a direct message to a user.",
+  "@composerCommandMsgDescription": {
+    "description": "Slash-command description for /msg."
+  },
+  "composerCommandSavedDescription": "Send a saved media item.",
+  "@composerCommandSavedDescription": {
+    "description": "Slash-command description for /saved."
+  },
+  "composerCommandStickerDescription": "Send a sticker.",
+  "@composerCommandStickerDescription": {
+    "description": "Slash-command description for /sticker."
+  },
+  "composerCommandGifDescription": "Search for and send a GIF.",
+  "@composerCommandGifDescription": {
+    "description": "Slash-command description for /gif."
+  },
+  "composerCommandMemberOption": "The member to target.",
+  "@composerCommandMemberOption": {
+    "description": "Description for the member option of a moderation slash command."
+  },
+  "composerCommandReasonOption": "Reason (optional).",
+  "@composerCommandReasonOption": {
+    "description": "Description for an optional moderation slash-command reason."
+  },
+  "composerCommandMessageOption": "The message to send.",
+  "@composerCommandMessageOption": {
+    "description": "Description for a required message option in a slash command."
+  },
+  "composerCommandQueryOption": "What to search for.",
+  "@composerCommandQueryOption": {
+    "description": "Description for a media search slash-command query."
+  },
+  "composerCommandNicknameOption": "Your new nickname, or leave blank to reset it.",
+  "@composerCommandNicknameOption": {
+    "description": "Description for the /nick nickname option."
+  },
+  "composerCommandDeleteMessagesOption": "How much of the member's recent message history to delete.",
+  "@composerCommandDeleteMessagesOption": {
+    "description": "Description for the /ban delete_messages option."
+  },
+  "composerCommandDeleteMessagesNone": "Don't delete any",
+  "@composerCommandDeleteMessagesNone": {
+    "description": "Choice label for retaining all messages when banning a member."
+  },
+  "composerCommandDeleteMessagesDays": "Previous {count} days",
+  "@composerCommandDeleteMessagesDays": {
+    "description": "Choice label for deleting multiple days of messages when banning a member.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "composerCommandDeleteMessagesOneDay": "Previous 24 hours",
+  "@composerCommandDeleteMessagesOneDay": {
+    "description": "Choice label for deleting one day of messages when banning a member."
+  },
+  "composerCommandOptionRequired": "This option is required. Please provide a value.",
+  "@composerCommandOptionRequired": {
+    "description": "Notice shown when a required slash-command argument was left empty."
+  },
+  "composerCommandClear": "Clear command",
+  "@composerCommandClear": {
+    "description": "Accessible label for the button that clears the slash command being composed."
+  },
+  "composerCommandNicknameChanged": "You changed your nickname in this community from **{previousNickname}** to **{newNickname}**.",
+  "@composerCommandNicknameChanged": {
+    "description": "Local system message after the user changes their community nickname with a slash command.",
+    "placeholders": {
+      "previousNickname": {
+        "type": "String"
+      },
+      "newNickname": {
+        "type": "String"
+      }
+    }
+  },
+  "composerCommandUnknownUser": "Unknown user",
+  "@composerCommandUnknownUser": {
+    "description": "Fallback name in local command system messages when the current user is unavailable."
+  },
+  "composerCommandMsgFailed": "Failed to send a message to **{username}**. They may have DMs disabled or you may be blocked.",
+  "@composerCommandMsgFailed": {
+    "description": "Local system message when /msg cannot open a DM.",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "composerCommandOptionalMore": "+{count} more",
+  "@composerCommandOptionalMore": {
+    "description": "Hint shown after required slash-command slots for remaining optional arguments.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "addGuildModalTitle": "Add a community",
   "@addGuildModalTitle": {
@@ -9563,6 +10129,22 @@
   "@channelDetailsMembersEmptyBody": {
     "description": "Empty state body when channel details has no members loaded."
   },
+  "memberListPermissionDeniedTitle": "You can't view members",
+  "@memberListPermissionDeniedTitle": {
+    "description": "Title when the user lacks permission to view a channel member list."
+  },
+  "memberListPermissionDeniedBody": "You can't view the members of this channel in this community",
+  "@memberListPermissionDeniedBody": {
+    "description": "Body when the user lacks permission to view a channel member list."
+  },
+  "memberListUnavailableTitle": "Member list unavailable",
+  "@memberListUnavailableTitle": {
+    "description": "Title when member list updates are disabled for the community."
+  },
+  "memberListUnavailableBody": "Member lists are temporarily unavailable in this community",
+  "@memberListUnavailableBody": {
+    "description": "Body when member list updates are disabled for the community."
+  },
   "channelDetailsPinsLoadFailedTitle": "Pins could not be loaded",
   "@channelDetailsPinsLoadFailedTitle": {
     "description": "Error title when pinned messages fail to load in channel details."
@@ -9618,6 +10200,124 @@
   "channelDetailsSearchFilterHas": "Has",
   "@channelDetailsSearchFilterHas": {
     "description": "Content filter chip label in channel message search."
+  },
+  "channelDetailsSearchFilterIn": "In",
+  "@channelDetailsSearchFilterIn": {
+    "description": "Channel filter chip label in channel message search."
+  },
+  "channelDetailsSearchFilterMentions": "Mentions",
+  "@channelDetailsSearchFilterMentions": {
+    "description": "Mentions filter chip label in channel message search."
+  },
+  "channelDetailsSearchFilterMore": "More",
+  "@channelDetailsSearchFilterMore": {
+    "description": "Additional filters chip label in channel message search."
+  },
+  "channelDetailsSearchMoreFiltersActive": "Active",
+  "@channelDetailsSearchMoreFiltersActive": {
+    "description": "Value shown on the More filters chip when additional filters are set."
+  },
+  "channelDetailsSearchChannelsCount": "{count} channels",
+  "@channelDetailsSearchChannelsCount": {
+    "description": "Channel filter chip value when multiple channels are selected.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "channelDetailsSearchUsersCount": "{count} users",
+  "@channelDetailsSearchUsersCount": {
+    "description": "User filter chip value when multiple users are selected.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "channelDetailsSearchAuthorTypeUser": "User",
+  "@channelDetailsSearchAuthorTypeUser": {
+    "description": "Author type filter option for regular users."
+  },
+  "channelDetailsSearchAuthorTypeBot": "Bot",
+  "@channelDetailsSearchAuthorTypeBot": {
+    "description": "Author type filter option for bots."
+  },
+  "channelDetailsSearchAuthorTypeWebhook": "Webhook",
+  "@channelDetailsSearchAuthorTypeWebhook": {
+    "description": "Author type filter option for webhooks."
+  },
+  "channelDetailsSearchFilterByChannel": "Filter by channel",
+  "@channelDetailsSearchFilterByChannel": {
+    "description": "Title for the channel filter sheet in message search."
+  },
+  "channelDetailsSearchChannelsHint": "Search channels",
+  "@channelDetailsSearchChannelsHint": {
+    "description": "Search field hint in the channel filter sheet."
+  },
+  "channelDetailsSearchChannelsEmpty": "No channels found",
+  "@channelDetailsSearchChannelsEmpty": {
+    "description": "Empty state in the channel filter sheet."
+  },
+  "channelDetailsSearchMoreFiltersPinned": "Pinned",
+  "@channelDetailsSearchMoreFiltersPinned": {
+    "description": "Pinned filter section in the More filters sheet."
+  },
+  "channelDetailsSearchPinnedTrue": "Pinned only",
+  "@channelDetailsSearchPinnedTrue": {
+    "description": "Pinned true option in More filters."
+  },
+  "channelDetailsSearchPinnedFalse": "Exclude pinned",
+  "@channelDetailsSearchPinnedFalse": {
+    "description": "Pinned false option in More filters."
+  },
+  "channelDetailsSearchClearFilter": "Clear",
+  "@channelDetailsSearchClearFilter": {
+    "description": "Clears a selected filter option."
+  },
+  "channelDetailsSearchMoreFiltersAuthorType": "Author type",
+  "@channelDetailsSearchMoreFiltersAuthorType": {
+    "description": "Author type section in the More filters sheet."
+  },
+  "channelDetailsSearchMoreFiltersDate": "Date",
+  "@channelDetailsSearchMoreFiltersDate": {
+    "description": "Date filter section in the More filters sheet."
+  },
+  "channelDetailsSearchMoreFiltersDateMode": "Date mode",
+  "@channelDetailsSearchMoreFiltersDateMode": {
+    "description": "Date mode dropdown label in the More filters sheet."
+  },
+  "channelDetailsSearchMoreFiltersPickDate": "Pick a date",
+  "@channelDetailsSearchMoreFiltersPickDate": {
+    "description": "Prompt to pick a date in the More filters sheet."
+  },
+  "channelDetailsSearchMoreFiltersLink": "Link hostname",
+  "@channelDetailsSearchMoreFiltersLink": {
+    "description": "Link hostname field in the More filters sheet."
+  },
+  "channelDetailsSearchMoreFiltersFileName": "Filename contains",
+  "@channelDetailsSearchMoreFiltersFileName": {
+    "description": "Filename filter field in the More filters sheet."
+  },
+  "channelDetailsSearchMoreFiltersFileType": "File extension",
+  "@channelDetailsSearchMoreFiltersFileType": {
+    "description": "File extension filter field in the More filters sheet."
+  },
+  "channelDetailsSearchContentPoll": "Poll",
+  "@channelDetailsSearchContentPoll": {
+    "description": "Poll content filter label."
+  },
+  "channelDetailsSearchContentPollDescription": "Messages with a poll",
+  "@channelDetailsSearchContentPollDescription": {
+    "description": "Poll content filter description."
+  },
+  "channelDetailsSearchContentForward": "Forward",
+  "@channelDetailsSearchContentForward": {
+    "description": "Forwarded message content filter label."
+  },
+  "channelDetailsSearchContentForwardDescription": "Forwarded messages",
+  "@channelDetailsSearchContentForwardDescription": {
+    "description": "Forwarded message content filter description."
   },
   "channelDetailsSearchFilterSort": "Sort",
   "@channelDetailsSearchFilterSort": {
@@ -10261,6 +10961,30 @@
   "@composerShowKeyboard": {
     "description": "Accessibility label for the composer button that closes the expression picker and shows the keyboard."
   },
+  "composerCloseAttachmentPanel": "Close attachment picker",
+  "@composerCloseAttachmentPanel": {
+    "description": "Accessibility label for the composer button that closes the attachment gallery panel."
+  },
+  "chatAttachmentPanelPhotos": "Photos",
+  "@chatAttachmentPanelPhotos": {
+    "description": "Label for the native photo picker action on the attachment panel."
+  },
+  "chatAttachmentPanelFiles": "Files",
+  "@chatAttachmentPanelFiles": {
+    "description": "Label for the native file picker action on the attachment panel."
+  },
+  "chatAttachmentLibraryPermissionTitle": "Photo library access needed",
+  "@chatAttachmentLibraryPermissionTitle": {
+    "description": "Title shown when the attachment gallery cannot read the photo library."
+  },
+  "chatAttachmentLibraryPermissionBody": "Allow photo library access to browse and attach recent photos and videos.",
+  "@chatAttachmentLibraryPermissionBody": {
+    "description": "Body text when the attachment gallery is blocked by photo library permission."
+  },
+  "chatAttachmentLibraryPermissionSettings": "Open settings",
+  "@chatAttachmentLibraryPermissionSettings": {
+    "description": "Button that opens system settings so the user can grant photo library access."
+  },
   "messageAccessibilityLabel": "{author}, {summary}",
   "@messageAccessibilityLabel": {
     "description": "Screen reader label for a chat message row.",
@@ -10373,6 +11097,10 @@
   "@userSettingsGroupYourAccount": {
     "description": "Section heading for account-related items in user settings navigation."
   },
+  "userSettingsGroupBilling": "BILLING",
+  "@userSettingsGroupBilling": {
+    "description": "Section heading for billing items in user settings navigation."
+  },
   "userSettingsGroupApplication": "APPLICATION",
   "@userSettingsGroupApplication": {
     "description": "Section heading for app preference items in user settings navigation."
@@ -10384,6 +11112,22 @@
   "userSettingsGroupStaffOnly": "STAFF-ONLY",
   "@userSettingsGroupStaffOnly": {
     "description": "Section heading for staff-only items in user settings navigation."
+  },
+  "userSettingsSearchPlaceholder": "Search settings...",
+  "@userSettingsSearchPlaceholder": {
+    "description": "Placeholder for the user settings search field."
+  },
+  "userSettingsSearchFieldLabel": "Search settings",
+  "@userSettingsSearchFieldLabel": {
+    "description": "Accessibility label for the user settings search field."
+  },
+  "userSettingsSearchClear": "Clear search",
+  "@userSettingsSearchClear": {
+    "description": "Accessibility label for clearing the user settings search field."
+  },
+  "userSettingsSearchNoResults": "No settings found",
+  "@userSettingsSearchNoResults": {
+    "description": "Empty state shown when user settings search has no matches."
   },
   "userSettingsNavProfile": "Profile",
   "@userSettingsNavProfile": {
@@ -10397,10 +11141,230 @@
   "@userSettingsNavFluxerPlutonium": {
     "description": "User settings navigation item for Echowire Reverb subscription settings."
   },
-  "userSettingsNavGiftsAndCodes": "Gifts & Codes",
+  "userSettingsNavGiftsAndCodes": "Gifts",
   "@userSettingsNavGiftsAndCodes": {
     "description": "User settings navigation item for gifts and promo codes."
   },
+  "giftSettingsClaimAccountTitle": "Claim your account",
+  "giftSettingsClaimAccountDescription": "Claim your account to redeem or manage Plutonium gift codes.",
+  "giftSettingsRedeemTitle": "Redeem a gift",
+  "giftSettingsRedeemDescription": "Enter a gift code to redeem Plutonium for your account.",
+  "giftSettingsRedeemPlaceholder": "Enter gift code…",
+  "giftSettingsRedeemButton": "Redeem",
+  "giftSettingsRedeemSuccess": "Gift redeemed successfully. Enjoy your Plutonium.",
+  "giftSettingsPurchasedTitle": "Purchased gifts",
+  "giftSettingsPurchasedDescription": "Manage your purchased Plutonium gift codes. Share the gift URL with someone special or redeem it for yourself!",
+  "giftSettingsEmptyTitle": "No gifts yet",
+  "giftSettingsEmptyDescription": "Buy a Plutonium gift from the Plutonium tab to share with friends.",
+  "giftSettingsGoToPlutonium": "Go to Plutonium",
+  "giftSettingsLoadFailedTitle": "Failed to load gift inventory",
+  "giftSettingsLoadFailedDescription": "Try again later.",
+  "giftSettingsTryAgain": "Try again",
+  "giftSettingsGiftUrl": "Gift URL",
+  "giftSettingsCopy": "Copy",
+  "giftSettingsCopied": "Copied",
+  "giftSettingsGiftUrlCopied": "Gift URL copied to clipboard!",
+  "giftSettingsGiftUrlCopyFailed": "Couldn't copy gift URL",
+  "giftSettingsPurchasedDate": "Purchased {date}",
+  "@giftSettingsPurchasedDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "giftSettingsRedeemedDate": "Redeemed {date}",
+  "@giftSettingsRedeemedDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "giftSettingsRedeemedBy": "Redeemed by {name}",
+  "@giftSettingsRedeemedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "giftSettingsAlreadyRedeemed": "This gift has been redeemed",
+  "giftSettingsRedeemForYourself": "Redeem for yourself",
+  "giftSettingsShareWithFriend": "Share with a friend",
+  "premiumPlutoniumTagline": "Unlock higher limits and exclusive features while supporting an independent communication platform.",
+  "premiumPurchaseMode": "Purchase mode",
+  "premiumForMe": "For me",
+  "premiumAsAGift": "As a gift",
+  "premiumMonthly": "Monthly",
+  "premiumYearly": "Yearly",
+  "premiumPerMonth": "per month",
+  "premiumPerYear": "per year",
+  "premiumOneTimePurchase": "one-time purchase",
+  "premiumSave17": "Save 17%",
+  "premiumUpgradeNow": "Upgrade now",
+  "premiumBuyGift": "Buy gift",
+  "premiumOneYearGift": "1 year gift",
+  "premiumOneMonthGift": "1 month gift",
+  "premiumMostPopular": "Most popular",
+  "premiumScrollPrompt": "Scroll down to view all the perks included with Plutonium",
+  "premiumFreeVsPlutonium": "Free vs Plutonium",
+  "premiumFreeColumn": "Free",
+  "premiumGiftSectionTitle": "Gift Plutonium",
+  "premiumGiftSectionDescription": "Share the Plutonium experience with your friends by purchasing a gift subscription.",
+  "premiumGiftBannerOne": "You have a new gift code waiting for you!",
+  "premiumGiftBannerMany": "You have {count} new gift codes waiting for you!",
+  "@premiumGiftBannerMany": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "premiumViewGifts": "View gifts",
+  "premiumReadyToUpgrade": "Ready to upgrade?",
+  "premiumReadyToBuyGift": "Ready to buy a gift?",
+  "premiumMonthlyPrice": "Monthly {price}",
+  "@premiumMonthlyPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumYearlyPrice": "Yearly {price}",
+  "@premiumYearlyPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumOneYearPrice": "1 year {price}",
+  "@premiumOneYearPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumOneMonthPrice": "1 month {price}",
+  "@premiumOneMonthPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumManageSubscription": "Manage subscription",
+  "premiumRedeemGiftCode": "Redeem gift code",
+  "premiumGiftBadge": "Gift",
+  "premiumCancelSubscriptionTitle": "Cancel subscription?",
+  "premiumCancelSubscriptionBody": "You keep your perks until your next renewal date, then have a 3-day grace period to resubscribe and keep your subscriber history.",
+  "premiumCancelSubscriptionConfirm": "Cancel subscription",
+  "premiumKeepSubscription": "Keep subscription",
+  "premiumPurchaseHistoryTitle": "Purchase history",
+  "premiumPurchaseHistoryDescription": "Your recent invoices. To change the payment method for your subscription, add or choose one in the billing portal and make it the default.",
+  "premiumManagePaymentMethods": "Manage payment methods",
+  "premiumBillingHistory": "Billing history",
+  "premiumSelfServeRefundTitle": "Self-serve refund",
+  "premiumSelfServeRefundButton": "Refund latest purchase",
+  "premiumDisclaimerAgreementPrefix": "By purchasing, you agree to our ",
+  "premiumDisclaimerAgreementPastPrefix": "By purchasing, you agreed to our ",
+  "premiumDisclaimerAgreementMiddle": " and ",
+  "premiumActiveUntil": "Active until {date}",
+  "@premiumActiveUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumSubscriptionCanceling": "Canceling",
+  "premiumCancelsOn": "Cancels on {date}. Perks remain active until then.",
+  "@premiumCancelsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumReactivateSubscription": "Reactivate",
+  "premiumGiftedUntil": "Gifted until {date}. Does not renew automatically.",
+  "@premiumGiftedUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumComparisonFeatureColumn": "Feature",
+  "@premiumDisclaimerPurchase": {
+    "placeholders": {
+      "terms": {
+        "type": "String"
+      },
+      "privacy": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumDisclaimerPurchased": "By purchasing, you agreed to our {terms} and {privacy}.",
+  "@premiumDisclaimerPurchased": {
+    "placeholders": {
+      "terms": {
+        "type": "String"
+      },
+      "privacy": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumDisclaimerRefund": "Self-serve refunds available within 3 days of payment, once every 30 days. Refunding a subscription cancels it. EU/EEA buyers waive the 14-day right of withdrawal at checkout to access content immediately. Use the in-app refund button instead of a chargeback. Chargebacks can permanently restrict your account. Stripe handles payment securely. We never see your full card number.",
+  "premiumTermsOfService": "Terms of service",
+  "premiumPrivacyPolicy": "Privacy policy",
+  "premiumCheckoutStartFailedTitle": "Couldn't start checkout",
+  "premiumCheckoutStartFailedBody": "Something went wrong while starting checkout. Please try again in a moment.",
+  "premiumGiftSubscriptionBlocksRecurring": "You're currently on a gift subscription. It won't renew. You can redeem more gift codes to extend it. Recurring subscriptions can be started after your gift time ends.",
+  "premiumPlanUnavailable": "This plan isn't available. Contact support.",
+  "premiumCompletePaymentTitle": "Complete payment",
+  "premiumCompletePaymentBody": "You are now navigating to Stripe to complete the payment. Return to Fluxer once you've completed it.",
+  "premiumChoosePaymentMethodTitle": "Choose payment method",
+  "premiumPixPaymentPromptDescription": "Pay with Pix automático to authorize recurring charges directly from your Brazilian bank. Or choose use card to enter a credit card on Stripe's next screen.",
+  "premiumUsePix": "Use Pix",
+  "premiumUpiPaymentPromptDescription": "Pay with UPI to set up an RBI-compliant e-mandate from your Indian bank. Or choose use card to enter a credit card on Stripe's next screen.",
+  "premiumUseUpi": "Use UPI",
+  "premiumUseCard": "Use card",
+  "premiumCustomerPortalOpenFailedTitle": "Couldn't open the billing portal",
+  "premiumCustomerPortalOpenFailedBody": "Something went wrong while opening the billing portal. Please try again in a moment.",
+  "premiumAlreadyVisionaryTitle": "You're already Visionary",
+  "premiumAlreadyVisionaryBody": "Visionary already includes permanent access, so a recurring subscription isn't needed. You can still buy gifts for others.",
+  "premiumExistingSubscriptionTitle": "Subscription already exists",
+  "premiumExistingSubscriptionBody": "We found an existing Fluxer Plutonium subscription for this account. Manage it in the secure billing portal to update payment details or check renewal status. If you just paid, wait a minute and reopen this page.",
+  "premiumPurchasesDisabledTitle": "Purchases unavailable",
+  "premiumPurchasesDisabledBody": "Purchases are disabled for this account. Contact support@fluxer.app if this looks wrong.",
+  "premiumClaimAccountToPurchase": "Claim your account to purchase Fluxer Plutonium.",
+  "premiumVerifyEmailToPurchase": "You need to verify your email before you can purchase Fluxer Plutonium.",
+  "premiumPerkCustomUsernameTag": "Custom username tag",
+  "premiumPerkPerCommunityProfiles": "Per-community profiles",
+  "premiumPerkMessageScheduling": "Message scheduling",
+  "premiumPerkProfileBadge": "Profile badge",
+  "premiumPerkCustomVideoBackgrounds": "Custom video backgrounds",
+  "premiumPerkEntranceSounds": "Entrance sounds",
+  "premiumPerkCommunities": "Communities",
+  "premiumPerkMessageCharacterLimit": "Message character limit",
+  "premiumPerkBookmarkedMessages": "Bookmarked messages",
+  "premiumPerkFileUploadSize": "File upload size",
+  "premiumPerkEmojiStickerPacks": "Emoji & sticker packs",
+  "premiumPerkSavedMedia": "Saved media",
+  "premiumPerkUseAnimatedEmojis": "Use animated emojis",
+  "premiumPerkGlobalEmojiStickerAccess": "Global emoji & sticker access",
+  "premiumPerkVideoQuality": "Video quality",
+  "premiumPerkAnimatedAvatarsBanners": "Animated avatars & profile banners",
+  "premiumPerkEarlyAccess": "Early access to new features",
+  "premiumPerkCustomThemes": "Custom themes",
+  "premiumPerkVideoQualityRestricted": "720p/30fps",
+  "premiumPerkVideoQualityStock": "Up to 4K/60fps",
   "userSettingsNavPrivacyDashboard": "Privacy Dashboard",
   "@userSettingsNavPrivacyDashboard": {
     "description": "User settings navigation item for the privacy dashboard."
@@ -10436,6 +11400,10 @@
   "userSettingsNavAudioAndVideo": "Audio & Video",
   "@userSettingsNavAudioAndVideo": {
     "description": "User settings navigation item for audio and video settings."
+  },
+  "userSettingsNavShortcuts": "Shortcuts",
+  "@userSettingsNavShortcuts": {
+    "description": "User settings navigation item for keyboard shortcuts."
   },
   "audioAndVideoAudioSectionTitle": "Audio",
   "@audioAndVideoAudioSectionTitle": {
@@ -10617,7 +11585,7 @@
     "placeholders": {
       "premiumProductName": {
         "type": "String",
-        "example": "Reverb"
+        "example": "Plutonium"
       }
     }
   },
@@ -11128,9 +12096,19 @@
   "advancedSettingEnableTextSelectionDescription": "Allow selecting text in the app",
   "advancedSettingVideoSeekThumbnailsLabel": "Enable video seek thumbnails",
   "advancedSettingVideoSeekThumbnailsDescription": "Thumbnail or live frame while scrubbing video",
+  "advancedSettingHapticFeedbackLabel": "Haptic feedback",
+  "@advancedSettingHapticFeedbackLabel": {
+    "description": "Toggle label for enabling haptic feedback in advanced settings."
+  },
+  "advancedSettingHapticFeedbackDescription": "Vibration feedback for taps and actions. Won't sync across devices.",
+  "@advancedSettingHapticFeedbackDescription": {
+    "description": "Toggle description for the local-only haptic feedback setting."
+  },
   "advancedSettingShowNekoLabel": "Show Neko",
   "advancedSettingShowNekoDescription": "Neko cat that chases your cursor",
   "advancedSettingShowNekoDescriptionTouch": "Show Neko on your chat input",
+  "advancedSettingMobileSplashZoomAnimationLabel": "Splash zoom animation",
+  "advancedSettingMobileSplashZoomAnimationDescription": "Zoom the logo out when leaving the splash screen",
   "advancedSettingKeyboardHintsLabel": "Keyboard hints",
   "advancedSettingKeyboardHintsDescription": "Keyboard shortcut hints in tooltips",
   "advancedSettingEnableFavoritesLabel": "Enable favorites",
@@ -11293,6 +12271,31 @@
   "userSettingsNavWhatsNew": "What's New",
   "@userSettingsNavWhatsNew": {
     "description": "User settings navigation item for release notes."
+  },
+  "userSettingsJoinFluxerLabs": "Join Fluxer Labs",
+  "@userSettingsJoinFluxerLabs": {
+    "description": "User settings What's New action to join the Fluxer Labs community."
+  },
+  "userSettingsNavAppLicenses": "App Licenses",
+  "@userSettingsNavAppLicenses": {
+    "description": "User settings navigation item to open open-source app licenses."
+  },
+  "userSettingsAppLicensesDescription": "Open-source software used by this app. This app is built with Flutter.",
+  "@userSettingsAppLicensesDescription": {
+    "description": "Description shown at the top of the app licenses settings page."
+  },
+  "userSettingsAppLicensesLoadError": "Could not load app licenses.",
+  "@userSettingsAppLicensesLoadError": {
+    "description": "Error message when the app licenses list fails to load."
+  },
+  "userSettingsAppLicensesPackageCount": "{count, plural, =1{1 license} other{{count} licenses}}",
+  "@userSettingsAppLicensesPackageCount": {
+    "description": "Subtitle on an app licenses list row showing how many license entries apply to a package.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "userSettingsNavLogOut": "Log Out",
   "@userSettingsNavLogOut": {
@@ -15360,176 +16363,82 @@
   "@dmListDirectMessagesTitle": {
     "description": "Desktop section header for the DM conversation list."
   },
-  "advancedSettingSequentialFileSendLabel": "Send file messages in order",
-  "advancedSettingSequentialFileSendDescription": "Ensures file messages appear in the order you sent them",
-  "accessibilityUnreadGroupTitle": "Unread indicators",
-  "@accessibilityUnreadGroupTitle": {
-    "description": "Section title for unread-indicator accessibility settings."
+  "keybindsSearchShortcuts": "Search shortcuts",
+  "@keybindsSearchShortcuts": {
+    "description": "Placeholder for the shortcuts settings search field."
   },
-  "accessibilityUnreadGroupDescription": "Control how unread message indicators are displayed.",
-  "@accessibilityUnreadGroupDescription": {
-    "description": "Section description for unread-indicator accessibility settings."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsLabel": "Show faded unread indicator on muted channels",
-  "@accessibilityShowFadedUnreadOnMutedChannelsLabel": {
-    "description": "Toggle label for showing a faded unread indicator on muted channels."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsDescription": "Display a dimmed unread indicator next to muted direct messages and channels so you can still see at a glance when there's activity.",
-  "@accessibilityShowFadedUnreadOnMutedChannelsDescription": {
-    "description": "Toggle description for showing a faded unread indicator on muted channels."
-  },
-  "accessibilityMediaButtonsGroupTitle": "Media Buttons",
-  "@accessibilityMediaButtonsGroupTitle": {
-    "description": "Section title for media button visibility settings on the accessibility settings page."
-  },
-  "accessibilityMediaButtonsGroupDescription": "Customize which buttons appear on media attachments and embeds.",
-  "@accessibilityMediaButtonsGroupDescription": {
-    "description": "Section description for media button visibility settings on the accessibility settings page."
-  },
-  "accessibilityShowMediaDeleteButtonLabel": "Show delete button",
-  "@accessibilityShowMediaDeleteButtonLabel": {
-    "description": "Toggle label for showing the delete button on media."
-  },
-  "accessibilityShowMediaDownloadButtonLabel": "Show download button",
-  "@accessibilityShowMediaDownloadButtonLabel": {
-    "description": "Toggle label for showing the download button on media."
-  },
-  "accessibilityShowMediaFavoriteButtonLabel": "Show favorite button",
-  "@accessibilityShowMediaFavoriteButtonLabel": {
-    "description": "Toggle label for showing the favorite button on media."
-  },
-  "accessibilityShowSuppressEmbedsButtonLabel": "Show suppress embeds button",
-  "@accessibilityShowSuppressEmbedsButtonLabel": {
-    "description": "Toggle label for showing the suppress embeds button on media."
-  },
-  "audioAndVideoMicTestSectionDescription": "Listen to how you sound with your current settings.",
-  "@audioAndVideoMicTestSectionDescription": {
-    "description": "Subsection description for microphone test controls."
-  },
-  "cropTouchHint": "Pinch to zoom, drag to reposition",
-  "@cropTouchHint": {
-    "description": "Hint shown in the image crop sheet on touch devices."
-  },
-  "cropMouseHint": "Drag corners to resize, drag inside to move",
-  "@cropMouseHint": {
-    "description": "Hint shown in the image crop sheet on mouse devices."
-  },
-  "channelDetailsSearchFilterIn": "In",
-  "@channelDetailsSearchFilterIn": {
-    "description": "Channel filter chip label in channel message search."
-  },
-  "channelDetailsSearchFilterMentions": "Mentions",
-  "@channelDetailsSearchFilterMentions": {
-    "description": "Mentions filter chip label in channel message search."
-  },
-  "channelDetailsSearchFilterMore": "More",
-  "@channelDetailsSearchFilterMore": {
-    "description": "Additional filters chip label in channel message search."
-  },
-  "channelDetailsSearchMoreFiltersActive": "Active",
-  "@channelDetailsSearchMoreFiltersActive": {
-    "description": "Value shown on the More filters chip when additional filters are set."
-  },
-  "channelDetailsSearchChannelsCount": "{count} channels",
-  "@channelDetailsSearchChannelsCount": {
-    "description": "Channel filter chip value when multiple channels are selected.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "channelDetailsSearchUsersCount": "{count} users",
-  "@channelDetailsSearchUsersCount": {
-    "description": "User filter chip value when multiple users are selected.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "channelDetailsSearchAuthorTypeUser": "User",
-  "@channelDetailsSearchAuthorTypeUser": {
-    "description": "Author type filter option for regular users."
-  },
-  "channelDetailsSearchAuthorTypeBot": "Bot",
-  "@channelDetailsSearchAuthorTypeBot": {
-    "description": "Author type filter option for bots."
-  },
-  "channelDetailsSearchAuthorTypeWebhook": "Webhook",
-  "@channelDetailsSearchAuthorTypeWebhook": {
-    "description": "Author type filter option for webhooks."
-  },
-  "channelDetailsSearchFilterByChannel": "Filter by channel",
-  "@channelDetailsSearchFilterByChannel": {
-    "description": "Title for the channel filter sheet in message search."
-  },
-  "channelDetailsSearchChannelsHint": "Search channels",
-  "@channelDetailsSearchChannelsHint": {
-    "description": "Search field hint in the channel filter sheet."
-  },
-  "channelDetailsSearchChannelsEmpty": "No channels found",
-  "@channelDetailsSearchChannelsEmpty": {
-    "description": "Empty state in the channel filter sheet."
-  },
-  "channelDetailsSearchMoreFiltersPinned": "Pinned",
-  "@channelDetailsSearchMoreFiltersPinned": {
-    "description": "Pinned filter section in the More filters sheet."
-  },
-  "channelDetailsSearchPinnedTrue": "Pinned only",
-  "@channelDetailsSearchPinnedTrue": {
-    "description": "Pinned true option in More filters."
-  },
-  "channelDetailsSearchPinnedFalse": "Exclude pinned",
-  "@channelDetailsSearchPinnedFalse": {
-    "description": "Pinned false option in More filters."
-  },
-  "channelDetailsSearchClearFilter": "Clear",
-  "@channelDetailsSearchClearFilter": {
-    "description": "Clears a selected filter option."
-  },
-  "channelDetailsSearchMoreFiltersAuthorType": "Author type",
-  "@channelDetailsSearchMoreFiltersAuthorType": {
-    "description": "Author type section in the More filters sheet."
-  },
-  "channelDetailsSearchMoreFiltersDate": "Date",
-  "@channelDetailsSearchMoreFiltersDate": {
-    "description": "Date filter section in the More filters sheet."
-  },
-  "channelDetailsSearchMoreFiltersDateMode": "Date mode",
-  "@channelDetailsSearchMoreFiltersDateMode": {
-    "description": "Date mode dropdown label in the More filters sheet."
-  },
-  "channelDetailsSearchMoreFiltersPickDate": "Pick a date",
-  "@channelDetailsSearchMoreFiltersPickDate": {
-    "description": "Prompt to pick a date in the More filters sheet."
-  },
-  "channelDetailsSearchMoreFiltersLink": "Link hostname",
-  "@channelDetailsSearchMoreFiltersLink": {
-    "description": "Link hostname field in the More filters sheet."
-  },
-  "channelDetailsSearchMoreFiltersFileName": "Filename contains",
-  "@channelDetailsSearchMoreFiltersFileName": {
-    "description": "Filename filter field in the More filters sheet."
-  },
-  "channelDetailsSearchMoreFiltersFileType": "File extension",
-  "@channelDetailsSearchMoreFiltersFileType": {
-    "description": "File extension filter field in the More filters sheet."
-  },
-  "channelDetailsSearchContentPoll": "Poll",
-  "@channelDetailsSearchContentPoll": {
-    "description": "Poll content filter label."
-  },
-  "channelDetailsSearchContentPollDescription": "Messages with a poll",
-  "@channelDetailsSearchContentPollDescription": {
-    "description": "Poll content filter description."
-  },
-  "channelDetailsSearchContentForward": "Forward",
-  "@channelDetailsSearchContentForward": {
-    "description": "Forwarded message content filter label."
-  },
-  "channelDetailsSearchContentForwardDescription": "Forwarded messages",
-  "@channelDetailsSearchContentForwardDescription": {
-    "description": "Forwarded message content filter description."
+  "keybindSectionDefaults": "Defaults",
+  "keybindSectionMessages": "Messages",
+  "keybindSectionNavigation": "Navigation",
+  "keybindSectionDragAndDrop": "Drag and drop",
+  "keybindSectionChat": "Chat",
+  "keybindSectionVoiceAndVideo": "Voice and video",
+  "keybindSectionMisc": "Miscellaneous",
+  "keybindActionShowShortcutsList": "Show keyboard shortcuts list",
+  "keybindActionCopyText": "Copy text",
+  "keybindActionMarkUnread": "Mark as unread",
+  "keybindActionFocusTextarea": "Focus text area",
+  "keybindActionSwitchCommunities": "Switch between communities",
+  "keybindActionSwitchChannels": "Switch between channels",
+  "keybindActionHistoryBack": "Move back through viewed channel history",
+  "keybindActionHistoryForward": "Move forward through viewed channel history",
+  "keybindActionJumpUnreadChannels": "Jump between unread channels",
+  "keybindActionJumpMentionChannels": "Jump between unread channels with mentions",
+  "keybindActionJumpCurrentCall": "Jump to the current call",
+  "keybindActionToggleLastGuildDms": "Toggle between last community and DMs",
+  "keybindActionPreviousCommunityOrDms": "Switch to previous community or DMs",
+  "keybindActionNextCommunityOrDms": "Switch to next community or DMs",
+  "keybindActionGoToDms": "Go to Direct Messages",
+  "keybindActionGoToFirstCommunity": "Go to first community",
+  "keybindActionGoToSecondCommunity": "Go to second community",
+  "keybindActionGoToThirdCommunity": "Go to third community",
+  "keybindActionGoToFourthCommunity": "Go to fourth community",
+  "keybindActionGoToFifthCommunity": "Go to fifth community",
+  "keybindActionGoToSixthCommunity": "Go to sixth community",
+  "keybindActionGoToSeventhCommunity": "Go to seventh community",
+  "keybindActionGoToEighthCommunity": "Go to eighth community",
+  "keybindActionToggleQuickSwitcher": "Toggle quick switcher",
+  "keybindActionCreateOrJoinCommunity": "Create or join a community",
+  "keybindActionStartDragAndDrop": "Start drag and drop",
+  "keybindActionMove": "Move",
+  "keybindActionDropItem": "Drop item",
+  "keybindActionCancel": "Cancel",
+  "keybindActionMarkCommunityRead": "Mark community as read",
+  "keybindActionMarkChannelRead": "Mark channel as read",
+  "keybindActionStartGroupDm": "Start a group DM",
+  "keybindActionTogglePinnedMessages": "Toggle pinned messages",
+  "keybindActionToggleInbox": "Toggle the inbox",
+  "keybindActionMarkTopInboxRead": "Mark top inbox channel as read",
+  "keybindActionMarkAllInboxRead": "Mark all inbox channels as read",
+  "keybindActionToggleMemberList": "Toggle the member list or voice chat",
+  "keybindActionToggleEmojiPicker": "Toggle the emoji picker",
+  "keybindActionToggleGifPicker": "Toggle the GIF picker",
+  "keybindActionToggleStickerPicker": "Toggle the sticker picker",
+  "keybindActionScrollChatUp": "Scroll chat up",
+  "keybindActionScrollChatDown": "Scroll chat down",
+  "keybindActionJumpOldestUnread": "Jump to the oldest unread message",
+  "keybindActionFocusComposer": "Focus the text area",
+  "keybindActionUploadFile": "Upload a file",
+  "keybindActionCopyChannelLink": "Copy channel link",
+  "keybindActionToggleSavedMedia": "Toggle saved media",
+  "keybindActionSendVoiceMessage": "Send voice message",
+  "keybindActionAnswerCall": "Answer the incoming call",
+  "keybindActionDeclineCall": "Decline the incoming call",
+  "keybindActionStartDmCall": "Start a call in a DM or group",
+  "keybindActionToggleSoundboard": "Toggle the soundboard",
+  "keybindActionToggleCompactCallView": "Expand or collapse compact call view",
+  "keybindActionPushToTalkPriority": "Push to talk (priority)",
+  "keybindActionVoiceActivityPriority": "Voice activity priority",
+  "keybindActionOpenHelp": "Open help",
+  "keybindActionSearchMessages": "Search messages",
+  "keybindActionOpenContextMenu": "Open the context menu",
+  "keybindActionOpenSettings": "Open your settings",
+  "keybindActionOpenThemeStudio": "Open theme studio popout",
+  "keybindActionZoomIn": "Zoom in",
+  "keybindActionZoomOut": "Zoom out",
+  "keybindActionZoomReset": "Reset zoom",
+  "clipboardPasteFailed": "Couldn't paste. The clipboard was empty or blocked for this app.",
+  "@clipboardPasteFailed": {
+    "description": "Shown when a context-menu paste finds no readable clipboard text."
   }
 }

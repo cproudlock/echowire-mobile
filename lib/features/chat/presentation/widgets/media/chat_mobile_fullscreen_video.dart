@@ -1,19 +1,29 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/providers/app_ui_lifecycle_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_context.dart';
 import 'package:fluxer_app/features/chat/domain/chat_video_source.dart';
 import 'package:fluxer_app/features/chat/domain/media_options_launch_context.dart';
+import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/mobile_media_options_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/media/chat_video_playback_failure_overlay.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/media/chat_youtube_webview.dart';
 import 'package:fluxer_app/features/chat/utils/attachment_display_utils.dart';
+import 'package:fluxer_app/features/chat/utils/chat_video_hdr_player_config.dart';
 import 'package:fluxer_app/features/chat/utils/chat_video_playback_utils.dart';
+import 'package:fluxer_app/features/chat/utils/favorite_media_utils.dart';
+import 'package:fluxer_app/features/chat/utils/media_kit_player_lifecycle.dart';
+import 'package:fluxer_app/features/chat/utils/save_message_media_favorite.dart';
+import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/shell/providers/shell_manual_gesture_block_provider.dart';
+import 'package:fluxer_app/features/ui/media_viewer/media_viewer_dismiss.dart';
+import 'package:fluxer_app/features/ui/media_viewer/media_viewer_dismissible.dart';
 import 'package:fluxer_app/features/ui/spinner/fluxer_loading_spinner.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:media_kit_video/media_kit_video.dart' as mkv;
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -22,19 +32,26 @@ Future<void> showChatMobileFullscreenVideo(
   BuildContext context, {
   required ChatFullscreenVideoLaunchContext launchContext,
 }) async {
-  if (!launchContext.source.hasPlayableContent) {
+  if (!launchContext.hasPlayableContent) {
     return;
   }
   final ShellManualGestureBlock shellGestureBlock = ProviderScope.containerOf(
     context,
   ).read(shellManualGestureBlockProvider.notifier)..setBlocked(value: true);
   try {
-    await Navigator.of(context).push<void>(
-      MaterialPageRoute<void>(
-        fullscreenDialog: true,
-        builder: (BuildContext context) =>
-            _ChatMobileFullscreenVideoPage(launchContext: launchContext),
-      ),
+    await showGeneralDialog<void>(
+      context: context,
+      barrierLabel: FluxerLocalizations.of(context).mediaViewerImagePreview,
+      barrierColor: Colors.transparent,
+      pageBuilder: (_, _, _) {
+        if (launchContext.isYouTubeEmbed) {
+          return _ChatMobileFullscreenYouTubePage(launchContext: launchContext);
+        }
+        return _ChatMobileFullscreenVideoPage(launchContext: launchContext);
+      },
+      transitionBuilder: (_, animation, _, child) {
+        return FadeTransition(opacity: animation, child: child);
+      },
     );
   } finally {
     shellGestureBlock.setBlocked(value: false);
@@ -69,12 +86,38 @@ class _ChatMobileFullscreenVideoPageState
   bool _isPlaying = false;
   bool _isBuffering = false;
   bool _hudVisible = true;
+  final MediaKitForegroundResumeController _foregroundResume =
+      MediaKitForegroundResumeController();
   Duration _position = Duration.zero;
   Duration _duration = Duration.zero;
   bool _isMuted = false;
   Timer? _hudHideTimer;
+  double _dismissProgress = 0;
 
   ChatVideoSource get _source => widget.launchContext.source;
+
+  Widget? _buildFavoriteButton() {
+    final MessageMediaActionScope? actionScope =
+        widget.launchContext.actionScope;
+    final Attachment? attachment = widget.launchContext.attachment;
+    final MessageMediaFavoriteTarget? target = favoriteTargetForMessageMedia(
+      actionScope: actionScope,
+      attachmentId: attachment?.id,
+      embedIndex: widget.launchContext.embedIndex,
+      filename: attachment?.filename,
+      fallbackContentHash: attachment?.contentHash,
+      attachment: attachment,
+      forMediaViewerToolbar: true,
+    );
+    if (target == null || actionScope == null) {
+      return null;
+    }
+    return SavedMediaFavoriteToolbarButton(
+      message: actionScope.message,
+      target: target,
+      useHudStyle: true,
+    );
+  }
 
   @override
   void initState() {
@@ -87,10 +130,17 @@ class _ChatMobileFullscreenVideoPageState
       if (!mounted) {
         return;
       }
-      final Player player = Player();
+      final Player player = MediaKitPlayerLifecycleCoordinator.instance
+          .createPlayer();
       _player = player;
       unawaited(player.setVolume(_kUnmutedVolume));
       _controller = mkv.VideoController(player);
+      unawaited(
+        applyChatVideoHdrProperties(
+          player,
+          ref.read(appearancePreferencesProvider).hdrDisplayMode,
+        ),
+      );
       _playingSubscription = player.stream.playing.listen((bool playing) {
         if (!mounted || _playbackFailed) {
           return;
@@ -171,7 +221,7 @@ class _ChatMobileFullscreenVideoPageState
     _player = null;
     _controller = null;
     if (player != null) {
-      await player.dispose();
+      await MediaKitPlayerLifecycleCoordinator.instance.stopAndDispose(player);
     }
   }
 
@@ -203,17 +253,7 @@ class _ChatMobileFullscreenVideoPageState
     if (player == null) {
       return;
     }
-    try {
-      await player.pause();
-      await player.stop();
-    } on Object {
-      // Player may already be in a failed native state.
-    }
-    try {
-      await player.dispose();
-    } on Object {
-      // Ignore cleanup errors after playback failure.
-    }
+    await MediaKitPlayerLifecycleCoordinator.instance.stopAndDispose(player);
   }
 
   void _markPlaybackFailed() {
@@ -328,6 +368,15 @@ class _ChatMobileFullscreenVideoPageState
     Navigator.of(context).pop();
   }
 
+  void _handleDismissProgress(double progress) {
+    if (_dismissProgress == progress) {
+      return;
+    }
+    setState(() {
+      _dismissProgress = progress;
+    });
+  }
+
   Future<void> _openOptions() async {
     _keepHudVisible();
     await showMobileMediaOptionsSheet(
@@ -345,70 +394,300 @@ class _ChatMobileFullscreenVideoPageState
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<bool>(appUiForegroundProvider, (bool? previous, bool next) {
+      _foregroundResume.handleAppForegroundChanged(
+        isForeground: next,
+        isPlaying: _isPlaying,
+        canResume: !_playbackFailed,
+        onResume: () async {
+          final Player? player = _player;
+          if (player != null) {
+            await player.play();
+          }
+        },
+      );
+    });
+    ref.listen<HdrDisplayMode>(
+      appearancePreferencesProvider.select(
+        (AppearancePreferencesState state) => state.hdrDisplayMode,
+      ),
+      (HdrDisplayMode? previous, HdrDisplayMode next) {
+        final Player? player = _player;
+        if (player == null || previous == next) {
+          return;
+        }
+        unawaited(applyChatVideoHdrProperties(player, next));
+      },
+    );
     final FluxerLocalizations l10n = FluxerLocalizations.of(context);
     final mkv.VideoController? controller = _controller;
     final bool showOptionsButton = widget.launchContext.hasOptionsMenu;
+    final double backdropOpacity = mediaViewerDismissBackdropOpacity(
+      baseOpacity: 1,
+      dismissProgress: _dismissProgress,
+    );
+    final double chromeOpacity = mediaViewerDismissChromeOpacity(
+      dismissProgress: _dismissProgress,
+    );
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
       body: Stack(
         fit: StackFit.expand,
+        clipBehavior: Clip.none,
         children: <Widget>[
-          if (controller != null && !_playbackFailed && !_isOpening)
-            Positioned.fill(
-              child: mkv.Video(controller: controller, controls: null),
+          ColoredBox(color: Colors.black.withValues(alpha: backdropOpacity)),
+          MediaViewerDismissible(
+            onDismissProgress: _handleDismissProgress,
+            onClose: _executeClose,
+            child: Stack(
+              fit: StackFit.expand,
+              clipBehavior: Clip.none,
+              children: <Widget>[
+                if (controller != null && !_playbackFailed && !_isOpening)
+                  Positioned.fill(
+                    child: mkv.Video(controller: controller, controls: null),
+                  ),
+                if ((_isOpening || controller == null) && !_playbackFailed)
+                  const IgnorePointer(
+                    child: ColoredBox(
+                      color: Colors.black,
+                      child: Center(child: FluxerLoadingSpinner()),
+                    ),
+                  ),
+                if (_isBuffering && !_isOpening && !_playbackFailed)
+                  IgnorePointer(
+                    child: ColoredBox(
+                      color: Colors.black.withValues(alpha: 0.22),
+                      child: const Center(child: FluxerLoadingSpinner()),
+                    ),
+                  ),
+                if (controller != null && !_playbackFailed && !_isOpening)
+                  Positioned.fill(
+                    child: _hudVisible
+                        ? FluxerGestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                            onTap: _toggleHudVisibility,
+                            child: const SizedBox.expand(),
+                          )
+                        : Semantics(
+                            label: l10n.chatAttachmentVideoToggleControls,
+                            button: true,
+                            child: FluxerGestureDetector(
+                              behavior: HitTestBehavior.translucent,
+                              onTap: _toggleHudVisibility,
+                              child: const SizedBox.expand(),
+                            ),
+                          ),
+                  ),
+                if (_hudVisible && !_playbackFailed)
+                  Opacity(
+                    opacity: chromeOpacity,
+                    child: _MobileVideoHud(
+                      l10n: l10n,
+                      onClose: _executeClose,
+                      onOpenOptions: showOptionsButton ? _openOptions : null,
+                      favoriteButton: _buildFavoriteButton(),
+                      isMuted: _isMuted,
+                      onMute: _toggleMute,
+                      isPlaying: _isPlaying,
+                      onPlayPause: _togglePlayPause,
+                      position: _position,
+                      duration: _duration,
+                      onSeekFromGlobalDx: _seekFromGlobalDx,
+                    ),
+                  ),
+                if (_playbackFailed)
+                  Opacity(
+                    opacity: chromeOpacity,
+                    child: ChatVideoPlaybackFailureOverlay(
+                      fallbackUrl: _source.fallbackUrl,
+                      useRootNavigator: true,
+                      onClose: _executeClose,
+                      onOpenOptions: showOptionsButton ? _openOptions : null,
+                    ),
+                  ),
+              ],
             ),
-          if ((_isOpening || controller == null) && !_playbackFailed)
-            const IgnorePointer(
-              child: ColoredBox(
-                color: Colors.black,
-                child: Center(child: FluxerLoadingSpinner()),
-              ),
-            ),
-          if (_isBuffering && !_isOpening && !_playbackFailed)
-            IgnorePointer(
-              child: ColoredBox(
-                color: Colors.black.withValues(alpha: 0.22),
-                child: const Center(child: FluxerLoadingSpinner()),
-              ),
-            ),
-          if (controller != null && !_playbackFailed && !_isOpening)
-            Positioned.fill(
-              child: _hudVisible
-                  ? FluxerGestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onTap: _toggleHudVisibility,
-                      child: const SizedBox.expand(),
-                    )
-                  : Semantics(
-                      label: l10n.chatAttachmentVideoToggleControls,
-                      button: true,
-                      child: FluxerGestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: _toggleHudVisibility,
-                        child: const SizedBox.expand(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ChatMobileFullscreenYouTubePage extends ConsumerStatefulWidget {
+  const _ChatMobileFullscreenYouTubePage({required this.launchContext});
+
+  final ChatFullscreenVideoLaunchContext launchContext;
+
+  @override
+  ConsumerState<_ChatMobileFullscreenYouTubePage> createState() =>
+      _ChatMobileFullscreenYouTubePageState();
+}
+
+class _ChatMobileFullscreenYouTubePageState
+    extends ConsumerState<_ChatMobileFullscreenYouTubePage> {
+  double _dismissProgress = 0;
+
+  ChatFullscreenVideoLaunchContext get _launchContext => widget.launchContext;
+
+  Embed get _embed => _launchContext.youtubeEmbed!;
+
+  Widget? _buildFavoriteButton() {
+    final MessageMediaActionScope? actionScope = _launchContext.actionScope;
+    final MessageMediaFavoriteTarget? target = favoriteTargetForMessageMedia(
+      actionScope: actionScope,
+      embedIndex: _launchContext.embedIndex,
+      filename: _embed.title,
+      attachment: _launchContext.attachment,
+      forMediaViewerToolbar: true,
+    );
+    if (target == null || actionScope == null) {
+      return null;
+    }
+    return SavedMediaFavoriteToolbarButton(
+      message: actionScope.message,
+      target: target,
+      useHudStyle: true,
+    );
+  }
+
+  void _executeClose() {
+    Navigator.of(context).pop();
+  }
+
+  void _handleDismissProgress(double progress) {
+    if (_dismissProgress == progress) {
+      return;
+    }
+    setState(() {
+      _dismissProgress = progress;
+    });
+  }
+
+  Future<void> _openOptions() async {
+    await showMobileMediaOptionsSheet(
+      context: context,
+      ref: ref,
+      launchContext: MediaOptionsLaunchContext.fromVideoLaunchContext(
+        _launchContext,
+      ),
+      onCloseViewer: _executeClose,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final String? embedUrl = _launchContext.youtubeEmbedUrl;
+    final String pageOrigin = _launchContext.youtubePageOrigin;
+    final bool showOptionsButton = _launchContext.hasOptionsMenu;
+    final double backdropOpacity = mediaViewerDismissBackdropOpacity(
+      baseOpacity: 1,
+      dismissProgress: _dismissProgress,
+    );
+    final double chromeOpacity = mediaViewerDismissChromeOpacity(
+      dismissProgress: _dismissProgress,
+    );
+    final double aspectRatio = resolveChatVideoAspectRatio(
+      width: _embed.video?.width,
+      height: _embed.video?.height,
+    );
+
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        fit: StackFit.expand,
+        clipBehavior: Clip.none,
+        children: <Widget>[
+          ColoredBox(color: Colors.black.withValues(alpha: backdropOpacity)),
+          MediaViewerDismissible(
+            onDismissProgress: _handleDismissProgress,
+            onClose: _executeClose,
+            child: Stack(
+              fit: StackFit.expand,
+              clipBehavior: Clip.none,
+              children: <Widget>[
+                if (embedUrl != null)
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: AspectRatio(
+                        aspectRatio: aspectRatio,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: ChatYouTubeWebView(
+                            embedUrl: embedUrl,
+                            pageOrigin: pageOrigin,
+                          ),
+                        ),
                       ),
                     ),
+                  )
+                else
+                  Opacity(
+                    opacity: chromeOpacity,
+                    child: ChatVideoPlaybackFailureOverlay(
+                      fallbackUrl: _launchContext.source.fallbackUrl,
+                      useRootNavigator: true,
+                      onClose: _executeClose,
+                      onOpenOptions: showOptionsButton ? _openOptions : null,
+                    ),
+                  ),
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: Opacity(
+                    opacity: chromeOpacity,
+                    child: SafeArea(
+                      bottom: false,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 4, 8, 0),
+                        child: Row(
+                          children: <Widget>[
+                            IconButton(
+                              onPressed: _executeClose,
+                              style: IconButton.styleFrom(
+                                backgroundColor: Colors.black.withValues(
+                                  alpha: 0.5,
+                                ),
+                                foregroundColor: Colors.white,
+                              ),
+                              tooltip: l10n.mediaViewerClose,
+                              icon: const PhosphorIcon(
+                                PhosphorIconsBold.x,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                            const Spacer(),
+                            ?_buildFavoriteButton(),
+                            if (showOptionsButton)
+                              IconButton(
+                                onPressed: _openOptions,
+                                style: IconButton.styleFrom(
+                                  backgroundColor: Colors.black.withValues(
+                                    alpha: 0.5,
+                                  ),
+                                  foregroundColor: Colors.white,
+                                ),
+                                tooltip: l10n.mediaViewerOptions,
+                                icon: const PhosphorIcon(
+                                  PhosphorIconsBold.dotsThree,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          if (_hudVisible && !_playbackFailed)
-            _MobileVideoHud(
-              l10n: l10n,
-              onClose: _executeClose,
-              onOpenOptions: showOptionsButton ? _openOptions : null,
-              isMuted: _isMuted,
-              onMute: _toggleMute,
-              isPlaying: _isPlaying,
-              onPlayPause: _togglePlayPause,
-              position: _position,
-              duration: _duration,
-              onSeekFromGlobalDx: _seekFromGlobalDx,
-            ),
-          if (_playbackFailed)
-            ChatVideoPlaybackFailureOverlay(
-              fallbackUrl: _source.fallbackUrl,
-              useRootNavigator: true,
-              onClose: _executeClose,
-              onOpenOptions: showOptionsButton ? _openOptions : null,
-            ),
+          ),
         ],
       ),
     );
@@ -427,11 +706,13 @@ class _MobileVideoHud extends StatelessWidget {
     required this.duration,
     required this.onSeekFromGlobalDx,
     this.onOpenOptions,
+    this.favoriteButton,
   });
 
   final FluxerLocalizations l10n;
   final VoidCallback onClose;
   final VoidCallback? onOpenOptions;
+  final Widget? favoriteButton;
   final bool isMuted;
   final Future<void> Function() onMute;
   final bool isPlaying;
@@ -473,6 +754,7 @@ class _MobileVideoHud extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
+                  ?favoriteButton,
                   if (onOpenOptions != null)
                     IconButton(
                       onPressed: onOpenOptions,

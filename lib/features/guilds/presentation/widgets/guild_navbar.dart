@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,6 +12,7 @@ import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/permissions/channel_effective_permissions.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/providers/well_known_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
@@ -20,11 +20,13 @@ import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/fluxer_motion_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
+import 'package:fluxer_app/features/accessibility/text_scale.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/create_category_sheet.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/create_channel_sheet.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/channel_icon.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
+import 'package:fluxer_app/features/chat/utils/delete_my_messages_in_channel_action.dart';
 import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
 import 'package:fluxer_app/features/dm/domain/dm_conversation.dart';
 import 'package:fluxer_app/features/dm/presentation/widgets/dm_navbar_context_menu.dart';
@@ -61,6 +63,7 @@ import 'package:fluxer_app/features/guilds/presentation/'
     'widgets/guild_scroll_indicator.dart';
 import 'package:fluxer_app/features/guilds/providers/add_guild_enabled_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_availability_provider.dart';
+import 'package:fluxer_app/features/guilds/providers/guild_drag_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_view_model.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_mute_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_navbar_scroll_store_provider.dart';
@@ -69,8 +72,10 @@ import 'package:fluxer_app/features/guilds/providers/guild_read_state_provider.d
 import 'package:fluxer_app/features/guilds/providers/guild_read_state_ready_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_voice_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/organized_guild_list_provider.dart';
+import 'package:fluxer_app/features/guilds/providers/visible_unavailable_guild_count_provider.dart';
 import 'package:fluxer_app/features/guilds/utils/guild_folder_icon.dart';
 import 'package:fluxer_app/features/guilds/utils/guild_folder_menu_actions.dart';
+import 'package:fluxer_app/features/guilds/utils/guild_outage_availability.dart';
 import 'package:fluxer_app/features/guilds/utils/guild_settings_actions.dart';
 import 'package:fluxer_app/features/guilds/utils/leave_guild_action.dart';
 import 'package:fluxer_app/features/moderation/iar/iar_report_guild.dart';
@@ -84,6 +89,7 @@ import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/features/ui/warning_alert/fluxer_warning_alert.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/external_links/external_link_handler.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:fluxer_app/shared/utils/clipboard_utils.dart';
@@ -227,23 +233,29 @@ class _GuildNavbarState extends ConsumerState<GuildNavbar> {
     required int pendingUnavailableCount,
     required List<GuildNavbarItem> organizedItems,
     required bool showAddCommunity,
+    required bool hideDirectMessages,
   }) {
-    final List<_NavbarListEntry> entries = <_NavbarListEntry>[
-      const _NavbarListEntry(kind: _NavbarListEntryKind.directMessages),
-    ];
+    final List<_NavbarListEntry> entries = <_NavbarListEntry>[];
+    if (!hideDirectMessages) {
+      entries.add(
+        const _NavbarListEntry(kind: _NavbarListEntryKind.directMessages),
+      );
+    }
     if (showFavorites) {
       entries.add(const _NavbarListEntry(kind: _NavbarListEntryKind.favorites));
     }
-    for (final DmChannel dm in allowlistedDms) {
-      entries.add(
-        _NavbarListEntry(kind: _NavbarListEntryKind.allowlistedDm, dm: dm),
-      );
-    }
-    if (dmItemsVisible) {
-      for (final DmChannel dm in regularDms) {
+    if (!hideDirectMessages) {
+      for (final DmChannel dm in allowlistedDms) {
         entries.add(
-          _NavbarListEntry(kind: _NavbarListEntryKind.regularDm, dm: dm),
+          _NavbarListEntry(kind: _NavbarListEntryKind.allowlistedDm, dm: dm),
         );
+      }
+      if (dmItemsVisible) {
+        for (final DmChannel dm in regularDms) {
+          entries.add(
+            _NavbarListEntry(kind: _NavbarListEntryKind.regularDm, dm: dm),
+          );
+        }
       }
     }
     entries.add(const _NavbarListEntry(kind: _NavbarListEntryKind.divider));
@@ -321,8 +333,13 @@ class _GuildNavbarState extends ConsumerState<GuildNavbar> {
       guildListViewModelProvider.select((s) => s.guilds),
     );
     final activeGuildId = ref.watch(activeGuildIdProvider);
-    final unavailableCount = guilds.where((g) => g.isUnavailable).length;
-    final pendingUnavailableCount = ref.watch(guildAvailabilityProvider).length;
+    final unavailableCount = unavailableGuildCount(
+      trackedUnavailableGuildIds: ref.watch(guildAvailabilityProvider),
+      guilds: guilds,
+    );
+    final pendingUnavailableCount = ref.watch(
+      visibleUnavailableGuildCountProvider,
+    );
 
     final dmFolderState = ref.watch(dmFolderProvider);
     ref.watch(unreadDmChannelsProvider.select(dmNavbarMembershipToken));
@@ -367,9 +384,17 @@ class _GuildNavbarState extends ConsumerState<GuildNavbar> {
       })
       ..listen(guildReadStateProvider, (_, _) {
         _scrollIndicator.scheduleUpdate();
+      })
+      ..listen(folderExpandedStateProvider, (_, _) {
+        _scrollIndicator.scheduleUpdate();
       });
 
     final bool showAddCommunity = ref.watch(addGuildEnabledProvider);
+    final bool hideDirectMessages = ref.watch(
+      instanceRuntimeConfigProvider.select(
+        (config) => config.directMessagesDisabled,
+      ),
+    );
     final double topPadding = max<double>(MediaQuery.paddingOf(context).top, 4);
     final List<_NavbarListEntry> navbarEntries = _buildNavbarEntries(
       showFavorites: showFavorites,
@@ -379,6 +404,7 @@ class _GuildNavbarState extends ConsumerState<GuildNavbar> {
       pendingUnavailableCount: pendingUnavailableCount,
       organizedItems: organizedItems,
       showAddCommunity: showAddCommunity,
+      hideDirectMessages: hideDirectMessages,
     );
     final guildListView = ListView.builder(
       scrollCacheExtent: const ScrollCacheExtent.pixels(600),
@@ -480,16 +506,16 @@ class _GuildNavbarState extends ConsumerState<GuildNavbar> {
                     )
                     as GlobalKey<_GuildListItemState>;
             final bool hasUnread =
-                !guild.isUnavailable && (unread?.hasUnread ?? false);
+                !guild.unavailable && (unread?.hasUnread ?? false);
             return GuildDragWrapper(
               key: ValueKey<String>('guild-${guild.id}'),
               itemId: guild.id,
               isFolder: false,
-              enabled: !guild.isUnavailable,
+              enabled: !guild.unavailable,
               dragFeedback: GuildDragFeedback(
                 label: guild.name,
                 iconUrl: guild.iconUrl,
-                isUnavailable: guild.isUnavailable,
+                isUnavailable: guild.unavailable,
               ),
               peekMenu: buildGuildPeekMenuConfig(
                 context,
@@ -597,6 +623,15 @@ class _GuildNavbarState extends ConsumerState<GuildNavbar> {
         dmFolderNotifier.addToAllowlist(dm.id);
       case DmNavbarAction.removeAlwaysShow:
         dmFolderNotifier.removeFromAllowlist(dm.id);
+      case DmNavbarAction.deleteMyMessages:
+        unawaited(
+          confirmAndDeleteMyMessagesInChannel(
+            context,
+            ref,
+            channelId: dm.id,
+            isPrivateConversation: true,
+          ),
+        );
       case DmNavbarAction.closeDm:
         await _confirmCloseDm(context, dm: dm);
       case DmNavbarAction.copyChannelId:
@@ -712,14 +747,14 @@ class _GuildNavbarState extends ConsumerState<GuildNavbar> {
           permissions: permissions,
           isOwner: guild.ownerId == currentUserId,
           iconUrl: guild.iconUrl,
-          isUnavailable: guild.isUnavailable,
+          isUnavailable: guild.unavailable,
           unavailableCount: unavailableCount,
           isMuted: muteState?.isMuted ?? false,
           muteEndTime: muteState?.muteEndTime,
           hideMutedChannels: muteState?.hideMutedChannels ?? false,
           voiceActivity: voiceActivity,
-          hasUnread: !guild.isUnavailable && (unread?.hasUnread ?? false),
-          mentionCount: guild.isUnavailable ? 0 : unread?.mentionCount ?? 0,
+          hasUnread: !guild.unavailable && (unread?.hasUnread ?? false),
+          mentionCount: guild.unavailable ? 0 : unread?.mentionCount ?? 0,
           guildUnreadReady: guildUnreadReady,
           invitesPaused: invitesPaused,
           developerMode: developerMode,
@@ -976,6 +1011,13 @@ class _GuildFolderWidgetState extends ConsumerState<_GuildFolderWidget> {
     final isExpanded = ref.watch(
       folderExpandedStateProvider.select((s) => s.contains(folder.id)),
     );
+    final DragState dragState = ref.watch(guildDragProvider);
+    final bool useLongPressDrag = isTouchPrimaryInput(ref);
+    final bool collapseWhileDragging = dragState.shouldCollapseDragSource(
+      itemId: folder.id.toString(),
+      useLongPressDrag: useLongPressDrag,
+    );
+    final bool visuallyExpanded = isExpanded && !collapseWhileDragging;
 
     // Aggregate unread/mention/voice across all guilds in folder.
     var anyUnread = false;
@@ -987,11 +1029,11 @@ class _GuildFolderWidgetState extends ConsumerState<_GuildFolderWidget> {
         guildReadStateProvider.select((s) => s[guild.id]),
       );
       if (guildUnreadReady &&
-          !guild.isUnavailable &&
+          !guild.unavailable &&
           (unread?.hasUnread ?? false)) {
         anyUnread = true;
       }
-      if (guildUnreadReady && !guild.isUnavailable) {
+      if (guildUnreadReady && !guild.unavailable) {
         totalMentions += unread?.mentionCount ?? 0;
       }
       final voiceActivity = ref.watch(guildVoiceActivityProvider(guild.id));
@@ -1022,7 +1064,7 @@ class _GuildFolderWidgetState extends ConsumerState<_GuildFolderWidget> {
         alignment: Alignment.topCenter,
         children: [
           // Background panel (behind everything, spans full height).
-          if (isExpanded)
+          if (visuallyExpanded)
             Positioned.fill(
               child: Center(
                 child: Container(
@@ -1062,7 +1104,7 @@ class _GuildFolderWidgetState extends ConsumerState<_GuildFolderWidget> {
                   anyUnread: anyUnread,
                   totalMentions: totalMentions,
                   folderVoiceActivity: folderVoiceActivity,
-                  isExpanded: isExpanded,
+                  isExpanded: visuallyExpanded,
                   guildUnreadReady: guildUnreadReady,
                 ),
               ),
@@ -1071,7 +1113,7 @@ class _GuildFolderWidgetState extends ConsumerState<_GuildFolderWidget> {
                 duration: context.motion.panel,
                 curve: const Cubic(0.25, 0.1, 0.25, 1),
                 alignment: Alignment.topCenter,
-                child: isExpanded
+                child: visuallyExpanded
                     ? Padding(
                         padding: const EdgeInsets.only(bottom: 4),
                         child: Column(
@@ -1319,7 +1361,7 @@ class _GuildFolderWidgetState extends ConsumerState<_GuildFolderWidget> {
         final GlobalKey<_GuildListItemState> itemKey = widget
             .resolveGuildItemKey(guild.id);
         final bool hasUnread =
-            !guild.isUnavailable && (unread?.hasUnread ?? false);
+            !guild.unavailable && (unread?.hasUnread ?? false);
         return GuildDragWrapper(
           itemId: guild.id,
           isFolder: false,
@@ -1327,7 +1369,7 @@ class _GuildFolderWidgetState extends ConsumerState<_GuildFolderWidget> {
           dragFeedback: GuildDragFeedback(
             label: guild.name,
             iconUrl: guild.iconUrl,
-            isUnavailable: guild.isUnavailable,
+            isUnavailable: guild.unavailable,
           ),
           peekMenu: buildGuildPeekMenuConfig(
             context,
@@ -1349,14 +1391,14 @@ class _GuildFolderWidgetState extends ConsumerState<_GuildFolderWidget> {
             permissions: permissions,
             isOwner: guild.ownerId == currentUserId,
             iconUrl: guild.iconUrl,
-            isUnavailable: guild.isUnavailable,
+            isUnavailable: guild.unavailable,
             unavailableCount: widget.unavailableCount,
             isMuted: muteState?.isMuted ?? false,
             muteEndTime: muteState?.muteEndTime,
             hideMutedChannels: muteState?.hideMutedChannels ?? false,
             voiceActivity: voiceActivity,
-            hasUnread: !guild.isUnavailable && (unread?.hasUnread ?? false),
-            mentionCount: guild.isUnavailable ? 0 : unread?.mentionCount ?? 0,
+            hasUnread: !guild.unavailable && (unread?.hasUnread ?? false),
+            mentionCount: guild.unavailable ? 0 : unread?.mentionCount ?? 0,
             guildUnreadReady: guildUnreadReady,
             invitesPaused: invitesPaused,
             developerMode: developerMode,
@@ -1600,7 +1642,7 @@ class _GuildFolderWidgetState extends ConsumerState<_GuildFolderWidget> {
       return false;
     }
     for (final Guild guild in widget.folder.guilds) {
-      if (guild.isUnavailable) {
+      if (guild.unavailable) {
         continue;
       }
       final unread = ref.read(guildReadStateProvider)[guild.id];
@@ -1737,7 +1779,7 @@ Future<void> presentGuildMenuSheet(
   final GuildAction? action = await showGuildBottomSheet(
     context,
     guild: sheetGuild,
-    hasUnread: !sheetGuild.isUnavailable && (unread?.hasUnread ?? false),
+    hasUnread: !sheetGuild.unavailable && (unread?.hasUnread ?? false),
     isMuted: muteState?.isMuted ?? false,
     isOwner: sheetGuild.ownerId == currentUserId,
     permissions: permissions,
@@ -1811,7 +1853,7 @@ Widget _buildGuildMenuActionItem({
     isMuted: muteState?.isMuted ?? false,
     muteEndTime: muteState?.muteEndTime,
     hideMutedChannels: muteState?.hideMutedChannels ?? false,
-    hasUnread: !guild.isUnavailable && (unread?.hasUnread ?? false),
+    hasUnread: !guild.unavailable && (unread?.hasUnread ?? false),
     developerMode: developerMode,
     onTap: () {},
     onMenuOpened: () {
@@ -2164,6 +2206,7 @@ class _GuildListItem extends StatefulWidget {
   final void Function(String channelId)? onRemoveChannelOverride;
   final VoidCallback? onMounted;
   final bool enableLongPressMenu;
+  final bool opaqueHitTarget;
   final Future<int> Function()? resolveMenuPermissions;
 
   const _GuildListItem({
@@ -2210,6 +2253,7 @@ class _GuildListItem extends StatefulWidget {
     this.onRemoveChannelOverride,
     this.onMounted,
     this.enableLongPressMenu = true,
+    this.opaqueHitTarget = false,
     this.resolveMenuPermissions,
   });
 
@@ -2254,6 +2298,9 @@ class _GuildListItemState extends State<_GuildListItem>
 
   String _guildSemanticLabel(FluxerLocalizations l10n) {
     final StringBuffer label = StringBuffer(widget.label);
+    if (widget.isUnavailable) {
+      label.write(', ${l10n.guildNavbarTemporarilyUnavailable}');
+    }
     if (widget.isSelected) {
       label.write(', ${l10n.guildNavbarGuildSelected}');
     }
@@ -2290,6 +2337,7 @@ class _GuildListItemState extends State<_GuildListItem>
           ? PhosphorIcon(widget.icon!, color: iconColor, size: 32)
           : Text(
               initials,
+              textScaler: kIconInitialsTextScaler,
               style: context.textStyles.smallText.copyWith(
                 color: iconColor,
                 fontSize: _guildNavbarInitialsFontSize(initialsLength),
@@ -2351,133 +2399,156 @@ class _GuildListItemState extends State<_GuildListItem>
               ),
             ),
           ),
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              _RightTooltip(
-                backgroundColor: widget.isUnavailable
-                    ? context.colors.statusDanger
-                    : null,
-                borderColor: widget.isUnavailable
-                    ? context.colors.statusDanger
-                    : null,
-                content: widget.guild != null
-                    ? _GuildTooltipContent(
-                        guild: widget.guild!,
-                        unavailableCount: widget.unavailableCount,
-                        permissions: widget.permissions,
-                        isMuted: widget.isMuted,
-                        muteEndTime: widget.muteEndTime,
-                      )
-                    : _TooltipLabel(label: widget.label),
-                child: MouseRegion(
-                  onEnter: (_) => setState(() => _isHovered = true),
-                  onExit: (_) => setState(() => _isHovered = false),
-                  child: Semantics(
-                    button: true,
-                    selected: widget.isSelected,
-                    label: _guildSemanticLabel(l10n),
-                    child: FluxerGestureDetector(
-                      onTap: widget.onTap,
-                      onSecondaryTapUp: widget.guild != null
-                          ? (details) => unawaited(
-                              _showContextMenu(context, details.globalPosition),
-                            )
-                          : null,
-                      onLongPress:
-                          widget.guild != null && widget.enableLongPressMenu
-                          ? () => unawaited(_showActionSheet(context))
-                          : null,
+          _RightTooltip(
+            backgroundColor: widget.isUnavailable
+                ? context.colors.statusDanger
+                : null,
+            borderColor: widget.isUnavailable
+                ? context.colors.statusDanger
+                : null,
+            content: widget.guild != null
+                ? _GuildTooltipContent(
+                    guild: widget.guild!,
+                    unavailableCount: widget.unavailableCount,
+                    permissions: widget.permissions,
+                    isMuted: widget.isMuted,
+                    muteEndTime: widget.muteEndTime,
+                  )
+                : _TooltipLabel(label: widget.label),
+            child: MouseRegion(
+              onEnter: (_) => setState(() => _isHovered = true),
+              onExit: (_) => setState(() => _isHovered = false),
+              child: Semantics(
+                button: true,
+                selected: widget.isSelected,
+                label: _guildSemanticLabel(l10n),
+                child: FluxerGestureDetector(
+                  behavior: widget.opaqueHitTarget
+                      ? HitTestBehavior.opaque
+                      : null,
+                  onTap: widget.onTap,
+                  onSecondaryTapUp: widget.guild != null
+                      ? (details) => unawaited(
+                          _showContextMenu(context, details.globalPosition),
+                        )
+                      : null,
+                  onLongPress:
+                      widget.guild != null && widget.enableLongPressMenu
+                      ? () => unawaited(_showActionSheet(context))
+                      : null,
+                  child: SizedBox(
+                    width: widget.opaqueHitTarget ? 72 : 48,
+                    height: 48,
+                    child: Center(
                       child: SizedBox(
                         width: 48,
                         height: 48,
-                        child: Center(
-                          child: AnimatedContainer(
-                            duration: context.motion.hover,
-                            curve: Curves.easeOut,
-                            width: 44,
-                            height: 44,
-                            decoration: BoxDecoration(
-                              color: bgColor,
-                              borderRadius: BorderRadius.circular(borderRadius),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadiusGeometry.circular(
-                                borderRadius,
-                              ),
-                              child: widget.isUnavailable
-                                  ? Center(
-                                      child: PhosphorIcon(
-                                        PhosphorIconsBold.exclamationMark,
-                                        color:
-                                            context.colors.textOnBrandPrimary,
-                                        size: 32,
-                                      ),
-                                    )
-                                  : iconUrl != null
-                                  ? CachedNetworkImage(
-                                      imageUrl: iconUrl,
-                                      memCacheWidth: _guildNavbarIconMemCache(
-                                        context,
-                                        44,
-                                      ),
-                                      memCacheHeight: _guildNavbarIconMemCache(
-                                        context,
-                                        44,
-                                      ),
-                                      fadeInDuration:
-                                          activeAnimatedIconUrl != null
-                                          ? context.motion.panel
-                                          : const Duration(milliseconds: 500),
-                                      errorBuilder: (context, url, error) =>
-                                          _buildBackupIcon(
-                                            context,
-                                            isActive: isActive,
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Center(
+                              child: AnimatedContainer(
+                                duration: context.motion.hover,
+                                curve: Curves.easeOut,
+                                width: 44,
+                                height: 44,
+                                decoration: BoxDecoration(
+                                  color: bgColor,
+                                  borderRadius: BorderRadius.circular(
+                                    borderRadius,
+                                  ),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadiusGeometry.circular(
+                                    borderRadius,
+                                  ),
+                                  child: widget.isUnavailable
+                                      ? Center(
+                                          child: PhosphorIcon(
+                                            PhosphorIconsBold.exclamationMark,
+                                            color: context
+                                                .colors
+                                                .textOnBrandPrimary,
+                                            size: 32,
                                           ),
-                                      progressIndicatorBuilder:
-                                          (context, url, progress) =>
+                                        )
+                                      : iconUrl != null
+                                      ? CachedNetworkImage(
+                                          imageUrl: iconUrl,
+                                          memCacheWidth:
+                                              _guildNavbarIconMemCache(
+                                                context,
+                                                44,
+                                              ),
+                                          memCacheHeight:
+                                              _guildNavbarIconMemCache(
+                                                context,
+                                                44,
+                                              ),
+                                          fadeInDuration:
+                                              activeAnimatedIconUrl != null
+                                              ? context.motion.panel
+                                              : const Duration(
+                                                  milliseconds: 500,
+                                                ),
+                                          errorBuilder: (context, url, error) =>
                                               _buildBackupIcon(
                                                 context,
                                                 isActive: isActive,
                                               ),
-                                    )
-                                  : _buildBackupIcon(
-                                      context,
-                                      isActive: isActive,
-                                    ),
+                                          progressIndicatorBuilder:
+                                              (context, url, progress) =>
+                                                  _buildBackupIcon(
+                                                    context,
+                                                    isActive: isActive,
+                                                  ),
+                                        )
+                                      : _buildBackupIcon(
+                                          context,
+                                          isActive: isActive,
+                                        ),
+                                ),
+                              ),
                             ),
-                          ),
+                            if (!widget.isUnavailable &&
+                                !widget.isSelected &&
+                                _displayMentionCount > 0)
+                              Positioned(
+                                bottom: -2,
+                                right: -2,
+                                child: FluxerBadge.count(
+                                  count: _displayMentionCount,
+                                  cutoutColor:
+                                      context.colors.backgroundSecondary,
+                                ),
+                              ),
+                            if (!widget.isUnavailable &&
+                                widget.voiceActivity != VoiceActivityType.none)
+                              Positioned(
+                                top: -4,
+                                right: -4,
+                                child: _VoiceActivityBadge(
+                                  type: widget.voiceActivity,
+                                ),
+                              ),
+                            if (!widget.isUnavailable &&
+                                !widget.isSelected &&
+                                widget.invitesPaused &&
+                                _displayMentionCount == 0 &&
+                                widget.voiceActivity == VoiceActivityType.none)
+                              const Positioned(
+                                bottom: -4,
+                                right: -4,
+                                child: _PauseBadge(),
+                              ),
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-              if (!widget.isUnavailable &&
-                  !widget.isSelected &&
-                  _displayMentionCount > 0)
-                Positioned(
-                  bottom: -2,
-                  right: -2,
-                  child: FluxerBadge.count(
-                    count: _displayMentionCount,
-                    cutoutColor: context.colors.backgroundSecondary,
-                  ),
-                ),
-              if (!widget.isUnavailable &&
-                  widget.voiceActivity != VoiceActivityType.none)
-                Positioned(
-                  top: -4,
-                  right: -4,
-                  child: _VoiceActivityBadge(type: widget.voiceActivity),
-                ),
-              if (!widget.isUnavailable &&
-                  !widget.isSelected &&
-                  widget.invitesPaused &&
-                  _displayMentionCount == 0 &&
-                  widget.voiceActivity == VoiceActivityType.none)
-                const Positioned(bottom: -4, right: -4, child: _PauseBadge()),
-            ],
+            ),
           ),
         ],
       ),
@@ -3811,6 +3882,7 @@ class _HomeDmButton extends ConsumerWidget {
       svgAsset: Assets.fluxerSymbol,
       mentionCount: pendingFriendCount + dmMentionCount,
       hasUnread: hasCollapsedDmUnread,
+      opaqueHitTarget: true,
       onTap: () {
         if (collapseDMs && isDm) {
           ref.read(dmFolderProvider.notifier).toggleExpanded();
@@ -4089,7 +4161,7 @@ class _RightTooltipState extends State<_RightTooltip>
       ),
     );
     overlay.insert(_entry!);
-    unawaited(_animController.forward());
+    _animController.forward();
   }
 
   void _hide() {
@@ -4123,53 +4195,75 @@ class _RightTooltipState extends State<_RightTooltip>
   );
 }
 
-class _UnavailableGuildsIndicator extends StatelessWidget {
+class _UnavailableGuildsIndicator extends ConsumerWidget {
   final int count;
 
   const _UnavailableGuildsIndicator({required this.count});
 
   @override
-  Widget build(BuildContext context) {
-    final l10n = FluxerLocalizations.of(context);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3),
-      child: Row(
-        children: [
-          const SizedBox(width: 12),
-          _RightTooltip(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final String message = l10n.guildUnavailableOutageTooltip(count);
+    final Widget badge = _GuildOutageIndicatorBadge();
+    final Widget tooltipContent = Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Text(
+        message,
+        textAlign: TextAlign.center,
+        style: context.textStyles.label,
+      ),
+    );
+    final Widget indicator = isTouchPrimaryInput(ref)
+        ? FluxerGestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              ref
+                  .read(toastProvider.notifier)
+                  .show(
+                    FluxerToast(
+                      message: message,
+                      variant: FluxerToastVariant.warning,
+                    ),
+                  );
+            },
+            child: badge,
+          )
+        : _RightTooltip(
             backgroundColor: context.colors.statusDanger,
             borderColor: context.colors.statusDanger,
-            content: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2),
-              child: Text(
-                l10n.guildUnavailableOutageTooltip(count),
-                textAlign: TextAlign.center,
-                style: context.textStyles.label,
-              ),
-            ),
-            child: SizedBox(
-              width: 48,
-              height: 48,
-              child: Center(
-                child: Container(
-                  width: 44,
-                  height: 44,
-                  decoration: BoxDecoration(
-                    color: context.colors.statusDanger,
-                    borderRadius: BorderRadius.circular(22),
-                  ),
-                  child: Center(
-                    child: PhosphorIcon(
-                      PhosphorIconsBold.exclamationMark,
-                      color: context.colors.textOnBrandPrimary,
-                      size: 32,
-                    ),
-                  ),
-                ),
-              ),
+            content: tooltipContent,
+            child: badge,
+          );
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3),
+      child: Row(children: [const SizedBox(width: 12), indicator]),
+    );
+  }
+}
+
+class _GuildOutageIndicatorBadge extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 48,
+      height: 48,
+      child: Center(
+        child: Container(
+          width: 44,
+          height: 44,
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            border: Border.all(color: context.colors.statusDanger, width: 2),
+            borderRadius: BorderRadius.circular(22),
+          ),
+          child: Center(
+            child: PhosphorIcon(
+              PhosphorIconsRegular.exclamationMark,
+              color: context.colors.textPrimary,
+              size: 32,
             ),
           ),
-        ],
+        ),
       ),
     );
   }

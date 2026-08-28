@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/talker.dart';
@@ -9,20 +8,22 @@ import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/channel/channel_chat_panel.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/channel/channel_header.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/channel/search/channel_search_results_panel.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/composer/slowmode_rate_limited_dialog.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/upload_drop_overlay.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/voice/direct_voice_session_strip.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/voice/dm_embedded_voice_call_panel.dart';
 import 'package:fluxer_app/features/chat/providers/channel/channel_details_providers.dart';
 import 'package:fluxer_app/features/chat/providers/channel/channel_header_search_provider.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_view_model.dart';
-import 'package:fluxer_app/features/chat/presentation/widgets/composer/slowmode_rate_limited_dialog.dart';
-import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_sync_provider.dart';
+import 'package:fluxer_app/features/chat/providers/pickers/attachment_panel_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/bottom_input_slot_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/expression_panel_provider.dart';
+import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_sync_provider.dart';
 import 'package:fluxer_app/features/chat/utils/bottom_input_slot_layout.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/shell/providers/shell_popup_overlay_provider.dart';
 import 'package:fluxer_app/features/voice/presentation/widgets/dm_call_e2ee_footer.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 /// Composite chat view that assembles the top bar, message list,
 /// and input field. Works for both server channels and DMs.
@@ -58,15 +59,18 @@ class _ChannelChatContentState extends ConsumerState<ChannelChatContent> {
     _scheduleSyncChannelIfNeeded();
   }
 
+  /// A parent rebuild with the same channel and target must stay inert;
+  /// route/layout triggers that need a re-sync have their own paths.
   @override
   void didUpdateWidget(ChannelChatContent oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.channelId != widget.channelId ||
-        oldWidget.targetMessageId != widget.targetMessageId) {
-      _lastSwitchRequest = null;
-      _mismatchResyncChannelId = null;
-      _strandedEmptyResyncChannelId = null;
+    if (oldWidget.channelId == widget.channelId &&
+        oldWidget.targetMessageId == widget.targetMessageId) {
+      return;
     }
+    _lastSwitchRequest = null;
+    _mismatchResyncChannelId = null;
+    _strandedEmptyResyncChannelId = null;
     _scheduleSyncChannelIfNeeded();
   }
 
@@ -160,6 +164,7 @@ class _ChannelChatContentState extends ConsumerState<ChannelChatContent> {
     if (_lastClosedPanelRequest != closeRequest) {
       _lastClosedPanelRequest = closeRequest;
       ref.read(expressionPanelProvider.notifier).close();
+      ref.read(attachmentPanelProvider.notifier).close();
     }
     await ref
         .read(chatViewModelProvider.notifier)

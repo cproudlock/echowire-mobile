@@ -148,13 +148,15 @@ void main() {
         input,
         features,
       );
-      expect(segments, hasLength(3));
+      expect(segments, hasLength(4));
       expect(segments[0], isA<MessageTextFlowSegment>());
       expect((segments[0] as MessageTextFlowSegment).text, 'intro\n\n');
       expect(segments[1], isA<MessageBlockMarkdownSegment>());
       expect((segments[1] as MessageBlockMarkdownSegment).text, '- item');
       expect(segments[2], isA<MessageTextFlowSegment>());
-      expect((segments[2] as MessageTextFlowSegment).text, '\n\ncloser');
+      expect((segments[2] as MessageTextFlowSegment).text, '\n');
+      expect(segments[3], isA<MessageTextFlowSegment>());
+      expect((segments[3] as MessageTextFlowSegment).text, 'closer');
     });
 
     test('preserves intentional blank line after a list without intro', () {
@@ -163,11 +165,13 @@ void main() {
         input,
         features,
       );
-      expect(segments, hasLength(2));
+      expect(segments, hasLength(3));
       expect(segments[0], isA<MessageBlockMarkdownSegment>());
       expect((segments[0] as MessageBlockMarkdownSegment).text, '- item');
       expect(segments[1], isA<MessageTextFlowSegment>());
-      expect((segments[1] as MessageTextFlowSegment).text, '\n\ncloser');
+      expect((segments[1] as MessageTextFlowSegment).text, '\n');
+      expect(segments[2], isA<MessageTextFlowSegment>());
+      expect((segments[2] as MessageTextFlowSegment).text, 'closer');
     });
 
     test('preserves intentional blank line after an ordered list', () {
@@ -176,13 +180,15 @@ void main() {
         input,
         features,
       );
-      expect(segments, hasLength(3));
+      expect(segments, hasLength(4));
       expect(segments[0], isA<MessageTextFlowSegment>());
       expect((segments[0] as MessageTextFlowSegment).text, 'intro\n\n');
       expect(segments[1], isA<MessageBlockMarkdownSegment>());
       expect((segments[1] as MessageBlockMarkdownSegment).text, '1. item');
       expect(segments[2], isA<MessageTextFlowSegment>());
-      expect((segments[2] as MessageTextFlowSegment).text, '\n\ncloser');
+      expect((segments[2] as MessageTextFlowSegment).text, '\n');
+      expect(segments[3], isA<MessageTextFlowSegment>());
+      expect((segments[3] as MessageTextFlowSegment).text, 'closer');
     });
 
     test('still strips blank line adjacent to a heading after a block', () {
@@ -206,11 +212,13 @@ void main() {
         input,
         features,
       );
-      expect(segments, hasLength(2));
+      expect(segments, hasLength(3));
       expect(segments[0], isA<MessageBlockMarkdownSegment>());
       expect((segments[0] as MessageBlockMarkdownSegment).text, '# heading');
       expect(segments[1], isA<MessageTextFlowSegment>());
-      expect((segments[1] as MessageTextFlowSegment).text, '\n\nafter');
+      expect((segments[1] as MessageTextFlowSegment).text, '\n');
+      expect(segments[2], isA<MessageTextFlowSegment>());
+      expect((segments[2] as MessageTextFlowSegment).text, 'after');
     });
 
     test('preserves extra blank lines before a heading', () {
@@ -372,6 +380,34 @@ before
       expect(segments[0], isA<MessageTextFlowSegment>());
       expect((segments[0] as MessageTextFlowSegment).text, 'before');
       expect(segments[1], isA<MessageBlockMarkdownSegment>());
+    });
+
+    test('starts a table directly after a text line with CRLF', () {
+      const String input =
+          'intro text\r\n| Framework | Type |\r\n| --------- | ---- |\r\n| React | UI library |';
+      final List<MessageContentSegment> segments = parseMessageContentStructure(
+        input,
+        features,
+      );
+      expect(segments, hasLength(2));
+      expect(segments[0], isA<MessageTextFlowSegment>());
+      expect((segments[0] as MessageTextFlowSegment).text, 'intro text');
+      expect(segments[1], isA<MessageBlockMarkdownSegment>());
+      expect(
+        (segments[1] as MessageBlockMarkdownSegment).text,
+        '| Framework | Type |\n| --------- | ---- |\n| React | UI library |',
+      );
+    });
+
+    test('still requires a delimiter row for a table', () {
+      const String input = 'intro text\n| not | a | table |\njust more text';
+      final List<MessageContentSegment> segments = parseMessageContentStructure(
+        input,
+        features,
+      );
+      expect(segments, hasLength(1));
+      expect(segments.first, isA<MessageTextFlowSegment>());
+      expect((segments.first as MessageTextFlowSegment).text, input);
     });
 
     test('keeps single-line pipe text in text flow when not a table', () {

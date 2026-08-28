@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:fluxer_app/core/instance/instance_constants.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/utils/call_duration_format.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/snowflake_time.dart';
 
 const String kSystemMessageUsernamePlaceholder = '{username}';
@@ -11,7 +12,7 @@ const String kSystemMessageNewNamePlaceholder = '{newName}';
 const String kSystemMessageMessageLinkPlaceholder = '{messageLink}';
 const String kSystemMessageAllPinsLinkPlaceholder = '{allPinsLink}';
 const String kSystemMessageDurationPlaceholder = '{duration}';
-const String kFluxerProductName = 'Fluxer';
+const String kFluxerProductName = InstanceConstants.defaultProductName;
 
 typedef GuildJoinMessageBuilder = String Function(String username);
 

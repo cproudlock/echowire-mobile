@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/utils/call_duration_format.dart';
 import 'package:fluxer_app/features/chat/utils/system_message_text.dart';
+import 'package:fluxer_app/material_ui.dart';
+
 import '../../../helpers/test_l10n.dart';
 
 void main() {
@@ -128,7 +129,7 @@ void main() {
   group('expandSystemMessageTemplate', () {
     test('wraps usernames in tappable spans when onAuthorTap is provided', () {
       final List<InlineSpan> spans = expandSystemMessageTemplate(
-        "Welcome, ${kSystemMessageUsernamePlaceholder}!",
+        'Welcome, $kSystemMessageUsernamePlaceholder!',
         authorName: 'Alice',
         textStyle: const TextStyle(),
         usernameStyle: const TextStyle(fontWeight: FontWeight.bold),
@@ -140,7 +141,7 @@ void main() {
 
     test('uses plain text spans when onAuthorTap is omitted', () {
       final List<InlineSpan> spans = expandSystemMessageTemplate(
-        "Welcome, ${kSystemMessageUsernamePlaceholder}!",
+        'Welcome, $kSystemMessageUsernamePlaceholder!',
         authorName: 'Alice',
         textStyle: const TextStyle(),
         usernameStyle: const TextStyle(fontWeight: FontWeight.bold),

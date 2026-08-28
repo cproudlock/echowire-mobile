@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
@@ -43,6 +42,7 @@ import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
 import 'package:fluxer_app/features/channels/utils/channel_scroll_indicator_severity.dart';
 import 'package:fluxer_app/features/channels/utils/navigate_to_channel_content.dart';
 import 'package:fluxer_app/features/channels/utils/show_channel_debug_sheet.dart';
+import 'package:fluxer_app/features/chat/utils/delete_my_messages_in_channel_action.dart';
 import 'package:fluxer_app/features/chat/utils/message_link.dart';
 import 'package:fluxer_app/features/favorites/providers/favorite_channels_provider.dart';
 import 'package:fluxer_app/features/gateway/providers/gateway_event_providers.dart';
@@ -50,8 +50,10 @@ import 'package:fluxer_app/features/guilds/data/guild_user_settings_repository.d
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/presentation/widgets/guild_navbar.dart';
 import 'package:fluxer_app/features/guilds/presentation/widgets/guild_scroll_indicator.dart';
+import 'package:fluxer_app/features/guilds/providers/guild_availability_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_permissions_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_read_state_provider.dart';
+import 'package:fluxer_app/features/guilds/utils/guild_outage_availability.dart';
 import 'package:fluxer_app/features/mature_content/providers/mature_content_agreements_provider.dart';
 import 'package:fluxer_app/features/mature_content/providers/sensitive_content_provider.dart';
 import 'package:fluxer_app/features/members/utils/guild_members_page_permissions.dart';
@@ -69,6 +71,7 @@ import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart'
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
 import 'package:fluxer_app/features/voice/utils/voice_e2ee_display.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/external_links/external_link_handler.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:fluxer_app/shared/utils/clipboard_utils.dart';
@@ -114,10 +117,20 @@ class _GuildSidebarState extends ConsumerState<GuildSidebar> {
 
   @override
   Widget build(BuildContext context) {
+    final String? guildId = ref.watch(activeGuildIdProvider);
+    final Set<String> trackedUnavailableGuildIds = ref.watch(
+      guildAvailabilityProvider,
+    );
     final Guild? guild = ref.watch(
       channelListViewModelProvider.select((s) => s.guild),
     );
-    final String? guildId = ref.watch(activeGuildIdProvider);
+    final bool guildOutageUnavailable =
+        guildId != null &&
+        isGuildOutageUnavailable(
+          guildId: guildId,
+          trackedUnavailableGuildIds: trackedUnavailableGuildIds,
+          guild: guild,
+        );
     final bool hasReceivedInitialChannelList = ref.watch(
       channelListViewModelProvider.select(
         (s) => s.hasReceivedInitialChannelList,
@@ -135,9 +148,16 @@ class _GuildSidebarState extends ConsumerState<GuildSidebar> {
       ),
       child: Column(
         children: [
-          _buildServerHeader(context, guild),
+          _buildServerHeader(
+            context,
+            guild,
+            outageUnavailable: guildOutageUnavailable,
+          ),
           Expanded(
-            child: !guildReady || !hasReceivedInitialChannelList
+            child:
+                guildOutageUnavailable ||
+                    !guildReady ||
+                    !hasReceivedInitialChannelList
                 ? const GuildSidebarSkeleton()
                 : _GuildSidebarChannelListHost(
                     activeGuildId: guildId,
@@ -149,8 +169,16 @@ class _GuildSidebarState extends ConsumerState<GuildSidebar> {
     );
   }
 
-  Widget _buildServerHeader(BuildContext context, Guild? guild) {
-    final bool hasImage = guild?.banner != null;
+  Widget _buildServerHeader(
+    BuildContext context,
+    Guild? guild, {
+    bool outageUnavailable = false,
+  }) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final String headerTitle = outageUnavailable
+        ? (guild?.name ?? l10n.communityTemporarilyUnavailable)
+        : guild?.name ?? '';
+    final bool hasImage = !outageUnavailable && guild?.banner != null;
     const double headerHeight = 56;
     final List<Shadow> bannerShadows = hasImage
         ? <Shadow>[
@@ -164,7 +192,7 @@ class _GuildSidebarState extends ConsumerState<GuildSidebar> {
     final Color? bannerForegroundColor = hasImage ? Colors.white : null;
     final Widget headerContent = FluxerGestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: guild == null
+      onTap: outageUnavailable || guild == null
           ? null
           : () => unawaited(_handleServerHeaderTap(context, guild)),
       child: Row(
@@ -173,6 +201,7 @@ class _GuildSidebarState extends ConsumerState<GuildSidebar> {
             : CrossAxisAlignment.center,
         children: [
           if (guild != null &&
+              !outageUnavailable &&
               (guild.isPartnered || guild.isVerified || guild.isDiscoverable))
             Padding(
               padding: const EdgeInsets.only(right: 4),
@@ -185,7 +214,7 @@ class _GuildSidebarState extends ConsumerState<GuildSidebar> {
             ),
           Expanded(
             child: Text(
-              guild?.name ?? '',
+              headerTitle,
               style: context.textStyles.channelName.copyWith(
                 color: bannerForegroundColor,
                 shadows: bannerShadows,
@@ -193,12 +222,13 @@ class _GuildSidebarState extends ConsumerState<GuildSidebar> {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          PhosphorIcon(
-            PhosphorIconsFill.caretDown,
-            color: bannerForegroundColor ?? context.colors.textChat,
-            size: 16,
-            shadows: bannerShadows,
-          ),
+          if (!outageUnavailable)
+            PhosphorIcon(
+              PhosphorIconsFill.caretDown,
+              color: bannerForegroundColor ?? context.colors.textChat,
+              size: 16,
+              shadows: bannerShadows,
+            ),
         ],
       ),
     );
@@ -262,7 +292,7 @@ class _GuildSidebarState extends ConsumerState<GuildSidebar> {
       );
     }
     return Container(
-      height: headerHeight,
+      constraints: const BoxConstraints(minHeight: headerHeight),
       padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: context.colors.channelSidebarBackground,
@@ -563,6 +593,9 @@ class _GuildSidebarChannelListState
       padding: const EdgeInsets.only(top: 12),
       itemCount: membersOffset + sidebarEntries.length,
       itemBuilder: (BuildContext context, int index) {
+        final int entryIndex = showMembersEntry && index >= membersOffset
+            ? index - membersOffset
+            : index;
         if (showMembersEntry) {
           if (index == 0) {
             return _MembersSidebarTile(
@@ -578,9 +611,8 @@ class _GuildSidebarChannelListState
               color: context.colors.borderColor,
             );
           }
-          index -= membersOffset;
         }
-        final GuildSidebarEntry entry = sidebarEntries[index];
+        final GuildSidebarEntry entry = sidebarEntries[entryIndex];
         switch (entry.kind) {
           case GuildSidebarEntryKind.categoryHeader:
             return _CategoryHeader(
@@ -1095,41 +1127,12 @@ class _ChannelTile extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) async {
-    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
-    final bool? confirmed = await FluxerConfirmModal.show(
+    await confirmAndDeleteMyMessagesInChannel(
       context,
-      title: l10n.channelMenuDeleteMyMessagesTitle,
-      description: l10n.channelMenuDeleteMyMessagesDescription,
-      confirmLabel: l10n.channelMenuDeleteMyMessagesConfirm,
-      isDanger: true,
-      onConfirm: () {},
+      ref,
+      channelId: channel.id,
+      isPrivateConversation: false,
     );
-    if (confirmed != true) {
-      return;
-    }
-    final toast = ref.read(toastProvider.notifier);
-    try {
-      await ref
-          .read(fluxerClientProvider)
-          .channels
-          .bulkDeleteMyMessagesInChannel(
-            channelId: channel.id,
-            body: const SudoVerificationSchema(),
-          );
-      toast.show(
-        FluxerToast(
-          message: l10n.channelMenuDeletedYourMessages,
-          variant: FluxerToastVariant.success,
-        ),
-      );
-    } on Object {
-      toast.show(
-        FluxerToast(
-          message: l10n.channelMenuCouldNotDeleteYourMessages,
-          variant: FluxerToastVariant.danger,
-        ),
-      );
-    }
   }
 
   Future<void> _showDebugChannelSheet(BuildContext context, WidgetRef ref) =>

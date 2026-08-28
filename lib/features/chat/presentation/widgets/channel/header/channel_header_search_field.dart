@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
+import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/theme/fluxer_motion_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
@@ -24,8 +25,10 @@ import 'package:fluxer_app/features/dm/domain/dm_conversation.dart';
 import 'package:fluxer_app/features/members/data/guild_mention_member_search.dart';
 import 'package:fluxer_app/features/members/domain/member.dart';
 import 'package:fluxer_app/features/members/providers/member_providers.dart';
+import 'package:fluxer_app/features/ui/input/fluxer_clipboard_scope.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -161,8 +164,10 @@ class _ChannelHeaderSearchFieldState
       channelsByName: _channelIdsByName,
     );
     _publishDisplayText(_controller.text);
+    _suppressAutoOpen = false;
     _updateAutocompleteMode();
     setState(() => _hasNavigated = false);
+    _showOverlayIfNeeded();
   }
 
   void _publishDisplayText(String text) {
@@ -229,13 +234,8 @@ class _ChannelHeaderSearchFieldState
         _activeFilter = matchingFilter;
         return;
       }
-      if (_normalizedFilterKey(matchingFilter.key) == 'has' &&
-          afterColon.isEmpty) {
-        _autocompleteMode = _ChannelSearchAutocompleteMode.filterValues;
-        _activeFilter = matchingFilter;
-        return;
-      }
-      if (matchingFilter.values != null && afterColon.isEmpty) {
+      if (_normalizedFilterKey(matchingFilter.key) == 'has' ||
+          matchingFilter.values != null) {
         _autocompleteMode = _ChannelSearchAutocompleteMode.filterValues;
         _activeFilter = matchingFilter;
         return;
@@ -303,88 +303,148 @@ class _ChannelHeaderSearchFieldState
 
   void _scheduleUserSearch(String query) {
     _userSearchDebounce?.cancel();
-    if (query.trim().isEmpty) {
-      setState(() {
-        _userResults = const <Member>[];
-        _userDiscriminators = const <String, String>{};
-      });
+    final String trimmed = query.trim();
+    if (trimmed.isEmpty) {
+      unawaited(_fetchUsers(''));
       return;
     }
     _userSearchDebounce = Timer(_kUserSearchDebounce, () {
-      unawaited(_fetchUsers(query.trim()));
+      unawaited(_fetchUsers(trimmed));
     });
   }
 
-  Future<void> _fetchUsers(String query) async {
+  Future<({List<Member> members, Map<String, String> discriminators})>
+  _loadSearchUsers(String query, {int limit = 12}) async {
     final String? guildId = widget.guildId;
     final String normalized = query.toLowerCase();
     List<Member> members = const <Member>[];
     Map<String, String> discriminators = const <String, String>{};
+    if (guildId != null) {
+      final ParsedMentionQuery parsed = parseMentionQuery(query);
+      final GuildMentionMemberSearch search = ref.read(
+        guildMentionMemberSearchProvider,
+      );
+      final String trimmed = query.trim();
+      if (trimmed.isEmpty) {
+        members = await search.searchCached(guildId: guildId, parsed: parsed);
+      } else {
+        members = (await search.searchCachedThenGateway(
+          guildId: guildId,
+          query: trimmed,
+          parsed: parsed,
+        )).members;
+      }
+      discriminators = await search.discriminatorsFor(members);
+    } else if (widget.dm != null) {
+      final DmConversation dm = widget.dm!;
+      final String? currentUserId = ref.read(currentUserIdProvider);
+      final Set<String> userIds = <String>{
+        ...dm.remoteRecipientIds,
+        if (currentUserId != null && currentUserId.isNotEmpty) currentUserId,
+      };
+      final List<db.User> users = await ref
+          .read(fluxerDatabaseProvider)
+          .userDao
+          .getUsersByIds(userIds.toList());
+      members = <Member>[
+        for (final db.User user in users)
+          if (normalized.isEmpty || _dmUserMatchesSearch(user, normalized))
+            Member(
+              id: user.id,
+              username: user.username,
+              globalName: user.globalName,
+              avatar: user.avatar,
+              avatarColor: user.avatarColor,
+            ),
+      ];
+      discriminators = <String, String>{
+        for (final db.User user in users)
+          if (visibleUserDiscriminator(user.discriminator)
+              case final String disc)
+            user.id: disc,
+      };
+    }
+    return (
+      members: members.take(limit).toList(),
+      discriminators: discriminators,
+    );
+  }
+
+  Future<void> _fetchUsers(String query) async {
+    final String? guildId = widget.guildId;
     try {
       if (guildId != null) {
         final ParsedMentionQuery parsed = parseMentionQuery(query);
         final GuildMentionMemberSearch search = ref.read(
           guildMentionMemberSearchProvider,
         );
-        members = await search.searchCached(guildId: guildId, parsed: parsed);
-        if (await search.shouldFetchFromGateway(guildId, query)) {
-          members = (await search.fetchGatewayAndMerge(
-            guildId: guildId,
-            query: query,
-            parsed: parsed,
-          )).members;
+        final List<Member> cached = await search.searchCached(
+          guildId: guildId,
+          parsed: parsed,
+        );
+        final Map<String, String> cachedDiscs = await search.discriminatorsFor(
+          cached,
+        );
+        if (!mounted) {
+          return;
         }
-        discriminators = await search.discriminatorsFor(members);
-      } else if (widget.dm != null) {
-        final DmConversation dm = widget.dm!;
-        if (dm.isGroup) {
-          members = dm.groupMembers
-              .where(
-                (GroupMemberInfo member) =>
-                    member.name.toLowerCase().contains(normalized),
-              )
-              .map(
-                (GroupMemberInfo member) => Member(
-                  id: member.id,
-                  username: member.name,
-                  avatar: member.avatar,
-                ),
-              )
-              .toList();
-        } else if (_dmRecipientMatches(dm, normalized)) {
-          members = <Member>[
-            Member(
-              id: dm.recipientId,
-              username: dm.recipientUsername ?? dm.recipientName,
-              globalName: dm.recipientName,
-              avatar: dm.recipientAvatar,
-            ),
-          ];
-          final String disc = (dm.recipientDiscriminator ?? '').trim();
-          if (disc.isNotEmpty && disc != '0') {
-            discriminators = <String, String>{dm.recipientId: disc};
-          }
+        setState(() {
+          _userResults = cached.take(12).toList();
+          _userDiscriminators = cachedDiscs;
+        });
+        _showOverlayIfNeeded();
+        if (query.trim().isEmpty ||
+            !await search.shouldFetchFromGateway(guildId, query)) {
+          return;
         }
+        final ({List<Member> members, Set<String> remoteMemberIds}) gateway =
+            await search.fetchGatewayAndMerge(
+              guildId: guildId,
+              query: query,
+              parsed: parsed,
+            );
+        final Map<String, String> discs = await search.discriminatorsFor(
+          gateway.members,
+        );
+        if (!mounted) {
+          return;
+        }
+        setState(() {
+          _userResults = gateway.members.take(12).toList();
+          _userDiscriminators = discs;
+        });
+        _showOverlayIfNeeded();
+        return;
       }
+      final ({List<Member> members, Map<String, String> discriminators})
+      loaded = await _loadSearchUsers(query);
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _userResults = loaded.members;
+        _userDiscriminators = loaded.discriminators;
+      });
+      _showOverlayIfNeeded();
     } on Object {
-      members = const <Member>[];
-      discriminators = const <String, String>{};
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _userResults = const <Member>[];
+        _userDiscriminators = const <String, String>{};
+      });
+      _showOverlayIfNeeded();
     }
-    if (!mounted) {
-      return;
-    }
-    setState(() {
-      _userResults = members.take(12).toList();
-      _userDiscriminators = discriminators;
-    });
   }
 
-  bool _dmRecipientMatches(DmConversation dm, String normalizedQuery) {
-    if (dm.recipientName.toLowerCase().contains(normalizedQuery)) {
+  bool _dmUserMatchesSearch(db.User user, String normalizedQuery) {
+    if (user.username.toLowerCase().contains(normalizedQuery)) {
       return true;
     }
-    final String? username = dm.recipientUsername;
-    return username != null && username.toLowerCase().contains(normalizedQuery);
+    final String? globalName = user.globalName;
+    return globalName != null &&
+        globalName.toLowerCase().contains(normalizedQuery);
   }
 
   List<ChannelSearchAutocompleteEntry> _buildEntries() {
@@ -652,20 +712,38 @@ class _ChannelHeaderSearchFieldState
 
   List<ChannelSearchAutocompleteEntry> _dateEntries() {
     final DateTime now = DateTime.now();
-    return <ChannelSearchAutocompleteEntry>[
-      ChannelSearchAutocompleteEntry(
-        section: ChannelSearchAutocompleteSection.dates,
-        label: 'Today',
-        value: formatChannelSearchDate(now),
-        icon: PhosphorIconsFill.calendar,
-      ),
-      ChannelSearchAutocompleteEntry(
-        section: ChannelSearchAutocompleteSection.dates,
-        label: 'Yesterday',
-        value: formatChannelSearchDate(now.subtract(const Duration(days: 1))),
-        icon: PhosphorIconsFill.calendar,
-      ),
-    ];
+    final String query = _activeFilter == null
+        ? ''
+        : _currentWord()
+              .substring(_activeFilter!.syntaxLabel.length)
+              .toLowerCase();
+    final List<ChannelSearchAutocompleteEntry> entries =
+        <ChannelSearchAutocompleteEntry>[
+          ChannelSearchAutocompleteEntry(
+            section: ChannelSearchAutocompleteSection.dates,
+            label: 'Today',
+            value: formatChannelSearchDate(now),
+            icon: PhosphorIconsFill.calendar,
+          ),
+          ChannelSearchAutocompleteEntry(
+            section: ChannelSearchAutocompleteSection.dates,
+            label: 'Yesterday',
+            value: formatChannelSearchDate(
+              now.subtract(const Duration(days: 1)),
+            ),
+            icon: PhosphorIconsFill.calendar,
+          ),
+        ];
+    if (query.isEmpty) {
+      return entries;
+    }
+    return entries
+        .where(
+          (ChannelSearchAutocompleteEntry entry) =>
+              entry.label.toLowerCase().contains(query) ||
+              (entry.value?.toLowerCase().contains(query) ?? false),
+        )
+        .toList();
   }
 
   void _showOverlayIfNeeded() {
@@ -677,7 +755,7 @@ class _ChannelHeaderSearchFieldState
     _updateAutocompletePlacement();
     if (!_overlayController.isShowing) {
       _overlayController.show();
-      unawaited(_animationController.forward(from: 0));
+      _animationController.forward(from: 0);
     }
     setState(() {});
   }
@@ -1047,6 +1125,54 @@ class _ChannelHeaderSearchFieldState
     );
   }
 
+  String? _resolveUserFromLoaded({
+    required String tag,
+    required List<Member> members,
+    required Map<String, String> discriminators,
+  }) {
+    return resolveUserIdByTag(
+      tag,
+      members: members,
+      discriminators: discriminators,
+    );
+  }
+
+  Future<ChannelSearchParseContext> _parseContext() async {
+    List<Member> members = _userResults;
+    Map<String, String> discriminators = _userDiscriminators;
+    try {
+      final String? guildId = widget.guildId;
+      if (guildId != null) {
+        final GuildMentionMemberSearch search = ref.read(
+          guildMentionMemberSearchProvider,
+        );
+        members = await search.cachedMembersAfterGatewayQueries(
+          guildId: guildId,
+          queries: channelSearchUserFilterValues(_controller.text),
+        );
+        discriminators = await search.discriminatorsFor(members);
+      } else {
+        final ({List<Member> members, Map<String, String> discriminators})
+        loaded = await _loadSearchUsers('', limit: 50);
+        members = loaded.members;
+        discriminators = loaded.discriminators;
+      }
+    } on Object {
+      members = _userResults;
+      discriminators = _userDiscriminators;
+    }
+    return ChannelSearchParseContext(
+      guildId: widget.guildId,
+      currentUserId: ref.read(currentUserIdProvider),
+      resolveChannelByName: _resolveChannelName,
+      resolveUserByTag: (String tag) => _resolveUserFromLoaded(
+        tag: tag,
+        members: members,
+        discriminators: discriminators,
+      ),
+    );
+  }
+
   Future<void> _submitSearch() async {
     final ChannelSearchParseHints hints = buildChannelSearchHintsFromSegments(
       _resolvedSegments(),
@@ -1060,11 +1186,7 @@ class _ChannelHeaderSearchFieldState
       uiScope: _effectiveScope,
       uiSort: _effectiveSort,
       hints: hints,
-      context: ChannelSearchParseContext(
-        guildId: widget.guildId,
-        currentUserId: ref.read(currentUserIdProvider),
-        resolveChannelByName: _resolveChannelName,
-      ),
+      context: await _parseContext(),
     );
     if (!query.hasSearchTerms) {
       return;
@@ -1221,7 +1343,16 @@ class _ChannelHeaderSearchFieldState
         usersByTag: _userIdsByTag,
         channelsByName: _channelIdsByName,
       ),
-      context: ChannelSearchParseContext(guildId: widget.guildId),
+      context: ChannelSearchParseContext(
+        guildId: widget.guildId,
+        currentUserId: ref.read(currentUserIdProvider),
+        resolveChannelByName: _resolveChannelName,
+        resolveUserByTag: (String tag) => resolveUserIdByTag(
+          tag,
+          members: _userResults,
+          discriminators: _userDiscriminators,
+        ),
+      ),
     );
     return query.hasSearchTerms;
   }
@@ -1378,38 +1509,50 @@ class _ChannelHeaderSearchFieldState
     FluxerLocalizations l10n,
     _SearchFieldColors colors,
   ) {
-    return TextField(
+    return FluxerClipboardScope(
       controller: _controller,
       focusNode: _focusNode,
-      textAlignVertical: TextAlignVertical.center,
-      style: context.textStyles.bodySmall.copyWith(
-        color: colors.text,
-        fontSize: 14,
-        height: 1.25,
-      ),
-      decoration: InputDecoration(
-        isDense: true,
-        filled: false,
-        hintText: l10n.channelDetailsSearchHint,
-        hintStyle: context.textStyles.bodySmall.copyWith(
-          color: colors.placeholder,
-          fontSize: 14,
-          height: 1.25,
-        ),
-        border: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        errorBorder: InputBorder.none,
-        focusedErrorBorder: InputBorder.none,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 4),
-      ),
-      textInputAction: TextInputAction.search,
-      onTap: () {
-        setState(() => _suppressAutoOpen = false);
-        _updateAutocompleteMode();
-        _showOverlayIfNeeded();
-      },
-      onSubmitted: (_) => unawaited(_submitSearch()),
+      builder:
+          (
+            BuildContext context,
+            FluxerClipboardScopeState clipboardScope,
+            FocusNode focusNode,
+          ) {
+            return TextField(
+              controller: _controller,
+              focusNode: focusNode,
+              textAlignVertical: TextAlignVertical.center,
+              style: context.textStyles.bodySmall.copyWith(
+                color: colors.text,
+                fontSize: 14,
+                height: 1.25,
+              ),
+              decoration: InputDecoration(
+                isDense: true,
+                filled: false,
+                hintText: l10n.channelDetailsSearchHint,
+                hintStyle: context.textStyles.bodySmall.copyWith(
+                  color: colors.placeholder,
+                  fontSize: 14,
+                  height: 1.25,
+                ),
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                focusedErrorBorder: InputBorder.none,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+              ),
+              textInputAction: TextInputAction.search,
+              contextMenuBuilder: clipboardScope.buildContextMenu,
+              onTap: () {
+                setState(() => _suppressAutoOpen = false);
+                _updateAutocompleteMode();
+                _showOverlayIfNeeded();
+              },
+              onSubmitted: (_) => unawaited(_submitSearch()),
+            );
+          },
     );
   }
 }

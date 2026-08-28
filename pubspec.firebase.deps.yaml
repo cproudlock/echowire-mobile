@@ -1,8 +1,8 @@
 dependencies:
-  firebase_core: ^4.11.0
-  # Pinned exactly: firebase_messaging 16.4.2 references FirebasePlugin/pluginConstants
-  # that firebase_core 4.12.0 no longer provides, breaking the build. Hold at 16.4.1
-  # until a compatible firebase_core/firebase_messaging pair ships.
-  firebase_messaging: 16.4.1
+  # Was pinned to firebase_messaging 16.4.1 because 16.4.2 referenced
+  # FirebasePlugin/pluginConstants that firebase_core 4.12.0 dropped. Upstream's
+  # newer pair moves past that; revert to the pin if the build breaks again.
+  firebase_core: ^4.13.0
+  firebase_messaging: ^16.5.0
   fluxer_fcm:
     path: packages/fluxer_fcm

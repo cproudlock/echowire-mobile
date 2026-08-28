@@ -1234,11 +1234,11 @@
   },
   "addFriendNoUserFound": "해당 사용자 이름의 사용자를 찾을 수 없습니다.",
   "@addFriendNoUserFound": {
-    "description": "Error when no user matches the entered EchoTag."
+    "description": "Error when no user matches the entered username."
   },
   "addFriendInvalidUsername": "유효한 사용자 이름(사용자이름#0000)을 입력하세요.",
   "@addFriendInvalidUsername": {
-    "description": "Error when the EchoTag format is invalid."
+    "description": "Error when the username format is invalid."
   },
   "addFriendOutgoingSuccess": "친구 요청을 보냈습니다",
   "@addFriendOutgoingSuccess": {
@@ -1356,10 +1356,6 @@
   "@addFriendClaimToSend": {
     "description": "Error when an unclaimed account tries to send a friend request."
   },
-  "addFriendSendFailedGeneric": "친구 요청을 보낼 수 없습니다. 다시 시도하세요.",
-  "@addFriendSendFailedGeneric": {
-    "description": "Generic error when sending a friend request fails."
-  },
   "userTagBot": "BOT",
   "@userTagBot": {
     "description": "Tag label shown next to bot user names."
@@ -1472,7 +1468,7 @@
   "@emojiCategoryFlags": {
     "description": "Flags category."
   },
-  "emojiPlutoniumUpsellText": "Reverb으로 {communityCount}개의 커뮤니티에서 {emojiCount}개를 잠금 해제하세요.",
+  "emojiPlutoniumUpsellText": "Plutonium으로 {communityCount}개의 커뮤니티에서 {emojiCount}개를 잠금 해제하세요.",
   "@emojiPlutoniumUpsellText": {
     "description": "Upsell banner text in emoji picker for non-premium users.",
     "placeholders": {
@@ -1484,13 +1480,13 @@
       }
     }
   },
-  "emojiPlutoniumUpsellButton": "Reverb 받기",
+  "emojiPlutoniumUpsellButton": "Plutonium 받기",
   "@emojiPlutoniumUpsellButton": {
-    "description": "Button label on the Reverb upsell banner."
+    "description": "Button label on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellDismiss": "다시 표시 안 함",
   "@emojiPlutoniumUpsellDismiss": {
-    "description": "Dismiss link on the Reverb upsell banner."
+    "description": "Dismiss link on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{맞춤 이모티콘 1개} other{맞춤 이모티콘 #개}}",
   "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1603,11 +1599,11 @@
   "@imageFileTooLarge": {
     "description": "Error when a selected image exceeds the maximum file size."
   },
-  "animatedAvatarsRequirePlutonium": "애니메이션 아바타에는 Reverb이 필요합니다.",
+  "animatedAvatarsRequirePlutonium": "애니메이션 아바타에는 Plutonium이 필요합니다.",
   "@animatedAvatarsRequirePlutonium": {
     "description": "Toast shown when non-premium user tries uploading animated avatar."
   },
-  "animatedBannersRequirePlutonium": "애니메이션 배너에는 Reverb이 필요합니다.",
+  "animatedBannersRequirePlutonium": "애니메이션 배너에는 Plutonium이 필요합니다.",
   "@animatedBannersRequirePlutonium": {
     "description": "Toast shown when non-premium user tries uploading animated banner."
   },
@@ -1643,17 +1639,19 @@
   "@crop": {
     "description": "Button to confirm image crop."
   },
-  "changeYourFluxerTag": "EchoTag 변경",
+  "cropTouchHint": "Pinch to zoom, drag to reposition",
+  "cropMouseHint": "Drag corners to resize, drag inside to move",
+  "changeYourFluxerTag": "사용자 이름 변경",
   "@changeYourFluxerTag": {
-    "description": "Title for the EchoTag change bottom sheet."
+    "description": "Title for the username change bottom sheet."
   },
-  "fluxerTagInputLabel": "EchoTag",
+  "fluxerTagInputLabel": "사용자 이름",
   "@fluxerTagInputLabel": {
     "description": "Label above the username and discriminator input fields."
   },
   "fluxerTagDescriptionBase": "사용자 이름에는 문자(a-z, A-Z), 숫자(0-9) 및 밑줄만 포함될 수 있습니다. 사용자 이름은 대소문자를 구분하지 않습니다.",
   "@fluxerTagDescriptionBase": {
-    "description": "Base description text on the EchoTag change sheet."
+    "description": "Base description text on the username change sheet."
   },
   "fluxerTagDescriptionVisionary": "사용자 이름에는 문자(a-z, A-Z), 숫자(0-9) 및 밑줄만 포함될 수 있습니다. 사용자 이름은 대소문자를 구분하지 않습니다. #0000부터 #9999까지 사용 가능한 4자리 태그를 선택할 수 있습니다.",
   "@fluxerTagDescriptionVisionary": {
@@ -1679,17 +1677,17 @@
   "@validationAllowedChars": {
     "description": "Validation rule for allowed username characters."
   },
-  "discriminatorPremiumTooltip": "Reverb을 사용하여 태그를 사용자 지정하거나 사용자 이름을 변경할 때 유지하세요.",
+  "discriminatorPremiumTooltip": "Plutonium을 사용하여 태그를 사용자 지정하거나 사용자 이름을 변경할 때 유지하세요.",
   "@discriminatorPremiumTooltip": {
     "description": "Tooltip on disabled discriminator field for non-premium users."
   },
-  "fluxerTagAlreadyTaken": "EchoTag가 이미 사용 중입니다.",
+  "fluxerTagAlreadyTaken": "사용자 이름 이미 사용 중입니다.",
   "@fluxerTagAlreadyTaken": {
     "description": "Title for the tag-taken confirmation sheet."
   },
-  "fluxerTagAlreadyTakenBody": "{username}#{discriminator} EchoTag가 이미 사용 중입니다. 계속하면 자동으로 디스커리미네이터가 다시 롤링됩니다.",
+  "fluxerTagAlreadyTakenBody": "{username}#{discriminator} 사용자 이름 이미 사용 중입니다. 계속하면 자동으로 디스커리미네이터가 다시 롤링됩니다.",
   "@fluxerTagAlreadyTakenBody": {
-    "description": "Body text when the requested EchoTag is taken.",
+    "description": "Body text when the requested username is taken.",
     "placeholders": {
       "username": {
         "type": "String"
@@ -1703,7 +1701,7 @@
   "@customTagIsTemporary": {
     "description": "Title for the temporary tag warning sheet."
   },
-  "customTagTemporaryBodyWithDate": "사용자 지정 4자리 태그는 Reverb 구독이 활성 상태인 동안에만 사용할 수 있습니다. 구독이 {date}에 만료되면 3일의 유예 기간 후 태그가 무작위로 할당된 숫자로 되돌아갑니다.",
+  "customTagTemporaryBodyWithDate": "사용자 지정 4자리 태그는 Plutonium 구독이 활성 상태인 동안에만 사용할 수 있습니다. 구독이 {date}에 만료되면 3일의 유예 기간 후 태그가 무작위로 할당된 숫자로 되돌아갑니다.",
   "@customTagTemporaryBodyWithDate": {
     "description": "Warning body when premium subscription has a known expiry date.",
     "placeholders": {
@@ -1712,7 +1710,7 @@
       }
     }
   },
-  "customTagTemporaryBody": "사용자 지정 4자리 태그는 Reverb 구독이 활성 상태인 동안에만 사용할 수 있습니다. 구독이 만료되면 3일의 유예 기간 후 태그가 무작위로 할당된 숫자로 되돌아갑니다.",
+  "customTagTemporaryBody": "사용자 지정 4자리 태그는 Plutonium 구독이 활성 상태인 동안에만 사용할 수 있습니다. 구독이 만료되면 3일의 유예 기간 후 태그가 무작위로 할당된 숫자로 되돌아갑니다.",
   "@customTagTemporaryBody": {
     "description": "Warning body when premium subscription expiry date is unknown."
   },
@@ -1720,11 +1718,11 @@
   "@iUnderstandContinue": {
     "description": "Button to acknowledge a warning and proceed."
   },
-  "premiumWarningPendingDiscriminator": "이 EchoTag를 저장하면 Reverb 구독이 종료될 때 사용자 지정 4자리 태그가 무작위 숫자로 되돌아갑니다. 구독이 갱신되지 않으면 태그가 변경되기 전에 3일의 유예 기간이 있습니다.",
+  "premiumWarningPendingDiscriminator": "이 사용자 이름 저장하면 Plutonium 구독이 종료될 때 사용자 지정 4자리 태그가 무작위 숫자로 되돌아갑니다. 구독이 갱신되지 않으면 태그가 변경되기 전에 3일의 유예 기간이 있습니다.",
   "@premiumWarningPendingDiscriminator": {
     "description": "Warning shown when premium user is about to change their discriminator."
   },
-  "premiumWarningActiveDiscriminator": "사용자 지정 4자리 태그(#{discriminator})는 Reverb 구독이 활성 상태인 동안 활성입니다. 구독이 종료되거나 3일의 유예 기간 후 갱신되지 않으면 태그가 무작위 숫자로 되돌아갑니다.",
+  "premiumWarningActiveDiscriminator": "사용자 지정 4자리 태그(#{discriminator})는 Plutonium 구독이 활성 상태인 동안 활성입니다. 구독이 종료되거나 3일의 유예 기간 후 갱신되지 않으면 태그가 무작위 숫자로 되돌아갑니다.",
   "@premiumWarningActiveDiscriminator": {
     "description": "Warning shown when premium user already has a custom discriminator.",
     "placeholders": {
@@ -1735,9 +1733,9 @@
   },
   "premiumUpsellCustomizeTag": "사용자 지정 4자리 태그를 사용자 지정하거나 사용자 이름을 변경할 때 유지하세요.",
   "@premiumUpsellCustomizeTag": {
-    "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
+    "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
   },
-  "premiumTrialExpiresOn": "Reverb 평가판이 {date}에 만료됩니다. 사용자 지정 태그를 유지하고 프로필에 배지를 얻으려면 업그레이드하세요.",
+  "premiumTrialExpiresOn": "Plutonium 평가판이 {date}에 만료됩니다. 사용자 지정 태그를 유지하고 프로필에 배지를 얻으려면 업그레이드하세요.",
   "@premiumTrialExpiresOn": {
     "description": "Trial upsell with expiry date.",
     "placeholders": {
@@ -1746,17 +1744,17 @@
       }
     }
   },
-  "premiumTrialActive": "Reverb 평가판을 사용 중입니다. 사용자 지정 태그를 유지하고 프로필에 배지를 얻으려면 업그레이드하세요.",
+  "premiumTrialActive": "Plutonium 평가판을 사용 중입니다. 사용자 지정 태그를 유지하고 프로필에 배지를 얻으려면 업그레이드하세요.",
   "@premiumTrialActive": {
     "description": "Trial upsell without specific expiry date."
   },
-  "fluxerTagUpdated": "EchoTag가 업데이트되었습니다.",
+  "fluxerTagUpdated": "사용자 이름 업데이트되었습니다.",
   "@fluxerTagUpdated": {
-    "description": "Success toast after EchoTag change."
+    "description": "Success toast after username change."
   },
-  "fluxerTagUpdateFailed": "EchoTag 업데이트에 실패했습니다. 다시 시도하세요.",
+  "fluxerTagUpdateFailed": "사용자 이름 업데이트에 실패했습니다. 다시 시도하세요.",
   "@fluxerTagUpdateFailed": {
-    "description": "Error message when EchoTag update fails."
+    "description": "Error message when username update fails."
   },
   "continueAction": "계속",
   "@continueAction": {
@@ -1774,17 +1772,17 @@
   "@usernameLabel": {
     "description": "Label for the username field in profile settings."
   },
-  "claimAccountToChangeFluxerTag": "EchoTag를 변경하려면 계정을 청구하세요.",
+  "claimAccountToChangeFluxerTag": "사용자 이름 변경하려면 계정을 청구하세요.",
   "@claimAccountToChangeFluxerTag": {
-    "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
+    "description": "Tooltip when unverified user hovers the disabled Change username button."
   },
-  "changeFluxerTag": "EchoTag 변경",
+  "changeFluxerTag": "사용자 이름 변경",
   "@changeFluxerTag": {
-    "description": "Button label to open the EchoTag change flow."
+    "description": "Button label to open the username change flow."
   },
-  "customizeTagWithPlutoniumTooltip": "Reverb으로 4자리 태그(#{discriminator})를 원하는 대로 꾸며보세요",
+  "customizeTagWithPlutoniumTooltip": "Plutonium으로 4자리 태그(#{discriminator})를 원하는 대로 꾸며보세요",
   "@customizeTagWithPlutoniumTooltip": {
-    "description": "Tooltip on the crown upsell button next to the EchoTag button.",
+    "description": "Tooltip on the crown upsell button next to the username button.",
     "placeholders": {
       "discriminator": {
         "type": "String"
@@ -1795,7 +1793,7 @@
   "@changeUsernameAndTagHint": {
     "description": "Hint text below the username buttons."
   },
-  "customTagSubscriptionWarning": "맞춤 태그(#{discriminator})는 Reverb 구독에 연결되어 있으며, 만료 시 무작위 태그로 돌아갑니다.",
+  "customTagSubscriptionWarning": "맞춤 태그(#{discriminator})는 Plutonium 구독에 연결되어 있으며, 만료 시 무작위 태그로 돌아갑니다.",
   "@customTagSubscriptionWarning": {
     "description": "Warning shown when user has a premium discriminator that is not lifetime.",
     "placeholders": {
@@ -1864,38 +1862,38 @@
   "@emojiPickerTitle": {
     "description": "Title for the emoji picker sheet."
   },
-  "plutoniumBadgePrivacyTitle": "Reverb 배지 개인 정보",
+  "plutoniumBadgePrivacyTitle": "Plutonium 배지 개인 정보",
   "@plutoniumBadgePrivacyTitle": {
     "description": "Heading for the premium badge privacy settings section."
   },
-  "plutoniumBadgePrivacyDescription": "Reverb 배지가 다른 사용자에게 표시되는 방식을 제어하세요.",
+  "plutoniumBadgePrivacyDescription": "Plutonium 배지가 다른 사용자에게 표시되는 방식을 제어하세요.",
   "@plutoniumBadgePrivacyDescription": {
     "description": "Subheading for the premium badge privacy settings section."
   },
-  "hidePlutoniumBadgeLabel": "Reverb 배지 전체 숨기기",
+  "hidePlutoniumBadgeLabel": "Plutonium 배지 전체 숨기기",
   "@hidePlutoniumBadgeLabel": {
-    "description": "Label for the toggle to hide the Reverb badge."
+    "description": "Label for the toggle to hide the Plutonium badge."
   },
-  "hidePlutoniumBadgeDescription": "Reverb 배지를 다른 사용자에게 완전히 숨깁니다.",
+  "hidePlutoniumBadgeDescription": "Plutonium 배지를 다른 사용자에게 완전히 숨깁니다.",
   "@hidePlutoniumBadgeDescription": {
-    "description": "Description for the toggle to hide the Reverb badge."
+    "description": "Description for the toggle to hide the Plutonium badge."
   },
-  "hidePlutoniumPurchaseDate": "Reverb 구매 날짜 숨기기",
+  "hidePlutoniumPurchaseDate": "Plutonium 구매 날짜 숨기기",
   "@hidePlutoniumPurchaseDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date."
+    "description": "Label for the toggle to hide the Plutonium purchase date."
   },
-  "hidePlutoniumPurchaseDateWithDate": "Reverb 구매 날짜 숨기기({date})",
+  "hidePlutoniumPurchaseDateWithDate": "Plutonium 구매 날짜 숨기기({date})",
   "@hidePlutoniumPurchaseDateWithDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
+    "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
     "placeholders": {
       "date": {
         "type": "String"
       }
     }
   },
-  "hidePurchaseDateDescription": "배지에서 Reverb을 처음 구매한 날짜를 삭제합니다.",
+  "hidePurchaseDateDescription": "배지에서 Plutonium을 처음 구매한 날짜를 삭제합니다.",
   "@hidePurchaseDateDescription": {
-    "description": "Description for the toggle to hide the Reverb purchase date."
+    "description": "Description for the toggle to hide the Plutonium purchase date."
   },
   "maskVisionaryAsSubscription": "Visionary를 구독으로 표시",
   "@maskVisionaryAsSubscription": {
@@ -1922,7 +1920,7 @@
   "@hideVisionaryIdDescription": {
     "description": "Description for the toggle to hide the Visionary ID badge."
   },
-  "premiumTrialSubscriptionStarts": "Reverb 체험판을 사용 중입니다. 구독은 {date}에 시작됩니다.",
+  "premiumTrialSubscriptionStarts": "Plutonium 체험판을 사용 중입니다. 구독은 {date}에 시작됩니다.",
   "@premiumTrialSubscriptionStarts": {
     "description": "Trial banner title when user has an active subscription pending after trial.",
     "placeholders": {
@@ -1935,7 +1933,7 @@
   "@premiumTrialSubscriptionStartsDescription": {
     "description": "Trial banner description when user has an active subscription pending after trial."
   },
-  "premiumTrialExpiresOnProfile": "Reverb 체험판이 {date}에 만료됩니다.",
+  "premiumTrialExpiresOnProfile": "Plutonium 체험판이 {date}에 만료됩니다.",
   "@premiumTrialExpiresOnProfile": {
     "description": "Trial banner title with expiry date.",
     "placeholders": {
@@ -1944,29 +1942,29 @@
       }
     }
   },
-  "premiumTrialActiveProfile": "Reverb 체험판을 사용 중입니다.",
+  "premiumTrialActiveProfile": "Plutonium 체험판을 사용 중입니다.",
   "@premiumTrialActiveProfile": {
     "description": "Trial banner title without specific expiry date."
   },
-  "avatarDescriptionNonPremium": "JPEG, PNG, WebP. 최대 10MB. 권장: 512×512px. 애니메이션 아바타(GIF)에는 Reverb이 필요합니다.",
+  "avatarDescriptionNonPremium": "JPEG, PNG, WebP. 최대 10MB. 권장: 512×512px. 애니메이션 아바타(GIF)에는 Plutonium이 필요합니다.",
   "@avatarDescriptionNonPremium": {
-    "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
+    "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
   },
   "bannerPlutoniumUpsell": "정적 또는 애니메이션 배너 이미지로 프로필을 꾸며 돋보이게 하세요.",
   "@bannerPlutoniumUpsell": {
     "description": "Upsell text shown in place of banner upload for non-premium users."
   },
-  "getPlutonium": "Reverb 받기",
+  "getPlutonium": "Plutonium 받기",
   "@getPlutonium": {
-    "description": "Button label for the Reverb upsell call-to-action."
+    "description": "Button label for the Plutonium upsell call-to-action."
   },
-  "plutoniumNotAvailableTitle": "Reverb",
+  "plutoniumNotAvailableTitle": "Plutonium",
   "@plutoniumNotAvailableTitle": {
-    "description": "Title for the Reverb not-available-yet bottom sheet."
+    "description": "Title for the Plutonium not-available-yet bottom sheet."
   },
   "plutoniumNotAvailableBody": "이 플랫폼에서는 아직 인앱 구매를 사용할 수 없습니다. 곧 출시될 예정이니 기대해 주세요!",
   "@plutoniumNotAvailableBody": {
-    "description": "Body text for the Reverb not-available-yet bottom sheet."
+    "description": "Body text for the Plutonium not-available-yet bottom sheet."
   },
   "profilePreviewLabel": "미리보기",
   "@profilePreviewLabel": {
@@ -2008,7 +2006,7 @@
   "@communityNicknameLabel": {
     "description": "Label for the community nickname field"
   },
-  "perGuildPremiumUpsellText": "커뮤니티별 아바타, 배너, 강조 색상 및 소개 문구 사용자 지정에는 Reverb이 필요합니다. 커뮤니티 별칭 및 대명사는 모든 사용자에게 무료입니다.",
+  "perGuildPremiumUpsellText": "커뮤니티별 아바타, 배너, 강조 색상 및 소개 문구 사용자 지정에는 Plutonium이 필요합니다. 커뮤니티 별칭 및 대명사는 모든 사용자에게 무료입니다.",
   "@perGuildPremiumUpsellText": {
     "description": "Upsell text for per-guild premium features"
   },
@@ -2586,7 +2584,7 @@
   "@dangerZoneDeleteDescription": {
     "description": "Description for account delete."
   },
-  "dangerZoneDeleteCancelSubscription": "계정을 삭제하기 전에 Reverb 설정에서 활성 Reverb 구독을 취소하세요.",
+  "dangerZoneDeleteCancelSubscription": "계정을 삭제하기 전에 Plutonium 설정에서 활성 Plutonium 구독을 취소하세요.",
   "@dangerZoneDeleteCancelSubscription": {
     "description": "Warning about active subscription before deletion."
   },
@@ -3814,7 +3812,7 @@
       }
     }
   },
-  "chatAttachmentFileTooLarge": "하나 이상의 파일이 크기 제한을 초과합니다",
+  "chatAttachmentFileTooLarge": "{fileName}이(가) 크기 제한을 초과합니다 ({fileSize})",
   "@chatAttachmentFileTooLarge": {
     "description": "Shown when a selected file is larger than allowed."
   },
@@ -4945,22 +4943,6 @@
   "@messagesMediaEditingPreserveDraftLabel": {
     "description": "Toggle label for preserving edit drafts on cancel."
   },
-  "accessibilityUnreadGroupTitle": "읽지 않음 표시",
-  "@accessibilityUnreadGroupTitle": {
-    "description": "Section title for unread-indicator accessibility settings."
-  },
-  "accessibilityUnreadGroupDescription": "읽지 않은 메시지 표시 방식 제어",
-  "@accessibilityUnreadGroupDescription": {
-    "description": "Section description for unread-indicator accessibility settings."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsLabel": "음소거된 채널에서 흐리게 표시된 읽지 않음 표시",
-  "@accessibilityShowFadedUnreadOnMutedChannelsLabel": {
-    "description": "Toggle label for showing a faded unread indicator on muted channels."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsDescription": "음소거된 직접 메시지 및 채널 옆에 흐리게 표시된 읽지 않음 표시를 표시하여 활동이 있을 때 한눈에 볼 수 있도록 합니다.",
-  "@accessibilityShowFadedUnreadOnMutedChannelsDescription": {
-    "description": "Toggle description for showing a faded unread indicator on muted channels."
-  },
   "accessibilityDmMessagePreviewGroupTitle": "DM 메시지 미리보기",
   "@accessibilityDmMessagePreviewGroupTitle": {
     "description": "Section title for DM message preview accessibility settings."
@@ -5467,7 +5449,7 @@
   },
   "characterCounterRemainingPlutoniumUpsell": "{remaining}자 남음. {productName}을(를) 사용하여 최대 {premiumMaxLength}자까지 작성하세요.",
   "@characterCounterRemainingPlutoniumUpsell": {
-    "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
+    "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
     "placeholders": {
       "remaining": {
         "type": "int"
@@ -9098,15 +9080,5 @@
   "guildSettingsAuditLogFilterAction": "작업별 필터링",
   "@guildSettingsAuditLogFilterAction": {
     "description": "Label of the action-type filter dropdown in the activity log tab."
-  },
-  "guildSettingsDiscoveryFormTitle": "신청서",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
-  },
-  "guildSettingsDiscoveryStatusTitle": "상태",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
-  },
-  "cropTouchHint": "Pinch to zoom, drag to reposition",
-  "cropMouseHint": "Drag corners to resize, drag inside to move"
+  }
 }

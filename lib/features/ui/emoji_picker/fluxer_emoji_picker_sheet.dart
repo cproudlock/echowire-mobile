@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/favorite_meme.dart';
 import 'package:fluxer_app/features/chat/domain/gif_selection.dart';
@@ -7,6 +6,7 @@ import 'package:fluxer_app/features/chat/providers/pickers/sticker_picker_provid
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
 import 'package:fluxer_app/features/ui/emoji_picker/fluxer_selected_emoji.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 class FluxerEmojiPickerSheet {
   FluxerEmojiPickerSheet._();
@@ -99,40 +99,45 @@ class _SheetContentState extends State<_SheetContent> {
   };
 
   @override
-  Widget build(BuildContext context) => Column(
-    children: [
-      if (widget.visibleTabs.length > 1) _buildSegmentedTabs(context),
-      const SizedBox(height: 8),
-      Expanded(
-        child: ExpressionPicker(
-          scrollController: widget.scrollController,
-          onClose: widget.onClose,
-          onEmojiSelect: (name, surrogates) {
-            widget.onEmojiSelected?.call(
-              FluxerSelectedEmoji.fromSelection(name, surrogates),
-            );
-            widget.onClose();
-          },
-          onGifSelect: widget.onGifSelected,
-          onFavoriteMemeSelect: (selection) {
-            widget.onFavoriteMemeSelected?.call(selection);
-            if (selection.autoSend) {
+  Widget build(BuildContext context) => Padding(
+    padding: EdgeInsets.only(
+      bottom: FluxerBottomSheet.scrollBottomPaddingOf(context),
+    ),
+    child: Column(
+      children: [
+        if (widget.visibleTabs.length > 1) _buildSegmentedTabs(context),
+        const SizedBox(height: 8),
+        Expanded(
+          child: ExpressionPicker(
+            scrollController: widget.scrollController,
+            onClose: widget.onClose,
+            onEmojiSelect: (name, surrogates) {
+              widget.onEmojiSelected?.call(
+                FluxerSelectedEmoji.fromSelection(name, surrogates),
+              );
               widget.onClose();
-            }
-          },
-          onStickerSelect: (sticker) {
-            widget.onStickerSelected?.call(sticker);
-            widget.onClose();
-          },
-          onTabChanged: (tab) => setState(() => _selectedTab = tab),
-          visibleTabs: widget.visibleTabs,
-          initialTab: _selectedTab,
-          showTabs: false,
-          channelId: widget.channelId,
-          trackEmojiUsageOnSelect: widget.trackEmojiUsageOnSelect,
+            },
+            onGifSelect: widget.onGifSelected,
+            onFavoriteMemeSelect: (selection) {
+              widget.onFavoriteMemeSelected?.call(selection);
+              if (selection.autoSend) {
+                widget.onClose();
+              }
+            },
+            onStickerSelect: (sticker) {
+              widget.onStickerSelected?.call(sticker);
+              widget.onClose();
+            },
+            onTabChanged: (tab) => setState(() => _selectedTab = tab),
+            visibleTabs: widget.visibleTabs,
+            initialTab: _selectedTab,
+            showTabs: false,
+            channelId: widget.channelId,
+            trackEmojiUsageOnSelect: widget.trackEmojiUsageOnSelect,
+          ),
         ),
-      ),
-    ],
+      ],
+    ),
   );
 
   Widget _buildSegmentedTabs(BuildContext context) {

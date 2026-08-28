@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart';
+import 'package:flutter/foundation.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 
 /// Echowire: a selectable tag on a forum channel (and applied to forum posts).
@@ -89,6 +90,7 @@ bool isGuildCategoryChannelType(int type) =>
 bool isGuildLinkChannelType(int type) =>
     type == ChannelType.guildLink.wireValue;
 
+@immutable
 class Channel {
   final String id;
   final String guildId;
@@ -331,6 +333,50 @@ class Channel {
 
   /// Echowire: a locked thread (only moderators can send).
   bool get isLocked => threadLocked ?? false;
+  @override
+  bool operator ==(Object other) {
+    return other is Channel &&
+        other.id == id &&
+        other.guildId == guildId &&
+        other.name == name &&
+        other.url == url &&
+        other.type == type &&
+        other.topic == topic &&
+        other.parentId == parentId &&
+        other.position == position &&
+        other.rateLimitPerUser == rateLimitPerUser &&
+        other.nsfw == nsfw &&
+        other.nsfwOverride == nsfwOverride &&
+        other.contentWarningLevel == contentWarningLevel &&
+        other.contentWarningText == contentWarningText &&
+        other.permissionOverwritesJson == permissionOverwritesJson &&
+        other.userLimit == userLimit &&
+        other.bitrate == bitrate &&
+        other.rtcRegion == rtcRegion &&
+        other.voiceConnectionLimit == voiceConnectionLimit;
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    guildId,
+    name,
+    url,
+    type,
+    topic,
+    parentId,
+    position,
+    rateLimitPerUser,
+    nsfw,
+    nsfwOverride,
+    contentWarningLevel,
+    contentWarningText,
+    permissionOverwritesJson,
+    userLimit,
+    bitrate,
+    rtcRegion,
+    voiceConnectionLimit,
+  );
 }
 
 class ChannelCategory {

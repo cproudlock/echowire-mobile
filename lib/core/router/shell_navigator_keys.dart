@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 final homeBranchNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');

@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_motion_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
@@ -8,6 +5,7 @@ import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class FluxerToastOverlay extends ConsumerWidget {
@@ -115,7 +113,7 @@ class _ToastItemState extends State<_ToastItem>
       end: 1,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
     if (widget.entry.isVisible) {
-      unawaited(_controller.forward());
+      _controller.forward();
     }
   }
 
@@ -132,10 +130,10 @@ class _ToastItemState extends State<_ToastItem>
       return;
     }
     if (widget.entry.isVisible) {
-      unawaited(_controller.forward());
+      _controller.forward();
       return;
     }
-    unawaited(_controller.reverse());
+    _controller.reverse();
   }
 
   @override

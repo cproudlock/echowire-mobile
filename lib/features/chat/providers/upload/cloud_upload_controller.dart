@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:cross_file/cross_file.dart';
 import 'package:dio/dio.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/features/chat/data/attachment_upload_client.dart';
 import 'package:fluxer_app/features/chat/data/prepared_attachments.dart';
@@ -92,6 +93,7 @@ class CloudUploadController extends _$CloudUploadController {
           contentType: contentType,
           status: PendingAttachmentStatus.pending,
           uploadProgress: 0,
+          galleryAssetId: uploadFile.galleryAssetId,
         ),
       );
     }
@@ -232,6 +234,14 @@ class CloudUploadController extends _$CloudUploadController {
       return PreparedAttachments.empty;
     }
     if (favoriteMemePayload) {
+      return PreparedAttachments(
+        attachmentMetadata: _mapApi(session.attachments),
+        attachmentFiles: session.attachments
+            .map((PendingAttachment e) => e.file)
+            .toList(),
+      );
+    }
+    if (!ref.read(instanceRuntimeConfigProvider).presignedAttachmentUploads) {
       return PreparedAttachments(
         attachmentMetadata: _mapApi(session.attachments),
         attachmentFiles: session.attachments

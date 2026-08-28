@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/chat/data/message_search_repository.dart';
 import 'package:fluxer_app/features/chat/domain/channel_search_chip_filters.dart'
     as chip_filters;
 import 'package:fluxer_app/features/chat/domain/channel_search_segments.dart';
+import 'package:fluxer_app/features/members/domain/member.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 List<MessageSearchScopeFilter> channelSearchScopeOptions({
@@ -209,9 +210,17 @@ String formatChannelSearchDate(DateTime date) {
       '${date.day.toString().padLeft(2, '0')}';
 }
 
+String? visibleUserDiscriminator(String? discriminator) {
+  final String trimmed = (discriminator ?? '').trim();
+  if (trimmed.isEmpty || trimmed == '0') {
+    return null;
+  }
+  return trimmed;
+}
+
 String formatChannelSearchUserTag(String username, String? discriminator) {
-  final String disc = (discriminator ?? '').trim();
-  if (disc.isEmpty || disc == '0') {
+  final String? disc = visibleUserDiscriminator(discriminator);
+  if (disc == null) {
     return username;
   }
   return '$username#$disc';
@@ -234,6 +243,50 @@ String? resolveChannelIdByName(
       if (channel.name.toLowerCase().contains(normalized)) {
         return channel.id;
       }
+    }
+  }
+  return null;
+}
+
+String? resolveUserIdByTag(
+  String tag, {
+  required List<Member> members,
+  Map<String, String> discriminators = const <String, String>{},
+}) {
+  final String trimmed = tag.trim();
+  if (trimmed.isEmpty) {
+    return null;
+  }
+  final String normalized = trimmed.toLowerCase();
+
+  String memberTag(Member member) {
+    return formatChannelSearchUserTag(
+      member.username,
+      discriminators[member.id],
+    ).toLowerCase();
+  }
+
+  for (final Member member in members) {
+    if (member.id == trimmed) {
+      return member.id;
+    }
+    if (member.username.toLowerCase() == normalized ||
+        memberTag(member) == normalized) {
+      return member.id;
+    }
+  }
+  for (final Member member in members) {
+    if (member.displayName.toLowerCase() == normalized ||
+        member.globalName?.toLowerCase() == normalized ||
+        member.nickname?.toLowerCase() == normalized) {
+      return member.id;
+    }
+  }
+  for (final Member member in members) {
+    if (member.username.toLowerCase().contains(normalized) ||
+        member.displayName.toLowerCase().contains(normalized) ||
+        memberTag(member).contains(normalized)) {
+      return member.id;
     }
   }
   return null;

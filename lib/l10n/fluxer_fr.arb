@@ -779,11 +779,11 @@
   "@mentionUnknownChannel": {
     "description": "Fallback name shown in a channel mention pill when the channel is not found."
   },
-  "channelAccessDeniedTitle": "Accès au canal refusé",
+  "channelAccessDeniedTitle": "Accès au salon refusé",
   "@channelAccessDeniedTitle": {
     "description": "Title of the modal shown when clicking a jump link to an inaccessible channel."
   },
-  "channelAccessDeniedDescription": "Vous n'avez pas accès au canal où ce message a été envoyé.",
+  "channelAccessDeniedDescription": "Vous n'avez pas accès au salon où ce message a été envoyé.",
   "@channelAccessDeniedDescription": {
     "description": "Body of the channel access denied modal."
   },
@@ -1138,7 +1138,7 @@
   "@dmDebugUser": {
     "description": "DM context menu action to debug user data."
   },
-  "dmDebugChannel": "Déboguer le canal",
+  "dmDebugChannel": "Déboguer le salon",
   "@dmDebugChannel": {
     "description": "DM context menu action to debug channel data."
   },
@@ -1234,11 +1234,11 @@
   },
   "addFriendNoUserFound": "Aucun utilisateur trouvé avec ce nom d'utilisateur.",
   "@addFriendNoUserFound": {
-    "description": "Error when no user matches the entered EchoTag."
+    "description": "Error when no user matches the entered username."
   },
   "addFriendInvalidUsername": "Entrez un nom d'utilisateur valide (Nom d'utilisateur#0000).",
   "@addFriendInvalidUsername": {
-    "description": "Error when the EchoTag format is invalid."
+    "description": "Error when the username format is invalid."
   },
   "addFriendOutgoingSuccess": "Demande d'ami envoyée",
   "@addFriendOutgoingSuccess": {
@@ -1356,10 +1356,6 @@
   "@addFriendClaimToSend": {
     "description": "Error when an unclaimed account tries to send a friend request."
   },
-  "addFriendSendFailedGeneric": "Impossible d'envoyer la demande d'ami. Réessayez.",
-  "@addFriendSendFailedGeneric": {
-    "description": "Generic error when sending a friend request fails."
-  },
   "userTagBot": "BOT",
   "@userTagBot": {
     "description": "Tag label shown next to bot user names."
@@ -1472,7 +1468,7 @@
   "@emojiCategoryFlags": {
     "description": "Flags category."
   },
-  "emojiPlutoniumUpsellText": "Débloquez {emojiCount} sur {communityCount} avec Reverb.",
+  "emojiPlutoniumUpsellText": "Débloquez {emojiCount} sur {communityCount} avec Plutonium.",
   "@emojiPlutoniumUpsellText": {
     "description": "Upsell banner text in emoji picker for non-premium users.",
     "placeholders": {
@@ -1484,13 +1480,13 @@
       }
     }
   },
-  "emojiPlutoniumUpsellButton": "Obtenir Reverb",
+  "emojiPlutoniumUpsellButton": "Obtenir Plutonium",
   "@emojiPlutoniumUpsellButton": {
-    "description": "Button label on the Reverb upsell banner."
+    "description": "Button label on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellDismiss": "Ne plus afficher",
   "@emojiPlutoniumUpsellDismiss": {
-    "description": "Dismiss link on the Reverb upsell banner."
+    "description": "Dismiss link on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 emoji personnalisé} other{{count} emojis personnalisés}}",
   "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1603,11 +1599,11 @@
   "@imageFileTooLarge": {
     "description": "Error when a selected image exceeds the maximum file size."
   },
-  "animatedAvatarsRequirePlutonium": "Les avatars animés nécessitent Reverb",
+  "animatedAvatarsRequirePlutonium": "Les avatars animés nécessitent Plutonium",
   "@animatedAvatarsRequirePlutonium": {
     "description": "Toast shown when non-premium user tries uploading animated avatar."
   },
-  "animatedBannersRequirePlutonium": "Les bannières animées nécessitent Reverb",
+  "animatedBannersRequirePlutonium": "Les bannières animées nécessitent Plutonium",
   "@animatedBannersRequirePlutonium": {
     "description": "Toast shown when non-premium user tries uploading animated banner."
   },
@@ -1643,17 +1639,19 @@
   "@crop": {
     "description": "Button to confirm image crop."
   },
-  "changeYourFluxerTag": "Modifier votre EchoTag",
+  "cropTouchHint": "Pinch to zoom, drag to reposition",
+  "cropMouseHint": "Drag corners to resize, drag inside to move",
+  "changeYourFluxerTag": "Modifier votre Nom d'utilisateur",
   "@changeYourFluxerTag": {
-    "description": "Title for the EchoTag change bottom sheet."
+    "description": "Title for the username change bottom sheet."
   },
-  "fluxerTagInputLabel": "EchoTag",
+  "fluxerTagInputLabel": "Nom d'utilisateur",
   "@fluxerTagInputLabel": {
     "description": "Label above the username and discriminator input fields."
   },
   "fluxerTagDescriptionBase": "Les noms d'utilisateur ne peuvent contenir que des lettres (a-z, A-Z), des chiffres (0-9) et des underscores. Les noms d'utilisateur ne sont pas sensibles à la casse.",
   "@fluxerTagDescriptionBase": {
-    "description": "Base description text on the EchoTag change sheet."
+    "description": "Base description text on the username change sheet."
   },
   "fluxerTagDescriptionVisionary": "Les noms d'utilisateur ne peuvent contenir que des lettres (a-z, A-Z), des chiffres (0-9) et des underscores. Les noms d'utilisateur ne sont pas sensibles à la casse. Vous pouvez choisir n'importe quel tag à 4 chiffres disponible de #0000 à #9999.",
   "@fluxerTagDescriptionVisionary": {
@@ -1679,17 +1677,17 @@
   "@validationAllowedChars": {
     "description": "Validation rule for allowed username characters."
   },
-  "discriminatorPremiumTooltip": "Obtenez Reverb pour personnaliser votre tag ou le conserver lors de la modification de votre nom d'utilisateur",
+  "discriminatorPremiumTooltip": "Obtenez Plutonium pour personnaliser votre tag ou le conserver lors de la modification de votre nom d'utilisateur",
   "@discriminatorPremiumTooltip": {
     "description": "Tooltip on disabled discriminator field for non-premium users."
   },
-  "fluxerTagAlreadyTaken": "EchoTag déjà pris",
+  "fluxerTagAlreadyTaken": "Nom d'utilisateur déjà pris",
   "@fluxerTagAlreadyTaken": {
     "description": "Title for the tag-taken confirmation sheet."
   },
-  "fluxerTagAlreadyTakenBody": "Le EchoTag {username}#{discriminator} est déjà pris. Continuer reroulera automatiquement votre discriminateur.",
+  "fluxerTagAlreadyTakenBody": "Le Nom d'utilisateur {username}#{discriminator} est déjà pris. Continuer reroulera automatiquement votre discriminateur.",
   "@fluxerTagAlreadyTakenBody": {
-    "description": "Body text when the requested EchoTag is taken.",
+    "description": "Body text when the requested username is taken.",
     "placeholders": {
       "username": {
         "type": "String"
@@ -1703,7 +1701,7 @@
   "@customTagIsTemporary": {
     "description": "Title for the temporary tag warning sheet."
   },
-  "customTagTemporaryBodyWithDate": "Votre tag personnalisé à 4 chiffres n'est disponible que tant que votre abonnement Reverb est actif. Lorsque votre abonnement expirera le {date}, votre tag reviendra à un numéro attribué aléatoirement après une période de grâce de 3 jours.",
+  "customTagTemporaryBodyWithDate": "Votre tag personnalisé à 4 chiffres n'est disponible que tant que votre abonnement Plutonium est actif. Lorsque votre abonnement expirera le {date}, votre tag reviendra à un numéro attribué aléatoirement après une période de grâce de 3 jours.",
   "@customTagTemporaryBodyWithDate": {
     "description": "Warning body when premium subscription has a known expiry date.",
     "placeholders": {
@@ -1712,7 +1710,7 @@
       }
     }
   },
-  "customTagTemporaryBody": "Votre tag personnalisé à 4 chiffres n'est disponible que tant que votre abonnement Reverb est actif. Lorsque votre abonnement expirera, votre tag reviendra à un numéro attribué aléatoirement après une période de grâce de 3 jours.",
+  "customTagTemporaryBody": "Votre tag personnalisé à 4 chiffres n'est disponible que tant que votre abonnement Plutonium est actif. Lorsque votre abonnement expirera, votre tag reviendra à un numéro attribué aléatoirement après une période de grâce de 3 jours.",
   "@customTagTemporaryBody": {
     "description": "Warning body when premium subscription expiry date is unknown."
   },
@@ -1720,11 +1718,11 @@
   "@iUnderstandContinue": {
     "description": "Button to acknowledge a warning and proceed."
   },
-  "premiumWarningPendingDiscriminator": "Si vous enregistrez ce EchoTag, votre tag personnalisé à 4 chiffres reviendra à un numéro aléatoire à la fin de votre abonnement Reverb. Si votre abonnement ne parvient pas à se renouveler, vous aurez une période de grâce de 3 jours avant que le tag ne change.",
+  "premiumWarningPendingDiscriminator": "Si vous enregistrez ce Nom d'utilisateur, votre tag personnalisé à 4 chiffres reviendra à un numéro aléatoire à la fin de votre abonnement Plutonium. Si votre abonnement ne parvient pas à se renouveler, vous aurez une période de grâce de 3 jours avant que le tag ne change.",
   "@premiumWarningPendingDiscriminator": {
     "description": "Warning shown when premium user is about to change their discriminator."
   },
-  "premiumWarningActiveDiscriminator": "Votre tag personnalisé à 4 chiffres (#{discriminator}) est actif tant que votre abonnement Reverb est actif. Si votre abonnement se termine ou ne parvient pas à se renouveler après une période de grâce de 3 jours, votre tag reviendra à un numéro aléatoire.",
+  "premiumWarningActiveDiscriminator": "Votre tag personnalisé à 4 chiffres (#{discriminator}) est actif tant que votre abonnement Plutonium est actif. Si votre abonnement se termine ou ne parvient pas à se renouveler après une période de grâce de 3 jours, votre tag reviendra à un numéro aléatoire.",
   "@premiumWarningActiveDiscriminator": {
     "description": "Warning shown when premium user already has a custom discriminator.",
     "placeholders": {
@@ -1735,9 +1733,9 @@
   },
   "premiumUpsellCustomizeTag": "Personnalisez votre tag à 4 chiffres ou conservez-le lors de la modification de votre nom d'utilisateur",
   "@premiumUpsellCustomizeTag": {
-    "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
+    "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
   },
-  "premiumTrialExpiresOn": "Votre essai Reverb expire le {date}. Passez à la version supérieure pour conserver votre tag personnalisé et obtenir un badge sur votre profil.",
+  "premiumTrialExpiresOn": "Votre essai Plutonium expire le {date}. Passez à la version supérieure pour conserver votre tag personnalisé et obtenir un badge sur votre profil.",
   "@premiumTrialExpiresOn": {
     "description": "Trial upsell with expiry date.",
     "placeholders": {
@@ -1746,17 +1744,17 @@
       }
     }
   },
-  "premiumTrialActive": "Vous êtes en période d'essai Reverb. Passez à la version supérieure pour conserver votre tag personnalisé et obtenir un badge sur votre profil.",
+  "premiumTrialActive": "Vous êtes en période d'essai Plutonium. Passez à la version supérieure pour conserver votre tag personnalisé et obtenir un badge sur votre profil.",
   "@premiumTrialActive": {
     "description": "Trial upsell without specific expiry date."
   },
-  "fluxerTagUpdated": "EchoTag mis à jour",
+  "fluxerTagUpdated": "Nom d'utilisateur mis à jour",
   "@fluxerTagUpdated": {
-    "description": "Success toast after EchoTag change."
+    "description": "Success toast after username change."
   },
-  "fluxerTagUpdateFailed": "Échec de la mise à jour du EchoTag. Veuillez réessayer.",
+  "fluxerTagUpdateFailed": "Échec de la mise à jour du Nom d'utilisateur. Veuillez réessayer.",
   "@fluxerTagUpdateFailed": {
-    "description": "Error message when EchoTag update fails."
+    "description": "Error message when username update fails."
   },
   "continueAction": "Continuer",
   "@continueAction": {
@@ -1774,17 +1772,17 @@
   "@usernameLabel": {
     "description": "Label for the username field in profile settings."
   },
-  "claimAccountToChangeFluxerTag": "Réclamez votre compte pour modifier votre EchoTag",
+  "claimAccountToChangeFluxerTag": "Réclamez votre compte pour modifier votre Nom d'utilisateur",
   "@claimAccountToChangeFluxerTag": {
-    "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
+    "description": "Tooltip when unverified user hovers the disabled Change username button."
   },
-  "changeFluxerTag": "Modifier le EchoTag",
+  "changeFluxerTag": "Modifier le Nom d'utilisateur",
   "@changeFluxerTag": {
-    "description": "Button label to open the EchoTag change flow."
+    "description": "Button label to open the username change flow."
   },
-  "customizeTagWithPlutoniumTooltip": "Personnalisez votre tag à 4 chiffres (#{discriminator}) comme vous le souhaitez avec Reverb",
+  "customizeTagWithPlutoniumTooltip": "Personnalisez votre tag à 4 chiffres (#{discriminator}) comme vous le souhaitez avec Plutonium",
   "@customizeTagWithPlutoniumTooltip": {
-    "description": "Tooltip on the crown upsell button next to the EchoTag button.",
+    "description": "Tooltip on the crown upsell button next to the username button.",
     "placeholders": {
       "discriminator": {
         "type": "String"
@@ -1795,7 +1793,7 @@
   "@changeUsernameAndTagHint": {
     "description": "Hint text below the username buttons."
   },
-  "customTagSubscriptionWarning": "Votre tag personnalisé (#{discriminator}) est lié à votre abonnement Reverb et sera remplacé par un tag aléatoire s'il expire.",
+  "customTagSubscriptionWarning": "Votre tag personnalisé (#{discriminator}) est lié à votre abonnement Plutonium et sera remplacé par un tag aléatoire s'il expire.",
   "@customTagSubscriptionWarning": {
     "description": "Warning shown when user has a premium discriminator that is not lifetime.",
     "placeholders": {
@@ -1864,38 +1862,38 @@
   "@emojiPickerTitle": {
     "description": "Title for the emoji picker sheet."
   },
-  "plutoniumBadgePrivacyTitle": "Confidentialité du badge Reverb",
+  "plutoniumBadgePrivacyTitle": "Confidentialité du badge Plutonium",
   "@plutoniumBadgePrivacyTitle": {
     "description": "Heading for the premium badge privacy settings section."
   },
-  "plutoniumBadgePrivacyDescription": "Contrôlez la façon dont votre badge Reverb est affiché aux autres",
+  "plutoniumBadgePrivacyDescription": "Contrôlez la façon dont votre badge Plutonium est affiché aux autres",
   "@plutoniumBadgePrivacyDescription": {
     "description": "Subheading for the premium badge privacy settings section."
   },
-  "hidePlutoniumBadgeLabel": "Masquer entièrement le badge Reverb",
+  "hidePlutoniumBadgeLabel": "Masquer entièrement le badge Plutonium",
   "@hidePlutoniumBadgeLabel": {
-    "description": "Label for the toggle to hide the Reverb badge."
+    "description": "Label for the toggle to hide the Plutonium badge."
   },
-  "hidePlutoniumBadgeDescription": "Masquez complètement votre badge Reverb des autres utilisateurs",
+  "hidePlutoniumBadgeDescription": "Masquez complètement votre badge Plutonium des autres utilisateurs",
   "@hidePlutoniumBadgeDescription": {
-    "description": "Description for the toggle to hide the Reverb badge."
+    "description": "Description for the toggle to hide the Plutonium badge."
   },
-  "hidePlutoniumPurchaseDate": "Masquer la date d'achat de Reverb",
+  "hidePlutoniumPurchaseDate": "Masquer la date d'achat de Plutonium",
   "@hidePlutoniumPurchaseDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date."
+    "description": "Label for the toggle to hide the Plutonium purchase date."
   },
-  "hidePlutoniumPurchaseDateWithDate": "Masquer la date d'achat de Reverb ({date})",
+  "hidePlutoniumPurchaseDateWithDate": "Masquer la date d'achat de Plutonium ({date})",
   "@hidePlutoniumPurchaseDateWithDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
+    "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
     "placeholders": {
       "date": {
         "type": "String"
       }
     }
   },
-  "hidePurchaseDateDescription": "Supprimez la date de votre premier achat de Reverb de votre badge",
+  "hidePurchaseDateDescription": "Supprimez la date de votre premier achat de Plutonium de votre badge",
   "@hidePurchaseDateDescription": {
-    "description": "Description for the toggle to hide the Reverb purchase date."
+    "description": "Description for the toggle to hide the Plutonium purchase date."
   },
   "maskVisionaryAsSubscription": "Masquer Visionary en tant qu'abonnement",
   "@maskVisionaryAsSubscription": {
@@ -1922,7 +1920,7 @@
   "@hideVisionaryIdDescription": {
     "description": "Description for the toggle to hide the Visionary ID badge."
   },
-  "premiumTrialSubscriptionStarts": "Vous êtes en essai Reverb — votre abonnement commence le {date}",
+  "premiumTrialSubscriptionStarts": "Vous êtes en essai Plutonium — votre abonnement commence le {date}",
   "@premiumTrialSubscriptionStarts": {
     "description": "Trial banner title when user has an active subscription pending after trial.",
     "placeholders": {
@@ -1935,7 +1933,7 @@
   "@premiumTrialSubscriptionStartsDescription": {
     "description": "Trial banner description when user has an active subscription pending after trial."
   },
-  "premiumTrialExpiresOnProfile": "Vous êtes en essai Reverb qui expire le {date}",
+  "premiumTrialExpiresOnProfile": "Vous êtes en essai Plutonium qui expire le {date}",
   "@premiumTrialExpiresOnProfile": {
     "description": "Trial banner title with expiry date.",
     "placeholders": {
@@ -1944,29 +1942,29 @@
       }
     }
   },
-  "premiumTrialActiveProfile": "Vous êtes en essai Reverb",
+  "premiumTrialActiveProfile": "Vous êtes en essai Plutonium",
   "@premiumTrialActiveProfile": {
     "description": "Trial banner title without specific expiry date."
   },
-  "avatarDescriptionNonPremium": "JPEG, PNG, WebP. 10 Mo max. Recommandé : 512×512 px. Les avatars animés (GIF) nécessitent Reverb.",
+  "avatarDescriptionNonPremium": "JPEG, PNG, WebP. 10 Mo max. Recommandé : 512×512 px. Les avatars animés (GIF) nécessitent Plutonium.",
   "@avatarDescriptionNonPremium": {
-    "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
+    "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
   },
   "bannerPlutoniumUpsell": "Personnalisez votre profil avec une image de bannière statique ou animée pour qu'il se démarque.",
   "@bannerPlutoniumUpsell": {
     "description": "Upsell text shown in place of banner upload for non-premium users."
   },
-  "getPlutonium": "Obtenir Reverb",
+  "getPlutonium": "Obtenir Plutonium",
   "@getPlutonium": {
-    "description": "Button label for the Reverb upsell call-to-action."
+    "description": "Button label for the Plutonium upsell call-to-action."
   },
-  "plutoniumNotAvailableTitle": "Reverb",
+  "plutoniumNotAvailableTitle": "Plutonium",
   "@plutoniumNotAvailableTitle": {
-    "description": "Title for the Reverb not-available-yet bottom sheet."
+    "description": "Title for the Plutonium not-available-yet bottom sheet."
   },
   "plutoniumNotAvailableBody": "Les achats intégrés ne sont pas encore disponibles sur cette plateforme. Restez à l'écoute — bientôt disponible !",
   "@plutoniumNotAvailableBody": {
-    "description": "Body text for the Reverb not-available-yet bottom sheet."
+    "description": "Body text for the Plutonium not-available-yet bottom sheet."
   },
   "profilePreviewLabel": "Aperçu",
   "@profilePreviewLabel": {
@@ -2008,7 +2006,7 @@
   "@communityNicknameLabel": {
     "description": "Label for the community nickname field"
   },
-  "perGuildPremiumUpsellText": "La personnalisation de votre avatar, bannière, couleur d'accent et biographie pour des communautés individuelles nécessite Reverb. Le pseudonyme et les pronoms de la communauté sont gratuits pour tous.",
+  "perGuildPremiumUpsellText": "La personnalisation de votre avatar, bannière, couleur d'accent et biographie pour des communautés individuelles nécessite Plutonium. Le pseudonyme et les pronoms de la communauté sont gratuits pour tous.",
   "@perGuildPremiumUpsellText": {
     "description": "Upsell text for per-guild premium features"
   },
@@ -2586,7 +2584,7 @@
   "@dangerZoneDeleteDescription": {
     "description": "Description for account delete."
   },
-  "dangerZoneDeleteCancelSubscription": "Annulez votre abonnement Reverb actif dans les paramètres Reverb avant de supprimer votre compte.",
+  "dangerZoneDeleteCancelSubscription": "Annulez votre abonnement Plutonium actif dans les paramètres Plutonium avant de supprimer votre compte.",
   "@dangerZoneDeleteCancelSubscription": {
     "description": "Warning about active subscription before deletion."
   },
@@ -2844,7 +2842,7 @@
       }
     }
   },
-  "blockedUsersCopyTag": "Copier le EchoTag",
+  "blockedUsersCopyTag": "Copier le Nom d'utilisateur",
   "@blockedUsersCopyTag": {
     "description": "Context menu item that copies the user's tag."
   },
@@ -3152,7 +3150,7 @@
   "@userProfileRemoveTimeoutConfirmTitle": {
     "description": "Confirmation sheet title before removing a member's timeout."
   },
-  "userProfileRemoveTimeoutConfirmDescription": "La suppression du silence permettra à {username} de renvoyer des messages, de réagir et de rejoindre à nouveau les canaux vocaux.",
+  "userProfileRemoveTimeoutConfirmDescription": "La suppression du silence permettra à {username} de renvoyer des messages, de réagir et de rejoindre à nouveau les salons vocaux.",
   "@userProfileRemoveTimeoutConfirmDescription": {
     "description": "Confirmation sheet body before removing a member's timeout.",
     "placeholders": {
@@ -3814,7 +3812,7 @@
       }
     }
   },
-  "chatAttachmentFileTooLarge": "Un ou plusieurs fichiers dépassent la limite de taille",
+  "chatAttachmentFileTooLarge": "{fileName} dépasse la limite de taille ({fileSize})",
   "@chatAttachmentFileTooLarge": {
     "description": "Shown when a selected file is larger than allowed."
   },
@@ -3988,7 +3986,7 @@
   "@matureCategoryTitle": {
     "description": "Title for a mature category gate."
   },
-  "matureChannelTitle": "Canal pour adultes",
+  "matureChannelTitle": "Salon pour adultes",
   "@matureChannelTitle": {
     "description": "Title for a mature channel gate."
   },
@@ -4000,7 +3998,7 @@
   "@categoryContentWarningTitle": {
     "description": "Title for a category content warning gate."
   },
-  "channelContentWarningTitle": "Avertissement de contenu de canal",
+  "channelContentWarningTitle": "Avertissement de contenu de salon",
   "@channelContentWarningTitle": {
     "description": "Title for a channel content warning gate."
   },
@@ -4016,15 +4014,15 @@
   "@matureCategoryBody": {
     "description": "Body for a mature category gate without custom warning text."
   },
-  "matureChannelBody": "Ce canal est marqué pour du contenu pour adultes et peut contenir du matériel inapproprié pour certains utilisateurs.",
+  "matureChannelBody": "Ce salon est marqué pour du contenu pour adultes et peut contenir du matériel inapproprié pour certains utilisateurs.",
   "@matureChannelBody": {
     "description": "Body for a mature text channel gate without custom warning text."
   },
-  "matureVoiceChannelBody": "Ce canal vocal est marqué pour du contenu pour adultes et peut contenir du matériel inapproprié pour certains utilisateurs.",
+  "matureVoiceChannelBody": "Ce salon vocal est marqué pour du contenu pour adultes et peut contenir du matériel inapproprié pour certains utilisateurs.",
   "@matureVoiceChannelBody": {
     "description": "Body for a mature voice channel gate without custom warning text."
   },
-  "matureLinkChannelBody": "Ce canal de liens est marqué pour du contenu pour adultes et peut ouvrir du matériel inapproprié pour certains utilisateurs.",
+  "matureLinkChannelBody": "Ce salon de liens est marqué pour du contenu pour adultes et peut ouvrir du matériel inapproprié pour certains utilisateurs.",
   "@matureLinkChannelBody": {
     "description": "Body for a mature link channel gate without custom warning text."
   },
@@ -4036,7 +4034,7 @@
   "@matureCategoryUnavailableBody": {
     "description": "Body when a minor cannot access a mature category."
   },
-  "matureChannelUnavailableBody": "Ce canal pour adultes n'est pas disponible pour votre compte.",
+  "matureChannelUnavailableBody": "Ce salon pour adultes n'est pas disponible pour votre compte.",
   "@matureChannelUnavailableBody": {
     "description": "Body when a minor cannot access a mature channel."
   },
@@ -4068,7 +4066,7 @@
   "@sensitiveContentNonFriendDmLabel": {
     "description": "Label for non-friend DM sensitive content filter."
   },
-  "sensitiveContentGuildLabel": "Messages dans les canaux communautaires",
+  "sensitiveContentGuildLabel": "Messages dans les salons communautaires",
   "@sensitiveContentGuildLabel": {
     "description": "Label for guild channel sensitive content filter."
   },
@@ -4440,11 +4438,11 @@
   "@lookAndFeelInterfaceDescription": {
     "description": "Section description for interface customization."
   },
-  "lookAndFeelChannelTypingIndicatorsTitle": "Indicateurs de frappe dans la liste des canaux",
+  "lookAndFeelChannelTypingIndicatorsTitle": "Indicateurs de frappe dans la liste des salons",
   "@lookAndFeelChannelTypingIndicatorsTitle": {
     "description": "Subsection title under Interface."
   },
-  "lookAndFeelChannelTypingIndicatorsDescription": "Choisissez comment les indicateurs de frappe apparaissent dans la liste des canaux lorsque quelqu'un tape dans un canal.",
+  "lookAndFeelChannelTypingIndicatorsDescription": "Choisissez comment les indicateurs de frappe apparaissent dans la liste des salons lorsque quelqu'un tape dans un salon.",
   "@lookAndFeelChannelTypingIndicatorsDescription": {
     "description": "Subsection description for channel typing indicators."
   },
@@ -4452,7 +4450,7 @@
   "@lookAndFeelChannelTypingIndicatorAvatarsName": {
     "description": "Radio option label for showing the typing indicator with user avatars."
   },
-  "lookAndFeelChannelTypingIndicatorAvatarsDescription": "Afficher l'indicateur de frappe avec les avatars des utilisateurs dans la liste des canaux",
+  "lookAndFeelChannelTypingIndicatorAvatarsDescription": "Afficher l'indicateur de frappe avec les avatars des utilisateurs dans la liste des salons",
   "@lookAndFeelChannelTypingIndicatorAvatarsDescription": {
     "description": "Radio option description for typing indicator + avatars."
   },
@@ -4468,15 +4466,15 @@
   "@lookAndFeelChannelTypingIndicatorHiddenName": {
     "description": "Radio option label for hiding the typing indicator entirely."
   },
-  "lookAndFeelChannelTypingIndicatorHiddenDescription": "Ne pas afficher les indicateurs de frappe dans la liste des canaux",
+  "lookAndFeelChannelTypingIndicatorHiddenDescription": "Ne pas afficher les indicateurs de frappe dans la liste des salons",
   "@lookAndFeelChannelTypingIndicatorHiddenDescription": {
     "description": "Radio option description for hidden typing indicators."
   },
-  "lookAndFeelShowSelectedChannelTypingIndicatorLabel": "Afficher la frappe sur le canal sélectionné",
+  "lookAndFeelShowSelectedChannelTypingIndicatorLabel": "Afficher la frappe sur le salon sélectionné",
   "@lookAndFeelShowSelectedChannelTypingIndicatorLabel": {
     "description": "Toggle label — whether to also show the typing indicator on the currently viewed channel."
   },
-  "lookAndFeelShowSelectedChannelTypingIndicatorDescription": "Lorsqu'elle est désactivée (par défaut), les indicateurs de frappe n'apparaîtront pas sur le canal que vous consultez actuellement.",
+  "lookAndFeelShowSelectedChannelTypingIndicatorDescription": "Lorsqu'elle est désactivée (par défaut), les indicateurs de frappe n'apparaîtront pas sur le salon que vous consultez actuellement.",
   "@lookAndFeelShowSelectedChannelTypingIndicatorDescription": {
     "description": "Toggle description for show-typing-on-selected-channel."
   },
@@ -4516,19 +4514,19 @@
   "@lookAndFeelShowNekoDescription": {
     "description": "Toggle description for showing Neko in chat."
   },
-  "lookAndFeelVoiceChannelJoinTitle": "Comportement de connexion aux canaux vocaux",
+  "lookAndFeelVoiceChannelJoinTitle": "Comportement de connexion aux salons vocaux",
   "@lookAndFeelVoiceChannelJoinTitle": {
     "description": "Subsection title under Interface — voice channel join behavior."
   },
-  "lookAndFeelVoiceChannelJoinDescription": "Contrôlez la façon dont vous rejoignez les canaux vocaux dans les communautés.",
+  "lookAndFeelVoiceChannelJoinDescription": "Contrôlez la façon dont vous rejoignez les salons vocaux dans les communautés.",
   "@lookAndFeelVoiceChannelJoinDescription": {
     "description": "Subsection description for voice channel join behavior."
   },
-  "lookAndFeelRequireDoubleClickJoinLabel": "Exiger un double-clic pour rejoindre les canaux vocaux",
+  "lookAndFeelRequireDoubleClickJoinLabel": "Exiger un double-clic pour rejoindre les salons vocaux",
   "@lookAndFeelRequireDoubleClickJoinLabel": {
     "description": "Toggle label — require double-click to join voice channels."
   },
-  "lookAndFeelRequireDoubleClickJoinDescription": "Lorsqu'elle est activée, vous devrez double-cliquer sur les canaux vocaux pour les rejoindre. Lorsqu'elle est désactivée (par défaut), un simple clic vous rejoindra immédiatement dans le canal.",
+  "lookAndFeelRequireDoubleClickJoinDescription": "Lorsqu'elle est activée, vous devrez double-cliquer sur les salons vocaux pour les rejoindre. Lorsqu'elle est désactivée (par défaut), un simple clic vous rejoindra immédiatement dans le salon.",
   "@lookAndFeelRequireDoubleClickJoinDescription": {
     "description": "Toggle description for the require-double-click voice channel join switch."
   },
@@ -4561,19 +4559,19 @@
   "@lookAndFeelCollapseDMsDescription": {
     "description": "Toggle description for the DM folder collapse behavior."
   },
-  "lookAndFeelChannelListSectionTitle": "Liste des canaux",
+  "lookAndFeelChannelListSectionTitle": "Liste des salons",
   "@lookAndFeelChannelListSectionTitle": {
     "description": "Section title for channel list options."
   },
-  "lookAndFeelChannelListSectionDescription": "Contrôlez le comportement de l'indicateur de non-lu pour les canaux mis en sourdine dans les listes de canaux.",
+  "lookAndFeelChannelListSectionDescription": "Contrôlez le comportement de l'indicateur de non-lu pour les salons mis en sourdine dans les listes de salons.",
   "@lookAndFeelChannelListSectionDescription": {
     "description": "Section description for channel list options."
   },
-  "lookAndFeelShowFadedUnreadOnMutedChannelsLabel": "Afficher l'indicateur de non-lu sur les canaux mis en sourdine",
+  "lookAndFeelShowFadedUnreadOnMutedChannelsLabel": "Afficher l'indicateur de non-lu sur les salons mis en sourdine",
   "@lookAndFeelShowFadedUnreadOnMutedChannelsLabel": {
     "description": "Toggle label — show a faded unread bar on muted channels."
   },
-  "lookAndFeelShowFadedUnreadOnMutedChannelsDescription": "Lorsqu'elle est activée, les canaux mis en sourdine affichent un indicateur de non-lu atténué sur le côté gauche. Les mentions apparaissent toujours indépendamment de ce paramètre.",
+  "lookAndFeelShowFadedUnreadOnMutedChannelsDescription": "Lorsqu'elle est activée, les salons mis en sourdine affichent un indicateur de non-lu atténué sur le côté gauche. Les mentions apparaissent toujours indépendamment de ce paramètre.",
   "@lookAndFeelShowFadedUnreadOnMutedChannelsDescription": {
     "description": "Toggle description for faded unread on muted channels."
   },
@@ -4589,7 +4587,7 @@
   "@lookAndFeelShowActiveNowLabel": {
     "description": "Toggle label — show Active Now on the home screen."
   },
-  "lookAndFeelShowActiveNowDescription": "Affiche \"Actifs maintenant\" sur l'écran d'accueil pour présenter les amis actifs vocalement. Vous verrez un aperçu, le contexte du canal, qui est déjà là, et un moyen rapide de les rejoindre.",
+  "lookAndFeelShowActiveNowDescription": "Affiche \"Actifs maintenant\" sur l'écran d'accueil pour présenter les amis actifs vocalement. Vous verrez un aperçu, le contexte du salon, qui est déjà là, et un moyen rapide de les rejoindre.",
   "@lookAndFeelShowActiveNowDescription": {
     "description": "Toggle description for show-active-now."
   },
@@ -4605,7 +4603,7 @@
   "@lookAndFeelEnableFavoritesLabel": {
     "description": "Toggle label — enable the Favorites feature."
   },
-  "lookAndFeelEnableFavoritesDescription": "Lorsqu'elle est activée, vous pouvez mettre des canaux en favoris et ils apparaîtront dans la section Favoris. Lorsqu'elle est désactivée, tous les éléments d'interface liés aux favoris (boutons, éléments de menu) seront masqués. Vos favoris existants seront conservés.",
+  "lookAndFeelEnableFavoritesDescription": "Lorsqu'elle est activée, vous pouvez mettre des salons en favoris et ils apparaîtront dans la section Favoris. Lorsqu'elle est désactivée, tous les éléments d'interface liés aux favoris (boutons, éléments de menu) seront masqués. Vos favoris existants seront conservés.",
   "@lookAndFeelEnableFavoritesDescription": {
     "description": "Toggle description for the Enable Favorites switch."
   },
@@ -4849,11 +4847,11 @@
   "@messagesMediaSpoilersOnClickDescription": {
     "description": "Spoiler reveal option description for on-click."
   },
-  "messagesMediaSpoilersIfModeratorName": "Dans les canaux que je modère",
+  "messagesMediaSpoilersIfModeratorName": "Dans les salons que je modère",
   "@messagesMediaSpoilersIfModeratorName": {
     "description": "Spoiler reveal option — auto-show in channels with Manage Messages."
   },
-  "messagesMediaSpoilersIfModeratorDescription": "Toujours afficher le contenu masqué dans les canaux où vous avez la permission « Gérer les messages »",
+  "messagesMediaSpoilersIfModeratorDescription": "Toujours afficher le contenu masqué dans les salons où vous avez la permission « Gérer les messages »",
   "@messagesMediaSpoilersIfModeratorDescription": {
     "description": "Spoiler reveal option description for moderator-only auto-show."
   },
@@ -4945,22 +4943,6 @@
   "@messagesMediaEditingPreserveDraftLabel": {
     "description": "Toggle label for preserving edit drafts on cancel."
   },
-  "accessibilityUnreadGroupTitle": "Indicateurs de non-lu",
-  "@accessibilityUnreadGroupTitle": {
-    "description": "Section title for unread-indicator accessibility settings."
-  },
-  "accessibilityUnreadGroupDescription": "Contrôler la façon dont les indicateurs de messages non lus sont affichés.",
-  "@accessibilityUnreadGroupDescription": {
-    "description": "Section description for unread-indicator accessibility settings."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsLabel": "Afficher l'indicateur de non-lu estompé sur les canaux mis en sourdine",
-  "@accessibilityShowFadedUnreadOnMutedChannelsLabel": {
-    "description": "Toggle label for showing a faded unread indicator on muted channels."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsDescription": "Affichez un indicateur de non-lu atténué à côté des messages directs et des canaux mis en sourdine afin que vous puissiez toujours voir d'un coup d'œil lorsqu'il y a de l'activité.",
-  "@accessibilityShowFadedUnreadOnMutedChannelsDescription": {
-    "description": "Toggle description for showing a faded unread indicator on muted channels."
-  },
   "accessibilityDmMessagePreviewGroupTitle": "Aperçus des messages DM",
   "@accessibilityDmMessagePreviewGroupTitle": {
     "description": "Section title for DM message preview accessibility settings."
@@ -5001,7 +4983,7 @@
   "@dmListSentAnAttachment": {
     "description": "DM list row preview text when the most recent message has only attachments."
   },
-  "systemPreviewPinnedMessage": "{username} a épinglé un message dans ce canal.",
+  "systemPreviewPinnedMessage": "{username} a épinglé un message dans ce salon.",
   "@systemPreviewPinnedMessage": {
     "description": "Plaintext DM list preview for a pin system message.",
     "placeholders": {
@@ -5061,7 +5043,7 @@
       }
     }
   },
-  "systemPreviewChangedChannelNameTo": "{username} a renommé le canal en {newName}.",
+  "systemPreviewChangedChannelNameTo": "{username} a renommé le salon en {newName}.",
   "@systemPreviewChangedChannelNameTo": {
     "description": "Plaintext DM list preview when a group DM is renamed.",
     "placeholders": {
@@ -5073,7 +5055,7 @@
       }
     }
   },
-  "systemPreviewChangedChannelName": "{username} a renommé le canal.",
+  "systemPreviewChangedChannelName": "{username} a renommé le salon.",
   "@systemPreviewChangedChannelName": {
     "description": "Plaintext DM list preview when a group DM is renamed without a known new name.",
     "placeholders": {
@@ -5082,7 +5064,7 @@
       }
     }
   },
-  "systemPreviewChangedChannelIcon": "{username} a changé l'icône du canal.",
+  "systemPreviewChangedChannelIcon": "{username} a changé l'icône du salon.",
   "@systemPreviewChangedChannelIcon": {
     "description": "Plaintext DM list preview when a group DM icon changes.",
     "placeholders": {
@@ -5104,7 +5086,7 @@
   "@voiceConnectionConfirmTitle": {
     "description": "Title of the multi-device voice join confirmation dialog."
   },
-  "voiceConnectionConfirmDescription": "{count, plural, =1{Vous êtes déjà connecté à ce canal vocal depuis 1 autre appareil. Que souhaitez-vous faire ?} other{Vous êtes déjà connecté à ce canal vocal depuis {count} autres appareils. Que souhaitez-vous faire ?}}",
+  "voiceConnectionConfirmDescription": "{count, plural, =1{Vous êtes déjà connecté à ce salon vocal depuis 1 autre appareil. Que souhaitez-vous faire ?} other{Vous êtes déjà connecté à ce salon vocal depuis {count} autres appareils. Que souhaitez-vous faire ?}}",
   "@voiceConnectionConfirmDescription": {
     "description": "Body of the multi-device voice join confirmation; count is the number of other device connections.",
     "placeholders": {
@@ -5125,11 +5107,11 @@
   "@voiceConnectionConfirmDoNothing": {
     "description": "Dismiss the dialog without joining voice."
   },
-  "voiceChannelEmptyDescription": "Ceci est un canal vocal. Connectez-vous pour commencer à parler !",
+  "voiceChannelEmptyDescription": "Ceci est un salon vocal. Connectez-vous pour commencer à parler !",
   "@voiceChannelEmptyDescription": {
     "description": "Empty state body when viewing a guild voice channel while not in the call."
   },
-  "voiceChannelJoin": "Rejoindre le canal vocal",
+  "voiceChannelJoin": "Rejoindre le salon vocal",
   "@voiceChannelJoin": {
     "description": "Primary action to connect to a voice channel from the empty state."
   },
@@ -5137,7 +5119,7 @@
   "@voiceChannelJoinConnect": {
     "description": "Primary action in the mobile bottom sheet before joining a voice channel from the channel list."
   },
-  "voiceChannelNoConnectPermission": "Vous n'avez pas la permission de rejoindre ce canal vocal",
+  "voiceChannelNoConnectPermission": "Vous n'avez pas la permission de rejoindre ce salon vocal",
   "@voiceChannelNoConnectPermission": {
     "description": "Tooltip on the disabled join voice channel button when the user lacks Connect permission."
   },
@@ -5149,7 +5131,7 @@
   "@voiceCallE2eeEncrypted": {
     "description": "Pre-join banner on a DM or group DM call where every connected participant supports E2EE."
   },
-  "voiceChannelE2eeBroken": "Le chiffrement de bout en bout n'est pas disponible car un participant non compatible est dans ce canal vocal.",
+  "voiceChannelE2eeBroken": "Le chiffrement de bout en bout n'est pas disponible car un participant non compatible est dans ce salon vocal.",
   "@voiceChannelE2eeBroken": {
     "description": "Pre-join banner on a guild voice channel where E2EE capability is mixed among participants."
   },
@@ -5467,7 +5449,7 @@
   },
   "characterCounterRemainingPlutoniumUpsell": "{remaining} caractères restants. Obtenez {productName} pour écrire jusqu'à {premiumMaxLength} caractères.",
   "@characterCounterRemainingPlutoniumUpsell": {
-    "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
+    "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
     "placeholders": {
       "remaining": {
         "type": "int"
@@ -5976,7 +5958,7 @@
   "@iarActionDeleteMessageTitle": {
     "description": "Action card title (moderator-only) for deleting the reported message."
   },
-  "iarActionDeleteMessageDescription": "Supprimez-le du canal pour tout le monde.",
+  "iarActionDeleteMessageDescription": "Supprimez-le du salon pour tout le monde.",
   "@iarActionDeleteMessageDescription": {
     "description": "Action card description (moderator-only) for deleting the reported message."
   },
@@ -6200,7 +6182,7 @@
   "@chatEditNoChanges": {
     "description": "Toast when the user tries to save an edit without changing the message."
   },
-  "chatChannelNotReady": "Ce canal n'est pas encore prêt. Veuillez réessayer dans un moment.",
+  "chatChannelNotReady": "Ce salon n'est pas encore prêt. Veuillez réessayer dans un moment.",
   "@chatChannelNotReady": {
     "description": "Toast when send is attempted before the channel has finished loading."
   },
@@ -6302,7 +6284,7 @@
   "@chatVideoPlaybackFailed": {
     "description": "Shown when embedded or attachment video playback fails in the chat player."
   },
-  "composerAutocompleteRoleMentionDescription": "Notifier les utilisateurs de ce rôle ayant la permission de voir ce canal.",
+  "composerAutocompleteRoleMentionDescription": "Notifier les utilisateurs de ce rôle ayant la permission de voir ce salon.",
   "@composerAutocompleteRoleMentionDescription": {
     "description": "Secondary line in the @ mention autocomplete when the row is a mentionable guild role."
   },
@@ -6370,7 +6352,7 @@
   "@chatMessageUnpinConfirmDescription": {
     "description": "Body text for the unpin message confirmation sheet."
   },
-  "systemPinMessage": "{username} a épinglé {messageLink} dans ce canal. Voir {allPinsLink}.",
+  "systemPinMessage": "{username} a épinglé {messageLink} dans ce salon. Voir {allPinsLink}.",
   "@systemPinMessage": {
     "description": "System message when a user pins a message. Keep {username}, {messageLink}, and {allPinsLink} in place; translate the surrounding sentence.",
     "placeholders": {
@@ -7628,27 +7610,27 @@
   "@auditLogActionGuildUpdate": {
     "description": "Audit log action filter label."
   },
-  "auditLogActionChannelCreate": "Canal créé",
+  "auditLogActionChannelCreate": "Salon créé",
   "@auditLogActionChannelCreate": {
     "description": "Audit log action filter label."
   },
-  "auditLogActionChannelUpdate": "Canal mis à jour",
+  "auditLogActionChannelUpdate": "Salon mis à jour",
   "@auditLogActionChannelUpdate": {
     "description": "Audit log action filter label."
   },
-  "auditLogActionChannelDelete": "Canal supprimé",
+  "auditLogActionChannelDelete": "Salon supprimé",
   "@auditLogActionChannelDelete": {
     "description": "Audit log action filter label."
   },
-  "auditLogActionChannelOverwriteCreate": "Autorisation de canal ajoutée",
+  "auditLogActionChannelOverwriteCreate": "Autorisation de salon ajoutée",
   "@auditLogActionChannelOverwriteCreate": {
     "description": "Audit log action filter label."
   },
-  "auditLogActionChannelOverwriteUpdate": "Autorisation de canal mise à jour",
+  "auditLogActionChannelOverwriteUpdate": "Autorisation de salon mise à jour",
   "@auditLogActionChannelOverwriteUpdate": {
     "description": "Audit log action filter label."
   },
-  "auditLogActionChannelOverwriteDelete": "Autorisation de canal supprimée",
+  "auditLogActionChannelOverwriteDelete": "Autorisation de salon supprimée",
   "@auditLogActionChannelOverwriteDelete": {
     "description": "Audit log action filter label."
   },
@@ -7863,7 +7845,7 @@
       }
     }
   },
-  "auditLogSummaryChannelOverwriteDelete": "{actor} a supprimé les autorisations de canal pour {target}.",
+  "auditLogSummaryChannelOverwriteDelete": "{actor} a supprimé les autorisations de salon pour {target}.",
   "@auditLogSummaryChannelOverwriteDelete": {
     "description": "Activity log entry summary.",
     "placeholders": {
@@ -7875,7 +7857,7 @@
       }
     }
   },
-  "auditLogSummaryChannelOverwriteDeleteInChannel": "{actor} a supprimé les autorisations de canal pour {target} dans {channel}.",
+  "auditLogSummaryChannelOverwriteDeleteInChannel": "{actor} a supprimé les autorisations de salon pour {target} dans {channel}.",
   "@auditLogSummaryChannelOverwriteDeleteInChannel": {
     "description": "Activity log entry summary.",
     "placeholders": {
@@ -7971,7 +7953,7 @@
       }
     }
   },
-  "auditLogSummaryMemberMove": "{actor} a déplacé {target} vers un autre canal vocal.",
+  "auditLogSummaryMemberMove": "{actor} a déplacé {target} vers un autre salon vocal.",
   "@auditLogSummaryMemberMove": {
     "description": "Activity log entry summary.",
     "placeholders": {
@@ -8070,7 +8052,7 @@
       }
     }
   },
-  "auditLogSummaryInviteCreateForChannel": "{actor} a créé l'invitation {target} pour le canal {channel}.",
+  "auditLogSummaryInviteCreateForChannel": "{actor} a créé l'invitation {target} pour le salon {channel}.",
   "@auditLogSummaryInviteCreateForChannel": {
     "description": "Activity log entry summary.",
     "placeholders": {
@@ -8097,7 +8079,7 @@
       }
     }
   },
-  "auditLogSummaryInviteUpdateForChannel": "{actor} a mis à jour l'invitation {target} pour le canal {channel}.",
+  "auditLogSummaryInviteUpdateForChannel": "{actor} a mis à jour l'invitation {target} pour le salon {channel}.",
   "@auditLogSummaryInviteUpdateForChannel": {
     "description": "Activity log entry summary.",
     "placeholders": {
@@ -8124,7 +8106,7 @@
       }
     }
   },
-  "auditLogSummaryInviteDeleteForChannel": "{actor} a supprimé l'invitation {target} pour le canal {channel}.",
+  "auditLogSummaryInviteDeleteForChannel": "{actor} a supprimé l'invitation {target} pour le salon {channel}.",
   "@auditLogSummaryInviteDeleteForChannel": {
     "description": "Activity log entry summary.",
     "placeholders": {
@@ -8431,7 +8413,7 @@
   "@auditLogChangeUpdatedCommunityIcon": {
     "description": "Guild change detail sentence."
   },
-  "auditLogChangeRenamedChannel": "A renommé le canal en {name}.",
+  "auditLogChangeRenamedChannel": "A renommé le salon en {name}.",
   "@auditLogChangeRenamedChannel": {
     "description": "Channel change detail sentence.",
     "placeholders": {
@@ -8513,7 +8495,7 @@
       }
     }
   },
-  "auditLogOptionChannel": "Canal : {value}.",
+  "auditLogOptionChannel": "Salon : {value}.",
   "@auditLogOptionChannel": {
     "description": "Audit log option detail sentence.",
     "placeholders": {
@@ -8578,7 +8560,7 @@
   "@guildSettingsLoadingMore": {
     "description": "Loading state for pagination."
   },
-  "guildSettingsWebhooksDescription": "Gérer les webhooks qui publient des messages dans les canaux.",
+  "guildSettingsWebhooksDescription": "Gérer les webhooks qui publient des messages dans les salons.",
   "@guildSettingsWebhooksDescription": {
     "description": "Description for webhooks tab."
   },
@@ -8681,7 +8663,7 @@
   "@guildSettingsInvitesDescription": {
     "description": "Description for invites tab."
   },
-  "guildSettingsInvitesEmpty": "Aucune invitation active.",
+  "guildSettingsInvitesEmpty": "Aucun lien d'invitation",
   "@guildSettingsInvitesEmpty": {
     "description": "Empty state for invites."
   },
@@ -8833,7 +8815,7 @@
   "guildSettingsOverviewNotificationsTitle": "Notifications par défaut",
   "guildSettingsOverviewNotificationsLargeGuild": "Les communautés de plus de 250 personnes sont forcées sur le réglage « Mentions uniquement ». Votre réglage d'origine est conservé et sera rétabli si la communauté passe sous 250 membres.",
   "guildSettingsOverviewAdvancedTitle": "Avancé",
-  "guildSettingsOverviewFlexibleNames": "Autoriser les noms de canaux texte flexibles",
+  "guildSettingsOverviewFlexibleNames": "Autoriser les noms de salons texte flexibles",
   "guildSettingsOverviewHideOwnerCrown": "Masquer la couronne du propriétaire de la communauté",
   "guildSettingsOverviewDetachedBanner": "Bannière détachée",
   "@guildSettingsOverviewDetachedBanner": {
@@ -8883,7 +8865,7 @@
   "@guildSettingsOverviewInvitePreviewHint": {
     "description": "Helper text for invite preview controls."
   },
-  "guildSettingsOverviewTextChannelNamesTitle": "Noms des canaux texte",
+  "guildSettingsOverviewTextChannelNamesTitle": "Noms des salons texte",
   "@guildSettingsOverviewTextChannelNamesTitle": {
     "description": "Advanced settings section for text channel naming rules."
   },
@@ -8961,7 +8943,7 @@
   "@guildSettingsMessageHistoryThresholdUpdated": {
     "description": "Toast after saving message history threshold."
   },
-  "guildSettingsOverviewFlexibleNamesHint": "Autorise les majuscules et les espaces dans les noms de canaux texte. Désactivé restreint les noms aux minuscules avec des tirets et des underscores.",
+  "guildSettingsOverviewFlexibleNamesHint": "Autorise les majuscules et les espaces dans les noms de salons texte. Désactivé restreint les noms aux minuscules avec des tirets et des underscores.",
   "@guildSettingsOverviewFlexibleNamesHint": {
     "description": "Description for flexible channel names toggle."
   },
@@ -8977,12 +8959,12 @@
   "@guildSettingsAnimatedBannerRequiresFeature": {
     "description": "Error when uploading animated banner without feature."
   },
-  "guildSettingsAfkChannel": "Canal AFK / inactif",
-  "guildSettingsAfkChannelHint": "Déplacez les membres vers ce canal lorsqu'ils sont AFK.",
+  "guildSettingsAfkChannel": "Salon AFK / inactif",
+  "guildSettingsAfkChannelHint": "Déplacez les membres vers ce salon lorsqu'ils sont AFK.",
   "@guildSettingsAfkChannelHint": {
     "description": "Description for the AFK channel selector."
   },
-  "guildSettingsNoAfkChannel": "Aucun canal AFK",
+  "guildSettingsNoAfkChannel": "Aucun salon AFK",
   "guildSettingsAfkTimeout": "Délai AFK",
   "guildSettingsAfkTimeout1Min": "1 minute",
   "guildSettingsAfkTimeout5Min": "5 minutes",
@@ -8998,14 +8980,14 @@
       }
     }
   },
-  "guildSettingsSystemChannel": "Canal de destination",
+  "guildSettingsSystemChannel": "Salon de destination",
   "guildSettingsSystemChannelHint": "Les messages de bienvenue et système apparaîtront ici.",
   "@guildSettingsSystemChannelHint": {
     "description": "Description for the system channel selector."
   },
-  "guildSettingsNoSystemChannel": "Aucun canal système",
+  "guildSettingsNoSystemChannel": "Aucun salon système",
   "guildSettingsHideJoinMessages": "Masquer les messages d'arrivée",
-  "guildSettingsHideJoinMessagesHint": "Supprime les messages de bienvenue dans le canal de destination.",
+  "guildSettingsHideJoinMessagesHint": "Supprime les messages de bienvenue dans le salon de destination.",
   "@guildSettingsHideJoinMessagesHint": {
     "description": "Description for the hide join messages toggle."
   },
@@ -9031,7 +9013,7 @@
   "guildSettingsModerationDescription": "Configurez les paramètres de vérification, de filtrage de contenu et de contenu sensible.",
   "guildSettingsModerationDiscoveryNotice": "Les communautés listées dans la découverte ont des options de modération restreintes.",
   "guildSettingsModerationContentFilterTitle": "Filtrage de contenu",
-  "guildSettingsModerationContentFilterDescription": "Examine automatiquement les messages pour détecter le contenu explicite dans les canaux non marqués comme sensibles.",
+  "guildSettingsModerationContentFilterDescription": "Examine automatiquement les messages pour détecter le contenu explicite dans les salons non marqués comme sensibles.",
   "guildSettingsModerationContentFilterDiscoveryNote": "Les communautés listées dans la découverte doivent scanner tous les membres. Ce paramètre ne peut pas être modifié tant que la découverte est activée.",
   "guildSettingsContentFilterOff": "Désactivé",
   "guildSettingsContentFilterOffDescription": "Laissez la communauté s'auto-modérer",
@@ -9045,7 +9027,7 @@
   "@guildSettingsContentWarningToggle": {
     "description": "Switch label for the community content warning setting."
   },
-  "guildSettingsContentWarningToggleDescription": "Active une invite de consentement avant d'entrer dans un canal.",
+  "guildSettingsContentWarningToggleDescription": "Active une invite de consentement avant d'entrer dans un salon.",
   "@guildSettingsContentWarningToggleDescription": {
     "description": "Subtitle for the content warning switch in moderation settings."
   },
@@ -9081,12 +9063,12 @@
     }
   },
   "guildSettingsStickersSearchHint": "Rechercher des autocollants",
-  "guildSettingsWebhooksInfo": "Créez des webhooks depuis les paramètres du canal. Modifiez-les ici.",
-  "guildSettingsVanityUrlWarning": "Votre URL personnalisée ne fonctionnera pas à moins qu'au moins un canal ne soit visible par tout le monde.",
+  "guildSettingsWebhooksInfo": "Créez des webhooks depuis les paramètres du salon. Modifiez-les ici.",
+  "guildSettingsVanityUrlWarning": "Votre URL personnalisée ne fonctionnera pas à moins qu'au moins un salon ne soit visible par tout le monde.",
   "guildSettingsVanityUrlRemove": "Supprimer",
   "guildSettingsBannedUsersTitle": "Utilisateurs bannis",
   "guildSettingsInvitesTableInviter": "Inviteur",
-  "guildSettingsInvitesTableChannel": "Canal",
+  "guildSettingsInvitesTableChannel": "Salon",
   "guildSettingsInvitesTableCode": "Code",
   "guildSettingsInvitesTableUses": "Utilisations",
   "guildSettingsInvitesTableCreated": "Créé le",
@@ -9149,14 +9131,40 @@
       }
     }
   },
-  "guildSettingsDiscoveryFormTitle": "Candidature",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
+  "nagbarLearnMore": "En savoir plus",
+  "@nagbarLearnMore": {
+    "description": "CTA on maintenance and other nagbars that open an external link."
   },
-  "guildSettingsDiscoveryStatusTitle": "Statut",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
+  "channelMenuCopyChannelLink": "Copier le lien du salon",
+  "@channelMenuCopyChannelLink": {
+    "description": "Channel menu action to copy a link channel's channel link."
   },
-  "cropTouchHint": "Pinch to zoom, drag to reposition",
-  "cropMouseHint": "Drag corners to resize, drag inside to move"
+  "nagbarMaintenanceComplete": "La maintenance est terminée.",
+  "@nagbarMaintenanceComplete": {
+    "description": "Maintenance nagbar after planned work finishes."
+  },
+  "channelMenuCopyRedirectLink": "Copier le lien de redirection",
+  "@channelMenuCopyRedirectLink": {
+    "description": "Channel menu action to copy a link channel's redirect URL."
+  },
+  "nagbarMaintenanceScheduled": "La maintenance est programmée pour {localizedTime}. Durée estimée : {duration}.",
+  "@nagbarMaintenanceScheduled": {
+    "description": "Maintenance nagbar before planned work begins.",
+    "placeholders": {
+      "localizedTime": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "nagbarOpenSettings": "Ouvrir les paramètres",
+  "@nagbarOpenSettings": {
+    "description": "Nagbar CTA that opens user settings."
+  },
+  "nagbarTermsAcceptance": "Nous avons mis à jour nos conditions. Veuillez les examiner et les accepter pour continuer.",
+  "@nagbarTermsAcceptance": {
+    "description": "Terms acceptance nagbar body."
+  }
 }

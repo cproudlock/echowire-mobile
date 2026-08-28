@@ -2,8 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/instance/instance_constants.dart';
+import 'package:fluxer_app/core/instance/instance_runtime_config.dart';
 import 'package:fluxer_app/core/providers/well_known_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/claim_account_sheet.dart';
@@ -19,6 +20,7 @@ import 'package:fluxer_app/features/ui/text_link/fluxer_text_link.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/guild_name_abbreviation.dart';
 import 'package:fluxer_app/shared/utils/image_utils.dart';
 import 'package:fluxer_dart/export.dart';
@@ -155,8 +157,8 @@ class AddGuildCreateViewState extends ConsumerState<AddGuildCreateView> {
     );
     final String productName = wellKnown.maybeWhen(
       data: (WellKnownFluxerResponse response) =>
-          response.appPublic.branding.productName,
-      orElse: () => 'Fluxer',
+          InstanceRuntimeConfig.fromWellKnown(response).productName,
+      orElse: () => InstanceConstants.defaultProductName,
     );
     final String? guidelinesUrl = wellKnown.maybeWhen(
       data: (WellKnownFluxerResponse response) {

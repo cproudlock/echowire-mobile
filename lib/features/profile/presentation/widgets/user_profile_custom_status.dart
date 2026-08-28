@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/widgets/custom_status_display.dart';
 
 class UserProfileCustomStatus extends StatelessWidget {

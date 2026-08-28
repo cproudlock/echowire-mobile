@@ -60,6 +60,28 @@ class _TestGatewayConnection extends GatewayConnection {
   }
 }
 
+class _NudgeGatewayConnection extends GatewayConnection {
+  _NudgeGatewayConnection({this.suspended = false})
+    : super(token: 'test', dio: Dio());
+
+  final bool suspended;
+  int reconnectNowCalls = 0;
+  int unsuspendCalls = 0;
+
+  @override
+  bool get isReconnectSuspended => suspended;
+
+  @override
+  Future<void> reconnectNow() async {
+    reconnectNowCalls++;
+  }
+
+  @override
+  Future<void> unsuspendAndReconnect() async {
+    unsuspendCalls++;
+  }
+}
+
 class _ExpiringAccountManager extends AccountManager {
   @override
   Future<bool> expireSessionIfInvalid() async {
@@ -196,18 +218,21 @@ void main() {
   test('session-expired toast retains the locale active before sign-out', () {
     fakeAsync((FakeAsync async) {
       final _TestGatewayConnection connection = _TestGatewayConnection();
-      final ProviderContainer container = ProviderContainer(
-        overrides: <Override>[
-          gatewayConnectionProvider.overrideWithValue(connection),
-          accountManagerProvider.overrideWith(_ExpiringAccountManager.new),
-          appLocalizationsProvider.overrideWith(
-            (Ref ref) =>
-                lookupFluxerLocalizations(ref.watch(_testLocaleProvider)),
-          ),
-        ],
-      );
-      container.read(authStateProvider.notifier).setAuthenticated(value: true);
-      container.read(gatewayStateListenerProvider);
+      final ProviderContainer container =
+          ProviderContainer(
+              overrides: <Override>[
+                gatewayConnectionProvider.overrideWithValue(connection),
+                accountManagerProvider.overrideWith(
+                  _ExpiringAccountManager.new,
+                ),
+                appLocalizationsProvider.overrideWith(
+                  (Ref ref) =>
+                      lookupFluxerLocalizations(ref.watch(_testLocaleProvider)),
+                ),
+              ],
+            )
+            ..read(authStateProvider.notifier).setAuthenticated(value: true)
+            ..read(gatewayStateListenerProvider);
 
       connection.emit(GatewayState.failed);
       async.flushMicrotasks();
@@ -230,8 +255,7 @@ void main() {
         overrides: <Override>[
           gatewayConnectionProvider.overrideWithValue(connection),
         ],
-      );
-      container.read(gatewayReconnectToastListenerProvider);
+      )..read(gatewayReconnectToastListenerProvider);
 
       connection
         ..emit(GatewayState.connected)
@@ -393,6 +417,78 @@ void main() {
         ),
         isTrue,
       );
+    });
+  });
+
+  group('nudgeGatewayReconnectAfterResume', () {
+    test('reconnects immediately when connectivity is already up', () {
+      fakeAsync((FakeAsync async) {
+        final connection = _NudgeGatewayConnection();
+        final List<bool> inFlightLog = <bool>[];
+        unawaited(
+          nudgeGatewayReconnectAfterResume(
+            connection,
+            onResumeReconnectInFlight: ({required bool inFlight}) =>
+                inFlightLog.add(inFlight),
+            hasConnectivity: () async => true,
+          ),
+        );
+        async.flushMicrotasks();
+        expect(connection.reconnectNowCalls, 1);
+        expect(inFlightLog, [true]);
+      });
+    });
+
+    test('waits one beat and retries when connectivity is initially down', () {
+      fakeAsync((FakeAsync async) {
+        final connection = _NudgeGatewayConnection();
+        var probes = 0;
+        unawaited(
+          nudgeGatewayReconnectAfterResume(
+            connection,
+            hasConnectivity: () async => ++probes > 1,
+          ),
+        );
+        async.flushMicrotasks();
+        expect(connection.reconnectNowCalls, 0);
+        async.elapse(kResumeReconnectDelay);
+        expect(connection.reconnectNowCalls, 1);
+        expect(probes, 2);
+      });
+    });
+
+    test('skips when the retry also reports no connectivity', () {
+      fakeAsync((FakeAsync async) {
+        final connection = _NudgeGatewayConnection();
+        final List<bool> inFlightLog = <bool>[];
+        unawaited(
+          nudgeGatewayReconnectAfterResume(
+            connection,
+            onResumeReconnectInFlight: ({required bool inFlight}) =>
+                inFlightLog.add(inFlight),
+            hasConnectivity: () async => false,
+          ),
+        );
+        async.elapse(kResumeReconnectDelay);
+        expect(connection.reconnectNowCalls, 0);
+        expect(connection.unsuspendCalls, 0);
+        expect(inFlightLog, [true, false]);
+      });
+    });
+
+    test('unsuspends a suspended connection', () {
+      fakeAsync((FakeAsync async) {
+        final connection = _NudgeGatewayConnection(suspended: true);
+        unawaited(
+          nudgeGatewayReconnectAfterResume(
+            connection,
+            hasConnectivity: () async => true,
+          ),
+        );
+        async.flushMicrotasks();
+        expect(connection.unsuspendCalls, 1);
+        expect(connection.reconnectNowCalls, 0);
+      });
     });
   });
 }

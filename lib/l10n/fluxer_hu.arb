@@ -1234,11 +1234,11 @@
   },
   "addFriendNoUserFound": "Nem található felhasználó ezzel a felhasználónévvel.",
   "@addFriendNoUserFound": {
-    "description": "Error when no user matches the entered EchoTag."
+    "description": "Error when no user matches the entered username."
   },
   "addFriendInvalidUsername": "Adjon meg érvényes felhasználónevet (Felhasználónév#0000).",
   "@addFriendInvalidUsername": {
-    "description": "Error when the EchoTag format is invalid."
+    "description": "Error when the username format is invalid."
   },
   "addFriendOutgoingSuccess": "Barát kérés elküldve",
   "@addFriendOutgoingSuccess": {
@@ -1356,10 +1356,6 @@
   "@addFriendClaimToSend": {
     "description": "Error when an unclaimed account tries to send a friend request."
   },
-  "addFriendSendFailedGeneric": "Nem sikerült elküldeni a barátfelkérést. Próbáld újra.",
-  "@addFriendSendFailedGeneric": {
-    "description": "Generic error when sending a friend request fails."
-  },
   "userTagBot": "BOT",
   "@userTagBot": {
     "description": "Tag label shown next to bot user names."
@@ -1472,7 +1468,7 @@
   "@emojiCategoryFlags": {
     "description": "Flags category."
   },
-  "emojiPlutoniumUpsellText": "{emojiCount} darab emojit oldhatsz fel {communityCount} közösségből a Reverbmal.",
+  "emojiPlutoniumUpsellText": "{emojiCount} darab emojit oldhatsz fel {communityCount} közösségből a Plutoniummal.",
   "@emojiPlutoniumUpsellText": {
     "description": "Upsell banner text in emoji picker for non-premium users.",
     "placeholders": {
@@ -1484,13 +1480,13 @@
       }
     }
   },
-  "emojiPlutoniumUpsellButton": "Szerezz Reverbot",
+  "emojiPlutoniumUpsellButton": "Szerezz Plutoniumot",
   "@emojiPlutoniumUpsellButton": {
-    "description": "Button label on the Reverb upsell banner."
+    "description": "Button label on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellDismiss": "Ne mutasd meg újra",
   "@emojiPlutoniumUpsellDismiss": {
-    "description": "Dismiss link on the Reverb upsell banner."
+    "description": "Dismiss link on the Plutonium upsell banner."
   },
   "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 egyéni emojit} other{{count} egyéni emojit}}",
   "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1603,11 +1599,11 @@
   "@imageFileTooLarge": {
     "description": "Error when a selected image exceeds the maximum file size."
   },
-  "animatedAvatarsRequirePlutonium": "Az animált avatarokhoz Reverb szükséges",
+  "animatedAvatarsRequirePlutonium": "Az animált avatarokhoz Plutonium szükséges",
   "@animatedAvatarsRequirePlutonium": {
     "description": "Toast shown when non-premium user tries uploading animated avatar."
   },
-  "animatedBannersRequirePlutonium": "Az animált bannerekhez Reverb szükséges",
+  "animatedBannersRequirePlutonium": "Az animált bannerekhez Plutonium szükséges",
   "@animatedBannersRequirePlutonium": {
     "description": "Toast shown when non-premium user tries uploading animated banner."
   },
@@ -1643,17 +1639,19 @@
   "@crop": {
     "description": "Button to confirm image crop."
   },
-  "changeYourFluxerTag": "EchoTag módosítása",
+  "cropTouchHint": "Pinch to zoom, drag to reposition",
+  "cropMouseHint": "Drag corners to resize, drag inside to move",
+  "changeYourFluxerTag": "Felhasználónév módosítása",
   "@changeYourFluxerTag": {
-    "description": "Title for the EchoTag change bottom sheet."
+    "description": "Title for the username change bottom sheet."
   },
-  "fluxerTagInputLabel": "EchoTag",
+  "fluxerTagInputLabel": "Felhasználónév",
   "@fluxerTagInputLabel": {
     "description": "Label above the username and discriminator input fields."
   },
   "fluxerTagDescriptionBase": "A felhasználónevek csak betűket (a-z, A-Z), számokat (0-9) és aláhúzásjeleket tartalmazhatnak. A felhasználónevek nem érzékenyek a kis- és nagybetűk megkülönböztetésére.",
   "@fluxerTagDescriptionBase": {
-    "description": "Base description text on the EchoTag change sheet."
+    "description": "Base description text on the username change sheet."
   },
   "fluxerTagDescriptionVisionary": "A felhasználónevek csak betűket (a-z, A-Z), számokat (0-9) és aláhúzásjeleket tartalmazhatnak. A felhasználónevek nem érzékenyek a kis- és nagybetűk megkülönböztetésére. Bármilyen elérhető 4 számjegyű taget választhatsz a #0000-tól a #9999-ig.",
   "@fluxerTagDescriptionVisionary": {
@@ -1679,17 +1677,17 @@
   "@validationAllowedChars": {
     "description": "Validation rule for allowed username characters."
   },
-  "discriminatorPremiumTooltip": "Szerezz Reverbot a tagod testreszabásához, vagy tartsd meg a felhasználóneved módosításakor",
+  "discriminatorPremiumTooltip": "Szerezz Plutoniumot a tagod testreszabásához, vagy tartsd meg a felhasználóneved módosításakor",
   "@discriminatorPremiumTooltip": {
     "description": "Tooltip on disabled discriminator field for non-premium users."
   },
-  "fluxerTagAlreadyTaken": "EchoTag már foglalt",
+  "fluxerTagAlreadyTaken": "Felhasználónév már foglalt",
   "@fluxerTagAlreadyTaken": {
     "description": "Title for the tag-taken confirmation sheet."
   },
-  "fluxerTagAlreadyTakenBody": "A(z) {username}#{discriminator} EchoTag már foglalt. A folytatás automatikusan újragenerálja a megkülönböztető jeledet.",
+  "fluxerTagAlreadyTakenBody": "A(z) {username}#{discriminator} Felhasználónév már foglalt. A folytatás automatikusan újragenerálja a megkülönböztető jeledet.",
   "@fluxerTagAlreadyTakenBody": {
-    "description": "Body text when the requested EchoTag is taken.",
+    "description": "Body text when the requested username is taken.",
     "placeholders": {
       "username": {
         "type": "String"
@@ -1703,7 +1701,7 @@
   "@customTagIsTemporary": {
     "description": "Title for the temporary tag warning sheet."
   },
-  "customTagTemporaryBodyWithDate": "Az egyéni 4 számjegyű tagod csak akkor érhető el, amíg a Reverb előfizetésed aktív. Amikor az előfizetésed lejár {date} napon, a tagod egy véletlenszerűen hozzárendelt számra változik egy 3 napos türelmi idő után.",
+  "customTagTemporaryBodyWithDate": "Az egyéni 4 számjegyű tagod csak akkor érhető el, amíg a Plutonium előfizetésed aktív. Amikor az előfizetésed lejár {date} napon, a tagod egy véletlenszerűen hozzárendelt számra változik egy 3 napos türelmi idő után.",
   "@customTagTemporaryBodyWithDate": {
     "description": "Warning body when premium subscription has a known expiry date.",
     "placeholders": {
@@ -1712,7 +1710,7 @@
       }
     }
   },
-  "customTagTemporaryBody": "Az egyéni 4 számjegyű tagod csak akkor érhető el, amíg a Reverb előfizetésed aktív. Amikor az előfizetésed lejár, a tagod egy véletlenszerűen hozzárendelt számra változik egy 3 napos türelmi idő után.",
+  "customTagTemporaryBody": "Az egyéni 4 számjegyű tagod csak akkor érhető el, amíg a Plutonium előfizetésed aktív. Amikor az előfizetésed lejár, a tagod egy véletlenszerűen hozzárendelt számra változik egy 3 napos türelmi idő után.",
   "@customTagTemporaryBody": {
     "description": "Warning body when premium subscription expiry date is unknown."
   },
@@ -1720,11 +1718,11 @@
   "@iUnderstandContinue": {
     "description": "Button to acknowledge a warning and proceed."
   },
-  "premiumWarningPendingDiscriminator": "Ha elmented ezt a EchoTag-et, az egyéni 4 számjegyű tagod véletlenszerű számra változik, amikor a Reverb előfizetésed véget ér. Ha az előfizetésed nem újul meg, 3 napos türelmi időd lesz, mielőtt a tag megváltozik.",
+  "premiumWarningPendingDiscriminator": "Ha elmented ezt a Felhasználónév-et, az egyéni 4 számjegyű tagod véletlenszerű számra változik, amikor a Plutonium előfizetésed véget ér. Ha az előfizetésed nem újul meg, 3 napos türelmi időd lesz, mielőtt a tag megváltozik.",
   "@premiumWarningPendingDiscriminator": {
     "description": "Warning shown when premium user is about to change their discriminator."
   },
-  "premiumWarningActiveDiscriminator": "Az egyéni 4 számjegyű tagod (#{discriminator}) aktív, amíg a Reverb előfizetésed aktív. Ha az előfizetésed véget ér, vagy nem újul meg egy 3 napos türelmi idő után, a tagod véletlenszerű számra változik.",
+  "premiumWarningActiveDiscriminator": "Az egyéni 4 számjegyű tagod (#{discriminator}) aktív, amíg a Plutonium előfizetésed aktív. Ha az előfizetésed véget ér, vagy nem újul meg egy 3 napos türelmi idő után, a tagod véletlenszerű számra változik.",
   "@premiumWarningActiveDiscriminator": {
     "description": "Warning shown when premium user already has a custom discriminator.",
     "placeholders": {
@@ -1735,9 +1733,9 @@
   },
   "premiumUpsellCustomizeTag": "Szabd testre a 4 számjegyű tagodat, vagy tartsd meg a felhasználóneved módosításakor",
   "@premiumUpsellCustomizeTag": {
-    "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
+    "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
   },
-  "premiumTrialExpiresOn": "A Reverb próbaidőszakod {date} napon jár le. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.",
+  "premiumTrialExpiresOn": "A Plutonium próbaidőszakod {date} napon jár le. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.",
   "@premiumTrialExpiresOn": {
     "description": "Trial upsell with expiry date.",
     "placeholders": {
@@ -1746,17 +1744,17 @@
       }
     }
   },
-  "premiumTrialActive": "Reverb próbaidőszakon vagy. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.",
+  "premiumTrialActive": "Plutonium próbaidőszakon vagy. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.",
   "@premiumTrialActive": {
     "description": "Trial upsell without specific expiry date."
   },
-  "fluxerTagUpdated": "EchoTag frissítve",
+  "fluxerTagUpdated": "Felhasználónév frissítve",
   "@fluxerTagUpdated": {
-    "description": "Success toast after EchoTag change."
+    "description": "Success toast after username change."
   },
-  "fluxerTagUpdateFailed": "A EchoTag frissítése sikertelen. Kérlek, próbáld újra.",
+  "fluxerTagUpdateFailed": "A Felhasználónév frissítése sikertelen. Kérlek, próbáld újra.",
   "@fluxerTagUpdateFailed": {
-    "description": "Error message when EchoTag update fails."
+    "description": "Error message when username update fails."
   },
   "continueAction": "Tovább",
   "@continueAction": {
@@ -1774,17 +1772,17 @@
   "@usernameLabel": {
     "description": "Label for the username field in profile settings."
   },
-  "claimAccountToChangeFluxerTag": "Fiók igénylése a EchoTag módosításához",
+  "claimAccountToChangeFluxerTag": "Fiók igénylése a Felhasználónév módosításához",
   "@claimAccountToChangeFluxerTag": {
-    "description": "Tooltip when unverified user hovers the disabled Change EchoTag button."
+    "description": "Tooltip when unverified user hovers the disabled Change username button."
   },
-  "changeFluxerTag": "EchoTag módosítása",
+  "changeFluxerTag": "Felhasználónév módosítása",
   "@changeFluxerTag": {
-    "description": "Button label to open the EchoTag change flow."
+    "description": "Button label to open the username change flow."
   },
-  "customizeTagWithPlutoniumTooltip": "Tetszés szerint alakítsd 4 számjegyű EchoTagged (#{discriminator}) Reverbmal",
+  "customizeTagWithPlutoniumTooltip": "Tetszés szerint alakítsd 4 számjegyű Felhasználónév (#{discriminator}) Plutoniummal",
   "@customizeTagWithPlutoniumTooltip": {
-    "description": "Tooltip on the crown upsell button next to the EchoTag button.",
+    "description": "Tooltip on the crown upsell button next to the username button.",
     "placeholders": {
       "discriminator": {
         "type": "String"
@@ -1795,7 +1793,7 @@
   "@changeUsernameAndTagHint": {
     "description": "Hint text below the username buttons."
   },
-  "customTagSubscriptionWarning": "Az egyéni tagged (#{discriminator}) Reverb előfizetésedhez kötődik, és véletlenszerű tagra vált, ha lejár.",
+  "customTagSubscriptionWarning": "Az egyéni tagged (#{discriminator}) Plutonium előfizetésedhez kötődik, és véletlenszerű tagra vált, ha lejár.",
   "@customTagSubscriptionWarning": {
     "description": "Warning shown when user has a premium discriminator that is not lifetime.",
     "placeholders": {
@@ -1864,38 +1862,38 @@
   "@emojiPickerTitle": {
     "description": "Title for the emoji picker sheet."
   },
-  "plutoniumBadgePrivacyTitle": "Reverb jelvény adatvédelme",
+  "plutoniumBadgePrivacyTitle": "Plutonium jelvény adatvédelme",
   "@plutoniumBadgePrivacyTitle": {
     "description": "Heading for the premium badge privacy settings section."
   },
-  "plutoniumBadgePrivacyDescription": "Szabályozd, hogyan jelenjen meg a Reverb jelvényed mások számára",
+  "plutoniumBadgePrivacyDescription": "Szabályozd, hogyan jelenjen meg a Plutonium jelvényed mások számára",
   "@plutoniumBadgePrivacyDescription": {
     "description": "Subheading for the premium badge privacy settings section."
   },
-  "hidePlutoniumBadgeLabel": "Reverb jelvény teljes elrejtése",
+  "hidePlutoniumBadgeLabel": "Plutonium jelvény teljes elrejtése",
   "@hidePlutoniumBadgeLabel": {
-    "description": "Label for the toggle to hide the Reverb badge."
+    "description": "Label for the toggle to hide the Plutonium badge."
   },
-  "hidePlutoniumBadgeDescription": "Teljesen rejtsd el a Reverb jelvényedet más felhasználók elől",
+  "hidePlutoniumBadgeDescription": "Teljesen rejtsd el a Plutonium jelvényedet más felhasználók elől",
   "@hidePlutoniumBadgeDescription": {
-    "description": "Description for the toggle to hide the Reverb badge."
+    "description": "Description for the toggle to hide the Plutonium badge."
   },
-  "hidePlutoniumPurchaseDate": "Reverb vásárlási dátumának elrejtése",
+  "hidePlutoniumPurchaseDate": "Plutonium vásárlási dátumának elrejtése",
   "@hidePlutoniumPurchaseDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date."
+    "description": "Label for the toggle to hide the Plutonium purchase date."
   },
-  "hidePlutoniumPurchaseDateWithDate": "Reverb vásárlási dátumának elrejtése ({date})",
+  "hidePlutoniumPurchaseDateWithDate": "Plutonium vásárlási dátumának elrejtése ({date})",
   "@hidePlutoniumPurchaseDateWithDate": {
-    "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
+    "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
     "placeholders": {
       "date": {
         "type": "String"
       }
     }
   },
-  "hidePurchaseDateDescription": "Távolítsd el a Reverb vásárlásának dátumát a jelvényedről",
+  "hidePurchaseDateDescription": "Távolítsd el a Plutonium vásárlásának dátumát a jelvényedről",
   "@hidePurchaseDateDescription": {
-    "description": "Description for the toggle to hide the Reverb purchase date."
+    "description": "Description for the toggle to hide the Plutonium purchase date."
   },
   "maskVisionaryAsSubscription": "Látnok jelvény előfizetésként való megjelenítése",
   "@maskVisionaryAsSubscription": {
@@ -1922,7 +1920,7 @@
   "@hideVisionaryIdDescription": {
     "description": "Description for the toggle to hide the Visionary ID badge."
   },
-  "premiumTrialSubscriptionStarts": "Reverb próbaidőszakon vagy – az előfizetésed {date}-án kezdődik",
+  "premiumTrialSubscriptionStarts": "Plutonium próbaidőszakon vagy – az előfizetésed {date}-án kezdődik",
   "@premiumTrialSubscriptionStarts": {
     "description": "Trial banner title when user has an active subscription pending after trial.",
     "placeholders": {
@@ -1935,7 +1933,7 @@
   "@premiumTrialSubscriptionStartsDescription": {
     "description": "Trial banner description when user has an active subscription pending after trial."
   },
-  "premiumTrialExpiresOnProfile": "Reverb próbaidőszakon vagy, amely {date}-án jár le",
+  "premiumTrialExpiresOnProfile": "Plutonium próbaidőszakon vagy, amely {date}-án jár le",
   "@premiumTrialExpiresOnProfile": {
     "description": "Trial banner title with expiry date.",
     "placeholders": {
@@ -1944,29 +1942,29 @@
       }
     }
   },
-  "premiumTrialActiveProfile": "Reverb próbaidőszakon vagy",
+  "premiumTrialActiveProfile": "Plutonium próbaidőszakon vagy",
   "@premiumTrialActiveProfile": {
     "description": "Trial banner title without specific expiry date."
   },
-  "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max. 10 MB. Ajánlott: 512×512px. Animált profilképek (GIF) Reverbot igényelnek.",
+  "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max. 10 MB. Ajánlott: 512×512px. Animált profilképek (GIF) Plutoniumot igényelnek.",
   "@avatarDescriptionNonPremium": {
-    "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
+    "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
   },
   "bannerPlutoniumUpsell": "Tedd egyedivé a profilodat egy álló vagy animált borítóképével, hogy kitűnjön.",
   "@bannerPlutoniumUpsell": {
     "description": "Upsell text shown in place of banner upload for non-premium users."
   },
-  "getPlutonium": "Reverb beszerzése",
+  "getPlutonium": "Plutonium beszerzése",
   "@getPlutonium": {
-    "description": "Button label for the Reverb upsell call-to-action."
+    "description": "Button label for the Plutonium upsell call-to-action."
   },
-  "plutoniumNotAvailableTitle": "Reverb",
+  "plutoniumNotAvailableTitle": "Plutonium",
   "@plutoniumNotAvailableTitle": {
-    "description": "Title for the Reverb not-available-yet bottom sheet."
+    "description": "Title for the Plutonium not-available-yet bottom sheet."
   },
   "plutoniumNotAvailableBody": "Az alkalmazáson belüli vásárlások még nem érhetők el ezen a platformon. Maradj velünk – hamarosan!",
   "@plutoniumNotAvailableBody": {
-    "description": "Body text for the Reverb not-available-yet bottom sheet."
+    "description": "Body text for the Plutonium not-available-yet bottom sheet."
   },
   "profilePreviewLabel": "Előnézet",
   "@profilePreviewLabel": {
@@ -2008,7 +2006,7 @@
   "@communityNicknameLabel": {
     "description": "Label for the community nickname field"
   },
-  "perGuildPremiumUpsellText": "Az avatar, a banner, a kiemelőszín és az életrajz testreszabása az egyes közösségekhez Reverbot igényel. A közösségi becenév és a névmások mindenki számára ingyenesek.",
+  "perGuildPremiumUpsellText": "Az avatar, a banner, a kiemelőszín és az életrajz testreszabása az egyes közösségekhez Plutoniumot igényel. A közösségi becenév és a névmások mindenki számára ingyenesek.",
   "@perGuildPremiumUpsellText": {
     "description": "Upsell text for per-guild premium features"
   },
@@ -2586,7 +2584,7 @@
   "@dangerZoneDeleteDescription": {
     "description": "Description for account delete."
   },
-  "dangerZoneDeleteCancelSubscription": "A fiókod törlése előtt mondd le az aktív Reverb előfizetésedet a Reverb beállításaiban.",
+  "dangerZoneDeleteCancelSubscription": "A fiókod törlése előtt mondd le az aktív Plutonium előfizetésedet a Plutonium beállításaiban.",
   "@dangerZoneDeleteCancelSubscription": {
     "description": "Warning about active subscription before deletion."
   },
@@ -2844,7 +2842,7 @@
       }
     }
   },
-  "blockedUsersCopyTag": "EchoTag másolása",
+  "blockedUsersCopyTag": "Felhasználónév másolása",
   "@blockedUsersCopyTag": {
     "description": "Context menu item that copies the user's tag."
   },
@@ -3814,7 +3812,7 @@
       }
     }
   },
-  "chatAttachmentFileTooLarge": "Egy vagy több fájl meghaladja a méretkorlátot",
+  "chatAttachmentFileTooLarge": "{fileName} meghaladja a méretkorlátot ({fileSize})",
   "@chatAttachmentFileTooLarge": {
     "description": "Shown when a selected file is larger than allowed."
   },
@@ -4945,22 +4943,6 @@
   "@messagesMediaEditingPreserveDraftLabel": {
     "description": "Toggle label for preserving edit drafts on cancel."
   },
-  "accessibilityUnreadGroupTitle": "Olvasatlan jelzők",
-  "@accessibilityUnreadGroupTitle": {
-    "description": "Section title for unread-indicator accessibility settings."
-  },
-  "accessibilityUnreadGroupDescription": "Az olvasatlan üzenetjelzők megjelenítésének szabályozása.",
-  "@accessibilityUnreadGroupDescription": {
-    "description": "Section description for unread-indicator accessibility settings."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsLabel": "Halvány olvasatlan jelző megjelenítése némított csatornákon",
-  "@accessibilityShowFadedUnreadOnMutedChannelsLabel": {
-    "description": "Toggle label for showing a faded unread indicator on muted channels."
-  },
-  "accessibilityShowFadedUnreadOnMutedChannelsDescription": "Halványított olvasatlan jelző megjelenítése a némított közvetlen üzenetek és csatornák mellett, így egy pillantással továbbra is láthatja, ha van aktivitás.",
-  "@accessibilityShowFadedUnreadOnMutedChannelsDescription": {
-    "description": "Toggle description for showing a faded unread indicator on muted channels."
-  },
   "accessibilityDmMessagePreviewGroupTitle": "DM üzenetelőnézetek",
   "@accessibilityDmMessagePreviewGroupTitle": {
     "description": "Section title for DM message preview accessibility settings."
@@ -5467,7 +5449,7 @@
   },
   "characterCounterRemainingPlutoniumUpsell": "{remaining} karakter maradt. Szerezd meg a(z) {productName} terméket, hogy akár {premiumMaxLength} karaktert írhass.",
   "@characterCounterRemainingPlutoniumUpsell": {
-    "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
+    "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
     "placeholders": {
       "remaining": {
         "type": "int"
@@ -9263,10 +9245,6 @@
   "@audioAndVideoMicTestSectionTitle": {
     "description": "Subsection title for microphone test controls."
   },
-  "audioAndVideoMicTestSectionDescription": "Meghallgathatod, hogy a jelenlegi beállításokkal hogy hangzol.",
-  "@audioAndVideoMicTestSectionDescription": {
-    "description": "Subsection description for microphone test controls."
-  },
   "audioAndVideoMicTestStartLabel": "Mikrofonpróba indítása",
   "@audioAndVideoMicTestStartLabel": {
     "description": "Button label to start the microphone test."
@@ -9429,15 +9407,5 @@
   "accessibilitySaturationDescription": "Szabályozza, hogy mennyire élénken jelennek meg a témaszínek az alkalmazásban.",
   "@accessibilitySaturationDescription": {
     "description": "Section description for the theme saturation slider on the accessibility settings page."
-  },
-  "guildSettingsDiscoveryFormTitle": "Jelentkezés",
-  "@guildSettingsDiscoveryFormTitle": {
-    "description": "Title for discovery application form."
-  },
-  "guildSettingsDiscoveryStatusTitle": "Állapot",
-  "@guildSettingsDiscoveryStatusTitle": {
-    "description": "Title for discovery application status section."
-  },
-  "cropTouchHint": "Pinch to zoom, drag to reposition",
-  "cropMouseHint": "Drag corners to resize, drag inside to move"
+  }
 }

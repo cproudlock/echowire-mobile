@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:cross_file/cross_file.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/audio/chat_attachment/chat_attachment_audio_session.dart';
 import 'package:fluxer_app/core/badge/app_icon_badge_coordinator.dart';
 import 'package:fluxer_app/core/build/push_provider_guard.dart';
 import 'package:fluxer_app/core/permissions/guild_channel_permission_cleanup.dart';
@@ -20,11 +20,14 @@ import 'package:fluxer_app/core/share/shared_media_payload.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/share_media_sheet.dart';
 import 'package:fluxer_app/features/gateway/providers/guild_sync_provider.dart';
+import 'package:fluxer_app/features/guilds/providers/guild_availability_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_view_model.dart';
+import 'package:fluxer_app/features/guilds/utils/guild_outage_availability.dart';
 import 'package:fluxer_app/features/members/providers/member_list_desired_ranges_provider.dart';
 import 'package:fluxer_app/features/members/providers/member_list_viewport_provider.dart';
 import 'package:fluxer_app/features/shell/navigation/drawer_navigation_coordinator.dart';
 import 'package:fluxer_app/features/voice/tts/fluxer_tts_provider.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 class ShellRouteListeners extends ConsumerStatefulWidget {
   const ShellRouteListeners({required this.child, super.key});
@@ -82,10 +85,10 @@ class _ShellRouteListenersState extends ConsumerState<ShellRouteListeners> {
           return;
         }
         _stopTtsIfLeavingSpokenChannel(next);
-        if (previous == null) {
-          return;
+        if (previous != null) {
+          _stopAttachmentAudioOnChannelChange();
+          _scheduleInactiveChannelCleanup(previous);
         }
-        _scheduleInactiveChannelCleanup(previous);
       });
 
     if (PushProviderGuard.isUnifiedPush) {
@@ -171,10 +174,21 @@ class _ShellRouteListenersState extends ConsumerState<ShellRouteListeners> {
   void _applyActiveGuildEffects(String guildId) {
     final guilds = ref.read(guildListViewModelProvider).guilds;
     final guild = guilds.where((g) => g.id == guildId).firstOrNull;
+    if (isGuildOutageUnavailable(
+      guildId: guildId,
+      trackedUnavailableGuildIds: ref.read(guildAvailabilityProvider),
+      guild: guild,
+    )) {
+      return;
+    }
     ref
         .read(channelListViewModelProvider.notifier)
         .loadChannels(guildId, guild: guild);
     ref.read(guildSyncProvider.notifier).syncIfNeeded(guildId);
+  }
+
+  void _stopAttachmentAudioOnChannelChange() {
+    unawaited(ChatAttachmentAudioSession.instance.clearActivePlayback());
   }
 
   void _stopTtsIfLeavingSpokenChannel(String? nextChannelId) {

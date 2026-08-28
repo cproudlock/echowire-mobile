@@ -15,12 +15,12 @@
 /// null anchor degrades to the same bottom-anchored layout.
 library;
 
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/chat_loading_spinner.dart';
 import 'package:fluxer_app/features/chat/utils/channel_message_stream.dart';
 import 'package:fluxer_app/features/chat/utils/chat_spinner_debug.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 /// Which side of the anchor's stream item the split boundary falls on.
 enum MessageListAnchorEdge {
@@ -54,6 +54,7 @@ class MessageListViewport extends StatelessWidget {
     required this.isLoadingMore,
     required this.isLoadingNewer,
     required this.trailingInset,
+    this.leadingPad = 0,
     this.startOfChannelHeader,
     super.key,
   });
@@ -99,6 +100,10 @@ class MessageListViewport extends StatelessWidget {
   /// Extent reserved after the trailing sliver for status overlays.
   final double trailingInset;
 
+  /// Extra space before the oldest leading item so a short channel can still
+  /// park the unread divider at [anchorFraction].
+  final double leadingPad;
+
   final Widget? startOfChannelHeader;
 
   @override
@@ -134,6 +139,8 @@ class MessageListViewport extends StatelessWidget {
                 slivers: [
                   if (startOfChannelHeader != null)
                     SliverToBoxAdapter(child: startOfChannelHeader),
+                  if (leadingPad > 0)
+                    SliverToBoxAdapter(child: SizedBox(height: leadingPad)),
                   SliverPadding(
                     padding: const EdgeInsets.only(top: 8),
                     sliver: SliverList(

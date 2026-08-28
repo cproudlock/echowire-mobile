@@ -1,14 +1,21 @@
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/build/app_build_config.dart';
 import 'package:fluxer_app/core/platform/fluxer_platform.dart';
 import 'package:fluxer_app/features/settings/domain/user_settings_nav_group.dart';
 import 'package:fluxer_app/features/settings/domain/user_settings_section.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/settings_sidebar.dart';
+import 'package:fluxer_app/features/settings/utils/user_settings_billing_utils.dart';
 import 'package:fluxer_app/features/settings/utils/user_settings_nav_l10n.dart';
+import 'package:fluxer_app/features/settings/utils/user_settings_search.dart';
 import 'package:fluxer_app/features/settings/utils/user_settings_staff_only_utils.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+
+const String kFluxerLabsInviteUrl = 'https://fluxer.gg/fluxer-labs';
+
+bool get isUserSettingsJoinFluxerLabsAvailable =>
+    AppBuildConfig.isBeta || AppBuildConfig.isCanary;
 
 class UserSettingsDesktopNavEntry {
   const UserSettingsDesktopNavEntry._({
@@ -17,6 +24,7 @@ class UserSettingsDesktopNavEntry {
     this.icon,
     this.isSeparator = false,
     this.isLogout = false,
+    this.isJoinFluxerLabs = false,
   });
 
   const UserSettingsDesktopNavEntry.separator([UserSettingsNavGroup? group])
@@ -30,11 +38,15 @@ class UserSettingsDesktopNavEntry {
   const UserSettingsDesktopNavEntry.logout()
     : this._(icon: PhosphorIconsFill.signOut, isLogout: true);
 
+  const UserSettingsDesktopNavEntry.joinFluxerLabs()
+    : this._(icon: PhosphorIconsFill.testTube, isJoinFluxerLabs: true);
+
   final UserSettingsNavGroup? group;
   final UserSettingsSection? section;
   final IconData? icon;
   final bool isSeparator;
   final bool isLogout;
+  final bool isJoinFluxerLabs;
 
   SettingsSidebarItem toSidebarItem(FluxerLocalizations l10n) {
     if (isSeparator) {
@@ -52,6 +64,9 @@ class UserSettingsDesktopNavEntry {
         isDestructive: true,
       );
     }
+    if (isJoinFluxerLabs) {
+      return SettingsSidebarItem(l10n.userSettingsJoinFluxerLabs, icon: icon);
+    }
     return SettingsSidebarItem(
       userSettingsSectionLabel(l10n, section!),
       icon: icon,
@@ -62,11 +77,14 @@ class UserSettingsDesktopNavEntry {
     if (isLogout) {
       return l10n.userSettingsNavLogOut;
     }
+    if (isJoinFluxerLabs) {
+      return l10n.userSettingsJoinFluxerLabs;
+    }
     return userSettingsSectionLabel(l10n, section!);
   }
 }
 
-const _userSettingsDesktopNavBeforeStaffOnly = [
+const _userSettingsDesktopNavYourAccount = [
   UserSettingsDesktopNavEntry.separator(UserSettingsNavGroup.yourAccount),
   UserSettingsDesktopNavEntry.link(
     UserSettingsSection.profile,
@@ -76,14 +94,6 @@ const _userSettingsDesktopNavBeforeStaffOnly = [
     UserSettingsSection.securityLogin,
     icon: PhosphorIconsFill.shieldCheck,
   ),
-  // UserSettingsDesktopNavEntry.link(
-  //   UserSettingsSection.fluxerPlutonium,
-  //   icon: PhosphorIconsFill.crown,
-  // ),
-  // UserSettingsDesktopNavEntry.link(
-  //   UserSettingsSection.giftsAndCodes,
-  //   icon: PhosphorIconsFill.gift,
-  // ),
   UserSettingsDesktopNavEntry.link(
     UserSettingsSection.privacyDashboard,
     icon: PhosphorIconsFill.eyeSlash,
@@ -104,6 +114,21 @@ const _userSettingsDesktopNavBeforeStaffOnly = [
     UserSettingsSection.connections,
     icon: PhosphorIconsFill.userList,
   ),
+];
+
+const _userSettingsDesktopNavBilling = [
+  UserSettingsDesktopNavEntry.separator(UserSettingsNavGroup.billing),
+  UserSettingsDesktopNavEntry.link(
+    UserSettingsSection.fluxerPlutonium,
+    icon: PhosphorIconsFill.crown,
+  ),
+  UserSettingsDesktopNavEntry.link(
+    UserSettingsSection.giftsAndCodes,
+    icon: PhosphorIconsFill.gift,
+  ),
+];
+
+const _userSettingsDesktopNavApplicationStart = [
   UserSettingsDesktopNavEntry.separator(UserSettingsNavGroup.application),
   UserSettingsDesktopNavEntry.link(
     UserSettingsSection.lookAndFeel,
@@ -125,10 +150,16 @@ const _userSettingsDesktopNavBeforeStaffOnly = [
     UserSettingsSection.audioAndVideo,
     icon: PhosphorIconsFill.microphone,
   ),
-  // UserSettingsDesktopNavEntry.link(
-  //   UserSettingsSection.keybinds,
-  //   icon: PhosphorIconsFill.keyboard,
-  // ),
+];
+
+const _userSettingsDesktopNavApplicationShortcuts = [
+  UserSettingsDesktopNavEntry.link(
+    UserSettingsSection.shortcuts,
+    icon: PhosphorIconsFill.keyboard,
+  ),
+];
+
+const _userSettingsDesktopNavApplicationEnd = [
   UserSettingsDesktopNavEntry.link(
     UserSettingsSection.languageAndTime,
     icon: PhosphorIconsBold.translate,
@@ -138,7 +169,7 @@ const _userSettingsDesktopNavBeforeStaffOnly = [
 const _userSettingsDesktopNavAfterLanguageAndTime = [
   UserSettingsDesktopNavEntry.link(
     UserSettingsSection.advanced,
-    icon: PhosphorIconsFill.flask,
+    icon: PhosphorIconsFill.gear,
   ),
   UserSettingsDesktopNavEntry.separator(UserSettingsNavGroup.developer),
   UserSettingsDesktopNavEntry.link(
@@ -163,16 +194,31 @@ const _userSettingsDesktopNavStaffOnly = [
   ),
 ];
 
-const _userSettingsDesktopNavAfterStaffOnly = [
+const _userSettingsDesktopNavWhatsNew = [
   UserSettingsDesktopNavEntry.link(
     UserSettingsSection.whatsNew,
     icon: PhosphorIconsFill.megaphone,
   ),
-  UserSettingsDesktopNavEntry.logout(),
 ];
 
-List<UserSettingsDesktopNavEntry> get userSettingsDesktopNav => [
-  ..._userSettingsDesktopNavBeforeStaffOnly,
+const _userSettingsDesktopNavAppLicenses = [
+  UserSettingsDesktopNavEntry.link(
+    UserSettingsSection.appLicenses,
+    icon: PhosphorIconsFill.scroll,
+  ),
+];
+
+const _userSettingsDesktopNavLogout = [UserSettingsDesktopNavEntry.logout()];
+
+List<UserSettingsDesktopNavEntry> buildUserSettingsDesktopNav({
+  required bool showBilling,
+  required bool isTouchPrimary,
+}) => [
+  ..._userSettingsDesktopNavYourAccount,
+  if (showBilling) ..._userSettingsDesktopNavBilling,
+  ..._userSettingsDesktopNavApplicationStart,
+  if (!isTouchPrimary) ..._userSettingsDesktopNavApplicationShortcuts,
+  ..._userSettingsDesktopNavApplicationEnd,
   if (isFluxerNativeMobileOs)
     const UserSettingsDesktopNavEntry.link(
       UserSettingsSection.defaultApps,
@@ -180,23 +226,48 @@ List<UserSettingsDesktopNavEntry> get userSettingsDesktopNav => [
     ),
   ..._userSettingsDesktopNavAfterLanguageAndTime,
   if (AppBuildConfig.isCanary) ..._userSettingsDesktopNavStaffOnly,
-  ..._userSettingsDesktopNavAfterStaffOnly,
+  ..._userSettingsDesktopNavWhatsNew,
+  if (isUserSettingsJoinFluxerLabsAvailable)
+    const UserSettingsDesktopNavEntry.joinFluxerLabs(),
+  ..._userSettingsDesktopNavAppLicenses,
+  ..._userSettingsDesktopNavLogout,
 ];
 
-int? indexForUserSettingsSection(UserSettingsSection section) {
+int? indexForUserSettingsSection(
+  UserSettingsSection section, {
+  required bool showBilling,
+  required bool isTouchPrimary,
+}) {
   if (!isUserSettingsStaffOnlySectionAvailable(section)) {
     return null;
   }
-  for (var i = 0; i < userSettingsDesktopNav.length; i++) {
-    if (userSettingsDesktopNav[i].section == section) {
+  if (!isUserSettingsBillingSectionAvailable(
+    section,
+    showBilling: showBilling,
+  )) {
+    return null;
+  }
+  final List<UserSettingsDesktopNavEntry> nav = buildUserSettingsDesktopNav(
+    showBilling: showBilling,
+    isTouchPrimary: isTouchPrimary,
+  );
+  for (var i = 0; i < nav.length; i++) {
+    if (nav[i].section == section) {
       return i;
     }
   }
   return null;
 }
 
-IconData? iconForUserSettingsSection(UserSettingsSection section) {
-  for (final UserSettingsDesktopNavEntry entry in userSettingsDesktopNav) {
+IconData? iconForUserSettingsSection(
+  UserSettingsSection section, {
+  required bool showBilling,
+  required bool isTouchPrimary,
+}) {
+  for (final UserSettingsDesktopNavEntry entry in buildUserSettingsDesktopNav(
+    showBilling: showBilling,
+    isTouchPrimary: isTouchPrimary,
+  )) {
     if (entry.section == section) {
       return entry.icon;
     }
@@ -208,7 +279,10 @@ List<FluxerSettingsNavGroup> buildUserSettingsMobileNavGroups({
   required FluxerLocalizations l10n,
   required void Function(UserSettingsSection section) onOpenSection,
   required VoidCallback onOpenAppLogs,
+  required VoidCallback onJoinFluxerLabs,
   required VoidCallback onLogout,
+  required bool showBilling,
+  required bool isTouchPrimary,
 }) {
   FluxerSettingsNavItem link(UserSettingsSection section, IconData icon) {
     return FluxerSettingsNavItem(
@@ -224,8 +298,6 @@ List<FluxerSettingsNavGroup> buildUserSettingsMobileNavGroups({
       items: [
         link(UserSettingsSection.profile, PhosphorIconsFill.user),
         link(UserSettingsSection.securityLogin, PhosphorIconsFill.shieldCheck),
-        // link(UserSettingsSection.fluxerPlutonium, PhosphorIconsFill.crown),
-        // link(UserSettingsSection.giftsAndCodes, PhosphorIconsFill.gift),
         link(UserSettingsSection.privacyDashboard, PhosphorIconsFill.eyeSlash),
         link(UserSettingsSection.authorizedApps, PhosphorIconsFill.robot),
         link(UserSettingsSection.blockedUsers, PhosphorIconsFill.prohibit),
@@ -233,6 +305,14 @@ List<FluxerSettingsNavGroup> buildUserSettingsMobileNavGroups({
         link(UserSettingsSection.connections, PhosphorIconsFill.userList),
       ],
     ),
+    if (showBilling)
+      FluxerSettingsNavGroup(
+        label: userSettingsNavGroupLabel(l10n, UserSettingsNavGroup.billing),
+        items: [
+          link(UserSettingsSection.fluxerPlutonium, PhosphorIconsFill.crown),
+          link(UserSettingsSection.giftsAndCodes, PhosphorIconsFill.gift),
+        ],
+      ),
     FluxerSettingsNavGroup(
       label: userSettingsNavGroupLabel(l10n, UserSettingsNavGroup.application),
       items: [
@@ -244,10 +324,12 @@ List<FluxerSettingsNavGroup> buildUserSettingsMobileNavGroups({
         ),
         link(UserSettingsSection.chat, PhosphorIconsFill.chatCircle),
         link(UserSettingsSection.audioAndVideo, PhosphorIconsFill.microphone),
+        if (!isTouchPrimary)
+          link(UserSettingsSection.shortcuts, PhosphorIconsFill.keyboard),
         link(UserSettingsSection.languageAndTime, PhosphorIconsBold.translate),
         if (isFluxerNativeMobileOs)
           link(UserSettingsSection.defaultApps, PhosphorIconsFill.squaresFour),
-        link(UserSettingsSection.advanced, PhosphorIconsFill.flask),
+        link(UserSettingsSection.advanced, PhosphorIconsFill.gear),
       ],
     ),
     FluxerSettingsNavGroup(
@@ -273,6 +355,13 @@ List<FluxerSettingsNavGroup> buildUserSettingsMobileNavGroups({
     FluxerSettingsNavGroup(
       items: [
         link(UserSettingsSection.whatsNew, PhosphorIconsFill.megaphone),
+        if (isUserSettingsJoinFluxerLabsAvailable)
+          FluxerSettingsNavItem(
+            label: l10n.userSettingsJoinFluxerLabs,
+            icon: PhosphorIconsFill.testTube,
+            onTap: onJoinFluxerLabs,
+          ),
+        link(UserSettingsSection.appLicenses, PhosphorIconsFill.scroll),
         FluxerSettingsNavItem(
           label: l10n.userSettingsNavLogOut,
           icon: PhosphorIconsFill.signOut,
@@ -281,5 +370,93 @@ List<FluxerSettingsNavGroup> buildUserSettingsMobileNavGroups({
         ),
       ],
     ),
+  ];
+}
+
+IconData _searchSectionIcon(
+  UserSettingsSection section, {
+  required bool showBilling,
+  required bool isTouchPrimary,
+}) {
+  return iconForUserSettingsSection(
+        section,
+        showBilling: showBilling,
+        isTouchPrimary: isTouchPrimary,
+      ) ??
+      PhosphorIconsFill.gear;
+}
+
+final class UserSettingsSearchSidebar {
+  const UserSettingsSearchSidebar({
+    required this.items,
+    required this.hitAtIndex,
+  });
+
+  final List<SettingsSidebarItem> items;
+  final List<UserSettingsSearchHit?> hitAtIndex;
+}
+
+UserSettingsSearchSidebar buildUserSettingsSearchSidebar({
+  required FluxerLocalizations l10n,
+  required List<UserSettingsSearchHit> hits,
+  required bool showBilling,
+  required bool isTouchPrimary,
+}) {
+  final List<SettingsSidebarItem> items = [];
+  final List<UserSettingsSearchHit?> hitAtIndex = [];
+  for (final MapEntry<UserSettingsSection, List<UserSettingsSearchHit>> entry
+      in groupUserSettingsSearchHits(hits)) {
+    final UserSettingsSection section = entry.key;
+    final List<UserSettingsSearchHit> sectionHits = entry.value;
+    final bool onlySectionHit =
+        sectionHits.length == 1 && sectionHits.first.fieldId == null;
+    if (!onlySectionHit) {
+      items.add(
+        SettingsSidebarItem.separator(userSettingsSectionLabel(l10n, section)),
+      );
+      hitAtIndex.add(null);
+    }
+    final IconData icon = _searchSectionIcon(
+      section,
+      showBilling: showBilling,
+      isTouchPrimary: isTouchPrimary,
+    );
+    for (final UserSettingsSearchHit hit in sectionHits) {
+      items.add(SettingsSidebarItem(hit.label, icon: icon));
+      hitAtIndex.add(hit);
+    }
+  }
+  return UserSettingsSearchSidebar(items: items, hitAtIndex: hitAtIndex);
+}
+
+List<FluxerSettingsNavGroup> buildUserSettingsSearchNavGroups({
+  required FluxerLocalizations l10n,
+  required List<UserSettingsSearchHit> hits,
+  required void Function(UserSettingsSection section, {String? initialFieldId})
+  onOpen,
+  required bool showBilling,
+  required bool isTouchPrimary,
+}) {
+  return [
+    for (final MapEntry<UserSettingsSection, List<UserSettingsSearchHit>> entry
+        in groupUserSettingsSearchHits(hits))
+      FluxerSettingsNavGroup(
+        label: userSettingsSectionLabel(l10n, entry.key),
+        items: [
+          for (final UserSettingsSearchHit hit in entry.value)
+            FluxerSettingsNavItem(
+              label: hit.label,
+              hint: hit.fieldId == null
+                  ? null
+                  : userSettingsSectionLabel(l10n, entry.key),
+              icon: _searchSectionIcon(
+                entry.key,
+                showBilling: showBilling,
+                isTouchPrimary: isTouchPrimary,
+              ),
+              onTap: () => onOpen(entry.key, initialFieldId: hit.fieldId),
+            ),
+        ],
+      ),
   ];
 }

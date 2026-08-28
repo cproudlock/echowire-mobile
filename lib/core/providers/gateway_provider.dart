@@ -11,11 +11,11 @@ import 'package:fluxer_app/core/providers/gateway_connection_provider.dart';
 import 'package:fluxer_app/core/providers/gateway_performance_providers.dart';
 import 'package:fluxer_app/core/providers/gateway_ready_provider.dart';
 import 'package:fluxer_app/core/providers/gateway_session_recovery_provider.dart';
+import 'package:fluxer_app/core/providers/splash_exit_allowed_provider.dart';
 import 'package:fluxer_app/core/push/pending_push_notification_path_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preferences_store.dart';
-import 'package:fluxer_app/core/synced_preferences/synced_theme_hydration.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/providers/theme_preference_provider.dart';
 import 'package:fluxer_app/features/auth/providers/current_auth_session_provider.dart';
@@ -25,6 +25,7 @@ import 'package:fluxer_app/features/chat/providers/core/chat_read_viewport_provi
 import 'package:fluxer_app/features/chat/providers/core/chat_view_model.dart';
 import 'package:fluxer_app/features/chat/providers/messages/message_realtime_events.dart';
 import 'package:fluxer_app/features/chat/providers/messages/message_realtime_provider.dart';
+import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_sync_provider.dart';
 import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_tracker.dart';
 import 'package:fluxer_app/features/chat/utils/message_page_sync.dart';
 import 'package:fluxer_app/features/friends/providers/blocked_user_ids_provider.dart';
@@ -82,9 +83,42 @@ Raw<StreamSubscription<GatewayEvent>?> gatewayEventListener(Ref ref) {
   final currentUserId = ref.read(currentUserIdProvider);
   final messageBus = ref.watch(messageRealtimeBusProvider);
   final mentionCache = ref.watch(messageMentionContextCacheProvider);
-  ref.listen<Set<String>>(blockedUserIdsProvider, (_, Set<String> next) {
-    mentionCache.blockedUserIds = next;
-  }, fireImmediately: true);
+  ({String? guildId})? pendingReadyHeavyWork;
+
+  void runReadyHeavyWork(String? guildId) {
+    unawaited(
+      ref
+          .read(channelPermissionCacheProvider.notifier)
+          .rebuildAfterReady(priorityGuildId: guildId),
+    );
+    ref
+      ..invalidate(effectiveGuildChannelPermissionBitsProvider)
+      ..invalidate(channelLocalGuildChannelPermissionBitsProvider);
+    if (guildId != null) {
+      ref.read(guildSyncProvider.notifier).syncIfNeeded(guildId, force: true);
+    }
+  }
+
+  void scheduleReadyHeavyWork(String? guildId) {
+    if (ref.read(splashRevealCompleteProvider)) {
+      runReadyHeavyWork(guildId);
+      return;
+    }
+    pendingReadyHeavyWork = (guildId: guildId);
+  }
+
+  ref
+    ..listen<bool>(splashRevealCompleteProvider, (_, bool complete) {
+      final ({String? guildId})? pending = pendingReadyHeavyWork;
+      if (!complete || pending == null) {
+        return;
+      }
+      pendingReadyHeavyWork = null;
+      runReadyHeavyWork(pending.guildId);
+    })
+    ..listen<Set<String>>(blockedUserIdsProvider, (_, Set<String> next) {
+      mentionCache.blockedUserIds = next;
+    }, fireImmediately: true);
   final handler = GatewayEventHandler(
     database: db,
     readStateRepository: ReadStateRepository(
@@ -121,14 +155,6 @@ Raw<StreamSubscription<GatewayEvent>?> gatewayEventListener(Ref ref) {
         );
       }
       final String? activeGuildId = ref.read(activeGuildIdProvider);
-      unawaited(
-        ref
-            .read(channelPermissionCacheProvider.notifier)
-            .rebuildAfterReady(priorityGuildId: activeGuildId),
-      );
-      ref
-        ..invalidate(effectiveGuildChannelPermissionBitsProvider)
-        ..invalidate(channelLocalGuildChannelPermissionBitsProvider);
       ref.read(gatewayReadyProvider.notifier).setReady();
       ref.read(guildSyncProvider.notifier).clearAll();
       clearGuildRolesPrefetchState();
@@ -136,12 +162,9 @@ Raw<StreamSubscription<GatewayEvent>?> gatewayEventListener(Ref ref) {
       ref.read(memberListViewportProvider.notifier).clearSession();
       ref.read(memberListDesiredRangesProvider.notifier).clearAll();
       ref.read(memberListUpdateBatcherProvider).clearAll();
-      if (activeGuildId != null) {
-        ref
-            .read(guildSyncProvider.notifier)
-            .syncIfNeeded(activeGuildId, force: true);
-      }
+      scheduleReadyHeavyWork(activeGuildId);
       ref.read(gatewaySessionRecoveryProvider.notifier).bump();
+      ref.read(gatewayFullRecoveryProvider.notifier).bump();
       ref.read(pendingPushNotificationPathProvider.notifier).flushIfReady();
     },
     onResumed: () {
@@ -303,10 +326,16 @@ Raw<StreamSubscription<GatewayEvent>?> gatewayEventListener(Ref ref) {
     onMessageReactionChange: (channelId, messageId) => messageBus.emit(
       MessageReactionsChanged(channelId: channelId, messageId: messageId),
     ),
-    onOwnMessageCreated: (channelId) {
+    onOwnMessageCreated: (channelId, sentAt) {
       ref.read(chatViewModelProvider.notifier)
         ..clearStickyUnreadFor(channelId)
         ..cancelPendingOutgoingAck(channelId);
+      ref
+          .read(slowmodeTrackerProvider.notifier)
+          .updateSendTimestamp(channelId, sentAt);
+      unawaited(
+        ref.read(slowmodeSyncProvider.notifier).fetchIfNeeded(channelId),
+      );
     },
     onMessageAcked: (channelId, {required manual}) {
       ref
@@ -418,9 +447,5 @@ Future<void> _handleUserSettingsHydrate(
         settings,
         themeCustomizationApplier: notifier.applySyncedThemeCustomization,
       );
-  await applySyncedThemeFromUserSettings(
-    settings,
-    notifier.applySyncedThemeCustomization,
-  );
   await notifier.applyServerSettings(settings);
 }

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:material_ui/material_ui.dart';
 
 enum FluxerGuildNavigationType { customize, browse, guide, linkedRoles }
 
@@ -73,6 +73,14 @@ typedef FluxerSelectionContextMenuBuilder =
       BuildContext context,
       SelectableRegionState selectableRegionState,
     );
+typedef FluxerEmojiLongPressHandler =
+    void Function(
+      BuildContext context, {
+      required String? emojiId,
+      required String name,
+      required bool animated,
+      required bool isCustom,
+    });
 
 class FluxerSpoilerSyncController extends ChangeNotifier {
   final Set<String> _revealedKeys = <String>{};
@@ -136,6 +144,7 @@ class FluxerMarkdownConfig {
     this.onCopyCode,
     this.timestampFormatter,
     this.selectionContextMenuBuilder,
+    this.onEmojiLongPress,
     this.alwaysUnderlineLinks = false,
     this.dimStrikethroughText = true,
   });
@@ -174,6 +183,31 @@ class FluxerMarkdownConfig {
   final FluxerCodeCopyHandler? onCopyCode;
   final FluxerTimestampFormatter? timestampFormatter;
   final FluxerSelectionContextMenuBuilder? selectionContextMenuBuilder;
+  final FluxerEmojiLongPressHandler? onEmojiLongPress;
   final bool alwaysUnderlineLinks;
   final bool dimStrikethroughText;
+
+  Object get layoutCacheKey => (
+    animateCustomEmoji,
+    linkColor,
+    blockquoteBorderColor,
+    blockquoteTextColor,
+    inlineCodeBackgroundColor,
+    inlineCodeTextColor,
+    codeTextStyle,
+    tableBorderColor,
+    tableHeaderBackgroundColor,
+    tableHeaderTextColor,
+    tableRowOddBackgroundColor,
+    tableRowEvenBackgroundColor,
+    tableBorderRadius,
+    spoilerBackgroundColor,
+    spoilersInitiallyRevealed,
+    alwaysUnderlineLinks,
+    dimStrikethroughText,
+    spoilerSyncController,
+    unicodeEmojiPattern,
+    internalLinkPattern,
+    selectionContextMenuBuilder,
+  );
 }

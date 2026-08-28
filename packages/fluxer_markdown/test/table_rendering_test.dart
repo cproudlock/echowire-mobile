@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_markdown/src/config/fluxer_markdown_config.dart';
 import 'package:fluxer_markdown/src/contexts/fluxer_markdown_context.dart';
 import 'package:fluxer_markdown/src/widgets/fluxer_markdown.dart';
+import 'package:material_ui/material_ui.dart';
 
 const Color _headerBackgroundColor = Color(0xFF112233);
 const Color _rowOddBackgroundColor = Color(0xFF223344);
@@ -69,6 +69,36 @@ void main() {
       expect(find.textContaining('A', findRichText: true), findsOneWidget);
       expect(find.byType(Table), findsOneWidget);
       expect(find.byType(SingleChildScrollView), findsOneWidget);
+    });
+
+    testWidgets('renders a table that follows a text line without a blank line', (
+      tester,
+    ) async {
+      const String input =
+          "Example of a table I was building to compare web frameworks that renders on desktop that doesn't on mobile cc <@1472583967301656587> \r\n"
+          '| Framework | Type | Pros | Cons | Best for |\r\n'
+          '| --------- | ---- | ---- | ---- | -------- |\r\n'
+          '| React | UI library | Largest ecosystem | Requires choosing additional libraries | Interactive web apps |\r\n'
+          '| Vue | UI framework | Easy to learn | Smaller ecosystem than React | Beginners |';
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: FluxerMarkdown(
+              data: input,
+              config: _testMarkdownConfig,
+              baseStyle: _baseStyle,
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byType(Table), findsOneWidget);
+      expect(
+        find.textContaining('Framework', findRichText: true),
+        findsOneWidget,
+      );
+      expect(find.textContaining('Vue', findRichText: true), findsOneWidget);
     });
 
     testWidgets('uses configured header and zebra row backgrounds', (

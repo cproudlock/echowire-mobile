@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
@@ -11,6 +10,7 @@ import 'package:fluxer_app/features/ui/modal/fluxer_modal.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart';
 
 class DeleteChannelFlow {
@@ -39,7 +39,7 @@ class DeleteChannelFlow {
             );
         onDeleted?.call();
         if (context.mounted) {
-          unawaited(Navigator.of(context).maybePop());
+          Navigator.of(context).maybePop();
         }
         toast.show(
           FluxerToast(message: title, variant: FluxerToastVariant.success),

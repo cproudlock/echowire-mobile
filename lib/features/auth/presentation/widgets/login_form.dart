@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/auth/presentation/sheets/instance_selector_sheet.dart';
 import 'package:fluxer_app/features/auth/presentation/widgets/auth_form_error_text.dart';
@@ -16,14 +16,14 @@ import 'package:fluxer_app/features/ui/button/fluxer_button.dart';
 import 'package:fluxer_app/features/ui/input/fluxer_input.dart';
 import 'package:fluxer_app/features/ui/text_link/fluxer_text_link.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/keyboard_focus_restore.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class LoginForm extends ConsumerStatefulWidget {
-  const LoginForm({required this.showBrowserLogin, this.heading, super.key});
+  const LoginForm({this.heading, super.key});
 
-  final bool showBrowserLogin;
   final String? heading;
 
   @override
@@ -177,6 +177,9 @@ class _LoginFormState extends ConsumerState<LoginForm>
     final WellKnownFluxerResponseSso? ssoConfig = ref
         .watch(authInstanceSnapshotProvider)
         .ssoConfig;
+    final bool emailsEnabled = ref.watch(
+      instanceRuntimeConfigProvider.select((config) => config.emailsEnabled),
+    );
     final String ssoProviderName = ssoConfig?.displayName ?? 'Single Sign-On';
 
     ref
@@ -243,12 +246,13 @@ class _LoginFormState extends ConsumerState<LoginForm>
               onSuffixTap: notifier.togglePassword,
             ),
             SizedBox(height: layout.s1),
-            FluxerTextLink(
-              text: strings.forgotPassword,
-              onTap: notifier.showForgotPasswordScreen,
-              style: context.textStyles.bodySmall,
-              color: context.colors.textTertiary,
-            ),
+            if (emailsEnabled)
+              FluxerTextLink(
+                text: strings.forgotPassword,
+                onTap: notifier.showForgotPasswordScreen,
+                style: context.textStyles.bodySmall,
+                color: context.colors.textTertiary,
+              ),
             SizedBox(height: layout.s6),
             AnimatedSize(
               duration: context.motion.fast,
@@ -283,14 +287,6 @@ class _LoginFormState extends ConsumerState<LoginForm>
               SsoButton(
                 enabled: !vm.isLoggingIn,
                 subtitle: strings.preferSso(ssoProviderName),
-              ),
-            ],
-            if (widget.showBrowserLogin) ...[
-              SizedBox(height: layout.s2),
-              FluxerButton.secondary(
-                onPressed: () {},
-                icon: PhosphorIconsFill.monitor,
-                label: strings.logInViaBrowser,
               ),
             ],
             SizedBox(height: layout.s5),

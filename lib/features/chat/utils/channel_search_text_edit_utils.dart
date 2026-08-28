@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 class SearchTextEditResult {
   const SearchTextEditResult({required this.text, required this.cursor});
@@ -48,9 +48,9 @@ bool _queryContainsHintToken(String query, String token) {
   }
   final RegExp pattern = RegExp(
     r'(?:^|\s)(?:from|mentions|in|-from|-mentions|-in):'
-    r'(?:"'
+    '(?:"'
     '${RegExp.escape(token)}'
-    r'"|'
+    '"|'
     '${RegExp.escape(token)}'
     r')(?=\s|$)',
     caseSensitive: false,

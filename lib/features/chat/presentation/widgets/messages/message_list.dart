@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as drift_db;
@@ -11,6 +10,8 @@ import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/core/theme/providers/theme_preference_provider.dart';
+import 'package:fluxer_app/features/accessibility/effective_motion_preferences_provider.dart';
+import 'package:fluxer_app/features/accessibility/message_group_spacing.dart';
 import 'package:fluxer_app/features/channels/data/read_state_utils.dart';
 import 'package:fluxer_app/features/chat/data/chat_unread_summary.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
@@ -28,6 +29,7 @@ import 'package:fluxer_app/features/chat/presentation/'
     'sheets/remove_all_reactions_confirm_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/'
     'sheets/system_message_actions_sheet.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/composer/wide_composer_layout.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/media/animated_image_playback_controller.dart';
 import 'package:fluxer_app/features/chat/presentation/'
     'widgets/messages/blocked_message_groups.dart';
@@ -48,6 +50,7 @@ import 'package:fluxer_app/features/chat/presentation/'
     'widgets/messages/message_list_unread_review.dart';
 import 'package:fluxer_app/features/chat/presentation/'
     'widgets/messages/message_list_viewport.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_reactions_bar.dart';
 import 'package:fluxer_app/features/chat/presentation/'
     'widgets/messages/message_tile_cache.dart';
 import 'package:fluxer_app/features/chat/presentation/'
@@ -70,17 +73,27 @@ import 'package:fluxer_app/features/dm/providers/dm_view_model.dart';
 import 'package:fluxer_app/features/friends/providers/blocked_user_ids_provider.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_providers.dart';
+import 'package:fluxer_app/features/input/providers/chat_keybind_effects_provider.dart';
+import 'package:fluxer_app/features/input/providers/focused_message_provider.dart';
+import 'package:fluxer_app/features/input/providers/keyboard_mode_provider.dart';
+import 'package:fluxer_app/features/input/providers/message_keyboard_navigation_provider.dart';
 import 'package:fluxer_app/features/moderation/iar/iar_flow.dart';
 import 'package:fluxer_app/features/moderation/iar/iar_simple_report_sheet.dart';
 import 'package:fluxer_app/features/moderation/providers/local_user_spam_override_provider.dart';
+import 'package:fluxer_app/features/settings/domain/search_provider_engine.dart';
+import 'package:fluxer_app/features/settings/providers/advanced_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
+import 'package:fluxer_app/features/settings/providers/use_12_hour_time_format_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/shell/presentation/sidebar_drawer.dart';
 import 'package:fluxer_app/features/shell/providers/reveal_side_provider.dart';
 import 'package:fluxer_app/features/ui/button/fluxer_button.dart';
+import 'package:fluxer_app/features/ui/emoji_picker/fluxer_selected_emoji.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
+import 'package:fluxer_app/shared/markdown/message_markdown_settings.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:fluxer_app/shared/utils/chat_context_utils.dart';
 import 'package:fluxer_dart/export.dart';
@@ -91,7 +104,10 @@ const _kUnreadDateDividerHeight = 20.0;
 const _kMessageListScrollCacheExtent = 1200.0;
 const _kMessageListCompactScrollCacheExtent = 400.0;
 
-const _kMessageListStatusOverlayInset = 16.0;
+const double _kMessageListStatusOverlayInsetMobile =
+    WideComposerLayout.mobileMessageListTrailingInset;
+const double _kMessageListStatusOverlayInsetWide =
+    WideComposerLayout.messageListTrailingInset;
 
 /// Trailing-run length at which a pinned reader is re-anchored to the tail.
 const int _kPinnedRecenterTrailingThreshold = 60;
@@ -134,6 +150,9 @@ const _kMonthNames = [
 
 /// Viewport fraction where the NEW divider sits on unread opens.
 const double _kUnreadOpenAnchor = 0.5;
+
+/// Minimum inset from the viewport top for the NEW divider on unread opens.
+const double _kUnreadOpenTopInset = 32;
 
 /// How long a parked jump target may hold off edge pagination before it is
 /// retired. The page that would contain it may never arrive - a deleted target
@@ -181,6 +200,10 @@ class _MessageListState extends ConsumerState<MessageList> {
   MessageListAnchorEdge _anchorEdge = MessageListAnchorEdge.after;
   int _anchorEpoch = 0;
   bool _anchorResolved = false;
+  // True while the open anchor is the unread divider; underfill must not
+  // bottom-pin short trailing blocks.
+  bool _unreadOpenLayout = false;
+  double _unreadLeadingPad = 0;
   final MessageListPin _pin = MessageListPin();
   final AnimatedImagePlaybackController _animatedImagePlaybackController =
       AnimatedImagePlaybackController();
@@ -215,6 +238,8 @@ class _MessageListState extends ConsumerState<MessageList> {
   // Survives ScrollEnd (including ballistic) so onUserScrollEnd's 64px hold
   // cannot re-arm follow.
   bool _followDisarmed = false;
+  bool _pinnedTailGlueScheduled = false;
+  bool _pinnedTailGlueIgnorePin = false;
 
   // Invalidates deferred scroll effects scheduled against a previous UI
   // world: bumped on channel reload and on every wholesale window
@@ -222,9 +247,27 @@ class _MessageListState extends ConsumerState<MessageList> {
   // never mutate the scroll position of the window that replaced it.
   int _uiEpoch = 0;
 
+  late final void Function() _focusNextMessage;
+  late final void Function() _focusPreviousMessage;
+  late final MessageKeyboardNavigationCoordinator _messageKeyboardNavigation;
+  ProviderSubscription<int>? _chatKeybindEffectsSubscription;
+
   @override
   void initState() {
     super.initState();
+    _messageKeyboardNavigation = ref.read(messageKeyboardNavigationProvider);
+    _focusNextMessage = () => _focusAdjacentMessage(previous: false);
+    _focusPreviousMessage = () => _focusAdjacentMessage(previous: true);
+    _messageKeyboardNavigation.register(
+      focusNext: _focusNextMessage,
+      focusPrevious: _focusPreviousMessage,
+    );
+    _chatKeybindEffectsSubscription = listenChatKeybindEffects(
+      ref,
+      _handleChatKeybindEffect,
+      where: (ChatKeybindEffect effect) =>
+          effect != ChatKeybindEffect.triggerUpload,
+    );
     _chatViewModel = ref.read(chatViewModelProvider.notifier);
     _readViewport = ref.read(chatReadViewportProvider.notifier);
     _viewportChannelId =
@@ -243,6 +286,161 @@ class _MessageListState extends ConsumerState<MessageList> {
         isActive: widget.visible,
       );
       _onScroll();
+    });
+  }
+
+  void _handleChatKeybindEffect(ChatKeybindEffect effect) {
+    if (!mounted) {
+      return;
+    }
+    switch (effect) {
+      case ChatKeybindEffect.scrollPageUp:
+        _scrollByPage(up: true);
+      case ChatKeybindEffect.scrollPageDown:
+        _scrollByPage(up: false);
+      case ChatKeybindEffect.togglePins:
+        unawaited(
+          showChannelPinsSheet(
+            context,
+            ref,
+            channelId: ref.read(chatViewModelProvider).channelId,
+          ),
+        );
+      case ChatKeybindEffect.addReaction:
+        _openReactionPickerForFocusedMessage();
+      case ChatKeybindEffect.triggerUpload:
+        break;
+    }
+  }
+
+  void _openReactionPickerForFocusedMessage() {
+    final Message? message = lookupFocusedMessage(
+      ref.read(focusedMessageProvider),
+      ref.read(chatViewModelProvider).messages,
+    );
+    if (message == null || !context.mounted) {
+      return;
+    }
+    unawaited(
+      openReactionPickerSheet(
+        context,
+        channelId: message.channelId,
+        onEmojiSelected: (FluxerSelectedEmoji emoji) {
+          dispatchSelectedEmojiReaction(
+            emoji,
+            (String emoji, {String? emojiId, bool animated = false}) => ref
+                .read(chatViewModelProvider.notifier)
+                .toggleReaction(
+                  message.id,
+                  emoji,
+                  emojiId: emojiId,
+                  animated: animated,
+                ),
+          );
+        },
+      ),
+    );
+  }
+
+  void _scrollByPage({required bool up}) {
+    if (!_scrollController.hasClients) {
+      return;
+    }
+    final double delta = _scrollController.position.viewportDimension * 0.85;
+    final double target = (_scrollController.offset + (up ? -delta : delta))
+        .clamp(
+          _scrollController.position.minScrollExtent,
+          _scrollController.position.maxScrollExtent,
+        );
+    _scrollController.animateTo(
+      target,
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeOut,
+    );
+  }
+
+  void _focusAdjacentMessage({required bool previous}) {
+    final List<Message> messages = ref
+        .read(chatViewModelProvider)
+        .messages
+        .where((Message message) => !message.isSystemMessage)
+        .toList();
+    if (messages.isEmpty) {
+      return;
+    }
+    final String? currentId = ref.read(focusedMessageProvider).messageId;
+    var index = messages.indexWhere(
+      (Message message) => message.id == currentId,
+    );
+    if (index < 0) {
+      index = previous ? messages.length - 1 : 0;
+    } else {
+      final int nextIndex = previous ? index - 1 : index + 1;
+      if (nextIndex < 0 || nextIndex >= messages.length) {
+        return;
+      }
+      index = nextIndex;
+    }
+    final Message target = messages[index];
+    if (target.id == currentId) {
+      return;
+    }
+    ref.read(keyboardModeProvider.notifier).enter();
+    ref
+        .read(focusedMessageProvider.notifier)
+        .focus(messageId: target.id, channelId: target.channelId);
+    _ensureMessageVisibleForKeyboardNav(target.id);
+  }
+
+  void _ensureMessageVisibleForKeyboardNav(String messageId) {
+    if (!_anchorResolved || !_scrollController.hasClients) {
+      _chatViewModel.scrollToMessage(messageId);
+      return;
+    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) {
+        return;
+      }
+      final BuildContext? itemContext = _findStreamTileContext(messageId);
+      if (itemContext == null || !itemContext.mounted) {
+        _chatViewModel.scrollToMessage(messageId);
+        return;
+      }
+      final RenderObject? renderObject = itemContext.findRenderObject();
+      if (renderObject is! RenderBox || !renderObject.hasSize) {
+        return;
+      }
+      final ScrollPosition position = _scrollController.position;
+      final RenderAbstractViewport viewport = RenderAbstractViewport.of(
+        renderObject,
+      );
+      final double itemTop = viewport.getOffsetToReveal(renderObject, 0).offset;
+      final double itemBottom = viewport
+          .getOffsetToReveal(renderObject, 1)
+          .offset;
+      final double viewTop = position.pixels;
+      final double viewBottom = viewTop + position.viewportDimension;
+      const double margin = 72;
+
+      double? targetOffset;
+      if (itemTop < viewTop + margin) {
+        targetOffset = itemTop - margin;
+      } else if (itemBottom > viewBottom - margin) {
+        targetOffset = itemBottom - position.viewportDimension + margin;
+      }
+      if (targetOffset == null) {
+        return;
+      }
+      unawaited(
+        position.animateTo(
+          targetOffset.clamp(
+            position.minScrollExtent,
+            position.maxScrollExtent,
+          ),
+          duration: const Duration(milliseconds: 120),
+          curve: Curves.easeOutCubic,
+        ),
+      );
     });
   }
 
@@ -286,6 +484,11 @@ class _MessageListState extends ConsumerState<MessageList> {
 
   @override
   void dispose() {
+    _chatKeybindEffectsSubscription?.close();
+    _messageKeyboardNavigation.unregister(
+      focusNext: _focusNextMessage,
+      focusPrevious: _focusPreviousMessage,
+    );
     _pendingScrollTargetTimer?.cancel();
     _pendingScrollTargetTimer = null;
     _readViewport.setViewportActive(
@@ -300,6 +503,8 @@ class _MessageListState extends ConsumerState<MessageList> {
       ..removeListener(_onScroll)
       ..dispose();
     _animatedImagePlaybackController.dispose();
+    _pinnedTailGlueScheduled = false;
+    _pinnedTailGlueIgnorePin = false;
     super.dispose();
   }
 
@@ -318,11 +523,16 @@ class _MessageListState extends ConsumerState<MessageList> {
       _anchorEdge = edge;
       _anchorEpoch++;
       _uiEpoch++;
+      if (!rebase) {
+        _unreadOpenLayout = false;
+        _unreadLeadingPad = 0;
+      }
     });
     _demandSource.resetApproachVelocity();
     // A rebase keeps pixels identical: the fraction was MEASURED off the
     // live layout, so the half-height center correction (which centers a
-    // jump target's rect) and the underfill fallback must not run.
+    // jump target's rect) and the underfill fallback must not run. Jumps
+    // leave unread-open layout so they can center the target tile.
     if (!rebase && anchorId != null && fraction < 1.0) {
       _scheduleAnchorCenterCorrection(anchorId);
       _scheduleUnderfillBottomReanchor();
@@ -337,19 +547,11 @@ class _MessageListState extends ConsumerState<MessageList> {
     final int epoch = _uiEpoch;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _runIfSameEpoch(epoch, () {
-        if (!_scrollController.hasClients) {
+        final RenderBox? box = _streamTileBox(anchorId);
+        if (box == null) {
           return;
         }
-        final BuildContext? itemContext = _findStreamTileContext(anchorId);
-        // debugIsActive is constant-false in profile/release; use mounted.
-        if (itemContext == null || !itemContext.mounted) {
-          return;
-        }
-        final RenderObject? renderObject = itemContext.findRenderObject();
-        if (renderObject is! RenderBox || !renderObject.hasSize) {
-          return;
-        }
-        final double half = renderObject.size.height / 2;
+        final double half = box.size.height / 2;
         if (half <= 0.5) {
           return;
         }
@@ -365,6 +567,33 @@ class _MessageListState extends ConsumerState<MessageList> {
         );
       });
     });
+  }
+
+  RenderBox? _streamTileBox(String messageId) {
+    final BuildContext? itemContext = _findStreamTileContext(messageId);
+    if (itemContext == null || !itemContext.mounted) {
+      return null;
+    }
+    final RenderObject? renderObject = itemContext.findRenderObject();
+    if (renderObject is! RenderBox || !renderObject.hasSize) {
+      return null;
+    }
+    return renderObject;
+  }
+
+  RenderBox? _scrollViewportBox() {
+    if (!_scrollController.hasClients) {
+      return null;
+    }
+    final RenderObject? viewportObject = _scrollController
+        .position
+        .context
+        .notificationContext
+        ?.findRenderObject();
+    if (viewportObject is! RenderBox || !viewportObject.hasSize) {
+      return null;
+    }
+    return viewportObject;
   }
 
   BuildContext? _findStreamTileContext(String messageId) {
@@ -410,7 +639,8 @@ class _MessageListState extends ConsumerState<MessageList> {
     final int epoch = _uiEpoch;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _runIfSameEpoch(epoch, () {
-        if (!_scrollController.hasClients ||
+        if (_unreadOpenLayout ||
+            !_scrollController.hasClients ||
             _anchorId == null ||
             _anchorFraction >= 1.0) {
           return;
@@ -436,6 +666,106 @@ class _MessageListState extends ConsumerState<MessageList> {
     });
   }
 
+  /// After an unread open, park NEW at [_kUnreadOpenAnchor] when the trailing
+  /// unreads fill the lower half. If they do not, lower the split so the last
+  /// unread sits on the composer instead of leaving a void under NEW.
+  void _scheduleUnreadOpenLayoutPass() {
+    final int epoch = _uiEpoch;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _runIfSameEpoch(epoch, _applyUnreadOpenLayout);
+    });
+  }
+
+  void _applyUnreadOpenLayout() {
+    if (!_unreadOpenLayout || _anchorId == null) {
+      return;
+    }
+    final RenderBox? firstUnread = _streamTileBox(_anchorId!);
+    final RenderBox? viewport = _scrollViewportBox();
+    if (firstUnread == null || viewport == null) {
+      return;
+    }
+    final ChatViewState state = ref.read(chatViewModelProvider);
+    final String? newestId = state.messages.isEmpty
+        ? null
+        : state.messages.last.id;
+    final RenderBox? newest = newestId == null || newestId == _anchorId
+        ? firstUnread
+        : _streamTileBox(newestId);
+    final double firstUnreadTop = firstUnread.localToGlobal(Offset.zero).dy;
+    final double viewportTop = viewport.localToGlobal(Offset.zero).dy;
+    final double viewportHeight = viewport.size.height;
+    final double trailingBottom = newest == null
+        ? firstUnreadTop + firstUnread.size.height
+        : newest.localToGlobal(Offset(0, newest.size.height)).dy;
+    final double filledBelow =
+        (trailingBottom - firstUnreadTop).clamp(0, viewportHeight) +
+        _statusOverlayInset(context);
+    final double nextFraction = _unreadOpenFraction(
+      newestLaidOut: newest != null,
+      hasMoreNewer: state.hasMoreNewerMessages,
+      filledBelow: filledBelow,
+      viewportHeight: viewportHeight,
+    );
+    final double nextLeadingPad = _unreadOpenLeadingPad(
+      currentPad: _unreadLeadingPad,
+      fraction: nextFraction,
+      firstUnreadTop: firstUnreadTop,
+      viewportTop: viewportTop,
+      viewportHeight: viewportHeight,
+    );
+    final bool padChanged = (nextLeadingPad - _unreadLeadingPad).abs() > 0.5;
+    final bool fractionChanged = (nextFraction - _anchorFraction).abs() > 0.01;
+    if (!padChanged && !fractionChanged) {
+      return;
+    }
+    setState(() {
+      _unreadLeadingPad = nextLeadingPad;
+      if (fractionChanged) {
+        _anchorFraction = nextFraction;
+        _anchorEpoch++;
+        _uiEpoch++;
+      }
+    });
+    _scheduleUnreadOpenLayoutPass();
+  }
+
+  double _unreadOpenFraction({
+    required bool newestLaidOut,
+    required bool hasMoreNewer,
+    required double filledBelow,
+    required double viewportHeight,
+  }) {
+    final double lowerHalf = viewportHeight * (1 - _kUnreadOpenAnchor);
+    if (!newestLaidOut || hasMoreNewer || filledBelow >= lowerHalf - 8) {
+      return _kUnreadOpenAnchor;
+    }
+    return (1.0 - filledBelow / viewportHeight).clamp(_kUnreadOpenAnchor, 1.0);
+  }
+
+  double _unreadOpenLeadingPad({
+    required double currentPad,
+    required double fraction,
+    required double firstUnreadTop,
+    required double viewportTop,
+    required double viewportHeight,
+  }) {
+    final double maxPad = viewportHeight * _kUnreadOpenAnchor;
+    var pad = fraction > _kUnreadOpenAnchor + 0.02 ? 0.0 : currentPad;
+    if (fraction <= _kUnreadOpenAnchor + 0.02) {
+      final double delta =
+          firstUnreadTop - (viewportTop + viewportHeight * fraction);
+      if (delta.abs() > 24) {
+        pad = (pad - delta).clamp(0, maxPad);
+      }
+    }
+    final double minTop = viewportTop + _kUnreadOpenTopInset;
+    if (firstUnreadTop < minTop - 0.5) {
+      pad = (pad + (minTop - firstUnreadTop)).clamp(0, maxPad);
+    }
+    return pad;
+  }
+
   void _onScroll() {
     if (!_anchorResolved) {
       return;
@@ -443,8 +773,15 @@ class _MessageListState extends ConsumerState<MessageList> {
     if (_scrollController.hasClients) {
       _lastViewportDimension ??= _scrollController.position.viewportDimension;
     }
+    _syncAnimatedImageScrollPause();
     _publishDemandGeometry();
     _syncReadViewport();
+  }
+
+  void _syncAnimatedImageScrollPause() {
+    _animatedImagePlaybackController.setScrollActive(
+      active: _isUserDrivenScroll,
+    );
   }
 
   bool get _isUserDrivenScroll =>
@@ -479,10 +816,14 @@ class _MessageListState extends ConsumerState<MessageList> {
   double _centerLeadingDistance(ScrollPosition position) =>
       position.pixels - position.minScrollExtent;
 
+  double _statusOverlayInset(BuildContext context) => isMobileLayout(context)
+      ? _kMessageListStatusOverlayInsetMobile
+      : _kMessageListStatusOverlayInsetWide;
+
   double _centerTrailingDistance(ScrollPosition position) =>
       (position.maxScrollExtent -
               position.pixels -
-              _kMessageListStatusOverlayInset)
+              _statusOverlayInset(context))
           .clamp(0, double.infinity);
 
   /// Sign adapter for scroll deltas: positive = toward the OLDER edge.
@@ -509,12 +850,22 @@ class _MessageListState extends ConsumerState<MessageList> {
       return;
     }
     _lastChannelId = channelId;
+    if (ref.read(focusedMessageProvider).hasFocus) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) {
+          return;
+        }
+        ref.read(focusedMessageProvider.notifier).clear();
+      });
+    }
     _uiEpoch++;
     _anchorId = null;
     _anchorFraction = 1.0;
     _anchorEdge = MessageListAnchorEdge.after;
     _anchorEpoch++;
     _anchorResolved = false;
+    _unreadOpenLayout = false;
+    _unreadLeadingPad = 0;
     _pin.pinned = false;
     _followDisarmed = false;
     _landAtLatestTailPending = false;
@@ -566,10 +917,7 @@ class _MessageListState extends ConsumerState<MessageList> {
           !_useCompactScrollCache) {
         return;
       }
-      // The unified viewport keeps the compact cache only for the opening
-      // frames; expansion is safe once idle regardless of the anchor.
-      // Finger drag only; programmatic scroll must still expand cache.
-      if (_userDragActive) {
+      if (_isUserDrivenScroll) {
         _scheduleScrollCacheExpansionWhenIdle();
         return;
       }
@@ -590,9 +938,20 @@ class _MessageListState extends ConsumerState<MessageList> {
     if (notification is ScrollStartNotification &&
         notification.dragDetails != null) {
       _userDragActive = true;
+      _syncAnimatedImageScrollPause();
     } else if (notification is ScrollEndNotification) {
       _userDragActive = false;
-      _maybeExpandScrollCache();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) {
+          return;
+        }
+        _syncAnimatedImageScrollPause();
+        if (!_isUserDrivenScroll) {
+          _maybeExpandScrollCache();
+        } else {
+          _scheduleScrollCacheExpansionWhenIdle();
+        }
+      });
     }
     if (notification.depth != 0) {
       return false;
@@ -676,7 +1035,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     }
     // A reader who scrolled back to the edge is the one the underfill repair
     // was withheld from while they were in history.
-    if (_anchorId != null && _anchorFraction < 1.0) {
+    if (_anchorId != null && _anchorFraction < 1.0 && !_unreadOpenLayout) {
       _scheduleUnderfillBottomReanchor();
     }
     // Inactive is reported LAST so a deferred recovery resync lands on the
@@ -798,10 +1157,7 @@ class _MessageListState extends ConsumerState<MessageList> {
   }
 
   /// Re-center policy: a pinned reader with a deep trailing run re-anchors
-  /// to the newest message. The fresh layout at offset 0 IS the tail, so the
-  /// pinned user sees identical pixels; no post-frame jump needed. Trim only
-  /// ever drops leading-end items while at the tail - no scroll effect by
-  /// construction.
+  /// to the newest message, then settles into the trailing inset.
   void _maybeRecenterPinnedTail(List<Message> messages) {
     final String? anchor = _anchorId;
     if (messages.isEmpty) {
@@ -829,6 +1185,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     }
     if (trailing > _kPinnedRecenterTrailingThreshold) {
       _reanchor(newestId, 1, edge: MessageListAnchorEdge.after);
+      _settlePinnedTailScroll();
     }
   }
 
@@ -845,6 +1202,20 @@ class _MessageListState extends ConsumerState<MessageList> {
     }
     if (next.any((Message m) => m.id == anchor)) {
       return;
+    }
+    // An acked own send renames the anchor's id instead of removing the row,
+    // and nonces reach every recipient, so only the sender's row may claim it.
+    final String? currentUserId = ref.read(currentUserIdProvider);
+    if (currentUserId != null && currentUserId.isNotEmpty) {
+      for (final Message message in next.reversed) {
+        if (message.clientNonce == anchor &&
+            message.authorId == currentUserId) {
+          setState(() {
+            _anchorId = message.id;
+          });
+          return;
+        }
+      }
     }
     String? nearestOlder;
     for (final Message message in next.reversed) {
@@ -882,16 +1253,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     _lastViewportDimension = viewport;
     if (previous != null && viewport < previous - 0.5 && _pin.pinned) {
       // Keyboard/viewport shrink while pinned: stay glued to the live tail.
-      final int epoch = _uiEpoch;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _runIfSameEpoch(epoch, () {
-          if (_scrollController.hasClients && _pin.pinned) {
-            _scrollController.jumpTo(
-              _scrollController.position.maxScrollExtent,
-            );
-          }
-        });
-      });
+      _schedulePinnedTailGlue();
     }
     // The fraction was measured against content that may since have shrunk
     // (bulk delete, trim, collapse) or a viewport that grew. Metrics
@@ -901,6 +1263,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     final ScrollMetrics metrics = notification.metrics;
     if (_anchorId != null &&
         _anchorFraction < 1.0 &&
+        !_unreadOpenLayout &&
         metrics.maxScrollExtent <= 0 &&
         metrics.pixels >= metrics.maxScrollExtent - 0.5) {
       _scheduleUnderfillBottomReanchor();
@@ -1104,17 +1467,17 @@ class _MessageListState extends ConsumerState<MessageList> {
     }
     _followDisarmed = false;
     _pin.onJumpToPresentLanded();
-    final int epoch = _uiEpoch;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _runIfSameEpoch(epoch, () {
-        if (_scrollController.hasClients) {
-          // Instant jump within the live window: NOT a re-anchor - keeps
-          // scroll state. animateTo would build every tile it scrolls past.
-          _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-          _syncReadViewport();
-        }
-      });
-    });
+    final List<Message> messages = chatState.messages;
+    final String? newestId = messages.isEmpty ? null : messages.last.id;
+    final bool alreadyAtLiveTail =
+        !_unreadOpenLayout &&
+        _anchorFraction >= 1.0 &&
+        _anchorEdge == MessageListAnchorEdge.after &&
+        _anchorId == newestId;
+    if (!alreadyAtLiveTail) {
+      _reanchor(newestId, 1, edge: MessageListAnchorEdge.after);
+    }
+    _settlePinnedTailScroll(ignorePin: true);
   }
 
   /// Only glue can have produced this request: the reader left the tail and
@@ -1180,10 +1543,48 @@ class _MessageListState extends ConsumerState<MessageList> {
     });
   }
 
+  void _schedulePinnedTailGlue({bool ignorePin = false}) {
+    if (_pinnedTailGlueScheduled) {
+      _pinnedTailGlueIgnorePin = _pinnedTailGlueIgnorePin || ignorePin;
+      return;
+    }
+    _pinnedTailGlueScheduled = true;
+    _pinnedTailGlueIgnorePin = ignorePin;
+    final int glueEpoch = _uiEpoch;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final bool scheduledIgnorePin = _pinnedTailGlueIgnorePin;
+      _pinnedTailGlueScheduled = false;
+      _pinnedTailGlueIgnorePin = false;
+      _runIfSameEpoch(glueEpoch, () {
+        if (!_scrollController.hasClients ||
+            (!_pin.pinned && !scheduledIgnorePin)) {
+          return;
+        }
+        if (ref.read(chatViewModelProvider).hasMoreNewerMessages) {
+          return;
+        }
+        if (!scheduledIgnorePin && (_followDisarmed || _isUserDrivenScroll)) {
+          return;
+        }
+        _jumpToLiveTailExtent(_scrollController.position);
+        _syncReadViewport();
+      });
+    });
+  }
+
+  void _settlePinnedTailScroll({bool ignorePin = false}) =>
+      _schedulePinnedTailGlue(ignorePin: ignorePin);
+
+  void _jumpToLiveTailExtent(ScrollPosition position) {
+    if (position.pixels < position.maxScrollExtent) {
+      position.jumpTo(position.maxScrollExtent);
+    }
+  }
+
   // Coordinates the latest-window replacement with its tail landing.
   void _landAtLatestTail(List<Message> next) {
-    // Jump-to-present landing: re-anchor to the newest at the bottom and
-    // engage the pin - the fresh layout at offset 0 IS the live tail.
+    // Jump-to-present landing: re-anchor to the newest at the bottom, engage
+    // the pin, then settle into the trailing inset.
     _pin.onJumpToPresentLanded();
     _followDisarmed = false;
     _reanchor(
@@ -1191,10 +1592,7 @@ class _MessageListState extends ConsumerState<MessageList> {
       1,
       edge: MessageListAnchorEdge.after,
     );
-    final int epoch = _uiEpoch;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _runIfSameEpoch(epoch, _syncReadViewport);
-    });
+    _settlePinnedTailScroll();
   }
 
   void _onUnreadBarMarkRead() {
@@ -1298,6 +1696,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     required bool swipeToReplyEnabled,
     bool renderDaySeparator = true,
     bool prependUnreadSeparator = false,
+    bool forceLeadingSpacing = false,
   }) {
     final bool isNewDay =
         renderDaySeparator &&
@@ -1306,7 +1705,6 @@ class _MessageListState extends ConsumerState<MessageList> {
     final bool isGrouped = computeMessageRowGrouped(
       message: message,
       previousMessage: previousMessage,
-      messageDisplayCompact: renderSettings.messageDisplayCompact,
       isNewDay: isNewDay,
     );
     final bool isJumpHighlighted = message.id == highlightedMessageId;
@@ -1319,14 +1717,13 @@ class _MessageListState extends ConsumerState<MessageList> {
       isGroupStart: !isGrouped,
       isNewDay: isNewDay,
       isUnreadBoundary: isUnreadBoundary,
-      hasPrevious: previousMessage != null,
+      hasPrevious: previousMessage != null || forceLeadingSpacing,
       bothSystem:
           message.isSystemMessage &&
           (previousMessage?.isSystemMessage ?? false),
       spacing: renderSettings.messageGroupSpacing,
     );
-    final Object signature = (
-      message,
+    final Object layoutSignature = (
       isNewDay,
       isGrouped,
       isUnreadBoundary,
@@ -1345,7 +1742,7 @@ class _MessageListState extends ConsumerState<MessageList> {
       swipeToReplyEnabled,
       renderSettings.messageDisplayCompact,
     );
-    return _tileCache.resolve(message.id, signature, () {
+    return _tileCache.resolve(message.id, layoutSignature, () {
       if (message.isSystemMessage) {
         final bool canDelete = canDeleteMessage(
           message: message,
@@ -1439,6 +1836,7 @@ class _MessageListState extends ConsumerState<MessageList> {
         leadingGroupSpacing: leading,
         child: RepaintBoundary(
           child: MessageItem(
+            key: ValueKey<String>(message.id),
             message: message,
             isGrouped: isGrouped,
             renderSettings: renderSettings,
@@ -1520,7 +1918,7 @@ class _MessageListState extends ConsumerState<MessageList> {
           ),
         ),
       );
-    });
+    }, message: message);
   }
 
   Widget _buildStreamItem({
@@ -1561,12 +1959,18 @@ class _MessageListState extends ConsumerState<MessageList> {
         final String? groupKey = item.groupKey;
         final bool isRevealed =
             groupKey != null && revealedCollapsedGroupKey == groupKey;
+        final double leadingSpacing = leadingGroupSpacingBeforeStreamItem(
+          stream,
+          dataIndex,
+          spacing: renderSettings.messageGroupSpacing,
+        );
         final Object signature = (
           item.type,
           item.messages.length,
           isRevealed,
           highlightedMessageId,
           swipeToReplyEnabled,
+          leadingSpacing,
         );
         return _tileCache.resolve('group-$groupKey', signature, () {
           return _wrapWithUnreadSeparator(
@@ -1574,6 +1978,7 @@ class _MessageListState extends ConsumerState<MessageList> {
             BlockedMessageGroups(
               item: item,
               isRevealed: isRevealed,
+              leadingGroupSpacing: leadingSpacing,
               leadingPreviousMessage: resolvePreviousMessageForStreamItem(
                 stream,
                 dataIndex,
@@ -1629,6 +2034,7 @@ class _MessageListState extends ConsumerState<MessageList> {
             context: context,
             message: message,
             previousMessage: previousMessage,
+            forceLeadingSpacing: followsCollapsedGroup(stream, dataIndex),
             visualUnreadId: visualUnreadId,
             highlightedMessageId: highlightedMessageId,
             currentUserId: currentUserId,
@@ -1818,51 +2224,11 @@ class _MessageListState extends ConsumerState<MessageList> {
             _pin.onOwnSend();
             _followDisarmed = false;
           }
-          if ((origin == MessagesOrigin.liveCreate ||
-                  origin == MessagesOrigin.ownSend) &&
-              _pin.pinned) {
-            // Follow: authorized by the write's own origin AND the
-            // event-sourced pin - never recomputed from geometry here. The
-            // terminal newer page of the user's own pagination lands with
-            // pinned == false (they were detached) and preserves. A live
-            // drag/fling or a disarmed leave owns the position.
-            final int followEpoch = _uiEpoch;
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              _runIfSameEpoch(followEpoch, () {
-                if (!_scrollController.hasClients ||
-                    !_pin.pinned ||
-                    _followDisarmed ||
-                    _isUserDrivenScroll) {
-                  return;
-                }
-                _scrollController.jumpTo(
-                  _scrollController.position.maxScrollExtent,
-                );
-              });
-            });
-          }
-          if (origin == MessagesOrigin.realtimeEvent && _pin.pinned) {
-            // A delete or an edit changes the trailing extent under a reader
-            // sitting AT the tail. The framework clamps an offset that grew
-            // too large but never grows one that got too small, so a row that
-            // got taller pushes the newest message below the fold. jumpTo goes
-            // idle first, so a live drag/fling or a disarmed leave must own
-            // the position.
-            final int glueEpoch = _uiEpoch;
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              _runIfSameEpoch(glueEpoch, () {
-                if (!_scrollController.hasClients ||
-                    !_pin.pinned ||
-                    _followDisarmed ||
-                    _isUserDrivenScroll) {
-                  return;
-                }
-                final ScrollPosition position = _scrollController.position;
-                if (position.pixels < position.maxScrollExtent) {
-                  position.jumpTo(position.maxScrollExtent);
-                }
-              });
-            });
+          if (_pin.pinned &&
+              (origin == MessagesOrigin.liveCreate ||
+                  origin == MessagesOrigin.ownSend ||
+                  origin == MessagesOrigin.realtimeEvent)) {
+            _schedulePinnedTailGlue();
           }
           // Every other origin: structurally scroll-stable by construction -
           // prepends/appends land at the far ends of the leading/trailing
@@ -2024,15 +2390,19 @@ class _MessageListState extends ConsumerState<MessageList> {
         _anchorEpoch++;
         _pin.pinned = false;
         _followDisarmed = false;
+        var settledReadTailOpen = false;
         if (canAnchorUnread) {
           // Unread open: the split falls BEFORE the first unread's stream
           // item, so the NEW divider - rendered at the top of that tile,
           // even when the unread lives inside a collapsed group - sits at
-          // the fraction. Underfill re-anchors bottom after the open frame.
+          // the fraction. A short trailing block is packed to the composer
+          // after layout so NEW is not stuck at mid-viewport over a void.
+          _unreadOpenLayout = true;
+          _unreadLeadingPad = 0;
           _anchorId = unreadAnchorId;
           _anchorFraction = _kUnreadOpenAnchor;
           _anchorEdge = MessageListAnchorEdge.before;
-          _scheduleUnderfillBottomReanchor();
+          _scheduleUnreadOpenLayoutPass();
         } else if (jumpAnchorId != null) {
           // Jump open: land on the target, or the closest neighbour when the
           // around page omitted it (deleted / filtered). Never the live tail.
@@ -2047,10 +2417,14 @@ class _MessageListState extends ConsumerState<MessageList> {
           if (!hasMoreNewerMessages) {
             // A bottom-anchored open at the live tail starts pinned.
             _pin.onJumpToPresentLanded();
+            _settlePinnedTailScroll();
+            settledReadTailOpen = true;
           }
         }
         _expandScrollCacheNow();
-        _scheduleBottomViewportSync();
+        if (!settledReadTailOpen) {
+          _scheduleBottomViewportSync();
+        }
       }
     }
     if (!isLoading && _messagesWereLoading && _anchorResolved) {
@@ -2128,6 +2502,8 @@ class _MessageListState extends ConsumerState<MessageList> {
         );
         // Mid-build re-anchor: direct field writes - THIS build already
         // renders the new anchor (setState here would assert).
+        _unreadOpenLayout = false;
+        _unreadLeadingPad = 0;
         _anchorId = scrollId;
         _anchorFraction = _kUnreadOpenAnchor;
         _anchorEdge = MessageListAnchorEdge.before;
@@ -2174,16 +2550,16 @@ class _MessageListState extends ConsumerState<MessageList> {
           (
             BuildContext context,
             MessageRenderSettings messageRenderSettings,
-            String? guildId,
-            bool isGuildSendDisabled,
-            ({
+            String? guildId, {
+            required bool isGuildSendDisabled,
+            required ({
               bool canSendMessages,
               bool canAddReactions,
               bool canPinMessage,
               bool canManageMessages,
             })
             channelActions,
-          ) {
+          }) {
             final bool swipeToReplyEnabled = !isCompactWideDrawerPeekMode(
               context,
               shellLocation: ref.watch(shellLocationProvider),
@@ -2333,7 +2709,8 @@ class _MessageListState extends ConsumerState<MessageList> {
                   onScrollMetricsNotification: _onScrollMetricsNotification,
                   isLoadingMore: isLoadingMore,
                   isLoadingNewer: isLoadingNewer,
-                  trailingInset: _kMessageListStatusOverlayInset,
+                  trailingInset: _statusOverlayInset(context),
+                  leadingPad: _unreadOpenLayout ? _unreadLeadingPad : 0,
                   startOfChannelHeader: startOfChannelHeader,
                 ),
               );
@@ -2342,15 +2719,18 @@ class _MessageListState extends ConsumerState<MessageList> {
             final double scaleRatio = chatFontSize / 16.0;
             final bool showUnreadBar =
                 !isLoading && messages.isNotEmpty && showUnreadBarEligible;
-            return MessageListOverlay(
-              body: MessageListBody(child: body),
-              showUnreadBar: showUnreadBar,
-              unreadCount: unreadCount,
-              isEstimated: unreadSummary.isEstimated,
-              unreadSince: unreadSince,
-              onJumpToUnread: _onUnreadBarJump,
-              onMarkRead: _onUnreadBarMarkRead,
-              scaleRatio: scaleRatio,
+            return MessageMarkdownSettingsScope(
+              settings: messageRenderSettings.markdown,
+              child: MessageListOverlay(
+                body: MessageListBody(child: body),
+                showUnreadBar: showUnreadBar,
+                unreadCount: unreadCount,
+                isEstimated: unreadSummary.isEstimated,
+                unreadSince: unreadSince,
+                onJumpToUnread: _onUnreadBarJump,
+                onMarkRead: _onUnreadBarMarkRead,
+                scaleRatio: scaleRatio,
+              ),
             );
           },
     );
@@ -2542,16 +2922,16 @@ class _MessageListSettingsLayer extends ConsumerWidget {
   final Widget Function(
     BuildContext context,
     MessageRenderSettings settings,
-    String? guildId,
-    bool isGuildSendDisabled,
-    ({
+    String? guildId, {
+    required bool isGuildSendDisabled,
+    required ({
       bool canSendMessages,
       bool canAddReactions,
       bool canPinMessage,
       bool canManageMessages,
     })
     channelActions,
-  )
+  })
   builder;
 
   @override
@@ -2578,6 +2958,12 @@ class _MessageListSettingsLayer extends ConsumerWidget {
             (AsyncValue<Guild?> guild) => guild.value?.isSendDisabled ?? false,
           ),
         );
+    final SearchEnginesState searchEngines = ref.watch(
+      advancedPreferencesProvider.select((s) => s.searchEngines),
+    );
+    final bool messageDisplayCompact = ref.watch(
+      userSettingsViewModelProvider.select((s) => s.messageDisplayCompact),
+    );
     final MessageRenderSettings settings = MessageRenderSettings(
       activeGuildId: guildId,
       renderEmbeds: ref.watch(
@@ -2600,29 +2986,62 @@ class _MessageListSettingsLayer extends ConsumerWidget {
       // Rebuild only when media sizes change.
       chatPreferences: _watchChatMediaPreferences(ref),
       messageGroupSpacing: ref.watch(
-        appearancePreferencesProvider.select((s) => s.messageGroupSpacing),
+        appearancePreferencesProvider.select(
+          (AppearancePreferencesState s) => messageGroupSpacingForDisplayMode(
+            messageGroupSpacing: s.messageGroupSpacing,
+            compactMessageGroupSpacing: s.compactMessageGroupSpacing,
+            messageDisplayCompact: messageDisplayCompact,
+          ),
+        ),
       ),
-      messageDisplayCompact: ref.watch(
-        userSettingsViewModelProvider.select((s) => s.messageDisplayCompact),
+      messageDisplayCompact: messageDisplayCompact,
+      showUserAvatarsInCompactMode: ref.watch(
+        appearancePreferencesProvider.select(
+          (s) => s.showUserAvatarsInCompactMode,
+        ),
+      ),
+      markdown: MessageMarkdownSettings(
+        use12Hour: ref.watch(use12HourTimeFormatProvider),
+        alwaysUnderlineLinks: ref.watch(
+          appearancePreferencesProvider.select((s) => s.alwaysUnderlineLinks),
+        ),
+        dimStrikethroughText: ref.watch(
+          appearancePreferencesProvider.select((s) => s.dimStrikethroughText),
+        ),
+        animateCustomEmoji: effectiveMotionOf(
+          ref,
+          context,
+        ).effectiveAnimateEmoji,
+        enableTextSelection: ref.watch(
+          advancedPreferencesProvider.select((s) => s.enableTextSelection),
+        ),
+        searchEngines: searchEngines,
+        selectionContextMenuBuilder: selectionMenuBuilderFor(searchEngines),
       ),
     );
-    return builder(context, settings, guildId, isGuildSendDisabled, (
-      canSendMessages: channelMessagePerms.canSendMessages,
-      canAddReactions: canAddReactionsInChannel(
-        isDmChannel: isDmChannel,
-        channelPermissionBits: channelPermissionBits,
-        interactionsBlocked: interactionsBlocked,
+    return builder(
+      context,
+      settings,
+      guildId,
+      isGuildSendDisabled: isGuildSendDisabled,
+      channelActions: (
+        canSendMessages: channelMessagePerms.canSendMessages,
+        canAddReactions: canAddReactionsInChannel(
+          isDmChannel: isDmChannel,
+          channelPermissionBits: channelPermissionBits,
+          interactionsBlocked: interactionsBlocked,
+        ),
+        canPinMessage: canPinMessageInChannel(
+          isDmChannel: isDmChannel,
+          channelPermissionBits: channelPermissionBits,
+          interactionsBlocked: interactionsBlocked,
+        ),
+        canManageMessages: canManageMessagesInChannel(
+          isDmChannel: isDmChannel,
+          channelPermissionBits: channelPermissionBits,
+        ),
       ),
-      canPinMessage: canPinMessageInChannel(
-        isDmChannel: isDmChannel,
-        channelPermissionBits: channelPermissionBits,
-        interactionsBlocked: interactionsBlocked,
-      ),
-      canManageMessages: canManageMessagesInChannel(
-        isDmChannel: isDmChannel,
-        channelPermissionBits: channelPermissionBits,
-      ),
-    ));
+    );
   }
 }
 

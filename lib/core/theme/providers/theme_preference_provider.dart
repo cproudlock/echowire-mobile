@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
+import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preference_field.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preferences_store.dart';
-import 'package:fluxer_app/core/synced_preferences/synced_theme_hydration.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/custom_theme_css.dart';
 import 'package:fluxer_app/core/theme/fluxer_color_theme.dart';
@@ -16,6 +16,7 @@ import 'package:fluxer_app/core/theme/fluxer_theme_mode.dart';
 import 'package:fluxer_app/core/theme/themes/coal.dart';
 import 'package:fluxer_app/core/theme/themes/dark.dart';
 import 'package:fluxer_app/core/theme/themes/light.dart';
+import 'package:fluxer_app/features/accessibility/text_scale.dart';
 import 'package:fluxer_app/features/profile/providers/user_settings_status_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_sync_service.dart';
 import 'package:fluxer_dart/export.dart';
@@ -290,7 +291,8 @@ class ThemePreference extends _$ThemePreference {
         AsyncValue<UserSettingsResponse?> next,
       ) {
         final UserSettingsResponse? settings = next.value;
-        if (settings == null || _userId == null) {
+        final String? currentUserId = ref.read(currentUserIdProvider);
+        if (settings == null || _userId == null || currentUserId != _userId) {
           return;
         }
         unawaited(_applyRemoteUserSettings(settings));
@@ -366,10 +368,6 @@ class ThemePreference extends _$ThemePreference {
           settings,
           themeCustomizationApplier: applySyncedThemeCustomization,
         );
-    await applySyncedThemeFromUserSettings(
-      settings,
-      applySyncedThemeCustomization,
-    );
     if (state.syncAcrossDevices && state.mode != FluxerThemeMode.system) {
       await applyServerSettings(settings);
     }
@@ -409,13 +407,15 @@ class ThemePreference extends _$ThemePreference {
   }
 
   Future<void> setScaleFactor(double factor) async {
-    state = state.copyWith(scaleFactor: factor);
+    state = state.copyWith(scaleFactor: clampLayoutZoomLevel(factor));
     await _persist();
+    _markAccessibilityDirty();
   }
 
   Future<void> setChatFontSize(int size) async {
-    state = state.copyWith(chatFontSize: size);
+    state = state.copyWith(chatFontSize: snapChatFontSize(size.toDouble()));
     await _persist();
+    _markAccessibilityDirty();
   }
 
   void previewSaturationFactor(double value) {
@@ -448,15 +448,28 @@ class ThemePreference extends _$ThemePreference {
   Future<void> applySyncedThemeCustomization({
     double? saturationFactor,
     String? customThemeCss,
+    int? chatFontSize,
+    double? scaleFactor,
     bool updateSaturationFactor = true,
     bool updateCustomThemeCss = true,
+    bool updateChatFontSize = false,
+    bool updateScaleFactor = false,
     bool clearCustomThemeCss = false,
   }) async {
+    if (_userId == null) {
+      return;
+    }
+    final currentUserId = ref.read(currentUserIdProvider);
+    if (currentUserId != null && currentUserId != _userId) {
+      return;
+    }
     _isApplyingRemote = true;
     try {
       state = state.copyWith(
         saturationFactor: updateSaturationFactor ? saturationFactor : null,
         customThemeCss: updateCustomThemeCss ? customThemeCss : null,
+        chatFontSize: updateChatFontSize ? chatFontSize : null,
+        scaleFactor: updateScaleFactor ? scaleFactor : null,
         clearCustomThemeCss: updateCustomThemeCss && clearCustomThemeCss,
       );
       await _persist();
@@ -505,9 +518,12 @@ class ThemePreference extends _$ThemePreference {
   /// is already in flight (we don't want a stale echo to fight it). Persists
   /// locally; never pushes back.
   Future<void> applyServerSettings(UserSettingsResponse settings) async {
-    if (_userId == null) {
+    final String? currentUserId = ref.read(currentUserIdProvider);
+    if (_userId == null ||
+        (currentUserId != null && currentUserId != _userId)) {
       talker.warning(
-        '[ThemePreference] Hydration dropped: userId not loaded yet',
+        '[ThemePreference] Hydration dropped: '
+        '${_userId == null ? 'userId not loaded yet' : 'user mismatch'}',
       );
       return;
     }

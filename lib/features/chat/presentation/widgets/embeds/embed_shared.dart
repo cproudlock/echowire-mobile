@@ -1,9 +1,9 @@
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_markdown.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/external_links/external_link_handler.dart';
 import 'package:fluxer_markdown/fluxer_markdown.dart';
 
@@ -69,7 +69,11 @@ class EmbedAuthorRow extends StatelessWidget {
             imageUrl: author.proxyIconUrl ?? author.iconUrl!,
             width: 20,
             height: 20,
+            memCacheWidth: (20 * MediaQuery.devicePixelRatioOf(context))
+                .round(),
             fit: BoxFit.cover,
+            fadeInDuration: Duration.zero,
+            fadeOutDuration: Duration.zero,
             errorBuilder: (_, e, s) => const SizedBox.shrink(),
           ),
         ),
@@ -122,7 +126,11 @@ class EmbedFooterRow extends StatelessWidget {
               imageUrl: footer.proxyIconUrl ?? footer.iconUrl!,
               width: 16,
               height: 16,
+              memCacheWidth: (16 * MediaQuery.devicePixelRatioOf(context))
+                  .round(),
               fit: BoxFit.cover,
+              fadeInDuration: Duration.zero,
+              fadeOutDuration: Duration.zero,
               errorBuilder: (_, e, s) => const SizedBox.shrink(),
             ),
           ),

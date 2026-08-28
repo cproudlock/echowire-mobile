@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
@@ -25,6 +24,7 @@ import 'package:fluxer_app/features/dm/providers/dm_providers.dart';
 import 'package:fluxer_app/features/dm/utils/group_dm_display_name.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/display_name.dart';
 import 'package:fluxer_app/shared/utils/guild_name_abbreviation.dart';
 import 'package:fluxer_markdown/fluxer_markdown.dart';
@@ -56,6 +56,7 @@ class ForwardedMessageContent extends ConsumerWidget {
     final attachmentSize = snapshot.hasCompactAttachments
         ? MediaDimensionSize.small
         : chatPreferences.attachmentMediaDimensionSize;
+    final String snapshotScope = forwardedSnapshotScope(message.id);
 
     return Padding(
       padding: const EdgeInsets.only(top: 4),
@@ -88,6 +89,7 @@ class ForwardedMessageContent extends ConsumerWidget {
                     padding: const EdgeInsets.only(top: 4),
                     child: MessageMarkdown(
                       data: snapshot.content,
+                      messageId: snapshotScope,
                       channelId: message.channelId,
                       mentionChannels: snapshot.mentionChannels,
                       baseStyle: context.textStyles.messageText.copyWith(
@@ -104,9 +106,11 @@ class ForwardedMessageContent extends ConsumerWidget {
                     inlineAttachmentMedia: inlineAttachmentMedia,
                     dimensionSize: attachmentSize,
                     revealSpoilers: revealSpoilers,
+                    spoilerSyncController: spoilerSyncController,
                     topPadding: 4,
                     channelId: message.channelId,
                     messageId: message.id,
+                    spoilerSyncScope: snapshotScope,
                     messageFlags: snapshot.flags,
                   ),
                 if (renderEmbeds)
@@ -549,7 +553,10 @@ class _DirectMessageAvatar extends StatelessWidget {
         imageUrl: data.avatarUrl!,
         width: 16,
         height: 16,
+        memCacheWidth: (16 * MediaQuery.devicePixelRatioOf(context)).round(),
         fit: BoxFit.cover,
+        fadeInDuration: Duration.zero,
+        fadeOutDuration: Duration.zero,
         errorBuilder: (_, _, _) => PhosphorIcon(
           PhosphorIconsFill.chatCircle,
           size: 14,
@@ -595,7 +602,10 @@ class _GuildSourceIcon extends StatelessWidget {
         imageUrl: guild.iconUrl!,
         width: 16,
         height: 16,
+        memCacheWidth: (16 * MediaQuery.devicePixelRatioOf(context)).round(),
         fit: BoxFit.cover,
+        fadeInDuration: Duration.zero,
+        fadeOutDuration: Duration.zero,
         errorBuilder: (_, _, _) => const SizedBox.shrink(),
       ),
     );

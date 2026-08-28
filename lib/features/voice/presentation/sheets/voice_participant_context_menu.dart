@@ -1,16 +1,16 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as database;
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/members/presentation/widgets/manage_member_roles_picker.dart';
 import 'package:fluxer_app/features/members/utils/guild_member_menu_state.dart';
 import 'package:fluxer_app/features/profile/presentation/user_profile_sheet.dart';
+import 'package:fluxer_app/features/profile/utils/profile_menu_capabilities.dart';
+import 'package:fluxer_app/features/settings/providers/voice_settings_provider.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/ui/action_menu/context_menu_widgets.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
-import 'package:fluxer_app/features/profile/utils/profile_menu_capabilities.dart';
 import 'package:fluxer_app/features/voice/presentation/sheets/voice_participant_guild_moderation_entries.dart';
 import 'package:fluxer_app/features/voice/presentation/sheets/voice_participant_menu_data.dart';
 import 'package:fluxer_app/features/voice/presentation/widgets/voice_participant_menu_widgets.dart';
@@ -21,6 +21,7 @@ import 'package:fluxer_app/features/voice/providers/voice_stream_audio_provider.
 import 'package:fluxer_app/features/voice/utils/voice_participant_menu_capabilities.dart';
 import 'package:fluxer_app/features/voice/utils/voice_participant_moderation.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/gateway.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -127,6 +128,7 @@ class VoiceParticipantContextMenu {
             disconnect: l10n.voiceControlDisconnect,
             userVolume: l10n.voiceParticipantMenuUserVolume,
             streamVolume: l10n.voiceParticipantMenuStreamVolume,
+            prioritizeSpeakers: l10n.voicePrioritizeSpeakersLabel,
           ),
           onViewProfile: () {
             close();
@@ -215,6 +217,13 @@ class VoiceParticipantContextMenu {
               _setStreamVolume(ref, capabilities.streamKey, value),
           onToggleStreamMute: (bool muted) =>
               _setStreamMuted(ref, capabilities.streamKey, muted: muted),
+          onTogglePrioritizeSpeakers: (bool value) {
+            unawaited(
+              ref
+                  .read(voiceSettingsProvider.notifier)
+                  .setPrioritizeSpeakingParticipants(value: value),
+            );
+          },
         );
 
     if ((roleMenuState?.shouldShowRolesSubmenu ?? false) && guildId != null) {

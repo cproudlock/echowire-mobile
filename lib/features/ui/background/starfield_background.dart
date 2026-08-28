@@ -3,8 +3,8 @@ import 'dart:io' show Platform;
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
 Offset _parallaxDeltaFromSensor({
@@ -37,15 +37,64 @@ Offset _parallaxDeltaFromSensor({
   return Offset(clampAxis(screenX), clampAxis(screenY));
 }
 
-class StarfieldBackground extends StatefulWidget {
-  const StarfieldBackground({this.child, super.key});
-
-  static const Color cutoutColor = Color(0xFF080616);
-  static const Color cutoutSymbolColor = Color(0xFFE2DAFF);
+class StarfieldBackdrop extends StatelessWidget {
+  const StarfieldBackdrop({this.child, super.key});
 
   static const Color _gradientStart = Color(0xFF05040D);
   static const Color _gradientMid = Color(0xFF080616);
   static const Color _gradientEnd = Color(0xFF0D0A1C);
+
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment(-0.8, -1),
+              end: Alignment(0.9, 1),
+              colors: [
+                StarfieldBackdrop._gradientStart,
+                StarfieldBackdrop._gradientMid,
+                StarfieldBackdrop._gradientEnd,
+              ],
+              stops: [0.0, 0.46, 1.0],
+            ),
+          ),
+        ),
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              center: Alignment(-0.44, -0.8),
+              radius: 0.85,
+              colors: [Color(0x287A57BF), Color(0x007A57BF)],
+              stops: [0.0, 0.7],
+            ),
+          ),
+        ),
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              center: Alignment(0.64, 0.68),
+              radius: 0.75,
+              colors: [Color(0x245B4197), Color(0x005B4197)],
+              stops: [0.0, 0.72],
+            ),
+          ),
+        ),
+        if (child != null) Positioned.fill(child: child!),
+      ],
+    );
+  }
+}
+
+class StarfieldBackground extends StatefulWidget {
+  const StarfieldBackground({this.child, super.key});
+
+  static const Color cutoutSymbolColor = Color(0xFFE2DAFF);
 
   final Widget? child;
 
@@ -57,8 +106,8 @@ class _StarfieldBackgroundState extends State<StarfieldBackground>
     with TickerProviderStateMixin, WidgetsBindingObserver {
   static const Duration _fineDriftDuration = Duration(seconds: 90);
   static const Duration _coarseDriftDuration = Duration(seconds: 120);
-  static const double _parallaxSensitivity = 4;
-  static const double _parallaxMaxOffset = 12;
+  static const double _parallaxSensitivity = 7;
+  static const double _parallaxMaxOffset = 22;
   static const double _parallaxSmoothing = 0.15;
   static const double _parallaxSettledDistance = 0.05;
 
@@ -142,7 +191,7 @@ class _StarfieldBackgroundState extends State<StarfieldBackground>
     if (_parallaxTick.isAnimating) {
       return;
     }
-    unawaited(_parallaxTick.repeat());
+    _parallaxTick.repeat();
   }
 
   void _updateParallaxOffset() {
@@ -177,10 +226,10 @@ class _StarfieldBackgroundState extends State<StarfieldBackground>
     final bool shouldAnimate = foreground && animations;
     if (shouldAnimate) {
       if (!_fineDrift.isAnimating) {
-        unawaited(_fineDrift.repeat(reverse: true));
+        _fineDrift.repeat(reverse: true);
       }
       if (!_coarseDrift.isAnimating) {
-        unawaited(_coarseDrift.repeat(reverse: true));
+        _coarseDrift.repeat(reverse: true);
       }
       _startParallax();
     } else {
@@ -257,6 +306,15 @@ class _StarfieldBackgroundState extends State<StarfieldBackground>
     super.dispose();
   }
 
+  // Stars travel ~16px per 90-120s cycle; per-frame deltas are deep
+  // sub-pixel. Quantized painter inputs keep shouldRepaint false between
+  // visible steps, skipping the blurred re-raster on most frames.
+  static double _quantizeProgress(double value) =>
+      (value * 256).roundToDouble() / 256;
+
+  static double _quantizePixels(double value) =>
+      (value * 8).roundToDouble() / 8;
+
   @override
   Widget build(BuildContext context) {
     final bool animationsEnabled = !MediaQuery.disableAnimationsOf(context);
@@ -266,65 +324,38 @@ class _StarfieldBackgroundState extends State<StarfieldBackground>
     }
     final double motionIntensity = animationsEnabled ? 1 : 0;
 
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        const DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment(-0.8, -1),
-              end: Alignment(0.9, 1),
-              colors: [
-                StarfieldBackground._gradientStart,
-                StarfieldBackground._gradientMid,
-                StarfieldBackground._gradientEnd,
-              ],
-              stops: [0.0, 0.46, 1.0],
-            ),
-          ),
-        ),
-        const DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: RadialGradient(
-              center: Alignment(-0.44, -0.8),
-              radius: 0.85,
-              colors: [Color(0x287A57BF), Color(0x007A57BF)],
-              stops: [0.0, 0.7],
-            ),
-          ),
-        ),
-        const DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: RadialGradient(
-              center: Alignment(0.64, 0.68),
-              radius: 0.75,
-              colors: [Color(0x245B4197), Color(0x005B4197)],
-              stops: [0.0, 0.72],
-            ),
-          ),
-        ),
-        AnimatedBuilder(
-          animation: Listenable.merge(<Listenable>[
-            _fineDrift,
-            _coarseDrift,
-            _parallaxOffset,
-          ]),
-          builder: (BuildContext context, Widget? child) {
-            return CustomPaint(
-              painter: _StarfieldPainter(
-                fineProgress:
+    return StarfieldBackdrop(
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          AnimatedBuilder(
+            animation: Listenable.merge(<Listenable>[
+              _fineDrift,
+              _coarseDrift,
+              _parallaxOffset,
+            ]),
+            builder: (BuildContext context, Widget? _) {
+              return CustomPaint(
+                painter: _StarfieldPainter(
+                  fineProgress: _quantizeProgress(
                     Curves.easeInOut.transform(_fineDrift.value) *
-                    motionIntensity,
-                coarseProgress:
+                        motionIntensity,
+                  ),
+                  coarseProgress: _quantizeProgress(
                     Curves.easeInOut.transform(1 - _coarseDrift.value) *
-                    motionIntensity,
-                parallaxOffset: _parallaxOffset.value * motionIntensity,
-              ),
-            );
-          },
-        ),
-        if (widget.child != null) widget.child!,
-      ],
+                        motionIntensity,
+                  ),
+                  parallaxOffset: Offset(
+                    _quantizePixels(_parallaxOffset.value.dx * motionIntensity),
+                    _quantizePixels(_parallaxOffset.value.dy * motionIntensity),
+                  ),
+                ),
+              );
+            },
+          ),
+          if (widget.child != null) widget.child!,
+        ],
+      ),
     );
   }
 }
@@ -349,8 +380,8 @@ class _StarfieldPainter extends CustomPainter {
   final double coarseProgress;
   final Offset parallaxOffset;
 
-  static const double _fineParallaxScale = 0.4;
-  static const double _coarseParallaxScale = 1;
+  static const double _fineParallaxScale = 0.75;
+  static const double _coarseParallaxScale = 1.4;
 
   static const List<_StarSpec> _fineStars = <_StarSpec>[
     _StarSpec(0.04, 0.12, 0.5, Color(0x5CFFFFFF)),
@@ -401,6 +432,9 @@ class _StarfieldPainter extends CustomPainter {
     _StarSpec(0.96, 0.56, 1, Color(0x42FFFFFF)),
   ];
 
+  static const MaskFilter _fineGlow = MaskFilter.blur(BlurStyle.normal, 1.4);
+  static const MaskFilter _coarseGlow = MaskFilter.blur(BlurStyle.normal, 2.4);
+
   @override
   void paint(Canvas canvas, Size size) {
     _paintLayer(
@@ -408,7 +442,7 @@ class _StarfieldPainter extends CustomPainter {
       size,
       stars: _fineStars,
       progress: fineProgress,
-      glowSigma: 1.4,
+      glow: _fineGlow,
       parallaxScale: _fineParallaxScale,
     );
     _paintLayer(
@@ -416,7 +450,7 @@ class _StarfieldPainter extends CustomPainter {
       size,
       stars: _coarseStars,
       progress: coarseProgress,
-      glowSigma: 2.4,
+      glow: _coarseGlow,
       parallaxScale: _coarseParallaxScale,
     );
   }
@@ -426,7 +460,7 @@ class _StarfieldPainter extends CustomPainter {
     Size size, {
     required List<_StarSpec> stars,
     required double progress,
-    required double glowSigma,
+    required MaskFilter glow,
     required double parallaxScale,
   }) {
     const Offset drift = Offset(-16, 12);
@@ -444,7 +478,7 @@ class _StarfieldPainter extends CustomPainter {
       ).translate(offset.dx, offset.dy);
       paint
         ..color = star.color
-        ..maskFilter = MaskFilter.blur(BlurStyle.normal, glowSigma);
+        ..maskFilter = glow;
       canvas.drawCircle(center, math.max(star.radius, 0.6), paint);
       paint.maskFilter = null;
       canvas.drawCircle(center, star.radius, paint);

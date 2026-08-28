@@ -1,6 +1,6 @@
 import 'dart:ui' show PathMetric;
 
-import 'package:flutter/material.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 enum DashedBorderShape { circle, roundedRectangle }
 

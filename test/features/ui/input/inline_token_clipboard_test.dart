@@ -1,10 +1,73 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/features/ui/input/emoji_text_editing_controller.dart';
 import 'package:fluxer_app/features/ui/input/inline_token_clipboard.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 void main() {
+  group('extractInsertedDisplayText', () {
+    test('extracts text inserted at caret', () {
+      expect(
+        extractInsertedDisplayText(
+          textBefore: 'hello world',
+          textAfter: 'hello there world',
+          selectionBefore: const TextSelection.collapsed(offset: 5),
+        ),
+        ' there',
+      );
+    });
+
+    test('extracts text that replaced a selection', () {
+      expect(
+        extractInsertedDisplayText(
+          textBefore: 'hello world',
+          textAfter: 'hi world',
+          selectionBefore: const TextSelection(baseOffset: 0, extentOffset: 5),
+        ),
+        'hi',
+      );
+    });
+  });
+
+  group('reprocessNativeTextPaste', () {
+    test('re-chips pasted emoji shortcode after native paste', () async {
+      final EmojiTextEditingController controller = EmojiTextEditingController()
+        ..selection = const TextSelection.collapsed(offset: 0);
+      controller.text = ':wave:';
+
+      final bool pasted = await reprocessNativeTextPaste(
+        controller: controller,
+        textBefore: '',
+        selectionBefore: const TextSelection.collapsed(offset: 0),
+        applyPaste: (String inserted) =>
+            pasteWireTextIntoInlineTokenController(controller, inserted),
+      );
+
+      expect(pasted, isTrue);
+      expect(controller.actualText, ':wave:');
+      expect(controller.text.length, 1);
+      controller.dispose();
+    });
+  });
+
+  group('reprocessNativeInlineTokenPaste', () {
+    test('delegates to reprocessNativeTextPaste', () async {
+      final EmojiTextEditingController controller = EmojiTextEditingController()
+        ..selection = const TextSelection.collapsed(offset: 0);
+      controller.text = ':wave:';
+
+      final bool pasted = await reprocessNativeInlineTokenPaste(
+        controller: controller,
+        textBefore: '',
+        selectionBefore: const TextSelection.collapsed(offset: 0),
+      );
+
+      expect(pasted, isTrue);
+      expect(controller.actualText, ':wave:');
+      controller.dispose();
+    });
+  });
+
   group('stripPrivateUseCharacters', () {
     test('removes BMP private-use sentinels', () {
       expect(
@@ -139,6 +202,60 @@ void main() {
       await pasteIntoTextController(controller);
       expect(controller.text, 'hello there world');
       expect(controller.selection, const TextSelection.collapsed(offset: 11));
+      controller.dispose();
+    });
+
+    test('inserts clipboard text at end when selection is invalid', () async {
+      TestWidgetsFlutterBinding.ensureInitialized();
+      final TextEditingController controller = TextEditingController(text: 'hi')
+        ..selection = const TextSelection.collapsed(offset: -1);
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(SystemChannels.platform, (
+            MethodCall methodCall,
+          ) async {
+            if (methodCall.method == 'Clipboard.getData') {
+              return <String, String>{'text': ' there'};
+            }
+            return null;
+          });
+      addTearDown(() {
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(SystemChannels.platform, null);
+      });
+
+      await pasteIntoTextController(controller);
+
+      expect(controller.text, 'hi there');
+      expect(controller.selection, const TextSelection.collapsed(offset: 8));
+      controller.dispose();
+    });
+  });
+
+  group('InlineTokenTextEditingController IME sanitize', () {
+    test('drops orphan private-use sentinels on value assignment', () {
+      final EmojiTextEditingController controller = EmojiTextEditingController()
+        ..value = TextEditingValue(
+          text: 'a${String.fromCharCode(0xE000)}b',
+          selection: const TextSelection.collapsed(offset: 2),
+        );
+
+      expect(controller.text, 'ab');
+      expect(controller.selection, const TextSelection.collapsed(offset: 1));
+      controller.dispose();
+    });
+
+    test('keeps live token sentinels', () {
+      final EmojiTextEditingController controller = EmojiTextEditingController()
+        ..loadWithTokens(':wave:');
+      final String sentinel = controller.text;
+
+      controller.value = TextEditingValue(
+        text: '${sentinel}x',
+        selection: TextSelection.collapsed(offset: sentinel.length + 1),
+      );
+
+      expect(controller.text, '${sentinel}x');
+      expect(controller.actualText, ':wave:x');
       controller.dispose();
     });
   });

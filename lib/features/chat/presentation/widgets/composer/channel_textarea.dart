@@ -2,12 +2,11 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:ui' show BoxWidthStyle;
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
+import 'package:fluxer_app/core/instance/instance_runtime_config.dart';
 import 'package:fluxer_app/core/limits/instance_limit_provider.dart';
 import 'package:fluxer_app/core/limits/limit_key.dart';
 import 'package:fluxer_app/core/permissions/channel_permission_cache_provider.dart';
@@ -16,9 +15,11 @@ import 'package:fluxer_app/core/permissions/permission.dart';
 import 'package:fluxer_app/core/platform/fluxer_platform.dart';
 import 'package:fluxer_app/core/premium/should_show_premium_commerce_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
+import 'package:fluxer_app/features/accessibility/text_scale.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
@@ -30,18 +31,21 @@ import 'package:fluxer_app/features/chat/presentation/widgets/channel/channel_at
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/blocked_user_composer_barrier.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/channel_composer_barrier.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/composer_autocomplete_field.dart';
-import 'package:fluxer_app/features/chat/presentation/widgets/composer/composer_paste_scope.dart';
-import 'package:fluxer_app/features/chat/presentation/widgets/composer/composer_status_row.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/composer/composer_clipboard_scope.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/message_character_counter.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/composer/slash_command_composer.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/composer/slash_command_param_bar.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/system_dm_composer_barrier.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/voice_message_composer_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/voice_message_recorder.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/composer/wide_composer_layout.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/reply_preview.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/expression_picker.dart';
 import 'package:fluxer_app/features/chat/providers/channel/channel_message_permissions_provider.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_view_model.dart';
 import 'package:fluxer_app/features/chat/providers/guild/guild_composer_access_provider.dart';
 import 'package:fluxer_app/features/chat/providers/messages/message_length_limits_provider.dart';
+import 'package:fluxer_app/features/chat/providers/pickers/attachment_panel_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/bottom_input_slot_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/emoji_picker_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/expression_panel_provider.dart';
@@ -53,15 +57,20 @@ import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_rate_limite
 import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_tracker.dart';
 import 'package:fluxer_app/features/chat/providers/upload/cloud_upload_controller.dart';
 import 'package:fluxer_app/features/chat/service/composer_mention_controller.dart';
+import 'package:fluxer_app/features/chat/service/composer_slash_session.dart';
+import 'package:fluxer_app/features/chat/utils/attachment_native_pickers.dart';
 import 'package:fluxer_app/features/chat/utils/bottom_input_slot_layout.dart';
+import 'package:fluxer_app/features/chat/utils/composer_clipboard_paste.dart';
 import 'package:fluxer_app/features/chat/utils/composer_command.dart';
+import 'package:fluxer_app/features/chat/utils/composer_command_execute.dart';
 import 'package:fluxer_app/features/chat/utils/composer_emoji_resolution.dart';
 import 'package:fluxer_app/features/chat/utils/composer_expression_tabs.dart';
+import 'package:fluxer_app/features/chat/utils/composer_panel.dart';
 import 'package:fluxer_app/features/chat/utils/composer_scroll.dart';
 import 'package:fluxer_app/features/chat/utils/composer_sendable_content.dart';
 import 'package:fluxer_app/features/chat/utils/composer_upload_file.dart';
 import 'package:fluxer_app/features/chat/utils/composer_voice_button_visibility.dart';
-import 'package:fluxer_app/features/chat/utils/file_upload_constants.dart';
+import 'package:fluxer_app/features/chat/utils/file_upload_validation_l10n.dart';
 import 'package:fluxer_app/features/chat/utils/file_upload_validator.dart';
 import 'package:fluxer_app/features/chat/utils/paste_text_attachment.dart';
 import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
@@ -72,18 +81,22 @@ import 'package:fluxer_app/features/friends/providers/friend_providers.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_view_model.dart';
 import 'package:fluxer_app/features/guilds/services/guild_verification.dart';
+import 'package:fluxer_app/features/input/providers/chat_keybind_effects_provider.dart';
+import 'package:fluxer_app/features/input/providers/composer_focus_coordinator_provider.dart';
 import 'package:fluxer_app/features/settings/providers/advanced_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_confirm_sheet.dart';
+import 'package:fluxer_app/features/ui/input/fluxer_clipboard_scope.dart';
 import 'package:fluxer_app/features/ui/input/inline_token_clipboard.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:fluxer_app/shared/utils/chat_context_utils.dart';
 import 'package:fluxer_app/shared/utils/fluxer_haptics.dart';
 import 'package:fluxer_app/shared/utils/keyboard_focus_restore.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:fluxer_markdown/fluxer_markdown.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 const double _kComposerDisabledOpacity = 0.6;
@@ -97,10 +110,9 @@ const double _kMobileComposerSuffixWidth =
 const double _kMobileComposerSuffixHeight =
     _kMobileComposerSuffixVerticalPadding * 2 +
     _kMobileComposerSuffixButtonExtent;
-const double _kComposerTopPadding = 8;
 const double _kMobileComposerTopPadding = 3;
 const double _kDesktopComposerAttachIconSize = 26;
-const double _kWideComposerActionExtent = 36;
+const double _kWideComposerActionExtent = WideComposerLayout.actionButtonExtent;
 const double _kWideComposerIconSize = 24;
 const double _kTouchComposerActionSpacing = 6;
 
@@ -227,13 +239,12 @@ class ChannelTextarea extends ConsumerStatefulWidget {
 class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     with WidgetsBindingObserver {
   late final ComposerMentionController _controller;
+  final ComposerSlashSession _slashSession = ComposerSlashSession();
   final FocusNode _focusNode = FocusNode();
   late final KeyboardFocusRestoreHandle _keyboardRestore;
   final ScrollController _composerScrollController = ScrollController();
   final GlobalKey<ComposerAutocompleteFieldState> _composerFieldKey =
       GlobalKey<ComposerAutocompleteFieldState>();
-  final GlobalKey<ComposerPasteScopeState> _pasteScopeKey =
-      GlobalKey<ComposerPasteScopeState>();
   final _expressionPickerKey = GlobalKey<FluxerEmojiPickerPopoutState>();
   final _gifPickerKey = GlobalKey<FluxerEmojiPickerPopoutState>();
   final _mediaPickerKey = GlobalKey<FluxerEmojiPickerPopoutState>();
@@ -241,6 +252,7 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
 
   bool _enterToSendEnabled = false;
   bool _isApplyingWireText = false;
+  bool _composerFocused = false;
   String? _lastWireTextPushedToState;
 
   bool get _isDesktop => isFluxerDesktopOs;
@@ -324,9 +336,35 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     return false;
   }
 
+  late final VoidCallback _requestComposerFocus;
+  late final ComposerFocusCoordinator _composerFocus;
+  ProviderSubscription<int>? _chatKeybindEffectsSubscription;
+
   @override
   void initState() {
     super.initState();
+    _composerFocus = ref.read(composerFocusCoordinatorProvider);
+    _requestComposerFocus = () {
+      if (_focusNode.canRequestFocus) {
+        _focusNode.requestFocus();
+      }
+    };
+    _composerFocus.register(
+      requestFocus: _requestComposerFocus,
+      readText: _sendableWireText,
+      hasFocus: () => _focusNode.hasFocus,
+    );
+    _chatKeybindEffectsSubscription = listenChatKeybindEffects(
+      ref,
+      (_) {
+        if (!mounted) {
+          return;
+        }
+        unawaited(_pickAttachments(context));
+      },
+      where: (ChatKeybindEffect effect) =>
+          effect == ChatKeybindEffect.triggerUpload,
+    );
     _keyboardRestore = KeyboardFocusRestoreHandle(
       focusNode: _focusNode,
       shouldTrackOnBackground: _shouldTrackKeyboardRestore,
@@ -335,7 +373,10 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     WidgetsBinding.instance.addObserver(this);
     _controller = ComposerMentionController(ref: ref);
     _focusNode.onKeyEvent = _handleComposerFieldKeyEvent;
+    _composerFocused = _focusNode.hasFocus;
+    _focusNode.addListener(_handleComposerFocusChange);
     _controller.addListener(_syncStateFromController);
+    _slashSession.addListener(_onSlashSessionChanged);
     unawaited(FluxerHaptics.warmSend());
   }
 
@@ -348,7 +389,10 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     if (!mounted || !isMobileLayout(context)) {
       return false;
     }
-    if (ref.read(expressionPanelProvider)) {
+    if (isComposerPanelOpen(
+      expressionPanelOpen: ref.read(expressionPanelProvider),
+      attachmentPanelOpen: ref.read(attachmentPanelProvider),
+    )) {
       return false;
     }
     if (!_focusNode.canRequestFocus) {
@@ -364,7 +408,10 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     if (!mounted || !isMobileLayout(context)) {
       return false;
     }
-    if (ref.read(expressionPanelProvider)) {
+    if (isComposerPanelOpen(
+      expressionPanelOpen: ref.read(expressionPanelProvider),
+      attachmentPanelOpen: ref.read(attachmentPanelProvider),
+    )) {
       return false;
     }
     return _focusNode.canRequestFocus;
@@ -409,8 +456,19 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     }
   }
 
-  String _sendableWireText() =>
-      stripPrivateUseCharacters(_controller.toWireText());
+  void _onSlashSessionChanged() {
+    if (!mounted) {
+      return;
+    }
+    setState(() {});
+  }
+
+  String _sendableWireText() {
+    if (_slashSession.isActive) {
+      return _slashSession.toWireText();
+    }
+    return stripPrivateUseCharacters(_controller.toWireText());
+  }
 
   Duration? _activeSlowmodeRemainingForSend(String channelId) {
     final Channel? channel = ref.read(channelByIdProvider(channelId)).value;
@@ -496,11 +554,24 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     }
   }
 
+  void _handleComposerFocusChange() {
+    final bool focused = _focusNode.hasFocus;
+    if (_composerFocused != focused) {
+      setState(() => _composerFocused = focused);
+    }
+  }
+
   @override
   void dispose() {
+    _chatKeybindEffectsSubscription?.close();
+    _composerFocus.unregister(_requestComposerFocus);
     WidgetsBinding.instance.removeObserver(this);
     _focusNode
+      ..removeListener(_handleComposerFocusChange)
       ..unfocus()
+      ..dispose();
+    _slashSession
+      ..removeListener(_onSlashSessionChanged)
       ..dispose();
     _composerScrollController.dispose();
     _controller.dispose();
@@ -521,24 +592,6 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
         return KeyEventResult.handled;
       }
       return KeyEventResult.ignored;
-    }
-    if (event.logicalKey == LogicalKeyboardKey.keyV &&
-        (HardwareKeyboard.instance.isMetaPressed ||
-            HardwareKeyboard.instance.isControlPressed)) {
-      unawaited(_pasteScopeKey.currentState?.handlePaste());
-      return KeyEventResult.handled;
-    }
-    if (event.logicalKey == LogicalKeyboardKey.keyC &&
-        (HardwareKeyboard.instance.isMetaPressed ||
-            HardwareKeyboard.instance.isControlPressed)) {
-      unawaited(_pasteScopeKey.currentState?.handleCopy());
-      return KeyEventResult.handled;
-    }
-    if (event.logicalKey == LogicalKeyboardKey.keyX &&
-        (HardwareKeyboard.instance.isMetaPressed ||
-            HardwareKeyboard.instance.isControlPressed)) {
-      unawaited(_pasteScopeKey.currentState?.handleCut());
-      return KeyEventResult.handled;
     }
     if (!_enterToSendEnabled) {
       return KeyEventResult.ignored;
@@ -634,76 +687,139 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     final bool canUpgrade =
         maxMessageLength < premiumMaxLength &&
         ref.watch(shouldShowPremiumCommerceProvider);
-    return ComposerPasteScope(
-      key: _pasteScopeKey,
+    return ComposerClipboardScope(
       channelId: channelId,
       controller: _controller,
+      focusNode: _focusNode,
       isAttachEnabled: perms.isAttachEnabled,
       maxMessageLength: maxMessageLength,
       canAttachOnExceed: () =>
           perms.canShowAttachControls && perms.isAttachEnabled,
       onPasteExceedsLimit: (String pastedText) =>
           unawaited(_handlePasteExceedsLimit(pastedText, channelId)),
+      onPasteLostContent: _showCorruptedCustomEmojiToast,
       onValidationResult: _toastUploadValidation,
-      builder: (BuildContext context, ComposerPasteScopeState pasteScope) {
-        return ListenableBuilder(
-          listenable: _controller,
-          builder: (BuildContext context, Widget? child) {
-            final int contentLength = _composerContentLength(
-              _sendableWireText(),
-            );
-            final bool showCounter =
-                contentLength > (maxMessageLength * 0.8).floor();
-            final InputDecoration effectiveDecoration = decoration.copyWith(
-              contentPadding: showCounter
-                  ? basePadding + const EdgeInsets.only(right: 28, bottom: 18)
-                  : basePadding,
-            );
-            return Stack(
-              clipBehavior: Clip.none,
-              children: [
-                _composerOpacity(
-                  enabled: perms.isComposerEnabled,
-                  child: Semantics(
-                    label: _resolveHintText(),
-                    textField: true,
-                    child: TextField(
-                      controller: _controller,
-                      focusNode: _focusNode,
-                      scrollController: _composerScrollController,
+      builder:
+          (
+            BuildContext context,
+            FluxerClipboardScopeState clipboardScope,
+            FocusNode focusNode,
+          ) {
+            return ListenableBuilder(
+              listenable: _controller,
+              builder: (BuildContext context, Widget? child) {
+                final int contentLength = _composerContentLength(
+                  _sendableWireText(),
+                );
+                final bool showCounter =
+                    contentLength > (maxMessageLength * 0.8).floor();
+                final InputDecoration effectiveDecoration = decoration.copyWith(
+                  contentPadding: showCounter
+                      ? basePadding +
+                            const EdgeInsets.only(right: 28, bottom: 18)
+                      : basePadding,
+                );
+                return Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    _composerOpacity(
                       enabled: perms.isComposerEnabled,
-                      style: context.textStyles.inputText,
-                      minLines: minLines,
-                      maxLines: maxLines,
-                      selectionWidthStyle: BoxWidthStyle.tight,
-                      decoration: effectiveDecoration,
-                      textAlignVertical: textAlignVertical,
-                      textCapitalization: TextCapitalization.sentences,
-                      contextMenuBuilder: pasteScope.buildContextMenu,
-                      onTap: () {
-                        if (ref.read(expressionPanelProvider)) {
-                          _closeExpressionPanelAndFocusComposer();
-                        }
-                      },
+                      child: Semantics(
+                        label: _resolveHintText(),
+                        textField: true,
+                        child: wrapBoundedTextClip(
+                          maxLines: maxLines,
+                          child: _slashSession.isActive
+                              ? SlashCommandComposer(
+                                  session: _slashSession,
+                                  enabled: perms.isComposerEnabled,
+                                  style: context.textStyles.inputText,
+                                  onKeyEvent: (KeyEvent event) =>
+                                      handleComposerAutocompleteKey(
+                                        _composerFieldKey.currentState,
+                                        event,
+                                      ),
+                                  onSubmit: () {
+                                    unawaited(_onSendPressed());
+                                  },
+                                )
+                              : TextField(
+                                  controller: _controller,
+                                  focusNode: focusNode,
+                                  scrollController: _composerScrollController,
+                                  enabled: perms.isComposerEnabled,
+                                  style: context.textStyles.inputText,
+                                  strutStyle: boundedStrutFor(
+                                    context.textStyles.inputText,
+                                    forceHeight: false,
+                                  ),
+                                  minLines: minLines,
+                                  maxLines: maxLines,
+                                  selectionWidthStyle: BoxWidthStyle.tight,
+                                  decoration: effectiveDecoration,
+                                  textAlignVertical: textAlignVertical,
+                                  textCapitalization:
+                                      TextCapitalization.sentences,
+                                  contextMenuBuilder:
+                                      clipboardScope.buildContextMenu,
+                                  contentInsertionConfiguration:
+                                      perms.isAttachEnabled
+                                      ? ContentInsertionConfiguration(
+                                          onContentInserted:
+                                              (
+                                                KeyboardInsertedContent content,
+                                              ) {
+                                                unawaited(() async {
+                                                  final FileUploadValidationResult?
+                                                  result =
+                                                      await handleComposerContentInserted(
+                                                        ref: ref,
+                                                        channelId: channelId,
+                                                        content: content,
+                                                        isAttachEnabled: perms
+                                                            .isAttachEnabled,
+                                                      );
+                                                  if (result != null) {
+                                                    _toastUploadValidation(
+                                                      result,
+                                                    );
+                                                  }
+                                                }());
+                                              },
+                                        )
+                                      : null,
+                                  onTap: () {
+                                    if (isComposerPanelOpen(
+                                      expressionPanelOpen: ref.read(
+                                        expressionPanelProvider,
+                                      ),
+                                      attachmentPanelOpen: ref.read(
+                                        attachmentPanelProvider,
+                                      ),
+                                    )) {
+                                      _closeComposerPanelsAndFocusComposer();
+                                    }
+                                  },
+                                ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Positioned(
-                  right: 8,
-                  bottom: 8,
-                  child: MessageCharacterCounter(
-                    currentLength: contentLength,
-                    maxLength: maxMessageLength,
-                    canUpgrade: canUpgrade,
-                    premiumMaxLength: premiumMaxLength,
-                    onUpgradePressed: () => _showPlutoniumSheet(context),
-                  ),
-                ),
-              ],
+                    Positioned(
+                      right: 8,
+                      bottom: 8,
+                      child: MessageCharacterCounter(
+                        currentLength: contentLength,
+                        maxLength: maxMessageLength,
+                        canUpgrade: canUpgrade,
+                        premiumMaxLength: premiumMaxLength,
+                        onUpgradePressed: () => _showPlutoniumSheet(context),
+                      ),
+                    ),
+                  ],
+                );
+              },
             );
           },
-        );
-      },
     );
   }
 
@@ -782,6 +898,16 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     );
     if (dm != null && isSystemDmConversation(dm)) {
       return const SystemDmComposerBarrier();
+    }
+    final bool directMessagesDisabled = ref.watch(
+      instanceRuntimeConfigProvider.select(
+        (InstanceRuntimeConfig config) => config.directMessagesDisabled,
+      ),
+    );
+    if (directMessagesDisabled && dm != null && !dm.isPersonalNotes) {
+      return SystemDmComposerBarrier(
+        message: FluxerLocalizations.of(context).channelNoSendPermissionHint,
+      );
     }
     final Set<String> blockedUserIds = ref.watch(blockedUserIdsProvider);
     final bool isBlockedDmRecipient =
@@ -877,7 +1003,10 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
       ),
     );
     final bool mobileComposer = isMobileLayout(context);
-    final bool isPanelOpen = ref.watch(expressionPanelProvider);
+    final bool isPanelOpen = isComposerPanelOpen(
+      expressionPanelOpen: ref.watch(expressionPanelProvider),
+      attachmentPanelOpen: ref.watch(attachmentPanelProvider),
+    );
     final double bottomSlotHeight = ref.watch(
       bottomInputSlotProvider.select(
         (BottomInputSlotState state) => state.slotHeight,
@@ -890,60 +1019,193 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     final Color composerBackgroundColor = mobileComposer
         ? context.colors.chatInputBackground
         : context.colors.backgroundSecondaryLighter;
+    final bool hasAttachments = ref.watch(
+      cloudUploadControllerProvider(channelId).select(
+        (CloudComposerAttachments attachments) => attachments.items.isNotEmpty,
+      ),
+    );
+    final bool hasWideActionStack =
+        !mobileComposer &&
+        (replyTo != null ||
+            editingMessage != null ||
+            hasAttachments ||
+            _slashSession.focusedSlot != null);
+    final Widget composerInput = _buildComposerInput(
+      context: context,
+      chatNotifier: chatNotifier,
+      perms: perms,
+      channelId: channelId,
+      isPanelOpen: isPanelOpen,
+    );
+    final Widget? composerSafeBar = showComposerSafeBar
+        ? Container(
+            height: MediaQuery.paddingOf(context).bottom,
+            decoration: BoxDecoration(color: composerBackgroundColor),
+          )
+        : null;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (replyTo != null)
-          ReplyInputBar(
-            replyTo: replyTo,
-            guildId: guildId,
-            shouldReplyMention: replyMentioning,
-            onToggleMention: (bool mentioning) =>
-                chatNotifier.setReplyMentioning(mentioning: mentioning),
-            onCancel: chatNotifier.cancelReply,
-          ),
-        if (editingMessage != null)
-          EditingInputBar(onCancel: chatNotifier.cancelEdit),
-        ChannelAttachmentArea(channelId: channelId),
-        DecoratedBox(
-          decoration: BoxDecoration(
-            color: composerBackgroundColor,
-            border: Border(
-              top: BorderSide(color: context.colors.userAreaDividerColor),
+    final bool slashParamBarVisible = _slashSession.focusedSlot != null;
+    if (mobileComposer) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (replyTo != null)
+            ReplyInputBar(
+              replyTo: replyTo,
+              guildId: guildId,
+              shouldReplyMention: replyMentioning,
+              onToggleMention: (bool mentioning) =>
+                  chatNotifier.setReplyMentioning(mentioning: mentioning),
+              onCancel: chatNotifier.cancelReply,
             ),
-          ),
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(
-              mobileComposer ? 8 : 12,
-              mobileComposer
-                  ? _kMobileComposerTopPadding
-                  : _kComposerTopPadding,
-              mobileComposer ? 8 : 12,
-              mobileComposer ? 8 : 10,
+          if (editingMessage != null)
+            EditingInputBar(onCancel: chatNotifier.cancelEdit),
+          ChannelAttachmentArea(channelId: channelId),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              color: composerBackgroundColor,
+              border: replyTo == null && editingMessage == null
+                  ? null
+                  : Border(
+                      top: BorderSide(
+                        color: context.colors.userAreaDividerColor,
+                      ),
+                    ),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                if (mobileComposer) const ComposerStatusRow(),
-                _buildComposerInput(
-                  context: context,
-                  chatNotifier: chatNotifier,
-                  perms: perms,
-                  channelId: channelId,
-                  isPanelOpen: isPanelOpen,
+                if (slashParamBarVisible)
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: Color.lerp(
+                        composerBackgroundColor,
+                        context.colors.backgroundTertiary,
+                        0.16,
+                      ),
+                      border: Border(
+                        bottom: BorderSide(
+                          color: wideComposerRingColor(context, focused: false),
+                        ),
+                      ),
+                    ),
+                    child: SlashCommandParamBar(
+                      session: _slashSession,
+                      onClear: _clearSlashSession,
+                    ),
+                  ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                    8,
+                    _kMobileComposerTopPadding,
+                    8,
+                    8,
+                  ),
+                  child: composerInput,
                 ),
               ],
             ),
           ),
+          ?composerSafeBar,
+        ],
+      );
+    }
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ColoredBox(
+          color: composerBackgroundColor,
+          child: Padding(
+            padding: const EdgeInsets.all(WideComposerLayout.boxInset),
+            child: WideComposerFloatingBox(
+              focused: _composerFocused,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  if (hasWideActionStack)
+                    _buildWideComposerActionStack(
+                      context: context,
+                      channelId: channelId,
+                      guildId: guildId,
+                      replyTo: replyTo,
+                      editingMessage: editingMessage,
+                      replyMentioning: replyMentioning,
+                      chatNotifier: chatNotifier,
+                    ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: WideComposerLayout.densePaddingY,
+                    ),
+                    child: composerInput,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
-        Container(
-          height: showComposerSafeBar
-              ? MediaQuery.paddingOf(context).bottom
-              : 0,
-          decoration: BoxDecoration(color: composerBackgroundColor),
-        ),
+        ?composerSafeBar,
       ],
+    );
+  }
+
+  Widget _buildWideComposerActionStack({
+    required BuildContext context,
+    required String channelId,
+    required String guildId,
+    required Message? replyTo,
+    required Message? editingMessage,
+    required bool replyMentioning,
+    required ChatViewModel chatNotifier,
+  }) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: wideComposerActionStackColor(context),
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(WideComposerLayout.boxRadius),
+        ),
+        border: Border(
+          bottom: BorderSide(
+            color: wideComposerRingColor(context, focused: false),
+          ),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          if (_slashSession.focusedSlot != null)
+            SlashCommandParamBar(
+              session: _slashSession,
+              onClear: _clearSlashSession,
+            ),
+          if (replyTo != null)
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                minHeight: WideComposerLayout.actionRowMinHeight,
+              ),
+              child: ReplyInputBar(
+                replyTo: replyTo,
+                guildId: guildId,
+                shouldReplyMention: replyMentioning,
+                onToggleMention: (bool mentioning) =>
+                    chatNotifier.setReplyMentioning(mentioning: mentioning),
+                onCancel: chatNotifier.cancelReply,
+                wideComposerAction: true,
+              ),
+            ),
+          if (editingMessage != null)
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                minHeight: WideComposerLayout.actionRowMinHeight,
+              ),
+              child: EditingInputBar(
+                onCancel: chatNotifier.cancelEdit,
+                wideComposerAction: true,
+              ),
+            ),
+          ChannelAttachmentArea(channelId: channelId, wideComposerAction: true),
+        ],
+      ),
     );
   }
 
@@ -1024,16 +1286,20 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
           showStickersButton: showStickersButton,
           showEmojiButton: showEmojiButton,
         );
-    final bool showTextareaFocusRing = ref.watch(
-      appearancePreferencesProvider.select((s) => s.showTextareaFocusRing),
+    final bool gifEnabled = ref.watch(
+      instanceRuntimeConfigProvider.select(
+        (InstanceRuntimeConfig config) => config.gifEnabled,
+      ),
     );
     final List<ExpressionPickerTab> composerButtonTabs =
         composerInputButtonVisibleTabs(
           perms: perms,
           advanced: composerButtonPrefs,
+          gifEnabled: gifEnabled,
         );
     final List<ExpressionPickerTab> popoutTabs = expressionPanelVisibleTabs(
       perms,
+      gifEnabled: gifEnabled,
     );
     final FluxerLocalizations l10n = FluxerLocalizations.of(context);
     final bool touchInputStyle = isTouchPrimaryInput(ref);
@@ -1058,87 +1324,75 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
             filled: false,
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
-            focusedBorder: showTextareaFocusRing
-                ? OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: context.colors.backgroundModifierAccentFocus,
-                    ),
-                  )
-                : InputBorder.none,
+            focusedBorder: InputBorder.none,
             disabledBorder: InputBorder.none,
             contentPadding: const EdgeInsets.symmetric(vertical: 2),
             isDense: true,
           );
-    return Row(
-      children: [
-        if (perms.canShowAttachControls) ...[
-          _buildComposerActionButton(
-            context: context,
-            icon: touchActions
-                ? PhosphorIconsBold.plus
-                : PhosphorIconsFill.plusCircle,
-            iconSize: touchActions ? 20 : _kDesktopComposerAttachIconSize,
-            tooltip: l10n.chatAttachmentSourceBrowse,
-            onPressed: perms.isAttachEnabled
-                ? () => unawaited(_pickAttachments(context))
-                : null,
+    return FluxerConstrainedUiTextScale(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          if (perms.canShowAttachControls) ...[
+            _buildComposerActionButton(
+              context: context,
+              icon: touchActions
+                  ? PhosphorIconsBold.plus
+                  : PhosphorIconsFill.plusCircle,
+              iconSize: touchActions ? 20 : _kDesktopComposerAttachIconSize,
+              tooltip: l10n.chatAttachmentSourceBrowse,
+              onPressed: perms.isAttachEnabled
+                  ? () => _onAttachPressed(context)
+                  : null,
+            ),
+            SizedBox(
+              width: touchActions
+                  ? _kTouchComposerActionSpacing
+                  : WideComposerLayout.denseColumnGap,
+            ),
+          ],
+          Expanded(
+            child: _buildComposerField(
+              context: context,
+              channelId: channelId,
+              perms: perms,
+              maxMessageLength: maxMessageLength,
+              premiumMaxLength: premiumMaxLength,
+              minLines: 1,
+              maxLines: 5,
+              decoration: inputDecoration,
+            ),
           ),
-          SizedBox(width: touchActions ? _kTouchComposerActionSpacing : 8),
-        ],
-        Expanded(
-          child: _buildComposerField(
-            context: context,
-            channelId: channelId,
-            perms: perms,
-            maxMessageLength: maxMessageLength,
-            premiumMaxLength: premiumMaxLength,
-            minLines: 1,
-            maxLines: 5,
-            decoration: inputDecoration,
-          ),
-        ),
-        SizedBox(width: touchActions ? _kTouchComposerActionSpacing : 4),
-        ListenableBuilder(
-          listenable: _controller,
-          builder: (BuildContext context, Widget? child) {
-            final String sendableWire = _sendableWireText();
-            final bool hasSendable = composerHasSendableContent(
-              ref,
-              channelId,
-              sendableWire,
-            );
-            final bool isOverCharacterLimit =
-                _composerContentLength(sendableWire) > maxMessageLength;
-            return Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (!hasSendable)
-                  _buildLargeExpressionPickerActions(
-                    context: context,
-                    channelId: channelId,
-                    perms: perms,
-                    composerButtonTabs: composerButtonTabs,
-                    popoutTabs: popoutTabs,
-                  ),
-                if (!touchActions)
-                  SizedBox(
-                    height: _kWideComposerActionExtent,
-                    child: VerticalDivider(
+          SizedBox(width: touchActions ? _kTouchComposerActionSpacing : 4),
+          ListenableBuilder(
+            listenable: _controller,
+            builder: (BuildContext context, Widget? child) {
+              final String sendableWire = _sendableWireText();
+              final bool hasSendable =
+                  composerHasSendableContent(ref, channelId, sendableWire) ||
+                  _slashSession.isActive;
+              final bool isOverCharacterLimit =
+                  _composerContentLength(sendableWire) > maxMessageLength;
+              return Wrap(
+                alignment: WrapAlignment.end,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: touchActions ? _kTouchComposerActionSpacing : 4,
+                children: [
+                  if (!hasSendable)
+                    _buildLargeExpressionPickerActions(
+                      context: context,
+                      channelId: channelId,
+                      perms: perms,
+                      composerButtonTabs: composerButtonTabs,
+                      popoutTabs: popoutTabs,
+                    ),
+                  if (!touchActions)
+                    VerticalDivider(
                       color: context.colors.borderColor,
                       width: 16,
                       thickness: 1,
                     ),
-                  )
-                else
-                  const SizedBox(width: _kTouchComposerActionSpacing),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: touchActions && hasSendable
-                        ? _kTouchComposerActionSpacing
-                        : 0,
-                  ),
-                  child: _sendAndVoiceButton(
+                  _sendAndVoiceButton(
                     context,
                     chatNotifier,
                     perms: perms,
@@ -1146,12 +1400,12 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
                     isOverCharacterLimit: isOverCharacterLimit,
                     useHoldToRecord: false,
                   ),
-                ),
-              ],
-            );
-          },
-        ),
-      ],
+                ],
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 
@@ -1314,6 +1568,28 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
           : AutocompleteRenderMode.overlay,
       panelHost: widget.autocompletePanelHost,
       panelScrollController: widget.autocompletePanelScrollController,
+      slashSession: _slashSession,
+      onSelectGif: (GifPickerGif gif) {
+        _handleGifSelection(
+          FluxerSelectedGif(
+            provider: gif.provider,
+            id: gif.id,
+            title: gif.title,
+            url: gif.url,
+            src: gif.src,
+            proxySrc: gif.proxySrc,
+            width: gif.width,
+            height: gif.height,
+            autoSend: true,
+          ),
+        );
+      },
+      onSelectSticker: _handleStickerSelection,
+      onSelectMeme: (FavoriteMeme meme) {
+        _handleFavoriteMemeSelection(
+          FavoriteMemeSelection(meme: meme, autoSend: true),
+        );
+      },
       child: isMobileLayout(context)
           ? _buildMobileLayout(context, chatNotifier, perms)
           : _buildLargeLayout(context, chatNotifier, perms),
@@ -1337,6 +1613,7 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
         channelId,
       ).select((CloudComposerAttachments a) => a.items.length),
     );
+    final bool isAttachmentPanelOpen = ref.watch(attachmentPanelProvider);
 
     final int maxMessageLength = ref.watch(maxMessageLengthProvider);
     final int premiumMaxLength = ref.watch(premiumMaxMessageLengthProvider);
@@ -1361,67 +1638,77 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
         maxHeight: _kMobileComposerSuffixHeight,
       ),
     );
-    return Row(
-      children: [
-        if (perms.canShowAttachControls) ...[
-          _composerOpacity(
-            enabled: perms.isAttachEnabled,
-            child: FluxerButton.circleAlt(
-              icon: PhosphorIconsBold.plus,
-              semanticLabel: FluxerLocalizations.of(
-                context,
-              ).chatAttachmentSourceBrowse,
-              onPressed: perms.isAttachEnabled
-                  ? () => unawaited(_pickAttachments(context))
-                  : null,
+    return FluxerConstrainedUiTextScale(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          if (perms.canShowAttachControls) ...[
+            _composerOpacity(
+              enabled: perms.isAttachEnabled,
+              child: FluxerButton.circleAlt(
+                icon: isAttachmentPanelOpen
+                    ? PhosphorIconsBold.x
+                    : PhosphorIconsBold.plus,
+                semanticLabel: isAttachmentPanelOpen
+                    ? FluxerLocalizations.of(
+                        context,
+                      ).composerCloseAttachmentPanel
+                    : FluxerLocalizations.of(
+                        context,
+                      ).chatAttachmentSourceBrowse,
+                onPressed: perms.isAttachEnabled
+                    ? () => _onAttachPressed(context)
+                    : null,
+              ),
+            ),
+            const SizedBox(width: 8),
+          ],
+          Expanded(
+            child: _buildComposerField(
+              context: context,
+              channelId: channelId,
+              perms: perms,
+              maxMessageLength: maxMessageLength,
+              premiumMaxLength: premiumMaxLength,
+              minLines: 1,
+              maxLines: 6,
+              decoration: mobileDecoration,
             ),
           ),
           const SizedBox(width: 8),
-        ],
-        Expanded(
-          child: _buildComposerField(
-            context: context,
-            channelId: channelId,
-            perms: perms,
-            maxMessageLength: maxMessageLength,
-            premiumMaxLength: premiumMaxLength,
-            minLines: 1,
-            maxLines: 6,
-            decoration: mobileDecoration,
+          ListenableBuilder(
+            listenable: _controller,
+            builder: (BuildContext context, Widget? child) {
+              final String sendableWire = _sendableWireText();
+              final bool hasSendable =
+                  composerHasSendableContent(ref, channelId, sendableWire) ||
+                  _slashSession.isActive;
+              final bool isOverCharacterLimit =
+                  _composerContentLength(sendableWire) > maxMessageLength;
+              return Padding(
+                padding: const EdgeInsetsGeometry.only(bottom: 1),
+                child: _sendAndVoiceButton(
+                  context,
+                  chatNotifier,
+                  perms: perms,
+                  hasSendable: hasSendable,
+                  isOverCharacterLimit: isOverCharacterLimit,
+                  size: FluxerButtonSize.small,
+                  useHoldToRecord: true,
+                ),
+              );
+            },
           ),
-        ),
-        const SizedBox(width: 8),
-        ListenableBuilder(
-          listenable: _controller,
-          builder: (BuildContext context, Widget? child) {
-            final String sendableWire = _sendableWireText();
-            final bool hasSendable = composerHasSendableContent(
-              ref,
-              channelId,
-              sendableWire,
-            );
-            final bool isOverCharacterLimit =
-                _composerContentLength(sendableWire) > maxMessageLength;
-            return Padding(
-              padding: const EdgeInsetsGeometry.only(bottom: 1),
-              child: _sendAndVoiceButton(
-                context,
-                chatNotifier,
-                perms: perms,
-                hasSendable: hasSendable,
-                isOverCharacterLimit: isOverCharacterLimit,
-                size: FluxerButtonSize.small,
-                useHoldToRecord: true,
-              ),
-            );
-          },
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   void _handleGifSelection(FluxerSelectedGif selection) {
     if (selection.autoSend) {
+      _clearSlashSession();
+      _controller.clear();
+      ref.read(chatViewModelProvider.notifier).updateMessageText('');
       unawaited(
         ref
             .read(chatViewModelProvider.notifier)
@@ -1435,6 +1722,9 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
   }
 
   void _handleStickerSelection(StickerEntry sticker) {
+    _clearSlashSession();
+    _controller.clear();
+    ref.read(chatViewModelProvider.notifier).updateMessageText('');
     unawaited(
       ref.read(chatViewModelProvider.notifier).sendStickerMessage(sticker),
     );
@@ -1450,6 +1740,11 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     FavoriteMemeSelection selection,
   ) async {
     final meme = selection.meme;
+    if (selection.autoSend) {
+      _clearSlashSession();
+      _controller.clear();
+      ref.read(chatViewModelProvider.notifier).updateMessageText('');
+    }
     if (!selection.autoSend) {
       _insertGifUrl(meme.shareUrl);
       _focusNode.requestFocus();
@@ -1533,6 +1828,12 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     );
   }
 
+  void _clearSlashSession() {
+    if (_slashSession.isActive) {
+      _slashSession.clear();
+    }
+  }
+
   void _showNoSendPermissionToast() {
     final FluxerLocalizations l10n = FluxerLocalizations.of(context);
     ref
@@ -1549,12 +1850,21 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     final String channelId = ref.read(
       chatViewModelProvider.select((s) => s.channelId),
     );
-    final String rawWireText = _controller.toWireText();
-    final String wireText = _sendableWireText();
-    if (wireTextLostContentAfterSanitize(
-      rawWireText: rawWireText,
-      sanitizedWireText: wireText,
-    )) {
+    final String rawWireText = _slashSession.isActive
+        ? _slashSession.toWireText()
+        : _controller.toWireText();
+    final String wireText = _slashSession.isActive
+        ? rawWireText
+        : _sendableWireText();
+    if (_slashSession.isActive && !_slashSession.isSubmitValid) {
+      _slashSession.markRequiredError();
+      return;
+    }
+    if (!_slashSession.isActive &&
+        wireTextLostContentAfterSanitize(
+          rawWireText: rawWireText,
+          sanitizedWireText: wireText,
+        )) {
       _showCorruptedCustomEmojiToast();
       return;
     }
@@ -1576,26 +1886,48 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
 
     final ComposerCommand command = parseComposerCommand(wireText);
 
+    if (composerCommandDispatchKind(command) ==
+        ComposerCommandDispatch.blocked) {
+      return;
+    }
+
     if (command is! ComposerReplaceCommand) {
       final Duration? slowmodeRemaining = _activeSlowmodeRemainingForSend(
         channelId,
       );
       if (slowmodeRemaining != null) {
         ref.read(slowmodeIndicatorShakeProvider.notifier).requestShake();
-        ref
-            .read(slowmodeRateLimitedAlertProvider.notifier)
-            .show(slowmodeRemaining);
+        ref.read(slowmodeRateLimitedAlertProvider.notifier).remaining =
+            slowmodeRemaining;
         return;
       }
     }
 
     if (command is ComposerReplaceCommand) {
+      _clearSlashSession();
       _controller.clear();
       vm.updateMessageText('');
       await vm.applyComposerReplace(
         source: command.source,
         replacement: command.replacement,
         global: command.global,
+      );
+      return;
+    }
+
+    if (composerCommandDispatchKind(command) ==
+        ComposerCommandDispatch.executed) {
+      FluxerHaptics.send();
+      _clearSlashSession();
+      _controller.clear();
+      vm.updateMessageText('');
+      final String? guildId = ref.read(contextualGuildIdProvider);
+      await executeComposerSideEffect(
+        ref: ref,
+        command: command,
+        channelId: channelId,
+        guildId: guildId,
+        l10n: FluxerLocalizations.of(context),
       );
       return;
     }
@@ -1609,6 +1941,11 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
       ComposerTtsCommand(:final content) => content,
       ComposerContentSend(:final content) => content,
       ComposerReplaceCommand() => wireText,
+      ComposerNickCommand() ||
+      ComposerKickCommand() ||
+      ComposerBanCommand() ||
+      ComposerMsgCommand() ||
+      ComposerMediaSearchCommand() => wireText,
     };
     final String resolved = resolveTypedCustomEmojiShortcodes(
       innerContent,
@@ -1620,6 +1957,11 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
       ComposerTtsCommand() => resolved,
       ComposerContentSend() => resolved,
       ComposerReplaceCommand() => resolved,
+      ComposerNickCommand() ||
+      ComposerKickCommand() ||
+      ComposerBanCommand() ||
+      ComposerMsgCommand() ||
+      ComposerMediaSearchCommand() => resolved,
     };
     final bool tts =
         command is ComposerTtsCommand &&
@@ -1643,6 +1985,7 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
       return;
     }
 
+    _clearSlashSession();
     unawaited(vm.sendMessage(text: baseContent.trim(), tts: tts));
   }
 
@@ -1784,12 +2127,16 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     return confirmed ?? false;
   }
 
-  void _closeExpressionPanelAndFocusComposer() {
-    if (!ref.read(expressionPanelProvider)) {
+  void _closeComposerPanelsAndFocusComposer() {
+    if (!isComposerPanelOpen(
+      expressionPanelOpen: ref.read(expressionPanelProvider),
+      attachmentPanelOpen: ref.read(attachmentPanelProvider),
+    )) {
       return;
     }
-    _beginExpressionPanelToKeyboardTransition();
+    _beginComposerPanelToKeyboardTransition();
     ref.read(expressionPanelProvider.notifier).close();
+    ref.read(attachmentPanelProvider.notifier).close();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) {
         return;
@@ -1798,7 +2145,7 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     });
   }
 
-  void _beginExpressionPanelToKeyboardTransition() {
+  void _beginComposerPanelToKeyboardTransition() {
     if (!isMobileLayout(context)) {
       return;
     }
@@ -1813,10 +2160,53 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
         .beginKeyboardTransition(lockHeight);
   }
 
+  void _prepareComposerPanelFromKeyboard() {
+    if (!isMobileLayout(context)) {
+      return;
+    }
+    if (isComposerPanelOpen(
+      expressionPanelOpen: ref.read(expressionPanelProvider),
+      attachmentPanelOpen: ref.read(attachmentPanelProvider),
+    )) {
+      return;
+    }
+    final MobileKeyboardMetricsState metrics = ref.read(
+      mobileKeyboardMetricsProvider,
+    );
+    if (metrics.isKeyboardVisible) {
+      final double grossLock = resolveTransitionLockHeight(
+        liveKeyboardHeight: metrics.liveKeyboardHeight,
+        anchorHeight: metrics.resolveAnchorHeight(),
+      );
+      ref
+          .read(bottomInputSlotProvider.notifier)
+          .beginPanelTransition(grossLock);
+    }
+  }
+
+  void _onAttachPressed(BuildContext context) {
+    if (!_useMobileAttachmentSheet()) {
+      unawaited(_pickAttachments(context));
+      return;
+    }
+    if (ref.read(attachmentPanelProvider)) {
+      _closeComposerPanelsAndFocusComposer();
+      return;
+    }
+    _prepareComposerPanelFromKeyboard();
+    ref.read(expressionPanelProvider.notifier).close();
+    ref.read(attachmentPanelProvider.notifier).open();
+    FocusScope.of(context).unfocus();
+  }
+
   void _focusComposerAfterReplyOrEdit({required bool forEdit}) {
-    if (ref.read(expressionPanelProvider)) {
-      _beginExpressionPanelToKeyboardTransition();
+    if (isComposerPanelOpen(
+      expressionPanelOpen: ref.read(expressionPanelProvider),
+      attachmentPanelOpen: ref.read(attachmentPanelProvider),
+    )) {
+      _beginComposerPanelToKeyboardTransition();
       ref.read(expressionPanelProvider.notifier).close();
+      ref.read(attachmentPanelProvider.notifier).close();
     }
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) {
@@ -1863,20 +2253,10 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
             ? null
             : () {
                 if (isPanelOpen) {
-                  _closeExpressionPanelAndFocusComposer();
+                  _closeComposerPanelsAndFocusComposer();
                 } else {
-                  final MobileKeyboardMetricsState metrics = ref.read(
-                    mobileKeyboardMetricsProvider,
-                  );
-                  if (metrics.isKeyboardVisible) {
-                    final double grossLock = resolveTransitionLockHeight(
-                      liveKeyboardHeight: metrics.liveKeyboardHeight,
-                      anchorHeight: metrics.resolveAnchorHeight(),
-                    );
-                    ref
-                        .read(bottomInputSlotProvider.notifier)
-                        .beginPanelTransition(grossLock);
-                  }
+                  _prepareComposerPanelFromKeyboard();
+                  ref.read(attachmentPanelProvider.notifier).close();
                   ref.read(expressionPanelProvider.notifier).open();
                   FocusScope.of(context).unfocus();
                 }
@@ -2074,122 +2454,31 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
 
   Future<void> _pickAttachments(BuildContext context) async {
     if (_useMobileAttachmentSheet()) {
-      await FluxerBottomSheet.show<void>(
-        context,
-        variant: FluxerBottomSheetVariant.menu,
-        builder: (BuildContext sheetContext, VoidCallback close) {
-          final FluxerLocalizations l10n = FluxerLocalizations.of(sheetContext);
-          return Padding(
-            padding: FluxerBottomSheet.scrollViewPadding(
-              sheetContext,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-            ),
-            child: FluxerBottomSheetGroupColumn(
-              children: [
-                FluxerMenuGroup(
-                  children: [
-                    FluxerBottomSheetMenuItem(
-                      icon: PhosphorIconsFill.image,
-                      label: l10n.chatAttachmentSourceGallery,
-                      onTap: () async {
-                        close();
-                        final ImagePicker picker = ImagePicker();
-                        final List<XFile> media = await picker
-                            .pickMultipleMedia(
-                              limit: kMaxAttachmentsPerMessage,
-                            );
-                        if (media.isEmpty) {
-                          return;
-                        }
-                        if (!mounted) {
-                          return;
-                        }
-                        await _addPickedFiles(
-                          composerUploadFilesFromImagePicker(media),
-                        );
-                      },
-                    ),
-                    FluxerBottomSheetMenuItem(
-                      icon: PhosphorIconsFill.camera,
-                      label: l10n.chatAttachmentSourceCamera,
-                      onTap: () async {
-                        close();
-                        final ImagePicker picker = ImagePicker();
-                        final XFile? image = await picker.pickImage(
-                          source: ImageSource.camera,
-                        );
-                        if (image == null) {
-                          return;
-                        }
-                        if (!mounted) {
-                          return;
-                        }
-                        await _addPickedFiles(<ComposerUploadFile>[
-                          composerUploadFileFromImagePicker(image),
-                        ]);
-                      },
-                    ),
-                    FluxerBottomSheetMenuItem(
-                      icon: PhosphorIconsFill.folder,
-                      label: l10n.chatAttachmentSourceBrowse,
-                      onTap: () async {
-                        close();
-                        final FilePickerResult? res =
-                            await FilePicker.pickFiles();
-                        if (res == null) {
-                          return;
-                        }
-                        if (!mounted) {
-                          return;
-                        }
-                        final List<ComposerUploadFile> files =
-                            composerUploadFilesFromPlatformFiles(res.files);
-                        if (files.isEmpty) {
-                          return;
-                        }
-                        await _addPickedFiles(files);
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          );
-        },
+      final String channelId = ref.read(chatViewModelProvider).channelId;
+      final int limit = remainingAttachmentPickLimit(
+        ref.read(cloudUploadControllerProvider(channelId)).items.length,
       );
+      await _addPickedFiles(await pickNativeGalleryUploads(limit: limit));
       return;
     }
-    final FilePickerResult? res = await FilePicker.pickFiles();
-    if (res == null || !mounted) {
-      return;
-    }
-    final List<ComposerUploadFile> files = composerUploadFilesFromPlatformFiles(
-      res.files,
-    );
-    if (files.isEmpty) {
-      return;
-    }
-    await _addPickedFiles(files);
+    await _addPickedFiles(await pickNativeFileUploads());
   }
 
   void _toastUploadValidation(FileUploadValidationResult result) {
-    if (result.isValid || !mounted) {
+    if (!mounted) {
       return;
     }
-    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
-    final String msg = switch (result.error!) {
-      FileUploadValidationError.tooManyAttachments =>
-        l10n.chatAttachmentTooMany(kMaxAttachmentsPerMessage),
-      FileUploadValidationError.fileTooLarge => l10n.chatAttachmentFileTooLarge,
-      FileUploadValidationError.multipartRequestTooLarge =>
-        l10n.chatAttachmentPayloadTooLarge,
-      FileUploadValidationError.noFiles => '',
-    };
-    if (msg.isEmpty) {
+    final String? message = fileUploadValidationMessage(
+      FluxerLocalizations.of(context),
+      result,
+    );
+    if (message == null) {
       return;
     }
     ref
         .read(toastProvider.notifier)
-        .show(FluxerToast(message: msg, variant: FluxerToastVariant.warning));
+        .show(
+          FluxerToast(message: message, variant: FluxerToastVariant.warning),
+        );
   }
 }

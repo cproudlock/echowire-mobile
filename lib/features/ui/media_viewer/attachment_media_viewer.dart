@@ -3,20 +3,25 @@ import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_context.dart';
 import 'package:fluxer_app/features/chat/domain/media_options_launch_context.dart';
+import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/mobile_media_options_sheet.dart';
+import 'package:fluxer_app/features/chat/utils/favorite_media_utils.dart';
+import 'package:fluxer_app/features/chat/utils/hdr_aware_image_url.dart';
+import 'package:fluxer_app/features/chat/utils/save_message_media_favorite.dart';
 import 'package:fluxer_app/features/mature_content/presentation/widgets/mature_media_overlay.dart';
+import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/ui/button/fluxer_button.dart';
 import 'package:fluxer_app/features/ui/media_viewer/media_viewer_dismiss.dart';
 import 'package:fluxer_app/features/ui/media_viewer/touch_media_viewer_page.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/external_links/external_link_handler.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -31,7 +36,9 @@ class AttachmentMediaViewerItem {
     this.attachmentId,
     this.embedIndex,
     this.proxyUrl,
+    this.contentType,
     this.isExpired = false,
+    this.contentHash,
   });
 
   final String url;
@@ -42,7 +49,9 @@ class AttachmentMediaViewerItem {
   final String? attachmentId;
   final int? embedIndex;
   final String? proxyUrl;
+  final String? contentType;
   final bool isExpired;
+  final String? contentHash;
 }
 
 Future<void> showAttachmentMediaViewer(
@@ -164,12 +173,10 @@ class _AttachmentMediaViewerShellState
       return;
     }
     _resetZoomState();
-    unawaited(
-      _pageController.animateToPage(
-        index,
-        duration: const Duration(milliseconds: 180),
-        curve: Curves.easeOut,
-      ),
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 180),
+      curve: Curves.easeOut,
     );
   }
 
@@ -311,6 +318,7 @@ class _AttachmentMediaViewerShellState
     required String indexLabel,
     required double dismissChromeOpacity,
     required bool showOptionsButton,
+    MessageMediaFavoriteTarget? favoriteTarget,
   }) {
     return Opacity(
       opacity: useTouchGestures ? dismissChromeOpacity : 1,
@@ -382,6 +390,13 @@ class _AttachmentMediaViewerShellState
                   isSquare: true,
                 ),
               ),
+            ],
+            if (favoriteTarget != null && widget.actionScope != null) ...[
+              SavedMediaFavoriteToolbarButton(
+                message: widget.actionScope!.message,
+                target: favoriteTarget,
+              ),
+              const SizedBox(width: 8),
             ],
             if (showOptionsButton)
               Tooltip(
@@ -468,7 +483,23 @@ class _AttachmentMediaViewerShellState
           currentItem,
           actionScope: widget.actionScope,
         );
-    final bool showOptionsButton = isMobile && optionsContext.hasOptionsMenu;
+    final Attachment? resolvedAttachment = widget.actionScope == null
+        ? null
+        : resolveMessageAttachment(
+            widget.actionScope!.message,
+            currentItem.attachmentId,
+          );
+    final MessageMediaFavoriteTarget? favoriteTarget =
+        favoriteTargetForMessageMedia(
+          actionScope: widget.actionScope,
+          attachmentId: currentItem.attachmentId,
+          embedIndex: currentItem.embedIndex,
+          filename: currentItem.filename,
+          fallbackContentHash: currentItem.contentHash,
+          attachment: resolvedAttachment,
+          forMediaViewerToolbar: true,
+        );
+    final bool showOptionsButton = optionsContext.hasOptionsMenu;
     final double backdropBaseOpacity = isMobile ? 0.85 : 0.6;
     final double backdropOpacity = useTouchGestures
         ? mediaViewerDismissBackdropOpacity(
@@ -544,6 +575,7 @@ class _AttachmentMediaViewerShellState
                           indexLabel: indexLabel,
                           dismissChromeOpacity: dismissChromeOpacity,
                           showOptionsButton: showOptionsButton,
+                          favoriteTarget: favoriteTarget,
                         ),
                         const Spacer(),
                         _buildBottomChrome(
@@ -566,6 +598,7 @@ class _AttachmentMediaViewerShellState
                           indexLabel: indexLabel,
                           dismissChromeOpacity: dismissChromeOpacity,
                           showOptionsButton: showOptionsButton,
+                          favoriteTarget: favoriteTarget,
                         ),
                         Expanded(
                           child: Padding(
@@ -607,8 +640,19 @@ class _AttachmentMediaViewerShellState
     required bool useTouchGestures,
     required int index,
   }) {
+    final HdrDisplayMode hdrDisplayMode = ref.watch(
+      appearancePreferencesProvider.select(
+        (AppearancePreferencesState state) => state.hdrDisplayMode,
+      ),
+    );
+    final String imageUrl = buildHdrAwareDisplayImageUrl(
+      url: item.url,
+      proxyUrl: item.proxyUrl,
+      mode: hdrDisplayMode,
+      contentType: item.contentType,
+    );
     final Widget image = CachedNetworkImage(
-      imageUrl: item.url,
+      imageUrl: imageUrl,
       fit: BoxFit.contain,
       errorBuilder: (_, _, _) => ColoredBox(
         color: context.colors.backgroundSecondaryAlt,
@@ -773,7 +817,7 @@ class _MediaViewerInfoPill extends StatelessWidget {
   }
 }
 
-class _MediaViewerThumbnailStrip extends StatelessWidget {
+class _MediaViewerThumbnailStrip extends ConsumerWidget {
   const _MediaViewerThumbnailStrip({
     required this.items,
     required this.currentIndex,
@@ -787,7 +831,12 @@ class _MediaViewerThumbnailStrip extends StatelessWidget {
   final ValueChanged<int> onSelectIndex;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final HdrDisplayMode hdrDisplayMode = ref.watch(
+      appearancePreferencesProvider.select(
+        (AppearancePreferencesState state) => state.hdrDisplayMode,
+      ),
+    );
     return SizedBox(
       height: 70,
       child: ListView.separated(
@@ -826,7 +875,12 @@ class _MediaViewerThumbnailStrip extends StatelessWidget {
                             child: const SizedBox.expand(),
                           )
                         : CachedNetworkImage(
-                            imageUrl: item.url,
+                            imageUrl: buildHdrAwareDisplayImageUrl(
+                              url: item.url,
+                              proxyUrl: item.proxyUrl,
+                              mode: hdrDisplayMode,
+                              contentType: item.contentType,
+                            ),
                             fit: BoxFit.cover,
                           ),
                   ),

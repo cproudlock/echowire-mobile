@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/build/app_build_config.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_color_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/wide_settings_content_layout.dart';
@@ -20,6 +20,7 @@ import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/features/ui/warning_alert/fluxer_warning_alert.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/clipboard_utils.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -46,7 +47,9 @@ class ConnectionAddSheet {
     _ConnectionType? defaultType,
   }) {
     final l10n = FluxerLocalizations.of(context);
-    final blueskyEnabled = AppBuildConfig.isBlueskyEnabled;
+    final blueskyEnabled =
+        AppBuildConfig.isBlueskyEnabled &&
+        ref.read(instanceRuntimeConfigProvider).blueskyEnabled;
     final initialType =
         defaultType ??
         (blueskyEnabled ? _ConnectionType.bluesky : _ConnectionType.domain);
@@ -533,17 +536,20 @@ class _ConnectionAddBodyState extends ConsumerState<_ConnectionAddBody> {
     final l10n = FluxerLocalizations.of(context);
     try {
       final bytes = utf8.encode(_verification!.token);
-      final path = await FilePicker.saveFile(
+      final Uri? savedUri = await FilePicker.saveFile(
         dialogTitle: l10n.connectionSaveTokenDialogTitle,
         fileName: 'fluxer-verification',
         bytes: bytes,
       );
-      if (path != null) {
-        // FilePicker.saveFile writes bytes on mobile but on desktop only
-        // returns the chosen path without creating content — fill it in.
-        final file = File(path);
-        if (!file.existsSync() || file.lengthSync() == 0) {
-          await file.writeAsString(_verification!.token);
+      if (savedUri != null) {
+        final String? filePath = savedUri.scheme == 'file'
+            ? savedUri.toFilePath()
+            : null;
+        if (filePath != null) {
+          final file = File(filePath);
+          if (!file.existsSync() || file.lengthSync() == 0) {
+            await file.writeAsString(_verification!.token);
+          }
         }
         ref
             .read(toastProvider.notifier)

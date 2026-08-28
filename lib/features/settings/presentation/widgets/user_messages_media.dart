@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
+import 'package:fluxer_app/core/platform/fluxer_platform.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/wide_settings_content_layout.dart';
+import 'package:fluxer_app/features/settings/providers/chat_input_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
 import 'package:fluxer_app/features/settings/utils/user_settings_domain_actions.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/external_links/external_link_utils.dart';
 import 'package:fluxer_dart/export.dart';
 
@@ -21,7 +22,10 @@ class UserMessagesMedia extends ConsumerWidget {
     final notifier = ref.read(userSettingsViewModelProvider.notifier);
     final chat = ref.watch(chatPreferencesProvider);
     final chatNotifier = ref.read(chatPreferencesProvider.notifier);
-    final layout = context.layout;
+    final chatInputPrefs = ref.watch(chatInputPreferencesProvider);
+    final chatInputPrefsNotifier = ref.read(
+      chatInputPreferencesProvider.notifier,
+    );
     final l10n = FluxerLocalizations.of(context);
 
     final mediaSizeItems = [
@@ -163,6 +167,20 @@ class UserMessagesMedia extends ConsumerWidget {
                   ),
                 ],
               ),
+              if (isFluxerNativeMobileOs)
+                FluxerSettingsSubsection(
+                  title: l10n.messagesMediaCameraUploadsSectionTitle,
+                  description:
+                      l10n.messagesMediaCameraUploadsSectionDescription,
+                  children: [
+                    FluxerSettingsSwitchItem(
+                      label: l10n.messagesMediaCameraUploadsSaveToDeviceLabel,
+                      value: chatInputPrefs.saveCameraCapturesToDevice,
+                      onChanged: (value) => chatInputPrefsNotifier
+                          .setSaveCameraCapturesToDevice(value: value),
+                    ),
+                  ],
+                ),
             ],
           ),
           FluxerSettingsSection(
@@ -225,7 +243,7 @@ class UserMessagesMedia extends ConsumerWidget {
                 ),
                 value: state.trustAllDomains,
                 onChanged: (value) =>
-                    handleTrustAllDomainsChange(context, ref, value),
+                    handleTrustAllDomainsChange(context, ref, value: value),
               ),
               FluxerSettingsSwitchItem(
                 label: l10n.externalLinkStripTrackingLabel,
@@ -245,8 +263,11 @@ class UserMessagesMedia extends ConsumerWidget {
                 description:
                     l10n.messagesMediaDefaultHideMutedChannelsDescription,
                 value: state.defaultHideMutedChannels,
-                onChanged: (value) =>
-                    handleDefaultHideMutedChannelsChange(context, ref, value),
+                onChanged: (value) => handleDefaultHideMutedChannelsChange(
+                  context,
+                  ref,
+                  value: value,
+                ),
               ),
             ],
           ),

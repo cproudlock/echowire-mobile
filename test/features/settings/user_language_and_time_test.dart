@@ -1,6 +1,5 @@
 import 'dart:io' show Platform;
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/theme/fluxer_color_theme.dart';
@@ -13,9 +12,10 @@ import 'package:fluxer_app/features/settings/presentation/widgets/user_language_
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_sync_service.dart';
 import 'package:fluxer_app/features/ui/select/fluxer_select.dart';
-import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:fluxer_dart/models/locale.dart' as sdk;
+
 import '../../helpers/test_l10n.dart';
 
 class _NoopUserSettingsSyncService extends UserSettingsSyncService {
@@ -142,20 +142,18 @@ void main() {
     );
   });
 
-  testWidgets(
-    'renders language section on mobile',
-    (WidgetTester tester) async {
-      await tester.pumpWidget(_wrap(const UserLanguageAndTime()));
-      await tester.pumpAndSettle();
+  testWidgets('renders language section on mobile', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(_wrap(const UserLanguageAndTime()));
+    await tester.pumpAndSettle();
 
-      expect(find.text('Interface language'), findsOneWidget);
-      expect(
-        find.text('Choose the language used throughout the app'),
-        findsOneWidget,
-      );
-      expect(find.text('English (United States) (English)'), findsOneWidget);
-      expect(find.text('Open language settings'), findsOneWidget);
-    },
-    skip: !Platform.isIOS && !Platform.isAndroid,
-  );
+    expect(find.text('Interface language'), findsOneWidget);
+    expect(
+      find.text('Choose the language used throughout the app'),
+      findsOneWidget,
+    );
+    expect(find.text('English (United States) (English)'), findsOneWidget);
+    expect(find.text('Open language settings'), findsOneWidget);
+  }, skip: !Platform.isIOS && !Platform.isAndroid);
 }

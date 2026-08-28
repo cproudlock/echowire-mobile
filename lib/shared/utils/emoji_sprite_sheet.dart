@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:ui' as ui;
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/emoji_utils.dart';
 
 const _kSpriteSize = 32;
@@ -71,20 +71,15 @@ class EmojiSpriteSheet {
     return frame.image;
   }
 
-  /// Source rect for [index] in the @2x sheet (64px per sprite).
+  /// Source rect for [index] in the @2x sheet (64px cells).
   static Rect spriteRect(int index, {required bool diversity}) {
     final spritesPerRow = diversity
         ? _kDiversitySpritesPerRow
         : _kNonDiversitySpritesPerRow;
     final col = index % spritesPerRow;
     final row = index ~/ spritesPerRow;
-    const size = _kSpriteSize * 2;
-    return Rect.fromLTWH(
-      col * size.toDouble(),
-      row * size.toDouble(),
-      size.toDouble(),
-      size.toDouble(),
-    );
+    const size = _kSpriteSize * 2.0;
+    return Rect.fromLTWH(col * size, row * size, size, size);
   }
 }
 
@@ -95,9 +90,10 @@ class EmojiSpritePainter extends CustomPainter {
     required this.diversity,
   });
 
+  // High-DPR cells upscale the @2x sheet; mipmaps cover downscale (issue #99).
   static final Paint _paint = Paint()
-    ..filterQuality = FilterQuality.none
-    ..isAntiAlias = false;
+    ..filterQuality = FilterQuality.medium
+    ..isAntiAlias = true;
 
   final ui.Image image;
   final int spriteIndex;

@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_markdown/src/config/fluxer_markdown_config.dart';
 import 'package:fluxer_markdown/src/contexts/fluxer_markdown_context.dart';
 import 'package:fluxer_markdown/src/widgets/fluxer_markdown.dart';
 import 'package:markdown/markdown.dart' as md;
+import 'package:material_ui/material_ui.dart';
+
 import 'support/markdown_parse_test_helper.dart';
 
 String? _noopEmojiShortcode(String name) => null;
@@ -73,6 +74,17 @@ void main() {
           '[https://example.com/path](https://example.com/path)';
       final nodes = MarkdownParseTestHelper.parseInline(input, features);
       expect(MarkdownParseTestHelper.containsTag(nodes, 'a'), isTrue);
+    });
+
+    test('autolinks after zero-width space parse as links', () {
+      const String input = '\u200bhttps://example.com/path';
+      final nodes = MarkdownParseTestHelper.parseInline(input, features);
+      expect(MarkdownParseTestHelper.containsTag(nodes, 'a'), isTrue);
+      final md.Element link = nodes.whereType<md.Element>().firstWhere(
+        (md.Element node) => node.tag == 'a',
+      );
+      expect(link.attributes['href'], 'https://example.com/path');
+      expect(link.textContent, 'https://example.com/path');
     });
 
     test('masked links with userinfo are rejected', () {

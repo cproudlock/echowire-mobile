@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/media/fluxer_media_hash.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/discovery/domain/discovery_category_labels.dart';
@@ -22,6 +22,7 @@ import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -63,6 +64,9 @@ class DiscoveryGuildCard extends ConsumerWidget {
         .guilds;
     final bool isAlreadyMember = memberGuilds.any(
       (Guild g) => g.id == guild.id,
+    );
+    final bool singleCommunity = ref.watch(
+      instanceRuntimeConfigProvider.select((config) => config.singleCommunity),
     );
     final bool isJoining = discoveryState.joiningGuildIds.contains(guild.id);
     final String? categoryLabel = discoveryCategoryLabel(
@@ -198,22 +202,23 @@ class DiscoveryGuildCard extends ConsumerWidget {
                             ],
                           ),
                         ),
-                        FluxerButton.primary(
-                          label: isAlreadyMember
-                              ? l10n.discoveryJoined
-                              : l10n.discoveryJoinCommunity,
-                          fitContent: true,
-                          isLoading: isJoining,
-                          onPressed: isAlreadyMember || isJoining
-                              ? null
-                              : () => unawaited(
-                                  _handleJoin(
-                                    context: context,
-                                    ref: ref,
-                                    guildId: guild.id,
+                        if (!singleCommunity || isAlreadyMember)
+                          FluxerButton.primary(
+                            label: isAlreadyMember
+                                ? l10n.discoveryJoined
+                                : l10n.discoveryJoinCommunity,
+                            fitContent: true,
+                            isLoading: isJoining,
+                            onPressed: isAlreadyMember || isJoining
+                                ? null
+                                : () => unawaited(
+                                    _handleJoin(
+                                      context: context,
+                                      ref: ref,
+                                      guildId: guild.id,
+                                    ),
                                   ),
-                                ),
-                        ),
+                          ),
                       ],
                     ),
                   ),
@@ -284,6 +289,9 @@ class DiscoveryGuildCard extends ConsumerWidget {
     required String guildId,
   }) async {
     try {
+      if (ref.read(instanceRuntimeConfigProvider).singleCommunity) {
+        return;
+      }
       await ref.read(discoveryControllerProvider.notifier).joinGuild(guildId);
       if (!context.mounted) {
         return;

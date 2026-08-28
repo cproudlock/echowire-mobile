@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_motion_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/favorite_meme.dart';
@@ -18,6 +18,7 @@ import 'package:fluxer_app/features/chat/utils/emoji_picker_precache.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/gestures/expandable_sheet_gestures.dart';
 
 const double kExpressionPanelSearchHorizontalPadding = 16;
@@ -80,7 +81,7 @@ class _ExpressionPanelContentState extends ConsumerState<ExpressionPanelContent>
     );
     final bool shouldFade = !ref.read(expressionPanelContentFadeProvider);
     if (shouldFade) {
-      unawaited(_fadeController.forward());
+      _fadeController.forward();
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) {
           return;
@@ -149,6 +150,9 @@ class _ExpressionPanelContentState extends ConsumerState<ExpressionPanelContent>
         : watchChannelMessagePermissionsForComposer(ref, channelId);
     final List<ExpressionPickerTab> visibleTabs = expressionPanelVisibleTabs(
       perms,
+      gifEnabled: ref.watch(
+        instanceRuntimeConfigProvider.select((config) => config.gifEnabled),
+      ),
     );
     final ExpressionPickerTab storedTab = ref.watch(expressionPanelTabProvider);
     final ExpressionPickerTab selectedTab = resolveVisibleExpressionTab(

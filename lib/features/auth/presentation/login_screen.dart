@@ -1,9 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluxer_app/core/constants/assets.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/auth/domain/auth_failure.dart';
@@ -17,16 +14,14 @@ import 'package:fluxer_app/features/auth/providers/account_manager_provider.dart
 import 'package:fluxer_app/features/auth/providers/login_view_model.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/ui/background/starfield_background.dart';
+import 'package:fluxer_app/features/ui/icons/instance_branding_image.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
-  Widget _buildAuthContent(
-    BuildContext context,
-    WidgetRef ref, {
-    required bool showBrowserLogin,
-  }) {
+  Widget _buildAuthContent(BuildContext context, WidgetRef ref) {
     final vm = ref.watch(loginViewModelProvider);
     final notifier = ref.read(loginViewModelProvider.notifier);
 
@@ -80,7 +75,7 @@ class LoginScreen extends ConsumerWidget {
       );
     }
 
-    return AuthFlowContent(showBrowserLogin: showBrowserLogin);
+    return const AuthFlowContent();
   }
 
   @override
@@ -132,18 +127,11 @@ class LoginScreen extends ConsumerWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SvgPicture.asset(
-                            Assets.fluxerLogoColor,
-                            width: 128,
-                            height: 128,
-                          ),
+                          const InstanceBrandMark(size: 128),
                           SizedBox(height: layout.s4),
-                          SvgPicture.asset(
-                            Assets.fluxerLogoText,
+                          InstanceWordmark(
                             height: 36,
-                            theme: SvgTheme(
-                              currentColor: context.colors.textPrimary,
-                            ),
+                            color: context.colors.textPrimary,
                           ),
                         ],
                       ),
@@ -154,11 +142,7 @@ class LoginScreen extends ConsumerWidget {
                     flex: 2,
                     child: SingleChildScrollView(
                       padding: EdgeInsets.all(layout.s8),
-                      child: _buildAuthContent(
-                        context,
-                        ref,
-                        showBrowserLogin: true,
-                      ),
+                      child: _buildAuthContent(context, ref),
                     ),
                   ),
                 ],
@@ -184,13 +168,9 @@ class LoginScreen extends ConsumerWidget {
           ),
           child: Column(
             children: [
-              SvgPicture.asset(
-                Assets.fluxerWordmarkMonochrome,
-                height: 32,
-                theme: SvgTheme(currentColor: context.colors.textPrimary),
-              ),
+              InstanceWordmark(height: 32, color: context.colors.textPrimary),
               SizedBox(height: layout.s8),
-              _buildAuthContent(context, ref, showBrowserLogin: false),
+              _buildAuthContent(context, ref),
             ],
           ),
         ),

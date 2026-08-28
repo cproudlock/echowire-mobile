@@ -1,6 +1,5 @@
 import 'dart:ui' show CheckedState, Tristate;
 
-import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/theme/fluxer_layout_theme.dart';
@@ -11,8 +10,8 @@ import 'package:fluxer_app/features/ui/checkbox/fluxer_checkbox.dart';
 import 'package:fluxer_app/features/ui/radio_group/fluxer_radio_group.dart';
 import 'package:fluxer_app/features/ui/toggle_switch/fluxer_switch_control.dart';
 import 'package:fluxer_app/features/ui/toggle_switch/fluxer_toggle_switch.dart';
+import 'package:fluxer_app/material_ui.dart';
 
-import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import '../../helpers/test_l10n.dart';
 
 Widget buildTestApp(Widget child) {

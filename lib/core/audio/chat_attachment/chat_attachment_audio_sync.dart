@@ -42,6 +42,10 @@ void syncChatAttachmentAudioSession({
     return;
   }
   if (binding.isActive) {
+    if (completed) {
+      binding.release();
+      return;
+    }
     binding.update(
       mediaItem: buildChatAttachmentAudioMediaItem(
         attachment: attachment,
@@ -53,10 +57,27 @@ void syncChatAttachmentAudioSession({
       bufferedPosition: bufferedPosition,
       speed: playbackRate,
       loading: loading,
-      completed: completed,
     );
-    if (completed) {
-      binding.release();
-    }
   }
+}
+
+void syncChatAttachmentAudioSessionPosition({
+  required ChatAttachmentAudioBinding binding,
+  required bool playing,
+  required Duration position,
+  required Duration totalDuration,
+  required double playbackRate,
+}) {
+  if (!binding.isAvailable || !binding.isActive) {
+    return;
+  }
+  final Duration bufferedPosition = totalDuration > Duration.zero
+      ? totalDuration
+      : position;
+  binding.updatePosition(
+    playing: playing,
+    position: position,
+    bufferedPosition: bufferedPosition,
+    speed: playbackRate,
+  );
 }

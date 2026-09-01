@@ -171,12 +171,14 @@ class _UserSettingsModalState extends ConsumerState<UserSettingsModal>
   void initState() {
     super.initState();
     final bool showBilling = userSettingsShowBillingNav(ref);
+    final bool showJoinFluxerLabs = userSettingsShowJoinFluxerLabsNav(ref);
     final bool isTouchPrimary = ref.read(inputModalityProvider);
     final int? sectionIndex = widget.initialSection == null
         ? null
         : indexForUserSettingsSection(
             widget.initialSection!,
             showBilling: showBilling,
+            showJoinFluxerLabs: showJoinFluxerLabs,
             isTouchPrimary: isTouchPrimary,
           );
     if (sectionIndex != null) {
@@ -219,10 +221,12 @@ class _UserSettingsModalState extends ConsumerState<UserSettingsModal>
   Widget build(BuildContext context) {
     final state = ref.watch(userSettingsViewModelProvider);
     final bool showBilling = userSettingsShowBillingNav(ref);
+    final bool showJoinFluxerLabs = userSettingsShowJoinFluxerLabsNav(ref);
     final bool isTouchPrimary = isTouchPrimaryInput(ref);
     final List<UserSettingsDesktopNavEntry> desktopNav =
         buildUserSettingsDesktopNav(
           showBilling: showBilling,
+          showJoinFluxerLabs: showJoinFluxerLabs,
           isTouchPrimary: isTouchPrimary,
         );
 
@@ -347,7 +351,7 @@ class _UserSettingsModalState extends ConsumerState<UserSettingsModal>
       return;
     }
     if (entry.isJoinFluxerLabs) {
-      unawaited(handleInviteLinkTap(context, kFluxerLabsInviteUrl));
+      unawaited(_joinFluxerLabs());
       return;
     }
     if (entry.isSeparator) {
@@ -356,15 +360,25 @@ class _UserSettingsModalState extends ConsumerState<UserSettingsModal>
     setState(() => _selectedIndex = index);
   }
 
+  Future<void> _joinFluxerLabs() async {
+    await handleInviteLinkTap(context, kFluxerLabsInviteUrl);
+    if (!mounted) {
+      return;
+    }
+    Navigator.of(context).pop();
+  }
+
   void _onSearchHitSelected(UserSettingsSearchHit? hit) {
     if (hit == null) {
       return;
     }
     final bool showBilling = userSettingsShowBillingNav(ref);
+    final bool showJoinFluxerLabs = userSettingsShowJoinFluxerLabsNav(ref);
     final bool isTouchPrimary = ref.read(inputModalityProvider);
     final int? index = indexForUserSettingsSection(
       hit.section,
       showBilling: showBilling,
+      showJoinFluxerLabs: showJoinFluxerLabs,
       isTouchPrimary: isTouchPrimary,
     );
     if (index == null) {
@@ -387,7 +401,8 @@ class _UserSettingsModalState extends ConsumerState<UserSettingsModal>
       ..invalidate(gatewayEventListenerProvider)
       ..invalidate(gatewayStateListenerProvider)
       ..invalidate(gatewayForegroundListenerProvider)
-      ..invalidate(gatewayReconnectToastListenerProvider)
+      ..invalidate(gatewayReconnectBannerListenerProvider)
+      ..invalidate(gatewayReconnectBannerProvider)
       ..invalidate(gatewayConnectionFailedProvider)
       ..invalidate(connectivityListenerProvider)
       // Gateway event state
@@ -432,10 +447,12 @@ class _UserSettingsModalState extends ConsumerState<UserSettingsModal>
       isTouchPrimary: isTouchPrimary,
       onNavigateSection: (UserSettingsSection target) {
         final bool showBilling = userSettingsShowBillingNav(ref);
+        final bool showJoinFluxerLabs = userSettingsShowJoinFluxerLabsNav(ref);
         final bool isTouchPrimary = ref.read(inputModalityProvider);
         final int? index = indexForUserSettingsSection(
           target,
           showBilling: showBilling,
+          showJoinFluxerLabs: showJoinFluxerLabs,
           isTouchPrimary: isTouchPrimary,
         );
         if (index != null) {
@@ -539,6 +556,7 @@ class _MobileSettingsNavBodyState extends ConsumerState<_MobileSettingsNavBody>
     final l10n = FluxerLocalizations.of(context);
     final layout = context.layout;
     final bool showBilling = userSettingsShowBillingNav(ref);
+    final bool showJoinFluxerLabs = userSettingsShowJoinFluxerLabsNav(ref);
     final bool isTouchPrimary = isTouchPrimaryInput(ref);
     final List<UserSettingsSearchHit> hits = searchVisibleUserSettings(
       l10n: l10n,
@@ -571,9 +589,10 @@ class _MobileSettingsNavBodyState extends ConsumerState<_MobileSettingsNavBody>
               l10n: l10n,
               onOpenSection: _openSettingsPage,
               onOpenAppLogs: _openAppLogs,
-              onJoinFluxerLabs: _joinFluxerLabs,
+              onJoinFluxerLabs: () => unawaited(_joinFluxerLabs()),
               onLogout: _logout,
               showBilling: showBilling,
+              showJoinFluxerLabs: showJoinFluxerLabs,
               isTouchPrimary: isTouchPrimary,
             ),
       empty: isSettingsSearchActive
@@ -627,8 +646,12 @@ class _MobileSettingsNavBodyState extends ConsumerState<_MobileSettingsNavBody>
     );
   }
 
-  void _joinFluxerLabs() {
-    unawaited(handleInviteLinkTap(context, kFluxerLabsInviteUrl));
+  Future<void> _joinFluxerLabs() async {
+    await handleInviteLinkTap(context, kFluxerLabsInviteUrl);
+    if (!mounted) {
+      return;
+    }
+    widget.onClose();
   }
 
   void _openAppLogs() {
@@ -647,7 +670,8 @@ class _MobileSettingsNavBodyState extends ConsumerState<_MobileSettingsNavBody>
       ..invalidate(gatewayEventListenerProvider)
       ..invalidate(gatewayStateListenerProvider)
       ..invalidate(gatewayForegroundListenerProvider)
-      ..invalidate(gatewayReconnectToastListenerProvider)
+      ..invalidate(gatewayReconnectBannerListenerProvider)
+      ..invalidate(gatewayReconnectBannerProvider)
       ..invalidate(gatewayConnectionFailedProvider)
       ..invalidate(connectivityListenerProvider)
       // Gateway event state

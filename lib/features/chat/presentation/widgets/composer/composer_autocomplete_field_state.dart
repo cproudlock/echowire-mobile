@@ -994,16 +994,9 @@ class ComposerAutocompleteFieldState
     await EmojiRegistry.ensureLoaded();
     final bool hasChannel = _channelId.isNotEmpty;
     final String activeGuildId = ref.read(contextualGuildIdProvider) ?? '';
-    final bool hasPlutoniumEmojiAccess =
-        !hasChannel ||
-        composerHasDirectChatEmojiAccess(
-          channelId: _channelId,
-          dmConversations: ref.read(dmViewModelProvider).conversations,
-          currentUserId: ref.read(currentUserIdProvider),
-          hasGlobalExpressions: ref.read(
-            instanceFeatureEnabledProvider(LimitKeys.featureGlobalExpressions),
-          ),
-        );
+    final bool hasPlutoniumEmojiAccess = ref.read(
+      instanceFeatureEnabledProvider(LimitKeys.featureGlobalExpressions),
+    );
     final bool canUseExternal =
         !hasChannel ||
         readChannelMessagePermissionsForComposer(
@@ -1022,12 +1015,14 @@ class ComposerAutocompleteFieldState
       return;
     }
 
+    final bool hasGlobalEmojiPickerAccess =
+        !hasChannel || (hasPlutoniumEmojiAccess && canUseExternal);
     final Map<Guild, List<GuildEmojiEntry>> grouped =
         guildEmojiEntriesForPicker(
           guilds: guilds,
           emojis: allCustom,
-          activeGuildId: activeGuildId,
-          isPremium: hasPlutoniumEmojiAccess,
+          activeGuildId: activeGuildId.isEmpty ? null : activeGuildId,
+          isPremium: hasGlobalEmojiPickerAccess,
           canUseExternalEmojis: canUseExternal,
         );
     final List<GuildEmojiEntry> customOrdered = <GuildEmojiEntry>[];

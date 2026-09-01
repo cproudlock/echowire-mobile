@@ -6,7 +6,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
-import 'package:fluxer_app/core/constants/assets.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' hide Channel;
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/permissions/channel_effective_permissions.dart';
@@ -859,7 +858,9 @@ class _GuildNavbarState extends ConsumerState<GuildNavbar> {
                     temporary: temporary,
                   ),
                 );
-                final code = invite.toGuildInviteMetadataResponse().code;
+                final code = GuildInviteMetadataResponse.fromJson(
+                  invite.toJson(),
+                ).code;
                 return (url: '$inviteBase/$code', channelName: invitable.name);
               },
           onGetRecipients: () async {
@@ -1503,7 +1504,9 @@ class _GuildFolderWidgetState extends ConsumerState<_GuildFolderWidget> {
                       temporary: temporary,
                     ),
                   );
-                  final code = invite.toGuildInviteMetadataResponse().code;
+                  final code = GuildInviteMetadataResponse.fromJson(
+                    invite.toJson(),
+                  ).code;
                   return (
                     url: '$inviteBase/$code',
                     channelName: invitable.name,
@@ -1944,7 +1947,9 @@ Widget _buildGuildMenuActionItem({
               temporary: temporary,
             ),
           );
-          final code = invite.toGuildInviteMetadataResponse().code;
+          final code = GuildInviteMetadataResponse.fromJson(
+            invite.toJson(),
+          ).code;
           return (url: '$inviteBase/$code', channelName: invitable.name);
         },
     onGetRecipients: () async {
@@ -2224,7 +2229,6 @@ class _GuildListItem extends StatefulWidget {
     this.hideMutedChannels = false,
     this.voiceActivity = VoiceActivityType.none,
     this.icon,
-    this.svgAsset,
     this.iconUrl,
     this.onMenuOpened,
     this.hasUnread = false,
@@ -2255,7 +2259,7 @@ class _GuildListItem extends StatefulWidget {
     this.enableLongPressMenu = true,
     this.opaqueHitTarget = false,
     this.resolveMenuPermissions,
-  });
+  }) : svgAsset = null;
 
   @override
   State<_GuildListItem> createState() => _GuildListItemState();
@@ -3879,7 +3883,7 @@ class _HomeDmButton extends ConsumerWidget {
     return _GuildListItem(
       label: FluxerLocalizations.of(context).guildNavbarDirectMessages,
       isSelected: isDm,
-      svgAsset: Assets.fluxerSymbol,
+      icon: PhosphorIconsFill.chatCircle,
       mentionCount: pendingFriendCount + dmMentionCount,
       hasUnread: hasCollapsedDmUnread,
       opaqueHitTarget: true,

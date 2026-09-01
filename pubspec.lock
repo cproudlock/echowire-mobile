@@ -1160,6 +1160,13 @@ packages:
       relative: true
     source: path
     version: "1.0.0"
+  fluxer_markdown_native:
+    dependency: "direct main"
+    description:
+      path: "packages/fluxer_markdown_native"
+      relative: true
+    source: path
+    version: "0.1.0"
   freezed_annotation:
     dependency: transitive
     description:
@@ -1539,7 +1546,7 @@ packages:
     source: hosted
     version: "1.4.0"
   markdown:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: markdown
       sha256: ee85086ad7698b42522c6ad42fe195f1b9898e4d974a1af4576c1a3a176cada9

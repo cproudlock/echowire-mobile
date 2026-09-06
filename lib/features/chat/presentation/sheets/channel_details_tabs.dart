@@ -53,10 +53,97 @@ class _MembersTab extends ConsumerWidget {
         body: l10n.channelDetailsMembersEmptyBody,
       );
     }
+    // Echowire: threads have their own membership; show the thread members
+    // rather than the whole guild's member list.
+    final Channel? channel = ref.watch(channelByIdProvider(channelId!)).value;
+    if (channel != null && threadChannelTypes.contains(channel.type)) {
+      return _ThreadMembersContent(
+        channelId: channelId!,
+        scrollController: scrollController,
+      );
+    }
     return GuildMembersTabContent(
       guildId: guildId!,
       channelId: channelId!,
       scrollController: scrollController,
+    );
+  }
+}
+
+class _ThreadMembersContent extends ConsumerStatefulWidget {
+  const _ThreadMembersContent({
+    required this.channelId,
+    required this.scrollController,
+  });
+
+  final String channelId;
+  final ScrollController scrollController;
+
+  @override
+  ConsumerState<_ThreadMembersContent> createState() =>
+      _ThreadMembersContentState();
+}
+
+class _ThreadMembersContentState extends ConsumerState<_ThreadMembersContent> {
+  late Future<List<db.User>> _membersFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _membersFuture = _load();
+  }
+
+  Future<List<db.User>> _load() async {
+    final List<String> ids = await ref
+        .read(threadRepositoryProvider)
+        .listThreadMemberIds(widget.channelId);
+    return ref.read(fluxerDatabaseProvider).userDao.getUsersByIds(ids);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<db.User>>(
+      future: _membersFuture,
+      builder: (BuildContext context, AsyncSnapshot<List<db.User>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: FluxerLoadingSpinner());
+        }
+        if (snapshot.hasError) {
+          return _EmptySheetState(
+            icon: PhosphorIconsBold.users,
+            title: 'Could not load members',
+            body: '${snapshot.error}',
+          );
+        }
+        final List<db.User> members = snapshot.data ?? const <db.User>[];
+        if (members.isEmpty) {
+          return const _EmptySheetState(
+            icon: PhosphorIconsBold.users,
+            title: 'No thread members yet',
+            body: 'People who join this thread will appear here.',
+          );
+        }
+        return ListView.builder(
+          controller: widget.scrollController,
+          padding: EdgeInsets.symmetric(horizontal: context.layout.s4),
+          itemCount: members.length,
+          itemBuilder: (BuildContext context, int index) {
+            final db.User u = members[index];
+            final String name = (u.globalName?.isNotEmpty ?? false)
+                ? u.globalName!
+                : u.username;
+            return ListTile(
+              leading: CircleAvatar(
+                child: Text(
+                  name.isNotEmpty ? name.substring(0, 1).toUpperCase() : '?',
+                ),
+              ),
+              title: Text(name),
+              subtitle: Text('@${u.username}'),
+            );
+          },
+        );
+      },
     );
   }
 }

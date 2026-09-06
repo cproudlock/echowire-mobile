@@ -27,6 +27,8 @@ import 'package:fluxer_app/features/channels/presentation/sheets/mute_duration_s
 import 'package:fluxer_app/features/channels/presentation/widgets/channel_icon.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_mute_provider.dart';
+import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
+import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
 import 'package:fluxer_app/features/channels/utils/show_channel_debug_sheet.dart';
 import 'package:fluxer_app/features/chat/data/channel_pins_repository.dart';
@@ -561,10 +563,18 @@ class _ChannelDetailsSheetState extends ConsumerState<ChannelDetailsSheet> {
                       false
                   ? 1
                   : 0);
+    // Echowire: threads have their own membership; relabel the members tab.
+    final bool isThreadChannel =
+        widget.channel != null &&
+        threadChannelTypes.contains(widget.channel!.type);
     final tabs = <FluxerTab>[
       FluxerTab(
-        label: l10n.channelDetailsTabMembers,
-        icon: PhosphorIconsFill.users,
+        label: isThreadChannel
+            ? 'Thread Members'
+            : l10n.channelDetailsTabMembers,
+        icon: isThreadChannel
+            ? PhosphorIconsFill.usersThree
+            : PhosphorIconsFill.users,
       ),
       if (hasPins)
         FluxerTab(

@@ -713,10 +713,9 @@ class FluxerDatabase extends _$FluxerDatabase {
         // "duplicate column name" and the DB is stranded below v70 forever
         // (which makes forum channels render as plain text). Only add the
         // columns that are actually missing so the migration always completes.
-        final Set<String> existing =
-            (await customSelect('PRAGMA table_info(channels)').get())
-                .map((QueryRow r) => r.read<String>('name'))
-                .toSet();
+        final Set<String> existing = (await customSelect(
+          'PRAGMA table_info(channels)',
+        ).get()).map((QueryRow r) => r.read<String>('name')).toSet();
         Future<void> ensure(GeneratedColumn<Object> column) async {
           if (existing.contains(column.$name)) {
             return;

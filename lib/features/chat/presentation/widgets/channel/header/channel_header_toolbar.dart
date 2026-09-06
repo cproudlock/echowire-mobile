@@ -93,8 +93,7 @@ class ChannelHeaderToolbar extends ConsumerWidget {
           ChannelHeaderIconButton(
             icon: PhosphorIconsRegular.chatText,
             label: 'Threads',
-            onPressed: () =>
-                showThreadsSheet(context, parentChannel: channel!),
+            onPressed: () => showThreadsSheet(context, parentChannel: channel!),
           ),
         if (showPins && targetId != null)
           buildChannelPinsButton(

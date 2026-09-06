@@ -94,9 +94,9 @@ class _ThreadListViewState extends ConsumerState<_ThreadListView> {
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Could not create thread: $e')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Could not create thread: $e')));
     }
   }
 
@@ -105,25 +105,24 @@ class _ThreadListViewState extends ConsumerState<_ThreadListView> {
       icon: const Icon(PhosphorIconsBold.dotsThreeVertical, size: 18),
       tooltip: 'Manage',
       onSelected: (_ThreadModAction a) => _moderate(t, a),
-      itemBuilder: (BuildContext context) =>
-          <PopupMenuEntry<_ThreadModAction>>[
-            PopupMenuItem<_ThreadModAction>(
-              value: _ThreadModAction.togglePin,
-              child: Text((t.threadPinned ?? false) ? 'Unpin' : 'Pin'),
-            ),
-            PopupMenuItem<_ThreadModAction>(
-              value: _ThreadModAction.toggleArchive,
-              child: Text(t.isArchived ? 'Unarchive' : 'Archive'),
-            ),
-            PopupMenuItem<_ThreadModAction>(
-              value: _ThreadModAction.toggleLock,
-              child: Text(t.isLocked ? 'Unlock' : 'Lock'),
-            ),
-            const PopupMenuItem<_ThreadModAction>(
-              value: _ThreadModAction.delete,
-              child: Text('Delete'),
-            ),
-          ],
+      itemBuilder: (BuildContext context) => <PopupMenuEntry<_ThreadModAction>>[
+        PopupMenuItem<_ThreadModAction>(
+          value: _ThreadModAction.togglePin,
+          child: Text((t.threadPinned ?? false) ? 'Unpin' : 'Pin'),
+        ),
+        PopupMenuItem<_ThreadModAction>(
+          value: _ThreadModAction.toggleArchive,
+          child: Text(t.isArchived ? 'Unarchive' : 'Archive'),
+        ),
+        PopupMenuItem<_ThreadModAction>(
+          value: _ThreadModAction.toggleLock,
+          child: Text(t.isLocked ? 'Unlock' : 'Lock'),
+        ),
+        const PopupMenuItem<_ThreadModAction>(
+          value: _ThreadModAction.delete,
+          child: Text('Delete'),
+        ),
+      ],
     );
   }
 

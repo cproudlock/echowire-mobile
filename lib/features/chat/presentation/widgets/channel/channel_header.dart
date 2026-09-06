@@ -9,11 +9,11 @@ import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/accessibility/text_scale.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/thread_list_sheet.dart';
-import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/channel_icon.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/channels/providers/channel_typing_provider.dart';
+import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/channel_details_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/channel/chat_back_button.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/channel/header/channel_header_left_section.dart';
@@ -394,7 +394,9 @@ class ChannelHeader extends ConsumerWidget {
                     channel != null &&
                     threadChannelTypes.contains(channel.type))
                   FluxerButton.circle(
-                    icon: (ref.watch(threadMembershipProvider(channel.id)) ?? false)
+                    icon:
+                        (ref.watch(threadMembershipProvider(channel.id)) ??
+                            false)
                         ? PhosphorIconsFill.userMinus
                         : PhosphorIconsFill.userPlus,
                     variant: FluxerButtonVariant.secondary,
@@ -585,6 +587,7 @@ class ChannelHeader extends ConsumerWidget {
       );
     }
   }
+
   Future<void> _toggleFavorite(
     BuildContext context,
     WidgetRef ref, {

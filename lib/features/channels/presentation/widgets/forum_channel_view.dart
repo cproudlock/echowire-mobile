@@ -80,7 +80,9 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
     }
     if (_searchQuery.trim().isNotEmpty) {
       final String q = _searchQuery.trim().toLowerCase();
-      filtered = filtered.where((Channel p) => p.name.toLowerCase().contains(q));
+      filtered = filtered.where(
+        (Channel p) => p.name.toLowerCase().contains(q),
+      );
     }
     final List<Channel> result = filtered.toList();
     // Pinned posts first, then by the selected sort order.
@@ -93,8 +95,7 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
       }
       return switch (_sort) {
         _ForumSort.recent => b.id.compareTo(a.id),
-        _ForumSort.name =>
-          a.name.toLowerCase().compareTo(b.name.toLowerCase()),
+        _ForumSort.name => a.name.toLowerCase().compareTo(b.name.toLowerCase()),
       };
     });
     return result;
@@ -109,7 +110,10 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
     try {
       switch (action) {
         case _PostModAction.togglePin:
-          await repo.updateThread(post.id, pinned: !(post.threadPinned ?? false));
+          await repo.updateThread(
+            post.id,
+            pinned: !(post.threadPinned ?? false),
+          );
         case _PostModAction.toggleArchive:
           await repo.updateThread(post.id, archived: !post.isArchived);
         case _PostModAction.toggleLock:
@@ -293,7 +297,9 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
             builder:
                 (BuildContext context, AsyncSnapshot<List<Channel>> snapshot) {
                   if (snapshot.hasError) {
-                    return Center(child: Text('Failed to load: ${snapshot.error}'));
+                    return Center(
+                      child: Text('Failed to load: ${snapshot.error}'),
+                    );
                   }
                   final List<Channel> posts = _visiblePosts(
                     snapshot.data ?? <Channel>[],
@@ -389,8 +395,7 @@ class _ForumPostTile extends StatelessWidget {
                     Chip(
                       label: Text(name),
                       visualDensity: VisualDensity.compact,
-                      materialTapTargetSize:
-                          MaterialTapTargetSize.shrinkWrap,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                 ],
               ),
@@ -526,10 +531,7 @@ class _ManageForumTagsDialogState extends State<_ManageForumTagsDialog> {
           onPressed: () {
             final List<Map<String, Object?>> result = <Map<String, Object?>>[
               for (final _EditableTag t in _tags)
-                <String, Object?>{
-                  'name': t.name,
-                  if (t.id != null) 'id': t.id,
-                },
+                <String, Object?>{'name': t.name, if (t.id != null) 'id': t.id},
             ];
             Navigator.of(context).pop(result);
           },

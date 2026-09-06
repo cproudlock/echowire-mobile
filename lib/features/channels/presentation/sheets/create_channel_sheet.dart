@@ -62,11 +62,9 @@ class CreateChannelSheet {
       ),
       15 => ChannelCreateRequest15(
         name: name,
-        topic: null,
         parentId: parentId,
         permissionOverwrites: const [],
         nsfw: false,
-        nsfwOverride: null,
       ),
       _ => ChannelCreateRequest0(
         name: name,

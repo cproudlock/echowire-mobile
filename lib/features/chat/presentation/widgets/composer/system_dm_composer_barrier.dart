@@ -8,7 +8,6 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 class SystemDmComposerBarrier extends ConsumerWidget {
   const SystemDmComposerBarrier({this.message, super.key});
 
-  static const String _productName = 'Echowire';
   final String? message;
 
   @override

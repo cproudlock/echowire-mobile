@@ -21,7 +21,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'guild_sidebar_entries_provider.g.dart';
 
-enum GuildSidebarEntryKind { categoryHeader, channel, voiceParticipants, thread }
+enum GuildSidebarEntryKind {
+  categoryHeader,
+  channel,
+  voiceParticipants,
+  thread,
+}
 
 @immutable
 class GuildSidebarEntry {
@@ -198,7 +203,8 @@ List<GuildSidebarEntry> flattenGuildSidebarEntries({
         );
       }
       // Echowire: nest active threads under their parent channel.
-      for (final Channel thread in threadsByParent[channel.id] ?? const <Channel>[]) {
+      for (final Channel thread
+          in threadsByParent[channel.id] ?? const <Channel>[]) {
         entries.add(
           GuildSidebarEntry(
             kind: GuildSidebarEntryKind.thread,
@@ -248,8 +254,7 @@ List<GuildSidebarEntry> guildSidebarEntries(Ref ref) {
     ),
   );
   final List<Channel> guildThreads =
-      ref.watch(guildActiveThreadsProvider(guildId)).value ??
-      const <Channel>[];
+      ref.watch(guildActiveThreadsProvider(guildId)).value ?? const <Channel>[];
   final Map<String, List<Channel>> threadsByParent = <String, List<Channel>>{};
   for (final Channel t in guildThreads) {
     final String? pid = t.parentId;

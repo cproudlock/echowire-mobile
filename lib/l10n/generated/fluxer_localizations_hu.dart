@@ -90,20 +90,24 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get systemPermissionSettingsOpenSettings => 'Open settings';
 
   @override
-  String get systemPermissionMicrophoneMessage =>
-      'Fluxer doesn\'t have access to your microphone. You can enable it in your device privacy settings.';
+  String systemPermissionMicrophoneMessage(String productName) {
+    return '$productName doesn\'t have access to your microphone. You can enable it in your device privacy settings.';
+  }
 
   @override
-  String get systemPermissionCameraMessage =>
-      'Fluxer doesn\'t have access to your camera. You can enable it in your device privacy settings.';
+  String systemPermissionCameraMessage(String productName) {
+    return '$productName doesn\'t have access to your camera. You can enable it in your device privacy settings.';
+  }
 
   @override
-  String get systemPermissionPhotosMessage =>
-      'Fluxer doesn\'t have access to your photo library. You can enable it in your device privacy settings.';
+  String systemPermissionPhotosMessage(String productName) {
+    return '$productName doesn\'t have access to your photo library. You can enable it in your device privacy settings.';
+  }
 
   @override
-  String get systemPermissionNotificationsMessage =>
-      'Fluxer doesn\'t have permission to send notifications. You can enable it in your device settings.';
+  String systemPermissionNotificationsMessage(String productName) {
+    return '$productName doesn\'t have permission to send notifications. You can enable it in your device settings.';
+  }
 
   @override
   String nagbarPremiumGracePeriod(String productName, String graceDate) {
@@ -287,6 +291,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get back => 'Vissza';
+
+  @override
+  String get next => 'Next';
 
   @override
   String get mfaTitle => 'Kétfaktoros hitelesítés';
@@ -657,6 +664,10 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get errorUnableToSignIn =>
       'Jelenleg nem tudunk bejelentkezni. Kérjük, próbálkozzon újra.';
+
+  @override
+  String get errorServiceUnavailable =>
+      'This instance is temporarily unavailable. Try again in a moment.';
 
   @override
   String get errorInvalidEmailOrPassword =>
@@ -1451,6 +1462,12 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get gifPickerFavorites => 'Kedvencek';
 
   @override
+  String get gifPickerFavoritesEmptyTitle => 'No favorite GIFs yet';
+
+  @override
+  String get gifPickerFavoritesEmptyDescription => 'Star a GIF to see it here.';
+
+  @override
   String get gifPickerTrending => 'Felkapott GIF-ek';
 
   @override
@@ -1493,11 +1510,11 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return '$emojiCount darab emojit oldhatsz fel $communityCount közösségből a Plutoniummal.';
+    return '$emojiCount darab emojit oldhatsz fel $communityCount közösségből a Reverbmal.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Szerezz Plutoniumot';
+  String get emojiPlutoniumUpsellButton => 'Szerezz Reverbot';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Ne mutasd meg újra';
@@ -1528,7 +1545,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Külső hivatkozás figyelmeztetés';
 
   @override
-  String get externalLinkWarningLeaving => 'Elhagyod a Echowiret';
+  String externalLinkWarningLeaving(String productName) {
+    return 'Elhagyod a ${productName}t';
+  }
 
   @override
   String get externalLinkWarningDescription =>
@@ -1609,11 +1628,11 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'Az animált avatarokhoz Plutonium szükséges';
+      'Az animált avatarokhoz Reverb szükséges';
 
   @override
   String get animatedBannersRequirePlutonium =>
-      'Az animált bannerekhez Plutonium szükséges';
+      'Az animált bannerekhez Reverb szükséges';
 
   @override
   String get animatedAvifNotSupported => 'Animált AVIF nem támogatott';
@@ -1676,7 +1695,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Szerezz Plutoniumot a tagod testreszabásához, vagy tartsd meg a felhasználóneved módosításakor';
+      'Szerezz Reverbot a tagod testreszabásához, vagy tartsd meg a felhasználóneved módosításakor';
 
   @override
   String get fluxerTagAlreadyTaken => 'Felhasználónév már foglalt';
@@ -1691,23 +1710,23 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'Az egyéni 4 számjegyű tagod csak akkor érhető el, amíg a Plutonium előfizetésed aktív. Amikor az előfizetésed lejár $date napon, a tagod egy véletlenszerűen hozzárendelt számra változik egy 3 napos türelmi idő után.';
+    return 'Az egyéni 4 számjegyű tagod csak akkor érhető el, amíg a Reverb előfizetésed aktív. Amikor az előfizetésed lejár $date napon, a tagod egy véletlenszerűen hozzárendelt számra változik egy 3 napos türelmi idő után.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'Az egyéni 4 számjegyű tagod csak akkor érhető el, amíg a Plutonium előfizetésed aktív. Amikor az előfizetésed lejár, a tagod egy véletlenszerűen hozzárendelt számra változik egy 3 napos türelmi idő után.';
+      'Az egyéni 4 számjegyű tagod csak akkor érhető el, amíg a Reverb előfizetésed aktív. Amikor az előfizetésed lejár, a tagod egy véletlenszerűen hozzárendelt számra változik egy 3 napos türelmi idő után.';
 
   @override
   String get iUnderstandContinue => 'Értem, folytatás';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Ha elmented ezt a Felhasználónév-et, az egyéni 4 számjegyű tagod véletlenszerű számra változik, amikor a Plutonium előfizetésed véget ér. Ha az előfizetésed nem újul meg, 3 napos türelmi időd lesz, mielőtt a tag megváltozik.';
+      'Ha elmented ezt a Felhasználónév-et, az egyéni 4 számjegyű tagod véletlenszerű számra változik, amikor a Reverb előfizetésed véget ér. Ha az előfizetésed nem újul meg, 3 napos türelmi időd lesz, mielőtt a tag megváltozik.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Az egyéni 4 számjegyű tagod (#$discriminator) aktív, amíg a Plutonium előfizetésed aktív. Ha az előfizetésed véget ér, vagy nem újul meg egy 3 napos türelmi idő után, a tagod véletlenszerű számra változik.';
+    return 'Az egyéni 4 számjegyű tagod (#$discriminator) aktív, amíg a Reverb előfizetésed aktív. Ha az előfizetésed véget ér, vagy nem újul meg egy 3 napos türelmi idő után, a tagod véletlenszerű számra változik.';
   }
 
   @override
@@ -1716,12 +1735,12 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'A Plutonium próbaidőszakod $date napon jár le. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.';
+    return 'A Reverb próbaidőszakod $date napon jár le. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.';
   }
 
   @override
   String get premiumTrialActive =>
-      'Plutonium próbaidőszakon vagy. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.';
+      'Reverb próbaidőszakon vagy. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.';
 
   @override
   String get fluxerTagUpdated => 'Felhasználónév frissítve';
@@ -1752,7 +1771,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Tetszés szerint alakítsd 4 számjegyű Felhasználónév (#$discriminator) Plutoniummal';
+    return 'Tetszés szerint alakítsd 4 számjegyű Felhasználónév (#$discriminator) Reverbmal';
   }
 
   @override
@@ -1761,7 +1780,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'Az egyéni tagged (#$discriminator) Plutonium előfizetésedhez kötődik, és véletlenszerű tagra vált, ha lejár.';
+    return 'Az egyéni tagged (#$discriminator) Reverb előfizetésedhez kötődik, és véletlenszerű tagra vált, ha lejár.';
   }
 
   @override
@@ -1814,31 +1833,31 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get emojiPickerTitle => 'Emoji';
 
   @override
-  String get plutoniumBadgePrivacyTitle => 'Plutonium jelvény adatvédelme';
+  String get plutoniumBadgePrivacyTitle => 'Reverb jelvény adatvédelme';
 
   @override
   String get plutoniumBadgePrivacyDescription =>
-      'Szabályozd, hogyan jelenjen meg a Plutonium jelvényed mások számára';
+      'Szabályozd, hogyan jelenjen meg a Reverb jelvényed mások számára';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'Plutonium jelvény teljes elrejtése';
+  String get hidePlutoniumBadgeLabel => 'Reverb jelvény teljes elrejtése';
 
   @override
   String get hidePlutoniumBadgeDescription =>
-      'Teljesen rejtsd el a Plutonium jelvényedet más felhasználók elől';
+      'Teljesen rejtsd el a Reverb jelvényedet más felhasználók elől';
 
   @override
   String get hidePlutoniumPurchaseDate =>
-      'Plutonium vásárlási dátumának elrejtése';
+      'Reverb vásárlási dátumának elrejtése';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'Plutonium vásárlási dátumának elrejtése ($date)';
+    return 'Reverb vásárlási dátumának elrejtése ($date)';
   }
 
   @override
   String get hidePurchaseDateDescription =>
-      'Távolítsd el a Plutonium vásárlásának dátumát a jelvényedről';
+      'Távolítsd el a Reverb vásárlásának dátumát a jelvényedről';
 
   @override
   String get maskVisionaryAsSubscription =>
@@ -1862,7 +1881,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'Plutonium próbaidőszakon vagy – az előfizetésed $date-án kezdődik';
+    return 'Reverb próbaidőszakon vagy – az előfizetésed $date-án kezdődik';
   }
 
   @override
@@ -1871,25 +1890,25 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'Plutonium próbaidőszakon vagy, amely $date-án jár le';
+    return 'Reverb próbaidőszakon vagy, amely $date-án jár le';
   }
 
   @override
-  String get premiumTrialActiveProfile => 'Plutonium próbaidőszakon vagy';
+  String get premiumTrialActiveProfile => 'Reverb próbaidőszakon vagy';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. Max. 10 MB. Ajánlott: 512×512px. Animált profilképek (GIF) Plutoniumot igényelnek.';
+      'JPEG, PNG, WebP. Max. 10 MB. Ajánlott: 512×512px. Animált profilképek (GIF) Reverbot igényelnek.';
 
   @override
   String get bannerPlutoniumUpsell =>
       'Tedd egyedivé a profilodat egy álló vagy animált borítóképével, hogy kitűnjön.';
 
   @override
-  String get getPlutonium => 'Plutonium beszerzése';
+  String get getPlutonium => 'Reverb beszerzése';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1902,7 +1921,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get profilePreviewMessage => 'Üzenet';
 
   @override
-  String get profilePreviewMemberSince => 'Echowire tag';
+  String profilePreviewMemberSince(String productName) {
+    return '$productName tag';
+  }
 
   @override
   String get unclaimedAccountTitle => 'Nem igényelt fiók';
@@ -1929,7 +1950,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      'Az avatar, a banner, a kiemelőszín és az életrajz testreszabása az egyes közösségekhez Plutoniumot igényel. A közösségi becenév és a névmások mindenki számára ingyenesek.';
+      'Az avatar, a banner, a kiemelőszín és az életrajz testreszabása az egyes közösségekhez Reverbot igényel. A közösségi becenév és a névmások mindenki számára ingyenesek.';
 
   @override
   String get avatarModeInherit => 'Globális profil használata';
@@ -1993,8 +2014,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get securityLoginEmailSectionTitle => 'E-mail beállítások';
 
   @override
-  String get securityLoginEmailSectionDescription =>
-      'Kezeld azt az e-mail címet, amellyel bejelentkezel a Echowirebe';
+  String securityLoginEmailSectionDescription(String productName) {
+    return 'Kezeld azt az e-mail címet, amellyel bejelentkezel a $productName';
+  }
 
   @override
   String get securityLoginEmailAddressLabel => 'E-mail cím';
@@ -2446,27 +2468,31 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get requiredActionTitle => 'Account verification required';
 
   @override
-  String get requiredActionIntroGeneric =>
-      'Complete the required verification to continue using Fluxer.';
+  String requiredActionIntroGeneric(String productName) {
+    return 'Complete the required verification to continue using $productName.';
+  }
 
   @override
   String get requiredActionIntroPhone =>
       'Your registration needs an extra anti-spam check before you can continue.';
 
   @override
-  String get requiredActionIntroEmailOrPhone =>
-      'Verify your email or phone to continue using Fluxer.';
+  String requiredActionIntroEmailOrPhone(String productName) {
+    return 'Verify your email or phone to continue using $productName.';
+  }
 
   @override
-  String get requiredActionIntroEmailAndPhone =>
-      'Complete the required email and phone verification steps below to continue using Fluxer.';
+  String requiredActionIntroEmailAndPhone(String productName) {
+    return 'Complete the required email and phone verification steps below to continue using $productName.';
+  }
 
   @override
   String get requiredActionChooseMethodTitle => 'Choose a verification method';
 
   @override
-  String get requiredActionChooseMethodDescription =>
-      'Complete one of the verification paths below to continue using Fluxer.';
+  String requiredActionChooseMethodDescription(String productName) {
+    return 'Complete one of the verification paths below to continue using $productName.';
+  }
 
   @override
   String get requiredActionUseEmail => 'Use email';
@@ -2519,7 +2545,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'A fiókod törlése előtt mondd le az aktív Plutonium előfizetésedet a Plutonium beállításaiban.';
+      'A fiókod törlése előtt mondd le az aktív Reverb előfizetésedet a Reverb beállításaiban.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount =>
@@ -2654,14 +2680,92 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
+  String relativeTimeWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count weeks ago',
+      one: '1 week ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInMinutes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count minutes',
+      one: 'in 1 minute',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInHours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count hours',
+      one: 'in 1 hour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count days',
+      one: 'in 1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count weeks',
+      one: 'in 1 week',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count months',
+      one: 'in 1 month',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count years',
+      one: 'in 1 year',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get relativeTimeJustNow => 'épp most';
 
   @override
   String get authorizedAppsTitle => 'Engedélyezett alkalmazások';
 
   @override
-  String get authorizedAppsDescription =>
-      'Ezek az alkalmazások kaptak hozzáférést a Echowire-fiókodhoz.';
+  String authorizedAppsDescription(String productName) {
+    return 'Ezek az alkalmazások kaptak hozzáférést a $productName-fiókodhoz.';
+  }
 
   @override
   String get authorizedAppsEmptyTitle => 'Nincsenek engedélyezett alkalmazások';
@@ -2775,31 +2879,49 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userProfileEditProfile => 'Profil szerkesztése';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Echowire Csapat';
-
-  @override
-  String get userProfileCtpBadgeTooltip => 'Echowire Közösségi Csapat';
-
-  @override
-  String get userProfilePartnerBadgeTooltip => 'Echowire Partner';
-
-  @override
-  String get userProfileBugHunterBadgeTooltip => 'Echowire Bug Hunter';
-
-  @override
-  String get userProfilePlutoniumBadgeTooltip => 'Echowire Reverb';
-
-  @override
-  String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Echowire Reverb előfizető $date óta';
+  String userProfileStaffBadgeTooltip(String productName) {
+    return '$productName Csapat';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Echowire Visionary';
+  String userProfileCtpBadgeTooltip(String productName) {
+    return '$productName Közösségi Csapat';
+  }
 
   @override
-  String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Echowire Visionary $date óta';
+  String userProfilePartnerBadgeTooltip(String productName) {
+    return '$productName Partner';
+  }
+
+  @override
+  String userProfileBugHunterBadgeTooltip(String productName) {
+    return '$productName Bug Hunter';
+  }
+
+  @override
+  String userProfilePlutoniumBadgeTooltip(String productName) {
+    return '$productName Reverb';
+  }
+
+  @override
+  String userProfilePlutoniumSubscriberSinceTooltip(
+    String productName,
+    String date,
+  ) {
+    return '$productName Reverb előfizető $date óta';
+  }
+
+  @override
+  String userProfileVisionaryBadgeTooltip(String productName) {
+    return '$productName Visionary';
+  }
+
+  @override
+  String userProfileVisionaryBadgeSinceTooltip(
+    String productName,
+    String date,
+  ) {
+    return '$productName Visionary $date óta';
   }
 
   @override
@@ -4029,8 +4151,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get connectionsTitle => 'Kapcsolatok';
 
   @override
-  String get connectionsDescription =>
-      'Külső fiókok és domainek összekapcsolása a Echowire profiloddal. A hitelesített kapcsolatok megjelennek a profilodon, hogy mások is láthassák őket.';
+  String connectionsDescription(String productName) {
+    return 'Külső fiókok és domainek összekapcsolása a $productName profiloddal. A hitelesített kapcsolatok megjelennek a profilodon, hogy mások is láthassák őket.';
+  }
 
   @override
   String get connectionsEmptyTitle => 'Még nincsenek kapcsolatok';
@@ -4483,8 +4606,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get lookAndFeelCollapseDMsLabel => 'DM-ek összecsukása mappába';
 
   @override
-  String get lookAndFeelCollapseDMsDescription =>
-      'Ha engedélyezve van, az olvasatlan DM-ek a kiszolgáló oldalsávban a Echowire gomb mappájába lesznek összecsukva. Kattints a Echowire gombra a DM-ek oldalon a mappa kibontásához vagy összecsukásához.';
+  String lookAndFeelCollapseDMsDescription(String productName) {
+    return 'Ha engedélyezve van, az olvasatlan DM-ek a kiszolgáló oldalsávban a $productName gomb mappájába lesznek összecsukva. Kattints a $productName gombra a DM-ek oldalon a mappa kibontásához vagy összecsukásához.';
+  }
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Csatornalista';
@@ -4759,8 +4883,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Amikor linkként van közzétéve a csevegésben';
 
   @override
-  String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Amikor közvetlenül a Echowirebe van feltöltve';
+  String messagesMediaDisplayInlineAttachmentLabel(String productName) {
+    return 'Amikor közvetlenül a $productName van feltöltve';
+  }
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Link előnézetek';
@@ -4952,8 +5077,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get accessibilityScreenReaderGroupTitle => 'Screen reader';
 
   @override
-  String get accessibilityScreenReaderGroupDescription =>
-      'Control how Fluxer works with screen readers.';
+  String accessibilityScreenReaderGroupDescription(String productName) {
+    return 'Control how $productName works with screen readers.';
+  }
 
   @override
   String get accessibilityScreenReaderAnnounceNewMessagesLabel =>
@@ -6518,6 +6644,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get chatMessageCopyText => 'Üzenet másolása';
 
   @override
+  String get chatMessageCopyEmbedText => 'Copy Embed Text';
+
+  @override
   String get chatMessageTranslate => 'Translate';
 
   @override
@@ -6773,8 +6902,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get iarReasonOtherLabel => 'Egyéb egyértelmű szabályszegés';
 
   @override
-  String get iarReasonOtherDescription =>
-      'Csak akkor használd, ha egyértelműen megszegi a Echowire szabályait, és nem illeszkedik a fentiekhez.';
+  String iarReasonOtherDescription(String productName) {
+    return 'Csak akkor használd, ha egyértelműen megszegi a $productName szabályait, és nem illeszkedik a fentiekhez.';
+  }
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -7405,6 +7535,45 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get addGuildCreateIconHint =>
       'PNG, JPEG, WebP, AVIF, HEIC, HEIF, JXL, SVG. Max 10MB. Javasolt: 512×512px';
+
+  @override
+  String get addGuildImportDescription =>
+      'Paste a Discord template URL to import its structure into a new community.';
+
+  @override
+  String get addGuildImportUrlLabel => 'Template URL';
+
+  @override
+  String get addGuildImportUrlInvalid =>
+      'Enter a valid Discord template URL or code.';
+
+  @override
+  String get addGuildImportFetchFailed =>
+      'Failed to fetch the community template. The template may not exist or the external service is unavailable.';
+
+  @override
+  String get addGuildImportInvalidResponse =>
+      'This doesn\'t look like a valid template response.';
+
+  @override
+  String get addGuildImportTemplateLabel => 'Template';
+
+  @override
+  String addGuildImportTemplateStats(
+    int textChannelCount,
+    int voiceChannelCount,
+    int categoryCount,
+    int roleCount,
+  ) {
+    return '$textChannelCount text, $voiceChannelCount voice, $categoryCount categories, $roleCount roles';
+  }
+
+  @override
+  String get addGuildImportRemoveIcon => 'Remove icon';
+
+  @override
+  String get addGuildImportTemplateInvalid =>
+      'The community template data is invalid or malformed.';
 
   @override
   String get addGuildPackInstalled => 'A csomag sikeresen telepítve.';
@@ -9804,16 +9973,18 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get advancedPerformanceReportingTitle => 'Teljesítményjelentés';
 
   @override
-  String get advancedPerformanceReportingSectionDescription =>
-      'Segíts a Echowire fejlesztésében névtelen hiba- és teljesítményadatok megosztásával.';
+  String advancedPerformanceReportingSectionDescription(String productName) {
+    return 'Segíts a $productName fejlesztésében névtelen hiba- és teljesítményadatok megosztásával.';
+  }
 
   @override
   String get advancedPerformanceReportingLabel =>
       'Küldj hiba- és teljesítményjelentéseket';
 
   @override
-  String get advancedPerformanceReportingDescription =>
-      'Az összes jelentett adat névtelen, és csak a Echowire saját felügyeleti szolgáltatásába kerül – nem használunk harmadik féltől származó szolgáltatókat.';
+  String advancedPerformanceReportingDescription(String productName) {
+    return 'Az összes jelentett adat névtelen, és csak a $productName saját felügyeleti szolgáltatásába kerül – nem használunk harmadik féltől származó szolgáltatókat.';
+  }
 
   @override
   String get advancedSettingsConfigure => 'Configure';
@@ -11097,8 +11268,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
-  String get guildNavbarStaffOnlyAccessible =>
-      'Csak a Echowire személyzetének hozzáférhető';
+  String guildNavbarStaffOnlyAccessible(String productName) {
+    return 'Csak a $productName személyzetének hozzáférhető';
+  }
 
   @override
   String get guildNavbarInvitesPaused =>

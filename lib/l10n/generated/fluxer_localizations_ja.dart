@@ -88,20 +88,24 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get systemPermissionSettingsOpenSettings => 'Open settings';
 
   @override
-  String get systemPermissionMicrophoneMessage =>
-      'Fluxer doesn\'t have access to your microphone. You can enable it in your device privacy settings.';
+  String systemPermissionMicrophoneMessage(String productName) {
+    return '$productName doesn\'t have access to your microphone. You can enable it in your device privacy settings.';
+  }
 
   @override
-  String get systemPermissionCameraMessage =>
-      'Fluxer doesn\'t have access to your camera. You can enable it in your device privacy settings.';
+  String systemPermissionCameraMessage(String productName) {
+    return '$productName doesn\'t have access to your camera. You can enable it in your device privacy settings.';
+  }
 
   @override
-  String get systemPermissionPhotosMessage =>
-      'Fluxer doesn\'t have access to your photo library. You can enable it in your device privacy settings.';
+  String systemPermissionPhotosMessage(String productName) {
+    return '$productName doesn\'t have access to your photo library. You can enable it in your device privacy settings.';
+  }
 
   @override
-  String get systemPermissionNotificationsMessage =>
-      'Fluxer doesn\'t have permission to send notifications. You can enable it in your device settings.';
+  String systemPermissionNotificationsMessage(String productName) {
+    return '$productName doesn\'t have permission to send notifications. You can enable it in your device settings.';
+  }
 
   @override
   String nagbarPremiumGracePeriod(String productName, String graceDate) {
@@ -280,6 +284,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get back => '戻る';
+
+  @override
+  String get next => 'Next';
 
   @override
   String get mfaTitle => '2要素認証';
@@ -634,6 +641,10 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get errorUnableToSignIn => '現在サインインできません。もう一度お試しください。';
+
+  @override
+  String get errorServiceUnavailable =>
+      'This instance is temporarily unavailable. Try again in a moment.';
 
   @override
   String get errorInvalidEmailOrPassword => 'メールアドレスまたはパスワードが無効です。';
@@ -1407,6 +1418,12 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get gifPickerFavorites => 'お気に入り';
 
   @override
+  String get gifPickerFavoritesEmptyTitle => 'No favorite GIFs yet';
+
+  @override
+  String get gifPickerFavoritesEmptyDescription => 'Star a GIF to see it here.';
+
+  @override
   String get gifPickerTrending => '人気のGIF';
 
   @override
@@ -1447,11 +1464,11 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'Plutoniumで$emojiCount個の絵文字を$communityCount個のコミュニティからアンロック。';
+    return 'Reverbで$emojiCount個の絵文字を$communityCount個のコミュニティからアンロック。';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Plutoniumを入手';
+  String get emojiPlutoniumUpsellButton => 'Reverbを入手';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'これを再度表示しない';
@@ -1482,7 +1499,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get externalLinkWarningTitle => '外部リンクに関する警告';
 
   @override
-  String get externalLinkWarningLeaving => 'Echowireを離れようとしています';
+  String externalLinkWarningLeaving(String productName) {
+    return '$productNameを離れようとしています';
+  }
 
   @override
   String get externalLinkWarningDescription => '外部リンクは危険な場合があります。ご注意ください。';
@@ -1552,10 +1571,10 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get imageFileTooLarge => '画像ファイルが大きすぎます。10MB未満のファイルを選択してください。';
 
   @override
-  String get animatedAvatarsRequirePlutonium => 'アニメーションアバターにはPlutoniumが必要です';
+  String get animatedAvatarsRequirePlutonium => 'アニメーションアバターにはReverbが必要です';
 
   @override
-  String get animatedBannersRequirePlutonium => 'アニメーションバナーにはPlutoniumが必要です';
+  String get animatedBannersRequirePlutonium => 'アニメーションバナーにはReverbが必要です';
 
   @override
   String get animatedAvifNotSupported => 'アニメーションAVIFはサポートされていません';
@@ -1617,7 +1636,7 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Plutoniumを入手してタグをカスタマイズするか、ユーザー名を変更するときに保持してください';
+      'Reverbを入手してタグをカスタマイズするか、ユーザー名を変更するときに保持してください';
 
   @override
   String get fluxerTagAlreadyTaken => 'ユーザー名';
@@ -1632,23 +1651,23 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'カスタムの4桁タグは、Plutoniumサブスクリプションがアクティブな間のみ利用可能です。サブスクリプションが$dateに期限切れになると、3日間の猶予期間の後、タグはランダムに割り当てられた番号に戻ります。';
+    return 'カスタムの4桁タグは、Reverbサブスクリプションがアクティブな間のみ利用可能です。サブスクリプションが$dateに期限切れになると、3日間の猶予期間の後、タグはランダムに割り当てられた番号に戻ります。';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'カスタムの4桁タグは、Plutoniumサブスクリプションがアクティブな間のみ利用可能です。サブスクリプションが期限切れになると、3日間の猶予期間の後、タグはランダムに割り当てられた番号に戻ります。';
+      'カスタムの4桁タグは、Reverbサブスクリプションがアクティブな間のみ利用可能です。サブスクリプションが期限切れになると、3日間の猶予期間の後、タグはランダムに割り当てられた番号に戻ります。';
 
   @override
   String get iUnderstandContinue => '理解しました、続行';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'このユーザー名、Plutoniumサブスクリプションが終了したときにカスタムの4桁タグはランダムな番号に戻ります。サブスクリプションの更新に失敗した場合、タグが変更される前に3日間の猶予期間があります。';
+      'このユーザー名、Reverbサブスクリプションが終了したときにカスタムの4桁タグはランダムな番号に戻ります。サブスクリプションの更新に失敗した場合、タグが変更される前に3日間の猶予期間があります。';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'カスタムの4桁タグ（#$discriminator）は、Plutoniumサブスクリプションがアクティブな間有効です。サブスクリプションが終了するか、3日間の猶予期間後に更新に失敗した場合、タグはランダムな番号に戻ります。';
+    return 'カスタムの4桁タグ（#$discriminator）は、Reverbサブスクリプションがアクティブな間有効です。サブスクリプションが終了するか、3日間の猶予期間後に更新に失敗した場合、タグはランダムな番号に戻ります。';
   }
 
   @override
@@ -1657,12 +1676,12 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'Plutoniumトライアルは$dateに期限切れになります。カスタムタグを保持し、プロフィールにバッジを獲得するにはアップグレードしてください。';
+    return 'Reverbトライアルは$dateに期限切れになります。カスタムタグを保持し、プロフィールにバッジを獲得するにはアップグレードしてください。';
   }
 
   @override
   String get premiumTrialActive =>
-      'Plutoniumトライアル中です。カスタムタグを保持し、プロフィールにバッジを獲得するにはアップグレードしてください。';
+      'Reverbトライアル中です。カスタムタグを保持し、プロフィールにバッジを獲得するにはアップグレードしてください。';
 
   @override
   String get fluxerTagUpdated => 'ユーザー名';
@@ -1690,7 +1709,7 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Plutoniumを使って、お好みの4桁のタグ（#$discriminator）にカスタマイズ';
+    return 'Reverbを使って、お好みの4桁のタグ（#$discriminator）にカスタマイズ';
   }
 
   @override
@@ -1698,7 +1717,7 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'カスタムタグ（#$discriminator）はPlutoniumサブスクリプションに紐づいています。期限が切れるとランダムなタグに戻ります。';
+    return 'カスタムタグ（#$discriminator）はReverbサブスクリプションに紐づいています。期限が切れるとランダムなタグに戻ります。';
   }
 
   @override
@@ -1747,28 +1766,27 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get emojiPickerTitle => '絵文字';
 
   @override
-  String get plutoniumBadgePrivacyTitle => 'Plutoniumバッジのプライバシー';
+  String get plutoniumBadgePrivacyTitle => 'Reverbバッジのプライバシー';
 
   @override
-  String get plutoniumBadgePrivacyDescription =>
-      'Plutoniumバッジが他者にどのように表示されるかを制御';
+  String get plutoniumBadgePrivacyDescription => 'Reverbバッジが他者にどのように表示されるかを制御';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'Plutoniumバッジを完全に非表示';
+  String get hidePlutoniumBadgeLabel => 'Reverbバッジを完全に非表示';
 
   @override
-  String get hidePlutoniumBadgeDescription => 'Plutoniumバッジを他のユーザーから完全に非表示にする';
+  String get hidePlutoniumBadgeDescription => 'Reverbバッジを他のユーザーから完全に非表示にする';
 
   @override
-  String get hidePlutoniumPurchaseDate => 'Plutonium購入日を非表示';
+  String get hidePlutoniumPurchaseDate => 'Reverb購入日を非表示';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'Plutonium購入日（$date）を非表示';
+    return 'Reverb購入日（$date）を非表示';
   }
 
   @override
-  String get hidePurchaseDateDescription => 'Plutoniumを最初に購入した日付をバッジから削除';
+  String get hidePurchaseDateDescription => 'Reverbを最初に購入した日付をバッジから削除';
 
   @override
   String get maskVisionaryAsSubscription => 'Visionaryをサブスクリプションとしてマスク';
@@ -1789,7 +1807,7 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'Plutoniumのトライアル中です — サブスクリプションは$dateから開始されます';
+    return 'Reverbのトライアル中です — サブスクリプションは$dateから開始されます';
   }
 
   @override
@@ -1798,25 +1816,25 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'Plutoniumのトライアルは$dateに期限切れになります';
+    return 'Reverbのトライアルは$dateに期限切れになります';
   }
 
   @override
-  String get premiumTrialActiveProfile => 'Plutoniumのトライアル中です';
+  String get premiumTrialActiveProfile => 'Reverbのトライアル中です';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG、PNG、WebP。最大10MB。推奨：512×512px。アニメーションアバター（GIF）にはPlutoniumが必要です。';
+      'JPEG、PNG、WebP。最大10MB。推奨：512×512px。アニメーションアバター（GIF）にはReverbが必要です。';
 
   @override
   String get bannerPlutoniumUpsell =>
       '静止画またはアニメーションバナー画像でプロフィールをカスタマイズして目立たせましょう。';
 
   @override
-  String get getPlutonium => 'Plutoniumを入手';
+  String get getPlutonium => 'Reverbを入手';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1829,7 +1847,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get profilePreviewMessage => 'メッセージ';
 
   @override
-  String get profilePreviewMemberSince => 'Echowireメンバーシップ開始日';
+  String profilePreviewMemberSince(String productName) {
+    return '$productNameメンバーシップ開始日';
+  }
 
   @override
   String get unclaimedAccountTitle => '未請求アカウント';
@@ -1856,7 +1876,7 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      'コミュニティごとのアバター、バナー、アクセントカラー、自己紹介のカスタマイズにはPlutoniumが必要です。コミュニティのニックネームと代名詞は誰でも無料で利用できます。';
+      'コミュニティごとのアバター、バナー、アクセントカラー、自己紹介のカスタマイズにはReverbが必要です。コミュニティのニックネームと代名詞は誰でも無料で利用できます。';
 
   @override
   String get avatarModeInherit => 'グローバルプロフィールを使用';
@@ -1916,8 +1936,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get securityLoginEmailSectionTitle => 'メール設定';
 
   @override
-  String get securityLoginEmailSectionDescription =>
-      'Echowireへのサインインに使用するメールアドレスを管理する';
+  String securityLoginEmailSectionDescription(String productName) {
+    return '$productNameへのサインインに使用するメールアドレスを管理する';
+  }
 
   @override
   String get securityLoginEmailAddressLabel => 'メールアドレス';
@@ -2351,27 +2372,31 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get requiredActionTitle => 'Account verification required';
 
   @override
-  String get requiredActionIntroGeneric =>
-      'Complete the required verification to continue using Fluxer.';
+  String requiredActionIntroGeneric(String productName) {
+    return 'Complete the required verification to continue using $productName.';
+  }
 
   @override
   String get requiredActionIntroPhone =>
       'Your registration needs an extra anti-spam check before you can continue.';
 
   @override
-  String get requiredActionIntroEmailOrPhone =>
-      'Verify your email or phone to continue using Fluxer.';
+  String requiredActionIntroEmailOrPhone(String productName) {
+    return 'Verify your email or phone to continue using $productName.';
+  }
 
   @override
-  String get requiredActionIntroEmailAndPhone =>
-      'Complete the required email and phone verification steps below to continue using Fluxer.';
+  String requiredActionIntroEmailAndPhone(String productName) {
+    return 'Complete the required email and phone verification steps below to continue using $productName.';
+  }
 
   @override
   String get requiredActionChooseMethodTitle => 'Choose a verification method';
 
   @override
-  String get requiredActionChooseMethodDescription =>
-      'Complete one of the verification paths below to continue using Fluxer.';
+  String requiredActionChooseMethodDescription(String productName) {
+    return 'Complete one of the verification paths below to continue using $productName.';
+  }
 
   @override
   String get requiredActionUseEmail => 'Use email';
@@ -2423,7 +2448,7 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'アカウントを削除する前に、Plutoniumの設定でアクティブなPlutoniumサブスクリプションをキャンセルしてください。';
+      'アカウントを削除する前に、Reverbの設定でアクティブなReverbサブスクリプションをキャンセルしてください。';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => 'アカウントを削除できません';
@@ -2553,14 +2578,92 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   }
 
   @override
+  String relativeTimeWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count weeks ago',
+      one: '1 week ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInMinutes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count minutes',
+      one: 'in 1 minute',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInHours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count hours',
+      one: 'in 1 hour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count days',
+      one: 'in 1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count weeks',
+      one: 'in 1 week',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count months',
+      one: 'in 1 month',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count years',
+      one: 'in 1 year',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get relativeTimeJustNow => 'たった今';
 
   @override
   String get authorizedAppsTitle => '承認済みアプリ';
 
   @override
-  String get authorizedAppsDescription =>
-      'これらのアプリはあなたのEchowireアカウントへのアクセスを許可されています。';
+  String authorizedAppsDescription(String productName) {
+    return 'これらのアプリはあなたの$productNameアカウントへのアクセスを許可されています。';
+  }
 
   @override
   String get authorizedAppsEmptyTitle => '承認済みアプリはありません';
@@ -2666,31 +2769,49 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get userProfileEditProfile => 'プロフィールを編集';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Echowireスタッフ';
-
-  @override
-  String get userProfileCtpBadgeTooltip => 'Echowireコミュニティチーム';
-
-  @override
-  String get userProfilePartnerBadgeTooltip => 'Echowireパートナー';
-
-  @override
-  String get userProfileBugHunterBadgeTooltip => 'Echowire Bug Hunter';
-
-  @override
-  String get userProfilePlutoniumBadgeTooltip => 'Echowire Reverb';
-
-  @override
-  String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return '$dateよりEchowire Reverb subscriber';
+  String userProfileStaffBadgeTooltip(String productName) {
+    return '$productNameスタッフ';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Echowire Visionary';
+  String userProfileCtpBadgeTooltip(String productName) {
+    return '$productNameコミュニティチーム';
+  }
 
   @override
-  String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return '$dateよりEchowire Visionary';
+  String userProfilePartnerBadgeTooltip(String productName) {
+    return '$productNameパートナー';
+  }
+
+  @override
+  String userProfileBugHunterBadgeTooltip(String productName) {
+    return '$productName Bug Hunter';
+  }
+
+  @override
+  String userProfilePlutoniumBadgeTooltip(String productName) {
+    return '$productName Reverb';
+  }
+
+  @override
+  String userProfilePlutoniumSubscriberSinceTooltip(
+    String productName,
+    String date,
+  ) {
+    return '$dateより$productName Reverb subscriber';
+  }
+
+  @override
+  String userProfileVisionaryBadgeTooltip(String productName) {
+    return '$productName Visionary';
+  }
+
+  @override
+  String userProfileVisionaryBadgeSinceTooltip(
+    String productName,
+    String date,
+  ) {
+    return '$dateより$productName Visionary';
   }
 
   @override
@@ -3899,8 +4020,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get connectionsTitle => '接続';
 
   @override
-  String get connectionsDescription =>
-      '外部アカウントとドメインをEchowireプロフィールにリンクします。確認済みの接続はプロフィールに表示され、他のユーザーも確認できるようになります。';
+  String connectionsDescription(String productName) {
+    return '外部アカウントとドメインを$productNameプロフィールにリンクします。確認済みの接続はプロフィールに表示され、他のユーザーも確認できるようになります。';
+  }
 
   @override
   String get connectionsEmptyTitle => 'まだ接続がありません';
@@ -4331,8 +4453,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get lookAndFeelCollapseDMsLabel => 'DMをフォルダにまとめる';
 
   @override
-  String get lookAndFeelCollapseDMsDescription =>
-      '有効にすると、サーバーサイドバーの未読DMがEchowireボタンのフォルダにまとめられます。フォルダを展開または折りたたむには、DMページでEchowireボタンをクリックしてください。';
+  String lookAndFeelCollapseDMsDescription(String productName) {
+    return '有効にすると、サーバーサイドバーの未読DMが$productNameボタンのフォルダにまとめられます。フォルダを展開または折りたたむには、DMページで$productNameボタンをクリックしてください。';
+  }
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'チャンネルリスト';
@@ -4600,8 +4723,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get messagesMediaDisplayInlineEmbedLabel => 'チャットへのリンクとして投稿された場合';
 
   @override
-  String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Echowireに直接アップロードされた場合';
+  String messagesMediaDisplayInlineAttachmentLabel(String productName) {
+    return '$productNameに直接アップロードされた場合';
+  }
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'リンクプレビュー';
@@ -4779,8 +4903,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get accessibilityScreenReaderGroupTitle => 'Screen reader';
 
   @override
-  String get accessibilityScreenReaderGroupDescription =>
-      'Control how Fluxer works with screen readers.';
+  String accessibilityScreenReaderGroupDescription(String productName) {
+    return 'Control how $productName works with screen readers.';
+  }
 
   @override
   String get accessibilityScreenReaderAnnounceNewMessagesLabel =>
@@ -6320,6 +6445,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get chatMessageCopyText => 'メッセージをコピー';
 
   @override
+  String get chatMessageCopyEmbedText => 'Copy Embed Text';
+
+  @override
   String get chatMessageTranslate => 'Translate';
 
   @override
@@ -6558,8 +6686,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get iarReasonOtherLabel => 'その他の明確なルール違反';
 
   @override
-  String get iarReasonOtherDescription =>
-      'Echowireのルールに明確に違反し、上記に当てはまらない場合のみ使用してください。';
+  String iarReasonOtherDescription(String productName) {
+    return '$productNameのルールに明確に違反し、上記に当てはまらない場合のみ使用してください。';
+  }
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -7159,6 +7288,45 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   @override
   String get addGuildCreateIconHint =>
       'PNG, JPEG, WebP, AVIF, HEIC, HEIF, JXL, SVG. Max 10MB. Recommended: 512×512px';
+
+  @override
+  String get addGuildImportDescription =>
+      'Paste a Discord template URL to import its structure into a new community.';
+
+  @override
+  String get addGuildImportUrlLabel => 'Template URL';
+
+  @override
+  String get addGuildImportUrlInvalid =>
+      'Enter a valid Discord template URL or code.';
+
+  @override
+  String get addGuildImportFetchFailed =>
+      'Failed to fetch the community template. The template may not exist or the external service is unavailable.';
+
+  @override
+  String get addGuildImportInvalidResponse =>
+      'This doesn\'t look like a valid template response.';
+
+  @override
+  String get addGuildImportTemplateLabel => 'Template';
+
+  @override
+  String addGuildImportTemplateStats(
+    int textChannelCount,
+    int voiceChannelCount,
+    int categoryCount,
+    int roleCount,
+  ) {
+    return '$textChannelCount text, $voiceChannelCount voice, $categoryCount categories, $roleCount roles';
+  }
+
+  @override
+  String get addGuildImportRemoveIcon => 'Remove icon';
+
+  @override
+  String get addGuildImportTemplateInvalid =>
+      'The community template data is invalid or malformed.';
 
   @override
   String get addGuildPackInstalled => 'パックが正常にインストールされました。';
@@ -9548,15 +9716,17 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get advancedPerformanceReportingTitle => 'パフォーマンスレポート';
 
   @override
-  String get advancedPerformanceReportingSectionDescription =>
-      '匿名化されたクラッシュおよびパフォーマンスデータを共有することで、Echowireの改善にご協力ください。';
+  String advancedPerformanceReportingSectionDescription(String productName) {
+    return '匿名化されたクラッシュおよびパフォーマンスデータを共有することで、$productNameの改善にご協力ください。';
+  }
 
   @override
   String get advancedPerformanceReportingLabel => 'クラッシュおよびパフォーマンスレポートを送信する';
 
   @override
-  String get advancedPerformanceReportingDescription =>
-      '報告されるすべてのデータは匿名であり、Echowire独自の監視サービスにのみ送信されます。サードパーティプロバイダーは使用しません。';
+  String advancedPerformanceReportingDescription(String productName) {
+    return '報告されるすべてのデータは匿名であり、$productName独自の監視サービスにのみ送信されます。サードパーティプロバイダーは使用しません。';
+  }
 
   @override
   String get advancedSettingsConfigure => 'Configure';
@@ -10818,7 +10988,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   }
 
   @override
-  String get guildNavbarStaffOnlyAccessible => 'Echowireスタッフのみアクセス可能';
+  String guildNavbarStaffOnlyAccessible(String productName) {
+    return '$productNameスタッフのみアクセス可能';
+  }
 
   @override
   String get guildNavbarInvitesPaused => 'このコミュニティでは現在、招待が無効になっています';

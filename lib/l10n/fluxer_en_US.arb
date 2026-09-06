@@ -3,7 +3,7 @@
   "@reconnectingTitle": {
     "description": "Title on the reconnecting / server error screen."
   },
-  "reconnectingBody": "Something is wrong with the servers.\nShould be fixed in a second!",
+  "reconnectingBody": "Something is wrong with the instance.\nShould be fixed in a second!",
   "@reconnectingBody": {
     "description": "Subtitle on the reconnecting screen explaining temporary server issues."
   },
@@ -1512,7 +1512,12 @@
   },
   "externalLinkWarningLeaving": "You are about to leave Echowire",
   "@externalLinkWarningLeaving": {
-    "description": "Primary warning text shown in the external link warning modal."
+    "description": "Primary warning text shown in the external link warning modal.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "externalLinkWarningDescription": "External links can be dangerous. Please be careful.",
   "@externalLinkWarningDescription": {
@@ -1976,7 +1981,12 @@
   },
   "profilePreviewMemberSince": "Echowire Member Since",
   "@profilePreviewMemberSince": {
-    "description": "Label for the member-since date in the profile preview card."
+    "description": "Label for the member-since date in the profile preview card.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "unclaimedAccountTitle": "Unclaimed Account",
   "@unclaimedAccountTitle": {
@@ -2088,7 +2098,12 @@
   },
   "securityLoginEmailSectionDescription": "Manage the email address you use to sign in to Echowire",
   "@securityLoginEmailSectionDescription": {
-    "description": "Description for email settings section."
+    "description": "Description for email settings section.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "securityLoginEmailAddressLabel": "Email Address",
   "@securityLoginEmailAddressLabel": {
@@ -2737,7 +2752,12 @@
   },
   "authorizedAppsDescription": "These applications have been granted access to your Echowire account.",
   "@authorizedAppsDescription": {
-    "description": "Description under the Authorized Applications section title."
+    "description": "Description under the Authorized Applications section title.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "authorizedAppsEmptyTitle": "No Authorized Applications",
   "@authorizedAppsEmptyTitle": {
@@ -2880,28 +2900,56 @@
   },
   "userProfileStaffBadgeTooltip": "Echowire Staff",
   "@userProfileStaffBadgeTooltip": {
-    "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
+    "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "userProfileCtpBadgeTooltip": "Echowire Community Team",
   "@userProfileCtpBadgeTooltip": {
-    "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
+    "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "userProfilePartnerBadgeTooltip": "Echowire Partner",
   "@userProfilePartnerBadgeTooltip": {
-    "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
+    "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "userProfileBugHunterBadgeTooltip": "Echowire Bug Hunter",
   "@userProfileBugHunterBadgeTooltip": {
-    "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
+    "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "userProfilePlutoniumBadgeTooltip": "Echowire Reverb",
   "@userProfilePlutoniumBadgeTooltip": {
-    "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
+    "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "userProfilePlutoniumSubscriberSinceTooltip": "Echowire Reverb subscriber since {date}",
   "@userProfilePlutoniumSubscriberSinceTooltip": {
     "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
     "placeholders": {
+      "productName": {
+        "type": "String"
+      },
       "date": {
         "type": "String"
       }
@@ -2909,12 +2957,20 @@
   },
   "userProfileVisionaryBadgeTooltip": "Echowire Visionary",
   "@userProfileVisionaryBadgeTooltip": {
-    "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
+    "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "userProfileVisionaryBadgeSinceTooltip": "Echowire Visionary since {date}",
   "@userProfileVisionaryBadgeSinceTooltip": {
     "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
     "placeholders": {
+      "productName": {
+        "type": "String"
+      },
       "date": {
         "type": "String"
       }
@@ -4146,7 +4202,12 @@
   },
   "connectionsDescription": "Link external accounts and domains to your Echowire profile. Verified connections will be displayed on your profile for others to see.",
   "@connectionsDescription": {
-    "description": "Description shown under the Connections settings page title."
+    "description": "Description shown under the Connections settings page title.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "connectionsEmptyTitle": "No connections yet",
   "@connectionsEmptyTitle": {
@@ -4561,7 +4622,12 @@
   },
   "lookAndFeelCollapseDMsDescription": "When enabled, unread DMs in the guild sidebar are collapsed into a folder on the Echowire button. Click the Echowire button while on the DMs page to expand or collapse the folder.",
   "@lookAndFeelCollapseDMsDescription": {
-    "description": "Toggle description for the DM folder collapse behavior."
+    "description": "Toggle description for the DM folder collapse behavior.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "lookAndFeelChannelListSectionTitle": "Channel List",
   "@lookAndFeelChannelListSectionTitle": {
@@ -4805,7 +4871,12 @@
   },
   "messagesMediaDisplayInlineAttachmentLabel": "When uploaded directly to Echowire",
   "@messagesMediaDisplayInlineAttachmentLabel": {
-    "description": "Toggle label for inlining media for direct uploads."
+    "description": "Toggle label for inlining media for direct uploads.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "messagesMediaLinkPreviewsSectionTitle": "Link Previews",
   "@messagesMediaLinkPreviewsSectionTitle": {
@@ -4987,9 +5058,14 @@
   "@accessibilityScreenReaderGroupTitle": {
     "description": "Section title for screen reader accessibility settings."
   },
-  "accessibilityScreenReaderGroupDescription": "Control how Fluxer works with screen readers.",
+  "accessibilityScreenReaderGroupDescription": "Control how {productName} works with screen readers.",
   "@accessibilityScreenReaderGroupDescription": {
-    "description": "Section description for screen reader accessibility settings."
+    "description": "Section description for screen reader accessibility settings.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "accessibilityScreenReaderAnnounceNewMessagesLabel": "Announce new messages",
   "@accessibilityScreenReaderAnnounceNewMessagesLabel": {
@@ -5902,7 +5978,12 @@
   },
   "iarReasonOtherDescription": "Use only if it clearly breaks Echowire's rules and doesn't fit above.",
   "@iarReasonOtherDescription": {
-    "description": "Rule-reason description for the catch-all option."
+    "description": "Rule-reason description for the catch-all option.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "iarUseChildSafetyInstead": "If a minor is involved, use \"{childSafetyReason}\" instead.",
   "@iarUseChildSafetyInstead": {
@@ -6714,7 +6795,12 @@
   },
   "advancedPerformanceReportingSectionDescription": "Help improve Echowire by sharing anonymous crash and performance data.",
   "@advancedPerformanceReportingSectionDescription": {
-    "description": "Advanced settings section description for crash and performance reporting."
+    "description": "Advanced settings section description for crash and performance reporting.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "advancedPerformanceReportingLabel": "Send crash and performance reports",
   "@advancedPerformanceReportingLabel": {
@@ -6722,7 +6808,12 @@
   },
   "advancedPerformanceReportingDescription": "All reported data is anonymous and is sent only to Echowire's own monitoring service — no third-party providers are used.",
   "@advancedPerformanceReportingDescription": {
-    "description": "Toggle description explaining anonymous self-hosted performance reporting."
+    "description": "Toggle description explaining anonymous self-hosted performance reporting.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "userSettingsNavApplications": "Applications",
   "@userSettingsNavApplications": {
@@ -7426,7 +7517,12 @@
   },
   "guildNavbarStaffOnlyAccessible": "Only accessible to Echowire staff",
   "@guildNavbarStaffOnlyAccessible": {
-    "description": "Guild tooltip when the community is staff-only."
+    "description": "Guild tooltip when the community is staff-only.",
+    "placeholders": {
+      "productName": {
+        "type": "String"
+      }
+    }
   },
   "guildNavbarInvitesPaused": "Invites are currently paused in this community",
   "@guildNavbarInvitesPaused": {

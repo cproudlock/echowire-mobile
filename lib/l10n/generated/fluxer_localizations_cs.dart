@@ -90,20 +90,24 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get systemPermissionSettingsOpenSettings => 'Open settings';
 
   @override
-  String get systemPermissionMicrophoneMessage =>
-      'Fluxer doesn\'t have access to your microphone. You can enable it in your device privacy settings.';
+  String systemPermissionMicrophoneMessage(String productName) {
+    return '$productName doesn\'t have access to your microphone. You can enable it in your device privacy settings.';
+  }
 
   @override
-  String get systemPermissionCameraMessage =>
-      'Fluxer doesn\'t have access to your camera. You can enable it in your device privacy settings.';
+  String systemPermissionCameraMessage(String productName) {
+    return '$productName doesn\'t have access to your camera. You can enable it in your device privacy settings.';
+  }
 
   @override
-  String get systemPermissionPhotosMessage =>
-      'Fluxer doesn\'t have access to your photo library. You can enable it in your device privacy settings.';
+  String systemPermissionPhotosMessage(String productName) {
+    return '$productName doesn\'t have access to your photo library. You can enable it in your device privacy settings.';
+  }
 
   @override
-  String get systemPermissionNotificationsMessage =>
-      'Fluxer doesn\'t have permission to send notifications. You can enable it in your device settings.';
+  String systemPermissionNotificationsMessage(String productName) {
+    return '$productName doesn\'t have permission to send notifications. You can enable it in your device settings.';
+  }
 
   @override
   String nagbarPremiumGracePeriod(String productName, String graceDate) {
@@ -286,6 +290,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get back => 'Zpět';
+
+  @override
+  String get next => 'Next';
 
   @override
   String get mfaTitle => 'Dvoufaktorové ověření';
@@ -656,6 +663,10 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String get errorUnableToSignIn =>
       'Přihlášení právě teď není možné. Zkuste to prosím znovu.';
+
+  @override
+  String get errorServiceUnavailable =>
+      'This instance is temporarily unavailable. Try again in a moment.';
 
   @override
   String get errorInvalidEmailOrPassword => 'Neplatný e-mail nebo heslo.';
@@ -1444,6 +1455,12 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get gifPickerFavorites => 'Oblíbené';
 
   @override
+  String get gifPickerFavoritesEmptyTitle => 'No favorite GIFs yet';
+
+  @override
+  String get gifPickerFavoritesEmptyDescription => 'Star a GIF to see it here.';
+
+  @override
   String get gifPickerTrending => 'Populární GIFy';
 
   @override
@@ -1485,11 +1502,11 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'Odemkněte $emojiCount z $communityCount s Plutonium.';
+    return 'Odemkněte $emojiCount z $communityCount s Reverb.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Získat Plutonium';
+  String get emojiPlutoniumUpsellButton => 'Získat Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Už nezobrazovat';
@@ -1520,7 +1537,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Varování před externím odkazem';
 
   @override
-  String get externalLinkWarningLeaving => 'Chystáte se opustit Echowire';
+  String externalLinkWarningLeaving(String productName) {
+    return 'Chystáte se opustit $productName';
+  }
 
   @override
   String get externalLinkWarningDescription =>
@@ -1598,11 +1617,11 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'Animované avatary vyžadují Plutonium';
+      'Animované avatary vyžadují Reverb';
 
   @override
   String get animatedBannersRequirePlutonium =>
-      'Animované bannery vyžadují Plutonium';
+      'Animované bannery vyžadují Reverb';
 
   @override
   String get animatedAvifNotSupported => 'Animovaný AVIF není podporován';
@@ -1665,7 +1684,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Získejte Plutonium pro úpravu svého tagu nebo si ho ponechte při změně uživatelského jména';
+      'Získejte Reverb pro úpravu svého tagu nebo si ho ponechte při změně uživatelského jména';
 
   @override
   String get fluxerTagAlreadyTaken => 'Uživatelské jméno je již obsazen';
@@ -1685,18 +1704,18 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get customTagTemporaryBody =>
-      'Váš vlastní 4místný tag je k dispozici pouze po dobu aktivního předplatného Plutonium. Když vaše předplatné vyprší, váš tag se po 3denní lhůtě vrátí na náhodně přiřazené číslo.';
+      'Váš vlastní 4místný tag je k dispozici pouze po dobu aktivního předplatného Reverb. Když vaše předplatné vyprší, váš tag se po 3denní lhůtě vrátí na náhodně přiřazené číslo.';
 
   @override
   String get iUnderstandContinue => 'Rozumím, pokračovat';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Pokud uložíte tento Uživatelské jméno, váš vlastní 4místný tag se po skončení předplatného Plutonium vrátí na náhodné číslo. Pokud se vaše předplatné neobnoví, budete mít 3denní lhůtu, než se tag změní.';
+      'Pokud uložíte tento Uživatelské jméno, váš vlastní 4místný tag se po skončení předplatného Reverb vrátí na náhodné číslo. Pokud se vaše předplatné neobnoví, budete mít 3denní lhůtu, než se tag změní.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Váš vlastní 4místný tag (#$discriminator) je aktivní po dobu aktivního předplatného Plutonium. Pokud vaše předplatné skončí nebo se po 3denní lhůtě neobnoví, váš tag se vrátí na náhodné číslo.';
+    return 'Váš vlastní 4místný tag (#$discriminator) je aktivní po dobu aktivního předplatného Reverb. Pokud vaše předplatné skončí nebo se po 3denní lhůtě neobnoví, váš tag se vrátí na náhodné číslo.';
   }
 
   @override
@@ -1710,7 +1729,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get premiumTrialActive =>
-      'Jste ve zkušební verzi Plutonium. Upgradujte, abyste si ponechali vlastní tag a získali odznak na svém profilu.';
+      'Jste ve zkušební verzi Reverb. Upgradujte, abyste si ponechali vlastní tag a získali odznak na svém profilu.';
 
   @override
   String get fluxerTagUpdated => 'Uživatelské jméno aktualizován';
@@ -1864,17 +1883,17 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. Max 10 MB. Doporučeno: 512×512px. Animované avatary (GIF) vyžadují Plutonium.';
+      'JPEG, PNG, WebP. Max 10 MB. Doporučeno: 512×512px. Animované avatary (GIF) vyžadují Reverb.';
 
   @override
   String get bannerPlutoniumUpsell =>
       'Přizpůsobte si svůj profil statickým nebo animovaným obrázkem banneru, aby vynikl.';
 
   @override
-  String get getPlutonium => 'Získat Plutonium';
+  String get getPlutonium => 'Získat Reverb';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1887,7 +1906,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get profilePreviewMessage => 'Zpráva';
 
   @override
-  String get profilePreviewMemberSince => 'Členem Echowireu od';
+  String profilePreviewMemberSince(String productName) {
+    return 'Členem $productName od';
+  }
 
   @override
   String get unclaimedAccountTitle => 'Nevyžádaný účet';
@@ -1914,7 +1935,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      'Přizpůsobení vašeho avatara, banneru, akcentové barvy a biografie pro jednotlivé komunity vyžaduje Plutonium. Přezdívka v komunitě a zájmena jsou zdarma pro všechny.';
+      'Přizpůsobení vašeho avatara, banneru, akcentové barvy a biografie pro jednotlivé komunity vyžaduje Reverb. Přezdívka v komunitě a zájmena jsou zdarma pro všechny.';
 
   @override
   String get avatarModeInherit => 'Použít globální profil';
@@ -1976,8 +1997,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get securityLoginEmailSectionTitle => 'Nastavení e-mailu';
 
   @override
-  String get securityLoginEmailSectionDescription =>
-      'Spravujte e-mailovou adresu, kterou používáte k přihlášení do Echowireu';
+  String securityLoginEmailSectionDescription(String productName) {
+    return 'Spravujte e-mailovou adresu, kterou používáte k přihlášení do $productName';
+  }
 
   @override
   String get securityLoginEmailAddressLabel => 'E-mailová adresa';
@@ -2427,27 +2449,31 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get requiredActionTitle => 'Account verification required';
 
   @override
-  String get requiredActionIntroGeneric =>
-      'Complete the required verification to continue using Fluxer.';
+  String requiredActionIntroGeneric(String productName) {
+    return 'Complete the required verification to continue using $productName.';
+  }
 
   @override
   String get requiredActionIntroPhone =>
       'Your registration needs an extra anti-spam check before you can continue.';
 
   @override
-  String get requiredActionIntroEmailOrPhone =>
-      'Verify your email or phone to continue using Fluxer.';
+  String requiredActionIntroEmailOrPhone(String productName) {
+    return 'Verify your email or phone to continue using $productName.';
+  }
 
   @override
-  String get requiredActionIntroEmailAndPhone =>
-      'Complete the required email and phone verification steps below to continue using Fluxer.';
+  String requiredActionIntroEmailAndPhone(String productName) {
+    return 'Complete the required email and phone verification steps below to continue using $productName.';
+  }
 
   @override
   String get requiredActionChooseMethodTitle => 'Choose a verification method';
 
   @override
-  String get requiredActionChooseMethodDescription =>
-      'Complete one of the verification paths below to continue using Fluxer.';
+  String requiredActionChooseMethodDescription(String productName) {
+    return 'Complete one of the verification paths below to continue using $productName.';
+  }
 
   @override
   String get requiredActionUseEmail => 'Use email';
@@ -2499,7 +2525,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'Před smazáním účtu zrušte svou aktivní předplatné Plutonium v nastavení Plutonium.';
+      'Před smazáním účtu zrušte svou aktivní předplatné Reverb v nastavení Reverb.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => 'Nelze smazat účet';
@@ -2633,14 +2659,92 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   }
 
   @override
+  String relativeTimeWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count weeks ago',
+      one: '1 week ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInMinutes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count minutes',
+      one: 'in 1 minute',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInHours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count hours',
+      one: 'in 1 hour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count days',
+      one: 'in 1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count weeks',
+      one: 'in 1 week',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count months',
+      one: 'in 1 month',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count years',
+      one: 'in 1 year',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get relativeTimeJustNow => 'právě teď';
 
   @override
   String get authorizedAppsTitle => 'Autorizované aplikace';
 
   @override
-  String get authorizedAppsDescription =>
-      'Těmto aplikacím byl udělen přístup k vašemu účtu Echowire.';
+  String authorizedAppsDescription(String productName) {
+    return 'Těmto aplikacím byl udělen přístup k vašemu účtu $productName.';
+  }
 
   @override
   String get authorizedAppsEmptyTitle => 'Žádné autorizované aplikace';
@@ -2753,31 +2857,49 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get userProfileEditProfile => 'Upravit profil';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Tým Echowireu';
-
-  @override
-  String get userProfileCtpBadgeTooltip => 'Komunitní tým Echowireu';
-
-  @override
-  String get userProfilePartnerBadgeTooltip => 'Partner Echowireu';
-
-  @override
-  String get userProfileBugHunterBadgeTooltip => 'Lovec chyb Echowireu';
-
-  @override
-  String get userProfilePlutoniumBadgeTooltip => 'Echowire Reverb';
-
-  @override
-  String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Předplatitel Echowire Reverb od $date';
+  String userProfileStaffBadgeTooltip(String productName) {
+    return 'Tým $productName';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Vizionář Echowireu';
+  String userProfileCtpBadgeTooltip(String productName) {
+    return 'Komunitní tým $productName';
+  }
 
   @override
-  String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Vizionář Echowireu od $date';
+  String userProfilePartnerBadgeTooltip(String productName) {
+    return 'Partner $productName';
+  }
+
+  @override
+  String userProfileBugHunterBadgeTooltip(String productName) {
+    return 'Lovec chyb $productName';
+  }
+
+  @override
+  String userProfilePlutoniumBadgeTooltip(String productName) {
+    return '$productName Reverb';
+  }
+
+  @override
+  String userProfilePlutoniumSubscriberSinceTooltip(
+    String productName,
+    String date,
+  ) {
+    return 'Předplatitel $productName Reverb od $date';
+  }
+
+  @override
+  String userProfileVisionaryBadgeTooltip(String productName) {
+    return 'Vizionář $productName';
+  }
+
+  @override
+  String userProfileVisionaryBadgeSinceTooltip(
+    String productName,
+    String date,
+  ) {
+    return 'Vizionář $productName od $date';
   }
 
   @override
@@ -4007,8 +4129,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get connectionsTitle => 'Propojení';
 
   @override
-  String get connectionsDescription =>
-      'Propojte externí účty a domény s vaším profilem Echowire. Ověřená propojení se zobrazí ve vašem profilu.';
+  String connectionsDescription(String productName) {
+    return 'Propojte externí účty a domény s vaším profilem $productName. Ověřená propojení se zobrazí ve vašem profilu.';
+  }
 
   @override
   String get connectionsEmptyTitle => 'Zatím žádná propojení';
@@ -4459,8 +4582,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get lookAndFeelCollapseDMsLabel => 'Sbalit DM do složky';
 
   @override
-  String get lookAndFeelCollapseDMsDescription =>
-      'Když je povoleno, nepřečtené DM v postranním panelu komunity jsou sbaleny do složky na tlačítku Echowire. Kliknutím na tlačítko Echowire na stránce DM složku rozbalíte nebo sbalíte.';
+  String lookAndFeelCollapseDMsDescription(String productName) {
+    return 'Když je povoleno, nepřečtené DM v postranním panelu komunity jsou sbaleny do složky na tlačítku $productName. Kliknutím na tlačítko $productName na stránce DM složku rozbalíte nebo sbalíte.';
+  }
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Seznam kanálů';
@@ -4735,8 +4859,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       'Při odesílání jako odkazy do chatu';
 
   @override
-  String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Při nahrávání přímo do Echowireu';
+  String messagesMediaDisplayInlineAttachmentLabel(String productName) {
+    return 'Při nahrávání přímo do $productName';
+  }
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Náhledy odkazů';
@@ -4928,8 +5053,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get accessibilityScreenReaderGroupTitle => 'Screen reader';
 
   @override
-  String get accessibilityScreenReaderGroupDescription =>
-      'Control how Fluxer works with screen readers.';
+  String accessibilityScreenReaderGroupDescription(String productName) {
+    return 'Control how $productName works with screen readers.';
+  }
 
   @override
   String get accessibilityScreenReaderAnnounceNewMessagesLabel =>
@@ -6490,6 +6616,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get chatMessageCopyText => 'Zkopírovat zprávu';
 
   @override
+  String get chatMessageCopyEmbedText => 'Copy Embed Text';
+
+  @override
   String get chatMessageTranslate => 'Translate';
 
   @override
@@ -6742,8 +6871,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get iarReasonOtherLabel => 'Další jasné porušení pravidel';
 
   @override
-  String get iarReasonOtherDescription =>
-      'Použijte pouze v případě, že jasně porušuje pravidla Echowireu a nespadá pod výše uvedené.';
+  String iarReasonOtherDescription(String productName) {
+    return 'Použijte pouze v případě, že jasně porušuje pravidla $productName a nespadá pod výše uvedené.';
+  }
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -7375,6 +7505,45 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String get addGuildCreateIconHint =>
       'PNG, JPEG, WebP, AVIF, HEIC, HEIF, JXL, SVG. Max 10MB. Recommended: 512×512px';
+
+  @override
+  String get addGuildImportDescription =>
+      'Paste a Discord template URL to import its structure into a new community.';
+
+  @override
+  String get addGuildImportUrlLabel => 'Template URL';
+
+  @override
+  String get addGuildImportUrlInvalid =>
+      'Enter a valid Discord template URL or code.';
+
+  @override
+  String get addGuildImportFetchFailed =>
+      'Failed to fetch the community template. The template may not exist or the external service is unavailable.';
+
+  @override
+  String get addGuildImportInvalidResponse =>
+      'This doesn\'t look like a valid template response.';
+
+  @override
+  String get addGuildImportTemplateLabel => 'Template';
+
+  @override
+  String addGuildImportTemplateStats(
+    int textChannelCount,
+    int voiceChannelCount,
+    int categoryCount,
+    int roleCount,
+  ) {
+    return '$textChannelCount text, $voiceChannelCount voice, $categoryCount categories, $roleCount roles';
+  }
+
+  @override
+  String get addGuildImportRemoveIcon => 'Remove icon';
+
+  @override
+  String get addGuildImportTemplateInvalid =>
+      'The community template data is invalid or malformed.';
 
   @override
   String get addGuildPackInstalled => 'Balíček byl úspěšně nainstalován.';
@@ -9772,16 +9941,18 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get advancedPerformanceReportingTitle => 'Hlášení o výkonu';
 
   @override
-  String get advancedPerformanceReportingSectionDescription =>
-      'Pomozte vylepšit Echowire sdílením anonymních dat o pádech a výkonu.';
+  String advancedPerformanceReportingSectionDescription(String productName) {
+    return 'Pomozte vylepšit $productName sdílením anonymních dat o pádech a výkonu.';
+  }
 
   @override
   String get advancedPerformanceReportingLabel =>
       'Odesílat zprávy o pádech a výkonu';
 
   @override
-  String get advancedPerformanceReportingDescription =>
-      'Všechna odeslaná data jsou anonymní a odesílají se pouze do vlastních monitorovacích služeb Echowireu – nepoužívají se žádní poskytovatelé třetích stran.';
+  String advancedPerformanceReportingDescription(String productName) {
+    return 'Všechna odeslaná data jsou anonymní a odesílají se pouze do vlastních monitorovacích služeb $productName – nepoužívají se žádní poskytovatelé třetích stran.';
+  }
 
   @override
   String get advancedSettingsConfigure => 'Configure';
@@ -11061,8 +11232,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   }
 
   @override
-  String get guildNavbarStaffOnlyAccessible =>
-      'Přístupné pouze personálu Echowireu';
+  String guildNavbarStaffOnlyAccessible(String productName) {
+    return 'Přístupné pouze personálu $productName';
+  }
 
   @override
   String get guildNavbarInvitesPaused =>

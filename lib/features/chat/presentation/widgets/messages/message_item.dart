@@ -204,7 +204,7 @@ class MessageItem extends ConsumerStatefulWidget {
   final bool isJumpHighlighted;
   final bool isSendDisabled;
 
-  /// False in compact drawer peek; set by the message list.
+  /// False to disable swipe-to-reply on this row.
   final bool swipeToReplyEnabled;
 
   /// When set, resolves author guild role highlight for inbox previews
@@ -360,9 +360,25 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     );
   }
 
-  MessageMediaActionScope get _videoActionScope {
+  MessageMediaActionScope get _videoActionScope =>
+      _mediaActionScopeFor(widget.message);
+
+  /// Scope for media rendered from the first forward snapshot: the snapshot's
+  /// attachments and embeds are projected onto the message so favorite targets
+  /// and viewer actions resolve against the forwarded content.
+  MessageMediaActionScope get _forwardedSnapshotActionScope {
+    final MessageSnapshot snapshot = widget.message.messageSnapshots.first;
+    return _mediaActionScopeFor(
+      widget.message.copyWith(
+        attachments: snapshot.attachments,
+        embeds: snapshot.embeds,
+      ),
+    );
+  }
+
+  MessageMediaActionScope _mediaActionScopeFor(Message message) {
     return MessageMediaActionScope(
-      message: widget.message,
+      message: message,
       previewRoleGuildId: widget.previewRoleGuildId,
       callbacks: MessageActionCallbacks(
         onReply: widget.onReply,
@@ -1083,6 +1099,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
             revealSpoilers: revealSpoilers,
             chatPreferences: chatPreferences,
             spoilerSyncController: _spoilerSyncController,
+            mediaActionScope: _forwardedSnapshotActionScope,
           ),
         ),
       ...msg.invites.map(

@@ -379,6 +379,7 @@ class Channel {
   );
 }
 
+@immutable
 class ChannelCategory {
   final String id;
   final String name;
@@ -391,6 +392,17 @@ class ChannelCategory {
   });
 
   bool get isUncategorized => id == kUncategorizedCategoryId;
+
+  @override
+  bool operator ==(Object other) {
+    return other is ChannelCategory &&
+        id == other.id &&
+        name == other.name &&
+        listEquals(channels, other.channels);
+  }
+
+  @override
+  int get hashCode => Object.hash(id, name, Object.hashAll(channels));
 }
 
 /// Internal group id for channels that have no parent category.

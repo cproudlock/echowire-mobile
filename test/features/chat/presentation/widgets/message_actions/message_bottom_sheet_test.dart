@@ -273,6 +273,50 @@ void main() {
     expect(find.text(testL10n.chatMessageTranslate), findsNothing);
   });
 
+  testWidgets('hides Translate for a custom-emoji-only message, fixes #698', (
+    tester,
+  ) async {
+    final Message emojiMessage = message.copyWith(
+      content: '<:pepe:123> <a:dance:456>',
+    );
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: baseOverrides(
+          emojiMessage.id,
+          translationAvailable: true,
+          extra: [
+            appearancePreferencesProvider.overrideWithValue(
+              const AppearancePreferencesState(),
+            ),
+            detectedMessageLanguageProvider(
+              emojiMessage.content,
+            ).overrideWith((ref) => 'fr'),
+          ],
+        ),
+        child: buildTestApp(
+          onOpen: (context) => showMessageBottomSheet(
+            context,
+            message: emojiMessage,
+            isOwnMessage: true,
+            isDmChannel: false,
+            canDelete: false,
+            canReport: false,
+            canAddReactions: false,
+            canPinMessage: false,
+            canManageMessages: false,
+            canSendMessages: true,
+            developerMode: false,
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Open'));
+    await tester.pumpAndSettle();
+
+    expect(find.text(testL10n.chatMessageTranslate), findsNothing);
+  });
+
   testWidgets('hides Translate when no source is available', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
@@ -306,5 +350,59 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text(testL10n.chatMessageTranslate), findsNothing);
+  });
+
+  group('copy embed text', () {
+    Widget sheetFor(Message target) {
+      return ProviderScope(
+        overrides: baseOverrides(
+          target.id,
+          extra: [
+            appearancePreferencesProvider.overrideWithValue(
+              const AppearancePreferencesState(),
+            ),
+          ],
+        ),
+        child: buildTestApp(
+          onOpen: (context) => showMessageBottomSheet(
+            context,
+            message: target,
+            isOwnMessage: false,
+            isDmChannel: false,
+            canDelete: false,
+            canReport: false,
+            canAddReactions: false,
+            canPinMessage: false,
+            canManageMessages: false,
+            canSendMessages: true,
+            developerMode: false,
+          ),
+        ),
+      );
+    }
+
+    testWidgets('shows the item when an embed carries text', (tester) async {
+      final Message embedded = message.copyWith(
+        embeds: const [
+          Embed(type: EmbedType.link, title: 'Article', description: 'Summary'),
+        ],
+      );
+      await tester.pumpWidget(sheetFor(embedded));
+      await tester.tap(find.text('Open'));
+      await tester.pumpAndSettle();
+
+      expect(find.text(testL10n.chatMessageCopyEmbedText), findsOneWidget);
+    });
+
+    testWidgets('hides the item for media-only embeds', (tester) async {
+      final Message imageOnly = message.copyWith(
+        embeds: const [Embed(type: EmbedType.image, url: 'https://x/y.png')],
+      );
+      await tester.pumpWidget(sheetFor(imageOnly));
+      await tester.tap(find.text('Open'));
+      await tester.pumpAndSettle();
+
+      expect(find.text(testL10n.chatMessageCopyEmbedText), findsNothing);
+    });
   });
 }

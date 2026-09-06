@@ -57,7 +57,7 @@ class GuildRepository {
     await removeGuildFromLocalDb(_db, guildId);
   }
 
-  Future<void> stageGuildJoinFromInvite(GuildInviteResponse invite) async {
+  Future<void> stageGuildJoinFromInvite(InviteResponseSchema0 invite) async {
     final guild = invite.guild;
     await _db.guildDao.upsertServer(
       db.ServersCompanion.insert(
@@ -141,10 +141,12 @@ class GuildRepository {
   Future<GuildResponse> createGuild({
     required String name,
     String? iconDataUri,
+    TemplateSerializedGuild? template,
   }) async {
     final GuildCreateRequest body = GuildCreateRequest(
       name: name.trim(),
       icon: iconDataUri,
+      template: template,
     );
     final GuildResponse guild = await _client.guilds.createGuild(body: body);
     final List<String> guildOrder = await _fetchGuildOrder();

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
@@ -18,6 +17,7 @@ import 'package:fluxer_app/features/ui/button/fluxer_button.dart';
 import 'package:fluxer_app/features/ui/overlay/fluxer_overlay_back_handler.dart';
 import 'package:fluxer_app/features/ui/spinner/fluxer_loading_spinner.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/guild_name_abbreviation.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -135,7 +135,7 @@ class _InviteAcceptModalBodyState extends ConsumerState<InviteAcceptModalBody> {
       widget.onClose!();
       return;
     }
-    unawaited(Navigator.of(context).maybePop());
+    Navigator.of(context).maybePop();
   }
 
   Future<void> _acceptInvite() async {
@@ -219,17 +219,6 @@ class _InviteAcceptModalBodyState extends ConsumerState<InviteAcceptModalBody> {
               l10n: l10n,
               isAccepting: _isAccepting,
               onJoin: () => unawaited(_acceptInvite()),
-            ),
-          ),
-        ),
-        InviteAcceptPack(:final invite) => _InviteAcceptBackground(
-          splashUrl: null,
-          child: _InviteAcceptCard(
-            child: _PackInviteContent(
-              invite: invite,
-              l10n: l10n,
-              isAccepting: _isAccepting,
-              onInstall: () => unawaited(_acceptInvite()),
             ),
           ),
         ),
@@ -432,7 +421,7 @@ class _GuildInviteContent extends StatelessWidget {
     required this.onGoTo,
   });
 
-  final InviteResponseSchemaGuildInviteResponse invite;
+  final InviteResponseSchema0 invite;
   final FluxerLocalizations l10n;
   final bool isAccepting;
   final bool isAlreadyMember;
@@ -588,7 +577,7 @@ class _GroupDmInviteContent extends StatelessWidget {
     required this.onJoin,
   });
 
-  final InviteResponseSchemaGroupDmInviteResponse invite;
+  final InviteResponseSchema1 invite;
   final FluxerLocalizations l10n;
   final bool isAccepting;
   final VoidCallback onJoin;
@@ -639,79 +628,6 @@ class _GroupDmInviteContent extends StatelessWidget {
           onPressed: onJoin,
           isLoading: isAccepting,
           label: l10n.inviteAcceptJoinGroupButton,
-        ),
-      ],
-    );
-  }
-}
-
-class _PackInviteContent extends StatelessWidget {
-  const _PackInviteContent({
-    required this.invite,
-    required this.l10n,
-    required this.isAccepting,
-    required this.onInstall,
-  });
-
-  final InviteResponseSchemaPackInviteResponse invite;
-  final FluxerLocalizations l10n;
-  final bool isAccepting;
-  final VoidCallback onInstall;
-
-  bool get _isEmojiPack =>
-      invite.pack.type == PackInviteResponsePackTypeType.emoji;
-
-  @override
-  Widget build(BuildContext context) {
-    final PackInviteResponsePack pack = invite.pack;
-    final String packTypeLabel = _isEmojiPack
-        ? l10n.inviteAcceptEmojiPack
-        : l10n.inviteAcceptStickerPack;
-    final String installLabel = _isEmojiPack
-        ? l10n.inviteAcceptInstallEmojiPack
-        : l10n.inviteAcceptInstallStickerPack;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        Text(
-          pack.name,
-          textAlign: TextAlign.center,
-          style: context.textStyles.channelName,
-        ),
-        const SizedBox(height: 4),
-        Text(
-          packTypeLabel,
-          textAlign: TextAlign.center,
-          style: context.textStyles.bodySmall.copyWith(
-            color: context.colors.textTertiaryMuted,
-          ),
-        ),
-        if (pack.description != null &&
-            pack.description!.isNotEmpty) ...<Widget>[
-          const SizedBox(height: 12),
-          Text(
-            pack.description!,
-            textAlign: TextAlign.center,
-            style: context.textStyles.bodySmall.copyWith(
-              color: context.colors.textSecondary,
-              height: 1.4,
-            ),
-          ),
-        ],
-        const SizedBox(height: 12),
-        Text(
-          l10n.inviteAcceptPackInstallNote,
-          textAlign: TextAlign.center,
-          style: context.textStyles.bodySmall.copyWith(
-            color: context.colors.textTertiaryMuted,
-            height: 1.4,
-          ),
-        ),
-        const SizedBox(height: 20),
-        FluxerButton.primary(
-          onPressed: onInstall,
-          isLoading: isAccepting,
-          label: installLabel,
         ),
       ],
     );

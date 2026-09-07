@@ -3,16 +3,18 @@ description: "Echowire — native chat client."
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # versionName + versionCode. Play floor is 56 (old TWA), so build number must stay > 56.
-version: 1.7.20+95
+version: 1.7.20+96
 
 environment:
   sdk: ^3.12.0
 
 dependencies:
 # BEGIN firebase optional deps
-  firebase_core: ^4.11.0
-  # Pinned exactly: firebase_messaging 16.4.2 references FirebasePlugin/pluginConstants
-  firebase_messaging: 16.4.1
+  # Kept in step with pubspec.firebase.deps.yaml and packages/fluxer_fcm.
+  # Was pinned to 16.4.1 because 16.4.2 referenced FirebasePlugin/pluginConstants
+  # that firebase_core 4.12.0 dropped; upstream's newer pair moves past that.
+  firebase_core: ^4.13.0
+  firebase_messaging: ^16.5.0
   fluxer_fcm:
     path: packages/fluxer_fcm
 # END firebase optional deps
@@ -42,25 +44,26 @@ dependencies:
 
 
 
-  app_badge_plus: ^1.3.0
+  app_badge_plus: ^1.3.4
   app_links: ^7.2.0
-  app_settings: ^8.0.0
+  app_settings: ^9.0.0
   audio_service: ^0.18.19
   audio_session: ^0.2.2
   audioplayers: ^6.8.1
   cached_network_image_ce: ^4.10.0
   clock: ^1.1.2
-  connectivity_plus: ^7.1.1
+  connectivity_plus: ^7.3.1
   country_flags: ^4.1.2
   crop_your_image: ^2.0.0
   cross_file: ^0.3.5+2
   cupertino_icons: ^1.0.8
-  desktop_drop: ^0.7.1
+  cupertino_ui: ^1.0.0
+  desktop_drop: ^0.8.2
   device_info_plus: ^13.2.0
   dio: ^5.10.0
-  drift: ^2.34.3
+  drift: ^2.34.4
   drift_flutter: ^0.3.1
-  file_picker: ^12.0.0-beta.7
+  file_picker: ^12.2.0
   fixnum: ^1.1.1
   flutter:
     sdk: flutter
@@ -77,7 +80,7 @@ dependencies:
   flutter_svg: ^2.2.4
   flutter_thumbhash: ^0.1.0+1
   flutter_tts: ^4.2.5
-  flutter_web_auth_2: ^5.0.3
+  flutter_web_auth_2: ^5.1.0
   flutter_webrtc: ^1.6.0
   fluxer_captcha:
     path: packages/fluxer_captcha
@@ -85,7 +88,9 @@ dependencies:
     path: dart_sdk
   fluxer_markdown:
     path: packages/fluxer_markdown
-  gaimon: ^1.4.3
+  fluxer_markdown_native:
+    path: packages/fluxer_markdown_native
+  gaimon: ^1.5.0
   gal: ^2.3.3
   go_router: ^17.2.1
   highlight: ^0.7.0
@@ -95,7 +100,10 @@ dependencies:
   image_picker_platform_interface: ^2.11.1
   intl: ^0.20.2
   livekit_client: ^2.11.0
+  local_translation: ^0.1.0
   lucid_validation: ^1.3.1
+  markdown: ^7.3.1
+  material_ui: ^1.0.0
   media_kit: ^1.2.6
   media_kit_libs_video: ^1.0.7
   media_kit_video: ^2.0.1
@@ -105,11 +113,13 @@ dependencies:
   path: ^1.9.1
   path_provider: ^2.1.5
   permission_handler: ^13.0.0
+  photo_manager: ^3.8.3
   phone_numbers_parser: ^9.0.25
   phosphor_flutter:
     git:
       url: https://github.com/Niural/phosphor_flutter
   protobuf: ^6.0.0
+  qr: ^4.0.0
   receive_sharing_intent: ^1.9.0
   record: ^7.1.1
   riverpod: ^3.4.1
@@ -119,7 +129,7 @@ dependencies:
   shared_preferences: ^2.5.3
   skeletonizer: ^2.1.3
   smart_keyboard_insets: ^0.0.1
-  sqlite3: ^3.3.3
+  sqlite3: ^3.5.2
   super_clipboard: ^0.9.1
   talker: ^5.1.20
   talker_dio_logger: ^5.1.20
@@ -131,9 +141,14 @@ dependencies:
   visibility_detector: ^0.4.0+2
   web_socket_channel: ^3.0.2
   window_manager: ^0.5.1
-  youtube_explode_dart: ^3.1.0
+  wakelock_plus: ^1.8.0
 
 dependency_overrides:
+  # mockito >=5.6.5 requires analyzer ^13, incompatible with the overrides below.
+  analyzer: ^10.0.0
+  analyzer_plugin: ^0.14.0
+  dart_style: 3.1.7
+  device_info_plus: ^13.2.0
   # Xcode 26.4+ rejects the ASWebAuthenticationPresentationContextProviding
   # witness in flutter_inappwebview_* 1.2.0-beta.3. Remove once upstream ships
   # https://github.com/pichillilorenzo/flutter_inappwebview/pull/2809
@@ -148,17 +163,12 @@ dependency_overrides:
       path: flutter_inappwebview_macos
       ref: fc33a449b9290b127a471808e22eb7b0edebad92
   # riverpod_annotation 4.0.3 pins riverpod to exactly 3.3.2, and the
-  # generator cannot move until the analyzer chain below is aligned. 3.4.1
+  # generator cannot move until the analyzer chain above is aligned. 3.4.1
   # carries the markNeedsBuild fix for flushing a provider inside a widget
   # lifecycle, which the mounted nav shell hits on every branch return.
   flutter_riverpod: ^3.4.1
-  riverpod: ^3.4.1
-  analyzer: ^10.0.0
-  analyzer_plugin: ^0.14.0
-  dart_style: 3.1.7
-  device_info_plus: ^13.2.0
-  # mockito >=5.6.5 requires analyzer ^13, incompatible with the override above.
   mockito: 5.6.4
+  riverpod: ^3.4.1
 
 dev_dependencies:
   accessibility_radar: ^0.3.0

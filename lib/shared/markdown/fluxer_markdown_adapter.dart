@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/deep_links/deep_link_path_policy.dart';
 import 'package:fluxer_app/core/deep_links/user_settings_deep_link.dart';
-import 'package:fluxer_app/features/settings/utils/open_user_settings_deep_link.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/core/utils/channel_jump_link.dart';
@@ -11,15 +10,17 @@ import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_alert.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_mention.dart';
 import 'package:fluxer_app/features/chat/utils/channel_jump_navigator.dart';
+import 'package:fluxer_app/features/emoji/presentation/sheets/emoji_info_bottom_sheet.dart';
 import 'package:fluxer_app/features/guilds/utils/invite_link_navigator.dart';
+import 'package:fluxer_app/features/settings/utils/open_user_settings_deep_link.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/shared/external_links/external_link_handler.dart';
+import 'package:fluxer_app/shared/markdown/message_markdown_settings.dart';
 import 'package:fluxer_app/shared/utils/emoji_registry.dart';
 import 'package:fluxer_app/shared/utils/emoji_utils.dart';
 import 'package:fluxer_markdown/fluxer_markdown.dart';
-
 import 'package:go_router/go_router.dart';
 
 String? _normalizeSpoilerSyncUrl(String url) {
@@ -62,11 +63,178 @@ Uri? _parseFluxerAppLinkPath(String href) {
   return Uri(path: path.startsWith('/') ? path : '/$path');
 }
 
+Widget _fluxerUserMentionBuilder(
+  BuildContext context,
+  String id,
+  TextStyle style,
+) {
+  final MessageMarkdownBinding? binding = MessageMarkdownBinding.maybeOf(
+    context,
+  );
+  return UserMention(
+    userId: id,
+    channelId: binding?.channelId,
+    guildId: binding?.guildId,
+    baseStyle: style,
+  );
+}
+
+Widget _fluxerChannelMentionBuilder(
+  BuildContext context,
+  String id,
+  TextStyle style,
+) {
+  final MessageMarkdownBinding? binding = MessageMarkdownBinding.maybeOf(
+    context,
+  );
+  return ChannelMention(
+    channelId: id,
+    fallback: findChannelMentionFallback(
+      binding?.mentionChannels ?? const <MessageChannelMention>[],
+      id,
+    ),
+    baseStyle: style,
+  );
+}
+
+Widget _fluxerRoleMentionBuilder(
+  BuildContext context,
+  String id,
+  TextStyle style,
+) {
+  return RoleMention(roleId: id, baseStyle: style);
+}
+
+Widget _fluxerEveryoneMentionBuilder(
+  BuildContext context,
+  String label,
+  TextStyle style,
+) {
+  return TextMention(label: label, baseStyle: style);
+}
+
+Widget _fluxerCommandMentionBuilder(
+  BuildContext context,
+  String command,
+  String applicationId,
+  TextStyle style,
+) {
+  return CommandMention(
+    command: command,
+    applicationId: applicationId,
+    baseStyle: style,
+  );
+}
+
+Widget _fluxerGuildNavigationMentionBuilder(
+  BuildContext context,
+  FluxerGuildNavigationType type,
+  String? navigationId,
+  TextStyle style,
+) {
+  return GuildNavigationMention(
+    type: type,
+    navigationId: navigationId,
+    baseStyle: style,
+  );
+}
+
+Widget? _fluxerLinkWidgetBuilder(
+  BuildContext context,
+  String href,
+  TextStyle style,
+) {
+  final UserSettingsDeepLinkTarget? settingsTarget = _parseSettingsDeepLinkHref(
+    href,
+  );
+  if (settingsTarget != null) {
+    return SettingsJumpLinkMention(target: settingsTarget, baseStyle: style);
+  }
+  final String resolvedHref = href.startsWith('fluxer:')
+      ? _fluxerAppLinkToHttps(href)
+      : href;
+  final ChannelJumpLink? link = parseChannelJumpLink(resolvedHref);
+  if (link == null) {
+    return null;
+  }
+  return ChannelJumpLinkMention(link: link, url: href, baseStyle: style);
+}
+
+Future<void> _fluxerOnTapLink(BuildContext context, String href) async {
+  final Uri? fluxerPath = _parseFluxerAppLinkPath(href);
+  if (fluxerPath != null) {
+    if (!context.mounted) {
+      return;
+    }
+    final String path = normalizeDeepLinkPath(fluxerPath.path);
+    if (path.startsWith('/invite/') || path.startsWith('/gift/')) {
+      GoRouter.of(context).go(path);
+      return;
+    }
+    if (isUserSettingsDeepLinkPath(fluxerPath)) {
+      await openUserSettingsDeepLinkFromContext(
+        context,
+        parseUserSettingsDeepLink(fluxerPath)!,
+      );
+      return;
+    }
+  }
+
+  final String resolvedHref = href.startsWith('fluxer:')
+      ? _fluxerAppLinkToHttps(href)
+      : href;
+  final ChannelJumpLink? jump = parseChannelJumpLink(resolvedHref);
+  if (jump != null) {
+    if (!context.mounted) {
+      return;
+    }
+    await navigateToChannelJumpLinkFromContext(context: context, link: jump);
+    return;
+  }
+
+  if (isInviteLink(href)) {
+    if (!context.mounted) {
+      return;
+    }
+    await handleInviteLinkTap(context, href);
+    return;
+  }
+
+  await handleExternalLinkTap(context, href);
+}
+
+Widget _fluxerAlertBuilder(
+  BuildContext context,
+  FluxerAlertType type,
+  Widget body,
+  TextStyle baseStyle,
+) {
+  return MessageAlert(
+    type: switch (type) {
+      FluxerAlertType.note => AlertType.note,
+      FluxerAlertType.tip => AlertType.tip,
+      FluxerAlertType.important => AlertType.important,
+      FluxerAlertType.warning => AlertType.warning,
+      FluxerAlertType.caution => AlertType.caution,
+    },
+    bodyWidget: body,
+    baseStyle: baseStyle,
+  );
+}
+
+void _fluxerOnCopyCode(BuildContext ctx, String _) {
+  ProviderScope.containerOf(ctx, listen: false)
+      .read(toastProvider.notifier)
+      .show(
+        FluxerToast(
+          message: FluxerLocalizations.of(ctx).copiedToClipboard,
+          variant: FluxerToastVariant.success,
+        ),
+      );
+}
+
 FluxerMarkdownConfig createFluxerMarkdownConfig({
   BuildContext? context,
-  String? channelId,
-  String? guildId,
-  List<MessageChannelMention> mentionChannels = const [],
   bool revealSpoilers = false,
   FluxerSpoilerSyncController? spoilerSyncController,
   FluxerTimestampFormatter? timestampFormatter,
@@ -97,134 +265,22 @@ FluxerMarkdownConfig createFluxerMarkdownConfig({
     tableBorderRadius: context?.layout.radiusMd,
     spoilerBackgroundColor: context?.colors.spoilerBackground,
     internalLinkPattern: buildChannelJumpLinkPattern(channelJumpLinkHosts()),
-    userMentionBuilder: (context, id, style) {
-      return UserMention(
-        userId: id,
-        channelId: channelId,
-        guildId: guildId,
-        baseStyle: style,
-      );
-    },
-    channelMentionBuilder: (context, id, style) {
-      return ChannelMention(
-        channelId: id,
-        fallback: findChannelMentionFallback(mentionChannels, id),
-        baseStyle: style,
-      );
-    },
-    roleMentionBuilder: (context, id, style) {
-      return RoleMention(roleId: id, baseStyle: style);
-    },
-    everyoneMentionBuilder: (context, label, style) {
-      return TextMention(label: label, baseStyle: style);
-    },
-    commandMentionBuilder: (context, command, applicationId, style) {
-      return CommandMention(
-        command: command,
-        applicationId: applicationId,
-        baseStyle: style,
-      );
-    },
-    guildNavigationMentionBuilder: (context, type, navigationId, style) {
-      return GuildNavigationMention(
-        type: type,
-        navigationId: navigationId,
-        baseStyle: style,
-      );
-    },
-    linkWidgetBuilder: (context, href, style) {
-      final UserSettingsDeepLinkTarget? settingsTarget =
-          _parseSettingsDeepLinkHref(href);
-      if (settingsTarget != null) {
-        return SettingsJumpLinkMention(
-          target: settingsTarget,
-          baseStyle: style,
-        );
-      }
-      final String resolvedHref = href.startsWith('fluxer:')
-          ? _fluxerAppLinkToHttps(href)
-          : href;
-      final link = parseChannelJumpLink(resolvedHref);
-      if (link == null) {
-        return null;
-      }
-      return ChannelJumpLinkMention(link: link, url: href, baseStyle: style);
-    },
-    onTapLink: (context, href) async {
-      final Uri? fluxerPath = _parseFluxerAppLinkPath(href);
-      if (fluxerPath != null) {
-        if (!context.mounted) {
-          return;
-        }
-        final String path = normalizeDeepLinkPath(fluxerPath.path);
-        if (path.startsWith('/invite/') || path.startsWith('/gift/')) {
-          GoRouter.of(context).go(path);
-          return;
-        }
-        if (isUserSettingsDeepLinkPath(fluxerPath)) {
-          await openUserSettingsDeepLinkFromContext(
-            context,
-            parseUserSettingsDeepLink(fluxerPath)!,
-          );
-          return;
-        }
-      }
-
-      final String resolvedHref = href.startsWith('fluxer:')
-          ? _fluxerAppLinkToHttps(href)
-          : href;
-      final jump = parseChannelJumpLink(resolvedHref);
-      if (jump != null) {
-        if (!context.mounted) {
-          return;
-        }
-        await navigateToChannelJumpLinkFromContext(
-          context: context,
-          link: jump,
-        );
-        return;
-      }
-
-      if (isInviteLink(href)) {
-        if (!context.mounted) {
-          return;
-        }
-        await handleInviteLinkTap(context, href);
-        return;
-      }
-
-      await handleExternalLinkTap(context, href);
-    },
+    userMentionBuilder: _fluxerUserMentionBuilder,
+    channelMentionBuilder: _fluxerChannelMentionBuilder,
+    roleMentionBuilder: _fluxerRoleMentionBuilder,
+    everyoneMentionBuilder: _fluxerEveryoneMentionBuilder,
+    commandMentionBuilder: _fluxerCommandMentionBuilder,
+    guildNavigationMentionBuilder: _fluxerGuildNavigationMentionBuilder,
+    linkWidgetBuilder: _fluxerLinkWidgetBuilder,
+    onTapLink: _fluxerOnTapLink,
     spoilersInitiallyRevealed: revealSpoilers,
     spoilerSyncController: spoilerSyncController,
     spoilerSyncKeyNormalizer: _normalizeSpoilerSyncUrl,
     timestampFormatter: timestampFormatter,
-    alertBuilder: (context, type, body, baseStyle) {
-      return MessageAlert(
-        type: switch (type) {
-          FluxerAlertType.note => AlertType.note,
-          FluxerAlertType.tip => AlertType.tip,
-          FluxerAlertType.important => AlertType.important,
-          FluxerAlertType.warning => AlertType.warning,
-          FluxerAlertType.caution => AlertType.caution,
-        },
-        bodyWidget: body,
-        baseStyle: baseStyle,
-      );
-    },
-    onCopyCode: context == null
-        ? null
-        : (BuildContext ctx, String code) {
-            ProviderScope.containerOf(ctx, listen: false)
-                .read(toastProvider.notifier)
-                .show(
-                  FluxerToast(
-                    message: FluxerLocalizations.of(ctx).copiedToClipboard,
-                    variant: FluxerToastVariant.success,
-                  ),
-                );
-          },
+    alertBuilder: _fluxerAlertBuilder,
+    onCopyCode: _fluxerOnCopyCode,
     selectionContextMenuBuilder: selectionContextMenuBuilder,
+    onEmojiLongPress: fluxerMarkdownEmojiLongPressHandler,
   );
 }
 

@@ -1,7 +1,7 @@
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_color_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_layout_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
@@ -9,6 +9,7 @@ import 'package:fluxer_app/features/settings/presentation/widgets/wide_settings_
 import 'package:fluxer_app/features/settings/providers/authorized_apps_view_model.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/user_date_formatting.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -102,7 +103,13 @@ class _UserAuthorizedAppsState extends ConsumerState<UserAuthorizedApps> {
           children: [
             FluxerSettingsSection(
               title: l10n.authorizedAppsTitle,
-              description: l10n.authorizedAppsDescription,
+              description: l10n.authorizedAppsDescription(
+                ref.watch(
+                  instanceRuntimeConfigProvider.select(
+                    (config) => config.productName,
+                  ),
+                ),
+              ),
               isFirst: true,
               children: [
                 for (final authorization in state.authorizations)

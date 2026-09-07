@@ -52,6 +52,13 @@ void main() {
         isTrue,
       );
     });
+
+    test('does not match unrelated queries', () {
+      expect(
+        memberMatchesMentionQuery(alice, parseMentionQuery('nobody'), '0'),
+        isFalse,
+      );
+    });
   });
 
   group('rankMembersForMentionQuery', () {
@@ -97,6 +104,28 @@ void main() {
         stableSession: session,
       );
       expect(ranked.map((Member m) => m.id).toList(), <String>['2', '1']);
+    });
+
+    test('narrows matches from the full candidate list as query grows', () {
+      final List<Member> members = <Member>[
+        _member(id: '1', username: 'alpha', globalName: 'Alpha'),
+        _member(id: '2', username: 'bob', globalName: 'Bob'),
+        _member(id: '3', username: 'alice', globalName: 'Alice'),
+        _member(id: '4', username: 'xay', globalName: 'Other'),
+      ];
+      final List<Member> broad = rankMembersForMentionQuery(
+        members,
+        parseMentionQuery('a'),
+        limit: kMentionResultLimit,
+      );
+      expect(broad.length, 3);
+
+      final List<Member> narrow = rankMembersForMentionQuery(
+        members,
+        parseMentionQuery('ali'),
+        limit: kMentionResultLimit,
+      );
+      expect(narrow.map((Member m) => m.id).toList(), <String>['3']);
     });
   });
 
@@ -180,52 +209,7 @@ void main() {
       expect(roleNameMatchesMentionQuery('Android Alpha', 'alpha'), isTrue);
       expect(roleNameMatchesMentionQuery('Moderator', 'mod'), isTrue);
       expect(roleNameMatchesMentionQuery('Moderator', 'android'), isFalse);
-    });
-  });
-
-  group('shouldPromoteRoleMentionMatches', () {
-    test('promotes when role prefix beats weak member match', () {
-      expect(
-        shouldPromoteRoleMentionMatches(
-          query: 'mod',
-          bestRoleRank: MentionMatchRank.startsWith,
-          bestMemberRank: MentionMatchRank.fuzzy,
-        ),
-        isTrue,
-      );
-    });
-
-    test('promotes when member has a stronger exact match', () {
-      expect(
-        shouldPromoteRoleMentionMatches(
-          query: 'android',
-          bestRoleRank: MentionMatchRank.startsWith,
-          bestMemberRank: MentionMatchRank.equal,
-        ),
-        isTrue,
-      );
-    });
-
-    test('does not promote when role does not match query', () {
-      expect(
-        shouldPromoteRoleMentionMatches(
-          query: 'android',
-          bestRoleRank: MentionMatchRank.noMatch,
-          bestMemberRank: MentionMatchRank.equal,
-        ),
-        isFalse,
-      );
-    });
-
-    test('does not promote when query is empty', () {
-      expect(
-        shouldPromoteRoleMentionMatches(
-          query: '',
-          bestRoleRank: MentionMatchRank.startsWith,
-          bestMemberRank: MentionMatchRank.fuzzy,
-        ),
-        isFalse,
-      );
+      expect(roleNameMatchesMentionQuery('Reaction Roles', 'nobody'), isFalse);
     });
   });
 }

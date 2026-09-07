@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
@@ -11,6 +10,7 @@ import 'package:fluxer_app/features/auth/providers/current_auth_session_provider
 import 'package:fluxer_app/features/settings/presentation/widgets/user_linked_devices.dart';
 import 'package:fluxer_app/features/ui/spinner/fluxer_loading_spinner.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart';
 
 class _FakeAuthApi implements AuthApi {
@@ -75,12 +75,20 @@ AuthSessionResponse _session({
   bool current = false,
   String os = 'macOS',
   String platform = 'Fluxer Desktop',
+  String? browser,
+  AuthSessionResponseClientInfoDeviceDevice device =
+      AuthSessionResponseClientInfoDeviceDevice.desktop,
 }) {
   return AuthSessionResponse(
     idHash: id,
     maskedIp: null,
     current: current,
-    clientInfo: AuthSessionResponseClientInfo(os: os, platform: platform),
+    clientInfo: AuthSessionResponseClientInfo(
+      device: device,
+      os: os,
+      platform: platform,
+      browser: browser,
+    ),
     approxLastUsedAt: DateTime.now().subtract(const Duration(hours: 2)),
   );
 }
@@ -200,5 +208,35 @@ void main() {
 
     expect(find.text('CURRENT DEVICE'), findsOneWidget);
     expect(find.text('OTHER DEVICES'), findsOneWidget);
+  });
+
+  testWidgets('shows platform only for native clients without browser', (
+    tester,
+  ) async {
+    final api = _FakeAuthApi(
+      sessions: [_session(id: 'a', platform: 'Fluxer macOS')],
+    );
+    await tester.pumpWidget(
+      _wrap(const UserLinkedDevices(), api: api, currentIdHash: 'a'),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Fluxer macOS'), findsOneWidget);
+    expect(find.text('macOS'), findsNothing);
+  });
+
+  testWidgets('shows os and platform for web browser sessions', (tester) async {
+    final api = _FakeAuthApi(
+      sessions: [
+        _session(id: 'a', platform: 'Chrome', browser: 'Chrome'),
+        _session(id: 'b', platform: 'Chrome', browser: 'Chrome'),
+      ],
+    );
+    await tester.pumpWidget(
+      _wrap(const UserLinkedDevices(), api: api, currentIdHash: 'a'),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('macOS · Chrome'), findsNWidgets(2));
   });
 }

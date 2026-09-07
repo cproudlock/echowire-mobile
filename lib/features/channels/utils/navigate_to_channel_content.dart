@@ -1,14 +1,13 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fluxer_app/core/permissions/channel_effective_permissions.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/router/navigate_to_content.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/utils/channel_jump_link.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/utils/link_channel_navigator.dart';
+import 'package:fluxer_app/features/chat/providers/core/chat_view_model.dart';
 import 'package:fluxer_app/features/chat/utils/channel_jump_navigator.dart';
 import 'package:fluxer_app/features/mature_content/utils/channel_gate_navigator.dart';
 import 'package:fluxer_app/features/quick_switcher/providers/recent_channel_visits_provider.dart';
@@ -20,6 +19,7 @@ import 'package:fluxer_app/features/voice/providers/voice_join_eligibility_provi
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
 import 'package:fluxer_app/features/voice/utils/voice_connection_actions.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 /// Opens a channel from the guild sidebar or DM list.
 Future<void> navigateToChannelContent({
@@ -58,6 +58,7 @@ Future<void> navigateToChannelContent({
       guildId: guildId,
       channel: resolvedChannel,
       chatPath: chatPath,
+      targetMessageId: messageId,
     );
     return;
   }
@@ -88,6 +89,11 @@ Future<void> navigateToDmChannelContent({
   ref
       .read(recentChannelVisitsProvider.notifier)
       .recordVisit(channelId: channelId);
+  unawaited(
+    ref
+        .read(chatViewModelProvider.notifier)
+        .switchChannel(channelId, targetMessageId: messageId),
+  );
   navigateToContent(context, path);
 }
 
@@ -115,6 +121,7 @@ Future<void> navigateToGuildChannelContent({
     channel: channel,
     chatPath: chatPath,
     effectivePermissionBits: effectivePermissionBits,
+    targetMessageId: messageId,
   );
 }
 
@@ -136,6 +143,7 @@ Future<void> openGuildChannelContent({
   required Channel channel,
   required String chatPath,
   int? effectivePermissionBits,
+  String? targetMessageId,
 }) async {
   if (await tryOpenLinkChannel(
     context: context,
@@ -148,28 +156,23 @@ Future<void> openGuildChannelContent({
     return;
   }
 
-  final bool canProceed = await promptForChannelGateIfNeeded(
-    context: context,
-    container: ref.container,
-    channelId: channel.id,
-    guildId: guildId,
-    channelType: channel.type,
-  );
-  if (!context.mounted || !canProceed) {
-    return;
+  final bool isVoiceChannel = channel.type == ChannelType.guildVoice;
+  if (!isVoiceChannel) {
+    final bool canProceed = await promptForChannelGateIfNeeded(
+      context: context,
+      container: ref.container,
+      channelId: channel.id,
+      guildId: guildId,
+      channelType: channel.type,
+    );
+    if (!context.mounted || !canProceed) {
+      return;
+    }
   }
 
-  final int? permissionBits =
-      effectivePermissionBits ??
-      ref.read(effectiveGuildChannelPermissionBitsProvider(channel.id)).value;
-  final int? localConnectBits = channel.type == ChannelType.guildVoice
-      ? ref
-            .read(channelLocalGuildChannelPermissionBitsProvider(channel.id))
-            .value
-      : null;
   final VoiceSessionState voiceSession = ref.read(voiceSessionProvider);
   final bool isInCurrentVoiceChannel =
-      channel.type == ChannelType.guildVoice &&
+      isVoiceChannel &&
       voiceSession.isInVoice &&
       voiceSession.guildId == guildId &&
       voiceSession.channelId == channel.id;
@@ -178,6 +181,13 @@ Future<void> openGuildChannelContent({
     ref
         .read(recentChannelVisitsProvider.notifier)
         .recordVisit(channelId: channel.id, guildId: guildId);
+    if (channel.type == ChannelType.guildText) {
+      unawaited(
+        ref
+            .read(chatViewModelProvider.notifier)
+            .switchChannel(channel.id, targetMessageId: targetMessageId),
+      );
+    }
     if (context.mounted) {
       navigateToContent(context, chatPath);
       return;
@@ -185,7 +195,24 @@ Future<void> openGuildChannelContent({
     navigateToContentViaContainer(ref.container, chatPath);
   }
 
-  if (channel.type == ChannelType.guildVoice && isMobileLayout(context)) {
+  Future<void> joinAndOpen({
+    bool initialSelfMute = false,
+    bool initialSelfDeaf = false,
+  }) async {
+    final VoiceJoinResult joinResult = await joinVoiceChannelWithConfirmation(
+      ref: ref,
+      context: context,
+      guildId: guildId,
+      channelId: channel.id,
+      initialSelfMute: initialSelfMute,
+      initialSelfDeaf: initialSelfDeaf,
+    );
+    if (joinResult.shouldOpenChannel) {
+      recordAndNavigate();
+    }
+  }
+
+  if (isVoiceChannel && isMobileLayout(context)) {
     if (isInCurrentVoiceChannel) {
       recordAndNavigate();
       return;
@@ -202,6 +229,16 @@ Future<void> openGuildChannelContent({
     }
     switch (joinResult) {
       case VoiceChannelJoinOpenChat():
+        final bool canProceed = await promptForChannelGateIfNeeded(
+          context: context,
+          container: ref.container,
+          channelId: channel.id,
+          guildId: guildId,
+          channelType: channel.type,
+        );
+        if (!context.mounted || !canProceed) {
+          return;
+        }
         ref
             .read(recentChannelVisitsProvider.notifier)
             .recordVisit(channelId: channel.id, guildId: guildId);
@@ -220,43 +257,28 @@ Future<void> openGuildChannelContent({
         :final initialSelfMute,
         :final initialSelfDeaf,
       ):
-        final VoiceJoinResult joinResult =
-            await joinVoiceChannelWithConfirmation(
-              ref: ref,
-              context: context,
-              guildId: guildId,
-              channelId: channel.id,
-              initialSelfMute: initialSelfMute,
-              initialSelfDeaf: initialSelfDeaf,
-            );
-        if (joinResult == VoiceJoinResult.succeeded) {
-          recordAndNavigate();
-        }
+        await joinAndOpen(
+          initialSelfMute: initialSelfMute,
+          initialSelfDeaf: initialSelfDeaf,
+        );
     }
     return;
   }
 
-  if (channel.type == ChannelType.guildVoice && !isInCurrentVoiceChannel) {
+  if (isVoiceChannel && !isInCurrentVoiceChannel) {
     final bool voiceChannelJoinRequiresDoubleClick = ref.read(
       advancedPreferencesProvider.select(
         (state) => state.voiceChannelJoinRequiresDoubleClick,
       ),
     );
-    final bool canJoinVoice = canJoinGuildVoiceChannelFromBits(
-      guildId: guildId,
-      channelType: channel.type,
-      permissionBits: localConnectBits ?? permissionBits,
+    final VoiceJoinEligibility eligibility = await ref.read(
+      voiceJoinEligibilityProvider(channel.id).future,
     );
-    if (canJoinVoice && !voiceChannelJoinRequiresDoubleClick) {
-      final VoiceJoinResult joinResult = await joinVoiceChannelWithConfirmation(
-        ref: ref,
-        context: context,
-        guildId: guildId,
-        channelId: channel.id,
-      );
-      if (joinResult == VoiceJoinResult.succeeded) {
-        recordAndNavigate();
-      }
+    if (!context.mounted) {
+      return;
+    }
+    if (eligibility.canJoin && !voiceChannelJoinRequiresDoubleClick) {
+      await joinAndOpen();
       return;
     }
   }

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/observability/observability_reporting_provider.dart';
@@ -12,17 +11,19 @@ import 'package:fluxer_app/features/settings/presentation/widgets/user_advanced_
 import 'package:fluxer_app/features/settings/providers/advanced_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
+import 'package:fluxer_app/features/settings/providers/haptics_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
 import 'package:fluxer_app/features/settings/providers/voice_settings_provider.dart';
 import 'package:fluxer_app/features/settings/utils/platform_desktop_utils.dart';
 import 'package:fluxer_app/features/voice/domain/voice_settings_state.dart';
-import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:riverpod/src/framework.dart';
 
-import '../../helpers/wide_layout_test_sizes.dart';
 import '../../helpers/test_l10n.dart';
+import '../../helpers/wide_layout_test_sizes.dart';
 
 class _InertSyncedPreferencesStore extends SyncedPreferencesStore {
+  // Test stub does not use super parameters.
   // ignore: use_super_parameters
   _InertSyncedPreferencesStore(Ref ref) : super(ref);
 
@@ -85,6 +86,11 @@ class _FakeObservabilityReporting extends ObservabilityReporting {
   bool build() => false;
 }
 
+class _FakeHapticsPreferences extends HapticsPreferences {
+  @override
+  bool build() => true;
+}
+
 List<Override> _overrides() {
   return [
     syncedPreferencesStoreProvider.overrideWith(
@@ -98,6 +104,7 @@ List<Override> _overrides() {
     observabilityReportingProvider.overrideWith(
       _FakeObservabilityReporting.new,
     ),
+    hapticsPreferencesProvider.overrideWith(_FakeHapticsPreferences.new),
   ];
 }
 

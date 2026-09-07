@@ -10,6 +10,18 @@ import 'package:fluxer_dart/export.dart';
 
 const String fluxerBotUserId = '0';
 
+String resolveSystemBotDisplayName({
+  required String userId,
+  required String fallbackName,
+  required String productName,
+}) {
+  if (userId != fluxerBotUserId) {
+    return fallbackName;
+  }
+  final String trimmed = productName.trim();
+  return trimmed.isEmpty ? fallbackName : trimmed;
+}
+
 bool messageAuthorShowsUserTag({
   required bool authorIsBot,
   required bool authorIsSystem,
@@ -60,32 +72,6 @@ bool isComposerDirectChat({
     return true;
   }
   return findDmById(dmConversations, channelId) != null;
-}
-
-/// DM and Personal Notes composers show guild emojis like plutonium.
-bool composerHasDirectChatEmojiAccess({
-  required String? channelId,
-  required List<DmConversation> dmConversations,
-  required String? currentUserId,
-  required bool hasGlobalExpressions,
-}) {
-  if (hasGlobalExpressions) {
-    return true;
-  }
-  if (channelId == null || channelId.isEmpty) {
-    return false;
-  }
-  if (isPersonalNotesChannelRoute(
-    channelId: channelId,
-    currentUserId: currentUserId,
-  )) {
-    return true;
-  }
-  return isComposerDirectChat(
-    channelId: channelId,
-    dmConversations: dmConversations,
-    currentUserId: currentUserId,
-  );
 }
 
 bool isPersonalNotesChannel({

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
@@ -15,6 +14,12 @@ import 'package:fluxer_app/features/chat/providers/channel/channel_details_provi
 import 'package:fluxer_app/features/chat/providers/channel/channel_header_search_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/bottom_input_slot_provider.dart';
 import 'package:fluxer_app/features/chat/utils/bottom_input_slot_layout.dart';
+import 'package:fluxer_app/features/guilds/domain/guild.dart';
+import 'package:fluxer_app/features/guilds/presentation/widgets/guild_unavailable_screen.dart';
+import 'package:fluxer_app/features/guilds/presentation/widgets/staff_only_guild_nagbar.dart';
+import 'package:fluxer_app/features/guilds/providers/guild_availability_provider.dart';
+import 'package:fluxer_app/features/guilds/providers/guild_providers.dart';
+import 'package:fluxer_app/features/guilds/utils/guild_outage_availability.dart';
 import 'package:fluxer_app/features/mature_content/presentation/widgets/mature_content_channel_gate.dart';
 import 'package:fluxer_app/features/mature_content/providers/mature_content_agreements_provider.dart';
 import 'package:fluxer_app/features/members/presentation/widgets/channel_members.dart';
@@ -24,6 +29,7 @@ import 'package:fluxer_app/features/voice/presentation/voice_channel_page_view.d
 import 'package:fluxer_app/features/voice/providers/voice_call_overlay_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 /// Wrapper screen for the chat area content.
 /// Takes guildId and channelId from go_router params.
@@ -73,6 +79,37 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
   @override
   Widget build(BuildContext context) {
     final bool isWide = isWideLayout(context);
+    final Set<String> trackedUnavailableGuildIds = ref.watch(
+      guildAvailabilityProvider,
+    );
+    final AsyncValue<Guild?> guildAsync = ref.watch(
+      guildByIdProvider(widget.guildId),
+    );
+    final Guild? guild = guildAsync.value;
+    final bool guildOutageUnavailable = isGuildOutageUnavailable(
+      guildId: widget.guildId,
+      trackedUnavailableGuildIds: trackedUnavailableGuildIds,
+      guild: guild,
+    );
+    final bool guildNotFound = isGuildConfirmedMissingForRoute(
+      guildAsync: guildAsync,
+      guildId: widget.guildId,
+      trackedUnavailableGuildIds: trackedUnavailableGuildIds,
+    );
+    if (guildAsync.isLoading) {
+      return MobileChatBackScope(
+        child: GuildRouteLoadingShell(channelIdForBackUnread: widget.channelId),
+      );
+    }
+    if (guildOutageUnavailable || guildNotFound) {
+      return MobileChatBackScope(
+        child: guildOutageUnavailable
+            ? GuildOutageUnavailableScreen(
+                channelIdForBackUnread: widget.channelId,
+              )
+            : const GuildNotFoundScreen(),
+      );
+    }
     final Channel? channel = ref
         .watch(channelByIdProvider(widget.channelId))
         .value;
@@ -154,6 +191,15 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
       channelId: widget.channelId,
       forceVoiceCallStyle: forceVoiceCallStyle,
     );
+    final bool hideableVoiceHeader =
+        forceVoiceCallStyle && isPhoneVoiceOverlay(context);
+    final bool showsVoiceOverlay =
+        !hideableVoiceHeader ||
+        ref.watch(
+          voiceCallOverlayProvider.select(
+            (VoiceCallOverlayState state) => state.showsOverlay,
+          ),
+        );
     final bool reserveBottomSafeArea = chatLayoutReservesBottomSafeArea(
       isMobile: isMobile,
       keyboardSlotOccupied:
@@ -185,24 +231,46 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
                           ChannelLayout._minWidthForMemberList;
                   return Column(
                     children: [
-                      header,
+                      if (isGuildStaffOnlyAccessible(guild))
+                        StaffOnlyGuildNagbar(guildId: widget.guildId),
+                      if (!hideableVoiceHeader) header,
                       Expanded(
-                        child: Row(
+                        child: Stack(
                           children: [
-                            Expanded(child: primaryContent),
-                            if (isSearchActive)
-                              ChannelSearchResultsPanel(
-                                channelId: widget.channelId,
-                                guildId: widget.guildId,
-                                onClose: () => ref
-                                    .read(channelHeaderSearchProvider.notifier)
-                                    .closeSearch(),
-                              ),
-                            if (showMemberList)
-                              ChannelMembers(
-                                key: ValueKey<String>(widget.channelId),
-                                guildId: widget.guildId,
-                                channelId: widget.channelId,
+                            Row(
+                              children: [
+                                Expanded(child: primaryContent),
+                                if (isSearchActive)
+                                  ChannelSearchResultsPanel(
+                                    channelId: widget.channelId,
+                                    guildId: widget.guildId,
+                                    onClose: () => ref
+                                        .read(
+                                          channelHeaderSearchProvider.notifier,
+                                        )
+                                        .closeSearch(),
+                                  ),
+                                if (showMemberList)
+                                  ChannelMembers(
+                                    key: ValueKey<String>(widget.channelId),
+                                    guildId: widget.guildId,
+                                    channelId: widget.channelId,
+                                  ),
+                              ],
+                            ),
+                            if (hideableVoiceHeader)
+                              Positioned(
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                child: IgnorePointer(
+                                  ignoring: !showsVoiceOverlay,
+                                  child: AnimatedOpacity(
+                                    duration: const Duration(milliseconds: 240),
+                                    opacity: showsVoiceOverlay ? 1 : 0,
+                                    child: header,
+                                  ),
+                                ),
                               ),
                           ],
                         ),
@@ -219,7 +287,7 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
   }
 }
 
-class _VoiceChannelHeader extends ConsumerWidget {
+class _VoiceChannelHeader extends StatelessWidget {
   const _VoiceChannelHeader({
     required this.channelId,
     required this.forceVoiceCallStyle,
@@ -229,29 +297,10 @@ class _VoiceChannelHeader extends ConsumerWidget {
   final bool forceVoiceCallStyle;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final Widget header = ChannelHeader(
+  Widget build(BuildContext context) {
+    return ChannelHeader(
       channelId: channelId,
       forceVoiceCallStyle: forceVoiceCallStyle,
-    );
-    final bool hideableOverlay =
-        forceVoiceCallStyle && isPhoneVoiceOverlay(context);
-    if (!hideableOverlay) {
-      return header;
-    }
-    final bool showsOverlay = ref.watch(
-      voiceCallOverlayProvider.select(
-        (VoiceCallOverlayState state) => state.showsOverlay,
-      ),
-    );
-    return ClipRect(
-      child: AnimatedAlign(
-        duration: const Duration(milliseconds: 220),
-        curve: Curves.easeOutCubic,
-        alignment: Alignment.topCenter,
-        heightFactor: showsOverlay ? 1 : 0,
-        child: header,
-      ),
     );
   }
 }

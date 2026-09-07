@@ -1,5 +1,4 @@
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/theme/fluxer_layout_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_text_theme.dart';
@@ -10,6 +9,7 @@ import 'package:fluxer_app/features/ui/avatar/fluxer_avatar_cluster.dart';
 import 'package:fluxer_app/features/ui/status_indicator/fluxer_mobile_online_status_indicator.dart';
 import 'package:fluxer_app/features/ui/status_indicator/fluxer_status_indicator.dart';
 import 'package:fluxer_app/features/ui/status_indicator/fluxer_typing_status_indicator.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 Widget buildTestApp(Widget child) {
   final colorTheme = buildDarkColorTheme();
@@ -201,6 +201,31 @@ void main() {
         expect(image.fit, BoxFit.cover);
       },
     );
+
+    testWidgets('skips memory cache resize for animated avatar urls', (
+      tester,
+    ) async {
+      tester.view.devicePixelRatio = 3.0;
+      addTearDown(tester.view.resetDevicePixelRatio);
+
+      await tester.pumpWidget(
+        buildTestApp(
+          const FluxerAvatar.user(
+            userId: '6',
+            imageUrl:
+                'https://cdn.example/avatars/6/a_avatar.gif?animated=true&size=80',
+            fallbackText: 'Alice',
+            showStatus: false,
+          ),
+        ),
+      );
+
+      final image = tester.widget<CachedNetworkImage>(
+        find.byType(CachedNetworkImage),
+      );
+      expect(image.memCacheWidth, isNull);
+      expect(image.memCacheHeight, isNull);
+    });
 
     testWidgets(
       'avatar cluster renders overlapping members without layout errors',

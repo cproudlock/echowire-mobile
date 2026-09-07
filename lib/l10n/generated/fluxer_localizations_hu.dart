@@ -90,16 +90,24 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get systemPermissionSettingsOpenSettings => 'Open settings';
 
   @override
-  String get systemPermissionMicrophoneMessage =>
-      'Fluxer doesn\'t have access to your microphone. You can enable it in your device privacy settings.';
+  String systemPermissionMicrophoneMessage(String productName) {
+    return '$productName doesn\'t have access to your microphone. You can enable it in your device privacy settings.';
+  }
 
   @override
-  String get systemPermissionCameraMessage =>
-      'Fluxer doesn\'t have access to your camera. You can enable it in your device privacy settings.';
+  String systemPermissionCameraMessage(String productName) {
+    return '$productName doesn\'t have access to your camera. You can enable it in your device privacy settings.';
+  }
 
   @override
-  String get systemPermissionNotificationsMessage =>
-      'Fluxer doesn\'t have permission to send notifications. You can enable it in your device settings.';
+  String systemPermissionPhotosMessage(String productName) {
+    return '$productName doesn\'t have access to your photo library. You can enable it in your device privacy settings.';
+  }
+
+  @override
+  String systemPermissionNotificationsMessage(String productName) {
+    return '$productName doesn\'t have permission to send notifications. You can enable it in your device settings.';
+  }
 
   @override
   String nagbarPremiumGracePeriod(String productName, String graceDate) {
@@ -283,6 +291,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get back => 'Vissza';
+
+  @override
+  String get next => 'Next';
 
   @override
   String get mfaTitle => 'Kétfaktoros hitelesítés';
@@ -615,6 +626,14 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get registerHaveAccount => 'Már van fiókod? ';
 
   @override
+  String get registerPendingApproval =>
+      'Your account request is pending approval. You can sign in after an admin approves it.';
+
+  @override
+  String get registerClosed =>
+      'Registration is currently closed. Use a registration link from an admin to create an account.';
+
+  @override
   String get passkeyNoCredentials =>
       'Nincsenek hitelesítő adatok ehhez az alkalmazáshoz. Jelentkezz be inkább e-maillel és jelszóval.';
 
@@ -645,6 +664,10 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get errorUnableToSignIn =>
       'Jelenleg nem tudunk bejelentkezni. Kérjük, próbálkozzon újra.';
+
+  @override
+  String get errorServiceUnavailable =>
+      'This instance is temporarily unavailable. Try again in a moment.';
 
   @override
   String get errorInvalidEmailOrPassword =>
@@ -1024,6 +1047,14 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
+  String get dmDeleteMyMessagesTitle =>
+      'Delete your messages in this conversation?';
+
+  @override
+  String get dmDeleteMyMessagesDescription =>
+      'This will permanently delete every message you have ever sent in this conversation. This cannot be undone.';
+
+  @override
   String get dmCopyChannelId => 'Csatornaazonosító másolása';
 
   @override
@@ -1342,8 +1373,12 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Fejezd be a regisztrációt a barátfelkérések küldéséhez.';
 
   @override
-  String get addFriendSendFailedGeneric =>
-      'Nem sikerült elküldeni a barátfelkérést. Próbáld újra.';
+  String get addFriendVerifyToSend =>
+      'Verify your email before sending friend requests.';
+
+  @override
+  String get addFriendFriendsListFull =>
+      'Your friends list is full, or theirs is. Remove someone and try again.';
 
   @override
   String get userTagBot => 'BOT';
@@ -1360,6 +1395,41 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get emojiAutocompleteDefaultLabel => 'Alapértelmezett emoji';
+
+  @override
+  String emojiInfoDefaultDescription(String productName) {
+    return 'This is a default emoji on $productName.';
+  }
+
+  @override
+  String get emojiInfoCustomGuildDescription =>
+      'This emoji is from this community. You can use it everywhere.';
+
+  @override
+  String get emojiInfoCustomUnknownDescription =>
+      'This is a custom emoji from a community.';
+
+  @override
+  String get emojiInfoCustomInviteRequiredDescription =>
+      'This is a custom emoji from a community. Ask the author for an invite to use this emoji.';
+
+  @override
+  String get emojiInfoFromHeader => 'This emoji is from';
+
+  @override
+  String get emojiInfoDiscoverableCommunity => 'Discoverable community';
+
+  @override
+  String get emojiInfoPrivateCommunity => 'Private community';
+
+  @override
+  String get emojiInfoVerifiedCommunity => 'Verified community';
+
+  @override
+  String get emojiInfoAddToFavorites => 'Add to Favorites';
+
+  @override
+  String get emojiInfoRemoveFromFavorites => 'Remove from Favorites';
 
   @override
   String get emojiFrequentlyUsed => 'Gyakran használt';
@@ -1390,6 +1460,12 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get gifPickerFavorites => 'Kedvencek';
+
+  @override
+  String get gifPickerFavoritesEmptyTitle => 'No favorite GIFs yet';
+
+  @override
+  String get gifPickerFavoritesEmptyDescription => 'Star a GIF to see it here.';
 
   @override
   String get gifPickerTrending => 'Felkapott GIF-ek';
@@ -1469,7 +1545,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Külső hivatkozás figyelmeztetés';
 
   @override
-  String get externalLinkWarningLeaving => 'Elhagyod a Echowiret';
+  String externalLinkWarningLeaving(String productName) {
+    return 'Elhagyod a ${productName}t';
+  }
 
   @override
   String get externalLinkWarningDescription =>
@@ -1583,10 +1661,16 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get crop => 'Vágás';
 
   @override
-  String get changeYourFluxerTag => 'EchoTag módosítása';
+  String get cropTouchHint => 'Pinch to zoom, drag to reposition';
 
   @override
-  String get fluxerTagInputLabel => 'EchoTag';
+  String get cropMouseHint => 'Drag corners to resize, drag inside to move';
+
+  @override
+  String get changeYourFluxerTag => 'Felhasználónév módosítása';
+
+  @override
+  String get fluxerTagInputLabel => 'Felhasználónév';
 
   @override
   String get fluxerTagDescriptionBase =>
@@ -1614,11 +1698,11 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Szerezz Reverbot a tagod testreszabásához, vagy tartsd meg a felhasználóneved módosításakor';
 
   @override
-  String get fluxerTagAlreadyTaken => 'EchoTag már foglalt';
+  String get fluxerTagAlreadyTaken => 'Felhasználónév már foglalt';
 
   @override
   String fluxerTagAlreadyTakenBody(String username, String discriminator) {
-    return 'A(z) $username#$discriminator EchoTag már foglalt. A folytatás automatikusan újragenerálja a megkülönböztető jeledet.';
+    return 'A(z) $username#$discriminator Felhasználónév már foglalt. A folytatás automatikusan újragenerálja a megkülönböztető jeledet.';
   }
 
   @override
@@ -1638,7 +1722,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Ha elmented ezt a EchoTag-et, az egyéni 4 számjegyű tagod véletlenszerű számra változik, amikor a Reverb előfizetésed véget ér. Ha az előfizetésed nem újul meg, 3 napos türelmi időd lesz, mielőtt a tag megváltozik.';
+      'Ha elmented ezt a Felhasználónév-et, az egyéni 4 számjegyű tagod véletlenszerű számra változik, amikor a Reverb előfizetésed véget ér. Ha az előfizetésed nem újul meg, 3 napos türelmi időd lesz, mielőtt a tag megváltozik.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
@@ -1659,11 +1743,11 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Reverb próbaidőszakon vagy. Frissíts, hogy megtartsd az egyéni tagodat, és szerezz egy jelvényt a profilodban.';
 
   @override
-  String get fluxerTagUpdated => 'EchoTag frissítve';
+  String get fluxerTagUpdated => 'Felhasználónév frissítve';
 
   @override
   String get fluxerTagUpdateFailed =>
-      'A EchoTag frissítése sikertelen. Kérlek, próbáld újra.';
+      'A Felhasználónév frissítése sikertelen. Kérlek, próbáld újra.';
 
   @override
   String get continueAction => 'Tovább';
@@ -1680,14 +1764,14 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get claimAccountToChangeFluxerTag =>
-      'Fiók igénylése a EchoTag módosításához';
+      'Fiók igénylése a Felhasználónév módosításához';
 
   @override
-  String get changeFluxerTag => 'EchoTag módosítása';
+  String get changeFluxerTag => 'Felhasználónév módosítása';
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Tetszés szerint alakítsd 4 számjegyű EchoTagged (#$discriminator) Reverbmal';
+    return 'Tetszés szerint alakítsd 4 számjegyű Felhasználónév (#$discriminator) Reverbmal';
   }
 
   @override
@@ -1837,7 +1921,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get profilePreviewMessage => 'Üzenet';
 
   @override
-  String get profilePreviewMemberSince => 'Echowire tag';
+  String profilePreviewMemberSince(String productName) {
+    return '$productName tag';
+  }
 
   @override
   String get unclaimedAccountTitle => 'Nem igényelt fiók';
@@ -1928,8 +2014,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get securityLoginEmailSectionTitle => 'E-mail beállítások';
 
   @override
-  String get securityLoginEmailSectionDescription =>
-      'Kezeld azt az e-mail címet, amellyel bejelentkezel a Echowirebe';
+  String securityLoginEmailSectionDescription(String productName) {
+    return 'Kezeld azt az e-mail címet, amellyel bejelentkezel a $productName';
+  }
 
   @override
   String get securityLoginEmailAddressLabel => 'E-mail cím';
@@ -2381,27 +2468,31 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get requiredActionTitle => 'Account verification required';
 
   @override
-  String get requiredActionIntroGeneric =>
-      'Complete the required verification to continue using Fluxer.';
+  String requiredActionIntroGeneric(String productName) {
+    return 'Complete the required verification to continue using $productName.';
+  }
 
   @override
   String get requiredActionIntroPhone =>
       'Your registration needs an extra anti-spam check before you can continue.';
 
   @override
-  String get requiredActionIntroEmailOrPhone =>
-      'Verify your email or phone to continue using Fluxer.';
+  String requiredActionIntroEmailOrPhone(String productName) {
+    return 'Verify your email or phone to continue using $productName.';
+  }
 
   @override
-  String get requiredActionIntroEmailAndPhone =>
-      'Complete the required email and phone verification steps below to continue using Fluxer.';
+  String requiredActionIntroEmailAndPhone(String productName) {
+    return 'Complete the required email and phone verification steps below to continue using $productName.';
+  }
 
   @override
   String get requiredActionChooseMethodTitle => 'Choose a verification method';
 
   @override
-  String get requiredActionChooseMethodDescription =>
-      'Complete one of the verification paths below to continue using Fluxer.';
+  String requiredActionChooseMethodDescription(String productName) {
+    return 'Complete one of the verification paths below to continue using $productName.';
+  }
 
   @override
   String get requiredActionUseEmail => 'Use email';
@@ -2528,6 +2619,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get genericError => 'Hiba történt';
 
   @override
+  String get networkErrorMessage => 'Something went wrong. Please try again.';
+
+  @override
   String get invalidCode => 'Érvénytelen kód';
 
   @override
@@ -2586,14 +2680,92 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
+  String relativeTimeWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count weeks ago',
+      one: '1 week ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInMinutes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count minutes',
+      one: 'in 1 minute',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInHours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count hours',
+      one: 'in 1 hour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count days',
+      one: 'in 1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count weeks',
+      one: 'in 1 week',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count months',
+      one: 'in 1 month',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeInYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count years',
+      one: 'in 1 year',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get relativeTimeJustNow => 'épp most';
 
   @override
   String get authorizedAppsTitle => 'Engedélyezett alkalmazások';
 
   @override
-  String get authorizedAppsDescription =>
-      'Ezek az alkalmazások kaptak hozzáférést a Echowire-fiókodhoz.';
+  String authorizedAppsDescription(String productName) {
+    return 'Ezek az alkalmazások kaptak hozzáférést a $productName-fiókodhoz.';
+  }
 
   @override
   String get authorizedAppsEmptyTitle => 'Nincsenek engedélyezett alkalmazások';
@@ -2680,7 +2852,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => 'EchoTag másolása';
+  String get blockedUsersCopyTag => 'Felhasználónév másolása';
 
   @override
   String get blockedUsersCopyId => 'Felhasználói azonosító másolása';
@@ -2707,31 +2879,49 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userProfileEditProfile => 'Profil szerkesztése';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Echowire Csapat';
-
-  @override
-  String get userProfileCtpBadgeTooltip => 'Echowire Közösségi Csapat';
-
-  @override
-  String get userProfilePartnerBadgeTooltip => 'Echowire Partner';
-
-  @override
-  String get userProfileBugHunterBadgeTooltip => 'Echowire Bug Hunter';
-
-  @override
-  String get userProfilePlutoniumBadgeTooltip => 'Echowire Reverb';
-
-  @override
-  String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Echowire Reverb előfizető $date óta';
+  String userProfileStaffBadgeTooltip(String productName) {
+    return '$productName Csapat';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Echowire Visionary';
+  String userProfileCtpBadgeTooltip(String productName) {
+    return '$productName Közösségi Csapat';
+  }
 
   @override
-  String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Echowire Visionary $date óta';
+  String userProfilePartnerBadgeTooltip(String productName) {
+    return '$productName Partner';
+  }
+
+  @override
+  String userProfileBugHunterBadgeTooltip(String productName) {
+    return '$productName Bug Hunter';
+  }
+
+  @override
+  String userProfilePlutoniumBadgeTooltip(String productName) {
+    return '$productName Reverb';
+  }
+
+  @override
+  String userProfilePlutoniumSubscriberSinceTooltip(
+    String productName,
+    String date,
+  ) {
+    return '$productName Reverb előfizető $date óta';
+  }
+
+  @override
+  String userProfileVisionaryBadgeTooltip(String productName) {
+    return '$productName Visionary';
+  }
+
+  @override
+  String userProfileVisionaryBadgeSinceTooltip(
+    String productName,
+    String date,
+  ) {
+    return '$productName Visionary $date óta';
   }
 
   @override
@@ -3502,6 +3692,29 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'A lassú mód engedélyezve van, de immunis vagy rá.';
 
   @override
+  String get slowmodeStatusEnabled => 'Slowmode is enabled';
+
+  @override
+  String slowmodeStatusActive(String remaining) {
+    return 'Slowmode is active ($remaining)';
+  }
+
+  @override
+  String slowmodeTooltipSetImmune(String durationLabel) {
+    return 'Slowmode is set to $durationLabel, but you are immune.';
+  }
+
+  @override
+  String slowmodeTooltipSetWait(String durationLabel) {
+    return 'Slowmode is set to $durationLabel. Wait before sending another message.';
+  }
+
+  @override
+  String slowmodeTooltipSetChannel(String durationLabel) {
+    return 'Slowmode is set to $durationLabel for this channel.';
+  }
+
+  @override
   String get channelNoSendPermissionHint =>
       'Nem küldhetsz üzeneteket ebben a csatornában.';
 
@@ -3550,8 +3763,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
-  String get chatAttachmentFileTooLarge =>
-      'Egy vagy több fájl meghaladja a méretkorlátot';
+  String chatAttachmentFileTooLarge(String fileName, String fileSize) {
+    return '$fileName meghaladja a méretkorlátot ($fileSize)';
+  }
 
   @override
   String get chatAttachmentPayloadTooLarge =>
@@ -3937,8 +4151,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get connectionsTitle => 'Kapcsolatok';
 
   @override
-  String get connectionsDescription =>
-      'Külső fiókok és domainek összekapcsolása a Echowire profiloddal. A hitelesített kapcsolatok megjelennek a profilodon, hogy mások is láthassák őket.';
+  String connectionsDescription(String productName) {
+    return 'Külső fiókok és domainek összekapcsolása a $productName profiloddal. A hitelesített kapcsolatok megjelennek a profilodon, hogy mások is láthassák őket.';
+  }
 
   @override
   String get connectionsEmptyTitle => 'Még nincsenek kapcsolatok';
@@ -4138,6 +4353,31 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Válassz a sötét, a szénszínű vagy a világos megjelenés között.';
 
   @override
+  String get lookAndFeelHdrSectionTitle => 'High dynamic range';
+
+  @override
+  String get lookAndFeelHdrSectionDescription =>
+      'Control how HDR images are displayed on HDR-capable monitors.';
+
+  @override
+  String get lookAndFeelHdrFullName => 'Full dynamic range';
+
+  @override
+  String get lookAndFeelHdrFullDescription =>
+      'Display HDR images at full brightness and color range.';
+
+  @override
+  String get lookAndFeelHdrStandardName => 'Standard range';
+
+  @override
+  String get lookAndFeelHdrStandardDescription =>
+      'Tone-map HDR images to standard range, reducing peak brightness.';
+
+  @override
+  String get lookAndFeelHdrDisplayModeLabel =>
+      'High dynamic range display mode';
+
+  @override
   String get lookAndFeelThemeDark => 'Sötét téma';
 
   @override
@@ -4172,6 +4412,52 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get lookAndFeelChatFontScalingDescription =>
       'Állítsd be a betűméretet a csevegési területen.';
+
+  @override
+  String get lookAndFeelChatFontSizeLabel => 'Chat font size';
+
+  @override
+  String get lookAndFeelAppZoomTitle => 'App zoom level';
+
+  @override
+  String get lookAndFeelAppZoomDescription =>
+      'Adjust the application\'s zoom level.';
+
+  @override
+  String get lookAndFeelMessagesSectionTitle => 'Messages';
+
+  @override
+  String get lookAndFeelMessagesSectionDescription =>
+      'Choose how messages are displayed in chat channels.';
+
+  @override
+  String get lookAndFeelMessageGroupSpacingLabel =>
+      'Space between message groups';
+
+  @override
+  String lookAndFeelMessageGroupSpacingValue(int spacing) {
+    return '${spacing}px';
+  }
+
+  @override
+  String get lookAndFeelMessageDisplayModeLabel => 'Message display mode';
+
+  @override
+  String get lookAndFeelMessageDisplayComfyName => 'Comfy';
+
+  @override
+  String get lookAndFeelMessageDisplayComfyDescription =>
+      'Spacious layout with clear visual separation between messages.';
+
+  @override
+  String get lookAndFeelMessageDisplayDenseName => 'Dense';
+
+  @override
+  String get lookAndFeelMessageDisplayDenseDescription =>
+      'Maximizes visible messages with minimal spacing.';
+
+  @override
+  String get lookAndFeelHideUserAvatarsLabel => 'Hide user avatars';
 
   @override
   String get lookAndFeelInterfaceTitle => 'Felület';
@@ -4290,11 +4576,39 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
+  String get communityTemporarilyUnavailable =>
+      'Community temporarily unavailable';
+
+  @override
+  String get guildUnavailableDescription =>
+      'Something went wrong. We\'re working on it.';
+
+  @override
+  String get guildNotFoundTitle =>
+      'This is not the community you\'re looking for.';
+
+  @override
+  String get guildNotFoundDescription =>
+      'The community you\'re looking for may have been deleted or you may not have access to it.';
+
+  @override
+  String guildStaffOnlyAccessibleNagbar(
+    String communityName,
+    String productName,
+  ) {
+    return '$communityName is currently only accessible to $productName staff members';
+  }
+
+  @override
+  String get guildNavbarTemporarilyUnavailable => 'temporarily unavailable';
+
+  @override
   String get lookAndFeelCollapseDMsLabel => 'DM-ek összecsukása mappába';
 
   @override
-  String get lookAndFeelCollapseDMsDescription =>
-      'Ha engedélyezve van, az olvasatlan DM-ek a kiszolgáló oldalsávban a Echowire gomb mappájába lesznek összecsukva. Kattints a Echowire gombra a DM-ek oldalon a mappa kibontásához vagy összecsukásához.';
+  String lookAndFeelCollapseDMsDescription(String productName) {
+    return 'Ha engedélyezve van, az olvasatlan DM-ek a kiszolgáló oldalsávban a $productName gomb mappájába lesznek összecsukva. Kattints a $productName gombra a DM-ek oldalon a mappa kibontásához vagy összecsukásához.';
+  }
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Csatornalista';
@@ -4418,6 +4732,72 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get favoritesAddToFavorites => 'Hozzáadás a Kedvencekhez';
 
   @override
+  String get favoritesAddToSavedMedia => 'Add to saved media';
+
+  @override
+  String get favoritesRemoveFromSavedMedia => 'Remove from saved media';
+
+  @override
+  String get favoritesAddToUrlOnlyGifFavorites =>
+      'Add to URL-only GIF favorites';
+
+  @override
+  String get favoritesRemoveFromUrlOnlyGifFavorites =>
+      'Remove from URL-only GIF favorites';
+
+  @override
+  String get savedMediaAddTitle => 'Add to saved media';
+
+  @override
+  String get savedMediaFormNameLabel => 'Name';
+
+  @override
+  String get savedMediaFormNameHint => 'My awesome media';
+
+  @override
+  String get savedMediaFormAltTextLabel => 'Alt text';
+
+  @override
+  String get savedMediaFormAltTextHint => 'Describe the media';
+
+  @override
+  String get savedMediaFormTagsLabel => 'Tags';
+
+  @override
+  String get savedMediaFormTagsHint => 'funny, reaction, work';
+
+  @override
+  String get savedMediaSaveError => 'Could not update saved media.';
+
+  @override
+  String get savedMediaNameRequired => 'Name is required.';
+
+  @override
+  String get gifFavoriteFirstTimeTitle =>
+      'How should we save your GIF favorites?';
+
+  @override
+  String get gifFavoriteFirstTimeDescription =>
+      'You can store starred GIFs as URL-only favorites or upload them to your saved media. Pick the one that fits how you use them. You can change it any time in Settings > Advanced > Media.';
+
+  @override
+  String get gifFavoriteFirstTimeUrlOnlyDetails =>
+      'URL-only favorites (default): synced across your devices, no upload, doesn\'t count against saved media. The original media may disappear if its host removes it.';
+
+  @override
+  String get gifFavoriteFirstTimeSavedMediaDetails =>
+      'Saved media: uploaded, taggable, searchable, and persistent, but counts against your saved media limit.';
+
+  @override
+  String get gifFavoriteFirstTimeHint => 'We\'ll only ask once.';
+
+  @override
+  String get gifFavoriteFirstTimeUseUrlOnly => 'Use URL-only (recommended)';
+
+  @override
+  String get gifFavoriteFirstTimeUseSavedMedia => 'Use saved media';
+
+  @override
   String get favoritesHideConfirmTitle => 'Kedvencek elrejtése';
 
   @override
@@ -4503,8 +4883,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Amikor linkként van közzétéve a csevegésben';
 
   @override
-  String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Amikor közvetlenül a Echowirebe van feltöltve';
+  String messagesMediaDisplayInlineAttachmentLabel(String productName) {
+    return 'Amikor közvetlenül a $productName van feltöltve';
+  }
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Link előnézetek';
@@ -4600,6 +4981,16 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Automatikus küldés kiválasztott GIF-ek esetén';
 
   @override
+  String get messagesMediaCameraUploadsSectionTitle => 'Camera uploads';
+
+  @override
+  String get messagesMediaCameraUploadsSectionDescription =>
+      'Choose whether photos and videos taken with the in-app camera are kept on your device';
+
+  @override
+  String get messagesMediaCameraUploadsSaveToDeviceLabel => 'Save to device';
+
+  @override
   String get messagesMediaAutocompleteSectionTitle =>
       'Kifejezés automatikus kiegészítése (kettőspontos kiegészítés)';
 
@@ -4686,8 +5077,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get accessibilityScreenReaderGroupTitle => 'Screen reader';
 
   @override
-  String get accessibilityScreenReaderGroupDescription =>
-      'Control how Fluxer works with screen readers.';
+  String accessibilityScreenReaderGroupDescription(String productName) {
+    return 'Control how $productName works with screen readers.';
+  }
 
   @override
   String get accessibilityScreenReaderAnnounceNewMessagesLabel =>
@@ -5326,10 +5718,10 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get voiceParticipantMenuUnfocus => 'Unfocus';
 
   @override
-  String get voiceParticipantMenuCommunityMute => 'Mute';
+  String get voiceParticipantMenuCommunityMute => 'Community mute';
 
   @override
-  String get voiceParticipantMenuCommunityDeafen => 'Deafen';
+  String get voiceParticipantMenuCommunityDeafen => 'Community deafen';
 
   @override
   String get voiceParticipantMenuUserVolume => 'User volume';
@@ -5359,6 +5751,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get voicePanelShowOwnCameraLabel => 'Show my own camera';
+
+  @override
+  String get voicePrioritizeSpeakersLabel => 'Prioritize speakers';
 
   @override
   String get voiceTextChatShow => 'Csevegés megjelenítése';
@@ -6249,6 +6644,33 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get chatMessageCopyText => 'Üzenet másolása';
 
   @override
+  String get chatMessageCopyEmbedText => 'Copy Embed Text';
+
+  @override
+  String get chatMessageTranslate => 'Translate';
+
+  @override
+  String chatMessageTranslatedFrom(String language) {
+    return 'Translated from $language';
+  }
+
+  @override
+  String get chatMessageSeeOriginal => 'See original';
+
+  @override
+  String get chatMessageSeeTranslation => 'See translation';
+
+  @override
+  String get chatMessageTranslating => 'Translating…';
+
+  @override
+  String get chatMessageTranslateFailed => 'Couldn\'t translate this message.';
+
+  @override
+  String get chatMessageTranslateUnavailable =>
+      'Translation isn\'t available on this device.';
+
+  @override
   String get chatMessageSpeak => 'Speak message';
 
   @override
@@ -6480,8 +6902,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get iarReasonOtherLabel => 'Egyéb egyértelmű szabályszegés';
 
   @override
-  String get iarReasonOtherDescription =>
-      'Csak akkor használd, ha egyértelműen megszegi a Echowire szabályait, és nem illeszkedik a fentiekhez.';
+  String iarReasonOtherDescription(String productName) {
+    return 'Csak akkor használd, ha egyértelműen megszegi a $productName szabályait, és nem illeszkedik a fentiekhez.';
+  }
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -6873,6 +7296,153 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Értesíti az ezzel a szerepkörrel rendelkező felhasználókat, akiknek van engedélyük a csatorna megtekintésére.';
 
   @override
+  String get composerAutocompleteSuggestions => 'Suggestions';
+
+  @override
+  String get composerAutocompleteCommandsHeading => 'Commands';
+
+  @override
+  String get composerAutocompleteChoicesHeading => 'Choices';
+
+  @override
+  String get composerAutocompleteOptionalArgumentsHeading =>
+      'Optional arguments';
+
+  @override
+  String get composerAutocompleteChannelsHeading => 'Channels';
+
+  @override
+  String get composerAutocompleteMembersHeading => 'Members';
+
+  @override
+  String get composerAutocompleteUsersHeading => 'Users';
+
+  @override
+  String get composerAutocompleteMentionsHeading => 'Mentions';
+
+  @override
+  String get composerAutocompleteRolesHeading => 'Roles';
+
+  @override
+  String get composerAutocompleteMediaHeading => 'Media';
+
+  @override
+  String get composerAutocompleteStickersHeading => 'Stickers';
+
+  @override
+  String get composerAutocompleteGifsHeading => 'GIFs';
+
+  @override
+  String get composerAutocompleteNoGifs => 'No GIFs found';
+
+  @override
+  String get composerCommandShrugDescription =>
+      'Appends ¯\\_(ツ)_/¯ to your message.';
+
+  @override
+  String get composerCommandTableflipDescription =>
+      'Appends (╯°□°)╯︵ ┻━┻ to your message.';
+
+  @override
+  String get composerCommandUnflipDescription =>
+      'Appends ┬─┬ ノ( ゜-゜ノ) to your message.';
+
+  @override
+  String get composerCommandMeDescription =>
+      'Send an action message (wraps in italics).';
+
+  @override
+  String get composerCommandSpoilerDescription =>
+      'Send a spoiler message (wraps in spoiler tags).';
+
+  @override
+  String get composerCommandTtsDescription => 'Send a text-to-speech message.';
+
+  @override
+  String get composerCommandNickDescription =>
+      'Change your nickname in this community.';
+
+  @override
+  String get composerCommandKickDescription =>
+      'Kick a member from this community.';
+
+  @override
+  String get composerCommandBanDescription =>
+      'Ban a member from this community.';
+
+  @override
+  String get composerCommandMsgDescription =>
+      'Send a direct message to a user.';
+
+  @override
+  String get composerCommandSavedDescription => 'Send a saved media item.';
+
+  @override
+  String get composerCommandStickerDescription => 'Send a sticker.';
+
+  @override
+  String get composerCommandGifDescription => 'Search for and send a GIF.';
+
+  @override
+  String get composerCommandMemberOption => 'The member to target.';
+
+  @override
+  String get composerCommandReasonOption => 'Reason (optional).';
+
+  @override
+  String get composerCommandMessageOption => 'The message to send.';
+
+  @override
+  String get composerCommandQueryOption => 'What to search for.';
+
+  @override
+  String get composerCommandNicknameOption =>
+      'Your new nickname, or leave blank to reset it.';
+
+  @override
+  String get composerCommandDeleteMessagesOption =>
+      'How much of the member\'s recent message history to delete.';
+
+  @override
+  String get composerCommandDeleteMessagesNone => 'Don\'t delete any';
+
+  @override
+  String composerCommandDeleteMessagesDays(int count) {
+    return 'Previous $count days';
+  }
+
+  @override
+  String get composerCommandDeleteMessagesOneDay => 'Previous 24 hours';
+
+  @override
+  String get composerCommandOptionRequired =>
+      'This option is required. Please provide a value.';
+
+  @override
+  String get composerCommandClear => 'Clear command';
+
+  @override
+  String composerCommandNicknameChanged(
+    String previousNickname,
+    String newNickname,
+  ) {
+    return 'You changed your nickname in this community from **$previousNickname** to **$newNickname**.';
+  }
+
+  @override
+  String get composerCommandUnknownUser => 'Unknown user';
+
+  @override
+  String composerCommandMsgFailed(String username) {
+    return 'Failed to send a message to **$username**. They may have DMs disabled or you may be blocked.';
+  }
+
+  @override
+  String composerCommandOptionalMore(int count) {
+    return '+$count more';
+  }
+
+  @override
   String get addGuildModalTitle => 'Közösség hozzáadása';
 
   @override
@@ -6965,6 +7535,45 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get addGuildCreateIconHint =>
       'PNG, JPEG, WebP, AVIF, HEIC, HEIF, JXL, SVG. Max 10MB. Javasolt: 512×512px';
+
+  @override
+  String get addGuildImportDescription =>
+      'Paste a Discord template URL to import its structure into a new community.';
+
+  @override
+  String get addGuildImportUrlLabel => 'Template URL';
+
+  @override
+  String get addGuildImportUrlInvalid =>
+      'Enter a valid Discord template URL or code.';
+
+  @override
+  String get addGuildImportFetchFailed =>
+      'Failed to fetch the community template. The template may not exist or the external service is unavailable.';
+
+  @override
+  String get addGuildImportInvalidResponse =>
+      'This doesn\'t look like a valid template response.';
+
+  @override
+  String get addGuildImportTemplateLabel => 'Template';
+
+  @override
+  String addGuildImportTemplateStats(
+    int textChannelCount,
+    int voiceChannelCount,
+    int categoryCount,
+    int roleCount,
+  ) {
+    return '$textChannelCount text, $voiceChannelCount voice, $categoryCount categories, $roleCount roles';
+  }
+
+  @override
+  String get addGuildImportRemoveIcon => 'Remove icon';
+
+  @override
+  String get addGuildImportTemplateInvalid =>
+      'The community template data is invalid or malformed.';
 
   @override
   String get addGuildPackInstalled => 'A csomag sikeresen telepítve.';
@@ -7616,6 +8225,20 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Members will appear here once the community data is loaded.';
 
   @override
+  String get memberListPermissionDeniedTitle => 'You can\'t view members';
+
+  @override
+  String get memberListPermissionDeniedBody =>
+      'You can\'t view the members of this channel in this community';
+
+  @override
+  String get memberListUnavailableTitle => 'Member list unavailable';
+
+  @override
+  String get memberListUnavailableBody =>
+      'Member lists are temporarily unavailable in this community';
+
+  @override
   String get channelDetailsPinsLoadFailedTitle => 'Pins could not be loaded';
 
   @override
@@ -7659,6 +8282,93 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get channelDetailsSearchFilterHas => 'Has';
+
+  @override
+  String get channelDetailsSearchFilterIn => 'In';
+
+  @override
+  String get channelDetailsSearchFilterMentions => 'Mentions';
+
+  @override
+  String get channelDetailsSearchFilterMore => 'More';
+
+  @override
+  String get channelDetailsSearchMoreFiltersActive => 'Active';
+
+  @override
+  String channelDetailsSearchChannelsCount(int count) {
+    return '$count channels';
+  }
+
+  @override
+  String channelDetailsSearchUsersCount(int count) {
+    return '$count users';
+  }
+
+  @override
+  String get channelDetailsSearchAuthorTypeUser => 'User';
+
+  @override
+  String get channelDetailsSearchAuthorTypeBot => 'Bot';
+
+  @override
+  String get channelDetailsSearchAuthorTypeWebhook => 'Webhook';
+
+  @override
+  String get channelDetailsSearchFilterByChannel => 'Filter by channel';
+
+  @override
+  String get channelDetailsSearchChannelsHint => 'Search channels';
+
+  @override
+  String get channelDetailsSearchChannelsEmpty => 'No channels found';
+
+  @override
+  String get channelDetailsSearchMoreFiltersPinned => 'Pinned';
+
+  @override
+  String get channelDetailsSearchPinnedTrue => 'Pinned only';
+
+  @override
+  String get channelDetailsSearchPinnedFalse => 'Exclude pinned';
+
+  @override
+  String get channelDetailsSearchClearFilter => 'Clear';
+
+  @override
+  String get channelDetailsSearchMoreFiltersAuthorType => 'Author type';
+
+  @override
+  String get channelDetailsSearchMoreFiltersDate => 'Date';
+
+  @override
+  String get channelDetailsSearchMoreFiltersDateMode => 'Date mode';
+
+  @override
+  String get channelDetailsSearchMoreFiltersPickDate => 'Pick a date';
+
+  @override
+  String get channelDetailsSearchMoreFiltersLink => 'Link hostname';
+
+  @override
+  String get channelDetailsSearchMoreFiltersFileName => 'Filename contains';
+
+  @override
+  String get channelDetailsSearchMoreFiltersFileType => 'File extension';
+
+  @override
+  String get channelDetailsSearchContentPoll => 'Poll';
+
+  @override
+  String get channelDetailsSearchContentPollDescription =>
+      'Messages with a poll';
+
+  @override
+  String get channelDetailsSearchContentForward => 'Forward';
+
+  @override
+  String get channelDetailsSearchContentForwardDescription =>
+      'Forwarded messages';
 
   @override
   String get channelDetailsSearchFilterSort => 'Sort';
@@ -8172,6 +8882,26 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get composerShowKeyboard => 'Show keyboard';
 
   @override
+  String get composerCloseAttachmentPanel => 'Close attachment picker';
+
+  @override
+  String get chatAttachmentPanelPhotos => 'Photos';
+
+  @override
+  String get chatAttachmentPanelFiles => 'Files';
+
+  @override
+  String get chatAttachmentLibraryPermissionTitle =>
+      'Photo library access needed';
+
+  @override
+  String get chatAttachmentLibraryPermissionBody =>
+      'Allow photo library access to browse and attach recent photos and videos.';
+
+  @override
+  String get chatAttachmentLibraryPermissionSettings => 'Open settings';
+
+  @override
   String messageAccessibilityLabel(String author, String summary) {
     return '$author, $summary';
   }
@@ -8249,6 +8979,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userSettingsGroupYourAccount => 'A SZÁMLÁD';
 
   @override
+  String get userSettingsGroupBilling => 'BILLING';
+
+  @override
   String get userSettingsGroupApplication => 'APPLICATION';
 
   @override
@@ -8256,6 +8989,18 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get userSettingsGroupStaffOnly => 'STAFF-ONLY';
+
+  @override
+  String get userSettingsSearchPlaceholder => 'Search settings...';
+
+  @override
+  String get userSettingsSearchFieldLabel => 'Search settings';
+
+  @override
+  String get userSettingsSearchClear => 'Clear search';
+
+  @override
+  String get userSettingsSearchNoResults => 'No settings found';
 
   @override
   String get userSettingsNavProfile => 'Profil';
@@ -8268,6 +9013,428 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Ajándékok és kódok';
+
+  @override
+  String get giftSettingsClaimAccountTitle => 'Claim your account';
+
+  @override
+  String get giftSettingsClaimAccountDescription =>
+      'Claim your account to redeem or manage Plutonium gift codes.';
+
+  @override
+  String get giftSettingsRedeemTitle => 'Redeem a gift';
+
+  @override
+  String get giftSettingsRedeemDescription =>
+      'Enter a gift code to redeem Plutonium for your account.';
+
+  @override
+  String get giftSettingsRedeemPlaceholder => 'Enter gift code…';
+
+  @override
+  String get giftSettingsRedeemButton => 'Redeem';
+
+  @override
+  String get giftSettingsRedeemSuccess =>
+      'Gift redeemed successfully. Enjoy your Plutonium.';
+
+  @override
+  String get giftSettingsPurchasedTitle => 'Purchased gifts';
+
+  @override
+  String get giftSettingsPurchasedDescription =>
+      'Manage your purchased Plutonium gift codes. Share the gift URL with someone special or redeem it for yourself!';
+
+  @override
+  String get giftSettingsEmptyTitle => 'No gifts yet';
+
+  @override
+  String get giftSettingsEmptyDescription =>
+      'Buy a Plutonium gift from the Plutonium tab to share with friends.';
+
+  @override
+  String get giftSettingsGoToPlutonium => 'Go to Plutonium';
+
+  @override
+  String get giftSettingsLoadFailedTitle => 'Failed to load gift inventory';
+
+  @override
+  String get giftSettingsLoadFailedDescription => 'Try again later.';
+
+  @override
+  String get giftSettingsTryAgain => 'Try again';
+
+  @override
+  String get giftSettingsGiftUrl => 'Gift URL';
+
+  @override
+  String get giftSettingsCopy => 'Copy';
+
+  @override
+  String get giftSettingsCopied => 'Copied';
+
+  @override
+  String get giftSettingsGiftUrlCopied => 'Gift URL copied to clipboard!';
+
+  @override
+  String get giftSettingsGiftUrlCopyFailed => 'Couldn\'t copy gift URL';
+
+  @override
+  String giftSettingsPurchasedDate(String date) {
+    return 'Purchased $date';
+  }
+
+  @override
+  String giftSettingsRedeemedDate(String date) {
+    return 'Redeemed $date';
+  }
+
+  @override
+  String giftSettingsRedeemedBy(String name) {
+    return 'Redeemed by $name';
+  }
+
+  @override
+  String get giftSettingsAlreadyRedeemed => 'This gift has been redeemed';
+
+  @override
+  String get giftSettingsRedeemForYourself => 'Redeem for yourself';
+
+  @override
+  String get giftSettingsShareWithFriend => 'Share with a friend';
+
+  @override
+  String get premiumPlutoniumTagline =>
+      'Unlock higher limits and exclusive features while supporting an independent communication platform.';
+
+  @override
+  String get premiumPurchaseMode => 'Purchase mode';
+
+  @override
+  String get premiumForMe => 'For me';
+
+  @override
+  String get premiumAsAGift => 'As a gift';
+
+  @override
+  String get premiumMonthly => 'Monthly';
+
+  @override
+  String get premiumYearly => 'Yearly';
+
+  @override
+  String get premiumPerMonth => 'per month';
+
+  @override
+  String get premiumPerYear => 'per year';
+
+  @override
+  String get premiumOneTimePurchase => 'one-time purchase';
+
+  @override
+  String get premiumSave17 => 'Save 17%';
+
+  @override
+  String get premiumUpgradeNow => 'Upgrade now';
+
+  @override
+  String get premiumBuyGift => 'Buy gift';
+
+  @override
+  String get premiumOneYearGift => '1 year gift';
+
+  @override
+  String get premiumOneMonthGift => '1 month gift';
+
+  @override
+  String get premiumMostPopular => 'Most popular';
+
+  @override
+  String get premiumScrollPrompt =>
+      'Scroll down to view all the perks included with Plutonium';
+
+  @override
+  String get premiumFreeVsPlutonium => 'Free vs Plutonium';
+
+  @override
+  String get premiumFreeColumn => 'Free';
+
+  @override
+  String get premiumGiftSectionTitle => 'Gift Plutonium';
+
+  @override
+  String get premiumGiftSectionDescription =>
+      'Share the Plutonium experience with your friends by purchasing a gift subscription.';
+
+  @override
+  String get premiumGiftBannerOne =>
+      'You have a new gift code waiting for you!';
+
+  @override
+  String premiumGiftBannerMany(int count) {
+    return 'You have $count new gift codes waiting for you!';
+  }
+
+  @override
+  String get premiumViewGifts => 'View gifts';
+
+  @override
+  String get premiumReadyToUpgrade => 'Ready to upgrade?';
+
+  @override
+  String get premiumReadyToBuyGift => 'Ready to buy a gift?';
+
+  @override
+  String premiumMonthlyPrice(String price) {
+    return 'Monthly $price';
+  }
+
+  @override
+  String premiumYearlyPrice(String price) {
+    return 'Yearly $price';
+  }
+
+  @override
+  String premiumOneYearPrice(String price) {
+    return '1 year $price';
+  }
+
+  @override
+  String premiumOneMonthPrice(String price) {
+    return '1 month $price';
+  }
+
+  @override
+  String get premiumManageSubscription => 'Manage subscription';
+
+  @override
+  String get premiumRedeemGiftCode => 'Redeem gift code';
+
+  @override
+  String get premiumGiftBadge => 'Gift';
+
+  @override
+  String get premiumCancelSubscriptionTitle => 'Cancel subscription?';
+
+  @override
+  String get premiumCancelSubscriptionBody =>
+      'You keep your perks until your next renewal date, then have a 3-day grace period to resubscribe and keep your subscriber history.';
+
+  @override
+  String get premiumCancelSubscriptionConfirm => 'Cancel subscription';
+
+  @override
+  String get premiumKeepSubscription => 'Keep subscription';
+
+  @override
+  String get premiumPurchaseHistoryTitle => 'Purchase history';
+
+  @override
+  String get premiumPurchaseHistoryDescription =>
+      'Your recent invoices. To change the payment method for your subscription, add or choose one in the billing portal and make it the default.';
+
+  @override
+  String get premiumManagePaymentMethods => 'Manage payment methods';
+
+  @override
+  String get premiumBillingHistory => 'Billing history';
+
+  @override
+  String get premiumSelfServeRefundTitle => 'Self-serve refund';
+
+  @override
+  String get premiumSelfServeRefundButton => 'Refund latest purchase';
+
+  @override
+  String get premiumDisclaimerAgreementPrefix =>
+      'By purchasing, you agree to our ';
+
+  @override
+  String get premiumDisclaimerAgreementPastPrefix =>
+      'By purchasing, you agreed to our ';
+
+  @override
+  String get premiumDisclaimerAgreementMiddle => ' and ';
+
+  @override
+  String premiumActiveUntil(String date) {
+    return 'Active until $date';
+  }
+
+  @override
+  String get premiumSubscriptionCanceling => 'Canceling';
+
+  @override
+  String premiumCancelsOn(String date) {
+    return 'Cancels on $date. Perks remain active until then.';
+  }
+
+  @override
+  String get premiumReactivateSubscription => 'Reactivate';
+
+  @override
+  String premiumGiftedUntil(String date) {
+    return 'Gifted until $date. Does not renew automatically.';
+  }
+
+  @override
+  String get premiumComparisonFeatureColumn => 'Feature';
+
+  @override
+  String premiumDisclaimerPurchased(String terms, String privacy) {
+    return 'By purchasing, you agreed to our $terms and $privacy.';
+  }
+
+  @override
+  String get premiumDisclaimerRefund =>
+      'Self-serve refunds available within 3 days of payment, once every 30 days. Refunding a subscription cancels it. EU/EEA buyers waive the 14-day right of withdrawal at checkout to access content immediately. Use the in-app refund button instead of a chargeback. Chargebacks can permanently restrict your account. Stripe handles payment securely. We never see your full card number.';
+
+  @override
+  String get premiumTermsOfService => 'Terms of service';
+
+  @override
+  String get premiumPrivacyPolicy => 'Privacy policy';
+
+  @override
+  String get premiumCheckoutStartFailedTitle => 'Couldn\'t start checkout';
+
+  @override
+  String get premiumCheckoutStartFailedBody =>
+      'Something went wrong while starting checkout. Please try again in a moment.';
+
+  @override
+  String get premiumGiftSubscriptionBlocksRecurring =>
+      'You\'re currently on a gift subscription. It won\'t renew. You can redeem more gift codes to extend it. Recurring subscriptions can be started after your gift time ends.';
+
+  @override
+  String get premiumPlanUnavailable =>
+      'This plan isn\'t available. Contact support.';
+
+  @override
+  String get premiumCompletePaymentTitle => 'Complete payment';
+
+  @override
+  String get premiumCompletePaymentBody =>
+      'You are now navigating to Stripe to complete the payment. Return to Fluxer once you\'ve completed it.';
+
+  @override
+  String get premiumChoosePaymentMethodTitle => 'Choose payment method';
+
+  @override
+  String get premiumPixPaymentPromptDescription =>
+      'Pay with Pix automático to authorize recurring charges directly from your Brazilian bank. Or choose use card to enter a credit card on Stripe\'s next screen.';
+
+  @override
+  String get premiumUsePix => 'Use Pix';
+
+  @override
+  String get premiumUpiPaymentPromptDescription =>
+      'Pay with UPI to set up an RBI-compliant e-mandate from your Indian bank. Or choose use card to enter a credit card on Stripe\'s next screen.';
+
+  @override
+  String get premiumUseUpi => 'Use UPI';
+
+  @override
+  String get premiumUseCard => 'Use card';
+
+  @override
+  String get premiumCustomerPortalOpenFailedTitle =>
+      'Couldn\'t open the billing portal';
+
+  @override
+  String get premiumCustomerPortalOpenFailedBody =>
+      'Something went wrong while opening the billing portal. Please try again in a moment.';
+
+  @override
+  String get premiumAlreadyVisionaryTitle => 'You\'re already Visionary';
+
+  @override
+  String get premiumAlreadyVisionaryBody =>
+      'Visionary already includes permanent access, so a recurring subscription isn\'t needed. You can still buy gifts for others.';
+
+  @override
+  String get premiumExistingSubscriptionTitle => 'Subscription already exists';
+
+  @override
+  String get premiumExistingSubscriptionBody =>
+      'We found an existing Fluxer Plutonium subscription for this account. Manage it in the secure billing portal to update payment details or check renewal status. If you just paid, wait a minute and reopen this page.';
+
+  @override
+  String get premiumPurchasesDisabledTitle => 'Purchases unavailable';
+
+  @override
+  String get premiumPurchasesDisabledBody =>
+      'Purchases are disabled for this account. Contact support@fluxer.app if this looks wrong.';
+
+  @override
+  String get premiumClaimAccountToPurchase =>
+      'Claim your account to purchase Fluxer Plutonium.';
+
+  @override
+  String get premiumVerifyEmailToPurchase =>
+      'You need to verify your email before you can purchase Fluxer Plutonium.';
+
+  @override
+  String get premiumPerkCustomUsernameTag => 'Custom username tag';
+
+  @override
+  String get premiumPerkPerCommunityProfiles => 'Per-community profiles';
+
+  @override
+  String get premiumPerkMessageScheduling => 'Message scheduling';
+
+  @override
+  String get premiumPerkProfileBadge => 'Profile badge';
+
+  @override
+  String get premiumPerkCustomVideoBackgrounds => 'Custom video backgrounds';
+
+  @override
+  String get premiumPerkEntranceSounds => 'Entrance sounds';
+
+  @override
+  String get premiumPerkCommunities => 'Communities';
+
+  @override
+  String get premiumPerkMessageCharacterLimit => 'Message character limit';
+
+  @override
+  String get premiumPerkBookmarkedMessages => 'Bookmarked messages';
+
+  @override
+  String get premiumPerkFileUploadSize => 'File upload size';
+
+  @override
+  String get premiumPerkEmojiStickerPacks => 'Emoji & sticker packs';
+
+  @override
+  String get premiumPerkSavedMedia => 'Saved media';
+
+  @override
+  String get premiumPerkUseAnimatedEmojis => 'Use animated emojis';
+
+  @override
+  String get premiumPerkGlobalEmojiStickerAccess =>
+      'Global emoji & sticker access';
+
+  @override
+  String get premiumPerkVideoQuality => 'Video quality';
+
+  @override
+  String get premiumPerkAnimatedAvatarsBanners =>
+      'Animated avatars & profile banners';
+
+  @override
+  String get premiumPerkEarlyAccess => 'Early access to new features';
+
+  @override
+  String get premiumPerkCustomThemes => 'Custom themes';
+
+  @override
+  String get premiumPerkVideoQualityRestricted => '720p/30fps';
+
+  @override
+  String get premiumPerkVideoQualityStock => 'Up to 4K/60fps';
 
   @override
   String get userSettingsNavPrivacyDashboard => 'Adatvédelmi irányítópult';
@@ -8295,6 +9462,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get userSettingsNavAudioAndVideo => 'Hang és videó';
+
+  @override
+  String get userSettingsNavShortcuts => 'Shortcuts';
 
   @override
   String get audioAndVideoAudioSectionTitle => 'Hang';
@@ -8803,16 +9973,18 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get advancedPerformanceReportingTitle => 'Teljesítményjelentés';
 
   @override
-  String get advancedPerformanceReportingSectionDescription =>
-      'Segíts a Echowire fejlesztésében névtelen hiba- és teljesítményadatok megosztásával.';
+  String advancedPerformanceReportingSectionDescription(String productName) {
+    return 'Segíts a $productName fejlesztésében névtelen hiba- és teljesítményadatok megosztásával.';
+  }
 
   @override
   String get advancedPerformanceReportingLabel =>
       'Küldj hiba- és teljesítményjelentéseket';
 
   @override
-  String get advancedPerformanceReportingDescription =>
-      'Az összes jelentett adat névtelen, és csak a Echowire saját felügyeleti szolgáltatásába kerül – nem használunk harmadik féltől származó szolgáltatókat.';
+  String advancedPerformanceReportingDescription(String productName) {
+    return 'Az összes jelentett adat névtelen, és csak a $productName saját felügyeleti szolgáltatásába kerül – nem használunk harmadik féltől származó szolgáltatókat.';
+  }
 
   @override
   String get advancedSettingsConfigure => 'Configure';
@@ -8854,6 +10026,13 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Thumbnail or live frame while scrubbing video';
 
   @override
+  String get advancedSettingHapticFeedbackLabel => 'Haptic feedback';
+
+  @override
+  String get advancedSettingHapticFeedbackDescription =>
+      'Vibration feedback for taps and actions. Won\'t sync across devices.';
+
+  @override
   String get advancedSettingShowNekoLabel => 'Show Neko';
 
   @override
@@ -8863,6 +10042,14 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
       'Show Neko on your chat input';
+
+  @override
+  String get advancedSettingMobileSplashZoomAnimationLabel =>
+      'Splash zoom animation';
+
+  @override
+  String get advancedSettingMobileSplashZoomAnimationDescription =>
+      'Zoom the logo out when leaving the splash screen';
 
   @override
   String get advancedSettingKeyboardHintsLabel => 'Keyboard hints';
@@ -9364,6 +10551,30 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get userSettingsNavWhatsNew => 'Újdonságok';
+
+  @override
+  String get userSettingsJoinFluxerLabs => 'Join Fluxer Labs';
+
+  @override
+  String get userSettingsNavAppLicenses => 'App Licenses';
+
+  @override
+  String get userSettingsAppLicensesDescription =>
+      'Open-source software used by this app. This app is built with Flutter.';
+
+  @override
+  String get userSettingsAppLicensesLoadError => 'Could not load app licenses.';
+
+  @override
+  String userSettingsAppLicensesPackageCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count licenses',
+      one: '1 license',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get userSettingsNavLogOut => 'Kijelentkezés';
@@ -10057,8 +11268,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
-  String get guildNavbarStaffOnlyAccessible =>
-      'Csak a Echowire személyzetének hozzáférhető';
+  String guildNavbarStaffOnlyAccessible(String productName) {
+    return 'Csak a $productName személyzetének hozzáférhető';
+  }
 
   @override
   String get guildNavbarInvitesPaused =>
@@ -12669,144 +13881,228 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get dmListDirectMessagesTitle => 'Direct Messages';
 
   @override
-  String get advancedSettingSequentialFileSendLabel =>
-      'Send file messages in order';
+  String get keybindsSearchShortcuts => 'Search shortcuts';
 
   @override
-  String get advancedSettingSequentialFileSendDescription =>
-      'Ensures file messages appear in the order you sent them';
+  String get keybindSectionDefaults => 'Defaults';
 
   @override
-  String get accessibilityUnreadGroupTitle => 'Olvasatlan jelzők';
+  String get keybindSectionMessages => 'Messages';
 
   @override
-  String get accessibilityUnreadGroupDescription =>
-      'Az olvasatlan üzenetjelzők megjelenítésének szabályozása.';
+  String get keybindSectionNavigation => 'Navigation';
 
   @override
-  String get accessibilityShowFadedUnreadOnMutedChannelsLabel =>
-      'Halvány olvasatlan jelző megjelenítése némított csatornákon';
+  String get keybindSectionDragAndDrop => 'Drag and drop';
 
   @override
-  String get accessibilityShowFadedUnreadOnMutedChannelsDescription =>
-      'Halványított olvasatlan jelző megjelenítése a némított közvetlen üzenetek és csatornák mellett, így egy pillantással továbbra is láthatja, ha van aktivitás.';
+  String get keybindSectionChat => 'Chat';
 
   @override
-  String get accessibilityMediaButtonsGroupTitle => 'Media Buttons';
+  String get keybindSectionVoiceAndVideo => 'Voice and video';
 
   @override
-  String get accessibilityMediaButtonsGroupDescription =>
-      'Customize which buttons appear on media attachments and embeds.';
+  String get keybindSectionMisc => 'Miscellaneous';
 
   @override
-  String get accessibilityShowMediaDeleteButtonLabel => 'Show delete button';
+  String get keybindActionShowShortcutsList => 'Show keyboard shortcuts list';
 
   @override
-  String get accessibilityShowMediaDownloadButtonLabel =>
-      'Show download button';
+  String get keybindActionCopyText => 'Copy text';
 
   @override
-  String get accessibilityShowMediaFavoriteButtonLabel =>
-      'Show favorite button';
+  String get keybindActionMarkUnread => 'Mark as unread';
 
   @override
-  String get accessibilityShowSuppressEmbedsButtonLabel =>
-      'Show suppress embeds button';
+  String get keybindActionFocusTextarea => 'Focus text area';
 
   @override
-  String get audioAndVideoMicTestSectionDescription =>
-      'Meghallgathatod, hogy a jelenlegi beállításokkal hogy hangzol.';
+  String get keybindActionSwitchCommunities => 'Switch between communities';
 
   @override
-  String get cropTouchHint => 'Pinch to zoom, drag to reposition';
+  String get keybindActionSwitchChannels => 'Switch between channels';
 
   @override
-  String get cropMouseHint => 'Drag corners to resize, drag inside to move';
+  String get keybindActionHistoryBack =>
+      'Move back through viewed channel history';
 
   @override
-  String get channelDetailsSearchFilterIn => 'In';
+  String get keybindActionHistoryForward =>
+      'Move forward through viewed channel history';
 
   @override
-  String get channelDetailsSearchFilterMentions => 'Mentions';
+  String get keybindActionJumpUnreadChannels => 'Jump between unread channels';
 
   @override
-  String get channelDetailsSearchFilterMore => 'More';
+  String get keybindActionJumpMentionChannels =>
+      'Jump between unread channels with mentions';
 
   @override
-  String get channelDetailsSearchMoreFiltersActive => 'Active';
+  String get keybindActionJumpCurrentCall => 'Jump to the current call';
 
   @override
-  String channelDetailsSearchChannelsCount(int count) {
-    return '$count channels';
-  }
+  String get keybindActionToggleLastGuildDms =>
+      'Toggle between last community and DMs';
 
   @override
-  String channelDetailsSearchUsersCount(int count) {
-    return '$count users';
-  }
+  String get keybindActionPreviousCommunityOrDms =>
+      'Switch to previous community or DMs';
 
   @override
-  String get channelDetailsSearchAuthorTypeUser => 'User';
+  String get keybindActionNextCommunityOrDms =>
+      'Switch to next community or DMs';
 
   @override
-  String get channelDetailsSearchAuthorTypeBot => 'Bot';
+  String get keybindActionGoToDms => 'Go to Direct Messages';
 
   @override
-  String get channelDetailsSearchAuthorTypeWebhook => 'Webhook';
+  String get keybindActionGoToFirstCommunity => 'Go to first community';
 
   @override
-  String get channelDetailsSearchFilterByChannel => 'Filter by channel';
+  String get keybindActionGoToSecondCommunity => 'Go to second community';
 
   @override
-  String get channelDetailsSearchChannelsHint => 'Search channels';
+  String get keybindActionGoToThirdCommunity => 'Go to third community';
 
   @override
-  String get channelDetailsSearchChannelsEmpty => 'No channels found';
+  String get keybindActionGoToFourthCommunity => 'Go to fourth community';
 
   @override
-  String get channelDetailsSearchMoreFiltersPinned => 'Pinned';
+  String get keybindActionGoToFifthCommunity => 'Go to fifth community';
 
   @override
-  String get channelDetailsSearchPinnedTrue => 'Pinned only';
+  String get keybindActionGoToSixthCommunity => 'Go to sixth community';
 
   @override
-  String get channelDetailsSearchPinnedFalse => 'Exclude pinned';
+  String get keybindActionGoToSeventhCommunity => 'Go to seventh community';
 
   @override
-  String get channelDetailsSearchClearFilter => 'Clear';
+  String get keybindActionGoToEighthCommunity => 'Go to eighth community';
 
   @override
-  String get channelDetailsSearchMoreFiltersAuthorType => 'Author type';
+  String get keybindActionToggleQuickSwitcher => 'Toggle quick switcher';
 
   @override
-  String get channelDetailsSearchMoreFiltersDate => 'Date';
+  String get keybindActionCreateOrJoinCommunity => 'Create or join a community';
 
   @override
-  String get channelDetailsSearchMoreFiltersDateMode => 'Date mode';
+  String get keybindActionStartDragAndDrop => 'Start drag and drop';
 
   @override
-  String get channelDetailsSearchMoreFiltersPickDate => 'Pick a date';
+  String get keybindActionMove => 'Move';
 
   @override
-  String get channelDetailsSearchMoreFiltersLink => 'Link hostname';
+  String get keybindActionDropItem => 'Drop item';
 
   @override
-  String get channelDetailsSearchMoreFiltersFileName => 'Filename contains';
+  String get keybindActionCancel => 'Cancel';
 
   @override
-  String get channelDetailsSearchMoreFiltersFileType => 'File extension';
+  String get keybindActionMarkCommunityRead => 'Mark community as read';
 
   @override
-  String get channelDetailsSearchContentPoll => 'Poll';
+  String get keybindActionMarkChannelRead => 'Mark channel as read';
 
   @override
-  String get channelDetailsSearchContentPollDescription =>
-      'Messages with a poll';
+  String get keybindActionStartGroupDm => 'Start a group DM';
 
   @override
-  String get channelDetailsSearchContentForward => 'Forward';
+  String get keybindActionTogglePinnedMessages => 'Toggle pinned messages';
 
   @override
-  String get channelDetailsSearchContentForwardDescription =>
-      'Forwarded messages';
+  String get keybindActionToggleInbox => 'Toggle the inbox';
+
+  @override
+  String get keybindActionMarkTopInboxRead => 'Mark top inbox channel as read';
+
+  @override
+  String get keybindActionMarkAllInboxRead => 'Mark all inbox channels as read';
+
+  @override
+  String get keybindActionToggleMemberList =>
+      'Toggle the member list or voice chat';
+
+  @override
+  String get keybindActionToggleEmojiPicker => 'Toggle the emoji picker';
+
+  @override
+  String get keybindActionToggleGifPicker => 'Toggle the GIF picker';
+
+  @override
+  String get keybindActionToggleStickerPicker => 'Toggle the sticker picker';
+
+  @override
+  String get keybindActionScrollChatUp => 'Scroll chat up';
+
+  @override
+  String get keybindActionScrollChatDown => 'Scroll chat down';
+
+  @override
+  String get keybindActionJumpOldestUnread =>
+      'Jump to the oldest unread message';
+
+  @override
+  String get keybindActionFocusComposer => 'Focus the text area';
+
+  @override
+  String get keybindActionUploadFile => 'Upload a file';
+
+  @override
+  String get keybindActionCopyChannelLink => 'Copy channel link';
+
+  @override
+  String get keybindActionToggleSavedMedia => 'Toggle saved media';
+
+  @override
+  String get keybindActionSendVoiceMessage => 'Send voice message';
+
+  @override
+  String get keybindActionAnswerCall => 'Answer the incoming call';
+
+  @override
+  String get keybindActionDeclineCall => 'Decline the incoming call';
+
+  @override
+  String get keybindActionStartDmCall => 'Start a call in a DM or group';
+
+  @override
+  String get keybindActionToggleSoundboard => 'Toggle the soundboard';
+
+  @override
+  String get keybindActionToggleCompactCallView =>
+      'Expand or collapse compact call view';
+
+  @override
+  String get keybindActionPushToTalkPriority => 'Push to talk (priority)';
+
+  @override
+  String get keybindActionVoiceActivityPriority => 'Voice activity priority';
+
+  @override
+  String get keybindActionOpenHelp => 'Open help';
+
+  @override
+  String get keybindActionSearchMessages => 'Search messages';
+
+  @override
+  String get keybindActionOpenContextMenu => 'Open the context menu';
+
+  @override
+  String get keybindActionOpenSettings => 'Open your settings';
+
+  @override
+  String get keybindActionOpenThemeStudio => 'Open theme studio popout';
+
+  @override
+  String get keybindActionZoomIn => 'Zoom in';
+
+  @override
+  String get keybindActionZoomOut => 'Zoom out';
+
+  @override
+  String get keybindActionZoomReset => 'Reset zoom';
+
+  @override
+  String get clipboardPasteFailed =>
+      'Couldn\'t paste. The clipboard was empty or blocked for this app.';
 }

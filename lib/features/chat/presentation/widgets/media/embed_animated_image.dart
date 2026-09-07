@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/features/accessibility/effective_motion_preferences_provider.dart';
 import 'package:fluxer_app/features/accessibility/motion_preferences.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/media/animated_image_playback_controller.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/media/fluxer_animated_image.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart' show StickerAnimationOptions;
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -121,7 +121,12 @@ class _EmbedAnimatedImageState extends ConsumerState<EmbedAnimatedImage> {
       return;
     }
     _localVisible = visible;
-    _controller?.updateVisibility(widget.visibilityKey, info.visibleFraction);
+    _controller?.updateVisibility(
+      widget.visibilityKey,
+      info.visibleFraction,
+      top: info.visibleBounds.top,
+      left: info.visibleBounds.left,
+    );
     if (visible) {
       _hideScheduled = false;
       _syncPlaying();

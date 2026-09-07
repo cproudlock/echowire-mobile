@@ -23,7 +23,10 @@ const Duration kGatewayResumeReconnectFailureTimeout = Duration(seconds: 60);
 const Duration kBackgroundGatewayDisconnectGrace = Duration(seconds: 45);
 const Duration kResumeReconnectDelay = Duration(milliseconds: 500);
 const Duration kConnectivityReconnectDebounce = Duration(milliseconds: 500);
-const Duration kReconnectToastDelay = Duration(seconds: 2);
+const Duration kReconnectBannerDelay = Duration(seconds: 2);
+const Duration kReconnectBannerSuccessHold = Duration(milliseconds: 1400);
+
+enum GatewayReconnectBannerPhase { hidden, reconnecting, connected }
 
 /// True while a foreground resume reconnect nudge is in flight.
 @Riverpod(keepAlive: true)
@@ -38,18 +41,19 @@ class GatewayResumeReconnectInFlight extends _$GatewayResumeReconnectInFlight {
   }
 }
 
-/// Waits for the network stack after resume, then nudges the gateway socket.
+/// Nudges the gateway socket after resume, giving the network stack one
+/// [kResumeReconnectDelay] beat to wake when connectivity is not up yet.
 Future<void> nudgeGatewayReconnectAfterResume(
   GatewayConnection connection, {
   void Function({required bool inFlight})? onResumeReconnectInFlight,
+  Future<bool> Function() hasConnectivity = _hasAnyConnectivity,
 }) async {
   onResumeReconnectInFlight?.call(inFlight: true);
-  await Future<void>.delayed(kResumeReconnectDelay);
-  final List<ConnectivityResult> results = await Connectivity()
-      .checkConnectivity();
-  final bool hasConnection = results.any(
-    (ConnectivityResult r) => r != ConnectivityResult.none,
-  );
+  var hasConnection = await hasConnectivity();
+  if (!hasConnection) {
+    await Future<void>.delayed(kResumeReconnectDelay);
+    hasConnection = await hasConnectivity();
+  }
   if (!hasConnection) {
     talker.warning('[Gateway] Resume reconnect skipped: no connectivity');
     onResumeReconnectInFlight?.call(inFlight: false);
@@ -61,6 +65,12 @@ Future<void> nudgeGatewayReconnectAfterResume(
   } else {
     await connection.reconnectNow();
   }
+}
+
+Future<bool> _hasAnyConnectivity() async {
+  final List<ConnectivityResult> results = await Connectivity()
+      .checkConnectivity();
+  return results.any((ConnectivityResult r) => r != ConnectivityResult.none);
 }
 
 bool shouldKeepGatewayConnectedForVoiceFromState({
@@ -303,20 +313,74 @@ void gatewayForegroundListener(Ref ref) {
 }
 
 @Riverpod(keepAlive: true)
-void gatewayReconnectToastListener(Ref ref) {
+class GatewayReconnectBanner extends _$GatewayReconnectBanner {
+  Timer? _successHideTimer;
+
+  @override
+  GatewayReconnectBannerPhase build() {
+    ref.onDispose(_cancelSuccessHide);
+    return GatewayReconnectBannerPhase.hidden;
+  }
+
+  void _cancelSuccessHide() {
+    _successHideTimer?.cancel();
+    _successHideTimer = null;
+  }
+
+  void showReconnecting() {
+    _cancelSuccessHide();
+    state = GatewayReconnectBannerPhase.reconnecting;
+  }
+
+  void showConnected() {
+    _cancelSuccessHide();
+    state = GatewayReconnectBannerPhase.connected;
+    _successHideTimer = Timer(kReconnectBannerSuccessHold, hide);
+  }
+
+  void hide() {
+    _cancelSuccessHide();
+    state = GatewayReconnectBannerPhase.hidden;
+  }
+}
+
+@Riverpod(keepAlive: true)
+void gatewayReconnectBannerListener(Ref ref) {
   GatewayState? previousState;
-  var reconnectToastShown = false;
-  Timer? pendingReconnectToastTimer;
+  var reconnectBannerShown = false;
+  Timer? pendingReconnectBannerTimer;
   final connection = ref.watch(gatewayConnectionProvider);
 
-  void clearPendingReconnectToast() {
-    pendingReconnectToastTimer?.cancel();
-    pendingReconnectToastTimer = null;
+  void clearPendingReconnectBanner() {
+    pendingReconnectBannerTimer?.cancel();
+    pendingReconnectBannerTimer = null;
   }
+
+  void hideBanner() {
+    reconnectBannerShown = false;
+    ref.read(gatewayReconnectBannerProvider.notifier).hide();
+  }
+
+  bool isReconnectingState(GatewayState state) {
+    return state == GatewayState.connecting ||
+        state == GatewayState.reconnecting;
+  }
+
+  ref.listen<bool>(gatewayConnectionFailedProvider, (
+    bool? previous,
+    bool next,
+  ) {
+    if (!next) {
+      return;
+    }
+    clearPendingReconnectBanner();
+    hideBanner();
+  });
 
   final subscription = connection.stateChanges.listen((GatewayState state) {
     if (ref.read(gatewayConnectionFailedProvider)) {
-      clearPendingReconnectToast();
+      clearPendingReconnectBanner();
+      hideBanner();
       previousState = state;
       return;
     }
@@ -326,57 +390,47 @@ void gatewayReconnectToastListener(Ref ref) {
       return;
     }
     final bool wasConnected = prior == GatewayState.connected;
-    final bool isReconnecting =
-        state == GatewayState.connecting || state == GatewayState.reconnecting;
+    final bool isReconnecting = isReconnectingState(state);
     final bool isConnected = state == GatewayState.connected;
-    if (wasConnected && isReconnecting && !reconnectToastShown) {
-      clearPendingReconnectToast();
-      pendingReconnectToastTimer = Timer(kReconnectToastDelay, () {
-        pendingReconnectToastTimer = null;
-        if (ref.read(gatewayConnectionFailedProvider)) {
-          return;
-        }
-        final GatewayState current = connection.state;
-        if (current != GatewayState.connecting &&
-            current != GatewayState.reconnecting) {
-          return;
-        }
-        reconnectToastShown = true;
-        final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
-        ref
-            .read(toastProvider.notifier)
-            .show(
-              FluxerToast(
-                message: l10n.gatewayReconnectingToast,
-                duration: const Duration(seconds: 5),
-              ),
-            );
-      });
+    if (wasConnected && isReconnecting) {
+      final GatewayReconnectBanner banner = ref.read(
+        gatewayReconnectBannerProvider.notifier,
+      );
+      final GatewayReconnectBannerPhase phase = ref.read(
+        gatewayReconnectBannerProvider,
+      );
+      if (phase == GatewayReconnectBannerPhase.connected) {
+        reconnectBannerShown = true;
+        banner.showReconnecting();
+      } else if (!reconnectBannerShown) {
+        clearPendingReconnectBanner();
+        pendingReconnectBannerTimer = Timer(kReconnectBannerDelay, () {
+          pendingReconnectBannerTimer = null;
+          if (ref.read(gatewayConnectionFailedProvider)) {
+            return;
+          }
+          if (!isReconnectingState(connection.state)) {
+            return;
+          }
+          reconnectBannerShown = true;
+          ref.read(gatewayReconnectBannerProvider.notifier).showReconnecting();
+        });
+      }
     }
-    if (isConnected &&
-        (prior == GatewayState.connecting ||
-            prior == GatewayState.reconnecting)) {
-      clearPendingReconnectToast();
-      if (reconnectToastShown) {
-        reconnectToastShown = false;
-        final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
-        ref
-            .read(toastProvider.notifier)
-            .show(
-              FluxerToast(
-                message: l10n.gatewayConnectedToast,
-                variant: FluxerToastVariant.success,
-              ),
-            );
+    if (isConnected && isReconnectingState(prior)) {
+      clearPendingReconnectBanner();
+      if (reconnectBannerShown) {
+        reconnectBannerShown = false;
+        ref.read(gatewayReconnectBannerProvider.notifier).showConnected();
       }
     }
     if (isConnected) {
-      reconnectToastShown = false;
+      reconnectBannerShown = false;
     }
   });
 
   ref.onDispose(() {
-    clearPendingReconnectToast();
+    clearPendingReconnectBanner();
     unawaited(subscription.cancel());
   });
 }

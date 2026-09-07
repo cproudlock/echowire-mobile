@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/features/chat/domain/chat_video_source.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
@@ -35,6 +33,49 @@ void main() {
 
     test('returns false for non-YouTube URLs', () {
       expect(isYouTubeUrl('https://cdn.example.com/video.mp4'), isFalse);
+    });
+  });
+
+  group('resolveInlineVideoOffscreenAction', () {
+    test('pauses a playing video that left the viewport', () {
+      expect(
+        resolveInlineVideoOffscreenAction(
+          visible: false,
+          isPlaying: true,
+          pausedOffscreen: false,
+        ),
+        ChatInlineVideoOffscreenAction.pause,
+      );
+    });
+
+    test('does not pause a user-paused video that left the viewport', () {
+      expect(
+        resolveInlineVideoOffscreenAction(
+          visible: false,
+          isPlaying: false,
+          pausedOffscreen: false,
+        ),
+        ChatInlineVideoOffscreenAction.none,
+      );
+    });
+
+    test('resumes only if this helper paused it offscreen', () {
+      expect(
+        resolveInlineVideoOffscreenAction(
+          visible: true,
+          isPlaying: false,
+          pausedOffscreen: true,
+        ),
+        ChatInlineVideoOffscreenAction.resume,
+      );
+      expect(
+        resolveInlineVideoOffscreenAction(
+          visible: true,
+          isPlaying: false,
+          pausedOffscreen: false,
+        ),
+        ChatInlineVideoOffscreenAction.none,
+      );
     });
   });
 
@@ -94,13 +135,13 @@ void main() {
         attachment,
         compactMediaDimensions,
       );
-      expect(source.directMediaUrl, 'https://cdn.example.com/clip.mp4');
+      expect(source.directMediaUrl, 'https://proxy.example.com/clip.mp4');
       expect(source.posterUrl, isNotNull);
       expect(source.posterUrl, contains('format=webp'));
       expect(source.placeholder, 'thumbhash');
       expect(source.width, 1920);
       expect(source.height, 1080);
-      expect(source.fallbackUrl, 'https://cdn.example.com/clip.mp4');
+      expect(source.fallbackUrl, 'https://proxy.example.com/clip.mp4');
       expect(source.hasPlayableContent, isTrue);
     });
 
@@ -132,60 +173,13 @@ void main() {
       const ChatVideoSource source = ChatVideoSource(fallbackUrl: '');
       expect(resolvePlaybackUrl(source), throwsA(isA<StateError>()));
     });
-  });
 
-  group('resolveYouTubeStreamUrl', () {
-    tearDown(() {
-      debugYouTubeStreamResolver = null;
-      debugYouTubeStreamResolveTimeout = null;
-    });
-
-    test('uses debug resolver when provided', () async {
-      debugYouTubeStreamResolver = (String pageUrl) async {
-        return 'https://cdn.example.com/stream.mp4';
-      };
-      final String url = await resolveYouTubeStreamUrl(
-        'https://www.youtube.com/watch?v=abc',
+    test('throws for YouTube sources', () {
+      const ChatVideoSource source = ChatVideoSource(
+        pageUrl: 'https://www.youtube.com/watch?v=abc',
+        fallbackUrl: 'https://www.youtube.com/watch?v=abc',
       );
-      expect(url, 'https://cdn.example.com/stream.mp4');
-    });
-
-    test('retries once after resolver failure', () async {
-      var attempts = 0;
-      debugYouTubeStreamResolver = (String pageUrl) async {
-        attempts++;
-        if (attempts == 1) {
-          throw StateError('temporary failure');
-        }
-        return 'https://cdn.example.com/stream.mp4';
-      };
-      final String url = await resolveYouTubeStreamUrl(
-        'https://www.youtube.com/watch?v=abc',
-      );
-      expect(attempts, 2);
-      expect(url, 'https://cdn.example.com/stream.mp4');
-    });
-
-    test('throws after retry exhaustion', () async {
-      debugYouTubeStreamResolver = (String pageUrl) {
-        throw StateError('permanent failure');
-      };
-      await expectLater(
-        resolveYouTubeStreamUrl('https://www.youtube.com/watch?v=abc'),
-        throwsA(isA<StateError>()),
-      );
-    });
-
-    test('times out slow resolvers', () async {
-      debugYouTubeStreamResolveTimeout = const Duration(milliseconds: 50);
-      debugYouTubeStreamResolver = (String pageUrl) async {
-        await Future<void>.delayed(const Duration(seconds: 1));
-        return 'https://cdn.example.com/stream.mp4';
-      };
-      await expectLater(
-        resolveYouTubeStreamUrl('https://www.youtube.com/watch?v=abc'),
-        throwsA(isA<TimeoutException>()),
-      );
+      expect(resolvePlaybackUrl(source), throwsA(isA<StateError>()));
     });
   });
 }

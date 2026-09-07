@@ -1,5 +1,4 @@
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_motion_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
@@ -11,6 +10,7 @@ import 'package:fluxer_app/features/guilds/providers/guild_drag_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/organized_guild_list_provider.dart';
 import 'package:fluxer_app/features/guilds/utils/guild_folder_icon.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:fluxer_app/shared/utils/fluxer_haptics.dart';
 import 'package:fluxer_app/shared/utils/guild_name_abbreviation.dart';
@@ -256,8 +256,10 @@ class _GuildDragWrapperState extends ConsumerState<GuildDragWrapper> {
 
     final bool collapseSource =
         useLongPressDrag &&
-        dragState.dragItemId == widget.itemId &&
-        dragState.hasMovedFromHoldPoint;
+        dragState.shouldCollapseDragSource(
+          itemId: widget.itemId,
+          useLongPressDrag: useLongPressDrag,
+        );
 
     final Widget peekHostChild = !widget.enabled
         ? dragTarget

@@ -1,4 +1,7 @@
-import 'package:flutter/material.dart';
+// Root ProviderScope built by a helper; the lint only exempts a
+// ProviderScope written inline in pumpWidget.
+// ignore_for_file: riverpod_lint/scoped_providers_should_specify_dependencies
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/limits/instance_limit_provider.dart';
@@ -14,7 +17,8 @@ import 'package:fluxer_app/features/voice/providers/voice_media_devices_provider
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
 import 'package:fluxer_app/features/voice/services/voice_settings_applicator.dart';
-import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
+
 import '../../helpers/test_l10n.dart';
 
 Widget _wrap(Widget child) {

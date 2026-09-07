@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/providers/active_instance_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
@@ -10,6 +9,7 @@ import 'package:fluxer_app/features/auth/providers/instance_selector_provider.da
 import 'package:fluxer_app/features/auth/providers/login_view_model.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class AddAccountScreen extends ConsumerStatefulWidget {
@@ -101,10 +101,7 @@ class _AddAccountScreenState extends ConsumerState<AddAccountScreen> {
         body: AuthViewport(
           maxWidth: isMobileLayout(context) ? double.infinity : 420,
           padding: EdgeInsets.all(layout.s5),
-          child: AuthFlowContent(
-            showBrowserLogin: false,
-            heading: l10n.accountAdd,
-          ),
+          child: AuthFlowContent(heading: l10n.accountAdd),
         ),
       ),
     );

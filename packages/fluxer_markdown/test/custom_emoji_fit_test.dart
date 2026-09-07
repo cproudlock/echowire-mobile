@@ -1,10 +1,11 @@
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_markdown/src/config/fluxer_markdown_config.dart';
 import 'package:fluxer_markdown/src/renderers/fluxer_markdown_renderers.dart';
 import 'package:fluxer_markdown/src/utils/jumbo_emoji.dart';
 import 'package:fluxer_markdown/src/widgets/fluxer_markdown.dart';
+import 'package:material_ui/material_ui.dart';
+import 'support/native_test_parser.dart';
 
 const FluxerMarkdownConfig _testMarkdownConfig = FluxerMarkdownConfig(
   resolveEmojiShortcode: _noopEmojiShortcode,
@@ -30,6 +31,7 @@ Future<void> _pumpMarkdown(WidgetTester tester, String data) async {
         body: SizedBox(
           width: 320,
           child: FluxerMarkdown(
+            astParser: parseTestMarkdownAst,
             data: data,
             config: _testMarkdownConfig,
             baseStyle: _baseStyle,
@@ -101,5 +103,16 @@ void main() {
         );
       },
     );
+
+    testWidgets('animated custom emoji skips decode cache resize', (
+      tester,
+    ) async {
+      await _pumpMarkdown(tester, 'hello <a:smile:111111111111111111> world');
+
+      final CachedNetworkImage image = _customEmojiImage(tester);
+      expect(image.fit, BoxFit.contain);
+      expect(image.memCacheWidth, isNull);
+      expect(image.memCacheHeight, isNull);
+    });
   });
 }

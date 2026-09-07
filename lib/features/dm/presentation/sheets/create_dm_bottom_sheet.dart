@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/utils/navigate_to_channel_content.dart';
@@ -8,6 +7,7 @@ import 'package:fluxer_app/features/dm/presentation/widgets/create_dm_body.dart'
 import 'package:fluxer_app/features/dm/providers/create_dm_view_model.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 class CreateDmBottomSheet {
   CreateDmBottomSheet._();
@@ -30,7 +30,6 @@ class CreateDmBottomSheet {
       ),
       useRootNavigator: true,
       minChildSize: 0.5,
-      maxChildSize: 0.92,
       builder: (sheetContext, scrollController, close) {
         return _CreateDmBottomSheetBody(
           options: options,

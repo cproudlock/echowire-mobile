@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_markdown/src/config/fluxer_markdown_config.dart';
 import 'package:fluxer_markdown/src/widgets/fluxer_markdown.dart';
+import 'package:material_ui/material_ui.dart';
+import 'support/native_test_parser.dart';
 
 const FluxerMarkdownConfig _testMarkdownConfig = FluxerMarkdownConfig(
   resolveEmojiShortcode: _noopEmojiShortcode,
@@ -28,6 +29,7 @@ Future<void> _pumpGallerySection(WidgetTester tester, String data) async {
           child: SizedBox(
             width: 360,
             child: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
               data: data,
               config: _testMarkdownConfig,
               baseStyle: _baseStyle,
@@ -86,8 +88,8 @@ void main() {
         tester,
         '- unordered\n  - nested\n1. ordered\n2. second',
       );
-      expect(find.text('1.'), findsOneWidget);
-      expect(find.text('\u2022'), findsWidgets);
+      expect(find.text('1.', findRichText: true), findsOneWidget);
+      expect(find.text('\u2022', findRichText: true), findsWidgets);
     });
 
     testWidgets('blockquotes section renders', (tester) async {

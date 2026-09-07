@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/observability/observability_reporting_provider.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/advanced_configure_sheets.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/advanced_search_sheets.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/wide_settings_content_layout.dart';
 import 'package:fluxer_app/features/settings/providers/advanced_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
+import 'package:fluxer_app/features/settings/providers/haptics_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
 import 'package:fluxer_app/features/settings/providers/voice_settings_provider.dart';
 import 'package:fluxer_app/features/settings/utils/advanced_setting_visibility.dart';
@@ -14,6 +15,7 @@ import 'package:fluxer_app/features/settings/utils/user_settings_domain_actions.
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/features/voice/domain/voice_settings_state.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/external_links/external_link_utils.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 
@@ -25,6 +27,9 @@ class UserAdvancedSettings extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = FluxerLocalizations.of(context);
+    final String productName = ref.watch(
+      instanceRuntimeConfigProvider.select((config) => config.productName),
+    );
 
     return SingleChildScrollView(
       controller: scrollController,
@@ -81,7 +86,7 @@ class UserAdvancedSettings extends ConsumerWidget {
                   ),
                 ),
                 onChanged: (value) =>
-                    handleTrustAllDomainsChange(context, ref, value),
+                    handleTrustAllDomainsChange(context, ref, value: value),
               ),
               FluxerSettingsConfigureRow(
                 title: l10n.advancedSettingScreenSharePreviewBehaviorLabel,
@@ -109,6 +114,19 @@ class UserAdvancedSettings extends ConsumerWidget {
                 onChanged: (value) => ref
                     .read(appearancePreferencesProvider.notifier)
                     .setShowNeko(value: value),
+              ),
+              FluxerSettingsSwitchItem(
+                label: l10n.advancedSettingMobileSplashZoomAnimationLabel,
+                description:
+                    l10n.advancedSettingMobileSplashZoomAnimationDescription,
+                value: ref.watch(
+                  appearancePreferencesProvider.select(
+                    (state) => state.mobileSplashZoomAnimation,
+                  ),
+                ),
+                onChanged: (value) => ref
+                    .read(appearancePreferencesProvider.notifier)
+                    .setMobileSplashZoomAnimation(value: value),
               ),
               if (showKeyboardShortcutAdvancedSettings(context))
                 FluxerSettingsSwitchItem(
@@ -173,6 +191,14 @@ class UserAdvancedSettings extends ConsumerWidget {
                 onChanged: (value) => ref
                     .read(advancedPreferencesProvider.notifier)
                     .setShowVideoSeekPreviewThumbnails(value: value),
+              ),
+              FluxerSettingsSwitchItem(
+                label: l10n.advancedSettingHapticFeedbackLabel,
+                description: l10n.advancedSettingHapticFeedbackDescription,
+                value: ref.watch(hapticsPreferencesProvider),
+                onChanged: (value) => ref
+                    .read(hapticsPreferencesProvider.notifier)
+                    .setEnabled(value: value),
               ),
             ],
           ),
@@ -284,8 +310,11 @@ class UserAdvancedSettings extends ConsumerWidget {
                     (state) => state.defaultHideMutedChannels,
                   ),
                 ),
-                onChanged: (value) =>
-                    handleDefaultHideMutedChannelsChange(context, ref, value),
+                onChanged: (value) => handleDefaultHideMutedChannelsChange(
+                  context,
+                  ref,
+                  value: value,
+                ),
               ),
             ],
           ),
@@ -385,11 +414,15 @@ class UserAdvancedSettings extends ConsumerWidget {
           FluxerSettingsSection(
             sectionId: 'advanced-performance',
             title: l10n.advancedPerformanceReportingTitle,
-            description: l10n.advancedPerformanceReportingSectionDescription,
+            description: l10n.advancedPerformanceReportingSectionDescription(
+              productName,
+            ),
             children: [
               FluxerSettingsSwitchItem(
                 label: l10n.advancedPerformanceReportingLabel,
-                description: l10n.advancedPerformanceReportingDescription,
+                description: l10n.advancedPerformanceReportingDescription(
+                  productName,
+                ),
                 value: ref.watch(observabilityReportingProvider),
                 enabled: observabilityReportingIsAvailable(),
                 onChanged: (bool value) => ref

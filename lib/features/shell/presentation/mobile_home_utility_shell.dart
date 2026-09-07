@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_motion_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
@@ -8,6 +7,7 @@ import 'package:fluxer_app/features/shell/presentation/desktop_shell_scaffold.da
 import 'package:fluxer_app/features/shell/presentation/swipe_constants.dart';
 import 'package:fluxer_app/features/shell/providers/shell_blocks_horizontal_gestures_provider.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:go_router/go_router.dart';
 
 class MobileHomeUtilityShell extends ConsumerStatefulWidget {
@@ -118,12 +118,10 @@ class _MobileHomeUtilityShellState extends ConsumerState<MobileHomeUtilityShell>
                   );
                 },
                 onHorizontalDragCancel: () {
-                  unawaited(
-                    _swipeController.animateBack(
-                      0,
-                      duration: horizontalSwipeSnapBackDuration(context),
-                      curve: kHorizontalSwipeCurve,
-                    ),
+                  _swipeController.animateBack(
+                    0,
+                    duration: horizontalSwipeSnapBackDuration(context),
+                    curve: kHorizontalSwipeCurve,
                   );
                 },
               ),
@@ -167,12 +165,10 @@ class _MobileHomeUtilityShellState extends ConsumerState<MobileHomeUtilityShell>
             }),
       );
     } else {
-      unawaited(
-        _swipeController.animateBack(
-          0,
-          duration: horizontalSwipeSnapBackDuration(context),
-          curve: kHorizontalSwipeCurve,
-        ),
+      _swipeController.animateBack(
+        0,
+        duration: horizontalSwipeSnapBackDuration(context),
+        curve: kHorizontalSwipeCurve,
       );
     }
   }

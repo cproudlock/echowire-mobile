@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 import 'dart:convert';
 
 import 'package:cross_file/cross_file.dart';
@@ -14,12 +15,12 @@ import 'package:fluxer_app/core/providers/app_ui_lifecycle_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/providers/gateway_ready_provider.dart';
 import 'package:fluxer_app/core/providers/gateway_session_recovery_provider.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/utils/message_mention_resolver.dart';
 import 'package:fluxer_app/features/channels/data/read_state_repository.dart';
 import 'package:fluxer_app/features/channels/data/read_state_utils.dart';
-import 'package:fluxer_app/features/channels/data/unread_permission_utils.dart';
 import 'package:fluxer_app/features/channels/data/unread_settings_resolver.dart';
 import 'package:fluxer_app/features/channels/providers/ack_batcher_provider.dart';
 import 'package:fluxer_app/features/channels/providers/read_state_repository_provider.dart';
@@ -27,6 +28,7 @@ import 'package:fluxer_app/features/chat/data/message_repository.dart';
 import 'package:fluxer_app/features/chat/domain/favorite_meme.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/domain/message_attachment_update.dart';
+import 'package:fluxer_app/features/chat/domain/message_translation.dart';
 import 'package:fluxer_app/features/chat/domain/message_upload_send_cancelled_exception.dart';
 import 'package:fluxer_app/features/chat/domain/message_window.dart';
 import 'package:fluxer_app/features/chat/domain/pagination_pump_policy.dart';
@@ -42,13 +44,13 @@ import 'package:fluxer_app/features/chat/providers/messages/message_realtime_eve
 import 'package:fluxer_app/features/chat/providers/messages/message_realtime_frame_batcher.dart';
 import 'package:fluxer_app/features/chat/providers/messages/message_realtime_provider.dart';
 import 'package:fluxer_app/features/chat/providers/messages/message_references_provider.dart';
+import 'package:fluxer_app/features/chat/providers/messages/message_upload_sessions_provider.dart';
 import 'package:fluxer_app/features/chat/providers/messages/typing_sender.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/sticker_picker_provider.dart';
 import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_immunity_provider.dart';
 import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_indicator_shake_provider.dart';
 import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_rate_limited_alert_provider.dart';
 import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_tracker.dart';
-import 'package:fluxer_app/features/chat/utils/slowmode_utils.dart';
 import 'package:fluxer_app/features/chat/providers/upload/cloud_upload_controller.dart';
 import 'package:fluxer_app/features/chat/utils/channel_jump_navigator.dart';
 import 'package:fluxer_app/features/chat/utils/channel_message_stream.dart';
@@ -61,6 +63,7 @@ import 'package:fluxer_app/features/chat/utils/mention_reply_preference_utils.da
 import 'package:fluxer_app/features/chat/utils/message_page_sync.dart';
 import 'package:fluxer_app/features/chat/utils/message_screen_reader_announce.dart';
 import 'package:fluxer_app/features/chat/utils/message_send_failure_messages.dart';
+import 'package:fluxer_app/features/chat/utils/slowmode_utils.dart';
 import 'package:fluxer_app/features/chat/utils/uploading_attachment_utils.dart';
 import 'package:fluxer_app/features/chat/utils/url_sanitization_utils.dart';
 import 'package:fluxer_app/features/chat/utils/voice_message_constants.dart';
@@ -76,12 +79,14 @@ import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/shared/utils/emoji_registry.dart';
 import 'package:fluxer_app/shared/utils/guild_member_prefetch.dart';
 import 'package:fluxer_dart/export.dart';
+import 'package:fluxer_markdown/fluxer_markdown.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'chat_view_model.g.dart';
 
 const _kPageSize = 50;
 const _kInitialPageSize = 50;
+const _kMaxParkedWindows = 4;
 const _kJumpToPresentPageSize = 50;
 const Duration _kChannelNetworkRefreshTtl = Duration(seconds: 30);
 const _kReadAckMinInterval = Duration(seconds: 1);
@@ -265,7 +270,7 @@ class ChatViewState {
     return auth.origin;
   }
 
-  bool get canSend => messageText.trim().isNotEmpty;
+  bool get canSend => hasVisibleContent(messageText);
 
   /// The `write` parameter is the ONLY way to change [messages], and it is
   /// indivisible from its [MessagesOrigin]: an untagged messages write is
@@ -527,6 +532,18 @@ class _WindowSwapCommit {
   final Completer<bool> done = Completer<bool>();
 }
 
+class _ParkedChannelWindow {
+  const _ParkedChannelWindow({
+    required this.messages,
+    required this.hasMoreMessages,
+    required this.hasMoreNewerMessages,
+  });
+
+  final List<Message> messages;
+  final bool hasMoreMessages;
+  final bool hasMoreNewerMessages;
+}
+
 @Riverpod(keepAlive: true)
 class ChatViewModel extends _$ChatViewModel {
   StreamSubscription<MessageRealtimeEvent>? _eventsSub;
@@ -562,6 +579,8 @@ class ChatViewModel extends _$ChatViewModel {
   ({String channelId, String? targetMessageId, bool loadMessages})?
   _switchInFlightRequest;
   Future<void>? _switchInFlightFuture;
+  final LinkedHashMap<String, _ParkedChannelWindow> _parkedWindows =
+      LinkedHashMap<String, _ParkedChannelWindow>();
   // Bumped whenever the loaded window is replaced wholesale. In-flight page
   // loads compare it before applying, so a slow response cannot resurrect
   // the window it was fetched for after a jump replaced it.
@@ -596,6 +615,7 @@ class ChatViewModel extends _$ChatViewModel {
   final Set<int> _outstandingFetchOrdinals = <int>{};
   final Map<String, List<_LocalMutation>> _localMutations =
       <String, List<_LocalMutation>>{};
+  final Map<String, Message> _inFlightOptimisticMessages = <String, Message>{};
   final Map<String, Future<void>> _pendingDeleteFutures =
       <String, Future<void>>{};
   final Map<String, DateTime> _lastNetworkRefreshByChannel =
@@ -918,8 +938,20 @@ class ChatViewModel extends _$ChatViewModel {
   /// repeated empty results on one cursor re-use the standing verdict instead
   /// of paying a full latest fetch each (the device log priced one at 1.9s).
   /// A confirmation that ends WITHOUT a verdict (network failure) clears its
-  /// entry so the next install may re-owe. m17d pins the dedupe.
-  ({String channelId, String tailId, int windowGeneration})? _tailProbeLedger;
+  /// entry so the next install may re-owe. m17d pins the dedupe. The verdict
+  /// itself is `confirmed`: a newer page that comes back EMPTY for a confirmed
+  /// tail must not write the consult's pessimistic flag over the proof.
+  ({String channelId, String tailId, int windowGeneration, bool confirmed})?
+  _tailProbeLedger;
+
+  bool _isTailConfirmed(String channelId, String tailId) {
+    final probed = _tailProbeLedger;
+    return probed != null &&
+        probed.confirmed &&
+        probed.channelId == channelId &&
+        probed.tailId == tailId &&
+        probed.windowGeneration == _windowGeneration;
+  }
 
   /// Visible for testing: the unread-boundary key must record SUCCESSFUL loads
   /// only, so a discarded attempt leaves it empty and a later attempt proceeds.
@@ -1116,6 +1148,97 @@ class ChatViewModel extends _$ChatViewModel {
       }
     }
     return result;
+  }
+
+  List<Message> _finalizeLoadedMessages(
+    String channelId,
+    List<Message> messages,
+    int fetchOrdinal,
+  ) {
+    return _mergeInFlightSends(
+      channelId,
+      _applyPendingLocalMutations(messages, fetchOrdinal),
+    );
+  }
+
+  void _registerInFlightOptimisticSend(Message message) {
+    final String? nonce = message.clientNonce;
+    if (nonce == null) {
+      return;
+    }
+    _inFlightOptimisticMessages[nonce] = message;
+  }
+
+  void _clearInFlightOptimisticSend(String clientNonce) {
+    _inFlightOptimisticMessages.remove(clientNonce);
+  }
+
+  void _finishAttachmentUploadSession(
+    String clientNonce,
+    CloudUploadController uploadNotifier,
+  ) {
+    uploadNotifier.removeMessageUpload(clientNonce);
+    _clearInFlightOptimisticSend(clientNonce);
+  }
+
+  bool _isMessageUploadSessionActive(String clientNonce) {
+    return ref.read(messageUploadSessionsProvider).containsKey(clientNonce);
+  }
+
+  void _commitDeliveredOptimisticSend({
+    required String channelId,
+    required String optimisticMessageId,
+    required Message sent,
+  }) {
+    if (state.channelId != channelId) {
+      return;
+    }
+    final int optimisticIndex = state.messages.indexWhere(
+      (Message m) => m.id == optimisticMessageId,
+    );
+    final List<Message> nextMessages = _replaceOptimisticWithDelivered(
+      messages: state.messages,
+      optimisticId: optimisticIndex == -1 ? null : optimisticMessageId,
+      delivered: sent.copyWith(
+        deliveryState: MessageDeliveryState.sent,
+        sendError: null,
+      ),
+    );
+    state = state.copyWith(
+      write: (messages: nextMessages, origin: MessagesOrigin.localMutation),
+    );
+  }
+
+  List<Message> _mergeInFlightSends(String channelId, List<Message> messages) {
+    if (_inFlightOptimisticMessages.isEmpty) {
+      return messages;
+    }
+    final Set<String> existingIds = messages.map((Message m) => m.id).toSet();
+    final sessions = ref.read(messageUploadSessionsProvider);
+    final List<Message> inFlight = <Message>[];
+    final List<String> staleNonces = <String>[];
+    for (final MapEntry<String, Message> entry
+        in _inFlightOptimisticMessages.entries) {
+      if (!sessions.containsKey(entry.key)) {
+        staleNonces.add(entry.key);
+        continue;
+      }
+      final Message message = entry.value;
+      if (message.channelId != channelId) {
+        continue;
+      }
+      if (existingIds.contains(message.id)) {
+        continue;
+      }
+      inFlight.add(message);
+    }
+    for (final String nonce in staleNonces) {
+      _inFlightOptimisticMessages.remove(nonce);
+    }
+    if (inFlight.isEmpty) {
+      return messages;
+    }
+    return mergeMessagesSorted(messages, inFlight);
   }
 
   /// Releases the barrier of a swap that will never commit: it failed, it was
@@ -1554,6 +1677,24 @@ class ChatViewModel extends _$ChatViewModel {
         compareSnowflakeIds(messageId, newestId) <= 0;
   }
 
+  void applyMessageTranslation({
+    required String messageId,
+    required MessageTranslation? translation,
+  }) {
+    final int idx = state.messages.indexWhere(
+      (Message message) => message.id == messageId,
+    );
+    if (idx == -1) {
+      return;
+    }
+    final Message existing = state.messages[idx];
+    final List<Message> next = List<Message>.from(state.messages);
+    next[idx] = existing.copyWith(translation: translation);
+    state = state.copyWith(
+      write: (messages: next, origin: MessagesOrigin.localMutation),
+    );
+  }
+
   List<Message>? _replaceById(List<Message> list, Message msg) {
     final idx = list.indexWhere((m) => m.id == msg.id);
     if (idx == -1) {
@@ -1609,7 +1750,8 @@ class ChatViewModel extends _$ChatViewModel {
     }
     final String sanitizedContent = stripPrivateUseCharacters(content);
     final String? replyId = reply?.id;
-    final bool hasDraft = sanitizedContent.isNotEmpty || replyId != null;
+    final bool hasDraft =
+        hasVisibleContent(sanitizedContent) || replyId != null;
     final dao = ref.read(fluxerDatabaseProvider).composerDraftDao;
     if (!hasDraft) {
       await dao.deleteDraft(channelId);
@@ -1619,6 +1761,74 @@ class ChatViewModel extends _$ChatViewModel {
       channelId: channelId,
       content: sanitizedContent,
       replyToMessageId: replyId,
+    );
+  }
+
+  void _parkLoadedWindow(String channelId) {
+    if (channelId.isEmpty || state.messages.isEmpty) {
+      return;
+    }
+    _parkedWindows.remove(channelId);
+    _parkedWindows[channelId] = _ParkedChannelWindow(
+      messages: List<Message>.unmodifiable(state.messages),
+      hasMoreMessages: state.hasMoreMessages,
+      hasMoreNewerMessages: state.hasMoreNewerMessages,
+    );
+    while (_parkedWindows.length > _kMaxParkedWindows) {
+      _parkedWindows.remove(_parkedWindows.keys.first);
+    }
+  }
+
+  Future<void> _applyReadComposerDraft({
+    required String channelId,
+    required Future<({String text, Message? reply, bool replyMentioning})>
+    draftFuture,
+    required bool Function() isCurrentSwitch,
+    required void Function(String name) mark,
+  }) async {
+    final ({String text, Message? reply, bool replyMentioning}) loaded =
+        await draftFuture;
+    if (!isCurrentSwitch()) {
+      return;
+    }
+    mark('draft');
+    _applyComposerDraftIfCurrent(
+      channelId: channelId,
+      draft: (text: loaded.text, reply: loaded.reply),
+      replyMentioning: loaded.replyMentioning,
+    );
+  }
+
+  void _applyComposerDraftIfCurrent({
+    required String channelId,
+    required ({String text, Message? reply}) draft,
+    required bool replyMentioning,
+  }) {
+    if (!ref.mounted || state.channelId != channelId) {
+      return;
+    }
+    state = state.copyWith(
+      messageText: draft.text,
+      replyingTo: draft.reply,
+      replyMentioning: replyMentioning,
+    );
+  }
+
+  Future<({String text, Message? reply, bool replyMentioning})>
+  _readComposerDraft(String channelId) async {
+    final ({String text, Message? reply}) draft = await _loadComposerDraft(
+      channelId,
+    );
+    if (draft.reply == null) {
+      return (text: draft.text, reply: null, replyMentioning: false);
+    }
+    return (
+      text: draft.text,
+      reply: draft.reply,
+      replyMentioning: await _defaultReplyMentionFor(
+        message: draft.reply!,
+        channelId: channelId,
+      ),
     );
   }
 
@@ -1803,6 +2013,12 @@ class ChatViewModel extends _$ChatViewModel {
       'target=$targetMessageId load=$loadMessages',
     );
     final Stopwatch switchStopwatch = Stopwatch()..start();
+    // Cumulative ms marks after each awaited phase, for device-log attribution.
+    final List<String> phaseMarks = <String>[];
+    void mark(String name) {
+      phaseMarks.add('$name@${switchStopwatch.elapsedMilliseconds}');
+    }
+
     if (state.channelId == channelId &&
         targetMessageId != null &&
         state.isLoading) {
@@ -1844,6 +2060,7 @@ class ChatViewModel extends _$ChatViewModel {
       final bool isChannelChange =
           previousChannelId.isNotEmpty && previousChannelId != channelId;
       if (isChannelChange) {
+        _parkLoadedWindow(previousChannelId);
         _contiguity.invalidate();
         final String previousText = state.messageText;
         final Message? previousReply = state.replyingTo;
@@ -1855,36 +2072,29 @@ class ChatViewModel extends _$ChatViewModel {
         ref
             .read(messageReferencesProvider.notifier)
             .clearChannel(previousChannelId);
-        unawaited(
-          _persistComposerDraftForChannel(
-            channelId: previousChannelId,
-            content: previousText,
-            reply: previousReply,
-          ),
-        );
+        if (state.editingMessage == null) {
+          unawaited(
+            _persistComposerDraftForChannel(
+              channelId: previousChannelId,
+              content: previousText,
+              reply: previousReply,
+            ),
+          );
+        }
       }
-      final draft = await _loadComposerDraft(channelId);
-      if (!isCurrentSwitch()) {
-        return;
-      }
-      final bool replyMentioning;
-      if (draft.reply == null) {
-        replyMentioning = false;
-      } else {
-        replyMentioning = await _defaultReplyMentionFor(
-          message: draft.reply!,
-          channelId: channelId,
-        );
+      final Future<({String text, Message? reply, bool replyMentioning})>
+      draftFuture = _readComposerDraft(channelId);
+      if (!loadMessages) {
+        final loadedDraft = await draftFuture;
         if (!isCurrentSwitch()) {
           return;
         }
-      }
-      if (!loadMessages) {
+        mark('draft');
         state = _switchedChannelState(
           channelId: channelId,
           messages: isChannelChange ? const [] : state.messages,
-          draft: draft,
-          replyMentioning: replyMentioning,
+          draft: (text: loadedDraft.text, reply: loadedDraft.reply),
+          replyMentioning: loadedDraft.replyMentioning,
           scrollToBottomSignal: state.scrollToBottomSignal,
           isLoading: false,
           isSyncingMessages: false,
@@ -1921,8 +2131,8 @@ class ChatViewModel extends _$ChatViewModel {
         state = _switchedChannelState(
           channelId: channelId,
           messages: const [],
-          draft: draft,
-          replyMentioning: replyMentioning,
+          draft: (text: '', reply: null),
+          replyMentioning: false,
           scrollToBottomSignal: state.scrollToBottomSignal,
           isLoading: true,
           isSyncingMessages: false,
@@ -1937,6 +2147,12 @@ class ChatViewModel extends _$ChatViewModel {
           channelId,
           targetMessageId: targetMessageId,
           shouldApplyResult: isCurrentSwitch,
+        );
+        await _applyReadComposerDraft(
+          channelId: channelId,
+          draftFuture: draftFuture,
+          isCurrentSwitch: isCurrentSwitch,
+          mark: mark,
         );
         if (isCurrentSwitch() && state.channelId == channelId) {
           talker.debug(
@@ -1981,26 +2197,83 @@ class ChatViewModel extends _$ChatViewModel {
       final repo = ref.read(messageRepositoryProvider);
       final int cacheOrdinal = _beginPageFetch();
       cacheFetchOrdinal = cacheOrdinal;
+      final Future<bool> unreadFuture = _channelHasNewUnreadMessages(channelId);
+      final Future<List<Message>> cacheFuture = repo.getCachedMessages(
+        channelId,
+        limit: _kInitialPageSize,
+      );
+      final _ParkedChannelWindow? parked = _parkedWindows[channelId];
+      if (parked != null && parked.messages.isNotEmpty) {
+        final bool hasUnread = await unreadFuture;
+        if (!isCurrentSwitch()) {
+          return;
+        }
+        if (!hasUnread) {
+          mark('reads');
+          final bool willRefresh = _shouldRefreshChannelFromNetwork(channelId);
+          state = _switchedChannelState(
+            channelId: channelId,
+            messages: _finalizeLoadedMessages(
+              channelId,
+              parked.messages,
+              cacheOrdinal,
+            ),
+            draft: (text: '', reply: null),
+            replyMentioning: false,
+            scrollToBottomSignal: state.scrollToBottomSignal,
+            isLoading: false,
+            isSyncingMessages: willRefresh,
+            isLoadingMore: false,
+            isLoadingNewer: false,
+            hasMoreMessages: parked.hasMoreMessages,
+            hasMoreNewerMessages: parked.hasMoreNewerMessages,
+            replaceWindow: true,
+          );
+          _invalidateMessageCacheTrust();
+          _deferMessageReferencesLoaded(
+            channelId: channelId,
+            messages: parked.messages,
+          );
+          if (willRefresh) {
+            unawaited(
+              _refreshMessagesFromNetwork(
+                channelId,
+                isDirectLatestLoad: false,
+                preserveLoadedWindow: true,
+                shouldApplyResult: isCurrentSwitch,
+              ),
+            );
+          }
+          await _applyReadComposerDraft(
+            channelId: channelId,
+            draftFuture: draftFuture,
+            isCurrentSwitch: isCurrentSwitch,
+            mark: mark,
+          );
+          return;
+        }
+      }
+      final (List<Message> cachedRows, bool hasUnread) = await (
+        cacheFuture,
+        unreadFuture,
+      ).wait;
+      if (!isCurrentSwitch()) {
+        return;
+      }
+      mark('reads');
       final cached = mergeMentionHighlightFlags(
-        await repo.getCachedMessages(channelId, limit: _kInitialPageSize),
+        cachedRows,
         currentUserId: currentUserId,
       );
-      if (!isCurrentSwitch()) {
-        return;
-      }
-      final hasUnread = await _channelHasNewUnreadMessages(channelId);
-      if (!isCurrentSwitch()) {
-        return;
-      }
       if (cached.isNotEmpty && !hasUnread) {
         final bool incompleteCache = cached.length < _kPageSize;
         final bool willRefresh =
             incompleteCache || _shouldRefreshChannelFromNetwork(channelId);
         state = _switchedChannelState(
           channelId: channelId,
-          messages: _applyPendingLocalMutations(cached, cacheOrdinal),
-          draft: draft,
-          replyMentioning: replyMentioning,
+          messages: _finalizeLoadedMessages(channelId, cached, cacheOrdinal),
+          draft: (text: '', reply: null),
+          replyMentioning: false,
           scrollToBottomSignal: state.scrollToBottomSignal,
           isLoading: false,
           isSyncingMessages: willRefresh,
@@ -2022,13 +2295,19 @@ class ChatViewModel extends _$ChatViewModel {
             ),
           );
         }
+        await _applyReadComposerDraft(
+          channelId: channelId,
+          draftFuture: draftFuture,
+          isCurrentSwitch: isCurrentSwitch,
+          mark: mark,
+        );
         return;
       }
       state = _switchedChannelState(
         channelId: channelId,
         messages: const [],
-        draft: draft,
-        replyMentioning: replyMentioning,
+        draft: (text: '', reply: null),
+        replyMentioning: false,
         scrollToBottomSignal: state.scrollToBottomSignal,
         isLoading: true,
         isSyncingMessages: false,
@@ -2052,6 +2331,7 @@ class ChatViewModel extends _$ChatViewModel {
           aroundUnreadId = ack;
         }
       }
+      mark('ack');
       await _refreshMessagesFromNetwork(
         channelId,
         showLoadingSpinner: true,
@@ -2059,13 +2339,21 @@ class ChatViewModel extends _$ChatViewModel {
         isDirectLatestLoad: aroundUnreadId == null,
         shouldApplyResult: isCurrentSwitch,
       );
+      mark('net');
+      await _applyReadComposerDraft(
+        channelId: channelId,
+        draftFuture: draftFuture,
+        isCurrentSwitch: isCurrentSwitch,
+        mark: mark,
+      );
     } finally {
       if (cacheFetchOrdinal != null) {
         _endPageFetch(cacheFetchOrdinal);
       }
       debugPrint(
         '[ChatViewModel] switchChannel($channelId) completed in '
-        '${switchStopwatch.elapsedMilliseconds}ms',
+        '${switchStopwatch.elapsedMilliseconds}ms'
+        '${phaseMarks.isEmpty ? '' : ' [${phaseMarks.join(' ')}]'}',
       );
     }
   }
@@ -2405,7 +2693,11 @@ class ChatViewModel extends _$ChatViewModel {
                 networkPage: page.messages,
                 syncBaselineOldestId: current.isEmpty ? null : current.first.id,
               );
-        return _applyPendingLocalMutations(reconciled, effectiveFetchOrdinal);
+        return _finalizeLoadedMessages(
+          channelId,
+          reconciled,
+          effectiveFetchOrdinal,
+        );
       }
 
       final List<Message> merged = reduceAgainst(state.messages);
@@ -2482,11 +2774,6 @@ class ChatViewModel extends _$ChatViewModel {
         return;
       }
 
-      // Around page missing the requested anchor: the server was not centred
-      // where we asked, so the page shape cannot seal the older edge. Newer
-      // still comes from the pointer consult - a missing anchor already makes
-      // aroundPageReachesLiveTail false (detached), and pointer equality can
-      // still prove the live tail (deleted/filtered ack near the present).
       final bool aroundTargetMissing =
           effectiveAroundMessageId != null &&
           !page.messages.any(
@@ -2568,9 +2855,8 @@ class ChatViewModel extends _$ChatViewModel {
       );
       // AFTER the commit, and only here: the probe pages forward from the window
       // this install just published, so firing it before the commit would have
-      // it fetch from whatever the window used to end on. A missing around
-      // target leaves the older edge open without a trustworthy shape to probe.
-      if (newerConsult.needsTailProbe && !aroundTargetMissing) {
+      // it fetch from whatever the window used to end on.
+      if (newerConsult.needsTailProbe) {
         _confirmProvisionalTail(channelId);
       }
       if (targetMessageId == null) {
@@ -2637,9 +2923,10 @@ class ChatViewModel extends _$ChatViewModel {
 
   Future<bool> _channelHasNewUnreadMessages(String channelId) async {
     final database = ref.read(fluxerDatabaseProvider);
-    final currentUserId = ref.read(currentUserIdProvider);
-    final channel = await database.channelDao.getChannelById(channelId);
-    final readState = await database.readStateDao.getReadState(channelId);
+    final (db.Channel? channel, db.ReadState? readState) = await (
+      database.channelDao.getChannelById(channelId),
+      database.readStateDao.getReadState(channelId),
+    ).wait;
     if (readState?.manual ?? false) {
       return true;
     }
@@ -2647,24 +2934,20 @@ class ChatViewModel extends _$ChatViewModel {
     if (stickyUnreadId != null && stickyUnreadId.isNotEmpty) {
       return true;
     }
+    if ((readState?.mentionCount ?? 0) > 0) {
+      return true;
+    }
     final latestMessageId = await resolveLatestMessageIdForUnreadDisplay(
       database,
       channelId,
       channelLastMessageId: channel?.lastMessageId,
       ackLastMessageId: readState?.lastMessageId,
-      mentionCount: readState?.mentionCount ?? 0,
     );
-    final rawMentionCount = readState?.mentionCount ?? 0;
-    if (rawMentionCount > 0) {
-      return true;
-    }
-    final fallbackAckMs = channel == null
+    // A guild channel without an ack returns false before the fallback is
+    // read, so the member-join fallback read is skipped.
+    final int fallbackAckMs = channel == null
         ? snowflakeTimestampMs(channelId)
-        : await guildChannelFallbackAckMs(
-            database: database,
-            channel: channel,
-            currentUserId: currentUserId,
-          );
+        : 0;
     final hasUnreadMessage = hasUnreadByReadState(
       channelLastMessageId: latestMessageId,
       ackLastMessageId: readState?.lastMessageId,
@@ -2700,8 +2983,8 @@ class ChatViewModel extends _$ChatViewModel {
         .readStateDao
         .getReadState(channelId);
     final unreadId = _firstUnreadForCurrentMessages(readState: readState);
-    // Record the sticky divider anchor only. MessageList scrolls the divider
-    // to the viewport top on first render of an unread channel (web parity).
+    // Record the sticky divider anchor only. MessageList parks the divider
+    // at mid-viewport on first render of an unread channel.
     if (unreadId != null) {
       if (state.channelId == channelId) {
         state = state.copyWith(stickyUnreadMessageId: unreadId);
@@ -2850,7 +3133,8 @@ class ChatViewModel extends _$ChatViewModel {
               }
               state = state.copyWith(
                 write: (
-                  messages: _applyPendingLocalMutations(
+                  messages: _finalizeLoadedMessages(
+                    channelId,
                     window.messages,
                     fetchOrdinal,
                   ),
@@ -2920,7 +3204,8 @@ class ChatViewModel extends _$ChatViewModel {
           _contiguityTrusted = true;
           state = state.copyWith(
             write: (
-              messages: _applyPendingLocalMutations(
+              messages: _finalizeLoadedMessages(
+                channelId,
                 window.messages,
                 fetchOrdinal,
               ),
@@ -3094,7 +3379,8 @@ class ChatViewModel extends _$ChatViewModel {
               }
               state = state.copyWith(
                 write: (
-                  messages: _applyPendingLocalMutations(
+                  messages: _finalizeLoadedMessages(
+                    channelId,
                     window.messages,
                     fetchOrdinal,
                   ),
@@ -3149,7 +3435,14 @@ class ChatViewModel extends _$ChatViewModel {
             page.messages.isEmpty ? requestedAfterId : page.messages.last.id,
             detachedWindow: page.messages.length >= _kPageSize,
           );
-      final bool pageIndicatesMoreNewer = newerConsult.hasMoreNewer;
+      // An EMPTY page is the server saying nothing follows this tail; with a
+      // confirmation already standing for it, the two agree and the consult's
+      // pessimistic flag would only overwrite the proof (m16z).
+      final bool tailConfirmed =
+          page.messages.isEmpty &&
+          _isTailConfirmed(channelId, requestedAfterId);
+      final bool pageIndicatesMoreNewer =
+          newerConsult.hasMoreNewer && !tailConfirmed;
       if (isStale()) {
         return newer(
           status: PageLoadStatus.superseded,
@@ -3190,7 +3483,8 @@ class ChatViewModel extends _$ChatViewModel {
           _contiguityTrusted = true;
           state = state.copyWith(
             write: (
-              messages: _applyPendingLocalMutations(
+              messages: _finalizeLoadedMessages(
+                channelId,
                 window.messages,
                 fetchOrdinal,
               ),
@@ -3202,7 +3496,7 @@ class ChatViewModel extends _$ChatViewModel {
           _releaseLoadingNewer(fetchOrdinal);
           // Fired AFTER the install, so the confirmation captures THIS page's
           // tail as its anchor rather than the one we paged away from.
-          if (newerConsult.needsTailProbe) {
+          if (newerConsult.needsTailProbe && !tailConfirmed) {
             _confirmProvisionalTail(channelId);
           }
           talker.debug(
@@ -3355,7 +3649,8 @@ class ChatViewModel extends _$ChatViewModel {
               .toList();
           state = state.copyWith(
             write: (
-              messages: _applyPendingLocalMutations(
+              messages: _finalizeLoadedMessages(
+                channelId,
                 mergeMessagesSorted(pendingLocal, page.messages),
                 fetchOrdinal,
               ),
@@ -3517,21 +3812,9 @@ class ChatViewModel extends _$ChatViewModel {
       // suppressed until the user scrolled. m16c pins this branch.
       return const (hasMoreNewer: false, needsTailProbe: false);
     }
-    // Past here the pointer is strictly AHEAD of our newest row, and every
-    // test below asks one question: is that pointer REAL, or an orphan left by
-    // a deleted tail? Fair for a tail-built window, and the wrong question for
-    // a window built AROUND a target, which ends mid-history by construction:
-    // whatever lies between it and a pointer ahead of it is unloaded newer
-    // history, and no verdict about the pointer's own existence can turn that
-    // into a live tail. A channel this session never opened is where it bites,
-    // because both orphan tests below misfire on it. READY seeds the row
-    // pointer and the read state for every channel but caches no messages, so
-    // the cache lookup misses and the ack, sitting at or past a searched
-    // message, seals the around-window as the tail: jump-to-latest
-    // short-circuits, loadNewer refuses, and MESSAGE_CREATE appends across the
-    // gap. Warm channels escape only because opening them cached the pointer's
-    // row. m16 pins this branch, on the shape a device log confirmed: a search
-    // hit two days behind a pointer READY had just seeded.
+    // Pointer strictly AHEAD of our newest row. A window built AROUND a target
+    // with a FULL newer side ends mid-history by construction, so nothing about
+    // the pointer's own existence can make it a live tail (m16).
     if (detachedWindow) {
       return const (hasMoreNewer: true, needsTailProbe: false);
     }
@@ -3539,37 +3822,13 @@ class ChatViewModel extends _$ChatViewModel {
     if (knownLoadedMessageIds?.contains(lastMessageId) ?? false) {
       return const (hasMoreNewer: true, needsTailProbe: false);
     }
-    final database = ref.read(fluxerDatabaseProvider);
-    final pointerExists =
-        await database.messageDao.getMessage(lastMessageId) != null;
-    if (pointerExists) {
-      return const (hasMoreNewer: true, needsTailProbe: false);
-    }
-    final readState = await database.readStateDao.getReadState(state.channelId);
-    final String? ackMessageId = readState?.lastMessageId;
-    if (ackMessageId != null &&
-        ackMessageId.isNotEmpty &&
-        compareSnowflakeIds(ackMessageId, messageId) >= 0) {
-      // THE genuinely ambiguous signature, as opposed to the two rungs above
-      // that are merely uninformed. The pointer is ahead, its row is nowhere
-      // (not loaded, not cached), and the ack has passed our newest row. Two
-      // worlds fit that description exactly: an orphaned pointer left by a
-      // deleted tail, where this window IS the tail; and a short read whose
-      // missing rows were filtered out of a raw scan that had already been
-      // truncated (shard_impl.rs:610-628), where real messages sit just past
-      // us. This used to answer "tail", which glues the next MESSAGE_CREATE
-      // onto the far side of that gap and silently loses everything in
-      // between. Answer with the pessimistic flag instead and let the install
-      // site settle it with _runTailConfirmation's ONE LATEST page, compared
-      // by ID: equality with our newest server-backed row is positive proof of
-      // the live tail and seals the flag false; a mismatch installs NOTHING
-      // (that page is anchored to the channel's tail, not to our window) and
-      // leaves the flag true for ordinary pagination to fill the gap in order;
-      // an EMPTY page proves nothing and fails open, flag still true.
-      // m16j pins the orphan resolution, m16i the filtered one.
-      return const (hasMoreNewer: true, needsTailProbe: true);
-    }
-    return const (hasMoreNewer: true, needsTailProbe: false);
+    // A SHORT newer side and a pointer ahead of it disagree, and this client
+    // cannot tell which is stale: an orphaned pointer (a deleted tail never
+    // moves it back) and a raw scan filtered below the limit look identical,
+    // and a cached row for the pointer proves only that it once existed.
+    // Flag pessimistically and let the install site settle it with ONE latest
+    // page compared by ID (_runTailConfirmation). m16s, m16x, m16y.
+    return const (hasMoreNewer: true, needsTailProbe: true);
   }
 
   /// Settles a provisionally detached window with ONE after-fetch from its own
@@ -3641,8 +3900,7 @@ class ChatViewModel extends _$ChatViewModel {
     if (windowTailId == null) {
       return;
     }
-    final ({String channelId, String tailId, int windowGeneration})? probed =
-        _tailProbeLedger;
+    final probed = _tailProbeLedger;
     if (probed != null &&
         probed.channelId == channelId &&
         probed.tailId == windowTailId &&
@@ -3658,6 +3916,7 @@ class ChatViewModel extends _$ChatViewModel {
       channelId: channelId,
       tailId: windowTailId,
       windowGeneration: _windowGeneration,
+      confirmed: false,
     );
     final int windowGeneration = _windowGeneration;
     final int switchGeneration = _channelSwitchGeneration;
@@ -3739,7 +3998,15 @@ class ChatViewModel extends _$ChatViewModel {
         channelId,
         fetchOrdinal,
         stillValid,
-        () => state = state.copyWith(hasMoreNewerMessages: false),
+        () {
+          state = state.copyWith(hasMoreNewerMessages: false);
+          _tailProbeLedger = (
+            channelId: channelId,
+            tailId: windowTailId,
+            windowGeneration: windowGeneration,
+            confirmed: true,
+          );
+        },
       );
       // Consumed like every other commit caller: the lane may have refused, and
       // the resume after it can still land on a newer owner's window.
@@ -3752,8 +4019,7 @@ class ChatViewModel extends _$ChatViewModel {
       talker.warning('[ChatPagination] tail confirmation failed', e);
       // No verdict was obtained, so the dedupe entry must not stand for one:
       // the next install owing this tail may re-ask.
-      final ({String channelId, String tailId, int windowGeneration})? probed =
-          _tailProbeLedger;
+      final probed = _tailProbeLedger;
       if (probed != null &&
           probed.channelId == channelId &&
           probed.tailId == windowTailId) {
@@ -3766,19 +4032,11 @@ class ChatViewModel extends _$ChatViewModel {
     }
   }
 
-  /// One pointer value per channel proven orphaned by a terminal latest-page
-  /// fetch; only this exact value may be acked above the visible tail. A
-  /// pointer that advances past it is a fresh, unproven claim.
-  ({String channelId, String pointerId})? _provenOrphanPointer;
-
-  /// Live-tail ack target: max(visibleTail, channel.lastMessageId) for web
-  /// parity. A pointer ahead of the visible tail is either an orphan left by
-  /// a deleted tail (ack it, like web ackWithStickyUnread) or a real create
-  /// whose pointer write raced ahead of its message event (never ack unseen
-  /// rows). Locally identical, so a fresh latest-page fetch decides: the
-  /// pointer was read before the fetch left, so a page whose newest row is
-  /// still [visibleTailId] proves the pointer row is not visibly there.
-  /// Every other answer falls back to the validated visible tail.
+  /// Live-tail ack target: max(visibleTail, channel.lastMessageId), matching
+  /// web ackWithStickyUnread. The server never rewinds last_message_id when
+  /// the tail is deleted (ChannelDataRepository.updateLastMessageId is
+  /// monotonic), so a pointer ahead of the visible tail is acked as-is;
+  /// ReadStateService.ackMessage accepts ids with no row behind them.
   Future<String> _liveTailAckTargetId({
     required String channelId,
     required String visibleTailId,
@@ -3797,41 +4055,7 @@ class ChatViewModel extends _$ChatViewModel {
     if (compareSnowflakeIds(pointer, visibleTailId) <= 0) {
       return visibleTailId;
     }
-    final ({String channelId, String pointerId})? proven = _provenOrphanPointer;
-    if (proven != null &&
-        proven.channelId == channelId &&
-        proven.pointerId == pointer) {
-      // A standing verdict for this exact value: an orphaned pointer cannot
-      // age back into a live row, so re-probing buys nothing.
-      return pointer;
-    }
-    try {
-      // `fresh` is load-bearing: an in-flight latest page with the same key
-      // could carry a server snapshot that predates the pointer read, and
-      // equality against it would launder a real raced pointer into an
-      // "orphan" verdict.
-      final MessageListLoadResult page = await ref
-          .read(messageRepositoryProvider)
-          .loadMessagePage(
-            channelId: channelId,
-            limit: _kPageSize,
-            fresh: true,
-          );
-      final String? channelNewestId = newestServerBackedMessageId(
-        page.messages,
-      );
-      if (channelNewestId == visibleTailId) {
-        _provenOrphanPointer = (channelId: channelId, pointerId: pointer);
-        return pointer;
-      }
-      talker.debug(
-        '[ChatViewModel] pointer $pointer unproven above tail '
-        '$visibleTailId (server newest=${channelNewestId ?? '<none>'})',
-      );
-    } on Exception catch (e) {
-      talker.warning('[ChatViewModel] orphan pointer probe failed', e);
-    }
-    return visibleTailId;
+    return pointer;
   }
 
   Future<void> ackCurrentChannel({bool force = false}) async {
@@ -4048,7 +4272,7 @@ class ChatViewModel extends _$ChatViewModel {
         write: (
           messages: mergeMessagesSorted(
             state.messages,
-            _applyPendingLocalMutations(messages, fetchOrdinal),
+            _finalizeLoadedMessages(channelId, messages, fetchOrdinal),
           ),
           origin: MessagesOrigin.boundaryFill,
         ),
@@ -4262,8 +4486,9 @@ class ChatViewModel extends _$ChatViewModel {
 
   ({String content, int flags}) _normalizeOutgoing(String text) {
     final ({String content, int flags}) silent = stripSilentPrefix(text);
+    final String sanitized = _maybeSanitizeOutgoing(silent.content);
     return (
-      content: _maybeSanitizeOutgoing(silent.content),
+      content: hasVisibleContent(sanitized) ? sanitized : '',
       flags: silent.flags,
     );
   }
@@ -4412,6 +4637,7 @@ class ChatViewModel extends _$ChatViewModel {
     );
     clearStickyUnread();
     unawaited(ref.read(readStateRepositoryProvider).clearSticky(channelId));
+    _registerInFlightOptimisticSend(optimisticMessage);
     unawaited(
       _completeSendWithAttachments(
         channelId: channelId,
@@ -4459,7 +4685,7 @@ class ChatViewModel extends _$ChatViewModel {
     final List<PendingAttachment> pendingAttachments = ref
         .read(cloudUploadControllerProvider(channelId))
         .items;
-    if (text.isEmpty &&
+    if (!hasVisibleContent(text) &&
         stickerIds.isEmpty &&
         favoriteMemeId == null &&
         pendingAttachments.isEmpty) {
@@ -4607,6 +4833,7 @@ class ChatViewModel extends _$ChatViewModel {
       return;
     }
 
+    _registerInFlightOptimisticSend(optimisticMessage);
     unawaited(
       _completeSendWithAttachments(
         channelId: channelId,
@@ -4650,24 +4877,12 @@ class ChatViewModel extends _$ChatViewModel {
             messageFlags: messageFlags,
             tts: tts,
           );
-      if (state.channelId != channelId) {
-        return;
-      }
-      final int optimisticIndex = state.messages.indexWhere(
-        (Message m) => m.id == optimisticMessageId,
-      );
-      final List<Message> nextMessages = _replaceOptimisticWithDelivered(
-        messages: state.messages,
-        optimisticId: optimisticIndex == -1 ? null : optimisticMessageId,
-        delivered: sent.copyWith(
-          deliveryState: MessageDeliveryState.sent,
-          sendError: null,
-        ),
-      );
-      state = state.copyWith(
-        write: (messages: nextMessages, origin: MessagesOrigin.localMutation),
-      );
       unawaited(_recordSlowmodeSendOnSuccess(channelId));
+      _commitDeliveredOptimisticSend(
+        channelId: channelId,
+        optimisticMessageId: optimisticMessageId,
+        sent: sent,
+      );
     } on Object catch (error, st) {
       talker.error(
         '[ChatViewModel] send api_error channelId=$channelId',
@@ -4696,13 +4911,14 @@ class ChatViewModel extends _$ChatViewModel {
         nonce: clientNonce,
         favoriteMemePayload: favoriteMemeId != null,
       );
-      if (!_isOptimisticSendStillActive(optimisticMessageId)) {
+      if (!_isMessageUploadSessionActive(clientNonce)) {
         return;
       }
       if (prepared.isEmpty &&
           outgoingText.isEmpty &&
           stickerIds.isEmpty &&
           favoriteMemeId == null) {
+        _finishAttachmentUploadSession(clientNonce, uploadNotifier);
         return;
       }
       final Message sent = await ref
@@ -4720,29 +4936,15 @@ class ChatViewModel extends _$ChatViewModel {
             messageFlags: messageFlags,
             tts: tts,
           );
-      uploadNotifier.removeMessageUpload(clientNonce);
-      if (state.channelId != channelId) {
-        return;
-      }
-      if (!_isOptimisticSendStillActive(optimisticMessageId)) {
-        return;
-      }
-      final int optimisticIndex = state.messages.indexWhere(
-        (Message m) => m.id == optimisticMessageId,
-      );
-      final List<Message> nextMessages = _replaceOptimisticWithDelivered(
-        messages: state.messages,
-        optimisticId: optimisticIndex == -1 ? null : optimisticMessageId,
-        delivered: sent.copyWith(
-          deliveryState: MessageDeliveryState.sent,
-          sendError: null,
-        ),
-      );
-      state = state.copyWith(
-        write: (messages: nextMessages, origin: MessagesOrigin.localMutation),
-      );
+      _finishAttachmentUploadSession(clientNonce, uploadNotifier);
       unawaited(_recordSlowmodeSendOnSuccess(channelId));
+      _commitDeliveredOptimisticSend(
+        channelId: channelId,
+        optimisticMessageId: optimisticMessageId,
+        sent: sent,
+      );
     } on MessageUploadSendCancelledException {
+      _clearInFlightOptimisticSend(clientNonce);
       return;
     } on Object catch (error, st) {
       talker.error(
@@ -4750,15 +4952,10 @@ class ChatViewModel extends _$ChatViewModel {
         error,
         st,
       );
-      uploadNotifier
-        ..restoreToComposer(clientNonce)
-        ..removeMessageUpload(clientNonce);
+      uploadNotifier.restoreToComposer(clientNonce);
+      _clearInFlightOptimisticSend(clientNonce);
       _handleSendFailure(optimisticMessageId, error);
     }
-  }
-
-  bool _isOptimisticSendStillActive(String optimisticMessageId) {
-    return state.messages.any((Message m) => m.id == optimisticMessageId);
   }
 
   void _syncSlowmodeFromSendError(Object error, String channelId) {
@@ -4773,9 +4970,9 @@ class ChatViewModel extends _$ChatViewModel {
     }
     final int? retryAfterMs = slowmodeRetryAfterMsFromError(error);
     if (retryAfterMs != null) {
-      ref
-          .read(slowmodeRateLimitedAlertProvider.notifier)
-          .show(Duration(milliseconds: retryAfterMs));
+      ref.read(slowmodeRateLimitedAlertProvider.notifier).remaining = Duration(
+        milliseconds: retryAfterMs,
+      );
     }
     ref.read(slowmodeIndicatorShakeProvider.notifier).requestShake();
   }
@@ -4795,6 +4992,8 @@ class ChatViewModel extends _$ChatViewModel {
   }
 
   Future<void> _recordSlowmodeSendOnSuccess(String channelId) async {
+    // One-off snapshot; read does not retain the autoDispose family.
+    // ignore: riverpod_lint/only_use_keep_alive_inside_keep_alive
     if (await ref.read(isSlowmodeImmuneProvider(channelId).future)) {
       return;
     }
@@ -4835,7 +5034,8 @@ class ChatViewModel extends _$ChatViewModel {
             );
       case _SendBlockReason.slowmode:
         if (remaining != null && remaining > Duration.zero) {
-          ref.read(slowmodeRateLimitedAlertProvider.notifier).show(remaining);
+          ref.read(slowmodeRateLimitedAlertProvider.notifier).remaining =
+              remaining;
         }
         ref.read(slowmodeIndicatorShakeProvider.notifier).requestShake();
       case _SendBlockReason.channelNotReady:
@@ -4892,6 +5092,7 @@ class ChatViewModel extends _$ChatViewModel {
         createClientSystemMessage(
           channelId: state.channelId,
           content: systemMessageContent,
+          productName: ref.read(instanceRuntimeConfigProvider).productName,
         ),
       );
       state = state.copyWith(
@@ -4906,6 +5107,23 @@ class ChatViewModel extends _$ChatViewModel {
     state = state.copyWith(
       write: (messages: nextMessages, origin: MessagesOrigin.localMutation),
       errorMessage: failedMessage,
+    );
+  }
+
+  void insertClientSystemMessage(String content) {
+    if (state.channelId.isEmpty) {
+      return;
+    }
+    final List<Message> nextMessages = List<Message>.from(state.messages)
+      ..add(
+        createClientSystemMessage(
+          channelId: state.channelId,
+          content: content,
+          productName: ref.read(instanceRuntimeConfigProvider).productName,
+        ),
+      );
+    state = state.copyWith(
+      write: (messages: nextMessages, origin: MessagesOrigin.localMutation),
     );
   }
 
@@ -4939,6 +5157,7 @@ class ChatViewModel extends _$ChatViewModel {
     }
     final String? nonce = message.clientNonce;
     if (nonce != null) {
+      _clearInFlightOptimisticSend(nonce);
       ref
           .read(cloudUploadControllerProvider(message.channelId).notifier)
           .cancelMessageUpload(nonce);
@@ -5024,6 +5243,7 @@ class ChatViewModel extends _$ChatViewModel {
           createClientSystemMessage(
             channelId: message.channelId,
             content: systemMessageContent,
+            productName: ref.read(instanceRuntimeConfigProvider).productName,
           ),
         );
         state = state.copyWith(
@@ -5069,6 +5289,8 @@ class ChatViewModel extends _$ChatViewModel {
     final Message? deletedSnapshot = messageIndex == -1
         ? null
         : state.messages[messageIndex];
+    final bool clearReply = state.replyingTo?.id == messageId;
+    final bool clearEdit = state.editingMessage?.id == messageId;
     final List<Message>? optimisticallyRemoved = _removeIds(state.messages, {
       messageId,
     });
@@ -5078,7 +5300,14 @@ class ChatViewModel extends _$ChatViewModel {
           messages: optimisticallyRemoved,
           origin: MessagesOrigin.localMutation,
         ),
+        replyingTo: clearReply ? null : state.replyingTo,
+        replyMentioning: !clearReply && state.replyMentioning,
+        editingMessage: clearEdit ? null : state.editingMessage,
+        messageText: clearEdit ? '' : state.messageText,
       );
+      if (clearReply || clearEdit) {
+        unawaited(_flushComposerDraftSave());
+      }
     }
     // A page already in flight was fetched before the server saw this, so it
     // still carries the row. The tombstone survives the request completing,
@@ -5522,14 +5751,13 @@ class ChatViewModel extends _$ChatViewModel {
         () {
           state = state.copyWith(
             write: (
-              messages: _applyPendingLocalMutations(
+              messages: _finalizeLoadedMessages(
+                channelId,
                 page.messages,
                 fetchOrdinal,
               ),
               origin: MessagesOrigin.windowSwap,
             ),
-            // Missing around target: keep the older edge open. Newer comes
-            // from the pointer consult (detached when the anchor is absent).
             hasMoreMessages:
                 aroundTargetMissing || page.messages.length >= _kPageSize,
             hasMoreNewerMessages: hasMoreNewer,
@@ -5556,7 +5784,7 @@ class ChatViewModel extends _$ChatViewModel {
         messages: state.messages,
         embeddedReplyParents: page.embeddedReplyParents,
       );
-      if (newerConsult.needsTailProbe && !aroundTargetMissing) {
+      if (newerConsult.needsTailProbe) {
         _confirmProvisionalTail(channelId);
       }
       scrollToMessage(messageId);
@@ -5676,12 +5904,16 @@ class ChatViewModel extends _$ChatViewModel {
     if (channelId.isEmpty) {
       return;
     }
+    // One-off snapshot; read does not retain the autoDispose family.
+    // ignore: riverpod_lint/only_use_keep_alive_inside_keep_alive
     final GuildComposerAccess? access = ref
         .read(guildComposerAccessProvider(channelId))
         .value;
     if (access != null && !access.canAccess) {
       return;
     }
+    // One-off snapshot; read does not retain the autoDispose family.
+    // ignore: riverpod_lint/only_use_keep_alive_inside_keep_alive
     final ChannelMessagePermissions? perms = ref
         .read(channelMessagePermissionsProvider(channelId))
         .value;
@@ -5696,6 +5928,8 @@ class ChatViewModel extends _$ChatViewModel {
   Future<GuildComposerAccess?> _resolveGuildComposerBlock(
     String channelId,
   ) async {
+    // One-off snapshot; read does not retain the autoDispose family.
+    // ignore: riverpod_lint/only_use_keep_alive_inside_keep_alive
     final GuildComposerAccess access = await ref.read(
       guildComposerAccessProvider(channelId).future,
     );
@@ -5706,6 +5940,7 @@ class ChatViewModel extends _$ChatViewModel {
   }
 
   void startEdit(Message message) {
+    unawaited(_flushComposerDraftSave());
     state = state.copyWith(
       editingMessage: message,
       replyingTo: null,
@@ -5724,9 +5959,10 @@ class ChatViewModel extends _$ChatViewModel {
     if (editingMessage == null) {
       return;
     }
-    final String editedContent = _maybeSanitizeOutgoing(
+    final String sanitized = _maybeSanitizeOutgoing(
       (text ?? state.messageText).trim(),
     );
+    final String editedContent = hasVisibleContent(sanitized) ? sanitized : '';
     if (editedContent.isEmpty || editedContent == editingMessage.content) {
       talker.debug(
         '[ChatViewModel] edit save noop messageId=${editingMessage.id}',
@@ -5943,7 +6179,7 @@ class ChatViewModel extends _$ChatViewModel {
         messageId,
         previousReactions,
         errorMessage: e is DioException
-            ? dioExceptionMessage(e, fallback)
+            ? userFacingErrorMessage(e, fallback)
             : fallback,
       );
     }

@@ -90,7 +90,7 @@ class ThreadRepository {
           type: type.wireValue,
         ),
       );
-      return _cacheAndReturn(resp);
+      return await _cacheAndReturn(resp);
     } on DioException catch (e) {
       throw Exception(e.response?.statusMessage ?? 'Failed to create thread');
     }
@@ -103,7 +103,7 @@ class ThreadRepository {
     try {
       final List<ChannelResponse> resp = await _client.channels
           .listActiveThreads(channelId: parentChannelId);
-      return _cacheAndReturnAll(resp, fallbackGuildId: guildId);
+      return await _cacheAndReturnAll(resp, fallbackGuildId: guildId);
     } on DioException catch (e) {
       throw Exception(e.response?.statusMessage ?? 'Failed to list threads');
     }
@@ -116,7 +116,7 @@ class ThreadRepository {
     try {
       final List<ChannelResponse> resp = await _client.channels
           .listArchivedThreads(channelId: parentChannelId);
-      return _cacheAndReturnAll(resp, fallbackGuildId: guildId);
+      return await _cacheAndReturnAll(resp, fallbackGuildId: guildId);
     } on DioException catch (e) {
       throw Exception(
         e.response?.statusMessage ?? 'Failed to list archived threads',
@@ -148,7 +148,7 @@ class ThreadRepository {
           appliedTags: appliedTags,
         ),
       );
-      return _cacheAndReturn(resp);
+      return await _cacheAndReturn(resp);
     } on DioException catch (e) {
       throw Exception(e.response?.statusMessage ?? 'Failed to update thread');
     }
@@ -165,7 +165,7 @@ class ThreadRepository {
         channelId: forumId,
         body: ThreadUpdateRequest(availableTags: tags),
       );
-      return _cacheAndReturn(resp);
+      return await _cacheAndReturn(resp);
     } on DioException catch (e) {
       throw Exception(
         e.response?.statusMessage ?? 'Failed to update forum tags',

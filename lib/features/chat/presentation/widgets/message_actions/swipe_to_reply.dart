@@ -1,11 +1,11 @@
-import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_motion_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
+import 'package:fluxer_app/features/shell/presentation/sidebar_drawer.dart';
 import 'package:fluxer_app/features/shell/presentation/swipe_constants.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/gestures/nested_horizontal_scrollable.dart';
 import 'package:fluxer_app/shared/utils/fluxer_haptics.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -116,7 +116,7 @@ class _SwipeToReplyState extends State<SwipeToReply>
       _hasCrossedThreshold = true;
       FluxerHaptics.medium();
       if (_canEdit) {
-        unawaited(_holdController.forward(from: 0));
+        _holdController.forward(from: 0);
       }
     } else if (_hasCrossedThreshold && !pastThreshold) {
       _hasCrossedThreshold = false;
@@ -172,7 +172,7 @@ class _SwipeToReplyState extends State<SwipeToReply>
       CurvedAnimation(parent: _springController, curve: Curves.easeOut),
     )..addListener(_onSpringTick);
     _springAnimation = animation;
-    unawaited(_springController.forward());
+    _springController.forward();
   }
 
   void _onSpringTick() {
@@ -196,7 +196,7 @@ class _SwipeToReplyState extends State<SwipeToReply>
 
   @override
   Widget build(BuildContext context) {
-    if (!widget.enabled) {
+    if (!widget.enabled || !ChatSwipeToReplyScope.enabledOf(context)) {
       return widget.child;
     }
     if (_maxDrag == 0) {

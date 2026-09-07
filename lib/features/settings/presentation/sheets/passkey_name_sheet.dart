@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/api/dio_error_message.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/auth/data/webauthn_service.dart';
@@ -9,6 +9,7 @@ import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
 import 'package:fluxer_app/features/ui/button/fluxer_button.dart';
 import 'package:fluxer_app/features/ui/input/fluxer_input.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:passkeys/authenticator.dart';
 import 'package:passkeys/exceptions.dart';
@@ -145,13 +146,9 @@ class _PasskeyNameSheetState extends ConsumerState<PasskeyNameSheet> {
         return;
       }
       final l10n = FluxerLocalizations.of(context);
-      final data = e.response?.data;
-      final message = data is Map<String, dynamic>
-          ? (data['message'] as String?) ?? l10n.genericError
-          : l10n.genericError;
       setState(() {
         _loading = false;
-        _error = message;
+        _error = userFacingErrorMessage(e, l10n.genericError);
       });
     }
   }

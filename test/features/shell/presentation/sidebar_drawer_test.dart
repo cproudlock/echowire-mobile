@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
@@ -7,7 +6,9 @@ import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/shell/presentation/sidebar_drawer.dart';
 import 'package:fluxer_app/features/shell/providers/reveal_side_provider.dart';
 import 'package:fluxer_app/features/shell/providers/shell_popup_overlay_provider.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/gestures/nested_horizontal_scrollable.dart';
+import 'package:fluxer_app/shared/markdown/native_markdown_parser.dart';
 import 'package:fluxer_markdown/src/widgets/fluxer_markdown.dart';
 import 'package:go_router/go_router.dart';
 
@@ -259,6 +260,12 @@ void main() {
 
     expect(_sliderDx(tester), peekWidth);
     expect(_sliderDx(tester), lessThan(compactWideSize.width));
+    expect(
+      tester
+          .widget<ChatSwipeToReplyScope>(find.byType(ChatSwipeToReplyScope))
+          .enabled,
+      isFalse,
+    );
   });
 
   testWidgets('fully reveals when drawer is locked on compact-wide', (
@@ -359,6 +366,26 @@ void main() {
     await tester.pump();
 
     expect(_sliderDx(tester), 0);
+  });
+
+  testWidgets('keeps swipe-to-reply enabled while the chat is full screen', (
+    tester,
+  ) async {
+    final router = _routerFor('/channels/guild/channel');
+    addTearDown(router.dispose);
+    final container = _containerFor(router);
+
+    await tester.pumpWidget(
+      _buildDrawerApp(container: container, router: router),
+    );
+    await tester.pump();
+
+    expect(
+      tester
+          .widget<ChatSwipeToReplyScope>(find.byType(ChatSwipeToReplyScope))
+          .enabled,
+      isTrue,
+    );
   });
 
   testWidgets('wraps drawer layers in repaint boundaries', (tester) async {
@@ -519,6 +546,7 @@ Widget _drawerHarnessWithWideTable() {
       width: 400,
       height: 120,
       child: FluxerMarkdown(
+        astParser: parseNativeFluxerMarkdownAst,
         data: kWideMarkdownTable,
         config: kWideTableMarkdownConfig,
       ),

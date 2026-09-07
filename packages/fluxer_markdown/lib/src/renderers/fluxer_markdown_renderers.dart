@@ -1,31 +1,31 @@
 import 'dart:async';
-import 'dart:ui' show ImageFilter;
+import 'dart:ui' as ui;
 
 import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/github.dart';
 import 'package:flutter_highlight/themes/vs2015.dart';
 import 'package:fluxer_markdown/src/config/fluxer_markdown_config.dart';
 import 'package:fluxer_markdown/src/contexts/fluxer_markdown_features.dart';
-import 'package:fluxer_markdown/src/parsing/fluxer_inline_syntaxes.dart';
-import 'package:fluxer_markdown/src/parsing/inline_parse_chunks.dart';
-import 'package:fluxer_markdown/src/parsing/markdown_parse_cache.dart';
-import 'package:fluxer_markdown/src/syntaxes/fluxer_markdown_syntaxes.dart';
+import 'package:fluxer_markdown/src/renderers/fluxer_markdown_element_tags.dart';
 import 'package:fluxer_markdown/src/utils/ansi_text_parser.dart';
-import 'package:fluxer_markdown/src/utils/code_block_highlight_theme.dart';
+import 'package:fluxer_markdown/src/utils/bounded_text.dart';
+import 'package:fluxer_markdown/src/utils/code_block_highlight.dart';
 import 'package:fluxer_markdown/src/utils/highlight_languages.dart';
 import 'package:fluxer_markdown/src/utils/jumbo_emoji.dart';
 import 'package:fluxer_markdown/src/utils/markup_spacing.dart';
+import 'package:fluxer_markdown/src/utils/masked_link_guards.dart';
 import 'package:fluxer_markdown/src/utils/monospace_text_style.dart';
 import 'package:fluxer_markdown/src/widgets/emoji_asset_image.dart';
+import 'package:fluxer_markdown/src/widgets/fluxer_live_timestamp.dart';
+import 'package:fluxer_markdown/src/widgets/fluxer_markdown_link_registry.dart';
 import 'package:fluxer_markdown/src/widgets/system_emoji_fallback.dart';
 import 'package:intl/intl.dart';
 import 'package:latext/latext.dart';
 import 'package:markdown/markdown.dart' as md;
+import 'package:material_ui/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -106,9 +106,29 @@ bool _isValidLatexContent(String code) {
   return RegExp(r'\\[a-zA-Z]+').allMatches(code).length <= 64;
 }
 
-double _orderedListMarkerColumnWidth(int largestNumber, double fontSize) {
-  final digitCount = largestNumber.toString().length;
-  return fontSize * (0.65 + digitCount * 0.6);
+double _listMarkerColumnWidth({
+  required Iterable<String> markers,
+  required TextStyle style,
+  required TextScaler textScaler,
+  required ui.TextDirection textDirection,
+}) {
+  final TextPainter painter = TextPainter(
+    textDirection: textDirection,
+    maxLines: 1,
+    textScaler: textScaler,
+  );
+  var maxWidth = 0.0;
+  for (final String marker in markers) {
+    painter
+      ..text = TextSpan(text: marker, style: style)
+      ..layout();
+    if (painter.width > maxWidth) {
+      maxWidth = painter.width;
+    }
+  }
+  painter.dispose();
+  final double fontSize = style.fontSize ?? FluxerMarkupSpacing.rootFontSize;
+  return maxWidth + textScaler.scale(fontSize) * 0.25;
 }
 
 final RegExp _spoilerSyncUrlPattern = RegExp(
@@ -194,9 +214,65 @@ Widget buildFluxerMarkdownAst({
   );
 }
 
-final MarkdownParseCache<(String, FluxerMarkdownFeatures), List<md.Node>>
-_inlineNodeCache =
-    MarkdownParseCache<(String, FluxerMarkdownFeatures), List<md.Node>>();
+/// Renders a pre-parsed AST through the same renderers as
+/// [buildFluxerMarkdownAst]; hosts inline spoiler reveal state itself because
+/// the text-flow path never runs for provided ASTs.
+Widget buildFluxerMarkdownProvidedAst({
+  required BuildContext context,
+  required List<md.Node> nodes,
+  required TextStyle baseStyle,
+  required FluxerMarkdownConfig config,
+  required FluxerMarkdownFeatures features,
+  required bool selectable,
+  required bool isDark,
+  int? maxLines,
+  TextOverflow? overflow,
+  Widget? trailingInlineWidget,
+}) {
+  Widget buildBody(BuildContext hostContext) {
+    final renderer = _MarkdownBlockRenderer(
+      context: hostContext,
+      baseStyle: baseStyle,
+      config: config,
+      features: features,
+      isDark: isDark,
+      maxLines: maxLines,
+      overflow: overflow,
+    );
+    if (trailingInlineWidget == null || features.isRestrictedInlinePreview) {
+      return renderer.build(nodes);
+    }
+    return renderer.buildWithTrailingInlineWidget(nodes, trailingInlineWidget);
+  }
+
+  final bool hostSpoilers =
+      maxLines == null &&
+      !config.spoilersInitiallyRevealed &&
+      _containsInlineSpoiler(nodes);
+  final Widget body = hostSpoilers
+      ? _FluxerSpoilerRevealHost(config: config, builder: buildBody)
+      : buildBody(context);
+  return wrapFluxerMarkdownSelectable(
+    body: body,
+    selectable: selectable,
+    config: config,
+  );
+}
+
+bool _containsInlineSpoiler(List<md.Node> nodes) {
+  for (final md.Node node in nodes) {
+    if (node is! md.Element) {
+      continue;
+    }
+    if (node.tag == FluxerMarkdownElementTags.spoiler) {
+      return true;
+    }
+    if (_containsInlineSpoiler(node.children ?? const [])) {
+      return true;
+    }
+  }
+  return false;
+}
 
 String collapseRestrictedInlineText(String text) {
   return text.replaceAll('\n', ' ').replaceAll(RegExp(r'\s+'), ' ');
@@ -237,128 +313,6 @@ void appendTrailingInlineWidget(
         child: trailingInlineWidget,
       ),
     );
-}
-
-Widget buildFluxerMarkdownTextFlow({
-  required BuildContext context,
-  required String text,
-  required TextStyle baseStyle,
-  required FluxerMarkdownConfig config,
-  required FluxerMarkdownFeatures features,
-  required md.Document inlineDocument,
-  required bool selectable,
-  required bool isDark,
-  String? parseCacheKey,
-  int? maxLines,
-  TextOverflow? overflow,
-  Widget? trailingInlineWidget,
-  bool allowJumboEmoji = true,
-}) {
-  if (text.isEmpty) {
-    return const SizedBox.shrink();
-  }
-  final chunks = splitIntoInlineParseChunks(text);
-  final chunkNodesList = <List<md.Node>>[];
-  for (final chunk in chunks) {
-    chunkNodesList.add(
-      _inlineNodeCache.resolve((
-        markdownParseCacheKey(chunk, parseCacheKey),
-        features,
-      ), () => inlineDocument.parseInline(chunk)),
-    );
-  }
-  final useJumbo =
-      allowJumboEmoji &&
-      features.allowJumboEmoji &&
-      _textFlowAllowsJumboEmoji(chunkNodesList);
-  final spans = <InlineSpan>[];
-  for (var i = 0; i < chunks.length; i++) {
-    if (i > 0) {
-      spans.add(
-        TextSpan(
-          text: features.isRestrictedInlinePreview ? ' ' : '\n',
-          style: baseStyle,
-        ),
-      );
-    }
-    final chunkNodes = chunkNodesList[i];
-    if (chunkNodes.isEmpty) {
-      continue;
-    }
-    final chunkSpans = _MarkdownInlineRenderer(
-      context: context,
-      baseStyle: baseStyle,
-      config: config,
-      features: features,
-      isDark: isDark,
-      jumbo: useJumbo,
-      maxLines: maxLines,
-      overflow: overflow,
-    ).build(chunkNodes);
-    spans.addAll(chunkSpans);
-  }
-  if (spans.isEmpty) {
-    return const SizedBox.shrink();
-  }
-  if (trailingInlineWidget != null) {
-    appendTrailingInlineWidget(spans, baseStyle, trailingInlineWidget);
-  }
-  final RichText richText = RichText(
-    text: TextSpan(style: baseStyle, children: spans),
-    textScaler: MediaQuery.textScalerOf(context),
-    maxLines: maxLines,
-    overflow: overflow ?? TextOverflow.clip,
-    textWidthBasis: trailingInlineWidget != null || maxLines != null
-        ? TextWidthBasis.parent
-        : TextWidthBasis.longestLine,
-  );
-  final Widget body = trailingInlineWidget != null
-      ? SizedBox(width: double.infinity, child: richText)
-      : richText;
-  return wrapFluxerMarkdownSelectable(
-    body: body,
-    selectable: selectable,
-    config: config,
-  );
-}
-
-Widget buildFluxerBlockSpoiler({
-  required BuildContext context,
-  required String text,
-  required TextStyle baseStyle,
-  required FluxerMarkdownConfig config,
-  required FluxerMarkdownFeatures features,
-  required md.Document inlineDocument,
-  required bool selectable,
-  required bool isDark,
-  String? parseCacheKey,
-}) {
-  final Widget body = buildFluxerMarkdownTextFlow(
-    context: context,
-    text: text,
-    baseStyle: baseStyle,
-    config: config,
-    features: features,
-    inlineDocument: inlineDocument,
-    selectable: selectable,
-    isDark: isDark,
-    parseCacheKey: parseCacheKey,
-  );
-  final List<md.Node> inlineNodes = inlineDocument.parseInline(text);
-  final md.Element spoilerElement = md.Element(
-    FluxerSpoilerSyntax.tag,
-    inlineNodes,
-  );
-  return _FluxerSpoilerSpan(
-    initiallyRevealed: config.spoilersInitiallyRevealed,
-    spoilerBackgroundColor: config.spoilerBackgroundColor,
-    spoilerSyncController: config.spoilerSyncController,
-    syncKeys: _collectSpoilerSyncKeys(
-      spoilerElement,
-      config.spoilerSyncKeyNormalizer,
-    ),
-    child: body,
-  );
 }
 
 bool _hasApostropheInLinkAuthority(String href) {
@@ -419,16 +373,61 @@ class _MarkdownBlockRenderer {
     );
   }
 
+  Widget buildWithTrailingInlineWidget(List<md.Node> nodes, Widget trailing) {
+    _hasRenderedBlock = false;
+    final children = <Widget>[];
+    var trailingApplied = false;
+    for (var i = 0; i < nodes.length; i++) {
+      final md.Node node = nodes[i];
+      if (i == nodes.length - 1 && _isTrailingParagraphNode(node)) {
+        children.add(_buildTrailingParagraph(node, trailing));
+        trailingApplied = true;
+        continue;
+      }
+      final Widget? widget = buildBlock(node);
+      if (widget != null) {
+        children.add(widget);
+      }
+    }
+    if (!trailingApplied) {
+      children.add(trailing);
+    }
+    if (children.length == 1) {
+      return children.first;
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: _blockSpacingForStyle(baseStyle),
+      children: children,
+    );
+  }
+
+  bool _isTrailingParagraphNode(md.Node node) {
+    if (node is md.Text) {
+      return true;
+    }
+    return node is md.Element &&
+        (node.tag == 'p' || _isInlineOnlyTag(node.tag));
+  }
+
+  Widget _buildTrailingParagraph(md.Node node, Widget trailing) {
+    final List<md.Node> children = node is md.Element && node.tag == 'p'
+        ? node.children ?? const []
+        : <md.Node>[node];
+    return _buildParagraph(children, trailingInlineWidget: trailing);
+  }
+
   Widget _buildRestrictedInlinePreview(List<md.Node> nodes) {
     final spans = collectRestrictedInlinePreviewSpans(nodes);
     if (spans.isEmpty) {
       return const SizedBox.shrink();
     }
-    return RichText(
+    return buildFluxerBoundedRichText(
       text: TextSpan(style: baseStyle, children: spans),
+      baseStyle: baseStyle,
       textScaler: MediaQuery.textScalerOf(context),
       maxLines: maxLines,
-      overflow: overflow ?? TextOverflow.clip,
+      overflow: overflow,
     );
   }
 
@@ -477,6 +476,7 @@ class _MarkdownBlockRenderer {
           jumbo: false,
           maxLines: maxLines,
           overflow: overflow,
+          spoilerIndexCounter: _SpoilerIndexCounter(),
         ).build(node.children ?? const []);
       case 'pre':
         final codeElement = node.children
@@ -501,6 +501,15 @@ class _MarkdownBlockRenderer {
             ),
           ),
         ];
+      case 'alert':
+        return const <InlineSpan>[];
+      case 'block-spoiler':
+        return [
+          WidgetSpan(
+            alignment: PlaceholderAlignment.middle,
+            child: _buildBlockSpoilerElement(node),
+          ),
+        ];
       default:
         if (_isInlineOnlyTag(node.tag)) {
           return _MarkdownInlineRenderer(
@@ -512,6 +521,7 @@ class _MarkdownBlockRenderer {
             jumbo: false,
             maxLines: maxLines,
             overflow: overflow,
+            spoilerIndexCounter: _SpoilerIndexCounter(),
           ).build([node]);
         }
         final spans = <InlineSpan>[];
@@ -560,6 +570,12 @@ class _MarkdownBlockRenderer {
         return _buildTable(node);
       case 'hr':
         return _buildParagraph([md.Text(node.textContent)]);
+      case 'alert':
+        return _buildAlert(node);
+      case 'subtext':
+        return _buildSubtext(node);
+      case 'block-spoiler':
+        return _buildBlockSpoilerElement(node);
       default:
         if (_isInlineOnlyTag(node.tag)) {
           return _buildParagraph([node]);
@@ -594,6 +610,7 @@ class _MarkdownBlockRenderer {
     List<md.Node> nodes, {
     TextStyle? style,
     TextAlign? textAlign,
+    Widget? trailingInlineWidget,
   }) {
     final effectiveStyle = style ?? baseStyle;
     final spans = _MarkdownInlineRenderer(
@@ -606,30 +623,83 @@ class _MarkdownBlockRenderer {
           style == null && features.allowJumboEmoji && _allNodesAreEmoji(nodes),
       maxLines: maxLines,
       overflow: overflow,
+      spoilerIndexCounter: _SpoilerIndexCounter(),
     ).build(nodes);
 
     if (spans.isEmpty) {
-      return RichText(
+      if (trailingInlineWidget != null) {
+        return trailingInlineWidget;
+      }
+      return buildFluxerBoundedRichText(
         text: TextSpan(text: '\n', style: effectiveStyle),
+        baseStyle: effectiveStyle,
         textAlign: textAlign ?? TextAlign.start,
         textScaler: MediaQuery.textScalerOf(context),
         maxLines: maxLines,
-        overflow: overflow ?? TextOverflow.clip,
+        overflow: overflow,
         textWidthBasis: maxLines != null
             ? TextWidthBasis.parent
             : TextWidthBasis.longestLine,
       );
     }
 
-    return RichText(
+    if (trailingInlineWidget != null) {
+      appendTrailingInlineWidget(spans, effectiveStyle, trailingInlineWidget);
+    }
+    final Widget richText = buildFluxerBoundedRichText(
       text: TextSpan(style: effectiveStyle, children: spans),
+      baseStyle: effectiveStyle,
       textAlign: textAlign ?? TextAlign.start,
       textScaler: MediaQuery.textScalerOf(context),
       maxLines: maxLines,
-      overflow: overflow ?? TextOverflow.clip,
-      textWidthBasis: maxLines != null
+      overflow: overflow,
+      textWidthBasis: maxLines != null || trailingInlineWidget != null
           ? TextWidthBasis.parent
           : TextWidthBasis.longestLine,
+    );
+    if (trailingInlineWidget != null) {
+      return SizedBox(width: double.infinity, child: richText);
+    }
+    return richText;
+  }
+
+  Widget _buildAlert(md.Element node) {
+    final FluxerAlertType type =
+        tryParseFluxerAlertType(node.attributes['type'] ?? '') ??
+        FluxerAlertType.note;
+    final Widget body = _MarkdownBlockRenderer(
+      context: context,
+      baseStyle: baseStyle,
+      config: config,
+      features: features,
+      isDark: isDark,
+      maxLines: maxLines,
+      overflow: overflow,
+    ).build(node.children ?? const []);
+    return (config.alertBuilder ?? defaultFluxerAlertBuilder)(
+      context,
+      type,
+      body,
+      baseStyle,
+    );
+  }
+
+  Widget _buildSubtext(md.Element node) {
+    final TextStyle subtextStyle = baseStyle.copyWith(
+      fontSize: (baseStyle.fontSize ?? 16) * 0.8125,
+      color: Theme.of(context).colorScheme.onSurfaceVariant,
+      height: 1.375,
+    );
+    return _buildParagraph(node.children ?? const [], style: subtextStyle);
+  }
+
+  Widget _buildBlockSpoilerElement(md.Element node) {
+    return _FluxerSpoilerSpan(
+      initiallyRevealed: config.spoilersInitiallyRevealed,
+      spoilerBackgroundColor: config.spoilerBackgroundColor,
+      spoilerSyncController: config.spoilerSyncController,
+      syncKeys: _collectSpoilerSyncKeys(node, config.spoilerSyncKeyNormalizer),
+      child: _buildParagraph(node.children ?? const []),
     );
   }
 
@@ -705,18 +775,29 @@ class _MarkdownBlockRenderer {
   Widget _buildList(md.Element node, {required bool ordered, int depth = 0}) {
     final items = node.children?.whereType<md.Element>().toList() ?? const [];
     final start = int.tryParse(node.attributes['start'] ?? '1') ?? 1;
-    final fontSize = baseStyle.fontSize ?? FluxerMarkupSpacing.rootFontSize;
-    final markerColumnWidth = ordered
-        ? _orderedListMarkerColumnWidth(
-            items.isEmpty ? start : start + items.length - 1,
-            fontSize,
-          )
-        : fontSize * 1.5;
+    String markerFor(int index) {
+      if (ordered) {
+        return _orderedListMarkerForDepth(start + index, depth);
+      }
+      return _unorderedListMarkerForDepth(depth);
+    }
+
+    final List<String> markers = <String>[
+      for (var i = 0; i < items.length; i++) markerFor(i),
+    ];
+    final TextScaler textScaler = MediaQuery.textScalerOf(context);
+    final List<String> widthMarkers = markers.isEmpty
+        ? <String>[markerFor(0)]
+        : markers;
+    final double markerColumnWidth = _listMarkerColumnWidth(
+      markers: widthMarkers,
+      style: baseStyle,
+      textScaler: textScaler,
+      textDirection: Directionality.of(context),
+    );
     final markerTextAlign = ordered ? TextAlign.right : TextAlign.start;
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: FluxerMarkupSpacing.listBlockMargin,
-      ),
+      padding: const EdgeInsets.only(top: FluxerMarkupSpacing.listBlockMargin),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -729,11 +810,10 @@ class _MarkdownBlockRenderer {
               ),
               child: _buildListItem(
                 items[i],
-                marker: ordered
-                    ? _orderedListMarkerForDepth(start + i, depth)
-                    : _unorderedListMarkerForDepth(depth),
+                marker: markers[i],
                 markerColumnWidth: markerColumnWidth,
                 markerTextAlign: markerTextAlign,
+                textScaler: textScaler,
                 depth: depth,
               ),
             ),
@@ -747,6 +827,7 @@ class _MarkdownBlockRenderer {
     required String marker,
     required double markerColumnWidth,
     required TextAlign markerTextAlign,
+    required TextScaler textScaler,
     required int depth,
   }) {
     final children = item.children ?? const <md.Node>[];
@@ -840,11 +921,13 @@ class _MarkdownBlockRenderer {
       children: [
         SizedBox(
           width: markerColumnWidth,
-          child: Text(
-            marker,
-            style: baseStyle,
+          child: buildFluxerBoundedRichText(
+            text: TextSpan(text: marker, style: baseStyle),
+            baseStyle: baseStyle,
             textAlign: markerTextAlign,
+            textScaler: textScaler,
             maxLines: 1,
+            overflow: TextOverflow.clip,
             softWrap: false,
           ),
         ),
@@ -1022,13 +1105,14 @@ class _MarkdownBlockRenderer {
 }
 
 class _MarkdownInlineRenderer {
-  const _MarkdownInlineRenderer({
+  _MarkdownInlineRenderer({
     required this.context,
     required this.baseStyle,
     required this.config,
     required this.features,
     required this.isDark,
     required this.jumbo,
+    required this.spoilerIndexCounter,
     this.maxLines,
     this.overflow,
   });
@@ -1039,6 +1123,7 @@ class _MarkdownInlineRenderer {
   final FluxerMarkdownFeatures features;
   final bool isDark;
   final bool jumbo;
+  final _SpoilerIndexCounter spoilerIndexCounter;
   final int? maxLines;
   final TextOverflow? overflow;
 
@@ -1113,114 +1198,96 @@ class _MarkdownInlineRenderer {
           children: build(node.children ?? const [], style: underlineStyle),
         );
       case 'code':
-        if (features.allowPlainInlineCode) {
-          return TextSpan(
-            text: node.textContent,
-            style: codeTextStyleFrom(
-              effectiveStyle,
-              codeTextStyle: config.codeTextStyle,
-              color: config.inlineCodeTextColor,
-              backgroundColor: config.inlineCodeBackgroundColor,
-            ),
-          );
-        }
-        return WidgetSpan(
-          alignment: PlaceholderAlignment.middle,
-          child: FluxerInlineCodeWidget(
-            text: node.textContent,
-            baseStyle: effectiveStyle,
+        return TextSpan(
+          text: node.textContent,
+          style: codeTextStyleFrom(
+            effectiveStyle,
             codeTextStyle: config.codeTextStyle,
+            color: config.inlineCodeTextColor,
             backgroundColor: config.inlineCodeBackgroundColor,
-            textColor: config.inlineCodeTextColor,
           ),
         );
       case 'br':
         return const TextSpan(text: '\n');
       case 'a':
         return _buildLink(node, effectiveStyle);
-      case FluxerJumpLinkSyntax.tag:
+      case FluxerMarkdownElementTags.jumpLink:
         return _buildJumpLink(node, effectiveStyle);
-      case FluxerUserMentionSyntax.tag:
+      case FluxerMarkdownElementTags.mentionUser:
         return _buildMention(
           node,
           effectiveStyle,
           prefix: '@',
           builder: config.userMentionBuilder,
         );
-      case FluxerChannelMentionSyntax.tag:
+      case FluxerMarkdownElementTags.mentionChannel:
         return _buildMention(
           node,
           effectiveStyle,
           prefix: '#',
           builder: config.channelMentionBuilder,
         );
-      case FluxerRoleMentionSyntax.tag:
+      case FluxerMarkdownElementTags.mentionRole:
         return _buildMention(
           node,
           effectiveStyle,
           prefix: '@',
           builder: config.roleMentionBuilder,
         );
-      case FluxerEveryoneMentionSyntax.tag:
+      case FluxerMarkdownElementTags.mentionEveryone:
         return _buildEveryoneMention(node, effectiveStyle);
-      case FluxerCommandMentionSyntax.tag:
+      case FluxerMarkdownElementTags.mentionCommand:
         return _buildCommandMention(node, effectiveStyle);
-      case FluxerGuildNavigationSyntax.tag:
+      case FluxerMarkdownElementTags.mentionGuildNav:
         return _buildGuildNavigationMention(node, effectiveStyle);
-      case FluxerTimestampSyntax.tag:
+      case FluxerMarkdownElementTags.timestamp:
+        final timestampStyle = effectiveStyle.copyWith(
+          background: Paint()
+            ..color =
+                (effectiveStyle.color ??
+                        Theme.of(context).colorScheme.onSurface)
+                    .withValues(alpha: 0.08),
+        );
+        final localeName = Localizations.localeOf(context).toLanguageTag();
+        final formatter = config.timestampFormatter;
+        final flag = node.attributes['flag'] ?? 'f';
+        if (flag == 'R') {
+          return WidgetSpan(
+            alignment: PlaceholderAlignment.baseline,
+            baseline: TextBaseline.alphabetic,
+            child: FluxerLiveTimestamp(
+              format: () =>
+                  _formatTimestampText(
+                    node,
+                    localeName: localeName,
+                    formatter: formatter,
+                  ) ??
+                  '',
+              style: timestampStyle,
+            ),
+          );
+        }
         final timestampText = _formatTimestampText(
           node,
-          localeName: Localizations.localeOf(context).toLanguageTag(),
-          formatter: config.timestampFormatter,
+          localeName: localeName,
+          formatter: formatter,
         );
         if (timestampText == null) {
           return const TextSpan(text: '');
         }
-        return TextSpan(
-          text: timestampText,
-          style: effectiveStyle.copyWith(
-            background: Paint()
-              ..color =
-                  (effectiveStyle.color ??
-                          Theme.of(context).colorScheme.onSurface)
-                      .withValues(alpha: 0.08),
+        return TextSpan(text: timestampText, style: timestampStyle);
+      case FluxerMarkdownElementTags.spoiler:
+        return _buildInlineSpoilerSpan(
+          node: node,
+          spoilerChildren: build(
+            node.children ?? const [],
+            style: effectiveStyle,
           ),
+          effectiveStyle: effectiveStyle,
         );
-      case FluxerSpoilerSyntax.tag:
-        final List<InlineSpan> spoilerChildren = build(
-          node.children ?? const [],
-          style: effectiveStyle,
-        );
-        if (config.spoilersInitiallyRevealed && maxLines != null) {
-          return TextSpan(style: effectiveStyle, children: spoilerChildren);
-        }
-        final bool constrainToSingleLine = maxLines != null;
-        return WidgetSpan(
-          alignment: constrainToSingleLine
-              ? PlaceholderAlignment.baseline
-              : PlaceholderAlignment.middle,
-          baseline: constrainToSingleLine ? TextBaseline.alphabetic : null,
-          child: _FluxerSpoilerSpan(
-            initiallyRevealed: config.spoilersInitiallyRevealed,
-            spoilerBackgroundColor: config.spoilerBackgroundColor,
-            spoilerSyncController: config.spoilerSyncController,
-            syncKeys: _collectSpoilerSyncKeys(
-              node,
-              config.spoilerSyncKeyNormalizer,
-            ),
-            child: RichText(
-              text: TextSpan(style: effectiveStyle, children: spoilerChildren),
-              textScaler: MediaQuery.textScalerOf(context),
-              maxLines: maxLines,
-              overflow: overflow ?? TextOverflow.clip,
-              textWidthBasis: constrainToSingleLine
-                  ? TextWidthBasis.parent
-                  : TextWidthBasis.longestLine,
-            ),
-          ),
-        );
-      case FluxerUnicodeEmojiToneSyntax.tag:
-      case FluxerCustomEmojiSyntax.tag:
+      // Jumbo only changes size; emoji always render as images (issue #655).
+      case FluxerMarkdownElementTags.emojiUnicode:
+      case FluxerMarkdownElementTags.emojiCustom:
         return WidgetSpan(
           alignment: PlaceholderAlignment.middle,
           child: FluxerEmojiWidget(
@@ -1229,6 +1296,7 @@ class _MarkdownInlineRenderer {
             unicodeEmojiUrlBuilder: config.unicodeEmojiUrlBuilder,
             customEmojiUrlBuilder: config.customEmojiUrlBuilder,
             animateCustomEmoji: config.animateCustomEmoji,
+            onEmojiLongPress: config.onEmojiLongPress,
             jumbo: jumbo,
           ),
         );
@@ -1289,14 +1357,25 @@ class _MarkdownInlineRenderer {
     }
     final List<InlineSpan>? children = span.children;
     if (children == null || children.isEmpty) {
+      void onTap() {
+        unawaited(_handleLinkTap(href));
+      }
+
+      final FluxerMarkdownLinkRegistry? registry =
+          FluxerMarkdownLinkRegistry.maybeOf(context);
+      if (registry != null) {
+        return TextSpan(
+          text: span.text,
+          style: span.style,
+          mouseCursor: SystemMouseCursors.click,
+          recognizer: registry.obtainRecognizer(onTap),
+        );
+      }
       return TextSpan(
         text: span.text,
         style: span.style,
         mouseCursor: SystemMouseCursors.click,
-        recognizer: TapGestureRecognizer()
-          ..onTap = () {
-            unawaited(_handleLinkTap(href));
-          },
+        recognizer: TapGestureRecognizer()..onTap = onTap,
       );
     }
     return TextSpan(
@@ -1411,6 +1490,86 @@ class _MarkdownInlineRenderer {
     }
     await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
+
+  InlineSpan _buildInlineSpoilerSpan({
+    required md.Element node,
+    required List<InlineSpan> spoilerChildren,
+    required TextStyle effectiveStyle,
+  }) {
+    final List<String> syncKeys = _collectSpoilerSyncKeys(
+      node,
+      config.spoilerSyncKeyNormalizer,
+    );
+    if (maxLines != null) {
+      if (config.spoilersInitiallyRevealed) {
+        return TextSpan(style: effectiveStyle, children: spoilerChildren);
+      }
+      return WidgetSpan(
+        alignment: PlaceholderAlignment.baseline,
+        baseline: TextBaseline.alphabetic,
+        child: _FluxerSpoilerSpan(
+          initiallyRevealed: config.spoilersInitiallyRevealed,
+          spoilerBackgroundColor: config.spoilerBackgroundColor,
+          spoilerSyncController: config.spoilerSyncController,
+          syncKeys: syncKeys,
+          child: buildFluxerBoundedRichText(
+            text: TextSpan(style: effectiveStyle, children: spoilerChildren),
+            baseStyle: effectiveStyle,
+            textScaler: MediaQuery.textScalerOf(context),
+            maxLines: maxLines,
+            overflow: overflow,
+          ),
+        ),
+      );
+    }
+
+    final String spoilerId = _inlineSpoilerId(
+      node,
+      syncKeys,
+      spoilerIndexCounter.next(),
+    );
+    final _FluxerSpoilerRevealScope? revealScope =
+        _FluxerSpoilerRevealScope.maybeOf(context);
+    final bool revealed =
+        config.spoilersInitiallyRevealed ||
+        (revealScope?.isRevealed(spoilerId, syncKeys) ?? false);
+    if (revealed) {
+      final double revealOpacity =
+          revealScope?.revealOpacity(spoilerId, syncKeys) ?? 1.0;
+      if (revealOpacity >= 1.0) {
+        return TextSpan(style: effectiveStyle, children: spoilerChildren);
+      }
+      final Color hiddenBackground = _spoilerHiddenBackground(context, config);
+      return TextSpan(
+        style: effectiveStyle,
+        children: _applySpoilerRevealOpacity(
+          spoilerChildren,
+          baseStyle: effectiveStyle,
+          hiddenBackground: hiddenBackground,
+          opacity: revealOpacity,
+        ),
+      );
+    }
+
+    final Color hiddenBackground = _spoilerHiddenBackground(context, config);
+    final TextStyle hiddenStyle = _hiddenSpoilerTextStyle(
+      effectiveStyle,
+      hiddenBackground,
+    );
+    return TextSpan(
+      style: hiddenStyle,
+      mouseCursor: SystemMouseCursors.click,
+      children: _concealSpoilerInlineSpans(
+        spoilerChildren,
+        hiddenStyle: hiddenStyle,
+        hiddenBackground: hiddenBackground,
+        baseStyle: effectiveStyle,
+        obtainTapRecognizer: (VoidCallback onTap) =>
+            _obtainSpoilerTapRecognizer(context, onTap),
+        onTap: () => revealScope?.reveal(spoilerId, syncKeys),
+      ),
+    );
+  }
 }
 
 class _EmojiOnlyAnalysis {
@@ -1435,8 +1594,8 @@ _EmojiOnlyAnalysis _analyzeEmojiOnlyNodes(List<md.Node> nodes) {
     if (node is! md.Element) {
       return const _EmojiOnlyAnalysis(isEmojiOnly: false, emojiCount: 0);
     }
-    if (node.tag == FluxerUnicodeEmojiToneSyntax.tag ||
-        node.tag == FluxerCustomEmojiSyntax.tag) {
+    if (node.tag == FluxerMarkdownElementTags.emojiUnicode ||
+        node.tag == FluxerMarkdownElementTags.emojiCustom) {
       emojiCount++;
       continue;
     }
@@ -1452,22 +1611,6 @@ bool _allNodesAreEmoji(List<md.Node> nodes) {
       analysis.emojiCount <= kFluxerMarkdownJumboMaxCount;
 }
 
-bool _textFlowAllowsJumboEmoji(List<List<md.Node>> chunkNodes) {
-  var totalEmojiCount = 0;
-  for (final List<md.Node> nodes in chunkNodes) {
-    if (nodes.isEmpty) {
-      continue;
-    }
-    final _EmojiOnlyAnalysis analysis = _analyzeEmojiOnlyNodes(nodes);
-    if (!analysis.isEmojiOnly) {
-      return false;
-    }
-    totalEmojiCount += analysis.emojiCount;
-  }
-  return totalEmojiCount >= 1 &&
-      totalEmojiCount <= kFluxerMarkdownJumboMaxCount;
-}
-
 bool _isInlineListNode(md.Node node) {
   if (node is md.Text) {
     return true;
@@ -1481,15 +1624,15 @@ bool _isInlineListNode(md.Node node) {
 bool _isInlineOnlyTag(String tag) {
   return switch (tag) {
     'strong' || 'em' || 'del' || 'underline' || 'code' || 'a' || 'br' => true,
-    FluxerJumpLinkSyntax.tag ||
-    FluxerUserMentionSyntax.tag ||
-    FluxerChannelMentionSyntax.tag ||
-    FluxerRoleMentionSyntax.tag ||
-    FluxerEveryoneMentionSyntax.tag ||
-    FluxerTimestampSyntax.tag ||
-    FluxerSpoilerSyntax.tag ||
-    FluxerUnicodeEmojiToneSyntax.tag ||
-    FluxerCustomEmojiSyntax.tag => true,
+    FluxerMarkdownElementTags.jumpLink ||
+    FluxerMarkdownElementTags.mentionUser ||
+    FluxerMarkdownElementTags.mentionChannel ||
+    FluxerMarkdownElementTags.mentionRole ||
+    FluxerMarkdownElementTags.mentionEveryone ||
+    FluxerMarkdownElementTags.timestamp ||
+    FluxerMarkdownElementTags.spoiler ||
+    FluxerMarkdownElementTags.emojiUnicode ||
+    FluxerMarkdownElementTags.emojiCustom => true,
     _ => false,
   };
 }
@@ -1538,6 +1681,376 @@ List<String> _collectSpoilerSyncKeys(
   }
 
   return List<String>.unmodifiable(keys);
+}
+
+class _SpoilerIndexCounter {
+  int _next = 0;
+
+  void reset() => _next = 0;
+
+  int next() => _next++;
+}
+
+class _FluxerSpoilerRevealScope extends InheritedWidget {
+  const _FluxerSpoilerRevealScope({
+    required this.isRevealed,
+    required this.reveal,
+    required this.revealOpacity,
+    required this.obtainRecognizer,
+    required super.child,
+  });
+
+  final bool Function(String id, List<String> syncKeys) isRevealed;
+  final void Function(String id, List<String> syncKeys) reveal;
+  final double Function(String id, List<String> syncKeys) revealOpacity;
+  final TapGestureRecognizer Function(VoidCallback onTap) obtainRecognizer;
+
+  static _FluxerSpoilerRevealScope? maybeOf(BuildContext context) {
+    return context
+        .dependOnInheritedWidgetOfExactType<_FluxerSpoilerRevealScope>();
+  }
+
+  @override
+  bool updateShouldNotify(covariant _FluxerSpoilerRevealScope oldWidget) {
+    return true;
+  }
+}
+
+class _FluxerSpoilerRevealHost extends StatefulWidget {
+  const _FluxerSpoilerRevealHost({required this.config, required this.builder});
+
+  final FluxerMarkdownConfig config;
+  final Widget Function(BuildContext context) builder;
+
+  @override
+  State<_FluxerSpoilerRevealHost> createState() =>
+      _FluxerSpoilerRevealHostState();
+}
+
+class _FluxerSpoilerRevealHostState extends State<_FluxerSpoilerRevealHost>
+    with TickerProviderStateMixin {
+  final Set<String> _localRevealedIds = <String>{};
+  final Map<String, AnimationController> _fadeControllers =
+      <String, AnimationController>{};
+  List<TapGestureRecognizer> _recognizers = <TapGestureRecognizer>[];
+  List<TapGestureRecognizer> _retiringRecognizers = <TapGestureRecognizer>[];
+
+  @override
+  void initState() {
+    super.initState();
+    widget.config.spoilerSyncController?.addListener(_handleSyncChanged);
+  }
+
+  @override
+  void didUpdateWidget(covariant _FluxerSpoilerRevealHost oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.config.spoilerSyncController !=
+        widget.config.spoilerSyncController) {
+      oldWidget.config.spoilerSyncController?.removeListener(
+        _handleSyncChanged,
+      );
+      widget.config.spoilerSyncController?.addListener(_handleSyncChanged);
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.config.spoilerSyncController?.removeListener(_handleSyncChanged);
+    for (final AnimationController controller in _fadeControllers.values) {
+      controller.dispose();
+    }
+    _fadeControllers.clear();
+    _disposeRecognizers(_recognizers);
+    _disposeRecognizers(_retiringRecognizers);
+    super.dispose();
+  }
+
+  void _disposeRecognizers(List<TapGestureRecognizer> recognizers) {
+    for (final TapGestureRecognizer recognizer in recognizers) {
+      recognizer.dispose();
+    }
+    recognizers.clear();
+  }
+
+  void _beginRecognizerRebuild() {
+    _disposeRecognizers(_retiringRecognizers);
+    _retiringRecognizers = _recognizers;
+    _recognizers = <TapGestureRecognizer>[];
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) {
+        return;
+      }
+      _disposeRecognizers(_retiringRecognizers);
+    });
+  }
+
+  TapGestureRecognizer _obtainRecognizer(VoidCallback onTap) {
+    final TapGestureRecognizer recognizer = TapGestureRecognizer()
+      ..onTap = onTap;
+    _recognizers.add(recognizer);
+    return recognizer;
+  }
+
+  void _handleSyncChanged() {
+    setState(() {});
+  }
+
+  bool _isRevealed(String id, List<String> syncKeys) {
+    if (_localRevealedIds.contains(id)) {
+      return true;
+    }
+    return widget.config.spoilerSyncController?.isRevealed(syncKeys) ?? false;
+  }
+
+  bool _revealedViaSync(String id, List<String> syncKeys) {
+    return !_localRevealedIds.contains(id) &&
+        (widget.config.spoilerSyncController?.isRevealed(syncKeys) ?? false);
+  }
+
+  double _revealOpacity(String id, List<String> syncKeys) {
+    if (!_isRevealed(id, syncKeys)) {
+      return 0;
+    }
+    if (_revealedViaSync(id, syncKeys)) {
+      return 1;
+    }
+    return _fadeControllers[id]?.value ?? 1;
+  }
+
+  void _reveal(String id, List<String> syncKeys) {
+    if (_isRevealed(id, syncKeys)) {
+      return;
+    }
+    setState(() => _localRevealedIds.add(id));
+    widget.config.spoilerSyncController?.reveal(syncKeys);
+    final AnimationController controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    )..addListener(() => setState(() {}));
+    _fadeControllers[id] = controller;
+    unawaited(
+      controller.forward().then((_) {
+        if (!mounted) {
+          return;
+        }
+        controller.dispose();
+        setState(() => _fadeControllers.remove(id));
+      }),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _beginRecognizerRebuild();
+    return _FluxerSpoilerRevealScope(
+      isRevealed: _isRevealed,
+      reveal: _reveal,
+      revealOpacity: _revealOpacity,
+      obtainRecognizer: _obtainRecognizer,
+      child: Builder(builder: widget.builder),
+    );
+  }
+}
+
+String _inlineSpoilerId(md.Element node, List<String> syncKeys, int index) {
+  final String contentKey = syncKeys.isNotEmpty
+      ? syncKeys.join('\u0000')
+      : node.textContent;
+  return '$index:$contentKey';
+}
+
+Color _spoilerHiddenBackground(
+  BuildContext context,
+  FluxerMarkdownConfig config,
+) {
+  return config.spoilerBackgroundColor ??
+      Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.2);
+}
+
+const Color _kHiddenSpoilerTextColor = Color(0x00000000);
+
+Paint _spoilerBackgroundPaint(Color color) => Paint()..color = color;
+
+TextStyle _hiddenSpoilerTextStyle(TextStyle base, Color hiddenBackground) {
+  return base.copyWith(
+    color: _kHiddenSpoilerTextColor,
+    background: _spoilerBackgroundPaint(hiddenBackground),
+    decoration: TextDecoration.none,
+  );
+}
+
+TapGestureRecognizer _obtainSpoilerTapRecognizer(
+  BuildContext context,
+  VoidCallback onTap,
+) {
+  final FluxerMarkdownLinkRegistry? registry =
+      FluxerMarkdownLinkRegistry.maybeOf(context);
+  if (registry != null) {
+    return registry.obtainRecognizer(onTap);
+  }
+  final _FluxerSpoilerRevealScope? scope = _FluxerSpoilerRevealScope.maybeOf(
+    context,
+  );
+  if (scope != null) {
+    return scope.obtainRecognizer(onTap);
+  }
+  return TapGestureRecognizer()..onTap = onTap;
+}
+
+double _concealedWidgetSpanSize(WidgetSpan span, TextStyle baseStyle) {
+  final Widget child = span.child;
+  if (child is FluxerEmojiWidget) {
+    if (child.jumbo) {
+      return kFluxerMarkdownEmojiSizeJumbo;
+    }
+    return (child.baseStyle.fontSize ?? 16) *
+        kFluxerMarkdownEmojiSizeMultiplier;
+  }
+  return (baseStyle.fontSize ?? FluxerMarkupSpacing.rootFontSize) *
+      (baseStyle.height ?? 1.2);
+}
+
+TextStyle _concealedSpoilerTextStyle(TextStyle? style, Color hiddenBackground) {
+  return (style ?? const TextStyle()).copyWith(
+    color: _kHiddenSpoilerTextColor,
+    background: _spoilerBackgroundPaint(hiddenBackground),
+    decoration: TextDecoration.none,
+  );
+}
+
+List<InlineSpan> _concealSpoilerInlineSpans(
+  List<InlineSpan> spans, {
+  required TextStyle hiddenStyle,
+  required Color hiddenBackground,
+  required TextStyle baseStyle,
+  required TapGestureRecognizer Function(VoidCallback onTap)
+  obtainTapRecognizer,
+  VoidCallback? onTap,
+}) {
+  return spans
+      .map(
+        (InlineSpan span) => _concealSpoilerInlineSpan(
+          span,
+          hiddenStyle: hiddenStyle,
+          hiddenBackground: hiddenBackground,
+          baseStyle: baseStyle,
+          obtainTapRecognizer: obtainTapRecognizer,
+          onTap: onTap,
+        ),
+      )
+      .toList();
+}
+
+InlineSpan _concealSpoilerInlineSpan(
+  InlineSpan span, {
+  required TextStyle hiddenStyle,
+  required Color hiddenBackground,
+  required TextStyle baseStyle,
+  required TapGestureRecognizer Function(VoidCallback onTap)
+  obtainTapRecognizer,
+  VoidCallback? onTap,
+}) {
+  if (span is TextSpan) {
+    final List<InlineSpan>? children = span.children;
+    if (children != null && children.isNotEmpty) {
+      return TextSpan(
+        style: _concealedSpoilerTextStyle(span.style, hiddenBackground),
+        children: _concealSpoilerInlineSpans(
+          children,
+          hiddenStyle: hiddenStyle,
+          hiddenBackground: hiddenBackground,
+          baseStyle: baseStyle,
+          obtainTapRecognizer: obtainTapRecognizer,
+          onTap: onTap,
+        ),
+      );
+    }
+    return TextSpan(
+      text: span.text,
+      style: _concealedSpoilerTextStyle(span.style, hiddenBackground),
+      mouseCursor: onTap == null ? null : SystemMouseCursors.click,
+      recognizer: onTap == null ? null : obtainTapRecognizer(onTap),
+    );
+  }
+  if (span is WidgetSpan) {
+    final double size = _concealedWidgetSpanSize(span, baseStyle);
+    return WidgetSpan(
+      alignment: span.alignment,
+      baseline: span.baseline,
+      child: GestureDetector(
+        onTap: onTap,
+        behavior: HitTestBehavior.opaque,
+        child: SizedBox(
+          width: size,
+          height: size,
+          child: ColoredBox(color: hiddenBackground),
+        ),
+      ),
+    );
+  }
+  return span;
+}
+
+List<InlineSpan> _applySpoilerRevealOpacity(
+  List<InlineSpan> spans, {
+  required TextStyle baseStyle,
+  required Color hiddenBackground,
+  required double opacity,
+}) {
+  return spans
+      .map(
+        (InlineSpan span) => _applySpoilerRevealOpacityToSpan(
+          span,
+          baseStyle: baseStyle,
+          hiddenBackground: hiddenBackground,
+          opacity: opacity,
+        ),
+      )
+      .toList();
+}
+
+InlineSpan _applySpoilerRevealOpacityToSpan(
+  InlineSpan span, {
+  required TextStyle baseStyle,
+  required Color hiddenBackground,
+  required double opacity,
+}) {
+  if (span is TextSpan) {
+    final TextStyle? style = span.style;
+    final Color? targetColor = style?.color ?? baseStyle.color;
+    final Color? fadedColor = targetColor == null
+        ? null
+        : Color.lerp(_kHiddenSpoilerTextColor, targetColor, opacity);
+    final TextStyle fadedStyle = (style ?? baseStyle).copyWith(
+      color: fadedColor,
+      background: opacity < 1.0
+          ? _spoilerBackgroundPaint(
+              Color.lerp(hiddenBackground, const Color(0x00000000), opacity)!,
+            )
+          : null,
+    );
+    final List<InlineSpan>? children = span.children;
+    if (children != null && children.isNotEmpty) {
+      return TextSpan(
+        style: fadedStyle,
+        children: _applySpoilerRevealOpacity(
+          children,
+          baseStyle: baseStyle,
+          hiddenBackground: hiddenBackground,
+          opacity: opacity,
+        ),
+      );
+    }
+    return TextSpan(text: span.text, style: fadedStyle);
+  }
+  if (span is WidgetSpan) {
+    return WidgetSpan(
+      alignment: span.alignment,
+      baseline: span.baseline,
+      child: Opacity(opacity: opacity, child: span.child),
+    );
+  }
+  return span;
 }
 
 class _FluxerSpoilerSpan extends StatefulWidget {
@@ -1629,12 +2142,14 @@ class _FluxerSpoilerSpanState extends State<_FluxerSpoilerSpan>
       _isRevealed = true;
     });
     widget.spoilerSyncController?.reveal(widget.syncKeys);
-    unawaited(_controller.forward());
+    _controller.forward();
   }
 
   @override
   Widget build(BuildContext context) {
-    final Color? hiddenBackground = widget.spoilerBackgroundColor;
+    final Color hiddenBackground =
+        widget.spoilerBackgroundColor ??
+        Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.2);
     return GestureDetector(
       onTap: _reveal,
       behavior: HitTestBehavior.opaque,
@@ -1642,19 +2157,11 @@ class _FluxerSpoilerSpanState extends State<_FluxerSpoilerSpan>
         borderRadius: BorderRadius.circular(4),
         child: Stack(
           children: [
-            ImageFiltered(
-              imageFilter: _isRevealed
-                  ? ImageFilter.blur()
-                  : ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-              child: IgnorePointer(
-                ignoring: !_isRevealed,
-                child: Opacity(
-                  opacity: _isRevealed ? 1 : 0,
-                  child: FadeTransition(opacity: _opacity, child: widget.child),
-                ),
-              ),
+            IgnorePointer(
+              ignoring: !_isRevealed,
+              child: FadeTransition(opacity: _opacity, child: widget.child),
             ),
-            if (!_isRevealed && hiddenBackground != null)
+            if (!_isRevealed)
               Positioned.fill(child: ColoredBox(color: hiddenBackground)),
           ],
         ),
@@ -1744,11 +2251,12 @@ class FluxerCodeBlockWidget extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(color: bgColor, borderRadius: _kRadius),
           padding: _kPadding,
-          child: RichText(
+          child: buildFluxerBoundedRichText(
             text: TextSpan(
               style: monoStyle,
               children: parseAnsiTextSpans(code, monoStyle),
             ),
+            baseStyle: monoStyle,
           ),
         ),
       );
@@ -1775,20 +2283,13 @@ class FluxerCodeBlockWidget extends StatelessWidget {
         child: Text(code, style: monoStyle),
       );
     } else {
-      codeBody = HighlightView(
-        code,
+      codeBody = FluxerHighlightedCode(
+        code: code,
         language: knownLang,
-        theme: isDark
-            ? codeBlockHighlightThemeFor(
-                vs2015Theme,
-                codeTextStyle: codeTextStyle,
-              )
-            : codeBlockHighlightThemeFor(
-                githubTheme,
-                codeTextStyle: codeTextStyle,
-              ),
-        padding: _kPadding,
+        isDark: isDark,
         textStyle: monoStyle,
+        backgroundColor: bgColor,
+        padding: _kPadding,
       );
     }
 
@@ -1896,48 +2397,6 @@ class _FluxerCodeBlockWithCopy extends StatelessWidget {
   }
 }
 
-class FluxerInlineCodeWidget extends StatelessWidget {
-  const FluxerInlineCodeWidget({
-    required this.text,
-    required this.baseStyle,
-    this.codeTextStyle,
-    this.backgroundColor,
-    this.textColor,
-    super.key,
-  });
-
-  final String text;
-  final TextStyle baseStyle;
-  final TextStyle? codeTextStyle;
-  final Color? backgroundColor;
-  final Color? textColor;
-
-  @override
-  Widget build(BuildContext context) {
-    final fontSize = baseStyle.fontSize ?? 16;
-    return Container(
-      decoration: BoxDecoration(
-        color:
-            backgroundColor ??
-            Theme.of(context).colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(fontSize * 0.25),
-      ),
-      padding: EdgeInsets.symmetric(
-        horizontal: fontSize * 0.25,
-        vertical: fontSize * 0.0625,
-      ),
-      child: Text(
-        text,
-        style: codeTextStyleFrom(
-          baseStyle,
-          codeTextStyle: codeTextStyle,
-          color: textColor,
-        ),
-      ),
-    );
-  }
-}
-
 class FluxerEmojiWidget extends StatelessWidget {
   const FluxerEmojiWidget({
     required this.element,
@@ -1945,6 +2404,7 @@ class FluxerEmojiWidget extends StatelessWidget {
     required this.unicodeEmojiUrlBuilder,
     required this.customEmojiUrlBuilder,
     this.animateCustomEmoji = true,
+    this.onEmojiLongPress,
     this.jumbo = false,
     super.key,
   });
@@ -1955,16 +2415,53 @@ class FluxerEmojiWidget extends StatelessWidget {
   final bool animateCustomEmoji;
   final FluxerUnicodeEmojiUrlBuilder unicodeEmojiUrlBuilder;
   final FluxerCustomEmojiUrlBuilder customEmojiUrlBuilder;
+  final FluxerEmojiLongPressHandler? onEmojiLongPress;
 
   @override
   Widget build(BuildContext context) {
     final size = jumbo
         ? kFluxerMarkdownEmojiSizeJumbo
         : (baseStyle.fontSize ?? 16) * kFluxerMarkdownEmojiSizeMultiplier;
-    if (element.tag == FluxerCustomEmojiSyntax.tag) {
-      return _buildCustom(context, size);
+    final Widget emoji;
+    if (element.tag == FluxerMarkdownElementTags.emojiCustom) {
+      emoji = _buildCustom(context, size);
+    } else {
+      emoji = _buildUnicode(size);
     }
-    return _buildUnicode(size);
+    return _wrapLongPress(context, emoji);
+  }
+
+  Widget _wrapLongPress(BuildContext context, Widget emoji) {
+    final handler = onEmojiLongPress;
+    if (handler == null) {
+      return emoji;
+    }
+
+    final isCustom = element.tag == FluxerMarkdownElementTags.emojiCustom;
+    final String name;
+    final String? emojiId;
+    final bool animated;
+    if (isCustom) {
+      name = element.textContent;
+      emojiId = element.attributes['id'];
+      animated = animateCustomEmoji && element.attributes['animated'] == 'true';
+    } else {
+      name = element.attributes['surrogate'] ?? element.textContent;
+      emojiId = null;
+      animated = false;
+    }
+
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onLongPress: () => handler(
+        context,
+        emojiId: emojiId,
+        name: name,
+        animated: animated,
+        isCustom: isCustom,
+      ),
+      child: emoji,
+    );
   }
 
   Widget _buildSystemUnicodeEmoji(String surrogate, double size) {
@@ -2004,7 +2501,10 @@ class FluxerEmojiWidget extends StatelessWidget {
         height: size,
         // Cap one decode axis only. Capping both forces ResizeImagePolicy.exact,
         // which stretches non-square emoji into a square (issue #445).
-        memCacheWidth: px,
+        // Skip resize on animated frames; ResizeImage lags multi-frame decode.
+        memCacheWidth: animated ? null : px,
+        fadeInDuration: Duration.zero,
+        fadeOutDuration: Duration.zero,
         fit: BoxFit.contain,
         errorBuilder: (_, _, _) => Text(':$name:'),
       ),

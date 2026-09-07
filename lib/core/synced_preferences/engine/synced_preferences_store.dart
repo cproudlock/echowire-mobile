@@ -2,25 +2,14 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:fluxer_app/core/api/dio_error_message.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_field_adapter.dart';
+import 'package:fluxer_app/core/synced_preferences/engine/synced_field_registry.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preference_field.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preferences_engine.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preferences_wire_codec.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/accessibility_overrides_synced_field.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/accessibility_synced_field.dart';
 import 'package:fluxer_app/core/synced_preferences/fields/favorites_synced_field.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/guild_folders_synced_field.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/local_spam_overrides_synced_field.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/member_list_synced_field.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/nagbar_dismissals_synced_field.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/privacy_synced_field.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/search_engines_synced_field.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/sidebar_synced_field.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/sound_synced_field.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/textual_preview_synced_field.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/unread_channels_synced_field.dart';
-import 'package:fluxer_app/core/synced_preferences/fields/voice_prompts_synced_field.dart';
 import 'package:fluxer_app/core/synced_preferences/generated/fluxer/user/preferences/v1/preferences.pb.dart'
     as pb;
 import 'package:fluxer_app/core/synced_preferences/synced_theme_hydration.dart';
@@ -35,8 +24,27 @@ part 'synced_preferences_store.g.dart';
 
 const Duration _kSyncDebounce = Duration(milliseconds: 500);
 const Duration _kRecentAckWindow = Duration(seconds: 60);
-const Duration _kRateLimitBaseDelay = Duration(seconds: 5);
 const int _kRateLimitMaxAttempts = 6;
+const int _kRateLimitBackoffCapMs = 60000;
+const int _kRateLimitRetryAfterMinMs = 250;
+
+Duration syncedPreferencesRateLimitRetryDelay({
+  required int consecutive429s,
+  int? retryAfterMs,
+}) {
+  if (retryAfterMs != null && retryAfterMs > 0) {
+    return Duration(
+      milliseconds: retryAfterMs.clamp(
+        _kRateLimitRetryAfterMinMs,
+        _kRateLimitBackoffCapMs,
+      ),
+    );
+  }
+  final int exp = consecutive429s.clamp(1, _kRateLimitMaxAttempts);
+  return Duration(
+    milliseconds: (1000 * (1 << exp)).clamp(0, _kRateLimitBackoffCapMs),
+  );
+}
 
 @Riverpod(keepAlive: true)
 SyncedPreferencesStore syncedPreferencesStore(Ref ref) {
@@ -68,20 +76,11 @@ class SyncedPreferencesStore {
   int _rateLimitAttempts = 0;
 
   void registerDefaultAdapters() {
-    registerAdapter(FavoritesSyncedField(_ref));
-    registerAdapter(AccessibilitySyncedField(_ref));
-    registerAdapter(AccessibilityOverridesSyncedField(_ref));
-    registerAdapter(SearchEnginesSyncedField(_ref));
-    registerAdapter(SidebarSyncedField(_ref));
-    registerAdapter(PrivacySyncedField(_ref));
-    registerAdapter(MemberListSyncedField(_ref));
-    registerAdapter(UnreadChannelsSyncedField(_ref));
-    registerAdapter(VoicePromptsSyncedField(_ref));
-    registerAdapter(SoundSyncedField(_ref));
-    registerAdapter(GuildFoldersSyncedField(_ref));
-    registerAdapter(LocalSpamOverridesSyncedField(_ref));
-    registerAdapter(NagbarDismissalsSyncedField(_ref));
-    registerAdapter(TextualPreviewSyncedField(_ref));
+    registerDefaultSyncedFieldAdapters(
+      registerAdapter: registerAdapter,
+      ref: _ref,
+      readSyncedLocalFavorites: _readSyncedLocalFavorites,
+    );
   }
 
   void registerAdapter<T>(SyncedFieldAdapter<T> adapter) {
@@ -290,6 +289,14 @@ class SyncedPreferencesStore {
 
   bool encodedIsEmpty() => _wireBlob.isEmpty;
 
+  FavoritesLocalState? _readSyncedLocalFavorites() {
+    final adapter = _adapters[SyncedPreferenceField.favorites];
+    if (adapter is! FavoritesSyncedField) {
+      return null;
+    }
+    return adapter.readFromProto(_local);
+  }
+
   void _clearStaleDirtyForAbsentServerFields({
     required pb.SyncedPreferences incoming,
   }) {
@@ -430,7 +437,10 @@ class SyncedPreferencesStore {
       if (!_ref.mounted) {
         return;
       }
-      final encoded = await _encodeLocalSnapshot(inFlightSnapshot);
+      final encoded = await _encodeLocalSnapshot(
+        inFlightSnapshot,
+        fieldsToEncode: fieldsInRequest,
+      );
       if (!_ref.mounted || encoded.isEmpty) {
         return;
       }
@@ -480,7 +490,7 @@ class SyncedPreferencesStore {
       talker.error('[SyncedPreferences] Wire encode failed', error, stackTrace);
     } on Object catch (error, stackTrace) {
       if (_isRateLimitError(error)) {
-        _scheduleRateLimitRetry();
+        _scheduleRateLimitRetry(error);
         talker.warning('[SyncedPreferences] Push rate-limited, will retry');
         return;
       }
@@ -537,16 +547,22 @@ class SyncedPreferencesStore {
     return snapshot;
   }
 
-  Future<String> _encodeLocalSnapshot(pb.SyncedPreferences snapshot) async {
+  Future<String> _encodeLocalSnapshot(
+    pb.SyncedPreferences snapshot, {
+    required Iterable<SyncedPreferenceField> fieldsToEncode,
+  }) async {
     final wire = _wireBlob.isEmpty
         ? SyncedPreferencesEngine.createEmpty()
         : SyncedPreferencesEngine.decodeLenient(_wireBlob);
     final fieldMessages = <int, Uint8List>{};
-    for (final entry in _adapters.entries) {
+    for (final field in fieldsToEncode) {
       if (!_ref.mounted) {
         return '';
       }
-      final adapter = entry.value;
+      final adapter = _adapters[field];
+      if (adapter == null) {
+        continue;
+      }
       final Object? local = await adapter.readLocalValue();
       fieldMessages[adapter.fieldNumber] = _buildProtoForPush(
         adapter,
@@ -694,7 +710,7 @@ class SyncedPreferencesStore {
     });
   }
 
-  void _scheduleRateLimitRetry() {
+  void _scheduleRateLimitRetry(Object error) {
     _pendingPush = true;
     _pushTimer?.cancel();
     _rateLimitTimer?.cancel();
@@ -702,10 +718,12 @@ class SyncedPreferencesStore {
       1,
       _kRateLimitMaxAttempts,
     );
-    final delay = Duration(
-      milliseconds:
-          _kRateLimitBaseDelay.inMilliseconds *
-          (1 << (_rateLimitAttempts - 1).clamp(0, 4)),
+    final int? retryAfterMs = error is DioException
+        ? retryAfterMsFromDioException(error)
+        : null;
+    final delay = syncedPreferencesRateLimitRetryDelay(
+      consecutive429s: _rateLimitAttempts,
+      retryAfterMs: retryAfterMs,
     );
     _rateLimitTimer = Timer(delay, () {
       if (!_ref.mounted) {

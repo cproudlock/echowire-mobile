@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/features/voice/voice_session_errors.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 void main() {
   late FluxerLocalizations l10n;
@@ -105,6 +105,25 @@ void main() {
     test('returns unknown messages unchanged', () {
       const String raw = 'Voice server did not return connection details.';
       expect(resolveVoiceSessionErrorMessage(raw, l10n), raw);
+    });
+  });
+
+  group('shouldNotifyCameraUserLimitRejection', () {
+    test('is true only for rejected camera user limit', () {
+      expect(
+        shouldNotifyCameraUserLimitRejection(
+          status: 'rejected',
+          errorCode: kVoiceCameraUserLimitErrorCode,
+        ),
+        isTrue,
+      );
+      expect(
+        shouldNotifyCameraUserLimitRejection(
+          status: 'ok',
+          errorCode: kVoiceCameraUserLimitErrorCode,
+        ),
+        isFalse,
+      );
     });
   });
 }

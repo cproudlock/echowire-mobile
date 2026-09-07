@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:isolate';
 
 import 'package:drift/drift.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
+import 'package:fluxer_app/features/chat/domain/message_translation.dart';
 import 'package:fluxer_app/features/chat/utils/attachment_display_utils.dart';
 import 'package:fluxer_app/features/chat/utils/url_sanitization_utils.dart';
 import 'package:fluxer_app/features/chat/utils/voice_message_constants.dart';
@@ -106,7 +108,9 @@ class EmbedMedia {
   final int? width;
   final int? height;
   final String? contentType;
+  final String? placeholder;
   final int flags;
+  final String? contentHash;
 
   const EmbedMedia({
     required this.url,
@@ -114,7 +118,9 @@ class EmbedMedia {
     this.width,
     this.height,
     this.contentType,
+    this.placeholder,
     this.flags = 0,
+    this.contentHash,
   });
 
   bool get isAnimated =>
@@ -127,7 +133,9 @@ class EmbedMedia {
     width: sdk.width,
     height: sdk.height,
     contentType: sdk.contentType,
+    placeholder: sdk.placeholder,
     flags: sdk.flags,
+    contentHash: sdk.contentHash,
   );
 
   factory EmbedMedia.fromJson(Map<String, dynamic> json) => EmbedMedia(
@@ -136,7 +144,10 @@ class EmbedMedia {
     width: json['width'] as int?,
     height: json['height'] as int?,
     contentType: (json['contentType'] ?? json['content_type']) as String?,
+    placeholder: json['placeholder'] as String?,
     flags: json['flags'] as int? ?? 0,
+    contentHash:
+        (json['content_hash'] as String?) ?? (json['contentHash'] as String?),
   );
 
   Map<String, dynamic> toJson() => {
@@ -145,7 +156,9 @@ class EmbedMedia {
     'width': width,
     'height': height,
     'contentType': contentType,
+    'placeholder': placeholder,
     'flags': flags,
+    if (contentHash != null) 'content_hash': contentHash,
   };
 }
 
@@ -190,6 +203,7 @@ class Embed {
   final EmbedMedia? video;
   final List<EmbedField> fields;
   final String? providerName;
+  final String? providerUrl;
   final bool? nsfw;
 
   const Embed({
@@ -206,10 +220,28 @@ class Embed {
     this.video,
     this.fields = const [],
     this.providerName,
+    this.providerUrl,
     this.nsfw,
   });
 
   bool get isMatureMedia => nsfw ?? false;
+
+  /// Human-readable text of this embed, top to bottom as rendered, one part
+  /// per line. Empty when the embed is media-only.
+  String get copyableText {
+    final List<String> parts = <String>[
+      ?providerName,
+      ?author?.name,
+      ?title,
+      ?description,
+      for (final EmbedField field in fields) '${field.name}: ${field.value}',
+      ?footer?.text,
+    ];
+    return parts
+        .map((String part) => part.trim())
+        .where((String part) => part.isNotEmpty)
+        .join('\n');
+  }
 
   factory Embed.fromSdk(MessageEmbedResponse sdk) => Embed(
     type: _parseEmbedType(sdk.type),
@@ -227,6 +259,7 @@ class Embed {
     video: sdk.video != null ? EmbedMedia.fromSdk(sdk.video!) : null,
     fields: sdk.fields?.map(EmbedField.fromSdk).toList() ?? const [],
     providerName: sdk.provider?.name,
+    providerUrl: sdk.provider?.url,
     nsfw: sdk.nsfw,
   );
 
@@ -260,6 +293,9 @@ class Embed {
     providerName:
         (json['providerName'] as String?) ??
         ((json['provider'] as Map<String, dynamic>?)?['name'] as String?),
+    providerUrl:
+        (json['providerUrl'] as String?) ??
+        ((json['provider'] as Map<String, dynamic>?)?['url'] as String?),
     nsfw: json['nsfw'] as bool?,
   );
 
@@ -277,6 +313,7 @@ class Embed {
     'video': video?.toJson(),
     'fields': fields.map((f) => f.toJson()).toList(),
     'providerName': providerName,
+    'providerUrl': providerUrl,
     'nsfw': nsfw,
   };
 
@@ -307,6 +344,7 @@ class Attachment {
   final DateTime? expiresAt;
   final int? duration;
   final String? waveform;
+  final String? contentHash;
 
   const Attachment({
     required this.id,
@@ -326,6 +364,7 @@ class Attachment {
     this.flags = 0,
     this.duration,
     this.waveform,
+    this.contentHash,
   });
 
   factory Attachment.fromSdk(MessageAttachmentResponse sdk) {
@@ -347,6 +386,7 @@ class Attachment {
       expiresAt: DateTime.tryParse(sdk.expiresAt ?? ''),
       duration: sdk.duration,
       waveform: sdk.waveform,
+      contentHash: sdk.contentHash,
     );
   }
 
@@ -369,6 +409,8 @@ class Attachment {
       expiresAt: DateTime.tryParse((json['expires_at'] as String?) ?? ''),
       duration: json['duration'] as int?,
       waveform: json['waveform'] as String?,
+      contentHash:
+          (json['content_hash'] as String?) ?? (json['contentHash'] as String?),
     );
   }
 
@@ -390,6 +432,7 @@ class Attachment {
     'expires_at': expiresAt?.toIso8601String(),
     if (duration != null) 'duration': duration,
     if (waveform != null) 'waveform': waveform,
+    if (contentHash != null) 'content_hash': contentHash,
   };
 
   Attachment copyWithDescription(String? description) {
@@ -411,6 +454,7 @@ class Attachment {
       expiresAt: expiresAt,
       duration: duration,
       waveform: waveform,
+      contentHash: contentHash,
     );
   }
 
@@ -444,6 +488,7 @@ class Attachment {
   }
 
   bool get isPreviewMedia => isImage || isVideo;
+  bool get isSavableMedia => isImage || isVideo || isAudio;
   bool get isSpoiler => (flags & attachmentFlagIsSpoiler) != 0;
   bool get isMatureMedia =>
       (nsfw ?? false) || (flags & attachmentFlagContainsExplicitMedia) != 0;
@@ -893,6 +938,7 @@ class Message {
   final String? sendError;
   final MessageCall? call;
   final bool tts;
+  final MessageTranslation? translation;
 
   const Message({
     required this.id,
@@ -930,6 +976,7 @@ class Message {
     this.sendError,
     this.call,
     this.tts = false,
+    this.translation,
   });
 
   factory Message.fromSdk(MessageResponseSchema sdk, {String? currentUserId}) {
@@ -1204,7 +1251,38 @@ class Message {
           : MessageCall.fromJson(
               jsonDecode(row.callJson!) as Map<String, dynamic>,
             ),
+      translation: translationFromRow(row),
     );
+  }
+
+  static const int _kFromRowsIsolateMinCount = 8;
+
+  static List<Message> fromRows(List<db.Message> rows) => <Message>[
+    for (final db.Message row in rows) Message.fromRow(row),
+  ];
+
+  static Future<List<Message>> fromRowsAsync(List<db.Message> rows) {
+    if (rows.length < _kFromRowsIsolateMinCount) {
+      return Future<List<Message>>.value(fromRows(rows));
+    }
+    return Isolate.run(() => fromRows(rows));
+  }
+
+  static MessageTranslation? translationFromRow(db.Message row) {
+    return MessageTranslation.tryParse(
+      translatedContent: row.translatedContent,
+      sourceLanguage: row.translationSourceLanguage,
+      sourceContent: row.translatedSourceContent,
+      targetLanguage: row.translationTargetLanguage,
+      showOriginal: row.translationShowOriginal,
+    );
+  }
+
+  Message withStoredTranslation(MessageTranslationSnapshot? snapshot) {
+    if (snapshot == null || snapshot.content != content) {
+      return translation == null ? this : copyWith(translation: null);
+    }
+    return copyWith(translation: snapshot.translation);
   }
 
   /// Whether [other] renders identically, so the merge can reuse this instance
@@ -1265,7 +1343,22 @@ class Message {
           mentionChannels,
           other.mentionChannels,
           (mention) => mention.toJson(),
-        );
+        ) &&
+        _translationEquals(translation, other.translation);
+  }
+
+  static bool _translationEquals(MessageTranslation? a, MessageTranslation? b) {
+    if (identical(a, b)) {
+      return true;
+    }
+    if (a == null || b == null) {
+      return false;
+    }
+    return a.translatedContent == b.translatedContent &&
+        a.sourceLanguageCode == b.sourceLanguageCode &&
+        a.sourceContent == b.sourceContent &&
+        a.targetLanguageCode == b.targetLanguageCode &&
+        a.showOriginal == b.showOriginal;
   }
 
   static bool _encodedListEquals<T>(
@@ -1405,6 +1498,7 @@ class Message {
     Object? sendError = _unset,
     Object? call = _unset,
     bool? tts,
+    Object? translation = _unset,
   }) {
     return Message(
       id: id ?? this.id,
@@ -1444,6 +1538,9 @@ class Message {
       sendError: sendError == _unset ? this.sendError : sendError as String?,
       call: call == _unset ? this.call : call as MessageCall?,
       tts: tts ?? this.tts,
+      translation: translation == _unset
+          ? this.translation
+          : translation as MessageTranslation?,
     );
   }
 
@@ -1453,6 +1550,7 @@ class Message {
     String? currentUserId,
   }) {
     final Message incoming = Message.fromSdk(sdk, currentUserId: currentUserId);
+    final bool contentChanged = incoming.content != content;
     return copyWith(
       authorId: incoming.authorId,
       authorName: incoming.authorName,
@@ -1489,6 +1587,7 @@ class Message {
       type: incoming.type,
       flags: incoming.flags,
       call: incoming.call ?? call,
+      translation: contentChanged ? null : _unset,
     );
   }
 
@@ -1497,6 +1596,21 @@ class Message {
   bool get hasStickers => stickers.isNotEmpty;
   bool get isReply =>
       replyToId != null && !(messageReference?.isForward ?? false);
+
+  String get displayedContent {
+    final MessageTranslation? current = translation;
+    if (current != null &&
+        current.isValidFor(content) &&
+        !current.showOriginal) {
+      return current.translatedContent;
+    }
+    return content;
+  }
+
+  bool get hasValidTranslation {
+    final MessageTranslation? current = translation;
+    return current != null && current.isValidFor(content);
+  }
 
   bool get hasMentionsForGrouping =>
       mentionEveryone || mentionRoles.isNotEmpty || mentionedUserIds.isNotEmpty;
@@ -1513,6 +1627,19 @@ class Message {
 
   bool get hasForwardSnapshots => messageSnapshots.isNotEmpty;
   bool get suppressEmbeds => (flags & messageFlagSuppressEmbeds) != 0;
+
+  /// Text of every rendered embed, embeds separated by a blank line. Empty
+  /// when embeds are suppressed or carry no text.
+  String get embedsCopyableText {
+    if (suppressEmbeds) {
+      return '';
+    }
+    return embeds
+        .map((Embed embed) => embed.copyableText)
+        .where((String text) => text.isNotEmpty)
+        .join('\n\n');
+  }
+
   bool get hasCompactAttachments =>
       (flags & messageFlagCompactAttachments) != 0;
   bool get isVoiceMessage => (flags & kMessageFlagVoiceMessage) != 0;

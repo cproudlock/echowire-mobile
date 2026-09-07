@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fluxer_app/core/database/fluxer_database.dart' as database;
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/features/gateway/providers/gateway_event_providers.dart';
@@ -53,6 +55,36 @@ void clearVoiceParticipantUsersCache() {
   _friendNicknamesCache = null;
 }
 
+Future<Map<String, database.User>> prefetchVoiceParticipantUsers(
+  Ref ref,
+  Set<String> userIds,
+) {
+  return _resolveVoiceParticipantUsers(ref, userIds);
+}
+
+void prefetchVoiceParticipantsForChannel(
+  Ref ref, {
+  required String? guildId,
+  required String channelId,
+}) {
+  final Map<String, VoiceState> map = ref.read(voiceStatesMapProvider);
+  final Set<String> ids = <String>{};
+  for (final VoiceState vs in map.values) {
+    if (vs.channelId != channelId) {
+      continue;
+    }
+    if (guildId == null || guildId.isEmpty) {
+      if (vs.guildId != null && vs.guildId!.isNotEmpty) {
+        continue;
+      }
+    } else if (vs.guildId != guildId) {
+      continue;
+    }
+    ids.add(vs.userId);
+  }
+  unawaited(prefetchVoiceParticipantUsers(ref, ids));
+}
+
 Future<Map<String, database.User>> _resolveVoiceParticipantUsers(
   Ref ref,
   Set<String> userIds,
@@ -101,6 +133,23 @@ Map<String, database.User> _cachedUsersForIds(Set<String> userIds) {
     }
   }
   return byId;
+}
+
+VoiceChannelParticipantData connectingSelfVoiceParticipant({
+  required String currentUserId,
+  required String channelId,
+  String? guildId,
+  String? connectionId,
+}) {
+  return VoiceChannelParticipantData(
+    userId: currentUserId,
+    voice: VoiceState(
+      userId: currentUserId,
+      channelId: channelId,
+      guildId: guildId == null || guildId.isEmpty ? null : guildId,
+      connectionId: connectionId,
+    ),
+  );
 }
 
 class VoiceChannelParticipantData {
@@ -273,8 +322,9 @@ List<VoiceChannelParticipantData> voiceChannelParticipants(
   }
   final Set<String> userIds = inChannel.map((VoiceState v) => v.userId).toSet();
   final String userIdsKey = voiceParticipantUserIdsKey(userIds);
-  ref.watch(voiceParticipantUsersLoaderProvider(userIdsKey));
-  ref.watch(friendNicknamesLoaderProvider);
+  ref
+    ..watch(voiceParticipantUsersLoaderProvider(userIdsKey))
+    ..watch(friendNicknamesLoaderProvider);
   final Map<String, String?> nicknameByUserId =
       _friendNicknamesCache ?? const <String, String?>{};
   final Map<String, database.User> byId = _cachedUsersForIds(userIds);
@@ -406,9 +456,10 @@ List<VoiceSidebarParticipant> voiceChannelSidebarParticipants(
   final Set<String> userIds = byUser.keys.toSet();
   final String userIdsKey = voiceParticipantUserIdsKey(userIds);
   final String guildMembersKey = voiceGuildMembersKey(guildId, userIds);
-  ref.watch(voiceParticipantUsersLoaderProvider(userIdsKey));
-  ref.watch(voiceGuildMembersLoaderProvider(guildMembersKey));
-  ref.watch(friendNicknamesLoaderProvider);
+  ref
+    ..watch(voiceParticipantUsersLoaderProvider(userIdsKey))
+    ..watch(voiceGuildMembersLoaderProvider(guildMembersKey))
+    ..watch(friendNicknamesLoaderProvider);
   final Map<String, database.User> usersById = _cachedUsersForIds(userIds);
   final Map<String, database.Member> membersByUserId =
       <String, database.Member>{

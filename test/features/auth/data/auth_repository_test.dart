@@ -11,6 +11,7 @@ import 'package:fluxer_app/features/auth/data/auth_token_storage.dart';
 import 'package:fluxer_app/features/auth/domain/auth_failure.dart';
 import 'package:fluxer_app/features/auth/domain/ip_auth_poll_result.dart';
 import 'package:fluxer_app/features/auth/domain/login_result.dart';
+import 'package:fluxer_app/features/auth/domain/registration_result.dart';
 import 'package:fluxer_dart/export.dart';
 
 import '../../../helpers/open_test_database.dart';
@@ -228,6 +229,15 @@ void main() {
 
       expect(sessionOne?.token, 'token-1');
       expect(sessionTwo?.token, 'token-2');
+    });
+
+    test('persistRotatedToken updates the active session token', () async {
+      await db.authSessionDao.saveSessionMetadata(userId: 'user-1');
+      await tokenStorage.saveToken(userId: 'user-1', token: 'old-token');
+
+      await repository.persistRotatedToken('new-token');
+
+      expect(tokenStorage.tokens['user-1'], 'new-token');
     });
 
     test('login surfaces an IP authorization challenge', () async {
@@ -592,7 +602,109 @@ void main() {
         ),
       );
     });
+
+    test(
+      'register reports approval mode instead of demanding a token',
+      () async {
+        final dio = Dio(BaseOptions(baseUrl: 'https://api.fluxer.app/v1'))
+          ..httpClientAdapter = const _JsonResponseAdapter(
+            expectedPath: '/v1/auth/register',
+            responseJson: <String, Object?>{
+              'registration_pending_approval': true,
+              'user_id': '900000000000000001',
+            },
+          );
+
+        final approvalRepository = AuthRepository(
+          FluxerClient(dio),
+          db,
+          tokenStorage,
+          readInstanceSnapshot: InstanceConfigSnapshot.officialDefault,
+        );
+
+        final RegistrationResult result = await approvalRepository.register(
+          email: 'user@example.com',
+          password: 'hunter2hunter2',
+          dateOfBirth: '1990-01-02',
+        );
+
+        expect(
+          result,
+          isA<RegistrationPendingApproval>().having(
+            (RegistrationPendingApproval pending) => pending.userId,
+            'userId',
+            '900000000000000001',
+          ),
+        );
+        expect(await db.authSessionDao.getActiveSession(), isNull);
+        expect(tokenStorage.tokens, isEmpty);
+      },
+    );
+
+    test('login maps 503 HTML bodies to serviceUnavailable', () async {
+      final dio = Dio(BaseOptions(baseUrl: 'https://api.fluxer.app/v1'))
+        ..httpClientAdapter = const _RawResponseAdapter(
+          expectedPath: '/v1/auth/login',
+          statusCode: 503,
+          statusMessage: 'Service Unavailable',
+          body: '<html>Service Unavailable</html>',
+        );
+
+      final repo = AuthRepository(
+        FluxerClient(dio),
+        db,
+        tokenStorage,
+        readInstanceSnapshot: InstanceConfigSnapshot.officialDefault,
+      );
+
+      await expectLater(
+        repo.login(email: 'user@example.com', password: 'secret'),
+        throwsA(
+          isA<AuthFailure>().having(
+            (AuthFailure e) => e.kind,
+            'kind',
+            AuthFailureKind.serviceUnavailable,
+          ),
+        ),
+      );
+    });
   });
+}
+
+class _RawResponseAdapter implements HttpClientAdapter {
+  const _RawResponseAdapter({
+    required this.expectedPath,
+    required this.body,
+    required this.statusCode,
+    this.statusMessage = 'OK',
+  });
+
+  final String expectedPath;
+  final String body;
+  final int statusCode;
+  final String statusMessage;
+
+  @override
+  Future<ResponseBody> fetch(
+    RequestOptions options,
+    Stream<Uint8List>? requestStream,
+    Future<void>? cancelFuture,
+  ) async {
+    expect(options.method, 'POST');
+    expect(options.uri.path, expectedPath);
+
+    return ResponseBody.fromString(
+      body,
+      statusCode,
+      statusMessage: statusMessage,
+      headers: <String, List<String>>{
+        Headers.contentTypeHeader: <String>['text/html'],
+      },
+    );
+  }
+
+  @override
+  void close({bool force = false}) {}
 }
 
 class _JsonResponseAdapter implements HttpClientAdapter {

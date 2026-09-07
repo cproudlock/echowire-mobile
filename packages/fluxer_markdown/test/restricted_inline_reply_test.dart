@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_markdown/src/config/fluxer_markdown_config.dart';
 import 'package:fluxer_markdown/src/contexts/fluxer_markdown_context.dart';
-import 'package:fluxer_markdown/src/parsing/markdown_preprocessor.dart';
+import 'package:fluxer_markdown/src/contexts/fluxer_markdown_features.dart';
 import 'package:fluxer_markdown/src/renderers/fluxer_markdown_renderers.dart';
 import 'package:fluxer_markdown/src/widgets/fluxer_markdown.dart';
-import 'support/markdown_parse_test_helper.dart';
+import 'package:material_ui/material_ui.dart';
+
+import 'support/native_test_parser.dart';
 
 const FluxerMarkdownConfig _testMarkdownConfig = FluxerMarkdownConfig(
   resolveEmojiShortcode: _resolveEmojiShortcode,
@@ -24,7 +25,7 @@ String _noopCustomEmojiUrl({
 }) => 'https://example.com/emoji/$id';
 
 void main() {
-  final features = MarkdownParseTestHelper.featuresFor(
+  final features = FluxerMarkdownFeatures.forContext(
     FluxerMarkdownContext.restrictedInlineReply,
   );
 
@@ -39,21 +40,18 @@ void main() {
 
     test('parses fenced code blocks instead of escaping them', () {
       const input = '```\nsecret code\n```';
-      final processed = MarkdownParseTestHelper.preprocess(input, features);
-      expect(processed, input);
-      final segments = MarkdownParseTestHelper.parseSegments(
-        processed,
-        features,
-      );
-      expect(segments.whereType<FluxerTextSegment>(), isNotEmpty);
+      final nodes = parseTestMarkdownAst(input, features);
+      expect(containsMarkdownTag(nodes, 'pre'), isTrue);
+      expect(collectMarkdownText(nodes), contains('secret code'));
     });
 
     test('extracts subtext segments', () {
-      final segments = MarkdownParseTestHelper.parseSegments(
-        'hello\n-# small note',
-        features,
+      final nodes = parseTestMarkdownAst('hello\n-# small note', features);
+      expect(containsMarkdownTag(nodes, 'subtext'), isTrue);
+      expect(
+        collectMarkdownText([findMarkdownTag(nodes, 'subtext')!]),
+        'small note',
       );
-      expect(segments.whereType<FluxerSubtextSegment>(), hasLength(1));
     });
 
     testWidgets('renders fenced code blocks as inline code in previews', (
@@ -65,6 +63,7 @@ void main() {
             body: SizedBox(
               width: 240,
               child: FluxerMarkdown(
+                astParser: parseTestMarkdownAst,
                 data: '```\nsecret code\n```',
                 config: _testMarkdownConfig,
                 context: FluxerMarkdownContext.restrictedInlineReply,
@@ -93,6 +92,7 @@ void main() {
             body: SizedBox(
               width: 240,
               child: FluxerMarkdown(
+                astParser: parseTestMarkdownAst,
                 data: '-# preview note',
                 config: _testMarkdownConfig,
                 context: FluxerMarkdownContext.restrictedInlineReply,

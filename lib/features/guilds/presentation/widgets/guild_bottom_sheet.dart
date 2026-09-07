@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
@@ -11,6 +11,7 @@ import 'package:fluxer_app/features/guilds/presentation/widgets/guild_menu_data.
 import 'package:fluxer_app/features/settings/providers/use_12_hour_time_format_provider.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:fluxer_app/shared/utils/clipboard_utils.dart';
 import 'package:go_router/go_router.dart';
@@ -46,6 +47,9 @@ Future<GuildAction?> showGuildBottomSheet(
     hideMutedChannels: hideMutedChannels,
     developerMode: developerMode,
     isTouchPrimary: isTouchPrimary,
+    isStockCommunity: ProviderScope.containerOf(
+      context,
+    ).read(instanceRuntimeConfigProvider).isStockCommunityGuild(guild.id),
     guild: guild,
   );
 
@@ -54,7 +58,6 @@ Future<GuildAction?> showGuildBottomSheet(
     title: guild.name,
     leading: GuildBottomSheetAvatar(guild: guild),
     subtitle: GuildBottomSheetStats(guildId: guild.id, fallbackGuild: guild),
-    initialChildSize: 0.7,
     builder: (sheetContext, scrollController, close) {
       final layout = sheetContext.layout;
       void pop(GuildAction action) => Navigator.of(sheetContext).pop(action);
@@ -139,7 +142,6 @@ void _openMuteSubmenu(BuildContext context, GuildMenuSubmenu submenu) {
       context,
       title: submenu.label,
       onBack: () => Navigator.of(context).pop(),
-      initialChildSize: 0.5,
       builder: (sheetContext, scrollController, close) {
         final layout = sheetContext.layout;
         void pop(GuildAction action) => Navigator.of(sheetContext).pop(action);
@@ -183,7 +185,6 @@ void _openGenericSubmenu(BuildContext context, GuildMenuSubmenu submenu) {
       context,
       title: submenu.label,
       onBack: () => Navigator.of(context).pop(),
-      initialChildSize: 0.5,
       builder: (sheetContext, scrollController, close) {
         final layout = sheetContext.layout;
         void pop(GuildAction action) => Navigator.of(sheetContext).pop(action);

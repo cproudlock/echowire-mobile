@@ -1,12 +1,16 @@
+import 'package:dio/dio.dart';
+import 'package:fluxer_app/core/api/dio_error_message.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/instance/instance_config_snapshot.dart';
 import 'package:fluxer_app/core/instance/instance_constants.dart';
 import 'package:fluxer_app/core/instance/instance_discovery_service.dart';
 import 'package:fluxer_app/core/instance/instance_endpoint_normalizer.dart';
+import 'package:fluxer_app/core/instance/instance_runtime_config.dart';
 import 'package:fluxer_app/core/providers/active_instance_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/features/auth/providers/add_account_instance_guard_provider.dart';
+import 'package:fluxer_app/features/auth/providers/pending_registration_url_code_provider.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -134,6 +138,12 @@ class InstanceSelector extends _$InstanceSelector {
       return false;
     }
     final String url = input.trim();
+    final String? registrationUrlCode = parseRegistrationUrlCode(url);
+    if (registrationUrlCode != null) {
+      ref
+          .read(pendingRegistrationUrlCodeProvider.notifier)
+          .store(registrationUrlCode);
+    }
     if (url.isEmpty) {
       ++_connectSeq;
       if (!_isolatesActiveInstance) {
@@ -270,7 +280,9 @@ class InstanceSelector extends _$InstanceSelector {
           instanceUrl: url,
           status: InstanceDiscoveryStatus.error,
           requiresDiscovery: true,
-          errorMessage: error.toString(),
+          errorMessage: error is DioException
+              ? apiMessageFromDioException(error)
+              : null,
           clearPendingSnapshot: true,
         ),
       );

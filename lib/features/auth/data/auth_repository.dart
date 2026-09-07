@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:fluxer_app/core/api/service_unavailable.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' hide AuthSession;
 import 'package:fluxer_app/core/instance/instance_config_snapshot.dart';
 import 'package:fluxer_app/core/instance/instance_endpoint_normalizer.dart';
@@ -12,6 +13,7 @@ import 'package:fluxer_app/features/auth/domain/ip_auth_poll_result.dart';
 import 'package:fluxer_app/features/auth/domain/ip_authorization_challenge.dart';
 import 'package:fluxer_app/features/auth/domain/login_result.dart';
 import 'package:fluxer_app/features/auth/domain/mfa_challenge.dart';
+import 'package:fluxer_app/features/auth/domain/registration_result.dart';
 import 'package:fluxer_app/features/auth/domain/stored_account.dart';
 import 'package:fluxer_dart/export.dart';
 
@@ -157,13 +159,14 @@ class AuthRepository {
     }
   }
 
-  Future<AuthSession> register({
+  Future<RegistrationResult> register({
     required String email,
     required String password,
-    required String dateOfBirth,
+    String? dateOfBirth,
     String? username,
     String? displayName,
     String? inviteCode,
+    String? registrationUrlCode,
   }) async {
     try {
       final response = await _client.auth.registerAccount(
@@ -179,8 +182,15 @@ class AuthRepository {
               ? displayName!.trim()
               : null,
           inviteCode: inviteCode,
+          registrationUrlCode: registrationUrlCode,
         ),
       );
+
+      if (response.toJson()['registration_pending_approval'] == true) {
+        return RegistrationPendingApproval(
+          response.toAuthRegistrationPendingApprovalResponse().userId,
+        );
+      }
 
       final tokenResponse = response.toAuthTokenWithUserIdResponse();
       final session = AuthSession(
@@ -188,7 +198,7 @@ class AuthRepository {
         userId: tokenResponse.userId,
       );
       await _saveSession(session);
-      return session;
+      return RegistrationSuccess(session);
     } on DioException catch (error) {
       throw _failureFromDio(error);
     }
@@ -298,6 +308,31 @@ class AuthRepository {
       discriminator: discriminator,
       avatar: avatar,
       instanceSnapshotJson: _readInstanceSnapshot().toJson(),
+    );
+  }
+
+  Future<void> persistRotatedToken(String token) async {
+    if (token.isEmpty) {
+      return;
+    }
+    final row = await _db.authSessionDao.getActiveSession();
+    if (row == null) {
+      return;
+    }
+    await _tokenStorage.saveToken(userId: row.userId, token: token);
+  }
+
+  Future<void> persistInstanceSnapshot(InstanceConfigSnapshot snapshot) async {
+    final row = await _db.authSessionDao.getActiveSession();
+    if (row == null) {
+      return;
+    }
+    await _db.authSessionDao.saveSessionMetadata(
+      userId: row.userId,
+      username: row.username,
+      discriminator: row.discriminator,
+      avatar: row.avatar,
+      instanceSnapshotJson: snapshot.toJson(),
     );
   }
 
@@ -552,6 +587,13 @@ class AuthRepository {
   }
 
   AuthFailure _failureFromDio(DioException error) {
+    if (isHttpServiceUnavailable(error)) {
+      return const AuthFailure(
+        'This instance is temporarily unavailable.',
+        kind: AuthFailureKind.serviceUnavailable,
+      );
+    }
+
     final responseData = error.response?.data;
 
     if (responseData is Map<String, dynamic>) {

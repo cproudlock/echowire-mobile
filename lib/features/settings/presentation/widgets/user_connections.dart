@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/connection_add_sheet.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/connection_edit_sheet.dart';
@@ -18,6 +18,7 @@ import 'package:fluxer_app/features/ui/tappable/fluxer_tappable.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -67,7 +68,13 @@ class _UserConnectionsState extends ConsumerState<UserConnections>
         children: [
           FluxerSettingsSection(
             title: l10n.connectionsTitle,
-            description: l10n.connectionsDescription,
+            description: l10n.connectionsDescription(
+              ref.watch(
+                instanceRuntimeConfigProvider.select(
+                  (config) => config.productName,
+                ),
+              ),
+            ),
             isFirst: true,
             density: FluxerSettingsSectionDensity.compact,
             children: [

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:fluxer_app/core/api/retry_after.dart';
 
 /// Reads the Fluxer API `code` field from a [DioException] response body.
 String? apiErrorCodeFromDioException(DioException error) {
@@ -15,18 +16,13 @@ String? apiErrorCodeFromDioException(DioException error) {
   return null;
 }
 
-/// Reads the Fluxer API `retry_after` field from a [DioException] response body
-/// and converts it to milliseconds.
+/// Reads the retry window from a [DioException], preferring body fields then
+/// `Retry-After` / `X-RateLimit-Reset-After` headers.
 int? retryAfterMsFromDioException(DioException error) {
-  final Object? data = error.response?.data;
-  if (data is! Map<String, dynamic>) {
-    return null;
-  }
-  final Object? retryAfter = data['retry_after'];
-  if (retryAfter is num && retryAfter.isFinite && retryAfter > 0) {
-    return (retryAfter * 1000).ceil();
-  }
-  return null;
+  return featureRetryAfterMs(
+    headers: error.response?.headers,
+    data: error.response?.data,
+  );
 }
 
 /// Reads the Fluxer API `message` field from a [DioException] response body.
@@ -50,6 +46,17 @@ String dioExceptionMessage(DioException error, String fallback) {
   final String? transportMessage = error.message;
   if (transportMessage != null && transportMessage.isNotEmpty) {
     return transportMessage;
+  }
+  return fallback;
+}
+
+/// Returns a user facing message for [error].
+///
+/// For [DioException], the Fluxer API `message` field is preferred. Otherwise
+/// [fallback] is returned.
+String userFacingErrorMessage(Object error, String fallback) {
+  if (error is DioException) {
+    return apiMessageFromDioException(error) ?? fallback;
   }
   return fallback;
 }

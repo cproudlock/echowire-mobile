@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/profile/presentation/widgets/user_profile_mutual_list.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart';
 
 class UserProfileMutualsSheet {
@@ -20,8 +20,6 @@ class UserProfileMutualsSheet {
       context,
       title: _titleFor(context, initialType),
       useRootNavigator: true,
-      initialChildSize: 0.72,
-      maxChildSize: 0.9,
       builder: (sheetContext, scrollController, close) => _MutualsSheetBody(
         friends: friends,
         communities: communities,
@@ -71,6 +69,7 @@ class _MutualsSheetBody extends StatelessWidget {
     final layout = context.layout;
     return ListView(
       controller: scrollController,
+      physics: const ClampingScrollPhysics(),
       padding: FluxerBottomSheet.scrollViewPadding(
         context,
         padding: EdgeInsets.fromLTRB(layout.s4, 0, layout.s4, layout.s4),

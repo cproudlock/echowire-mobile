@@ -3,7 +3,8 @@ import 'dart:developer' as dev;
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:fluxer_captcha/src/captcha_exception.dart';
 import 'package:fluxer_captcha/src/captcha_provider.dart';
@@ -15,6 +16,7 @@ import 'package:fluxer_captcha/src/widget/captcha_content_size.dart';
 import 'package:fluxer_captcha/src/widget/captcha_options.dart';
 import 'package:fluxer_captcha/src/widget/captcha_styling.dart';
 import 'package:fluxer_captcha/src/widget/interface.dart' as i;
+import 'package:material_ui/material_ui.dart';
 
 const String _tokenReceivedJSHandler =
     'window.flutter_inappwebview.callHandler(`CaptchaToken`, token);';
@@ -292,6 +294,22 @@ String buildHTML({
   };
 }
 
+final List<WebResourceErrorType> _ignoredWebResourceErrorTypes = [
+  // I don't know why this needs to be ignored specifically as it wasn't added
+  // by me, but maybe someone can replace this comment with an explanation.
+  WebResourceErrorType.CANNOT_CONNECT_TO_HOST,
+  // This needs to be ignored for Turnstile to function on IPv4-only networks.
+  // See this forum post: https://community.cloudflare.com/t/turnstile-net-err-name-not-resolved-error-in-console-on-brunhild-challenges/937102/8
+  // TL;DR: Turnstile looks up a domain that is intentionally IPv6-only, but
+  // will gracefully continue working with IPv4, so it is considered a bug to
+  // interpret the name resolution failure as fatal.
+  WebResourceErrorType.HOST_LOOKUP,
+];
+
+bool _shouldIgnoreWebResourceError(WebResourceError error) {
+  return _ignoredWebResourceErrorTypes.contains(error.type);
+}
+
 /// FluxerCaptcha for native (mobile/desktop) platforms.
 class FluxerCaptcha extends StatefulWidget implements i.FluxerCaptcha {
   FluxerCaptcha({
@@ -422,17 +440,21 @@ class _FluxerCaptchaState extends State<FluxerCaptcha> {
   final GlobalKey webViewKey = GlobalKey();
 
   final InAppWebViewSettings _settings = InAppWebViewSettings(
-    disableHorizontalScroll: true,
     verticalScrollBarEnabled: false,
+    horizontalScrollBarEnabled: false,
     transparentBackground: true,
     disallowOverScroll: true,
-    disableVerticalScroll: true,
     supportZoom: false,
     useWideViewPort: false,
     disableDefaultErrorPage: true,
     disableContextMenu: true,
     disableLongPressContextMenuOnLinks: true,
+    allowsBackForwardNavigationGestures: false,
   );
+
+  static const Set<Factory<OneSequenceGestureRecognizer>> _webviewGestures = {
+    Factory<OneSequenceGestureRecognizer>(EagerGestureRecognizer.new),
+  };
 
   late String data;
 
@@ -617,6 +639,7 @@ class _FluxerCaptchaState extends State<FluxerCaptcha> {
       baseUrl: WebUri(widget.baseUrl),
     ),
     initialSettings: _settings,
+    gestureRecognizers: _webviewGestures,
     onWebViewCreated: (controller) {
       _createChannels(controller);
       widget.controller?.setConnector(controller);
@@ -682,7 +705,7 @@ class _FluxerCaptchaState extends State<FluxerCaptcha> {
     },
     onConsoleMessage: (controller, consoleMessage) {},
     onReceivedError: (controller, _, error) {
-      if (error.type == WebResourceErrorType.CANNOT_CONNECT_TO_HOST) {
+      if (_shouldIgnoreWebResourceError(error)) {
         return;
       }
       _ready(false);
@@ -745,7 +768,7 @@ class _FluxerCaptchaState extends State<FluxerCaptcha> {
   }
 }
 
-// Mutable fields are required for headless WebView state management.
+// Headless captcha widget state.
 // ignore: must_be_immutable
 class _CaptchaInvisible extends FluxerCaptcha {
   _CaptchaInvisible.init({
@@ -808,7 +831,7 @@ class _CaptchaInvisible extends FluxerCaptcha {
       },
       onConsoleMessage: (_, _) {},
       onReceivedError: (_, _, error) {
-        if (error.type == WebResourceErrorType.CANNOT_CONNECT_TO_HOST) {
+        if (_shouldIgnoreWebResourceError(error)) {
           return;
         }
         controller?.error = CaptchaException(error.description);

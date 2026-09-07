@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:fluxer_app/core/instance/instance_constants.dart';
 import 'package:fluxer_app/core/instance/instance_endpoint_normalizer.dart';
 import 'package:fluxer_app/core/instance/instance_endpoints.dart';
+import 'package:fluxer_app/core/instance/instance_runtime_config.dart';
 import 'package:fluxer_dart/export.dart';
 
 class InstanceConfigSnapshot {
@@ -87,18 +88,63 @@ class InstanceConfigSnapshot {
     return config != null && config.enabled && !config.enforced;
   }
 
-  String? get instanceDisplayName {
-    final Object? appPublic = wellKnown?.appPublic;
-    if (appPublic is Map<String, dynamic>) {
-      final Object? branding = appPublic['branding'];
-      if (branding is Map<String, dynamic>) {
-        final Object? productName = branding['product_name'];
-        if (productName is String && productName.trim().isNotEmpty) {
-          return productName.trim();
-        }
-      }
+  bool get isRegistrationClosed =>
+      wellKnown?.registration.mode ==
+      WellKnownFluxerResponseRegistrationModeMode.closed;
+
+  /// Terms of service URL to show during registration, null when this instance
+  /// has none to offer.
+  String? get termsUrl =>
+      _legalUrl(wellKnown?.appPublic.legal.termsUrl, 'terms');
+
+  /// Privacy policy URL to show during registration, null when this instance
+  /// has none to offer.
+  String? get privacyUrl =>
+      _legalUrl(wellKnown?.appPublic.legal.privacyUrl, 'privacy');
+
+  /// Self-hosted instances only get the documents their operator configured;
+  /// everything else falls back to the instance marketing site.
+  String? _legalUrl(String? configured, String marketingPath) {
+    if (configured != null) {
+      return configured;
     }
-    return null;
+    if (wellKnown?.features.selfHosted ?? false) {
+      return null;
+    }
+    final String marketing =
+        wellKnown?.endpoints.marketing ??
+        InstanceConstants.defaultMarketingBaseUrl;
+    return '$marketing/$marketingPath';
+  }
+
+  String get productName {
+    final String? name = wellKnown?.appPublic.branding.productName.trim();
+    if (name == null || name.isEmpty) {
+      return InstanceConstants.defaultProductName;
+    }
+    return name;
+  }
+
+  String? get instanceDisplayName {
+    final String name = productName;
+    if (name == InstanceConstants.defaultProductName && wellKnown == null) {
+      return null;
+    }
+    if (wellKnown == null) {
+      return null;
+    }
+    return name;
+  }
+
+  bool get emailsEnabled => wellKnown?.features.emailsEnabled ?? true;
+
+  bool get collectDateOfBirth =>
+      wellKnown?.appPublic.registration.collectDateOfBirth ?? true;
+
+  bool canPublicRegister({String? registrationUrlCode}) {
+    return InstanceRuntimeConfig.fromWellKnown(
+      wellKnown,
+    ).canPublicRegister(registrationUrlCode: registrationUrlCode);
   }
 
   static String _resolveApiBaseUrl(WellKnownFluxerResponseEndpoints endpoints) {

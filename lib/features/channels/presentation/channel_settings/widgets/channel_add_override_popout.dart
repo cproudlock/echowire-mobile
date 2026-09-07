@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
@@ -11,6 +10,7 @@ import 'package:fluxer_app/features/members/domain/member.dart';
 import 'package:fluxer_app/features/members/providers/member_providers.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/role_color_utils.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -32,7 +32,6 @@ class ChannelAddOverrideSheet {
       context,
       title: l10n.channelSettingsPermissionsAddOverride,
       useRootNavigator: true,
-      initialChildSize: 0.6,
       minChildSize: 0.35,
       builder:
           (

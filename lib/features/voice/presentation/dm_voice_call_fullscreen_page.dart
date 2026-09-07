@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_view_model.dart';
@@ -14,10 +13,12 @@ import 'package:fluxer_app/features/ui/voice/voice_channel_control_bar.dart';
 import 'package:fluxer_app/features/ui/voice/voice_channel_control_expandable_sheet.dart';
 import 'package:fluxer_app/features/ui/voice/voice_channel_participant_grid.dart';
 import 'package:fluxer_app/features/voice/presentation/widgets/voice_call_join_empty_state.dart';
+import 'package:fluxer_app/features/voice/presentation/widgets/voice_call_phone_surface.dart';
 import 'package:fluxer_app/features/voice/providers/voice_call_overlay_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/chat_context_utils.dart';
 import 'package:go_router/go_router.dart';
 
@@ -93,13 +94,22 @@ class _DmVoiceCallFullscreenPageState
             (s.guildId == null || s.guildId!.isEmpty),
       ),
     );
-    return Scaffold(
+    final Widget scaffold = Scaffold(
       backgroundColor: context.colors.chatBackground,
-      appBar: usePhoneVoiceOverlay && !showsOverlay
-          ? null
-          : AppBar(
-              backgroundColor: context.colors.chatInputBackground,
+      extendBodyBehindAppBar: usePhoneVoiceOverlay,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: IgnorePointer(
+          ignoring: usePhoneVoiceOverlay && !showsOverlay,
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 240),
+            opacity: showsOverlay ? 1 : 0,
+            child: AppBar(
+              backgroundColor: usePhoneVoiceOverlay
+                  ? Colors.transparent
+                  : context.colors.chatInputBackground,
               foregroundColor: context.colors.textPrimary,
+              elevation: 0,
               leading: BackButton(onPressed: () => context.pop()),
               title: Text(
                 _resolveAppBarTitle(l10n),
@@ -113,6 +123,9 @@ class _DmVoiceCallFullscreenPageState
                 ),
               ],
             ),
+          ),
+        ),
+      ),
       body: inThisChannel
           ? LocalCameraOrientationSync(
               child: usePhoneVoiceOverlay
@@ -141,5 +154,9 @@ class _DmVoiceCallFullscreenPageState
               ),
             ),
     );
+    if (usePhoneVoiceOverlay) {
+      return VoiceCallJoinOverlay(child: scaffold);
+    }
+    return scaffold;
   }
 }

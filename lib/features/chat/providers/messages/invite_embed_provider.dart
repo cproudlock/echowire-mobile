@@ -15,26 +15,24 @@ class InviteEmbedNotFound extends InviteEmbedState {}
 
 class InviteEmbedGuild extends InviteEmbedState {
   InviteEmbedGuild(this.invite);
-  final InviteResponseSchemaGuildInviteResponse invite;
+  final InviteResponseSchema0 invite;
 }
 
 class InviteEmbedGroupDm extends InviteEmbedState {
   InviteEmbedGroupDm(this.invite);
-  final InviteResponseSchemaGroupDmInviteResponse invite;
+  final InviteResponseSchema1 invite;
 }
 
-// Fetches invite data by code
 @riverpod
 Future<InviteEmbedState> inviteEmbed(Ref ref, String code) async {
-  final client = ref.watch(fluxerClientProvider);
+  final client = ref.read(fluxerClientProvider);
   try {
-    final schema = await client.invites.getInvite(inviteCode: code);
-    final raw = schema.toJson();
-    final typeVal = raw['type'] as int?;
-    return switch (typeVal) {
-      0 => InviteEmbedGuild(schema.toGuildInviteResponse()),
-      1 => InviteEmbedGroupDm(schema.toGroupDmInviteResponse()),
-      _ => InviteEmbedNotFound(),
+    final InviteResponseSchema schema = await client.invites.getInvite(
+      inviteCode: code,
+    );
+    return switch (schema) {
+      InviteResponseSchema0() => InviteEmbedGuild(schema),
+      InviteResponseSchema1() => InviteEmbedGroupDm(schema),
     };
   } on DioException catch (e) {
     if (e.response?.statusCode == 404) {
@@ -44,7 +42,6 @@ Future<InviteEmbedState> inviteEmbed(Ref ref, String code) async {
   }
 }
 
-// Accepts the invite and jumps to the guild channe/l
 Future<void> acceptInvite({
   required String code,
   required String guildId,

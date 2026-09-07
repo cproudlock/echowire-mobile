@@ -1,7 +1,7 @@
 > [!CAUTION]
-> The Fluxer Flutter mobile client is still in beta so features will be missing or broken. Currently the only way to report issues is on the Fluxer Mobile community (Plutonium members only), this will change in the future.
+> The Fluxer Flutter mobile client is still in beta so features will be missing or broken. There is currently no set release date for the app, but you can join our public beta!.
 >
-> Note there is currently no set release date for the app.
+> Please checkout the [known issues list](https://github.com/fluxerapp/flutter_client/issues/439) before reporting an issue.
 
 <p align="center">
   <img src="./docs/media/logo-graphic.png" alt="Fluxer graphic logo" width="400">
@@ -21,16 +21,15 @@
 
 # Fluxer Flutter Client
 
-This is the repo for the official Fluxer mobile app powered by Flutter (desktop is in the works also but mobile is the main focus currently).
+This is the repo for the official Fluxer mobile / tablet app powered by Flutter (desktop is in the works also but mobile is the main focus currently).
 
 You can follow more about the V1 development and what features are planned/implemented in this [Roadmap issue](https://github.com/fluxerapp/flutter_client/issues/184).
 
 # Community
 
-> [!NOTE]
-> Currently the community is locked to Fluxer Plutonium members only. This limit will be lifted after the beta period (the link below will not work yet).
+For updates, support, and discussion, there is an Fluxer Labs community for all users to be able to join and give feedback.
 
-For updates, support, and discussion, [join the Fluxer Mobile community on Fluxer](https://fluxer.gg/fluxer-mobile).
+Join here: [Join Link](https://fluxer.gg/fluxer-labs)
 
 ## Download
 
@@ -38,9 +37,13 @@ For updates, support, and discussion, [join the Fluxer Mobile community on Fluxe
 
 **Google Play Store**: Coming when V1 is finished.
 
+**Accrescent**: This is something we are interested in doing after V1 and they allow app submissions again.
+
 **F-Droid**: Coming when V1 is finished.
 
-**iOS TestFlight**: Coming soon :eyes:
+**iOS TestFlight**: Join with the [TestFlight link](https://testflight.apple.com/join/PKZR6pK9).
+
+**Obtainium**: This is currently the best way to install and keep the Android betas installed and updated. [Find out more here](#auto-updates-with-obtainium).
 
 ### Android (APK)
 
@@ -73,28 +76,27 @@ Stable, beta, and canary Android release builds on GitHub are signed with this S
 
 ## Bug reporting
 
-> [!WARNING]
-> During the beta period the only place to report bugs will be in the Fluxer Mobile community (they are mirrored to Github still). Once the beta period finishes you will be able to report issues on Github and the community.
+You must report bugs or feedback in [Fluxer Labs community](https://fluxer.gg/fluxer-labs) and bugs are synced to Github from the community.
 
-# Self hosted instances
+## Self-hosted instances
 
-The mobile app supports self hosted instances now! Push notifications are currently only supported for users using the Android OSS build.
+The mobile app supports self-hosted instances now! Push notifications are currently only supported for users using the Android OSS build.
 
-For iOS and Android FCM build we will need to setup a relay service for self hosted instances to use. This is something that will be worked on in the future.
+For iOS and Android FCM build we will need to set up a relay service for self-hosted instances to use. This is something we mostly have finished (on the backend side), and will allow notifications on both platforms with zero knowledge of message content being passed through the relay.
 
-SSO (Single Sign-On) login is supported for self-hosted instances that have configured an OIDC/OAuth2 provider. When connecting to an instance with SSO enabled, the app will display the appropriate login options based on the server's configuration. If SSO is enforced, only the SSO login flow will be available. If SSO is optional, both SSO and email/password login can be used.
-
-For mobile SSO, register this redirect URI with your OIDC provider:
+SSO (Single Sign-On) login is supported on the mobile client. For it to fully work you need to register this redirect URI with your OIDC provider:
 
 `fluxer://auth/sso/callback`
 
-## Contributing
+## Contributing (for developers)
 
-During the current beta, we are only accepting contributions for bug fixes. To submit a PR, it must be for a linked reported issue.
+During the current beta, we are only accepting contributions for bug fixes. To submit a PR, it must be for a linked reported issue. Please message us on the Fluxer Labs community first (we hope to come up with a better way to reduce spam PR's in the future). [Join Link](https://fluxer.gg/fluxer-labs)
 
 After the beta period, we will be updating these guidelines.
 
 Pull requests should target the `canary` branch. For local testing, use the `canary` build flavor so your build matches that branch (see Mobile builds below).
+
+Before committing, run `bash tool/before_commit.sh` to apply `dart fix` and format tracked Dart files (generated and vendored paths are skipped). CI uses the same file list.
 
 ### Contribution licensing and sign-off
 
@@ -120,6 +122,9 @@ Strings are managed on [Weblate](https://weblate.fluxer.tools/projects/flutter-c
 
 ### Version numbers
 
+> [!NOTE]
+> We will transition to this version method after the V1 update.
+
 Releases use `{year}.{month}.{public release number}`, for example `2026.07.100`.
 
 - **Year** and **month** are when the release was published.
@@ -132,6 +137,20 @@ Riverpod generated files are not committed, so you need to generate them before 
 
 ```text
 dart run build_runner build
+```
+
+### Native markdown parser (experimental)
+
+The `fluxer/` submodule vendors the canonical Rust markdown parser. A Dart
+native-assets build hook (`packages/fluxer_markdown_native`) compiles it with
+cargo during `flutter build` and bundles it into the app.
+
+Prerequisites: [rustup](https://rustup.rs) with the stable toolchain, and
+`flutter config --enable-native-assets`. For Android builds also add the
+cross-compilation targets:
+
+```text
+rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android
 ```
 
 ### Mobile builds
@@ -158,11 +177,7 @@ flutter build ios --flavor canary --dart-define-from-file=tool/dart_defines/cana
 
 ### Desktop builds
 
-Coming soon!
-
-### API
-
-The Flutter client uses the [dart_sdk](https://github.com/fluxerapp/dart_sdk) to send requests to the Fluxer API which is generated from the OpenApi spec.
+We plan to provide desktop builds in the future but they will be labled as Fluxer Lite clients. These builds will not replace the Electron verison but be a seperate version you can download.
 
 ## License
 

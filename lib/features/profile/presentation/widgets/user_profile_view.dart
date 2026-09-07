@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/constants/media_proxy_sizes.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
 import 'package:fluxer_app/core/permissions/permission_resolver.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/router/navigate_to_content.dart';
 import 'package:fluxer_app/core/router/route_names.dart' show RoutePaths;
@@ -22,6 +22,7 @@ import 'package:fluxer_app/features/members/domain/member.dart';
 import 'package:fluxer_app/features/members/domain/member_role_management.dart';
 import 'package:fluxer_app/features/members/presentation/widgets/user_profile_roles_section.dart';
 import 'package:fluxer_app/features/members/providers/member_providers.dart';
+import 'package:fluxer_app/features/profile/presentation/sheets/profile_tab_menu_sheet.dart';
 import 'package:fluxer_app/features/profile/presentation/sheets/user_profile_actions_sheet.dart';
 import 'package:fluxer_app/features/profile/presentation/sheets/user_profile_confirmation_sheet.dart';
 import 'package:fluxer_app/features/profile/presentation/sheets/user_profile_note_edit_sheet.dart';
@@ -43,7 +44,9 @@ import 'package:fluxer_app/features/settings/providers/user_settings_view_model.
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/features/voice/utils/call_actions.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/user_profile.dart';
+import 'package:fluxer_app/shared/utils/fluxer_haptics.dart';
 import 'package:fluxer_app/shared/utils/guild_user_display.dart';
 import 'package:fluxer_app/shared/utils/snowflake_time.dart';
 import 'package:fluxer_dart/export.dart';
@@ -101,6 +104,11 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
       return;
     }
     onCloseRequested();
+  }
+
+  void _openProfileTabMenu() {
+    FluxerHaptics.medium();
+    unawaited(ProfileTabMenuSheet.show(context, ref));
   }
 
   Future<void> _handleMessage(
@@ -212,7 +220,6 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
     return FluxerBottomSheet.showScrollable<void>(
       context,
       useRootNavigator: true,
-      initialChildSize: 0.95,
       minChildSize: 0.5,
       showDragHandle: false,
       disableTopPadding: true,
@@ -340,6 +347,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
   }) {
     final layout = context.layout;
     final colors = context.colors;
+    final bool selfHosted = ref.watch(instanceRuntimeConfigProvider).selfHosted;
     final bool isBlocked = relationship?.friendStatus == FriendStatus.blocked;
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -348,6 +356,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
       ),
       child: CustomScrollView(
         controller: widget.scrollController,
+        physics: const ClampingScrollPhysics(),
         slivers: <Widget>[
           SliverToBoxAdapter(
             child: SizedBox(
@@ -392,20 +401,15 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                   Positioned(
                     left: layout.s4,
                     top: _kBannerHeight - _kAvatarOverlap,
-                    child: Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: colors.backgroundPrimary,
-                      ),
-                      child: FluxerAvatar.userPresence(
-                        fallbackText: displayName,
-                        userId: userId,
-                        imageUrl: avatarUrl,
-                        avatarColor: avatarColor,
-                        showStatus: !isWebhook,
-                        size: _kAvatarSize,
-                      ),
+                    child: _ProfileIdentityAvatar(
+                      userId: userId,
+                      displayName: displayName,
+                      avatarUrl: avatarUrl,
+                      avatarColor: avatarColor,
+                      showStatus: !isWebhook,
+                      onTap: widget.useCurrentUserCache
+                          ? _openProfileTabMenu
+                          : null,
                     ),
                   ),
                   if (!isWebhook)
@@ -417,6 +421,11 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           UserProfileRelationshipButton(
                             relationshipStatus: relationship?.friendStatus,
                             isCurrentUser: isCurrentUser,
+                            allowFriendRequests: !ref.watch(
+                              instanceRuntimeConfigProvider.select(
+                                (config) => config.directMessagesDisabled,
+                              ),
+                            ),
                             onUnblock: () => _handleRelationshipAction(
                               repoCall: () => ref
                                   .read(friendRepositoryProvider)
@@ -534,7 +543,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                   discriminator: discriminator,
                   displayName: displayName,
                   flags: flags,
-                  hasPlutonium: hasPlutonium,
+                  hasPlutonium: hasPlutonium && !selfHosted,
                   isLifetimePlutonium: isLifetimePlutonium,
                   premiumSince: premiumSince,
                   premiumLifetimeSequence: premiumLifetimeSequence,
@@ -543,6 +552,9 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                   showUsername: !isWebhook,
                   isBot: isBot || isWebhook,
                   isSystem: isSystem,
+                  onDisplayNameTap: widget.useCurrentUserCache
+                      ? _openProfileTabMenu
+                      : null,
                 ),
                 if (!isWebhook) ...[
                   SizedBox(height: layout.s4),
@@ -551,7 +563,20 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                     isFriend:
                         relationship?.friendStatus == FriendStatus.accepted,
                     isBlocked: isBlocked,
-                    canCall: canCall,
+                    canCall:
+                        canCall &&
+                        !ref.watch(
+                          instanceRuntimeConfigProvider.select(
+                            (config) =>
+                                config.directMessagesDisabled ||
+                                !config.voiceEnabled,
+                          ),
+                        ),
+                    showMessage: !ref.watch(
+                      instanceRuntimeConfigProvider.select(
+                        (config) => config.directMessagesDisabled,
+                      ),
+                    ),
                     onMessage: () =>
                         _handleMessage(userId, isBlocked, username),
                     onVoiceCall: () => _handleOutboundDmCall(
@@ -736,6 +761,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
               userId: profile.id,
               hash: profile.avatar,
               size: MediaProxySizes.avatarProfile,
+              animated: true,
             ),
             avatarColor: profile.avatarColor,
             bannerColor: resolveGuildProfileBannerColor(
@@ -987,6 +1013,50 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
           timezoneOffset: response.timezoneOffset,
         );
       },
+    );
+  }
+}
+
+class _ProfileIdentityAvatar extends StatelessWidget {
+  const _ProfileIdentityAvatar({
+    required this.userId,
+    required this.displayName,
+    required this.avatarUrl,
+    required this.avatarColor,
+    required this.showStatus,
+    this.onTap,
+  });
+
+  final String userId;
+  final String displayName;
+  final String? avatarUrl;
+  final int? avatarColor;
+  final bool showStatus;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final Widget avatar = Container(
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: context.colors.backgroundPrimary,
+      ),
+      child: FluxerAvatar.userPresence(
+        fallbackText: displayName,
+        userId: userId,
+        imageUrl: avatarUrl,
+        avatarColor: avatarColor,
+        showStatus: showStatus,
+        size: _kAvatarSize,
+      ),
+    );
+    if (onTap == null) {
+      return avatar;
+    }
+    return FluxerTappable(
+      onTap: onTap,
+      builder: (BuildContext context, Set<WidgetState> states) => avatar,
     );
   }
 }

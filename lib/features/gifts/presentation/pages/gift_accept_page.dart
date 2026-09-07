@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/features/gifts/presentation/modals/gift_accept_modal.dart';
 import 'package:fluxer_app/features/gifts/utils/gift_code_utils.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:go_router/go_router.dart';
 
 class GiftAcceptPage extends StatefulWidget {

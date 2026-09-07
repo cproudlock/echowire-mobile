@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/profile/presentation/widgets/user_profile_view.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 class FluxerUserProfileSheet {
   FluxerUserProfileSheet._();
@@ -18,7 +18,6 @@ class FluxerUserProfileSheet {
     return FluxerBottomSheet.showScrollable<void>(
       context,
       useRootNavigator: true,
-      initialChildSize: 0.95,
       minChildSize: 0.5,
       disableTopPadding: true,
       showDragHandle: false,

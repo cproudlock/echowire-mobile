@@ -1,4 +1,7 @@
-import 'package:flutter/material.dart';
+// Root ProviderScope built by a helper; the lint only exempts a
+// ProviderScope written inline in pumpWidget.
+// ignore_for_file: riverpod_lint/scoped_providers_should_specify_dependencies
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/media/animated_image_playback_controller.dart';
@@ -6,6 +9,7 @@ import 'package:fluxer_app/features/chat/presentation/widgets/media/embed_animat
 import 'package:fluxer_app/features/chat/presentation/widgets/media/fluxer_animated_image.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart' show StickerAnimationOptions;
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -102,6 +106,35 @@ void main() {
       expect(image.playing, isFalse);
     });
 
+    testWidgets('keeps playing while the playback controller is scrolling', (
+      tester,
+    ) async {
+      final AnimatedImagePlaybackController controller =
+          AnimatedImagePlaybackController();
+      await tester.pumpWidget(
+        _wrap(
+          AnimatedImagePlaybackScope(
+            controller: controller,
+            child: const SizedBox(
+              height: 200,
+              child: EmbedAnimatedImage(
+                animatedUrl: 'https://x/a.webp',
+                staticUrl: 'https://x/a.png',
+                visibilityKey: 'v1',
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+      controller.setScrollActive(active: true);
+      await tester.pump();
+      final FluxerAnimatedImage image = tester.widget<FluxerAnimatedImage>(
+        find.byType(FluxerAnimatedImage),
+      );
+      expect(image.playing, isTrue);
+    });
+
     testWidgets('plays all visible images in scope', (tester) async {
       final AnimatedImagePlaybackController controller =
           AnimatedImagePlaybackController();
@@ -168,7 +201,6 @@ void main() {
             visibilityKey: 'sticker-2',
             useStickerAnimationPreference: true,
           ),
-          animateStickers: StickerAnimationOptions.alwaysAnimate,
         ),
       );
       await tester.pump();
@@ -183,9 +215,7 @@ void main() {
         ProviderScope(
           overrides: [
             appearancePreferencesProvider.overrideWithValue(
-              const AppearancePreferencesState(
-                keepGifAutoPlayUnderReducedMotion: false,
-              ),
+              const AppearancePreferencesState(),
             ),
             userSettingsViewModelProvider.overrideWithValue(
               _kTestUserSettings.copyWith(
@@ -194,13 +224,13 @@ void main() {
               ),
             ),
           ],
-          child: MaterialApp(
+          child: const MaterialApp(
             home: MediaQuery(
-              data: const MediaQueryData(size: Size(1200, 900)),
+              data: MediaQueryData(size: Size(1200, 900)),
               child: Scaffold(
                 body: Column(
                   children: <Widget>[
-                    const SizedBox(
+                    SizedBox(
                       height: 200,
                       child: EmbedAnimatedImage(
                         animatedUrl: 'https://x/a.webp',
@@ -208,7 +238,7 @@ void main() {
                         visibilityKey: 'gif-1',
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 200,
                       child: EmbedAnimatedImage(
                         animatedUrl: 'https://x/b.webp',

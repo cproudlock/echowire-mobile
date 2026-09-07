@@ -3,14 +3,17 @@ import 'dart:convert';
 import 'package:cross_file/cross_file.dart';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
+import 'package:flutter/foundation.dart';
 import 'package:fluxer_app/core/api/dio_error_message.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
+import 'package:fluxer_app/core/gateway/message_mention_context_cache.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/utils/message_mention_resolver.dart';
 import 'package:fluxer_app/features/channels/data/read_state_repository.dart';
 import 'package:fluxer_app/features/chat/domain/api_attachment_metadata.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/domain/message_attachment_update.dart';
+import 'package:fluxer_app/features/chat/domain/message_translation.dart';
 import 'package:fluxer_app/features/chat/utils/client_nonce.dart';
 import 'package:fluxer_app/features/chat/utils/message_page_sync.dart';
 import 'package:fluxer_app/shared/utils/guild_user_display.dart';
@@ -115,15 +118,22 @@ class MessageRepository {
   final Dio _dio;
   final db.FluxerDatabase _db;
   final String? _currentUserId;
+  final MessageMentionContextCache? _mentionContextCache;
   final Map<String, Future<MessageListLoadResult>> _inFlightPages =
       <String, Future<MessageListLoadResult>>{};
 
-  MessageRepository(this._client, this._dio, this._db, this._currentUserId);
+  MessageRepository(
+    this._client,
+    this._dio,
+    this._db,
+    this._currentUserId, {
+    this._mentionContextCache,
+  });
 
   Stream<List<Message>> watchMessages(String channelId) {
     return _db.messageDao
         .watchMessages(channelId)
-        .map((rows) => rows.map(Message.fromRow).toList());
+        .asyncMap(Message.fromRowsAsync);
   }
 
   Future<List<Message>> getCachedMessages(
@@ -131,7 +141,7 @@ class MessageRepository {
     int limit = 30,
   }) async {
     final rows = await _db.messageDao.getMessages(channelId, limit: limit);
-    return rows.map(Message.fromRow).toList();
+    return Message.fromRowsAsync(rows);
   }
 
   Future<List<Message>> getCachedMessagesBefore(
@@ -144,7 +154,7 @@ class MessageRepository {
       limit: limit,
       beforeId: beforeId,
     );
-    return rows.map(Message.fromRow).toList();
+    return Message.fromRowsAsync(rows);
   }
 
   Future<List<Message>> getCachedMessagesAfter(
@@ -157,7 +167,7 @@ class MessageRepository {
       afterId,
       limit: limit,
     );
-    return rows.map(Message.fromRow).toList();
+    return Message.fromRowsAsync(rows);
   }
 
   Future<List<Message>> getMessages({
@@ -224,6 +234,13 @@ class MessageRepository {
     String? after,
     String? around,
   }) async {
+    final Stopwatch pageStopwatch = Stopwatch()..start();
+    // Cumulative ms marks after each awaited phase, for device-log attribution.
+    final List<String> pageMarks = <String>[];
+    void mark(String name) {
+      pageMarks.add('$name@${pageStopwatch.elapsedMilliseconds}');
+    }
+
     try {
       final List<MessageResponseSchema> data = await _client.channels
           .listMessages(
@@ -233,6 +250,7 @@ class MessageRepository {
             after: after,
             around: around,
           );
+      mark('http');
 
       final List<Message> embeddedReplyParents = <Message>[];
       for (final sdk in data) {
@@ -247,11 +265,17 @@ class MessageRepository {
         }
       }
 
-      final mentionCtx = await buildMessageMentionContext(
-        _db,
-        currentUserId: _currentUserId,
-        channelId: channelId,
-      );
+      final mentionCtx =
+          await _mentionContextCache?.contextFor(
+            currentUserId: _currentUserId,
+            channelId: channelId,
+          ) ??
+          await buildMessageMentionContext(
+            _db,
+            currentUserId: _currentUserId,
+            channelId: channelId,
+          );
+      mark('ctx');
       final List<Message> messages = data
           .map(
             (sdk) =>
@@ -286,13 +310,15 @@ class MessageRepository {
       if (pageUsersById.isNotEmpty) {
         await upsertUsersCompanions(_db, pageUsersById.values);
       }
-      await _db.messageDao.upsertMessages(
-        messages.map((m) => m.toCompanion()).toList(),
+      mark('users');
+      final List<Message> persisted = await _upsertKeepingTranslations(
+        messages,
       );
-      await _pruneStaleMessagesForNetworkPage(channelId, messages);
+      await _pruneStaleMessagesForNetworkPage(channelId, persisted);
+      mark('persist');
 
-      if (messages.isNotEmpty) {
-        final last = messages.last;
+      if (persisted.isNotEmpty) {
+        final last = persisted.last;
         await _db.dmChannelDao.updateLastMessage(
           channelId,
           last.id,
@@ -301,17 +327,23 @@ class MessageRepository {
           last.timestamp,
         );
       }
+      mark('tail');
 
-      if (messages.any((m) => m.isMentioned)) {
+      if (persisted.any((m) => m.isMentioned)) {
         await ReadStateRepository(_client, _db).recomputeMentionsAfterBackfill(
           channelId: channelId,
           currentUserId: _currentUserId,
           allowDecrease: true,
         );
+        mark('mentions');
       }
+      debugPrint(
+        '[MessageRepo] page ch=$channelId n=${persisted.length} '
+        '[${pageMarks.join(' ')}]',
+      );
 
       return MessageListLoadResult(
-        messages: messages,
+        messages: persisted,
         embeddedReplyParents: embeddedReplyParents,
       );
     } on DioException catch (e) {
@@ -363,8 +395,7 @@ class MessageRepository {
               mentionRoleIds: sdk.mentionRoles,
             ),
           );
-      await _db.messageDao.upsertMessage(message.toCompanion());
-      return message;
+      return await _upsertKeepingTranslation(message);
     } on DioException catch (e) {
       if (e.response?.statusCode == 404) {
         rethrow;
@@ -500,12 +531,12 @@ class MessageRepository {
     }
 
     if (messages.isNotEmpty) {
-      await _db.messageDao.upsertMessages(
-        messages.map((m) => m.toCompanion()).toList(),
+      final List<Message> persisted = await _upsertKeepingTranslations(
+        messages,
       );
-      await _pruneStaleMessagesForNetworkPage(channelId, messages);
+      await _pruneStaleMessagesForNetworkPage(channelId, persisted);
 
-      final last = messages.last;
+      final last = persisted.last;
       await _db.dmChannelDao.updateLastMessage(
         channelId,
         last.id,
@@ -513,14 +544,14 @@ class MessageRepository {
         last.authorId,
         last.timestamp,
       );
-    }
-
-    if (messages.any((m) => m.isMentioned)) {
-      await ReadStateRepository(_client, _db).recomputeMentionsAfterBackfill(
-        channelId: channelId,
-        currentUserId: _currentUserId,
-        allowDecrease: true,
-      );
+      if (persisted.any((m) => m.isMentioned)) {
+        await ReadStateRepository(_client, _db).recomputeMentionsAfterBackfill(
+          channelId: channelId,
+          currentUserId: _currentUserId,
+          allowDecrease: true,
+        );
+      }
+      return persisted;
     }
 
     return messages;
@@ -657,7 +688,7 @@ class MessageRepository {
         final MessageResponseSchema schema = MessageResponseSchema.fromJson(
           data,
         );
-        return _persistSdkMessage(channelId: channelId, schema: schema);
+        return await _persistSdkMessage(channelId: channelId, schema: schema);
       }
 
       final Message sent = await _postMessage(channelId, body);
@@ -707,8 +738,7 @@ class MessageRepository {
         mentionRoleIds: schema.mentionRoles,
       ),
     );
-    await _db.messageDao.upsertMessage(message.toCompanion());
-    return message;
+    return _upsertKeepingTranslation(message);
   }
 
   /// Forwards [sourceMessageId] from [sourceChannelId] to each channel in
@@ -751,7 +781,7 @@ class MessageRepository {
         }
       }
     } on DioException catch (e) {
-      throw Exception(dioExceptionMessage(e, 'Failed to forward message'));
+      throw Exception(userFacingErrorMessage(e, 'Failed to forward message'));
     }
   }
 
@@ -766,9 +796,9 @@ class MessageRepository {
         messageId: messageId,
         content: content,
       );
-      return _persistSdkMessage(channelId: channelId, schema: schema);
+      return await _persistSdkMessage(channelId: channelId, schema: schema);
     } on DioException catch (e) {
-      throw Exception(dioExceptionMessage(e, 'Failed to edit message'));
+      throw Exception(userFacingErrorMessage(e, 'Failed to edit message'));
     }
   }
 
@@ -784,7 +814,7 @@ class MessageRepository {
         attachmentId: attachmentId,
       );
     } on DioException catch (e) {
-      throw Exception(dioExceptionMessage(e, 'Failed to delete attachment'));
+      throw Exception(userFacingErrorMessage(e, 'Failed to delete attachment'));
     }
   }
 
@@ -797,7 +827,9 @@ class MessageRepository {
   ///
   /// Uses Dio directly instead of the generated SDK edit call, which always
   /// includes `embeds` and `message_snapshots` as null and can make attachment-
-  /// only messages fail with CANNOT_SEND_EMPTY_MESSAGE.
+  /// only messages fail with CANNOT_SEND_EMPTY_MESSAGE. Sent as plain JSON:
+  /// the API's multipart parser only reads `payload_json` and file fields, so
+  /// a bare multipart `attachments` field is silently dropped (issue #625).
   Future<Message> editMessageAttachments({
     required String channelId,
     required String messageId,
@@ -807,22 +839,19 @@ class MessageRepository {
       final List<Map<String, dynamic>> attachments = attachmentUpdates
           .map((MessageAttachmentUpdate update) => update.toJson())
           .toList();
-      final FormData formData = FormData();
-      formData.fields.add(MapEntry('attachments', jsonEncode(attachments)));
       final Response<Map<String, dynamic>> response = await _dio
           .patch<Map<String, dynamic>>(
             '/channels/$channelId/messages/$messageId',
-            data: formData,
-            options: Options(contentType: 'multipart/form-data'),
+            data: <String, dynamic>{'attachments': attachments},
           );
       final Map<String, dynamic>? data = response.data;
       if (data == null) {
         throw Exception('Empty response from editMessageAttachments');
       }
       final MessageResponseSchema schema = MessageResponseSchema.fromJson(data);
-      return _persistSdkMessage(channelId: channelId, schema: schema);
+      return await _persistSdkMessage(channelId: channelId, schema: schema);
     } on DioException catch (e) {
-      throw Exception(dioExceptionMessage(e, 'Failed to edit attachments'));
+      throw Exception(userFacingErrorMessage(e, 'Failed to edit attachments'));
     }
   }
 
@@ -837,7 +866,7 @@ class MessageRepository {
         messageId: messageId,
         flags: flags,
       );
-      return _persistSdkMessage(channelId: channelId, schema: schema);
+      return await _persistSdkMessage(channelId: channelId, schema: schema);
     } on DioException catch (e) {
       throw Exception(
         e.response?.statusMessage ?? 'Failed to update message flags',
@@ -876,5 +905,33 @@ class MessageRepository {
       }
       throw Exception(e.response?.statusMessage ?? 'Failed to delete message');
     }
+  }
+
+  Future<List<Message>> _upsertKeepingTranslations(
+    List<Message> messages,
+  ) async {
+    if (messages.isEmpty) {
+      return messages;
+    }
+    final Map<String, MessageTranslationSnapshot> snapshots = await _db
+        .messageDao
+        .getTranslationSnapshots(
+          messages.map((Message message) => message.id).toList(),
+        );
+    await _db.messageDao.upsertMessages(
+      messages.map((Message message) => message.toCompanion()).toList(),
+      snapshots: snapshots,
+    );
+    return <Message>[
+      for (final Message message in messages)
+        message.withStoredTranslation(snapshots[message.id]),
+    ];
+  }
+
+  Future<Message> _upsertKeepingTranslation(Message message) async {
+    final List<Message> persisted = await _upsertKeepingTranslations(<Message>[
+      message,
+    ]);
+    return persisted.first;
   }
 }

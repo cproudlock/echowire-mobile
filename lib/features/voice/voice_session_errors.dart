@@ -26,6 +26,10 @@ const String kVoiceSessionErrorMicPublish = 'VOICE_ERR_MIC_PUBLISH';
 const String kVoiceSessionErrorNoConnectPermission =
     'VOICE_ERR_NO_CONNECT_PERM';
 
+/// Join rejected for a DM or group DM preflight failure
+const String kVoiceSessionErrorDirectCallNotEligible =
+    'VOICE_ERR_DIRECT_CALL_NOT_ELIGIBLE';
+
 /// Microphone permission was denied before a voice join could start.
 const String kVoiceSessionErrorMicPermission = 'VOICE_ERR_MIC_PERM';
 
@@ -35,6 +39,12 @@ const String kVoiceSessionErrorTransportFailed = 'VOICE_ERR_TRANSPORT';
 /// Other devices did not disconnect before a switch-to-this-device join.
 const String kVoiceSessionErrorMultiDeviceDisconnectFailed =
     'VOICE_ERR_MULTI_DEVICE_DISCONNECT';
+
+const String kVoiceCameraUserLimitErrorCode = 'VOICE_CAMERA_USER_LIMIT';
+
+bool shouldNotifyCameraUserLimitRejection({String? status, String? errorCode}) {
+  return status == 'rejected' && errorCode == kVoiceCameraUserLimitErrorCode;
+}
 
 /// Maps a stored `VoiceSessionState.errorMessage` to a localized
 /// human-readable string.
@@ -57,6 +67,8 @@ String resolveVoiceSessionErrorMessage(
       return l10n.voiceMicPublishFailedStayConnected;
     case kVoiceSessionErrorNoConnectPermission:
       return l10n.voiceChannelNoConnectPermission;
+    case kVoiceSessionErrorDirectCallNotEligible:
+      return l10n.directVoiceCallNotEligible;
     case kVoiceSessionErrorMicPermission:
       return l10n.voiceMessageMicPermissionDenied;
     case kVoiceSessionErrorTransportFailed:

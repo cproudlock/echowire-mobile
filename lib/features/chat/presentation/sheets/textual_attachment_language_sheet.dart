@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/utils/preview_language_options.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
 import 'package:fluxer_app/features/ui/input/fluxer_input.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_tappable.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 Future<String?> showTextualAttachmentLanguageSheet({
@@ -16,7 +16,6 @@ Future<String?> showTextualAttachmentLanguageSheet({
   return FluxerBottomSheet.showScrollable<String>(
     context,
     title: l10n.chatTextualPreviewSyntaxHighlighting,
-    initialChildSize: 0.7,
     minChildSize: 0.45,
     builder:
         (

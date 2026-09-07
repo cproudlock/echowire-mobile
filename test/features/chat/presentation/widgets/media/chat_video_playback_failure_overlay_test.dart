@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/theme/fluxer_layout_theme.dart';
@@ -11,8 +10,8 @@ import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_con
 import 'package:fluxer_app/features/chat/domain/chat_video_source.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/media/chat_mobile_fullscreen_video.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/media/chat_video_playback_failure_overlay.dart';
-import 'package:fluxer_app/features/chat/utils/chat_video_playback_utils.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:media_kit/media_kit.dart';
 
 Widget _wrap(Widget child) {
@@ -40,10 +39,6 @@ void main() {
     } on Object {
       mediaKitAvailable = false;
     }
-  });
-
-  tearDown(() {
-    debugYouTubeStreamResolver = null;
   });
 
   testWidgets('failure overlay shows message and open-in-browser action', (
@@ -92,21 +87,18 @@ void main() {
             builder: (BuildContext context) {
               return TextButton(
                 onPressed: () {
-                  unawaited(
-                    Navigator.of(context).push<void>(
-                      MaterialPageRoute<void>(
-                        fullscreenDialog: true,
-                        builder: (BuildContext routeContext) {
-                          return Scaffold(
-                            body: ChatVideoPlaybackFailureOverlay(
-                              fallbackUrl:
-                                  'https://www.youtube.com/watch?v=abc',
-                              useRootNavigator: true,
-                              onClose: () => Navigator.of(routeContext).pop(),
-                            ),
-                          );
-                        },
-                      ),
+                  Navigator.of(context).push<void>(
+                    MaterialPageRoute<void>(
+                      fullscreenDialog: true,
+                      builder: (BuildContext routeContext) {
+                        return Scaffold(
+                          body: ChatVideoPlaybackFailureOverlay(
+                            fallbackUrl: 'https://www.youtube.com/watch?v=abc',
+                            useRootNavigator: true,
+                            onClose: () => Navigator.of(routeContext).pop(),
+                          ),
+                        );
+                      },
                     ),
                   );
                 },
@@ -134,17 +126,6 @@ void main() {
         return;
       }
 
-      var resolveAttempts = 0;
-      debugYouTubeStreamResolver = (String pageUrl) {
-        resolveAttempts++;
-        throw StateError('stream unavailable');
-      };
-
-      const ChatVideoSource source = ChatVideoSource(
-        pageUrl: 'https://www.youtube.com/watch?v=abc',
-        fallbackUrl: 'https://www.youtube.com/watch?v=abc',
-      );
-
       await tester.pumpWidget(
         _wrap(
           Builder(
@@ -156,7 +137,12 @@ void main() {
                       showChatMobileFullscreenVideo(
                         context,
                         launchContext: const ChatFullscreenVideoLaunchContext(
-                          source: source,
+                          source: ChatVideoSource(
+                            directMediaUrl:
+                                'https://cdn.example.com/unavailable.mp4',
+                            fallbackUrl:
+                                'https://cdn.example.com/unavailable.mp4',
+                          ),
                         ),
                       ),
                     );
@@ -170,9 +156,9 @@ void main() {
       );
       await tester.tap(find.text('open'));
       await tester.pump();
-      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pump(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
 
-      expect(resolveAttempts, greaterThan(0));
       expect(find.text('Could not play this video.'), findsOneWidget);
       expect(find.text('Open in browser'), findsOneWidget);
       expect(find.byType(ChatVideoPlaybackFailureOverlay), findsOneWidget);

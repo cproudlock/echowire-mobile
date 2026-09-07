@@ -1,5 +1,8 @@
+// Root ProviderScope built by a helper; the lint only exempts a
+// ProviderScope written inline in pumpWidget.
+// ignore_for_file: riverpod_lint/scoped_providers_should_specify_dependencies
+
 import 'package:drift/drift.dart' show Value;
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
@@ -27,7 +30,7 @@ import 'package:fluxer_app/features/friends/providers/blocked_user_ids_provider.
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
-import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:riverpod/src/framework.dart' show Override;
 
 import '../../../../../helpers/open_test_database.dart';
@@ -293,7 +296,9 @@ void main() {
     await _disposeWidgetTree(tester);
   });
 
-  testWidgets('shows skeleton when panel channel is not ready', (tester) async {
+  testWidgets('shows mismatch placeholder when panel channel is not ready', (
+    tester,
+  ) async {
     final db.FluxerDatabase database = await _openDatabase();
     addTearDown(database.close);
     final _LoadingChatViewModel chatViewModel = _LoadingChatViewModel(
@@ -309,7 +314,8 @@ void main() {
     );
     await tester.pump();
 
-    expect(find.byType(MessageListSkeleton), findsOneWidget);
+    expect(find.byType(MessageListMismatchPlaceholder), findsOneWidget);
+    expect(find.byType(MessageListSkeleton), findsNothing);
     expect(find.byType(ChatLoadingSpinner), findsNothing);
     await _disposeWidgetTree(tester);
   });

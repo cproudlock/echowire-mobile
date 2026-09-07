@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as drift_db;
 import 'package:fluxer_app/core/instance/instance_config_snapshot.dart';
@@ -15,6 +14,7 @@ import 'package:fluxer_app/features/members/providers/guild_roles_provider.dart'
 import 'package:fluxer_app/features/profile/presentation/user_profile_sheet.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -83,7 +83,7 @@ class _GuildMembersMobileListViewState
       guildMembersSearchProvider(widget.guildId).notifier,
     );
     final InstanceConfigSnapshot instance = ref.watch(activeInstanceProvider);
-    final String productName = instance.instanceDisplayName ?? 'Fluxer';
+    final String productName = instance.productName;
     final String? ownerId = ref
         .watch(guildByIdProvider(widget.guildId))
         .value
@@ -379,7 +379,6 @@ class _MobileFilterChips extends ConsumerWidget {
     await FluxerBottomSheet.showScrollable<void>(
       context,
       title: title,
-      initialChildSize: 0.6,
       minChildSize: 0.35,
       builder:
           (
@@ -430,7 +429,6 @@ class _MobileFilterChips extends ConsumerWidget {
     await FluxerBottomSheet.showScrollable<void>(
       context,
       title: l10n.guildMembersFilterJoinMethod,
-      initialChildSize: 0.6,
       minChildSize: 0.35,
       builder:
           (
@@ -492,7 +490,6 @@ class _MobileFilterChips extends ConsumerWidget {
     await FluxerBottomSheet.showScrollable<void>(
       context,
       title: l10n.guildMembersFilterRoles,
-      initialChildSize: 0.6,
       minChildSize: 0.35,
       builder:
           (

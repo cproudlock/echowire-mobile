@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart'
@@ -15,9 +14,10 @@ import 'package:fluxer_app/features/dm/providers/dm_view_model.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_view_model.dart';
 import 'package:fluxer_app/features/voice/presentation/widgets/voice_call_bar.dart';
+import 'package:fluxer_app/features/voice/providers/voice_pip_providers.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
-import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:riverpod/src/framework.dart' show Override;
 
@@ -41,7 +41,7 @@ void main() {
       tester,
     ) async {
       final _MutableVoiceSession session = _MutableVoiceSession();
-      await _pumpBar(tester, voiceSession: session);
+      await _pumpBar(tester, voiceSession: session, onSessionCallRoute: true);
       session.setSession(
         const VoiceSessionState(
           isConnecting: true,
@@ -58,7 +58,7 @@ void main() {
 
     testWidgets('shows leave control when connected', (tester) async {
       final _MutableVoiceSession session = _MutableVoiceSession();
-      await _pumpBar(tester, voiceSession: session);
+      await _pumpBar(tester, voiceSession: session, onSessionCallRoute: true);
       session.setSession(
         const VoiceSessionState(
           isConnected: true,
@@ -77,7 +77,7 @@ void main() {
       'keeps connecting label when liveKitRoom is assigned mid-connect',
       (tester) async {
         final _MutableVoiceSession session = _MutableVoiceSession();
-        await _pumpBar(tester, voiceSession: session);
+        await _pumpBar(tester, voiceSession: session, onSessionCallRoute: true);
         session.setSession(
           const VoiceSessionState(
             isConnecting: true,
@@ -103,19 +103,46 @@ void main() {
         await _disposeBar(tester);
       },
     );
+
+    testWidgets('hides on mobile when not on the voice page', (tester) async {
+      tester.view.physicalSize = const Size(390, 844);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      final _MutableVoiceSession session = _MutableVoiceSession();
+      await _pumpBar(tester, voiceSession: session);
+      session.setSession(
+        const VoiceSessionState(
+          isConnected: true,
+          guildId: _guildId,
+          channelId: _channelId,
+          activeConnectionId: 'conn-1',
+        ),
+      );
+      await tester.pump();
+
+      expect(find.text('Leave'), findsNothing);
+      expect(find.byType(PhosphorIcon), findsNothing);
+      await _disposeBar(tester);
+    });
   });
 }
 
 Future<void> _pumpBar(
   WidgetTester tester, {
   _MutableVoiceSession? voiceSession,
+  bool onSessionCallRoute = false,
 }) async {
   final FluxerDatabase db = openTestDatabase();
   final _MutableVoiceSession session = voiceSession ?? _MutableVoiceSession();
   final colorTheme = buildDarkColorTheme();
   await tester.pumpWidget(
     ProviderScope(
-      overrides: _voiceBarOverrides(db: db, session: session),
+      overrides: _voiceBarOverrides(
+        db: db,
+        session: session,
+        onSessionCallRoute: onSessionCallRoute,
+      ),
       child: MaterialApp(
         locale: kTestLocale,
         localizationsDelegates: FluxerLocalizations.localizationsDelegates,
@@ -140,6 +167,7 @@ Future<void> _disposeBar(WidgetTester tester) async {
 List<Override> _voiceBarOverrides({
   required FluxerDatabase db,
   required _MutableVoiceSession session,
+  required bool onSessionCallRoute,
 }) {
   const Channel channel = Channel(
     id: _channelId,
@@ -151,6 +179,7 @@ List<Override> _voiceBarOverrides({
   return <Override>[
     fluxerDatabaseProvider.overrideWithValue(db),
     voiceSessionProvider.overrideWith(() => session),
+    voicePipOnSessionCallRouteProvider.overrideWithValue(onSessionCallRoute),
     channelByIdProvider(
       _channelId,
     ).overrideWith((ref) => Stream<Channel?>.value(channel)),

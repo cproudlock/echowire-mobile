@@ -1,10 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/theme/fluxer_layout_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_text_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme.dart';
 import 'package:fluxer_app/core/theme/themes/dark.dart';
+import 'package:fluxer_app/features/ui/input/emoji_text_editing_controller.dart';
+import 'package:fluxer_app/features/ui/input/fluxer_clipboard_scope.dart';
 import 'package:fluxer_app/features/ui/input/fluxer_input.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 Widget buildTestApp(Widget child) {
   final colorTheme = buildDarkColorTheme();
@@ -47,7 +50,6 @@ void main() {
       await tester.pumpWidget(buildTestApp(const FluxerInput(hint: 'Hi')));
 
       final column = tester.widget<Column>(find.byType(Column).first);
-      // Column should contain only the TextFormField (no label Padding).
       expect(column.children.whereType<Padding>().length, equals(0));
     });
 
@@ -70,20 +72,62 @@ void main() {
       expect(editable.contextMenuBuilder, isNotNull);
     });
 
-    testWidgets('preserves a custom text selection context menu', (
-      tester,
-    ) async {
-      Widget customContextMenuBuilder(
-        BuildContext context,
-        EditableTextState editableTextState,
-      ) => const SizedBox();
+    testWidgets('wraps token controllers with clipboard scope', (tester) async {
+      final EmojiTextEditingController controller =
+          EmojiTextEditingController();
+      addTearDown(controller.dispose);
 
       await tester.pumpWidget(
-        buildTestApp(FluxerInput(contextMenuBuilder: customContextMenuBuilder)),
+        buildTestApp(FluxerInput(controller: controller, hint: 'Bio')),
       );
 
-      final editable = tester.widget<EditableText>(find.byType(EditableText));
-      expect(editable.contextMenuBuilder, same(customContextMenuBuilder));
+      expect(find.byType(FluxerClipboardScope), findsOneWidget);
+    });
+
+    testWidgets('paste from the real long press toolbar inserts text', (
+      tester,
+    ) async {
+      final TextEditingController controller = TextEditingController();
+      addTearDown(controller.dispose);
+      _mockClipboardText('pasted-secret');
+
+      await tester.pumpWidget(
+        buildTestApp(FluxerInput(controller: controller, label: 'Email')),
+      );
+
+      await tester.longPress(find.byType(EditableText));
+      await tester.pumpAndSettle();
+      expect(find.text('Paste'), findsOneWidget);
+
+      await tester.tap(find.text('Paste'));
+      await tester.pumpAndSettle();
+
+      expect(controller.text, 'pasted-secret');
+    });
+
+    testWidgets('toolbar paste survives a menu rebuild during the press', (
+      tester,
+    ) async {
+      final TextEditingController controller = TextEditingController();
+      addTearDown(controller.dispose);
+      _mockClipboardText('pasted-secret');
+
+      await tester.pumpWidget(
+        buildTestApp(FluxerInput(controller: controller, label: 'Email')),
+      );
+
+      await tester.longPress(find.byType(EditableText));
+      await tester.pumpAndSettle();
+
+      final TestGesture gesture = await tester.startGesture(
+        tester.getCenter(find.text('Paste')),
+      );
+      controller.selection = const TextSelection.collapsed(offset: 0);
+      await tester.pump();
+      await gesture.up();
+      await tester.pumpAndSettle();
+
+      expect(controller.text, 'pasted-secret');
     });
 
     testWidgets('suffix icon tap fires callback', (tester) async {
@@ -101,5 +145,24 @@ void main() {
       await tester.tap(find.byIcon(Icons.visibility));
       expect(tapped, isTrue);
     });
+  });
+}
+
+void _mockClipboardText(String text) {
+  TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+      .setMockMethodCallHandler(SystemChannels.platform, (
+        MethodCall methodCall,
+      ) async {
+        if (methodCall.method == 'Clipboard.getData') {
+          return <String, String>{'text': text};
+        }
+        if (methodCall.method == 'Clipboard.hasStrings') {
+          return <String, bool>{'value': true};
+        }
+        return null;
+      });
+  addTearDown(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(SystemChannels.platform, null);
   });
 }

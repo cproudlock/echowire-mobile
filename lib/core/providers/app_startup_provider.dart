@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
+import 'package:fluxer_app/core/api/service_unavailable.dart';
 import 'package:fluxer_app/core/build/push_provider_guard.dart';
 import 'package:fluxer_app/core/deep_links/deep_link_handler.dart';
 import 'package:fluxer_app/core/instance/instance_config_snapshot.dart';
@@ -24,10 +25,12 @@ import 'package:fluxer_app/core/push/push_notification_tap_handler.dart';
 import 'package:fluxer_app/core/push/services/firebase_messaging_push_service.dart';
 import 'package:fluxer_app/core/push/unified_push/unified_push_mobile_device_registration.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
+import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/providers/theme_preference_provider.dart';
 import 'package:fluxer_app/features/auth/providers/account_manager_provider.dart';
 import 'package:fluxer_app/features/auth/providers/auth_providers.dart';
 import 'package:fluxer_app/features/channels/providers/ack_batcher_gateway_listener_provider.dart';
+import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_sync_provider.dart';
 import 'package:fluxer_app/features/friends/providers/friend_relationships_sync_provider.dart';
 import 'package:fluxer_app/features/gateway/providers/gateway_event_providers.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_sync_provider.dart';
@@ -59,31 +62,78 @@ class AppStartup extends _$AppStartup {
     if (PushProviderGuard.isFirebaseMessaging && Platform.isAndroid) {
       ref.read(fcmNotificationTapBindingProvider);
     }
+    debugPrint('[AppStartup] Starting…');
+    await _restoreOrThrow();
+    if (!ref.mounted) {
+      return;
+    }
+    debugPrint('[AppStartup] Completed');
+  }
+
+  Future<void> retry() async {
+    _invalidateGatewayBindings();
+    state = const AsyncLoading<void>();
+    state = await AsyncValue.guard<void>(_restoreOrThrow);
+  }
+
+  Future<void> _restoreOrThrow() async {
     try {
-      debugPrint('[AppStartup] Starting…');
       await _validateAndRestore();
-      debugPrint('[AppStartup] Completed');
-    } on Exception catch (e, st) {
-      debugPrint('[AppStartup] Unhandled error during startup: $e\n$st');
+    } catch (e, st) {
+      talker.error('[AppStartup] Startup failed', e, st);
       rethrow;
     }
   }
 
-  Future<void> retry() async {
-    await _validateAndRestore();
+  void _invalidateGatewayBindings() {
+    ref
+      ..invalidate(gatewayConnectBindingProvider)
+      ..invalidate(gatewayEventListenerProvider)
+      ..invalidate(gatewayStateListenerProvider)
+      ..invalidate(gatewayForegroundListenerProvider)
+      ..invalidate(gatewayReconnectBannerListenerProvider)
+      ..invalidate(gatewayConnectionProvider);
+  }
+
+  void _attachAuthenticatedBindings() {
+    ref
+      ..read(gatewayConnectBindingProvider)
+      ..read(gatewayEventListenerProvider)
+      ..read(gatewayStateListenerProvider)
+      ..read(gatewayForegroundListenerProvider)
+      ..read(gatewayReconnectBannerListenerProvider)
+      ..read(connectivityListenerProvider)
+      ..read(gatewayEphemeralStateRecoveryListenerProvider)
+      ..read(ackBatcherGatewayListenerProvider)
+      ..read(fluxerSfxIncomingRingBindingProvider)
+      ..read(fluxerMessageSfxBindingProvider)
+      ..read(fluxerTtsBindingProvider)
+      ..read(voiceCallKitCoordinatorProvider)
+      ..read(friendRelationshipsSyncProvider)
+      ..read(guildListSyncProvider)
+      ..read(slowmodeSyncProvider)
+      ..read(statusExpiryBindingProvider)
+      ..read(premiumStateSyncBindingProvider);
   }
 
   Future<void> _validateAndRestore() async {
     final Stopwatch startupStopwatch = Stopwatch()..start();
     await ref.read(appRuntimeInfoProvider.future);
+    if (!ref.mounted) {
+      return;
+    }
     final database = ref.read(fluxerDatabaseProvider);
     final authRepository = ref.read(authRepositoryProvider);
     final InstanceConfigSnapshot? activeSnapshot = await authRepository
         .resolveActiveInstanceSnapshot();
+    if (!ref.mounted) {
+      return;
+    }
     if (activeSnapshot != null) {
       ref.read(activeInstanceProvider.notifier).applySnapshot(activeSnapshot);
     }
-    await EmojiRegistry.preload();
+
+    final Future<void> emojiPreload = EmojiRegistry.preload();
     unawaited(FluxerHaptics.warmSend());
     unawaited(ref.read(wellKnownProvider.future));
     unawaited(EmojiSpriteSheet.preload());
@@ -97,26 +147,34 @@ class AppStartup extends _$AppStartup {
     debugPrint('[AppStartup] Session: ${session != null ? 'found' : 'none'}');
 
     if (session == null) {
+      await emojiPreload;
       return;
     }
 
-    // Validate the session and try fallback sessions on 401.
     UserPrivateResponse? validatedUser;
     while (session != null) {
+      if (!ref.mounted) {
+        return;
+      }
       ref.read(fluxerAuthTokenProvider.notifier).setToken(session.token);
 
       try {
         final client = ref.read(fluxerClientProvider);
         final user = await client.users.getCurrentUser();
+        if (!ref.mounted) {
+          return;
+        }
         validatedUser = user;
 
-        // Cache user data for account selector.
         await database.authSessionDao.updateUserData(
           userId: session.userId,
           username: user.username,
           discriminator: user.discriminator,
           avatar: user.avatar,
         );
+        if (!ref.mounted) {
+          return;
+        }
         ref
             .read(currentUserEntitlementsProvider.notifier)
             .applyUserProfile(user);
@@ -124,7 +182,7 @@ class AppStartup extends _$AppStartup {
             .read(currentUserPremiumTypeProvider.notifier)
             .set(user.premiumType?.json ?? 0);
         unawaited(refreshPremiumState(ref));
-        break; // Session is valid.
+        break;
       } on DioException catch (e) {
         if (e.response?.statusCode == 401) {
           debugPrint(
@@ -135,14 +193,26 @@ class AppStartup extends _$AppStartup {
           session = await authRepository.getActiveSession();
           continue;
         }
-        // Other errors — server unreachable, proceed authenticated.
+        if (isHttpServiceUnavailable(e)) {
+          debugPrint('[AppStartup] Service unavailable: $e');
+          if (!ref.mounted) {
+            return;
+          }
+          ref.read(authStateProvider.notifier).setAuthenticated(value: true);
+          ref.read(currentUserIdProvider.notifier).set(session.userId);
+          throw ServiceUnavailableException(statusCode: e.response?.statusCode);
+        }
         debugPrint('[AppStartup] Server unreachable: $e');
         break;
       }
     }
 
+    if (!ref.mounted) {
+      return;
+    }
     if (session == null) {
       ref.read(fluxerAuthTokenProvider.notifier).setToken(null);
+      await emojiPreload;
       return;
     }
 
@@ -152,9 +222,8 @@ class AppStartup extends _$AppStartup {
       ref
           .read(userSettingsViewModelProvider.notifier)
           .applyStartupProfile(validatedUser);
-      ref
-          .read(currentUserPrivateReadProvider.notifier)
-          .applyStartupUser(validatedUser);
+      ref.read(currentUserPrivateReadProvider.notifier).startupUser =
+          validatedUser;
       unawaited(
         ref
             .read(sensitiveContentProvider.notifier)
@@ -166,6 +235,14 @@ class AppStartup extends _$AppStartup {
       unawaited(ref.read(sensitiveContentProvider.notifier).hydrateFromLocal());
     }
     unawaited(ref.read(accountManagerProvider.notifier).loadAccounts());
+    final String? token = ref.read(fluxerAuthTokenProvider);
+    if (token == null || token.isEmpty) {
+      talker.error('[AppStartup] Auth token missing before gateway bind');
+      ref.read(authStateProvider.notifier).setAuthenticated(value: false);
+      await emojiPreload;
+      return;
+    }
+    _attachAuthenticatedBindings();
     await Future.wait<void>([
       ref.read(themePreferenceProvider.notifier).load(session.userId),
       ref.read(appearancePreferencesProvider.notifier).load(session.userId),
@@ -174,29 +251,14 @@ class AppStartup extends _$AppStartup {
       ref.read(defaultAppsPreferencesProvider.notifier).load(session.userId),
       ref.read(voiceSettingsProvider.notifier).load(session.userId),
     ]);
+    if (!ref.mounted) {
+      return;
+    }
     unawaited(ref.read(matureContentAgreementsProvider.notifier).reload());
 
     unawaited(
       ref.read(serviceStatusMaintenanceReadProvider.notifier).refresh(),
     );
-
-    ref
-      ..read(gatewayConnectBindingProvider)
-      ..read(gatewayEventListenerProvider)
-      ..read(gatewayStateListenerProvider)
-      ..read(gatewayForegroundListenerProvider)
-      ..read(gatewayReconnectToastListenerProvider)
-      ..read(connectivityListenerProvider)
-      ..read(gatewayEphemeralStateRecoveryListenerProvider)
-      ..read(ackBatcherGatewayListenerProvider)
-      ..read(fluxerSfxIncomingRingBindingProvider)
-      ..read(fluxerMessageSfxBindingProvider)
-      ..read(fluxerTtsBindingProvider)
-      ..read(voiceCallKitCoordinatorProvider)
-      ..read(friendRelationshipsSyncProvider)
-      ..read(guildListSyncProvider)
-      ..read(statusExpiryBindingProvider)
-      ..read(premiumStateSyncBindingProvider);
 
     ref.read(deepLinkHandlerProvider.notifier).processPendingDeepLink();
     ref.read(pendingPushNotificationPathProvider.notifier).flushIfReady();
@@ -212,10 +274,16 @@ class AppStartup extends _$AppStartup {
             .read(pushNotificationTapHandlerProvider.notifier)
             .handlePayloadJson,
       );
+      if (!ref.mounted) {
+        return;
+      }
       await FcmPendingNotificationTap.flushToHandler(
         ref.read(pushNotificationTapHandlerProvider.notifier).handlePayloadJson,
       );
       unawaited(FirebaseMessagingPushService.bootstrapAfterAuth());
+    }
+    if (!ref.mounted) {
+      return;
     }
     if (PushProviderGuard.isFirebaseMessaging) {
       ref.read(fcmMobileDeviceRegistrationProvider);
@@ -223,6 +291,8 @@ class AppStartup extends _$AppStartup {
     if (PushProviderGuard.isUnifiedPush) {
       ref.read(unifiedPushMobileDeviceRegistrationProvider);
     }
+
+    await emojiPreload;
 
     debugPrint(
       '[AppStartup] Session restored '

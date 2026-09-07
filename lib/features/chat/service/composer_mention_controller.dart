@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/providers/database_provider.dart';
@@ -11,6 +10,7 @@ import 'package:fluxer_app/features/dm/providers/dm_view_model.dart';
 import 'package:fluxer_app/features/guilds/providers/role_providers.dart';
 import 'package:fluxer_app/features/ui/input/emoji_inline_token.dart';
 import 'package:fluxer_app/features/ui/input/inline_token_text_editing_controller.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/guild_user_display_provider.dart';
 import 'package:fluxer_app/shared/utils/chat_context_utils.dart';
 import 'package:fluxer_app/shared/utils/guild_user_display.dart';
@@ -98,9 +98,10 @@ class ComposerMentionController extends InlineTokenTextEditingController {
 
   int _applyWireTextGeneration = 0;
 
-  /// Rebuilds the field from a wire string, re-chipping mentions and custom
-  /// emoji. Plain `:name:` shortcodes are left as text (only explicitly
-  /// inserted emoji chip) to avoid mis-chipping typed colons like `12:30:45`.
+  /// Rebuilds the field from a wire string, re-chipping mentions, custom
+  /// emoji, and registry-resolvable emoji (shortcodes, skin-tone forms, raw
+  /// unicode). Unresolvable shortcodes stay literal text so typed colons like
+  /// `12:30:45` are never mis-chipped.
   Future<void> applyWireText(String wire) async {
     if (toWireText() == wire) {
       return;

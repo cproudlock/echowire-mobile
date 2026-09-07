@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:fluxer_captcha/src/captcha_exception.dart';
 import 'package:fluxer_captcha/src/captcha_provider.dart';
 import 'package:fluxer_captcha/src/controller/interface.dart' as i;
-import 'package:meta/meta.dart';
 
 /// Captcha controller for native (mobile/desktop) platforms.
 class CaptchaController extends ChangeNotifier

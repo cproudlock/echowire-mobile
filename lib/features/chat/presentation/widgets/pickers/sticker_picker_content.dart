@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/limits/instance_limit_provider.dart';
 import 'package:fluxer_app/core/limits/limit_key.dart';
@@ -21,6 +20,7 @@ import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
 import 'package:fluxer_app/features/ui/plutonium_upsell/fluxer_plutonium_upsell.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/gestures/expandable_sheet_gestures.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -289,12 +289,10 @@ class _StickerPickerContentState extends ConsumerState<StickerPickerContent> {
     );
 
     if (category == 'favorites') {
-      unawaited(
-        _scrollController.animateTo(
-          0,
-          duration: context.motion.panel,
-          curve: Curves.easeOut,
-        ),
+      _scrollController.animateTo(
+        0,
+        duration: context.motion.panel,
+        curve: Curves.easeOut,
       );
       return;
     }
@@ -308,12 +306,10 @@ class _StickerPickerContentState extends ConsumerState<StickerPickerContent> {
       offset += _kCategoryGap;
     }
     if (category == 'frequently-used') {
-      unawaited(
-        _scrollController.animateTo(
-          offset.clamp(0, _scrollController.position.maxScrollExtent),
-          duration: context.motion.panel,
-          curve: Curves.easeOut,
-        ),
+      _scrollController.animateTo(
+        offset.clamp(0, _scrollController.position.maxScrollExtent),
+        duration: context.motion.panel,
+        curve: Curves.easeOut,
       );
       return;
     }
@@ -328,12 +324,10 @@ class _StickerPickerContentState extends ConsumerState<StickerPickerContent> {
     for (final entry in stickersByGuild.entries) {
       final key = 'guild-${entry.key.id}';
       if (key == category) {
-        unawaited(
-          _scrollController.animateTo(
-            offset.clamp(0, _scrollController.position.maxScrollExtent),
-            duration: context.motion.panel,
-            curve: Curves.easeOut,
-          ),
+        _scrollController.animateTo(
+          offset.clamp(0, _scrollController.position.maxScrollExtent),
+          duration: context.motion.panel,
+          curve: Curves.easeOut,
         );
         return;
       }
@@ -737,7 +731,7 @@ class _StickerPickerContentState extends ConsumerState<StickerPickerContent> {
         cacheKey: sticker.cacheKeyForSize(_kStickerRequestSize),
         width: _imageSize,
         height: _imageSize,
-        memCacheWidth: _imageSize.toInt(),
+        memCacheWidth: sticker.animated ? null : _imageSize.toInt(),
         fadeInDuration: Duration.zero,
         fadeOutDuration: Duration.zero,
         fit: BoxFit.contain,

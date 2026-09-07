@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'guild_drag_provider.g.dart';
@@ -47,6 +47,17 @@ class DragState {
   bool get hasHoverTarget => hoverTargetId != null;
   bool get showMobileDragFeedback =>
       isDragging && hasMovedFromHoldPoint && dragFeedbackGlobalY != null;
+
+  /// Whether [itemId] should visually collapse while being dragged.
+  bool shouldCollapseDragSource({
+    required String itemId,
+    required bool useLongPressDrag,
+  }) {
+    if (dragItemId != itemId) {
+      return false;
+    }
+    return !useLongPressDrag || hasMovedFromHoldPoint;
+  }
 
   DragState copyWith({
     String? dragItemId,

@@ -1,30 +1,39 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_context.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
+import 'package:fluxer_app/features/chat/domain/message_translation.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/message_debug_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/message_reactions_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/unpin_message_confirm_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/quick_reaction_row.dart';
 import 'package:fluxer_app/features/chat/providers/channel/channel_details_providers.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_providers.dart';
+import 'package:fluxer_app/features/chat/providers/core/chat_view_model.dart';
+import 'package:fluxer_app/features/chat/providers/messages/message_translation_provider.dart';
 import 'package:fluxer_app/features/chat/providers/messages/saved_message_provider.dart';
+import 'package:fluxer_app/features/chat/utils/favorite_media_utils.dart';
+import 'package:fluxer_app/features/chat/utils/media_favorite_state.dart';
 import 'package:fluxer_app/features/chat/utils/message_action_permissions.dart';
 import 'package:fluxer_app/features/chat/utils/message_link.dart';
+import 'package:fluxer_app/features/chat/utils/save_message_media_favorite.dart';
 import 'package:fluxer_app/features/messaging/data/saved_messages_repository.dart';
 import 'package:fluxer_app/features/messaging/providers/saved_messages_sync_provider.dart';
 import 'package:fluxer_app/features/settings/providers/advanced_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
+import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
+import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/features/voice/tts/fluxer_tts_provider.dart';
 import 'package:fluxer_app/features/voice/tts/tts_locale_utils.dart';
 import 'package:fluxer_app/l10n/app_locale_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/clipboard_utils.dart';
+import 'package:fluxer_app/shared/utils/fluxer_haptics.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 enum MessageAction {
@@ -38,6 +47,7 @@ enum MessageAction {
   // Echowire-only action (handled in message_item, not in dispatchMessageAction).
   createThread,
   copyText,
+  copyEmbedText,
   pin,
   bookmark,
   markAsUnread,
@@ -49,6 +59,7 @@ enum MessageAction {
   report,
   debugMessage,
   speak,
+  translate,
 }
 
 Future<MessageAction?> showMessageBottomSheet(
@@ -85,9 +96,7 @@ Future<MessageAction?> showMessageBottomSheet(
   );
   return FluxerBottomSheet.showScrollable<MessageAction>(
     context,
-    initialChildSize: 0.6,
     minChildSize: 0.3,
-    maxChildSize: 0.9,
     builder: (sheetContext, scrollController, _) => _MessageBottomSheetBody(
       message: message,
       permissions: permissions,
@@ -119,13 +128,24 @@ Future<void> dispatchMessageAction({
     case MessageAction.edit:
       callbacks.onEdit?.call();
     case MessageAction.delete:
-      callbacks.onDelete?.call();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!context.mounted) {
+          return;
+        }
+        callbacks.onDelete?.call();
+      });
     case MessageAction.retry:
       callbacks.onRetry?.call();
     case MessageAction.deleteFailed:
       callbacks.onDeleteFailed?.call();
     case MessageAction.copyText:
-      unawaited(copyToClipboard(context: context, value: message.content));
+      unawaited(
+        copyToClipboard(context: context, value: message.displayedContent),
+      );
+    case MessageAction.copyEmbedText:
+      unawaited(
+        copyToClipboard(context: context, value: message.embedsCopyableText),
+      );
     case MessageAction.copyMessageId:
       unawaited(copyToClipboard(context: context, value: message.id));
     case MessageAction.copyMessageLink:
@@ -223,6 +243,63 @@ Future<void> dispatchMessageAction({
               locale: formatTtsLocaleTag(ref.read(effectiveAppLocaleProvider)),
             ),
       );
+    case MessageAction.translate:
+      unawaited(
+        _translateMessage(ref: ref, context: context, message: message),
+      );
+  }
+}
+
+Future<void> _translateMessage({
+  required WidgetRef ref,
+  required BuildContext context,
+  required Message message,
+}) async {
+  if (message.content.trim().isEmpty) {
+    return;
+  }
+  final TranslatingMessageIds translating = ref.read(
+    translatingMessageIdsProvider.notifier,
+  );
+  if (ref.read(translatingMessageIdsProvider).contains(message.id)) {
+    return;
+  }
+  final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+  translating.add(message.id);
+  try {
+    final Message updated = await ref
+        .read(messageTranslationServiceProvider)
+        .translateMessage(
+          message: message,
+          targetLanguage: ref.read(effectiveAppLocaleProvider).languageCode,
+        );
+    ref
+        .read(chatViewModelProvider.notifier)
+        .applyMessageTranslation(
+          messageId: updated.id,
+          translation: updated.translation,
+        );
+    FluxerHaptics.light();
+  } on MessageTranslationUnavailableException {
+    ref
+        .read(toastProvider.notifier)
+        .show(
+          FluxerToast(
+            message: l10n.chatMessageTranslateUnavailable,
+            variant: FluxerToastVariant.warning,
+          ),
+        );
+  } on MessageTranslationFailedException {
+    ref
+        .read(toastProvider.notifier)
+        .show(
+          FluxerToast(
+            message: l10n.chatMessageTranslateFailed,
+            variant: FluxerToastVariant.danger,
+          ),
+        );
+  } finally {
+    translating.remove(message.id);
   }
 }
 
@@ -236,6 +313,7 @@ List<Widget> buildMessageActionMenuGroups({
   bool canCreateThread = false,
   MessageActionCallbacks? attachmentCallbacks,
   String? attachmentIdFilter,
+  bool includeAttachmentFavoriteActions = true,
   VoidCallback? onCloseMenu,
 }) {
   final FluxerLocalizations l10n = FluxerLocalizations.of(context);
@@ -310,6 +388,12 @@ List<Widget> buildMessageActionMenuGroups({
         icon: PhosphorIconsFill.users,
         label: l10n.chatMessageViewReactions,
         onTap: () => onAction(MessageAction.viewReactions),
+      ),
+    if (watchCanOfferMessageTranslate(ref, message))
+      FluxerBottomSheetMenuItem(
+        icon: PhosphorIconsBold.translate,
+        label: l10n.chatMessageTranslate,
+        onTap: () => onAction(MessageAction.translate),
       ),
     if (canShowRemoveAllReactions)
       FluxerBottomSheetMenuItem(
@@ -390,41 +474,19 @@ List<Widget> buildMessageActionMenuGroups({
 
   final List<Widget> attachmentItems = <Widget>[
     for (final Attachment attachment in message.attachments)
-      if (attachmentIdFilter == null ||
-          attachment.id == attachmentIdFilter) ...<Widget>[
-        if (showMediaDeleteButton &&
-            canDeleteAttachmentOnMessage(
-              message: message,
-              isOwnMessage: permissions.isOwnMessage,
-              isSendDisabled: permissions.isSendDisabled,
-            ))
-          FluxerBottomSheetMenuItem(
-            icon: PhosphorIconsFill.trash,
-            label: l10n.chatMessageDeleteAttachment,
-            hint: attachment.filename,
-            isDanger: true,
-            onTap: () {
-              attachmentCallbacks?.onDeleteAttachment?.call(attachment);
-              closeMenu();
-            },
-          ),
-        if (canEditAttachmentAltText(
+      if (attachmentIdFilter == null || attachment.id == attachmentIdFilter)
+        ..._buildAttachmentMenuItems(
+          context: context,
+          ref: ref,
+          l10n: l10n,
           message: message,
-          isOwnMessage: permissions.isOwnMessage,
           attachment: attachment,
-          canManageMessages: permissions.canManageMessages,
-          isDmChannel: permissions.isDmChannel,
-        ))
-          FluxerBottomSheetMenuItem(
-            icon: PhosphorIconsFill.pencilSimple,
-            label: l10n.chatMessageEditAttachmentAltText,
-            hint: attachment.filename,
-            onTap: () {
-              closeMenu();
-              attachmentCallbacks?.onEditAttachmentAltText?.call(attachment);
-            },
-          ),
-      ],
+          showMediaDeleteButton: showMediaDeleteButton,
+          permissions: permissions,
+          attachmentCallbacks: attachmentCallbacks,
+          closeMenu: closeMenu,
+          includeFavoriteAction: includeAttachmentFavoriteActions,
+        ),
   ];
 
   final bool isSpeakingMessage = ref.read(
@@ -454,6 +516,12 @@ List<Widget> buildMessageActionMenuGroups({
         icon: PhosphorIconsFill.copy,
         label: l10n.chatMessageCopyText,
         onTap: () => onAction(MessageAction.copyText),
+      ),
+    if (message.embedsCopyableText.isNotEmpty)
+      FluxerBottomSheetMenuItem(
+        icon: PhosphorIconsFill.textAlignLeft,
+        label: l10n.chatMessageCopyEmbedText,
+        onTap: () => onAction(MessageAction.copyEmbedText),
       ),
     FluxerBottomSheetMenuItem(
       icon: PhosphorIconsBold.snowflake,
@@ -488,6 +556,78 @@ List<Widget> buildMessageActionMenuGroups({
       reportItems,
     ])
       if (items.isNotEmpty) FluxerMenuGroup(children: items),
+  ];
+}
+
+List<Widget> _buildAttachmentMenuItems({
+  required BuildContext context,
+  required WidgetRef ref,
+  required FluxerLocalizations l10n,
+  required Message message,
+  required Attachment attachment,
+  required bool showMediaDeleteButton,
+  required MessageActionPermissions permissions,
+  required MessageActionCallbacks? attachmentCallbacks,
+  required void Function() closeMenu,
+  required bool includeFavoriteAction,
+}) {
+  final MessageMediaFavoriteTarget? favoriteTarget =
+      includeFavoriteAction && attachment.isSavableMedia
+      ? MessageMediaFavoriteTarget.forAttachment(attachment)
+      : null;
+  final MediaFavoriteState favoriteState = watchMediaFavoriteState(
+    ref,
+    target: favoriteTarget,
+  );
+
+  return <Widget>[
+    ...buildMediaFavoriteMenuItems(
+      l10n: l10n,
+      state: favoriteState,
+      hint: attachment.filename,
+      onAction: (MediaFavoriteMenuAction action) {
+        scheduleMediaFavoriteMenuAction(
+          ref: ref,
+          context: context,
+          message: message,
+          state: favoriteState,
+          action: action,
+          beforeAction: closeMenu,
+        );
+      },
+    ),
+    if (showMediaDeleteButton &&
+        canDeleteAttachmentOnMessage(
+          message: message,
+          isOwnMessage: permissions.isOwnMessage,
+          isSendDisabled: permissions.isSendDisabled,
+        ))
+      FluxerBottomSheetMenuItem(
+        icon: PhosphorIconsFill.trash,
+        label: l10n.chatMessageDeleteAttachment,
+        hint: attachment.filename,
+        isDanger: true,
+        onTap: () {
+          attachmentCallbacks?.onDeleteAttachment?.call(attachment);
+          closeMenu();
+        },
+      ),
+    if (canEditAttachmentAltText(
+      message: message,
+      isOwnMessage: permissions.isOwnMessage,
+      attachment: attachment,
+      canManageMessages: permissions.canManageMessages,
+      isDmChannel: permissions.isDmChannel,
+    ))
+      FluxerBottomSheetMenuItem(
+        icon: PhosphorIconsFill.pencilSimple,
+        label: l10n.chatMessageEditAttachmentAltText,
+        hint: attachment.filename,
+        onTap: () {
+          closeMenu();
+          attachmentCallbacks?.onEditAttachmentAltText?.call(attachment);
+        },
+      ),
   ];
 }
 

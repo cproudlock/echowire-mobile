@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 class FluxerSelectableRow extends StatelessWidget {
   const FluxerSelectableRow({

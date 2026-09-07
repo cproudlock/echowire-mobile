@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/expression_picker.dart';
@@ -14,6 +13,7 @@ import 'package:fluxer_app/features/ui/emoji_picker/fluxer_emoji_picker_sheet.da
 import 'package:fluxer_app/features/ui/emoji_picker/fluxer_selected_emoji.dart';
 import 'package:fluxer_app/features/ui/input/fluxer_input.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/emoji_image_cache.dart';
 import 'package:fluxer_app/shared/widgets/custom_status_display.dart';
 import 'package:fluxer_app/shared/widgets/unicode_emoji_widget.dart';
@@ -100,7 +100,6 @@ class _CustomStatusSheetBodyState extends ConsumerState<CustomStatusSheetBody> {
       context,
       title: FluxerLocalizations.of(context).customStatusChooseEmoji,
       visibleTabs: const <ExpressionPickerTab>[ExpressionPickerTab.emojis],
-      maxHeight: 0.75,
       trackEmojiUsageOnSelect: false,
       onEmojiSelected: (FluxerSelectedEmoji emoji) {
         setState(() {

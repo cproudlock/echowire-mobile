@@ -1,11 +1,11 @@
 import 'dart:ui' show clampDouble;
 
-import 'package:flutter/cupertino.dart'
+import 'package:cupertino_ui/cupertino_ui.dart'
     show CupertinoSliverRefreshControl, RefreshIndicatorMode;
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/core/widgets/fluxer_widget_preview.dart';
 import 'package:fluxer_app/features/ui/spinner/fluxer_loading_spinner.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 /// [CustomScrollView] with pull-to-refresh using [FluxerLoadingSpinner].
 ///

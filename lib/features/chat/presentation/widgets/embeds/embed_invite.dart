@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
@@ -18,6 +17,7 @@ import 'package:fluxer_app/features/ui/badge/fluxer_guild_badge.dart';
 import 'package:fluxer_app/features/ui/button/fluxer_button.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/guild_name_abbreviation.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -77,7 +77,7 @@ class _GuildInviteCard extends StatelessWidget {
     required this.isAlreadyMember,
   });
 
-  final InviteResponseSchemaGuildInviteResponse invite;
+  final InviteResponseSchema0 invite;
   final String code;
   final FluxerLocalizations l10n;
   final WidgetRef ref;
@@ -230,7 +230,7 @@ class _GroupDmInviteCard extends StatelessWidget {
     required this.ref,
   });
 
-  final InviteResponseSchemaGroupDmInviteResponse invite;
+  final InviteResponseSchema1 invite;
   final String code;
   final FluxerLocalizations l10n;
   final WidgetRef ref;
@@ -426,6 +426,8 @@ class _InviteCard extends StatelessWidget {
       imageUrl: url,
       fit: BoxFit.cover,
       width: double.infinity,
+      fadeInDuration: Duration.zero,
+      fadeOutDuration: Duration.zero,
       errorBuilder: (_, _, _) => const SizedBox.shrink(),
     );
     if (ratio != null && ratio > 0) {
@@ -516,7 +518,11 @@ class _CircleAvatar extends StatelessWidget {
               imageUrl: url!,
               width: 44,
               height: 44,
+              memCacheWidth: (44 * MediaQuery.devicePixelRatioOf(context))
+                  .round(),
               fit: BoxFit.cover,
+              fadeInDuration: Duration.zero,
+              fadeOutDuration: Duration.zero,
               errorBuilder: (_, _, _) => _buildFallback(context),
             )
           : _buildFallback(context),

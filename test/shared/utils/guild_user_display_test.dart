@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/constants/media_proxy_sizes.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/members/domain/member.dart' as members;
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/display_name.dart';
 import 'package:fluxer_app/shared/utils/guild_user_display.dart';
 import 'package:fluxer_app/shared/utils/mention_display_utils.dart';
@@ -96,7 +96,10 @@ void main() {
         guildId: null,
         friendNickname: null,
       );
-      expect(actual.avatarUrl, contains('/avatars/1/user_avatar.webp?size='));
+      expect(
+        actual.avatarUrl,
+        contains('/avatars/1/a_user_avatar.gif?animated=true&size='),
+      );
       expect(
         actual.bannerUrl,
         contains('/banners/1/a_banner.gif?animated=true&size='),
@@ -114,11 +117,15 @@ void main() {
       );
       expect(
         actual.avatarUrl,
-        contains('/guilds/10/users/1/avatars/guild_avatar.webp?size='),
+        contains(
+          '/guilds/10/users/1/avatars/a_guild_avatar.gif?animated=true&size=',
+        ),
       );
       expect(
         actual.bannerUrl,
-        contains('/guilds/10/users/1/banners/guild_banner.webp?size='),
+        contains(
+          '/guilds/10/users/1/banners/a_guild_banner.gif?animated=true&size=',
+        ),
       );
     });
 

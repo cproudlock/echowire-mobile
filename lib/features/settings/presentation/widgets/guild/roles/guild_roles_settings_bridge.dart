@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 /// Publishes the roles sidebar from GuildRolesSettingsWidget into the
 /// community settings modal left column.

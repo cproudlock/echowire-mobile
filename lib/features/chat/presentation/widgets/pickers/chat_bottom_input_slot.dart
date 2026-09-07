@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
+import 'package:fluxer_app/features/chat/providers/pickers/attachment_panel_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/bottom_input_slot_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/expression_panel_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/mobile_keyboard_metrics_provider.dart';
 import 'package:fluxer_app/features/chat/utils/bottom_input_slot_layout.dart';
+import 'package:fluxer_app/features/chat/utils/composer_panel.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/gestures/expandable_sheet_gestures.dart';
 
 class BottomInputSpacer extends ConsumerWidget {
@@ -17,7 +19,10 @@ class BottomInputSpacer extends ConsumerWidget {
       return const SizedBox.shrink();
     }
 
-    final bool isPanelOpen = ref.watch(expressionPanelProvider);
+    final bool isPanelOpen = isComposerPanelOpen(
+      expressionPanelOpen: ref.watch(expressionPanelProvider),
+      attachmentPanelOpen: ref.watch(attachmentPanelProvider),
+    );
     final double slotHeight = ref.watch(
       bottomInputSlotProvider.select(
         (BottomInputSlotState state) => state.slotHeight,

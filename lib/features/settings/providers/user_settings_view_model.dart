@@ -373,24 +373,41 @@ class UserSettingsViewState {
 
   String? get previewAvatarUrl {
     if (!isPerGuildProfile) {
-      return avatarUrl;
+      return _previewUserAvatarUrl();
     }
     return switch (guildAvatarMode) {
       GuildAssetMode.unset => null,
       GuildAssetMode.custom => _previewGuildAvatarUrl(),
-      GuildAssetMode.inherit => avatarUrl,
+      GuildAssetMode.inherit => _previewUserAvatarUrl(),
     };
   }
 
   String? get previewBannerUrl {
     if (!isPerGuildProfile) {
-      return bannerUrl;
+      return _previewUserBannerUrl();
     }
     return switch (guildBannerMode) {
       GuildAssetMode.unset => null,
       GuildAssetMode.custom => _previewGuildBannerUrl(),
-      GuildAssetMode.inherit => bannerUrl,
+      GuildAssetMode.inherit => _previewUserBannerUrl(),
     };
+  }
+
+  String? _previewUserAvatarUrl() {
+    return FluxerMediaUrl.userAvatar(
+      userId: userId,
+      hash: avatar,
+      size: MediaProxySizes.avatarProfile,
+      animated: true,
+    );
+  }
+
+  String? _previewUserBannerUrl() {
+    return FluxerMediaUrl.userBanner(
+      userId: userId,
+      hash: banner,
+      animated: true,
+    );
   }
 
   String? _previewGuildAvatarUrl() {
@@ -407,6 +424,7 @@ class UserSettingsViewState {
       userId: userId,
       type: GuildMemberMediaType.avatar,
       hash: hash,
+      animated: true,
     );
   }
 
@@ -425,6 +443,7 @@ class UserSettingsViewState {
       type: GuildMemberMediaType.banner,
       hash: hash,
       size: MediaProxySizes.profileBannerModal,
+      animated: true,
     );
   }
 
@@ -900,6 +919,8 @@ class UserSettingsViewModel extends _$UserSettingsViewModel {
         animateStickers: _parseStickerAnimation(data['animate_stickers']),
         defaultHideMutedChannels:
             data['default_hide_muted_channels'] as bool? ?? false,
+        messageDisplayCompact:
+            data['message_display_compact'] as bool? ?? false,
       );
     });
     ref.onDispose(subscription.cancel);
@@ -1000,6 +1021,10 @@ class UserSettingsViewModel extends _$UserSettingsViewModel {
 
   void updateAccentColor(int value) {
     state = state.copyWith(editedAccentColor: value);
+  }
+
+  void resetAccentColor() {
+    state = state.copyWith(editedAccentColor: null);
   }
 
   void setPremiumBadgeHidden({required bool value}) {
@@ -1137,6 +1162,10 @@ class UserSettingsViewModel extends _$UserSettingsViewModel {
 
   void updateGuildAccentColor(int value) {
     state = state.copyWith(editedGuildAccentColor: value);
+  }
+
+  void resetGuildAccentColor() {
+    state = state.copyWith(editedGuildAccentColor: null);
   }
 
   void setGuildAvatar(String base64) {
@@ -1449,6 +1478,21 @@ class UserSettingsViewModel extends _$UserSettingsViewModel {
 
   void toggleCompact() {
     state = state.copyWith(messageDisplayCompact: !state.messageDisplayCompact);
+  }
+
+  Future<void> setMessageDisplayCompact({required bool value}) async {
+    final bool previous = state.messageDisplayCompact;
+    state = state.copyWith(messageDisplayCompact: value);
+    try {
+      final client = ref.read(fluxerClientProvider);
+      await client.users.updateCurrentUserSettings(
+        body: UserSettingsUpdateRequest(messageDisplayCompact: value),
+      );
+    } on Object catch (e, st) {
+      state = state.copyWith(messageDisplayCompact: previous);
+      talker.error('Failed to update messageDisplayCompact', e, st);
+      rethrow;
+    }
   }
 
   bool isTrustedDomain(String hostname) {

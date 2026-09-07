@@ -1,11 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/guilds/presentation/widgets/guild_scroll_indicator_selection.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 enum GuildScrollIndicatorSeverity { unread, mention }
 
@@ -183,12 +180,10 @@ class GuildScrollIndicatorController {
     if (context == null) {
       return;
     }
-    unawaited(
-      Scrollable.ensureVisible(
-        context,
-        duration: context.motion.panel,
-        curve: Curves.easeOut,
-      ),
+    Scrollable.ensureVisible(
+      context,
+      duration: context.motion.panel,
+      curve: Curves.easeOut,
     );
   }
 

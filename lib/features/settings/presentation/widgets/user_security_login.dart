@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_color_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/account_delete_sheet.dart';
@@ -28,6 +28,7 @@ import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/features/ui/warning_alert/fluxer_warning_alert.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/relative_time.dart';
 import 'package:fluxer_dart/export.dart';
 
@@ -69,7 +70,6 @@ class _UserSecurityLoginState extends ConsumerState<UserSecurityLogin> {
     final state = ref.watch(userSettingsViewModelProvider);
     final passkeyState = ref.watch(webauthnCredentialsViewModelProvider);
     final colors = context.colors;
-    final layout = context.layout;
     final l10n = FluxerLocalizations.of(context);
 
     return SingleChildScrollView(
@@ -109,7 +109,11 @@ class _UserSecurityLoginState extends ConsumerState<UserSecurityLogin> {
   ) {
     return FluxerSettingsSubsection(
       title: l10n.securityLoginEmailSectionTitle,
-      description: l10n.securityLoginEmailSectionDescription,
+      description: l10n.securityLoginEmailSectionDescription(
+        ref.watch(
+          instanceRuntimeConfigProvider.select((config) => config.productName),
+        ),
+      ),
       children: [
         if (!s.hasVerifiedEmail) ...[
           FluxerWarningAlert(message: l10n.securityLoginNoEmailSet),

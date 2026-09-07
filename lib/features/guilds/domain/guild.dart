@@ -5,6 +5,8 @@ import 'package:drift/drift.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/features/guilds/services/guild_verification.dart';
+import 'package:fluxer_app/features/guilds/utils/guild_notification_resolution.dart';
+import 'package:fluxer_dart/export.dart';
 
 export 'package:fluxer_app/core/media/fluxer_media_cdn.dart'
     show fluxerMediaCdn;
@@ -31,6 +33,7 @@ class Guild {
   final bool nsfw;
   final int contentWarningLevel;
   final String? contentWarningText;
+  final int defaultMessageNotifications;
 
   const Guild({
     required this.id,
@@ -54,6 +57,7 @@ class Guild {
     this.nsfw = false,
     this.contentWarningLevel = 0,
     this.contentWarningText,
+    this.defaultMessageNotifications = 0,
   });
 
   factory Guild.fromRow(db.Server row) {
@@ -79,6 +83,7 @@ class Guild {
       nsfw: row.nsfw,
       contentWarningLevel: row.contentWarningLevel,
       contentWarningText: row.contentWarningText,
+      defaultMessageNotifications: row.defaultMessageNotifications,
     );
   }
 
@@ -105,6 +110,7 @@ class Guild {
       nsfw: Value(nsfw),
       contentWarningLevel: Value(contentWarningLevel),
       contentWarningText: Value(contentWarningText),
+      defaultMessageNotifications: Value(defaultMessageNotifications),
     );
   }
 
@@ -112,16 +118,32 @@ class Guild {
   bool get isPartnered => features.contains('PARTNERED');
   bool get isDiscoverable => features.contains('DISCOVERABLE');
   bool get hasVoiceE2ee => features.contains('VOICE_E2EE');
-  bool get isUnavailable =>
-      unavailable || features.contains('UNAVAILABLE_FOR_EVERYONE_BUT_STAFF');
+  bool get isStaffOnlyAccessible =>
+      features.contains('UNAVAILABLE_FOR_EVERYONE_BUT_STAFF');
+  bool get isUnavailable => unavailable || isStaffOnlyAccessible;
 
   /// Whether sending messages is disabled guild-wide.
   ///
   /// `SEND_MESSAGE` is bit `1 << 4` of the `disabled_operations` bitmask.
   bool get isSendDisabled => (disabledOperations & (1 << 4)) != 0;
 
+  /// Whether member list gateway updates are disabled guild-wide.
+  ///
+  /// `MEMBER_LIST_UPDATES` is bit `1 << 6` of the `disabled_operations` bitmask.
+  bool get isMemberListUpdatesDisabled => (disabledOperations & (1 << 6)) != 0;
+
   int get effectiveVerificationLevel =>
       effectiveGuildVerificationLevel(verificationLevel, isDiscoverable);
+
+  int get effectiveMessageNotifications {
+    if (isLargeGuildForNotifications(
+      memberCount: memberCount,
+      features: features,
+    )) {
+      return UserNotificationSettings.onlyMentions.json!;
+    }
+    return defaultMessageNotifications;
+  }
 
   bool get hasAnimatedIcon => icon?.startsWith('a_') ?? false;
   bool get hasAnimatedBanner => banner?.startsWith('a_') ?? false;

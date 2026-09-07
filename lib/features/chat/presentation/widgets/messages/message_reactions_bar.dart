@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/expression_picker.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/emoji_image_cache.dart';
 import 'package:fluxer_app/shared/utils/emoji_utils.dart';
 import 'package:fluxer_app/shared/utils/fluxer_haptics.dart';
@@ -37,7 +37,6 @@ Future<void> openReactionPickerSheet(
 }) {
   return FluxerEmojiPickerSheet.show(
     context,
-    maxHeight: 0.88,
     channelId: channelId,
     visibleTabs: const [ExpressionPickerTab.emojis],
     trackEmojiUsageOnSelect: false,
@@ -50,6 +49,7 @@ class MessageReactionsBar extends StatelessWidget {
     required this.reactions,
     required this.channelId,
     required this.onReactionTap,
+    this.onReactionLongPress,
     this.showAddReaction = false,
     this.isMobile = false,
     super.key,
@@ -58,6 +58,7 @@ class MessageReactionsBar extends StatelessWidget {
   final List<Reaction> reactions;
   final String channelId;
   final ReactionToggleCallback onReactionTap;
+  final ValueChanged<Reaction>? onReactionLongPress;
   final bool showAddReaction;
   final bool isMobile;
 
@@ -78,6 +79,12 @@ class MessageReactionsBar extends StatelessWidget {
                 animated: reaction.animated,
               );
             },
+            onLongPress: onReactionLongPress == null
+                ? null
+                : () {
+                    FluxerHaptics.medium();
+                    onReactionLongPress!(reaction);
+                  },
           ),
         if (showAddReaction)
           _InlineAddReactionButton(
@@ -91,10 +98,15 @@ class MessageReactionsBar extends StatelessWidget {
 }
 
 class _ReactionChip extends StatelessWidget {
-  const _ReactionChip({required this.reaction, required this.onTap});
+  const _ReactionChip({
+    required this.reaction,
+    required this.onTap,
+    this.onLongPress,
+  });
 
   final Reaction reaction;
   final VoidCallback onTap;
+  final VoidCallback? onLongPress;
 
   @override
   Widget build(BuildContext context) {
@@ -106,6 +118,7 @@ class _ReactionChip extends StatelessWidget {
       label: '$emojiName, ${reaction.count}',
       child: FluxerGestureDetector(
         onTap: onTap,
+        onLongPress: onLongPress,
         child: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: ExcludeSemantics(

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/instance/instance_config_snapshot.dart';
@@ -9,8 +9,9 @@ import 'package:fluxer_app/core/theme/themes/dark.dart';
 import 'package:fluxer_app/features/auth/presentation/widgets/login_form.dart';
 import 'package:fluxer_app/features/auth/providers/auth_instance_snapshot_provider.dart';
 import 'package:fluxer_app/features/auth/providers/login_view_model.dart';
-import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/keyboard_focus_restore.dart';
+
 import '../../../../helpers/test_l10n.dart';
 
 Widget _app(Widget child) {
@@ -39,7 +40,7 @@ void main() {
             (ref) => InstanceConfigSnapshot.officialDefault(),
           ),
         ],
-        child: _app(const LoginForm(showBrowserLogin: false)),
+        child: _app(const LoginForm()),
       ),
     );
     await tester.pumpAndSettle();
@@ -71,7 +72,7 @@ void main() {
             (ref) => InstanceConfigSnapshot.officialDefault(),
           ),
         ],
-        child: _app(const LoginForm(showBrowserLogin: false)),
+        child: _app(const LoginForm()),
       ),
     );
     await tester.pumpAndSettle();
@@ -90,6 +91,56 @@ void main() {
     expect(emailField.controller?.text, 'expired@example.com');
   });
 
+  testWidgets('context menu paste fills email and password', (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          authInstanceSnapshotProvider.overrideWith(
+            (ref) => InstanceConfigSnapshot.officialDefault(),
+          ),
+        ],
+        child: _app(const LoginForm()),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    final container = ProviderScope.containerOf(
+      tester.element(find.byType(LoginForm)),
+    );
+    final Finder editables = find.byType(EditableText);
+
+    _mockClipboardText('user@example.com');
+    await _pasteViaToolbar(tester, editables.at(0));
+
+    _mockClipboardText('secret-password');
+    await _pasteViaToolbar(tester, editables.at(1));
+
+    final state = container.read(loginViewModelProvider);
+    expect(state.email, 'user@example.com');
+    expect(state.password, 'secret-password');
+  });
+
+  testWidgets('context menu paste shows feedback when clipboard is empty', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          authInstanceSnapshotProvider.overrideWith(
+            (ref) => InstanceConfigSnapshot.officialDefault(),
+          ),
+        ],
+        child: _app(const LoginForm()),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    _mockClipboardText('');
+    await _pasteViaToolbar(tester, find.byType(EditableText).first);
+
+    expect(find.text(testL10n.clipboardPasteFailed), findsOneWidget);
+  });
+
   testWidgets('restores email focus when app resumes from background', (
     tester,
   ) async {
@@ -100,7 +151,7 @@ void main() {
             (ref) => InstanceConfigSnapshot.officialDefault(),
           ),
         ],
-        child: _app(const LoginForm(showBrowserLogin: false)),
+        child: _app(const LoginForm()),
       ),
     );
     await tester.pumpAndSettle();
@@ -108,24 +159,49 @@ void main() {
     final EditableText editable = tester.widget<EditableText>(
       find.byType(EditableText).first,
     );
-    final FocusNode focusNode = editable.focusNode!;
-
-    focusNode.requestFocus();
+    final FocusNode focusNode = editable.focusNode..requestFocus();
     await tester.pumpAndSettle();
     expect(focusNode.hasFocus, isTrue);
 
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    tester.binding
+      ..handleAppLifecycleStateChanged(AppLifecycleState.inactive)
+      ..handleAppLifecycleStateChanged(AppLifecycleState.hidden)
+      ..handleAppLifecycleStateChanged(AppLifecycleState.paused);
     focusNode.unfocus();
     await tester.pump();
 
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    tester.binding
+      ..handleAppLifecycleStateChanged(AppLifecycleState.hidden)
+      ..handleAppLifecycleStateChanged(AppLifecycleState.inactive)
+      ..handleAppLifecycleStateChanged(AppLifecycleState.resumed);
     await tester.pump();
     await tester.pump(kKeyboardFocusRestoreRetryDelay);
 
     expect(focusNode.hasFocus, isTrue);
   });
+}
+
+void _mockClipboardText(String text) {
+  TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+      .setMockMethodCallHandler(SystemChannels.platform, (
+        MethodCall methodCall,
+      ) async {
+        if (methodCall.method == 'Clipboard.getData') {
+          return <String, String>{'text': text};
+        }
+        if (methodCall.method == 'Clipboard.hasStrings') {
+          return <String, bool>{'value': true};
+        }
+        return null;
+      });
+}
+
+Future<void> _pasteViaToolbar(
+  WidgetTester tester,
+  Finder editableFinder,
+) async {
+  await tester.longPress(editableFinder);
+  await tester.pumpAndSettle();
+  await tester.tap(find.text('Paste'));
+  await tester.pumpAndSettle();
 }

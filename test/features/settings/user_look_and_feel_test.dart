@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:drift/drift.dart' show Value;
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
+import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preference_field.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preferences_store.dart';
 import 'package:fluxer_app/core/theme/fluxer_layout_theme.dart';
@@ -18,8 +18,10 @@ import 'package:fluxer_app/features/settings/presentation/widgets/user_look_and_
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_sync_service.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart';
 
+import '../../helpers/instance_runtime_config_override.dart';
 import '../../helpers/open_test_database.dart';
 
 class _NoopUserSettingsSyncService extends UserSettingsSyncService {
@@ -133,6 +135,7 @@ Widget _wrap(Widget child, {required FluxerDatabase db}) {
   final colorTheme = buildDarkColorTheme();
   final container = ProviderContainer(
     overrides: [
+      instanceRuntimeConfigOverride(),
       fluxerDatabaseProvider.overrideWithValue(db),
       userSettingsSyncProvider.overrideWith(_NoopUserSettingsSyncService.new),
     ],
@@ -187,7 +190,9 @@ void main() {
     await tester.pump();
 
     expect(find.text('Theme'), findsOneWidget);
-    expect(find.text('Chat Font Scaling'), findsOneWidget);
+    expect(find.text('High dynamic range'), findsOneWidget);
+    expect(find.text('App zoom level'), findsOneWidget);
+    expect(find.text('Messages'), findsOneWidget);
     expect(find.text('Interface'), findsOneWidget);
     expect(find.text('Channel List'), findsOneWidget);
     expect(find.text('Active Now'), findsOneWidget);
@@ -205,6 +210,7 @@ void main() {
 
     final container = ProviderContainer(
       overrides: [
+        instanceRuntimeConfigOverride(),
         fluxerDatabaseProvider.overrideWithValue(db),
         userSettingsSyncProvider.overrideWith(_NoopUserSettingsSyncService.new),
         syncedPreferencesStoreProvider.overrideWith(
@@ -250,6 +256,7 @@ void main() {
 
     final container = ProviderContainer(
       overrides: [
+        instanceRuntimeConfigOverride(),
         fluxerDatabaseProvider.overrideWithValue(db),
         userSettingsSyncProvider.overrideWith(_NoopUserSettingsSyncService.new),
         syncedPreferencesStoreProvider.overrideWith(
@@ -305,6 +312,7 @@ void main() {
   test('setTheme blocks subsequent taps while a PATCH is in flight', () async {
     final container = ProviderContainer(
       overrides: [
+        instanceRuntimeConfigOverride(),
         fluxerDatabaseProvider.overrideWithValue(db),
         userSettingsSyncProvider.overrideWith(
           (ref) => _BlockingUserSettingsSyncService(ref)..hold(),
@@ -347,6 +355,7 @@ void main() {
   test('setTheme reverts inflight on PATCH failure and rethrows', () async {
     final container = ProviderContainer(
       overrides: [
+        instanceRuntimeConfigOverride(),
         fluxerDatabaseProvider.overrideWithValue(db),
         userSettingsSyncProvider.overrideWith(
           _FailingUserSettingsSyncService.new,
@@ -384,6 +393,7 @@ void main() {
 
     final container = ProviderContainer(
       overrides: [
+        instanceRuntimeConfigOverride(),
         fluxerDatabaseProvider.overrideWithValue(db),
         userSettingsSyncProvider.overrideWith(_NoopUserSettingsSyncService.new),
       ],
@@ -411,6 +421,7 @@ void main() {
     () async {
       final container = ProviderContainer(
         overrides: [
+          instanceRuntimeConfigOverride(),
           fluxerDatabaseProvider.overrideWithValue(db),
           userSettingsSyncProvider.overrideWith(
             (ref) => _BlockingUserSettingsSyncService(ref)..hold(),
@@ -470,6 +481,7 @@ void main() {
 
       final container = ProviderContainer(
         overrides: [
+          instanceRuntimeConfigOverride(),
           fluxerDatabaseProvider.overrideWithValue(db),
           userSettingsSyncProvider.overrideWith(
             _NoopUserSettingsSyncService.new,
@@ -514,6 +526,7 @@ void main() {
 
     final container = ProviderContainer(
       overrides: [
+        instanceRuntimeConfigOverride(),
         fluxerDatabaseProvider.overrideWithValue(db),
         userSettingsSyncProvider.overrideWith(_NoopUserSettingsSyncService.new),
       ],
@@ -532,6 +545,7 @@ void main() {
   test('load clears inflightTheme from the previous user', () async {
     final container = ProviderContainer(
       overrides: [
+        instanceRuntimeConfigOverride(),
         fluxerDatabaseProvider.overrideWithValue(db),
         userSettingsSyncProvider.overrideWith(
           (ref) => _BlockingUserSettingsSyncService(ref)..hold(),
@@ -564,6 +578,7 @@ void main() {
     () async {
       final container = ProviderContainer(
         overrides: [
+          instanceRuntimeConfigOverride(),
           fluxerDatabaseProvider.overrideWithValue(db),
           userSettingsSyncProvider.overrideWith(
             _LightThemeUserSettingsSyncService.new,
@@ -597,6 +612,7 @@ void main() {
 
       final container = ProviderContainer(
         overrides: [
+          instanceRuntimeConfigOverride(),
           fluxerDatabaseProvider.overrideWithValue(db),
           userSettingsSyncProvider.overrideWith(
             _LightThemeUserSettingsSyncService.new,
@@ -616,4 +632,39 @@ void main() {
       );
     },
   );
+
+  test('applyServerSettings ignores hydration for a different user', () async {
+    await db.userPreferencesDao.savePreferences(
+      const UserPreferencesTableCompanion(
+        userId: Value('user-a'),
+        theme: Value('dark'),
+        syncAcrossDevices: Value(true),
+      ),
+    );
+
+    final container = ProviderContainer(
+      overrides: [
+        instanceRuntimeConfigOverride(),
+        fluxerDatabaseProvider.overrideWithValue(db),
+        userSettingsSyncProvider.overrideWith(_NoopUserSettingsSyncService.new),
+        currentUserIdProvider.overrideWithValue('user-b'),
+      ],
+    );
+    addTearDown(container.dispose);
+
+    final ThemePreference notifier = container.read(
+      themePreferenceProvider.notifier,
+    );
+    await notifier.load('user-a');
+
+    expect(container.read(themePreferenceProvider).mode, FluxerThemeMode.dark);
+
+    await notifier.applyServerSettings(_settingsResponseWithTheme('light'));
+
+    expect(
+      container.read(themePreferenceProvider).mode,
+      FluxerThemeMode.dark,
+      reason: 'hydration must not apply to a user other than the loaded one',
+    );
+  });
 }

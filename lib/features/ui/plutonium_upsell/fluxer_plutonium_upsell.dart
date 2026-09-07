@@ -1,16 +1,20 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/build/app_build_config.dart';
+import 'package:fluxer_app/core/premium/should_show_premium_commerce_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
-import 'package:fluxer_app/features/ui/button/fluxer_button.dart';
-import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
+import 'package:fluxer_app/features/settings/domain/user_settings_section.dart';
+import 'package:fluxer_app/features/settings/utils/open_user_billing_settings.dart';
+import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/external_links/external_link_handler.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 const String _kPlutoniumUrl = 'https://fluxer.app/plutonium';
 
-class FluxerPlutoniumUpsell extends StatelessWidget {
+class FluxerPlutoniumUpsell extends ConsumerWidget {
   const FluxerPlutoniumUpsell({
     required this.text,
     this.buttonLabel,
@@ -27,7 +31,10 @@ class FluxerPlutoniumUpsell extends StatelessWidget {
   final Widget? child;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (!ref.watch(shouldShowPremiumCommerceProvider)) {
+      return const SizedBox.shrink();
+    }
     final colors = context.colors;
     final layout = context.layout;
     final textStyles = context.textStyles;
@@ -65,11 +72,7 @@ class FluxerPlutoniumUpsell extends StatelessWidget {
                   if (child != null) ...[SizedBox(height: layout.s2), child!],
                   SizedBox(height: layout.s2),
                   FluxerButton.inverted(
-                    onPressed:
-                        onButtonPressed ??
-                        () => unawaited(
-                          handleExternalLinkTap(context, _kPlutoniumUrl),
-                        ),
+                    onPressed: onButtonPressed ?? () => _openPlutonium(context),
                     label: buttonLabel ?? l10n.getPlutonium,
                   ),
                   if (onDismiss != null) ...[
@@ -93,5 +96,15 @@ class FluxerPlutoniumUpsell extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _openPlutonium(BuildContext context) {
+    if (AppBuildConfig.isOssWebCheckout) {
+      unawaited(
+        openUserBillingSettings(context, UserSettingsSection.fluxerPlutonium),
+      );
+      return;
+    }
+    unawaited(handleExternalLinkTap(context, _kPlutoniumUrl));
   }
 }

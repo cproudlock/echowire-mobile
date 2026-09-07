@@ -2,13 +2,11 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/limits/instance_limit_provider.dart';
 import 'package:fluxer_app/core/limits/limit_key.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
-import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/theme/fluxer_color_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
@@ -16,18 +14,18 @@ import 'package:fluxer_app/features/chat/presentation/widgets/plutonium_upsell_b
 import 'package:fluxer_app/features/chat/providers/channel/channel_message_permissions_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/emoji_picker_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/expression_picker_preferences_provider.dart';
+import 'package:fluxer_app/features/chat/utils/emoji_picker_display_categories.dart';
 import 'package:fluxer_app/features/chat/utils/emoji_picker_layout_index.dart';
 import 'package:fluxer_app/features/chat/utils/emoji_picker_precache.dart';
 import 'package:fluxer_app/features/chat/utils/emoji_picker_rendering_policy.dart';
 import 'package:fluxer_app/features/chat/utils/emoji_picker_visibility.dart';
-import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
-import 'package:fluxer_app/features/dm/domain/dm_conversation.dart';
-import 'package:fluxer_app/features/dm/providers/dm_view_model.dart';
+import 'package:fluxer_app/features/emoji/domain/emoji_info_data.dart';
+import 'package:fluxer_app/features/emoji/presentation/sheets/emoji_info_bottom_sheet.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/organized_guild_list_provider.dart';
-import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/emoji_image_cache.dart';
 import 'package:fluxer_app/shared/utils/emoji_registry.dart';
 import 'package:fluxer_app/shared/utils/emoji_sprite_sheet.dart';
@@ -35,7 +33,9 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 const _kGridColumns = 9;
 const _kMobileGridColumns = 8;
-const _kEmojiSize = 40.0;
+// 32 logical is a 1:1 blit of the 64px @2x cell at DPR 2 and matches the web picker.
+const _kUnicodeEmojiSize = 32.0;
+const _kCustomEmojiSize = 40.0;
 const _kCellSize = 48.0;
 const double _kMobileCategoryBarHeight = 44;
 const int _kCustomEmojiRequestSize = kCustomEmojiPickerFetchSize;
@@ -194,6 +194,22 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
   List<String>? _cachedFavoriteKeys;
   Map<Guild, List<GuildEmojiEntry>>? _cachedFavoriteGuildEmojisByGuild;
   List<_FavoriteEmojiItem>? _cachedFavoriteItems;
+  List<GuildNavbarItem>? _cachedOrganizedItems;
+  String? _cachedPickerGuildsActiveId;
+  List<Guild>? _cachedPickerGuilds;
+  List<String>? _cachedRankedUsageKeys;
+  Map<Guild, List<GuildEmojiEntry>>? _cachedFrecentSource;
+  List<FrecentEmojiItem>? _cachedFrecent;
+  Map<String, List<EmojiEntry>>? _cachedFrecentUnicode;
+  Map<String, List<EmojiEntry>>? _cachedFavoriteUnicode;
+  List<_FavoriteEmojiItem>? _cachedLayoutFavorites;
+  List<FrecentEmojiItem>? _cachedLayoutFrecent;
+  Map<Guild, List<GuildEmojiEntry>>? _cachedLayoutGuildEmojis;
+  List<String>? _cachedLayoutCollapsed;
+  Map<String, List<EmojiEntry>>? _cachedLayoutUnicode;
+  int? _cachedLayoutColumns;
+  bool? _cachedLayoutIncludeUpsell;
+  EmojiPickerLayoutIndex? _cachedLayoutIndex;
 
   late final int _upsellPreviewSeed;
 
@@ -301,6 +317,56 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
     return grouped;
   }
 
+  List<Guild> _guildsFor({
+    required List<GuildNavbarItem> organized,
+    required String? activeGuildId,
+  }) {
+    final cached = _cachedPickerGuilds;
+    if (cached != null &&
+        identical(_cachedOrganizedItems, organized) &&
+        _cachedPickerGuildsActiveId == activeGuildId) {
+      return cached;
+    }
+    final guilds = guildsForExpressionPicker(
+      organized: organized,
+      activeGuildId: activeGuildId,
+    );
+    _cachedOrganizedItems = organized;
+    _cachedPickerGuildsActiveId = activeGuildId;
+    _cachedPickerGuilds = guilds;
+    return guilds;
+  }
+
+  List<FrecentEmojiItem> _frecentFor({
+    required List<String> rankedUsageKeys,
+    required Map<Guild, List<GuildEmojiEntry>> guildEmojisByGuild,
+  }) {
+    // Registry identity doubles as the preload token for unicode keys.
+    final unicodeCategories = EmojiRegistry.categories;
+    final cached = _cachedFrecent;
+    if (cached != null &&
+        identical(_cachedFrecentUnicode, unicodeCategories) &&
+        identical(_cachedRankedUsageKeys, rankedUsageKeys) &&
+        identical(_cachedFrecentSource, guildEmojisByGuild)) {
+      return cached;
+    }
+    final customEmojisById = <String, GuildEmojiEntry>{
+      for (final GuildEmojiEntry emoji in guildEmojisByGuild.values.expand(
+        (emojis) => emojis,
+      ))
+        emoji.id: emoji,
+    };
+    final frecent = buildPickerFrecentEmojis(
+      rankedUsageKeys: rankedUsageKeys,
+      availableCustomEmojisById: customEmojisById,
+    );
+    _cachedFrecentUnicode = unicodeCategories;
+    _cachedRankedUsageKeys = rankedUsageKeys;
+    _cachedFrecentSource = guildEmojisByGuild;
+    _cachedFrecent = frecent;
+    return frecent;
+  }
+
   String _displaySurrogatesFor(EmojiEntry emoji) {
     if (widget.skinTone.isNotEmpty && emoji.hasDiversity) {
       return EmojiRegistry.resolveSkinToneSurrogates(emoji, widget.skinTone);
@@ -339,11 +405,9 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
     if (!widget.isMobile) {
       return;
     }
-    final key = unicodeEmojiFavoriteKey(emoji);
-    _showFavoriteActionSheet(
-      title: ':${emoji.primaryName}:',
-      favoriteKey: key,
-      isFavorite: _isFavoriteEmoji(key),
+    openEmojiInfoBottomSheet(
+      context,
+      emoji: EmojiInfoData.fromEmojiEntry(emoji),
     );
   }
 
@@ -351,89 +415,20 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
     if (!widget.isMobile) {
       return;
     }
-    final key = emoji.favoriteKey;
-    _showFavoriteActionSheet(
-      title: ':${emoji.name}:',
-      favoriteKey: key,
-      isFavorite: _isFavoriteEmoji(key),
-    );
-  }
-
-  bool _isFavoriteEmoji(String key) =>
-      (ref.read(favoriteEmojiKeysProvider).value ?? const <String>[]).contains(
-        key,
-      );
-
-  void _showFavoriteActionSheet({
-    required String title,
-    required String favoriteKey,
-    required bool isFavorite,
-  }) {
-    unawaited(
-      FluxerBottomSheet.show<void>(
-        context,
-        title: title,
-        variant: FluxerBottomSheetVariant.menu,
-        builder: (sheetContext, close) => FluxerBottomSheetContent(
-          scrollable: false,
-          child: FluxerMenuGroup(
-            children: [
-              FluxerBottomSheetMenuItem(
-                label: isFavorite
-                    ? 'Remove from Favorites'
-                    : 'Add to Favorites',
-                icon: isFavorite
-                    ? PhosphorIconsBold.star
-                    : PhosphorIconsFill.star,
-                onTap: () {
-                  close();
-                  unawaited(
-                    ref
-                        .read(favoriteEmojiKeysProvider.notifier)
-                        .toggle(favoriteKey),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  bool _pickerShowsAllGuildEmojis({
-    required String? channelId,
-    required bool hasGlobalExpressions,
-    required List<DmConversation> dmConversations,
-    required String? currentUserId,
-  }) {
-    return composerHasDirectChatEmojiAccess(
-      channelId: channelId,
-      dmConversations: dmConversations,
-      currentUserId: currentUserId,
-      hasGlobalExpressions: hasGlobalExpressions,
+    openEmojiInfoBottomSheet(
+      context,
+      emoji: EmojiInfoData.fromGuildEmoji(emoji),
     );
   }
 
   _EmojiPickerData _watchPickerData() {
-    final guilds = guildsForExpressionPicker(
-      organized: ref.watch(organizedGuildListProvider),
-      activeGuildId: ref.watch(contextualGuildIdProvider),
-    );
     final activeGuildId = ref.watch(contextualGuildIdProvider);
-    final String? channelId = widget.channelId;
-    final List<DmConversation> dmConversations = ref.watch(
-      dmViewModelProvider.select((s) => s.conversations),
+    final guilds = _guildsFor(
+      organized: ref.watch(organizedGuildListProvider),
+      activeGuildId: activeGuildId,
     );
-    final String? currentUserId = ref.watch(currentUserIdProvider);
     final bool hasGlobalExpressions = ref.watch(
       instanceFeatureEnabledProvider(LimitKeys.featureGlobalExpressions),
-    );
-    final bool hasPlutoniumEmojiAccess = _pickerShowsAllGuildEmojis(
-      channelId: channelId,
-      hasGlobalExpressions: hasGlobalExpressions,
-      dmConversations: dmConversations,
-      currentUserId: currentUserId,
     );
     final canUseExternalEmojis = _watchCanUseExternalEmojis();
     final allGuildEmojis =
@@ -446,28 +441,22 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
     final guildEmojisByGuild = _groupedEmojisFor(
       guilds: guilds,
       activeGuildId: activeGuildId,
-      isPremium: hasPlutoniumEmojiAccess,
+      isPremium: hasGlobalExpressions,
       canUseExternalEmojis: canUseExternalEmojis,
       allGuildEmojis: allGuildEmojis,
     );
-    final customEmojisById = <String, GuildEmojiEntry>{
-      for (final GuildEmojiEntry emoji in guildEmojisByGuild.values.expand(
-        (emojis) => emojis,
-      ))
-        emoji.id: emoji,
-    };
     final rankedUsageKeys =
         ref.watch(rankedEmojiUsageKeysProvider).value ?? const <String>[];
-    final frecent = buildPickerFrecentEmojis(
+    final frecent = _frecentFor(
       rankedUsageKeys: rankedUsageKeys,
-      availableCustomEmojisById: customEmojisById,
+      guildEmojisByGuild: guildEmojisByGuild,
     );
     final favoriteItems = _favoriteEmojiItems(favoriteKeys, guildEmojisByGuild);
 
     return _EmojiPickerData(
       guilds: guilds,
       activeGuildId: activeGuildId,
-      isPremium: hasPlutoniumEmojiAccess,
+      isPremium: hasGlobalExpressions,
       canUseExternalEmojis: canUseExternalEmojis,
       allGuildEmojis: allGuildEmojis,
       frecent: frecent,
@@ -490,26 +479,19 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
 
   Map<Guild, List<GuildEmojiEntry>> _readGuildEmojisByGuild() {
     final activeGuildId = ref.read(contextualGuildIdProvider);
-    final guilds = guildsForExpressionPicker(
+    final guilds = _guildsFor(
       organized: ref.read(organizedGuildListProvider),
       activeGuildId: activeGuildId,
     );
-    final String? channelId = widget.channelId;
     final bool hasGlobalExpressions = ref.read(
       instanceFeatureEnabledProvider(LimitKeys.featureGlobalExpressions),
-    );
-    final bool hasPlutoniumEmojiAccess = _pickerShowsAllGuildEmojis(
-      channelId: channelId,
-      hasGlobalExpressions: hasGlobalExpressions,
-      dmConversations: ref.read(dmViewModelProvider).conversations,
-      currentUserId: ref.read(currentUserIdProvider),
     );
     final canUseExternalEmojis = _readCanUseExternalEmojis();
     final emojis = ref.read(allGuildEmojisForPickerProvider).value ?? const [];
     return _groupedEmojisFor(
       guilds: guilds,
       activeGuildId: activeGuildId,
-      isPremium: hasPlutoniumEmojiAccess,
+      isPremium: hasGlobalExpressions,
       canUseExternalEmojis: canUseExternalEmojis,
       allGuildEmojis: emojis,
     );
@@ -530,12 +512,15 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
     List<String> favoriteKeys,
     Map<Guild, List<GuildEmojiEntry>> guildEmojisByGuild,
   ) {
+    final unicodeCategories = EmojiRegistry.categories;
     final cached = _cachedFavoriteItems;
     if (cached != null &&
+        identical(_cachedFavoriteUnicode, unicodeCategories) &&
         identical(_cachedFavoriteKeys, favoriteKeys) &&
         identical(_cachedFavoriteGuildEmojisByGuild, guildEmojisByGuild)) {
       return cached;
     }
+    _cachedFavoriteUnicode = unicodeCategories;
 
     if (favoriteKeys.isEmpty) {
       _cachedFavoriteKeys = favoriteKeys;
@@ -613,8 +598,20 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
     required _EmojiPickerData data,
     required bool includeUpsell,
   }) {
-    return buildEmojiPickerLayoutIndex(
-      unicodeCategories: EmojiRegistry.categories,
+    final unicodeCategories = EmojiRegistry.categories;
+    final cached = _cachedLayoutIndex;
+    if (cached != null &&
+        identical(_cachedLayoutUnicode, unicodeCategories) &&
+        identical(_cachedLayoutFavorites, data.favoriteItems) &&
+        identical(_cachedLayoutFrecent, data.frecent) &&
+        identical(_cachedLayoutGuildEmojis, data.guildEmojisByGuild) &&
+        identical(_cachedLayoutCollapsed, data.collapsedCategories) &&
+        _cachedLayoutColumns == _columns &&
+        _cachedLayoutIncludeUpsell == includeUpsell) {
+      return cached;
+    }
+    final index = buildEmojiPickerLayoutIndex(
+      unicodeCategories: unicodeCategories,
       favoriteItems: _favoriteRowItems(data.favoriteItems),
       frecentItems: data.frecent,
       guildSections: _guildSections(data),
@@ -622,6 +619,15 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
       columns: _columns,
       includeUpsell: includeUpsell,
     );
+    _cachedLayoutUnicode = unicodeCategories;
+    _cachedLayoutFavorites = data.favoriteItems;
+    _cachedLayoutFrecent = data.frecent;
+    _cachedLayoutGuildEmojis = data.guildEmojisByGuild;
+    _cachedLayoutCollapsed = data.collapsedCategories;
+    _cachedLayoutColumns = _columns;
+    _cachedLayoutIncludeUpsell = includeUpsell;
+    _cachedLayoutIndex = index;
+    return index;
   }
 
   void _schedulePrefetch(_EmojiPickerData data) {
@@ -668,19 +674,23 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
     }
     final double scrollOffset = _scrollController.offset;
     final bool scrollSettled = _isScrollSettled;
+    final int maxAnimated = emojiPickerMaxAnimatedEmojis(
+      columns: _columns,
+      viewportHeight: _viewportHeight,
+    );
     final Set<String> animatedIds = _searchCustomResults != null
         ? animatedCustomEmojiIdsForSearchGrid(
             customResults: _searchCustomResults!,
             columns: _columns,
             scrollOffset: scrollOffset,
             viewportHeight: _viewportHeight,
-            maxAnimated: kEmojiPickerMaxAnimatedEmojis,
+            maxAnimated: maxAnimated,
             scrollSettled: scrollSettled,
           )
         : _layoutIndex?.animatedCustomEmojiIds(
                 scrollOffset: scrollOffset,
                 viewportHeight: _viewportHeight,
-                maxAnimated: kEmojiPickerMaxAnimatedEmojis,
+                maxAnimated: maxAnimated,
                 scrollSettled: scrollSettled,
               ) ??
               const <String>{};
@@ -712,13 +722,11 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
       _lastEnsuredCategoryKey = null;
       return;
     }
-    unawaited(
-      Scrollable.ensureVisible(
-        buttonContext,
-        duration: context.motion.normal,
-        alignment: 0.5,
-        curve: Curves.easeOut,
-      ),
+    Scrollable.ensureVisible(
+      buttonContext,
+      duration: context.motion.normal,
+      alignment: 0.5,
+      curve: Curves.easeOut,
     );
   }
 
@@ -758,12 +766,10 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
 
     final ctx = _categoryKeys[category]?.currentContext;
     if (ctx != null) {
-      unawaited(
-        Scrollable.ensureVisible(
-          ctx,
-          duration: context.motion.panel,
-          curve: Curves.easeOut,
-        ),
+      Scrollable.ensureVisible(
+        ctx,
+        duration: context.motion.panel,
+        curve: Curves.easeOut,
       );
       return;
     }
@@ -793,12 +799,10 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
     if (settled == null) {
       return;
     }
-    unawaited(
-      Scrollable.ensureVisible(
-        settled,
-        duration: context.motion.fast,
-        curve: Curves.easeOut,
-      ),
+    Scrollable.ensureVisible(
+      settled,
+      duration: context.motion.fast,
+      curve: Curves.easeOut,
     );
   }
 
@@ -807,22 +811,15 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
       return 0;
     }
 
-    final categories = EmojiRegistry.categories;
+    final categories = emojiPickerDisplayCategories(EmojiRegistry.categories);
     final collapsedCategories =
         ref.read(collapsedEmojiPickerCategoriesProvider).value ??
         const <String>[];
     final guildEmojisByGuild = _readGuildEmojisByGuild();
-    final customEmojisById = <String, GuildEmojiEntry>{
-      for (final GuildEmojiEntry emoji in guildEmojisByGuild.values.expand(
-        (emojis) => emojis,
-      ))
-        emoji.id: emoji,
-    };
-    final rankedUsageKeys =
-        ref.read(rankedEmojiUsageKeysProvider).value ?? const <String>[];
-    final frecent = buildPickerFrecentEmojis(
-      rankedUsageKeys: rankedUsageKeys,
-      availableCustomEmojisById: customEmojisById,
+    final frecent = _frecentFor(
+      rankedUsageKeys:
+          ref.read(rankedEmojiUsageKeysProvider).value ?? const <String>[],
+      guildEmojisByGuild: guildEmojisByGuild,
     );
     final favoriteItems = _favoriteEmojiItems(
       ref.read(favoriteEmojiKeysProvider).value ?? const <String>[],
@@ -1290,10 +1287,10 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
         ? SpriteEmoji(
             index: emoji.spriteIndex,
             diversityIndex: emoji.diversityIndex,
-            size: _kEmojiSize,
+            size: _kUnicodeEmojiSize,
             skinTone: widget.skinTone,
           )
-        : SpriteEmoji(index: emoji.spriteIndex, size: _kEmojiSize);
+        : SpriteEmoji(index: emoji.spriteIndex, size: _kUnicodeEmojiSize);
 
     if (!usesHover) {
       return _PressableEmojiCell(
@@ -1344,14 +1341,14 @@ class _EmojiPickerContentState extends ConsumerState<EmojiPickerContent> {
       animated: widget.isMobile && emoji.animated,
       isInView: widget.isMobile && emoji.animated ? animate : null,
       requestSize: _kCustomEmojiRequestSize,
-      size: _kEmojiSize,
+      size: _kCustomEmojiSize,
       errorBuilder: (ctx) => SizedBox(
-        width: _kEmojiSize,
-        height: _kEmojiSize,
+        width: _kCustomEmojiSize,
+        height: _kCustomEmojiSize,
         child: Center(
           child: PhosphorIcon(
             PhosphorIconsBold.imageBroken,
-            size: _kEmojiSize * 0.55,
+            size: _kCustomEmojiSize * 0.55,
             color: colors.textTertiary,
           ),
         ),

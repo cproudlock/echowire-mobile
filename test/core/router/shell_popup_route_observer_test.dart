@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/router/shell_navigator_keys.dart';
 import 'package:fluxer_app/core/router/shell_popup_route_observer.dart';
 import 'package:fluxer_app/features/shell/providers/shell_popup_overlay_provider.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -24,9 +24,7 @@ void main() {
         ),
       );
 
-      unawaited(
-        homeBranchNavigatorKey.currentState!.push(_FakePopupRoute<void>()),
-      );
+      homeBranchNavigatorKey.currentState!.push(_FakePopupRoute<void>());
       await tester.pumpAndSettle();
       expect(states, contains(true));
 
@@ -101,7 +99,7 @@ void main() {
       );
 
       final Route<void> popupRoute = _FakePopupRoute<void>();
-      unawaited(homeBranchNavigatorKey.currentState!.push(popupRoute));
+      homeBranchNavigatorKey.currentState!.push(popupRoute);
       await tester.pumpAndSettle();
       expect(states, contains(true));
 

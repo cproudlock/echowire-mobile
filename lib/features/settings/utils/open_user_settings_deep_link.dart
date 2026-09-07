@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/deep_links/user_settings_deep_link.dart';
 import 'package:fluxer_app/features/settings/presentation/user_settings_modal.dart';
 import 'package:fluxer_app/features/settings/presentation/user_settings_nav.dart';
 import 'package:fluxer_app/features/settings/utils/user_settings_field_registry.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -23,15 +23,14 @@ class UserSettingsDeepLinkPresentation {
 }
 
 UserSettingsDeepLinkPresentation buildUserSettingsDeepLinkPresentation({
-  required BuildContext context,
   required bool isTouchPrimary,
   required FluxerLocalizations l10n,
   required UserSettingsDeepLinkTarget target,
+  bool showBilling = false,
 }) {
   final String? scrollFieldId = target.tab == null
       ? null
       : resolveUserSettingsScrollFieldId(
-          context: context,
           isTouchPrimary: isTouchPrimary,
           tab: target.tab!,
           fieldId: target.fieldId,
@@ -43,7 +42,13 @@ UserSettingsDeepLinkPresentation buildUserSettingsDeepLinkPresentation({
       : userSettingsFieldLabel(l10n, target.tab!, target.fieldId!);
   final IconData tabIcon = target.section == null
       ? PhosphorIconsFill.gear
-      : iconForUserSettingsSection(target.section!) ?? PhosphorIconsFill.gear;
+      : iconForUserSettingsSection(
+              target.section!,
+              showBilling: showBilling,
+              showJoinFluxerLabs: false,
+              isTouchPrimary: isTouchPrimary,
+            ) ??
+            PhosphorIconsFill.gear;
 
   return UserSettingsDeepLinkPresentation(
     tabLabel: userSettingsDeepLinkTabLabel(l10n, target),
@@ -95,7 +100,6 @@ Future<void> _openUserSettingsDeepLink(
       (target.tab == null
           ? null
           : resolveUserSettingsScrollFieldId(
-              context: context,
               isTouchPrimary: isTouchPrimary,
               tab: target.tab!,
               fieldId: target.fieldId,

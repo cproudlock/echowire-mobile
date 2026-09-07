@@ -1,6 +1,5 @@
 import 'dart:async' show unawaited;
 
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/observability/fluxer_route_trace_observer.dart';
 import 'package:fluxer_app/core/providers/app_startup_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
@@ -14,7 +13,6 @@ import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/router/shell_navigator_keys.dart';
 import 'package:fluxer_app/core/router/shell_popup_route_observer.dart';
 import 'package:fluxer_app/core/router/shell_transition_page.dart';
-import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/auth/presentation/login_screen.dart';
 import 'package:fluxer_app/features/auth/providers/account_manager_provider.dart';
 import 'package:fluxer_app/features/auth/providers/add_account_instance_guard_provider.dart';
@@ -23,14 +21,14 @@ import 'package:fluxer_app/features/channels/presentation/channel_settings/chann
 import 'package:fluxer_app/features/channels/presentation/channel_settings/channel_settings_nav_page.dart';
 import 'package:fluxer_app/features/channels/presentation/channel_settings/pages/channel_settings_tab_pages.dart';
 import 'package:fluxer_app/features/chat/presentation/channel_layout.dart';
-import 'package:fluxer_app/features/chat/presentation/widgets/chat_loading_spinner.dart';
-import 'package:fluxer_app/features/chat/utils/chat_spinner_debug.dart';
 import 'package:fluxer_app/features/discovery/presentation/discovery_desktop_shell.dart';
 import 'package:fluxer_app/features/discovery/presentation/discovery_layout.dart';
 import 'package:fluxer_app/features/dm/presentation/dm_layout.dart';
 import 'package:fluxer_app/features/favorites/presentation/favorites_layout.dart';
 import 'package:fluxer_app/features/gifts/presentation/pages/gift_accept_page.dart';
 import 'package:fluxer_app/features/guilds/presentation/pages/invite_accept_page.dart';
+import 'package:fluxer_app/features/guilds/presentation/widgets/guild_root_placeholder.dart';
+import 'package:fluxer_app/features/guilds/providers/guild_availability_provider.dart';
 import 'package:fluxer_app/features/members/presentation/pages/guild_members_page.dart';
 import 'package:fluxer_app/features/messaging/presentation/saved_messages_page.dart';
 import 'package:fluxer_app/features/notifications/presentation/notifications_page.dart';
@@ -63,6 +61,7 @@ import 'package:fluxer_app/features/shell/providers/shell_popup_overlay_provider
 import 'package:fluxer_app/features/ui/spinner/fluxer_loading_spinner.dart';
 import 'package:fluxer_app/features/voice/presentation/dm_voice_call_fullscreen_page.dart'
     deferred as dm_voice_call;
+import 'package:fluxer_app/material_ui.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -126,11 +125,19 @@ CustomTransitionPage<void> _dmShellTransitionPage(
   BuildContext context,
   GoRouterState state,
 ) {
-  final String? channelId = state.pathParameters['channelId'];
-  final String? messageId = state.pathParameters['messageId'];
+  final String? routeName = state.name;
+  final String? channelId = routeName == RouteNames.dms
+      ? null
+      : state.pathParameters['channelId'];
+  final String? messageId = routeName == RouteNames.dmMessage
+      ? state.pathParameters['messageId']
+      : null;
   return shellSlideTransitionPage(
     context: context,
-    key: state.pageKey,
+    key: dmShellPageKeyForRoute(
+      routeName: routeName,
+      routePageKey: state.pageKey,
+    ),
     parallaxOutgoing: true,
     child: DMLayout(channelId: channelId, targetMessageId: messageId),
   );
@@ -671,33 +678,41 @@ GoRouter fluxerRouter(Ref ref) {
                         path: 'call',
                         name: RouteNames.dmChannelCall,
                         parentNavigatorKey: rootNavigatorKey,
-                        pageBuilder: (context, state) =>
-                            shellMobileRootPushTransitionPage(
+                        pageBuilder: (context, state) {
+                          final Widget callPage = FutureBuilder<void>(
+                            future: dm_voice_call.loadLibrary(),
+                            builder:
+                                (
+                                  BuildContext context,
+                                  AsyncSnapshot<void> snapshot,
+                                ) {
+                                  if (snapshot.connectionState !=
+                                      ConnectionState.done) {
+                                    return const Scaffold(
+                                      body: Center(
+                                        child: FluxerLoadingSpinner(),
+                                      ),
+                                    );
+                                  }
+                                  return dm_voice_call.DmVoiceCallFullscreenPage(
+                                    channelId:
+                                        state.pathParameters['channelId'] ?? '',
+                                  );
+                                },
+                          );
+                          if (isPhoneVoiceOverlay(context)) {
+                            return shellPhoneVoiceCallTransitionPage(
                               context: context,
                               key: state.pageKey,
-                              child: FutureBuilder<void>(
-                                future: dm_voice_call.loadLibrary(),
-                                builder:
-                                    (
-                                      BuildContext context,
-                                      AsyncSnapshot<void> snapshot,
-                                    ) {
-                                      if (snapshot.connectionState !=
-                                          ConnectionState.done) {
-                                        return const Scaffold(
-                                          body: Center(
-                                            child: FluxerLoadingSpinner(),
-                                          ),
-                                        );
-                                      }
-                                      return dm_voice_call.DmVoiceCallFullscreenPage(
-                                        channelId:
-                                            state.pathParameters['channelId'] ??
-                                            '',
-                                      );
-                                    },
-                              ),
-                            ),
+                              child: callPage,
+                            );
+                          }
+                          return shellMobileRootPushTransitionPage(
+                            context: context,
+                            key: state.pageKey,
+                            child: callPage,
+                          );
+                        },
                       ),
                       GoRoute(
                         path: ':messageId',
@@ -729,7 +744,7 @@ GoRouter fluxerRouter(Ref ref) {
                     name: RouteNames.favoritesChannel,
                     pageBuilder: (context, state) => shellSlideTransitionPage(
                       context: context,
-                      key: state.pageKey,
+                      key: kFavoritesChatPageKey,
                       parallaxOutgoing: true,
                       child: FavoritesLayout(
                         channelId: state.pathParameters['channelId'],
@@ -759,23 +774,26 @@ GoRouter fluxerRouter(Ref ref) {
                 path: '/channels/:guildId',
                 name: RouteNames.guild,
                 redirect: (context, state) {
+                  if (shouldStayOnGuildChannelList(
+                    uri: state.uri,
+                    extra: state.extra,
+                  )) {
+                    return null;
+                  }
                   return resolveGuildRootRedirect(
                     guildId: state.pathParameters['guildId'],
                     fullPath: state.uri.path,
                     db: ref.read(fluxerDatabaseProvider),
+                    trackedUnavailableGuildIds: ref.read(
+                      guildAvailabilityProvider,
+                    ),
                   );
                 },
                 pageBuilder: (context, state) => shellFadeTransitionPage(
                   context: context,
                   key: state.pageKey,
-                  child: Scaffold(
-                    backgroundColor: context.colors.backgroundPrimary,
-                    body: Center(
-                      child: ChatLoadingSpinner(
-                        reason: ChatSpinnerReason.panelNotReady,
-                        color: context.colors.brandPrimary,
-                      ),
-                    ),
+                  child: GuildRootPlaceholder(
+                    guildId: state.pathParameters['guildId'] ?? '',
                   ),
                 ),
                 routes: [
@@ -798,7 +816,7 @@ GoRouter fluxerRouter(Ref ref) {
                       final channelId = state.pathParameters['channelId']!;
                       return shellSlideTransitionPage(
                         context: context,
-                        key: state.pageKey,
+                        key: guildChatPageKey(guildId),
                         name: state.uri.path,
                         parallaxOutgoing: true,
                         child: ChannelLayout(

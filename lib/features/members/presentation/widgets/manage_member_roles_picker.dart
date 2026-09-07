@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/features/members/domain/member.dart';
 import 'package:fluxer_app/features/members/domain/member_role_management.dart';
@@ -12,6 +11,7 @@ import 'package:fluxer_app/features/settings/presentation/guild_settings_modal.d
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class ManageMemberRolesPicker {
@@ -87,7 +87,6 @@ class ManageMemberRolesSheet {
       context,
       title: title ?? l10n.permissionManageRoles,
       useRootNavigator: true,
-      initialChildSize: 0.6,
       minChildSize: 0.35,
       builder: (sheetContext, scrollController, close) {
         return ListView(

@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_markdown/src/config/fluxer_markdown_config.dart';
 import 'package:fluxer_markdown/src/contexts/fluxer_markdown_context.dart';
-import 'package:fluxer_markdown/src/contexts/fluxer_markdown_features.dart';
-import 'package:fluxer_markdown/src/renderers/fluxer_markdown_renderers.dart';
 import 'package:fluxer_markdown/src/utils/markup_spacing.dart';
 import 'package:fluxer_markdown/src/widgets/fluxer_markdown.dart';
-import 'package:markdown/markdown.dart' as md;
+import 'package:material_ui/material_ui.dart';
+import 'support/native_test_parser.dart';
 
 const FluxerMarkdownConfig _testMarkdownConfig = FluxerMarkdownConfig(
   resolveEmojiShortcode: _noopEmojiShortcode,
@@ -29,123 +27,48 @@ String _noopCustomEmojiUrl({
 }) => '';
 
 void main() {
-  final FluxerMarkdownFeatures features = FluxerMarkdownFeatures.forContext(
-    FluxerMarkdownContext.standardWithJumbo,
-  );
   const TextStyle baseStyle = TextStyle(fontSize: 16, height: 1.375);
 
-  group('buildFluxerMarkdownTextFlow', () {
+  group('FluxerMarkdown widget', () {
     testWidgets('renders two blank lines at full line height', (tester) async {
       const String input = 'test line one\n\n\ntest line two';
       const double maxWidth = 320;
-      late Size singleLineSize;
-      late Size blankLineSize;
-      await tester.pumpWidget(
-        MaterialApp(
-          home: MediaQuery(
-            data: const MediaQueryData(textScaler: TextScaler.noScaling),
-            child: Scaffold(
-              body: Center(
-                child: SizedBox(
-                  width: maxWidth,
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      return buildFluxerMarkdownTextFlow(
-                        context: context,
-                        text: 'test line one',
-                        baseStyle: baseStyle,
-                        config: _testMarkdownConfig,
-                        features: features,
-                        inlineDocument: md.Document(
-                          encodeHtml: false,
-                          withDefaultBlockSyntaxes: false,
-                          blockSyntaxes: const [],
-                        ),
-                        selectable: false,
-                        isDark: false,
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-      singleLineSize = tester.getSize(find.byType(RichText));
-      await tester.pumpWidget(
-        MaterialApp(
-          home: MediaQuery(
-            data: const MediaQueryData(textScaler: TextScaler.noScaling),
-            child: Scaffold(
-              body: Center(
-                child: SizedBox(
-                  width: maxWidth,
-                  child: buildFluxerMarkdownTextFlow(
-                    context: tester.element(find.byType(SizedBox)),
-                    text: '\n',
-                    baseStyle: baseStyle,
-                    config: _testMarkdownConfig,
-                    features: features,
-                    inlineDocument: md.Document(
-                      encodeHtml: false,
-                      withDefaultBlockSyntaxes: false,
-                      blockSyntaxes: const [],
+
+      Future<Size> pumpAndMeasure(String data) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: MediaQuery(
+              data: const MediaQueryData(textScaler: TextScaler.noScaling),
+              child: Scaffold(
+                body: Center(
+                  child: SizedBox(
+                    width: maxWidth,
+                    child: FluxerMarkdown(
+                      astParser: parseTestMarkdownAst,
+                      data: data,
+                      config: _testMarkdownConfig,
+                      baseStyle: baseStyle,
                     ),
-                    selectable: false,
-                    isDark: false,
                   ),
                 ),
               ),
             ),
           ),
-        ),
-      );
-      blankLineSize = tester.getSize(find.byType(RichText));
-      await tester.pumpWidget(
-        MaterialApp(
-          home: MediaQuery(
-            data: const MediaQueryData(textScaler: TextScaler.noScaling),
-            child: Scaffold(
-              body: Center(
-                child: SizedBox(
-                  width: maxWidth,
-                  child: Builder(
-                    builder: (context) {
-                      return buildFluxerMarkdownTextFlow(
-                        context: context,
-                        text: input,
-                        baseStyle: baseStyle,
-                        config: _testMarkdownConfig,
-                        features: features,
-                        inlineDocument: md.Document(
-                          encodeHtml: false,
-                          withDefaultBlockSyntaxes: false,
-                          blockSyntaxes: const [],
-                        ),
-                        selectable: false,
-                        isDark: false,
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-      final Size messageSize = tester.getSize(find.byType(RichText));
-      // Rendering '\n' spans both blank lines between the two text lines, so the
-      // block should be at least line one + both blank lines + line two tall.
-      final double twoBlankLinesHeight = blankLineSize.height;
-      final double expectedMinHeight =
-          singleLineSize.height + twoBlankLinesHeight + singleLineSize.height;
-      expect(twoBlankLinesHeight, greaterThan(8));
+        );
+        return tester.getSize(find.byType(FluxerMarkdown));
+      }
+
+      final Size singleLineSize = await pumpAndMeasure('test line one');
+      final Size messageSize = await pumpAndMeasure(input);
+      // Both blank lines between the two text lines keep a full line height, so
+      // the block is line one + both blank lines + line two tall.
+      final double twoBlankLinesHeight =
+          messageSize.height - (singleLineSize.height * 2);
+      final double expectedMinHeight = singleLineSize.height * 4;
+      expect(twoBlankLinesHeight / 2, greaterThan(8));
       expect(messageSize.height, greaterThanOrEqualTo(expectedMinHeight - 1));
     });
-  });
 
-  group('FluxerMarkdown widget', () {
     testWidgets('restricted embed descriptions automatically link URLs', (
       tester,
     ) async {
@@ -164,6 +87,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
               data: 'Mobile: $url',
               config: config,
               context: FluxerMarkdownContext.restrictedEmbedDescription,
@@ -194,7 +118,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: FluxerMarkdown(data: 'See $url for details', config: config),
+            body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
+              data: 'See $url for details',
+              config: config,
+            ),
           ),
         ),
       );
@@ -222,7 +150,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: FluxerMarkdown(data: input, config: config),
+            body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
+              data: input,
+              config: config,
+            ),
           ),
         ),
       );
@@ -252,7 +184,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: FluxerMarkdown(data: input, config: config),
+            body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
+              data: input,
+              config: config,
+            ),
           ),
         ),
       );
@@ -281,7 +217,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: FluxerMarkdown(data: '[hello]($url)', config: config),
+            body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
+              data: '[hello]($url)',
+              config: config,
+            ),
           ),
         ),
       );
@@ -299,6 +239,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
               data: '[**bold**]($url)',
               config: _testMarkdownConfig,
             ),
@@ -320,6 +261,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
               data: '__**text**__',
               config: _testMarkdownConfig,
             ),
@@ -345,6 +287,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
               data: '[__underline__]($url)',
               config: _testMarkdownConfig,
             ),
@@ -371,6 +314,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
               data: '[~~strike~~]($url)',
               config: _testMarkdownConfig,
             ),
@@ -397,6 +341,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
               data: '[**bold** and ~~strike~~]($url)',
               config: _testMarkdownConfig,
             ),
@@ -433,7 +378,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: FluxerMarkdown(data: '[**bold**]($url)', config: config),
+            body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
+              data: '[**bold**]($url)',
+              config: config,
+            ),
           ),
         ),
       );
@@ -449,6 +398,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
               data: '**[link]($url)**',
               config: _testMarkdownConfig,
             ),
@@ -484,7 +434,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: FluxerMarkdown(data: '[#510]($url)', config: config),
+            body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
+              data: '[#510]($url)',
+              config: config,
+            ),
           ),
         ),
       );
@@ -520,7 +474,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: FluxerMarkdown(data: '[hi]($url)', config: config),
+            body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
+              data: '[hi]($url)',
+              config: config,
+            ),
           ),
         ),
       );
@@ -550,7 +508,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: FluxerMarkdown(data: url, config: config),
+            body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
+              data: url,
+              config: config,
+            ),
           ),
         ),
       );
@@ -575,7 +537,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: FluxerMarkdown(data: '<$url>', config: config),
+            body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
+              data: '<$url>',
+              config: config,
+            ),
           ),
         ),
       );
@@ -603,6 +569,7 @@ void main() {
             body: SizedBox(
               width: 320,
               child: FluxerMarkdown(
+                astParser: parseTestMarkdownAst,
                 data: '> quoted text',
                 config: blockquoteConfig,
                 baseStyle: baseStyle,
@@ -647,6 +614,7 @@ void main() {
             body: SizedBox(
               width: 320,
               child: FluxerMarkdown(
+                astParser: parseTestMarkdownAst,
                 data: '>>> line one\n\nline two',
                 config: blockquoteConfig,
                 baseStyle: baseStyle,
@@ -656,15 +624,13 @@ void main() {
         ),
       );
 
-      final RichText lineOneText = tester.widget<RichText>(
-        find.text('line one', findRichText: true),
+      // A `>>>` blockquote stays one paragraph, so both lines and the blank
+      // line between them share a single RichText.
+      final RichText quoteText = tester.widget<RichText>(
+        find.textContaining('line one', findRichText: true),
       );
-      expect(lineOneText.text.style?.color, blockquoteTextColor);
-
-      final RichText lineTwoText = tester.widget<RichText>(
-        find.text('line two', findRichText: true),
-      );
-      expect(lineTwoText.text.style?.color, blockquoteTextColor);
+      expect(quoteText.text.toPlainText(), 'line one\n\nline two');
+      expect(quoteText.text.style?.color, blockquoteTextColor);
 
       final divider = find.byWidgetPredicate((widget) {
         if (widget is! Container) {
@@ -690,6 +656,7 @@ void main() {
                 child: SizedBox(
                   width: 320,
                   child: FluxerMarkdown(
+                    astParser: parseTestMarkdownAst,
                     data: input,
                     config: _testMarkdownConfig,
                     baseStyle: baseStyle,
@@ -713,7 +680,7 @@ void main() {
       expect(renderedText, 'test line one\n\n\ntest line two');
     });
 
-    testWidgets('standard context preserves blank lines around a list', (
+    testWidgets('blank lines around a list have balanced vertical gaps', (
       tester,
     ) async {
       const String input = 'intro\n\n- item\n\ncloser';
@@ -726,6 +693,7 @@ void main() {
                 child: SizedBox(
                   width: 320,
                   child: FluxerMarkdown(
+                    astParser: parseTestMarkdownAst,
                     data: input,
                     config: _testMarkdownConfig,
                     baseStyle: baseStyle,
@@ -736,21 +704,77 @@ void main() {
           ),
         ),
       );
-      expect(find.textContaining('intro', findRichText: true), findsOneWidget);
-      expect(find.textContaining('item', findRichText: true), findsOneWidget);
-      expect(find.textContaining('closer', findRichText: true), findsOneWidget);
-      final List<String> richTexts = tester
-          .widgetList<RichText>(find.byType(RichText))
-          .map((RichText richText) => richText.text.toPlainText())
-          .toList();
-      expect(
-        richTexts.any((String text) => text.contains('intro\n\n')),
-        isTrue,
+
+      final Finder introFinder = find.textContaining(
+        'intro',
+        findRichText: true,
       );
-      expect(
-        richTexts.any((String text) => text.startsWith('\n\ncloser')),
-        isTrue,
+      final Finder itemFinder = find.textContaining('item', findRichText: true);
+      final Finder closerFinder = find.textContaining(
+        'closer',
+        findRichText: true,
       );
+      expect(introFinder, findsOneWidget);
+      expect(itemFinder, findsOneWidget);
+      expect(closerFinder, findsOneWidget);
+
+      final double introBottom = tester.getBottomLeft(introFinder).dy;
+      final double itemTop = tester.getTopLeft(itemFinder).dy;
+      final double itemBottom = tester.getBottomLeft(itemFinder).dy;
+      final double closerTop = tester.getTopLeft(closerFinder).dy;
+
+      final double singleLineHeight = 16 * baseStyle.height!;
+      final double gapAboveList = itemTop - introBottom;
+      final double gapBelowList = closerTop - itemBottom;
+
+      // Block spacing carries the separation; neither side may grow to a whole
+      // extra text line, and the two sides must stay within half a line.
+      expect(gapAboveList, lessThan(singleLineHeight));
+      expect(gapBelowList, lessThan(singleLineHeight));
+      expect(
+        (gapAboveList - gapBelowList).abs(),
+        lessThan(singleLineHeight * 0.5),
+      );
+    });
+
+    testWidgets('list without surrounding blanks has no extra bottom padding', (
+      tester,
+    ) async {
+      const String input = '- item\ncloser';
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: MediaQuery(
+            data: MediaQueryData(textScaler: TextScaler.noScaling),
+            child: Scaffold(
+              body: Center(
+                child: SizedBox(
+                  width: 320,
+                  child: FluxerMarkdown(
+                    astParser: parseTestMarkdownAst,
+                    data: input,
+                    config: _testMarkdownConfig,
+                    baseStyle: baseStyle,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      final Finder itemFinder = find.textContaining('item', findRichText: true);
+      final Finder closerFinder = find.textContaining(
+        'closer',
+        findRichText: true,
+      );
+      expect(itemFinder, findsOneWidget);
+      expect(closerFinder, findsOneWidget);
+
+      final double itemBottom = tester.getBottomLeft(itemFinder).dy;
+      final double closerTop = tester.getTopLeft(closerFinder).dy;
+      final double singleLineHeight = 16 * baseStyle.height!;
+
+      expect(closerTop - itemBottom, lessThan(singleLineHeight));
     });
 
     testWidgets('preserves spacing between heading and regular text', (
@@ -767,6 +791,7 @@ void main() {
                 child: SizedBox(
                   width: 320,
                   child: FluxerMarkdown(
+                    astParser: parseTestMarkdownAst,
                     data: input,
                     config: _testMarkdownConfig,
                     baseStyle: baseStyle,
@@ -791,48 +816,12 @@ void main() {
 
       final Offset headingBottom = tester.getBottomLeft(headingFinder);
       final Offset regularTop = tester.getTopLeft(regularFinder);
-      final double lineHeight = FluxerMarkupSpacing.headingBottom;
+      const double lineHeight = FluxerMarkupSpacing.headingBottom;
       expect(
         regularTop.dy - headingBottom.dy,
         greaterThanOrEqualTo(lineHeight - 1),
       );
     });
-
-    testWidgets(
-      'preserves extra blank lines after a heading in rendered text',
-      (tester) async {
-        const String input = '# large text\n\n\nregular text below';
-        await tester.pumpWidget(
-          const MaterialApp(
-            home: MediaQuery(
-              data: MediaQueryData(textScaler: TextScaler.noScaling),
-              child: Scaffold(
-                body: Center(
-                  child: SizedBox(
-                    width: 320,
-                    child: FluxerMarkdown(
-                      data: input,
-                      config: _testMarkdownConfig,
-                      baseStyle: baseStyle,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-        final List<String> richTexts = tester
-            .widgetList<RichText>(find.byType(RichText))
-            .map((RichText richText) => richText.text.toPlainText())
-            .toList();
-        expect(
-          richTexts.any(
-            (String text) => text.startsWith('\n\nregular text below'),
-          ),
-          isTrue,
-        );
-      },
-    );
 
     testWidgets('renders multi-line strikethrough across soft line breaks', (
       tester,
@@ -842,6 +831,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: FluxerMarkdown(
+              astParser: parseTestMarkdownAst,
               data: input,
               config: _testMarkdownConfig,
               baseStyle: baseStyle,
@@ -865,6 +855,7 @@ void main() {
           const MaterialApp(
             home: Scaffold(
               body: FluxerMarkdown(
+                astParser: parseTestMarkdownAst,
                 data: input,
                 config: _testMarkdownConfig,
                 baseStyle: baseStyle,
@@ -922,6 +913,7 @@ void main() {
                   child: SizedBox(
                     width: maxWidth,
                     child: FluxerMarkdown(
+                      astParser: parseTestMarkdownAst,
                       data: input,
                       config: _testMarkdownConfig,
                       baseStyle: baseStyle,
@@ -978,6 +970,7 @@ void main() {
           const MaterialApp(
             home: Scaffold(
               body: FluxerMarkdown(
+                astParser: parseTestMarkdownAst,
                 data: input,
                 config: _testMarkdownConfig,
                 baseStyle: baseStyle,

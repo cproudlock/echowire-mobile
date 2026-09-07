@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/picker_search_input.dart';
@@ -15,6 +14,7 @@ import 'package:fluxer_app/features/quick_switcher/utils/quick_switcher_navigati
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
 import 'package:fluxer_app/features/ui/spinner/fluxer_loading_spinner.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 class QuickSwitcherBottomSheet {
   QuickSwitcherBottomSheet._();
@@ -26,7 +26,6 @@ class QuickSwitcherBottomSheet {
       context,
       useRootNavigator: true,
       minChildSize: 0.5,
-      maxChildSize: 0.92,
       builder: (sheetContext, scrollController, close) {
         return _QuickSwitcherSheetBody(
           scrollController: scrollController,

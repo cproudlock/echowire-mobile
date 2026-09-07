@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
@@ -12,6 +11,7 @@ import 'package:fluxer_app/features/shell/presentation/mobile_main_tab_shell.dar
 import 'package:fluxer_app/features/shell/presentation/mobile_shell_back_scope.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/shell/utils/shell_popup_navigation.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:go_router/go_router.dart';
 
 void _selectMobileShellBranch(

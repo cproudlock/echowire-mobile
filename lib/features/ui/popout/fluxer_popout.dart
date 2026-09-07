@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_motion_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/core/widgets/fluxer_widget_preview.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
+import 'package:fluxer_app/material_ui.dart';
 
 /// Position of the popout relative to its anchor.
 enum FluxerPopoutPosition { above, below, left, right }
@@ -78,7 +78,7 @@ class _FluxerPopoutState extends State<FluxerPopout>
       _close();
     } else {
       _overlayController.show();
-      unawaited(_animationController.forward());
+      _animationController.forward();
     }
   }
 

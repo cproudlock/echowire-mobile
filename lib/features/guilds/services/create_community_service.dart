@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/api/dio_error_message.dart';
 import 'package:fluxer_app/core/router/navigate_to_content.dart';
@@ -12,6 +11,7 @@ import 'package:fluxer_app/features/settings/presentation/sheets/claim_account_s
 import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/export.dart';
 
 enum CreateCommunityFailureKind { apiError, maxGuilds, singleCommunity }
@@ -32,11 +32,12 @@ Future<void> createCommunity({
   required String name,
   required FluxerLocalizations l10n,
   String? iconDataUri,
+  TemplateSerializedGuild? template,
 }) async {
   try {
     final GuildResponse guild = await ref
         .read(guildRepositoryProvider)
-        .createGuild(name: name, iconDataUri: iconDataUri);
+        .createGuild(name: name, iconDataUri: iconDataUri, template: template);
     await ref.read(channelRepositoryProvider).getChannels(guild.id);
     final Guild? localGuild = await ref.read(
       guildByIdProvider(guild.id).future,
@@ -71,10 +72,15 @@ Future<void> createCommunity({
           kind: CreateCommunityFailureKind.maxGuilds,
           message: l10n.discoveryJoinErrorMaxGuildsMessage,
         );
+      case 'GUILD_TEMPLATE_INVALID':
+        throw CreateCommunityException(
+          kind: CreateCommunityFailureKind.apiError,
+          message: l10n.addGuildImportTemplateInvalid,
+        );
       default:
         throw CreateCommunityException(
           kind: CreateCommunityFailureKind.apiError,
-          message: dioExceptionMessage(e, l10n.addGuildCreateFailed),
+          message: userFacingErrorMessage(e, l10n.addGuildCreateFailed),
         );
     }
   } on Object {

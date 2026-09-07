@@ -36,6 +36,23 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
+      # packages/fluxer_markdown_native is a Rust crate built through Dart's
+      # native-assets hook, so every step that runs dart/flutter needs cargo and
+      # the Apple targets on PATH. Codemagic's macOS image ships no rustup, and
+      # without this the very first dart command dies with
+      # "Failed to launch cargo ... rustup target add aarch64-apple-darwin".
+      - name: Install Rust with the Apple targets
+        script: |
+          set -euo pipefail
+          if ! command -v cargo >/dev/null 2>&1; then
+            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --profile minimal
+          fi
+          source "$HOME/.cargo/env"
+          rustup target add aarch64-apple-darwin aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios
+          echo "export PATH=\"$HOME/.cargo/bin:\$PATH\"" >> ~/.zshrc
+          echo 'PATH=$HOME/.cargo/bin:$PATH' >> "$CM_ENV"
+          cargo --version
+          rustup target list --installed
       - name: Strip Firebase dependencies
         # iOS is APNs-only (PUSH_PROVIDER=apns) — it does NOT use Firebase/FCM.
         # This removes fluxer_fcm + firebase_core/messaging from pubspec.yaml and

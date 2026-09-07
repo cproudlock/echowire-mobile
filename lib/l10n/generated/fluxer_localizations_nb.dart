@@ -10663,6 +10663,27 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get uiLoading => 'Laster inn';
 
   @override
+  String get uiSearch => 'Search';
+
+  @override
+  String get uiStartCall => 'Start call';
+
+  @override
+  String get uiStartVideoCall => 'Start video call';
+
+  @override
+  String get uiPlay => 'Play';
+
+  @override
+  String get uiPause => 'Pause';
+
+  @override
+  String get uiDownload => 'Download';
+
+  @override
+  String get uiMoreActions => 'More actions';
+
+  @override
   String get uiUnsavedChanges => 'Ulagrede endringer';
 
   @override
@@ -14058,4 +14079,13 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get clipboardPasteFailed =>
       'Couldn\'t paste. The clipboard was empty or blocked for this app.';
+
+  @override
+  String get uiViewThreads => 'View threads';
+
+  @override
+  String get uiJoinThread => 'Join thread';
+
+  @override
+  String get uiLeaveThread => 'Leave thread';
 }

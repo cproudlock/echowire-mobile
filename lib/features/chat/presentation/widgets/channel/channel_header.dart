@@ -343,6 +343,9 @@ class ChannelHeader extends ConsumerWidget {
                           : FluxerButtonVariant.secondary,
                       size: FluxerButtonSize.small,
                       iconSize: 20,
+                      semanticLabel: isFavorite
+                          ? l10n.favoritesRemoveFromFavorites
+                          : l10n.favoritesAddToFavorites,
                       onPressedAsync: () => _toggleFavorite(
                         context,
                         ref,
@@ -358,6 +361,7 @@ class ChannelHeader extends ConsumerWidget {
                     variant: FluxerButtonVariant.secondary,
                     size: FluxerButtonSize.small,
                     iconSize: 20,
+                    semanticLabel: l10n.uiStartCall,
                     onPressed: () => _executeOutboundDmCall(
                       ref: ref,
                       context: context,
@@ -369,6 +373,7 @@ class ChannelHeader extends ConsumerWidget {
                     variant: FluxerButtonVariant.secondary,
                     size: FluxerButtonSize.small,
                     iconSize: 20,
+                    semanticLabel: l10n.uiStartVideoCall,
                     onPressed: () => _executeOutboundDmCall(
                       ref: ref,
                       context: context,
@@ -383,6 +388,7 @@ class ChannelHeader extends ConsumerWidget {
                     channel.type == ChannelType.guildText)
                   FluxerButton.circle(
                     icon: PhosphorIconsBold.chatText,
+                    semanticLabel: l10n.uiViewThreads,
                     variant: FluxerButtonVariant.secondary,
                     size: FluxerButtonSize.small,
                     iconSize: 20,
@@ -399,6 +405,11 @@ class ChannelHeader extends ConsumerWidget {
                             false)
                         ? PhosphorIconsFill.userMinus
                         : PhosphorIconsFill.userPlus,
+                    semanticLabel:
+                        (ref.watch(threadMembershipProvider(channel.id)) ??
+                            false)
+                        ? l10n.uiLeaveThread
+                        : l10n.uiJoinThread,
                     variant: FluxerButtonVariant.secondary,
                     size: FluxerButtonSize.small,
                     iconSize: 20,
@@ -411,6 +422,7 @@ class ChannelHeader extends ConsumerWidget {
                     variant: FluxerButtonVariant.secondary,
                     size: FluxerButtonSize.small,
                     iconSize: 20,
+                    semanticLabel: l10n.uiSearch,
                     onPressed: () => unawaited(
                       showChannelSearchPageAndJump(
                         context,

@@ -15,6 +15,10 @@ on:
 permissions:
   pull-requests: read
   contents: read
+  # Echowire: the skip-label check reads repos/{repo}/issues/{n}, which needs
+  # issues:read. Without it gh returns 403 before the label is ever inspected,
+  # so the documented 'no-issue' bypass could never work here.
+  issues: read
 
 jobs:
   validate:

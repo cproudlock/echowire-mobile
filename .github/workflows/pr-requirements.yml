@@ -48,6 +48,12 @@ jobs:
         with:
           channel: stable
 
+      - name: Strip Firebase dependencies if present
+        run: dart tool/strip_firebase_deps.dart
+
+      - name: Install dependencies
+        run: flutter pub get
+
       - name: Verify generated localisations
         run: |
           # Echowire: resolve packages first. gen-l10n emits a different shape

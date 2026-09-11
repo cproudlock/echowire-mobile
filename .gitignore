@@ -104,3 +104,6 @@ GEMINI.md
 !.env.example
 secrets.md
 *.pem
+
+# Kotlin compiler daemon session state
+android/.kotlin/

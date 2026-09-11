@@ -1,23 +1,5 @@
 part of 'guild_navbar.dart';
 
-class _InviteRecipient {
-  const _InviteRecipient({
-    required this.id,
-    required this.displayName,
-    this.secondaryText,
-    this.avatarUrl,
-    this.status,
-    this.channelId,
-  });
-
-  final String id;
-  final String displayName;
-  final String? secondaryText;
-  final String? avatarUrl;
-  final String? status;
-  final String? channelId;
-}
-
 double _guildNavbarInitialsFontSize(int initialsLength) {
   if (initialsLength <= 2) {
     return 20;
@@ -59,13 +41,10 @@ class _GuildListItem extends StatefulWidget {
   final void Function(GuildAction)? onGuildSettingsAction;
   final void Function(String name)? onCreateCategory;
   final void Function(ChannelCreateRequest request)? onCreateChannel;
-  final Future<({String url, String channelName})?> Function({
-    int maxAge,
-    int maxUses,
-    bool temporary,
-  })?
+  final Future<({String url, String channelName, bool useVanityUrl})?>
+  Function({int maxAge, int maxUses, bool temporary})?
   onCreateInvite;
-  final Future<List<_InviteRecipient>> Function()? onGetRecipients;
+  final Future<List<InvitePeopleRecipient>> Function()? onGetRecipients;
   final Future<void> Function(
     String? channelId,
     String? recipientId,
@@ -114,6 +93,7 @@ class _GuildListItem extends StatefulWidget {
   final bool enableLongPressMenu;
   final bool opaqueHitTarget;
   final Future<int> Function()? resolveMenuPermissions;
+  final Future<bool> Function()? resolveCanInvite;
 
   const _GuildListItem({
     required this.label,
@@ -160,6 +140,7 @@ class _GuildListItem extends StatefulWidget {
     this.enableLongPressMenu = true,
     this.opaqueHitTarget = false,
     this.resolveMenuPermissions,
+    this.resolveCanInvite,
   }) : svgAsset = null;
 
   @override

@@ -15,6 +15,10 @@ on:
 permissions:
   pull-requests: read
   contents: read
+  # Echowire: the skip-label check reads repos/{repo}/issues/{n}, which needs
+  # issues:read. Without it gh returns 403 before the label is ever inspected,
+  # so the documented 'no-issue' bypass could never work here.
+  issues: read
 
 jobs:
   validate:
@@ -46,6 +50,13 @@ jobs:
 
       - name: Verify generated localisations
         run: |
+          # Echowire: resolve packages first. gen-l10n emits a different shape
+          # when .dart_tool/package_config.json is absent (a blank line after
+          # the intl import, and long strings left unwrapped), so without this
+          # the job regenerates a form nobody commits and every PR fails on 31
+          # files. The committed files match what a resolved workspace emits,
+          # upstream's own included.
+          flutter pub get
           flutter gen-l10n
           dart format lib/l10n/generated
           git diff --exit-code -- lib/l10n/generated

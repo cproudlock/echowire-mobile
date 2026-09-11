@@ -452,7 +452,11 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     }
   }
 
-  Future<void> _showActions(BuildContext context) async {
+  Future<void> _showActions(BuildContext context, Offset globalPosition) async {
+    final RenderObject? renderObject = context.findRenderObject();
+    final String? linkUrl = renderObject is RenderBox
+        ? fluxerMarkdownLinkHrefAt(renderObject, globalPosition)
+        : null;
     final frecent = await _loadQuickReactionItems();
     if (!context.mounted) {
       return;
@@ -478,6 +482,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       quickItems: frecent,
       onQuickReaction: _dispatchQuickReaction,
       attachmentCallbacks: _videoActionScope.callbacks,
+      linkUrl: linkUrl,
     );
     _dispatchMenuAction(action, onDelete: onDelete, isMobile: true);
   }
@@ -690,8 +695,8 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         isSending && hasUploadingPlaceholderAttachments;
 
     final body = FluxerGestureDetector(
-      onLongPress: useTouchMessageActions && !widget.inboxPreviewMode
-          ? () => _showActions(context)
+      onLongPressStart: useTouchMessageActions && !widget.inboxPreviewMode
+          ? (details) => _showActions(context, details.globalPosition)
           : null,
       onSecondaryTapUp: !useTouchMessageActions && !widget.inboxPreviewMode
           ? (details) => _showContextMenu(context, details.globalPosition)
@@ -1025,6 +1030,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                   message: msg,
                   guildId: guildId,
                   currentUserId: widget.currentUserId,
+                  messageDisplayCompact: messageDisplayCompact,
                 ),
               ),
             ),
@@ -1061,6 +1067,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                 message: msg,
                 guildId: guildId,
                 currentUserId: widget.currentUserId,
+                messageDisplayCompact: messageDisplayCompact,
               ),
             ),
           ),

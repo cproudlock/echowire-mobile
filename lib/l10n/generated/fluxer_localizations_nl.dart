@@ -230,7 +230,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
   String get logInViaBrowser => 'Inloggen via browser';
 
   @override
-  String get needAccountPrompt => 'Een account nodig?';
+  String get needAccountPrompt => 'Een account nodig? ';
 
   @override
   String get register => 'Registreren';
@@ -602,13 +602,13 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
       'Ik ga akkoord met de Servicevoorwaarden en het Privacybeleid';
 
   @override
-  String get registerConsentPrefix => 'Ik ga akkoord met de';
+  String get registerConsentPrefix => 'Ik ga akkoord met de ';
 
   @override
   String get registerConsentTerms => 'Gebruiksvoorwaarden';
 
   @override
-  String get registerConsentAnd => 'en';
+  String get registerConsentAnd => ' en ';
 
   @override
   String get registerConsentPrivacy => 'Privacybeleid';
@@ -620,7 +620,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
   String get registerSubmit => 'Account aanmaken';
 
   @override
-  String get registerHaveAccount => 'Heb je al een account?';
+  String get registerHaveAccount => 'Heb je al een account? ';
 
   @override
   String get registerPendingApproval =>
@@ -1579,11 +1579,11 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
       'Configureer hoe waarschuwingen voor externe links worden afgehandeld.';
 
   @override
-  String get externalLinkWarningTrustPrefix => 'Vertrouw altijd';
+  String get externalLinkWarningTrustPrefix => 'Vertrouw altijd ';
 
   @override
   String get externalLinkWarningTrustSuffix =>
-      '— sla deze waarschuwing de volgende keer over';
+      ' — sla deze waarschuwing de volgende keer over';
 
   @override
   String get externalLinkVisitSite => 'Site bezoeken';
@@ -4432,6 +4432,47 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
       'Pas het zoomniveau van de app aan.';
 
   @override
+  String get lookAndFeelChatWallpaperTitle => 'Chatachtergrond';
+
+  @override
+  String get lookAndFeelChatWallpaperDescription =>
+      'Kies een achtergrond voor je chat. Deze blijft op dit apparaat.';
+
+  @override
+  String get lookAndFeelChatWallpaperLocalOnlyTooltip =>
+      'Deze instelling blijft op dit apparaat';
+
+  @override
+  String get lookAndFeelChatWallpaperLocalOnlyToast =>
+      'Chatachtergrond wordt alleen op dit apparaat opgeslagen en synchroniseert niet met andere apparaten.';
+
+  @override
+  String get lookAndFeelChatWallpaperDefaultLabel => 'Standaard';
+
+  @override
+  String get lookAndFeelChatWallpaperCustomLabel => 'Aangepaste afbeelding';
+
+  @override
+  String get lookAndFeelChatWallpaperStarfieldLabel => 'Starfield';
+
+  @override
+  String lookAndFeelChatWallpaperColorLabel(String id) {
+    return 'Kleur $id';
+  }
+
+  @override
+  String lookAndFeelChatWallpaperGradientLabel(String id) {
+    return 'Verloop $id';
+  }
+
+  @override
+  String get lookAndFeelChatWallpaperDimLabel => 'Achtergrond dimmen';
+
+  @override
+  String get lookAndFeelChatWallpaperPickFailed =>
+      'Kon deze afbeelding niet als achtergrond instellen.';
+
+  @override
   String get lookAndFeelMessagesSectionTitle => 'Berichten';
 
   @override
@@ -7232,7 +7273,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
   String get chatReplyMentionOn => 'ON';
 
   @override
-  String get chatReplyMentionOff => 'Uit';
+  String get chatReplyMentionOff => 'OFF';
 
   @override
   String get chatReplyCancel => 'Antwoord annuleren';
@@ -7556,7 +7597,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get addGuildCreateGuidelinesBefore =>
-      'Door een community aan te maken, ga je akkoord met het volgen en naleven van de';
+      'Door een community aan te maken, ga je akkoord met het volgen en naleven van de ';
 
   @override
   String addGuildCreateGuidelinesLink(String productName) {
@@ -8039,14 +8080,14 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get channelSettingsPermissionsSyncedWithParentPrefix =>
-      'Dit kanaal is gesynchroniseerd met de bovenliggende categorie';
+      'Dit kanaal is gesynchroniseerd met de bovenliggende categorie ';
 
   @override
   String get channelSettingsPermissionsSyncedWithParentSuffix => '.';
 
   @override
   String get channelSettingsPermissionsNotSyncedWithParentPrefix =>
-      'Dit kanaal is niet gesynchroniseerd met de bovenliggende categorie';
+      'Dit kanaal is niet gesynchroniseerd met de bovenliggende categorie ';
 
   @override
   String get channelSettingsPermissionsNotSyncedWithParentSuffix => '.';
@@ -9322,14 +9363,14 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get premiumDisclaimerAgreementPrefix =>
-      'Door te kopen, ga je akkoord met onze';
+      'Door te kopen, ga je akkoord met onze ';
 
   @override
   String get premiumDisclaimerAgreementPastPrefix =>
-      'Door te kopen, ging u akkoord met onze';
+      'Door te kopen, ging u akkoord met onze ';
 
   @override
-  String get premiumDisclaimerAgreementMiddle => 'en';
+  String get premiumDisclaimerAgreementMiddle => ' en ';
 
   @override
   String premiumActiveUntil(String date) {
@@ -9800,7 +9841,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get notificationsTtsAccessibilityLinkPrefix =>
-      'Pas afspeelsnelheid aan in';
+      'Pas afspeelsnelheid aan in ';
 
   @override
   String get notificationsTtsAccessibilityLinkLabel => 'Toegankelijkheid';

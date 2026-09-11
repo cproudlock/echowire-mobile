@@ -229,7 +229,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get logInViaBrowser => 'התחבר דרך הדפדפן';
 
   @override
-  String get needAccountPrompt => 'צריכים חשבון?';
+  String get needAccountPrompt => 'צריכים חשבון? ';
 
   @override
   String get register => 'הרשמה';
@@ -599,13 +599,13 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get registerConsent => 'אני מסכים/ה לתנאי השירות ולהצהרת הפרטיות';
 
   @override
-  String get registerConsentPrefix => 'אני מסכים/ה ל-';
+  String get registerConsentPrefix => 'אני מסכים/ה ל- ';
 
   @override
   String get registerConsentTerms => 'תנאי השירות';
 
   @override
-  String get registerConsentAnd => 'וגם';
+  String get registerConsentAnd => ' וגם ';
 
   @override
   String get registerConsentPrivacy => 'מדיניות פרטיות';
@@ -617,7 +617,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get registerSubmit => 'יצירת חשבון';
 
   @override
-  String get registerHaveAccount => 'כבר יש לך חשבון?';
+  String get registerHaveAccount => 'כבר יש לך חשבון? ';
 
   @override
   String get registerPendingApproval =>
@@ -1559,10 +1559,10 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'הגדר כיצד יטופלו אזהרות לגבי קישורים חיצוניים.';
 
   @override
-  String get externalLinkWarningTrustPrefix => 'תמיד לסמוך על';
+  String get externalLinkWarningTrustPrefix => 'תמיד לסמוך על ';
 
   @override
-  String get externalLinkWarningTrustSuffix => '— דלג על אזהרה זו בפעם הבאה';
+  String get externalLinkWarningTrustSuffix => ' — דלג על אזהרה זו בפעם הבאה';
 
   @override
   String get externalLinkVisitSite => 'בקר באתר';
@@ -3913,7 +3913,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get chatTextualPreviewChangeLanguage => 'שנה שפה';
 
   @override
-  String get chatTextualPreviewSearchLanguage => 'חפש שפה...';
+  String get chatTextualPreviewSearchLanguage => 'חפש שפה…';
 
   @override
   String get chatTextualPreviewSyntaxHighlighting => 'הדגשת תחביר';
@@ -4371,6 +4371,47 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get lookAndFeelAppZoomDescription => 'התאם את רמת הזום של היישום.';
+
+  @override
+  String get lookAndFeelChatWallpaperTitle => 'טפט צ\'אט';
+
+  @override
+  String get lookAndFeelChatWallpaperDescription =>
+      'בחר רקע לצ\'אט. הוא יישאר במכשיר זה.';
+
+  @override
+  String get lookAndFeelChatWallpaperLocalOnlyTooltip =>
+      'הגדרה זו נשארת במכשיר זה';
+
+  @override
+  String get lookAndFeelChatWallpaperLocalOnlyToast =>
+      'טפט הצ\'אט נשמר במכשיר זה בלבד ואינו מסונכרן למכשירים אחרים.';
+
+  @override
+  String get lookAndFeelChatWallpaperDefaultLabel => 'ברירת מחדל';
+
+  @override
+  String get lookAndFeelChatWallpaperCustomLabel => 'תמונה מותאמת אישית';
+
+  @override
+  String get lookAndFeelChatWallpaperStarfieldLabel => 'Starfield';
+
+  @override
+  String lookAndFeelChatWallpaperColorLabel(String id) {
+    return 'צבע $id';
+  }
+
+  @override
+  String lookAndFeelChatWallpaperGradientLabel(String id) {
+    return 'מעבר צבעים $id';
+  }
+
+  @override
+  String get lookAndFeelChatWallpaperDimLabel => 'עמעם טפט';
+
+  @override
+  String get lookAndFeelChatWallpaperPickFailed =>
+      'לא ניתן להגדיר את התמונה הזו כטפט שלך.';
 
   @override
   String get lookAndFeelMessagesSectionTitle => 'הודעות';
@@ -6594,7 +6635,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get chatMessageSeeTranslation => 'הצג תרגום';
 
   @override
-  String get chatMessageTranslating => 'מתרגם...';
+  String get chatMessageTranslating => 'מתרגם…';
 
   @override
   String get chatMessageTranslateFailed => 'לא ניתן היה לתרגם הודעה זו.';
@@ -7110,7 +7151,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get chatReplyMentionOn => 'ON';
 
   @override
-  String get chatReplyMentionOff => 'כבוי';
+  String get chatReplyMentionOff => 'OFF';
 
   @override
   String get chatReplyCancel => 'ביטול תגובה';
@@ -7421,7 +7462,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get addGuildCreateGuidelinesBefore =>
-      'ביצירת קהילה, אתה מסכים לעקוב אחר';
+      'ביצירת קהילה, אתה מסכים לעקוב אחר ';
 
   @override
   String addGuildCreateGuidelinesLink(String productName) {
@@ -7894,14 +7935,14 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get channelSettingsPermissionsSyncedWithParentPrefix =>
-      'הערוץ הזה מסונכרן עם הקטגוריה הראשית';
+      'הערוץ הזה מסונכרן עם הקטגוריה הראשית ';
 
   @override
   String get channelSettingsPermissionsSyncedWithParentSuffix => '.';
 
   @override
   String get channelSettingsPermissionsNotSyncedWithParentPrefix =>
-      'הערוץ הזה לא מסונכרן עם הקטגוריה הראשית';
+      'הערוץ הזה לא מסונכרן עם הקטגוריה הראשית ';
 
   @override
   String get channelSettingsPermissionsNotSyncedWithParentSuffix => '.';
@@ -9153,13 +9194,13 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get premiumSelfServeRefundButton => 'החזר רכישה אחרונה';
 
   @override
-  String get premiumDisclaimerAgreementPrefix => 'במסירת רכישה, אתה מסכים ל';
+  String get premiumDisclaimerAgreementPrefix => 'במסירת רכישה, אתה מסכים ל ';
 
   @override
-  String get premiumDisclaimerAgreementPastPrefix => 'במסירת רכישה, הסכמת ל';
+  String get premiumDisclaimerAgreementPastPrefix => 'במסירת רכישה, הסכמת ל ';
 
   @override
-  String get premiumDisclaimerAgreementMiddle => 'וגם';
+  String get premiumDisclaimerAgreementMiddle => ' וגם ';
 
   @override
   String premiumActiveUntil(String date) {
@@ -9623,7 +9664,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get notificationsTtsAccessibilityLinkPrefix =>
-      'התאם את מהירות ההשמעה ב';
+      'התאם את מהירות ההשמעה ב ';
 
   @override
   String get notificationsTtsAccessibilityLinkLabel => 'נגישות';

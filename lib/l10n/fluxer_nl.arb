@@ -330,7 +330,7 @@
     "@logInViaBrowser": {
         "description": "Secondary login that opens or uses the system browser."
     },
-    "needAccountPrompt": "Een account nodig?",
+    "needAccountPrompt": "Een account nodig? ",
     "@needAccountPrompt": {
         "description": "Lead text before a register link; trailing space keeps spacing before the link."
     },
@@ -816,7 +816,7 @@
     "@registerConsent": {
         "description": "Consent checkbox label for registration (plain text fallback)."
     },
-    "registerConsentPrefix": "Ik ga akkoord met de",
+    "registerConsentPrefix": "Ik ga akkoord met de ",
     "@registerConsentPrefix": {
         "description": "Text before the Terms of Service link in the consent checkbox."
     },
@@ -824,7 +824,7 @@
     "@registerConsentTerms": {
         "description": "Terms of Service link text in the consent checkbox."
     },
-    "registerConsentAnd": "en",
+    "registerConsentAnd": " en ",
     "@registerConsentAnd": {
         "description": "Conjunction between Terms and Privacy links."
     },
@@ -840,7 +840,7 @@
     "@registerSubmit": {
         "description": "Button to submit the registration form."
     },
-    "registerHaveAccount": "Heb je al een account?",
+    "registerHaveAccount": "Heb je al een account? ",
     "@registerHaveAccount": {
         "description": "Text before the login link on the register screen."
     },
@@ -2077,11 +2077,11 @@
     "@externalLinksSectionDescription": {
         "description": "Description for the external links settings section."
     },
-    "externalLinkWarningTrustPrefix": "Vertrouw altijd",
+    "externalLinkWarningTrustPrefix": "Vertrouw altijd ",
     "@externalLinkWarningTrustPrefix": {
         "description": "Prefix before the hostname in the trust-domain checkbox label."
     },
-    "externalLinkWarningTrustSuffix": "— sla deze waarschuwing de volgende keer over",
+    "externalLinkWarningTrustSuffix": " — sla deze waarschuwing de volgende keer over",
     "@externalLinkWarningTrustSuffix": {
         "description": "Suffix after the hostname in the trust-domain checkbox label."
     },
@@ -9103,7 +9103,7 @@
     "@chatReplyMentionOn": {
         "description": "On state suffix appended to the reply bar mention toggle label."
     },
-    "chatReplyMentionOff": "Uit",
+    "chatReplyMentionOff": "OFF",
     "@chatReplyMentionOff": {
         "description": "Off state suffix appended to the reply bar mention toggle label."
     },
@@ -9517,7 +9517,7 @@
     "@addGuildCreateAnimatedIconUnsupported": {
         "description": "Error when the user picks an animated image for a new community icon."
     },
-    "addGuildCreateGuidelinesBefore": "Door een community aan te maken, ga je akkoord met het volgen en naleven van de",
+    "addGuildCreateGuidelinesBefore": "Door een community aan te maken, ga je akkoord met het volgen en naleven van de ",
     "@addGuildCreateGuidelinesBefore": {
         "description": "Text before the community guidelines link on the create sub-view."
     },
@@ -10147,7 +10147,7 @@
     "@channelSettingsPermissionsTitle": {
         "description": "Page title for the channel permissions settings tab."
     },
-    "channelSettingsPermissionsSyncedWithParentPrefix": "Dit kanaal is gesynchroniseerd met de bovenliggende categorie",
+    "channelSettingsPermissionsSyncedWithParentPrefix": "Dit kanaal is gesynchroniseerd met de bovenliggende categorie ",
     "@channelSettingsPermissionsSyncedWithParentPrefix": {
         "description": "Prefix for the synced-with-parent banner in channel permissions."
     },
@@ -10155,7 +10155,7 @@
     "@channelSettingsPermissionsSyncedWithParentSuffix": {
         "description": "Suffix for the synced-with-parent banner in channel permissions."
     },
-    "channelSettingsPermissionsNotSyncedWithParentPrefix": "Dit kanaal is niet gesynchroniseerd met de bovenliggende categorie",
+    "channelSettingsPermissionsNotSyncedWithParentPrefix": "Dit kanaal is niet gesynchroniseerd met de bovenliggende categorie ",
     "@channelSettingsPermissionsNotSyncedWithParentPrefix": {
         "description": "Prefix for the not-synced-with-parent banner in channel permissions."
     },
@@ -11592,9 +11592,9 @@
     "premiumBillingHistory": "Factuurgeschiedenis",
     "premiumSelfServeRefundTitle": "Zelfservice restitutie",
     "premiumSelfServeRefundButton": "Laatste aankoop terugbetalen",
-    "premiumDisclaimerAgreementPrefix": "Door te kopen, ga je akkoord met onze",
-    "premiumDisclaimerAgreementPastPrefix": "Door te kopen, ging u akkoord met onze",
-    "premiumDisclaimerAgreementMiddle": "en",
+    "premiumDisclaimerAgreementPrefix": "Door te kopen, ga je akkoord met onze ",
+    "premiumDisclaimerAgreementPastPrefix": "Door te kopen, ging u akkoord met onze ",
+    "premiumDisclaimerAgreementMiddle": " en ",
     "premiumActiveUntil": "Actief tot {date}",
     "@premiumActiveUntil": {
         "placeholders": {
@@ -12050,7 +12050,7 @@
     "@notificationsTtsEnableCommandDescription": {
         "description": "Toggle description for enabling /tts speech playback."
     },
-    "notificationsTtsAccessibilityLinkPrefix": "Pas afspeelsnelheid aan in",
+    "notificationsTtsAccessibilityLinkPrefix": "Pas afspeelsnelheid aan in ",
     "@notificationsTtsAccessibilityLinkPrefix": {
         "description": "Prefix before the Accessibility settings link in TTS notifications settings."
     },
@@ -16800,5 +16800,55 @@
     "homeQuickActionDms": "DM's",
     "@homeQuickActionDms": {
         "description": "Home screen quick action that opens Direct Messages."
+    },
+    "lookAndFeelChatWallpaperTitle": "Chatachtergrond",
+    "@lookAndFeelChatWallpaperTitle": {
+        "description": "Look and Feel section title for chat wallpaper presets."
+    },
+    "lookAndFeelChatWallpaperDescription": "Kies een achtergrond voor je chat. Deze blijft op dit apparaat.",
+    "@lookAndFeelChatWallpaperDescription": {
+        "description": "Look and Feel section description for chat wallpaper presets."
+    },
+    "lookAndFeelChatWallpaperLocalOnlyTooltip": "Deze instelling blijft op dit apparaat",
+    "@lookAndFeelChatWallpaperLocalOnlyTooltip": {
+        "description": "Accessibility label for the icon indicating chat wallpaper does not sync."
+    },
+    "lookAndFeelChatWallpaperLocalOnlyToast": "Chatachtergrond wordt alleen op dit apparaat opgeslagen en synchroniseert niet met andere apparaten.",
+    "@lookAndFeelChatWallpaperLocalOnlyToast": {
+        "description": "Toast shown when tapping the local-only icon on Chat Wallpaper."
+    },
+    "lookAndFeelChatWallpaperDefaultLabel": "Standaard",
+    "@lookAndFeelChatWallpaperDefaultLabel": {
+        "description": "Chat wallpaper preset that uses the theme chat background."
+    },
+    "lookAndFeelChatWallpaperCustomLabel": "Aangepaste afbeelding",
+    "@lookAndFeelChatWallpaperCustomLabel": {
+        "description": "Chat wallpaper option that picks an image from the gallery."
+    },
+    "lookAndFeelChatWallpaperColorLabel": "Kleur {id}",
+    "@lookAndFeelChatWallpaperColorLabel": {
+        "description": "Accessibility label for a solid color wallpaper preset.",
+        "placeholders": {
+            "id": {
+                "type": "String"
+            }
+        }
+    },
+    "lookAndFeelChatWallpaperGradientLabel": "Verloop {id}",
+    "@lookAndFeelChatWallpaperGradientLabel": {
+        "description": "Accessibility label for a gradient wallpaper preset.",
+        "placeholders": {
+            "id": {
+                "type": "String"
+            }
+        }
+    },
+    "lookAndFeelChatWallpaperDimLabel": "Achtergrond dimmen",
+    "@lookAndFeelChatWallpaperDimLabel": {
+        "description": "Slider label for how dark the overlay on the chat wallpaper is."
+    },
+    "lookAndFeelChatWallpaperPickFailed": "Kon deze afbeelding niet als achtergrond instellen.",
+    "@lookAndFeelChatWallpaperPickFailed": {
+        "description": "Toast shown when a custom wallpaper image cannot be decoded or saved."
     }
 }

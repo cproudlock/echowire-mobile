@@ -230,7 +230,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   String get logInViaBrowser => 'Masuk melalui browser';
 
   @override
-  String get needAccountPrompt => 'Perlu akun?';
+  String get needAccountPrompt => 'Perlu akun? ';
 
   @override
   String get register => 'Daftar';
@@ -601,13 +601,13 @@ class FluxerLocalizationsId extends FluxerLocalizations {
       'Saya setuju dengan Persyaratan Layanan dan Kebijakan Privasi';
 
   @override
-  String get registerConsentPrefix => 'Saya setuju dengan';
+  String get registerConsentPrefix => 'Saya setuju dengan ';
 
   @override
   String get registerConsentTerms => 'Syarat Layanan';
 
   @override
-  String get registerConsentAnd => 'dan';
+  String get registerConsentAnd => ' dan ';
 
   @override
   String get registerConsentPrivacy => 'Kebijakan Privasi';
@@ -619,7 +619,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   String get registerSubmit => 'Buat akun';
 
   @override
-  String get registerHaveAccount => 'Sudah punya akun?';
+  String get registerHaveAccount => 'Sudah punya akun? ';
 
   @override
   String get registerPendingApproval =>
@@ -1571,11 +1571,11 @@ class FluxerLocalizationsId extends FluxerLocalizations {
       'Atur cara peringatan tautan eksternal ditangani.';
 
   @override
-  String get externalLinkWarningTrustPrefix => 'Selalu percaya';
+  String get externalLinkWarningTrustPrefix => 'Selalu percaya ';
 
   @override
   String get externalLinkWarningTrustSuffix =>
-      '— lewati peringatan ini lain kali';
+      ' — lewati peringatan ini lain kali';
 
   @override
   String get externalLinkVisitSite => 'Kunjungi Situs';
@@ -4416,6 +4416,47 @@ class FluxerLocalizationsId extends FluxerLocalizations {
       'Sesuaikan tingkat zoom aplikasi.';
 
   @override
+  String get lookAndFeelChatWallpaperTitle => 'Wallpaper Obrolan';
+
+  @override
+  String get lookAndFeelChatWallpaperDescription =>
+      'Pilih latar belakang untuk chat. Ini akan tersimpan di perangkat ini.';
+
+  @override
+  String get lookAndFeelChatWallpaperLocalOnlyTooltip =>
+      'Pengaturan ini tetap di perangkat ini';
+
+  @override
+  String get lookAndFeelChatWallpaperLocalOnlyToast =>
+      'Wallpaper chat disimpan hanya di perangkat ini dan tidak disinkronkan ke perangkat lain.';
+
+  @override
+  String get lookAndFeelChatWallpaperDefaultLabel => 'Bawaan';
+
+  @override
+  String get lookAndFeelChatWallpaperCustomLabel => 'Gambar kustom';
+
+  @override
+  String get lookAndFeelChatWallpaperStarfieldLabel => 'Starfield';
+
+  @override
+  String lookAndFeelChatWallpaperColorLabel(String id) {
+    return 'Warna $id';
+  }
+
+  @override
+  String lookAndFeelChatWallpaperGradientLabel(String id) {
+    return 'Gradien $id';
+  }
+
+  @override
+  String get lookAndFeelChatWallpaperDimLabel => 'Redupkan wallpaper';
+
+  @override
+  String get lookAndFeelChatWallpaperPickFailed =>
+      'Tidak dapat mengatur gambar itu sebagai wallpaper Anda.';
+
+  @override
   String get lookAndFeelMessagesSectionTitle => 'Pesan';
 
   @override
@@ -7206,7 +7247,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   String get chatReplyMentionOn => 'ON';
 
   @override
-  String get chatReplyMentionOff => 'Nonaktif';
+  String get chatReplyMentionOff => 'OFF';
 
   @override
   String get chatReplyCancel => 'Batalkan balasan';
@@ -7526,7 +7567,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
 
   @override
   String get addGuildCreateGuidelinesBefore =>
-      'Dengan membuat komunitas, Anda setuju untuk mengikuti dan menjunjung';
+      'Dengan membuat komunitas, Anda setuju untuk mengikuti dan menjunjung ';
 
   @override
   String addGuildCreateGuidelinesLink(String productName) {
@@ -8006,14 +8047,14 @@ class FluxerLocalizationsId extends FluxerLocalizations {
 
   @override
   String get channelSettingsPermissionsSyncedWithParentPrefix =>
-      'Saluran ini disinkronkan dengan kategori induk';
+      'Saluran ini disinkronkan dengan kategori induk ';
 
   @override
   String get channelSettingsPermissionsSyncedWithParentSuffix => '.';
 
   @override
   String get channelSettingsPermissionsNotSyncedWithParentPrefix =>
-      'Saluran ini tidak disinkronkan dengan kategori induk';
+      'Saluran ini tidak disinkronkan dengan kategori induk ';
 
   @override
   String get channelSettingsPermissionsNotSyncedWithParentSuffix => '.';
@@ -9289,14 +9330,14 @@ class FluxerLocalizationsId extends FluxerLocalizations {
 
   @override
   String get premiumDisclaimerAgreementPrefix =>
-      'Dengan membeli, Anda menyetujui';
+      'Dengan membeli, Anda menyetujui ';
 
   @override
   String get premiumDisclaimerAgreementPastPrefix =>
-      'Dengan membeli, Anda menyetujui';
+      'Dengan membeli, Anda menyetujui ';
 
   @override
-  String get premiumDisclaimerAgreementMiddle => 'dan';
+  String get premiumDisclaimerAgreementMiddle => ' dan ';
 
   @override
   String premiumActiveUntil(String date) {
@@ -9765,7 +9806,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
 
   @override
   String get notificationsTtsAccessibilityLinkPrefix =>
-      'Sesuaikan kecepatan pemutaran di';
+      'Sesuaikan kecepatan pemutaran di ';
 
   @override
   String get notificationsTtsAccessibilityLinkLabel => 'Aksesibilitas';

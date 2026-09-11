@@ -3,6 +3,7 @@ import 'package:fluxer_markdown/src/config/fluxer_markdown_config.dart';
 import 'package:fluxer_markdown/src/contexts/fluxer_markdown_context.dart';
 import 'package:fluxer_markdown/src/contexts/fluxer_markdown_features.dart';
 import 'package:fluxer_markdown/src/renderers/fluxer_markdown_renderers.dart';
+import 'package:fluxer_markdown/src/utils/bounded_text.dart';
 import 'package:fluxer_markdown/src/widgets/fluxer_markdown.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -34,9 +35,16 @@ void main() {
       expect(features.allowCodeBlocks, isTrue);
       expect(features.allowSubtext, isTrue);
       expect(features.allowBlockquotes, isFalse);
-      expect(features.allowLists, isFalse);
       expect(features.isRestrictedInlinePreview, isTrue);
     });
+
+    test(
+      'enables headings and lists so the preview can flatten them (#769)',
+      () {
+        expect(features.allowHeadings, isTrue);
+        expect(features.allowLists, isTrue);
+      },
+    );
 
     test('parses fenced code blocks instead of escaping them', () {
       const input = '```\nsecret code\n```';
@@ -111,5 +119,167 @@ void main() {
       expect(style.fontSize, baseFontSize);
       expect(richText.text.toPlainText(), contains('preview note'));
     });
+
+    testWidgets('sizes emoji to the preview line box', (tester) async {
+      const double fontSize = 14;
+      const double lineHeight = 18 / fontSize;
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: SizedBox(
+              width: 240,
+              height: 20,
+              child: FluxerMarkdown(
+                astParser: parseTestMarkdownAst,
+                data: '<:a:111111111111111111>',
+                config: _testMarkdownConfig,
+                context: FluxerMarkdownContext.restrictedInlineReply,
+                baseStyle: TextStyle(fontSize: fontSize, height: lineHeight),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      final FluxerEmojiWidget emoji = tester.widget<FluxerEmojiWidget>(
+        find.byType(FluxerEmojiWidget),
+      );
+      expect(emoji.fitToLineHeight, isTrue);
+      expect(emoji.size, closeTo(18, 0.01));
+      expect(
+        tester.getSize(find.byType(FluxerEmojiWidget)).height,
+        closeTo(18, 1),
+      );
+    });
+
+    testWidgets('keeps mention widgets taller than the text line', (
+      tester,
+    ) async {
+      const Key mentionKey = Key('reply-mention');
+      final FluxerMarkdownConfig config = FluxerMarkdownConfig(
+        resolveEmojiShortcode: _resolveEmojiShortcode,
+        unicodeEmojiUrlBuilder: _noopUnicodeEmojiUrl,
+        customEmojiUrlBuilder: _noopCustomEmojiUrl,
+        userMentionBuilder: (_, _, _) =>
+            const SizedBox(key: mentionKey, width: 48, height: 24),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SizedBox(
+              width: 240,
+              child: FluxerMarkdown(
+                astParser: parseTestMarkdownAst,
+                data: '<@123> hello',
+                config: config,
+                context: FluxerMarkdownContext.restrictedInlineReply,
+                baseStyle: const TextStyle(fontSize: 14, height: 18 / 14),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.byKey(mentionKey), findsOneWidget);
+      expect(tester.getSize(find.byKey(mentionKey)).height, 24);
+      final RichText richText = tester.widget<RichText>(find.byType(RichText));
+      expect(richText.strutStyle?.forceStrutHeight, isFalse);
+      expect(
+        tester.getSize(find.byType(FluxerBoundedTextClip).first).height,
+        greaterThanOrEqualTo(24),
+      );
+    });
+
+    testWidgets('renders command mentions through the mention builder', (
+      tester,
+    ) async {
+      const Key commandKey = Key('reply-command');
+      final FluxerMarkdownConfig config = FluxerMarkdownConfig(
+        resolveEmojiShortcode: _resolveEmojiShortcode,
+        unicodeEmojiUrlBuilder: _noopUnicodeEmojiUrl,
+        customEmojiUrlBuilder: _noopCustomEmojiUrl,
+        commandMentionBuilder: (_, command, _, _) =>
+            Text('/$command', key: commandKey),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SizedBox(
+              width: 240,
+              child: FluxerMarkdown(
+                astParser: parseTestMarkdownAst,
+                data: '</ban user:99>',
+                config: config,
+                context: FluxerMarkdownContext.restrictedInlineReply,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.byKey(commandKey), findsOneWidget);
+      expect(find.text('/ban user'), findsOneWidget);
+    });
+
+    testWidgets('renders a heading without its marker (#769)', (tester) async {
+      await _pumpPreview(tester, '# Heading');
+
+      expect(_previewText(tester), 'Heading');
+    });
+
+    testWidgets('renders a bullet item without its marker (#769)', (
+      tester,
+    ) async {
+      await _pumpPreview(tester, '- item');
+
+      expect(_previewText(tester), 'item');
+    });
+
+    testWidgets('joins ordered list items on one line (#769)', (tester) async {
+      await _pumpPreview(tester, '1. one\n2. two');
+
+      expect(_previewText(tester), 'one two');
+    });
+
+    testWidgets('consumes the escape in front of a dash (#769)', (
+      tester,
+    ) async {
+      await _pumpPreview(tester, r'\- item');
+
+      expect(_previewText(tester), '- item');
+    });
   });
 }
+
+Future<void> _pumpPreview(WidgetTester tester, String data) async {
+  await tester.pumpWidget(
+    MaterialApp(
+      home: Scaffold(
+        body: SizedBox(
+          width: 240,
+          child: FluxerMarkdown(
+            astParser: parseTestMarkdownAst,
+            data: data,
+            config: _testMarkdownConfig,
+            context: FluxerMarkdownContext.restrictedInlineReply,
+          ),
+        ),
+      ),
+    ),
+  );
+  await tester.pumpAndSettle();
+}
+
+String _previewText(WidgetTester tester) => tester
+    .widgetList<RichText>(find.byType(RichText))
+    .map((RichText richText) => richText.text.toPlainText())
+    .join();

@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'fluxer_localizations_ar.dart';
+import 'fluxer_localizations_bg.dart';
 import 'fluxer_localizations_cs.dart';
 import 'fluxer_localizations_da.dart';
 import 'fluxer_localizations_de.dart';
@@ -14,19 +15,26 @@ import 'fluxer_localizations_en.dart';
 import 'fluxer_localizations_es.dart';
 import 'fluxer_localizations_fi.dart';
 import 'fluxer_localizations_fr.dart';
+import 'fluxer_localizations_he.dart';
+import 'fluxer_localizations_hi.dart';
+import 'fluxer_localizations_hr.dart';
 import 'fluxer_localizations_hu.dart';
+import 'fluxer_localizations_id.dart';
 import 'fluxer_localizations_it.dart';
 import 'fluxer_localizations_ja.dart';
 import 'fluxer_localizations_ko.dart';
 import 'fluxer_localizations_lt.dart';
 import 'fluxer_localizations_nb.dart';
+import 'fluxer_localizations_nl.dart';
 import 'fluxer_localizations_pl.dart';
 import 'fluxer_localizations_pt.dart';
+import 'fluxer_localizations_ro.dart';
 import 'fluxer_localizations_ru.dart';
 import 'fluxer_localizations_sv.dart';
 import 'fluxer_localizations_th.dart';
 import 'fluxer_localizations_tr.dart';
 import 'fluxer_localizations_uk.dart';
+import 'fluxer_localizations_vi.dart';
 import 'fluxer_localizations_zh.dart';
 
 // ignore_for_file: type=lint
@@ -117,6 +125,7 @@ abstract class FluxerLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
     Locale('ar'),
+    Locale('bg'),
     Locale('cs'),
     Locale('da'),
     Locale('de'),
@@ -127,20 +136,27 @@ abstract class FluxerLocalizations {
     Locale('es', '419'),
     Locale('fi'),
     Locale('fr'),
+    Locale('he'),
+    Locale('hi'),
+    Locale('hr'),
     Locale('hu'),
+    Locale('id'),
     Locale('it'),
     Locale('ja'),
     Locale('ko'),
     Locale('lt'),
     Locale('nb'),
+    Locale('nl'),
     Locale('pl'),
     Locale('pt'),
     Locale('pt', 'BR'),
+    Locale('ro'),
     Locale('ru'),
     Locale('sv'),
     Locale('th'),
     Locale('tr'),
     Locale('uk'),
+    Locale('vi'),
     Locale('zh'),
     Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
   ];
@@ -1359,6 +1375,36 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Already joined'**
   String get embedInviteAlreadyJoined;
+
+  /// Disabled button label on a community invite embed when invites are paused or anti-raid mode is active.
+  ///
+  /// In en, this message translates to:
+  /// **'Invites disabled'**
+  String get embedInviteDisabled;
+
+  /// Status message on a community invite embed when invites are paused by community admins.
+  ///
+  /// In en, this message translates to:
+  /// **'Invites are paused for this community.'**
+  String get embedInvitePaused;
+
+  /// Anti-raid status message on a community invite embed.
+  ///
+  /// In en, this message translates to:
+  /// **'{productName} detected a potential raid, so new users can\'t join right now.'**
+  String embedInvitePausedRaid(String productName);
+
+  /// Invite modal notice when community admins have paused invites.
+  ///
+  /// In en, this message translates to:
+  /// **'This community has paused invites. You can try again later.'**
+  String get inviteAcceptInvitesPausedTryAgain;
+
+  /// Invite modal notice when automated raid protection pauses invites.
+  ///
+  /// In en, this message translates to:
+  /// **'{productName} detected a potential raid in this community. Invites are paused, so new users cannot join right now.'**
+  String inviteAcceptRaidInvitesPaused(String productName);
 
   /// Title of the invite accept modal.
   ///
@@ -6160,7 +6206,7 @@ abstract class FluxerLocalizations {
   /// Hint shown next to the hold-to-record microphone button.
   ///
   /// In en, this message translates to:
-  /// **'Hold to record. Drag up to lock, or release to send.'**
+  /// **'Hold to record. Drag to trash to delete, slide up to lock, or release to send.'**
   String get voiceMessageHoldHint;
 
   /// Accessibility label for discarding a voice recording.
@@ -9308,6 +9354,12 @@ abstract class FluxerLocalizations {
   /// **'Stream volume'**
   String get voiceParticipantMenuStreamVolume;
 
+  /// Voice screen-share context menu action that stops the current user stream.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop streaming'**
+  String get voiceParticipantMenuStopStreaming;
+
   /// Toast shown when a voice participant moderation action fails.
   ///
   /// In en, this message translates to:
@@ -9319,6 +9371,24 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Chat'**
   String get voiceControlChat;
+
+  /// Section header for choosing grid or focus layout during a voice call.
+  ///
+  /// In en, this message translates to:
+  /// **'View'**
+  String get voiceCallViewModeLabel;
+
+  /// Voice call layout option that shows participants in a grid.
+  ///
+  /// In en, this message translates to:
+  /// **'Grid'**
+  String get voiceCallViewModeGrid;
+
+  /// Voice call layout option that enlarges one participant.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus'**
+  String get voiceCallViewModeFocus;
 
   /// Section header for in-call voice settings in the expandable control panel.
   ///
@@ -10859,6 +10929,18 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Copy Message Link'**
   String get chatMessageCopyMessageLink;
+
+  /// Action label in the message actions sheet that opens the long-pressed link.
+  ///
+  /// In en, this message translates to:
+  /// **'Open link'**
+  String get chatMessageOpenLink;
+
+  /// Action label in the message actions sheet that copies the long-pressed link to the clipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy link'**
+  String get chatMessageCopyLink;
 
   /// Action label for copying the message's snowflake ID to the clipboard.
   ///
@@ -14459,6 +14541,30 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t generate an invite link. Please try again.'**
   String get groupDmCreateInviteFailedBody;
+
+  /// Fallback error when creating a community invite link fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t create an invite link. Please try again.'**
+  String get guildNavbarCreateInviteFailed;
+
+  /// Error when the user lacks CREATE_INSTANT_INVITE on the chosen channel.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have permission to create an invite in this channel.'**
+  String get guildNavbarCreateInviteMissingPermissions;
+
+  /// Error when the community is at MAX_INVITES.
+  ///
+  /// In en, this message translates to:
+  /// **'This community has reached its invite limit.'**
+  String get guildNavbarCreateInviteMaxInvites;
+
+  /// Error when instant invites are temporarily disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite creation is temporarily disabled for this community.'**
+  String get guildNavbarCreateInviteTemporarilyDisabled;
 
   /// Error when copying a group DM invite link fails.
   ///
@@ -23429,6 +23535,12 @@ abstract class FluxerLocalizations {
   /// **'Couldn\'t paste. The clipboard was empty or blocked for this app.'**
   String get clipboardPasteFailed;
 
+  /// Home screen quick action that opens Direct Messages.
+  ///
+  /// In en, this message translates to:
+  /// **'DMs'**
+  String get homeQuickActionDms;
+
   /// No description provided for @uiViewThreads.
   ///
   /// In en, this message translates to:
@@ -23462,6 +23574,7 @@ class _FluxerLocalizationsDelegate
   @override
   bool isSupported(Locale locale) => <String>[
     'ar',
+    'bg',
     'cs',
     'da',
     'de',
@@ -23470,19 +23583,26 @@ class _FluxerLocalizationsDelegate
     'es',
     'fi',
     'fr',
+    'he',
+    'hi',
+    'hr',
     'hu',
+    'id',
     'it',
     'ja',
     'ko',
     'lt',
     'nb',
+    'nl',
     'pl',
     'pt',
+    'ro',
     'ru',
     'sv',
     'th',
     'tr',
     'uk',
+    'vi',
     'zh',
   ].contains(locale.languageCode);
 
@@ -23537,6 +23657,8 @@ FluxerLocalizations lookupFluxerLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'ar':
       return FluxerLocalizationsAr();
+    case 'bg':
+      return FluxerLocalizationsBg();
     case 'cs':
       return FluxerLocalizationsCs();
     case 'da':
@@ -23553,8 +23675,16 @@ FluxerLocalizations lookupFluxerLocalizations(Locale locale) {
       return FluxerLocalizationsFi();
     case 'fr':
       return FluxerLocalizationsFr();
+    case 'he':
+      return FluxerLocalizationsHe();
+    case 'hi':
+      return FluxerLocalizationsHi();
+    case 'hr':
+      return FluxerLocalizationsHr();
     case 'hu':
       return FluxerLocalizationsHu();
+    case 'id':
+      return FluxerLocalizationsId();
     case 'it':
       return FluxerLocalizationsIt();
     case 'ja':
@@ -23565,10 +23695,14 @@ FluxerLocalizations lookupFluxerLocalizations(Locale locale) {
       return FluxerLocalizationsLt();
     case 'nb':
       return FluxerLocalizationsNb();
+    case 'nl':
+      return FluxerLocalizationsNl();
     case 'pl':
       return FluxerLocalizationsPl();
     case 'pt':
       return FluxerLocalizationsPt();
+    case 'ro':
+      return FluxerLocalizationsRo();
     case 'ru':
       return FluxerLocalizationsRu();
     case 'sv':
@@ -23579,6 +23713,8 @@ FluxerLocalizations lookupFluxerLocalizations(Locale locale) {
       return FluxerLocalizationsTr();
     case 'uk':
       return FluxerLocalizationsUk();
+    case 'vi':
+      return FluxerLocalizationsVi();
     case 'zh':
       return FluxerLocalizationsZh();
   }

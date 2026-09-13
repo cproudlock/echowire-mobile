@@ -14490,4 +14490,17 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
 
   @override
   String get forumNoArchivedPosts => 'No archived posts';
+
+  @override
+  String systemThreadCreated(String username, String threadName) {
+    return '$username started a thread: $threadName.';
+  }
+
+  @override
+  String systemPreviewStartedThread(String username) {
+    return '$username started a thread.';
+  }
+
+  @override
+  String get systemThreadDeleted => 'a thread that was deleted';
 }

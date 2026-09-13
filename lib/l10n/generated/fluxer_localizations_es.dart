@@ -14662,6 +14662,19 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
 
   @override
   String get forumNoArchivedPosts => 'No archived posts';
+
+  @override
+  String systemThreadCreated(String username, String threadName) {
+    return '$username started a thread: $threadName.';
+  }
+
+  @override
+  String systemPreviewStartedThread(String username) {
+    return '$username started a thread.';
+  }
+
+  @override
+  String get systemThreadDeleted => 'a thread that was deleted';
 }
 
 /// The translations for Spanish Castilian, as used in Latin America and the Caribbean (`es_419`).
@@ -29285,4 +29298,17 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
 
   @override
   String get forumNoArchivedPosts => 'No archived posts';
+
+  @override
+  String systemThreadCreated(String username, String threadName) {
+    return '$username started a thread: $threadName.';
+  }
+
+  @override
+  String systemPreviewStartedThread(String username) {
+    return '$username started a thread.';
+  }
+
+  @override
+  String get systemThreadDeleted => 'a thread that was deleted';
 }

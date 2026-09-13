@@ -9640,5 +9640,30 @@
     "forumNoArchivedPosts": "No archived posts",
     "@forumNoArchivedPosts": {
         "description": "Empty state of the archived forum post list."
+    },
+    "systemThreadCreated": "{username} started a thread: {threadName}.",
+    "@systemThreadCreated": {
+        "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "threadName": {
+                "type": "String"
+            }
+        }
+    },
+    "systemPreviewStartedThread": "{username} started a thread.",
+    "@systemPreviewStartedThread": {
+        "description": "Plaintext preview of the system message posted when someone starts a thread.",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "systemThreadDeleted": "a thread that was deleted",
+    "@systemThreadDeleted": {
+        "description": "Stands in for a thread name in the thread started system message when the thread no longer exists."
     }
 }

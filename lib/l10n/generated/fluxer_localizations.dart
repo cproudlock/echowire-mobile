@@ -24086,6 +24086,24 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'No archived posts'**
   String get forumNoArchivedPosts;
+
+  /// System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.
+  ///
+  /// In en, this message translates to:
+  /// **'{username} started a thread: {threadName}.'**
+  String systemThreadCreated(String username, String threadName);
+
+  /// Plaintext preview of the system message posted when someone starts a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'{username} started a thread.'**
+  String systemPreviewStartedThread(String username);
+
+  /// Stands in for a thread name in the thread started system message when the thread no longer exists.
+  ///
+  /// In en, this message translates to:
+  /// **'a thread that was deleted'**
+  String get systemThreadDeleted;
 }
 
 class _FluxerLocalizationsDelegate

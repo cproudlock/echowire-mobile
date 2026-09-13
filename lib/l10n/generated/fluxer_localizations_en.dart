@@ -14409,6 +14409,19 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
 
   @override
   String get forumNoArchivedPosts => 'No archived posts';
+
+  @override
+  String systemThreadCreated(String username, String threadName) {
+    return '$username started a thread: $threadName.';
+  }
+
+  @override
+  String systemPreviewStartedThread(String username) {
+    return '$username started a thread.';
+  }
+
+  @override
+  String get systemThreadDeleted => 'a thread that was deleted';
 }
 
 /// The translations for English, as used in the United Kingdom (`en_GB`).
@@ -28778,6 +28791,19 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
 
   @override
   String get forumNoArchivedPosts => 'No archived posts';
+
+  @override
+  String systemThreadCreated(String username, String threadName) {
+    return '$username started a thread: $threadName.';
+  }
+
+  @override
+  String systemPreviewStartedThread(String username) {
+    return '$username started a thread.';
+  }
+
+  @override
+  String get systemThreadDeleted => 'a thread that was deleted';
 }
 
 /// The translations for English, as used in the United States (`en_US`).
@@ -43161,4 +43187,17 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
 
   @override
   String get forumNoArchivedPosts => 'No archived posts';
+
+  @override
+  String systemThreadCreated(String username, String threadName) {
+    return '$username started a thread: $threadName.';
+  }
+
+  @override
+  String systemPreviewStartedThread(String username) {
+    return '$username started a thread.';
+  }
+
+  @override
+  String get systemThreadDeleted => 'a thread that was deleted';
 }

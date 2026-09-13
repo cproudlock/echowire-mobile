@@ -133,6 +133,8 @@ String? stringifySystemMessage({
       return l10n.systemPreviewChangedChannelIcon(authorName);
     case messageTypeCall:
       return l10n.systemPreviewStartedCall(authorName);
+    case messageTypeThreadCreated:
+      return l10n.systemPreviewStartedThread(authorName);
     default:
       if (message.isSystemMessage) {
         return l10n.systemUnknownMessage(kFluxerProductName);
@@ -190,7 +192,21 @@ List<InlineSpan> buildSystemMessageTextSpans({
   VoidCallback? onAllPinsLinkTap,
   VoidCallback? onJoinCallTap,
   String? currentUserId,
+  String? threadName,
+  VoidCallback? onThreadTap,
 }) {
+  if (message.type == messageTypeThreadCreated) {
+    return _threadCreatedTextSpans(
+      l10n,
+      authorName: authorName,
+      threadName: threadName ?? l10n.systemThreadDeleted,
+      textStyle: textStyle,
+      usernameStyle: usernameStyle,
+      threadStyle: linkStyle ?? usernameStyle,
+      onAuthorTap: onAuthorTap,
+      onThreadTap: threadName == null ? null : onThreadTap,
+    );
+  }
   if (message.type == messageTypeUserJoin) {
     return _guildJoinTextSpans(
       l10n,
@@ -306,6 +322,52 @@ String? _systemMessageTemplate({
       }
       return null;
   }
+}
+
+/// Echowire: "{username} started a thread: {threadName}." with a tappable
+/// thread name. The name slot reuses the new-name placeholder.
+List<InlineSpan> _threadCreatedTextSpans(
+  FluxerLocalizations l10n, {
+  required String authorName,
+  required String threadName,
+  required TextStyle textStyle,
+  required TextStyle usernameStyle,
+  required TextStyle threadStyle,
+  VoidCallback? onAuthorTap,
+  VoidCallback? onThreadTap,
+}) {
+  final String template = l10n.systemThreadCreated(
+    kSystemMessageUsernamePlaceholder,
+    kSystemMessageNewNamePlaceholder,
+  );
+  final int index = template.indexOf(kSystemMessageNewNamePlaceholder);
+  if (index < 0) {
+    return expandSystemMessageTemplate(
+      template,
+      authorName: authorName,
+      textStyle: textStyle,
+      usernameStyle: usernameStyle,
+      onAuthorTap: onAuthorTap,
+    );
+  }
+  List<InlineSpan> expand(String part) => expandSystemMessageTemplate(
+    part,
+    authorName: authorName,
+    textStyle: textStyle,
+    usernameStyle: usernameStyle,
+    onAuthorTap: onAuthorTap,
+  );
+  return <InlineSpan>[
+    ...expand(template.substring(0, index)),
+    _systemMessageActionSpan(
+      label: threadName,
+      style: threadStyle,
+      onTap: onThreadTap,
+    ),
+    ...expand(
+      template.substring(index + kSystemMessageNewNamePlaceholder.length),
+    ),
+  ];
 }
 
 List<InlineSpan> _guildJoinTextSpans(

@@ -4231,6 +4231,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'ダークテーマ';
 
   @override
+  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+
+  @override
   String get lookAndFeelThemeCoal => 'コールテーマ';
 
   @override
@@ -4885,6 +4888,14 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get accessibilityAlwaysUnderlineLinksLabel => 'リンクに常に下線を表示';
+
+  @override
+  String get accessibilityShowAltTextOnImagesLabel =>
+      'Show alternative text on images';
+
+  @override
+  String get accessibilityShowAltTextOnImagesDescription =>
+      'Display alternative text below images when it is available.';
 
   @override
   String get accessibilityDimStrikethroughTextLabel => '取り消し線のテキストを薄く表示する';
@@ -6345,6 +6356,18 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get chatMessageAddReaction => 'リアクションを追加';
 
   @override
+  String get doubleTapReactionHint => 'Double tap a message to';
+
+  @override
+  String get doubleTapReactionEdit => 'Edit';
+
+  @override
+  String get doubleTapReactionEditTitle => 'Edit default';
+
+  @override
+  String get doubleTapReactionEditSubtitle => 'Choose double tap emoji';
+
+  @override
   String get chatMessageEdit => 'メッセージを編集';
 
   @override
@@ -7047,6 +7070,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get chatVideoPlaybackFailed => 'この動画を再生できませんでした。';
+
+  @override
+  String get chatImageCouldNotLoad => 'Could not load this image.';
 
   @override
   String get composerAutocompleteRoleMentionDescription =>
@@ -10405,6 +10431,10 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get instanceUrlPlaceholder => 'インスタンスURLを入力 (例: fluxer.app)';
 
   @override
+  String get instanceUrlHelper =>
+      'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
+
+  @override
   String get resetToDefaultInstance => 'Echowireにリセット';
 
   @override
@@ -10426,9 +10456,6 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get instanceSheetTitle => 'インスタンスに接続';
-
-  @override
-  String get connectToDifferentInstance => '別のインスタンスに接続';
 
   @override
   String get changeInstance => '変更';

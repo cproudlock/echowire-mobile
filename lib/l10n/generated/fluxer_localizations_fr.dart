@@ -4437,6 +4437,9 @@ class FluxerLocalizationsFr extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'Thème sombre';
 
   @override
+  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+
+  @override
   String get lookAndFeelThemeCoal => 'Thème anthracite';
 
   @override
@@ -5146,6 +5149,14 @@ class FluxerLocalizationsFr extends FluxerLocalizations {
   @override
   String get accessibilityAlwaysUnderlineLinksLabel =>
       'Toujours souligner les liens';
+
+  @override
+  String get accessibilityShowAltTextOnImagesLabel =>
+      'Show alternative text on images';
+
+  @override
+  String get accessibilityShowAltTextOnImagesDescription =>
+      'Display alternative text below images when it is available.';
 
   @override
   String get accessibilityDimStrikethroughTextLabel =>
@@ -6683,6 +6694,18 @@ class FluxerLocalizationsFr extends FluxerLocalizations {
   String get chatMessageAddReaction => 'Ajouter une réaction';
 
   @override
+  String get doubleTapReactionHint => 'Double tap a message to';
+
+  @override
+  String get doubleTapReactionEdit => 'Edit';
+
+  @override
+  String get doubleTapReactionEditTitle => 'Edit default';
+
+  @override
+  String get doubleTapReactionEditSubtitle => 'Choose double tap emoji';
+
+  @override
   String get chatMessageEdit => 'Modifier le message';
 
   @override
@@ -7440,6 +7463,9 @@ class FluxerLocalizationsFr extends FluxerLocalizations {
 
   @override
   String get chatVideoPlaybackFailed => 'Impossible de lire cette vidéo.';
+
+  @override
+  String get chatImageCouldNotLoad => 'Could not load this image.';
 
   @override
   String get composerAutocompleteRoleMentionDescription =>
@@ -11037,6 +11063,10 @@ class FluxerLocalizationsFr extends FluxerLocalizations {
       'Entrez l\'URL de l\'instance (par ex. fluxer.app)';
 
   @override
+  String get instanceUrlHelper =>
+      'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
+
+  @override
   String get resetToDefaultInstance => 'Réinitialiser à Echowire';
 
   @override
@@ -11058,9 +11088,6 @@ class FluxerLocalizationsFr extends FluxerLocalizations {
 
   @override
   String get instanceSheetTitle => 'Se connecter à une instance';
-
-  @override
-  String get connectToDifferentInstance => 'Se connecter à une autre instance';
 
   @override
   String get changeInstance => 'Changer';

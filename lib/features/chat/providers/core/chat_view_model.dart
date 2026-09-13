@@ -52,21 +52,21 @@ import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_indicator_s
 import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_rate_limited_alert_provider.dart';
 import 'package:fluxer_app/features/chat/providers/slowmode/slowmode_tracker.dart';
 import 'package:fluxer_app/features/chat/providers/upload/cloud_upload_controller.dart';
+import 'package:fluxer_app/features/chat/utils/attachments/file_upload_validator.dart';
+import 'package:fluxer_app/features/chat/utils/attachments/uploading_attachment_utils.dart';
+import 'package:fluxer_app/features/chat/utils/attachments/voice_message_constants.dart';
 import 'package:fluxer_app/features/chat/utils/channel_jump_navigator.dart';
-import 'package:fluxer_app/features/chat/utils/channel_message_stream.dart';
-import 'package:fluxer_app/features/chat/utils/client_nonce.dart';
-import 'package:fluxer_app/features/chat/utils/client_system_message.dart';
-import 'package:fluxer_app/features/chat/utils/composer_command.dart';
-import 'package:fluxer_app/features/chat/utils/file_upload_validator.dart';
-import 'package:fluxer_app/features/chat/utils/guild_composer_barrier_l10n.dart';
-import 'package:fluxer_app/features/chat/utils/mention_reply_preference_utils.dart';
-import 'package:fluxer_app/features/chat/utils/message_page_sync.dart';
-import 'package:fluxer_app/features/chat/utils/message_screen_reader_announce.dart';
-import 'package:fluxer_app/features/chat/utils/message_send_failure_messages.dart';
-import 'package:fluxer_app/features/chat/utils/slowmode_utils.dart';
-import 'package:fluxer_app/features/chat/utils/uploading_attachment_utils.dart';
-import 'package:fluxer_app/features/chat/utils/url_sanitization_utils.dart';
-import 'package:fluxer_app/features/chat/utils/voice_message_constants.dart';
+import 'package:fluxer_app/features/chat/utils/composer/composer_command.dart';
+import 'package:fluxer_app/features/chat/utils/composer/guild_composer_barrier_l10n.dart';
+import 'package:fluxer_app/features/chat/utils/composer/mention_reply_preference_utils.dart';
+import 'package:fluxer_app/features/chat/utils/composer/slowmode_utils.dart';
+import 'package:fluxer_app/features/chat/utils/messages/channel_message_stream.dart';
+import 'package:fluxer_app/features/chat/utils/messages/client_nonce.dart';
+import 'package:fluxer_app/features/chat/utils/messages/client_system_message.dart';
+import 'package:fluxer_app/features/chat/utils/messages/message_page_sync.dart';
+import 'package:fluxer_app/features/chat/utils/messages/message_screen_reader_announce.dart';
+import 'package:fluxer_app/features/chat/utils/messages/message_send_failure_messages.dart';
+import 'package:fluxer_app/features/chat/utils/messages/url_sanitization_utils.dart';
 import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
 import 'package:fluxer_app/features/dm/providers/dm_providers.dart';
 import 'package:fluxer_app/features/guilds/services/guild_verification.dart';
@@ -223,6 +223,23 @@ class ChatViewState {
     this.jumpHighlightSequence = 0,
     this.revealedCollapsedGroupKey,
   }) : _writeAuthorization = null;
+
+  static const ChatViewState empty = ChatViewState(
+    channelId: '',
+    messages: [],
+    replyingTo: null,
+    replyMentioning: false,
+    editingMessage: null,
+    messageText: '',
+    scrollToBottomSignal: 0,
+    isLoading: false,
+    isSyncingMessages: false,
+    isLoadingMore: false,
+    isLoadingNewer: false,
+    hasMoreMessages: true,
+    hasMoreNewerMessages: false,
+    errorMessage: null,
+  );
 
   const ChatViewState._(
     this._writeAuthorization, {
@@ -622,8 +639,39 @@ class ChatViewModel extends _$ChatViewModel {
       <String, DateTime>{};
   MessageRealtimeFrameBatcher? _frameBatcher;
 
+  void _resetAccountLocalState() {
+    _channelSwitchGeneration++;
+    _windowGeneration++;
+    _parkedWindows.clear();
+    _lastReconciledGatewayGenerationByChannel.clear();
+    _lastReconciledForegroundGenerationByChannel.clear();
+    _lastReconciledConnectivityGapGenerationByChannel.clear();
+    _lastNetworkRefreshByChannel.clear();
+    _localMutations.clear();
+    _inFlightOptimisticMessages.clear();
+    _pendingDeleteFutures.clear();
+    _loadedUnreadBoundaryKeys.clear();
+    _realtimeQueue.clear();
+    _swapCommits.clear();
+    _armedSwap = null;
+    _switchInFlightRequest = null;
+    _switchInFlightFuture = null;
+    _pendingSessionResync = false;
+    _contiguityTrusted = false;
+  }
+
   @override
   ChatViewState build() {
+    ref.listen<String?>(currentUserIdProvider, (
+      String? previous,
+      String? next,
+    ) {
+      if (previous == next) {
+        return;
+      }
+      _resetAccountLocalState();
+      state = ChatViewState.empty;
+    });
     final bus = ref.watch(messageRealtimeBusProvider);
     unawaited(_eventsSub?.cancel());
     _frameBatcher?.dispose();
@@ -669,22 +717,7 @@ class ChatViewModel extends _$ChatViewModel {
         _frameBatcher?.dispose();
         unawaited(_eventsSub?.cancel());
       });
-    return const ChatViewState(
-      channelId: '',
-      messages: [],
-      replyingTo: null,
-      replyMentioning: false,
-      editingMessage: null,
-      messageText: '',
-      scrollToBottomSignal: 0,
-      isLoading: false,
-      isSyncingMessages: false,
-      isLoadingMore: false,
-      isLoadingNewer: false,
-      hasMoreMessages: true,
-      hasMoreNewerMessages: false,
-      errorMessage: null,
-    );
+    return ChatViewState.empty;
   }
 
   void _syncReadAckEligibility(ChatReadViewportState viewport) {
@@ -4142,12 +4175,16 @@ class ChatViewModel extends _$ChatViewModel {
     }
     final String? visibleTailId = newestServerBackedMessageId(state.messages);
     if (!force && visibleTailId == null) {
-      if (!state.hasMoreNewerMessages) {
+      final ChatReadViewportState viewport = ref.read(chatReadViewportProvider);
+      if (isAutoAckEligible(
+        viewport: viewport,
+        channelId: channelId,
+        hasMoreNewerMessages: state.hasMoreNewerMessages,
+        currentTailId: null,
+      )) {
         final database = ref.read(fluxerDatabaseProvider);
         final readState = await database.readStateDao.getReadState(channelId);
-        if (readState != null &&
-            !readState.manual &&
-            (readState.lastMessageId?.isNotEmpty ?? false)) {
+        if (!(readState?.manual ?? false)) {
           await ref.read(readStateRepositoryProvider).ackLatest(channelId);
         }
       }

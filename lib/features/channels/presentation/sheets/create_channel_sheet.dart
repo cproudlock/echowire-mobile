@@ -150,11 +150,10 @@ class CreateChannelSheet {
                             description:
                                 l10n.guildNavbarVoiceChannelDescription,
                           ),
-                          const FluxerRadioItem<int>(
-                            value: 15,
-                            label: 'Forum',
-                            description:
-                                'A space for organized, threaded posts',
+                          FluxerRadioItem<int>(
+                            value: ChannelType.guildForum.wireValue,
+                            label: l10n.forumChannelTypeLabel,
+                            description: l10n.forumChannelTypeDescription,
                           ),
                           FluxerRadioItem<int>(
                             value: ChannelType.guildLink.wireValue,

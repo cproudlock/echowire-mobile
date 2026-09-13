@@ -94,14 +94,20 @@ class _ThreadMembersContentState extends ConsumerState<_ThreadMembersContent> {
   }
 
   Future<List<db.User>> _load() async {
-    final List<String> ids = await ref
-        .read(threadRepositoryProvider)
-        .listThreadMemberIds(widget.channelId);
-    return ref.read(fluxerDatabaseProvider).userDao.getUsersByIds(ids);
+    try {
+      final List<String> ids = await ref
+          .read(threadRepositoryProvider)
+          .listThreadMemberIds(widget.channelId);
+      return await ref.read(fluxerDatabaseProvider).userDao.getUsersByIds(ids);
+    } on Exception catch (e, st) {
+      talker.error('Could not load thread members', e, st);
+      rethrow;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
     return FutureBuilder<List<db.User>>(
       future: _membersFuture,
       builder: (BuildContext context, AsyncSnapshot<List<db.User>> snapshot) {
@@ -111,16 +117,16 @@ class _ThreadMembersContentState extends ConsumerState<_ThreadMembersContent> {
         if (snapshot.hasError) {
           return _EmptySheetState(
             icon: PhosphorIconsBold.users,
-            title: 'Could not load members',
-            body: '${snapshot.error}',
+            title: l10n.threadsMembersLoadFailed,
+            body: l10n.threadsActionFailed,
           );
         }
         final List<db.User> members = snapshot.data ?? const <db.User>[];
         if (members.isEmpty) {
-          return const _EmptySheetState(
+          return _EmptySheetState(
             icon: PhosphorIconsBold.users,
-            title: 'No thread members yet',
-            body: 'People who join this thread will appear here.',
+            title: l10n.threadsNoMembersTitle,
+            body: l10n.threadsNoMembersBody,
           );
         }
         return ListView.builder(
@@ -132,14 +138,10 @@ class _ThreadMembersContentState extends ConsumerState<_ThreadMembersContent> {
             final String name = (u.globalName?.isNotEmpty ?? false)
                 ? u.globalName!
                 : u.username;
-            return ListTile(
-              leading: CircleAvatar(
-                child: Text(
-                  name.isNotEmpty ? name.substring(0, 1).toUpperCase() : '?',
-                ),
-              ),
-              title: Text(name),
-              subtitle: Text('@${u.username}'),
+            return FluxerListRow(
+              leading: FluxerAvatar(fallbackText: name),
+              title: name,
+              subtitle: '@${u.username}',
             );
           },
         );

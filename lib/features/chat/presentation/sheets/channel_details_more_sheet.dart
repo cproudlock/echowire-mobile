@@ -189,21 +189,27 @@ Future<void> _showDetailsMoreSheet(
           : null;
       final threadItems = <Widget>[
         if (threadChannel != null) ...[
-          FluxerBottomSheetMenuItem(
-            label: threadChannel.isArchived ? 'Reopen Thread' : 'Close Thread',
-            icon: PhosphorIconsBold.archive,
-            onTap: () => run(() async {
-              await ref
-                  .read(threadRepositoryProvider)
-                  .updateThread(
-                    threadChannel.id,
-                    archived: !threadChannel.isArchived,
-                  );
-            }),
-          ),
+          if (canManageChannel ||
+              (currentUserId != null && threadChannel.ownerId == currentUserId))
+            FluxerBottomSheetMenuItem(
+              label: threadChannel.isArchived
+                  ? l10n.threadsReopenThread
+                  : l10n.threadsCloseThread,
+              icon: PhosphorIconsBold.archive,
+              onTap: () => run(() async {
+                await ref
+                    .read(threadRepositoryProvider)
+                    .updateThread(
+                      threadChannel.id,
+                      archived: !threadChannel.isArchived,
+                    );
+              }),
+            ),
           if (canManageChannel)
             FluxerBottomSheetMenuItem(
-              label: threadChannel.isLocked ? 'Unlock Thread' : 'Lock Thread',
+              label: threadChannel.isLocked
+                  ? l10n.threadsUnlockThread
+                  : l10n.threadsLockThread,
               icon: threadChannel.isLocked
                   ? PhosphorIconsBold.lockOpen
                   : PhosphorIconsBold.lock,
@@ -217,7 +223,7 @@ Future<void> _showDetailsMoreSheet(
               }),
             ),
           FluxerBottomSheetMenuItem(
-            label: 'Leave Thread',
+            label: l10n.threadsLeaveThread,
             icon: PhosphorIconsBold.signOut,
             onTap: () => run(
               () => ref
@@ -227,7 +233,7 @@ Future<void> _showDetailsMoreSheet(
           ),
           if (canManageChannel)
             FluxerBottomSheetMenuItem(
-              label: 'Delete Thread',
+              label: l10n.threadsDeleteThread,
               icon: PhosphorIconsBold.trash,
               isDanger: true,
               onTap: () => run(() async {

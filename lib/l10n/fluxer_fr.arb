@@ -4561,19 +4561,19 @@
     },
     "lookAndFeelNekoTitle": "Divers",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "Options d'interface diverses.",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "Afficher Neko",
+    "lookAndFeelShowNekoLabel": "Afficher Pickles",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "Lorsqu'elle est activée, Neko apparaît près de la barre de saisie de discussion.",
+    "lookAndFeelShowNekoDescription": "Lorsqu'elle est activée, Pickles apparaît près de la barre de saisie de discussion.",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "Comportement de connexion aux salons vocaux",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -15786,9 +15786,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "Afficher Neko",
+    "advancedSettingShowNekoLabel": "Afficher Pickles",
     "advancedSettingShowNekoDescription": "Chat qui suit votre curseur",
-    "advancedSettingShowNekoDescriptionTouch": "Afficher Neko sur votre zone de saisie de discussion",
+    "advancedSettingShowNekoDescriptionTouch": "Afficher Pickles sur votre zone de saisie de discussion",
+    "advancedSettingShowNekoKeywordCat": "Chat",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Animation de zoom de démarrage",
     "advancedSettingMobileSplashZoomAnimationDescription": "Réduire le logo en quittant l’écran de démarrage",
     "advancedSettingKeyboardHintsLabel": "Suggestions du clavier",

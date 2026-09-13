@@ -4597,11 +4597,11 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Įvairūs sąsajos nustatymai.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Rodyti Neko';
+  String get lookAndFeelShowNekoLabel => 'Rodyti Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Kai įjungta, Neko pasirodo šalia pokalbių įvesties laukelio.';
+      'Kai įjungta, Pickles pasirodo šalia pokalbių įvesties laukelio.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10252,15 +10252,21 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
       'Vibracijos grįžtamasis ryšys palietus ir atliekant veiksmus. Nesinchronizuojama tarp įrenginių.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Rodyti Neko';
+  String get advancedSettingShowNekoLabel => 'Rodyti Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Neko katė, kuri vejasi jūsų žymeklį';
+      'Pickles katė, kuri vejasi jūsų žymeklį';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Rodyti Neko jūsų pokalbio įvestyje';
+      'Rodyti Pickles jūsų pokalbio įvestyje';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Katė';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

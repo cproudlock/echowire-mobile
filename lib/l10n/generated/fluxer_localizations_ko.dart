@@ -4406,10 +4406,11 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => '기타 인터페이스 옵션입니다.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Neko 표시';
+  String get lookAndFeelShowNekoLabel => 'Pickles 표시';
 
   @override
-  String get lookAndFeelShowNekoDescription => '활성화하면 Neko가 채팅 입력창 근처에 나타납니다.';
+  String get lookAndFeelShowNekoDescription =>
+      '활성화하면 Pickles가 채팅 입력창 근처에 나타납니다.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle => '음성 채널 참여 동작';
@@ -9711,13 +9712,19 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
       '탭 및 동작에 대한 진동 피드백입니다. 기기 간에 동기화되지 않습니다.';
 
   @override
-  String get advancedSettingShowNekoLabel => '네코 표시';
+  String get advancedSettingShowNekoLabel => 'Pickles 표시';
 
   @override
-  String get advancedSettingShowNekoDescription => '커서를 따라다니는 네코 고양이';
+  String get advancedSettingShowNekoDescription => '커서를 따라다니는 Pickles 고양이';
 
   @override
-  String get advancedSettingShowNekoDescriptionTouch => '채팅 입력창에 네코 표시';
+  String get advancedSettingShowNekoDescriptionTouch => '채팅 입력창에 Pickles 표시';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => '고양이';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel => '스플래시 줌 애니메이션';

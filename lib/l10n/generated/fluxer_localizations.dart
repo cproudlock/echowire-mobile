@@ -7469,28 +7469,28 @@ abstract class FluxerLocalizations {
   /// **'When enabled, shortcut badges are hidden in tooltip popups.'**
   String get lookAndFeelHideKeyboardHintsDescription;
 
-  /// Subsection title under Interface for Neko appearance settings.
+  /// Subsection title under Interface for Pickles appearance settings.
   ///
   /// In en, this message translates to:
   /// **'Miscellaneous'**
   String get lookAndFeelNekoTitle;
 
-  /// Subsection description for Neko appearance settings.
+  /// Subsection description for Pickles appearance settings.
   ///
   /// In en, this message translates to:
   /// **'Miscellaneous interface options.'**
   String get lookAndFeelNekoDescription;
 
-  /// Toggle label for showing Neko in the chat footer.
+  /// Toggle label for showing Pickles in the chat footer.
   ///
   /// In en, this message translates to:
-  /// **'Show Neko'**
+  /// **'Show Pickles'**
   String get lookAndFeelShowNekoLabel;
 
-  /// Toggle description for showing Neko in chat.
+  /// Toggle description for showing Pickles in chat.
   ///
   /// In en, this message translates to:
-  /// **'When enabled, Neko appears near the chat input bar.'**
+  /// **'When enabled, Pickles appears near the chat input bar.'**
   String get lookAndFeelShowNekoDescription;
 
   /// Subsection title under Interface — voice channel join behavior.
@@ -16789,20 +16789,32 @@ abstract class FluxerLocalizations {
   /// No description provided for @advancedSettingShowNekoLabel.
   ///
   /// In en, this message translates to:
-  /// **'Show Neko'**
+  /// **'Show Pickles'**
   String get advancedSettingShowNekoLabel;
 
   /// No description provided for @advancedSettingShowNekoDescription.
   ///
   /// In en, this message translates to:
-  /// **'Neko cat that chases your cursor'**
+  /// **'Pickles, the cat that chases your cursor'**
   String get advancedSettingShowNekoDescription;
 
   /// No description provided for @advancedSettingShowNekoDescriptionTouch.
   ///
   /// In en, this message translates to:
-  /// **'Show Neko on your chat input'**
+  /// **'Show Pickles on your chat input'**
   String get advancedSettingShowNekoDescriptionTouch;
+
+  /// Settings search keyword for the Pickles cat sprite setting.
+  ///
+  /// In en, this message translates to:
+  /// **'cat'**
+  String get advancedSettingShowNekoKeywordCat;
+
+  /// Settings search keyword: the former name of Pickles, the cat sprite, kept so the old name still finds the setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Neko'**
+  String get advancedSettingShowNekoKeywordNeko;
 
   /// No description provided for @advancedSettingMobileSplashZoomAnimationLabel.
   ///

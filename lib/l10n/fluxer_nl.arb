@@ -5795,19 +5795,19 @@
     },
     "lookAndFeelNekoTitle": "Overig",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "Diverse interface-opties.",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "Neko weergeven",
+    "lookAndFeelShowNekoLabel": "Pickles weergeven",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "Wanneer ingeschakeld, verschijnt Neko in de buurt van de chatinvoerbalk.",
+    "lookAndFeelShowNekoDescription": "Wanneer ingeschakeld, verschijnt Pickles in de buurt van de chatinvoerbalk.",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "Gedrag bij deelnemen aan spraakkanaal",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -12427,9 +12427,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "Neko weergeven",
-    "advancedSettingShowNekoDescription": "Neko-kat die je cursor achterna zit",
-    "advancedSettingShowNekoDescriptionTouch": "Neko tonen in je chatinvoer",
+    "advancedSettingShowNekoLabel": "Pickles weergeven",
+    "advancedSettingShowNekoDescription": "Pickles-kat die je cursor achterna zit",
+    "advancedSettingShowNekoDescriptionTouch": "Pickles tonen in je chatinvoer",
+    "advancedSettingShowNekoKeywordCat": "Kat",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Splash zoom-animatie",
     "advancedSettingMobileSplashZoomAnimationDescription": "Zoom het logo uit bij het verlaten van het welkomstscherm",
     "advancedSettingKeyboardHintsLabel": "Toetsenbordtips",

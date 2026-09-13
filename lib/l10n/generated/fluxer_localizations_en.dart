@@ -4552,11 +4552,11 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Miscellaneous interface options.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Show Neko';
+  String get lookAndFeelShowNekoLabel => 'Show Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'When enabled, Neko appears near the chat input bar.';
+      'When enabled, Pickles appears near the chat input bar.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle => 'Voice channel join behavior';
@@ -10091,15 +10091,21 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
       'Vibration feedback for taps and actions. Won\'t sync across devices.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Show Neko';
+  String get advancedSettingShowNekoLabel => 'Show Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Neko cat that chases your cursor';
+      'Pickles, the cat that chases your cursor';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Show Neko on your chat input';
+      'Show Pickles on your chat input';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'cat';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>
@@ -18725,11 +18731,11 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
   String get lookAndFeelNekoDescription => 'Miscellaneous interface options.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Show Neko';
+  String get lookAndFeelShowNekoLabel => 'Show Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'When enabled, Neko appears near the chat input bar.';
+      'When enabled, Pickles appears near the chat input bar.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle => 'Voice channel join behaviour';
@@ -24243,15 +24249,21 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
       'Vibration feedback for taps and actions. Won\'t sync across devices.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Show Neko';
+  String get advancedSettingShowNekoLabel => 'Show Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Neko cat that chases your cursor';
+      'Pickles, the cat that chases your cursor';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Show Neko on your chat input';
+      'Show Pickles on your chat input';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'cat';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>
@@ -32863,11 +32875,11 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
   String get lookAndFeelNekoDescription => 'Miscellaneous interface options.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Show Neko';
+  String get lookAndFeelShowNekoLabel => 'Show Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'When enabled, Neko appears near the chat input bar.';
+      'When enabled, Pickles appears near the chat input bar.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle => 'Voice channel join behavior';
@@ -38390,15 +38402,21 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
       'Vibration feedback for taps and actions. Won\'t sync across devices.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Show Neko';
+  String get advancedSettingShowNekoLabel => 'Show Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Neko cat that chases your cursor';
+      'Pickles, the cat that chases your cursor';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Show Neko on your chat input';
+      'Show Pickles on your chat input';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'cat';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

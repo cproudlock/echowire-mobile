@@ -4576,11 +4576,11 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Různé možnosti rozhraní.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Zobrazit Neko';
+  String get lookAndFeelShowNekoLabel => 'Zobrazit Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Když je povoleno, Neko se zobrazí poblíž vstupního pole chatu.';
+      'Když je povoleno, Pickles se zobrazí poblíž vstupního pole chatu.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10170,15 +10170,21 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       'Zpětná vazba vibracemi pro klepnutí a akce. Nebude synchronizována mezi zařízeními.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Zobrazit Neko';
+  String get advancedSettingShowNekoLabel => 'Zobrazit Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Kočka Neko, která honí váš kurzor';
+      'Kočka Pickles, která honí váš kurzor';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Zobrazit Neko na vašem chatu';
+      'Zobrazit Pickles na vašem chatu';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'kočka';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

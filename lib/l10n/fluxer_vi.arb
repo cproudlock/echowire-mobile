@@ -5795,19 +5795,19 @@
     },
     "lookAndFeelNekoTitle": "Khác",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "Các tùy chọn giao diện khác.",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "Hiện Neko",
+    "lookAndFeelShowNekoLabel": "Hiện Pickles",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "Khi bật, Neko sẽ xuất hiện gần thanh nhập tin nhắn.",
+    "lookAndFeelShowNekoDescription": "Khi bật, Pickles sẽ xuất hiện gần thanh nhập tin nhắn.",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "Hành vi khi tham gia kênh thoại",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -12427,9 +12427,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "Hiện Neko",
-    "advancedSettingShowNekoDescription": "Mèo Neko đuổi theo con trỏ chuột của bạn",
-    "advancedSettingShowNekoDescriptionTouch": "Hiển thị Neko trên ô nhập tin nhắn của bạn",
+    "advancedSettingShowNekoLabel": "Hiện Pickles",
+    "advancedSettingShowNekoDescription": "Mèo Pickles đuổi theo con trỏ chuột của bạn",
+    "advancedSettingShowNekoDescriptionTouch": "Hiển thị Pickles trên ô nhập tin nhắn của bạn",
+    "advancedSettingShowNekoKeywordCat": "Mèo",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Hoạt ảnh thu phóng khi khởi động",
     "advancedSettingMobileSplashZoomAnimationDescription": "Thu nhỏ logo khi rời khỏi màn hình chờ",
     "advancedSettingKeyboardHintsLabel": "Gợi ý bàn phím",

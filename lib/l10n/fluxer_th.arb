@@ -4561,19 +4561,19 @@
     },
     "lookAndFeelNekoTitle": "เบ็ดเตล็ด",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "ตัวเลือกอินเทอร์เฟซเบ็ดเตล็ด",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "แสดง Neko",
+    "lookAndFeelShowNekoLabel": "แสดง Pickles",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "เมื่อเปิดใช้งาน Neko จะปรากฏใกล้แถบป้อนข้อมูลแชท",
+    "lookAndFeelShowNekoDescription": "เมื่อเปิดใช้งาน Pickles จะปรากฏใกล้แถบป้อนข้อมูลแชท",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "พฤติกรรมการเข้าร่วมช่องเสียง",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -15786,9 +15786,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "แสดง Neko",
-    "advancedSettingShowNekoDescription": "แมวเนะโกะไล่ตามเคอร์เซอร์ของคุณ",
-    "advancedSettingShowNekoDescriptionTouch": "แสดง Neko ที่ช่องป้อนข้อความแชทของคุณ",
+    "advancedSettingShowNekoLabel": "แสดง Pickles",
+    "advancedSettingShowNekoDescription": "แมว Pickles ไล่ตามเคอร์เซอร์ของคุณ",
+    "advancedSettingShowNekoDescriptionTouch": "แสดง Pickles ที่ช่องป้อนข้อความแชทของคุณ",
+    "advancedSettingShowNekoKeywordCat": "แมว",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "ภาพเคลื่อนไหวซูมตอนเปิด",
     "advancedSettingMobileSplashZoomAnimationDescription": "ย่อโลโก้ออกเมื่อออกจากหน้าจอเริ่มต้น",
     "advancedSettingKeyboardHintsLabel": "คำแนะนำแป้นพิมพ์",

@@ -4561,19 +4561,19 @@
     },
     "lookAndFeelNekoTitle": "Diversos",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "Opções diversas de interface.",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "Mostrar Neko",
+    "lookAndFeelShowNekoLabel": "Mostrar Pickles",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "Quando ativado, Neko aparece perto da barra de entrada de chat.",
+    "lookAndFeelShowNekoDescription": "Quando ativado, Pickles aparece perto da barra de entrada de chat.",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "Comportamento de entrada em canais de voz",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -15786,9 +15786,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "Mostrar Neko",
-    "advancedSettingShowNekoDescription": "Gato Neko que persegue seu cursor",
-    "advancedSettingShowNekoDescriptionTouch": "Mostrar Neko na sua caixa de texto",
+    "advancedSettingShowNekoLabel": "Mostrar Pickles",
+    "advancedSettingShowNekoDescription": "Gato Pickles que persegue seu cursor",
+    "advancedSettingShowNekoDescriptionTouch": "Mostrar Pickles na sua caixa de texto",
+    "advancedSettingShowNekoKeywordCat": "Gato",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Animação de zoom inicial",
     "advancedSettingMobileSplashZoomAnimationDescription": "Reduzir o zoom do logo ao sair da tela de introdução",
     "advancedSettingKeyboardHintsLabel": "Dicas de teclado",

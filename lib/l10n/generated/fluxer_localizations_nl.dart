@@ -4582,11 +4582,11 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Diverse interface-opties.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Neko weergeven';
+  String get lookAndFeelShowNekoLabel => 'Pickles weergeven';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Wanneer ingeschakeld, verschijnt Neko in de buurt van de chatinvoerbalk.';
+      'Wanneer ingeschakeld, verschijnt Pickles in de buurt van de chatinvoerbalk.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10185,15 +10185,21 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
       'Trillingsfeedback voor tikken en acties. Wordt niet gesynchroniseerd met andere apparaten.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Neko weergeven';
+  String get advancedSettingShowNekoLabel => 'Pickles weergeven';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Neko-kat die je cursor achterna zit';
+      'Pickles-kat die je cursor achterna zit';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Neko tonen in je chatinvoer';
+      'Pickles tonen in je chatinvoer';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Kat';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

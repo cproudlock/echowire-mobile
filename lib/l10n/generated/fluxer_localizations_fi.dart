@@ -4576,11 +4576,11 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Muut käyttöliittymävaihtoehdot.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Näytä Neko';
+  String get lookAndFeelShowNekoLabel => 'Näytä Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Kun käytössä, Neko ilmestyy keskustelun syöttökentän lähelle.';
+      'Kun käytössä, Pickles ilmestyy keskustelun syöttökentän lähelle.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10165,15 +10165,21 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
       'Värinäpalaute napautuksista ja toimista. Ei synkronoidu laitteiden välillä.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Näytä Neko';
+  String get advancedSettingShowNekoLabel => 'Näytä Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Neko-kissa, joka jahtaa osoitintasi';
+      'Pickles-kissa, joka jahtaa osoitintasi';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Näytä Neko chat-syötteessäsi';
+      'Näytä Pickles chat-syötteessäsi';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Kissa';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

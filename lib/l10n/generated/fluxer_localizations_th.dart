@@ -4537,11 +4537,11 @@ class FluxerLocalizationsTh extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'ตัวเลือกอินเทอร์เฟซเบ็ดเตล็ด';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'แสดง Neko';
+  String get lookAndFeelShowNekoLabel => 'แสดง Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'เมื่อเปิดใช้งาน Neko จะปรากฏใกล้แถบป้อนข้อมูลแชท';
+      'เมื่อเปิดใช้งาน Pickles จะปรากฏใกล้แถบป้อนข้อมูลแชท';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle => 'พฤติกรรมการเข้าร่วมช่องเสียง';
@@ -10058,15 +10058,21 @@ class FluxerLocalizationsTh extends FluxerLocalizations {
       'การสั่นเพื่อตอบสนองต่อการแตะและการดำเนินการต่างๆ จะไม่ซิงค์ข้ามอุปกรณ์';
 
   @override
-  String get advancedSettingShowNekoLabel => 'แสดง Neko';
+  String get advancedSettingShowNekoLabel => 'แสดง Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'แมวเนะโกะไล่ตามเคอร์เซอร์ของคุณ';
+      'แมว Pickles ไล่ตามเคอร์เซอร์ของคุณ';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'แสดง Neko ที่ช่องป้อนข้อความแชทของคุณ';
+      'แสดง Pickles ที่ช่องป้อนข้อความแชทของคุณ';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'แมว';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

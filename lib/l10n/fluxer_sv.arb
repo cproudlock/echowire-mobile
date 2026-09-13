@@ -4561,19 +4561,19 @@
     },
     "lookAndFeelNekoTitle": "Diverse",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "Diverse gränssnittsinställningar.",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "Visa Neko",
+    "lookAndFeelShowNekoLabel": "Visa Pickles",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "När det är aktiverat visas Neko nära chattinmatningsfältet.",
+    "lookAndFeelShowNekoDescription": "När det är aktiverat visas Pickles nära chattinmatningsfältet.",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "Anslutningsbeteende för röstkanaler",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -15786,9 +15786,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "Visa Neko",
-    "advancedSettingShowNekoDescription": "Neko-katt som jagar din muspekare",
-    "advancedSettingShowNekoDescriptionTouch": "Visa Neko vid din chattinmatning",
+    "advancedSettingShowNekoLabel": "Visa Pickles",
+    "advancedSettingShowNekoDescription": "Pickles-katt som jagar din muspekare",
+    "advancedSettingShowNekoDescriptionTouch": "Visa Pickles vid din chattinmatning",
+    "advancedSettingShowNekoKeywordCat": "Katt",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Splash-zoom-animation",
     "advancedSettingMobileSplashZoomAnimationDescription": "Zooma ut logotypen när du lämnar startsidan",
     "advancedSettingKeyboardHintsLabel": "Tangentbordstips",

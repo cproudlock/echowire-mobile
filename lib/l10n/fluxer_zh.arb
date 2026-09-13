@@ -4561,19 +4561,19 @@
     },
     "lookAndFeelNekoTitle": "杂项",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "杂项界面选项。",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "显示 Neko",
+    "lookAndFeelShowNekoLabel": "显示 Pickles",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "启用后，Neko 会出现在聊天输入栏附近。",
+    "lookAndFeelShowNekoDescription": "启用后，Pickles 会出现在聊天输入栏附近。",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "语音频道加入行为",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -15786,9 +15786,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "显示 Neko",
+    "advancedSettingShowNekoLabel": "显示 Pickles",
     "advancedSettingShowNekoDescription": "一只会跟着你鼠标指针跑的猫咪",
-    "advancedSettingShowNekoDescriptionTouch": "在聊天输入框中显示 Neko",
+    "advancedSettingShowNekoDescriptionTouch": "在聊天输入框中显示 Pickles",
+    "advancedSettingShowNekoKeywordCat": "猫",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "启动缩放动画",
     "advancedSettingMobileSplashZoomAnimationDescription": "离开启动屏时缩小 Logo",
     "advancedSettingKeyboardHintsLabel": "键盘提示",

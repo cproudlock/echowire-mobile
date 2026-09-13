@@ -609,7 +609,13 @@ final List<_UserSettingsSearchOption> _userSettingsSearchOptions = [
     id: 'advanced:neko',
     section: UserSettingsSection.advanced,
     fieldId: 'advanced-settings-appearance',
+    // Echowire: Neko is displayed as Pickles, an orange cat; the old name
+    // stays a search keyword.
     label: _l((l10n) => l10n.advancedSettingShowNekoLabel),
+    keywords: [
+      _l((l10n) => l10n.advancedSettingShowNekoKeywordCat),
+      _l((l10n) => l10n.advancedSettingShowNekoKeywordNeko),
+    ],
   ),
   _UserSettingsSearchOption(
     id: 'advanced:splash-animation',

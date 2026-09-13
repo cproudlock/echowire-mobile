@@ -4602,11 +4602,11 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Egyéb felületi opciók.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Neko mutatása';
+  String get lookAndFeelShowNekoLabel => 'Pickles mutatása';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Ha engedélyezve van, Neko megjelenik a csevegés láblécében.';
+      'Ha engedélyezve van, Pickles megjelenik a csevegés láblécében.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10227,15 +10227,21 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Rezgés visszajelzés koppintásokra és műveletekre. Nem szinkronizálódik az eszközök között.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Neko megjelenítése';
+  String get advancedSettingShowNekoLabel => 'Pickles megjelenítése';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Neko macska, amely követi az egérmutatót';
+      'Pickles macska, amely követi az egérmutatót';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Mutasd a Neko-t a csevegőbeíráskor';
+      'Mutasd Picklest a csevegőbeíráskor';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Macska';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

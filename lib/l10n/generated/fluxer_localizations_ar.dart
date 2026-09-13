@@ -4538,11 +4538,11 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'خيارات واجهة متفرقة.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'إظهار Neko';
+  String get lookAndFeelShowNekoLabel => 'إظهار Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'عند التمكين، يظهر Neko بالقرب من شريط إدخال الدردشة.';
+      'عند التمكين، يظهر Pickles بالقرب من شريط إدخال الدردشة.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10058,15 +10058,21 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
       'اهتزاز للتنبيه عند النقر والإجراءات. لن تتم مزامنته عبر الأجهزة.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'إظهار Neko';
+  String get advancedSettingShowNekoLabel => 'إظهار Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'قط نِيكو يطارد مؤشر الفأرة الخاص بك';
+      'قط Pickles يطارد مؤشر الفأرة الخاص بك';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'إظهار Neko في مربع إدخال الدردشة لديك';
+      'إظهار Pickles في مربع إدخال الدردشة لديك';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'قطة';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

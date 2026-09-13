@@ -4581,11 +4581,11 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Razne opcije sučelja.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Prikaži Neko';
+  String get lookAndFeelShowNekoLabel => 'Prikaži Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Kad je omogućeno, Neko se pojavljuje blizu trake za unos chata.';
+      'Kad je omogućeno, Pickles se pojavljuje blizu trake za unos chata.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10174,15 +10174,21 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
       'Povratne vibracije za dodire i radnje. Neće se sinkronizirati na drugim uređajima.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Prikaži Neko';
+  String get advancedSettingShowNekoLabel => 'Prikaži Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Mačka Neko koja juri vaš pokazivač';
+      'Mačka Pickles koja juri vaš pokazivač';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Prikaži Neko u polju za unos chata';
+      'Prikaži Pickles u polju za unos chata';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Mačka';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

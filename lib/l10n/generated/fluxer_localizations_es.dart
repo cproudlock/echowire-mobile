@@ -946,7 +946,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'Las cuentas Visionary no pueden canjear regalos de Plutonium. Copia el enlace para compartirlo con un amigo.';
+      'Las cuentas Visionary no pueden canjear regalos de Reverb. Copia el enlace para compartirlo con un amigo.';
 
   @override
   String get giftCopyLink => 'Copiar enlace de regalo';
@@ -9197,7 +9197,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Seguridad e inicio de sesión';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Regalos';
@@ -9207,14 +9207,14 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Reclama tu cuenta para canjear o gestionar códigos de regalo de Plutonium.';
+      'Reclama tu cuenta para canjear o gestionar códigos de regalo de Reverb.';
 
   @override
   String get giftSettingsRedeemTitle => 'Canjear un regalo';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'Introduce un código de regalo para canjear Plutonium en tu cuenta.';
+      'Introduce un código de regalo para canjear Reverb en tu cuenta.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'Introduce el código de regalo…';
@@ -9224,24 +9224,24 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
 
   @override
   String get giftSettingsRedeemSuccess =>
-      'Regalo canjeado correctamente. Disfruta de tu Plutonium.';
+      'Regalo canjeado correctamente. Disfruta de tu Reverb.';
 
   @override
   String get giftSettingsPurchasedTitle => 'Regalos comprados';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'Gestiona tus códigos de regalo de Plutonium comprados. ¡Comparte la URL del regalo con alguien especial o canjéalo tú mismo!';
+      'Gestiona tus códigos de regalo de Reverb comprados. ¡Comparte la URL del regalo con alguien especial o canjéalo tú mismo!';
 
   @override
   String get giftSettingsEmptyTitle => 'Aún no tienes regalos';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Compra un regalo de Plutonium desde la pestaña Plutonium para compartir con tus amigos.';
+      'Compra un regalo de Reverb desde la pestaña Reverb para compartir con tus amigos.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Ir a Plutonium';
+  String get giftSettingsGoToPlutonium => 'Ir a Reverb';
 
   @override
   String get giftSettingsLoadFailedTitle =>
@@ -9343,20 +9343,20 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'Desplázate hacia abajo para ver todas las ventajas de Plutonium';
+      'Desplázate hacia abajo para ver todas las ventajas de Reverb';
 
   @override
-  String get premiumFreeVsPlutonium => 'Gratis frente a Plutonium';
+  String get premiumFreeVsPlutonium => 'Gratis frente a Reverb';
 
   @override
   String get premiumFreeColumn => 'Gratis';
 
   @override
-  String get premiumGiftSectionTitle => 'Regalar Plutonium';
+  String get premiumGiftSectionTitle => 'Regalar Reverb';
 
   @override
   String get premiumGiftSectionDescription =>
-      'Comparte la experiencia de Plutonium con tus amigos comprando una suscripción de regalo.';
+      'Comparte la experiencia de Reverb con tus amigos comprando una suscripción de regalo.';
 
   @override
   String get premiumGiftBannerOne =>
@@ -9507,7 +9507,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Ahora te redirigimos a Stripe para completar el pago. Vuelve a Fluxer cuando hayas terminado.';
+      'Ahora te redirigimos a Stripe para completar el pago. Vuelve a echowire cuando hayas terminado.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Elige un método de pago';
@@ -9549,22 +9549,22 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'Hemos encontrado una suscripción de Fluxer Plutonium existente para esta cuenta. Gestionarla en el portal de facturación seguro para actualizar los detalles de pago o comprobar el estado de renovación. Si acabas de pagar, espera un minuto y vuelve a abrir esta página.';
+      'Hemos encontrado una suscripción de Reverb existente para esta cuenta. Gestionarla en el portal de facturación seguro para actualizar los detalles de pago o comprobar el estado de renovación. Si acabas de pagar, espera un minuto y vuelve a abrir esta página.';
 
   @override
   String get premiumPurchasesDisabledTitle => 'Compras no disponibles';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'Las compras están desactivadas para esta cuenta. Ponte en contacto con support@fluxer.app si esto parece incorrecto.';
+      'Las compras están desactivadas para esta cuenta. Ponte en contacto con support@echowire.org si esto parece incorrecto.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Reclama tu cuenta para comprar Fluxer Plutonium.';
+      'Reclama tu cuenta para comprar Reverb.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'Debes verificar tu correo electrónico antes de poder comprar Fluxer Plutonium.';
+      'Debes verificar tu correo electrónico antes de poder comprar Reverb.';
 
   @override
   String get premiumPerkCustomUsernameTag =>
@@ -11015,14 +11015,14 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
 
   @override
   String get instanceUrlPlaceholder =>
-      'Introduce la URL de la instancia (p. ej., fluxer.app)';
+      'Introduce la URL de la instancia (p. ej., echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Restablecer a Echowire';
+  String get resetToDefaultInstance => 'Restablecer a echowire';
 
   @override
   String get instanceConnect => 'Conectar';
@@ -14438,7 +14438,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   FluxerLocalizationsEs419() : super('es_419');
 
   @override
-  String get reconnectingTitle => '¡Echowire ha dejado el grupo!';
+  String get reconnectingTitle => '¡echowire ha dejado el grupo!';
 
   @override
   String get reconnectingBody =>
@@ -18801,7 +18801,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   String get connectionRemoveFailed => 'No se pudo eliminar la conexión';
 
   @override
-  String get connectionTokenSavedToast => 'Verificación de Echowire guardada';
+  String get connectionTokenSavedToast => 'Verificación de echowire guardada';
 
   @override
   String get connectionTokenSaveFailedToast => 'No se pudo guardar el archivo';
@@ -23604,7 +23604,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   String get userSettingsNavSecurityLogin => 'Seguridad e inicio de sesión';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Suscripción a Echowire Reverb';
+  String get userSettingsNavFluxerPlutonium => 'Suscripción a echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Regalos';
@@ -23645,10 +23645,10 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Compra un regalo de Plutonium desde la pestaña Plutonium para compartir con tus amigos.';
+      'Compra un regalo de Reverb desde la pestaña Reverb para compartir con tus amigos.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Ir a Plutonium';
+  String get giftSettingsGoToPlutonium => 'Ir a Reverb';
 
   @override
   String get giftSettingsLoadFailedTitle =>
@@ -23749,10 +23749,10 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
 
   @override
   String get premiumScrollPrompt =>
-      'Desplázate hacia abajo para ver todas las ventajas incluidas con Plutonium';
+      'Desplázate hacia abajo para ver todas las ventajas incluidas con Reverb';
 
   @override
-  String get premiumFreeVsPlutonium => 'Gratis vs. Plutonium';
+  String get premiumFreeVsPlutonium => 'Gratis vs. Reverb';
 
   @override
   String get premiumFreeColumn => 'Gratis';
@@ -23762,7 +23762,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
 
   @override
   String get premiumGiftSectionDescription =>
-      'Comparte la experiencia de Plutonium con tus amigos comprando una suscripción de regalo.';
+      'Comparte la experiencia de Reverb con tus amigos comprando una suscripción de regalo.';
 
   @override
   String get premiumGiftBannerOne =>
@@ -23913,7 +23913,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Ahora serás redirigido a Stripe para completar el pago. Regresa a Fluxer una vez que lo hayas hecho.';
+      'Ahora serás redirigido a Stripe para completar el pago. Regresa a echowire una vez que lo hayas hecho.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Elige un método de pago';
@@ -23955,22 +23955,22 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'Encontramos una suscripción existente de Fluxer Plutonium para esta cuenta. Administrala en el portal de facturación seguro para actualizar los detalles de pago o verificar el estado de renovación. Si acabas de pagar, espera un minuto y vuelve a abrir esta página.';
+      'Encontramos una suscripción existente de Reverb para esta cuenta. Administrala en el portal de facturación seguro para actualizar los detalles de pago o verificar el estado de renovación. Si acabas de pagar, espera un minuto y vuelve a abrir esta página.';
 
   @override
   String get premiumPurchasesDisabledTitle => 'Compras no disponibles';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'Las compras están deshabilitadas para esta cuenta. Ponte en contacto con support@fluxer.app si esto parece incorrecto.';
+      'Las compras están deshabilitadas para esta cuenta. Ponte en contacto con support@echowire.org si esto parece incorrecto.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Reclama tu cuenta para comprar Fluxer Plutonium.';
+      'Reclama tu cuenta para comprar Reverb.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'Necesitas verificar tu correo electrónico antes de poder comprar Fluxer Plutonium.';
+      'Necesitas verificar tu correo electrónico antes de poder comprar Reverb.';
 
   @override
   String get premiumPerkCustomUsernameTag =>
@@ -25416,10 +25416,10 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
 
   @override
   String get instanceUrlPlaceholder =>
-      'Introduce la URL de la instancia (ej. fluxer.app)';
+      'Introduce la URL de la instancia (ej. echowire.org)';
 
   @override
-  String get resetToDefaultInstance => 'Restablecer a Echowire';
+  String get resetToDefaultInstance => 'Restablecer a echowire';
 
   @override
   String get instanceConnect => 'Conectar';

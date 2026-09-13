@@ -1087,7 +1087,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1100,7 +1100,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1113,7 +1113,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1126,7 +1126,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1139,7 +1139,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1194,7 +1194,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1244,11 +1244,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Ne možeš iskoristiti ovaj poklon",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Visionary računi ne mogu iskoristiti Plutonium poklone. Umjesto toga, kopirajte poveznicu kako biste je podijelili s prijateljem.",
+    "giftVisionaryCannotRedeemMessage": "Visionary računi ne mogu iskoristiti Reverb poklone. Umjesto toga, kopirajte poveznicu kako biste je podijelili s prijateljem.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Kopiraj poveznicu za dar",
     "@giftCopyLink": {
@@ -2010,7 +2010,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Otključaj {emojiCount} iz {communityCount} uz Plutonium.",
+    "emojiPlutoniumUpsellText": "Otključaj {emojiCount} iz {communityCount} uz Reverb.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -2022,13 +2022,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Nabavi Plutonium",
+    "emojiPlutoniumUpsellButton": "Nabavi Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "Ne prikazuj ovo ponovno",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 prilagođeni emoji} other{{count} prilagođenih emojija}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -2146,11 +2146,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "Animirani avatari zahtijevaju Plutonium",
+    "animatedAvatarsRequirePlutonium": "Animirani avatari zahtijevaju Reverb",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "Animirani natpisi zahtijevaju Plutonium",
+    "animatedBannersRequirePlutonium": "Animirani natpisi zahtijevaju Reverb",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -2230,7 +2230,7 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "Nabavite Plutonium za prilagodbu svoje oznake ili je zadržite prilikom promjene korisničkog imena",
+    "discriminatorPremiumTooltip": "Nabavite Reverb za prilagodbu svoje oznake ili je zadržite prilikom promjene korisničkog imena",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
@@ -2254,7 +2254,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "Vaša prilagođena 4-znamenkasta oznaka dostupna je samo dok je vaša Plutonium pretplata aktivna. Kada vaša pretplata istekne {date}, vaša će se oznaka nakon 3-dnevnog razdoblja odgode vratiti na slučajno dodijeljeni broj.",
+    "customTagTemporaryBodyWithDate": "Vaša prilagođena 4-znamenkasta oznaka dostupna je samo dok je vaša Reverb pretplata aktivna. Kada vaša pretplata istekne {date}, vaša će se oznaka nakon 3-dnevnog razdoblja odgode vratiti na slučajno dodijeljeni broj.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -2263,7 +2263,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "Vaš prilagođeni 4-znamenkasti tag dostupan je samo dok je vaša Plutonium pretplata aktivna. Kada pretplata istekne, vaš će se tag nakon 3 dana prijelaznog razdoblja vratiti na slučajno dodijeljeni broj.",
+    "customTagTemporaryBody": "Vaš prilagođeni 4-znamenkasti tag dostupan je samo dok je vaša Reverb pretplata aktivna. Kada pretplata istekne, vaš će se tag nakon 3 dana prijelaznog razdoblja vratiti na slučajno dodijeljeni broj.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -2271,11 +2271,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "Ako spremite ovaj korisnički naziv, vaš prilagođeni 4-znamenkasti tag vratit će se na nasumični broj kada vaša Plutonium pretplata završi. Ako se vaša pretplata ne obnovi, imat ćete 3 dana prijelaznog roka prije nego što se tag promijeni.",
+    "premiumWarningPendingDiscriminator": "Ako spremite ovaj korisnički naziv, vaš prilagođeni 4-znamenkasti tag vratit će se na nasumični broj kada vaša Reverb pretplata završi. Ako se vaša pretplata ne obnovi, imat ćete 3 dana prijelaznog roka prije nego što se tag promijeni.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "Vaša prilagođena 4-znamenkasta oznaka (#{discriminator}) aktivna je dok je vaša Plutonium pretplata aktivna. Ako vaša pretplata završi ili ne uspije obnoviti nakon 3-dnevnog razdoblja počeka, vaša će se oznaka vratiti na nasumični broj.",
+    "premiumWarningActiveDiscriminator": "Vaša prilagođena 4-znamenkasta oznaka (#{discriminator}) aktivna je dok je vaša Reverb pretplata aktivna. Ako vaša pretplata završi ili ne uspije obnoviti nakon 3-dnevnog razdoblja počeka, vaša će se oznaka vratiti na nasumični broj.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -2286,9 +2286,9 @@
     },
     "premiumUpsellCustomizeTag": "Prilagodi svoju 4-znamenkastu oznaku ili je zadrži prilikom promjene korisničkog imena",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "Tvoja Plutonium proba istječe {date}. Nadogradi kako bi zadržao svoj prilagođeni tag i zaradio značku na svom profilu.",
+    "premiumTrialExpiresOn": "Tvoja Reverb proba istječe {date}. Nadogradi kako bi zadržao svoj prilagođeni tag i zaradio značku na svom profilu.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -2297,7 +2297,7 @@
             }
         }
     },
-    "premiumTrialActive": "Na Plutonium ste probnoj verziji. Nadogradite kako biste zadržali svoj prilagođeni tag i zaradili značku na svom profilu.",
+    "premiumTrialActive": "Na Reverb ste probnoj verziji. Nadogradite kako biste zadržali svoj prilagođeni tag i zaradili značku na svom profilu.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
@@ -2333,7 +2333,7 @@
     "@changeFluxerTag": {
         "description": "Button label to open the username change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "Prilagodi svoju četveroznamenkastu oznaku (#{discriminator}) po želji uz Plutonium",
+    "customizeTagWithPlutoniumTooltip": "Prilagodi svoju četveroznamenkastu oznaku (#{discriminator}) po želji uz Reverb",
     "@customizeTagWithPlutoniumTooltip": {
         "description": "Tooltip on the crown upsell button next to the username button.",
         "placeholders": {
@@ -2346,7 +2346,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "Vaša prilagođena oznaka (#{discriminator}) povezana je s vašom Plutonium pretplatom i vratit će se na nasumičnu oznaku ako istekne.",
+    "customTagSubscriptionWarning": "Vaša prilagođena oznaka (#{discriminator}) povezana je s vašom Reverb pretplatom i vratit će se na nasumičnu oznaku ako istekne.",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -2415,38 +2415,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Privatnost Plutonium značke",
+    "plutoniumBadgePrivacyTitle": "Privatnost Reverb značke",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "Upravljajte prikazom svoje Plutonium značke drugima",
+    "plutoniumBadgePrivacyDescription": "Upravljajte prikazom svoje Reverb značke drugima",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "Potpuno sakrij Plutonium bedž",
+    "hidePlutoniumBadgeLabel": "Potpuno sakrij Reverb bedž",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "Potpuno sakrij svoju Plutonium značku od drugih korisnika",
+    "hidePlutoniumBadgeDescription": "Potpuno sakrij svoju Reverb značku od drugih korisnika",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "Sakrij datum kupnje Plutoniuma",
+    "hidePlutoniumPurchaseDate": "Sakrij datum kupnje Reverba",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "Sakrij datum kupnje Plutoniuma ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "Sakrij datum kupnje Reverba ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "Uklonite datum prve kupnje Plutoniuma s vaše značke",
+    "hidePurchaseDateDescription": "Uklonite datum prve kupnje Reverba s vaše značke",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "Maskiraj Vizionara kao pretplatu",
     "@maskVisionaryAsSubscription": {
@@ -2473,7 +2473,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "Na Plutonium ste pretplati — vaša pretplata počinje {date}",
+    "premiumTrialSubscriptionStarts": "Na Reverb ste pretplati — vaša pretplata počinje {date}",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -2486,7 +2486,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "Na Plutonium pretplati ste na probno razdoblje koje istječe {date}",
+    "premiumTrialExpiresOnProfile": "Na Reverb pretplati ste na probno razdoblje koje istječe {date}",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -2495,29 +2495,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "Na Plutonium ste pretplati",
+    "premiumTrialActiveProfile": "Na Reverb ste pretplati",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maksimalno 10 MB. Preporučeno: 512×512 px. Animiranih avatara (GIF) zahtijeva Plutonium.",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maksimalno 10 MB. Preporučeno: 512×512 px. Animiranih avatara (GIF) zahtijeva Reverb.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "Prilagodite svoj profil statičnom ili animiranom slikom natpisa kako biste ga istaknuli.",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "Nabavi Plutonium",
+    "getPlutonium": "Nabavi Reverb",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "Kupnje unutar aplikacije još nisu dostupne na ovoj platformi. Pratite nas — uskoro!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "Pregled",
     "@profilePreviewLabel": {
@@ -2564,7 +2564,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "Prilagođavanje vašeg avatara, banera, naglasne boje i biografije za pojedinačne zajednice zahtijeva Plutonium. Nadimak i zamjenice zajednice besplatni su za sve.",
+    "perGuildPremiumUpsellText": "Prilagođavanje vašeg avatara, banera, naglasne boje i biografije za pojedinačne zajednice zahtijeva Reverb. Nadimak i zamjenice zajednice besplatni su za sve.",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -3311,7 +3311,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Otkažite svoju aktivnu Plutonium pretplatu u postavkama Plutoniuma prije brisanja računa.",
+    "dangerZoneDeleteCancelSubscription": "Otkažite svoju aktivnu Reverb pretplatu u postavkama Reverba prije brisanja računa.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -3713,7 +3713,7 @@
             }
         }
     },
-    "userProfilePlutoniumBadgeTooltip": "Plutonium od {productName}",
+    "userProfilePlutoniumBadgeTooltip": "Reverb od {productName}",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3722,7 +3722,7 @@
             }
         }
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Plutonium pretplatnik od {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Reverb pretplatnik od {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -4838,7 +4838,7 @@
     },
     "systemDmComposerBarrier": "Sistemske obavijesti osoblja {productName}. Ovdje ne možete odgovoriti.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -5880,7 +5880,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "Sažmi DM-ove u mapu",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Kada je omogućeno, nepričuvane izravne poruke u bočnoj traci poslužitelja bit će sažete u mapu na gumbu {productName}. Kliknite gumb {productName} dok ste na stranici izravnih poruka da biste proširili ili saželi mapu.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -6609,7 +6609,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Smanji kretanje",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Onemogućite animacije i prijelaze. Trenutačno kontrolirano postavkama sustava.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -7596,7 +7596,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} znakova preostalo. Nabavite {productName} za pisanje do {premiumMaxLength} znakova.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -7615,7 +7615,7 @@
     },
     "chatSendFailureDmRestricted": "Vaša poruka nije mogla biti isporučena. To je obično zato što ne dijelite zajednicu s primateljem ili primatelj prihvaća izravne poruke samo od prijatelja. Možda ćete također morati prilagoditi vlastite postavke privatnosti izravnih poruka u {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -7624,27 +7624,27 @@
     },
     "chatSendFailureUnclaimedDm": "Vaša poruka nije mogla biti isporučena. Morate potvrditi svoj račun da biste slali izravne poruke.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Vaša poruka nije mogla biti isporučena. Morate potvrditi svoj račun da biste slali poruke.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Vaša poruka nije mogla biti isporučena jer ju je naš sustav sigurnosti označio. Ako mislite da je ovo pogreška, obratite se podršci.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Tvoja poruka nije mogla biti dostavljena jer sadrži neprikladne emotikone ili naljepnice koje nisu dopuštene u ovom kontekstu.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Ovu poruku možeš vidjeti samo ti.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Odbaci",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Komunikacija",
     "@privacyDashboardCommunicationSection": {
@@ -9594,7 +9594,7 @@
     },
     "addGuildImportTemplateInvalid": "Podaci predloška zajednice su nevažeći ili neispravni.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "addGuildPackInstalled": "Paket je uspješno instaliran.",
     "@addGuildPackInstalled": {
@@ -11460,26 +11460,26 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Pokloni",
     "@userSettingsNavGiftsAndCodes": {
         "description": "User settings navigation item for gifts and promo codes."
     },
     "giftSettingsClaimAccountTitle": "Preuzmite svoj račun",
-    "giftSettingsClaimAccountDescription": "Preuzmite svoj račun za iskorištavanje ili upravljanje Plutonium kodovima za poklone.",
+    "giftSettingsClaimAccountDescription": "Preuzmite svoj račun za iskorištavanje ili upravljanje Reverb kodovima za poklone.",
     "giftSettingsRedeemTitle": "Iskoristi dar",
-    "giftSettingsRedeemDescription": "Unesite poklon-kod za iskorištavanje Plutoniuma za svoj račun.",
+    "giftSettingsRedeemDescription": "Unesite poklon-kod za iskorištavanje Reverba za svoj račun.",
     "giftSettingsRedeemPlaceholder": "Unesite kod poklona…",
     "giftSettingsRedeemButton": "Iskoristi",
-    "giftSettingsRedeemSuccess": "Poklon uspješno iskorišten. Uživajte u Plutoniumu.",
+    "giftSettingsRedeemSuccess": "Poklon uspješno iskorišten. Uživajte u Reverbu.",
     "giftSettingsPurchasedTitle": "Kupljeni darovi",
-    "giftSettingsPurchasedDescription": "Upravljajte svojim kupljenim Plutonium kodovima za poklone. Podijelite URL poklona s nekim posebnim ili ga iskoristite za sebe!",
+    "giftSettingsPurchasedDescription": "Upravljajte svojim kupljenim Reverb kodovima za poklone. Podijelite URL poklona s nekim posebnim ili ga iskoristite za sebe!",
     "giftSettingsEmptyTitle": "Još nema poklona",
-    "giftSettingsEmptyDescription": "Kupite Plutonium poklon s kartice Plutonium i podijelite ga s prijateljima.",
-    "giftSettingsGoToPlutonium": "Idi na Plutonium",
+    "giftSettingsEmptyDescription": "Kupite Reverb poklon s kartice Reverb i podijelite ga s prijateljima.",
+    "giftSettingsGoToPlutonium": "Idi na Reverb",
     "giftSettingsLoadFailedTitle": "Učitavanje inventara poklona nije uspjelo",
     "giftSettingsLoadFailedDescription": "Pokušajte ponovo kasnije.",
     "giftSettingsTryAgain": "Pokušaj ponovno",
@@ -11530,11 +11530,11 @@
     "premiumOneYearGift": "Poklon za 1 godinu",
     "premiumOneMonthGift": "Poklon za 1 mjesec",
     "premiumMostPopular": "Najpopularnije",
-    "premiumScrollPrompt": "Pomaknite se prema dolje da biste vidjeli sve pogodnosti uključene u Plutonium",
-    "premiumFreeVsPlutonium": "Besplatno ili Plutonium",
+    "premiumScrollPrompt": "Pomaknite se prema dolje da biste vidjeli sve pogodnosti uključene u Reverb",
+    "premiumFreeVsPlutonium": "Besplatno ili Reverb",
     "premiumFreeColumn": "Besplatno",
-    "premiumGiftSectionTitle": "Poklonite Plutonium",
-    "premiumGiftSectionDescription": "Podijelite Plutonium iskustvo s prijateljima kupnjom poklon pretplate.",
+    "premiumGiftSectionTitle": "Poklonite Reverb",
+    "premiumGiftSectionDescription": "Podijelite Reverb iskustvo s prijateljima kupnjom poklon pretplate.",
     "premiumGiftBannerOne": "Čeka te novi kod za poklon!",
     "premiumGiftBannerMany": "Čeka vas {count} novih kodova za poklon!",
     "@premiumGiftBannerMany": {
@@ -11641,7 +11641,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Trenutno ste na poklon pretplati. Neće se automatski obnoviti. Možete iskoristiti više poklon kodova kako biste je produžili. Pretplate s automatskom obnovom mogu se pokrenuti nakon što istekne vaše poklon razdoblje.",
     "premiumPlanUnavailable": "Ovaj plan nije dostupan. Obratite se podršci.",
     "premiumCompletePaymentTitle": "Dovrši plaćanje",
-    "premiumCompletePaymentBody": "Sada prelazite na Stripe kako biste dovršili plaćanje. Vratite se u Fluxer nakon što završite.",
+    "premiumCompletePaymentBody": "Sada prelazite na Stripe kako biste dovršili plaćanje. Vratite se u echowire nakon što završite.",
     "premiumChoosePaymentMethodTitle": "Odaberite način plaćanja",
     "premiumPixPaymentPromptDescription": "Platite automatskim Pixom za autorizaciju ponavljajućih naplata izravno s vašeg brazilskog bankovnog računa. Ili odaberite \"upotrijebi karticu\" za unos kreditne kartice na sljedećem zaslonu Stripe.",
     "premiumUsePix": "Upotrijebi Pix",
@@ -11653,11 +11653,11 @@
     "premiumAlreadyVisionaryTitle": "Već ste Vizionar",
     "premiumAlreadyVisionaryBody": "Visionary već uključuje trajni pristup, tako da pretplata nije potrebna. I dalje možete kupovati darove za druge.",
     "premiumExistingSubscriptionTitle": "Pretplata već postoji",
-    "premiumExistingSubscriptionBody": "Pronašli smo postojeću pretplatu na Fluxer Plutonium za ovaj račun. Upravljajte njome u sigurnosnom portalu za naplatu kako biste ažurirali podatke o plaćanju ili provjerili status obnove. Ako ste upravo platili, pričekajte minutu i ponovno otvorite ovu stranicu.",
+    "premiumExistingSubscriptionBody": "Pronašli smo postojeću pretplatu na Reverb za ovaj račun. Upravljajte njome u sigurnosnom portalu za naplatu kako biste ažurirali podatke o plaćanju ili provjerili status obnove. Ako ste upravo platili, pričekajte minutu i ponovno otvorite ovu stranicu.",
     "premiumPurchasesDisabledTitle": "Kupnje nedostupne",
-    "premiumPurchasesDisabledBody": "Kupnje su onemogućene za ovaj račun. Obratite se na support@fluxer.app ako ovo izgleda pogrešno.",
-    "premiumClaimAccountToPurchase": "Preuzmite svoj račun za kupnju Fluxer Plutonium.",
-    "premiumVerifyEmailToPurchase": "Potrebno je potvrditi svoju e-poštu prije nego što možete kupiti Fluxer Plutonium.",
+    "premiumPurchasesDisabledBody": "Kupnje su onemogućene za ovaj račun. Obratite se na support@echowire.org ako ovo izgleda pogrešno.",
+    "premiumClaimAccountToPurchase": "Preuzmite svoj račun za kupnju Reverb.",
+    "premiumVerifyEmailToPurchase": "Potrebno je potvrditi svoju e-poštu prije nego što možete kupiti Reverb.",
     "premiumPerkCustomUsernameTag": "Prilagođena korisnička oznaka",
     "premiumPerkPerCommunityProfiles": "Profili po zajednicama",
     "premiumPerkMessageScheduling": "Raspoređivanje poruka",
@@ -11844,7 +11844,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11898,7 +11898,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -11912,7 +11912,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11922,7 +11922,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11952,7 +11952,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11982,7 +11982,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12890,21 +12890,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Unesite URL instance (npr. fluxer.app)",
+    "instanceUrlPlaceholder": "Unesite URL instance (npr. echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Vrati na Fluxer",
+    "resetToDefaultInstance": "Vrati na echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Poveži",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Povezivanje…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Nije se moguće povezati s instancom",
     "@instanceConnectFailed": {
@@ -12933,7 +12933,7 @@
     },
     "changeInstance": "Promijeni",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Poveži se s instancom za prijavu",
     "@instanceConnectionRequired": {

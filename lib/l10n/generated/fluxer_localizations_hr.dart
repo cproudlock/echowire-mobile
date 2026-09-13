@@ -943,7 +943,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'Visionary računi ne mogu iskoristiti Plutonium poklone. Umjesto toga, kopirajte poveznicu kako biste je podijelili s prijateljem.';
+      'Visionary računi ne mogu iskoristiti Reverb poklone. Umjesto toga, kopirajte poveznicu kako biste je podijelili s prijateljem.';
 
   @override
   String get giftCopyLink => 'Kopiraj poveznicu za dar';
@@ -1527,11 +1527,11 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'Otključaj $emojiCount iz $communityCount uz Plutonium.';
+    return 'Otključaj $emojiCount iz $communityCount uz Reverb.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Nabavi Plutonium';
+  String get emojiPlutoniumUpsellButton => 'Nabavi Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Ne prikazuj ovo ponovno';
@@ -1642,11 +1642,11 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'Animirani avatari zahtijevaju Plutonium';
+      'Animirani avatari zahtijevaju Reverb';
 
   @override
   String get animatedBannersRequirePlutonium =>
-      'Animirani natpisi zahtijevaju Plutonium';
+      'Animirani natpisi zahtijevaju Reverb';
 
   @override
   String get animatedAvifNotSupported => 'Animirani AVIF nije podržan';
@@ -1711,7 +1711,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Nabavite Plutonium za prilagodbu svoje oznake ili je zadržite prilikom promjene korisničkog imena';
+      'Nabavite Reverb za prilagodbu svoje oznake ili je zadržite prilikom promjene korisničkog imena';
 
   @override
   String get fluxerTagAlreadyTaken => 'Korisničko ime je već zauzeto';
@@ -1726,23 +1726,23 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'Vaša prilagođena 4-znamenkasta oznaka dostupna je samo dok je vaša Plutonium pretplata aktivna. Kada vaša pretplata istekne $date, vaša će se oznaka nakon 3-dnevnog razdoblja odgode vratiti na slučajno dodijeljeni broj.';
+    return 'Vaša prilagođena 4-znamenkasta oznaka dostupna je samo dok je vaša Reverb pretplata aktivna. Kada vaša pretplata istekne $date, vaša će se oznaka nakon 3-dnevnog razdoblja odgode vratiti na slučajno dodijeljeni broj.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'Vaš prilagođeni 4-znamenkasti tag dostupan je samo dok je vaša Plutonium pretplata aktivna. Kada pretplata istekne, vaš će se tag nakon 3 dana prijelaznog razdoblja vratiti na slučajno dodijeljeni broj.';
+      'Vaš prilagođeni 4-znamenkasti tag dostupan je samo dok je vaša Reverb pretplata aktivna. Kada pretplata istekne, vaš će se tag nakon 3 dana prijelaznog razdoblja vratiti na slučajno dodijeljeni broj.';
 
   @override
   String get iUnderstandContinue => 'Razumijem, nastavi';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Ako spremite ovaj korisnički naziv, vaš prilagođeni 4-znamenkasti tag vratit će se na nasumični broj kada vaša Plutonium pretplata završi. Ako se vaša pretplata ne obnovi, imat ćete 3 dana prijelaznog roka prije nego što se tag promijeni.';
+      'Ako spremite ovaj korisnički naziv, vaš prilagođeni 4-znamenkasti tag vratit će se na nasumični broj kada vaša Reverb pretplata završi. Ako se vaša pretplata ne obnovi, imat ćete 3 dana prijelaznog roka prije nego što se tag promijeni.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Vaša prilagođena 4-znamenkasta oznaka (#$discriminator) aktivna je dok je vaša Plutonium pretplata aktivna. Ako vaša pretplata završi ili ne uspije obnoviti nakon 3-dnevnog razdoblja počeka, vaša će se oznaka vratiti na nasumični broj.';
+    return 'Vaša prilagođena 4-znamenkasta oznaka (#$discriminator) aktivna je dok je vaša Reverb pretplata aktivna. Ako vaša pretplata završi ili ne uspije obnoviti nakon 3-dnevnog razdoblja počeka, vaša će se oznaka vratiti na nasumični broj.';
   }
 
   @override
@@ -1751,12 +1751,12 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'Tvoja Plutonium proba istječe $date. Nadogradi kako bi zadržao svoj prilagođeni tag i zaradio značku na svom profilu.';
+    return 'Tvoja Reverb proba istječe $date. Nadogradi kako bi zadržao svoj prilagođeni tag i zaradio značku na svom profilu.';
   }
 
   @override
   String get premiumTrialActive =>
-      'Na Plutonium ste probnoj verziji. Nadogradite kako biste zadržali svoj prilagođeni tag i zaradili značku na svom profilu.';
+      'Na Reverb ste probnoj verziji. Nadogradite kako biste zadržali svoj prilagođeni tag i zaradili značku na svom profilu.';
 
   @override
   String get fluxerTagUpdated => 'Korisničko ime ažurirano';
@@ -1787,7 +1787,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Prilagodi svoju četveroznamenkastu oznaku (#$discriminator) po želji uz Plutonium';
+    return 'Prilagodi svoju četveroznamenkastu oznaku (#$discriminator) po želji uz Reverb';
   }
 
   @override
@@ -1796,7 +1796,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'Vaša prilagođena oznaka (#$discriminator) povezana je s vašom Plutonium pretplatom i vratit će se na nasumičnu oznaku ako istekne.';
+    return 'Vaša prilagođena oznaka (#$discriminator) povezana je s vašom Reverb pretplatom i vratit će se na nasumičnu oznaku ako istekne.';
   }
 
   @override
@@ -1849,30 +1849,30 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get emojiPickerTitle => 'Emojii';
 
   @override
-  String get plutoniumBadgePrivacyTitle => 'Privatnost Plutonium značke';
+  String get plutoniumBadgePrivacyTitle => 'Privatnost Reverb značke';
 
   @override
   String get plutoniumBadgePrivacyDescription =>
-      'Upravljajte prikazom svoje Plutonium značke drugima';
+      'Upravljajte prikazom svoje Reverb značke drugima';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'Potpuno sakrij Plutonium bedž';
+  String get hidePlutoniumBadgeLabel => 'Potpuno sakrij Reverb bedž';
 
   @override
   String get hidePlutoniumBadgeDescription =>
-      'Potpuno sakrij svoju Plutonium značku od drugih korisnika';
+      'Potpuno sakrij svoju Reverb značku od drugih korisnika';
 
   @override
-  String get hidePlutoniumPurchaseDate => 'Sakrij datum kupnje Plutoniuma';
+  String get hidePlutoniumPurchaseDate => 'Sakrij datum kupnje Reverba';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'Sakrij datum kupnje Plutoniuma ($date)';
+    return 'Sakrij datum kupnje Reverba ($date)';
   }
 
   @override
   String get hidePurchaseDateDescription =>
-      'Uklonite datum prve kupnje Plutoniuma s vaše značke';
+      'Uklonite datum prve kupnje Reverba s vaše značke';
 
   @override
   String get maskVisionaryAsSubscription => 'Maskiraj Vizionara kao pretplatu';
@@ -1894,7 +1894,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'Na Plutonium ste pretplati — vaša pretplata počinje $date';
+    return 'Na Reverb ste pretplati — vaša pretplata počinje $date';
   }
 
   @override
@@ -1903,25 +1903,25 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'Na Plutonium pretplati ste na probno razdoblje koje istječe $date';
+    return 'Na Reverb pretplati ste na probno razdoblje koje istječe $date';
   }
 
   @override
-  String get premiumTrialActiveProfile => 'Na Plutonium ste pretplati';
+  String get premiumTrialActiveProfile => 'Na Reverb ste pretplati';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. Maksimalno 10 MB. Preporučeno: 512×512 px. Animiranih avatara (GIF) zahtijeva Plutonium.';
+      'JPEG, PNG, WebP. Maksimalno 10 MB. Preporučeno: 512×512 px. Animiranih avatara (GIF) zahtijeva Reverb.';
 
   @override
   String get bannerPlutoniumUpsell =>
       'Prilagodite svoj profil statičnom ili animiranom slikom natpisa kako biste ga istaknuli.';
 
   @override
-  String get getPlutonium => 'Nabavi Plutonium';
+  String get getPlutonium => 'Nabavi Reverb';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1963,7 +1963,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      'Prilagođavanje vašeg avatara, banera, naglasne boje i biografije za pojedinačne zajednice zahtijeva Plutonium. Nadimak i zamjenice zajednice besplatni su za sve.';
+      'Prilagođavanje vašeg avatara, banera, naglasne boje i biografije za pojedinačne zajednice zahtijeva Reverb. Nadimak i zamjenice zajednice besplatni su za sve.';
 
   @override
   String get avatarModeInherit => 'Upotrijebi globalni profil';
@@ -2558,7 +2558,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'Otkažite svoju aktivnu Plutonium pretplatu u postavkama Plutoniuma prije brisanja računa.';
+      'Otkažite svoju aktivnu Reverb pretplatu u postavkama Reverba prije brisanja računa.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount =>
@@ -2911,7 +2911,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String userProfilePlutoniumBadgeTooltip(String productName) {
-    return 'Plutonium od $productName';
+    return 'Reverb od $productName';
   }
 
   @override
@@ -2919,7 +2919,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String productName,
     String date,
   ) {
-    return '$productName Plutonium pretplatnik od $date';
+    return '$productName Reverb pretplatnik od $date';
   }
 
   @override
@@ -9144,7 +9144,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Sigurnost i prijava';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Pokloni';
@@ -9154,14 +9154,14 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Preuzmite svoj račun za iskorištavanje ili upravljanje Plutonium kodovima za poklone.';
+      'Preuzmite svoj račun za iskorištavanje ili upravljanje Reverb kodovima za poklone.';
 
   @override
   String get giftSettingsRedeemTitle => 'Iskoristi dar';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'Unesite poklon-kod za iskorištavanje Plutoniuma za svoj račun.';
+      'Unesite poklon-kod za iskorištavanje Reverba za svoj račun.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'Unesite kod poklona…';
@@ -9171,24 +9171,24 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get giftSettingsRedeemSuccess =>
-      'Poklon uspješno iskorišten. Uživajte u Plutoniumu.';
+      'Poklon uspješno iskorišten. Uživajte u Reverbu.';
 
   @override
   String get giftSettingsPurchasedTitle => 'Kupljeni darovi';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'Upravljajte svojim kupljenim Plutonium kodovima za poklone. Podijelite URL poklona s nekim posebnim ili ga iskoristite za sebe!';
+      'Upravljajte svojim kupljenim Reverb kodovima za poklone. Podijelite URL poklona s nekim posebnim ili ga iskoristite za sebe!';
 
   @override
   String get giftSettingsEmptyTitle => 'Još nema poklona';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Kupite Plutonium poklon s kartice Plutonium i podijelite ga s prijateljima.';
+      'Kupite Reverb poklon s kartice Reverb i podijelite ga s prijateljima.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Idi na Plutonium';
+  String get giftSettingsGoToPlutonium => 'Idi na Reverb';
 
   @override
   String get giftSettingsLoadFailedTitle =>
@@ -9288,20 +9288,20 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'Pomaknite se prema dolje da biste vidjeli sve pogodnosti uključene u Plutonium';
+      'Pomaknite se prema dolje da biste vidjeli sve pogodnosti uključene u Reverb';
 
   @override
-  String get premiumFreeVsPlutonium => 'Besplatno ili Plutonium';
+  String get premiumFreeVsPlutonium => 'Besplatno ili Reverb';
 
   @override
   String get premiumFreeColumn => 'Besplatno';
 
   @override
-  String get premiumGiftSectionTitle => 'Poklonite Plutonium';
+  String get premiumGiftSectionTitle => 'Poklonite Reverb';
 
   @override
   String get premiumGiftSectionDescription =>
-      'Podijelite Plutonium iskustvo s prijateljima kupnjom poklon pretplate.';
+      'Podijelite Reverb iskustvo s prijateljima kupnjom poklon pretplate.';
 
   @override
   String get premiumGiftBannerOne => 'Čeka te novi kod za poklon!';
@@ -9450,7 +9450,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Sada prelazite na Stripe kako biste dovršili plaćanje. Vratite se u Fluxer nakon što završite.';
+      'Sada prelazite na Stripe kako biste dovršili plaćanje. Vratite se u echowire nakon što završite.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Odaberite način plaćanja';
@@ -9492,22 +9492,22 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'Pronašli smo postojeću pretplatu na Fluxer Plutonium za ovaj račun. Upravljajte njome u sigurnosnom portalu za naplatu kako biste ažurirali podatke o plaćanju ili provjerili status obnove. Ako ste upravo platili, pričekajte minutu i ponovno otvorite ovu stranicu.';
+      'Pronašli smo postojeću pretplatu na Reverb za ovaj račun. Upravljajte njome u sigurnosnom portalu za naplatu kako biste ažurirali podatke o plaćanju ili provjerili status obnove. Ako ste upravo platili, pričekajte minutu i ponovno otvorite ovu stranicu.';
 
   @override
   String get premiumPurchasesDisabledTitle => 'Kupnje nedostupne';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'Kupnje su onemogućene za ovaj račun. Obratite se na support@fluxer.app ako ovo izgleda pogrešno.';
+      'Kupnje su onemogućene za ovaj račun. Obratite se na support@echowire.org ako ovo izgleda pogrešno.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Preuzmite svoj račun za kupnju Fluxer Plutonium.';
+      'Preuzmite svoj račun za kupnju Reverb.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'Potrebno je potvrditi svoju e-poštu prije nego što možete kupiti Fluxer Plutonium.';
+      'Potrebno je potvrditi svoju e-poštu prije nego što možete kupiti Reverb.';
 
   @override
   String get premiumPerkCustomUsernameTag => 'Prilagođena korisnička oznaka';
@@ -10927,14 +10927,15 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get instanceUrlLabel => 'URL instancea';
 
   @override
-  String get instanceUrlPlaceholder => 'Unesite URL instance (npr. fluxer.app)';
+  String get instanceUrlPlaceholder =>
+      'Unesite URL instance (npr. echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Vrati na Fluxer';
+  String get resetToDefaultInstance => 'Vrati na echowire';
 
   @override
   String get instanceConnect => 'Poveži';

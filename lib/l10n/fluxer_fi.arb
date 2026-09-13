@@ -2016,7 +2016,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "Yhteisökohtaisen avatarin, bannerin, tehostevärin ja kuvauksen mukauttaminen vaatii Reverbia. Yhteisön lempinimi ja pronominit ovat ilmaisia kaikille.",
+    "perGuildPremiumUpsellText": "Yhteisökohtaisen avatarin, bannerin, tehostevärin ja kuvauksen mukauttaminen vaatii Reverbiä. Yhteisön lempinimi ja pronominit ovat ilmaisia kaikille.",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -3816,7 +3816,7 @@
     },
     "systemDmComposerBarrier": "Järjestelmäilmoitukset {productName} henkilökunnalta. Et voi vastata tähän.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4614,7 +4614,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "Kokoa yksityisviestit kansioon",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Kun käytössä, lukemattomat yksityisviestit palvelinvalikossa kootaan {productName}-painikkeen kansioon. Napsauta {productName}-painiketta DM-sivulla laajentaaksesi tai kootaksesi kansion.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -5539,7 +5539,7 @@
     },
     "chatSendFailureDmRestricted": "Viestiäsi ei voitu toimittaa. Tämä johtuu yleensä siitä, että et jaa yhteisöä vastaanottajan kanssa tai vastaanottaja hyväksyy suoria viestejä vain ystäviltä. Saatat myös joutua säätämään omia suorien viestien yksityisyysasetuksiasi kohdassa {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5548,27 +5548,27 @@
     },
     "chatSendFailureUnclaimedDm": "Viestiäsi ei voitu toimittaa. Sinun on lunastettava tilisi lähettääksesi suoria viestejä.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Viestiäsi ei voitu toimittaa. Sinun on lunastettava tilisi lähettääksesi viestejä.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Viestiäsi ei voitu toimittaa, koska turvajärjestelmämme liputtivat sen. Jos uskot tämän olevan virhe, ota yhteyttä tukeen.",
     "@chatSendFailureContentBlocked": {
-        "description": "Echowirebot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Viestiäsi ei voitu toimittaa, koska se sisälsi aikuisille tarkoitettuja hymiöitä tai tarroja, joita ei sallita tässä yhteydessä.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Echowirebot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Vain sinä näet tämän viestin.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Echowirebot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Hylkää",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Echowirebot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Viestintä",
     "@privacyDashboardCommunicationSection": {
@@ -6581,9 +6581,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Echowire Reverb subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Lahjat",
     "@userSettingsNavGiftsAndCodes": {
@@ -6897,21 +6897,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Syötä instanssin URL (esim. fluxer.app)",
+    "instanceUrlPlaceholder": "Syötä instanssin URL (esim. echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Nollaa Echowireiin",
+    "resetToDefaultInstance": "Nollaa echowireiin",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Yhdistä",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Echowire instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Yhdistetään…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Echowire instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Yhteyden muodostaminen instanssiin epäonnistui",
     "@instanceConnectFailed": {
@@ -6940,7 +6940,7 @@
     },
     "changeInstance": "Vaihda",
     "@changeInstance": {
-        "description": "Link to change the connected Echowire instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Yhdistä instanssiin kirjautuaksesi",
     "@instanceConnectionRequired": {
@@ -9440,7 +9440,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -9502,7 +9502,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -9634,7 +9634,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10490,7 +10490,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10700,7 +10700,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10918,7 +10918,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12804,7 +12804,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12817,7 +12817,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12830,7 +12830,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12843,7 +12843,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12856,7 +12856,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12911,7 +12911,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12961,11 +12961,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Tämän lahjan lunastus ei onnistu",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Visionary-tilit eivät voi lunastaa Plutonium-lahjoja. Kopioi linkki ja jaa se ystävällesi sen sijaan.",
+    "giftVisionaryCannotRedeemMessage": "Visionary-tilit eivät voi lunastaa Reverb-lahjoja. Kopioi linkki ja jaa se ystävällesi sen sijaan.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Kopioi lahjalinkki",
     "@giftCopyLink": {
@@ -13775,7 +13775,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Vähennä liikettä",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Poista animaatiot ja siirtymät käytöstä. Ohjataan tällä hetkellä järjestelmäasetuksistasi.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -15070,7 +15070,7 @@
     },
     "addGuildImportTemplateInvalid": "Yhteisömallin tiedot ovat virheellisiä tai vioittuneita.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "memberListPermissionDeniedTitle": "Et voi tarkastella jäseniä",
     "@memberListPermissionDeniedTitle": {
@@ -15466,17 +15466,17 @@
         "description": "Empty state shown when user settings search has no matches."
     },
     "giftSettingsClaimAccountTitle": "Lunasta tilisi",
-    "giftSettingsClaimAccountDescription": "Lunasta tilisi lunastaaksesi tai hallinoidaksesi Plutonium-lahjoituskoodeja.",
+    "giftSettingsClaimAccountDescription": "Lunasta tilisi lunastaaksesi tai hallinoidaksesi Reverb-lahjoituskoodeja.",
     "giftSettingsRedeemTitle": "Lunasta lahja",
-    "giftSettingsRedeemDescription": "Syötä lahjakoodi lunastaaksesi Plutoniumia tilillesi.",
+    "giftSettingsRedeemDescription": "Syötä lahjakoodi lunastaaksesi Reverbiä tilillesi.",
     "giftSettingsRedeemPlaceholder": "Anna lahjakoodi…",
     "giftSettingsRedeemButton": "Lunasta",
-    "giftSettingsRedeemSuccess": "Lahja lunastettu onnistuneesti. Nauti Plutoniumistasi.",
+    "giftSettingsRedeemSuccess": "Lahja lunastettu onnistuneesti. Nauti Reverbistäsi.",
     "giftSettingsPurchasedTitle": "Ostetut lahjat",
-    "giftSettingsPurchasedDescription": "Hallinnoi ostamiasi Plutonium-lahjakoodeja. Jaa lahjalinkki jonkun erityisen kanssa tai lunasta se itsellesi!",
+    "giftSettingsPurchasedDescription": "Hallinnoi ostamiasi Reverb-lahjakoodeja. Jaa lahjalinkki jonkun erityisen kanssa tai lunasta se itsellesi!",
     "giftSettingsEmptyTitle": "Ei lahjoja vielä",
-    "giftSettingsEmptyDescription": "Osta Plutonium-lahja Plutonium-välilehdeltä jakaaksesi sen ystävien kanssa.",
-    "giftSettingsGoToPlutonium": "Siirry Plutoniumiin",
+    "giftSettingsEmptyDescription": "Osta Reverb-lahja Reverb-välilehdeltä jakaaksesi sen ystävien kanssa.",
+    "giftSettingsGoToPlutonium": "Siirry Reverbiin",
     "giftSettingsLoadFailedTitle": "Lahjavaraston lataus epäonnistui",
     "giftSettingsLoadFailedDescription": "Yritä myöhemmin uudelleen.",
     "giftSettingsTryAgain": "Yritä uudelleen",
@@ -15527,11 +15527,11 @@
     "premiumOneYearGift": "1 vuoden lahja",
     "premiumOneMonthGift": "1 kuukauden lahja",
     "premiumMostPopular": "Suosituin",
-    "premiumScrollPrompt": "Selaa alas nähdäksesi kaikki Plutoniumiin sisältyvät edut",
-    "premiumFreeVsPlutonium": "Ilmainen vs. Plutonium",
+    "premiumScrollPrompt": "Selaa alas nähdäksesi kaikki Reverbiin sisältyvät edut",
+    "premiumFreeVsPlutonium": "Ilmainen vs. Reverb",
     "premiumFreeColumn": "Ilmainen",
-    "premiumGiftSectionTitle": "Lahjoita Plutonium",
-    "premiumGiftSectionDescription": "Jaa Plutonium-kokemus ystäviesi kanssa ostamalla lahjatilaus.",
+    "premiumGiftSectionTitle": "Lahjoita Reverb",
+    "premiumGiftSectionDescription": "Jaa Reverb-kokemus ystäviesi kanssa ostamalla lahjatilaus.",
     "premiumGiftBannerOne": "Sinulla on uusi lahjakoodi odottamassa!",
     "premiumGiftBannerMany": "Sinulla on {count} uutta lahjakoodia odottamassa!",
     "@premiumGiftBannerMany": {
@@ -15638,7 +15638,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Sinulla on lahjatilaus. Se ei uusiudu automaattisesti. Voit pidentää tilausta lunastamalla lisää lahjakoodeja. Toistuvat tilaukset voi aloittaa lahjatilauksen päätyttyä.",
     "premiumPlanUnavailable": "Tämä tilaus ei ole saatavilla. Ota yhteyttä tukeen.",
     "premiumCompletePaymentTitle": "Suorita maksu",
-    "premiumCompletePaymentBody": "Siirryt nyt Stripeen maksun suorittamiseksi. Palaa Fluxeriin, kun olet suorittanut sen.",
+    "premiumCompletePaymentBody": "Siirryt nyt Stripeen maksun suorittamiseksi. Palaa echowireiin, kun olet suorittanut sen.",
     "premiumChoosePaymentMethodTitle": "Valitse maksutapa",
     "premiumPixPaymentPromptDescription": "Maksa automaattisella Pixillä valtuuttaaksesi toistuvat veloitukset suoraan brasilialaiselta pankkitililtäsi. Tai valitse käytä korttia syöttääksesi luottokorttitiedot Stripen seuraavalla näytöllä.",
     "premiumUsePix": "Käytä Pixiä",
@@ -15650,11 +15650,11 @@
     "premiumAlreadyVisionaryTitle": "Olet jo Visionary-tilaaja",
     "premiumAlreadyVisionaryBody": "Visionary sisältää jo pysyvän käyttöoikeuden, joten toistuvaa tilausta ei tarvita. Voit silti ostaa lahjoja muille.",
     "premiumExistingSubscriptionTitle": "Tilaus on jo olemassa",
-    "premiumExistingSubscriptionBody": "Löysimme tilillesi jo olemassa olevan Fluxer Plutonium -tilauksen. Hallinnoi sitä suojatussa laskutusportaalissa päivittääksesi maksutietoja tai tarkistaaksesi uusimisen tilan. Jos maksoit juuri, odota hetki ja avaa sivu uudelleen.",
+    "premiumExistingSubscriptionBody": "Löysimme tilillesi jo olemassa olevan Reverb -tilauksen. Hallinnoi sitä suojatussa laskutusportaalissa päivittääksesi maksutietoja tai tarkistaaksesi uusimisen tilan. Jos maksoit juuri, odota hetki ja avaa sivu uudelleen.",
     "premiumPurchasesDisabledTitle": "Ostokset eivät ole käytettävissä",
-    "premiumPurchasesDisabledBody": "Ostokset on poistettu käytöstä tältä tililtä. Ota yhteyttä osoitteeseen support@fluxer.app, jos tämä näyttää virheelliseltä.",
-    "premiumClaimAccountToPurchase": "Lunasta tilisi ostaaksesi Fluxer Plutoniumia.",
-    "premiumVerifyEmailToPurchase": "Sinun täytyy vahvistaa sähköpostisi ennen kuin voit ostaa Fluxer Plutoniumia.",
+    "premiumPurchasesDisabledBody": "Ostokset on poistettu käytöstä tältä tililtä. Ota yhteyttä osoitteeseen support@echowire.org, jos tämä näyttää virheelliseltä.",
+    "premiumClaimAccountToPurchase": "Lunasta tilisi ostaaksesi Reverbiä.",
+    "premiumVerifyEmailToPurchase": "Sinun täytyy vahvistaa sähköpostisi ennen kuin voit ostaa Reverbiä.",
     "premiumPerkCustomUsernameTag": "Mukautettu käyttäjätunniste",
     "premiumPerkPerCommunityProfiles": "Yhteisökohtaiset profiilit",
     "premiumPerkMessageScheduling": "Viestien ajoitus",

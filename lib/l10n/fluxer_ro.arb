@@ -1087,7 +1087,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1100,7 +1100,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1113,7 +1113,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1126,7 +1126,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1139,7 +1139,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1194,7 +1194,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1244,11 +1244,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Nu poți revendica acest cadou",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Conturile Visionary nu pot revendica cadouri Plutonium. Copiază linkul pentru a-l trimite unui prieten.",
+    "giftVisionaryCannotRedeemMessage": "Conturile Visionary nu pot revendica cadouri Reverb. Copiază linkul pentru a-l trimite unui prieten.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Copiază linkul cadoului",
     "@giftCopyLink": {
@@ -2010,7 +2010,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Deblochează {emojiCount} din {communityCount} cu Plutonium.",
+    "emojiPlutoniumUpsellText": "Deblochează {emojiCount} din {communityCount} cu Reverb.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -2022,13 +2022,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Obține Plutonium",
+    "emojiPlutoniumUpsellButton": "Obține Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "Nu mai afișa asta",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 emoji personalizat} other{{count} emoji personalizate}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -2146,11 +2146,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "Avatarurile animate necesită Plutonium",
+    "animatedAvatarsRequirePlutonium": "Avatarurile animate necesită Reverb",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "Banner-ele animate necesită Plutonium",
+    "animatedBannersRequirePlutonium": "Banner-ele animate necesită Reverb",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -2230,7 +2230,7 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "Obține Plutonium pentru a-ți personaliza eticheta sau păstreaz-o când schimbi numele de utilizator",
+    "discriminatorPremiumTooltip": "Obține Reverb pentru a-ți personaliza eticheta sau păstreaz-o când schimbi numele de utilizator",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
@@ -2254,7 +2254,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "Eticheta personalizată de 4 cifre este disponibilă doar cât timp abonamentul tău Plutonium este activ. Când abonamentul tău expiră pe {date}, eticheta ta va reveni la un număr atribuit aleatoriu, după o perioadă de grație de 3 zile.",
+    "customTagTemporaryBodyWithDate": "Eticheta personalizată de 4 cifre este disponibilă doar cât timp abonamentul tău Reverb este activ. Când abonamentul tău expiră pe {date}, eticheta ta va reveni la un număr atribuit aleatoriu, după o perioadă de grație de 3 zile.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -2263,7 +2263,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "Eticheta ta personalizată de 4 cifre este disponibilă doar cât timp abonamentul tău Plutonium este activ. Când abonamentul tău expiră, eticheta ta va reveni la un număr atribuit aleatoriu după o perioadă de grație de 3 zile.",
+    "customTagTemporaryBody": "Eticheta ta personalizată de 4 cifre este disponibilă doar cât timp abonamentul tău Reverb este activ. Când abonamentul tău expiră, eticheta ta va reveni la un număr atribuit aleatoriu după o perioadă de grație de 3 zile.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -2271,11 +2271,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "Dacă salvezi acest nume de utilizator, eticheta ta personalizată de 4 cifre va reveni la un număr aleatoriu când abonamentul tău Plutonium se va încheia. Dacă abonamentul tău nu se reînnoiește, vei avea o perioadă de grație de 3 zile înainte ca eticheta să se schimbe.",
+    "premiumWarningPendingDiscriminator": "Dacă salvezi acest nume de utilizator, eticheta ta personalizată de 4 cifre va reveni la un număr aleatoriu când abonamentul tău Reverb se va încheia. Dacă abonamentul tău nu se reînnoiește, vei avea o perioadă de grație de 3 zile înainte ca eticheta să se schimbe.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "Eticheta ta personalizată de 4 cifre (#{discriminator}) este activă cât timp abonamentul tău Plutonium este activ. Dacă abonamentul tău se încheie sau nu se reînnoiește după o perioadă de grație de 3 zile, eticheta ta va reveni la un număr aleatoriu.",
+    "premiumWarningActiveDiscriminator": "Eticheta ta personalizată de 4 cifre (#{discriminator}) este activă cât timp abonamentul tău Reverb este activ. Dacă abonamentul tău se încheie sau nu se reînnoiește după o perioadă de grație de 3 zile, eticheta ta va reveni la un număr aleatoriu.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -2286,9 +2286,9 @@
     },
     "premiumUpsellCustomizeTag": "Personalizează-ți eticheta de 4 cifre sau păstreaz-o când îți schimbi numele de utilizator",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "Încercarea ta Plutonium expiră pe {date}. Fă upgrade pentru a păstra eticheta personalizată și pentru a câștiga o insignă pe profilul tău.",
+    "premiumTrialExpiresOn": "Încercarea ta Reverb expiră pe {date}. Fă upgrade pentru a păstra eticheta personalizată și pentru a câștiga o insignă pe profilul tău.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -2297,7 +2297,7 @@
             }
         }
     },
-    "premiumTrialActive": "Ești la un trial Plutonium. Fă upgrade pentru a păstra eticheta personalizată și a câștiga o insignă pe profilul tău.",
+    "premiumTrialActive": "Ești la un trial Reverb. Fă upgrade pentru a păstra eticheta personalizată și a câștiga o insignă pe profilul tău.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
@@ -2333,7 +2333,7 @@
     "@changeFluxerTag": {
         "description": "Button label to open the username change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "Personalizează-ți eticheta cu 4 cifre (#{discriminator}) după bunul plac cu Plutonium",
+    "customizeTagWithPlutoniumTooltip": "Personalizează-ți eticheta cu 4 cifre (#{discriminator}) după bunul plac cu Reverb",
     "@customizeTagWithPlutoniumTooltip": {
         "description": "Tooltip on the crown upsell button next to the username button.",
         "placeholders": {
@@ -2346,7 +2346,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "Eticheta ta personalizată (#{discriminator}) este legată de abonamentul tău Plutonium și va reveni la o etichetă aleatorie dacă expiră.",
+    "customTagSubscriptionWarning": "Eticheta ta personalizată (#{discriminator}) este legată de abonamentul tău Reverb și va reveni la o etichetă aleatorie dacă expiră.",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -2415,38 +2415,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Confidențialitate insignă Plutonium",
+    "plutoniumBadgePrivacyTitle": "Confidențialitate insignă Reverb",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "Controlează cum este afișată insigna ta Plutonium altora",
+    "plutoniumBadgePrivacyDescription": "Controlează cum este afișată insigna ta Reverb altora",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "Ascunde complet insigna Plutonium",
+    "hidePlutoniumBadgeLabel": "Ascunde complet insigna Reverb",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "Ascunde complet insigna ta Plutonium de alți utilizatori",
+    "hidePlutoniumBadgeDescription": "Ascunde complet insigna ta Reverb de alți utilizatori",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "Ascunde data achiziției Plutonium",
+    "hidePlutoniumPurchaseDate": "Ascunde data achiziției Reverb",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "Ascunde data achiziției Plutonium ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "Ascunde data achiziției Reverb ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "Elimină data primei achiziții de Plutonium de pe ecusonul tău",
+    "hidePurchaseDateDescription": "Elimină data primei achiziții de Reverb de pe ecusonul tău",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "Maschează Visionary ca abonament",
     "@maskVisionaryAsSubscription": {
@@ -2473,7 +2473,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "Ești la un trial Plutonium — abonamentul tău începe pe {date}",
+    "premiumTrialSubscriptionStarts": "Ești la un trial Reverb — abonamentul tău începe pe {date}",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -2486,7 +2486,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "Ești la un trial Plutonium care expiră pe {date}",
+    "premiumTrialExpiresOnProfile": "Ești la un trial Reverb care expiră pe {date}",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -2495,29 +2495,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "Ești în perioada de probă Plutonium",
+    "premiumTrialActiveProfile": "Ești în perioada de probă Reverb",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maxim 10 MB. Recomandat: 512×512 px. Avatarele animate (GIF) necesită Plutonium.",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maxim 10 MB. Recomandat: 512×512 px. Avatarele animate (GIF) necesită Reverb.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "Personalizează-ți profilul cu o imagine statică sau animată pentru banner, ca să iasă în evidență.",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "Obține Plutonium",
+    "getPlutonium": "Obține Reverb",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "Achizițiile în aplicație nu sunt încă disponibile pe această platformă. Rămâi pe fază — în curând!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "Previzualizare",
     "@profilePreviewLabel": {
@@ -2564,7 +2564,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "Personalizarea avatarului, bannerului, culorii de accent și a biografiei pentru comunități individuale necesită Plutonium. Porecla și pronumele comunității sunt gratuite pentru toată lumea.",
+    "perGuildPremiumUpsellText": "Personalizarea avatarului, bannerului, culorii de accent și a biografiei pentru comunități individuale necesită Reverb. Porecla și pronumele comunității sunt gratuite pentru toată lumea.",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -3311,7 +3311,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Anulează abonamentul tău activ Plutonium din setările Plutonium înainte de a-ți șterge contul.",
+    "dangerZoneDeleteCancelSubscription": "Anulează abonamentul tău activ Reverb din setările Reverb înainte de a-ți șterge contul.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -3713,7 +3713,7 @@
             }
         }
     },
-    "userProfilePlutoniumBadgeTooltip": "Plutonium {productName}",
+    "userProfilePlutoniumBadgeTooltip": "Reverb {productName}",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3722,7 +3722,7 @@
             }
         }
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Plutonium abonat de la {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Reverb abonat de la {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -4838,7 +4838,7 @@
     },
     "systemDmComposerBarrier": "Anunțuri de sistem de la personalul {productName}. Nu poți răspunde aici.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -5880,7 +5880,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "Restrânge DM-urile în dosar",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Când este activată, mesajele directe necitite din bara laterală a serverului sunt restrânse într-un folder pe butonul {productName}. Apăsați butonul {productName} când sunteți pe pagina Mesaje directe pentru a extinde sau restrânge folderul.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -6609,7 +6609,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Reducere mișcare",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Dezactivează animațiile și tranzițiile. Controlate în prezent de setările sistemului tău.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -7596,7 +7596,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} caractere rămase. Obține {productName} pentru a scrie până la {premiumMaxLength} caractere.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -7615,7 +7615,7 @@
     },
     "chatSendFailureDmRestricted": "Mesajul tău nu a putut fi livrat. Acest lucru se întâmplă de obicei deoarece nu împărtășiți o comunitate cu destinatarul sau destinatarul acceptă mesaje directe doar de la prieteni. De asemenea, este posibil să fie necesar să ajustezi propriile setări de confidențialitate pentru mesajele directe în {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -7624,27 +7624,27 @@
     },
     "chatSendFailureUnclaimedDm": "Mesajul tău nu a putut fi trimis. Trebuie să-ți revendici contul pentru a trimite mesaje directe.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Mesajul tău nu a putut fi trimis. Trebuie să-ți revendici contul pentru a trimite mesaje.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Mesajul tău nu a putut fi livrat deoarece a fost semnalat de sistemele noastre de siguranță. Dacă crezi că este o greșeală, te rugăm să contactezi asistența.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Mesajul tău nu a putut fi livrat deoarece conține emoji sau stickere mature, care nu sunt permise în acest context.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Doar tu poți vedea acest mesaj.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Închide",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Comunicare",
     "@privacyDashboardCommunicationSection": {
@@ -9594,7 +9594,7 @@
     },
     "addGuildImportTemplateInvalid": "Datele șablonului comunității sunt invalide sau incorecte.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "addGuildPackInstalled": "Pachetul a fost instalat cu succes.",
     "@addGuildPackInstalled": {
@@ -11460,26 +11460,26 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Cadouri",
     "@userSettingsNavGiftsAndCodes": {
         "description": "User settings navigation item for gifts and promo codes."
     },
     "giftSettingsClaimAccountTitle": "Revendică-ți contul",
-    "giftSettingsClaimAccountDescription": "Revendică-ți contul pentru a răscumpăra sau gestiona codurile cadou Plutonium.",
+    "giftSettingsClaimAccountDescription": "Revendică-ți contul pentru a răscumpăra sau gestiona codurile cadou Reverb.",
     "giftSettingsRedeemTitle": "Revendică un cadou",
-    "giftSettingsRedeemDescription": "Introdu un cod cadou pentru a răscumpăra Plutonium pentru contul tău.",
+    "giftSettingsRedeemDescription": "Introdu un cod cadou pentru a răscumpăra Reverb pentru contul tău.",
     "giftSettingsRedeemPlaceholder": "Introdu codul cadou…",
     "giftSettingsRedeemButton": "Revendică",
-    "giftSettingsRedeemSuccess": "Cadou răscumpărat cu succes. Bucură-te de Plutonium.",
+    "giftSettingsRedeemSuccess": "Cadou răscumpărat cu succes. Bucură-te de Reverb.",
     "giftSettingsPurchasedTitle": "Cadouri cumpărate",
-    "giftSettingsPurchasedDescription": "Gestionează codurile cadou Plutonium pe care le-ai achiziționat. Distribuie URL-ul cadoului cu cineva drag sau valorifică-l pentru tine!",
+    "giftSettingsPurchasedDescription": "Gestionează codurile cadou Reverb pe care le-ai achiziționat. Distribuie URL-ul cadoului cu cineva drag sau valorifică-l pentru tine!",
     "giftSettingsEmptyTitle": "Niciun cadou încă",
-    "giftSettingsEmptyDescription": "Cumpără un cadou Plutonium din fila Plutonium pentru a-l împărtăși cu prietenii.",
-    "giftSettingsGoToPlutonium": "Mergi la Plutonium",
+    "giftSettingsEmptyDescription": "Cumpără un cadou Reverb din fila Reverb pentru a-l împărtăși cu prietenii.",
+    "giftSettingsGoToPlutonium": "Mergi la Reverb",
     "giftSettingsLoadFailedTitle": "Nu s-a putut încărca inventarul de cadouri",
     "giftSettingsLoadFailedDescription": "Încearcă din nou mai târziu.",
     "giftSettingsTryAgain": "Încearcă din nou",
@@ -11530,11 +11530,11 @@
     "premiumOneYearGift": "Cadou 1 an",
     "premiumOneMonthGift": "Cadou 1 lună",
     "premiumMostPopular": "Cel mai popular",
-    "premiumScrollPrompt": "Derulează în jos pentru a vedea toate beneficiile incluse cu Plutonium",
-    "premiumFreeVsPlutonium": "Gratuit vs Plutonium",
+    "premiumScrollPrompt": "Derulează în jos pentru a vedea toate beneficiile incluse cu Reverb",
+    "premiumFreeVsPlutonium": "Gratuit vs Reverb",
     "premiumFreeColumn": "Gratuit",
-    "premiumGiftSectionTitle": "Oferă Plutonium",
-    "premiumGiftSectionDescription": "Oferă-le prietenilor tăi experiența Plutonium cumpărând un abonament cadou.",
+    "premiumGiftSectionTitle": "Oferă Reverb",
+    "premiumGiftSectionDescription": "Oferă-le prietenilor tăi experiența Reverb cumpărând un abonament cadou.",
     "premiumGiftBannerOne": "Ai un nou cod cadou care te așteaptă!",
     "premiumGiftBannerMany": "Ai {count} coduri cadou noi care te așteaptă!",
     "@premiumGiftBannerMany": {
@@ -11641,7 +11641,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Ești în prezent la un abonament cadou. Acesta nu se va reînnoi. Poți valorifica mai multe coduri cadou pentru a-l prelungi. Abonamentele recurente pot fi începute după ce se termină perioada cadou.",
     "premiumPlanUnavailable": "Acest plan nu este disponibil. Contactează asistența.",
     "premiumCompletePaymentTitle": "Finalizează plata",
-    "premiumCompletePaymentBody": "Acum vei fi redirecționat către Stripe pentru a finaliza plata. Revino la Fluxer după ce ai terminat.",
+    "premiumCompletePaymentBody": "Acum vei fi redirecționat către Stripe pentru a finaliza plata. Revino la echowire după ce ai terminat.",
     "premiumChoosePaymentMethodTitle": "Alege metoda de plată",
     "premiumPixPaymentPromptDescription": "Plătește cu Pix automat pentru a autoriza direct de pe banca ta braziliană taxele recurente. Sau alege să folosești cardul pentru a introduce un card de credit pe ecranul următor al Stripe.",
     "premiumUsePix": "Folosește Pix",
@@ -11653,11 +11653,11 @@
     "premiumAlreadyVisionaryTitle": "Ești deja Vizionar",
     "premiumAlreadyVisionaryBody": "Visionary include deja acces permanent, deci nu este necesar un abonament recurent. Poți cumpăra în continuare cadouri pentru alții.",
     "premiumExistingSubscriptionTitle": "Abonamentul există deja",
-    "premiumExistingSubscriptionBody": "Am găsit un abonament Fluxer Plutonium existent pentru acest cont. Gestionați-l în portalul de facturare securizat pentru a actualiza detaliile de plată sau pentru a verifica starea reînnoirii. Dacă tocmai ați plătit, așteptați un minut și redeschideți această pagină.",
+    "premiumExistingSubscriptionBody": "Am găsit un abonament Reverb existent pentru acest cont. Gestionați-l în portalul de facturare securizat pentru a actualiza detaliile de plată sau pentru a verifica starea reînnoirii. Dacă tocmai ați plătit, așteptați un minut și redeschideți această pagină.",
     "premiumPurchasesDisabledTitle": "Achizițiile nu sunt disponibile",
-    "premiumPurchasesDisabledBody": "Achizițiile sunt dezactivate pentru acest cont. Contactați support@fluxer.app dacă credeți că este o greșeală.",
-    "premiumClaimAccountToPurchase": "Revendică-ți contul pentru a cumpăra Fluxer Plutonium.",
-    "premiumVerifyEmailToPurchase": "Trebuie să îți verifici emailul înainte de a putea achiziționa Fluxer Plutonium.",
+    "premiumPurchasesDisabledBody": "Achizițiile sunt dezactivate pentru acest cont. Contactați support@echowire.org dacă credeți că este o greșeală.",
+    "premiumClaimAccountToPurchase": "Revendică-ți contul pentru a cumpăra Reverb.",
+    "premiumVerifyEmailToPurchase": "Trebuie să îți verifici emailul înainte de a putea achiziționa Reverb.",
     "premiumPerkCustomUsernameTag": "Etichetă de utilizator personalizată",
     "premiumPerkPerCommunityProfiles": "Profiluri pentru fiecare comunitate",
     "premiumPerkMessageScheduling": "Programare mesaje",
@@ -11844,7 +11844,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11898,7 +11898,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -11912,7 +11912,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11922,7 +11922,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11952,7 +11952,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11982,7 +11982,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12890,21 +12890,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Introdu adresa URL a instanței (ex. fluxer.app)",
+    "instanceUrlPlaceholder": "Introdu adresa URL a instanței (ex. echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Resetează la Fluxer",
+    "resetToDefaultInstance": "Resetează la echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Conectare",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Se conectează…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Nu s-a putut conecta la instanță",
     "@instanceConnectFailed": {
@@ -12933,7 +12933,7 @@
     },
     "changeInstance": "Schimbă",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Conectează-te la instanță pentru a te autentifica",
     "@instanceConnectionRequired": {

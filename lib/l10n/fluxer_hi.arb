@@ -1087,7 +1087,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1100,7 +1100,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1113,7 +1113,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1126,7 +1126,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1139,7 +1139,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1194,7 +1194,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1244,11 +1244,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "यह उपहार रिडीम नहीं किया जा सकता",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "विजनरी खाते Plutonium उपहारों को रिडीम नहीं कर सकते हैं। इसके बजाय इसे किसी दोस्त के साथ साझा करने के लिए लिंक कॉपी करें।",
+    "giftVisionaryCannotRedeemMessage": "विजनरी खाते Reverb उपहारों को रिडीम नहीं कर सकते हैं। इसके बजाय इसे किसी दोस्त के साथ साझा करने के लिए लिंक कॉपी करें।",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "गिफ्ट लिंक कॉपी करें",
     "@giftCopyLink": {
@@ -2010,7 +2010,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Plutonium के साथ {communityCount} से {emojiCount} अनलॉक करें।",
+    "emojiPlutoniumUpsellText": "Reverb के साथ {communityCount} से {emojiCount} अनलॉक करें।",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -2022,13 +2022,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Plutonium पाएं",
+    "emojiPlutoniumUpsellButton": "Reverb पाएं",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "दोबारा न दिखाएँ",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 कस्टम इमोजी} other{{count} कस्टम इमोजी}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -2146,11 +2146,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "एनिमेटेड अवतारों के लिए Plutonium की आवश्यकता होती है",
+    "animatedAvatarsRequirePlutonium": "एनिमेटेड अवतारों के लिए Reverb की आवश्यकता होती है",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "एनिमेटेड बैनर के लिए Plutonium की आवश्यकता होती है",
+    "animatedBannersRequirePlutonium": "एनिमेटेड बैनर के लिए Reverb की आवश्यकता होती है",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -2230,7 +2230,7 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "अपना टैग कस्टमाइज़ करने या अपना यूज़रनेम बदलते समय उसे रखने के लिए Plutonium प्राप्त करें",
+    "discriminatorPremiumTooltip": "अपना टैग कस्टमाइज़ करने या अपना यूज़रनेम बदलते समय उसे रखने के लिए Reverb प्राप्त करें",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
@@ -2254,7 +2254,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "आपका कस्टम 4-अंकीय टैग तभी उपलब्ध होगा जब आपकी Plutonium सदस्यता सक्रिय होगी। जब आपकी सदस्यता {date} को समाप्त हो जाएगी, तो 3-दिन की छूट अवधि के बाद आपका टैग बेतरतीब ढंग से असाइन किए गए नंबर पर वापस आ जाएगा।",
+    "customTagTemporaryBodyWithDate": "आपका कस्टम 4-अंकीय टैग तभी उपलब्ध होगा जब आपकी Reverb सदस्यता सक्रिय होगी। जब आपकी सदस्यता {date} को समाप्त हो जाएगी, तो 3-दिन की छूट अवधि के बाद आपका टैग बेतरतीब ढंग से असाइन किए गए नंबर पर वापस आ जाएगा।",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -2263,7 +2263,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "आपका कस्टम 4-अंकीय टैग तभी उपलब्ध है जब आपकी Plutonium सदस्यता सक्रिय हो। जब आपकी सदस्यता समाप्त हो जाएगी, तो 3-दिन की छूट अवधि के बाद आपका टैग एक रैंडम रूप से असाइन किए गए नंबर पर वापस आ जाएगा।",
+    "customTagTemporaryBody": "आपका कस्टम 4-अंकीय टैग तभी उपलब्ध है जब आपकी Reverb सदस्यता सक्रिय हो। जब आपकी सदस्यता समाप्त हो जाएगी, तो 3-दिन की छूट अवधि के बाद आपका टैग एक रैंडम रूप से असाइन किए गए नंबर पर वापस आ जाएगा।",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -2271,11 +2271,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "अगर आप यह यूज़रनेम सेव करते हैं, तो आपकी Plutonium सदस्यता खत्म होने पर आपका कस्टम 4-अंकों वाला टैग एक रैंडम नंबर में बदल जाएगा। अगर आपकी सदस्यता रिन्यू नहीं हो पाती है, तो टैग बदलने से पहले आपके पास 3 दिन की छूट अवधि होगी।",
+    "premiumWarningPendingDiscriminator": "अगर आप यह यूज़रनेम सेव करते हैं, तो आपकी Reverb सदस्यता खत्म होने पर आपका कस्टम 4-अंकों वाला टैग एक रैंडम नंबर में बदल जाएगा। अगर आपकी सदस्यता रिन्यू नहीं हो पाती है, तो टैग बदलने से पहले आपके पास 3 दिन की छूट अवधि होगी।",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "आपकी कस्टम 4-अंकीय टैग (#{discriminator}) तब तक सक्रिय है जब तक आपकी Plutonium सदस्यता सक्रिय है। यदि आपकी सदस्यता समाप्त हो जाती है या 3-दिन की छूट अवधि के बाद नवीनीकृत नहीं होती है, तो आपकी टैग एक रैंडम संख्या में वापस आ जाएगी।",
+    "premiumWarningActiveDiscriminator": "आपकी कस्टम 4-अंकीय टैग (#{discriminator}) तब तक सक्रिय है जब तक आपकी Reverb सदस्यता सक्रिय है। यदि आपकी सदस्यता समाप्त हो जाती है या 3-दिन की छूट अवधि के बाद नवीनीकृत नहीं होती है, तो आपकी टैग एक रैंडम संख्या में वापस आ जाएगी।",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -2286,9 +2286,9 @@
     },
     "premiumUpsellCustomizeTag": "अपने 4-अंकीय टैग को कस्टमाइज़ करें या उपयोगकर्ता नाम बदलते समय इसे रखें",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "आपका Plutonium ट्रायल {date} को समाप्त हो रहा है। अपना कस्टम टैग रखने और अपनी प्रोफ़ाइल पर बैज अर्जित करने के लिए अपग्रेड करें।",
+    "premiumTrialExpiresOn": "आपका Reverb ट्रायल {date} को समाप्त हो रहा है। अपना कस्टम टैग रखने और अपनी प्रोफ़ाइल पर बैज अर्जित करने के लिए अपग्रेड करें।",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -2297,7 +2297,7 @@
             }
         }
     },
-    "premiumTrialActive": "आप Plutonium ट्रायल पर हैं। अपना कस्टम टैग रखने और अपनी प्रोफ़ाइल पर बैज अर्जित करने के लिए अपग्रेड करें।",
+    "premiumTrialActive": "आप Reverb ट्रायल पर हैं। अपना कस्टम टैग रखने और अपनी प्रोफ़ाइल पर बैज अर्जित करने के लिए अपग्रेड करें।",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
@@ -2333,7 +2333,7 @@
     "@changeFluxerTag": {
         "description": "Button label to open the username change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "Plutonium के साथ अपनी 4-अंकीय टैग (#{discriminator}) को अपनी पसंद के अनुसार अनुकूलित करें",
+    "customizeTagWithPlutoniumTooltip": "Reverb के साथ अपनी 4-अंकीय टैग (#{discriminator}) को अपनी पसंद के अनुसार अनुकूलित करें",
     "@customizeTagWithPlutoniumTooltip": {
         "description": "Tooltip on the crown upsell button next to the username button.",
         "placeholders": {
@@ -2346,7 +2346,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "आपका कस्टम टैग (#{discriminator}) आपकी Plutonium सदस्यता से जुड़ा है और इसकी समय-सीमा समाप्त होने पर यह एक रैंडम टैग में बदल जाएगा।",
+    "customTagSubscriptionWarning": "आपका कस्टम टैग (#{discriminator}) आपकी Reverb सदस्यता से जुड़ा है और इसकी समय-सीमा समाप्त होने पर यह एक रैंडम टैग में बदल जाएगा।",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -2415,38 +2415,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Plutonium बैज गोपनीयता",
+    "plutoniumBadgePrivacyTitle": "Reverb बैज गोपनीयता",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "नियंत्रित करें कि आपका Plutonium बैज दूसरों को कैसे दिखाई देता है",
+    "plutoniumBadgePrivacyDescription": "नियंत्रित करें कि आपका Reverb बैज दूसरों को कैसे दिखाई देता है",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "Plutonium बैज को पूरी तरह से छिपाएँ",
+    "hidePlutoniumBadgeLabel": "Reverb बैज को पूरी तरह से छिपाएँ",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "अन्य उपयोगकर्ताओं से अपना Plutonium बैज पूरी तरह से छिपाएँ",
+    "hidePlutoniumBadgeDescription": "अन्य उपयोगकर्ताओं से अपना Reverb बैज पूरी तरह से छिपाएँ",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "Plutonium खरीदने की तारीख छिपाएँ",
+    "hidePlutoniumPurchaseDate": "Reverb खरीदने की तारीख छिपाएँ",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "Plutonium खरीद की तारीख छिपाएँ ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "Reverb खरीद की तारीख छिपाएँ ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "जब आपने पहली बार Plutonium खरीदा था, तो उसे अपने बैज से हटा दें",
+    "hidePurchaseDateDescription": "जब आपने पहली बार Reverb खरीदा था, तो उसे अपने बैज से हटा दें",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "मास्क विजनरी को सदस्यता के रूप में",
     "@maskVisionaryAsSubscription": {
@@ -2473,7 +2473,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "आप Plutonium ट्रायल पर हैं — आपकी सदस्यता {date} को शुरू होगी",
+    "premiumTrialSubscriptionStarts": "आप Reverb ट्रायल पर हैं — आपकी सदस्यता {date} को शुरू होगी",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -2486,7 +2486,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "आप Plutonium के ट्रायल पर हैं, जो {date} को खत्म हो जाएगा",
+    "premiumTrialExpiresOnProfile": "आप Reverb के ट्रायल पर हैं, जो {date} को खत्म हो जाएगा",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -2495,29 +2495,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "आप Plutonium के ट्रायल पर हैं",
+    "premiumTrialActiveProfile": "आप Reverb के ट्रायल पर हैं",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. अधिकतम 10MB. अनुशंसित: 512×512px. एनिमेटेड अवतार (GIF) के लिए Plutonium की आवश्यकता होती है।",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. अधिकतम 10MB. अनुशंसित: 512×512px. एनिमेटेड अवतार (GIF) के लिए Reverb की आवश्यकता होती है।",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "अपनी प्रोफ़ाइल को अलग दिखाने के लिए एक स्थिर या एनिमेटेड बैनर इमेज के साथ कस्टमाइज़ करें।",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "Plutonium पाएं",
+    "getPlutonium": "Reverb पाएं",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "इस प्लेटफ़ॉर्म पर इन-ऐप खरीदारी अभी उपलब्ध नहीं है। बने रहें — जल्द ही आ रहा है!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "प्रीव्यू",
     "@profilePreviewLabel": {
@@ -2564,7 +2564,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "अपने अवतार, बैनर, एक्सेंट रंग और बायो को अलग-अलग कम्युनिटी के लिए कस्टमाइज़ करने के लिए Plutonium की ज़रूरत होती है. कम्युनिटी का निकनेम और प्रोनाउन सभी के लिए मुफ़्त हैं।",
+    "perGuildPremiumUpsellText": "अपने अवतार, बैनर, एक्सेंट रंग और बायो को अलग-अलग कम्युनिटी के लिए कस्टमाइज़ करने के लिए Reverb की ज़रूरत होती है. कम्युनिटी का निकनेम और प्रोनाउन सभी के लिए मुफ़्त हैं।",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -3311,7 +3311,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "अपना खाता हटाने से पहले Plutonium सेटिंग में अपनी सक्रिय Plutonium सदस्यता रद्द करें।",
+    "dangerZoneDeleteCancelSubscription": "अपना खाता हटाने से पहले Reverb सेटिंग में अपनी सक्रिय Reverb सदस्यता रद्द करें।",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -3713,7 +3713,7 @@
             }
         }
     },
-    "userProfilePlutoniumBadgeTooltip": "{productName} Plutonium",
+    "userProfilePlutoniumBadgeTooltip": "{productName} Reverb",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3722,7 +3722,7 @@
             }
         }
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Plutonium सब्सक्राइबर {date} से",
+    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Reverb सब्सक्राइबर {date} से",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -4838,7 +4838,7 @@
     },
     "systemDmComposerBarrier": "{productName} स्टाफ़ की सिस्टम घोषणाएँ। आप यहाँ जवाब नहीं दे सकते।",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -5880,7 +5880,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "फ़ोल्डर में डीएम को समेटें",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "जब सक्षम हो, तो गिल्ड साइडबार में अपठित डीएम को {productName} बटन में एक फ़ोल्डर में संक्षिप्त कर दिया जाता है। फ़ोल्डर को फैलाने या संक्षिप्त करने के लिए डीएम पृष्ठ पर रहते हुए {productName} बटन पर क्लिक करें।",
     "@lookAndFeelCollapseDMsDescription": {
@@ -6609,7 +6609,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "मोशन कम करें",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "ऐनिमेशन और ट्रांज़िशन बंद करें. यह अभी आपकी सिस्टम सेटिंग से कंट्रोल होता है।",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -7596,7 +7596,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} अक्षर बचे हैं। {premiumMaxLength} अक्षर तक लिखने के लिए {productName} प्राप्त करें।",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -7615,7 +7615,7 @@
     },
     "chatSendFailureDmRestricted": "आपका संदेश डिलीवर नहीं हो सका। ऐसा आमतौर पर इसलिए होता है क्योंकि आप प्राप्तकर्ता के साथ कोई समुदाय साझा नहीं करते हैं या प्राप्तकर्ता केवल दोस्तों से डायरेक्ट मैसेज स्वीकार कर रहा है। आपको अपने डायरेक्ट मैसेज की गोपनीयता सेटिंग्स को {settingsPath} में भी एडजस्ट करने की आवश्यकता हो सकती है।",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -7624,27 +7624,27 @@
     },
     "chatSendFailureUnclaimedDm": "आपका मैसेज डिलीवर नहीं हो पाया. सीधे मैसेज भेजने के लिए आपको अपना अकाउंट क्लेम करना होगा।",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "आपका मैसेज डिलीवर नहीं हो पाया. मैसेज भेजने के लिए आपको अपना अकाउंट क्लेम करना होगा।",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "आपका मैसेज डिलीवर नहीं हो सका क्योंकि इसे हमारे सुरक्षा सिस्टम ने फ़्लैग किया था। अगर आपको लगता है कि यह गलती से हुआ है, तो कृपया सहायता टीम से संपर्क करें।",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "आपका संदेश डिलीवर नहीं हो सका क्योंकि इसमें ऐसे परिपक्व इमोजी या स्टिकर थे जो इस संदर्भ में अनुमत नहीं हैं।",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "यह संदेश केवल आप ही देख सकते हैं।",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "खारिज करें",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "कम्युनिकेशन",
     "@privacyDashboardCommunicationSection": {
@@ -9594,7 +9594,7 @@
     },
     "addGuildImportTemplateInvalid": "समुदाय टेम्पलेट डेटा अमान्य या खराब है।",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "addGuildPackInstalled": "पैक सफलतापूर्वक इंस्टॉल हो गया।",
     "@addGuildPackInstalled": {
@@ -11460,26 +11460,26 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "गिफ़्ट",
     "@userSettingsNavGiftsAndCodes": {
         "description": "User settings navigation item for gifts and promo codes."
     },
     "giftSettingsClaimAccountTitle": "अपना अकाउंट क्लेम करें",
-    "giftSettingsClaimAccountDescription": "Plutonium उपहार कोड को रिडीम करने या प्रबंधित करने के लिए अपना खाता क्लेम करें।",
+    "giftSettingsClaimAccountDescription": "Reverb उपहार कोड को रिडीम करने या प्रबंधित करने के लिए अपना खाता क्लेम करें।",
     "giftSettingsRedeemTitle": "गिफ़्ट रिडीम करें",
-    "giftSettingsRedeemDescription": "अपने खाते के लिए Plutonium रिडीम करने के लिए एक उपहार कोड दर्ज करें।",
+    "giftSettingsRedeemDescription": "अपने खाते के लिए Reverb रिडीम करने के लिए एक उपहार कोड दर्ज करें।",
     "giftSettingsRedeemPlaceholder": "गिफ्ट कोड डालें…",
     "giftSettingsRedeemButton": "रिडीम करें",
-    "giftSettingsRedeemSuccess": "उपहार सफलतापूर्वक रिडीम हो गया. अपने Plutonium का आनंद लें।",
+    "giftSettingsRedeemSuccess": "उपहार सफलतापूर्वक रिडीम हो गया. अपने Reverb का आनंद लें।",
     "giftSettingsPurchasedTitle": "खरीदे गए उपहार",
-    "giftSettingsPurchasedDescription": "अपने खरीदे गए Plutonium उपहार कोड प्रबंधित करें। उपहार URL किसी खास व्यक्ति के साथ साझा करें या इसे अपने लिए रिडीम करें!",
+    "giftSettingsPurchasedDescription": "अपने खरीदे गए Reverb उपहार कोड प्रबंधित करें। उपहार URL किसी खास व्यक्ति के साथ साझा करें या इसे अपने लिए रिडीम करें!",
     "giftSettingsEmptyTitle": "अभी तक कोई उपहार नहीं",
-    "giftSettingsEmptyDescription": "दोस्तों के साथ साझा करने के लिए Plutonium टैब से Plutonium उपहार खरीदें।",
-    "giftSettingsGoToPlutonium": "Plutonium पर जाएँ",
+    "giftSettingsEmptyDescription": "दोस्तों के साथ साझा करने के लिए Reverb टैब से Reverb उपहार खरीदें।",
+    "giftSettingsGoToPlutonium": "Reverb पर जाएँ",
     "giftSettingsLoadFailedTitle": "गिफ्ट इन्वेंट्री लोड नहीं हो पाई",
     "giftSettingsLoadFailedDescription": "बाद में फिर से कोशिश करें।",
     "giftSettingsTryAgain": "फिर से कोशिश करें",
@@ -11530,11 +11530,11 @@
     "premiumOneYearGift": "1 साल का उपहार",
     "premiumOneMonthGift": "1 महीने का उपहार",
     "premiumMostPopular": "सबसे लोकप्रिय",
-    "premiumScrollPrompt": "Plutonium के साथ शामिल सभी सुविधाओं को देखने के लिए नीचे स्क्रॉल करें",
-    "premiumFreeVsPlutonium": "मुफ़्त बनाम Plutonium",
+    "premiumScrollPrompt": "Reverb के साथ शामिल सभी सुविधाओं को देखने के लिए नीचे स्क्रॉल करें",
+    "premiumFreeVsPlutonium": "मुफ़्त बनाम Reverb",
     "premiumFreeColumn": "मुफ़्त",
-    "premiumGiftSectionTitle": "Plutonium उपहार में दें",
-    "premiumGiftSectionDescription": "अपने दोस्तों के साथ उपहार सदस्यता खरीदकर Plutonium का अनुभव साझा करें।",
+    "premiumGiftSectionTitle": "Reverb उपहार में दें",
+    "premiumGiftSectionDescription": "अपने दोस्तों के साथ उपहार सदस्यता खरीदकर Reverb का अनुभव साझा करें।",
     "premiumGiftBannerOne": "आपके लिए एक नया उपहार कोड इंतज़ार कर रहा है!",
     "premiumGiftBannerMany": "आपके लिए {count} नए उपहार कोड इंतज़ार कर रहे हैं!",
     "@premiumGiftBannerMany": {
@@ -11641,7 +11641,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "आप अभी गिफ़्ट सदस्यता पर हैं। यह अपने-आप रिन्यू नहीं होगी। आप इसे बढ़ाने के लिए और गिफ़्ट कोड रिडीम कर सकते हैं। गिफ़्ट की अवधि खत्म होने के बाद आप रिकरिंग सदस्यता शुरू कर सकते हैं।",
     "premiumPlanUnavailable": "यह प्लान उपलब्ध नहीं है। सहायता से संपर्क करें।",
     "premiumCompletePaymentTitle": "भुगतान पूरा करें",
-    "premiumCompletePaymentBody": "आप भुगतान पूरा करने के लिए अब स्ट्राइप पर जा रहे हैं। इसे पूरा करने के बाद Fluxer पर वापस आएं।",
+    "premiumCompletePaymentBody": "आप भुगतान पूरा करने के लिए अब स्ट्राइप पर जा रहे हैं। इसे पूरा करने के बाद echowire पर वापस आएं।",
     "premiumChoosePaymentMethodTitle": "भुगतान का तरीका चुनें",
     "premiumPixPaymentPromptDescription": "अपने ब्राज़ीलियाई बैंक से सीधे आवर्ती शुल्क को अधिकृत करने के लिए Pix ऑटोमैटिको से भुगतान करें। या अगले स्क्रीन पर स्ट्राइप पर क्रेडिट कार्ड दर्ज करने के लिए कार्ड का उपयोग करें।",
     "premiumUsePix": "Pix का उपयोग करें",
@@ -11653,11 +11653,11 @@
     "premiumAlreadyVisionaryTitle": "आप पहले से ही विजनरी हैं",
     "premiumAlreadyVisionaryBody": "Visionary में पहले से ही परमानेंट ऐक्सेस शामिल है, इसलिए बार-बार सदस्यता लेने की ज़रूरत नहीं है. आप अभी भी दूसरों के लिए गिफ़्ट खरीद सकते हैं।",
     "premiumExistingSubscriptionTitle": "सदस्यता पहले से मौजूद है",
-    "premiumExistingSubscriptionBody": "हमें इस खाते के लिए एक मौजूदा Fluxer Plutonium सदस्यता मिली है। भुगतान विवरण अपडेट करने या नवीनीकरण की स्थिति जांचने के लिए इसे सुरक्षित बिलिंग पोर्टल में प्रबंधित करें। यदि आपने अभी भुगतान किया है, तो एक मिनट प्रतीक्षा करें और इस पृष्ठ को पुनः खोलें।",
+    "premiumExistingSubscriptionBody": "हमें इस खाते के लिए एक मौजूदा Reverb सदस्यता मिली है। भुगतान विवरण अपडेट करने या नवीनीकरण की स्थिति जांचने के लिए इसे सुरक्षित बिलिंग पोर्टल में प्रबंधित करें। यदि आपने अभी भुगतान किया है, तो एक मिनट प्रतीक्षा करें और इस पृष्ठ को पुनः खोलें।",
     "premiumPurchasesDisabledTitle": "खरीदारी उपलब्ध नहीं है",
-    "premiumPurchasesDisabledBody": "इस खाते के लिए खरीदारी अक्षम कर दी गई है। यदि यह गलत लगता है तो support@fluxer.app पर संपर्क करें।",
-    "premiumClaimAccountToPurchase": "Fluxer Plutonium खरीदने के लिए अपना खाता क्लेम करें।",
-    "premiumVerifyEmailToPurchase": "Fluxer Plutonium खरीदने से पहले आपको अपना ईमेल वेरिफाई करना होगा।",
+    "premiumPurchasesDisabledBody": "इस खाते के लिए खरीदारी अक्षम कर दी गई है। यदि यह गलत लगता है तो support@echowire.org पर संपर्क करें।",
+    "premiumClaimAccountToPurchase": "Reverb खरीदने के लिए अपना खाता क्लेम करें।",
+    "premiumVerifyEmailToPurchase": "Reverb खरीदने से पहले आपको अपना ईमेल वेरिफाई करना होगा।",
     "premiumPerkCustomUsernameTag": "कस्टम यूज़रनेम टैग",
     "premiumPerkPerCommunityProfiles": "हर कम्युनिटी के लिए प्रोफ़ाइल",
     "premiumPerkMessageScheduling": "संदेश शेड्यूलिंग",
@@ -11844,7 +11844,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11898,7 +11898,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -11912,7 +11912,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11922,7 +11922,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11952,7 +11952,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11982,7 +11982,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12890,21 +12890,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "इंस्टेंस यूआरएल दर्ज करें (जैसे fluxer.app)",
+    "instanceUrlPlaceholder": "इंस्टेंस यूआरएल दर्ज करें (जैसे echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Fluxer पर रीसेट करें",
+    "resetToDefaultInstance": "echowire पर रीसेट करें",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "कनेक्ट करें",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "कनेक्ट हो रहा है…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "इंस्टेंस से कनेक्ट करने में विफल",
     "@instanceConnectFailed": {
@@ -12933,7 +12933,7 @@
     },
     "changeInstance": "बदलें",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "साइन इन करने के लिए इंस्टेंस से कनेक्ट करें",
     "@instanceConnectionRequired": {

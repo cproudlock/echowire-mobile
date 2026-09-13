@@ -3816,7 +3816,7 @@
     },
     "systemDmComposerBarrier": "{productName} 員工的系統公告。您無法在此回覆。",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4614,7 +4614,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "將私訊摺疊到資料夾",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "啟用時，伺服器側邊欄中的未讀私訊會摺疊到 {productName} 按鈕資料夾中。在私訊頁面上按一下 {productName} 按鈕即可展開或摺疊資料夾。",
     "@lookAndFeelCollapseDMsDescription": {
@@ -5539,7 +5539,7 @@
     },
     "chatSendFailureDmRestricted": "您的訊息無法送達。這通常是因為您與收件者沒有共同的社群，或是收件者僅接受朋友的直接訊息。您可能也需要在 {settingsPath} 中調整您自己的直接訊息隱私設定。",
     "@chatSendFailureDmRestricted": {
-        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5548,27 +5548,27 @@
     },
     "chatSendFailureUnclaimedDm": "您的訊息無法送達。您需要領取您的帳戶才能傳送直接訊息。",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "您的訊息無法送達。您需要領取您的帳戶才能傳送訊息。",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "您的訊息因被我們的安全系統標記而無法送達。如果您認為這是錯誤，請聯絡支援團隊。",
     "@chatSendFailureContentBlocked": {
-        "description": "Echowirebot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "您的訊息無法送達，因為其中包含在此情境不允許的成人表情符號或貼圖。",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Echowirebot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "只有您能看到此訊息。",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Echowirebot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "關閉",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Echowirebot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "通訊",
     "@privacyDashboardCommunicationSection": {
@@ -6581,9 +6581,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Echowire Reverb subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "贈禮",
     "@userSettingsNavGiftsAndCodes": {
@@ -6897,21 +6897,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "輸入伺服器網址 (例如 fluxer.app)",
+    "instanceUrlPlaceholder": "輸入伺服器網址 (例如 echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "重設為 Echowire",
+    "resetToDefaultInstance": "重設為 echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "連線",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Echowire instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "正在連線…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Echowire instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "無法連線到此伺服器",
     "@instanceConnectFailed": {
@@ -6940,7 +6940,7 @@
     },
     "changeInstance": "變更",
     "@changeInstance": {
-        "description": "Link to change the connected Echowire instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "請先連線到伺服器才能登入",
     "@instanceConnectionRequired": {
@@ -11265,7 +11265,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11627,7 +11627,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -11637,7 +11637,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11647,7 +11647,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12546,7 +12546,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12576,7 +12576,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12804,7 +12804,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12817,7 +12817,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12830,7 +12830,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12843,7 +12843,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12856,7 +12856,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12911,7 +12911,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12961,11 +12961,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "無法兌換此贈禮",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Visionary 帳號無法兌換 Plutonium 禮物。請複製連結分享給朋友。",
+    "giftVisionaryCannotRedeemMessage": "Visionary 帳號無法兌換 Reverb 禮物。請複製連結分享給朋友。",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "複製贈禮連結",
     "@giftCopyLink": {
@@ -13775,7 +13775,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "減少動態效果",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "停用動畫和轉場效果。目前由您的系統設定控制。",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -15070,7 +15070,7 @@
     },
     "addGuildImportTemplateInvalid": "社群範本資料無效或格式錯誤。",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "memberListPermissionDeniedTitle": "你無法查看成員",
     "@memberListPermissionDeniedTitle": {
@@ -15466,17 +15466,17 @@
         "description": "Empty state shown when user settings search has no matches."
     },
     "giftSettingsClaimAccountTitle": "領取你的帳號",
-    "giftSettingsClaimAccountDescription": "領取你的帳號以兌換或管理 Plutonium 禮物代碼。",
+    "giftSettingsClaimAccountDescription": "領取你的帳號以兌換或管理 Reverb 禮物代碼。",
     "giftSettingsRedeemTitle": "兌換禮物",
-    "giftSettingsRedeemDescription": "輸入兌換碼以兌換您帳戶的 Plutonium。",
+    "giftSettingsRedeemDescription": "輸入兌換碼以兌換您帳戶的 Reverb。",
     "giftSettingsRedeemPlaceholder": "輸入禮物代碼…",
     "giftSettingsRedeemButton": "兌換",
-    "giftSettingsRedeemSuccess": "已成功兌換禮物。請享用您的 Plutonium。",
+    "giftSettingsRedeemSuccess": "已成功兌換禮物。請享用您的 Reverb。",
     "giftSettingsPurchasedTitle": "已購買的禮物",
-    "giftSettingsPurchasedDescription": "管理你購買的 Plutonium 禮物代碼。與特別的人分享禮物連結，或為自己兌換！",
+    "giftSettingsPurchasedDescription": "管理你購買的 Reverb 禮物代碼。與特別的人分享禮物連結，或為自己兌換！",
     "giftSettingsEmptyTitle": "還沒有任何禮物",
-    "giftSettingsEmptyDescription": "從「Plutonium」分頁購買 Plutonium 禮物與朋友分享。",
-    "giftSettingsGoToPlutonium": "前往 Plutonium",
+    "giftSettingsEmptyDescription": "從「Reverb」分頁購買 Reverb 禮物與朋友分享。",
+    "giftSettingsGoToPlutonium": "前往 Reverb",
     "giftSettingsLoadFailedTitle": "載入禮物庫失敗",
     "giftSettingsLoadFailedDescription": "稍後再試。",
     "giftSettingsTryAgain": "再試一次",
@@ -15527,11 +15527,11 @@
     "premiumOneYearGift": "1 年贈禮",
     "premiumOneMonthGift": "贈送 1 個月",
     "premiumMostPopular": "最熱門",
-    "premiumScrollPrompt": "向下捲動以查看 Plutonium 包含的所有優惠",
-    "premiumFreeVsPlutonium": "免費版與 Plutonium 版",
+    "premiumScrollPrompt": "向下捲動以查看 Reverb 包含的所有優惠",
+    "premiumFreeVsPlutonium": "免費版與 Reverb 版",
     "premiumFreeColumn": "免費",
-    "premiumGiftSectionTitle": "贈送 Plutonium",
-    "premiumGiftSectionDescription": "贈送訂閱方案，與好友一同體驗 Plutonium。",
+    "premiumGiftSectionTitle": "贈送 Reverb",
+    "premiumGiftSectionDescription": "贈送訂閱方案，與好友一同體驗 Reverb。",
     "premiumGiftBannerOne": "你有一個新的禮物代碼等著你！",
     "premiumGiftBannerMany": "您有 {count} 個新的禮物代碼等著您！",
     "@premiumGiftBannerMany": {
@@ -15638,7 +15638,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "您目前使用的是贈禮訂閱，到期後不會自動續訂。您可以兌換更多贈禮序號來延長訂閱。贈禮訂閱到期後，即可開始定期訂閱。",
     "premiumPlanUnavailable": "此方案無法使用。請聯絡客服。",
     "premiumCompletePaymentTitle": "完成付款",
-    "premiumCompletePaymentBody": "您即將前往 Stripe 完成付款。完成後請返回 Fluxer。",
+    "premiumCompletePaymentBody": "您即將前往 Stripe 完成付款。完成後請返回 echowire。",
     "premiumChoosePaymentMethodTitle": "選擇付款方式",
     "premiumPixPaymentPromptDescription": "使用 Pix 自動扣款，直接從您的巴西銀行帳戶授權定期收費。或者選擇使用信用卡，在 Stripe 的下一個畫面輸入您的信用卡資訊。",
     "premiumUsePix": "使用 Pix",
@@ -15650,11 +15650,11 @@
     "premiumAlreadyVisionaryTitle": "您已經是 Visionary 了",
     "premiumAlreadyVisionaryBody": "Visionary 已包含永久存取權，因此不需要重複訂閱。您仍然可以購買禮物送給其他人。",
     "premiumExistingSubscriptionTitle": "您已訂閱此項目",
-    "premiumExistingSubscriptionBody": "我們在此帳戶找到現有的 Fluxer Plutonium 訂閱。請前往安全的帳單入口網站進行管理，以更新付款詳情或查看續訂狀態。如果您剛付款，請稍候一分鐘後重新開啟此頁面。",
+    "premiumExistingSubscriptionBody": "我們在此帳戶找到現有的 Reverb 訂閱。請前往安全的帳單入口網站進行管理，以更新付款詳情或查看續訂狀態。如果您剛付款，請稍候一分鐘後重新開啟此頁面。",
     "premiumPurchasesDisabledTitle": "無法購買",
-    "premiumPurchasesDisabledBody": "此帳號已停用購買功能。如果這看起來有誤，請聯絡 support@fluxer.app。",
-    "premiumClaimAccountToPurchase": "領取你的帳號即可購買 Fluxer Plutonium。",
-    "premiumVerifyEmailToPurchase": "購買 Fluxer Plutonium 前，你需要驗證你的電子郵件。",
+    "premiumPurchasesDisabledBody": "此帳號已停用購買功能。如果這看起來有誤，請聯絡 support@echowire.org。",
+    "premiumClaimAccountToPurchase": "領取你的帳號即可購買 Reverb。",
+    "premiumVerifyEmailToPurchase": "購買 Reverb 前，你需要驗證你的電子郵件。",
     "premiumPerkCustomUsernameTag": "自訂使用者名稱標籤",
     "premiumPerkPerCommunityProfiles": "各社群獨立個人檔案",
     "premiumPerkMessageScheduling": "訊息排程",

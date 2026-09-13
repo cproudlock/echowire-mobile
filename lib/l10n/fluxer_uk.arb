@@ -3816,7 +3816,7 @@
     },
     "systemDmComposerBarrier": "Системні оголошення від співробітників {productName}. Тут не можна відповідати.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4614,7 +4614,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "Згорнути прямі повідомлення в папку",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Якщо ввімкнено, непрочитані прямі повідомлення на бічній панелі спільноти згортаються в папку на кнопці {productName}. Клацніть кнопку {productName} на сторінці прямих повідомлень, щоб розгорнути або згорнути папку.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -5539,7 +5539,7 @@
     },
     "chatSendFailureDmRestricted": "Ваше повідомлення не могло бути доставлено. Зазвичай це відбувається тому, що ви не маєте спільної спільноти з одержувачем або одержувач приймає прямі повідомлення лише від друзів. Можливо, вам також доведеться налаштувати власні параметри конфіденційності прямих повідомлень у розділі {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5548,27 +5548,27 @@
     },
     "chatSendFailureUnclaimedDm": "Ваше повідомлення не могло бути доставлено. Вам потрібно підтвердити свій обліковий запис, щоб надсилати прямі повідомлення.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Ваше повідомлення не могло бути доставлено. Вам потрібно підтвердити свій обліковий запис, щоб надсилати повідомлення.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Ваше повідомлення не могло бути доставлено, оскільки воно було позначено нашими системами безпеки. Якщо ви вважаєте, що це помилка, зв'яжіться з підтримкою.",
     "@chatSendFailureContentBlocked": {
-        "description": "Echowirebot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Ваше повідомлення не могло бути доставлено, оскільки воно містить недоречні емодзі або стікери, які не дозволені в цьому контексті.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Echowirebot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Це повідомлення бачите тільки ви.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Echowirebot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Закрити",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Echowirebot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Спілкування",
     "@privacyDashboardCommunicationSection": {
@@ -6581,9 +6581,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Echowire Reverb subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Подарунки",
     "@userSettingsNavGiftsAndCodes": {
@@ -6897,21 +6897,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Введіть URL екземпляра (наприклад, fluxer.app)",
+    "instanceUrlPlaceholder": "Введіть URL екземпляра (наприклад, echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Скинути до Echowire",
+    "resetToDefaultInstance": "Скинути до echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Підключитися",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Echowire instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Підключення…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Echowire instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Не вдалося підключитися до екземпляра",
     "@instanceConnectFailed": {
@@ -6940,7 +6940,7 @@
     },
     "changeInstance": "Змінити",
     "@changeInstance": {
-        "description": "Link to change the connected Echowire instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Підключіться до екземпляра, щоб увійти",
     "@instanceConnectionRequired": {
@@ -9421,7 +9421,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -9431,7 +9431,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -9441,7 +9441,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -9525,7 +9525,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10875,7 +10875,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -11038,7 +11038,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12804,7 +12804,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12817,7 +12817,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12830,7 +12830,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12843,7 +12843,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12856,7 +12856,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12911,7 +12911,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12961,11 +12961,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Не вдалося активувати цей подарунок",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Облікові записи Visionary не можуть активувати подарунки Plutonium. Натомість скопіюйте посилання, щоб поділитися ним з другом.",
+    "giftVisionaryCannotRedeemMessage": "Облікові записи Visionary не можуть активувати подарунки Reverb. Натомість скопіюйте посилання, щоб поділитися ним з другом.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Копіювати посилання на подарунок",
     "@giftCopyLink": {
@@ -13775,7 +13775,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Зменшити рух",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Вимкнути анімації та переходи. Наразі керується системними налаштуваннями.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -15070,7 +15070,7 @@
     },
     "addGuildImportTemplateInvalid": "Дані шаблону спільноти недійсні або мають неправильний формат.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "memberListPermissionDeniedTitle": "Ви не можете переглядати учасників",
     "@memberListPermissionDeniedTitle": {
@@ -15466,17 +15466,17 @@
         "description": "Empty state shown when user settings search has no matches."
     },
     "giftSettingsClaimAccountTitle": "Зареєструйте свій обліковий запис",
-    "giftSettingsClaimAccountDescription": "Активуйте свій обліковий запис, щоб отримати або керувати кодами подарунків Plutonium.",
+    "giftSettingsClaimAccountDescription": "Активуйте свій обліковий запис, щоб отримати або керувати кодами подарунків Reverb.",
     "giftSettingsRedeemTitle": "Активувати подарунок",
-    "giftSettingsRedeemDescription": "Введіть подарунковий код, щоб активувати Plutonium для свого облікового запису.",
+    "giftSettingsRedeemDescription": "Введіть подарунковий код, щоб активувати Reverb для свого облікового запису.",
     "giftSettingsRedeemPlaceholder": "Введіть код подарунка…",
     "giftSettingsRedeemButton": "Активувати",
-    "giftSettingsRedeemSuccess": "Подарунок успішно активовано. Насолоджуйтесь Plutonium.",
+    "giftSettingsRedeemSuccess": "Подарунок успішно активовано. Насолоджуйтесь Reverb.",
     "giftSettingsPurchasedTitle": "Придбані подарунки",
-    "giftSettingsPurchasedDescription": "Керуйте придбаними кодами подарунків Plutonium. Поділіться посиланням на подарунок з кимось особливим або активуйте його для себе!",
+    "giftSettingsPurchasedDescription": "Керуйте придбаними кодами подарунків Reverb. Поділіться посиланням на подарунок з кимось особливим або активуйте його для себе!",
     "giftSettingsEmptyTitle": "Подарунків ще немає",
-    "giftSettingsEmptyDescription": "Купуйте подарунки Plutonium на вкладці Plutonium, щоб поділитися з друзями.",
-    "giftSettingsGoToPlutonium": "Перейти до Plutonium",
+    "giftSettingsEmptyDescription": "Купуйте подарунки Reverb на вкладці Reverb, щоб поділитися з друзями.",
+    "giftSettingsGoToPlutonium": "Перейти до Reverb",
     "giftSettingsLoadFailedTitle": "Не вдалося завантажити інвентар подарунків",
     "giftSettingsLoadFailedDescription": "Спробуйте пізніше.",
     "giftSettingsTryAgain": "Спробувати ще раз",
@@ -15527,11 +15527,11 @@
     "premiumOneYearGift": "Подарунок на 1 рік",
     "premiumOneMonthGift": "Подарунок на 1 місяць",
     "premiumMostPopular": "Найпопулярніше",
-    "premiumScrollPrompt": "Прокрутіть униз, щоб переглянути всі переваги Plutonium",
-    "premiumFreeVsPlutonium": "Безкоштовно чи Plutonium",
+    "premiumScrollPrompt": "Прокрутіть униз, щоб переглянути всі переваги Reverb",
+    "premiumFreeVsPlutonium": "Безкоштовно чи Reverb",
     "premiumFreeColumn": "Безкоштовно",
-    "premiumGiftSectionTitle": "Подарувати Plutonium",
-    "premiumGiftSectionDescription": "Поділіться досвідом Plutonium з друзями, придбавши подарункову підписку.",
+    "premiumGiftSectionTitle": "Подарувати Reverb",
+    "premiumGiftSectionDescription": "Поділіться досвідом Reverb з друзями, придбавши подарункову підписку.",
     "premiumGiftBannerOne": "У вас є новий подарунковий код!",
     "premiumGiftBannerMany": "Ви маєте {count} нових промокодів для подарунків!",
     "@premiumGiftBannerMany": {
@@ -15638,7 +15638,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Зараз у вас подарункова підписка. Вона не буде поновлюватися. Ви можете активувати більше подарункових кодів, щоб продовжити її. Регулярні підписки можна оформити після закінчення терміну дії подарунка.",
     "premiumPlanUnavailable": "Цей тарифний план недоступний. Зверніться до служби підтримки.",
     "premiumCompletePaymentTitle": "Завершити оплату",
-    "premiumCompletePaymentBody": "Ви переходите до Stripe для завершення оплати. Поверніться до Fluxer після завершення.",
+    "premiumCompletePaymentBody": "Ви переходите до Stripe для завершення оплати. Поверніться до echowire після завершення.",
     "premiumChoosePaymentMethodTitle": "Виберіть спосіб оплати",
     "premiumPixPaymentPromptDescription": "Сплачуйте автоматично через Pix, щоб авторизувати регулярні платежі безпосередньо з вашого бразильського банку. Або виберіть \"Використати картку\", щоб ввести дані кредитної картки на наступному екрані Stripe.",
     "premiumUsePix": "Використовуйте Pix",
@@ -15650,11 +15650,11 @@
     "premiumAlreadyVisionaryTitle": "Ви вже Visionary",
     "premiumAlreadyVisionaryBody": "Visionary вже включає постійний доступ, тому регулярна підписка не потрібна. Ви все ще можете купувати подарунки для інших.",
     "premiumExistingSubscriptionTitle": "Підписка вже існує",
-    "premiumExistingSubscriptionBody": "Ми знайшли наявну підписку Fluxer Plutonium для цього облікового запису. Керуйте нею в захищеному платіжному порталі, щоб оновити платіжні дані або перевірити статус поновлення. Якщо ви щойно оплатили, зачекайте хвилину та знову відкрийте цю сторінку.",
+    "premiumExistingSubscriptionBody": "Ми знайшли наявну підписку Reverb для цього облікового запису. Керуйте нею в захищеному платіжному порталі, щоб оновити платіжні дані або перевірити статус поновлення. Якщо ви щойно оплатили, зачекайте хвилину та знову відкрийте цю сторінку.",
     "premiumPurchasesDisabledTitle": "Покупки недоступні",
-    "premiumPurchasesDisabledBody": "Покупки для цього облікового запису вимкнено. Зверніться до support@fluxer.app, якщо це виглядає неправильно.",
-    "premiumClaimAccountToPurchase": "Активуйте свій обліковий запис, щоб придбати Fluxer Plutonium.",
-    "premiumVerifyEmailToPurchase": "Щоб придбати Fluxer Plutonium, вам потрібно підтвердити свою електронну пошту.",
+    "premiumPurchasesDisabledBody": "Покупки для цього облікового запису вимкнено. Зверніться до support@echowire.org, якщо це виглядає неправильно.",
+    "premiumClaimAccountToPurchase": "Активуйте свій обліковий запис, щоб придбати Reverb.",
+    "premiumVerifyEmailToPurchase": "Щоб придбати Reverb, вам потрібно підтвердити свою електронну пошту.",
     "premiumPerkCustomUsernameTag": "Власний тег користувача",
     "premiumPerkPerCommunityProfiles": "Профілі для кожної спільноти",
     "premiumPerkMessageScheduling": "Планування повідомлень",

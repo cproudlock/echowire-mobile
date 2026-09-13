@@ -939,7 +939,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'Visionary hesapları Plutonium hediyelerini kullanamaz. Bunun yerine bağlantıyı kopyalayıp bir arkadaşınızla paylaşın.';
+      'Visionary hesapları Reverb hediyelerini kullanamaz. Bunun yerine bağlantıyı kopyalayıp bir arkadaşınızla paylaşın.';
 
   @override
   String get giftCopyLink => 'Hediye bağlantısını kopyala';
@@ -2855,7 +2855,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => 'Echowire Etiketi Kopyala';
+  String get blockedUsersCopyTag => 'echowire Etiketi Kopyala';
 
   @override
   String get blockedUsersCopyId => 'Kullanıcı Kimliğini Kopyala';
@@ -9124,7 +9124,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Güvenlik ve Giriş';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Hediyeler';
@@ -9134,14 +9134,14 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Plutonium hediye kodlarını kullanmak veya yönetmek için hesabını doğrula.';
+      'Reverb hediye kodlarını kullanmak veya yönetmek için hesabını doğrula.';
 
   @override
   String get giftSettingsRedeemTitle => 'Hediye kullan';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'Hesabınız için Plutonium\'u kullanmak üzere bir hediye kodu girin.';
+      'Hesabınız için Reverb\'u kullanmak üzere bir hediye kodu girin.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'Hediye kodunu girin…';
@@ -9151,24 +9151,24 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get giftSettingsRedeemSuccess =>
-      'Plutonium\'unuzu keyifle kullanın. Hediye başarıyla kullanıldı.';
+      'Reverb\'unuzu keyifle kullanın. Hediye başarıyla kullanıldı.';
 
   @override
   String get giftSettingsPurchasedTitle => 'Satın alınan hediyeler';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'Satın aldığınız Plutonium hediye kodlarını yönetin. Hediye URL\'sini özel biriyle paylaşın veya kendiniz kullanın!';
+      'Satın aldığınız Reverb hediye kodlarını yönetin. Hediye URL\'sini özel biriyle paylaşın veya kendiniz kullanın!';
 
   @override
   String get giftSettingsEmptyTitle => 'Henüz hediye yok';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Arkadaşlarınla paylaşmak için Plutonium sekmesinden bir Plutonium hediyesi satın al.';
+      'Arkadaşlarınla paylaşmak için Reverb sekmesinden bir Reverb hediyesi satın al.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Plutonium\'a git';
+  String get giftSettingsGoToPlutonium => 'Reverb\'a git';
 
   @override
   String get giftSettingsLoadFailedTitle => 'Hediye envanteri yüklenemedi';
@@ -9266,20 +9266,20 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'Plutonium\'un sunduğu tüm avantajları görmek için aşağı kaydırın';
+      'Reverb\'un sunduğu tüm avantajları görmek için aşağı kaydırın';
 
   @override
-  String get premiumFreeVsPlutonium => 'Ücretsiz ve Plutonium';
+  String get premiumFreeVsPlutonium => 'Ücretsiz ve Reverb';
 
   @override
   String get premiumFreeColumn => 'Ücretsiz';
 
   @override
-  String get premiumGiftSectionTitle => 'Plutonium Hediye Et';
+  String get premiumGiftSectionTitle => 'Reverb Hediye Et';
 
   @override
   String get premiumGiftSectionDescription =>
-      'Arkadaşlarınızla Plutonium deneyimini hediye abonelik satın alarak paylaşın.';
+      'Arkadaşlarınızla Reverb deneyimini hediye abonelik satın alarak paylaşın.';
 
   @override
   String get premiumGiftBannerOne => 'Yeni bir hediye kodun seni bekliyor!';
@@ -9429,7 +9429,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Ödemeyi tamamlamak için şimdi Stripe\'a yönlendiriliyorsunuz. Tamamladıktan sonra Fluxer\'a geri dönün.';
+      'Ödemeyi tamamlamak için şimdi Stripe\'a yönlendiriliyorsunuz. Tamamladıktan sonra echowire\'a geri dönün.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Ödeme yöntemi seçin';
@@ -9471,22 +9471,22 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'Bu hesap için mevcut bir Fluxer Plutonium aboneliği bulduk. Ödeme ayrıntılarını güncellemek veya yenileme durumunu kontrol etmek için güvenli faturalandırma portalında yönetin. Az önce ödeme yaptıysanız, bir dakika bekleyip bu sayfayı yeniden açın.';
+      'Bu hesap için mevcut bir Reverb aboneliği bulduk. Ödeme ayrıntılarını güncellemek veya yenileme durumunu kontrol etmek için güvenli faturalandırma portalında yönetin. Az önce ödeme yaptıysanız, bir dakika bekleyip bu sayfayı yeniden açın.';
 
   @override
   String get premiumPurchasesDisabledTitle => 'Satın alımlar kullanılamıyor';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'Bu hesap için satın alımlar devre dışı bırakıldı. Yanlış görünüyorsa support@fluxer.app ile iletişime geçin.';
+      'Bu hesap için satın alımlar devre dışı bırakıldı. Yanlış görünüyorsa support@echowire.org ile iletişime geçin.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Fluxer Plutonium satın almak için hesabını talep et.';
+      'Reverb satın almak için hesabını talep et.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'Fluxer Plutonium satın almadan önce e-postanı doğrulaman gerekiyor.';
+      'Reverb satın almadan önce e-postanı doğrulaman gerekiyor.';
 
   @override
   String get premiumPerkCustomUsernameTag => 'Özel kullanıcı adı etiketi';
@@ -10904,14 +10904,14 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get instanceUrlPlaceholder =>
-      'Sunucu URL\'sini girin (ör. fluxer.app)';
+      'Sunucu URL\'sini girin (ör. echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Echowire\'a sıfırla';
+  String get resetToDefaultInstance => 'echowire\'a sıfırla';
 
   @override
   String get instanceConnect => 'Bağlan';

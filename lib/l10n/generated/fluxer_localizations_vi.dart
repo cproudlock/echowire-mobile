@@ -939,7 +939,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'Tài khoản Visionary không thể đổi quà Plutonium. Hãy sao chép liên kết để chia sẻ với bạn bè.';
+      'Tài khoản Visionary không thể đổi quà Reverb. Hãy sao chép liên kết để chia sẻ với bạn bè.';
 
   @override
   String get giftCopyLink => 'Sao chép liên kết quà tặng';
@@ -1521,11 +1521,11 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'Mở khóa $emojiCount từ $communityCount với Plutonium.';
+    return 'Mở khóa $emojiCount từ $communityCount với Reverb.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Nhận Plutonium';
+  String get emojiPlutoniumUpsellButton => 'Nhận Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Không hiển thị lại';
@@ -1633,10 +1633,10 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Tệp ảnh quá lớn. Vui lòng chọn tệp có dung lượng nhỏ hơn 10 MB.';
 
   @override
-  String get animatedAvatarsRequirePlutonium => 'Ảnh động cần có Plutonium';
+  String get animatedAvatarsRequirePlutonium => 'Ảnh động cần có Reverb';
 
   @override
-  String get animatedBannersRequirePlutonium => 'Ảnh động yêu cầu Plutonium';
+  String get animatedBannersRequirePlutonium => 'Ảnh động yêu cầu Reverb';
 
   @override
   String get animatedAvifNotSupported => 'AVIF động không được hỗ trợ';
@@ -1700,7 +1700,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Nhận Plutonium để tùy chỉnh thẻ của bạn hoặc giữ nguyên khi đổi tên người dùng';
+      'Nhận Reverb để tùy chỉnh thẻ của bạn hoặc giữ nguyên khi đổi tên người dùng';
 
   @override
   String get fluxerTagAlreadyTaken => 'Tên người dùng đã được sử dụng';
@@ -1715,23 +1715,23 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'Thẻ gồm 4 chữ số tùy chỉnh của bạn chỉ khả dụng khi gói đăng ký Plutonium của bạn còn hoạt động. Khi gói đăng ký của bạn hết hạn vào ngày $date, thẻ của bạn sẽ trở về số được chỉ định ngẫu nhiên sau thời gian ân hạn 3 ngày.';
+    return 'Thẻ gồm 4 chữ số tùy chỉnh của bạn chỉ khả dụng khi gói đăng ký Reverb của bạn còn hoạt động. Khi gói đăng ký của bạn hết hạn vào ngày $date, thẻ của bạn sẽ trở về số được chỉ định ngẫu nhiên sau thời gian ân hạn 3 ngày.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'Thẻ gồm 4 chữ số tùy chỉnh của bạn chỉ khả dụng khi gói đăng ký Plutonium của bạn còn hoạt động. Khi gói đăng ký của bạn hết hạn, thẻ của bạn sẽ trở về số ngẫu nhiên sau thời gian ân hạn 3 ngày.';
+      'Thẻ gồm 4 chữ số tùy chỉnh của bạn chỉ khả dụng khi gói đăng ký Reverb của bạn còn hoạt động. Khi gói đăng ký của bạn hết hạn, thẻ của bạn sẽ trở về số ngẫu nhiên sau thời gian ân hạn 3 ngày.';
 
   @override
   String get iUnderstandContinue => 'Tôi hiểu, Tiếp tục';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Nếu bạn lưu tên người dùng này, thẻ gồm 4 chữ số tùy chỉnh của bạn sẽ trở về số ngẫu nhiên khi gói đăng ký Plutonium của bạn kết thúc. Nếu gói đăng ký của bạn không được gia hạn, bạn sẽ có 3 ngày gia hạn trước khi thẻ thay đổi.';
+      'Nếu bạn lưu tên người dùng này, thẻ gồm 4 chữ số tùy chỉnh của bạn sẽ trở về số ngẫu nhiên khi gói đăng ký Reverb của bạn kết thúc. Nếu gói đăng ký của bạn không được gia hạn, bạn sẽ có 3 ngày gia hạn trước khi thẻ thay đổi.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Thẻ gồm 4 chữ số tùy chỉnh của bạn (#$discriminator) sẽ hoạt động khi gói đăng ký Plutonium của bạn còn hiệu lực. Nếu gói đăng ký của bạn kết thúc hoặc không gia hạn sau thời gian ân hạn 3 ngày, thẻ của bạn sẽ trở về số ngẫu nhiên.';
+    return 'Thẻ gồm 4 chữ số tùy chỉnh của bạn (#$discriminator) sẽ hoạt động khi gói đăng ký Reverb của bạn còn hiệu lực. Nếu gói đăng ký của bạn kết thúc hoặc không gia hạn sau thời gian ân hạn 3 ngày, thẻ của bạn sẽ trở về số ngẫu nhiên.';
   }
 
   @override
@@ -1740,12 +1740,12 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'Gói Plutonium dùng thử của bạn sẽ hết hạn vào ngày $date. Nâng cấp để giữ thẻ tùy chỉnh của bạn và nhận huy hiệu trên hồ sơ.';
+    return 'Gói Reverb dùng thử của bạn sẽ hết hạn vào ngày $date. Nâng cấp để giữ thẻ tùy chỉnh của bạn và nhận huy hiệu trên hồ sơ.';
   }
 
   @override
   String get premiumTrialActive =>
-      'Bạn đang dùng thử Plutonium. Nâng cấp để giữ thẻ tùy chỉnh và nhận huy hiệu trên hồ sơ của bạn.';
+      'Bạn đang dùng thử Reverb. Nâng cấp để giữ thẻ tùy chỉnh và nhận huy hiệu trên hồ sơ của bạn.';
 
   @override
   String get fluxerTagUpdated => 'Đã cập nhật tên người dùng';
@@ -1776,7 +1776,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Tùy chỉnh thẻ gồm 4 chữ số của bạn (#$discriminator) theo ý muốn với Plutonium';
+    return 'Tùy chỉnh thẻ gồm 4 chữ số của bạn (#$discriminator) theo ý muốn với Reverb';
   }
 
   @override
@@ -1785,7 +1785,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'Thẻ tùy chỉnh của bạn (#$discriminator) được liên kết với gói đăng ký Plutonium của bạn và sẽ trở về thẻ ngẫu nhiên nếu hết hạn.';
+    return 'Thẻ tùy chỉnh của bạn (#$discriminator) được liên kết với gói đăng ký Reverb của bạn và sẽ trở về thẻ ngẫu nhiên nếu hết hạn.';
   }
 
   @override
@@ -1838,30 +1838,30 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get emojiPickerTitle => 'Biểu tượng cảm xúc';
 
   @override
-  String get plutoniumBadgePrivacyTitle => 'Quyền riêng tư Huy hiệu Plutonium';
+  String get plutoniumBadgePrivacyTitle => 'Quyền riêng tư Huy hiệu Reverb';
 
   @override
   String get plutoniumBadgePrivacyDescription =>
-      'Kiểm soát cách huy hiệu Plutonium của bạn hiển thị với người khác';
+      'Kiểm soát cách huy hiệu Reverb của bạn hiển thị với người khác';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'Ẩn hoàn toàn huy hiệu Plutonium';
+  String get hidePlutoniumBadgeLabel => 'Ẩn hoàn toàn huy hiệu Reverb';
 
   @override
   String get hidePlutoniumBadgeDescription =>
-      'Ẩn hoàn toàn huy hiệu Plutonium của bạn khỏi người dùng khác';
+      'Ẩn hoàn toàn huy hiệu Reverb của bạn khỏi người dùng khác';
 
   @override
-  String get hidePlutoniumPurchaseDate => 'Ẩn ngày mua Plutonium';
+  String get hidePlutoniumPurchaseDate => 'Ẩn ngày mua Reverb';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'Ẩn ngày mua Plutonium ($date)';
+    return 'Ẩn ngày mua Reverb ($date)';
   }
 
   @override
   String get hidePurchaseDateDescription =>
-      'Xóa khi bạn lần đầu mua Plutonium khỏi huy hiệu của bạn';
+      'Xóa khi bạn lần đầu mua Reverb khỏi huy hiệu của bạn';
 
   @override
   String get maskVisionaryAsSubscription =>
@@ -1884,7 +1884,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'Bạn đang dùng thử Plutonium — gói đăng ký của bạn sẽ bắt đầu vào ngày $date';
+    return 'Bạn đang dùng thử Reverb — gói đăng ký của bạn sẽ bắt đầu vào ngày $date';
   }
 
   @override
@@ -1893,25 +1893,25 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'Bạn đang dùng thử Plutonium, sẽ hết hạn vào ngày $date';
+    return 'Bạn đang dùng thử Reverb, sẽ hết hạn vào ngày $date';
   }
 
   @override
-  String get premiumTrialActiveProfile => 'Bạn đang dùng thử Plutonium';
+  String get premiumTrialActiveProfile => 'Bạn đang dùng thử Reverb';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. Tối đa 10MB. Khuyến nghị: 512×512px. Ảnh đại diện động (GIF) yêu cầu Plutonium.';
+      'JPEG, PNG, WebP. Tối đa 10MB. Khuyến nghị: 512×512px. Ảnh đại diện động (GIF) yêu cầu Reverb.';
 
   @override
   String get bannerPlutoniumUpsell =>
       'Tùy chỉnh hồ sơ của bạn với ảnh biểu ngữ tĩnh hoặc động để làm nổi bật nó.';
 
   @override
-  String get getPlutonium => 'Nhận Plutonium';
+  String get getPlutonium => 'Nhận Reverb';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1953,7 +1953,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      'Tùy chỉnh ảnh đại diện, biểu ngữ, màu sắc chủ đạo và tiểu sử của bạn cho từng cộng đồng yêu cầu Plutonium. Biệt danh cộng đồng và đại từ miễn phí cho mọi người.';
+      'Tùy chỉnh ảnh đại diện, biểu ngữ, màu sắc chủ đạo và tiểu sử của bạn cho từng cộng đồng yêu cầu Reverb. Biệt danh cộng đồng và đại từ miễn phí cho mọi người.';
 
   @override
   String get avatarModeInherit => 'Sử dụng hồ sơ chung';
@@ -2543,7 +2543,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'Hủy gói đăng ký Plutonium đang hoạt động của bạn trong cài đặt Plutonium trước khi xóa tài khoản.';
+      'Hủy gói đăng ký Reverb đang hoạt động của bạn trong cài đặt Reverb trước khi xóa tài khoản.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => 'Không thể xóa tài khoản';
@@ -2892,7 +2892,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String userProfilePlutoniumBadgeTooltip(String productName) {
-    return 'Plutonium $productName';
+    return 'Reverb $productName';
   }
 
   @override
@@ -2900,7 +2900,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String productName,
     String date,
   ) {
-    return '$productName Plutonium thành viên từ $date';
+    return '$productName Reverb thành viên từ $date';
   }
 
   @override
@@ -9121,7 +9121,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Bảo mật & Đăng nhập';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Quà tặng';
@@ -9131,14 +9131,14 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Nhận tài khoản của bạn để đổi hoặc quản lý mã quà tặng Plutonium.';
+      'Nhận tài khoản của bạn để đổi hoặc quản lý mã quà tặng Reverb.';
 
   @override
   String get giftSettingsRedeemTitle => 'Đổi quà';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'Nhập mã quà tặng để đổi Plutonium cho tài khoản của bạn.';
+      'Nhập mã quà tặng để đổi Reverb cho tài khoản của bạn.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'Nhập mã quà tặng…';
@@ -9148,24 +9148,24 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get giftSettingsRedeemSuccess =>
-      'Đã đổi quà thành công. Tận hưởng Plutonium của bạn.';
+      'Đã đổi quà thành công. Tận hưởng Reverb của bạn.';
 
   @override
   String get giftSettingsPurchasedTitle => 'Quà đã mua';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'Quản lý mã quà tặng Plutonium đã mua của bạn. Chia sẻ URL quà tặng với người đặc biệt hoặc tự mình đổi quà!';
+      'Quản lý mã quà tặng Reverb đã mua của bạn. Chia sẻ URL quà tặng với người đặc biệt hoặc tự mình đổi quà!';
 
   @override
   String get giftSettingsEmptyTitle => 'Chưa có quà nào';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Mua quà Plutonium từ tab Plutonium để chia sẻ với bạn bè.';
+      'Mua quà Reverb từ tab Reverb để chia sẻ với bạn bè.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Đi tới Plutonium';
+  String get giftSettingsGoToPlutonium => 'Đi tới Reverb';
 
   @override
   String get giftSettingsLoadFailedTitle => 'Không tải được kho quà';
@@ -9263,20 +9263,20 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'Cuộn xuống để xem tất cả các đặc quyền đi kèm với Plutonium';
+      'Cuộn xuống để xem tất cả các đặc quyền đi kèm với Reverb';
 
   @override
-  String get premiumFreeVsPlutonium => 'Miễn phí và Plutonium';
+  String get premiumFreeVsPlutonium => 'Miễn phí và Reverb';
 
   @override
   String get premiumFreeColumn => 'Miễn phí';
 
   @override
-  String get premiumGiftSectionTitle => 'Tặng Plutonium';
+  String get premiumGiftSectionTitle => 'Tặng Reverb';
 
   @override
   String get premiumGiftSectionDescription =>
-      'Chia sẻ trải nghiệm Plutonium với bạn bè bằng cách mua một gói đăng ký quà tặng.';
+      'Chia sẻ trải nghiệm Reverb với bạn bè bằng cách mua một gói đăng ký quà tặng.';
 
   @override
   String get premiumGiftBannerOne => 'Bạn có một mã quà tặng mới đang chờ bạn!';
@@ -9425,7 +9425,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Bạn sẽ được chuyển hướng đến Stripe để hoàn tất thanh toán. Quay lại Fluxer sau khi hoàn tất.';
+      'Bạn sẽ được chuyển hướng đến Stripe để hoàn tất thanh toán. Quay lại echowire sau khi hoàn tất.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Chọn phương thức thanh toán';
@@ -9467,7 +9467,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'Chúng tôi tìm thấy một gói đăng ký Fluxer Plutonium hiện có cho tài khoản này. Quản lý gói đăng ký đó trong cổng thanh toán bảo mật để cập nhật chi tiết thanh toán hoặc kiểm tra trạng thái gia hạn. Nếu bạn vừa thanh toán, hãy đợi một phút và mở lại trang này.';
+      'Chúng tôi tìm thấy một gói đăng ký Reverb hiện có cho tài khoản này. Quản lý gói đăng ký đó trong cổng thanh toán bảo mật để cập nhật chi tiết thanh toán hoặc kiểm tra trạng thái gia hạn. Nếu bạn vừa thanh toán, hãy đợi một phút và mở lại trang này.';
 
   @override
   String get premiumPurchasesDisabledTitle =>
@@ -9475,15 +9475,15 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'Giao dịch đã bị tắt cho tài khoản này. Liên hệ support@fluxer.app nếu bạn thấy có gì đó không đúng.';
+      'Giao dịch đã bị tắt cho tài khoản này. Liên hệ support@echowire.org nếu bạn thấy có gì đó không đúng.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Xác nhận tài khoản của bạn để mua Fluxer Plutonium.';
+      'Xác nhận tài khoản của bạn để mua Reverb.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'Bạn cần xác minh email trước khi có thể mua Fluxer Plutonium.';
+      'Bạn cần xác minh email trước khi có thể mua Reverb.';
 
   @override
   String get premiumPerkCustomUsernameTag => 'Tên người dùng tùy chỉnh';
@@ -10907,14 +10907,14 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get instanceUrlPlaceholder =>
-      'Nhập URL của phiên bản (ví dụ: fluxer.app)';
+      'Nhập URL của phiên bản (ví dụ: echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Đặt lại về Fluxer';
+  String get resetToDefaultInstance => 'Đặt lại về echowire';
 
   @override
   String get instanceConnect => 'Kết nối';

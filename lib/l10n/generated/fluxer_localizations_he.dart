@@ -930,7 +930,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'חשבונות Visionary אינם יכולים לממש מתנות Plutonium. העתק את הקישור כדי לשתף אותו עם חבר במקום זאת.';
+      'חשבונות Visionary אינם יכולים לממש מתנות Reverb. העתק את הקישור כדי לשתף אותו עם חבר במקום זאת.';
 
   @override
   String get giftCopyLink => 'העתקת קישור למתנה';
@@ -1505,11 +1505,11 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'פתח $emojiCount מתוך $communityCount עם Plutonium.';
+    return 'פתח $emojiCount מתוך $communityCount עם Reverb.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'קבל Plutonium';
+  String get emojiPlutoniumUpsellButton => 'קבל Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'אל תציג זאת שוב';
@@ -1617,11 +1617,10 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'אווטארים מונפשים דורשים Plutonium';
+      'אווטארים מונפשים דורשים Reverb';
 
   @override
-  String get animatedBannersRequirePlutonium =>
-      'באנרים מונפשים דורשים Plutonium';
+  String get animatedBannersRequirePlutonium => 'באנרים מונפשים דורשים Reverb';
 
   @override
   String get animatedAvifNotSupported => 'AVIF מונפש אינו נתמך';
@@ -1684,7 +1683,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'קבלו Plutonium כדי להתאים אישית את התג שלכם או שמרו אותו בעת שינוי שם המשתמש שלכם';
+      'קבלו Reverb כדי להתאים אישית את התג שלכם או שמרו אותו בעת שינוי שם המשתמש שלכם';
 
   @override
   String get fluxerTagAlreadyTaken => 'השם כבר תפוס';
@@ -1699,23 +1698,23 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'התג המותאם אישית בן 4 ספרות שלך זמין רק כל עוד המנוי שלך ל-Plutonium פעיל. כאשר המנוי שלך יפוג בתאריך $date, התג שלך יוחזר למספר אקראי לאחר תקופת חסד של 3 ימים.';
+    return 'התג המותאם אישית בן 4 ספרות שלך זמין רק כל עוד המנוי שלך ל-Reverb פעיל. כאשר המנוי שלך יפוג בתאריך $date, התג שלך יוחזר למספר אקראי לאחר תקופת חסד של 3 ימים.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'התג המותאם אישית שלך בן 4 ספרות זמין רק כל עוד המנוי שלך ל-Plutonium פעיל. כאשר המנוי שלך יפוג, התג שלך יוחזר למספר שמוקצה באופן אקראי לאחר תקופת חסד של 3 ימים.';
+      'התג המותאם אישית שלך בן 4 ספרות זמין רק כל עוד המנוי שלך ל-Reverb פעיל. כאשר המנוי שלך יפוג, התג שלך יוחזר למספר שמוקצה באופן אקראי לאחר תקופת חסד של 3 ימים.';
 
   @override
   String get iUnderstandContinue => 'אני מבין/ה, המשך';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'אם תשמור שם משתמש זה, התגית המותאמת אישית שלך בת 4 ספרות תחזור למספר אקראי כשיסתיים המנוי שלך ל־Plutonium. אם המנוי שלך לא יתחדש, יהיו לך 3 ימי חסד לפני שהתגית תשתנה.';
+      'אם תשמור שם משתמש זה, התגית המותאמת אישית שלך בת 4 ספרות תחזור למספר אקראי כשיסתיים המנוי שלך ל־Reverb. אם המנוי שלך לא יתחדש, יהיו לך 3 ימי חסד לפני שהתגית תשתנה.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'התג המותאם אישית שלך בן 4 ספרות (#$discriminator) פעיל כל עוד המנוי שלך ל-Plutonium פעיל. אם המנוי שלך יסתיים או לא יחודש לאחר תקופת חסד של 3 ימים, התג שלך יוחזר למספר אקראי.';
+    return 'התג המותאם אישית שלך בן 4 ספרות (#$discriminator) פעיל כל עוד המנוי שלך ל-Reverb פעיל. אם המנוי שלך יסתיים או לא יחודש לאחר תקופת חסד של 3 ימים, התג שלך יוחזר למספר אקראי.';
   }
 
   @override
@@ -1724,12 +1723,12 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'תקופת הניסיון שלך ב-Plutonium תפוג בתאריך $date. שדרג כדי לשמור על התג המותאם אישית שלך ולהרוויח תג בפרופיל שלך.';
+    return 'תקופת הניסיון שלך ב-Reverb תפוג בתאריך $date. שדרג כדי לשמור על התג המותאם אישית שלך ולהרוויח תג בפרופיל שלך.';
   }
 
   @override
   String get premiumTrialActive =>
-      'אתה משתמש בניסיון Plutonium. שדרג כדי לשמור על התג המותאם אישית שלך ולהרוויח תג בפרופיל שלך.';
+      'אתה משתמש בניסיון Reverb. שדרג כדי לשמור על התג המותאם אישית שלך ולהרוויח תג בפרופיל שלך.';
 
   @override
   String get fluxerTagUpdated => 'שם המשתמש עודכן';
@@ -1759,7 +1758,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'התאם אישית את תג ה-4 ספרות שלך (#$discriminator) כרצונך עם Plutonium';
+    return 'התאם אישית את תג ה-4 ספרות שלך (#$discriminator) כרצונך עם Reverb';
   }
 
   @override
@@ -1768,7 +1767,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'התג המותאם אישית שלך (#$discriminator) קשור למנוי ה-Plutonium שלך ויוחזר לתג אקראי אם יפוג.';
+    return 'התג המותאם אישית שלך (#$discriminator) קשור למנוי ה-Reverb שלך ויוחזר לתג אקראי אם יפוג.';
   }
 
   @override
@@ -1820,30 +1819,30 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get emojiPickerTitle => 'אימוג\'י';
 
   @override
-  String get plutoniumBadgePrivacyTitle => 'פרטיות תג ה-Plutonium';
+  String get plutoniumBadgePrivacyTitle => 'פרטיות תג ה-Reverb';
 
   @override
   String get plutoniumBadgePrivacyDescription =>
-      'קבע כיצד תג ה-Plutonium שלך יוצג לאחרים';
+      'קבע כיצד תג ה-Reverb שלך יוצג לאחרים';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'הסתר את תגית Plutonium לחלוטין';
+  String get hidePlutoniumBadgeLabel => 'הסתר את תגית Reverb לחלוטין';
 
   @override
   String get hidePlutoniumBadgeDescription =>
-      'הסתר את תג ה-Plutonium שלך לחלוטין ממשתמשים אחרים';
+      'הסתר את תג ה-Reverb שלך לחלוטין ממשתמשים אחרים';
 
   @override
-  String get hidePlutoniumPurchaseDate => 'הסתר תאריך רכישת Plutonium';
+  String get hidePlutoniumPurchaseDate => 'הסתר תאריך רכישת Reverb';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'הסתר תאריך רכישת Plutonium ($date)';
+    return 'הסתר תאריך רכישת Reverb ($date)';
   }
 
   @override
   String get hidePurchaseDateDescription =>
-      'הסר מתי קנית לראשונה Plutonium מהתג שלך';
+      'הסר מתי קנית לראשונה Reverb מהתג שלך';
 
   @override
   String get maskVisionaryAsSubscription => 'הסתרת Visionary כמנוי';
@@ -1865,7 +1864,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'אתם במנוי ניסיון של Plutonium — המנוי שלכם יתחיל בתאריך $date';
+    return 'אתם במנוי ניסיון של Reverb — המנוי שלכם יתחיל בתאריך $date';
   }
 
   @override
@@ -1874,25 +1873,25 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'אתם משתמשים בגרסת ניסיון של Plutonium שתפוג בתאריך $date';
+    return 'אתם משתמשים בגרסת ניסיון של Reverb שתפוג בתאריך $date';
   }
 
   @override
-  String get premiumTrialActiveProfile => 'אתה בשירות Plutonium ללא תשלום';
+  String get premiumTrialActiveProfile => 'אתה בשירות Reverb ללא תשלום';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. מקסימום 10MB. מומלץ: 512×512px. אווטארים מונפשים (GIF) דורשים Plutonium.';
+      'JPEG, PNG, WebP. מקסימום 10MB. מומלץ: 512×512px. אווטארים מונפשים (GIF) דורשים Reverb.';
 
   @override
   String get bannerPlutoniumUpsell =>
       'התאם אישית את הפרופיל שלך עם תמונת באנר סטטית או מונפשת כדי לגרום לו לבלוט.';
 
   @override
-  String get getPlutonium => 'קבל Plutonium';
+  String get getPlutonium => 'קבל Reverb';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1934,7 +1933,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      'התאמה אישית של האווטאר, הבאנר, צבע ההדגשה והביוגרפיה שלך עבור קהילות בודדות דורשת Plutonium. כינוי קהילה וכינויי גוף זמינים בחינם לכולם.';
+      'התאמה אישית של האווטאר, הבאנר, צבע ההדגשה והביוגרפיה שלך עבור קהילות בודדות דורשת Reverb. כינוי קהילה וכינויי גוף זמינים בחינם לכולם.';
 
   @override
   String get avatarModeInherit => 'השתמש בפרופיל הגלובלי';
@@ -2518,7 +2517,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'בטל את מנוי ה-Plutonium הפעיל שלך בהגדרות ה-Plutonium לפני מחיקת חשבונך.';
+      'בטל את מנוי ה-Reverb הפעיל שלך בהגדרות ה-Reverb לפני מחיקת חשבונך.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => 'לא ניתן למחוק את החשבון';
@@ -2865,7 +2864,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String userProfilePlutoniumBadgeTooltip(String productName) {
-    return 'Plutonium של $productName';
+    return 'Reverb של $productName';
   }
 
   @override
@@ -2873,7 +2872,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
     String productName,
     String date,
   ) {
-    return '$productName Plutonium מנוי מאז $date';
+    return '$productName Reverb מנוי מאז $date';
   }
 
   @override
@@ -4211,7 +4210,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   }
 
   @override
-  String get connectionSaveTokenDialogTitle => 'שמור אימות Fluxer';
+  String get connectionSaveTokenDialogTitle => 'שמור אימות echowire';
 
   @override
   String get connectionVerifyButton => 'אימות';
@@ -4282,7 +4281,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get connectionRemoveFailed => 'לא ניתן היה להסיר את החיבור';
 
   @override
-  String get connectionTokenSavedToast => 'אימות Fluxer נשמר';
+  String get connectionTokenSavedToast => 'אימות echowire נשמר';
 
   @override
   String get connectionTokenSaveFailedToast => 'לא ניתן היה לשמור את הקובץ';
@@ -8982,7 +8981,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'אבטחה וכניסה';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'מתנות';
@@ -8992,14 +8991,14 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'אמת את חשבונך כדי לממש או לנהל קודי מתנה של Plutonium.';
+      'אמת את חשבונך כדי לממש או לנהל קודי מתנה של Reverb.';
 
   @override
   String get giftSettingsRedeemTitle => 'מימוש מתנה';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'הזן קוד מתנה כדי לממש Plutonium לחשבונך.';
+      'הזן קוד מתנה כדי לממש Reverb לחשבונך.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'הזן קוד מתנה…';
@@ -9009,24 +9008,24 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get giftSettingsRedeemSuccess =>
-      'המתנה מומשה בהצלחה. תהנה מה-Plutonium שלך.';
+      'המתנה מומשה בהצלחה. תהנה מה-Reverb שלך.';
 
   @override
   String get giftSettingsPurchasedTitle => 'מתנות שנרכשו';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'נהל את קודי המתנה של Plutonium שרכשת. שתף את כתובת ה-URL של המתנה עם מישהו מיוחד או פדה אותה לעצמך!';
+      'נהל את קודי המתנה של Reverb שרכשת. שתף את כתובת ה-URL של המתנה עם מישהו מיוחד או פדה אותה לעצמך!';
 
   @override
   String get giftSettingsEmptyTitle => 'אין עדיין מתנות';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'קנו מתנת Plutonium מטאב Plutonium כדי לשתף עם חברים.';
+      'קנו מתנת Reverb מטאב Reverb כדי לשתף עם חברים.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'עבור אל Plutonium';
+  String get giftSettingsGoToPlutonium => 'עבור אל Reverb';
 
   @override
   String get giftSettingsLoadFailedTitle => 'טעינת מלאי המתנות נכשלה';
@@ -9126,20 +9125,20 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'גלול למטה כדי לראות את כל ההטבות הכלולות ב-Plutonium';
+      'גלול למטה כדי לראות את כל ההטבות הכלולות ב-Reverb';
 
   @override
-  String get premiumFreeVsPlutonium => 'חינם לעומת Plutonium';
+  String get premiumFreeVsPlutonium => 'חינם לעומת Reverb';
 
   @override
   String get premiumFreeColumn => 'חינם';
 
   @override
-  String get premiumGiftSectionTitle => 'הענק Plutonium';
+  String get premiumGiftSectionTitle => 'הענק Reverb';
 
   @override
   String get premiumGiftSectionDescription =>
-      'שתף את חווית ה-Plutonium עם חבריך על ידי רכישת מנוי מתנה.';
+      'שתף את חווית ה-Reverb עם חבריך על ידי רכישת מנוי מתנה.';
 
   @override
   String get premiumGiftBannerOne => 'יש לך קוד מתנה חדש שמחכה לך!';
@@ -9287,7 +9286,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'אתה מועבר כעת ל-Stripe להשלמת התשלום. חזור ל-Fluxer לאחר שתסיים.';
+      'אתה מועבר כעת ל-Stripe להשלמת התשלום. חזור ל-echowire לאחר שתסיים.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'בחירת אמצעי תשלום';
@@ -9329,22 +9328,21 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'מצאנו מנוי קיים של Fluxer Plutonium עבור חשבון זה. נהלו אותו בפורטל החיוב המאובטח כדי לעדכן פרטי תשלום או לבדוק את סטטוס החידוש. אם שילמתם זה עתה, המתינו דקה ופתחו מחדש את הדף הזה.';
+      'מצאנו מנוי קיים של Reverb עבור חשבון זה. נהלו אותו בפורטל החיוב המאובטח כדי לעדכן פרטי תשלום או לבדוק את סטטוס החידוש. אם שילמתם זה עתה, המתינו דקה ופתחו מחדש את הדף הזה.';
 
   @override
   String get premiumPurchasesDisabledTitle => 'רכישות אינן זמינות';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'הרכישות מושבתות עבור חשבון זה. צור קשר עם support@fluxer.app אם זה נראה שגוי.';
+      'הרכישות מושבתות עבור חשבון זה. צור קשר עם support@echowire.org אם זה נראה שגוי.';
 
   @override
-  String get premiumClaimAccountToPurchase =>
-      'אמת את חשבונך כדי לרכוש Fluxer Plutonium.';
+  String get premiumClaimAccountToPurchase => 'אמת את חשבונך כדי לרכוש Reverb.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'עליך לאמת את כתובת הדוא\"ל שלך לפני שתוכל לרכוש Fluxer Plutonium.';
+      'עליך לאמת את כתובת הדוא\"ל שלך לפני שתוכל לרכוש Reverb.';
 
   @override
   String get premiumPerkCustomUsernameTag => 'תגית שם משתמש מותאמת אישית';
@@ -10744,14 +10742,14 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get instanceUrlPlaceholder =>
-      'הזן כתובת URL של מופע (לדוגמה, fluxer.app)';
+      'הזן כתובת URL של מופע (לדוגמה, echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'אפס ל-Fluxer';
+  String get resetToDefaultInstance => 'אפס ל-echowire';
 
   @override
   String get instanceConnect => 'התחבר';

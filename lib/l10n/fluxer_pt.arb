@@ -1646,7 +1646,7 @@
     },
     "cropTouchHint": "Pinch to zoom, drag to reposition",
     "cropMouseHint": "Drag corners to resize, drag inside to move",
-    "changeYourFluxerTag": "Alterar sua EchowireTag",
+    "changeYourFluxerTag": "Alterar sua EchoTag",
     "@changeYourFluxerTag": {
         "description": "Title for the username change bottom sheet."
     },
@@ -1690,7 +1690,7 @@
     "@fluxerTagAlreadyTaken": {
         "description": "Title for the tag-taken confirmation sheet."
     },
-    "fluxerTagAlreadyTakenBody": "A EchowireTag {username}#{discriminator} já está em uso. Continuar irá gerar automaticamente um novo discriminador.",
+    "fluxerTagAlreadyTakenBody": "A EchoTag {username}#{discriminator} já está em uso. Continuar irá gerar automaticamente um novo discriminador.",
     "@fluxerTagAlreadyTakenBody": {
         "description": "Body text when the requested username is taken.",
         "placeholders": {
@@ -1723,7 +1723,7 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "Se você salvar esta EchowireTag, sua tag personalizada de 4 dígitos voltará a ser um número aleatório quando sua assinatura Reverb terminar. Se sua assinatura não for renovada, você terá um período de carência de 3 dias antes que a tag mude.",
+    "premiumWarningPendingDiscriminator": "Se você salvar esta EchoTag, sua tag personalizada de 4 dígitos voltará a ser um número aleatório quando sua assinatura Reverb terminar. Se sua assinatura não for renovada, você terá um período de carência de 3 dias antes que a tag mude.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
@@ -1753,11 +1753,11 @@
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
-    "fluxerTagUpdated": "EchowireTag atualizada",
+    "fluxerTagUpdated": "EchoTag atualizada",
     "@fluxerTagUpdated": {
         "description": "Success toast after username change."
     },
-    "fluxerTagUpdateFailed": "Falha ao atualizar EchowireTag. Por favor, tente novamente.",
+    "fluxerTagUpdateFailed": "Falha ao atualizar EchoTag. Por favor, tente novamente.",
     "@fluxerTagUpdateFailed": {
         "description": "Error message when username update fails."
     },
@@ -1777,7 +1777,7 @@
     "@usernameLabel": {
         "description": "Label for the username field in profile settings."
     },
-    "claimAccountToChangeFluxerTag": "Reivindique sua conta para alterar sua EchowireTag",
+    "claimAccountToChangeFluxerTag": "Reivindique sua conta para alterar sua EchoTag",
     "@claimAccountToChangeFluxerTag": {
         "description": "Tooltip when unverified user hovers the disabled Change username button."
     },
@@ -3816,7 +3816,7 @@
     },
     "systemDmComposerBarrier": "Anúncios do sistema da equipe do {productName}. Você não pode responder aqui.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4614,7 +4614,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "Recolher DMs em Pasta",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Quando ativado, DMs não lidas na barra lateral da comunidade são recolhidas em uma pasta no botão {productName}. Clique no botão {productName} enquanto estiver na página de DMs para expandir ou recolher a pasta.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -5539,7 +5539,7 @@
     },
     "chatSendFailureDmRestricted": "Sua mensagem não pôde ser entregue. Isso geralmente ocorre porque você não compartilha uma comunidade com o destinatário ou o destinatário só aceita mensagens diretas de amigos. Você também pode precisar ajustar suas próprias configurações de privacidade de mensagens diretas em {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5548,27 +5548,27 @@
     },
     "chatSendFailureUnclaimedDm": "Sua mensagem não pôde ser entregue. Você precisa reivindicar sua conta para enviar mensagens diretas.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Sua mensagem não pôde ser entregue. Você precisa reivindicar sua conta para enviar mensagens.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Sua mensagem não pôde ser entregue porque foi sinalizada por nossos sistemas de segurança. Se você acredita que isso é um erro, entre em contato com o suporte.",
     "@chatSendFailureContentBlocked": {
-        "description": "Echowirebot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Sua mensagem não pôde ser entregue porque contém emojis ou stickers adultos que não são permitidos neste contexto.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Echowirebot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Somente você pode ver esta mensagem.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Echowirebot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Dispensar",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Echowirebot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Comunicação",
     "@privacyDashboardCommunicationSection": {
@@ -6581,9 +6581,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Echowire Reverb subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Presentes e Códigos",
     "@userSettingsNavGiftsAndCodes": {
@@ -6897,21 +6897,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Digite a URL da instância (ex: fluxer.app)",
+    "instanceUrlPlaceholder": "Digite a URL da instância (ex: echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Redefinir para Echowire",
+    "resetToDefaultInstance": "Redefinir para echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Conectar",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Echowire instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Conectando…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Echowire instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Falha ao conectar à instância",
     "@instanceConnectFailed": {
@@ -6940,7 +6940,7 @@
     },
     "changeInstance": "Alterar",
     "@changeInstance": {
-        "description": "Link to change the connected Echowire instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Conecte-se à instância para fazer login",
     "@instanceConnectionRequired": {

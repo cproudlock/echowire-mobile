@@ -3816,7 +3816,7 @@
     },
     "systemDmComposerBarrier": "Ανακοινώσεις συστήματος από το προσωπικό του {productName}. Δεν μπορείτε να απαντήσετε εδώ.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4614,7 +4614,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "Σύμπτυξη DM σε φάκελο",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Όταν είναι ενεργοποιημένο, τα μη αναγνωσμένα DM στην πλευρική μπάρα κοινότητας συμπτύσσονται σε έναν φάκελο στο κουμπί {productName}. Κάντε κλικ στο κουμπί {productName} ενώ βρίσκεστε στη σελίδα DM για να επεκτείνετε ή να συμπτύξετε τον φάκελο.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -5539,7 +5539,7 @@
     },
     "chatSendFailureDmRestricted": "Το μήνυμά σας δεν μπόρεσε να παραδοθεί. Αυτό συμβαίνει συνήθως επειδή δεν μοιράζεστε κοινότητα με τον παραλήπτη ή ο παραλήπτης δέχεται απευθείας μηνύματα μόνο από φίλους. Μπορεί επίσης να χρειαστεί να προσαρμόσετε τις δικές σας ρυθμίσεις απορρήτου απευθείας μηνυμάτων στο {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5548,27 +5548,27 @@
     },
     "chatSendFailureUnclaimedDm": "Το μήνυμά σας δεν μπόρεσε να παραδοθεί. Πρέπει να διεκδικήσετε τον λογαριασμό σας για να στείλετε απευθείας μηνύματα.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Το μήνυμά σας δεν μπόρεσε να παραδοθεί. Πρέπει να διεκδικήσετε τον λογαριασμό σας για να στείλετε μηνύματα.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Το μήνυμά σας δεν μπόρεσε να παραδοθεί επειδή επισημάνθηκε από τα συστήματα ασφαλείας μας. Εάν πιστεύετε ότι πρόκειται για λάθος, επικοινωνήστε με την υποστήριξη.",
     "@chatSendFailureContentBlocked": {
-        "description": "Echowirebot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Το μήνυμά σας δεν μπόρεσε να παραδοθεί επειδή περιέχει ώριμα emoji ή αυτοκόλλητα που δεν επιτρέπονται σε αυτό το πλαίσιο.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Echowirebot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Μόνο εσείς μπορείτε να δείτε αυτό το μήνυμα.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Echowirebot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Απόρριψη",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Echowirebot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Επικοινωνία",
     "@privacyDashboardCommunicationSection": {
@@ -6581,9 +6581,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Echowire Reverb subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Δώρα",
     "@userSettingsNavGiftsAndCodes": {
@@ -6897,21 +6897,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Εισαγάγετε διεύθυνση URL παρουσίας (π.χ. fluxer.app)",
+    "instanceUrlPlaceholder": "Εισαγάγετε διεύθυνση URL παρουσίας (π.χ. echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Επαναφορά στο Echowire",
+    "resetToDefaultInstance": "Επαναφορά στο echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Σύνδεση",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Echowire instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Σύνδεση…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Echowire instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Αποτυχία σύνδεσης στην παρουσία",
     "@instanceConnectFailed": {
@@ -6940,7 +6940,7 @@
     },
     "changeInstance": "Αλλαγή",
     "@changeInstance": {
-        "description": "Link to change the connected Echowire instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Συνδεθείτε στην παρουσία για να συνδεθείτε",
     "@instanceConnectionRequired": {
@@ -9888,7 +9888,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -9910,7 +9910,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10246,7 +10246,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -10960,7 +10960,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10986,7 +10986,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11854,7 +11854,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12804,7 +12804,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12817,7 +12817,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12830,7 +12830,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12843,7 +12843,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12856,7 +12856,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12911,7 +12911,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12961,11 +12961,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Δεν μπορείτε να εξαργυρώσετε αυτό το δώρο",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Οι λογαριασμοί Visionary δεν μπορούν να εξαργυρώσουν δώρα Plutonium. Αντιγράψτε τον σύνδεσμο για να τον μοιραστείτε με έναν φίλο.",
+    "giftVisionaryCannotRedeemMessage": "Οι λογαριασμοί Visionary δεν μπορούν να εξαργυρώσουν δώρα Reverb. Αντιγράψτε τον σύνδεσμο για να τον μοιραστείτε με έναν φίλο.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Αντιγραφή συνδέσμου δώρου",
     "@giftCopyLink": {
@@ -13775,7 +13775,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Μείωση κίνησης",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Απενεργοποίηση κινούμενων σχεδίων και μεταβάσεων. Ελέγχεται αυτήν τη στιγμή από τις ρυθμίσεις του συστήματός σας.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -15070,7 +15070,7 @@
     },
     "addGuildImportTemplateInvalid": "Τα δεδομένα του προτύπου κοινότητας είναι άκυρα ή έχουν λανθασμένη μορφή.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "memberListPermissionDeniedTitle": "Δεν μπορείς να δεις τα μέλη",
     "@memberListPermissionDeniedTitle": {
@@ -15466,17 +15466,17 @@
         "description": "Empty state shown when user settings search has no matches."
     },
     "giftSettingsClaimAccountTitle": "Διεκδίκησε τον λογαριασμό σου",
-    "giftSettingsClaimAccountDescription": "Διεκδικήστε τον λογαριασμό σας για να εξαργυρώσετε ή να διαχειριστείτε κωδικούς δώρου Plutonium.",
+    "giftSettingsClaimAccountDescription": "Διεκδικήστε τον λογαριασμό σας για να εξαργυρώσετε ή να διαχειριστείτε κωδικούς δώρου Reverb.",
     "giftSettingsRedeemTitle": "Εξαργύρωση δώρου",
-    "giftSettingsRedeemDescription": "Εισαγάγετε έναν κωδικό δώρου για να εξαργυρώσετε Plutonium για τον λογαριασμό σας.",
+    "giftSettingsRedeemDescription": "Εισαγάγετε έναν κωδικό δώρου για να εξαργυρώσετε Reverb για τον λογαριασμό σας.",
     "giftSettingsRedeemPlaceholder": "Εισαγωγή κωδικού δώρου…",
     "giftSettingsRedeemButton": "Εξαργύρωση",
-    "giftSettingsRedeemSuccess": "Το δώρο εξαργυρώθηκε με επιτυχία. Απόλαυσε το Plutonium σου.",
+    "giftSettingsRedeemSuccess": "Το δώρο εξαργυρώθηκε με επιτυχία. Απόλαυσε το Reverb σου.",
     "giftSettingsPurchasedTitle": "Αγορασμένα δώρα",
-    "giftSettingsPurchasedDescription": "Διαχειριστείτε τους κωδικούς δώρου Plutonium που αγοράσατε. Μοιραστείτε το URL του δώρου με κάποιον ξεχωριστό ή εξαργυρώστε το για τον εαυτό σας!",
+    "giftSettingsPurchasedDescription": "Διαχειριστείτε τους κωδικούς δώρου Reverb που αγοράσατε. Μοιραστείτε το URL του δώρου με κάποιον ξεχωριστό ή εξαργυρώστε το για τον εαυτό σας!",
     "giftSettingsEmptyTitle": "Δεν υπάρχουν δώρα ακόμα",
-    "giftSettingsEmptyDescription": "Αγόρασε ένα δώρο Plutonium από την καρτέλα Plutonium για να μοιραστείς με φίλους.",
-    "giftSettingsGoToPlutonium": "Μετάβαση στο Plutonium",
+    "giftSettingsEmptyDescription": "Αγόρασε ένα δώρο Reverb από την καρτέλα Reverb για να μοιραστείς με φίλους.",
+    "giftSettingsGoToPlutonium": "Μετάβαση στο Reverb",
     "giftSettingsLoadFailedTitle": "Αποτυχία φόρτωσης αποθέματος δώρων",
     "giftSettingsLoadFailedDescription": "Δοκιμάστε ξανά αργότερα.",
     "giftSettingsTryAgain": "Δοκιμάστε ξανά",
@@ -15527,11 +15527,11 @@
     "premiumOneYearGift": "Δώρο 1 έτους",
     "premiumOneMonthGift": "Δώρο 1 μήνα",
     "premiumMostPopular": "Πιο δημοφιλές",
-    "premiumScrollPrompt": "Κάνε κύλιση προς τα κάτω για να δεις όλα τα προνόμια που περιλαμβάνονται με το Plutonium",
-    "premiumFreeVsPlutonium": "Δωρεάν έναντι Plutonium",
+    "premiumScrollPrompt": "Κάνε κύλιση προς τα κάτω για να δεις όλα τα προνόμια που περιλαμβάνονται με το Reverb",
+    "premiumFreeVsPlutonium": "Δωρεάν έναντι Reverb",
     "premiumFreeColumn": "Δωρεάν",
-    "premiumGiftSectionTitle": "Δώσε Plutonium",
-    "premiumGiftSectionDescription": "Μοιράσου την εμπειρία Plutonium με τους φίλους σου αγοράζοντας μια συνδρομή δώρου.",
+    "premiumGiftSectionTitle": "Δώσε Reverb",
+    "premiumGiftSectionDescription": "Μοιράσου την εμπειρία Reverb με τους φίλους σου αγοράζοντας μια συνδρομή δώρου.",
     "premiumGiftBannerOne": "Έχεις έναν νέο κωδικό δώρου που σε περιμένει!",
     "premiumGiftBannerMany": "Έχεις {count} νέους κωδικούς δώρου να σε περιμένουν!",
     "@premiumGiftBannerMany": {
@@ -15638,7 +15638,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Έχεις συνδρομή δώρου. Δεν θα ανανεωθεί αυτόματα. Μπορείς να εξαργυρώσεις κι άλλους κωδικούς δώρου για να την επεκτείνεις. Οι συνδρομές με αυτόματη ανανέωση μπορούν να ξεκινήσουν αφού λήξει η συνδρομή δώρου.",
     "premiumPlanUnavailable": "Αυτό το πρόγραμμα δεν είναι διαθέσιμο. Επικοινωνήστε με την υποστήριξη.",
     "premiumCompletePaymentTitle": "Ολοκλήρωση πληρωμής",
-    "premiumCompletePaymentBody": "Μεταβαίνετε τώρα στο Stripe για να ολοκληρώσετε την πληρωμή. Επιστρέψτε στο Fluxer μόλις την ολοκληρώσετε.",
+    "premiumCompletePaymentBody": "Μεταβαίνετε τώρα στο Stripe για να ολοκληρώσετε την πληρωμή. Επιστρέψτε στο echowire μόλις την ολοκληρώσετε.",
     "premiumChoosePaymentMethodTitle": "Επιλέξτε τρόπο πληρωμής",
     "premiumPixPaymentPromptDescription": "Πληρώστε με Pix αυτόματο για να εξουσιοδοτήσετε επαναλαμβανόμενες χρεώσεις απευθείας από την τράπεζά σας στη Βραζιλία. Εναλλακτικά, επιλέξτε χρήση κάρτας για να εισαγάγετε μια πιστωτική κάρτα στην επόμενη οθόνη του Stripe.",
     "premiumUsePix": "Χρησιμοποιήστε Pix",
@@ -15650,11 +15650,11 @@
     "premiumAlreadyVisionaryTitle": "Είστε ήδη Visionary",
     "premiumAlreadyVisionaryBody": "Το Visionary περιλαμβάνει ήδη μόνιμη πρόσβαση, οπότε δεν χρειάζεται επαναλαμβανόμενη συνδρομή. Μπορείτε να αγοράσετε δώρα για άλλους.",
     "premiumExistingSubscriptionTitle": "Η συνδρομή υπάρχει ήδη",
-    "premiumExistingSubscriptionBody": "Βρήκαμε μια υπάρχουσα συνδρομή Fluxer Plutonium για αυτόν τον λογαριασμό. Διαχειριστείτε την στην ασφαλή πύλη χρεώσεων για να ενημερώσετε τα στοιχεία πληρωμής ή να ελέγξετε την κατάσταση ανανέωσης. Αν μόλις πληρώσατε, περιμένετε ένα λεπτό και ξανανοίξτε αυτήν τη σελίδα.",
+    "premiumExistingSubscriptionBody": "Βρήκαμε μια υπάρχουσα συνδρομή Reverb για αυτόν τον λογαριασμό. Διαχειριστείτε την στην ασφαλή πύλη χρεώσεων για να ενημερώσετε τα στοιχεία πληρωμής ή να ελέγξετε την κατάσταση ανανέωσης. Αν μόλις πληρώσατε, περιμένετε ένα λεπτό και ξανανοίξτε αυτήν τη σελίδα.",
     "premiumPurchasesDisabledTitle": "Οι αγορές δεν είναι διαθέσιμες",
-    "premiumPurchasesDisabledBody": "Οι αγορές έχουν απενεργοποιηθεί για αυτόν τον λογαριασμό. Επικοινωνήστε με το support@fluxer.app αν αυτό φαίνεται λάθος.",
-    "premiumClaimAccountToPurchase": "Διεκδίκησε τον λογαριασμό σου για να αγοράσεις Fluxer Plutonium.",
-    "premiumVerifyEmailToPurchase": "Πρέπει να επαληθεύσεις το email σου πριν αγοράσεις το Fluxer Plutonium.",
+    "premiumPurchasesDisabledBody": "Οι αγορές έχουν απενεργοποιηθεί για αυτόν τον λογαριασμό. Επικοινωνήστε με το support@echowire.org αν αυτό φαίνεται λάθος.",
+    "premiumClaimAccountToPurchase": "Διεκδίκησε τον λογαριασμό σου για να αγοράσεις Reverb.",
+    "premiumVerifyEmailToPurchase": "Πρέπει να επαληθεύσεις το email σου πριν αγοράσεις το Reverb.",
     "premiumPerkCustomUsernameTag": "Προσαρμοσμένο όνομα χρήστη",
     "premiumPerkPerCommunityProfiles": "Προφίλ ανά κοινότητα",
     "premiumPerkMessageScheduling": "Προγραμματισμός μηνυμάτων",

@@ -940,7 +940,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'Účty Visionary nemohou uplatnit dárky Plutonium. Zkopírujte odkaz a sdílejte ho s přítelem.';
+      'Účty Visionary nemohou uplatnit dárky Reverb. Zkopírujte odkaz a sdílejte ho s přítelem.';
 
   @override
   String get giftCopyLink => 'Kopírovat odkaz na dárek';
@@ -9142,7 +9142,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Zabezpečení a přihlášení';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Dárky';
@@ -9152,14 +9152,14 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Uplatněte svůj účet k získání nebo správě dárkových kódů Plutonium.';
+      'Uplatněte svůj účet k získání nebo správě dárkových kódů Reverb.';
 
   @override
   String get giftSettingsRedeemTitle => 'Uplatnit dárek';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'Zadejte dárkový kód pro uplatnění Plutonium pro váš účet.';
+      'Zadejte dárkový kód pro uplatnění Reverb pro váš účet.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'Zadejte kód dárku…';
@@ -9169,24 +9169,24 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get giftSettingsRedeemSuccess =>
-      'Dárek byl úspěšně uplatněn. Užijte si Plutonium.';
+      'Dárek byl úspěšně uplatněn. Užijte si Reverb.';
 
   @override
   String get giftSettingsPurchasedTitle => 'Zakoupené dárky';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'Spravujte své zakoupené dárkové kódy Plutonium. Sdílejte URL dárku s někým výjimečným nebo si jej uplatněte sami!';
+      'Spravujte své zakoupené dárkové kódy Reverb. Sdílejte URL dárku s někým výjimečným nebo si jej uplatněte sami!';
 
   @override
   String get giftSettingsEmptyTitle => 'Zatím žádné dárky';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Kupte dárek Plutonium v kartě Plutonium a sdílejte ho s přáteli.';
+      'Kupte dárek Reverb v kartě Reverb a sdílejte ho s přáteli.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Přejít na Plutonium';
+  String get giftSettingsGoToPlutonium => 'Přejít na Reverb';
 
   @override
   String get giftSettingsLoadFailedTitle =>
@@ -9287,20 +9287,20 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'Přejděte dolů a zobrazte všechny výhody zahrnuté v Plutonium';
+      'Přejděte dolů a zobrazte všechny výhody zahrnuté v Reverb';
 
   @override
-  String get premiumFreeVsPlutonium => 'Zdarma vs Plutonium';
+  String get premiumFreeVsPlutonium => 'Zdarma vs Reverb';
 
   @override
   String get premiumFreeColumn => 'Zdarma';
 
   @override
-  String get premiumGiftSectionTitle => 'Darovat Plutonium';
+  String get premiumGiftSectionTitle => 'Darovat Reverb';
 
   @override
   String get premiumGiftSectionDescription =>
-      'Sdílejte zážitek z Plutonium se svými přáteli zakoupením dárkového předplatného.';
+      'Sdílejte zážitek z Reverb se svými přáteli zakoupením dárkového předplatného.';
 
   @override
   String get premiumGiftBannerOne => 'Čeká na vás nový dárkový kód!';
@@ -9450,7 +9450,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Nyní budete přesměrováni na Stripe k dokončení platby. Po dokončení se vraťte do Fluxeru.';
+      'Nyní budete přesměrováni na Stripe k dokončení platby. Po dokončení se vraťte do echowireu.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Zvolte způsob platby';
@@ -9492,22 +9492,22 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'Našli jsme existující předplatné Fluxer Plutonium pro tento účel. Spravujte ho v zabezpečeném platebním portálu pro aktualizaci platebních údajů nebo kontrolu stavu obnovení. Pokud jste právě zaplatili, počkejte minutu a znovu otevřete tuto stránku.';
+      'Našli jsme existující předplatné Reverb pro tento účel. Spravujte ho v zabezpečeném platebním portálu pro aktualizaci platebních údajů nebo kontrolu stavu obnovení. Pokud jste právě zaplatili, počkejte minutu a znovu otevřete tuto stránku.';
 
   @override
   String get premiumPurchasesDisabledTitle => 'Nákupy nejsou k dispozici';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'Nákupy jsou pro tento účet zakázány. Pokud se vám to nezdá, kontaktujte support@fluxer.app.';
+      'Nákupy jsou pro tento účet zakázány. Pokud se vám to nezdá, kontaktujte support@echowire.org.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Získejte svůj účet a kupte si Fluxer Plutonium.';
+      'Získejte svůj účet a kupte si Reverb.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'Před nákupem Fluxer Plutonium si musíte ověřit svůj e-mail.';
+      'Před nákupem Reverb si musíte ověřit svůj e-mail.';
 
   @override
   String get premiumPerkCustomUsernameTag => 'Vlastní uživatelské jméno';
@@ -10925,14 +10925,14 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get instanceUrlPlaceholder =>
-      'Zadejte URL instance (např. fluxer.app)';
+      'Zadejte URL instance (např. echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Obnovit na Echowire';
+  String get resetToDefaultInstance => 'Obnovit na echowire';
 
   @override
   String get instanceConnect => 'Připojit';

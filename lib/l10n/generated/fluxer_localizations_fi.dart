@@ -939,7 +939,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'Visionary-tilit eivät voi lunastaa Plutonium-lahjoja. Kopioi linkki ja jaa se ystävällesi sen sijaan.';
+      'Visionary-tilit eivät voi lunastaa Reverb-lahjoja. Kopioi linkki ja jaa se ystävällesi sen sijaan.';
 
   @override
   String get giftCopyLink => 'Kopioi lahjalinkki';
@@ -1958,7 +1958,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      'Yhteisökohtaisen avatarin, bannerin, tehostevärin ja kuvauksen mukauttaminen vaatii Reverbia. Yhteisön lempinimi ja pronominit ovat ilmaisia kaikille.';
+      'Yhteisökohtaisen avatarin, bannerin, tehostevärin ja kuvauksen mukauttaminen vaatii Reverbiä. Yhteisön lempinimi ja pronominit ovat ilmaisia kaikille.';
 
   @override
   String get avatarModeInherit => 'Käytä globaalia profiilia';
@@ -9135,7 +9135,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Suojaus ja kirjautuminen';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Lahjat';
@@ -9145,14 +9145,14 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Lunasta tilisi lunastaaksesi tai hallinoidaksesi Plutonium-lahjoituskoodeja.';
+      'Lunasta tilisi lunastaaksesi tai hallinoidaksesi Reverb-lahjoituskoodeja.';
 
   @override
   String get giftSettingsRedeemTitle => 'Lunasta lahja';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'Syötä lahjakoodi lunastaaksesi Plutoniumia tilillesi.';
+      'Syötä lahjakoodi lunastaaksesi Reverbiä tilillesi.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'Anna lahjakoodi…';
@@ -9162,24 +9162,24 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get giftSettingsRedeemSuccess =>
-      'Lahja lunastettu onnistuneesti. Nauti Plutoniumistasi.';
+      'Lahja lunastettu onnistuneesti. Nauti Reverbistäsi.';
 
   @override
   String get giftSettingsPurchasedTitle => 'Ostetut lahjat';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'Hallinnoi ostamiasi Plutonium-lahjakoodeja. Jaa lahjalinkki jonkun erityisen kanssa tai lunasta se itsellesi!';
+      'Hallinnoi ostamiasi Reverb-lahjakoodeja. Jaa lahjalinkki jonkun erityisen kanssa tai lunasta se itsellesi!';
 
   @override
   String get giftSettingsEmptyTitle => 'Ei lahjoja vielä';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Osta Plutonium-lahja Plutonium-välilehdeltä jakaaksesi sen ystävien kanssa.';
+      'Osta Reverb-lahja Reverb-välilehdeltä jakaaksesi sen ystävien kanssa.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Siirry Plutoniumiin';
+  String get giftSettingsGoToPlutonium => 'Siirry Reverbiin';
 
   @override
   String get giftSettingsLoadFailedTitle => 'Lahjavaraston lataus epäonnistui';
@@ -9278,20 +9278,20 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'Selaa alas nähdäksesi kaikki Plutoniumiin sisältyvät edut';
+      'Selaa alas nähdäksesi kaikki Reverbiin sisältyvät edut';
 
   @override
-  String get premiumFreeVsPlutonium => 'Ilmainen vs. Plutonium';
+  String get premiumFreeVsPlutonium => 'Ilmainen vs. Reverb';
 
   @override
   String get premiumFreeColumn => 'Ilmainen';
 
   @override
-  String get premiumGiftSectionTitle => 'Lahjoita Plutonium';
+  String get premiumGiftSectionTitle => 'Lahjoita Reverb';
 
   @override
   String get premiumGiftSectionDescription =>
-      'Jaa Plutonium-kokemus ystäviesi kanssa ostamalla lahjatilaus.';
+      'Jaa Reverb-kokemus ystäviesi kanssa ostamalla lahjatilaus.';
 
   @override
   String get premiumGiftBannerOne => 'Sinulla on uusi lahjakoodi odottamassa!';
@@ -9440,7 +9440,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Siirryt nyt Stripeen maksun suorittamiseksi. Palaa Fluxeriin, kun olet suorittanut sen.';
+      'Siirryt nyt Stripeen maksun suorittamiseksi. Palaa echowireiin, kun olet suorittanut sen.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Valitse maksutapa';
@@ -9482,7 +9482,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'Löysimme tilillesi jo olemassa olevan Fluxer Plutonium -tilauksen. Hallinnoi sitä suojatussa laskutusportaalissa päivittääksesi maksutietoja tai tarkistaaksesi uusimisen tilan. Jos maksoit juuri, odota hetki ja avaa sivu uudelleen.';
+      'Löysimme tilillesi jo olemassa olevan Reverb -tilauksen. Hallinnoi sitä suojatussa laskutusportaalissa päivittääksesi maksutietoja tai tarkistaaksesi uusimisen tilan. Jos maksoit juuri, odota hetki ja avaa sivu uudelleen.';
 
   @override
   String get premiumPurchasesDisabledTitle =>
@@ -9490,15 +9490,15 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'Ostokset on poistettu käytöstä tältä tililtä. Ota yhteyttä osoitteeseen support@fluxer.app, jos tämä näyttää virheelliseltä.';
+      'Ostokset on poistettu käytöstä tältä tililtä. Ota yhteyttä osoitteeseen support@echowire.org, jos tämä näyttää virheelliseltä.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Lunasta tilisi ostaaksesi Fluxer Plutoniumia.';
+      'Lunasta tilisi ostaaksesi Reverbiä.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'Sinun täytyy vahvistaa sähköpostisi ennen kuin voit ostaa Fluxer Plutoniumia.';
+      'Sinun täytyy vahvistaa sähköpostisi ennen kuin voit ostaa Reverbiä.';
 
   @override
   String get premiumPerkCustomUsernameTag => 'Mukautettu käyttäjätunniste';
@@ -10913,14 +10913,14 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get instanceUrlPlaceholder =>
-      'Syötä instanssin URL (esim. fluxer.app)';
+      'Syötä instanssin URL (esim. echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Nollaa Echowireiin';
+  String get resetToDefaultInstance => 'Nollaa echowireiin';
 
   @override
   String get instanceConnect => 'Yhdistä';

@@ -1087,7 +1087,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1100,7 +1100,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1113,7 +1113,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1126,7 +1126,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1139,7 +1139,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1194,7 +1194,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1244,11 +1244,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Không thể đổi quà này",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Tài khoản Visionary không thể đổi quà Plutonium. Hãy sao chép liên kết để chia sẻ với bạn bè.",
+    "giftVisionaryCannotRedeemMessage": "Tài khoản Visionary không thể đổi quà Reverb. Hãy sao chép liên kết để chia sẻ với bạn bè.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Sao chép liên kết quà tặng",
     "@giftCopyLink": {
@@ -2010,7 +2010,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Mở khóa {emojiCount} từ {communityCount} với Plutonium.",
+    "emojiPlutoniumUpsellText": "Mở khóa {emojiCount} từ {communityCount} với Reverb.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -2022,13 +2022,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Nhận Plutonium",
+    "emojiPlutoniumUpsellButton": "Nhận Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "Không hiển thị lại",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 biểu tượng cảm xúc tùy chỉnh} other{{count} biểu tượng cảm xúc tùy chỉnh}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -2146,11 +2146,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "Ảnh động cần có Plutonium",
+    "animatedAvatarsRequirePlutonium": "Ảnh động cần có Reverb",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "Ảnh động yêu cầu Plutonium",
+    "animatedBannersRequirePlutonium": "Ảnh động yêu cầu Reverb",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -2230,7 +2230,7 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "Nhận Plutonium để tùy chỉnh thẻ của bạn hoặc giữ nguyên khi đổi tên người dùng",
+    "discriminatorPremiumTooltip": "Nhận Reverb để tùy chỉnh thẻ của bạn hoặc giữ nguyên khi đổi tên người dùng",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
@@ -2254,7 +2254,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "Thẻ gồm 4 chữ số tùy chỉnh của bạn chỉ khả dụng khi gói đăng ký Plutonium của bạn còn hoạt động. Khi gói đăng ký của bạn hết hạn vào ngày {date}, thẻ của bạn sẽ trở về số được chỉ định ngẫu nhiên sau thời gian ân hạn 3 ngày.",
+    "customTagTemporaryBodyWithDate": "Thẻ gồm 4 chữ số tùy chỉnh của bạn chỉ khả dụng khi gói đăng ký Reverb của bạn còn hoạt động. Khi gói đăng ký của bạn hết hạn vào ngày {date}, thẻ của bạn sẽ trở về số được chỉ định ngẫu nhiên sau thời gian ân hạn 3 ngày.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -2263,7 +2263,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "Thẻ gồm 4 chữ số tùy chỉnh của bạn chỉ khả dụng khi gói đăng ký Plutonium của bạn còn hoạt động. Khi gói đăng ký của bạn hết hạn, thẻ của bạn sẽ trở về số ngẫu nhiên sau thời gian ân hạn 3 ngày.",
+    "customTagTemporaryBody": "Thẻ gồm 4 chữ số tùy chỉnh của bạn chỉ khả dụng khi gói đăng ký Reverb của bạn còn hoạt động. Khi gói đăng ký của bạn hết hạn, thẻ của bạn sẽ trở về số ngẫu nhiên sau thời gian ân hạn 3 ngày.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -2271,11 +2271,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "Nếu bạn lưu tên người dùng này, thẻ gồm 4 chữ số tùy chỉnh của bạn sẽ trở về số ngẫu nhiên khi gói đăng ký Plutonium của bạn kết thúc. Nếu gói đăng ký của bạn không được gia hạn, bạn sẽ có 3 ngày gia hạn trước khi thẻ thay đổi.",
+    "premiumWarningPendingDiscriminator": "Nếu bạn lưu tên người dùng này, thẻ gồm 4 chữ số tùy chỉnh của bạn sẽ trở về số ngẫu nhiên khi gói đăng ký Reverb của bạn kết thúc. Nếu gói đăng ký của bạn không được gia hạn, bạn sẽ có 3 ngày gia hạn trước khi thẻ thay đổi.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "Thẻ gồm 4 chữ số tùy chỉnh của bạn (#{discriminator}) sẽ hoạt động khi gói đăng ký Plutonium của bạn còn hiệu lực. Nếu gói đăng ký của bạn kết thúc hoặc không gia hạn sau thời gian ân hạn 3 ngày, thẻ của bạn sẽ trở về số ngẫu nhiên.",
+    "premiumWarningActiveDiscriminator": "Thẻ gồm 4 chữ số tùy chỉnh của bạn (#{discriminator}) sẽ hoạt động khi gói đăng ký Reverb của bạn còn hiệu lực. Nếu gói đăng ký của bạn kết thúc hoặc không gia hạn sau thời gian ân hạn 3 ngày, thẻ của bạn sẽ trở về số ngẫu nhiên.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -2286,9 +2286,9 @@
     },
     "premiumUpsellCustomizeTag": "Tùy chỉnh thẻ 4 chữ số của bạn hoặc giữ nguyên khi đổi tên người dùng",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "Gói Plutonium dùng thử của bạn sẽ hết hạn vào ngày {date}. Nâng cấp để giữ thẻ tùy chỉnh của bạn và nhận huy hiệu trên hồ sơ.",
+    "premiumTrialExpiresOn": "Gói Reverb dùng thử của bạn sẽ hết hạn vào ngày {date}. Nâng cấp để giữ thẻ tùy chỉnh của bạn và nhận huy hiệu trên hồ sơ.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -2297,7 +2297,7 @@
             }
         }
     },
-    "premiumTrialActive": "Bạn đang dùng thử Plutonium. Nâng cấp để giữ thẻ tùy chỉnh và nhận huy hiệu trên hồ sơ của bạn.",
+    "premiumTrialActive": "Bạn đang dùng thử Reverb. Nâng cấp để giữ thẻ tùy chỉnh và nhận huy hiệu trên hồ sơ của bạn.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
@@ -2333,7 +2333,7 @@
     "@changeFluxerTag": {
         "description": "Button label to open the username change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "Tùy chỉnh thẻ gồm 4 chữ số của bạn (#{discriminator}) theo ý muốn với Plutonium",
+    "customizeTagWithPlutoniumTooltip": "Tùy chỉnh thẻ gồm 4 chữ số của bạn (#{discriminator}) theo ý muốn với Reverb",
     "@customizeTagWithPlutoniumTooltip": {
         "description": "Tooltip on the crown upsell button next to the username button.",
         "placeholders": {
@@ -2346,7 +2346,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "Thẻ tùy chỉnh của bạn (#{discriminator}) được liên kết với gói đăng ký Plutonium của bạn và sẽ trở về thẻ ngẫu nhiên nếu hết hạn.",
+    "customTagSubscriptionWarning": "Thẻ tùy chỉnh của bạn (#{discriminator}) được liên kết với gói đăng ký Reverb của bạn và sẽ trở về thẻ ngẫu nhiên nếu hết hạn.",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -2415,38 +2415,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Quyền riêng tư Huy hiệu Plutonium",
+    "plutoniumBadgePrivacyTitle": "Quyền riêng tư Huy hiệu Reverb",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "Kiểm soát cách huy hiệu Plutonium của bạn hiển thị với người khác",
+    "plutoniumBadgePrivacyDescription": "Kiểm soát cách huy hiệu Reverb của bạn hiển thị với người khác",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "Ẩn hoàn toàn huy hiệu Plutonium",
+    "hidePlutoniumBadgeLabel": "Ẩn hoàn toàn huy hiệu Reverb",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "Ẩn hoàn toàn huy hiệu Plutonium của bạn khỏi người dùng khác",
+    "hidePlutoniumBadgeDescription": "Ẩn hoàn toàn huy hiệu Reverb của bạn khỏi người dùng khác",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "Ẩn ngày mua Plutonium",
+    "hidePlutoniumPurchaseDate": "Ẩn ngày mua Reverb",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "Ẩn ngày mua Plutonium ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "Ẩn ngày mua Reverb ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "Xóa khi bạn lần đầu mua Plutonium khỏi huy hiệu của bạn",
+    "hidePurchaseDateDescription": "Xóa khi bạn lần đầu mua Reverb khỏi huy hiệu của bạn",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "Ẩn danh hiệu Visionary (gói đăng ký)",
     "@maskVisionaryAsSubscription": {
@@ -2473,7 +2473,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "Bạn đang dùng thử Plutonium — gói đăng ký của bạn sẽ bắt đầu vào ngày {date}",
+    "premiumTrialSubscriptionStarts": "Bạn đang dùng thử Reverb — gói đăng ký của bạn sẽ bắt đầu vào ngày {date}",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -2486,7 +2486,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "Bạn đang dùng thử Plutonium, sẽ hết hạn vào ngày {date}",
+    "premiumTrialExpiresOnProfile": "Bạn đang dùng thử Reverb, sẽ hết hạn vào ngày {date}",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -2495,29 +2495,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "Bạn đang dùng thử Plutonium",
+    "premiumTrialActiveProfile": "Bạn đang dùng thử Reverb",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Tối đa 10MB. Khuyến nghị: 512×512px. Ảnh đại diện động (GIF) yêu cầu Plutonium.",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Tối đa 10MB. Khuyến nghị: 512×512px. Ảnh đại diện động (GIF) yêu cầu Reverb.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "Tùy chỉnh hồ sơ của bạn với ảnh biểu ngữ tĩnh hoặc động để làm nổi bật nó.",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "Nhận Plutonium",
+    "getPlutonium": "Nhận Reverb",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "Tính năng mua hàng trong ứng dụng chưa khả dụng trên nền tảng này. Hãy theo dõi — sắp ra mắt!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "Xem trước",
     "@profilePreviewLabel": {
@@ -2564,7 +2564,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "Tùy chỉnh ảnh đại diện, biểu ngữ, màu sắc chủ đạo và tiểu sử của bạn cho từng cộng đồng yêu cầu Plutonium. Biệt danh cộng đồng và đại từ miễn phí cho mọi người.",
+    "perGuildPremiumUpsellText": "Tùy chỉnh ảnh đại diện, biểu ngữ, màu sắc chủ đạo và tiểu sử của bạn cho từng cộng đồng yêu cầu Reverb. Biệt danh cộng đồng và đại từ miễn phí cho mọi người.",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -3311,7 +3311,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Hủy gói đăng ký Plutonium đang hoạt động của bạn trong cài đặt Plutonium trước khi xóa tài khoản.",
+    "dangerZoneDeleteCancelSubscription": "Hủy gói đăng ký Reverb đang hoạt động của bạn trong cài đặt Reverb trước khi xóa tài khoản.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -3713,7 +3713,7 @@
             }
         }
     },
-    "userProfilePlutoniumBadgeTooltip": "Plutonium {productName}",
+    "userProfilePlutoniumBadgeTooltip": "Reverb {productName}",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3722,7 +3722,7 @@
             }
         }
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Plutonium thành viên từ {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Reverb thành viên từ {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -4838,7 +4838,7 @@
     },
     "systemDmComposerBarrier": "Thông báo hệ thống từ đội ngũ {productName}. Bạn không thể trả lời tại đây.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -5880,7 +5880,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "Thu gọn DM vào thư mục",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Khi bật, các DM chưa đọc trong thanh bên máy chủ sẽ được thu gọn thành một thư mục trên nút {productName}. Nhấp vào nút {productName} khi ở trang DM để mở rộng hoặc thu gọn thư mục.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -6609,7 +6609,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Giảm chuyển động",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Tắt hiệu ứng động và chuyển cảnh. Hiện đang được điều khiển bởi cài đặt hệ thống của bạn.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -7596,7 +7596,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "Còn {remaining} ký tự. Nhận {productName} để viết tối đa {premiumMaxLength} ký tự.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -7615,7 +7615,7 @@
     },
     "chatSendFailureDmRestricted": "Tin nhắn của bạn không thể được gửi. Điều này thường xảy ra vì bạn không chung cộng đồng với người nhận hoặc người nhận chỉ chấp nhận tin nhắn trực tiếp từ bạn bè. Bạn cũng có thể cần điều chỉnh cài đặt quyền riêng tư tin nhắn trực tiếp của mình trong {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -7624,27 +7624,27 @@
     },
     "chatSendFailureUnclaimedDm": "Không gửi được tin nhắn. Bạn cần xác minh tài khoản để gửi tin nhắn trực tiếp.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Không gửi được tin nhắn. Bạn cần xác thực tài khoản để gửi tin nhắn.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Tin nhắn của bạn không thể gửi đi vì đã bị hệ thống an toàn của chúng tôi gắn cờ. Nếu bạn cho rằng đây là lỗi, vui lòng liên hệ bộ phận hỗ trợ.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Tin nhắn của bạn không thể gửi vì chứa biểu tượng cảm xúc hoặc nhãn dán nhạy cảm không được phép trong ngữ cảnh này.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Chỉ bạn mới xem được tin nhắn này.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Bỏ qua",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Giao tiếp",
     "@privacyDashboardCommunicationSection": {
@@ -9594,7 +9594,7 @@
     },
     "addGuildImportTemplateInvalid": "Dữ liệu mẫu cộng đồng không hợp lệ hoặc bị lỗi định dạng.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "addGuildPackInstalled": "Đã cài đặt gói thành công.",
     "@addGuildPackInstalled": {
@@ -11460,26 +11460,26 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Quà tặng",
     "@userSettingsNavGiftsAndCodes": {
         "description": "User settings navigation item for gifts and promo codes."
     },
     "giftSettingsClaimAccountTitle": "Xác nhận tài khoản",
-    "giftSettingsClaimAccountDescription": "Nhận tài khoản của bạn để đổi hoặc quản lý mã quà tặng Plutonium.",
+    "giftSettingsClaimAccountDescription": "Nhận tài khoản của bạn để đổi hoặc quản lý mã quà tặng Reverb.",
     "giftSettingsRedeemTitle": "Đổi quà",
-    "giftSettingsRedeemDescription": "Nhập mã quà tặng để đổi Plutonium cho tài khoản của bạn.",
+    "giftSettingsRedeemDescription": "Nhập mã quà tặng để đổi Reverb cho tài khoản của bạn.",
     "giftSettingsRedeemPlaceholder": "Nhập mã quà tặng…",
     "giftSettingsRedeemButton": "Đổi quà",
-    "giftSettingsRedeemSuccess": "Đã đổi quà thành công. Tận hưởng Plutonium của bạn.",
+    "giftSettingsRedeemSuccess": "Đã đổi quà thành công. Tận hưởng Reverb của bạn.",
     "giftSettingsPurchasedTitle": "Quà đã mua",
-    "giftSettingsPurchasedDescription": "Quản lý mã quà tặng Plutonium đã mua của bạn. Chia sẻ URL quà tặng với người đặc biệt hoặc tự mình đổi quà!",
+    "giftSettingsPurchasedDescription": "Quản lý mã quà tặng Reverb đã mua của bạn. Chia sẻ URL quà tặng với người đặc biệt hoặc tự mình đổi quà!",
     "giftSettingsEmptyTitle": "Chưa có quà nào",
-    "giftSettingsEmptyDescription": "Mua quà Plutonium từ tab Plutonium để chia sẻ với bạn bè.",
-    "giftSettingsGoToPlutonium": "Đi tới Plutonium",
+    "giftSettingsEmptyDescription": "Mua quà Reverb từ tab Reverb để chia sẻ với bạn bè.",
+    "giftSettingsGoToPlutonium": "Đi tới Reverb",
     "giftSettingsLoadFailedTitle": "Không tải được kho quà",
     "giftSettingsLoadFailedDescription": "Thử lại sau.",
     "giftSettingsTryAgain": "Thử lại",
@@ -11530,11 +11530,11 @@
     "premiumOneYearGift": "Gói quà 1 năm",
     "premiumOneMonthGift": "Gói quà 1 tháng",
     "premiumMostPopular": "Phổ biến nhất",
-    "premiumScrollPrompt": "Cuộn xuống để xem tất cả các đặc quyền đi kèm với Plutonium",
-    "premiumFreeVsPlutonium": "Miễn phí và Plutonium",
+    "premiumScrollPrompt": "Cuộn xuống để xem tất cả các đặc quyền đi kèm với Reverb",
+    "premiumFreeVsPlutonium": "Miễn phí và Reverb",
     "premiumFreeColumn": "Miễn phí",
-    "premiumGiftSectionTitle": "Tặng Plutonium",
-    "premiumGiftSectionDescription": "Chia sẻ trải nghiệm Plutonium với bạn bè bằng cách mua một gói đăng ký quà tặng.",
+    "premiumGiftSectionTitle": "Tặng Reverb",
+    "premiumGiftSectionDescription": "Chia sẻ trải nghiệm Reverb với bạn bè bằng cách mua một gói đăng ký quà tặng.",
     "premiumGiftBannerOne": "Bạn có một mã quà tặng mới đang chờ bạn!",
     "premiumGiftBannerMany": "Bạn có {count} mã quà tặng mới đang chờ bạn!",
     "@premiumGiftBannerMany": {
@@ -11641,7 +11641,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Bạn đang dùng gói quà tặng. Gói này sẽ không tự động gia hạn. Bạn có thể đổi thêm mã quà tặng để gia hạn. Gói tự động gia hạn có thể được bắt đầu sau khi gói quà tặng của bạn kết thúc.",
     "premiumPlanUnavailable": "Gói này không khả dụng. Vui lòng liên hệ bộ phận hỗ trợ.",
     "premiumCompletePaymentTitle": "Hoàn tất thanh toán",
-    "premiumCompletePaymentBody": "Bạn sẽ được chuyển hướng đến Stripe để hoàn tất thanh toán. Quay lại Fluxer sau khi hoàn tất.",
+    "premiumCompletePaymentBody": "Bạn sẽ được chuyển hướng đến Stripe để hoàn tất thanh toán. Quay lại echowire sau khi hoàn tất.",
     "premiumChoosePaymentMethodTitle": "Chọn phương thức thanh toán",
     "premiumPixPaymentPromptDescription": "Thanh toán bằng Pix tự động để ủy quyền các khoản phí định kỳ trực tiếp từ ngân hàng Brazil của bạn. Hoặc chọn sử dụng thẻ để nhập thẻ tín dụng trên màn hình tiếp theo của Stripe.",
     "premiumUsePix": "Sử dụng Pix",
@@ -11653,11 +11653,11 @@
     "premiumAlreadyVisionaryTitle": "Bạn đã là Visionary rồi",
     "premiumAlreadyVisionaryBody": "Visionary đã bao gồm quyền truy cập vĩnh viễn, nên bạn không cần đăng ký định kỳ. Bạn vẫn có thể mua quà tặng cho người khác.",
     "premiumExistingSubscriptionTitle": "Gói đăng ký đã tồn tại",
-    "premiumExistingSubscriptionBody": "Chúng tôi tìm thấy một gói đăng ký Fluxer Plutonium hiện có cho tài khoản này. Quản lý gói đăng ký đó trong cổng thanh toán bảo mật để cập nhật chi tiết thanh toán hoặc kiểm tra trạng thái gia hạn. Nếu bạn vừa thanh toán, hãy đợi một phút và mở lại trang này.",
+    "premiumExistingSubscriptionBody": "Chúng tôi tìm thấy một gói đăng ký Reverb hiện có cho tài khoản này. Quản lý gói đăng ký đó trong cổng thanh toán bảo mật để cập nhật chi tiết thanh toán hoặc kiểm tra trạng thái gia hạn. Nếu bạn vừa thanh toán, hãy đợi một phút và mở lại trang này.",
     "premiumPurchasesDisabledTitle": "Tính năng mua hàng không khả dụng",
-    "premiumPurchasesDisabledBody": "Giao dịch đã bị tắt cho tài khoản này. Liên hệ support@fluxer.app nếu bạn thấy có gì đó không đúng.",
-    "premiumClaimAccountToPurchase": "Xác nhận tài khoản của bạn để mua Fluxer Plutonium.",
-    "premiumVerifyEmailToPurchase": "Bạn cần xác minh email trước khi có thể mua Fluxer Plutonium.",
+    "premiumPurchasesDisabledBody": "Giao dịch đã bị tắt cho tài khoản này. Liên hệ support@echowire.org nếu bạn thấy có gì đó không đúng.",
+    "premiumClaimAccountToPurchase": "Xác nhận tài khoản của bạn để mua Reverb.",
+    "premiumVerifyEmailToPurchase": "Bạn cần xác minh email trước khi có thể mua Reverb.",
     "premiumPerkCustomUsernameTag": "Tên người dùng tùy chỉnh",
     "premiumPerkPerCommunityProfiles": "Hồ sơ riêng cho từng cộng đồng",
     "premiumPerkMessageScheduling": "Lên lịch tin nhắn",
@@ -11844,7 +11844,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11898,7 +11898,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -11912,7 +11912,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11922,7 +11922,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11952,7 +11952,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11982,7 +11982,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12890,21 +12890,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Nhập URL của phiên bản (ví dụ: fluxer.app)",
+    "instanceUrlPlaceholder": "Nhập URL của phiên bản (ví dụ: echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Đặt lại về Fluxer",
+    "resetToDefaultInstance": "Đặt lại về echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Kết nối",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Đang kết nối…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Không thể kết nối tới phiên bản",
     "@instanceConnectFailed": {
@@ -12933,7 +12933,7 @@
     },
     "changeInstance": "Thay đổi",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Kết nối với phiên bản để đăng nhập",
     "@instanceConnectionRequired": {

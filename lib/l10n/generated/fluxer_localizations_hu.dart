@@ -942,7 +942,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'A Visionary fiókok nem tudják beváltani a Plutonium ajándékokat. Másold a linket, hogy megosztd a barátaiddal.';
+      'A Visionary fiókok nem tudják beváltani a Reverb ajándékokat. Másold a linket, hogy megosztd a barátaiddal.';
 
   @override
   String get giftCopyLink => 'Ajándéklink másolása';
@@ -5365,7 +5365,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get ttsSubstitutionCodeBlock => 'kódblokk';
 
   @override
-  String get ttsSubstitutionSpoiler => 'Plutonium';
+  String get ttsSubstitutionSpoiler => 'Reverb';
 
   @override
   String ttsSubstitutionEmoji(String emojiName) {
@@ -9180,7 +9180,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Biztonság és bejelentkezés';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Ajándékok';
@@ -9190,14 +9190,14 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Foglald le a fiókodat a Plutonium ajándékkódok beváltásához vagy kezeléséhez.';
+      'Foglald le a fiókodat a Reverb ajándékkódok beváltásához vagy kezeléséhez.';
 
   @override
   String get giftSettingsRedeemTitle => 'Ajándék beváltása';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'Adj meg egy ajándékkódot, hogy Plutoniumot válts be a fiókodban.';
+      'Adj meg egy ajándékkódot, hogy Reverbet válts be a fiókodban.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'Ajándékkód megadása…';
@@ -9207,24 +9207,24 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get giftSettingsRedeemSuccess =>
-      'Ajándék sikeresen beváltva. Jó szórakozást a Plutoniummal!';
+      'Ajándék sikeresen beváltva. Jó szórakozást a Reverbbel!';
 
   @override
   String get giftSettingsPurchasedTitle => 'Megvásárolt ajándékok';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'Kezeld a megvásárolt Plutonium ajándékkódjaidat. Oszd meg az ajándék URL-t valakivel, akit szeretsz, vagy váltsd be magadnak!';
+      'Kezeld a megvásárolt Reverb ajándékkódjaidat. Oszd meg az ajándék URL-t valakivel, akit szeretsz, vagy váltsd be magadnak!';
 
   @override
   String get giftSettingsEmptyTitle => 'Még nincsenek ajándékok';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Vásárolj Plutonium ajándékot a Plutonium fülön, hogy megoszd a barátaiddal.';
+      'Vásárolj Reverb ajándékot a Reverb fülön, hogy megoszd a barátaiddal.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Ugrás a Plutoniumra';
+  String get giftSettingsGoToPlutonium => 'Ugrás a Reverbre';
 
   @override
   String get giftSettingsLoadFailedTitle =>
@@ -9325,20 +9325,20 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'Görgess lefelé, hogy megtekintsd a Plutonium összes előnyét';
+      'Görgess lefelé, hogy megtekintsd a Reverb összes előnyét';
 
   @override
-  String get premiumFreeVsPlutonium => 'Ingyenes vs. Plutonium';
+  String get premiumFreeVsPlutonium => 'Ingyenes vs. Reverb';
 
   @override
   String get premiumFreeColumn => 'Ingyenes';
 
   @override
-  String get premiumGiftSectionTitle => 'Plutonium ajándékozása';
+  String get premiumGiftSectionTitle => 'Reverb ajándékozása';
 
   @override
   String get premiumGiftSectionDescription =>
-      'Oszd meg a Plutonium élményt barátaiddal egy ajándék-előfizetés megvásárlásával.';
+      'Oszd meg a Reverb élményt barátaiddal egy ajándék-előfizetés megvásárlásával.';
 
   @override
   String get premiumGiftBannerOne => 'Új ajándékkód vár rád!';
@@ -9490,7 +9490,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Most a rendszer átirányít a Stripe oldalára a fizetés befejezéséhez. Miután befejezted, térj vissza a Fluxerbe.';
+      'Most a rendszer átirányít a Stripe oldalára a fizetés befejezéséhez. Miután befejezted, térj vissza a echowire-be.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Fizetési mód kiválasztása';
@@ -9532,22 +9532,22 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'Már találtunk egy meglévő Fluxer Plutonium előfizetést ehhez a fiókhoz. Kezeld a biztonságos számlázási portálon a fizetési adatok frissítéséhez vagy az újítási állapot ellenőrzéséhez. Ha most fizettél, várj egy percet, és nyisd meg újra ezt az oldalt.';
+      'Már találtunk egy meglévő Reverb előfizetést ehhez a fiókhoz. Kezeld a biztonságos számlázási portálon a fizetési adatok frissítéséhez vagy az újítási állapot ellenőrzéséhez. Ha most fizettél, várj egy percet, és nyisd meg újra ezt az oldalt.';
 
   @override
   String get premiumPurchasesDisabledTitle => 'Vásárlások nem elérhetők';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'A vásárlások le vannak tiltva ehhez a fiókhoz. Ha úgy gondolod, hogy ez hiba, lépj kapcsolatba a support@fluxer.app címmel.';
+      'A vásárlások le vannak tiltva ehhez a fiókhoz. Ha úgy gondolod, hogy ez hiba, lépj kapcsolatba a support@echowire.org címmel.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Igényeld a fiókodat a Fluxer Plutonium megvásárlásához.';
+      'Igényeld a fiókodat a Reverb megvásárlásához.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'A Fluxer Plutonium megvásárlásához először igazolnod kell az e-mail címedet.';
+      'A Reverb megvásárlásához először igazolnod kell az e-mail címedet.';
 
   @override
   String get premiumPerkCustomUsernameTag => 'Egyéni felhasználónév-címke';
@@ -10989,14 +10989,14 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get instanceUrlPlaceholder =>
-      'Add meg a példány URL-jét (pl. fluxer.app)';
+      'Add meg a példány URL-jét (pl. echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Visszaállítás Echowire-re';
+  String get resetToDefaultInstance => 'Visszaállítás echowire-re';
 
   @override
   String get instanceConnect => 'Csatlakozás';

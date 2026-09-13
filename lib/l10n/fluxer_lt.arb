@@ -3816,7 +3816,7 @@
     },
     "systemDmComposerBarrier": "Sistemos pranešimai iš „{productName}“ darbuotojų. Čia negalite atsakyti.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4423,7 +4423,7 @@
     "@connectionRemoveFailed": {
         "description": "Toast shown when the delete request fails."
     },
-    "connectionTokenSavedToast": "Echowire-verification įrašytas",
+    "connectionTokenSavedToast": "echowire-verification įrašytas",
     "@connectionTokenSavedToast": {
         "description": "Toast shown after the token file is saved successfully."
     },
@@ -4614,7 +4614,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "Suskleisti DM į aplanką",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Kai įjungta, neskaityti DM bendruomenės šoninėje juostoje suskleidžiami į aplanką „{productName}“ mygtuke. Spustelėkite „{productName}“ mygtuką, kai esate DM puslapyje, kad išskleistumėte arba suskleistumėte aplanką.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -5539,7 +5539,7 @@
     },
     "chatSendFailureDmRestricted": "Jūsų žinutė negalėjo būti pristatyta. Paprastai taip nutinka, jei nesidalinate bendruomene su gavėju arba gavėjas priima tiesioginius pranešimus tik iš draugų. Taip pat gali tekti pakoreguoti savo tiesioginių pranešimų privatumo nustatymus skiltyje {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5548,27 +5548,27 @@
     },
     "chatSendFailureUnclaimedDm": "Jūsų žinutė negalėjo būti pristatyta. Turite susikurti paskyrą, kad galėtumėte siųsti tiesioginius pranešimus.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Jūsų žinutė negalėjo būti pristatyta. Turite susikurti paskyrą, kad galėtumėte siųsti žinutes.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Jūsų žinutė negalėjo būti pristatyta, nes ją aptiko mūsų saugos sistemos. Jei manote, kad tai klaida, susisiekite su palaikymo tarnyba.",
     "@chatSendFailureContentBlocked": {
-        "description": "Echowirebot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Jūsų žinutė negalėjo būti pristatyta, nes joje yra suaugusiems skirtų jaustukų ar lipdukų, kurie neleidžiami šiame kontekste.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Echowirebot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Šią žinutę matote tik jūs.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Echowirebot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Atmesti",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Echowirebot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Bendravimas",
     "@privacyDashboardCommunicationSection": {
@@ -6581,9 +6581,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Echowire Reverb subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Dovanos",
     "@userSettingsNavGiftsAndCodes": {
@@ -6897,21 +6897,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Įveskite instance URL (pvz., fluxer.app)",
+    "instanceUrlPlaceholder": "Įveskite instance URL (pvz., echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Atstatyti į Echowire",
+    "resetToDefaultInstance": "Atstatyti į echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Prisijungti",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Echowire instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Bandoma prisijungti…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Echowire instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Nepavyko prisijungti prie serverio",
     "@instanceConnectFailed": {
@@ -6940,7 +6940,7 @@
     },
     "changeInstance": "Keisti",
     "@changeInstance": {
-        "description": "Link to change the connected Echowire instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Norint prisijungti, reikia prisijungti prie serverio",
     "@instanceConnectionRequired": {
@@ -10020,7 +10020,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10947,7 +10947,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -10957,7 +10957,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11196,7 +11196,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11214,7 +11214,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12264,7 +12264,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12804,7 +12804,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12817,7 +12817,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12830,7 +12830,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12843,7 +12843,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12856,7 +12856,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12911,7 +12911,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12961,11 +12961,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Nepavyksta panaudoti šios dovanos",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "„Visionary“ paskyros negali išpirkti „Plutonium“ dovanų. Vietoj to nukopijuokite nuorodą, kad pasidalintumėte ją su draugu.",
+    "giftVisionaryCannotRedeemMessage": "„Visionary“ paskyros negali išpirkti „Reverb“ dovanų. Vietoj to nukopijuokite nuorodą, kad pasidalintumėte ją su draugu.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Kopijuoti dovanos nuorodą",
     "@giftCopyLink": {
@@ -13775,7 +13775,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Sumažinti judesį",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Išjungti animacijas ir perėjimus. Šiuo metu valdoma jūsų sistemos nustatymų.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -15070,7 +15070,7 @@
     },
     "addGuildImportTemplateInvalid": "Bendruomenės šablono duomenys neteisingi arba sugadinti.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "memberListPermissionDeniedTitle": "Negalite peržiūrėti narių",
     "@memberListPermissionDeniedTitle": {
@@ -15466,17 +15466,17 @@
         "description": "Empty state shown when user settings search has no matches."
     },
     "giftSettingsClaimAccountTitle": "Pasiimkite paskyrą",
-    "giftSettingsClaimAccountDescription": "Susiekite savo paskyrą, kad galėtumėte išpirkti arba tvarkyti „Plutonium“ dovanų kodus.",
+    "giftSettingsClaimAccountDescription": "Susiekite savo paskyrą, kad galėtumėte išpirkti arba tvarkyti „Reverb“ dovanų kodus.",
     "giftSettingsRedeemTitle": "Išpirkti dovaną",
-    "giftSettingsRedeemDescription": "Įveskite dovanos kodą, kad aktyvuotumėte „Plutonium“ savo paskyroje.",
+    "giftSettingsRedeemDescription": "Įveskite dovanos kodą, kad aktyvuotumėte „Reverb“ savo paskyroje.",
     "giftSettingsRedeemPlaceholder": "Įveskite dovanos kodą…",
     "giftSettingsRedeemButton": "Išpirkti",
-    "giftSettingsRedeemSuccess": "Dovaną pavyko panaudoti. Mėgaukitės „Plutonium“.",
+    "giftSettingsRedeemSuccess": "Dovaną pavyko panaudoti. Mėgaukitės „Reverb“.",
     "giftSettingsPurchasedTitle": "Įsigytos dovanos",
-    "giftSettingsPurchasedDescription": "Tvarkykite įsigytus „Plutonium“ dovanų kodus. Pasidalinkite dovanos URL su ypatingu žmogumi arba išpirkite jį sau!",
+    "giftSettingsPurchasedDescription": "Tvarkykite įsigytus „Reverb“ dovanų kodus. Pasidalinkite dovanos URL su ypatingu žmogumi arba išpirkite jį sau!",
     "giftSettingsEmptyTitle": "Dar nėra dovanų",
-    "giftSettingsEmptyDescription": "Pirkite „Plutonium“ dovaną iš „Plutonium“ skirtuko, kad pasidalintumėte su draugais.",
-    "giftSettingsGoToPlutonium": "Eiti į Plutonium",
+    "giftSettingsEmptyDescription": "Pirkite „Reverb“ dovaną iš „Reverb“ skirtuko, kad pasidalintumėte su draugais.",
+    "giftSettingsGoToPlutonium": "Eiti į Reverb",
     "giftSettingsLoadFailedTitle": "Nepavyko įkelti dovanų inventoriaus",
     "giftSettingsLoadFailedDescription": "Bandyti dar kartą vėliau.",
     "giftSettingsTryAgain": "Bandyti dar kartą",
@@ -15527,11 +15527,11 @@
     "premiumOneYearGift": "1 metų dovana",
     "premiumOneMonthGift": "1 mėnesio dovana",
     "premiumMostPopular": "Populiariausias",
-    "premiumScrollPrompt": "Slinkite žemyn, kad pamatytumėte visas „Plutonium“ teikiamas privilegijas",
-    "premiumFreeVsPlutonium": "Nemokama ir Plutonium",
+    "premiumScrollPrompt": "Slinkite žemyn, kad pamatytumėte visas „Reverb“ teikiamas privilegijas",
+    "premiumFreeVsPlutonium": "Nemokama ir Reverb",
     "premiumFreeColumn": "Nemokama",
-    "premiumGiftSectionTitle": "Padovanok Plutonium",
-    "premiumGiftSectionDescription": "Pasidalykite „Plutonium“ patirtimi su draugais, įsigydami dovanų prenumeratą.",
+    "premiumGiftSectionTitle": "Padovanok Reverb",
+    "premiumGiftSectionDescription": "Pasidalykite „Reverb“ patirtimi su draugais, įsigydami dovanų prenumeratą.",
     "premiumGiftBannerOne": "Jūsų laukia naujas dovanų kodas!",
     "premiumGiftBannerMany": "Jūs turite {count} naujų dovanų kodų!",
     "@premiumGiftBannerMany": {
@@ -15638,7 +15638,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Šiuo metu naudojatės dovanų prenumerata. Ji nebus atnaujinta. Galite išpirkti daugiau dovanų kodų, kad ją pratęstumėte. Pasibaigus dovanų prenumeratos laikotarpiui, galėsite pradėti pasikartojančias prenumeratas.",
     "premiumPlanUnavailable": "Šis planas nepasiekiamas. Susisiekite su palaikymo komanda.",
     "premiumCompletePaymentTitle": "Užbaigti mokėjimą",
-    "premiumCompletePaymentBody": "Dabar būsite nukreipti į „Stripe“, kad užbaigtumėte mokėjimą. Grįžkite į „Fluxer“, kai baigsite.",
+    "premiumCompletePaymentBody": "Dabar būsite nukreipti į „Stripe“, kad užbaigtumėte mokėjimą. Grįžkite į „echowire“, kai baigsite.",
     "premiumChoosePaymentMethodTitle": "Pasirinkite mokėjimo būdą",
     "premiumPixPaymentPromptDescription": "Mokėkite „Pix automático“, kad tiesiogiai įgaliotumėte pasikartojančius mokesčius iš savo Brazilijos banko. Arba pasirinkite „naudoti kortelę“, kad kitame „Stripe“ ekrane įvestumėte kredito kortelę.",
     "premiumUsePix": "Naudoti „Pix“",
@@ -15650,11 +15650,11 @@
     "premiumAlreadyVisionaryTitle": "Jūs jau esate \"Visionary\" narys",
     "premiumAlreadyVisionaryBody": "\"Visionary\" jau apima nuolatinę prieigą, todėl pasikartojanti prenumerata nereikalinga. Vis tiek galite pirkti dovanų kitiems.",
     "premiumExistingSubscriptionTitle": "Prenumerata jau yra",
-    "premiumExistingSubscriptionBody": "Jūsų paskyrai radome galiojančią „Fluxer Plutonium“ prenumeratą. Tvarkykite ją saugiame atsiskaitymo portale, kad atnaujintumėte mokėjimo duomenis arba patikrintumėte atnaujinimo būseną. Jei ką tik sumokėjote, palaukite minutę ir iš naujo atidarykite šį puslapį.",
+    "premiumExistingSubscriptionBody": "Jūsų paskyrai radome galiojančią „Reverb“ prenumeratą. Tvarkykite ją saugiame atsiskaitymo portale, kad atnaujintumėte mokėjimo duomenis arba patikrintumėte atnaujinimo būseną. Jei ką tik sumokėjote, palaukite minutę ir iš naujo atidarykite šį puslapį.",
     "premiumPurchasesDisabledTitle": "Pirkimai nepasiekiami",
-    "premiumPurchasesDisabledBody": "Pirkimai šiai paskyrai yra išjungti. Jei manote, kad tai klaida, susisiekite su support@fluxer.app.",
-    "premiumClaimAccountToPurchase": "Prisijunkite prie savo paskyros, kad įsigytumėte Fluxer Plutonium.",
-    "premiumVerifyEmailToPurchase": "Norėdami įsigyti „Fluxer Plutonium“, turite patvirtinti savo el. paštą.",
+    "premiumPurchasesDisabledBody": "Pirkimai šiai paskyrai yra išjungti. Jei manote, kad tai klaida, susisiekite su support@echowire.org.",
+    "premiumClaimAccountToPurchase": "Prisijunkite prie savo paskyros, kad įsigytumėte Reverb.",
+    "premiumVerifyEmailToPurchase": "Norėdami įsigyti „Reverb“, turite patvirtinti savo el. paštą.",
     "premiumPerkCustomUsernameTag": "Pasirinktinis naudotojo vardo žymuo",
     "premiumPerkPerCommunityProfiles": "Kiekvienos bendruomenės profiliai",
     "premiumPerkMessageScheduling": "Pranešimų planavimas",

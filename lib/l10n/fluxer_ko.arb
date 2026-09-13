@@ -2862,7 +2862,7 @@
             }
         }
     },
-    "blockedUsersCopyTag": "Echowire 태그 복사",
+    "blockedUsersCopyTag": "echowire 태그 복사",
     "@blockedUsersCopyTag": {
         "description": "Context menu item that copies the user's tag."
     },
@@ -3816,7 +3816,7 @@
     },
     "systemDmComposerBarrier": "{productName} 팀의 시스템 공지입니다. 답장할 수 없습니다.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4614,7 +4614,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "DM을 폴더로 축소",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "활성화하면 서버 사이드바의 읽지 않은 DM이 {productName} 버튼 폴더로 축소됩니다. 폴더를 확장하거나 축소하려면 DM 페이지에서 {productName} 버튼을 클릭하세요.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -5539,7 +5539,7 @@
     },
     "chatSendFailureDmRestricted": "메시지를 전달할 수 없습니다. 일반적으로 수신자와 커뮤니티를 공유하지 않거나 수신자가 친구의 직접 메시지만 허용하기 때문입니다. 또한 {settingsPath}에서 직접 메시지 개인 정보 설정을 조정해야 할 수 있습니다.",
     "@chatSendFailureDmRestricted": {
-        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5548,27 +5548,27 @@
     },
     "chatSendFailureUnclaimedDm": "메시지를 전달할 수 없습니다. 직접 메시지를 보내려면 계정을 등록해야 합니다.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "메시지를 전달할 수 없습니다. 메시지를 보내려면 계정을 등록해야 합니다.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "안전 시스템에 의해 플래그가 지정되어 메시지를 전달할 수 없습니다. 실수가 있었다고 생각하시면 지원팀에 문의해 주세요.",
     "@chatSendFailureContentBlocked": {
-        "description": "Echowirebot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "이 컨텍스트에서 허용되지 않는 성인용 이모지 또는 스티커가 포함되어 있어 메시지를 전달할 수 없습니다.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Echowirebot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "이 메시지는 본인만 볼 수 있습니다.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Echowirebot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "닫기",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Echowirebot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "커뮤니케이션",
     "@privacyDashboardCommunicationSection": {
@@ -6581,9 +6581,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Echowire Reverb subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "선물",
     "@userSettingsNavGiftsAndCodes": {
@@ -6897,21 +6897,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "인스턴스 URL 입력 (예: fluxer.app)",
+    "instanceUrlPlaceholder": "인스턴스 URL 입력 (예: echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Echowire로 재설정",
+    "resetToDefaultInstance": "echowire로 재설정",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "연결",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Echowire instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "연결 중…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Echowire instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "인스턴스에 연결하지 못했습니다",
     "@instanceConnectFailed": {
@@ -6940,7 +6940,7 @@
     },
     "changeInstance": "변경",
     "@changeInstance": {
-        "description": "Link to change the connected Echowire instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "로그인하려면 인스턴스에 연결하세요",
     "@instanceConnectionRequired": {
@@ -10734,7 +10734,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10748,7 +10748,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11233,7 +11233,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11951,7 +11951,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12254,7 +12254,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12268,7 +12268,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12804,7 +12804,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12817,7 +12817,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12830,7 +12830,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12843,7 +12843,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12856,7 +12856,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12911,7 +12911,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12961,11 +12961,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "이 선물은 사용할 수 없어요",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Visionary 계정은 Plutonium 선물을 사용할 수 없습니다. 대신 친구에게 공유할 링크를 복사하세요.",
+    "giftVisionaryCannotRedeemMessage": "Visionary 계정은 Reverb 선물을 사용할 수 없습니다. 대신 친구에게 공유할 링크를 복사하세요.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "선물 링크 복사",
     "@giftCopyLink": {
@@ -13775,7 +13775,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "동작 줄이기",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "애니메이션 및 전환 효과를 사용 중지합니다. 현재 시스템 설정에 따라 제어됩니다.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -15070,7 +15070,7 @@
     },
     "addGuildImportTemplateInvalid": "커뮤니티 템플릿 데이터가 유효하지 않거나 잘못되었습니다.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "memberListPermissionDeniedTitle": "멤버를 볼 수 없습니다",
     "@memberListPermissionDeniedTitle": {
@@ -15466,17 +15466,17 @@
         "description": "Empty state shown when user settings search has no matches."
     },
     "giftSettingsClaimAccountTitle": "계정 등록하기",
-    "giftSettingsClaimAccountDescription": "Plutonium 선물 코드를 사용하거나 관리하려면 계정을 등록하세요.",
+    "giftSettingsClaimAccountDescription": "Reverb 선물 코드를 사용하거나 관리하려면 계정을 등록하세요.",
     "giftSettingsRedeemTitle": "선물 사용하기",
-    "giftSettingsRedeemDescription": "계정에 Plutonium을 등록하려면 선물 코드를 입력하세요.",
+    "giftSettingsRedeemDescription": "계정에 Reverb을 등록하려면 선물 코드를 입력하세요.",
     "giftSettingsRedeemPlaceholder": "선물 코드 입력…",
     "giftSettingsRedeemButton": "사용하기",
-    "giftSettingsRedeemSuccess": "선물이 성공적으로 사용되었습니다. Plutonium을 즐겨보세요.",
+    "giftSettingsRedeemSuccess": "선물이 성공적으로 사용되었습니다. Reverb을 즐겨보세요.",
     "giftSettingsPurchasedTitle": "구매한 선물",
-    "giftSettingsPurchasedDescription": "구매한 Plutonium 선물 코드의 관리. 특별한 사람에게 선물 URL을 공유하거나 직접 사용하세요!",
+    "giftSettingsPurchasedDescription": "구매한 Reverb 선물 코드의 관리. 특별한 사람에게 선물 URL을 공유하거나 직접 사용하세요!",
     "giftSettingsEmptyTitle": "아직 선물이 없어요",
-    "giftSettingsEmptyDescription": "Plutonium 탭에서 Plutonium 선물을 구매하여 친구들과 공유하세요.",
-    "giftSettingsGoToPlutonium": "Plutonium으로 이동",
+    "giftSettingsEmptyDescription": "Reverb 탭에서 Reverb 선물을 구매하여 친구들과 공유하세요.",
+    "giftSettingsGoToPlutonium": "Reverb으로 이동",
     "giftSettingsLoadFailedTitle": "선물 목록을 불러오지 못했습니다",
     "giftSettingsLoadFailedDescription": "나중에 다시 시도해 주세요.",
     "giftSettingsTryAgain": "다시 시도",
@@ -15527,11 +15527,11 @@
     "premiumOneYearGift": "1년 선물",
     "premiumOneMonthGift": "1개월 선물",
     "premiumMostPopular": "가장 인기 많음",
-    "premiumScrollPrompt": "Plutonium의 모든 혜택을 보려면 아래로 스크롤하세요.",
-    "premiumFreeVsPlutonium": "무료 vs Plutonium",
+    "premiumScrollPrompt": "Reverb의 모든 혜택을 보려면 아래로 스크롤하세요.",
+    "premiumFreeVsPlutonium": "무료 vs Reverb",
     "premiumFreeColumn": "무료",
-    "premiumGiftSectionTitle": "Plutonium 선물하기",
-    "premiumGiftSectionDescription": "선물 구독을 구매하여 친구들과 Plutonium 경험을 공유하세요.",
+    "premiumGiftSectionTitle": "Reverb 선물하기",
+    "premiumGiftSectionDescription": "선물 구독을 구매하여 친구들과 Reverb 경험을 공유하세요.",
     "premiumGiftBannerOne": "새 선물 코드가 기다리고 있어요!",
     "premiumGiftBannerMany": "새 선물 코드가 {count}개 있습니다!",
     "@premiumGiftBannerMany": {
@@ -15630,7 +15630,7 @@
             }
         }
     },
-    "premiumDisclaimerRefund": "결제 후 3일 이내, 30일마다 한 번씩 직접 환불할 수 있습니다. 구독을 환불하면 구독이 취소됩니다. EU/EEA 구매자는 콘텐츠에 즉시 액세스하기 위해 결제 시 14일 철회 권리를 포기합니다. 차지백 대신 앱 내 환불 버튼을 사용하세요. 차지백은 계정을 영구적으로 제한할 수 있습니다. Stripe가 결제를 안전하게 처리하며, Fluxer는 고객님의 전체 카드 번호를 볼 수 없습니다.",
+    "premiumDisclaimerRefund": "결제 후 3일 이내, 30일마다 한 번씩 직접 환불할 수 있습니다. 구독을 환불하면 구독이 취소됩니다. EU/EEA 구매자는 콘텐츠에 즉시 액세스하기 위해 결제 시 14일 철회 권리를 포기합니다. 차지백 대신 앱 내 환불 버튼을 사용하세요. 차지백은 계정을 영구적으로 제한할 수 있습니다. Stripe가 결제를 안전하게 처리하며, echowire는 고객님의 전체 카드 번호를 볼 수 없습니다.",
     "premiumTermsOfService": "이용약관",
     "premiumPrivacyPolicy": "개인정보처리방침",
     "premiumCheckoutStartFailedTitle": "결제를 시작할 수 없습니다",
@@ -15638,7 +15638,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "현재 선물 구독 중입니다. 이 구독은 갱신되지 않습니다. 선물 코드를 추가로 사용하여 구독 기간을 연장할 수 있습니다. 선물 구독 기간이 종료된 후에는 정기 구독을 시작할 수 있습니다.",
     "premiumPlanUnavailable": "이용할 수 없는 플랜입니다. 지원팀에 문의하세요.",
     "premiumCompletePaymentTitle": "결제 완료하기",
-    "premiumCompletePaymentBody": "결제를 완료하기 위해 Stripe로 이동합니다. 완료 후 Fluxer로 돌아오세요.",
+    "premiumCompletePaymentBody": "결제를 완료하기 위해 Stripe로 이동합니다. 완료 후 echowire로 돌아오세요.",
     "premiumChoosePaymentMethodTitle": "결제 수단 선택",
     "premiumPixPaymentPromptDescription": "자동 Pix 결제로 브라질 은행에서 직접 정기 결제를 승인하세요. 또는 카드 사용을 선택하여 Stripe의 다음 화면에서 신용카드를 입력하세요.",
     "premiumUsePix": "Pix 사용",
@@ -15650,11 +15650,11 @@
     "premiumAlreadyVisionaryTitle": "이미 Visionary이시네요",
     "premiumAlreadyVisionaryBody": "Visionary는 영구적인 액세스를 포함하므로 반복 구독이 필요하지 않습니다. 다른 사람을 위한 선물을 구매할 수 있습니다.",
     "premiumExistingSubscriptionTitle": "이미 구독 중입니다",
-    "premiumExistingSubscriptionBody": "이 계정에 기존 Fluxer Plutonium 구독이 있습니다. 결제 정보 업데이트 또는 갱신 상태 확인은 보안 결제 포털에서 관리하세요. 방금 결제하셨다면 1분 정도 기다렸다가 이 페이지를 다시 열어주세요.",
+    "premiumExistingSubscriptionBody": "이 계정에 기존 Reverb 구독이 있습니다. 결제 정보 업데이트 또는 갱신 상태 확인은 보안 결제 포털에서 관리하세요. 방금 결제하셨다면 1분 정도 기다렸다가 이 페이지를 다시 열어주세요.",
     "premiumPurchasesDisabledTitle": "구매 불가",
-    "premiumPurchasesDisabledBody": "이 계정에서는 구매가 비활성화되어 있습니다. 문제가 잘못된 것으로 보이면 support@fluxer.app으로 문의하세요.",
-    "premiumClaimAccountToPurchase": "Fluxer Plutonium을 구매하려면 계정을 등록하세요.",
-    "premiumVerifyEmailToPurchase": "Fluxer Plutonium을 구매하려면 먼저 이메일을 인증해야 합니다.",
+    "premiumPurchasesDisabledBody": "이 계정에서는 구매가 비활성화되어 있습니다. 문제가 잘못된 것으로 보이면 support@echowire.org으로 문의하세요.",
+    "premiumClaimAccountToPurchase": "Reverb을 구매하려면 계정을 등록하세요.",
+    "premiumVerifyEmailToPurchase": "Reverb을 구매하려면 먼저 이메일을 인증해야 합니다.",
     "premiumPerkCustomUsernameTag": "사용자 이름 태그 맞춤 설정",
     "premiumPerkPerCommunityProfiles": "커뮤니티별 프로필",
     "premiumPerkMessageScheduling": "메시지 예약",

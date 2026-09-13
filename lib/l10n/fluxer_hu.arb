@@ -3816,7 +3816,7 @@
     },
     "systemDmComposerBarrier": "{productName} munkatársaitól érkező rendszerértesítések. Ide nem válaszolhatsz.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4614,7 +4614,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "DM-ek összecsukása mappába",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Ha engedélyezve van, az olvasatlan DM-ek a kiszolgáló oldalsávban a {productName} gomb mappájába lesznek összecsukva. Kattints a {productName} gombra a DM-ek oldalon a mappa kibontásához vagy összecsukásához.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -5539,7 +5539,7 @@
     },
     "chatSendFailureDmRestricted": "Az üzenetedet nem lehetett kézbesíteni. Ez általában azért van, mert nem osztasz meg közösséget a címzettel, vagy a címzett csak a barátaitól fogad közvetlen üzeneteket. Lehet, hogy a saját közvetlen üzenetküldési adatvédelmi beállításaidat is módosítanod kell a(z) {settingsPath} oldalon.",
     "@chatSendFailureDmRestricted": {
-        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5548,27 +5548,27 @@
     },
     "chatSendFailureUnclaimedDm": "Az üzenetedet nem lehetett kézbesíteni. Fiókod igénylésével tudsz közvetlen üzeneteket küldeni.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Az üzenetedet nem lehetett kézbesíteni. Fiókod igénylésével tudsz üzeneteket küldeni.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Az üzenetedet nem lehetett kézbesíteni, mert a biztonsági rendszereink jelölték. Ha úgy gondolod, hogy ez hiba, kérjük, lépj kapcsolatba az ügyfélszolgálattal.",
     "@chatSendFailureContentBlocked": {
-        "description": "Echowirebot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Az üzenetedet nem lehetett kézbesíteni, mert olyan felnőtt tartalmú hangulatjeleket vagy matricákat tartalmaz, amelyek ebben a kontextusban nem engedélyezettek.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Echowirebot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Csak te láthatod ezt az üzenetet.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Echowirebot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Elvetés",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Echowirebot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Kommunikáció",
     "@privacyDashboardCommunicationSection": {
@@ -6581,9 +6581,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Echowire Reverb subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Ajándékok",
     "@userSettingsNavGiftsAndCodes": {
@@ -6897,21 +6897,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Add meg a példány URL-jét (pl. fluxer.app)",
+    "instanceUrlPlaceholder": "Add meg a példány URL-jét (pl. echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Visszaállítás Echowire-re",
+    "resetToDefaultInstance": "Visszaállítás echowire-re",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Csatlakozás",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Echowire instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Csatlakozás…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Echowire instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Nem sikerült csatlakozni az instanchoz",
     "@instanceConnectFailed": {
@@ -6940,7 +6940,7 @@
     },
     "changeInstance": "Váltás",
     "@changeInstance": {
-        "description": "Link to change the connected Echowire instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Csatlakozz az instanchoz a bejelentkezéshez",
     "@instanceConnectionRequired": {
@@ -9350,7 +9350,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Echowire"
+                "example": "echowire"
             }
         }
     },
@@ -9418,7 +9418,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Echowire"
+                "example": "echowire"
             }
         }
     },
@@ -10182,7 +10182,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11803,7 +11803,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12229,7 +12229,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12804,7 +12804,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12817,7 +12817,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12830,7 +12830,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12843,7 +12843,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12856,7 +12856,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12911,7 +12911,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12961,11 +12961,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Nem váltható be ez az ajándék",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "A Visionary fiókok nem tudják beváltani a Plutonium ajándékokat. Másold a linket, hogy megosztd a barátaiddal.",
+    "giftVisionaryCannotRedeemMessage": "A Visionary fiókok nem tudják beváltani a Reverb ajándékokat. Másold a linket, hogy megosztd a barátaiddal.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Ajándéklink másolása",
     "@giftCopyLink": {
@@ -13775,7 +13775,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Mozgás csökkentése",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Animációk és átmenetek letiltása. Jelenleg a rendszerbeállítások vezérlik.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -13833,7 +13833,7 @@
     "@ttsSubstitutionCodeBlock": {
         "description": "TTS substitution for fenced code blocks."
     },
-    "ttsSubstitutionSpoiler": "Plutonium",
+    "ttsSubstitutionSpoiler": "Reverb",
     "@ttsSubstitutionSpoiler": {
         "description": "TTS substitution for spoiler content."
     },
@@ -15070,7 +15070,7 @@
     },
     "addGuildImportTemplateInvalid": "A közösségsablon adatai érvénytelenek vagy hibásan formázottak.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "memberListPermissionDeniedTitle": "Nem tekintheted meg a tagokat",
     "@memberListPermissionDeniedTitle": {
@@ -15466,17 +15466,17 @@
         "description": "Empty state shown when user settings search has no matches."
     },
     "giftSettingsClaimAccountTitle": "Fiók igénylése",
-    "giftSettingsClaimAccountDescription": "Foglald le a fiókodat a Plutonium ajándékkódok beváltásához vagy kezeléséhez.",
+    "giftSettingsClaimAccountDescription": "Foglald le a fiókodat a Reverb ajándékkódok beváltásához vagy kezeléséhez.",
     "giftSettingsRedeemTitle": "Ajándék beváltása",
-    "giftSettingsRedeemDescription": "Adj meg egy ajándékkódot, hogy Plutoniumot válts be a fiókodban.",
+    "giftSettingsRedeemDescription": "Adj meg egy ajándékkódot, hogy Reverbet válts be a fiókodban.",
     "giftSettingsRedeemPlaceholder": "Ajándékkód megadása…",
     "giftSettingsRedeemButton": "Beváltás",
-    "giftSettingsRedeemSuccess": "Ajándék sikeresen beváltva. Jó szórakozást a Plutoniummal!",
+    "giftSettingsRedeemSuccess": "Ajándék sikeresen beváltva. Jó szórakozást a Reverbbel!",
     "giftSettingsPurchasedTitle": "Megvásárolt ajándékok",
-    "giftSettingsPurchasedDescription": "Kezeld a megvásárolt Plutonium ajándékkódjaidat. Oszd meg az ajándék URL-t valakivel, akit szeretsz, vagy váltsd be magadnak!",
+    "giftSettingsPurchasedDescription": "Kezeld a megvásárolt Reverb ajándékkódjaidat. Oszd meg az ajándék URL-t valakivel, akit szeretsz, vagy váltsd be magadnak!",
     "giftSettingsEmptyTitle": "Még nincsenek ajándékok",
-    "giftSettingsEmptyDescription": "Vásárolj Plutonium ajándékot a Plutonium fülön, hogy megoszd a barátaiddal.",
-    "giftSettingsGoToPlutonium": "Ugrás a Plutoniumra",
+    "giftSettingsEmptyDescription": "Vásárolj Reverb ajándékot a Reverb fülön, hogy megoszd a barátaiddal.",
+    "giftSettingsGoToPlutonium": "Ugrás a Reverbre",
     "giftSettingsLoadFailedTitle": "Nem sikerült betölteni az ajándéklistát",
     "giftSettingsLoadFailedDescription": "Próbálja újra később.",
     "giftSettingsTryAgain": "Újra",
@@ -15527,11 +15527,11 @@
     "premiumOneYearGift": "1 éves ajándék",
     "premiumOneMonthGift": "1 hónapos ajándék",
     "premiumMostPopular": "Legnépszerűbb",
-    "premiumScrollPrompt": "Görgess lefelé, hogy megtekintsd a Plutonium összes előnyét",
-    "premiumFreeVsPlutonium": "Ingyenes vs. Plutonium",
+    "premiumScrollPrompt": "Görgess lefelé, hogy megtekintsd a Reverb összes előnyét",
+    "premiumFreeVsPlutonium": "Ingyenes vs. Reverb",
     "premiumFreeColumn": "Ingyenes",
-    "premiumGiftSectionTitle": "Plutonium ajándékozása",
-    "premiumGiftSectionDescription": "Oszd meg a Plutonium élményt barátaiddal egy ajándék-előfizetés megvásárlásával.",
+    "premiumGiftSectionTitle": "Reverb ajándékozása",
+    "premiumGiftSectionDescription": "Oszd meg a Reverb élményt barátaiddal egy ajándék-előfizetés megvásárlásával.",
     "premiumGiftBannerOne": "Új ajándékkód vár rád!",
     "premiumGiftBannerMany": "{count} új ajándékkód vár rád!",
     "@premiumGiftBannerMany": {
@@ -15638,7 +15638,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Jelenleg ajándék-előfizetésed van. Ez nem fog megújulni. További ajándékkódokat válthatsz be a meghosszabbításához. Ismétlődő előfizetéseket az ajándékidőszak lejárta után indíthatsz.",
     "premiumPlanUnavailable": "Ez a csomag nem elérhető. Vedd fel a kapcsolatot az ügyfélszolgálattal.",
     "premiumCompletePaymentTitle": "Fizetés befejezése",
-    "premiumCompletePaymentBody": "Most a rendszer átirányít a Stripe oldalára a fizetés befejezéséhez. Miután befejezted, térj vissza a Fluxerbe.",
+    "premiumCompletePaymentBody": "Most a rendszer átirányít a Stripe oldalára a fizetés befejezéséhez. Miután befejezted, térj vissza a echowire-be.",
     "premiumChoosePaymentMethodTitle": "Fizetési mód kiválasztása",
     "premiumPixPaymentPromptDescription": "Fizess automatikus Pix-szel, hogy jóváhagyd az ismétlődő terheléseket közvetlenül a brazil bankszámládról. Vagy válaszd a kártyás fizetést, hogy megadd a hitelkártya adataidat a Stripe következő képernyőjén.",
     "premiumUsePix": "Használj Pixet",
@@ -15650,11 +15650,11 @@
     "premiumAlreadyVisionaryTitle": "Már Visionary vagy",
     "premiumAlreadyVisionaryBody": "A Visionary már tartalmazza az állandó hozzáférést, így nincs szükség ismétlődő előfizetésre. Továbbra is vásárolhatsz ajándékokat másoknak.",
     "premiumExistingSubscriptionTitle": "Az előfizetés már létezik",
-    "premiumExistingSubscriptionBody": "Már találtunk egy meglévő Fluxer Plutonium előfizetést ehhez a fiókhoz. Kezeld a biztonságos számlázási portálon a fizetési adatok frissítéséhez vagy az újítási állapot ellenőrzéséhez. Ha most fizettél, várj egy percet, és nyisd meg újra ezt az oldalt.",
+    "premiumExistingSubscriptionBody": "Már találtunk egy meglévő Reverb előfizetést ehhez a fiókhoz. Kezeld a biztonságos számlázási portálon a fizetési adatok frissítéséhez vagy az újítási állapot ellenőrzéséhez. Ha most fizettél, várj egy percet, és nyisd meg újra ezt az oldalt.",
     "premiumPurchasesDisabledTitle": "Vásárlások nem elérhetők",
-    "premiumPurchasesDisabledBody": "A vásárlások le vannak tiltva ehhez a fiókhoz. Ha úgy gondolod, hogy ez hiba, lépj kapcsolatba a support@fluxer.app címmel.",
-    "premiumClaimAccountToPurchase": "Igényeld a fiókodat a Fluxer Plutonium megvásárlásához.",
-    "premiumVerifyEmailToPurchase": "A Fluxer Plutonium megvásárlásához először igazolnod kell az e-mail címedet.",
+    "premiumPurchasesDisabledBody": "A vásárlások le vannak tiltva ehhez a fiókhoz. Ha úgy gondolod, hogy ez hiba, lépj kapcsolatba a support@echowire.org címmel.",
+    "premiumClaimAccountToPurchase": "Igényeld a fiókodat a Reverb megvásárlásához.",
+    "premiumVerifyEmailToPurchase": "A Reverb megvásárlásához először igazolnod kell az e-mail címedet.",
     "premiumPerkCustomUsernameTag": "Egyéni felhasználónév-címke",
     "premiumPerkPerCommunityProfiles": "Közösségenkénti profilok",
     "premiumPerkMessageScheduling": "Üzenet ütemezése",

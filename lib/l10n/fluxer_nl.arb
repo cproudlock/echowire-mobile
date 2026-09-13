@@ -1087,7 +1087,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1100,7 +1100,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1113,7 +1113,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1126,7 +1126,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1139,7 +1139,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1194,7 +1194,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1244,11 +1244,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Dit cadeau kan niet worden ingewisseld",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Visionary-accounts kunnen geen Plutonium-cadeaus inwisselen. Kopieer de link om deze in plaats daarvan met een vriend te delen.",
+    "giftVisionaryCannotRedeemMessage": "Visionary-accounts kunnen geen Reverb-cadeaus inwisselen. Kopieer de link om deze in plaats daarvan met een vriend te delen.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Cadeaulink kopiëren",
     "@giftCopyLink": {
@@ -2010,7 +2010,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Ontgrendel {emojiCount} uit {communityCount} met Plutonium.",
+    "emojiPlutoniumUpsellText": "Ontgrendel {emojiCount} uit {communityCount} met Reverb.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -2022,13 +2022,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Plutonium aanschaffen",
+    "emojiPlutoniumUpsellButton": "Reverb aanschaffen",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "Niet meer tonen",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 aangepaste emoji} other{{count} aangepaste emoji's}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -2146,11 +2146,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "Geanimeerde avatars vereisen Plutonium",
+    "animatedAvatarsRequirePlutonium": "Geanimeerde avatars vereisen Reverb",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "Geanimeerde banners vereisen Plutonium",
+    "animatedBannersRequirePlutonium": "Geanimeerde banners vereisen Reverb",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -2230,7 +2230,7 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "Koop Plutonium om je tag aan te passen of te behouden wanneer je je gebruikersnaam wijzigt",
+    "discriminatorPremiumTooltip": "Koop Reverb om je tag aan te passen of te behouden wanneer je je gebruikersnaam wijzigt",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
@@ -2254,7 +2254,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "Je aangepaste 4-cijferige tag is alleen beschikbaar zolang je Plutonium-abonnement actief is. Wanneer je abonnement afloopt op {date}, wordt je tag na een respijtperiode van 3 dagen teruggezet naar een willekeurig toegewezen nummer.",
+    "customTagTemporaryBodyWithDate": "Je aangepaste 4-cijferige tag is alleen beschikbaar zolang je Reverb-abonnement actief is. Wanneer je abonnement afloopt op {date}, wordt je tag na een respijtperiode van 3 dagen teruggezet naar een willekeurig toegewezen nummer.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -2263,7 +2263,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "Je aangepaste 4-cijferige tag is alleen beschikbaar zolang je Plutonium-abonnement actief is. Wanneer je abonnement verloopt, wordt je tag na een respijtperiode van 3 dagen teruggezet naar een willekeurig toegewezen nummer.",
+    "customTagTemporaryBody": "Je aangepaste 4-cijferige tag is alleen beschikbaar zolang je Reverb-abonnement actief is. Wanneer je abonnement verloopt, wordt je tag na een respijtperiode van 3 dagen teruggezet naar een willekeurig toegewezen nummer.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -2271,11 +2271,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "Als je deze gebruikersnaam opslaat, wordt je aangepaste 4-cijferige tag een willekeurig nummer wanneer je Plutonium-abonnement eindigt. Als je abonnement niet wordt verlengd, heb je een respijtperiode van 3 dagen voordat de tag verandert.",
+    "premiumWarningPendingDiscriminator": "Als je deze gebruikersnaam opslaat, wordt je aangepaste 4-cijferige tag een willekeurig nummer wanneer je Reverb-abonnement eindigt. Als je abonnement niet wordt verlengd, heb je een respijtperiode van 3 dagen voordat de tag verandert.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "Je aangepaste 4-cijferige tag (#{discriminator}) is actief zolang je Plutonium-abonnement actief is. Als je abonnement eindigt of na een respijtperiode van 3 dagen niet wordt verlengd, wordt je tag teruggezet naar een willekeurig nummer.",
+    "premiumWarningActiveDiscriminator": "Je aangepaste 4-cijferige tag (#{discriminator}) is actief zolang je Reverb-abonnement actief is. Als je abonnement eindigt of na een respijtperiode van 3 dagen niet wordt verlengd, wordt je tag teruggezet naar een willekeurig nummer.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -2286,9 +2286,9 @@
     },
     "premiumUpsellCustomizeTag": "Pas je 4-cijferige tag aan of behoud deze bij het wijzigen van je gebruikersnaam",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "Je Plutonium-proefperiode verloopt op {date}. Upgrade om je aangepaste tag te behouden en een badge op je profiel te verdienen.",
+    "premiumTrialExpiresOn": "Je Reverb-proefperiode verloopt op {date}. Upgrade om je aangepaste tag te behouden en een badge op je profiel te verdienen.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -2297,7 +2297,7 @@
             }
         }
     },
-    "premiumTrialActive": "Je bent bezig met een Plutonium-proefperiode. Upgrade om je aangepaste tag te behouden en een badge op je profiel te verdienen.",
+    "premiumTrialActive": "Je bent bezig met een Reverb-proefperiode. Upgrade om je aangepaste tag te behouden en een badge op je profiel te verdienen.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
@@ -2333,7 +2333,7 @@
     "@changeFluxerTag": {
         "description": "Button label to open the username change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "Pas je 4-cijferige tag (#{discriminator}) naar wens aan met Plutonium",
+    "customizeTagWithPlutoniumTooltip": "Pas je 4-cijferige tag (#{discriminator}) naar wens aan met Reverb",
     "@customizeTagWithPlutoniumTooltip": {
         "description": "Tooltip on the crown upsell button next to the username button.",
         "placeholders": {
@@ -2346,7 +2346,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "Je aangepaste tag (#{discriminator}) is gekoppeld aan je Plutonium-abonnement en wordt een willekeurige tag als deze verloopt.",
+    "customTagSubscriptionWarning": "Je aangepaste tag (#{discriminator}) is gekoppeld aan je Reverb-abonnement en wordt een willekeurige tag als deze verloopt.",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -2415,38 +2415,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Plutonium-badgeprivacy",
+    "plutoniumBadgePrivacyTitle": "Reverb-badgeprivacy",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "Bepaal hoe je Plutonium-badge wordt weergegeven aan anderen",
+    "plutoniumBadgePrivacyDescription": "Bepaal hoe je Reverb-badge wordt weergegeven aan anderen",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "Verberg Plutonium-badge volledig",
+    "hidePlutoniumBadgeLabel": "Verberg Reverb-badge volledig",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "Verberg je Plutonium-badge volledig voor andere gebruikers",
+    "hidePlutoniumBadgeDescription": "Verberg je Reverb-badge volledig voor andere gebruikers",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "Verberg Plutonium-aankoopdatum",
+    "hidePlutoniumPurchaseDate": "Verberg Reverb-aankoopdatum",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "Verberg Plutonium-aankoopdatum ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "Verberg Reverb-aankoopdatum ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "Verwijder wanneer je Plutonium voor het eerst hebt gekocht uit je badge",
+    "hidePurchaseDateDescription": "Verwijder wanneer je Reverb voor het eerst hebt gekocht uit je badge",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "Visionary verbergen als abonnement",
     "@maskVisionaryAsSubscription": {
@@ -2473,7 +2473,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "Je hebt een Plutonium-proefabonnement — je abonnement begint op {date}",
+    "premiumTrialSubscriptionStarts": "Je hebt een Reverb-proefabonnement — je abonnement begint op {date}",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -2486,7 +2486,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "Je hebt een Plutonium-proefversie die afloopt op {date}",
+    "premiumTrialExpiresOnProfile": "Je hebt een Reverb-proefversie die afloopt op {date}",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -2495,29 +2495,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "Je hebt een Plutonium-proefperiode",
+    "premiumTrialActiveProfile": "Je hebt een Reverb-proefperiode",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max. 10 MB. Aanbevolen: 512×512px. Geanimeerde avatars (GIF) vereisen Plutonium.",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max. 10 MB. Aanbevolen: 512×512px. Geanimeerde avatars (GIF) vereisen Reverb.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "Pas je profiel aan met een statische of geanimeerde banner om het te laten opvallen.",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "Plutonium ophalen",
+    "getPlutonium": "Reverb ophalen",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "In-app aankopen zijn nog niet beschikbaar op dit platform. Houd ons in de gaten — binnenkort beschikbaar!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "Voorbeeld",
     "@profilePreviewLabel": {
@@ -2564,7 +2564,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "Het aanpassen van je avatar, banner, accentkleur en bio voor individuele communities vereist Plutonium. Community-bijnaam en voornaamwoorden zijn gratis voor iedereen.",
+    "perGuildPremiumUpsellText": "Het aanpassen van je avatar, banner, accentkleur en bio voor individuele communities vereist Reverb. Community-bijnaam en voornaamwoorden zijn gratis voor iedereen.",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -3311,7 +3311,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Annuleer je actieve Plutonium-abonnement in de Plutonium-instellingen voordat je je account verwijdert.",
+    "dangerZoneDeleteCancelSubscription": "Annuleer je actieve Reverb-abonnement in de Reverb-instellingen voordat je je account verwijdert.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -3713,7 +3713,7 @@
             }
         }
     },
-    "userProfilePlutoniumBadgeTooltip": "Plutonium van {productName}",
+    "userProfilePlutoniumBadgeTooltip": "Reverb van {productName}",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3722,7 +3722,7 @@
             }
         }
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Plutonium-abonnee sinds {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Reverb-abonnee sinds {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -4838,7 +4838,7 @@
     },
     "systemDmComposerBarrier": "Systeemaankondigingen van {productName}-medewerkers. Je kunt hier niet antwoorden.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -5880,7 +5880,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "DMs samenvouwen in map",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Wanneer ingeschakeld, worden ongelezen DM's in de zijbalk van de community samengeklapt in een map op de {productName}-knop. Klik op de {productName}-knop terwijl je op de DM-pagina bent om de map uit te vouwen of in te klappen.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -6609,7 +6609,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Beweging verminderen",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Schakel animaties en overgangen uit. Dit wordt momenteel beheerd via je systeeminstellingen.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -7596,7 +7596,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "Nog {remaining} tekens over. Krijg {productName} om tot {premiumMaxLength} tekens te schrijven.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -7615,7 +7615,7 @@
     },
     "chatSendFailureDmRestricted": "Je bericht kon niet worden bezorgd. Dit komt meestal doordat je geen community deelt met de ontvanger of omdat de ontvanger alleen directe berichten van vrienden accepteert. Mogelijk moet je ook je eigen privacy-instellingen voor directe berichten aanpassen in {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -7624,27 +7624,27 @@
     },
     "chatSendFailureUnclaimedDm": "Je bericht kon niet worden bezorgd. Je moet je account claimen om directe berichten te kunnen versturen.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Je bericht kon niet worden bezorgd. Je moet je account claimen om berichten te kunnen versturen.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Je bericht kon niet worden bezorgd omdat het is gemarkeerd door onze veiligheidssystemen. Als je denkt dat dit een fout is, neem dan contact op met de ondersteuning.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Je bericht kon niet worden bezorgd omdat het volwassen emoji of stickers bevat die in deze context niet zijn toegestaan.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Alleen jij kunt dit bericht zien.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Sluiten",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Communicatie",
     "@privacyDashboardCommunicationSection": {
@@ -9594,7 +9594,7 @@
     },
     "addGuildImportTemplateInvalid": "De community-sjabloongegevens zijn ongeldig of onjuist geformatteerd.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "addGuildPackInstalled": "Pakket succesvol geïnstalleerd.",
     "@addGuildPackInstalled": {
@@ -11460,26 +11460,26 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Cadeaus",
     "@userSettingsNavGiftsAndCodes": {
         "description": "User settings navigation item for gifts and promo codes."
     },
     "giftSettingsClaimAccountTitle": "Claim je account",
-    "giftSettingsClaimAccountDescription": "Claim je account om Plutonium-cadeaucodes in te wisselen of te beheren.",
+    "giftSettingsClaimAccountDescription": "Claim je account om Reverb-cadeaucodes in te wisselen of te beheren.",
     "giftSettingsRedeemTitle": "Cadeau inwisselen",
-    "giftSettingsRedeemDescription": "Voer een cadeauboncode in om Plutonium voor je account te verzilveren.",
+    "giftSettingsRedeemDescription": "Voer een cadeauboncode in om Reverb voor je account te verzilveren.",
     "giftSettingsRedeemPlaceholder": "Cadeaucode invoeren…",
     "giftSettingsRedeemButton": "Inwisselen",
-    "giftSettingsRedeemSuccess": "Cadeau succesvol ingewisseld. Veel plezier met je Plutonium.",
+    "giftSettingsRedeemSuccess": "Cadeau succesvol ingewisseld. Veel plezier met je Reverb.",
     "giftSettingsPurchasedTitle": "Gekochte cadeaus",
-    "giftSettingsPurchasedDescription": "Beheer je gekochte Plutonium-cadeaucodes. Deel de cadeaulink met iemand speciaal of wissel hem zelf in!",
+    "giftSettingsPurchasedDescription": "Beheer je gekochte Reverb-cadeaucodes. Deel de cadeaulink met iemand speciaal of wissel hem zelf in!",
     "giftSettingsEmptyTitle": "Nog geen cadeaus",
-    "giftSettingsEmptyDescription": "Koop een Plutonium-cadeau vanuit het tabblad Plutonium om te delen met vrienden.",
-    "giftSettingsGoToPlutonium": "Ga naar Plutonium",
+    "giftSettingsEmptyDescription": "Koop een Reverb-cadeau vanuit het tabblad Reverb om te delen met vrienden.",
+    "giftSettingsGoToPlutonium": "Ga naar Reverb",
     "giftSettingsLoadFailedTitle": "Laden van cadeaus mislukt",
     "giftSettingsLoadFailedDescription": "Probeer het later opnieuw.",
     "giftSettingsTryAgain": "Opnieuw proberen",
@@ -11530,11 +11530,11 @@
     "premiumOneYearGift": "Cadeau voor 1 jaar",
     "premiumOneMonthGift": "Cadeau van 1 maand",
     "premiumMostPopular": "Meest populair",
-    "premiumScrollPrompt": "Scroll omlaag om alle voordelen van Plutonium te bekijken",
-    "premiumFreeVsPlutonium": "Gratis versus Plutonium",
+    "premiumScrollPrompt": "Scroll omlaag om alle voordelen van Reverb te bekijken",
+    "premiumFreeVsPlutonium": "Gratis versus Reverb",
     "premiumFreeColumn": "Gratis",
-    "premiumGiftSectionTitle": "Plutonium cadeau geven",
-    "premiumGiftSectionDescription": "Deel de Plutonium-ervaring met je vrienden door een cadeauabonnement te kopen.",
+    "premiumGiftSectionTitle": "Reverb cadeau geven",
+    "premiumGiftSectionDescription": "Deel de Reverb-ervaring met je vrienden door een cadeauabonnement te kopen.",
     "premiumGiftBannerOne": "Je hebt een nieuwe cadeaubon die op je wacht!",
     "premiumGiftBannerMany": "Je hebt {count} nieuwe cadeaucodes die op je wachten!",
     "@premiumGiftBannerMany": {
@@ -11641,7 +11641,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Je hebt momenteel een cadeau-abonnement. Dit wordt niet verlengd. Je kunt meer cadeaucodes inwisselen om het te verlengen. Terugkerende abonnementen kunnen worden gestart nadat je cadeauperiode is afgelopen.",
     "premiumPlanUnavailable": "Dit abonnement is niet beschikbaar. Neem contact op met de ondersteuning.",
     "premiumCompletePaymentTitle": "Betaling afronden",
-    "premiumCompletePaymentBody": "Je wordt nu doorgestuurd naar Stripe om de betaling te voltooien. Keer terug naar Fluxer zodra je dit hebt gedaan.",
+    "premiumCompletePaymentBody": "Je wordt nu doorgestuurd naar Stripe om de betaling te voltooien. Keer terug naar echowire zodra je dit hebt gedaan.",
     "premiumChoosePaymentMethodTitle": "Kies betaalmethode",
     "premiumPixPaymentPromptDescription": "Betaal met automatische Pix om terugkerende kosten rechtstreeks vanaf uw Braziliaanse bank te autoriseren. Of kies 'kaart gebruiken' om een creditcard in te voeren op het volgende scherm van Stripe.",
     "premiumUsePix": "Gebruik Pix",
@@ -11653,11 +11653,11 @@
     "premiumAlreadyVisionaryTitle": "Je bent al Visionair",
     "premiumAlreadyVisionaryBody": "Visionary bevat al permanente toegang, dus een terugkerend abonnement is niet nodig. Je kunt nog steeds cadeaus kopen voor anderen.",
     "premiumExistingSubscriptionTitle": "Abonnement bestaat al",
-    "premiumExistingSubscriptionBody": "We hebben een bestaand Fluxer Plutonium-abonnement voor dit account gevonden. Beheer het in het beveiligde factureringsportaal om betalingsgegevens bij te werken of de verlengingsstatus te controleren. Als je net hebt betaald, wacht dan een minuut en open deze pagina opnieuw.",
+    "premiumExistingSubscriptionBody": "We hebben een bestaand Reverb-abonnement voor dit account gevonden. Beheer het in het beveiligde factureringsportaal om betalingsgegevens bij te werken of de verlengingsstatus te controleren. Als je net hebt betaald, wacht dan een minuut en open deze pagina opnieuw.",
     "premiumPurchasesDisabledTitle": "Aankopen niet beschikbaar",
-    "premiumPurchasesDisabledBody": "Aankopen zijn uitgeschakeld voor dit account. Neem contact op met support@fluxer.app als dit onjuist lijkt.",
-    "premiumClaimAccountToPurchase": "Claim je account om Fluxer Plutonium te kopen.",
-    "premiumVerifyEmailToPurchase": "Je moet je e-mailadres verifiëren voordat je Fluxer Plutonium kunt kopen.",
+    "premiumPurchasesDisabledBody": "Aankopen zijn uitgeschakeld voor dit account. Neem contact op met support@echowire.org als dit onjuist lijkt.",
+    "premiumClaimAccountToPurchase": "Claim je account om Reverb te kopen.",
+    "premiumVerifyEmailToPurchase": "Je moet je e-mailadres verifiëren voordat je Reverb kunt kopen.",
     "premiumPerkCustomUsernameTag": "Aangepaste gebruikersnaamtag",
     "premiumPerkPerCommunityProfiles": "Profielen per community",
     "premiumPerkMessageScheduling": "Bericht plannen",
@@ -11844,7 +11844,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11898,7 +11898,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -11912,7 +11912,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11922,7 +11922,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11952,7 +11952,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11982,7 +11982,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12890,21 +12890,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Voer instantie-URL in (bijv. fluxer.app)",
+    "instanceUrlPlaceholder": "Voer instantie-URL in (bijv. echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Terugzetten naar Fluxer",
+    "resetToDefaultInstance": "Terugzetten naar echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Verbinden",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Verbinden…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Kon geen verbinding maken met instantie",
     "@instanceConnectFailed": {
@@ -12933,7 +12933,7 @@
     },
     "changeInstance": "Wijzigen",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Verbind met het exemplaar om u aan te melden",
     "@instanceConnectionRequired": {

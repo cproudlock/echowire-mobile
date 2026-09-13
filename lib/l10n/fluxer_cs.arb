@@ -3816,7 +3816,7 @@
     },
     "systemDmComposerBarrier": "Systémová oznámení od personálu {productName}. Zde nemůžete odpovědět.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4614,7 +4614,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "Sbalit DM do složky",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Když je povoleno, nepřečtené DM v postranním panelu komunity jsou sbaleny do složky na tlačítku {productName}. Kliknutím na tlačítko {productName} na stránce DM složku rozbalíte nebo sbalíte.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -5539,7 +5539,7 @@
     },
     "chatSendFailureDmRestricted": "Vaši zprávu nebylo možné doručit. Obvykle je to proto, že nesdílíte komunitu s příjemcem nebo příjemce přijímá přímé zprávy pouze od přátel. Možná budete muset také upravit svá vlastní nastavení soukromí pro přímé zprávy v části {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5548,27 +5548,27 @@
     },
     "chatSendFailureUnclaimedDm": "Vaši zprávu nebylo možné doručit. Chcete-li odesílat přímé zprávy, musíte si účet nárokovat.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Vaši zprávu nebylo možné doručit. Chcete-li odesílat zprávy, musíte si účet nárokovat.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Vaši zprávu nebylo možné doručit, protože byla označena našimi bezpečnostními systémy. Pokud se domníváte, že jde o chybu, kontaktujte prosím podporu.",
     "@chatSendFailureContentBlocked": {
-        "description": "Echowirebot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Vaše zpráva nemohla být doručena, protože obsahuje nevhodné emoji nebo nálepky, které nejsou v tomto kontextu povoleny.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Echowirebot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Tuto zprávu vidíte pouze vy.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Echowirebot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Zavřít",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Echowirebot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Komunikace",
     "@privacyDashboardCommunicationSection": {
@@ -6581,9 +6581,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Echowire Reverb subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Dárky",
     "@userSettingsNavGiftsAndCodes": {
@@ -6897,21 +6897,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Zadejte URL instance (např. fluxer.app)",
+    "instanceUrlPlaceholder": "Zadejte URL instance (např. echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Obnovit na Echowire",
+    "resetToDefaultInstance": "Obnovit na echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Připojit",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Echowire instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Připojování…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Echowire instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Nepodařilo se připojit k instanci",
     "@instanceConnectFailed": {
@@ -6940,7 +6940,7 @@
     },
     "changeInstance": "Změnit",
     "@changeInstance": {
-        "description": "Link to change the connected Echowire instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Pro přihlášení se připojte k instanci",
     "@instanceConnectionRequired": {
@@ -10519,7 +10519,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10529,7 +10529,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11699,7 +11699,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -11713,7 +11713,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12112,7 +12112,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12308,7 +12308,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12804,7 +12804,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12817,7 +12817,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12830,7 +12830,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12843,7 +12843,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12856,7 +12856,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12911,7 +12911,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12961,11 +12961,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Tento dárek nelze uplatnit",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Účty Visionary nemohou uplatnit dárky Plutonium. Zkopírujte odkaz a sdílejte ho s přítelem.",
+    "giftVisionaryCannotRedeemMessage": "Účty Visionary nemohou uplatnit dárky Reverb. Zkopírujte odkaz a sdílejte ho s přítelem.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Kopírovat odkaz na dárek",
     "@giftCopyLink": {
@@ -13775,7 +13775,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Omezit pohyb",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Vypnout animace a přechody. Momentálně řízeno nastavením vašeho systému.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -15070,7 +15070,7 @@
     },
     "addGuildImportTemplateInvalid": "Data šablony komunity je neplatná nebo poškozená.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "memberListPermissionDeniedTitle": "Členy nelze zobrazit",
     "@memberListPermissionDeniedTitle": {
@@ -15466,17 +15466,17 @@
         "description": "Empty state shown when user settings search has no matches."
     },
     "giftSettingsClaimAccountTitle": "Nárokovat účet",
-    "giftSettingsClaimAccountDescription": "Uplatněte svůj účet k získání nebo správě dárkových kódů Plutonium.",
+    "giftSettingsClaimAccountDescription": "Uplatněte svůj účet k získání nebo správě dárkových kódů Reverb.",
     "giftSettingsRedeemTitle": "Uplatnit dárek",
-    "giftSettingsRedeemDescription": "Zadejte dárkový kód pro uplatnění Plutonium pro váš účet.",
+    "giftSettingsRedeemDescription": "Zadejte dárkový kód pro uplatnění Reverb pro váš účet.",
     "giftSettingsRedeemPlaceholder": "Zadejte kód dárku…",
     "giftSettingsRedeemButton": "Uplatnit",
-    "giftSettingsRedeemSuccess": "Dárek byl úspěšně uplatněn. Užijte si Plutonium.",
+    "giftSettingsRedeemSuccess": "Dárek byl úspěšně uplatněn. Užijte si Reverb.",
     "giftSettingsPurchasedTitle": "Zakoupené dárky",
-    "giftSettingsPurchasedDescription": "Spravujte své zakoupené dárkové kódy Plutonium. Sdílejte URL dárku s někým výjimečným nebo si jej uplatněte sami!",
+    "giftSettingsPurchasedDescription": "Spravujte své zakoupené dárkové kódy Reverb. Sdílejte URL dárku s někým výjimečným nebo si jej uplatněte sami!",
     "giftSettingsEmptyTitle": "Zatím žádné dárky",
-    "giftSettingsEmptyDescription": "Kupte dárek Plutonium v kartě Plutonium a sdílejte ho s přáteli.",
-    "giftSettingsGoToPlutonium": "Přejít na Plutonium",
+    "giftSettingsEmptyDescription": "Kupte dárek Reverb v kartě Reverb a sdílejte ho s přáteli.",
+    "giftSettingsGoToPlutonium": "Přejít na Reverb",
     "giftSettingsLoadFailedTitle": "Nepodařilo se načíst inventář dárků",
     "giftSettingsLoadFailedDescription": "Zkuste to prosím později.",
     "giftSettingsTryAgain": "Zkusit znovu",
@@ -15527,11 +15527,11 @@
     "premiumOneYearGift": "Dárek na 1 rok",
     "premiumOneMonthGift": "Dárek na 1 měsíc",
     "premiumMostPopular": "Nejoblíbenější",
-    "premiumScrollPrompt": "Přejděte dolů a zobrazte všechny výhody zahrnuté v Plutonium",
-    "premiumFreeVsPlutonium": "Zdarma vs Plutonium",
+    "premiumScrollPrompt": "Přejděte dolů a zobrazte všechny výhody zahrnuté v Reverb",
+    "premiumFreeVsPlutonium": "Zdarma vs Reverb",
     "premiumFreeColumn": "Zdarma",
-    "premiumGiftSectionTitle": "Darovat Plutonium",
-    "premiumGiftSectionDescription": "Sdílejte zážitek z Plutonium se svými přáteli zakoupením dárkového předplatného.",
+    "premiumGiftSectionTitle": "Darovat Reverb",
+    "premiumGiftSectionDescription": "Sdílejte zážitek z Reverb se svými přáteli zakoupením dárkového předplatného.",
     "premiumGiftBannerOne": "Čeká na vás nový dárkový kód!",
     "premiumGiftBannerMany": "Čeká na vás {count} nových dárkových kódů!",
     "@premiumGiftBannerMany": {
@@ -15638,7 +15638,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Momentálně máte dárkové předplatné. Nebude se automaticky obnovovat. Můžete uplatnit další dárkové kódy a prodloužit ho. Opakující se předplatné lze spustit po skončení vašeho dárkového předplatného.",
     "premiumPlanUnavailable": "Tento tarif není k dispozici. Kontaktujte podporu.",
     "premiumCompletePaymentTitle": "Dokončit platbu",
-    "premiumCompletePaymentBody": "Nyní budete přesměrováni na Stripe k dokončení platby. Po dokončení se vraťte do Fluxeru.",
+    "premiumCompletePaymentBody": "Nyní budete přesměrováni na Stripe k dokončení platby. Po dokončení se vraťte do echowireu.",
     "premiumChoosePaymentMethodTitle": "Zvolte způsob platby",
     "premiumPixPaymentPromptDescription": "Zaplaťte pomocí Pix automático a povolte opakované platby přímo z vaší brazilské banky. Nebo zvolte platbu kartou a zadejte údaje o kreditní kartě na další obrazovce Stripe.",
     "premiumUsePix": "Použít Pix",
@@ -15650,11 +15650,11 @@
     "premiumAlreadyVisionaryTitle": "Už jste vizionář",
     "premiumAlreadyVisionaryBody": "Visionary už zahrnuje trvalý přístup, takže opakované předplatné není potřeba. Stále můžete kupovat dárky pro ostatní.",
     "premiumExistingSubscriptionTitle": "Předplatné už existuje",
-    "premiumExistingSubscriptionBody": "Našli jsme existující předplatné Fluxer Plutonium pro tento účel. Spravujte ho v zabezpečeném platebním portálu pro aktualizaci platebních údajů nebo kontrolu stavu obnovení. Pokud jste právě zaplatili, počkejte minutu a znovu otevřete tuto stránku.",
+    "premiumExistingSubscriptionBody": "Našli jsme existující předplatné Reverb pro tento účel. Spravujte ho v zabezpečeném platebním portálu pro aktualizaci platebních údajů nebo kontrolu stavu obnovení. Pokud jste právě zaplatili, počkejte minutu a znovu otevřete tuto stránku.",
     "premiumPurchasesDisabledTitle": "Nákupy nejsou k dispozici",
-    "premiumPurchasesDisabledBody": "Nákupy jsou pro tento účet zakázány. Pokud se vám to nezdá, kontaktujte support@fluxer.app.",
-    "premiumClaimAccountToPurchase": "Získejte svůj účet a kupte si Fluxer Plutonium.",
-    "premiumVerifyEmailToPurchase": "Před nákupem Fluxer Plutonium si musíte ověřit svůj e-mail.",
+    "premiumPurchasesDisabledBody": "Nákupy jsou pro tento účet zakázány. Pokud se vám to nezdá, kontaktujte support@echowire.org.",
+    "premiumClaimAccountToPurchase": "Získejte svůj účet a kupte si Reverb.",
+    "premiumVerifyEmailToPurchase": "Před nákupem Reverb si musíte ověřit svůj e-mail.",
     "premiumPerkCustomUsernameTag": "Vlastní uživatelské jméno",
     "premiumPerkPerCommunityProfiles": "Profily pro každou komunitu",
     "premiumPerkMessageScheduling": "Plánování zpráv",

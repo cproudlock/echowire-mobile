@@ -1087,7 +1087,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1100,7 +1100,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1113,7 +1113,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1126,7 +1126,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1139,7 +1139,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1194,7 +1194,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1244,11 +1244,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "לא ניתן לממש את המתנה הזו",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "חשבונות Visionary אינם יכולים לממש מתנות Plutonium. העתק את הקישור כדי לשתף אותו עם חבר במקום זאת.",
+    "giftVisionaryCannotRedeemMessage": "חשבונות Visionary אינם יכולים לממש מתנות Reverb. העתק את הקישור כדי לשתף אותו עם חבר במקום זאת.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "העתקת קישור למתנה",
     "@giftCopyLink": {
@@ -2010,7 +2010,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "פתח {emojiCount} מתוך {communityCount} עם Plutonium.",
+    "emojiPlutoniumUpsellText": "פתח {emojiCount} מתוך {communityCount} עם Reverb.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -2022,13 +2022,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "קבל Plutonium",
+    "emojiPlutoniumUpsellButton": "קבל Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "אל תציג זאת שוב",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{אימוג'י מותאם אישית אחד} other{{count} אימוג'ים מותאמים אישית}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -2146,11 +2146,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "אווטארים מונפשים דורשים Plutonium",
+    "animatedAvatarsRequirePlutonium": "אווטארים מונפשים דורשים Reverb",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "באנרים מונפשים דורשים Plutonium",
+    "animatedBannersRequirePlutonium": "באנרים מונפשים דורשים Reverb",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -2230,7 +2230,7 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "קבלו Plutonium כדי להתאים אישית את התג שלכם או שמרו אותו בעת שינוי שם המשתמש שלכם",
+    "discriminatorPremiumTooltip": "קבלו Reverb כדי להתאים אישית את התג שלכם או שמרו אותו בעת שינוי שם המשתמש שלכם",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
@@ -2254,7 +2254,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "התג המותאם אישית בן 4 ספרות שלך זמין רק כל עוד המנוי שלך ל-Plutonium פעיל. כאשר המנוי שלך יפוג בתאריך {date}, התג שלך יוחזר למספר אקראי לאחר תקופת חסד של 3 ימים.",
+    "customTagTemporaryBodyWithDate": "התג המותאם אישית בן 4 ספרות שלך זמין רק כל עוד המנוי שלך ל-Reverb פעיל. כאשר המנוי שלך יפוג בתאריך {date}, התג שלך יוחזר למספר אקראי לאחר תקופת חסד של 3 ימים.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -2263,7 +2263,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "התג המותאם אישית שלך בן 4 ספרות זמין רק כל עוד המנוי שלך ל-Plutonium פעיל. כאשר המנוי שלך יפוג, התג שלך יוחזר למספר שמוקצה באופן אקראי לאחר תקופת חסד של 3 ימים.",
+    "customTagTemporaryBody": "התג המותאם אישית שלך בן 4 ספרות זמין רק כל עוד המנוי שלך ל-Reverb פעיל. כאשר המנוי שלך יפוג, התג שלך יוחזר למספר שמוקצה באופן אקראי לאחר תקופת חסד של 3 ימים.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -2271,11 +2271,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "אם תשמור שם משתמש זה, התגית המותאמת אישית שלך בת 4 ספרות תחזור למספר אקראי כשיסתיים המנוי שלך ל־Plutonium. אם המנוי שלך לא יתחדש, יהיו לך 3 ימי חסד לפני שהתגית תשתנה.",
+    "premiumWarningPendingDiscriminator": "אם תשמור שם משתמש זה, התגית המותאמת אישית שלך בת 4 ספרות תחזור למספר אקראי כשיסתיים המנוי שלך ל־Reverb. אם המנוי שלך לא יתחדש, יהיו לך 3 ימי חסד לפני שהתגית תשתנה.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "התג המותאם אישית שלך בן 4 ספרות (#{discriminator}) פעיל כל עוד המנוי שלך ל-Plutonium פעיל. אם המנוי שלך יסתיים או לא יחודש לאחר תקופת חסד של 3 ימים, התג שלך יוחזר למספר אקראי.",
+    "premiumWarningActiveDiscriminator": "התג המותאם אישית שלך בן 4 ספרות (#{discriminator}) פעיל כל עוד המנוי שלך ל-Reverb פעיל. אם המנוי שלך יסתיים או לא יחודש לאחר תקופת חסד של 3 ימים, התג שלך יוחזר למספר אקראי.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -2286,9 +2286,9 @@
     },
     "premiumUpsellCustomizeTag": "התאם אישית את התג שלך בן 4 ספרות או שמור אותו בעת שינוי שם המשתמש שלך",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "תקופת הניסיון שלך ב-Plutonium תפוג בתאריך {date}. שדרג כדי לשמור על התג המותאם אישית שלך ולהרוויח תג בפרופיל שלך.",
+    "premiumTrialExpiresOn": "תקופת הניסיון שלך ב-Reverb תפוג בתאריך {date}. שדרג כדי לשמור על התג המותאם אישית שלך ולהרוויח תג בפרופיל שלך.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -2297,7 +2297,7 @@
             }
         }
     },
-    "premiumTrialActive": "אתה משתמש בניסיון Plutonium. שדרג כדי לשמור על התג המותאם אישית שלך ולהרוויח תג בפרופיל שלך.",
+    "premiumTrialActive": "אתה משתמש בניסיון Reverb. שדרג כדי לשמור על התג המותאם אישית שלך ולהרוויח תג בפרופיל שלך.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
@@ -2333,7 +2333,7 @@
     "@changeFluxerTag": {
         "description": "Button label to open the username change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "התאם אישית את תג ה-4 ספרות שלך (#{discriminator}) כרצונך עם Plutonium",
+    "customizeTagWithPlutoniumTooltip": "התאם אישית את תג ה-4 ספרות שלך (#{discriminator}) כרצונך עם Reverb",
     "@customizeTagWithPlutoniumTooltip": {
         "description": "Tooltip on the crown upsell button next to the username button.",
         "placeholders": {
@@ -2346,7 +2346,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "התג המותאם אישית שלך (#{discriminator}) קשור למנוי ה-Plutonium שלך ויוחזר לתג אקראי אם יפוג.",
+    "customTagSubscriptionWarning": "התג המותאם אישית שלך (#{discriminator}) קשור למנוי ה-Reverb שלך ויוחזר לתג אקראי אם יפוג.",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -2415,38 +2415,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "פרטיות תג ה-Plutonium",
+    "plutoniumBadgePrivacyTitle": "פרטיות תג ה-Reverb",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "קבע כיצד תג ה-Plutonium שלך יוצג לאחרים",
+    "plutoniumBadgePrivacyDescription": "קבע כיצד תג ה-Reverb שלך יוצג לאחרים",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "הסתר את תגית Plutonium לחלוטין",
+    "hidePlutoniumBadgeLabel": "הסתר את תגית Reverb לחלוטין",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "הסתר את תג ה-Plutonium שלך לחלוטין ממשתמשים אחרים",
+    "hidePlutoniumBadgeDescription": "הסתר את תג ה-Reverb שלך לחלוטין ממשתמשים אחרים",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "הסתר תאריך רכישת Plutonium",
+    "hidePlutoniumPurchaseDate": "הסתר תאריך רכישת Reverb",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "הסתר תאריך רכישת Plutonium ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "הסתר תאריך רכישת Reverb ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "הסר מתי קנית לראשונה Plutonium מהתג שלך",
+    "hidePurchaseDateDescription": "הסר מתי קנית לראשונה Reverb מהתג שלך",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "הסתרת Visionary כמנוי",
     "@maskVisionaryAsSubscription": {
@@ -2473,7 +2473,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "אתם במנוי ניסיון של Plutonium — המנוי שלכם יתחיל בתאריך {date}",
+    "premiumTrialSubscriptionStarts": "אתם במנוי ניסיון של Reverb — המנוי שלכם יתחיל בתאריך {date}",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -2486,7 +2486,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "אתם משתמשים בגרסת ניסיון של Plutonium שתפוג בתאריך {date}",
+    "premiumTrialExpiresOnProfile": "אתם משתמשים בגרסת ניסיון של Reverb שתפוג בתאריך {date}",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -2495,29 +2495,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "אתה בשירות Plutonium ללא תשלום",
+    "premiumTrialActiveProfile": "אתה בשירות Reverb ללא תשלום",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. מקסימום 10MB. מומלץ: 512×512px. אווטארים מונפשים (GIF) דורשים Plutonium.",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. מקסימום 10MB. מומלץ: 512×512px. אווטארים מונפשים (GIF) דורשים Reverb.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "התאם אישית את הפרופיל שלך עם תמונת באנר סטטית או מונפשת כדי לגרום לו לבלוט.",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "קבל Plutonium",
+    "getPlutonium": "קבל Reverb",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "רכישות מתוך האפליקציה עדיין אינן זמינות בפלטפורמה זו. הישארו מעודכנים — בקרוב!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "תצוגה מקדימה",
     "@profilePreviewLabel": {
@@ -2564,7 +2564,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "התאמה אישית של האווטאר, הבאנר, צבע ההדגשה והביוגרפיה שלך עבור קהילות בודדות דורשת Plutonium. כינוי קהילה וכינויי גוף זמינים בחינם לכולם.",
+    "perGuildPremiumUpsellText": "התאמה אישית של האווטאר, הבאנר, צבע ההדגשה והביוגרפיה שלך עבור קהילות בודדות דורשת Reverb. כינוי קהילה וכינויי גוף זמינים בחינם לכולם.",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -3311,7 +3311,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "בטל את מנוי ה-Plutonium הפעיל שלך בהגדרות ה-Plutonium לפני מחיקת חשבונך.",
+    "dangerZoneDeleteCancelSubscription": "בטל את מנוי ה-Reverb הפעיל שלך בהגדרות ה-Reverb לפני מחיקת חשבונך.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -3713,7 +3713,7 @@
             }
         }
     },
-    "userProfilePlutoniumBadgeTooltip": "Plutonium של {productName}",
+    "userProfilePlutoniumBadgeTooltip": "Reverb של {productName}",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3722,7 +3722,7 @@
             }
         }
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Plutonium מנוי מאז {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Reverb מנוי מאז {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -4838,7 +4838,7 @@
     },
     "systemDmComposerBarrier": "הודעות מערכת מצוות {productName}. לא ניתן להשיב כאן.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -5488,7 +5488,7 @@
             }
         }
     },
-    "connectionSaveTokenDialogTitle": "שמור אימות Fluxer",
+    "connectionSaveTokenDialogTitle": "שמור אימות echowire",
     "@connectionSaveTokenDialogTitle": {
         "description": "Title of the save-file dialog opened by the download button."
     },
@@ -5572,7 +5572,7 @@
     "@connectionRemoveFailed": {
         "description": "Toast shown when the delete request fails."
     },
-    "connectionTokenSavedToast": "אימות Fluxer נשמר",
+    "connectionTokenSavedToast": "אימות echowire נשמר",
     "@connectionTokenSavedToast": {
         "description": "Toast shown after the token file is saved successfully."
     },
@@ -5880,7 +5880,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "כווץ הודעות ישירות לתיקיה",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "כאשר מופעל, הודעות ישירות שלא נקראו בסרגל הצד של השרת מתקפלות לתיקייה בכפתור ה-{productName}. לחץ על כפתור ה-{productName} כשאתה בדף ההודעות הישירות כדי לפתוח או לקפל את התיקייה.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -6609,7 +6609,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "הפחתת תנועה",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "השבתת אנימציות ומעברים. נשלט כרגע על ידי הגדרות המערכת שלך.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -7596,7 +7596,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} תווים נותרו. קבלו את {productName} כדי לכתוב עד {premiumMaxLength} תווים.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -7615,7 +7615,7 @@
     },
     "chatSendFailureDmRestricted": "ההודעה שלך לא נמסרה. בדרך כלל זה קורה מכיוון שאתה לא חולק קהילה עם הנמען או שהנמען מקבל הודעות ישירות רק מחברים. ייתכן שתצטרך גם להתאים את הגדרות הפרטיות שלך להודעות ישירות ב- {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -7624,27 +7624,27 @@
     },
     "chatSendFailureUnclaimedDm": "ההודעה שלך לא נשלחה. עליך לאמת את חשבונך כדי לשלוח הודעות פרטיות.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "ההודעה שלך לא נשלחה. עליך לתבוע בעלות על החשבון שלך כדי לשלוח הודעות.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "ההודעה שלך לא נמסרה כי היא סומנה על ידי מערכות הבטיחות שלנו. אם לדעתך זו טעות, אנא פנה/י לתמיכה.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "ההודעה שלך לא נמסרה מכיוון שהיא מכילה אימוג'י או מדבקות בוגרים שאסורים בהקשר זה.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "רק אתה יכול לראות את ההודעה הזו.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "בטל",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "תקשורת",
     "@privacyDashboardCommunicationSection": {
@@ -9594,7 +9594,7 @@
     },
     "addGuildImportTemplateInvalid": "נתוני תבנית הקהילה אינם חוקיים או פגומים.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "addGuildPackInstalled": "החבילה הותקנה בהצלחה.",
     "@addGuildPackInstalled": {
@@ -11460,26 +11460,26 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "מתנות",
     "@userSettingsNavGiftsAndCodes": {
         "description": "User settings navigation item for gifts and promo codes."
     },
     "giftSettingsClaimAccountTitle": "תבעו את החשבון שלכם",
-    "giftSettingsClaimAccountDescription": "אמת את חשבונך כדי לממש או לנהל קודי מתנה של Plutonium.",
+    "giftSettingsClaimAccountDescription": "אמת את חשבונך כדי לממש או לנהל קודי מתנה של Reverb.",
     "giftSettingsRedeemTitle": "מימוש מתנה",
-    "giftSettingsRedeemDescription": "הזן קוד מתנה כדי לממש Plutonium לחשבונך.",
+    "giftSettingsRedeemDescription": "הזן קוד מתנה כדי לממש Reverb לחשבונך.",
     "giftSettingsRedeemPlaceholder": "הזן קוד מתנה…",
     "giftSettingsRedeemButton": "מימוש",
-    "giftSettingsRedeemSuccess": "המתנה מומשה בהצלחה. תהנה מה-Plutonium שלך.",
+    "giftSettingsRedeemSuccess": "המתנה מומשה בהצלחה. תהנה מה-Reverb שלך.",
     "giftSettingsPurchasedTitle": "מתנות שנרכשו",
-    "giftSettingsPurchasedDescription": "נהל את קודי המתנה של Plutonium שרכשת. שתף את כתובת ה-URL של המתנה עם מישהו מיוחד או פדה אותה לעצמך!",
+    "giftSettingsPurchasedDescription": "נהל את קודי המתנה של Reverb שרכשת. שתף את כתובת ה-URL של המתנה עם מישהו מיוחד או פדה אותה לעצמך!",
     "giftSettingsEmptyTitle": "אין עדיין מתנות",
-    "giftSettingsEmptyDescription": "קנו מתנת Plutonium מטאב Plutonium כדי לשתף עם חברים.",
-    "giftSettingsGoToPlutonium": "עבור אל Plutonium",
+    "giftSettingsEmptyDescription": "קנו מתנת Reverb מטאב Reverb כדי לשתף עם חברים.",
+    "giftSettingsGoToPlutonium": "עבור אל Reverb",
     "giftSettingsLoadFailedTitle": "טעינת מלאי המתנות נכשלה",
     "giftSettingsLoadFailedDescription": "נסו שוב מאוחר יותר.",
     "giftSettingsTryAgain": "נסה שוב",
@@ -11530,11 +11530,11 @@
     "premiumOneYearGift": "מתנה לשנה",
     "premiumOneMonthGift": "מתנה לחודש אחד",
     "premiumMostPopular": "הפופולרי ביותר",
-    "premiumScrollPrompt": "גלול למטה כדי לראות את כל ההטבות הכלולות ב-Plutonium",
-    "premiumFreeVsPlutonium": "חינם לעומת Plutonium",
+    "premiumScrollPrompt": "גלול למטה כדי לראות את כל ההטבות הכלולות ב-Reverb",
+    "premiumFreeVsPlutonium": "חינם לעומת Reverb",
     "premiumFreeColumn": "חינם",
-    "premiumGiftSectionTitle": "הענק Plutonium",
-    "premiumGiftSectionDescription": "שתף את חווית ה-Plutonium עם חבריך על ידי רכישת מנוי מתנה.",
+    "premiumGiftSectionTitle": "הענק Reverb",
+    "premiumGiftSectionDescription": "שתף את חווית ה-Reverb עם חבריך על ידי רכישת מנוי מתנה.",
     "premiumGiftBannerOne": "יש לך קוד מתנה חדש שמחכה לך!",
     "premiumGiftBannerMany": "יש לך {count} קודי מתנה חדשים שמחכים לך!",
     "@premiumGiftBannerMany": {
@@ -11641,7 +11641,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "כרגע יש לך מנוי מתנה. הוא לא יתחדש. באפשרותך לממש קודי מתנה נוספים כדי להאריך אותו. ניתן להתחיל מנויים חוזרים לאחר שתקופת המתנה שלך תסתיים.",
     "premiumPlanUnavailable": "התוכנית הזו אינה זמינה. יש ליצור קשר עם התמיכה.",
     "premiumCompletePaymentTitle": "השלם תשלום",
-    "premiumCompletePaymentBody": "אתה מועבר כעת ל-Stripe להשלמת התשלום. חזור ל-Fluxer לאחר שתסיים.",
+    "premiumCompletePaymentBody": "אתה מועבר כעת ל-Stripe להשלמת התשלום. חזור ל-echowire לאחר שתסיים.",
     "premiumChoosePaymentMethodTitle": "בחירת אמצעי תשלום",
     "premiumPixPaymentPromptDescription": "שלם באמצעות Pix אוטומטי כדי לאשר חיובים חוזרים ישירות מהבנק הברזילאי שלך. לחלופין, בחר להשתמש בכרטיס כדי להזין פרטי כרטיס אשראי במסך הבא של Stripe.",
     "premiumUsePix": "השתמש בפיקס",
@@ -11653,11 +11653,11 @@
     "premiumAlreadyVisionaryTitle": "אתה כבר Visionary",
     "premiumAlreadyVisionaryBody": "ל-Visionary כבר יש גישה קבועה, כך שאין צורך במנוי חוזר. עדיין אפשר לקנות מתנות לאחרים.",
     "premiumExistingSubscriptionTitle": "המינוי כבר קיים",
-    "premiumExistingSubscriptionBody": "מצאנו מנוי קיים של Fluxer Plutonium עבור חשבון זה. נהלו אותו בפורטל החיוב המאובטח כדי לעדכן פרטי תשלום או לבדוק את סטטוס החידוש. אם שילמתם זה עתה, המתינו דקה ופתחו מחדש את הדף הזה.",
+    "premiumExistingSubscriptionBody": "מצאנו מנוי קיים של Reverb עבור חשבון זה. נהלו אותו בפורטל החיוב המאובטח כדי לעדכן פרטי תשלום או לבדוק את סטטוס החידוש. אם שילמתם זה עתה, המתינו דקה ופתחו מחדש את הדף הזה.",
     "premiumPurchasesDisabledTitle": "רכישות אינן זמינות",
-    "premiumPurchasesDisabledBody": "הרכישות מושבתות עבור חשבון זה. צור קשר עם support@fluxer.app אם זה נראה שגוי.",
-    "premiumClaimAccountToPurchase": "אמת את חשבונך כדי לרכוש Fluxer Plutonium.",
-    "premiumVerifyEmailToPurchase": "עליך לאמת את כתובת הדוא\"ל שלך לפני שתוכל לרכוש Fluxer Plutonium.",
+    "premiumPurchasesDisabledBody": "הרכישות מושבתות עבור חשבון זה. צור קשר עם support@echowire.org אם זה נראה שגוי.",
+    "premiumClaimAccountToPurchase": "אמת את חשבונך כדי לרכוש Reverb.",
+    "premiumVerifyEmailToPurchase": "עליך לאמת את כתובת הדוא\"ל שלך לפני שתוכל לרכוש Reverb.",
     "premiumPerkCustomUsernameTag": "תגית שם משתמש מותאמת אישית",
     "premiumPerkPerCommunityProfiles": "פרופילים לכל קהילה",
     "premiumPerkMessageScheduling": "תזמון הודעות",
@@ -11844,7 +11844,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11898,7 +11898,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -11912,7 +11912,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11922,7 +11922,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11952,7 +11952,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11982,7 +11982,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12890,21 +12890,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "הזן כתובת URL של מופע (לדוגמה, fluxer.app)",
+    "instanceUrlPlaceholder": "הזן כתובת URL של מופע (לדוגמה, echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "אפס ל-Fluxer",
+    "resetToDefaultInstance": "אפס ל-echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "התחבר",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "מתחבר…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "נכשל החיבור למופע",
     "@instanceConnectFailed": {
@@ -12933,7 +12933,7 @@
     },
     "changeInstance": "שנה",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "התחבר/י לשרת כדי להיכנס",
     "@instanceConnectionRequired": {

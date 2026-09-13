@@ -944,7 +944,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'Conturile Visionary nu pot revendica cadouri Plutonium. Copiază linkul pentru a-l trimite unui prieten.';
+      'Conturile Visionary nu pot revendica cadouri Reverb. Copiază linkul pentru a-l trimite unui prieten.';
 
   @override
   String get giftCopyLink => 'Copiază linkul cadoului';
@@ -1528,11 +1528,11 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'Deblochează $emojiCount din $communityCount cu Plutonium.';
+    return 'Deblochează $emojiCount din $communityCount cu Reverb.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Obține Plutonium';
+  String get emojiPlutoniumUpsellButton => 'Obține Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Nu mai afișa asta';
@@ -1645,11 +1645,11 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'Avatarurile animate necesită Plutonium';
+      'Avatarurile animate necesită Reverb';
 
   @override
   String get animatedBannersRequirePlutonium =>
-      'Banner-ele animate necesită Plutonium';
+      'Banner-ele animate necesită Reverb';
 
   @override
   String get animatedAvifNotSupported => 'AVIF animat nu este acceptat';
@@ -1714,7 +1714,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Obține Plutonium pentru a-ți personaliza eticheta sau păstreaz-o când schimbi numele de utilizator';
+      'Obține Reverb pentru a-ți personaliza eticheta sau păstreaz-o când schimbi numele de utilizator';
 
   @override
   String get fluxerTagAlreadyTaken => 'Numele de utilizator este deja ocupat';
@@ -1729,23 +1729,23 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'Eticheta personalizată de 4 cifre este disponibilă doar cât timp abonamentul tău Plutonium este activ. Când abonamentul tău expiră pe $date, eticheta ta va reveni la un număr atribuit aleatoriu, după o perioadă de grație de 3 zile.';
+    return 'Eticheta personalizată de 4 cifre este disponibilă doar cât timp abonamentul tău Reverb este activ. Când abonamentul tău expiră pe $date, eticheta ta va reveni la un număr atribuit aleatoriu, după o perioadă de grație de 3 zile.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'Eticheta ta personalizată de 4 cifre este disponibilă doar cât timp abonamentul tău Plutonium este activ. Când abonamentul tău expiră, eticheta ta va reveni la un număr atribuit aleatoriu după o perioadă de grație de 3 zile.';
+      'Eticheta ta personalizată de 4 cifre este disponibilă doar cât timp abonamentul tău Reverb este activ. Când abonamentul tău expiră, eticheta ta va reveni la un număr atribuit aleatoriu după o perioadă de grație de 3 zile.';
 
   @override
   String get iUnderstandContinue => 'Am înțeles, continuă';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Dacă salvezi acest nume de utilizator, eticheta ta personalizată de 4 cifre va reveni la un număr aleatoriu când abonamentul tău Plutonium se va încheia. Dacă abonamentul tău nu se reînnoiește, vei avea o perioadă de grație de 3 zile înainte ca eticheta să se schimbe.';
+      'Dacă salvezi acest nume de utilizator, eticheta ta personalizată de 4 cifre va reveni la un număr aleatoriu când abonamentul tău Reverb se va încheia. Dacă abonamentul tău nu se reînnoiește, vei avea o perioadă de grație de 3 zile înainte ca eticheta să se schimbe.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Eticheta ta personalizată de 4 cifre (#$discriminator) este activă cât timp abonamentul tău Plutonium este activ. Dacă abonamentul tău se încheie sau nu se reînnoiește după o perioadă de grație de 3 zile, eticheta ta va reveni la un număr aleatoriu.';
+    return 'Eticheta ta personalizată de 4 cifre (#$discriminator) este activă cât timp abonamentul tău Reverb este activ. Dacă abonamentul tău se încheie sau nu se reînnoiește după o perioadă de grație de 3 zile, eticheta ta va reveni la un număr aleatoriu.';
   }
 
   @override
@@ -1754,12 +1754,12 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'Încercarea ta Plutonium expiră pe $date. Fă upgrade pentru a păstra eticheta personalizată și pentru a câștiga o insignă pe profilul tău.';
+    return 'Încercarea ta Reverb expiră pe $date. Fă upgrade pentru a păstra eticheta personalizată și pentru a câștiga o insignă pe profilul tău.';
   }
 
   @override
   String get premiumTrialActive =>
-      'Ești la un trial Plutonium. Fă upgrade pentru a păstra eticheta personalizată și a câștiga o insignă pe profilul tău.';
+      'Ești la un trial Reverb. Fă upgrade pentru a păstra eticheta personalizată și a câștiga o insignă pe profilul tău.';
 
   @override
   String get fluxerTagUpdated => 'Nume de utilizator actualizat';
@@ -1790,7 +1790,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Personalizează-ți eticheta cu 4 cifre (#$discriminator) după bunul plac cu Plutonium';
+    return 'Personalizează-ți eticheta cu 4 cifre (#$discriminator) după bunul plac cu Reverb';
   }
 
   @override
@@ -1799,7 +1799,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'Eticheta ta personalizată (#$discriminator) este legată de abonamentul tău Plutonium și va reveni la o etichetă aleatorie dacă expiră.';
+    return 'Eticheta ta personalizată (#$discriminator) este legată de abonamentul tău Reverb și va reveni la o etichetă aleatorie dacă expiră.';
   }
 
   @override
@@ -1851,31 +1851,30 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get emojiPickerTitle => 'Emoji';
 
   @override
-  String get plutoniumBadgePrivacyTitle =>
-      'Confidențialitate insignă Plutonium';
+  String get plutoniumBadgePrivacyTitle => 'Confidențialitate insignă Reverb';
 
   @override
   String get plutoniumBadgePrivacyDescription =>
-      'Controlează cum este afișată insigna ta Plutonium altora';
+      'Controlează cum este afișată insigna ta Reverb altora';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'Ascunde complet insigna Plutonium';
+  String get hidePlutoniumBadgeLabel => 'Ascunde complet insigna Reverb';
 
   @override
   String get hidePlutoniumBadgeDescription =>
-      'Ascunde complet insigna ta Plutonium de alți utilizatori';
+      'Ascunde complet insigna ta Reverb de alți utilizatori';
 
   @override
-  String get hidePlutoniumPurchaseDate => 'Ascunde data achiziției Plutonium';
+  String get hidePlutoniumPurchaseDate => 'Ascunde data achiziției Reverb';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'Ascunde data achiziției Plutonium ($date)';
+    return 'Ascunde data achiziției Reverb ($date)';
   }
 
   @override
   String get hidePurchaseDateDescription =>
-      'Elimină data primei achiziții de Plutonium de pe ecusonul tău';
+      'Elimină data primei achiziții de Reverb de pe ecusonul tău';
 
   @override
   String get maskVisionaryAsSubscription => 'Maschează Visionary ca abonament';
@@ -1897,7 +1896,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'Ești la un trial Plutonium — abonamentul tău începe pe $date';
+    return 'Ești la un trial Reverb — abonamentul tău începe pe $date';
   }
 
   @override
@@ -1906,25 +1905,25 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'Ești la un trial Plutonium care expiră pe $date';
+    return 'Ești la un trial Reverb care expiră pe $date';
   }
 
   @override
-  String get premiumTrialActiveProfile => 'Ești în perioada de probă Plutonium';
+  String get premiumTrialActiveProfile => 'Ești în perioada de probă Reverb';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. Maxim 10 MB. Recomandat: 512×512 px. Avatarele animate (GIF) necesită Plutonium.';
+      'JPEG, PNG, WebP. Maxim 10 MB. Recomandat: 512×512 px. Avatarele animate (GIF) necesită Reverb.';
 
   @override
   String get bannerPlutoniumUpsell =>
       'Personalizează-ți profilul cu o imagine statică sau animată pentru banner, ca să iasă în evidență.';
 
   @override
-  String get getPlutonium => 'Obține Plutonium';
+  String get getPlutonium => 'Obține Reverb';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1966,7 +1965,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      'Personalizarea avatarului, bannerului, culorii de accent și a biografiei pentru comunități individuale necesită Plutonium. Porecla și pronumele comunității sunt gratuite pentru toată lumea.';
+      'Personalizarea avatarului, bannerului, culorii de accent și a biografiei pentru comunități individuale necesită Reverb. Porecla și pronumele comunității sunt gratuite pentru toată lumea.';
 
   @override
   String get avatarModeInherit => 'Folosește profilul global';
@@ -2565,7 +2564,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'Anulează abonamentul tău activ Plutonium din setările Plutonium înainte de a-ți șterge contul.';
+      'Anulează abonamentul tău activ Reverb din setările Reverb înainte de a-ți șterge contul.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => 'Nu se poate șterge contul';
@@ -2919,7 +2918,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String userProfilePlutoniumBadgeTooltip(String productName) {
-    return 'Plutonium $productName';
+    return 'Reverb $productName';
   }
 
   @override
@@ -2927,7 +2926,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
     String productName,
     String date,
   ) {
-    return '$productName Plutonium abonat de la $date';
+    return '$productName Reverb abonat de la $date';
   }
 
   @override
@@ -9176,7 +9175,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Securitate și autentificare';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Cadouri';
@@ -9186,14 +9185,14 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Revendică-ți contul pentru a răscumpăra sau gestiona codurile cadou Plutonium.';
+      'Revendică-ți contul pentru a răscumpăra sau gestiona codurile cadou Reverb.';
 
   @override
   String get giftSettingsRedeemTitle => 'Revendică un cadou';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'Introdu un cod cadou pentru a răscumpăra Plutonium pentru contul tău.';
+      'Introdu un cod cadou pentru a răscumpăra Reverb pentru contul tău.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'Introdu codul cadou…';
@@ -9203,24 +9202,24 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get giftSettingsRedeemSuccess =>
-      'Cadou răscumpărat cu succes. Bucură-te de Plutonium.';
+      'Cadou răscumpărat cu succes. Bucură-te de Reverb.';
 
   @override
   String get giftSettingsPurchasedTitle => 'Cadouri cumpărate';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'Gestionează codurile cadou Plutonium pe care le-ai achiziționat. Distribuie URL-ul cadoului cu cineva drag sau valorifică-l pentru tine!';
+      'Gestionează codurile cadou Reverb pe care le-ai achiziționat. Distribuie URL-ul cadoului cu cineva drag sau valorifică-l pentru tine!';
 
   @override
   String get giftSettingsEmptyTitle => 'Niciun cadou încă';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Cumpără un cadou Plutonium din fila Plutonium pentru a-l împărtăși cu prietenii.';
+      'Cumpără un cadou Reverb din fila Reverb pentru a-l împărtăși cu prietenii.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Mergi la Plutonium';
+  String get giftSettingsGoToPlutonium => 'Mergi la Reverb';
 
   @override
   String get giftSettingsLoadFailedTitle =>
@@ -9322,20 +9321,20 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'Derulează în jos pentru a vedea toate beneficiile incluse cu Plutonium';
+      'Derulează în jos pentru a vedea toate beneficiile incluse cu Reverb';
 
   @override
-  String get premiumFreeVsPlutonium => 'Gratuit vs Plutonium';
+  String get premiumFreeVsPlutonium => 'Gratuit vs Reverb';
 
   @override
   String get premiumFreeColumn => 'Gratuit';
 
   @override
-  String get premiumGiftSectionTitle => 'Oferă Plutonium';
+  String get premiumGiftSectionTitle => 'Oferă Reverb';
 
   @override
   String get premiumGiftSectionDescription =>
-      'Oferă-le prietenilor tăi experiența Plutonium cumpărând un abonament cadou.';
+      'Oferă-le prietenilor tăi experiența Reverb cumpărând un abonament cadou.';
 
   @override
   String get premiumGiftBannerOne => 'Ai un nou cod cadou care te așteaptă!';
@@ -9485,7 +9484,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Acum vei fi redirecționat către Stripe pentru a finaliza plata. Revino la Fluxer după ce ai terminat.';
+      'Acum vei fi redirecționat către Stripe pentru a finaliza plata. Revino la echowire după ce ai terminat.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Alege metoda de plată';
@@ -9527,22 +9526,22 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'Am găsit un abonament Fluxer Plutonium existent pentru acest cont. Gestionați-l în portalul de facturare securizat pentru a actualiza detaliile de plată sau pentru a verifica starea reînnoirii. Dacă tocmai ați plătit, așteptați un minut și redeschideți această pagină.';
+      'Am găsit un abonament Reverb existent pentru acest cont. Gestionați-l în portalul de facturare securizat pentru a actualiza detaliile de plată sau pentru a verifica starea reînnoirii. Dacă tocmai ați plătit, așteptați un minut și redeschideți această pagină.';
 
   @override
   String get premiumPurchasesDisabledTitle => 'Achizițiile nu sunt disponibile';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'Achizițiile sunt dezactivate pentru acest cont. Contactați support@fluxer.app dacă credeți că este o greșeală.';
+      'Achizițiile sunt dezactivate pentru acest cont. Contactați support@echowire.org dacă credeți că este o greșeală.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Revendică-ți contul pentru a cumpăra Fluxer Plutonium.';
+      'Revendică-ți contul pentru a cumpăra Reverb.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'Trebuie să îți verifici emailul înainte de a putea achiziționa Fluxer Plutonium.';
+      'Trebuie să îți verifici emailul înainte de a putea achiziționa Reverb.';
 
   @override
   String get premiumPerkCustomUsernameTag =>
@@ -10984,14 +10983,14 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get instanceUrlPlaceholder =>
-      'Introdu adresa URL a instanței (ex. fluxer.app)';
+      'Introdu adresa URL a instanței (ex. echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Resetează la Fluxer';
+  String get resetToDefaultInstance => 'Resetează la echowire';
 
   @override
   String get instanceConnect => 'Conectare';

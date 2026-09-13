@@ -942,7 +942,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      '„Visionary“ paskyros negali išpirkti „Plutonium“ dovanų. Vietoj to nukopijuokite nuorodą, kad pasidalintumėte ją su draugu.';
+      '„Visionary“ paskyros negali išpirkti „Reverb“ dovanų. Vietoj to nukopijuokite nuorodą, kad pasidalintumėte ją su draugu.';
 
   @override
   String get giftCopyLink => 'Kopijuoti dovanos nuorodą';
@@ -4355,7 +4355,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get connectionRemoveFailed => 'Nepavyko pašalinti jungties';
 
   @override
-  String get connectionTokenSavedToast => 'Echowire-verification įrašytas';
+  String get connectionTokenSavedToast => 'echowire-verification įrašytas';
 
   @override
   String get connectionTokenSaveFailedToast => 'Nepavyko įrašyti failo';
@@ -9211,7 +9211,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Sauga ir prisijungimas';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Dovanos';
@@ -9221,14 +9221,14 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Susiekite savo paskyrą, kad galėtumėte išpirkti arba tvarkyti „Plutonium“ dovanų kodus.';
+      'Susiekite savo paskyrą, kad galėtumėte išpirkti arba tvarkyti „Reverb“ dovanų kodus.';
 
   @override
   String get giftSettingsRedeemTitle => 'Išpirkti dovaną';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'Įveskite dovanos kodą, kad aktyvuotumėte „Plutonium“ savo paskyroje.';
+      'Įveskite dovanos kodą, kad aktyvuotumėte „Reverb“ savo paskyroje.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'Įveskite dovanos kodą…';
@@ -9238,24 +9238,24 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get giftSettingsRedeemSuccess =>
-      'Dovaną pavyko panaudoti. Mėgaukitės „Plutonium“.';
+      'Dovaną pavyko panaudoti. Mėgaukitės „Reverb“.';
 
   @override
   String get giftSettingsPurchasedTitle => 'Įsigytos dovanos';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'Tvarkykite įsigytus „Plutonium“ dovanų kodus. Pasidalinkite dovanos URL su ypatingu žmogumi arba išpirkite jį sau!';
+      'Tvarkykite įsigytus „Reverb“ dovanų kodus. Pasidalinkite dovanos URL su ypatingu žmogumi arba išpirkite jį sau!';
 
   @override
   String get giftSettingsEmptyTitle => 'Dar nėra dovanų';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Pirkite „Plutonium“ dovaną iš „Plutonium“ skirtuko, kad pasidalintumėte su draugais.';
+      'Pirkite „Reverb“ dovaną iš „Reverb“ skirtuko, kad pasidalintumėte su draugais.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Eiti į Plutonium';
+  String get giftSettingsGoToPlutonium => 'Eiti į Reverb';
 
   @override
   String get giftSettingsLoadFailedTitle =>
@@ -9356,20 +9356,20 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'Slinkite žemyn, kad pamatytumėte visas „Plutonium“ teikiamas privilegijas';
+      'Slinkite žemyn, kad pamatytumėte visas „Reverb“ teikiamas privilegijas';
 
   @override
-  String get premiumFreeVsPlutonium => 'Nemokama ir Plutonium';
+  String get premiumFreeVsPlutonium => 'Nemokama ir Reverb';
 
   @override
   String get premiumFreeColumn => 'Nemokama';
 
   @override
-  String get premiumGiftSectionTitle => 'Padovanok Plutonium';
+  String get premiumGiftSectionTitle => 'Padovanok Reverb';
 
   @override
   String get premiumGiftSectionDescription =>
-      'Pasidalykite „Plutonium“ patirtimi su draugais, įsigydami dovanų prenumeratą.';
+      'Pasidalykite „Reverb“ patirtimi su draugais, įsigydami dovanų prenumeratą.';
 
   @override
   String get premiumGiftBannerOne => 'Jūsų laukia naujas dovanų kodas!';
@@ -9518,7 +9518,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Dabar būsite nukreipti į „Stripe“, kad užbaigtumėte mokėjimą. Grįžkite į „Fluxer“, kai baigsite.';
+      'Dabar būsite nukreipti į „Stripe“, kad užbaigtumėte mokėjimą. Grįžkite į „echowire“, kai baigsite.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Pasirinkite mokėjimo būdą';
@@ -9561,22 +9561,22 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'Jūsų paskyrai radome galiojančią „Fluxer Plutonium“ prenumeratą. Tvarkykite ją saugiame atsiskaitymo portale, kad atnaujintumėte mokėjimo duomenis arba patikrintumėte atnaujinimo būseną. Jei ką tik sumokėjote, palaukite minutę ir iš naujo atidarykite šį puslapį.';
+      'Jūsų paskyrai radome galiojančią „Reverb“ prenumeratą. Tvarkykite ją saugiame atsiskaitymo portale, kad atnaujintumėte mokėjimo duomenis arba patikrintumėte atnaujinimo būseną. Jei ką tik sumokėjote, palaukite minutę ir iš naujo atidarykite šį puslapį.';
 
   @override
   String get premiumPurchasesDisabledTitle => 'Pirkimai nepasiekiami';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'Pirkimai šiai paskyrai yra išjungti. Jei manote, kad tai klaida, susisiekite su support@fluxer.app.';
+      'Pirkimai šiai paskyrai yra išjungti. Jei manote, kad tai klaida, susisiekite su support@echowire.org.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Prisijunkite prie savo paskyros, kad įsigytumėte Fluxer Plutonium.';
+      'Prisijunkite prie savo paskyros, kad įsigytumėte Reverb.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'Norėdami įsigyti „Fluxer Plutonium“, turite patvirtinti savo el. paštą.';
+      'Norėdami įsigyti „Reverb“, turite patvirtinti savo el. paštą.';
 
   @override
   String get premiumPerkCustomUsernameTag =>
@@ -11013,14 +11013,14 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get instanceUrlPlaceholder =>
-      'Įveskite instance URL (pvz., fluxer.app)';
+      'Įveskite instance URL (pvz., echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Atstatyti į Echowire';
+  String get resetToDefaultInstance => 'Atstatyti į echowire';
 
   @override
   String get instanceConnect => 'Prisijungti';

@@ -2862,7 +2862,7 @@
             }
         }
     },
-    "blockedUsersCopyTag": "Echowire Etiketi Kopyala",
+    "blockedUsersCopyTag": "echowire Etiketi Kopyala",
     "@blockedUsersCopyTag": {
         "description": "Context menu item that copies the user's tag."
     },
@@ -3816,7 +3816,7 @@
     },
     "systemDmComposerBarrier": "{productName} personelinden sistem duyuruları. Buraya yanıt veremezsin.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4614,7 +4614,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "DM'leri Klasöre Daralt",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Etkinleştirildiğinde, sunucu kenar çubuğundaki okunmamış DM'ler {productName} düğmesindeki bir klasöre daraltılır. Klasörü genişletmek veya daraltmak için DM'ler sayfasındayken {productName} düğmesine tıklayın.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -5539,7 +5539,7 @@
     },
     "chatSendFailureDmRestricted": "Mesajınız teslim edilemedi. Bunun nedeni genellikle alıcıyla bir topluluğu paylaşmamanız veya alıcının yalnızca arkadaşlardan gelen doğrudan mesajları kabul etmesidir. Ayrıca doğrudan mesaj gizlilik ayarlarınızı {settingsPath} konumunda düzenlemeniz gerekebilir.",
     "@chatSendFailureDmRestricted": {
-        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5548,27 +5548,27 @@
     },
     "chatSendFailureUnclaimedDm": "Mesajınız teslim edilemedi. Doğrudan mesaj göndermek için hesabınızı doğrulamanız gerekir.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Mesajınız teslim edilemedi. Mesaj göndermek için hesabınızı doğrulamanız gerekir.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Mesajınız güvenlik sistemlerimiz tarafından işaretlendiği için teslim edilemedi. Bunun bir hata olduğunu düşünüyorsanız lütfen destek ile iletişime geçin.",
     "@chatSendFailureContentBlocked": {
-        "description": "Echowirebot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Mesajınız, bu bağlamda izin verilmeyen yetişkinlere yönelik emojiler veya çıkartmalar içerdiği için teslim edilemedi.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Echowirebot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Bu mesajı yalnızca siz görebilirsiniz.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Echowirebot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Kapat",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Echowirebot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "İletişim",
     "@privacyDashboardCommunicationSection": {
@@ -6581,9 +6581,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Echowire Reverb subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Hediyeler",
     "@userSettingsNavGiftsAndCodes": {
@@ -6897,21 +6897,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Sunucu URL'sini girin (ör. fluxer.app)",
+    "instanceUrlPlaceholder": "Sunucu URL'sini girin (ör. echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Echowire'a sıfırla",
+    "resetToDefaultInstance": "echowire'a sıfırla",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Bağlan",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Echowire instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Bağlanıyor…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Echowire instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Sunucuya bağlanılamadı",
     "@instanceConnectFailed": {
@@ -6940,7 +6940,7 @@
     },
     "changeInstance": "Değiştir",
     "@changeInstance": {
-        "description": "Link to change the connected Echowire instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Giriş yapmak için sunucuya bağlanın",
     "@instanceConnectionRequired": {
@@ -10589,7 +10589,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11267,7 +11267,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11285,7 +11285,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -11295,7 +11295,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11466,7 +11466,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12602,7 +12602,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12804,7 +12804,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12817,7 +12817,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12830,7 +12830,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12843,7 +12843,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12856,7 +12856,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12911,7 +12911,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12961,11 +12961,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Bu hediyeyi kullanamazsın",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Visionary hesapları Plutonium hediyelerini kullanamaz. Bunun yerine bağlantıyı kopyalayıp bir arkadaşınızla paylaşın.",
+    "giftVisionaryCannotRedeemMessage": "Visionary hesapları Reverb hediyelerini kullanamaz. Bunun yerine bağlantıyı kopyalayıp bir arkadaşınızla paylaşın.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Hediye bağlantısını kopyala",
     "@giftCopyLink": {
@@ -13775,7 +13775,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Hareketi azalt",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Animasyonları ve geçişleri devre dışı bırakın. Şu anda sistem ayarınız tarafından kontrol ediliyor.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -15070,7 +15070,7 @@
     },
     "addGuildImportTemplateInvalid": "Topluluk şablonu verileri geçersiz veya bozuk.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "memberListPermissionDeniedTitle": "Üyeleri görüntüleyemezsiniz",
     "@memberListPermissionDeniedTitle": {
@@ -15466,17 +15466,17 @@
         "description": "Empty state shown when user settings search has no matches."
     },
     "giftSettingsClaimAccountTitle": "Hesabını sahiplen",
-    "giftSettingsClaimAccountDescription": "Plutonium hediye kodlarını kullanmak veya yönetmek için hesabını doğrula.",
+    "giftSettingsClaimAccountDescription": "Reverb hediye kodlarını kullanmak veya yönetmek için hesabını doğrula.",
     "giftSettingsRedeemTitle": "Hediye kullan",
-    "giftSettingsRedeemDescription": "Hesabınız için Plutonium'u kullanmak üzere bir hediye kodu girin.",
+    "giftSettingsRedeemDescription": "Hesabınız için Reverb'u kullanmak üzere bir hediye kodu girin.",
     "giftSettingsRedeemPlaceholder": "Hediye kodunu girin…",
     "giftSettingsRedeemButton": "Kullan",
-    "giftSettingsRedeemSuccess": "Plutonium'unuzu keyifle kullanın. Hediye başarıyla kullanıldı.",
+    "giftSettingsRedeemSuccess": "Reverb'unuzu keyifle kullanın. Hediye başarıyla kullanıldı.",
     "giftSettingsPurchasedTitle": "Satın alınan hediyeler",
-    "giftSettingsPurchasedDescription": "Satın aldığınız Plutonium hediye kodlarını yönetin. Hediye URL'sini özel biriyle paylaşın veya kendiniz kullanın!",
+    "giftSettingsPurchasedDescription": "Satın aldığınız Reverb hediye kodlarını yönetin. Hediye URL'sini özel biriyle paylaşın veya kendiniz kullanın!",
     "giftSettingsEmptyTitle": "Henüz hediye yok",
-    "giftSettingsEmptyDescription": "Arkadaşlarınla paylaşmak için Plutonium sekmesinden bir Plutonium hediyesi satın al.",
-    "giftSettingsGoToPlutonium": "Plutonium'a git",
+    "giftSettingsEmptyDescription": "Arkadaşlarınla paylaşmak için Reverb sekmesinden bir Reverb hediyesi satın al.",
+    "giftSettingsGoToPlutonium": "Reverb'a git",
     "giftSettingsLoadFailedTitle": "Hediye envanteri yüklenemedi",
     "giftSettingsLoadFailedDescription": "Daha sonra tekrar deneyin.",
     "giftSettingsTryAgain": "Tekrar dene",
@@ -15527,11 +15527,11 @@
     "premiumOneYearGift": "1 yıllık hediye",
     "premiumOneMonthGift": "1 aylık hediye",
     "premiumMostPopular": "En popüler",
-    "premiumScrollPrompt": "Plutonium'un sunduğu tüm avantajları görmek için aşağı kaydırın",
-    "premiumFreeVsPlutonium": "Ücretsiz ve Plutonium",
+    "premiumScrollPrompt": "Reverb'un sunduğu tüm avantajları görmek için aşağı kaydırın",
+    "premiumFreeVsPlutonium": "Ücretsiz ve Reverb",
     "premiumFreeColumn": "Ücretsiz",
-    "premiumGiftSectionTitle": "Plutonium Hediye Et",
-    "premiumGiftSectionDescription": "Arkadaşlarınızla Plutonium deneyimini hediye abonelik satın alarak paylaşın.",
+    "premiumGiftSectionTitle": "Reverb Hediye Et",
+    "premiumGiftSectionDescription": "Arkadaşlarınızla Reverb deneyimini hediye abonelik satın alarak paylaşın.",
     "premiumGiftBannerOne": "Yeni bir hediye kodun seni bekliyor!",
     "premiumGiftBannerMany": "Size özel {count} yeni hediye kodu bekliyor!",
     "@premiumGiftBannerMany": {
@@ -15638,7 +15638,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Şu anda hediye aboneliğindesiniz. Otomatik olarak yenilenmeyecektir. Süreyi uzatmak için daha fazla hediye kodu kullanabilirsiniz. Hediye süreniz bittikten sonra yinelenen abonelikler başlatılabilir.",
     "premiumPlanUnavailable": "Bu plan kullanılamıyor. Destek ile iletişime geçin.",
     "premiumCompletePaymentTitle": "Ödemeyi tamamla",
-    "premiumCompletePaymentBody": "Ödemeyi tamamlamak için şimdi Stripe'a yönlendiriliyorsunuz. Tamamladıktan sonra Fluxer'a geri dönün.",
+    "premiumCompletePaymentBody": "Ödemeyi tamamlamak için şimdi Stripe'a yönlendiriliyorsunuz. Tamamladıktan sonra echowire'a geri dönün.",
     "premiumChoosePaymentMethodTitle": "Ödeme yöntemi seçin",
     "premiumPixPaymentPromptDescription": "Otomatik Pix ile Brezilya bankanızdan doğrudan yinelenen ödemeleri yetkilendirin. Veya bir sonraki ekranda Stripe'a kredi kartı bilgilerinizi girmek için kart kullanmayı seçin.",
     "premiumUsePix": "Pix'i kullan",
@@ -15650,11 +15650,11 @@
     "premiumAlreadyVisionaryTitle": "Zaten Visionary'sin",
     "premiumAlreadyVisionaryBody": "Visionary zaten kalıcı erişim içeriyor, bu yüzden yinelenen bir aboneliğe gerek yok. Başkalarına yine de hediye alabilirsin.",
     "premiumExistingSubscriptionTitle": "Abonelik zaten mevcut",
-    "premiumExistingSubscriptionBody": "Bu hesap için mevcut bir Fluxer Plutonium aboneliği bulduk. Ödeme ayrıntılarını güncellemek veya yenileme durumunu kontrol etmek için güvenli faturalandırma portalında yönetin. Az önce ödeme yaptıysanız, bir dakika bekleyip bu sayfayı yeniden açın.",
+    "premiumExistingSubscriptionBody": "Bu hesap için mevcut bir Reverb aboneliği bulduk. Ödeme ayrıntılarını güncellemek veya yenileme durumunu kontrol etmek için güvenli faturalandırma portalında yönetin. Az önce ödeme yaptıysanız, bir dakika bekleyip bu sayfayı yeniden açın.",
     "premiumPurchasesDisabledTitle": "Satın alımlar kullanılamıyor",
-    "premiumPurchasesDisabledBody": "Bu hesap için satın alımlar devre dışı bırakıldı. Yanlış görünüyorsa support@fluxer.app ile iletişime geçin.",
-    "premiumClaimAccountToPurchase": "Fluxer Plutonium satın almak için hesabını talep et.",
-    "premiumVerifyEmailToPurchase": "Fluxer Plutonium satın almadan önce e-postanı doğrulaman gerekiyor.",
+    "premiumPurchasesDisabledBody": "Bu hesap için satın alımlar devre dışı bırakıldı. Yanlış görünüyorsa support@echowire.org ile iletişime geçin.",
+    "premiumClaimAccountToPurchase": "Reverb satın almak için hesabını talep et.",
+    "premiumVerifyEmailToPurchase": "Reverb satın almadan önce e-postanı doğrulaman gerekiyor.",
     "premiumPerkCustomUsernameTag": "Özel kullanıcı adı etiketi",
     "premiumPerkPerCommunityProfiles": "Topluluk başına profiller",
     "premiumPerkMessageScheduling": "Mesaj zamanlama",

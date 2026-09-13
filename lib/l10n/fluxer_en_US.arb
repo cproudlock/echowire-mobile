@@ -1468,7 +1468,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Unlock {emojiCount} from {communityCount} with Plutonium.",
+    "emojiPlutoniumUpsellText": "Unlock {emojiCount} from {communityCount} with Reverb.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -1480,13 +1480,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Get Plutonium",
+    "emojiPlutoniumUpsellButton": "Get Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "Don't show this again",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 custom emoji} other{{count} custom emojis}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -1510,7 +1510,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "You are about to leave Echowire",
+    "externalLinkWarningLeaving": "You are about to leave echowire",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal.",
         "placeholders": {
@@ -1604,11 +1604,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "Animated avatars require Plutonium",
+    "animatedAvatarsRequirePlutonium": "Animated avatars require Reverb",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "Animated banners require Plutonium",
+    "animatedBannersRequirePlutonium": "Animated banners require Reverb",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -1682,7 +1682,7 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "Get Plutonium to customize your tag or keep it when changing your username",
+    "discriminatorPremiumTooltip": "Get Reverb to customize your tag or keep it when changing your username",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
@@ -1706,7 +1706,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "Your custom 4-digit tag is only available while your Plutonium subscription is active. When your subscription expires on {date}, your tag will revert to a randomly assigned number after a 3-day grace period.",
+    "customTagTemporaryBodyWithDate": "Your custom 4-digit tag is only available while your Reverb subscription is active. When your subscription expires on {date}, your tag will revert to a randomly assigned number after a 3-day grace period.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -1715,7 +1715,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "Your custom 4-digit tag is only available while your Plutonium subscription is active. When your subscription expires, your tag will revert to a randomly assigned number after a 3-day grace period.",
+    "customTagTemporaryBody": "Your custom 4-digit tag is only available while your Reverb subscription is active. When your subscription expires, your tag will revert to a randomly assigned number after a 3-day grace period.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -1723,11 +1723,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "If you save this username, your custom 4-digit tag will revert to a random number when your Plutonium subscription ends. If your subscription fails to renew, you'll have a 3-day grace period before the tag changes.",
+    "premiumWarningPendingDiscriminator": "If you save this username, your custom 4-digit tag will revert to a random number when your Reverb subscription ends. If your subscription fails to renew, you'll have a 3-day grace period before the tag changes.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "Your custom 4-digit tag (#{discriminator}) is active while your Plutonium subscription is active. If your subscription ends or fails to renew after a 3-day grace period, your tag will revert to a random number.",
+    "premiumWarningActiveDiscriminator": "Your custom 4-digit tag (#{discriminator}) is active while your Reverb subscription is active. If your subscription ends or fails to renew after a 3-day grace period, your tag will revert to a random number.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -1738,9 +1738,9 @@
     },
     "premiumUpsellCustomizeTag": "Customize your 4-digit tag or keep it when changing your username",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "Your Plutonium trial expires on {date}. Upgrade to keep your custom tag and earn a badge on your profile.",
+    "premiumTrialExpiresOn": "Your Reverb trial expires on {date}. Upgrade to keep your custom tag and earn a badge on your profile.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -1749,7 +1749,7 @@
             }
         }
     },
-    "premiumTrialActive": "You're on a Plutonium trial. Upgrade to keep your custom tag and earn a badge on your profile.",
+    "premiumTrialActive": "You're on a Reverb trial. Upgrade to keep your custom tag and earn a badge on your profile.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
@@ -1785,7 +1785,7 @@
     "@changeFluxerTag": {
         "description": "Button label to open the username change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "Customize your 4-digit tag (#{discriminator}) to your liking with Plutonium",
+    "customizeTagWithPlutoniumTooltip": "Customize your 4-digit tag (#{discriminator}) to your liking with Reverb",
     "@customizeTagWithPlutoniumTooltip": {
         "description": "Tooltip on the crown upsell button next to the username button.",
         "placeholders": {
@@ -1798,7 +1798,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "Your custom tag (#{discriminator}) is tied to your Plutonium subscription and will revert to a random tag if it expires.",
+    "customTagSubscriptionWarning": "Your custom tag (#{discriminator}) is tied to your Reverb subscription and will revert to a random tag if it expires.",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -1867,38 +1867,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Plutonium Badge Privacy",
+    "plutoniumBadgePrivacyTitle": "Reverb Badge Privacy",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "Control how your Plutonium badge is displayed to others",
+    "plutoniumBadgePrivacyDescription": "Control how your Reverb badge is displayed to others",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "Hide Plutonium badge entirely",
+    "hidePlutoniumBadgeLabel": "Hide Reverb badge entirely",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "Completely hide your Plutonium badge from other users",
+    "hidePlutoniumBadgeDescription": "Completely hide your Reverb badge from other users",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "Hide Plutonium purchase date",
+    "hidePlutoniumPurchaseDate": "Hide Reverb purchase date",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "Hide Plutonium purchase date ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "Hide Reverb purchase date ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "Remove when you first bought Plutonium from your badge",
+    "hidePurchaseDateDescription": "Remove when you first bought Reverb from your badge",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "Mask Visionary as subscription",
     "@maskVisionaryAsSubscription": {
@@ -1925,7 +1925,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "You're on a Plutonium trial — your subscription starts on {date}",
+    "premiumTrialSubscriptionStarts": "You're on a Reverb trial — your subscription starts on {date}",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -1938,7 +1938,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "You're on a Plutonium trial that expires on {date}",
+    "premiumTrialExpiresOnProfile": "You're on a Reverb trial that expires on {date}",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -1947,29 +1947,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "You're on a Plutonium trial",
+    "premiumTrialActiveProfile": "You're on a Reverb trial",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max 10MB. Recommended: 512×512px. Animated avatars (GIF) require Plutonium.",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Max 10MB. Recommended: 512×512px. Animated avatars (GIF) require Reverb.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "Customize your profile with a static or animated banner image to make it stand out.",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "Get Plutonium",
+    "getPlutonium": "Get Reverb",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "In-app purchases are not available on this platform yet. Stay tuned — coming soon!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "Preview",
     "@profilePreviewLabel": {
@@ -1979,7 +1979,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Echowire Member Since",
+    "profilePreviewMemberSince": "echowire Member Since",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card.",
         "placeholders": {
@@ -2016,7 +2016,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "Customizing your avatar, banner, accent color, and bio for individual communities requires Plutonium. Community nickname and pronouns are free for everyone.",
+    "perGuildPremiumUpsellText": "Customizing your avatar, banner, accent color, and bio for individual communities requires Reverb. Community nickname and pronouns are free for everyone.",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -2096,7 +2096,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "Manage the email address you use to sign in to Echowire",
+    "securityLoginEmailSectionDescription": "Manage the email address you use to sign in to echowire",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section.",
         "placeholders": {
@@ -2599,7 +2599,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Cancel your active Plutonium subscription in Plutonium settings before deleting your account.",
+    "dangerZoneDeleteCancelSubscription": "Cancel your active Reverb subscription in Reverb settings before deleting your account.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -2750,7 +2750,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "These applications have been granted access to your Echowire account.",
+    "authorizedAppsDescription": "These applications have been granted access to your echowire account.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title.",
         "placeholders": {
@@ -2898,7 +2898,7 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Echowire Staff",
+    "userProfileStaffBadgeTooltip": "echowire Staff",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -2907,7 +2907,7 @@
             }
         }
     },
-    "userProfileCtpBadgeTooltip": "Echowire Community Team",
+    "userProfileCtpBadgeTooltip": "echowire Community Team",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -2916,7 +2916,7 @@
             }
         }
     },
-    "userProfilePartnerBadgeTooltip": "Echowire Partner",
+    "userProfilePartnerBadgeTooltip": "echowire Partner",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -2925,7 +2925,7 @@
             }
         }
     },
-    "userProfileBugHunterBadgeTooltip": "Echowire Bug Hunter",
+    "userProfileBugHunterBadgeTooltip": "echowire Bug Hunter",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -2934,7 +2934,7 @@
             }
         }
     },
-    "userProfilePlutoniumBadgeTooltip": "Echowire Reverb",
+    "userProfilePlutoniumBadgeTooltip": "echowire Reverb",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -2943,7 +2943,7 @@
             }
         }
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "Echowire Reverb subscriber since {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "echowire Reverb subscriber since {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2955,7 +2955,7 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Echowire Visionary",
+    "userProfileVisionaryBadgeTooltip": "echowire Visionary",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -2964,7 +2964,7 @@
             }
         }
     },
-    "userProfileVisionaryBadgeSinceTooltip": "Echowire Visionary since {date}",
+    "userProfileVisionaryBadgeSinceTooltip": "echowire Visionary since {date}",
     "@userProfileVisionaryBadgeSinceTooltip": {
         "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3820,7 +3820,7 @@
     },
     "systemDmComposerBarrier": "System announcements from {productName} staff. You can't reply here.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4200,7 +4200,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "Link external accounts and domains to your Echowire profile. Verified connections will be displayed on your profile for others to see.",
+    "connectionsDescription": "Link external accounts and domains to your echowire profile. Verified connections will be displayed on your profile for others to see.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title.",
         "placeholders": {
@@ -4622,9 +4622,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "Collapse DMs Into Folder",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "When enabled, unread DMs in the guild sidebar are collapsed into a folder on the Echowire button. Click the Echowire button while on the DMs page to expand or collapse the folder.",
+    "lookAndFeelCollapseDMsDescription": "When enabled, unread DMs in the guild sidebar are collapsed into a folder on the echowire button. Click the echowire button while on the DMs page to expand or collapse the folder.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior.",
         "placeholders": {
@@ -4873,7 +4873,7 @@
     "@messagesMediaDisplayInlineEmbedLabel": {
         "description": "Toggle label for inlining media when posted as links."
     },
-    "messagesMediaDisplayInlineAttachmentLabel": "When uploaded directly to Echowire",
+    "messagesMediaDisplayInlineAttachmentLabel": "When uploaded directly to echowire",
     "@messagesMediaDisplayInlineAttachmentLabel": {
         "description": "Toggle label for inlining media for direct uploads.",
         "placeholders": {
@@ -5089,7 +5089,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Reduce motion",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for forcing reduced motion in Fluxer."
+        "description": "Toggle label for forcing reduced motion in echowire."
     },
     "messageScreenReaderAnnouncement": "{author} sent {summary}",
     "@messageScreenReaderAnnouncement": {
@@ -5573,7 +5573,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} characters left. Get {productName} to write up to {premiumMaxLength} characters.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -5592,7 +5592,7 @@
     },
     "chatSendFailureDmRestricted": "Your message could not be delivered. This is usually because you don't share a community with the recipient or the recipient is only accepting direct messages from friends. You may also need to adjust your own direct message privacy settings in {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5601,27 +5601,27 @@
     },
     "chatSendFailureUnclaimedDm": "Your message could not be delivered. You need to claim your account to send direct messages.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Your message could not be delivered. You need to claim your account to send messages.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Your message could not be delivered because it was flagged by our safety systems. If you believe this is a mistake, please contact support.",
     "@chatSendFailureContentBlocked": {
-        "description": "Echowirebot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Your message could not be delivered because it contains mature emoji or stickers that are not allowed in this context.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Echowirebot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Only you can see this message.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Echowirebot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Dismiss",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Echowirebot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Communication",
     "@privacyDashboardCommunicationSection": {
@@ -5980,7 +5980,7 @@
     "@iarReasonOtherLabel": {
         "description": "Rule-reason label for the catch-all option in the IAR message flow."
     },
-    "iarReasonOtherDescription": "Use only if it clearly breaks Echowire's rules and doesn't fit above.",
+    "iarReasonOtherDescription": "Use only if it clearly breaks echowire's rules and doesn't fit above.",
     "@iarReasonOtherDescription": {
         "description": "Rule-reason description for the catch-all option.",
         "placeholders": {
@@ -6721,9 +6721,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Echowire Reverb subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Gifts",
     "@userSettingsNavGiftsAndCodes": {
@@ -6801,7 +6801,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "Help improve Echowire by sharing anonymous crash and performance data.",
+    "advancedPerformanceReportingSectionDescription": "Help improve echowire by sharing anonymous crash and performance data.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting.",
         "placeholders": {
@@ -6814,7 +6814,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "All reported data is anonymous and is sent only to Echowire's own monitoring service — no third-party providers are used.",
+    "advancedPerformanceReportingDescription": "All reported data is anonymous and is sent only to echowire's own monitoring service — no third-party providers are used.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting.",
         "placeholders": {
@@ -7069,17 +7069,17 @@
     "@instanceUrlHelper": {
         "description": "Helper text explaining official vs self-hosted instance URLs."
     },
-    "resetToDefaultInstance": "Reset to Echowire",
+    "resetToDefaultInstance": "Reset to echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Connect",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Echowire instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Connecting…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Echowire instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Failed to connect to instance",
     "@instanceConnectFailed": {
@@ -7104,7 +7104,7 @@
     },
     "changeInstance": "Change",
     "@changeInstance": {
-        "description": "Link to change the connected Echowire instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Connect to the instance to sign in",
     "@instanceConnectionRequired": {
@@ -7523,7 +7523,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "Only accessible to Echowire staff",
+    "guildNavbarStaffOnlyAccessible": "Only accessible to echowire staff",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only.",
         "placeholders": {
@@ -9676,7 +9676,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10322,7 +10322,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10547,7 +10547,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10619,7 +10619,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11174,7 +11174,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12538,7 +12538,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12985,7 +12985,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12998,7 +12998,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -13011,7 +13011,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -13024,7 +13024,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -13037,7 +13037,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -13092,7 +13092,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -13142,11 +13142,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Can't redeem this gift",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Visionary accounts can't redeem Plutonium gifts. Copy the link to share it with a friend instead.",
+    "giftVisionaryCannotRedeemMessage": "Visionary accounts can't redeem Reverb gifts. Copy the link to share it with a friend instead.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Copy gift link",
     "@giftCopyLink": {
@@ -15210,7 +15210,7 @@
     },
     "addGuildImportTemplateInvalid": "The community template data is invalid or malformed.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "memberListPermissionDeniedTitle": "You can't view members",
     "@memberListPermissionDeniedTitle": {
@@ -15523,17 +15523,17 @@
         "description": "Empty state shown when user settings search has no matches."
     },
     "giftSettingsClaimAccountTitle": "Claim your account",
-    "giftSettingsClaimAccountDescription": "Claim your account to redeem or manage Plutonium gift codes.",
+    "giftSettingsClaimAccountDescription": "Claim your account to redeem or manage Reverb gift codes.",
     "giftSettingsRedeemTitle": "Redeem a gift",
-    "giftSettingsRedeemDescription": "Enter a gift code to redeem Plutonium for your account.",
+    "giftSettingsRedeemDescription": "Enter a gift code to redeem Reverb for your account.",
     "giftSettingsRedeemPlaceholder": "Enter gift code…",
     "giftSettingsRedeemButton": "Redeem",
-    "giftSettingsRedeemSuccess": "Gift redeemed successfully. Enjoy your Plutonium.",
+    "giftSettingsRedeemSuccess": "Gift redeemed successfully. Enjoy your Reverb.",
     "giftSettingsPurchasedTitle": "Purchased gifts",
-    "giftSettingsPurchasedDescription": "Manage your purchased Plutonium gift codes. Share the gift URL with someone special or redeem it for yourself!",
+    "giftSettingsPurchasedDescription": "Manage your purchased Reverb gift codes. Share the gift URL with someone special or redeem it for yourself!",
     "giftSettingsEmptyTitle": "No gifts yet",
-    "giftSettingsEmptyDescription": "Buy a Plutonium gift from the Plutonium tab to share with friends.",
-    "giftSettingsGoToPlutonium": "Go to Plutonium",
+    "giftSettingsEmptyDescription": "Buy a Reverb gift from the Reverb tab to share with friends.",
+    "giftSettingsGoToPlutonium": "Go to Reverb",
     "giftSettingsLoadFailedTitle": "Failed to load gift inventory",
     "giftSettingsLoadFailedDescription": "Try again later.",
     "giftSettingsTryAgain": "Try again",
@@ -15584,11 +15584,11 @@
     "premiumOneYearGift": "1 year gift",
     "premiumOneMonthGift": "1 month gift",
     "premiumMostPopular": "Most popular",
-    "premiumScrollPrompt": "Scroll down to view all the perks included with Plutonium",
-    "premiumFreeVsPlutonium": "Free vs Plutonium",
+    "premiumScrollPrompt": "Scroll down to view all the perks included with Reverb",
+    "premiumFreeVsPlutonium": "Free vs Reverb",
     "premiumFreeColumn": "Free",
-    "premiumGiftSectionTitle": "Gift Plutonium",
-    "premiumGiftSectionDescription": "Share the Plutonium experience with your friends by purchasing a gift subscription.",
+    "premiumGiftSectionTitle": "Gift Reverb",
+    "premiumGiftSectionDescription": "Share the Reverb experience with your friends by purchasing a gift subscription.",
     "premiumGiftBannerOne": "You have a new gift code waiting for you!",
     "premiumGiftBannerMany": "You have {count} new gift codes waiting for you!",
     "@premiumGiftBannerMany": {
@@ -15695,7 +15695,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "You're currently on a gift subscription. It won't renew. You can redeem more gift codes to extend it. Recurring subscriptions can be started after your gift time ends.",
     "premiumPlanUnavailable": "This plan isn't available. Contact support.",
     "premiumCompletePaymentTitle": "Complete payment",
-    "premiumCompletePaymentBody": "You are now navigating to Stripe to complete the payment. Return to Fluxer once you've completed it.",
+    "premiumCompletePaymentBody": "You are now navigating to Stripe to complete the payment. Return to echowire once you've completed it.",
     "premiumChoosePaymentMethodTitle": "Choose payment method",
     "premiumPixPaymentPromptDescription": "Pay with Pix automático to authorize recurring charges directly from your Brazilian bank. Or choose use card to enter a credit card on Stripe's next screen.",
     "premiumUsePix": "Use Pix",
@@ -15707,11 +15707,11 @@
     "premiumAlreadyVisionaryTitle": "You're already Visionary",
     "premiumAlreadyVisionaryBody": "Visionary already includes permanent access, so a recurring subscription isn't needed. You can still buy gifts for others.",
     "premiumExistingSubscriptionTitle": "Subscription already exists",
-    "premiumExistingSubscriptionBody": "We found an existing Fluxer Plutonium subscription for this account. Manage it in the secure billing portal to update payment details or check renewal status. If you just paid, wait a minute and reopen this page.",
+    "premiumExistingSubscriptionBody": "We found an existing Reverb subscription for this account. Manage it in the secure billing portal to update payment details or check renewal status. If you just paid, wait a minute and reopen this page.",
     "premiumPurchasesDisabledTitle": "Purchases unavailable",
-    "premiumPurchasesDisabledBody": "Purchases are disabled for this account. Contact support@fluxer.app if this looks wrong.",
-    "premiumClaimAccountToPurchase": "Claim your account to purchase Fluxer Plutonium.",
-    "premiumVerifyEmailToPurchase": "You need to verify your email before you can purchase Fluxer Plutonium.",
+    "premiumPurchasesDisabledBody": "Purchases are disabled for this account. Contact support@echowire.org if this looks wrong.",
+    "premiumClaimAccountToPurchase": "Claim your account to purchase Reverb.",
+    "premiumVerifyEmailToPurchase": "You need to verify your email before you can purchase Reverb.",
     "premiumPerkCustomUsernameTag": "Custom username tag",
     "premiumPerkPerCommunityProfiles": "Per-community profiles",
     "premiumPerkMessageScheduling": "Message scheduling",
@@ -16842,8 +16842,8 @@
     "@homeQuickActionDms": {
         "description": "Home screen quick action that opens Direct Messages."
     },
-    "accessibilityReducedMotionOverrideDescription": "Disable animations in Fluxer regardless of your system setting.",
+    "accessibilityReducedMotionOverrideDescription": "Disable animations in echowire regardless of your system setting.",
     "@accessibilityReducedMotionOverrideDescription": {
-        "description": "Toggle description for forcing reduced motion in Fluxer."
+        "description": "Toggle description for forcing reduced motion in echowire."
     }
 }

@@ -941,7 +941,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'Visionary-accounts kunnen geen Plutonium-cadeaus inwisselen. Kopieer de link om deze in plaats daarvan met een vriend te delen.';
+      'Visionary-accounts kunnen geen Reverb-cadeaus inwisselen. Kopieer de link om deze in plaats daarvan met een vriend te delen.';
 
   @override
   String get giftCopyLink => 'Cadeaulink kopiëren';
@@ -1525,11 +1525,11 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'Ontgrendel $emojiCount uit $communityCount met Plutonium.';
+    return 'Ontgrendel $emojiCount uit $communityCount met Reverb.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Plutonium aanschaffen';
+  String get emojiPlutoniumUpsellButton => 'Reverb aanschaffen';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Niet meer tonen';
@@ -1640,11 +1640,11 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'Geanimeerde avatars vereisen Plutonium';
+      'Geanimeerde avatars vereisen Reverb';
 
   @override
   String get animatedBannersRequirePlutonium =>
-      'Geanimeerde banners vereisen Plutonium';
+      'Geanimeerde banners vereisen Reverb';
 
   @override
   String get animatedAvifNotSupported => 'Geanimeerde AVIF niet ondersteund';
@@ -1708,7 +1708,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Koop Plutonium om je tag aan te passen of te behouden wanneer je je gebruikersnaam wijzigt';
+      'Koop Reverb om je tag aan te passen of te behouden wanneer je je gebruikersnaam wijzigt';
 
   @override
   String get fluxerTagAlreadyTaken => 'Gebruikersnaam al in gebruik';
@@ -1723,23 +1723,23 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'Je aangepaste 4-cijferige tag is alleen beschikbaar zolang je Plutonium-abonnement actief is. Wanneer je abonnement afloopt op $date, wordt je tag na een respijtperiode van 3 dagen teruggezet naar een willekeurig toegewezen nummer.';
+    return 'Je aangepaste 4-cijferige tag is alleen beschikbaar zolang je Reverb-abonnement actief is. Wanneer je abonnement afloopt op $date, wordt je tag na een respijtperiode van 3 dagen teruggezet naar een willekeurig toegewezen nummer.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'Je aangepaste 4-cijferige tag is alleen beschikbaar zolang je Plutonium-abonnement actief is. Wanneer je abonnement verloopt, wordt je tag na een respijtperiode van 3 dagen teruggezet naar een willekeurig toegewezen nummer.';
+      'Je aangepaste 4-cijferige tag is alleen beschikbaar zolang je Reverb-abonnement actief is. Wanneer je abonnement verloopt, wordt je tag na een respijtperiode van 3 dagen teruggezet naar een willekeurig toegewezen nummer.';
 
   @override
   String get iUnderstandContinue => 'Ik begrijp het, ga door';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Als je deze gebruikersnaam opslaat, wordt je aangepaste 4-cijferige tag een willekeurig nummer wanneer je Plutonium-abonnement eindigt. Als je abonnement niet wordt verlengd, heb je een respijtperiode van 3 dagen voordat de tag verandert.';
+      'Als je deze gebruikersnaam opslaat, wordt je aangepaste 4-cijferige tag een willekeurig nummer wanneer je Reverb-abonnement eindigt. Als je abonnement niet wordt verlengd, heb je een respijtperiode van 3 dagen voordat de tag verandert.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Je aangepaste 4-cijferige tag (#$discriminator) is actief zolang je Plutonium-abonnement actief is. Als je abonnement eindigt of na een respijtperiode van 3 dagen niet wordt verlengd, wordt je tag teruggezet naar een willekeurig nummer.';
+    return 'Je aangepaste 4-cijferige tag (#$discriminator) is actief zolang je Reverb-abonnement actief is. Als je abonnement eindigt of na een respijtperiode van 3 dagen niet wordt verlengd, wordt je tag teruggezet naar een willekeurig nummer.';
   }
 
   @override
@@ -1748,12 +1748,12 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'Je Plutonium-proefperiode verloopt op $date. Upgrade om je aangepaste tag te behouden en een badge op je profiel te verdienen.';
+    return 'Je Reverb-proefperiode verloopt op $date. Upgrade om je aangepaste tag te behouden en een badge op je profiel te verdienen.';
   }
 
   @override
   String get premiumTrialActive =>
-      'Je bent bezig met een Plutonium-proefperiode. Upgrade om je aangepaste tag te behouden en een badge op je profiel te verdienen.';
+      'Je bent bezig met een Reverb-proefperiode. Upgrade om je aangepaste tag te behouden en een badge op je profiel te verdienen.';
 
   @override
   String get fluxerTagUpdated => 'Gebruikersnaam bijgewerkt';
@@ -1784,7 +1784,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Pas je 4-cijferige tag (#$discriminator) naar wens aan met Plutonium';
+    return 'Pas je 4-cijferige tag (#$discriminator) naar wens aan met Reverb';
   }
 
   @override
@@ -1793,7 +1793,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'Je aangepaste tag (#$discriminator) is gekoppeld aan je Plutonium-abonnement en wordt een willekeurige tag als deze verloopt.';
+    return 'Je aangepaste tag (#$discriminator) is gekoppeld aan je Reverb-abonnement en wordt een willekeurige tag als deze verloopt.';
   }
 
   @override
@@ -1845,30 +1845,30 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
   String get emojiPickerTitle => 'Emoji';
 
   @override
-  String get plutoniumBadgePrivacyTitle => 'Plutonium-badgeprivacy';
+  String get plutoniumBadgePrivacyTitle => 'Reverb-badgeprivacy';
 
   @override
   String get plutoniumBadgePrivacyDescription =>
-      'Bepaal hoe je Plutonium-badge wordt weergegeven aan anderen';
+      'Bepaal hoe je Reverb-badge wordt weergegeven aan anderen';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'Verberg Plutonium-badge volledig';
+  String get hidePlutoniumBadgeLabel => 'Verberg Reverb-badge volledig';
 
   @override
   String get hidePlutoniumBadgeDescription =>
-      'Verberg je Plutonium-badge volledig voor andere gebruikers';
+      'Verberg je Reverb-badge volledig voor andere gebruikers';
 
   @override
-  String get hidePlutoniumPurchaseDate => 'Verberg Plutonium-aankoopdatum';
+  String get hidePlutoniumPurchaseDate => 'Verberg Reverb-aankoopdatum';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'Verberg Plutonium-aankoopdatum ($date)';
+    return 'Verberg Reverb-aankoopdatum ($date)';
   }
 
   @override
   String get hidePurchaseDateDescription =>
-      'Verwijder wanneer je Plutonium voor het eerst hebt gekocht uit je badge';
+      'Verwijder wanneer je Reverb voor het eerst hebt gekocht uit je badge';
 
   @override
   String get maskVisionaryAsSubscription =>
@@ -1891,7 +1891,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'Je hebt een Plutonium-proefabonnement — je abonnement begint op $date';
+    return 'Je hebt een Reverb-proefabonnement — je abonnement begint op $date';
   }
 
   @override
@@ -1900,25 +1900,25 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'Je hebt een Plutonium-proefversie die afloopt op $date';
+    return 'Je hebt een Reverb-proefversie die afloopt op $date';
   }
 
   @override
-  String get premiumTrialActiveProfile => 'Je hebt een Plutonium-proefperiode';
+  String get premiumTrialActiveProfile => 'Je hebt een Reverb-proefperiode';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. Max. 10 MB. Aanbevolen: 512×512px. Geanimeerde avatars (GIF) vereisen Plutonium.';
+      'JPEG, PNG, WebP. Max. 10 MB. Aanbevolen: 512×512px. Geanimeerde avatars (GIF) vereisen Reverb.';
 
   @override
   String get bannerPlutoniumUpsell =>
       'Pas je profiel aan met een statische of geanimeerde banner om het te laten opvallen.';
 
   @override
-  String get getPlutonium => 'Plutonium ophalen';
+  String get getPlutonium => 'Reverb ophalen';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1960,7 +1960,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      'Het aanpassen van je avatar, banner, accentkleur en bio voor individuele communities vereist Plutonium. Community-bijnaam en voornaamwoorden zijn gratis voor iedereen.';
+      'Het aanpassen van je avatar, banner, accentkleur en bio voor individuele communities vereist Reverb. Community-bijnaam en voornaamwoorden zijn gratis voor iedereen.';
 
   @override
   String get avatarModeInherit => 'Gebruik globaal profiel';
@@ -2554,7 +2554,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'Annuleer je actieve Plutonium-abonnement in de Plutonium-instellingen voordat je je account verwijdert.';
+      'Annuleer je actieve Reverb-abonnement in de Reverb-instellingen voordat je je account verwijdert.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount =>
@@ -2908,7 +2908,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String userProfilePlutoniumBadgeTooltip(String productName) {
-    return 'Plutonium van $productName';
+    return 'Reverb van $productName';
   }
 
   @override
@@ -2916,7 +2916,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
     String productName,
     String date,
   ) {
-    return '$productName Plutonium-abonnee sinds $date';
+    return '$productName Reverb-abonnee sinds $date';
   }
 
   @override
@@ -9150,7 +9150,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Beveiliging en aanmelding';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Cadeaus';
@@ -9160,14 +9160,14 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Claim je account om Plutonium-cadeaucodes in te wisselen of te beheren.';
+      'Claim je account om Reverb-cadeaucodes in te wisselen of te beheren.';
 
   @override
   String get giftSettingsRedeemTitle => 'Cadeau inwisselen';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'Voer een cadeauboncode in om Plutonium voor je account te verzilveren.';
+      'Voer een cadeauboncode in om Reverb voor je account te verzilveren.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'Cadeaucode invoeren…';
@@ -9177,24 +9177,24 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get giftSettingsRedeemSuccess =>
-      'Cadeau succesvol ingewisseld. Veel plezier met je Plutonium.';
+      'Cadeau succesvol ingewisseld. Veel plezier met je Reverb.';
 
   @override
   String get giftSettingsPurchasedTitle => 'Gekochte cadeaus';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'Beheer je gekochte Plutonium-cadeaucodes. Deel de cadeaulink met iemand speciaal of wissel hem zelf in!';
+      'Beheer je gekochte Reverb-cadeaucodes. Deel de cadeaulink met iemand speciaal of wissel hem zelf in!';
 
   @override
   String get giftSettingsEmptyTitle => 'Nog geen cadeaus';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Koop een Plutonium-cadeau vanuit het tabblad Plutonium om te delen met vrienden.';
+      'Koop een Reverb-cadeau vanuit het tabblad Reverb om te delen met vrienden.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Ga naar Plutonium';
+  String get giftSettingsGoToPlutonium => 'Ga naar Reverb';
 
   @override
   String get giftSettingsLoadFailedTitle => 'Laden van cadeaus mislukt';
@@ -9293,20 +9293,20 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'Scroll omlaag om alle voordelen van Plutonium te bekijken';
+      'Scroll omlaag om alle voordelen van Reverb te bekijken';
 
   @override
-  String get premiumFreeVsPlutonium => 'Gratis versus Plutonium';
+  String get premiumFreeVsPlutonium => 'Gratis versus Reverb';
 
   @override
   String get premiumFreeColumn => 'Gratis';
 
   @override
-  String get premiumGiftSectionTitle => 'Plutonium cadeau geven';
+  String get premiumGiftSectionTitle => 'Reverb cadeau geven';
 
   @override
   String get premiumGiftSectionDescription =>
-      'Deel de Plutonium-ervaring met je vrienden door een cadeauabonnement te kopen.';
+      'Deel de Reverb-ervaring met je vrienden door een cadeauabonnement te kopen.';
 
   @override
   String get premiumGiftBannerOne =>
@@ -9457,7 +9457,7 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Je wordt nu doorgestuurd naar Stripe om de betaling te voltooien. Keer terug naar Fluxer zodra je dit hebt gedaan.';
+      'Je wordt nu doorgestuurd naar Stripe om de betaling te voltooien. Keer terug naar echowire zodra je dit hebt gedaan.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Kies betaalmethode';
@@ -9499,22 +9499,22 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'We hebben een bestaand Fluxer Plutonium-abonnement voor dit account gevonden. Beheer het in het beveiligde factureringsportaal om betalingsgegevens bij te werken of de verlengingsstatus te controleren. Als je net hebt betaald, wacht dan een minuut en open deze pagina opnieuw.';
+      'We hebben een bestaand Reverb-abonnement voor dit account gevonden. Beheer het in het beveiligde factureringsportaal om betalingsgegevens bij te werken of de verlengingsstatus te controleren. Als je net hebt betaald, wacht dan een minuut en open deze pagina opnieuw.';
 
   @override
   String get premiumPurchasesDisabledTitle => 'Aankopen niet beschikbaar';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'Aankopen zijn uitgeschakeld voor dit account. Neem contact op met support@fluxer.app als dit onjuist lijkt.';
+      'Aankopen zijn uitgeschakeld voor dit account. Neem contact op met support@echowire.org als dit onjuist lijkt.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Claim je account om Fluxer Plutonium te kopen.';
+      'Claim je account om Reverb te kopen.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'Je moet je e-mailadres verifiëren voordat je Fluxer Plutonium kunt kopen.';
+      'Je moet je e-mailadres verifiëren voordat je Reverb kunt kopen.';
 
   @override
   String get premiumPerkCustomUsernameTag => 'Aangepaste gebruikersnaamtag';
@@ -10941,14 +10941,14 @@ class FluxerLocalizationsNl extends FluxerLocalizations {
 
   @override
   String get instanceUrlPlaceholder =>
-      'Voer instantie-URL in (bijv. fluxer.app)';
+      'Voer instantie-URL in (bijv. echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Terugzetten naar Fluxer';
+  String get resetToDefaultInstance => 'Terugzetten naar echowire';
 
   @override
   String get instanceConnect => 'Verbinden';

@@ -940,7 +940,7 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'Visionary-konti kan ikke indløse Plutonium-gaver. Kopier linket for at dele det med en ven i stedet.';
+      'Visionary-konti kan ikke indløse Reverb-gaver. Kopier linket for at dele det med en ven i stedet.';
 
   @override
   String get giftCopyLink => 'Kopiér gave-link';
@@ -9113,7 +9113,7 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Sikkerhed og login';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Gavers';
@@ -9123,14 +9123,14 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Gør krav på din konto for at indløse eller administrere Plutonium-gavekoder.';
+      'Gør krav på din konto for at indløse eller administrere Reverb-gavekoder.';
 
   @override
   String get giftSettingsRedeemTitle => 'Indløs en gave';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'Indtast en gavekode for at indløse Plutonium til din konto.';
+      'Indtast en gavekode for at indløse Reverb til din konto.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'Indtast gavekode…';
@@ -9139,24 +9139,24 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
   String get giftSettingsRedeemButton => 'Indløs';
 
   @override
-  String get giftSettingsRedeemSuccess => 'Gave indløst. Nyd din Plutonium.';
+  String get giftSettingsRedeemSuccess => 'Gave indløst. Nyd din Reverb.';
 
   @override
   String get giftSettingsPurchasedTitle => 'Købte gaver';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'Administrer dine købte Plutonium-gavekoder. Del gave-URL\'en med en speciel person, eller indløs den selv!';
+      'Administrer dine købte Reverb-gavekoder. Del gave-URL\'en med en speciel person, eller indløs den selv!';
 
   @override
   String get giftSettingsEmptyTitle => 'Ingen gaver endnu';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Køb en Plutonium-gave fra Plutonium-fanen for at dele med venner.';
+      'Køb en Reverb-gave fra Reverb-fanen for at dele med venner.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Gå til Plutonium';
+  String get giftSettingsGoToPlutonium => 'Gå til Reverb';
 
   @override
   String get giftSettingsLoadFailedTitle => 'Kunne ikke indlæse gaveoversigt';
@@ -9255,20 +9255,20 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'Rul ned for at se alle fordelene ved Plutonium';
+      'Rul ned for at se alle fordelene ved Reverb';
 
   @override
-  String get premiumFreeVsPlutonium => 'Gratis vs Plutonium';
+  String get premiumFreeVsPlutonium => 'Gratis vs Reverb';
 
   @override
   String get premiumFreeColumn => 'Gratis';
 
   @override
-  String get premiumGiftSectionTitle => 'Giv Plutonium';
+  String get premiumGiftSectionTitle => 'Giv Reverb';
 
   @override
   String get premiumGiftSectionDescription =>
-      'Giv dine venner Plutonium-oplevelsen ved at købe et gaveabonnement.';
+      'Giv dine venner Reverb-oplevelsen ved at købe et gaveabonnement.';
 
   @override
   String get premiumGiftBannerOne =>
@@ -9418,7 +9418,7 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Du navigerer nu til Stripe for at gennemføre betalingen. Vend tilbage til Fluxer, når du er færdig.';
+      'Du navigerer nu til Stripe for at gennemføre betalingen. Vend tilbage til echowire, når du er færdig.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Vælg betalingsmetode';
@@ -9460,22 +9460,22 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'Vi fandt et eksisterende Fluxer Plutonium-abonnement til denne konto. Administrer det i den sikre faktureringsportal for at opdatere betalingsoplysninger eller kontrollere fornyelsesstatus. Hvis du lige har betalt, skal du vente et minut og genåbne denne side.';
+      'Vi fandt et eksisterende Reverb-abonnement til denne konto. Administrer det i den sikre faktureringsportal for at opdatere betalingsoplysninger eller kontrollere fornyelsesstatus. Hvis du lige har betalt, skal du vente et minut og genåbne denne side.';
 
   @override
   String get premiumPurchasesDisabledTitle => 'Køb er ikke tilgængelige';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'Køb er deaktiveret for denne konto. Kontakt support@fluxer.app, hvis dette ser forkert ud.';
+      'Køb er deaktiveret for denne konto. Kontakt support@echowire.org, hvis dette ser forkert ud.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Gør krav på din konto for at købe Fluxer Plutonium.';
+      'Gør krav på din konto for at købe Reverb.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'Du skal bekræfte din e-mail, før du kan købe Fluxer Plutonium.';
+      'Du skal bekræfte din e-mail, før du kan købe Reverb.';
 
   @override
   String get premiumPerkCustomUsernameTag => 'Brugerdefineret brugernavn';
@@ -10893,14 +10893,14 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
 
   @override
   String get instanceUrlPlaceholder =>
-      'Indtast instans-URL (f.eks. fluxer.app)';
+      'Indtast instans-URL (f.eks. echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Nulstil til Echowire';
+  String get resetToDefaultInstance => 'Nulstil til echowire';
 
   @override
   String get instanceConnect => 'Forbind';

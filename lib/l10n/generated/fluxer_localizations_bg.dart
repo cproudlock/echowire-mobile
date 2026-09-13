@@ -941,7 +941,7 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'Акаунтите Visionary не могат да осребряват Plutonium подаръци. Копирайте връзката, за да я споделите с приятел вместо това.';
+      'Акаунтите Visionary не могат да осребряват Reverb подаръци. Копирайте връзката, за да я споделите с приятел вместо това.';
 
   @override
   String get giftCopyLink => 'Копирай линк за подарък';
@@ -1529,11 +1529,11 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount) {
-    return 'Отключи $emojiCount от $communityCount с Plutonium.';
+    return 'Отключи $emojiCount от $communityCount с Reverb.';
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Вземи Plutonium';
+  String get emojiPlutoniumUpsellButton => 'Вземи Reverb';
 
   @override
   String get emojiPlutoniumUpsellDismiss => 'Не показвай отново';
@@ -1644,11 +1644,11 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String get animatedAvatarsRequirePlutonium =>
-      'Анимираните аватари изискват Plutonium';
+      'Анимираните аватари изискват Reverb';
 
   @override
   String get animatedBannersRequirePlutonium =>
-      'Анимираните банери изискват Plutonium';
+      'Анимираните банери изискват Reverb';
 
   @override
   String get animatedAvifNotSupported => 'Анимиран AVIF не се поддържа';
@@ -1713,7 +1713,7 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String get discriminatorPremiumTooltip =>
-      'Вземете Plutonium, за да персонализирате своя таг или да го запазите при смяна на потребителското си име';
+      'Вземете Reverb, за да персонализирате своя таг или да го запазите при смяна на потребителското си име';
 
   @override
   String get fluxerTagAlreadyTaken => 'Потребителското име вече е заето';
@@ -1728,23 +1728,23 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String customTagTemporaryBodyWithDate(String date) {
-    return 'Вашият персонализиран 4-цифрен таг е наличен само докато абонаментът ви за Plutonium е активен. Когато абонаментът ви изтече на $date, тагът ви ще се върне към случайно присвоен номер след 3-дневен гратисен период.';
+    return 'Вашият персонализиран 4-цифрен таг е наличен само докато абонаментът ви за Reverb е активен. Когато абонаментът ви изтече на $date, тагът ви ще се върне към случайно присвоен номер след 3-дневен гратисен период.';
   }
 
   @override
   String get customTagTemporaryBody =>
-      'Вашият персонализиран 4-цифрен таг е наличен само докато абонаментът ви за Plutonium е активен. Когато абонаментът ви изтече, тагът ви ще се върне към случайно присвоен номер след 3-дневен гратисен период.';
+      'Вашият персонализиран 4-цифрен таг е наличен само докато абонаментът ви за Reverb е активен. Когато абонаментът ви изтече, тагът ви ще се върне към случайно присвоен номер след 3-дневен гратисен период.';
 
   @override
   String get iUnderstandContinue => 'Разбирам, продължи';
 
   @override
   String get premiumWarningPendingDiscriminator =>
-      'Ако запазите това потребителско име, вашият персонализиран 4-цифрен таг ще се върне към случайно число, когато абонаментът ви за Plutonium приключи. Ако абонаментът ви не бъде подновен, ще имате 3-дневен гратисен период, преди тагът да се промени.';
+      'Ако запазите това потребителско име, вашият персонализиран 4-цифрен таг ще се върне към случайно число, когато абонаментът ви за Reverb приключи. Ако абонаментът ви не бъде подновен, ще имате 3-дневен гратисен период, преди тагът да се промени.';
 
   @override
   String premiumWarningActiveDiscriminator(String discriminator) {
-    return 'Вашият персонализиран 4-цифрен таг (#$discriminator) е активен, докато абонаментът ви за Plutonium е активен. Ако абонаментът ви приключи или не бъде подновен след 3-дневен гратисен период, тагът ви ще се върне към произволен номер.';
+    return 'Вашият персонализиран 4-цифрен таг (#$discriminator) е активен, докато абонаментът ви за Reverb е активен. Ако абонаментът ви приключи или не бъде подновен след 3-дневен гратисен период, тагът ви ще се върне към произволен номер.';
   }
 
   @override
@@ -1753,12 +1753,12 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOn(String date) {
-    return 'Вашият Plutonium пробен период изтича на $date. Надстройте, за да запазите своя персонализиран етикет и да спечелите значка в профила си.';
+    return 'Вашият Reverb пробен период изтича на $date. Надстройте, за да запазите своя персонализиран етикет и да спечелите значка в профила си.';
   }
 
   @override
   String get premiumTrialActive =>
-      'Изпробвате Plutonium. Надстройте, за да запазите персонализирания си етикет и да спечелите значка в профила си.';
+      'Изпробвате Reverb. Надстройте, за да запазите персонализирания си етикет и да спечелите значка в профила си.';
 
   @override
   String get fluxerTagUpdated => 'Потребителското име е актуализирано';
@@ -1789,7 +1789,7 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String customizeTagWithPlutoniumTooltip(String discriminator) {
-    return 'Персонализирайте своя 4-цифрен таг (#$discriminator) по ваш вкус с Plutonium';
+    return 'Персонализирайте своя 4-цифрен таг (#$discriminator) по ваш вкус с Reverb';
   }
 
   @override
@@ -1798,7 +1798,7 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String customTagSubscriptionWarning(String discriminator) {
-    return 'Вашият персонализиран таг (#$discriminator) е свързан с вашия Plutonium абонамент и ще се върне към случаен таг, ако изтече.';
+    return 'Вашият персонализиран таг (#$discriminator) е свързан с вашия Reverb абонамент и ще се върне към случаен таг, ако изтече.';
   }
 
   @override
@@ -1851,32 +1851,30 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
   String get emojiPickerTitle => 'Емотикони';
 
   @override
-  String get plutoniumBadgePrivacyTitle =>
-      'Поверителност на значката Plutonium';
+  String get plutoniumBadgePrivacyTitle => 'Поверителност на значката Reverb';
 
   @override
   String get plutoniumBadgePrivacyDescription =>
-      'Контролирайте как се показва вашият Plutonium значка на другите';
+      'Контролирайте как се показва вашият Reverb значка на другите';
 
   @override
-  String get hidePlutoniumBadgeLabel => 'Скрий напълно значката Plutonium';
+  String get hidePlutoniumBadgeLabel => 'Скрий напълно значката Reverb';
 
   @override
   String get hidePlutoniumBadgeDescription =>
-      'Напълно скрийте значката си Plutonium от други потребители';
+      'Напълно скрийте значката си Reverb от други потребители';
 
   @override
-  String get hidePlutoniumPurchaseDate =>
-      'Скрий датата на покупка на Plutonium';
+  String get hidePlutoniumPurchaseDate => 'Скрий датата на покупка на Reverb';
 
   @override
   String hidePlutoniumPurchaseDateWithDate(String date) {
-    return 'Скрий датата на покупка на Plutonium ($date)';
+    return 'Скрий датата на покупка на Reverb ($date)';
   }
 
   @override
   String get hidePurchaseDateDescription =>
-      'Премахни кога за първи път си купил Plutonium от значката си';
+      'Премахни кога за първи път си купил Reverb от значката си';
 
   @override
   String get maskVisionaryAsSubscription => 'Скрий Visionary като абонамент';
@@ -1899,7 +1897,7 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String premiumTrialSubscriptionStarts(String date) {
-    return 'Вие сте на Plutonium пробен период — абонаментът ви започва на $date';
+    return 'Вие сте на Reverb пробен период — абонаментът ви започва на $date';
   }
 
   @override
@@ -1908,25 +1906,25 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String premiumTrialExpiresOnProfile(String date) {
-    return 'Вашият Plutonium пробен период изтича на $date';
+    return 'Вашият Reverb пробен период изтича на $date';
   }
 
   @override
-  String get premiumTrialActiveProfile => 'Пробен период на Plutonium';
+  String get premiumTrialActiveProfile => 'Пробен период на Reverb';
 
   @override
   String get avatarDescriptionNonPremium =>
-      'JPEG, PNG, WebP. Максимум 10 MB. Препоръчително: 512×512 px. Анимирани аватари (GIF) изискват Plutonium.';
+      'JPEG, PNG, WebP. Максимум 10 MB. Препоръчително: 512×512 px. Анимирани аватари (GIF) изискват Reverb.';
 
   @override
   String get bannerPlutoniumUpsell =>
       'Персонализирайте профила си със статично или анимирано банер изображение, за да го отличите.';
 
   @override
-  String get getPlutonium => 'Вземи Plutonium';
+  String get getPlutonium => 'Вземи Reverb';
 
   @override
-  String get plutoniumNotAvailableTitle => 'Plutonium';
+  String get plutoniumNotAvailableTitle => 'Reverb';
 
   @override
   String get plutoniumNotAvailableBody =>
@@ -1968,7 +1966,7 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String get perGuildPremiumUpsellText =>
-      'Персонализирането на вашия аватар, банер, цвят на акцента и биография за отделни общности изисква Plutonium. Прякорът и местоименията в общността са безплатни за всички.';
+      'Персонализирането на вашия аватар, банер, цвят на акцента и биография за отделни общности изисква Reverb. Прякорът и местоименията в общността са безплатни за всички.';
 
   @override
   String get avatarModeInherit => 'Използвай глобален профил';
@@ -2563,7 +2561,7 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteCancelSubscription =>
-      'Отменете активния си Plutonium абонамент в настройките на Plutonium, преди да изтриете акаунта си.';
+      'Отменете активния си Reverb абонамент в настройките на Reverb, преди да изтриете акаунта си.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount =>
@@ -2918,7 +2916,7 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String userProfilePlutoniumBadgeTooltip(String productName) {
-    return 'Plutonium на $productName';
+    return 'Reverb на $productName';
   }
 
   @override
@@ -2926,7 +2924,7 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
     String productName,
     String date,
   ) {
-    return '$productName Plutonium абонат от $date';
+    return '$productName Reverb абонат от $date';
   }
 
   @override
@@ -9202,7 +9200,7 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Сигурност и влизане';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Подаръци';
@@ -9212,14 +9210,14 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Поискай акаунта си, за да осребриш или управляваш кодове за подаръци Plutonium.';
+      'Поискай акаунта си, за да осребриш или управляваш кодове за подаръци Reverb.';
 
   @override
   String get giftSettingsRedeemTitle => 'Активиране на подарък';
 
   @override
   String get giftSettingsRedeemDescription =>
-      'Въведете код за подарък, за да осребрите Plutonium за вашия акаунт.';
+      'Въведете код за подарък, за да осребрите Reverb за вашия акаунт.';
 
   @override
   String get giftSettingsRedeemPlaceholder => 'Въвеждане на код за подарък…';
@@ -9229,24 +9227,24 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String get giftSettingsRedeemSuccess =>
-      'Подаръкът е успешно осребрен. Насладете се на Plutonium.';
+      'Подаръкът е успешно осребрен. Насладете се на Reverb.';
 
   @override
   String get giftSettingsPurchasedTitle => 'Закупени подаръци';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      'Управлявайте закупените си кодове за подарък Plutonium. Споделете URL адреса на подаръка с някого специален или го осребрете за себе си!';
+      'Управлявайте закупените си кодове за подарък Reverb. Споделете URL адреса на подаръка с някого специален или го осребрете за себе си!';
 
   @override
   String get giftSettingsEmptyTitle => 'Все още няма подаръци';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Купете Plutonium подарък от раздела Plutonium, за да го споделите с приятели.';
+      'Купете Reverb подарък от раздела Reverb, за да го споделите с приятели.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Отиди в Plutonium';
+  String get giftSettingsGoToPlutonium => 'Отиди в Reverb';
 
   @override
   String get giftSettingsLoadFailedTitle =>
@@ -9347,20 +9345,20 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String get premiumScrollPrompt =>
-      'Превъртете надолу, за да видите всички предимства на Plutonium';
+      'Превъртете надолу, за да видите всички предимства на Reverb';
 
   @override
-  String get premiumFreeVsPlutonium => 'Безплатно срещу Plutonium';
+  String get premiumFreeVsPlutonium => 'Безплатно срещу Reverb';
 
   @override
   String get premiumFreeColumn => 'Безплатно';
 
   @override
-  String get premiumGiftSectionTitle => 'Подарете Plutonium';
+  String get premiumGiftSectionTitle => 'Подарете Reverb';
 
   @override
   String get premiumGiftSectionDescription =>
-      'Сподели Plutonium изживяването с приятелите си, като закупиш подаръчен абонамент.';
+      'Сподели Reverb изживяването с приятелите си, като закупиш подаръчен абонамент.';
 
   @override
   String get premiumGiftBannerOne =>
@@ -9513,7 +9511,7 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      'Сега ще бъдете пренасочени към Stripe, за да завършите плащането. Върнете се във Fluxer, след като сте готови.';
+      'Сега ще бъдете пренасочени към Stripe, за да завършите плащането. Върнете се във echowire, след като сте готови.';
 
   @override
   String get premiumChoosePaymentMethodTitle => 'Изберете начин на плащане';
@@ -9555,22 +9553,22 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      'Открихме съществуващ абонамент за Fluxer Plutonium за този акаунт. Управлявайте го в защитения портал за плащания, за да актуализирате данните за плащане или да проверите статуса на подновяване. Ако току-що сте платили, изчакайте минута и отворете отново тази страница.';
+      'Открихме съществуващ абонамент за Reverb за този акаунт. Управлявайте го в защитения портал за плащания, за да актуализирате данните за плащане или да проверите статуса на подновяване. Ако току-що сте платили, изчакайте минута и отворете отново тази страница.';
 
   @override
   String get premiumPurchasesDisabledTitle => 'Покупки недостъпни';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      'Покупки са деактивирани за този акаунт. Свържете се с support@fluxer.app, ако смятате, че това е грешка.';
+      'Покупки са деактивирани за този акаунт. Свържете се с support@echowire.org, ако смятате, че това е грешка.';
 
   @override
   String get premiumClaimAccountToPurchase =>
-      'Поискай акаунта си, за да закупиш Fluxer Plutonium.';
+      'Поискай акаунта си, за да закупиш Reverb.';
 
   @override
   String get premiumVerifyEmailToPurchase =>
-      'Трябва да потвърдите имейла си, преди да можете да закупите Fluxer Plutonium.';
+      'Трябва да потвърдите имейла си, преди да можете да закупите Reverb.';
 
   @override
   String get premiumPerkCustomUsernameTag =>
@@ -11025,14 +11023,14 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
 
   @override
   String get instanceUrlPlaceholder =>
-      'Въведете URL на инстанцията (напр. fluxer.app)';
+      'Въведете URL на инстанцията (напр. echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Възстановяване до Fluxer';
+  String get resetToDefaultInstance => 'Възстановяване до echowire';
 
   @override
   String get instanceConnect => 'Свързване';

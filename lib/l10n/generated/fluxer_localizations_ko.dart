@@ -899,7 +899,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get giftVisionaryCannotRedeemMessage =>
-      'Visionary 계정은 Plutonium 선물을 사용할 수 없습니다. 대신 친구에게 공유할 링크를 복사하세요.';
+      'Visionary 계정은 Reverb 선물을 사용할 수 없습니다. 대신 친구에게 공유할 링크를 복사하세요.';
 
   @override
   String get giftCopyLink => '선물 링크 복사';
@@ -2739,7 +2739,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => 'Echowire 태그 복사';
+  String get blockedUsersCopyTag => 'echowire 태그 복사';
 
   @override
   String get blockedUsersCopyId => '사용자 ID 복사';
@@ -8719,7 +8719,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => '보안 및 로그인';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Echowire Reverb';
+  String get userSettingsNavFluxerPlutonium => 'echowire Reverb';
 
   @override
   String get userSettingsNavGiftsAndCodes => '선물';
@@ -8729,14 +8729,13 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get giftSettingsClaimAccountDescription =>
-      'Plutonium 선물 코드를 사용하거나 관리하려면 계정을 등록하세요.';
+      'Reverb 선물 코드를 사용하거나 관리하려면 계정을 등록하세요.';
 
   @override
   String get giftSettingsRedeemTitle => '선물 사용하기';
 
   @override
-  String get giftSettingsRedeemDescription =>
-      '계정에 Plutonium을 등록하려면 선물 코드를 입력하세요.';
+  String get giftSettingsRedeemDescription => '계정에 Reverb을 등록하려면 선물 코드를 입력하세요.';
 
   @override
   String get giftSettingsRedeemPlaceholder => '선물 코드 입력…';
@@ -8745,25 +8744,24 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get giftSettingsRedeemButton => '사용하기';
 
   @override
-  String get giftSettingsRedeemSuccess =>
-      '선물이 성공적으로 사용되었습니다. Plutonium을 즐겨보세요.';
+  String get giftSettingsRedeemSuccess => '선물이 성공적으로 사용되었습니다. Reverb을 즐겨보세요.';
 
   @override
   String get giftSettingsPurchasedTitle => '구매한 선물';
 
   @override
   String get giftSettingsPurchasedDescription =>
-      '구매한 Plutonium 선물 코드의 관리. 특별한 사람에게 선물 URL을 공유하거나 직접 사용하세요!';
+      '구매한 Reverb 선물 코드의 관리. 특별한 사람에게 선물 URL을 공유하거나 직접 사용하세요!';
 
   @override
   String get giftSettingsEmptyTitle => '아직 선물이 없어요';
 
   @override
   String get giftSettingsEmptyDescription =>
-      'Plutonium 탭에서 Plutonium 선물을 구매하여 친구들과 공유하세요.';
+      'Reverb 탭에서 Reverb 선물을 구매하여 친구들과 공유하세요.';
 
   @override
-  String get giftSettingsGoToPlutonium => 'Plutonium으로 이동';
+  String get giftSettingsGoToPlutonium => 'Reverb으로 이동';
 
   @override
   String get giftSettingsLoadFailedTitle => '선물 목록을 불러오지 못했습니다';
@@ -8860,20 +8858,20 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get premiumMostPopular => '가장 인기 많음';
 
   @override
-  String get premiumScrollPrompt => 'Plutonium의 모든 혜택을 보려면 아래로 스크롤하세요.';
+  String get premiumScrollPrompt => 'Reverb의 모든 혜택을 보려면 아래로 스크롤하세요.';
 
   @override
-  String get premiumFreeVsPlutonium => '무료 vs Plutonium';
+  String get premiumFreeVsPlutonium => '무료 vs Reverb';
 
   @override
   String get premiumFreeColumn => '무료';
 
   @override
-  String get premiumGiftSectionTitle => 'Plutonium 선물하기';
+  String get premiumGiftSectionTitle => 'Reverb 선물하기';
 
   @override
   String get premiumGiftSectionDescription =>
-      '선물 구독을 구매하여 친구들과 Plutonium 경험을 공유하세요.';
+      '선물 구독을 구매하여 친구들과 Reverb 경험을 공유하세요.';
 
   @override
   String get premiumGiftBannerOne => '새 선물 코드가 기다리고 있어요!';
@@ -8993,7 +8991,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get premiumDisclaimerRefund =>
-      '결제 후 3일 이내, 30일마다 한 번씩 직접 환불할 수 있습니다. 구독을 환불하면 구독이 취소됩니다. EU/EEA 구매자는 콘텐츠에 즉시 액세스하기 위해 결제 시 14일 철회 권리를 포기합니다. 차지백 대신 앱 내 환불 버튼을 사용하세요. 차지백은 계정을 영구적으로 제한할 수 있습니다. Stripe가 결제를 안전하게 처리하며, Fluxer는 고객님의 전체 카드 번호를 볼 수 없습니다.';
+      '결제 후 3일 이내, 30일마다 한 번씩 직접 환불할 수 있습니다. 구독을 환불하면 구독이 취소됩니다. EU/EEA 구매자는 콘텐츠에 즉시 액세스하기 위해 결제 시 14일 철회 권리를 포기합니다. 차지백 대신 앱 내 환불 버튼을 사용하세요. 차지백은 계정을 영구적으로 제한할 수 있습니다. Stripe가 결제를 안전하게 처리하며, echowire는 고객님의 전체 카드 번호를 볼 수 없습니다.';
 
   @override
   String get premiumTermsOfService => '이용약관';
@@ -9020,7 +9018,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get premiumCompletePaymentBody =>
-      '결제를 완료하기 위해 Stripe로 이동합니다. 완료 후 Fluxer로 돌아오세요.';
+      '결제를 완료하기 위해 Stripe로 이동합니다. 완료 후 echowire로 돌아오세요.';
 
   @override
   String get premiumChoosePaymentMethodTitle => '결제 수단 선택';
@@ -9061,22 +9059,20 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get premiumExistingSubscriptionBody =>
-      '이 계정에 기존 Fluxer Plutonium 구독이 있습니다. 결제 정보 업데이트 또는 갱신 상태 확인은 보안 결제 포털에서 관리하세요. 방금 결제하셨다면 1분 정도 기다렸다가 이 페이지를 다시 열어주세요.';
+      '이 계정에 기존 Reverb 구독이 있습니다. 결제 정보 업데이트 또는 갱신 상태 확인은 보안 결제 포털에서 관리하세요. 방금 결제하셨다면 1분 정도 기다렸다가 이 페이지를 다시 열어주세요.';
 
   @override
   String get premiumPurchasesDisabledTitle => '구매 불가';
 
   @override
   String get premiumPurchasesDisabledBody =>
-      '이 계정에서는 구매가 비활성화되어 있습니다. 문제가 잘못된 것으로 보이면 support@fluxer.app으로 문의하세요.';
+      '이 계정에서는 구매가 비활성화되어 있습니다. 문제가 잘못된 것으로 보이면 support@echowire.org으로 문의하세요.';
 
   @override
-  String get premiumClaimAccountToPurchase =>
-      'Fluxer Plutonium을 구매하려면 계정을 등록하세요.';
+  String get premiumClaimAccountToPurchase => 'Reverb을 구매하려면 계정을 등록하세요.';
 
   @override
-  String get premiumVerifyEmailToPurchase =>
-      'Fluxer Plutonium을 구매하려면 먼저 이메일을 인증해야 합니다.';
+  String get premiumVerifyEmailToPurchase => 'Reverb을 구매하려면 먼저 이메일을 인증해야 합니다.';
 
   @override
   String get premiumPerkCustomUsernameTag => '사용자 이름 태그 맞춤 설정';
@@ -10414,14 +10410,14 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get instanceUrlLabel => '인스턴스 URL';
 
   @override
-  String get instanceUrlPlaceholder => '인스턴스 URL 입력 (예: fluxer.app)';
+  String get instanceUrlPlaceholder => '인스턴스 URL 입력 (예: echowire.org)';
 
   @override
   String get instanceUrlHelper =>
       'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
 
   @override
-  String get resetToDefaultInstance => 'Echowire로 재설정';
+  String get resetToDefaultInstance => 'echowire로 재설정';
 
   @override
   String get instanceConnect => '연결';

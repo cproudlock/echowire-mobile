@@ -1087,7 +1087,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1100,7 +1100,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1113,7 +1113,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1126,7 +1126,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1139,7 +1139,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1194,7 +1194,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -1244,11 +1244,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Tidak dapat menukarkan hadiah ini",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Akun Visionary tidak dapat menukarkan hadiah Plutonium. Salin tautannya untuk membagikannya dengan teman saja.",
+    "giftVisionaryCannotRedeemMessage": "Akun Visionary tidak dapat menukarkan hadiah Reverb. Salin tautannya untuk membagikannya dengan teman saja.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Salin tautan hadiah",
     "@giftCopyLink": {
@@ -2010,7 +2010,7 @@
     "@emojiCategoryFlags": {
         "description": "Flags category."
     },
-    "emojiPlutoniumUpsellText": "Buka {emojiCount} dari {communityCount} dengan Plutonium.",
+    "emojiPlutoniumUpsellText": "Buka {emojiCount} dari {communityCount} dengan Reverb.",
     "@emojiPlutoniumUpsellText": {
         "description": "Upsell banner text in emoji picker for non-premium users.",
         "placeholders": {
@@ -2022,13 +2022,13 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Dapatkan Plutonium",
+    "emojiPlutoniumUpsellButton": "Dapatkan Reverb",
     "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Plutonium upsell banner."
+        "description": "Button label on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellDismiss": "Jangan tampilkan ini lagi",
     "@emojiPlutoniumUpsellDismiss": {
-        "description": "Dismiss link on the Plutonium upsell banner."
+        "description": "Dismiss link on the Reverb upsell banner."
     },
     "emojiPlutoniumUpsellCustomEmoji": "{count, plural, =1{1 emoji kustom} other{{count} emoji kustom}}",
     "@emojiPlutoniumUpsellCustomEmoji": {
@@ -2146,11 +2146,11 @@
     "@imageFileTooLarge": {
         "description": "Error when a selected image exceeds the maximum file size."
     },
-    "animatedAvatarsRequirePlutonium": "Avatar animasi memerlukan Plutonium",
+    "animatedAvatarsRequirePlutonium": "Avatar animasi memerlukan Reverb",
     "@animatedAvatarsRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated avatar."
     },
-    "animatedBannersRequirePlutonium": "Banner animasi memerlukan Plutonium",
+    "animatedBannersRequirePlutonium": "Banner animasi memerlukan Reverb",
     "@animatedBannersRequirePlutonium": {
         "description": "Toast shown when non-premium user tries uploading animated banner."
     },
@@ -2230,7 +2230,7 @@
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
     },
-    "discriminatorPremiumTooltip": "Dapatkan Plutonium untuk menyesuaikan tag Anda atau simpan saat mengubah nama pengguna Anda",
+    "discriminatorPremiumTooltip": "Dapatkan Reverb untuk menyesuaikan tag Anda atau simpan saat mengubah nama pengguna Anda",
     "@discriminatorPremiumTooltip": {
         "description": "Tooltip on disabled discriminator field for non-premium users."
     },
@@ -2254,7 +2254,7 @@
     "@customTagIsTemporary": {
         "description": "Title for the temporary tag warning sheet."
     },
-    "customTagTemporaryBodyWithDate": "Tag 4 digit kustom Anda hanya tersedia selama langganan Plutonium Anda aktif. Saat langganan Anda berakhir pada {date}, tag Anda akan kembali ke nomor yang ditetapkan secara acak setelah masa tenggang 3 hari.",
+    "customTagTemporaryBodyWithDate": "Tag 4 digit kustom Anda hanya tersedia selama langganan Reverb Anda aktif. Saat langganan Anda berakhir pada {date}, tag Anda akan kembali ke nomor yang ditetapkan secara acak setelah masa tenggang 3 hari.",
     "@customTagTemporaryBodyWithDate": {
         "description": "Warning body when premium subscription has a known expiry date.",
         "placeholders": {
@@ -2263,7 +2263,7 @@
             }
         }
     },
-    "customTagTemporaryBody": "Tag 4 digit kustom Anda hanya tersedia selama langganan Plutonium Anda aktif. Saat langganan Anda berakhir, tag Anda akan kembali ke nomor yang ditetapkan secara acak setelah masa tenggang 3 hari.",
+    "customTagTemporaryBody": "Tag 4 digit kustom Anda hanya tersedia selama langganan Reverb Anda aktif. Saat langganan Anda berakhir, tag Anda akan kembali ke nomor yang ditetapkan secara acak setelah masa tenggang 3 hari.",
     "@customTagTemporaryBody": {
         "description": "Warning body when premium subscription expiry date is unknown."
     },
@@ -2271,11 +2271,11 @@
     "@iUnderstandContinue": {
         "description": "Button to acknowledge a warning and proceed."
     },
-    "premiumWarningPendingDiscriminator": "Jika Anda menyimpan nama pengguna ini, tag 4 digit kustom Anda akan kembali menjadi nomor acak saat langganan Plutonium Anda berakhir. Jika langganan Anda gagal diperpanjang, Anda akan memiliki masa tenggang 3 hari sebelum tag berubah.",
+    "premiumWarningPendingDiscriminator": "Jika Anda menyimpan nama pengguna ini, tag 4 digit kustom Anda akan kembali menjadi nomor acak saat langganan Reverb Anda berakhir. Jika langganan Anda gagal diperpanjang, Anda akan memiliki masa tenggang 3 hari sebelum tag berubah.",
     "@premiumWarningPendingDiscriminator": {
         "description": "Warning shown when premium user is about to change their discriminator."
     },
-    "premiumWarningActiveDiscriminator": "Tag 4 digit kustom Anda (#{discriminator}) aktif selama langganan Plutonium Anda aktif. Jika langganan Anda berakhir atau gagal diperpanjang setelah masa tenggang 3 hari, tag Anda akan kembali menjadi nomor acak.",
+    "premiumWarningActiveDiscriminator": "Tag 4 digit kustom Anda (#{discriminator}) aktif selama langganan Reverb Anda aktif. Jika langganan Anda berakhir atau gagal diperpanjang setelah masa tenggang 3 hari, tag Anda akan kembali menjadi nomor acak.",
     "@premiumWarningActiveDiscriminator": {
         "description": "Warning shown when premium user already has a custom discriminator.",
         "placeholders": {
@@ -2286,9 +2286,9 @@
     },
     "premiumUpsellCustomizeTag": "Sesuaikan tag 4 digit Anda atau simpan saat mengganti nama pengguna Anda",
     "@premiumUpsellCustomizeTag": {
-        "description": "Upsell text encouraging non-premium users to get Plutonium for tag customization."
+        "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
     },
-    "premiumTrialExpiresOn": "Uji coba Plutonium Anda berakhir pada {date}. Tingkatkan untuk menyimpan tag kustom Anda dan dapatkan lencana di profil Anda.",
+    "premiumTrialExpiresOn": "Uji coba Reverb Anda berakhir pada {date}. Tingkatkan untuk menyimpan tag kustom Anda dan dapatkan lencana di profil Anda.",
     "@premiumTrialExpiresOn": {
         "description": "Trial upsell with expiry date.",
         "placeholders": {
@@ -2297,7 +2297,7 @@
             }
         }
     },
-    "premiumTrialActive": "Anda sedang dalam uji coba Plutonium. Tingkatkan untuk menyimpan tag kustom Anda dan dapatkan lencana di profil Anda.",
+    "premiumTrialActive": "Anda sedang dalam uji coba Reverb. Tingkatkan untuk menyimpan tag kustom Anda dan dapatkan lencana di profil Anda.",
     "@premiumTrialActive": {
         "description": "Trial upsell without specific expiry date."
     },
@@ -2333,7 +2333,7 @@
     "@changeFluxerTag": {
         "description": "Button label to open the username change flow."
     },
-    "customizeTagWithPlutoniumTooltip": "Sesuaikan tag 4 digit Anda (#{discriminator}) sesuka hati dengan Plutonium",
+    "customizeTagWithPlutoniumTooltip": "Sesuaikan tag 4 digit Anda (#{discriminator}) sesuka hati dengan Reverb",
     "@customizeTagWithPlutoniumTooltip": {
         "description": "Tooltip on the crown upsell button next to the username button.",
         "placeholders": {
@@ -2346,7 +2346,7 @@
     "@changeUsernameAndTagHint": {
         "description": "Hint text below the username buttons."
     },
-    "customTagSubscriptionWarning": "Tag kustom Anda (#{discriminator}) terikat pada langganan Plutonium Anda dan akan kembali menjadi tag acak jika kedaluwarsa.",
+    "customTagSubscriptionWarning": "Tag kustom Anda (#{discriminator}) terikat pada langganan Reverb Anda dan akan kembali menjadi tag acak jika kedaluwarsa.",
     "@customTagSubscriptionWarning": {
         "description": "Warning shown when user has a premium discriminator that is not lifetime.",
         "placeholders": {
@@ -2415,38 +2415,38 @@
     "@emojiPickerTitle": {
         "description": "Title for the emoji picker sheet."
     },
-    "plutoniumBadgePrivacyTitle": "Privasi Lencana Plutonium",
+    "plutoniumBadgePrivacyTitle": "Privasi Lencana Reverb",
     "@plutoniumBadgePrivacyTitle": {
         "description": "Heading for the premium badge privacy settings section."
     },
-    "plutoniumBadgePrivacyDescription": "Atur cara lencana Plutonium Anda ditampilkan kepada orang lain",
+    "plutoniumBadgePrivacyDescription": "Atur cara lencana Reverb Anda ditampilkan kepada orang lain",
     "@plutoniumBadgePrivacyDescription": {
         "description": "Subheading for the premium badge privacy settings section."
     },
-    "hidePlutoniumBadgeLabel": "Sembunyikan lencana Plutonium sepenuhnya",
+    "hidePlutoniumBadgeLabel": "Sembunyikan lencana Reverb sepenuhnya",
     "@hidePlutoniumBadgeLabel": {
-        "description": "Label for the toggle to hide the Plutonium badge."
+        "description": "Label for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumBadgeDescription": "Sembunyikan lencana Plutonium Anda sepenuhnya dari pengguna lain",
+    "hidePlutoniumBadgeDescription": "Sembunyikan lencana Reverb Anda sepenuhnya dari pengguna lain",
     "@hidePlutoniumBadgeDescription": {
-        "description": "Description for the toggle to hide the Plutonium badge."
+        "description": "Description for the toggle to hide the Reverb badge."
     },
-    "hidePlutoniumPurchaseDate": "Sembunyikan tanggal pembelian Plutonium",
+    "hidePlutoniumPurchaseDate": "Sembunyikan tanggal pembelian Reverb",
     "@hidePlutoniumPurchaseDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date."
+        "description": "Label for the toggle to hide the Reverb purchase date."
     },
-    "hidePlutoniumPurchaseDateWithDate": "Sembunyikan tanggal pembelian Plutonium ({date})",
+    "hidePlutoniumPurchaseDateWithDate": "Sembunyikan tanggal pembelian Reverb ({date})",
     "@hidePlutoniumPurchaseDateWithDate": {
-        "description": "Label for the toggle to hide the Plutonium purchase date, showing the actual date.",
+        "description": "Label for the toggle to hide the Reverb purchase date, showing the actual date.",
         "placeholders": {
             "date": {
                 "type": "String"
             }
         }
     },
-    "hidePurchaseDateDescription": "Hapus saat Anda pertama kali membeli Plutonium dari lencana Anda",
+    "hidePurchaseDateDescription": "Hapus saat Anda pertama kali membeli Reverb dari lencana Anda",
     "@hidePurchaseDateDescription": {
-        "description": "Description for the toggle to hide the Plutonium purchase date."
+        "description": "Description for the toggle to hide the Reverb purchase date."
     },
     "maskVisionaryAsSubscription": "Mask Visionary sebagai langganan",
     "@maskVisionaryAsSubscription": {
@@ -2473,7 +2473,7 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "Anda sedang dalam uji coba Plutonium — langganan Anda dimulai pada {date}",
+    "premiumTrialSubscriptionStarts": "Anda sedang dalam uji coba Reverb — langganan Anda dimulai pada {date}",
     "@premiumTrialSubscriptionStarts": {
         "description": "Trial banner title when user has an active subscription pending after trial.",
         "placeholders": {
@@ -2486,7 +2486,7 @@
     "@premiumTrialSubscriptionStartsDescription": {
         "description": "Trial banner description when user has an active subscription pending after trial."
     },
-    "premiumTrialExpiresOnProfile": "Anda sedang dalam uji coba Plutonium yang berakhir pada {date}",
+    "premiumTrialExpiresOnProfile": "Anda sedang dalam uji coba Reverb yang berakhir pada {date}",
     "@premiumTrialExpiresOnProfile": {
         "description": "Trial banner title with expiry date.",
         "placeholders": {
@@ -2495,29 +2495,29 @@
             }
         }
     },
-    "premiumTrialActiveProfile": "Anda sedang mencoba Plutonium",
+    "premiumTrialActiveProfile": "Anda sedang mencoba Reverb",
     "@premiumTrialActiveProfile": {
         "description": "Trial banner title without specific expiry date."
     },
-    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maks 10MB. Rekomendasi: 512×512px. Avatar animasi (GIF) memerlukan Plutonium.",
+    "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maks 10MB. Rekomendasi: 512×512px. Avatar animasi (GIF) memerlukan Reverb.",
     "@avatarDescriptionNonPremium": {
-        "description": "Avatar helper text for non-premium users, mentioning Plutonium requirement for animated avatars."
+        "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
     },
     "bannerPlutoniumUpsell": "Sesuaikan profil Anda dengan gambar banner statis atau animasi agar profil Anda menonjol.",
     "@bannerPlutoniumUpsell": {
         "description": "Upsell text shown in place of banner upload for non-premium users."
     },
-    "getPlutonium": "Dapatkan Plutonium",
+    "getPlutonium": "Dapatkan Reverb",
     "@getPlutonium": {
-        "description": "Button label for the Plutonium upsell call-to-action."
+        "description": "Button label for the Reverb upsell call-to-action."
     },
-    "plutoniumNotAvailableTitle": "Plutonium",
+    "plutoniumNotAvailableTitle": "Reverb",
     "@plutoniumNotAvailableTitle": {
-        "description": "Title for the Plutonium not-available-yet bottom sheet."
+        "description": "Title for the Reverb not-available-yet bottom sheet."
     },
     "plutoniumNotAvailableBody": "Pembelian dalam aplikasi belum tersedia di platform ini. Nantikan — segera hadir!",
     "@plutoniumNotAvailableBody": {
-        "description": "Body text for the Plutonium not-available-yet bottom sheet."
+        "description": "Body text for the Reverb not-available-yet bottom sheet."
     },
     "profilePreviewLabel": "Pratinjau",
     "@profilePreviewLabel": {
@@ -2564,7 +2564,7 @@
     "@communityNicknameLabel": {
         "description": "Label for the community nickname field"
     },
-    "perGuildPremiumUpsellText": "Kustomisasi avatar, banner, warna aksen, dan bio Anda untuk komunitas tertentu memerlukan Plutonium. Nama panggilan dan kata ganti komunitas gratis untuk semua orang.",
+    "perGuildPremiumUpsellText": "Kustomisasi avatar, banner, warna aksen, dan bio Anda untuk komunitas tertentu memerlukan Reverb. Nama panggilan dan kata ganti komunitas gratis untuk semua orang.",
     "@perGuildPremiumUpsellText": {
         "description": "Upsell text for per-guild premium features"
     },
@@ -3311,7 +3311,7 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Batalkan langganan Plutonium Anda yang aktif di pengaturan Plutonium sebelum menghapus akun Anda.",
+    "dangerZoneDeleteCancelSubscription": "Batalkan langganan Reverb Anda yang aktif di pengaturan Reverb sebelum menghapus akun Anda.",
     "@dangerZoneDeleteCancelSubscription": {
         "description": "Warning about active subscription before deletion."
     },
@@ -3713,7 +3713,7 @@
             }
         }
     },
-    "userProfilePlutoniumBadgeTooltip": "Plutonium {productName}",
+    "userProfilePlutoniumBadgeTooltip": "Reverb {productName}",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3722,7 +3722,7 @@
             }
         }
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Plutonium pelanggan sejak {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Reverb pelanggan sejak {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -4838,7 +4838,7 @@
     },
     "systemDmComposerBarrier": "Pengumuman sistem dari staf {productName}. Anda tidak dapat membalas di sini.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -5880,7 +5880,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "Ringkas DM ke Folder",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Jika diaktifkan, DM yang belum dibaca di bilah sisi guild akan diciutkan ke dalam folder pada tombol {productName}. Klik tombol {productName} saat berada di halaman DM untuk memperluas atau menciutkan folder.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -6609,7 +6609,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Kurangi gerakan",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Nonaktifkan animasi dan transisi. Saat ini dikontrol oleh pengaturan sistem Anda.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -7596,7 +7596,7 @@
     },
     "characterCounterRemainingPlutoniumUpsell": "{remaining} karakter tersisa. Dapatkan {productName} untuk menulis hingga {premiumMaxLength} karakter.",
     "@characterCounterRemainingPlutoniumUpsell": {
-        "description": "Character counter tooltip with a Plutonium upsell when nearing the limit.",
+        "description": "Character counter tooltip with a Reverb upsell when nearing the limit.",
         "placeholders": {
             "remaining": {
                 "type": "int"
@@ -7615,7 +7615,7 @@
     },
     "chatSendFailureDmRestricted": "Pesan Anda tidak dapat terkirim. Ini biasanya karena Anda tidak berbagi komunitas dengan penerima atau penerima hanya menerima pesan langsung dari teman. Anda mungkin juga perlu menyesuaikan pengaturan privasi pesan langsung Anda sendiri di {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Fluxerbot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -7624,27 +7624,27 @@
     },
     "chatSendFailureUnclaimedDm": "Pesan Anda tidak dapat dikirim. Anda perlu mengklaim akun untuk mengirim pesan langsung.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Pesan Anda tidak dapat terkirim. Anda perlu mengklaim akun Anda untuk mengirim pesan.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Fluxerbot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Pesan Anda tidak dapat dikirim karena ditandai oleh sistem keamanan kami. Jika menurut Anda ini adalah kesalahan, silakan hubungi dukungan.",
     "@chatSendFailureContentBlocked": {
-        "description": "Fluxerbot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Pesan Anda tidak dapat terkirim karena berisi emoji atau stiker dewasa yang tidak diizinkan dalam konteks ini.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Fluxerbot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Hanya Anda yang dapat melihat pesan ini.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Fluxerbot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Tutup",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Fluxerbot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Komunikasi",
     "@privacyDashboardCommunicationSection": {
@@ -9594,7 +9594,7 @@
     },
     "addGuildImportTemplateInvalid": "Data templat komunitas tidak valid atau rusak.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "addGuildPackInstalled": "Paket berhasil diinstal.",
     "@addGuildPackInstalled": {
@@ -11460,26 +11460,26 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Hadiah",
     "@userSettingsNavGiftsAndCodes": {
         "description": "User settings navigation item for gifts and promo codes."
     },
     "giftSettingsClaimAccountTitle": "Klaim akun Anda",
-    "giftSettingsClaimAccountDescription": "Klaim akun Anda untuk menukarkan atau mengelola kode hadiah Plutonium.",
+    "giftSettingsClaimAccountDescription": "Klaim akun Anda untuk menukarkan atau mengelola kode hadiah Reverb.",
     "giftSettingsRedeemTitle": "Tukarkan hadiah",
-    "giftSettingsRedeemDescription": "Masukkan kode hadiah untuk menukarkan Plutonium ke akun Anda.",
+    "giftSettingsRedeemDescription": "Masukkan kode hadiah untuk menukarkan Reverb ke akun Anda.",
     "giftSettingsRedeemPlaceholder": "Masukkan kode hadiah…",
     "giftSettingsRedeemButton": "Tukarkan",
-    "giftSettingsRedeemSuccess": "Hadiah berhasil ditukarkan. Nikmati Plutonium Anda.",
+    "giftSettingsRedeemSuccess": "Hadiah berhasil ditukarkan. Nikmati Reverb Anda.",
     "giftSettingsPurchasedTitle": "Hadiah yang dibeli",
-    "giftSettingsPurchasedDescription": "Kelola kode hadiah Plutonium yang telah Anda beli. Bagikan URL hadiah kepada seseorang yang spesial atau tukarkan untuk diri Anda sendiri!",
+    "giftSettingsPurchasedDescription": "Kelola kode hadiah Reverb yang telah Anda beli. Bagikan URL hadiah kepada seseorang yang spesial atau tukarkan untuk diri Anda sendiri!",
     "giftSettingsEmptyTitle": "Belum ada hadiah",
-    "giftSettingsEmptyDescription": "Beli hadiah Plutonium dari tab Plutonium untuk dibagikan kepada teman.",
-    "giftSettingsGoToPlutonium": "Buka Plutonium",
+    "giftSettingsEmptyDescription": "Beli hadiah Reverb dari tab Reverb untuk dibagikan kepada teman.",
+    "giftSettingsGoToPlutonium": "Buka Reverb",
     "giftSettingsLoadFailedTitle": "Gagal memuat inventaris hadiah",
     "giftSettingsLoadFailedDescription": "Coba lagi nanti.",
     "giftSettingsTryAgain": "Coba lagi",
@@ -11530,11 +11530,11 @@
     "premiumOneYearGift": "Hadiah 1 tahun",
     "premiumOneMonthGift": "Hadiah 1 bulan",
     "premiumMostPopular": "Paling populer",
-    "premiumScrollPrompt": "Gulir ke bawah untuk melihat semua keuntungan yang disertakan dengan Plutonium",
-    "premiumFreeVsPlutonium": "Gratis vs Plutonium",
+    "premiumScrollPrompt": "Gulir ke bawah untuk melihat semua keuntungan yang disertakan dengan Reverb",
+    "premiumFreeVsPlutonium": "Gratis vs Reverb",
     "premiumFreeColumn": "Gratis",
-    "premiumGiftSectionTitle": "Hadiah Plutonium",
-    "premiumGiftSectionDescription": "Bagikan pengalaman Plutonium dengan teman Anda dengan membeli langganan hadiah.",
+    "premiumGiftSectionTitle": "Hadiah Reverb",
+    "premiumGiftSectionDescription": "Bagikan pengalaman Reverb dengan teman Anda dengan membeli langganan hadiah.",
     "premiumGiftBannerOne": "Anda punya kode hadiah baru yang menunggu!",
     "premiumGiftBannerMany": "Anda punya {count} kode hadiah baru yang menunggu!",
     "@premiumGiftBannerMany": {
@@ -11641,7 +11641,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Anda sedang dalam langganan hadiah. Langganan ini tidak akan diperpanjang secara otomatis. Anda bisa menukarkan kode hadiah lain untuk memperpanjangnya. Langganan berulang dapat dimulai setelah masa hadiah Anda berakhir.",
     "premiumPlanUnavailable": "Paket ini tidak tersedia. Hubungi dukungan.",
     "premiumCompletePaymentTitle": "Selesaikan pembayaran",
-    "premiumCompletePaymentBody": "Anda sekarang diarahkan ke Stripe untuk menyelesaikan pembayaran. Kembali ke Fluxer setelah selesai.",
+    "premiumCompletePaymentBody": "Anda sekarang diarahkan ke Stripe untuk menyelesaikan pembayaran. Kembali ke echowire setelah selesai.",
     "premiumChoosePaymentMethodTitle": "Pilih metode pembayaran",
     "premiumPixPaymentPromptDescription": "Bayar dengan Pix otomatis untuk mengotorisasi tagihan berulang langsung dari bank Brasil Anda. Atau pilih gunakan kartu untuk memasukkan kartu kredit di layar Stripe berikutnya.",
     "premiumUsePix": "Gunakan Pix",
@@ -11653,11 +11653,11 @@
     "premiumAlreadyVisionaryTitle": "Anda sudah menjadi Visionary",
     "premiumAlreadyVisionaryBody": "Visionary sudah termasuk akses permanen, jadi langganan berulang tidak diperlukan. Anda masih bisa membeli hadiah untuk orang lain.",
     "premiumExistingSubscriptionTitle": "Langganan sudah ada",
-    "premiumExistingSubscriptionBody": "Kami menemukan langganan Fluxer Plutonium yang sudah ada untuk akun ini. Kelola di portal penagihan aman untuk memperbarui detail pembayaran atau memeriksa status perpanjangan. Jika baru saja membayar, tunggu sebentar dan buka kembali halaman ini.",
+    "premiumExistingSubscriptionBody": "Kami menemukan langganan Reverb yang sudah ada untuk akun ini. Kelola di portal penagihan aman untuk memperbarui detail pembayaran atau memeriksa status perpanjangan. Jika baru saja membayar, tunggu sebentar dan buka kembali halaman ini.",
     "premiumPurchasesDisabledTitle": "Pembelian tidak tersedia",
-    "premiumPurchasesDisabledBody": "Pembelian dinonaktifkan untuk akun ini. Hubungi support@fluxer.app jika ini terlihat salah.",
-    "premiumClaimAccountToPurchase": "Klaim akun Anda untuk membeli Fluxer Plutonium.",
-    "premiumVerifyEmailToPurchase": "Anda perlu memverifikasi email Anda sebelum dapat membeli Fluxer Plutonium.",
+    "premiumPurchasesDisabledBody": "Pembelian dinonaktifkan untuk akun ini. Hubungi support@echowire.org jika ini terlihat salah.",
+    "premiumClaimAccountToPurchase": "Klaim akun Anda untuk membeli Reverb.",
+    "premiumVerifyEmailToPurchase": "Anda perlu memverifikasi email Anda sebelum dapat membeli Reverb.",
     "premiumPerkCustomUsernameTag": "Tag nama pengguna khusus",
     "premiumPerkPerCommunityProfiles": "Profil per komunitas",
     "premiumPerkMessageScheduling": "Penjadwalan pesan",
@@ -11844,7 +11844,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11898,7 +11898,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -11912,7 +11912,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11922,7 +11922,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11952,7 +11952,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11982,7 +11982,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12890,21 +12890,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Masukkan URL instance (contoh: fluxer.app)",
+    "instanceUrlPlaceholder": "Masukkan URL instance (contoh: echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Atur ulang ke Fluxer",
+    "resetToDefaultInstance": "Atur ulang ke echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Sambungkan",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Menyambungkan…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Gagal terhubung ke instance",
     "@instanceConnectFailed": {
@@ -12933,7 +12933,7 @@
     },
     "changeInstance": "Ubah",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Hubungkan ke instance untuk masuk",
     "@instanceConnectionRequired": {

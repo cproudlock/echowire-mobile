@@ -3816,7 +3816,7 @@
     },
     "systemDmComposerBarrier": "Systemmeddelelser fra {productName} personale. Du kan ikke svare her.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Echowire product name.",
+        "description": "Read-only system DM barrier message. productName is the echowire product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4614,7 +4614,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "Kollaps DM'er i mappe",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Echowire button folder."
+        "description": "Toggle label — collapse unread DMs into the echowire button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Når det er aktiveret, kollapses ulæste DM'er i server-sidebaren til en mappe på {productName}-knappen. Klik på {productName}-knappen, mens du er på DM-siden, for at udvide eller kollapse mappen.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -5539,7 +5539,7 @@
     },
     "chatSendFailureDmRestricted": "Din besked kunne ikke leveres. Dette skyldes normalt, at du ikke deler et fællesskab med modtageren, eller at modtageren kun accepterer direkte beskeder fra venner. Du skal muligvis også justere dine egne indstillinger for direkte beskeders privatliv i {settingsPath}.",
     "@chatSendFailureDmRestricted": {
-        "description": "Echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
+        "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
         "placeholders": {
             "settingsPath": {
                 "type": "String"
@@ -5548,27 +5548,27 @@
     },
     "chatSendFailureUnclaimedDm": "Din besked kunne ikke leveres. Du skal gøre krav på din konto for at sende direkte beskeder.",
     "@chatSendFailureUnclaimedDm": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a DM."
+        "description": "echowirebot system message when an unclaimed account tries to send a DM."
     },
     "chatSendFailureUnclaimedGeneral": "Din besked kunne ikke leveres. Du skal gøre krav på din konto for at sende beskeder.",
     "@chatSendFailureUnclaimedGeneral": {
-        "description": "Echowirebot system message when an unclaimed account tries to send a message."
+        "description": "echowirebot system message when an unclaimed account tries to send a message."
     },
     "chatSendFailureContentBlocked": "Din besked kunne ikke leveres, fordi den blev flagget af vores sikkerhedssystemer. Hvis du mener, at dette er en fejl, bedes du kontakte support.",
     "@chatSendFailureContentBlocked": {
-        "description": "Echowirebot system message when message content is blocked by safety systems."
+        "description": "echowirebot system message when message content is blocked by safety systems."
     },
     "chatSendFailureNsfwEmojiSticker": "Din besked kunne ikke leveres, fordi den indeholder modne emoji eller klistermærker, der ikke er tilladt i denne kontekst.",
     "@chatSendFailureNsfwEmojiSticker": {
-        "description": "Echowirebot system message when mature emoji or stickers are blocked."
+        "description": "echowirebot system message when mature emoji or stickers are blocked."
     },
     "chatClientSystemOnlyYouCanSee": "Kun du kan se denne besked.",
     "@chatClientSystemOnlyYouCanSee": {
-        "description": "Footer on ephemeral Echowirebot client system messages."
+        "description": "Footer on ephemeral echowirebot client system messages."
     },
     "chatClientSystemDismiss": "Luk",
     "@chatClientSystemDismiss": {
-        "description": "Action to remove an ephemeral Echowirebot client system message locally."
+        "description": "Action to remove an ephemeral echowirebot client system message locally."
     },
     "privacyDashboardCommunicationSection": "Kommunikation",
     "@privacyDashboardCommunicationSection": {
@@ -6581,9 +6581,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Echowire Reverb",
+    "userSettingsNavFluxerPlutonium": "echowire Reverb",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Echowire Reverb subscription settings."
+        "description": "User settings navigation item for echowire Reverb subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Gavers",
     "@userSettingsNavGiftsAndCodes": {
@@ -6897,21 +6897,21 @@
     "@instanceUrlLabel": {
         "description": "Label for the self-hosted instance URL input on the login screen."
     },
-    "instanceUrlPlaceholder": "Indtast instans-URL (f.eks. fluxer.app)",
+    "instanceUrlPlaceholder": "Indtast instans-URL (f.eks. echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Nulstil til Echowire",
+    "resetToDefaultInstance": "Nulstil til echowire",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Echowire instance."
+        "description": "Tooltip for the button that resets the instance URL to the official echowire instance."
     },
     "instanceConnect": "Forbind",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Echowire instance."
+        "description": "Button label to connect to a custom echowire instance."
     },
     "instanceConnecting": "Forbinder…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Echowire instance."
+        "description": "Status text while discovering a custom echowire instance."
     },
     "instanceConnectFailed": "Kunne ikke oprette forbindelse til instans",
     "@instanceConnectFailed": {
@@ -6940,7 +6940,7 @@
     },
     "changeInstance": "Skift",
     "@changeInstance": {
-        "description": "Link to change the connected Echowire instance."
+        "description": "Link to change the connected echowire instance."
     },
     "instanceConnectionRequired": "Opret forbindelse til instansen for at logge ind",
     "@instanceConnectionRequired": {
@@ -9650,7 +9650,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10121,7 +10121,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -10868,7 +10868,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -11437,7 +11437,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12219,7 +12219,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Fluxer"
+                "example": "echowire"
             }
         }
     },
@@ -12311,7 +12311,7 @@
         "placeholders": {
             "premiumProductName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12804,7 +12804,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12817,7 +12817,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12830,7 +12830,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12843,7 +12843,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12856,7 +12856,7 @@
             },
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12911,7 +12911,7 @@
         "placeholders": {
             "productName": {
                 "type": "String",
-                "example": "Plutonium"
+                "example": "Reverb"
             }
         }
     },
@@ -12961,11 +12961,11 @@
     },
     "giftVisionaryCannotRedeemTitle": "Kan ikke indløse denne gave",
     "@giftVisionaryCannotRedeemTitle": {
-        "description": "Error modal title when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal title when a Visionary user cannot redeem Reverb."
     },
-    "giftVisionaryCannotRedeemMessage": "Visionary-konti kan ikke indløse Plutonium-gaver. Kopier linket for at dele det med en ven i stedet.",
+    "giftVisionaryCannotRedeemMessage": "Visionary-konti kan ikke indløse Reverb-gaver. Kopier linket for at dele det med en ven i stedet.",
     "@giftVisionaryCannotRedeemMessage": {
-        "description": "Error modal body when a Visionary user cannot redeem Plutonium."
+        "description": "Error modal body when a Visionary user cannot redeem Reverb."
     },
     "giftCopyLink": "Kopiér gave-link",
     "@giftCopyLink": {
@@ -13775,7 +13775,7 @@
     },
     "accessibilityReducedMotionOverrideLabel": "Reducer bevægelse",
     "@accessibilityReducedMotionOverrideLabel": {
-        "description": "Toggle label for reducing motion in Fluxer."
+        "description": "Toggle label for reducing motion in echowire."
     },
     "accessibilityReducedMotionOverrideSyncedDescription": "Deaktiver animationer og overgange. Styres i øjeblikket af dine systemindstillinger.",
     "@accessibilityReducedMotionOverrideSyncedDescription": {
@@ -15070,7 +15070,7 @@
     },
     "addGuildImportTemplateInvalid": "Skabelondataet for fællesskabet er ugyldigt eller forkert formateret.",
     "@addGuildImportTemplateInvalid": {
-        "description": "API error when Fluxer rejects the imported community template payload."
+        "description": "API error when echowire rejects the imported community template payload."
     },
     "memberListPermissionDeniedTitle": "Du kan ikke se medlemmerne",
     "@memberListPermissionDeniedTitle": {
@@ -15466,17 +15466,17 @@
         "description": "Empty state shown when user settings search has no matches."
     },
     "giftSettingsClaimAccountTitle": "Gør krav på din konto",
-    "giftSettingsClaimAccountDescription": "Gør krav på din konto for at indløse eller administrere Plutonium-gavekoder.",
+    "giftSettingsClaimAccountDescription": "Gør krav på din konto for at indløse eller administrere Reverb-gavekoder.",
     "giftSettingsRedeemTitle": "Indløs en gave",
-    "giftSettingsRedeemDescription": "Indtast en gavekode for at indløse Plutonium til din konto.",
+    "giftSettingsRedeemDescription": "Indtast en gavekode for at indløse Reverb til din konto.",
     "giftSettingsRedeemPlaceholder": "Indtast gavekode…",
     "giftSettingsRedeemButton": "Indløs",
-    "giftSettingsRedeemSuccess": "Gave indløst. Nyd din Plutonium.",
+    "giftSettingsRedeemSuccess": "Gave indløst. Nyd din Reverb.",
     "giftSettingsPurchasedTitle": "Købte gaver",
-    "giftSettingsPurchasedDescription": "Administrer dine købte Plutonium-gavekoder. Del gave-URL'en med en speciel person, eller indløs den selv!",
+    "giftSettingsPurchasedDescription": "Administrer dine købte Reverb-gavekoder. Del gave-URL'en med en speciel person, eller indløs den selv!",
     "giftSettingsEmptyTitle": "Ingen gaver endnu",
-    "giftSettingsEmptyDescription": "Køb en Plutonium-gave fra Plutonium-fanen for at dele med venner.",
-    "giftSettingsGoToPlutonium": "Gå til Plutonium",
+    "giftSettingsEmptyDescription": "Køb en Reverb-gave fra Reverb-fanen for at dele med venner.",
+    "giftSettingsGoToPlutonium": "Gå til Reverb",
     "giftSettingsLoadFailedTitle": "Kunne ikke indlæse gaveoversigt",
     "giftSettingsLoadFailedDescription": "Prøv igen senere.",
     "giftSettingsTryAgain": "Prøv igen",
@@ -15527,11 +15527,11 @@
     "premiumOneYearGift": "1 års gave",
     "premiumOneMonthGift": "1 måneds gave",
     "premiumMostPopular": "Mest populær",
-    "premiumScrollPrompt": "Rul ned for at se alle fordelene ved Plutonium",
-    "premiumFreeVsPlutonium": "Gratis vs Plutonium",
+    "premiumScrollPrompt": "Rul ned for at se alle fordelene ved Reverb",
+    "premiumFreeVsPlutonium": "Gratis vs Reverb",
     "premiumFreeColumn": "Gratis",
-    "premiumGiftSectionTitle": "Giv Plutonium",
-    "premiumGiftSectionDescription": "Giv dine venner Plutonium-oplevelsen ved at købe et gaveabonnement.",
+    "premiumGiftSectionTitle": "Giv Reverb",
+    "premiumGiftSectionDescription": "Giv dine venner Reverb-oplevelsen ved at købe et gaveabonnement.",
     "premiumGiftBannerOne": "Du har en ny gavekode, der venter på dig!",
     "premiumGiftBannerMany": "Du har {count} nye gavekoder, der venter på dig!",
     "@premiumGiftBannerMany": {
@@ -15638,7 +15638,7 @@
     "premiumGiftSubscriptionBlocksRecurring": "Du har i øjeblikket et gaveabonnement. Det fornys ikke automatisk. Du kan indløse flere gavekoder for at forlænge det. Du kan starte et tilbagevendende abonnement, når din gaveperiode udløber.",
     "premiumPlanUnavailable": "Denne plan er ikke tilgængelig. Kontakt support.",
     "premiumCompletePaymentTitle": "Gennemfør betaling",
-    "premiumCompletePaymentBody": "Du navigerer nu til Stripe for at gennemføre betalingen. Vend tilbage til Fluxer, når du er færdig.",
+    "premiumCompletePaymentBody": "Du navigerer nu til Stripe for at gennemføre betalingen. Vend tilbage til echowire, når du er færdig.",
     "premiumChoosePaymentMethodTitle": "Vælg betalingsmetode",
     "premiumPixPaymentPromptDescription": "Betal med Pix automático for at godkende tilbagevendende betalinger direkte fra din brasilianske bank. Eller vælg brug kort for at indtaste et kreditkort på Stripes næste skærm.",
     "premiumUsePix": "Brug Pix",
@@ -15650,11 +15650,11 @@
     "premiumAlreadyVisionaryTitle": "Du er allerede Visionary",
     "premiumAlreadyVisionaryBody": "Visionary inkluderer allerede permanent adgang, så et tilbagevendende abonnement er ikke nødvendigt. Du kan stadig købe gaver til andre.",
     "premiumExistingSubscriptionTitle": "Abonnementet findes allerede",
-    "premiumExistingSubscriptionBody": "Vi fandt et eksisterende Fluxer Plutonium-abonnement til denne konto. Administrer det i den sikre faktureringsportal for at opdatere betalingsoplysninger eller kontrollere fornyelsesstatus. Hvis du lige har betalt, skal du vente et minut og genåbne denne side.",
+    "premiumExistingSubscriptionBody": "Vi fandt et eksisterende Reverb-abonnement til denne konto. Administrer det i den sikre faktureringsportal for at opdatere betalingsoplysninger eller kontrollere fornyelsesstatus. Hvis du lige har betalt, skal du vente et minut og genåbne denne side.",
     "premiumPurchasesDisabledTitle": "Køb er ikke tilgængelige",
-    "premiumPurchasesDisabledBody": "Køb er deaktiveret for denne konto. Kontakt support@fluxer.app, hvis dette ser forkert ud.",
-    "premiumClaimAccountToPurchase": "Gør krav på din konto for at købe Fluxer Plutonium.",
-    "premiumVerifyEmailToPurchase": "Du skal bekræfte din e-mail, før du kan købe Fluxer Plutonium.",
+    "premiumPurchasesDisabledBody": "Køb er deaktiveret for denne konto. Kontakt support@echowire.org, hvis dette ser forkert ud.",
+    "premiumClaimAccountToPurchase": "Gør krav på din konto for at købe Reverb.",
+    "premiumVerifyEmailToPurchase": "Du skal bekræfte din e-mail, før du kan købe Reverb.",
     "premiumPerkCustomUsernameTag": "Brugerdefineret brugernavn",
     "premiumPerkPerCommunityProfiles": "Profiler pr. fællesskab",
     "premiumPerkMessageScheduling": "Planlægning af beskeder",

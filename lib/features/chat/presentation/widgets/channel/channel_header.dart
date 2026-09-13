@@ -6,11 +6,13 @@ import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/permissions/channel_permission_cache_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
+import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/accessibility/domain/text_scale.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/thread_list_sheet.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/channel_icon.dart';
+import 'package:fluxer_app/features/channels/presentation/widgets/thread_ui.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/channels/providers/channel_typing_provider.dart';
@@ -400,14 +402,10 @@ class ChannelHeader extends ConsumerWidget {
                     channel != null &&
                     threadChannelTypes.contains(channel.type))
                   FluxerButton.circle(
-                    icon:
-                        (ref.watch(threadMembershipProvider(channel.id)) ??
-                            false)
+                    icon: _watchThreadMembership(ref, channel.id)
                         ? PhosphorIconsFill.userMinus
                         : PhosphorIconsFill.userPlus,
-                    semanticLabel:
-                        (ref.watch(threadMembershipProvider(channel.id)) ??
-                            false)
+                    semanticLabel: _watchThreadMembership(ref, channel.id)
                         ? l10n.uiLeaveThread
                         : l10n.uiJoinThread,
                     variant: FluxerButtonVariant.secondary,
@@ -574,6 +572,18 @@ class ChannelHeader extends ConsumerWidget {
     );
   }
 
+  /// Echowire: whether the current user belongs to thread [threadId]. Loads the
+  /// real membership on first view instead of assuming "not a member".
+  bool _watchThreadMembership(WidgetRef ref, String threadId) {
+    final bool? known = ref.watch(threadMembershipProvider(threadId));
+    if (known == null) {
+      ref
+          .read(threadRepositoryProvider)
+          .ensureMembershipLoaded(threadId, ref.read(currentUserIdProvider));
+    }
+    return known ?? false;
+  }
+
   Future<void> _toggleThreadMembership(
     WidgetRef ref,
     BuildContext context, {
@@ -581,22 +591,16 @@ class ChannelHeader extends ConsumerWidget {
   }) async {
     final bool isMember =
         ref.read(threadMembershipProvider(channel.id)) ?? false;
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
     try {
       if (isMember) {
         await ref.read(threadRepositoryProvider).leaveThread(channel.id);
       } else {
         await ref.read(threadRepositoryProvider).joinThread(channel.id);
       }
-      ref.read(threadMembershipProvider(channel.id).notifier).state = !isMember;
-    } on Exception catch (e) {
-      if (!context.mounted) {
-        return;
-      }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Could not ${isMember ? 'leave' : 'join'} thread: $e'),
-        ),
-      );
+    } on Exception catch (e, st) {
+      talker.error('Thread membership toggle failed for ${channel.id}', e, st);
+      showThreadToast(ref, l10n.threadsActionFailed);
     }
   }
 

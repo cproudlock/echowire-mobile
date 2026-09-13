@@ -209,6 +209,23 @@ class ChannelDao extends DatabaseAccessor<FluxerDatabase>
         ChannelsCompanion(threadMemberCount: Value(memberCount)),
       );
 
+  /// Echowire: nudge a thread's cached message count by [delta] when a message
+  /// is created or deleted in it. The server does not send THREAD_UPDATE per
+  /// message. Non-thread channels and unknown counts are left alone.
+  Future<void> bumpThreadMessageCount(
+    String channelId,
+    int delta,
+  ) => customUpdate(
+    'UPDATE channels SET thread_message_count = '
+    'MAX(0, thread_message_count + ?) '
+    'WHERE id = ? AND type IN (11, 12) AND thread_message_count IS NOT NULL',
+    variables: <Variable<Object>>[
+      Variable<int>(delta),
+      Variable<String>(channelId),
+    ],
+    updates: <TableInfo<Table, Object?>>{channels},
+  );
+
   Future<void> deleteChannel(String id) =>
       (delete(channels)..where((c) => c.id.equals(id))).go();
 

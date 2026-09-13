@@ -130,6 +130,7 @@ class GatewayEventHandler {
     this.onInviteCreate,
     this.onInviteDelete,
     this.onGuildPermissionsChanged,
+    this.onThreadMembershipChanged,
     this.onGuildPermissionsEvict,
     this.onChannelPermissionChanged,
     this.onChannelDelete,
@@ -195,6 +196,10 @@ class GatewayEventHandler {
   final InviteCreateCallback? onInviteCreate;
   final InviteDeleteCallback? onInviteDelete;
   final GuildCallback? onGuildPermissionsChanged;
+
+  /// Echowire: the current user joined (true) or left (false) a thread.
+  final void Function(String threadId, {required bool isMember})?
+  onThreadMembershipChanged;
   final GuildCallback? onGuildPermissionsEvict;
   final ChannelCallback? onChannelPermissionChanged;
   final ChannelCallback? onChannelDelete;
@@ -266,6 +271,11 @@ class GatewayEventHandler {
           ),
         );
         await _handleMessageCreate(event);
+        // Echowire: keep thread reply counts current between list refreshes.
+        await database.channelDao.bumpThreadMessageCount(
+          event.message.channelId,
+          1,
+        );
       case MessageUpdateEvent():
         _logGatewayDebug(
           () => talker.debug('[Gateway] MESSAGE_UPDATE: ${event.message.id}'),
@@ -276,6 +286,7 @@ class GatewayEventHandler {
           () => talker.debug('[Gateway] MESSAGE_DELETE: ${event.messageId}'),
         );
         await _handleMessageDelete(event);
+        await database.channelDao.bumpThreadMessageCount(event.channelId, -1);
       case TypingStartEvent():
         _handleTypingStart(event);
       case PresenceUpdateEvent():
@@ -338,6 +349,18 @@ class GatewayEventHandler {
             event.id,
             event.memberCount,
           );
+        }
+        final String? me = currentUserId;
+        if (me != null) {
+          if (event.addedMemberIds?.contains(me) ?? false) {
+            _emit(
+              () => onThreadMembershipChanged?.call(event.id, isMember: true),
+            );
+          } else if (event.removedMemberIds?.contains(me) ?? false) {
+            _emit(
+              () => onThreadMembershipChanged?.call(event.id, isMember: false),
+            );
+          }
         }
       case MessageReactionAddEvent():
         _logGatewayDebug(

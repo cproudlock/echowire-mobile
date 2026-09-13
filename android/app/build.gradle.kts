@@ -63,7 +63,7 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         multiDexEnabled = true
-        manifestPlaceholders["appLabel"] = "Echowire"
+        manifestPlaceholders["appLabel"] = "echowire"
         manifestPlaceholders["buildEnvironment"] = "stable"
         manifestPlaceholders["pushProvider"] = "fcm"
     }
@@ -73,17 +73,17 @@ android {
             dimension = "environment"
             applicationIdSuffix = ".canary"
             versionNameSuffix = "-canary"
-            manifestPlaceholders["appLabel"] = "Echowire Canary"
+            manifestPlaceholders["appLabel"] = "echowire canary"
             manifestPlaceholders["buildEnvironment"] = "canary"
         }
         create("stable") {
             dimension = "environment"
-            manifestPlaceholders["appLabel"] = "Echowire"
+            manifestPlaceholders["appLabel"] = "echowire"
             manifestPlaceholders["buildEnvironment"] = "stable"
         }
         create("beta") {
             dimension = "environment"
-            manifestPlaceholders["appLabel"] = "Echowire Beta"
+            manifestPlaceholders["appLabel"] = "echowire beta"
             manifestPlaceholders["buildEnvironment"] = "beta"
         }
         create("fcm") {

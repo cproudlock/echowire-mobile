@@ -50,7 +50,7 @@ const List<SplashQuote> _baseSplashQuotes = <SplashQuote>[
   ),
   SplashQuote(
     text:
-        "Fluxer is 100% powered by flux capacitors. And furries. We don't forget about the furries.",
+        "echowire is 100% powered by flux capacitors. And furries. We don't forget about the furries.",
     source: 'jb',
   ),
   SplashQuote(
@@ -68,19 +68,19 @@ const List<SplashQuote> _baseSplashQuotes = <SplashQuote>[
   SplashQuote(text: 'Nu \u00e4r det dags f\u00f6r en fika.', source: 'Chip'),
   SplashQuote(
     text:
-        "Is Fluxer loading? Why are you asking me? I'm just a loading screen!",
+        "Is echowire loading? Why are you asking me? I'm just a loading screen!",
     source: 'Caus',
   ),
   SplashQuote(text: 'Welcome back to 2015!', source: 'Pan'),
   SplashQuote(text: 'Connecting to irc.fluxer.com:6667...', source: 'viriona'),
   SplashQuote(text: "Wait, hold on, I'm not ready yet!", source: 'Vee'),
-  SplashQuote(text: "Feel that? That's Fluxer.", source: 'TheFastestBoy'),
+  SplashQuote(text: "Feel that? That's echowire.", source: 'TheFastestBoy'),
   SplashQuote(
     text: 'The real fluxer was the friends we made along the way.',
     source: 'viriona',
   ),
   SplashQuote(
-    text: 'Is Fluxer an instrument? No, Fluxer is a communication platform.',
+    text: 'Is echowire an instrument? No, echowire is a communication platform.',
     source: 'Comfy_Deer',
   ),
   SplashQuote(text: "Hi! I'm a loading screen!", source: 'jackzie'),

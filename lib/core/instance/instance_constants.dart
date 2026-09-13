@@ -7,7 +7,7 @@ abstract final class InstanceConstants {
   static const String defaultGatewayUrl = 'wss://echowire.org/gateway';
   static const String defaultInstanceInputUrl = 'echowire.org';
   static const String defaultMarketingBaseUrl = 'https://echowire.org';
-  static const String defaultProductName = 'Echowire';
+  static const String defaultProductName = 'echowire';
   static const int maxRecentInstances = 5;
 
   static const Set<String> officialInstanceHosts = <String>{

@@ -39,7 +39,7 @@ class FluxerApplication : Application() {
 
     private companion object {
         const val DEFAULT_PUSH_CHANNEL_ID = "fluxer_default_push"
-        const val DEFAULT_PUSH_CHANNEL_NAME = "Echowire"
+        const val DEFAULT_PUSH_CHANNEL_NAME = "echowire"
         const val DEFAULT_PUSH_CHANNEL_DESCRIPTION = "Messages and alerts"
     }
 }

@@ -29,7 +29,7 @@ CallKitParams buildVoiceCallKitParams({
   return CallKitParams(
     id: callKitId,
     nameCaller: display.nameCaller,
-    appName: 'Echowire',
+    appName: 'echowire',
     avatar: display.avatar,
     handle: display.handle,
     type: kVoiceCallKitAudioType,

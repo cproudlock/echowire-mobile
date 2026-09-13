@@ -134,7 +134,7 @@ Future<void> _bootstrapFluxer(List<String> args) async {
           minimumSize: Size(200, 200),
           center: true,
           titleBarStyle: TitleBarStyle.hidden,
-          title: 'Echowire',
+          title: 'echowire',
         );
 
         await windowManager.waitUntilReadyToShow(windowOptions, () async {

@@ -4,7 +4,7 @@ import 'package:fluxer_app/core/push/push_message.dart';
 import 'package:fluxer_app/core/push/push_notification_payload.dart';
 import 'package:unifiedpush/unifiedpush.dart' as up;
 
-const String kUnifiedPushDefaultTitle = 'Echowire';
+const String kUnifiedPushDefaultTitle = 'echowire';
 
 const Set<String> _kPayloadSkipKeys = <String>{'title', 'body', 'aps', 'data'};
 

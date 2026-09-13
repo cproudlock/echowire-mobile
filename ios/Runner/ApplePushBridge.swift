@@ -8,7 +8,7 @@ final class ApplePushBridge: NSObject, FlutterStreamHandler {
   private static let methodChannelName = "fluxer_app/apple_push"
   private static let eventChannelName = "fluxer_app/apple_push/messages"
   private static let tapEventChannelName = "fluxer_app/apple_push/taps"
-  private static let defaultNotificationTitle = "Fluxer"
+  private static let defaultNotificationTitle = "echowire"
   private static let defaultNotificationBody = "New message"
   private static let maxPendingPushEvents = 32
 

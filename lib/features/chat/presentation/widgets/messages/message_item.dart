@@ -6,7 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
+import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
+import 'package:fluxer_app/features/channels/presentation/sheets/thread_name_prompt.dart';
+import 'package:fluxer_app/features/channels/presentation/widgets/thread_ui.dart';
 import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_context.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
@@ -489,8 +492,11 @@ class _MessageItemState extends ConsumerState<MessageItem> {
   }
 
   Future<void> _createThreadFromMessage() async {
-    final String? name = await _promptThreadName(context);
-    if (name == null || name.trim().isEmpty) {
+    final String failedMessage = FluxerLocalizations.of(
+      context,
+    ).threadsCreateFailed;
+    final String? name = await showThreadNamePrompt(context);
+    if (name == null || name.isEmpty) {
       return;
     }
     try {
@@ -498,7 +504,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
           .read(threadRepositoryProvider)
           .createThread(
             parentChannelId: widget.message.channelId,
-            name: name.trim(),
+            name: name,
             messageId: widget.message.id,
           );
       if (!mounted) {
@@ -509,41 +515,13 @@ class _MessageItemState extends ConsumerState<MessageItem> {
           ref.read(activeGuildIdProvider) ??
           thread.guildId;
       context.go(RoutePaths.guildChannel(guildId, thread.id));
-    } on Exception catch (e) {
+    } on Exception catch (e, st) {
+      talker.error('Could not create thread from message', e, st);
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Could not create thread: $e')));
+      showThreadToast(ref, failedMessage);
     }
-  }
-
-  Future<String?> _promptThreadName(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
-    return showDialog<String>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: const Text('New thread'),
-        content: TextField(
-          controller: controller,
-          autofocus: true,
-          maxLength: 100,
-          decoration: const InputDecoration(hintText: 'Thread name'),
-          onSubmitted: (String v) => Navigator.of(context).pop(v),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.of(context).pop(controller.text),
-            child: const Text('Create'),
-          ),
-        ],
-      ),
-    );
   }
 
   Future<void> _showContextMenu(BuildContext context, Offset position) async {

@@ -14,6 +14,7 @@ import 'package:fluxer_app/core/permissions/permission.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/providers/obscuring_overlay_tracker_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
+import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/core/utils/channel_jump_link.dart';
 import 'package:fluxer_app/features/channels/data/read_state_repository.dart';
@@ -571,7 +572,7 @@ class _ChannelDetailsSheetState extends ConsumerState<ChannelDetailsSheet> {
     final tabs = <FluxerTab>[
       FluxerTab(
         label: isThreadChannel
-            ? 'Thread Members'
+            ? l10n.threadsMembersTab
             : l10n.channelDetailsTabMembers,
         icon: isThreadChannel
             ? PhosphorIconsFill.usersThree

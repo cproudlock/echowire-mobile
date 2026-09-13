@@ -434,7 +434,7 @@ List<Widget> buildMessageActionMenuGroups({
     if (canCreateThread)
       FluxerBottomSheetMenuItem(
         icon: PhosphorIconsRegular.chatText,
-        label: 'Create Thread',
+        label: l10n.threadsCreateThreadAction,
         onTap: () => onAction(MessageAction.createThread),
       ),
     if (canShowEdit)

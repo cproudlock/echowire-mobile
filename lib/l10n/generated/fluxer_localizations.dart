@@ -23672,6 +23672,408 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Leave thread'**
   String get uiLeaveThread;
+
+  /// Title of the sheet and header button that list a channel's threads.
+  ///
+  /// In en, this message translates to:
+  /// **'Threads'**
+  String get threadsTitle;
+
+  /// Title of the threads sheet when opened on a forum channel.
+  ///
+  /// In en, this message translates to:
+  /// **'Posts'**
+  String get threadsPostsTitle;
+
+  /// Segmented filter option showing active threads or forum posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get threadsFilterActive;
+
+  /// Segmented filter option showing archived threads or forum posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Archived'**
+  String get threadsFilterArchived;
+
+  /// Button that starts creating a new thread.
+  ///
+  /// In en, this message translates to:
+  /// **'New thread'**
+  String get threadsNewThread;
+
+  /// Title of the modal for naming a new thread.
+  ///
+  /// In en, this message translates to:
+  /// **'New thread'**
+  String get threadsNewThreadTitle;
+
+  /// Label of the thread name input.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread name'**
+  String get threadsNameLabel;
+
+  /// Placeholder of the thread name input.
+  ///
+  /// In en, this message translates to:
+  /// **'Name your thread'**
+  String get threadsNameHint;
+
+  /// Primary button that creates the thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Create thread'**
+  String get threadsCreateThread;
+
+  /// Message action that starts a thread from a message.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Thread'**
+  String get threadsCreateThreadAction;
+
+  /// Toast shown when creating a thread fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not create the thread. Please try again.'**
+  String get threadsCreateFailed;
+
+  /// Shown when the thread list fails to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load threads.'**
+  String get threadsLoadFailed;
+
+  /// Empty state of the active threads list.
+  ///
+  /// In en, this message translates to:
+  /// **'No active threads yet'**
+  String get threadsNoActive;
+
+  /// Empty state of the archived threads list.
+  ///
+  /// In en, this message translates to:
+  /// **'No archived threads'**
+  String get threadsNoArchived;
+
+  /// Number of messages in a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 message} other{{count} messages}}'**
+  String threadsMessageCount(int count);
+
+  /// Number of members in a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 member} other{{count} members}}'**
+  String threadsMemberCount(int count);
+
+  /// Status shown on a locked thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get threadsStatusLocked;
+
+  /// Status shown on an archived thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Archived'**
+  String get threadsStatusArchived;
+
+  /// Accessibility label of the button that opens a thread's moderation menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage'**
+  String get threadsManage;
+
+  /// Moderation action that pins a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin'**
+  String get threadsPin;
+
+  /// Moderation action that unpins a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Unpin'**
+  String get threadsUnpin;
+
+  /// Moderation action that archives a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get threadsArchive;
+
+  /// Moderation action that unarchives a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Unarchive'**
+  String get threadsUnarchive;
+
+  /// Moderation action that locks a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock'**
+  String get threadsLock;
+
+  /// Moderation action that unlocks a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock'**
+  String get threadsUnlock;
+
+  /// Moderation action that deletes a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get threadsDelete;
+
+  /// Generic error toast for a failed thread or forum action.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get threadsActionFailed;
+
+  /// Channel details action that archives the current thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Close Thread'**
+  String get threadsCloseThread;
+
+  /// Channel details action that unarchives the current thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Reopen Thread'**
+  String get threadsReopenThread;
+
+  /// Channel details action that locks the current thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock Thread'**
+  String get threadsLockThread;
+
+  /// Channel details action that unlocks the current thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock Thread'**
+  String get threadsUnlockThread;
+
+  /// Channel details action that leaves the current thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave Thread'**
+  String get threadsLeaveThread;
+
+  /// Channel details action that deletes the current thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Thread'**
+  String get threadsDeleteThread;
+
+  /// Channel details tab listing the members of a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread Members'**
+  String get threadsMembersTab;
+
+  /// Title shown when a thread's member list fails to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load members'**
+  String get threadsMembersLoadFailed;
+
+  /// Empty state title of a thread's member list.
+  ///
+  /// In en, this message translates to:
+  /// **'No thread members yet'**
+  String get threadsNoMembersTitle;
+
+  /// Empty state body of a thread's member list.
+  ///
+  /// In en, this message translates to:
+  /// **'People who join this thread will appear here.'**
+  String get threadsNoMembersBody;
+
+  /// Channel type option for a forum channel in the create channel sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Forum'**
+  String get forumChannelTypeLabel;
+
+  /// Description of the forum channel type in the create channel sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'A space for organized, threaded posts'**
+  String get forumChannelTypeDescription;
+
+  /// Button that starts creating a new forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'New Post'**
+  String get forumNewPost;
+
+  /// Title of the modal for creating a forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'New post'**
+  String get forumNewPostTitle;
+
+  /// Primary button that creates the forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Create post'**
+  String get forumCreatePost;
+
+  /// Toast shown when creating a forum post fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not create the post. Please try again.'**
+  String get forumCreatePostFailed;
+
+  /// Toast shown when a forum post is created but its first message fails to send.
+  ///
+  /// In en, this message translates to:
+  /// **'The post was created, but its message could not be sent.'**
+  String get forumPostMessageFailed;
+
+  /// Label of the forum post title input.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get forumPostTitleLabel;
+
+  /// Placeholder of the forum post title input.
+  ///
+  /// In en, this message translates to:
+  /// **'Post title'**
+  String get forumPostTitleHint;
+
+  /// Label of the forum post first message input.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get forumPostMessageLabel;
+
+  /// Placeholder of the forum post first message input.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a message'**
+  String get forumPostMessageHint;
+
+  /// Label above the tag picker when creating a forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get forumPostTagsLabel;
+
+  /// Label above the tag picker when the forum requires a tag on every post.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags (pick at least one)'**
+  String get forumPostTagsRequiredLabel;
+
+  /// Shown when creating a post in a forum that requires a tag but has no tags.
+  ///
+  /// In en, this message translates to:
+  /// **'This forum requires a tag, but none have been set up yet.'**
+  String get forumPostTagsRequiredNoneHint;
+
+  /// Hint for channel managers when creating a post in a forum without tags.
+  ///
+  /// In en, this message translates to:
+  /// **'This forum has no tags yet. Add some with Manage tags.'**
+  String get forumPostNoTagsHint;
+
+  /// Placeholder of the forum post search input.
+  ///
+  /// In en, this message translates to:
+  /// **'Search posts'**
+  String get forumSearchPosts;
+
+  /// Accessibility label of the button that opens forum sort options.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort & View'**
+  String get forumSortAndView;
+
+  /// Forum sort option ordering posts by recent activity.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent activity'**
+  String get forumSortRecentActivity;
+
+  /// Forum sort option ordering posts alphabetically.
+  ///
+  /// In en, this message translates to:
+  /// **'Name (A-Z)'**
+  String get forumSortName;
+
+  /// Button and modal title for editing a forum's available tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage tags'**
+  String get forumManageTags;
+
+  /// Empty state in the forum tag editor.
+  ///
+  /// In en, this message translates to:
+  /// **'No tags yet'**
+  String get forumNoTags;
+
+  /// Accessibility label of the button that removes a tag in the tag editor.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove tag'**
+  String get forumRemoveTag;
+
+  /// Label of the new tag name input in the tag editor.
+  ///
+  /// In en, this message translates to:
+  /// **'New tag'**
+  String get forumNewTagLabel;
+
+  /// Placeholder of the new tag name input in the tag editor.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag name'**
+  String get forumNewTagHint;
+
+  /// Accessibility label of the button that adds a tag in the tag editor.
+  ///
+  /// In en, this message translates to:
+  /// **'Add tag'**
+  String get forumAddTag;
+
+  /// Toast shown after saving a forum's tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags updated'**
+  String get forumTagsUpdated;
+
+  /// Toast shown when saving a forum's tags fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not update tags. Please try again.'**
+  String get forumTagsUpdateFailed;
+
+  /// Shown when the forum post list fails to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load posts.'**
+  String get forumLoadFailed;
+
+  /// Empty state of the active forum post list.
+  ///
+  /// In en, this message translates to:
+  /// **'No posts yet'**
+  String get forumNoPosts;
+
+  /// Empty state of the archived forum post list.
+  ///
+  /// In en, this message translates to:
+  /// **'No archived posts'**
+  String get forumNoArchivedPosts;
 }
 
 class _FluxerLocalizationsDelegate

@@ -89,6 +89,21 @@ class ChannelRepository {
     return _client.channels.getChannelSlowmodeState(channelId: channelId);
   }
 
+  /// Echowire: replace a forum channel's full set of available tags. Each entry
+  /// is `{name, id?, emoji_name?}`; omit `id` to create a new tag. The generated
+  /// SDK has no forum variant of the channel update request, so this sends the
+  /// forum body directly.
+  Future<Channel> updateForumTags({
+    required String forumId,
+    required String guildId,
+    required List<Map<String, Object?>> tags,
+  }) {
+    return _patchChannelBody(forumId, guildId, <String, dynamic>{
+      'type': ChannelType.guildForum.wireValue,
+      'available_tags': tags,
+    });
+  }
+
   Future<Channel> _patchChannel(
     String channelId,
     String guildId,

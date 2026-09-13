@@ -1,11 +1,18 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
-import 'package:fluxer_app/features/channels/data/thread_repository.dart';
+import 'package:fluxer_app/core/talker.dart';
+import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
+import 'package:fluxer_app/features/channels/presentation/widgets/thread_ui.dart';
+import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
+import 'package:fluxer_app/features/chat/providers/core/chat_providers.dart';
+import 'package:fluxer_app/features/ui/ui.dart';
+import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -105,190 +112,270 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
       .read(threadRepositoryProvider)
       .refreshThreads(widget.channel.id, guildId: widget.guildId);
 
-  Future<void> _moderatePost(Channel post, _PostModAction action) async {
-    final ThreadRepository repo = ref.read(threadRepositoryProvider);
-    try {
-      switch (action) {
-        case _PostModAction.togglePin:
-          await repo.updateThread(
-            post.id,
-            pinned: !(post.threadPinned ?? false),
-          );
-        case _PostModAction.toggleArchive:
-          await repo.updateThread(post.id, archived: !post.isArchived);
-        case _PostModAction.toggleLock:
-          await repo.updateThread(post.id, locked: !post.isLocked);
-        case _PostModAction.delete:
-          await repo.deleteThread(post.id);
-      }
-    } on Exception catch (e) {
-      if (!mounted) {
-        return;
-      }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Action failed: $e')));
-    }
+  Offset _anchorOf(BuildContext anchorContext) {
+    final RenderBox? box = anchorContext.findRenderObject() as RenderBox?;
+    return box == null
+        ? Offset.zero
+        : box.localToGlobal(box.size.bottomRight(Offset.zero));
+  }
+
+  Future<void> _openSortMenu(BuildContext anchorContext) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    return FluxerActionMenu.show(
+      anchorContext,
+      position: _anchorOf(anchorContext),
+      builder: (BuildContext menuContext, VoidCallback close) {
+        Widget option(_ForumSort sort, String label) => FluxerMenuRadioItem(
+          label: label,
+          isSelected: _sort == sort,
+          onPressed: () {
+            close();
+            setState(() => _sort = sort);
+          },
+        );
+        return <Widget>[
+          option(_ForumSort.recent, l10n.forumSortRecentActivity),
+          option(_ForumSort.name, l10n.forumSortName),
+        ];
+      },
+    );
   }
 
   Future<void> _manageTags() async {
-    final List<Map<String, Object?>>? result =
-        await showDialog<List<Map<String, Object?>>>(
-          context: context,
-          builder: (BuildContext context) =>
-              _ManageForumTagsDialog(tags: _availableTags),
-        );
-    if (result == null) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final List<_EditableTag> draft = <_EditableTag>[
+      for (final ForumTag t in _availableTags)
+        _EditableTag(id: t.id, name: t.name, emojiName: t.emojiName),
+    ];
+    final bool? save = await FluxerModal.show<bool>(
+      context,
+      title: l10n.forumManageTags,
+      builder: (BuildContext dialogContext, VoidCallback close) =>
+          _ManageForumTagsBody(tags: draft),
+      actionsBuilder: (pop) => <Widget>[
+        FluxerButton.primary(onPressed: () => pop(true), label: l10n.save),
+        const SizedBox(height: 8),
+        FluxerButton.secondary(onPressed: pop, label: l10n.cancel),
+      ],
+    );
+    if (save != true) {
       return;
     }
     try {
       await ref
-          .read(threadRepositoryProvider)
-          .updateForumTags(widget.channel.id, result);
+          .read(channelRepositoryProvider)
+          .updateForumTags(
+            forumId: widget.channel.id,
+            guildId: widget.guildId,
+            tags: <Map<String, Object?>>[
+              for (final _EditableTag t in draft) t.toJson(),
+            ],
+          );
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Tags updated')));
-    } on Exception catch (e) {
+      showThreadToast(
+        ref,
+        l10n.forumTagsUpdated,
+        variant: FluxerToastVariant.success,
+      );
+    } on Exception catch (e, st) {
+      talker.error('Could not update forum tags', e, st);
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Could not update tags: $e')));
+      showThreadToast(ref, l10n.forumTagsUpdateFailed);
     }
   }
 
   Future<void> _createPost() async {
-    final _ForumPostDraft? draft = await showDialog<_ForumPostDraft>(
-      context: context,
-      builder: (BuildContext context) =>
-          _NewForumPostDialog(availableTags: _availableTags),
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final _ForumPostDraft draft = _ForumPostDraft();
+    final bool canManage = readCanManageThreads(ref, widget.channel.id);
+    final bool? submit = await FluxerModal.show<bool>(
+      context,
+      title: l10n.forumNewPostTitle,
+      builder: (BuildContext dialogContext, VoidCallback close) =>
+          _NewForumPostBody(
+            fallbackChannel: widget.channel,
+            draft: draft,
+            canManage: canManage,
+          ),
+      actionsBuilder: (pop) => <Widget>[
+        Consumer(
+          builder: (BuildContext consumerContext, WidgetRef consumerRef, _) {
+            final Channel forum =
+                consumerRef
+                    .watch(channelByIdProvider(widget.channel.id))
+                    .value ??
+                widget.channel;
+            return ListenableBuilder(
+              listenable: draft,
+              builder: (BuildContext _, Widget? _) => FluxerButton.primary(
+                onPressed: draft.isValid(forum) ? () => pop(true) : null,
+                label: l10n.forumCreatePost,
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: 8),
+        FluxerButton.secondary(onPressed: pop, label: l10n.cancel),
+      ],
     );
-    if (draft == null || draft.title.trim().isEmpty) {
+    if (submit != true || draft.title.trim().isEmpty) {
       return;
     }
+    final Channel post;
     try {
-      final Channel post = await ref
+      post = await ref
           .read(threadRepositoryProvider)
           .createThread(
             parentChannelId: widget.channel.id,
             name: draft.title.trim(),
             appliedTags: draft.tagIds.isEmpty ? null : draft.tagIds.toList(),
           );
-      _openPost(post);
-    } on Exception catch (e) {
+    } on Exception catch (e, st) {
+      talker.error('Could not create forum post', e, st);
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Could not create post: $e')));
+      showThreadToast(ref, l10n.forumCreatePostFailed);
+      return;
     }
+    final String body = draft.body.trim();
+    if (body.isNotEmpty) {
+      try {
+        await ref
+            .read(messageRepositoryProvider)
+            .sendMessage(channelId: post.id, content: body);
+      } on Exception catch (e, st) {
+        talker.error('Forum post created but first message failed', e, st);
+        if (mounted) {
+          showThreadToast(ref, l10n.forumPostMessageFailed);
+        }
+      }
+    }
+    if (!mounted) {
+      return;
+    }
+    _openPost(post);
+  }
+
+  String _postSubtitle(FluxerLocalizations l10n, Channel post) {
+    return <String>[
+      if (post.threadMessageCount != null)
+        l10n.threadsMessageCount(post.threadMessageCount!),
+      if (post.threadMemberCount != null)
+        l10n.threadsMemberCount(post.threadMemberCount!),
+      if (post.isArchived) l10n.threadsStatusArchived,
+    ].join('  ·  ');
   }
 
   @override
   Widget build(BuildContext context) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final colors = context.colors;
+    final layout = context.layout;
+    final bool canManage = watchCanManageThreads(ref, widget.channel.id);
+    final String? currentUserId = ref.watch(currentUserIdProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+          padding: EdgeInsets.fromLTRB(layout.s3, layout.s2, layout.s3, 0),
           child: Row(
             children: <Widget>[
-              Expanded(
-                child: SegmentedButton<bool>(
-                  segments: const <ButtonSegment<bool>>[
-                    ButtonSegment<bool>(value: false, label: Text('Active')),
-                    ButtonSegment<bool>(value: true, label: Text('Archived')),
-                  ],
-                  selected: <bool>{_showArchived},
-                  onSelectionChanged: (Set<bool> s) {
-                    setState(() => _showArchived = s.first);
-                    _refresh();
-                  },
-                ),
+              FluxerSegmentedTabs(
+                tabs: <FluxerTab>[
+                  FluxerTab(label: l10n.threadsFilterActive),
+                  FluxerTab(label: l10n.threadsFilterArchived),
+                ],
+                selectedIndex: _showArchived ? 1 : 0,
+                onChanged: (int index) {
+                  setState(() => _showArchived = index == 1);
+                  _refresh();
+                },
               ),
-              const SizedBox(width: 8),
-              FilledButton.icon(
+              const Spacer(),
+              FluxerButton.primary(
                 onPressed: _createPost,
-                icon: const Icon(PhosphorIconsBold.plus, size: 16),
-                label: const Text('Post'),
+                icon: PhosphorIconsBold.plus,
+                label: l10n.forumNewPost,
+                size: FluxerButtonSize.compact,
+                fitContent: true,
               ),
             ],
           ),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(12, 0, 12, 4),
+          padding: EdgeInsets.fromLTRB(
+            layout.s3,
+            layout.s2,
+            layout.s3,
+            layout.s1,
+          ),
           child: Row(
             children: <Widget>[
               Expanded(
-                child: TextField(
-                  decoration: const InputDecoration(
-                    isDense: true,
-                    prefixIcon: Icon(
-                      PhosphorIconsBold.magnifyingGlass,
-                      size: 18,
-                    ),
-                    hintText: 'Search posts',
-                    border: OutlineInputBorder(),
+                child: FluxerInput(
+                  hint: l10n.forumSearchPosts,
+                  prefixIcon: Icon(
+                    PhosphorIconsBold.magnifyingGlass,
+                    size: 18,
+                    color: colors.textSecondary,
                   ),
+                  textInputAction: TextInputAction.search,
                   onChanged: (String v) => setState(() => _searchQuery = v),
                 ),
               ),
-              const SizedBox(width: 8),
-              PopupMenuButton<_ForumSort>(
-                icon: const Icon(PhosphorIconsBold.arrowsDownUp),
-                tooltip: 'Sort & View',
-                initialValue: _sort,
-                onSelected: (_ForumSort s) => setState(() => _sort = s),
-                itemBuilder: (BuildContext context) =>
-                    const <PopupMenuEntry<_ForumSort>>[
-                      PopupMenuItem<_ForumSort>(
-                        value: _ForumSort.recent,
-                        child: Text('Recent activity'),
-                      ),
-                      PopupMenuItem<_ForumSort>(
-                        value: _ForumSort.name,
-                        child: Text('Name (A-Z)'),
-                      ),
-                    ],
+              SizedBox(width: layout.s1),
+              Builder(
+                builder: (BuildContext anchorContext) => FluxerButton.ghost(
+                  icon: PhosphorIconsBold.arrowsDownUp,
+                  isSquare: true,
+                  semanticLabel: l10n.forumSortAndView,
+                  onPressed: () => unawaited(_openSortMenu(anchorContext)),
+                ),
               ),
-              IconButton(
-                icon: const Icon(PhosphorIconsBold.tag),
-                tooltip: 'Manage tags',
-                onPressed: _manageTags,
-              ),
+              if (canManage)
+                FluxerButton.ghost(
+                  icon: PhosphorIconsBold.tag,
+                  isSquare: true,
+                  semanticLabel: l10n.forumManageTags,
+                  onPressed: () => unawaited(_manageTags()),
+                ),
             ],
           ),
         ),
         if (_availableTags.isNotEmpty)
           SizedBox(
-            height: 44,
-            child: ListView(
+            height: 40,
+            child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              children: <Widget>[
-                for (final ForumTag tag in _availableTags)
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: FilterChip(
-                      label: Text(tag.name),
-                      selected: _tagFilter.contains(tag.id),
-                      onSelected: (bool sel) {
-                        setState(() {
-                          if (sel) {
-                            _tagFilter.add(tag.id);
-                          } else {
-                            _tagFilter.remove(tag.id);
-                          }
-                        });
-                      },
-                    ),
+              padding: EdgeInsets.symmetric(
+                horizontal: layout.s3,
+                vertical: layout.s1,
+              ),
+              itemCount: _availableTags.length,
+              separatorBuilder: (_, _) => SizedBox(width: layout.s2),
+              itemBuilder: (BuildContext context, int index) {
+                final ForumTag tag = _availableTags[index];
+                final bool selected = _tagFilter.contains(tag.id);
+                return Center(
+                  child: ForumTagChip(
+                    label: tag.name,
+                    selected: selected,
+                    onTap: () => setState(() {
+                      if (selected) {
+                        _tagFilter.remove(tag.id);
+                      } else {
+                        _tagFilter.add(tag.id);
+                      }
+                    }),
                   ),
-              ],
+                );
+              },
             ),
           ),
         Expanded(
@@ -297,9 +384,7 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
             builder:
                 (BuildContext context, AsyncSnapshot<List<Channel>> snapshot) {
                   if (snapshot.hasError) {
-                    return Center(
-                      child: Text('Failed to load: ${snapshot.error}'),
-                    );
+                    return ThreadListMessage(text: l10n.forumLoadFailed);
                   }
                   final List<Channel> posts = _visiblePosts(
                     snapshot.data ?? <Channel>[],
@@ -309,13 +394,11 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
                       onRefresh: _onRefresh,
                       child: ListView(
                         children: <Widget>[
-                          const SizedBox(height: 120),
-                          Center(
-                            child: Text(
-                              _showArchived
-                                  ? 'No archived posts'
-                                  : 'No posts yet',
-                            ),
+                          SizedBox(height: layout.s24),
+                          ThreadListMessage(
+                            text: _showArchived
+                                ? l10n.forumNoArchivedPosts
+                                : l10n.forumNoPosts,
                           ),
                         ],
                       ),
@@ -323,18 +406,41 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
                   }
                   return RefreshIndicator(
                     onRefresh: _onRefresh,
-                    child: ListView.separated(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: ListView.builder(
+                      padding: EdgeInsets.symmetric(vertical: layout.s2),
                       itemCount: posts.length,
-                      separatorBuilder: (_, _) => const Divider(height: 1),
-                      itemBuilder: (BuildContext context, int index) =>
-                          _ForumPostTile(
-                            post: posts[index],
-                            resolveTag: _tagById,
-                            onTap: () => _openPost(posts[index]),
-                            onManage: (_PostModAction a) =>
-                                _moderatePost(posts[index], a),
+                      itemBuilder: (BuildContext context, int index) {
+                        final Channel post = posts[index];
+                        final List<String> tagNames = <String>[
+                          for (final String id
+                              in post.appliedTags ?? const <String>[])
+                            if (_tagById(id) case final ForumTag t) t.name,
+                        ];
+                        return FluxerListRow(
+                          leading: Icon(
+                            post.threadPinned ?? false
+                                ? PhosphorIconsFill.pushPin
+                                : PhosphorIconsRegular.chatCircle,
+                            size: 20,
+                            color: colors.textSecondary,
                           ),
+                          title: post.name,
+                          subtitle: _postSubtitle(l10n, post),
+                          tagsBelowTitle: <Widget>[
+                            for (final String name in tagNames)
+                              ForumTagChip(label: name),
+                          ],
+                          trailing: ThreadModMenuButton(
+                            thread: post,
+                            actions: threadModActionsFor(
+                              thread: post,
+                              canManage: canManage,
+                              currentUserId: currentUserId,
+                            ),
+                          ),
+                          onTap: () => _openPost(post),
+                        );
+                      },
                     ),
                   );
                 },
@@ -345,120 +451,32 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
   }
 }
 
-class _ForumPostTile extends StatelessWidget {
-  const _ForumPostTile({
-    required this.post,
-    required this.resolveTag,
-    required this.onTap,
-    required this.onManage,
-  });
-
-  final Channel post;
-  final ForumTag? Function(String id) resolveTag;
-  final VoidCallback onTap;
-  final void Function(_PostModAction action) onManage;
-
-  @override
-  Widget build(BuildContext context) {
-    final List<String> tagNames = <String>[
-      for (final String id in post.appliedTags ?? const <String>[])
-        if (resolveTag(id) case final ForumTag t) t.name,
-    ];
-    return ListTile(
-      leading: Icon(
-        post.threadPinned ?? false
-            ? PhosphorIconsFill.pushPin
-            : PhosphorIconsRegular.chatCircle,
-        size: 20,
-      ),
-      title: Text(post.name, maxLines: 1, overflow: TextOverflow.ellipsis),
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            <String>[
-              if (post.threadMessageCount != null)
-                '${post.threadMessageCount} messages',
-              if (post.threadMemberCount != null)
-                '${post.threadMemberCount} members',
-              if (post.isArchived) 'Archived',
-            ].join('  ·  '),
-          ),
-          if (tagNames.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Wrap(
-                spacing: 4,
-                runSpacing: 4,
-                children: <Widget>[
-                  for (final String name in tagNames)
-                    Chip(
-                      label: Text(name),
-                      visualDensity: VisualDensity.compact,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                ],
-              ),
-            ),
-        ],
-      ),
-      isThreeLine: tagNames.isNotEmpty,
-      trailing: PopupMenuButton<_PostModAction>(
-        icon: const Icon(PhosphorIconsBold.dotsThreeVertical, size: 18),
-        tooltip: 'Manage',
-        onSelected: onManage,
-        itemBuilder: (BuildContext context) => <PopupMenuEntry<_PostModAction>>[
-          PopupMenuItem<_PostModAction>(
-            value: _PostModAction.togglePin,
-            child: Text((post.threadPinned ?? false) ? 'Unpin' : 'Pin'),
-          ),
-          PopupMenuItem<_PostModAction>(
-            value: _PostModAction.toggleArchive,
-            child: Text(post.isArchived ? 'Unarchive' : 'Archive'),
-          ),
-          PopupMenuItem<_PostModAction>(
-            value: _PostModAction.toggleLock,
-            child: Text(post.isLocked ? 'Unlock' : 'Lock'),
-          ),
-          const PopupMenuItem<_PostModAction>(
-            value: _PostModAction.delete,
-            child: Text('Delete'),
-          ),
-        ],
-      ),
-      onTap: onTap,
-    );
-  }
-}
-
-enum _PostModAction { togglePin, toggleArchive, toggleLock, delete }
-
 class _EditableTag {
-  _EditableTag({required this.id, required this.name});
+  _EditableTag({required this.id, required this.name, this.emojiName});
+
   final String? id;
   final String name;
+  final String? emojiName;
+
+  Map<String, Object?> toJson() => <String, Object?>{
+    'name': name,
+    if (id != null) 'id': id,
+    if (emojiName != null) 'emoji_name': emojiName,
+  };
 }
 
-class _ManageForumTagsDialog extends StatefulWidget {
-  const _ManageForumTagsDialog({required this.tags});
+class _ManageForumTagsBody extends StatefulWidget {
+  const _ManageForumTagsBody({required this.tags});
 
-  final List<ForumTag> tags;
+  /// Edited in place; the caller reads it back when the modal saves.
+  final List<_EditableTag> tags;
 
   @override
-  State<_ManageForumTagsDialog> createState() => _ManageForumTagsDialogState();
+  State<_ManageForumTagsBody> createState() => _ManageForumTagsBodyState();
 }
 
-class _ManageForumTagsDialogState extends State<_ManageForumTagsDialog> {
-  late List<_EditableTag> _tags;
+class _ManageForumTagsBodyState extends State<_ManageForumTagsBody> {
   final TextEditingController _newTag = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _tags = widget.tags
-        .map((ForumTag t) => _EditableTag(id: t.id, name: t.name))
-        .toList();
-  }
 
   @override
   void dispose() {
@@ -472,70 +490,57 @@ class _ManageForumTagsDialogState extends State<_ManageForumTagsDialog> {
       return;
     }
     setState(() {
-      _tags.add(_EditableTag(id: null, name: name));
+      widget.tags.add(_EditableTag(id: null, name: name));
       _newTag.clear();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text('Manage tags'),
-      content: SizedBox(
-        width: double.maxFinite,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            if (_tags.isEmpty)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 8),
-                child: Text('No tags yet'),
-              ),
-            for (int i = 0; i < _tags.length; i++)
-              ListTile(
-                dense: true,
-                contentPadding: EdgeInsets.zero,
-                title: Text(_tags[i].name),
-                trailing: IconButton(
-                  icon: const Icon(PhosphorIconsBold.x, size: 18),
-                  tooltip: 'Remove',
-                  onPressed: () => setState(() => _tags.removeAt(i)),
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final layout = context.layout;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        if (widget.tags.isEmpty)
+          ThreadListMessage(text: l10n.forumNoTags)
+        else
+          Wrap(
+            spacing: layout.s2,
+            runSpacing: layout.s2,
+            children: <Widget>[
+              for (int i = 0; i < widget.tags.length; i++)
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ForumTagChip(label: widget.tags[i].name),
+                    FluxerButton.ghost(
+                      icon: PhosphorIconsBold.x,
+                      isSquare: true,
+                      size: FluxerButtonSize.superCompact,
+                      semanticLabel: l10n.forumRemoveTag,
+                      onPressed: () => setState(() => widget.tags.removeAt(i)),
+                    ),
+                  ],
                 ),
-              ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: TextField(
-                    controller: _newTag,
-                    decoration: const InputDecoration(hintText: 'New tag name'),
-                    maxLength: 20,
-                    onSubmitted: (_) => _add(),
-                  ),
-                ),
-                IconButton(
-                  icon: const Icon(PhosphorIconsBold.plus),
-                  tooltip: 'Add tag',
-                  onPressed: _add,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      actions: <Widget>[
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
-        ),
-        FilledButton(
-          onPressed: () {
-            final List<Map<String, Object?>> result = <Map<String, Object?>>[
-              for (final _EditableTag t in _tags)
-                <String, Object?>{'name': t.name, if (t.id != null) 'id': t.id},
-            ];
-            Navigator.of(context).pop(result);
-          },
-          child: const Text('Save'),
+            ],
+          ),
+        SizedBox(height: layout.s4),
+        FluxerInput(
+          controller: _newTag,
+          label: l10n.forumNewTagLabel,
+          hint: l10n.forumNewTagHint,
+          maxLength: 20,
+          textInputAction: TextInputAction.done,
+          onSubmitted: (_) => _add(),
+          trailing: FluxerButton.secondary(
+            icon: PhosphorIconsBold.plus,
+            isSquare: true,
+            size: FluxerButtonSize.small,
+            semanticLabel: l10n.forumAddTag,
+            onPressed: _add,
+          ),
         ),
       ],
     );
@@ -544,82 +549,110 @@ class _ManageForumTagsDialogState extends State<_ManageForumTagsDialog> {
 
 enum _ForumSort { recent, name }
 
-class _ForumPostDraft {
-  const _ForumPostDraft({required this.title, required this.tagIds});
+class _ForumPostDraft extends ChangeNotifier {
+  String title = '';
+  String body = '';
+  final Set<String> tagIds = <String>{};
 
-  final String title;
-  final Set<String> tagIds;
-}
-
-class _NewForumPostDialog extends StatefulWidget {
-  const _NewForumPostDialog({required this.availableTags});
-
-  final List<ForumTag> availableTags;
-
-  @override
-  State<_NewForumPostDialog> createState() => _NewForumPostDialogState();
-}
-
-class _NewForumPostDialogState extends State<_NewForumPostDialog> {
-  final TextEditingController _controller = TextEditingController();
-  final Set<String> _selectedTags = <String>{};
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  void setTitle(String value) {
+    title = value;
+    notifyListeners();
   }
 
+  void toggleTag(String id) {
+    if (!tagIds.remove(id)) {
+      tagIds.add(id);
+    }
+    notifyListeners();
+  }
+
+  /// A post needs a title, and a tag when [forum] requires one.
+  bool isValid(Channel forum) {
+    final bool requiresTag = forum.forumRequireTag ?? false;
+    return title.trim().isNotEmpty && (!requiresTag || tagIds.isNotEmpty);
+  }
+}
+
+class _NewForumPostBody extends ConsumerWidget {
+  const _NewForumPostBody({
+    required this.fallbackChannel,
+    required this.draft,
+    required this.canManage,
+  });
+
+  final Channel fallbackChannel;
+  final _ForumPostDraft draft;
+  final bool canManage;
+
   @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text('New post'),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          TextField(
-            controller: _controller,
-            autofocus: true,
-            maxLength: 100,
-            decoration: const InputDecoration(hintText: 'Post title'),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final colors = context.colors;
+    final textStyles = context.textStyles;
+    final layout = context.layout;
+    // Watch the forum itself so tags added elsewhere show up while composing.
+    final Channel forum =
+        ref.watch(channelByIdProvider(fallbackChannel.id)).value ??
+        fallbackChannel;
+    final List<ForumTag> tags = forum.availableTags ?? const <ForumTag>[];
+    final bool requiresTag = forum.forumRequireTag ?? false;
+
+    final TextStyle hintStyle = textStyles.bodySmall.copyWith(
+      color: colors.textSecondary,
+    );
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        FluxerInput(
+          label: l10n.forumPostTitleLabel,
+          hint: l10n.forumPostTitleHint,
+          maxLength: 100,
+          autofocus: true,
+          textInputAction: TextInputAction.next,
+          onChanged: draft.setTitle,
+        ),
+        SizedBox(height: layout.s4),
+        FluxerInput.multiline(
+          label: l10n.forumPostMessageLabel,
+          hint: l10n.forumPostMessageHint,
+          onChanged: (String value) => draft.body = value,
+        ),
+        if (tags.isNotEmpty) ...<Widget>[
+          SizedBox(height: layout.s4),
+          Text(
+            requiresTag
+                ? l10n.forumPostTagsRequiredLabel
+                : l10n.forumPostTagsLabel,
+            style: textStyles.label.copyWith(
+              color: colors.textPrimary,
+              fontWeight: FontWeight.w600,
+            ),
           ),
-          if (widget.availableTags.isNotEmpty) ...<Widget>[
-            const SizedBox(height: 8),
-            Wrap(
-              spacing: 6,
-              runSpacing: 6,
+          SizedBox(height: layout.s2),
+          ListenableBuilder(
+            listenable: draft,
+            builder: (BuildContext _, Widget? _) => Wrap(
+              spacing: layout.s2,
+              runSpacing: layout.s2,
               children: <Widget>[
-                for (final ForumTag tag in widget.availableTags)
-                  FilterChip(
-                    label: Text(tag.name),
-                    selected: _selectedTags.contains(tag.id),
-                    onSelected: (bool sel) {
-                      setState(() {
-                        if (sel) {
-                          _selectedTags.add(tag.id);
-                        } else {
-                          _selectedTags.remove(tag.id);
-                        }
-                      });
-                    },
+                for (final ForumTag tag in tags)
+                  ForumTagChip(
+                    label: tag.name,
+                    selected: draft.tagIds.contains(tag.id),
+                    onTap: () => draft.toggleTag(tag.id),
                   ),
               ],
             ),
-          ],
-        ],
-      ),
-      actions: <Widget>[
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
-        ),
-        FilledButton(
-          onPressed: () => Navigator.of(context).pop(
-            _ForumPostDraft(title: _controller.text, tagIds: _selectedTags),
           ),
-          child: const Text('Create'),
-        ),
+        ] else if (requiresTag) ...<Widget>[
+          SizedBox(height: layout.s4),
+          Text(l10n.forumPostTagsRequiredNoneHint, style: hintStyle),
+        ] else if (canManage) ...<Widget>[
+          SizedBox(height: layout.s4),
+          Text(l10n.forumPostNoTagsHint, style: hintStyle),
+        ],
       ],
     );
   }

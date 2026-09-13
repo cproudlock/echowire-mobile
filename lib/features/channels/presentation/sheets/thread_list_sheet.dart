@@ -1,12 +1,17 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
-import 'package:fluxer_app/features/channels/data/thread_repository.dart';
+import 'package:fluxer_app/core/talker.dart';
+import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
+import 'package:fluxer_app/features/channels/presentation/sheets/thread_name_prompt.dart';
+import 'package:fluxer_app/features/channels/presentation/widgets/thread_ui.dart';
 import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
-import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
+import 'package:fluxer_app/features/ui/ui.dart';
+import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/material_ui.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -15,15 +20,14 @@ Future<void> showThreadsSheet(
   BuildContext context, {
   required Channel parentChannel,
 }) {
+  final FluxerLocalizations l10n = FluxerLocalizations.of(context);
   return FluxerBottomSheet.show<void>(
     context,
-    title: parentChannel.isForum ? 'Posts' : 'Threads',
+    title: parentChannel.isForum ? l10n.threadsPostsTitle : l10n.threadsTitle,
     builder: (BuildContext sheetContext, VoidCallback close) =>
         _ThreadListView(parentChannel: parentChannel, close: close),
   );
 }
-
-enum _ThreadModAction { togglePin, toggleArchive, toggleLock, delete }
 
 class _ThreadListView extends ConsumerStatefulWidget {
   const _ThreadListView({required this.parentChannel, required this.close});
@@ -78,106 +82,78 @@ class _ThreadListViewState extends ConsumerState<_ThreadListView> {
   }
 
   Future<void> _createThread() async {
-    final String? name = await _promptThreadName(context);
-    if (name == null || name.trim().isEmpty) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final String? name = await showThreadNamePrompt(context);
+    if (name == null || name.isEmpty) {
       return;
     }
     try {
       final Channel thread = await ref
           .read(threadRepositoryProvider)
-          .createThread(
-            parentChannelId: widget.parentChannel.id,
-            name: name.trim(),
-          );
+          .createThread(parentChannelId: widget.parentChannel.id, name: name);
+      if (!mounted) {
+        return;
+      }
       _openThread(thread);
-    } on Exception catch (e) {
+    } on Exception catch (e, st) {
+      talker.error('Could not create thread', e, st);
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Could not create thread: $e')));
+      showThreadToast(ref, l10n.threadsCreateFailed);
     }
   }
 
-  Widget _buildModMenu(Channel t) {
-    return PopupMenuButton<_ThreadModAction>(
-      icon: const Icon(PhosphorIconsBold.dotsThreeVertical, size: 18),
-      tooltip: 'Manage',
-      onSelected: (_ThreadModAction a) => _moderate(t, a),
-      itemBuilder: (BuildContext context) => <PopupMenuEntry<_ThreadModAction>>[
-        PopupMenuItem<_ThreadModAction>(
-          value: _ThreadModAction.togglePin,
-          child: Text((t.threadPinned ?? false) ? 'Unpin' : 'Pin'),
-        ),
-        PopupMenuItem<_ThreadModAction>(
-          value: _ThreadModAction.toggleArchive,
-          child: Text(t.isArchived ? 'Unarchive' : 'Archive'),
-        ),
-        PopupMenuItem<_ThreadModAction>(
-          value: _ThreadModAction.toggleLock,
-          child: Text(t.isLocked ? 'Unlock' : 'Lock'),
-        ),
-        const PopupMenuItem<_ThreadModAction>(
-          value: _ThreadModAction.delete,
-          child: Text('Delete'),
-        ),
-      ],
-    );
-  }
-
-  Future<void> _moderate(Channel t, _ThreadModAction action) async {
-    final ThreadRepository repo = ref.read(threadRepositoryProvider);
-    try {
-      switch (action) {
-        case _ThreadModAction.togglePin:
-          await repo.updateThread(t.id, pinned: !(t.threadPinned ?? false));
-        case _ThreadModAction.toggleArchive:
-          await repo.updateThread(t.id, archived: !t.isArchived);
-        case _ThreadModAction.toggleLock:
-          await repo.updateThread(t.id, locked: !t.isLocked);
-        case _ThreadModAction.delete:
-          await repo.deleteThread(t.id);
-      }
-      // The DB stream reactively reflects the change.
-    } on Exception catch (e) {
-      if (!mounted) {
-        return;
-      }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Action failed: $e')));
-    }
+  String _threadSubtitle(FluxerLocalizations l10n, Channel t) {
+    return <String>[
+      if (t.threadMessageCount != null)
+        l10n.threadsMessageCount(t.threadMessageCount!),
+      if (t.threadMemberCount != null)
+        l10n.threadsMemberCount(t.threadMemberCount!),
+      if (t.isLocked) l10n.threadsStatusLocked,
+      if (t.isArchived) l10n.threadsStatusArchived,
+    ].join('  ·  ');
   }
 
   @override
   Widget build(BuildContext context) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final colors = context.colors;
+    final layout = context.layout;
+    final bool canManage = watchCanManageThreads(ref, widget.parentChannel.id);
+    final String? currentUserId = ref.watch(currentUserIdProvider);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: EdgeInsets.symmetric(
+            horizontal: layout.s4,
+            vertical: layout.s2,
+          ),
           child: Row(
             children: <Widget>[
-              Expanded(
-                child: SegmentedButton<bool>(
-                  segments: const <ButtonSegment<bool>>[
-                    ButtonSegment<bool>(value: false, label: Text('Active')),
-                    ButtonSegment<bool>(value: true, label: Text('Archived')),
-                  ],
-                  selected: <bool>{_showArchived},
-                  onSelectionChanged: (Set<bool> s) {
-                    setState(() => _showArchived = s.first);
-                    _refresh();
-                  },
-                ),
+              FluxerSegmentedTabs(
+                tabs: <FluxerTab>[
+                  FluxerTab(label: l10n.threadsFilterActive),
+                  FluxerTab(label: l10n.threadsFilterArchived),
+                ],
+                selectedIndex: _showArchived ? 1 : 0,
+                onChanged: (int index) {
+                  setState(() => _showArchived = index == 1);
+                  _refresh();
+                },
               ),
-              const SizedBox(width: 8),
-              FilledButton.icon(
+              const Spacer(),
+              FluxerButton.primary(
                 onPressed: _createThread,
-                icon: const Icon(PhosphorIconsBold.plus, size: 16),
-                label: Text(widget.parentChannel.isForum ? 'Post' : 'New'),
+                icon: PhosphorIconsBold.plus,
+                label: widget.parentChannel.isForum
+                    ? l10n.forumNewPost
+                    : l10n.threadsNewThread,
+                size: FluxerButtonSize.compact,
+                fitContent: true,
               ),
             ],
           ),
@@ -187,26 +163,16 @@ class _ThreadListViewState extends ConsumerState<_ThreadListView> {
           builder:
               (BuildContext context, AsyncSnapshot<List<Channel>> snapshot) {
                 if (snapshot.hasError) {
-                  return Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Center(
-                      child: Text('Failed to load: ${snapshot.error}'),
-                    ),
-                  );
+                  return ThreadListMessage(text: l10n.threadsLoadFailed);
                 }
                 final List<Channel> threads = _visibleThreads(
                   snapshot.data ?? <Channel>[],
                 );
                 if (threads.isEmpty) {
-                  return Padding(
-                    padding: const EdgeInsets.all(32),
-                    child: Center(
-                      child: Text(
-                        _showArchived
-                            ? 'No archived threads'
-                            : 'No active threads yet',
-                      ),
-                    ),
+                  return ThreadListMessage(
+                    text: _showArchived
+                        ? l10n.threadsNoArchived
+                        : l10n.threadsNoActive,
                   );
                 }
                 return ListView.builder(
@@ -214,60 +180,32 @@ class _ThreadListViewState extends ConsumerState<_ThreadListView> {
                   itemCount: threads.length,
                   itemBuilder: (BuildContext context, int index) {
                     final Channel t = threads[index];
-                    return ListTile(
+                    return FluxerListRow(
                       leading: Icon(
                         t.threadPinned ?? false
                             ? PhosphorIconsFill.pushPin
                             : PhosphorIconsRegular.chatText,
                         size: 18,
+                        color: colors.textSecondary,
                       ),
-                      title: Text(t.name),
-                      subtitle: Text(
-                        <String>[
-                          if (t.threadMessageCount != null)
-                            '${t.threadMessageCount} messages',
-                          if (t.threadMemberCount != null)
-                            '${t.threadMemberCount} members',
-                          if (t.isLocked) 'Locked',
-                          if (t.isArchived) 'Archived',
-                        ].join('  ·  '),
+                      title: t.name,
+                      subtitle: _threadSubtitle(l10n, t),
+                      trailing: ThreadModMenuButton(
+                        thread: t,
+                        actions: threadModActionsFor(
+                          thread: t,
+                          canManage: canManage,
+                          currentUserId: currentUserId,
+                        ),
                       ),
-                      trailing: _buildModMenu(t),
                       onTap: () => _openThread(t),
                     );
                   },
                 );
               },
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: layout.s2),
       ],
     );
   }
-}
-
-Future<String?> _promptThreadName(BuildContext context) {
-  final TextEditingController controller = TextEditingController();
-  return showDialog<String>(
-    context: context,
-    builder: (BuildContext context) => AlertDialog(
-      title: const Text('New thread'),
-      content: TextField(
-        controller: controller,
-        autofocus: true,
-        maxLength: 100,
-        decoration: const InputDecoration(hintText: 'Thread name'),
-        onSubmitted: (String v) => Navigator.of(context).pop(v),
-      ),
-      actions: <Widget>[
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
-        ),
-        FilledButton(
-          onPressed: () => Navigator.of(context).pop(controller.text),
-          child: const Text('Create'),
-        ),
-      ],
-    ),
-  );
 }

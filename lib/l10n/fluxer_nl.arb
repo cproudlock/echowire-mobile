@@ -17155,5 +17155,13 @@
     "systemThreadDeleted": "a thread that was deleted",
     "@systemThreadDeleted": {
         "description": "Stands in for a thread name in the thread started system message when the thread no longer exists."
+    },
+    "threadsComposerLockedHint": "This thread is locked. Only moderators can send messages.",
+    "@threadsComposerLockedHint": {
+        "description": "Composer placeholder in a locked thread for users who cannot moderate it."
+    },
+    "threadsComposerArchivedHint": "This thread is archived. Sending a message reopens it.",
+    "@threadsComposerArchivedHint": {
+        "description": "Composer placeholder in an archived thread that is not locked."
     }
 }

@@ -14375,4 +14375,12 @@ class FluxerLocalizationsTh extends FluxerLocalizations {
 
   @override
   String get systemThreadDeleted => 'a thread that was deleted';
+
+  @override
+  String get threadsComposerLockedHint =>
+      'This thread is locked. Only moderators can send messages.';
+
+  @override
+  String get threadsComposerArchivedHint =>
+      'This thread is archived. Sending a message reopens it.';
 }

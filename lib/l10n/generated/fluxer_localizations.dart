@@ -24104,6 +24104,18 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'a thread that was deleted'**
   String get systemThreadDeleted;
+
+  /// Composer placeholder in a locked thread for users who cannot moderate it.
+  ///
+  /// In en, this message translates to:
+  /// **'This thread is locked. Only moderators can send messages.'**
+  String get threadsComposerLockedHint;
+
+  /// Composer placeholder in an archived thread that is not locked.
+  ///
+  /// In en, this message translates to:
+  /// **'This thread is archived. Sending a message reopens it.'**
+  String get threadsComposerArchivedHint;
 }
 
 class _FluxerLocalizationsDelegate

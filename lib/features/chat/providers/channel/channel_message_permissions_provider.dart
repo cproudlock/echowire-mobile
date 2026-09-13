@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/permissions/channel_effective_permissions.dart';
 import 'package:fluxer_app/core/permissions/channel_permission_cache_provider.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
@@ -62,6 +63,9 @@ class ChannelMessagePermissions {
     canUseExternalStickers: true,
   );
 
+  /// Echowire: why a thread's composer is restricted, if it is.
+  ThreadComposerNotice get threadNotice => ThreadComposerNotice.none;
+
   bool get isComposerEnabled => !isResolved || canSendMessages;
 
   bool get showsNoSendPermissionHint => isResolved && !canSendMessages;
@@ -77,6 +81,83 @@ class ChannelMessagePermissions {
 
   bool get isVoiceEnabled =>
       isComposerEnabled && (!isResolved || canAttachFiles);
+}
+
+/// Echowire: a thread state the composer should explain.
+enum ThreadComposerNotice {
+  none,
+
+  /// Archived but not locked: sending reopens the thread.
+  archived,
+
+  /// Locked and the user cannot moderate: sending is blocked.
+  locked,
+}
+
+/// Echowire: composer permissions narrowed by a thread's archive/lock state.
+class _ThreadComposerPermissions extends ChannelMessagePermissions {
+  _ThreadComposerPermissions(
+    ChannelMessagePermissions base, {
+    required this.threadNotice,
+  }) : super(
+         isResolved:
+             base.isResolved || threadNotice == ThreadComposerNotice.locked,
+         canSendMessages:
+             base.canSendMessages &&
+             threadNotice != ThreadComposerNotice.locked,
+         canAttachFiles: base.canAttachFiles,
+         canEmbedLinks: base.canEmbedLinks,
+         canUseExternalEmojis: base.canUseExternalEmojis,
+         canUseExternalStickers: base.canUseExternalStickers,
+       );
+
+  @override
+  final ThreadComposerNotice threadNotice;
+}
+
+/// Echowire: applies the thread lock/archive rules to [base] for [channelId].
+/// A locked thread only accepts messages from users who can manage channels on
+/// its parent; an archived, unlocked thread reopens when someone sends.
+ChannelMessagePermissions _applyThreadState(
+  WidgetRef ref,
+  String channelId,
+  ChannelMessagePermissions base, {
+  required bool watch,
+}) {
+  final AsyncValue<Channel?> channelAsync = watch
+      ? ref.watch(channelByIdProvider(channelId))
+      : ref.read(channelByIdProvider(channelId));
+  final Channel? channel = channelAsync.value;
+  if (channel == null || !channel.isThread) {
+    return base;
+  }
+  final String? parentId = channel.parentId;
+  if (channel.isLocked) {
+    final int parentBits = parentId == null
+        ? 0
+        : (watch
+                      ? ref.watch(
+                          effectiveGuildChannelPermissionBitsProvider(parentId),
+                        )
+                      : ref.read(
+                          effectiveGuildChannelPermissionBitsProvider(parentId),
+                        ))
+                  .value ??
+              0;
+    if (!hasPermission(parentBits, Permission.manageChannels)) {
+      return _ThreadComposerPermissions(
+        base,
+        threadNotice: ThreadComposerNotice.locked,
+      );
+    }
+  }
+  if (channel.isArchived) {
+    return _ThreadComposerPermissions(
+      base,
+      threadNotice: ThreadComposerNotice.archived,
+    );
+  }
+  return base;
 }
 
 ChannelMessagePermissions channelMessagePermissionsFromBits({
@@ -242,10 +323,15 @@ ChannelMessagePermissions watchChannelMessagePermissionsForComposer(
   );
   if (sync != null) {
     ref.watch(channelMessagePermissionsProvider(channelId));
-    return sync;
+    return _applyThreadState(ref, channelId, sync, watch: true);
   }
-  return channelMessagePermissionsForComposer(
-    ref.watch(channelMessagePermissionsProvider(channelId)),
+  return _applyThreadState(
+    ref,
+    channelId,
+    channelMessagePermissionsForComposer(
+      ref.watch(channelMessagePermissionsProvider(channelId)),
+    ),
+    watch: true,
   );
 }
 
@@ -259,9 +345,14 @@ ChannelMessagePermissions readChannelMessagePermissionsForComposer(
     watch: false,
   );
   if (sync != null) {
-    return sync;
+    return _applyThreadState(ref, channelId, sync, watch: false);
   }
-  return channelMessagePermissionsForComposer(
-    ref.read(channelMessagePermissionsProvider(channelId)),
+  return _applyThreadState(
+    ref,
+    channelId,
+    channelMessagePermissionsForComposer(
+      ref.read(channelMessagePermissionsProvider(channelId)),
+    ),
+    watch: false,
   );
 }

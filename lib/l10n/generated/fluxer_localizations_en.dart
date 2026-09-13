@@ -14422,6 +14422,14 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
 
   @override
   String get systemThreadDeleted => 'a thread that was deleted';
+
+  @override
+  String get threadsComposerLockedHint =>
+      'This thread is locked. Only moderators can send messages.';
+
+  @override
+  String get threadsComposerArchivedHint =>
+      'This thread is archived. Sending a message reopens it.';
 }
 
 /// The translations for English, as used in the United Kingdom (`en_GB`).
@@ -28804,6 +28812,14 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
 
   @override
   String get systemThreadDeleted => 'a thread that was deleted';
+
+  @override
+  String get threadsComposerLockedHint =>
+      'This thread is locked. Only moderators can send messages.';
+
+  @override
+  String get threadsComposerArchivedHint =>
+      'This thread is archived. Sending a message reopens it.';
 }
 
 /// The translations for English, as used in the United States (`en_US`).
@@ -43200,4 +43216,12 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
 
   @override
   String get systemThreadDeleted => 'a thread that was deleted';
+
+  @override
+  String get threadsComposerLockedHint =>
+      'This thread is locked. Only moderators can send messages.';
+
+  @override
+  String get threadsComposerArchivedHint =>
+      'This thread is archived. Sending a message reopens it.';
 }

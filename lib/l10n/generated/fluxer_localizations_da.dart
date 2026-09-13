@@ -14276,4 +14276,229 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
 
   @override
   String get uiLeaveThread => 'Leave thread';
+
+  @override
+  String get threadsTitle => 'Threads';
+
+  @override
+  String get threadsPostsTitle => 'Posts';
+
+  @override
+  String get threadsFilterActive => 'Active';
+
+  @override
+  String get threadsFilterArchived => 'Archived';
+
+  @override
+  String get threadsNewThread => 'New thread';
+
+  @override
+  String get threadsNewThreadTitle => 'New thread';
+
+  @override
+  String get threadsNameLabel => 'Thread name';
+
+  @override
+  String get threadsNameHint => 'Name your thread';
+
+  @override
+  String get threadsCreateThread => 'Create thread';
+
+  @override
+  String get threadsCreateThreadAction => 'Create Thread';
+
+  @override
+  String get threadsCreateFailed =>
+      'Could not create the thread. Please try again.';
+
+  @override
+  String get threadsLoadFailed => 'Could not load threads.';
+
+  @override
+  String get threadsNoActive => 'No active threads yet';
+
+  @override
+  String get threadsNoArchived => 'No archived threads';
+
+  @override
+  String threadsMessageCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count messages',
+      one: '1 message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String threadsMemberCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count members',
+      one: '1 member',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get threadsStatusLocked => 'Locked';
+
+  @override
+  String get threadsStatusArchived => 'Archived';
+
+  @override
+  String get threadsManage => 'Manage';
+
+  @override
+  String get threadsPin => 'Pin';
+
+  @override
+  String get threadsUnpin => 'Unpin';
+
+  @override
+  String get threadsArchive => 'Archive';
+
+  @override
+  String get threadsUnarchive => 'Unarchive';
+
+  @override
+  String get threadsLock => 'Lock';
+
+  @override
+  String get threadsUnlock => 'Unlock';
+
+  @override
+  String get threadsDelete => 'Delete';
+
+  @override
+  String get threadsActionFailed => 'Something went wrong. Please try again.';
+
+  @override
+  String get threadsCloseThread => 'Close Thread';
+
+  @override
+  String get threadsReopenThread => 'Reopen Thread';
+
+  @override
+  String get threadsLockThread => 'Lock Thread';
+
+  @override
+  String get threadsUnlockThread => 'Unlock Thread';
+
+  @override
+  String get threadsLeaveThread => 'Leave Thread';
+
+  @override
+  String get threadsDeleteThread => 'Delete Thread';
+
+  @override
+  String get threadsMembersTab => 'Thread Members';
+
+  @override
+  String get threadsMembersLoadFailed => 'Could not load members';
+
+  @override
+  String get threadsNoMembersTitle => 'No thread members yet';
+
+  @override
+  String get threadsNoMembersBody =>
+      'People who join this thread will appear here.';
+
+  @override
+  String get forumChannelTypeLabel => 'Forum';
+
+  @override
+  String get forumChannelTypeDescription =>
+      'A space for organized, threaded posts';
+
+  @override
+  String get forumNewPost => 'New Post';
+
+  @override
+  String get forumNewPostTitle => 'New post';
+
+  @override
+  String get forumCreatePost => 'Create post';
+
+  @override
+  String get forumCreatePostFailed =>
+      'Could not create the post. Please try again.';
+
+  @override
+  String get forumPostMessageFailed =>
+      'The post was created, but its message could not be sent.';
+
+  @override
+  String get forumPostTitleLabel => 'Title';
+
+  @override
+  String get forumPostTitleHint => 'Post title';
+
+  @override
+  String get forumPostMessageLabel => 'Message';
+
+  @override
+  String get forumPostMessageHint => 'Enter a message';
+
+  @override
+  String get forumPostTagsLabel => 'Tags';
+
+  @override
+  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+
+  @override
+  String get forumPostTagsRequiredNoneHint =>
+      'This forum requires a tag, but none have been set up yet.';
+
+  @override
+  String get forumPostNoTagsHint =>
+      'This forum has no tags yet. Add some with Manage tags.';
+
+  @override
+  String get forumSearchPosts => 'Search posts';
+
+  @override
+  String get forumSortAndView => 'Sort & View';
+
+  @override
+  String get forumSortRecentActivity => 'Recent activity';
+
+  @override
+  String get forumSortName => 'Name (A-Z)';
+
+  @override
+  String get forumManageTags => 'Manage tags';
+
+  @override
+  String get forumNoTags => 'No tags yet';
+
+  @override
+  String get forumRemoveTag => 'Remove tag';
+
+  @override
+  String get forumNewTagLabel => 'New tag';
+
+  @override
+  String get forumNewTagHint => 'Tag name';
+
+  @override
+  String get forumAddTag => 'Add tag';
+
+  @override
+  String get forumTagsUpdated => 'Tags updated';
+
+  @override
+  String get forumTagsUpdateFailed =>
+      'Could not update tags. Please try again.';
+
+  @override
+  String get forumLoadFailed => 'Could not load posts.';
+
+  @override
+  String get forumNoPosts => 'No posts yet';
+
+  @override
+  String get forumNoArchivedPosts => 'No archived posts';
 }

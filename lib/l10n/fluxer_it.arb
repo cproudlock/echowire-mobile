@@ -16825,5 +16825,283 @@
     "homeQuickActionDms": "Messaggi diretti",
     "@homeQuickActionDms": {
         "description": "Home screen quick action that opens Direct Messages."
+    },
+    "threadsTitle": "Threads",
+    "@threadsTitle": {
+        "description": "Title of the sheet and header button that list a channel's threads."
+    },
+    "threadsPostsTitle": "Posts",
+    "@threadsPostsTitle": {
+        "description": "Title of the threads sheet when opened on a forum channel."
+    },
+    "threadsFilterActive": "Active",
+    "@threadsFilterActive": {
+        "description": "Segmented filter option showing active threads or forum posts."
+    },
+    "threadsFilterArchived": "Archived",
+    "@threadsFilterArchived": {
+        "description": "Segmented filter option showing archived threads or forum posts."
+    },
+    "threadsNewThread": "New thread",
+    "@threadsNewThread": {
+        "description": "Button that starts creating a new thread."
+    },
+    "threadsNewThreadTitle": "New thread",
+    "@threadsNewThreadTitle": {
+        "description": "Title of the modal for naming a new thread."
+    },
+    "threadsNameLabel": "Thread name",
+    "@threadsNameLabel": {
+        "description": "Label of the thread name input."
+    },
+    "threadsNameHint": "Name your thread",
+    "@threadsNameHint": {
+        "description": "Placeholder of the thread name input."
+    },
+    "threadsCreateThread": "Create thread",
+    "@threadsCreateThread": {
+        "description": "Primary button that creates the thread."
+    },
+    "threadsCreateThreadAction": "Create Thread",
+    "@threadsCreateThreadAction": {
+        "description": "Message action that starts a thread from a message."
+    },
+    "threadsCreateFailed": "Could not create the thread. Please try again.",
+    "@threadsCreateFailed": {
+        "description": "Toast shown when creating a thread fails."
+    },
+    "threadsLoadFailed": "Could not load threads.",
+    "@threadsLoadFailed": {
+        "description": "Shown when the thread list fails to load."
+    },
+    "threadsNoActive": "No active threads yet",
+    "@threadsNoActive": {
+        "description": "Empty state of the active threads list."
+    },
+    "threadsNoArchived": "No archived threads",
+    "@threadsNoArchived": {
+        "description": "Empty state of the archived threads list."
+    },
+    "threadsMessageCount": "{count, plural, =1{1 message} other{{count} messages}}",
+    "@threadsMessageCount": {
+        "description": "Number of messages in a thread or forum post.",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "threadsMemberCount": "{count, plural, =1{1 member} other{{count} members}}",
+    "@threadsMemberCount": {
+        "description": "Number of members in a thread or forum post.",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "threadsStatusLocked": "Locked",
+    "@threadsStatusLocked": {
+        "description": "Status shown on a locked thread."
+    },
+    "threadsStatusArchived": "Archived",
+    "@threadsStatusArchived": {
+        "description": "Status shown on an archived thread or forum post."
+    },
+    "threadsManage": "Manage",
+    "@threadsManage": {
+        "description": "Accessibility label of the button that opens a thread's moderation menu."
+    },
+    "threadsPin": "Pin",
+    "@threadsPin": {
+        "description": "Moderation action that pins a thread or forum post."
+    },
+    "threadsUnpin": "Unpin",
+    "@threadsUnpin": {
+        "description": "Moderation action that unpins a thread or forum post."
+    },
+    "threadsArchive": "Archive",
+    "@threadsArchive": {
+        "description": "Moderation action that archives a thread or forum post."
+    },
+    "threadsUnarchive": "Unarchive",
+    "@threadsUnarchive": {
+        "description": "Moderation action that unarchives a thread or forum post."
+    },
+    "threadsLock": "Lock",
+    "@threadsLock": {
+        "description": "Moderation action that locks a thread or forum post."
+    },
+    "threadsUnlock": "Unlock",
+    "@threadsUnlock": {
+        "description": "Moderation action that unlocks a thread or forum post."
+    },
+    "threadsDelete": "Delete",
+    "@threadsDelete": {
+        "description": "Moderation action that deletes a thread or forum post."
+    },
+    "threadsActionFailed": "Something went wrong. Please try again.",
+    "@threadsActionFailed": {
+        "description": "Generic error toast for a failed thread or forum action."
+    },
+    "threadsCloseThread": "Close Thread",
+    "@threadsCloseThread": {
+        "description": "Channel details action that archives the current thread."
+    },
+    "threadsReopenThread": "Reopen Thread",
+    "@threadsReopenThread": {
+        "description": "Channel details action that unarchives the current thread."
+    },
+    "threadsLockThread": "Lock Thread",
+    "@threadsLockThread": {
+        "description": "Channel details action that locks the current thread."
+    },
+    "threadsUnlockThread": "Unlock Thread",
+    "@threadsUnlockThread": {
+        "description": "Channel details action that unlocks the current thread."
+    },
+    "threadsLeaveThread": "Leave Thread",
+    "@threadsLeaveThread": {
+        "description": "Channel details action that leaves the current thread."
+    },
+    "threadsDeleteThread": "Delete Thread",
+    "@threadsDeleteThread": {
+        "description": "Channel details action that deletes the current thread."
+    },
+    "threadsMembersTab": "Thread Members",
+    "@threadsMembersTab": {
+        "description": "Channel details tab listing the members of a thread."
+    },
+    "threadsMembersLoadFailed": "Could not load members",
+    "@threadsMembersLoadFailed": {
+        "description": "Title shown when a thread's member list fails to load."
+    },
+    "threadsNoMembersTitle": "No thread members yet",
+    "@threadsNoMembersTitle": {
+        "description": "Empty state title of a thread's member list."
+    },
+    "threadsNoMembersBody": "People who join this thread will appear here.",
+    "@threadsNoMembersBody": {
+        "description": "Empty state body of a thread's member list."
+    },
+    "forumChannelTypeLabel": "Forum",
+    "@forumChannelTypeLabel": {
+        "description": "Channel type option for a forum channel in the create channel sheet."
+    },
+    "forumChannelTypeDescription": "A space for organized, threaded posts",
+    "@forumChannelTypeDescription": {
+        "description": "Description of the forum channel type in the create channel sheet."
+    },
+    "forumNewPost": "New Post",
+    "@forumNewPost": {
+        "description": "Button that starts creating a new forum post."
+    },
+    "forumNewPostTitle": "New post",
+    "@forumNewPostTitle": {
+        "description": "Title of the modal for creating a forum post."
+    },
+    "forumCreatePost": "Create post",
+    "@forumCreatePost": {
+        "description": "Primary button that creates the forum post."
+    },
+    "forumCreatePostFailed": "Could not create the post. Please try again.",
+    "@forumCreatePostFailed": {
+        "description": "Toast shown when creating a forum post fails."
+    },
+    "forumPostMessageFailed": "The post was created, but its message could not be sent.",
+    "@forumPostMessageFailed": {
+        "description": "Toast shown when a forum post is created but its first message fails to send."
+    },
+    "forumPostTitleLabel": "Title",
+    "@forumPostTitleLabel": {
+        "description": "Label of the forum post title input."
+    },
+    "forumPostTitleHint": "Post title",
+    "@forumPostTitleHint": {
+        "description": "Placeholder of the forum post title input."
+    },
+    "forumPostMessageLabel": "Message",
+    "@forumPostMessageLabel": {
+        "description": "Label of the forum post first message input."
+    },
+    "forumPostMessageHint": "Enter a message",
+    "@forumPostMessageHint": {
+        "description": "Placeholder of the forum post first message input."
+    },
+    "forumPostTagsLabel": "Tags",
+    "@forumPostTagsLabel": {
+        "description": "Label above the tag picker when creating a forum post."
+    },
+    "forumPostTagsRequiredLabel": "Tags (pick at least one)",
+    "@forumPostTagsRequiredLabel": {
+        "description": "Label above the tag picker when the forum requires a tag on every post."
+    },
+    "forumPostTagsRequiredNoneHint": "This forum requires a tag, but none have been set up yet.",
+    "@forumPostTagsRequiredNoneHint": {
+        "description": "Shown when creating a post in a forum that requires a tag but has no tags."
+    },
+    "forumPostNoTagsHint": "This forum has no tags yet. Add some with Manage tags.",
+    "@forumPostNoTagsHint": {
+        "description": "Hint for channel managers when creating a post in a forum without tags."
+    },
+    "forumSearchPosts": "Search posts",
+    "@forumSearchPosts": {
+        "description": "Placeholder of the forum post search input."
+    },
+    "forumSortAndView": "Sort & View",
+    "@forumSortAndView": {
+        "description": "Accessibility label of the button that opens forum sort options."
+    },
+    "forumSortRecentActivity": "Recent activity",
+    "@forumSortRecentActivity": {
+        "description": "Forum sort option ordering posts by recent activity."
+    },
+    "forumSortName": "Name (A-Z)",
+    "@forumSortName": {
+        "description": "Forum sort option ordering posts alphabetically."
+    },
+    "forumManageTags": "Manage tags",
+    "@forumManageTags": {
+        "description": "Button and modal title for editing a forum's available tags."
+    },
+    "forumNoTags": "No tags yet",
+    "@forumNoTags": {
+        "description": "Empty state in the forum tag editor."
+    },
+    "forumRemoveTag": "Remove tag",
+    "@forumRemoveTag": {
+        "description": "Accessibility label of the button that removes a tag in the tag editor."
+    },
+    "forumNewTagLabel": "New tag",
+    "@forumNewTagLabel": {
+        "description": "Label of the new tag name input in the tag editor."
+    },
+    "forumNewTagHint": "Tag name",
+    "@forumNewTagHint": {
+        "description": "Placeholder of the new tag name input in the tag editor."
+    },
+    "forumAddTag": "Add tag",
+    "@forumAddTag": {
+        "description": "Accessibility label of the button that adds a tag in the tag editor."
+    },
+    "forumTagsUpdated": "Tags updated",
+    "@forumTagsUpdated": {
+        "description": "Toast shown after saving a forum's tags."
+    },
+    "forumTagsUpdateFailed": "Could not update tags. Please try again.",
+    "@forumTagsUpdateFailed": {
+        "description": "Toast shown when saving a forum's tags fails."
+    },
+    "forumLoadFailed": "Could not load posts.",
+    "@forumLoadFailed": {
+        "description": "Shown when the forum post list fails to load."
+    },
+    "forumNoPosts": "No posts yet",
+    "@forumNoPosts": {
+        "description": "Empty state of the active forum post list."
+    },
+    "forumNoArchivedPosts": "No archived posts",
+    "@forumNoArchivedPosts": {
+        "description": "Empty state of the archived forum post list."
     }
 }

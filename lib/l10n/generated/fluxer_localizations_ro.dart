@@ -4594,11 +4594,11 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Opțiuni diverse de interfață.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Afișează Neko';
+  String get lookAndFeelShowNekoLabel => 'Afișează Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Când este activat, Neko apare lângă bara de introducere a mesajului.';
+      'Când este activat, Pickles apare lângă bara de introducere a mesajului.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10216,15 +10216,21 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Feedback de vibrații pentru atingeri și acțiuni. Nu se va sincroniza pe alte dispozitive.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Afișează Neko';
+  String get advancedSettingShowNekoLabel => 'Afișează Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Pisica Neko care îți urmărește cursorul';
+      'Pisica Pickles care îți urmărește cursorul';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Afișează Neko la intrarea de chat';
+      'Afișează Pickles la intrarea de chat';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Pisică';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

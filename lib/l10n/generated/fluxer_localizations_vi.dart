@@ -4563,11 +4563,11 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Các tùy chọn giao diện khác.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Hiện Neko';
+  String get lookAndFeelShowNekoLabel => 'Hiện Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Khi bật, Neko sẽ xuất hiện gần thanh nhập tin nhắn.';
+      'Khi bật, Pickles sẽ xuất hiện gần thanh nhập tin nhắn.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10154,15 +10154,21 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Phản hồi rung khi chạm và thực hiện hành động. Sẽ không đồng bộ hóa trên các thiết bị.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Hiện Neko';
+  String get advancedSettingShowNekoLabel => 'Hiện Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Mèo Neko đuổi theo con trỏ chuột của bạn';
+      'Mèo Pickles đuổi theo con trỏ chuột của bạn';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Hiển thị Neko trên ô nhập tin nhắn của bạn';
+      'Hiển thị Pickles trên ô nhập tin nhắn của bạn';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Mèo';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

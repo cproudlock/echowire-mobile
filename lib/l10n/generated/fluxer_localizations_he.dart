@@ -4519,11 +4519,11 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'אפשרויות ממשק שונות.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'הצג נקו';
+  String get lookAndFeelShowNekoLabel => 'הצג Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'כאשר מופעל, ניקו יופיע ליד שורת הקלט של הצ\'אט.';
+      'כאשר מופעל, Pickles יופיע ליד שורת הקלט של הצ\'אט.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle => 'התנהגות הצטרפות לערוץ קולי';
@@ -9997,15 +9997,21 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'משוב רטט להקשות ופעולות. לא יסונכרן בין מכשירים.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'הצג נקו';
+  String get advancedSettingShowNekoLabel => 'הצג Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'חתול ניקו שרודף אחרי הסמן שלך';
+      'חתול Pickles שרודף אחרי הסמן שלך';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'הצג את ניקו בשדה הקלט של הצ\'אט שלך';
+      'הצג את Pickles בשדה הקלט של הצ\'אט שלך';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'חתול';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

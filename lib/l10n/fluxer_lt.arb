@@ -4561,19 +4561,19 @@
     },
     "lookAndFeelNekoTitle": "Kita",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "Įvairūs sąsajos nustatymai.",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "Rodyti Neko",
+    "lookAndFeelShowNekoLabel": "Rodyti Pickles",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "Kai įjungta, Neko pasirodo šalia pokalbių įvesties laukelio.",
+    "lookAndFeelShowNekoDescription": "Kai įjungta, Pickles pasirodo šalia pokalbių įvesties laukelio.",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "Balso kanalo prisijungimo elgsena",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -15786,9 +15786,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "Rodyti Neko",
-    "advancedSettingShowNekoDescription": "Neko katė, kuri vejasi jūsų žymeklį",
-    "advancedSettingShowNekoDescriptionTouch": "Rodyti Neko jūsų pokalbio įvestyje",
+    "advancedSettingShowNekoLabel": "Rodyti Pickles",
+    "advancedSettingShowNekoDescription": "Pickles katė, kuri vejasi jūsų žymeklį",
+    "advancedSettingShowNekoDescriptionTouch": "Rodyti Pickles jūsų pokalbio įvestyje",
+    "advancedSettingShowNekoKeywordCat": "Katė",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Animacijos mastelio keitimas",
     "advancedSettingMobileSplashZoomAnimationDescription": "Sumažinti logotipą, išeinant iš paleidimo ekrano",
     "advancedSettingKeyboardHintsLabel": "Klaviatūros patarimai",

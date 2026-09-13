@@ -4561,19 +4561,19 @@
     },
     "lookAndFeelNekoTitle": "متفرقات",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "خيارات واجهة متفرقة.",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "إظهار Neko",
+    "lookAndFeelShowNekoLabel": "إظهار Pickles",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "عند التمكين، يظهر Neko بالقرب من شريط إدخال الدردشة.",
+    "lookAndFeelShowNekoDescription": "عند التمكين، يظهر Pickles بالقرب من شريط إدخال الدردشة.",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "سلوك الانضمام إلى قنوات الصوت",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -15786,9 +15786,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "إظهار Neko",
-    "advancedSettingShowNekoDescription": "قط نِيكو يطارد مؤشر الفأرة الخاص بك",
-    "advancedSettingShowNekoDescriptionTouch": "إظهار Neko في مربع إدخال الدردشة لديك",
+    "advancedSettingShowNekoLabel": "إظهار Pickles",
+    "advancedSettingShowNekoDescription": "قط Pickles يطارد مؤشر الفأرة الخاص بك",
+    "advancedSettingShowNekoDescriptionTouch": "إظهار Pickles في مربع إدخال الدردشة لديك",
+    "advancedSettingShowNekoKeywordCat": "قطة",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "رسوم متحركة لتكبير الشاشة",
     "advancedSettingMobileSplashZoomAnimationDescription": "تصغير شعار التطبيق عند مغادرة شاشة البداية",
     "advancedSettingKeyboardHintsLabel": "تلميحات لوحة المفاتيح",

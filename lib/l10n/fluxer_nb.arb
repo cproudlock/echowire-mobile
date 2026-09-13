@@ -4561,19 +4561,19 @@
     },
     "lookAndFeelNekoTitle": "Diverse",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "Diverse grensesnittvalg.",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "Vis Neko",
+    "lookAndFeelShowNekoLabel": "Vis Pickles",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "Når aktivert, vises Neko nær chat-inndatolinjen.",
+    "lookAndFeelShowNekoDescription": "Når aktivert, vises Pickles nær chat-inndatolinjen.",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "Oppførsel ved tilkobling til stemmekanal",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -15786,9 +15786,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "Vis Neko",
-    "advancedSettingShowNekoDescription": "Neko-katt som jager musepekeren din",
-    "advancedSettingShowNekoDescriptionTouch": "Vis Neko på chatteinndataen din",
+    "advancedSettingShowNekoLabel": "Vis Pickles",
+    "advancedSettingShowNekoDescription": "Pickles-katt som jager musepekeren din",
+    "advancedSettingShowNekoDescriptionTouch": "Vis Pickles på chatteinndataen din",
+    "advancedSettingShowNekoKeywordCat": "Katt",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Zoom-animasjon ved oppstart",
     "advancedSettingMobileSplashZoomAnimationDescription": "Skaler ut logoen når du forlater startskjermen",
     "advancedSettingKeyboardHintsLabel": "Tastaturtips",

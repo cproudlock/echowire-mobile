@@ -5795,19 +5795,19 @@
     },
     "lookAndFeelNekoTitle": "अन्य",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "विविध इंटरफ़ेस विकल्प।",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "नेको दिखाएं",
+    "lookAndFeelShowNekoLabel": "Pickles दिखाएं",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "सक्षम होने पर, नेको चैट इनपुट बार के पास दिखाई देता है।",
+    "lookAndFeelShowNekoDescription": "सक्षम होने पर, Pickles चैट इनपुट बार के पास दिखाई देता है।",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "वॉइस चैनल में शामिल होने का तरीका",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -12427,9 +12427,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "नेको दिखाएं",
-    "advancedSettingShowNekoDescription": "आपके कर्सर का पीछा करने वाली नेको बिल्ली",
-    "advancedSettingShowNekoDescriptionTouch": "अपनी चैट इनपुट पर नेको दिखाएं",
+    "advancedSettingShowNekoLabel": "Pickles दिखाएं",
+    "advancedSettingShowNekoDescription": "आपके कर्सर का पीछा करने वाली Pickles बिल्ली",
+    "advancedSettingShowNekoDescriptionTouch": "अपनी चैट इनपुट पर Pickles दिखाएं",
+    "advancedSettingShowNekoKeywordCat": "बिल्ली",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "स्प्लैश ज़ूम एनिमेशन",
     "advancedSettingMobileSplashZoomAnimationDescription": "स्प्लैश स्क्रीन से बाहर निकलते समय लोगो को ज़ूम आउट करें",
     "advancedSettingKeyboardHintsLabel": "कीबोर्ड हिंट",

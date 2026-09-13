@@ -4577,11 +4577,11 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Çeşitli arayüz seçenekleri.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Neko\'yu Göster';
+  String get lookAndFeelShowNekoLabel => 'Pickles\'ı Göster';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Etkinleştirildiğinde, Neko sohbet giriş çubuğunun yakınında görünür.';
+      'Etkinleştirildiğinde, Pickles sohbet giriş çubuğunun yakınında görünür.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10153,15 +10153,21 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       'Dokunma ve eylemler için titreşim geri bildirimi. Cihazlar arasında eşitlenmez.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Neko\'yu göster';
+  String get advancedSettingShowNekoLabel => 'Pickles\'ı göster';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'İmlecini takip eden Neko kedi';
+      'İmlecini takip eden Pickles kedi';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Sohbet girişinde Neko\'yu göster';
+      'Sohbet girişinde Pickles\'ı göster';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Kedi';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

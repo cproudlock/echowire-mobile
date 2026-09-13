@@ -4611,11 +4611,11 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Διάφορες επιλογές διεπαφής.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Εμφάνιση Neko';
+  String get lookAndFeelShowNekoLabel => 'Εμφάνιση Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Όταν είναι ενεργοποιημένο, ο Neko εμφανίζεται κοντά στη γραμμή εισαγωγής συνομιλίας.';
+      'Όταν είναι ενεργοποιημένο, ο Pickles εμφανίζεται κοντά στη γραμμή εισαγωγής συνομιλίας.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10257,15 +10257,21 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
       'Δόνηση για αγγίγματα και ενέργειες. Δεν συγχρονίζεται μεταξύ συσκευών.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Εμφάνιση Neko';
+  String get advancedSettingShowNekoLabel => 'Εμφάνιση Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Γάτα Neko που κυνηγά τον κέρσορά σου';
+      'Γάτα Pickles που κυνηγά τον κέρσορά σου';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Εμφάνιση Neko στην εισαγωγή συνομιλίας σας';
+      'Εμφάνιση Pickles στην εισαγωγή συνομιλίας σας';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'γάτα';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

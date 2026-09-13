@@ -4612,11 +4612,11 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Opciones varias de la interfaz.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Mostrar Neko';
+  String get lookAndFeelShowNekoLabel => 'Mostrar Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Cuando está activado, Neko aparece cerca de la barra de entrada del chat.';
+      'Cuando está activado, Pickles aparece cerca de la barra de entrada del chat.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10245,15 +10245,21 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
       'Vibración al tocar y realizar acciones. No se sincronizará entre dispositivos.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Mostrar Neko';
+  String get advancedSettingShowNekoLabel => 'Mostrar Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Gato Neko que persigue tu cursor';
+      'Gato Pickles que persigue tu cursor';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Mostrar Neko en tu entrada de chat';
+      'Mostrar Pickles en tu entrada de chat';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Gato';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>
@@ -19263,11 +19269,11 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   String get lookAndFeelNekoDescription => 'Opciones varias de la interfaz.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Mostrar Neko';
+  String get lookAndFeelShowNekoLabel => 'Mostrar Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Cuando está activado, Neko aparece cerca de la barra de entrada del chat.';
+      'Cuando está activado, Pickles aparece cerca de la barra de entrada del chat.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -24876,15 +24882,21 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
       'Respuesta háptica para toques y acciones. No se sincronizará entre dispositivos.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Mostrar Neko';
+  String get advancedSettingShowNekoLabel => 'Mostrar Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Gato Neko que persigue tu cursor';
+      'Gato Pickles que persigue tu cursor';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Mostrar Neko en la entrada de tu chat';
+      'Mostrar Pickles en la entrada de tu chat';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Gato';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

@@ -4568,11 +4568,11 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'विविध इंटरफ़ेस विकल्प।';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'नेको दिखाएं';
+  String get lookAndFeelShowNekoLabel => 'Pickles दिखाएं';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'सक्षम होने पर, नेको चैट इनपुट बार के पास दिखाई देता है।';
+      'सक्षम होने पर, Pickles चैट इनपुट बार के पास दिखाई देता है।';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10139,15 +10139,21 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
       'टैप और क्रियाओं के लिए कंपन प्रतिक्रिया। डिवाइसों में सिंक नहीं होगी।';
 
   @override
-  String get advancedSettingShowNekoLabel => 'नेको दिखाएं';
+  String get advancedSettingShowNekoLabel => 'Pickles दिखाएं';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'आपके कर्सर का पीछा करने वाली नेको बिल्ली';
+      'आपके कर्सर का पीछा करने वाली Pickles बिल्ली';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'अपनी चैट इनपुट पर नेको दिखाएं';
+      'अपनी चैट इनपुट पर Pickles दिखाएं';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'बिल्ली';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

@@ -5795,19 +5795,19 @@
     },
     "lookAndFeelNekoTitle": "Diverse",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "Opțiuni diverse de interfață.",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "Afișează Neko",
+    "lookAndFeelShowNekoLabel": "Afișează Pickles",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "Când este activat, Neko apare lângă bara de introducere a mesajului.",
+    "lookAndFeelShowNekoDescription": "Când este activat, Pickles apare lângă bara de introducere a mesajului.",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "Comportamentul la alăturarea la canalul vocal",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -12427,9 +12427,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "Afișează Neko",
-    "advancedSettingShowNekoDescription": "Pisica Neko care îți urmărește cursorul",
-    "advancedSettingShowNekoDescriptionTouch": "Afișează Neko la intrarea de chat",
+    "advancedSettingShowNekoLabel": "Afișează Pickles",
+    "advancedSettingShowNekoDescription": "Pisica Pickles care îți urmărește cursorul",
+    "advancedSettingShowNekoDescriptionTouch": "Afișează Pickles la intrarea de chat",
+    "advancedSettingShowNekoKeywordCat": "Pisică",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Animație de zoom la pornire",
     "advancedSettingMobileSplashZoomAnimationDescription": "Micșorează logo-ul la ieșirea din ecranul de pornire",
     "advancedSettingKeyboardHintsLabel": "Sugestii tastatură",

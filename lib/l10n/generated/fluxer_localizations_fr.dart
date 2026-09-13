@@ -4631,11 +4631,11 @@ class FluxerLocalizationsFr extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Options d\'interface diverses.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Afficher Neko';
+  String get lookAndFeelShowNekoLabel => 'Afficher Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Lorsqu\'elle est activée, Neko apparaît près de la barre de saisie de discussion.';
+      'Lorsqu\'elle est activée, Pickles apparaît près de la barre de saisie de discussion.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10290,7 +10290,7 @@ class FluxerLocalizationsFr extends FluxerLocalizations {
       'Retour de vibration pour les appuis et les actions. Ne sera pas synchronisé sur les appareils.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Afficher Neko';
+  String get advancedSettingShowNekoLabel => 'Afficher Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
@@ -10298,7 +10298,13 @@ class FluxerLocalizationsFr extends FluxerLocalizations {
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Afficher Neko sur votre zone de saisie de discussion';
+      'Afficher Pickles sur votre zone de saisie de discussion';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Chat';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

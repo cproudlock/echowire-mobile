@@ -5795,19 +5795,19 @@
     },
     "lookAndFeelNekoTitle": "Razno",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "Razne opcije sučelja.",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "Prikaži Neko",
+    "lookAndFeelShowNekoLabel": "Prikaži Pickles",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "Kad je omogućeno, Neko se pojavljuje blizu trake za unos chata.",
+    "lookAndFeelShowNekoDescription": "Kad je omogućeno, Pickles se pojavljuje blizu trake za unos chata.",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "Ponašanje pri pridruživanju glasovnom kanalu",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -12427,9 +12427,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "Prikaži Neko",
-    "advancedSettingShowNekoDescription": "Mačka Neko koja juri vaš pokazivač",
-    "advancedSettingShowNekoDescriptionTouch": "Prikaži Neko u polju za unos chata",
+    "advancedSettingShowNekoLabel": "Prikaži Pickles",
+    "advancedSettingShowNekoDescription": "Mačka Pickles koja juri vaš pokazivač",
+    "advancedSettingShowNekoDescriptionTouch": "Prikaži Pickles u polju za unos chata",
+    "advancedSettingShowNekoKeywordCat": "Mačka",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Animacija zumiranja pri pokretanju",
     "advancedSettingMobileSplashZoomAnimationDescription": "Smanji logotip pri izlasku sa početnog zaslona",
     "advancedSettingKeyboardHintsLabel": "Savjeti za tipkovnicu",

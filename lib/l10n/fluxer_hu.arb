@@ -4561,19 +4561,19 @@
     },
     "lookAndFeelNekoTitle": "Egyéb",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "Egyéb felületi opciók.",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "Neko mutatása",
+    "lookAndFeelShowNekoLabel": "Pickles mutatása",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "Ha engedélyezve van, Neko megjelenik a csevegés láblécében.",
+    "lookAndFeelShowNekoDescription": "Ha engedélyezve van, Pickles megjelenik a csevegés láblécében.",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "Hangcsatornához való csatlakozás viselkedése",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -15786,9 +15786,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "Neko megjelenítése",
-    "advancedSettingShowNekoDescription": "Neko macska, amely követi az egérmutatót",
-    "advancedSettingShowNekoDescriptionTouch": "Mutasd a Neko-t a csevegőbeíráskor",
+    "advancedSettingShowNekoLabel": "Pickles megjelenítése",
+    "advancedSettingShowNekoDescription": "Pickles macska, amely követi az egérmutatót",
+    "advancedSettingShowNekoDescriptionTouch": "Mutasd Picklest a csevegőbeíráskor",
+    "advancedSettingShowNekoKeywordCat": "Macska",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Csobbanás nagyítás animáció",
     "advancedSettingMobileSplashZoomAnimationDescription": "A logó kicsinyítése a kezdőképernyőről való kilépéskor",
     "advancedSettingKeyboardHintsLabel": "Billentyűzet-tippek",

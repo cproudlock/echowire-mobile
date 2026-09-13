@@ -4561,19 +4561,19 @@
     },
     "lookAndFeelNekoTitle": "Różne",
     "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Neko appearance settings."
+        "description": "Subsection title under Interface for Pickles appearance settings."
     },
     "lookAndFeelNekoDescription": "Różne opcje interfejsu.",
     "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Neko appearance settings."
+        "description": "Subsection description for Pickles appearance settings."
     },
-    "lookAndFeelShowNekoLabel": "Pokaż Neko",
+    "lookAndFeelShowNekoLabel": "Pokaż Pickles",
     "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Neko in the chat footer."
+        "description": "Toggle label for showing Pickles in the chat footer."
     },
-    "lookAndFeelShowNekoDescription": "Gdy włączone, Neko pojawia się w pobliżu paska wprowadzania tekstu na czacie.",
+    "lookAndFeelShowNekoDescription": "Gdy włączone, Pickles pojawia się w pobliżu paska wprowadzania tekstu na czacie.",
     "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Neko in chat."
+        "description": "Toggle description for showing Pickles in chat."
     },
     "lookAndFeelVoiceChannelJoinTitle": "Zachowanie podczas dołączania do kanału głosowego",
     "@lookAndFeelVoiceChannelJoinTitle": {
@@ -15786,9 +15786,11 @@
     "@advancedSettingHapticFeedbackDescription": {
         "description": "Toggle description for the local-only haptic feedback setting."
     },
-    "advancedSettingShowNekoLabel": "Pokaż Neko",
-    "advancedSettingShowNekoDescription": "Kociak Neko goniący Twój kursor",
-    "advancedSettingShowNekoDescriptionTouch": "Pokaż Neko przy wprowadzaniu tekstu na czacie",
+    "advancedSettingShowNekoLabel": "Pokaż Pickles",
+    "advancedSettingShowNekoDescription": "Kociak Pickles goniący Twój kursor",
+    "advancedSettingShowNekoDescriptionTouch": "Pokaż Pickles przy wprowadzaniu tekstu na czacie",
+    "advancedSettingShowNekoKeywordCat": "Kot",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Animacja przybliżenia",
     "advancedSettingMobileSplashZoomAnimationDescription": "Przybliż logo, gdy opuszczasz ekran powitalny",
     "advancedSettingKeyboardHintsLabel": "Wskazówki klawiatury",

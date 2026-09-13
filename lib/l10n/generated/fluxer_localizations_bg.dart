@@ -4601,11 +4601,11 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Разни опции за интерфейса.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Показване на Неко';
+  String get lookAndFeelShowNekoLabel => 'Показване на Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Когато е активирано, Neko се появява близо до полето за въвеждане на съобщения.';
+      'Когато е активирано, Pickles се появява близо до полето за въвеждане на съобщения.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10251,15 +10251,21 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
       'Вибрационна обратна връзка при докосване и действия. Няма да се синхронизира между устройствата.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Показване на Неко';
+  String get advancedSettingShowNekoLabel => 'Показване на Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Котешката Неко, която гони курсора ви';
+      'Котката Pickles, която гони курсора ви';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Покажи Неко в полето за въвеждане на чат';
+      'Покажи Pickles в полето за въвеждане на чат';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'котка';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

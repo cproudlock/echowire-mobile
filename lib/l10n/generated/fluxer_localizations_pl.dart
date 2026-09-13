@@ -4599,11 +4599,11 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => 'Różne opcje interfejsu.';
 
   @override
-  String get lookAndFeelShowNekoLabel => 'Pokaż Neko';
+  String get lookAndFeelShowNekoLabel => 'Pokaż Pickles';
 
   @override
   String get lookAndFeelShowNekoDescription =>
-      'Gdy włączone, Neko pojawia się w pobliżu paska wprowadzania tekstu na czacie.';
+      'Gdy włączone, Pickles pojawia się w pobliżu paska wprowadzania tekstu na czacie.';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle =>
@@ -10231,15 +10231,21 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
       'Informacja zwrotna wibracyjna dla stuknięć i akcji. Nie będzie synchronizowana między urządzeniami.';
 
   @override
-  String get advancedSettingShowNekoLabel => 'Pokaż Neko';
+  String get advancedSettingShowNekoLabel => 'Pokaż Pickles';
 
   @override
   String get advancedSettingShowNekoDescription =>
-      'Kociak Neko goniący Twój kursor';
+      'Kociak Pickles goniący Twój kursor';
 
   @override
   String get advancedSettingShowNekoDescriptionTouch =>
-      'Pokaż Neko przy wprowadzaniu tekstu na czacie';
+      'Pokaż Pickles przy wprowadzaniu tekstu na czacie';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Kot';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>

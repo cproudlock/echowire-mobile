@@ -4327,10 +4327,10 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get lookAndFeelNekoDescription => '杂项界面选项。';
 
   @override
-  String get lookAndFeelShowNekoLabel => '显示 Neko';
+  String get lookAndFeelShowNekoLabel => '显示 Pickles';
 
   @override
-  String get lookAndFeelShowNekoDescription => '启用后，Neko 会出现在聊天输入栏附近。';
+  String get lookAndFeelShowNekoDescription => '启用后，Pickles 会出现在聊天输入栏附近。';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle => '语音频道加入行为';
@@ -9510,13 +9510,19 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get advancedSettingHapticFeedbackDescription => '轻触和操作的振动反馈。不会跨设备同步。';
 
   @override
-  String get advancedSettingShowNekoLabel => '显示 Neko';
+  String get advancedSettingShowNekoLabel => '显示 Pickles';
 
   @override
   String get advancedSettingShowNekoDescription => '一只会跟着你鼠标指针跑的猫咪';
 
   @override
-  String get advancedSettingShowNekoDescriptionTouch => '在聊天输入框中显示 Neko';
+  String get advancedSettingShowNekoDescriptionTouch => '在聊天输入框中显示 Pickles';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => '猫';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel => '启动缩放动画';
@@ -17917,10 +17923,10 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get lookAndFeelNekoDescription => '其他介面選項。';
 
   @override
-  String get lookAndFeelShowNekoLabel => '顯示 Neko';
+  String get lookAndFeelShowNekoLabel => '顯示 Pickles';
 
   @override
-  String get lookAndFeelShowNekoDescription => '啟用時，Neko 會出現在聊天輸入列附近。';
+  String get lookAndFeelShowNekoDescription => '啟用時，Pickles 會出現在聊天輸入列附近。';
 
   @override
   String get lookAndFeelVoiceChannelJoinTitle => '語音頻道加入行為';
@@ -23071,13 +23077,19 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get advancedSettingHapticFeedbackDescription => '點擊和動作的震動回饋。不會在裝置間同步。';
 
   @override
-  String get advancedSettingShowNekoLabel => '顯示 Neko';
+  String get advancedSettingShowNekoLabel => '顯示 Pickles';
 
   @override
   String get advancedSettingShowNekoDescription => '追逐你游標的貓咪';
 
   @override
-  String get advancedSettingShowNekoDescriptionTouch => '在聊天輸入框顯示 Neko';
+  String get advancedSettingShowNekoDescriptionTouch => '在聊天輸入框顯示 Pickles';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => '貓';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
 
   @override
   String get advancedSettingMobileSplashZoomAnimationLabel => '啟動縮放動畫';

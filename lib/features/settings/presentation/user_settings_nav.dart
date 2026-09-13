@@ -1,8 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/build/app_build_config.dart';
-import 'package:fluxer_app/core/instance/instance_constants.dart';
 import 'package:fluxer_app/core/platform/fluxer_platform.dart';
-import 'package:fluxer_app/core/providers/active_instance_provider.dart';
 import 'package:fluxer_app/features/settings/domain/user_settings_nav_group.dart';
 import 'package:fluxer_app/features/settings/domain/user_settings_section.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/settings_sidebar.dart';
@@ -17,13 +15,10 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 const String kFluxerLabsInviteUrl = 'https://fluxer.gg/fluxer-labs';
 
-bool userSettingsShowJoinFluxerLabsNav(WidgetRef ref) {
-  if (!(AppBuildConfig.isBeta || AppBuildConfig.isCanary)) {
-    return false;
-  }
-  return ref.watch(fluxerBaseUrlProvider) ==
-      InstanceConstants.defaultApiBaseUrl;
-}
+// Echowire: Fluxer Labs is upstream's community and this fork has no
+// equivalent (the web client has no Labs entry either), so the nav item is
+// never shown.
+bool userSettingsShowJoinFluxerLabsNav(WidgetRef ref) => false;
 
 class UserSettingsDesktopNavEntry {
   const UserSettingsDesktopNavEntry._({

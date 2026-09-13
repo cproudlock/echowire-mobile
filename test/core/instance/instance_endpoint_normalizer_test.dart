@@ -72,20 +72,23 @@ void main() {
   });
 
   group('isOfficialInstanceInput', () {
-    test('matches official web app host', () {
-      expect(normalizer.isOfficialInstanceInput('web.fluxer.app'), isTrue);
+    test('matches official www host', () {
+      expect(normalizer.isOfficialInstanceInput('www.echowire.org'), isTrue);
     });
 
     test('matches official marketing host', () {
-      expect(normalizer.isOfficialInstanceInput('fluxer.app'), isTrue);
+      expect(normalizer.isOfficialInstanceInput('echowire.org'), isTrue);
     });
 
     test('matches official api host with path', () {
-      expect(normalizer.isOfficialInstanceInput('api.fluxer.app/v1'), isTrue);
+      expect(normalizer.isOfficialInstanceInput('echowire.org/api/v1'), isTrue);
     });
 
-    test('matches official fluxer.com api host', () {
-      expect(normalizer.isOfficialInstanceInput('api.fluxer.com/v1'), isTrue);
+    test('matches official host given as a full URL', () {
+      expect(
+        normalizer.isOfficialInstanceInput('https://echowire.org/api/v1'),
+        isTrue,
+      );
     });
 
     test('rejects self-hosted host', () {
@@ -94,16 +97,16 @@ void main() {
   });
 
   group('describeApiEndpoint', () {
-    test('maps official api hosts to fluxer.app', () {
+    test('maps official hosts to echowire.org', () {
       expect(
-        normalizer.describeApiEndpoint('https://api.fluxer.app/api'),
-        'fluxer.app',
+        normalizer.describeApiEndpoint('https://echowire.org/api'),
+        'echowire.org',
       );
       expect(
-        normalizer.describeApiEndpoint('https://api.fluxer.app/v1'),
-        'fluxer.app',
+        normalizer.describeApiEndpoint('https://www.echowire.org/api/v1'),
+        'echowire.org',
       );
-      expect(normalizer.describeApiEndpoint('fluxer.app'), 'fluxer.app');
+      expect(normalizer.describeApiEndpoint('echowire.org'), 'echowire.org');
     });
 
     test('keeps self-hosted host and non-default path', () {

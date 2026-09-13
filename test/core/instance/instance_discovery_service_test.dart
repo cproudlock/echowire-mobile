@@ -146,26 +146,29 @@ void main() {
         );
 
         final InstanceConfigSnapshot snapshot = await service.connectToEndpoint(
-          'api.fluxer.app/v1',
+          'echowire.org/api/v1',
         );
 
         expect(snapshot.apiBaseUrl, InstanceConstants.defaultApiBaseUrl);
-        expect(snapshot.displayDomain, 'fluxer.app');
+        expect(snapshot.displayDomain, 'echowire.org');
       },
     );
 
-    test('connectToEndpoint short-circuits fluxer.app without HTTP', () async {
-      final InstanceDiscoveryService service = InstanceDiscoveryService(
-        dio: buildDio(responseJson: buildDiscovery()),
-      );
+    test(
+      'connectToEndpoint short-circuits echowire.org without HTTP',
+      () async {
+        final InstanceDiscoveryService service = InstanceDiscoveryService(
+          dio: buildDio(responseJson: buildDiscovery()),
+        );
 
-      final InstanceConfigSnapshot snapshot = await service.connectToEndpoint(
-        'fluxer.app',
-      );
+        final InstanceConfigSnapshot snapshot = await service.connectToEndpoint(
+          'echowire.org',
+        );
 
-      expect(snapshot.apiBaseUrl, InstanceConstants.defaultApiBaseUrl);
-      expect(snapshot.displayDomain, 'fluxer.app');
-    });
+        expect(snapshot.apiBaseUrl, InstanceConstants.defaultApiBaseUrl);
+        expect(snapshot.displayDomain, 'echowire.org');
+      },
+    );
 
     test(
       'connectToEndpoint resolves official api_public from well-known',

@@ -74,7 +74,7 @@ void main() {
     expect(qr.data, startsWith('otpauth://totp/'));
     expect(qr.data, contains('alice%40example.com'));
     expect(qr.data, contains('secret='));
-    expect(qr.data, contains('issuer=Fluxer'));
+    expect(qr.data, contains('issuer=echowire'));
 
     final SelectableText secret = tester.widget(find.byType(SelectableText));
     expect(secret.data, hasLength(32));

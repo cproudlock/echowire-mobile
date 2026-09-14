@@ -1,24 +1,33 @@
 import 'dart:async';
 
+import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
+import 'package:fluxer_app/features/channels/data/read_state_utils.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
+import 'package:fluxer_app/features/channels/domain/forum_view.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/thread_ui.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
+import 'package:fluxer_app/features/channels/providers/read_state_repository_provider.dart';
 import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
+import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_providers.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
+import 'package:fluxer_app/shared/providers/member_role_color.dart';
+import 'package:fluxer_app/shared/utils/relative_time.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-/// Echowire: renders a forum channel (type 15) as a list of posts (threads)
-/// instead of a message stream. Supports active/archived, tag filtering, and
-/// creating a new post.
+/// Echowire: renders a forum channel (type 15) as a list or gallery of posts
+/// (threads) instead of a message stream. Supports active/archived, narrowing
+/// tag filters, title search that seeds a new post, a per-user Sort & View
+/// override, and the post menu.
 class ForumChannelView extends ConsumerStatefulWidget {
   const ForumChannelView({
     required this.channel,
@@ -33,15 +42,44 @@ class ForumChannelView extends ConsumerStatefulWidget {
   ConsumerState<ForumChannelView> createState() => _ForumChannelViewState();
 }
 
+/// The per-user Sort & View override for a forum, stored with
+/// SharedPreferences under `echowire_forum_view_<forumId>` as `sort,layout`
+/// wire values, where `-1` means "use the channel default".
+class _ForumViewOverride {
+  const _ForumViewOverride({this.sort, this.layout});
+
+  final ForumSortOrder? sort;
+  final ForumLayout? layout;
+
+  static String keyFor(String forumId) => 'echowire_forum_view_$forumId';
+
+  factory _ForumViewOverride.parse(String? raw) {
+    final List<String> parts = (raw ?? '').split(',');
+    int? read(int index) =>
+        parts.length > index ? int.tryParse(parts[index]) : null;
+    final int? sort = read(0);
+    final int? layout = read(1);
+    return _ForumViewOverride(
+      sort: sort == null || sort < 0 ? null : ForumSortOrder.fromWire(sort),
+      layout: layout == null || layout < 0
+          ? null
+          : ForumLayout.fromWire(layout),
+    );
+  }
+
+  String encode() => '${sort?.wireValue ?? -1},${layout?.wireValue ?? -1}';
+}
+
 class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
   late final Stream<List<Channel>> _threadsStream;
   bool _showArchived = false;
   final Set<String> _tagFilter = <String>{};
-  String _searchQuery = '';
-  _ForumSort _sort = _ForumSort.recent;
+  final TextEditingController _search = TextEditingController();
+  _ForumViewOverride _override = const _ForumViewOverride();
+  String? _lastAckedActivity;
 
-  List<ForumTag> get _availableTags =>
-      widget.channel.availableTags ?? const <ForumTag>[];
+  Channel get _forum =>
+      ref.watch(channelByIdProvider(widget.channel.id)).value ?? widget.channel;
 
   @override
   void initState() {
@@ -50,6 +88,37 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
         .read(threadRepositoryProvider)
         .watchThreads(widget.channel.id);
     _refresh();
+    unawaited(
+      ref.read(threadRepositoryProvider).loadForumExtras(widget.channel.id),
+    );
+    unawaited(_loadOverride());
+  }
+
+  @override
+  void dispose() {
+    _search.dispose();
+    super.dispose();
+  }
+
+  Future<void> _loadOverride() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final _ForumViewOverride value = _ForumViewOverride.parse(
+      prefs.getString(_ForumViewOverride.keyFor(widget.channel.id)),
+    );
+    if (mounted) {
+      setState(() => _override = value);
+    }
+  }
+
+  Future<void> _saveOverride(_ForumViewOverride value) async {
+    setState(() => _override = value);
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String key = _ForumViewOverride.keyFor(widget.channel.id);
+    if (value.sort == null && value.layout == null) {
+      await prefs.remove(key);
+    } else {
+      await prefs.setString(key, value.encode());
+    }
   }
 
   void _refresh() {
@@ -58,7 +127,38 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
     unawaited(
       ref
           .read(threadRepositoryProvider)
-          .refreshThreads(widget.channel.id, guildId: widget.guildId),
+          .refreshThreads(widget.channel.id, guildId: widget.guildId)
+          .catchError((Object e, StackTrace st) {
+            talker.error('Could not refresh forum posts', e, st);
+          }),
+    );
+  }
+
+  /// Marks the forum as visited up to its newest post activity, which is what
+  /// the sidebar "N New" count compares against.
+  void _ackForum(List<Channel> posts) {
+    String? newest;
+    for (final Channel p in posts) {
+      if (p.isArchived) {
+        continue;
+      }
+      final String activity = p.activityId;
+      if (newest == null || compareSnowflakeStrings(activity, newest) > 0) {
+        newest = activity;
+      }
+    }
+    if (newest == null || newest == _lastAckedActivity) {
+      return;
+    }
+    _lastAckedActivity = newest;
+    final String ackId = newest;
+    unawaited(
+      ref
+          .read(readStateRepositoryProvider)
+          .ackForumActivity(widget.channel.id, ackId)
+          .catchError((Object e, StackTrace st) {
+            talker.error('Could not ack forum ${widget.channel.id}', e, st);
+          }),
     );
   }
 
@@ -66,33 +166,34 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
     context.go(RoutePaths.guildChannel(post.guildId, post.id));
   }
 
-  ForumTag? _tagById(String id) {
-    for (final ForumTag t in _availableTags) {
-      if (t.id == id) {
-        return t;
-      }
-    }
-    return null;
-  }
+  ForumSortOrder _effectiveSort(Channel forum) =>
+      _override.sort ?? ForumSortOrder.fromWire(forum.defaultSortOrder);
 
-  List<Channel> _visiblePosts(List<Channel> posts) {
+  ForumLayout _effectiveLayout() =>
+      _override.layout ??
+      ForumLayout.fromWire(
+        ref.watch(forumExtrasProvider(widget.channel.id))?.defaultLayout,
+      );
+
+  List<Channel> _visiblePosts(List<Channel> posts, ForumSortOrder sort) {
     Iterable<Channel> filtered = posts.where(
       (Channel p) => p.isArchived == _showArchived,
     );
     if (_tagFilter.isNotEmpty) {
-      filtered = filtered.where(
-        (Channel p) =>
-            (p.appliedTags ?? const <String>[]).any(_tagFilter.contains),
-      );
+      // Narrowing: a post must carry every selected tag.
+      filtered = filtered.where((Channel p) {
+        final List<String> applied = p.appliedTags ?? const <String>[];
+        return _tagFilter.every(applied.contains);
+      });
     }
-    if (_searchQuery.trim().isNotEmpty) {
-      final String q = _searchQuery.trim().toLowerCase();
+    final String q = _search.text.trim().toLowerCase();
+    if (q.isNotEmpty) {
       filtered = filtered.where(
         (Channel p) => p.name.toLowerCase().contains(q),
       );
     }
     final List<Channel> result = filtered.toList();
-    // Pinned posts first, then by the selected sort order.
+    // The pinned post first, then by the selected sort order.
     result.sort((Channel a, Channel b) {
       final int pin =
           ((b.threadPinned ?? false) ? 1 : 0) -
@@ -100,9 +201,12 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
       if (pin != 0) {
         return pin;
       }
-      return switch (_sort) {
-        _ForumSort.recent => b.id.compareTo(a.id),
-        _ForumSort.name => a.name.toLowerCase().compareTo(b.name.toLowerCase()),
+      return switch (sort) {
+        ForumSortOrder.latestActivity => compareSnowflakeStrings(
+          b.activityId,
+          a.activityId,
+        ),
+        ForumSortOrder.creationDate => compareSnowflakeStrings(b.id, a.id),
       };
     });
     return result;
@@ -112,39 +216,142 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
       .read(threadRepositoryProvider)
       .refreshThreads(widget.channel.id, guildId: widget.guildId);
 
-  Offset _anchorOf(BuildContext anchorContext) {
-    final RenderBox? box = anchorContext.findRenderObject() as RenderBox?;
-    return box == null
-        ? Offset.zero
-        : box.localToGlobal(box.size.bottomRight(Offset.zero));
-  }
-
-  Future<void> _openSortMenu(BuildContext anchorContext) {
+  Future<void> _openSortAndView() {
     final FluxerLocalizations l10n = FluxerLocalizations.of(context);
-    return FluxerActionMenu.show(
-      anchorContext,
-      position: _anchorOf(anchorContext),
-      builder: (BuildContext menuContext, VoidCallback close) {
-        Widget option(_ForumSort sort, String label) => FluxerMenuRadioItem(
+    final Channel forum =
+        ref.read(channelByIdProvider(widget.channel.id)).value ??
+        widget.channel;
+    final ForumSortOrder sort =
+        _override.sort ?? ForumSortOrder.fromWire(forum.defaultSortOrder);
+    final ForumLayout layout =
+        _override.layout ??
+        ForumLayout.fromWire(
+          ref.read(forumExtrasProvider(widget.channel.id))?.defaultLayout,
+        );
+    return FluxerBottomSheet.show<void>(
+      context,
+      title: l10n.forumSortAndView,
+      variant: FluxerBottomSheetVariant.menu,
+      builder: (BuildContext sheetContext, VoidCallback close) {
+        Widget option({
+          required String label,
+          required bool selected,
+          required _ForumViewOverride next,
+        }) => FluxerBottomSheetMenuItem(
           label: label,
-          isSelected: _sort == sort,
-          onPressed: () {
+          isSelected: selected,
+          icon: selected
+              ? PhosphorIconsBold.radioButton
+              : PhosphorIconsBold.circle,
+          onTap: () {
             close();
-            setState(() => _sort = sort);
+            unawaited(_saveOverride(next));
           },
         );
-        return <Widget>[
-          option(_ForumSort.recent, l10n.forumSortRecentActivity),
-          option(_ForumSort.name, l10n.forumSortName),
-        ];
+        return FluxerBottomSheetContent(
+          child: FluxerBottomSheetGroupColumn(
+            children: <Widget>[
+              _SheetSectionLabel(l10n.forumSortBy),
+              FluxerMenuGroup(
+                children: <Widget>[
+                  option(
+                    label: l10n.forumSortRecentActivity,
+                    selected: sort == ForumSortOrder.latestActivity,
+                    next: _ForumViewOverride(
+                      sort: ForumSortOrder.latestActivity,
+                      layout: _override.layout,
+                    ),
+                  ),
+                  option(
+                    label: l10n.forumSortDatePosted,
+                    selected: sort == ForumSortOrder.creationDate,
+                    next: _ForumViewOverride(
+                      sort: ForumSortOrder.creationDate,
+                      layout: _override.layout,
+                    ),
+                  ),
+                ],
+              ),
+              _SheetSectionLabel(l10n.forumViewAs),
+              FluxerMenuGroup(
+                children: <Widget>[
+                  option(
+                    label: l10n.forumLayoutList,
+                    selected: layout == ForumLayout.list,
+                    next: _ForumViewOverride(
+                      sort: _override.sort,
+                      layout: ForumLayout.list,
+                    ),
+                  ),
+                  option(
+                    label: l10n.forumLayoutGallery,
+                    selected: layout == ForumLayout.gallery,
+                    next: _ForumViewOverride(
+                      sort: _override.sort,
+                      layout: ForumLayout.gallery,
+                    ),
+                  ),
+                ],
+              ),
+              FluxerMenuGroup(
+                children: <Widget>[
+                  FluxerBottomSheetMenuItem(
+                    label: l10n.forumResetViewToDefault,
+                    icon: PhosphorIconsBold.arrowCounterClockwise,
+                    enabled: _override.sort != null || _override.layout != null,
+                    onTap: () {
+                      close();
+                      unawaited(_saveOverride(const _ForumViewOverride()));
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
       },
     );
   }
 
-  Future<void> _manageTags() async {
+  Future<void> _openAllTags(List<ForumTag> tags) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    return FluxerBottomSheet.show<void>(
+      context,
+      title: l10n.forumAllTags,
+      variant: FluxerBottomSheetVariant.menu,
+      builder: (BuildContext sheetContext, VoidCallback close) =>
+          FluxerBottomSheetContent(
+            child: StatefulBuilder(
+              builder: (BuildContext _, StateSetter setSheetState) =>
+                  FluxerMenuGroup(
+                    children: <Widget>[
+                      for (final ForumTag tag in tags)
+                        FluxerBottomSheetMenuItem(
+                          label: tag.name,
+                          isSelected: _tagFilter.contains(tag.id),
+                          icon: _tagFilter.contains(tag.id)
+                              ? PhosphorIconsFill.checkSquare
+                              : PhosphorIconsBold.square,
+                          onTap: () {
+                            setState(() {
+                              if (!_tagFilter.remove(tag.id)) {
+                                _tagFilter.add(tag.id);
+                              }
+                            });
+                            setSheetState(() {});
+                          },
+                        ),
+                    ],
+                  ),
+            ),
+          ),
+    );
+  }
+
+  Future<void> _manageTags(List<ForumTag> availableTags) async {
     final FluxerLocalizations l10n = FluxerLocalizations.of(context);
     final List<_EditableTag> draft = <_EditableTag>[
-      for (final ForumTag t in _availableTags)
+      for (final ForumTag t in availableTags)
         _EditableTag(id: t.id, name: t.name, emojiName: t.emojiName),
     ];
     final bool? save = await FluxerModal.show<bool>(
@@ -190,7 +397,9 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
 
   Future<void> _createPost() async {
     final FluxerLocalizations l10n = FluxerLocalizations.of(context);
-    final _ForumPostDraft draft = _ForumPostDraft();
+    final _ForumPostDraft draft = _ForumPostDraft(
+      initialTitle: _search.text.trim(),
+    );
     final bool canManage = readCanManageThreads(ref, widget.channel.id);
     final bool? submit = await FluxerModal.show<bool>(
       context,
@@ -258,17 +467,8 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
     if (!mounted) {
       return;
     }
+    _search.clear();
     _openPost(post);
-  }
-
-  String _postSubtitle(FluxerLocalizations l10n, Channel post) {
-    return <String>[
-      if (post.threadMessageCount != null)
-        l10n.threadsMessageCount(post.threadMessageCount!),
-      if (post.threadMemberCount != null)
-        l10n.threadsMemberCount(post.threadMemberCount!),
-      if (post.isArchived) l10n.threadsStatusArchived,
-    ].join('  ·  ');
   }
 
   @override
@@ -276,8 +476,15 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
     final FluxerLocalizations l10n = FluxerLocalizations.of(context);
     final colors = context.colors;
     final layout = context.layout;
+    final Channel forum = _forum;
+    final List<ForumTag> availableTags =
+        forum.availableTags ?? const <ForumTag>[];
     final bool canManage = watchCanManageThreads(ref, widget.channel.id);
     final String? currentUserId = ref.watch(currentUserIdProvider);
+    final ForumSortOrder sort = _effectiveSort(forum);
+    final ForumLayout viewLayout = _effectiveLayout();
+    // Show up to this many tag chips inline; the rest live behind "All".
+    const int inlineTagLimit = 6;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -286,18 +493,20 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
           padding: EdgeInsets.fromLTRB(layout.s3, layout.s2, layout.s3, 0),
           child: Row(
             children: <Widget>[
-              FluxerSegmentedTabs(
-                tabs: <FluxerTab>[
-                  FluxerTab(label: l10n.threadsFilterActive),
-                  FluxerTab(label: l10n.threadsFilterArchived),
-                ],
-                selectedIndex: _showArchived ? 1 : 0,
-                onChanged: (int index) {
-                  setState(() => _showArchived = index == 1);
-                  _refresh();
-                },
+              Expanded(
+                child: FluxerInput(
+                  controller: _search,
+                  hint: l10n.forumSearchOrCreatePost,
+                  prefixIcon: Icon(
+                    PhosphorIconsBold.magnifyingGlass,
+                    size: 18,
+                    color: colors.textSecondary,
+                  ),
+                  textInputAction: TextInputAction.search,
+                  onChanged: (String _) => setState(() {}),
+                ),
               ),
-              const Spacer(),
+              SizedBox(width: layout.s2),
               FluxerButton.primary(
                 onPressed: _createPost,
                 icon: PhosphorIconsBold.plus,
@@ -317,65 +526,73 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
           ),
           child: Row(
             children: <Widget>[
-              Expanded(
-                child: FluxerInput(
-                  hint: l10n.forumSearchPosts,
-                  prefixIcon: Icon(
-                    PhosphorIconsBold.magnifyingGlass,
-                    size: 18,
-                    color: colors.textSecondary,
-                  ),
-                  textInputAction: TextInputAction.search,
-                  onChanged: (String v) => setState(() => _searchQuery = v),
-                ),
+              FluxerSegmentedTabs(
+                tabs: <FluxerTab>[
+                  FluxerTab(label: l10n.threadsFilterActive),
+                  FluxerTab(label: l10n.threadsFilterArchived),
+                ],
+                selectedIndex: _showArchived ? 1 : 0,
+                onChanged: (int index) {
+                  setState(() => _showArchived = index == 1);
+                  _refresh();
+                },
               ),
-              SizedBox(width: layout.s1),
-              Builder(
-                builder: (BuildContext anchorContext) => FluxerButton.ghost(
-                  icon: PhosphorIconsBold.arrowsDownUp,
-                  isSquare: true,
-                  semanticLabel: l10n.forumSortAndView,
-                  onPressed: () => unawaited(_openSortMenu(anchorContext)),
-                ),
+              const Spacer(),
+              FluxerButton.ghost(
+                icon: PhosphorIconsBold.arrowsDownUp,
+                label: l10n.forumSortAndView,
+                size: FluxerButtonSize.compact,
+                fitContent: true,
+                onPressed: () => unawaited(_openSortAndView()),
               ),
               if (canManage)
                 FluxerButton.ghost(
                   icon: PhosphorIconsBold.tag,
                   isSquare: true,
+                  size: FluxerButtonSize.compact,
                   semanticLabel: l10n.forumManageTags,
-                  onPressed: () => unawaited(_manageTags()),
+                  onPressed: () => unawaited(_manageTags(availableTags)),
                 ),
             ],
           ),
         ),
-        if (_availableTags.isNotEmpty)
+        if (availableTags.isNotEmpty)
           SizedBox(
             height: 40,
-            child: ListView.separated(
+            child: ListView(
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.symmetric(
                 horizontal: layout.s3,
                 vertical: layout.s1,
               ),
-              itemCount: _availableTags.length,
-              separatorBuilder: (_, _) => SizedBox(width: layout.s2),
-              itemBuilder: (BuildContext context, int index) {
-                final ForumTag tag = _availableTags[index];
-                final bool selected = _tagFilter.contains(tag.id);
-                return Center(
-                  child: ForumTagChip(
-                    label: tag.name,
-                    selected: selected,
-                    onTap: () => setState(() {
-                      if (selected) {
-                        _tagFilter.remove(tag.id);
-                      } else {
-                        _tagFilter.add(tag.id);
-                      }
-                    }),
+              children: <Widget>[
+                for (final ForumTag tag in availableTags.take(inlineTagLimit))
+                  Padding(
+                    padding: EdgeInsets.only(right: layout.s2),
+                    child: Center(
+                      child: ForumTagChip(
+                        label: tag.name,
+                        selected: _tagFilter.contains(tag.id),
+                        onTap: () => setState(() {
+                          if (!_tagFilter.remove(tag.id)) {
+                            _tagFilter.add(tag.id);
+                          }
+                        }),
+                      ),
+                    ),
                   ),
-                );
-              },
+                Center(
+                  child: ForumTagChip(
+                    label: _tagFilter.isEmpty
+                        ? l10n.forumAllTags
+                        : l10n.forumTagsSelectedCount(_tagFilter.length),
+                    selected: availableTags
+                        .skip(inlineTagLimit)
+                        .any((ForumTag t) => _tagFilter.contains(t.id)),
+                    onTap: () => unawaited(_openAllTags(availableTags)),
+                  ),
+                ),
+              ],
             ),
           ),
         Expanded(
@@ -386,9 +603,13 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
                   if (snapshot.hasError) {
                     return ThreadListMessage(text: l10n.forumLoadFailed);
                   }
-                  final List<Channel> posts = _visiblePosts(
-                    snapshot.data ?? <Channel>[],
-                  );
+                  final List<Channel> all = snapshot.data ?? <Channel>[];
+                  if (snapshot.hasData) {
+                    WidgetsBinding.instance.addPostFrameCallback(
+                      (_) => _ackForum(all),
+                    );
+                  }
+                  final List<Channel> posts = _visiblePosts(all, sort);
                   if (posts.isEmpty) {
                     return RefreshIndicator(
                       onRefresh: _onRefresh,
@@ -404,49 +625,394 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
                       ),
                     );
                   }
+                  List<ThreadModAction> actionsFor(Channel post) =>
+                      threadModActionsFor(
+                        thread: post,
+                        canManage: canManage,
+                        currentUserId: currentUserId,
+                      );
+                  if (viewLayout == ForumLayout.gallery) {
+                    return RefreshIndicator(
+                      onRefresh: _onRefresh,
+                      child: GridView.builder(
+                        padding: EdgeInsets.all(layout.s3),
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 220,
+                          mainAxisSpacing: layout.s3,
+                          crossAxisSpacing: layout.s3,
+                          childAspectRatio: 0.78,
+                        ),
+                        itemCount: posts.length,
+                        itemBuilder: (BuildContext context, int index) =>
+                            _ForumPostCard(
+                              post: posts[index],
+                              guildId: widget.guildId,
+                              availableTags: availableTags,
+                              actions: actionsFor(posts[index]),
+                              onTap: () => _openPost(posts[index]),
+                            ),
+                      ),
+                    );
+                  }
                   return RefreshIndicator(
                     onRefresh: _onRefresh,
                     child: ListView.builder(
                       padding: EdgeInsets.symmetric(vertical: layout.s2),
                       itemCount: posts.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final Channel post = posts[index];
-                        final List<String> tagNames = <String>[
-                          for (final String id
-                              in post.appliedTags ?? const <String>[])
-                            if (_tagById(id) case final ForumTag t) t.name,
-                        ];
-                        return FluxerListRow(
-                          leading: Icon(
-                            post.threadPinned ?? false
-                                ? PhosphorIconsFill.pushPin
-                                : PhosphorIconsRegular.chatCircle,
-                            size: 20,
-                            color: colors.textSecondary,
+                      itemBuilder: (BuildContext context, int index) =>
+                          _ForumPostRow(
+                            post: posts[index],
+                            guildId: widget.guildId,
+                            availableTags: availableTags,
+                            actions: actionsFor(posts[index]),
+                            onTap: () => _openPost(posts[index]),
                           ),
-                          title: post.name,
-                          subtitle: _postSubtitle(l10n, post),
-                          tagsBelowTitle: <Widget>[
-                            for (final String name in tagNames)
-                              ForumTagChip(label: name),
-                          ],
-                          trailing: ThreadModMenuButton(
-                            thread: post,
-                            actions: threadModActionsFor(
-                              thread: post,
-                              canManage: canManage,
-                              currentUserId: currentUserId,
-                            ),
-                          ),
-                          onTap: () => _openPost(post),
-                        );
-                      },
                     ),
                   );
                 },
           ),
         ),
       ],
+    );
+  }
+}
+
+/// Resolved display data shared by the list row and the gallery card.
+class _PostDisplay {
+  _PostDisplay(WidgetRef ref, Channel post, List<ForumTag> availableTags)
+    : preview = ref.watch(threadStarterPreviewsProvider)[post.id],
+      tagNames = <String>[
+        for (final String id in post.appliedTags ?? const <String>[])
+          for (final ForumTag t in availableTags)
+            if (t.id == id) t.name,
+      ],
+      isUnread =
+          ref.watch(channelUnreadProvider(post.id)).value?.hasUnread ?? false;
+
+  final ThreadStarterPreview? preview;
+  final List<String> tagNames;
+  final bool isUnread;
+
+  static String lastActivity(FluxerLocalizations l10n, Channel post) {
+    final int ms = snowflakeTimestampMs(post.activityId);
+    if (ms <= 0) {
+      return '';
+    }
+    return relativeTime(DateTime.fromMillisecondsSinceEpoch(ms), l10n);
+  }
+}
+
+/// One forum post in list layout: tags, title, author-prefixed preview, reply
+/// count and last activity, with the starter image on the right.
+class _ForumPostRow extends ConsumerWidget {
+  const _ForumPostRow({
+    required this.post,
+    required this.guildId,
+    required this.availableTags,
+    required this.actions,
+    required this.onTap,
+  });
+
+  final Channel post;
+  final String guildId;
+  final List<ForumTag> availableTags;
+  final List<ThreadModAction> actions;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final colors = context.colors;
+    final textStyles = context.textStyles;
+    final layout = context.layout;
+    final _PostDisplay display = _PostDisplay(ref, post, availableTags);
+    final ThreadStarterPreview? preview = display.preview;
+    final String? authorId = preview?.authorId;
+    final Color? authorColor = authorId == null
+        ? null
+        : ref.watch(memberRoleColorProvider((authorId, guildId)));
+    final String? imageUrl = preview?.attachmentIsImage ?? false
+        ? preview!.attachmentUrl
+        : null;
+
+    return FluxerTappable(
+      onTap: onTap,
+      onLongPress: actions.isEmpty
+          ? null
+          : () => unawaited(
+              showThreadActionsMenu(
+                context,
+                ref,
+                thread: post,
+                actions: actions,
+              ),
+            ),
+      semanticLabel: post.name,
+      builder: (BuildContext _, Set<WidgetState> _) => Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: layout.s3,
+          vertical: layout.s1,
+        ),
+        padding: EdgeInsets.all(layout.s3),
+        decoration: BoxDecoration(
+          color: colors.backgroundSecondary,
+          borderRadius: layout.radiusLg,
+          border: Border.all(color: colors.borderColor),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  if (display.tagNames.isNotEmpty) ...<Widget>[
+                    Wrap(
+                      spacing: layout.s1,
+                      runSpacing: layout.s1,
+                      children: <Widget>[
+                        for (final String name in display.tagNames)
+                          ForumTagChip(label: name),
+                      ],
+                    ),
+                    SizedBox(height: layout.s1),
+                  ],
+                  Row(
+                    children: <Widget>[
+                      if (post.threadPinned ?? false) ...<Widget>[
+                        Icon(
+                          PhosphorIconsFill.pushPin,
+                          size: 14,
+                          color: colors.textSecondary,
+                        ),
+                        SizedBox(width: layout.s1),
+                      ],
+                      Expanded(
+                        child: Text(
+                          post.name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: textStyles.bodyMedium.copyWith(
+                            color: display.isUnread
+                                ? colors.textPrimary
+                                : colors.textSecondary,
+                            fontWeight: display.isUnread
+                                ? FontWeight.w700
+                                : FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (preview != null && preview.content.trim().isNotEmpty)
+                    Padding(
+                      padding: EdgeInsets.only(top: layout.s1),
+                      child: Text.rich(
+                        TextSpan(
+                          children: <InlineSpan>[
+                            if (preview.authorName != null)
+                              TextSpan(
+                                text: '${preview.authorName}: ',
+                                style: TextStyle(
+                                  color: authorColor ?? colors.textPrimary,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            TextSpan(text: preview.content.trim()),
+                          ],
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: textStyles.bodySmall.copyWith(
+                          color: colors.textSecondary,
+                        ),
+                      ),
+                    ),
+                  SizedBox(height: layout.s2),
+                  _PostFooter(post: post, l10n: l10n),
+                ],
+              ),
+            ),
+            if (imageUrl != null) ...<Widget>[
+              SizedBox(width: layout.s3),
+              ClipRRect(
+                borderRadius: layout.radiusMd,
+                child: CachedNetworkImage(
+                  imageUrl: imageUrl,
+                  width: 64,
+                  height: 64,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ],
+            ThreadModMenuButton(thread: post, actions: actions),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Reply count and relative last activity.
+class _PostFooter extends StatelessWidget {
+  const _PostFooter({required this.post, required this.l10n});
+
+  final Channel post;
+  final FluxerLocalizations l10n;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final TextStyle style = context.textStyles.label.copyWith(
+      color: colors.textTertiaryMuted,
+    );
+    final String activity = _PostDisplay.lastActivity(l10n, post);
+    return Row(
+      children: <Widget>[
+        Icon(
+          PhosphorIconsFill.chatCircle,
+          size: 14,
+          color: colors.textSecondary,
+        ),
+        const SizedBox(width: 4),
+        Text('${post.threadMessageCount ?? 0}', style: style),
+        if (activity.isNotEmpty) ...<Widget>[
+          Text('  ·  ', style: style),
+          Flexible(
+            child: Text(
+              activity,
+              style: style,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+        if (post.isLocked) ...<Widget>[
+          const SizedBox(width: 6),
+          Icon(PhosphorIconsBold.lock, size: 12, color: colors.textSecondary),
+        ],
+      ],
+    );
+  }
+}
+
+/// One forum post in gallery layout: the starter image (or a placeholder)
+/// above the title, tags and reply count.
+class _ForumPostCard extends ConsumerWidget {
+  const _ForumPostCard({
+    required this.post,
+    required this.guildId,
+    required this.availableTags,
+    required this.actions,
+    required this.onTap,
+  });
+
+  final Channel post;
+  final String guildId;
+  final List<ForumTag> availableTags;
+  final List<ThreadModAction> actions;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final colors = context.colors;
+    final textStyles = context.textStyles;
+    final layout = context.layout;
+    final _PostDisplay display = _PostDisplay(ref, post, availableTags);
+    final ThreadStarterPreview? preview = display.preview;
+    final String? imageUrl = preview?.attachmentIsImage ?? false
+        ? preview!.attachmentUrl
+        : null;
+
+    return FluxerTappable(
+      onTap: onTap,
+      onLongPress: actions.isEmpty
+          ? null
+          : () => unawaited(
+              showThreadActionsMenu(
+                context,
+                ref,
+                thread: post,
+                actions: actions,
+              ),
+            ),
+      semanticLabel: post.name,
+      builder: (BuildContext _, Set<WidgetState> _) => DecoratedBox(
+        decoration: BoxDecoration(
+          color: colors.backgroundSecondary,
+          borderRadius: layout.radiusLg,
+          border: Border.all(color: colors.borderColor),
+        ),
+        child: ClipRRect(
+          borderRadius: layout.radiusLg,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Expanded(
+                child: imageUrl != null
+                    ? CachedNetworkImage(imageUrl: imageUrl, fit: BoxFit.cover)
+                    : ColoredBox(
+                        color: colors.backgroundTertiary,
+                        child: Icon(
+                          PhosphorIconsFill.chatsCircle,
+                          size: 32,
+                          color: colors.textTertiaryMuted,
+                        ),
+                      ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(layout.s2),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      post.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: textStyles.bodySmall.copyWith(
+                        color: display.isUnread
+                            ? colors.textPrimary
+                            : colors.textSecondary,
+                        fontWeight: display.isUnread
+                            ? FontWeight.w700
+                            : FontWeight.w600,
+                      ),
+                    ),
+                    if (display.tagNames.isNotEmpty) ...<Widget>[
+                      SizedBox(height: layout.s1),
+                      ForumTagChip(label: display.tagNames.first),
+                    ],
+                    SizedBox(height: layout.s1),
+                    _PostFooter(post: post, l10n: l10n),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// A small caption above a group of options in a bottom sheet.
+class _SheetSectionLabel extends StatelessWidget {
+  const _SheetSectionLabel(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(context.layout.s1, context.layout.s2, 0, 0),
+      child: Text(
+        text,
+        style: context.textStyles.label.copyWith(
+          color: context.colors.textSecondary,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 }
@@ -547,10 +1113,16 @@ class _ManageForumTagsBodyState extends State<_ManageForumTagsBody> {
   }
 }
 
-enum _ForumSort { recent, name }
-
 class _ForumPostDraft extends ChangeNotifier {
-  String title = '';
+  _ForumPostDraft({String initialTitle = ''})
+    : title = initialTitle,
+      titleController = TextEditingController(text: initialTitle);
+
+  String title;
+
+  /// Seeds the title field from the forum search box.
+  final TextEditingController titleController;
+
   String body = '';
   final Set<String> tagIds = <String>{};
 
@@ -601,11 +1173,38 @@ class _NewForumPostBody extends ConsumerWidget {
       color: colors.textSecondary,
     );
 
+    final String guidelines = (forum.topic ?? '').trim();
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
+        if (guidelines.isNotEmpty) ...<Widget>[
+          Container(
+            padding: EdgeInsets.all(layout.s3),
+            decoration: BoxDecoration(
+              color: colors.backgroundTertiary,
+              borderRadius: layout.radiusMd,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  l10n.forumPostGuidelinesLabel,
+                  style: textStyles.label.copyWith(
+                    color: colors.textPrimary,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(height: layout.s1),
+                Text(guidelines, style: hintStyle),
+              ],
+            ),
+          ),
+          SizedBox(height: layout.s4),
+        ],
         FluxerInput(
+          controller: draft.titleController,
           label: l10n.forumPostTitleLabel,
           hint: l10n.forumPostTitleHint,
           maxLength: 100,

@@ -918,6 +918,7 @@ bool isKnownSystemMessageType(int type) {
     messageTypeChannelNameChange ||
     messageTypeChannelIconChange ||
     messageTypeChannelPinnedMessage ||
+    messageTypeThreadCreated ||
     messageTypeUserJoin => true,
     _ => false,
   };

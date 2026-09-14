@@ -17109,5 +17109,216 @@
     "forumNoArchivedPosts": "No archived posts",
     "@forumNoArchivedPosts": {
         "description": "Empty state of the archived forum post list."
+    },
+    "systemThreadCreated": "{username} started a thread: {threadName}.",
+    "@systemThreadCreated": {
+        "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "threadName": {
+                "type": "String"
+            }
+        }
+    },
+    "systemPreviewStartedThread": "{username} started a thread.",
+    "@systemPreviewStartedThread": {
+        "description": "Plaintext preview of the system message posted when someone starts a thread.",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "systemThreadDeleted": "a thread that was deleted",
+    "@systemThreadDeleted": {
+        "description": "Stands in for a thread name in the thread started system message when the thread no longer exists."
+    },
+    "threadsComposerLockedHint": "This thread is locked. Only moderators can send messages.",
+    "@threadsComposerLockedHint": {
+        "description": "Composer placeholder in a locked thread for users who cannot moderate it."
+    },
+    "threadsComposerArchivedHint": "This thread is archived. Sending a message reopens it.",
+    "@threadsComposerArchivedHint": {
+        "description": "Composer placeholder in an archived thread that is not locked."
+    },
+    "forumSearchOrCreatePost": "Search or create a post...",
+    "@forumSearchOrCreatePost": {
+        "description": "Placeholder of the forum search field. What is typed also becomes the title of a new post."
+    },
+    "forumSortBy": "Sort by",
+    "@forumSortBy": {
+        "description": "Section label in the forum Sort & View sheet."
+    },
+    "forumSortDatePosted": "Date posted",
+    "@forumSortDatePosted": {
+        "description": "Forum sort option that orders posts by creation date."
+    },
+    "forumViewAs": "View as",
+    "@forumViewAs": {
+        "description": "Section label for the forum layout options in the Sort & View sheet."
+    },
+    "forumLayoutList": "List",
+    "@forumLayoutList": {
+        "description": "Forum layout option showing posts as a list."
+    },
+    "forumLayoutGallery": "Gallery",
+    "@forumLayoutGallery": {
+        "description": "Forum layout option showing posts as a grid of image cards."
+    },
+    "forumResetViewToDefault": "Reset to default",
+    "@forumResetViewToDefault": {
+        "description": "Returns the forum Sort & View choice to the channel defaults."
+    },
+    "forumAllTags": "All",
+    "@forumAllTags": {
+        "description": "Chip that opens the full list of forum tags to filter by."
+    },
+    "forumTagsSelectedCount": "{count, plural, =1{1 tag} other{{count} tags}}",
+    "@forumTagsSelectedCount": {
+        "description": "Label of the tag filter chip when tags are selected.",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "forumPostGuidelinesLabel": "Post guidelines",
+    "@forumPostGuidelinesLabel": {
+        "description": "Heading above the forum's guidelines in the new post sheet."
+    },
+    "forumEditPost": "Edit post",
+    "@forumEditPost": {
+        "description": "Menu item and dialog title for editing a forum post's title and tags."
+    },
+    "forumPostTagRequiredToast": "Pick at least one tag for this forum.",
+    "@forumPostTagRequiredToast": {
+        "description": "Shown when saving a post without a tag in a forum that requires one."
+    },
+    "threadsFollow": "Follow",
+    "@threadsFollow": {
+        "description": "Menu item to follow a thread or forum post and get its notifications."
+    },
+    "threadsUnfollow": "Unfollow",
+    "@threadsUnfollow": {
+        "description": "Menu item to stop following a thread or forum post."
+    },
+    "threadsFollowing": "Following",
+    "@threadsFollowing": {
+        "description": "Header button state when the user follows the thread or post."
+    },
+    "threadsMute": "Mute",
+    "@threadsMute": {
+        "description": "Menu item to mute a thread or forum post."
+    },
+    "threadsUnmute": "Unmute",
+    "@threadsUnmute": {
+        "description": "Menu item to unmute a thread or forum post."
+    },
+    "threadsEditThread": "Edit thread",
+    "@threadsEditThread": {
+        "description": "Menu item and dialog title for renaming a thread."
+    },
+    "forumNewPostsPill": "{count} New",
+    "@forumNewPostsPill": {
+        "description": "Sidebar pill on a forum channel counting posts with activity since the user last opened it.",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "forumSettingsTitle": "Forum settings",
+    "@forumSettingsTitle": {
+        "description": "Heading of the forum-only section in channel settings."
+    },
+    "forumSettingsGuidelinesHint": "Tell members what to post here",
+    "@forumSettingsGuidelinesHint": {
+        "description": "Placeholder of the forum post guidelines field in channel settings."
+    },
+    "forumSettingsRequireTag": "Require tags on new posts",
+    "@forumSettingsRequireTag": {
+        "description": "Switch that makes members pick at least one tag when creating a forum post."
+    },
+    "forumSettingsRequireTagDescription": "Members must pick at least one tag before they can post.",
+    "@forumSettingsRequireTagDescription": {
+        "description": "Explains the require tags switch in forum settings."
+    },
+    "forumSettingsDefaultSort": "Default sort order",
+    "@forumSettingsDefaultSort": {
+        "description": "Forum setting for how posts are ordered unless a member picks otherwise."
+    },
+    "forumSettingsDefaultLayout": "Default layout",
+    "@forumSettingsDefaultLayout": {
+        "description": "Forum setting for list or gallery layout unless a member picks otherwise."
+    },
+    "forumSettingsDefaultReaction": "Default reaction",
+    "@forumSettingsDefaultReaction": {
+        "description": "Forum setting for the emoji used by React to Post."
+    },
+    "forumSettingsDefaultReactionDescription": "Shown as the quick reaction on every post. Leave empty for none.",
+    "@forumSettingsDefaultReactionDescription": {
+        "description": "Explains the forum default reaction setting."
+    },
+    "forumSettingsDefaultReactionHint": "An emoji, e.g. 👍",
+    "@forumSettingsDefaultReactionHint": {
+        "description": "Placeholder of the forum default reaction field."
+    },
+    "forumSettingsHideAfterInactivity": "Hide after inactivity",
+    "@forumSettingsHideAfterInactivity": {
+        "description": "Forum setting for how long a post stays active without new messages."
+    },
+    "forumSettingsHideAfterInactivityDescription": "Inactive posts move to Archived. Anyone can reopen a post that is not locked.",
+    "@forumSettingsHideAfterInactivityDescription": {
+        "description": "Explains the forum hide after inactivity setting."
+    },
+    "forumSettingsHideAfterOneHour": "1 hour",
+    "@forumSettingsHideAfterOneHour": {
+        "description": "Hide after inactivity option."
+    },
+    "forumSettingsHideAfterOneDay": "24 hours",
+    "@forumSettingsHideAfterOneDay": {
+        "description": "Hide after inactivity option."
+    },
+    "forumSettingsHideAfterThreeDays": "3 days",
+    "@forumSettingsHideAfterThreeDays": {
+        "description": "Hide after inactivity option, the default."
+    },
+    "forumSettingsHideAfterOneWeek": "1 week",
+    "@forumSettingsHideAfterOneWeek": {
+        "description": "Hide after inactivity option."
+    },
+    "forumSettingsPostCreationSlowmode": "Post creation slowmode",
+    "@forumSettingsPostCreationSlowmode": {
+        "description": "Forum setting limiting how often a member can create a new post."
+    },
+    "forumSettingsPostCreationSlowmodeDescription": "How long members wait between creating posts.",
+    "@forumSettingsPostCreationSlowmodeDescription": {
+        "description": "Explains the forum post creation slowmode setting."
+    },
+    "forumSettingsDefaultPostSlowmode": "Slowmode inside new posts",
+    "@forumSettingsDefaultPostSlowmode": {
+        "description": "Forum setting for the slowmode applied to messages inside each new post."
+    },
+    "forumSettingsDefaultPostSlowmodeDescription": "Applied to posts when they are created.",
+    "@forumSettingsDefaultPostSlowmodeDescription": {
+        "description": "Explains the default slowmode for new forum posts."
+    },
+    "forumSettingsSave": "Save forum settings",
+    "@forumSettingsSave": {
+        "description": "Button that saves the forum settings section."
+    },
+    "forumSettingsSaved": "Forum settings saved",
+    "@forumSettingsSaved": {
+        "description": "Toast after forum settings are saved."
+    },
+    "forumSettingsSaveFailed": "Could not save forum settings",
+    "@forumSettingsSaveFailed": {
+        "description": "Toast when forum settings fail to save."
+    },
+    "threadsStarterMessage": "Started from",
+    "@threadsStarterMessage": {
+        "description": "Label above the message a thread was started from, shown at the top of the thread."
     }
 }

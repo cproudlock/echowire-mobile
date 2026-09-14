@@ -84,6 +84,14 @@ bool isGuildTextBasedChannelType(ChannelType type) =>
 bool isGuildVoiceChannelType(int type) =>
     type == ChannelType.guildVoice.wireValue;
 
+/// Echowire: compares two snowflake strings numerically (longer is newer).
+int compareSnowflakeStrings(String a, String b) {
+  if (a.length != b.length) {
+    return a.length.compareTo(b.length);
+  }
+  return a.compareTo(b);
+}
+
 bool isGuildCategoryChannelType(int type) =>
     type == ChannelType.guildCategory.wireValue;
 
@@ -100,6 +108,9 @@ class Channel {
   final String? topic;
   final String? parentId;
   final int position;
+
+  /// Newest message id in this channel, when known.
+  final String? lastMessageId;
   final int rateLimitPerUser;
   final bool nsfw;
   final bool? nsfwOverride;
@@ -138,6 +149,7 @@ class Channel {
     this.topic,
     this.parentId,
     this.position = 0,
+    this.lastMessageId,
     this.rateLimitPerUser = 0,
     this.nsfw = false,
     this.nsfwOverride,
@@ -219,6 +231,7 @@ class Channel {
       topic: row.topic,
       parentId: row.parentId,
       position: row.position,
+      lastMessageId: row.lastMessageId,
       rateLimitPerUser: row.rateLimitPerUser,
       nsfw: row.nsfw,
       nsfwOverride: row.nsfwOverride,
@@ -283,6 +296,7 @@ class Channel {
       topic: Value(topic),
       parentId: Value(parentId),
       position: Value(position),
+      lastMessageId: Value(lastMessageId),
       rateLimitPerUser: Value(rateLimitPerUser),
       nsfw: Value(nsfw),
       nsfwOverride: Value(nsfwOverride),
@@ -333,6 +347,17 @@ class Channel {
 
   /// Echowire: a locked thread (only moderators can send).
   bool get isLocked => threadLocked ?? false;
+
+  /// Echowire: the snowflake that orders threads by recent activity, the newer
+  /// of the thread id (creation) and its last message id.
+  String get activityId {
+    final String? last = lastMessageId;
+    if (last == null || last.isEmpty) {
+      return id;
+    }
+    return compareSnowflakeStrings(last, id) > 0 ? last : id;
+  }
+
   @override
   bool operator ==(Object other) {
     return other is Channel &&
@@ -353,11 +378,34 @@ class Channel {
         other.userLimit == userLimit &&
         other.bitrate == bitrate &&
         other.rtcRegion == rtcRegion &&
-        other.voiceConnectionLimit == voiceConnectionLimit;
+        other.voiceConnectionLimit == voiceConnectionLimit &&
+        // Echowire: thread and forum state, so watchers see archive/lock/tag
+        // changes instead of having them collapsed by `distinct()`.
+        other.lastMessageId == lastMessageId &&
+        other.ownerId == ownerId &&
+        other.threadArchived == threadArchived &&
+        other.threadAutoArchiveDuration == threadAutoArchiveDuration &&
+        other.threadLocked == threadLocked &&
+        other.threadInvitable == threadInvitable &&
+        other.threadMemberCount == threadMemberCount &&
+        other.threadMessageCount == threadMessageCount &&
+        other.threadPinned == threadPinned &&
+        listEquals(other.appliedTags, appliedTags) &&
+        listEquals(
+          other.availableTags
+              ?.map((ForumTag t) => t.toJson().toString())
+              .toList(),
+          availableTags?.map((ForumTag t) => t.toJson().toString()).toList(),
+        ) &&
+        other.defaultSortOrder == defaultSortOrder &&
+        other.forumDefaultAutoArchiveDuration ==
+            forumDefaultAutoArchiveDuration &&
+        other.forumRequireTag == forumRequireTag &&
+        other.defaultReactionEmojiJson == defaultReactionEmojiJson;
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll(<Object?>[
     id,
     guildId,
     name,
@@ -376,7 +424,12 @@ class Channel {
     bitrate,
     rtcRegion,
     voiceConnectionLimit,
-  );
+    lastMessageId,
+    threadArchived,
+    threadLocked,
+    threadPinned,
+    threadMessageCount,
+  ]);
 }
 
 @immutable

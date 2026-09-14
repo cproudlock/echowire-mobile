@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
+import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
+import 'package:fluxer_app/features/channels/domain/channel.dart';
+import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/message_reactions_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_reactions_bar.dart';
@@ -21,6 +24,7 @@ import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/guild_user_display_provider.dart';
 import 'package:fluxer_app/shared/providers/member_role_color.dart';
 import 'package:fluxer_app/shared/utils/user_date_formatting.dart';
+import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 const Color _kSystemMessageOnlineIconColor = Color(0xFF22C55E);
@@ -95,6 +99,18 @@ class SystemMessage extends ConsumerWidget {
       color: context.colors.textPrimary,
       fontSize: kSystemMessageBodyFontSize,
     );
+    // Echowire: a THREAD_CREATED message carries the thread id as content.
+    final bool isThreadCreated = message.type == messageTypeThreadCreated;
+    final String threadId = message.content.trim();
+    final AsyncValue<Channel?>? threadAsync =
+        isThreadCreated && threadId.isNotEmpty
+        ? ref.watch(channelByIdProvider(threadId))
+        : null;
+    final Channel? thread = threadAsync?.value;
+    // While the lookup is pending, show nothing rather than "deleted".
+    final String? threadName =
+        thread?.name ??
+        (threadAsync != null && threadAsync.isLoading ? '' : null);
     final (IconData icon, Color iconColor, bool flipIcon) = _iconAndColor(
       message: message,
       currentUserId: currentUserId,
@@ -135,6 +151,11 @@ class SystemMessage extends ConsumerWidget {
         guildId: resolvedGuildId,
       ),
       currentUserId: currentUserId,
+      threadName: threadName,
+      onThreadTap: thread == null
+          ? null
+          : () =>
+                context.go(RoutePaths.guildChannel(thread.guildId, thread.id)),
     );
     final String timestampText = formatMessageTimestamp(
       message.timestamp.toLocal(),
@@ -393,6 +414,8 @@ class SystemMessage extends ConsumerWidget {
         );
       case messageTypeChannelPinnedMessage:
         return (PhosphorIconsFill.pushPin, mutedColor, false);
+      case messageTypeThreadCreated:
+        return (PhosphorIconsBold.chatText, mutedColor, false);
       case messageTypeRecipientAdd:
         return (
           PhosphorIconsBold.userPlus,

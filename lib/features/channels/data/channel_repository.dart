@@ -5,6 +5,7 @@ import 'package:fluxer_app/features/channels/domain/channel_move_operation.dart'
 import 'package:fluxer_app/features/channels/domain/channel_move_payload.dart';
 import 'package:fluxer_app/features/channels/domain/channel_overview_update.dart';
 import 'package:fluxer_app/features/channels/domain/channel_permission_overwrite_update.dart';
+import 'package:fluxer_app/features/channels/domain/forum_view.dart';
 import 'package:fluxer_app/shared/utils/sdk_converters.dart';
 import 'package:fluxer_dart/export.dart';
 
@@ -102,6 +103,45 @@ class ChannelRepository {
       'type': ChannelType.guildForum.wireValue,
       'available_tags': tags,
     });
+  }
+
+  /// Echowire: update forum settings (any subset of `topic` as guidelines,
+  /// `require_tag`, `default_sort_order`, `default_forum_layout`,
+  /// `default_reaction_emoji`, `default_auto_archive_duration`,
+  /// `rate_limit_per_user` and `default_thread_rate_limit_per_user`). Returns
+  /// the updated channel and the forum fields the SDK does not model.
+  Future<({Channel channel, ForumExtras extras})> updateForumSettings({
+    required String forumId,
+    required String guildId,
+    required Map<String, Object?> fields,
+  }) async {
+    try {
+      final Response<Map<String, dynamic>> response = await _dio
+          .patch<Map<String, dynamic>>(
+            '/channels/$forumId',
+            data: <String, Object?>{
+              'type': ChannelType.guildForum.wireValue,
+              ...fields,
+            },
+          );
+      final Map<String, dynamic>? data = response.data;
+      if (data == null) {
+        throw Exception('Failed to update forum');
+      }
+      await _db.channelDao.upsertChannels(<db.ChannelsCompanion>[
+        channelFromSdk(ChannelResponse.fromJson(data), guildId),
+      ]);
+      final db.Channel? row = await _db.channelDao.getChannelById(forumId);
+      if (row == null) {
+        throw Exception('Failed to load updated forum');
+      }
+      return (
+        channel: Channel.fromRow(row),
+        extras: ForumExtras.fromChannelJson(data),
+      );
+    } on DioException catch (e) {
+      throw Exception(e.response?.statusMessage ?? 'Failed to update forum');
+    }
   }
 
   Future<Channel> _patchChannel(

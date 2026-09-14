@@ -1,6 +1,7 @@
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/channel_icon.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/messages/thread_starter_card.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
 
@@ -55,6 +56,8 @@ class ChannelWelcomeSection extends StatelessWidget {
               color: context.colors.textPrimaryMuted,
             ),
           ),
+          // Echowire: a thread opens with the message it was started from.
+          if (channel.isThread) ThreadStarterCard(thread: channel),
         ],
       ),
     );

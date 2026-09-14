@@ -841,6 +841,22 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     );
   }
 
+  /// Echowire: the placeholder, explaining a locked or archived thread before
+  /// the generic no-permission hint.
+  String _composerHint(
+    FluxerLocalizations l10n,
+    ChannelMessagePermissions perms,
+  ) {
+    return switch (perms.threadNotice) {
+      ThreadComposerNotice.locked => l10n.threadsComposerLockedHint,
+      ThreadComposerNotice.archived => l10n.threadsComposerArchivedHint,
+      ThreadComposerNotice.none =>
+        perms.showsNoSendPermissionHint
+            ? l10n.channelNoSendPermissionHint
+            : _resolveHintText(),
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     _enterToSendEnabled = _isDesktop || (kIsWeb && isWideLayout(context));
@@ -1356,9 +1372,7 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     final bool touchInputStyle = isTouchPrimaryInput(ref);
     final bool touchActions = touchInputStyle;
     final bool composerEnabled = perms.isComposerEnabled;
-    final String hintText = perms.showsNoSendPermissionHint
-        ? l10n.channelNoSendPermissionHint
-        : _resolveHintText();
+    final String hintText = _composerHint(l10n, perms);
     final InputDecoration inputDecoration = touchInputStyle
         ? _composerTouchInputDecoration(
             context: context,
@@ -1704,9 +1718,7 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     final int premiumMaxLength = ref.watch(premiumMaxMessageLengthProvider);
     final InputDecoration mobileDecoration = _composerTouchInputDecoration(
       context: context,
-      hintText: perms.showsNoSendPermissionHint
-          ? FluxerLocalizations.of(context).channelNoSendPermissionHint
-          : _resolveHintText(),
+      hintText: _composerHint(FluxerLocalizations.of(context), perms),
       enabled: perms.isComposerEnabled,
       contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       suffixIcon: Padding(

@@ -35,6 +35,42 @@ class ReadStateRepository {
     await sendAckHttp(channelId, messageId);
   }
 
+  /// Echowire: marks a forum as visited up to [activityId], the newest post
+  /// activity (post id or last message id). The forum's read state is the
+  /// "last visit" marker its sidebar "N New" count compares against. Never
+  /// regresses an existing ack.
+  Future<void> ackForumActivity(String forumId, String activityId) async {
+    final String? acked = await applyLocalAckUpTo(forumId, activityId);
+    if (acked == null) {
+      return;
+    }
+    await sendAckHttp(forumId, acked);
+  }
+
+  /// Echowire: "Mark As Read" for a forum: acks the forum up to its newest
+  /// post activity and bulk-acks every open post.
+  Future<void> markForumRead(String forumId) async {
+    final List<Channel> posts = await _db.channelDao
+        .watchThreadsForParent(forumId)
+        .first;
+    final List<Channel> open = posts
+        .where((Channel p) => !(p.threadArchived ?? false))
+        .toList();
+    String? newest;
+    for (final Channel p in open) {
+      final String activity = compareSnowflakeIds(p.lastMessageId, p.id) > 0
+          ? p.lastMessageId!
+          : p.id;
+      if (newest == null || compareSnowflakeIds(activity, newest) > 0) {
+        newest = activity;
+      }
+    }
+    if (newest != null) {
+      await ackForumActivity(forumId, newest);
+    }
+    await ackLatestBulk(open.map((Channel p) => p.id));
+  }
+
   Future<void> clearSticky(String channelId) =>
       _db.readStateDao.clearStickyUnread(channelId);
 

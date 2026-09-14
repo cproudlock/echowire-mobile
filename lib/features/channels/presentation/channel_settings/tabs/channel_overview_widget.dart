@@ -8,6 +8,7 @@ import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/domain/channel_overview_update.dart';
 import 'package:fluxer_app/features/channels/presentation/channel_settings/tabs/channel_overview_mature_content_section.dart';
+import 'package:fluxer_app/features/channels/presentation/channel_settings/widgets/channel_overview_forum_section.dart';
 import 'package:fluxer_app/features/channels/presentation/channel_settings/widgets/channel_overview_voice_section.dart';
 import 'package:fluxer_app/features/channels/providers/channel_settings_providers.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/expression_picker.dart';
@@ -392,6 +393,13 @@ class _ChannelOverviewWidgetState extends ConsumerState<ChannelOverviewWidget> {
               onChanged: (int value) {
                 _updateCurrent(_current.copyWith(slowmode: value));
               },
+            ),
+          ],
+          if (_canManageChannel && channel.isForum) ...<Widget>[
+            SizedBox(height: context.layout.s6),
+            ChannelOverviewForumSection(
+              channel: channel,
+              slowmodeItems: _slowmodeItems(l10n),
             ),
           ],
           if (showVoice) ...<Widget>[

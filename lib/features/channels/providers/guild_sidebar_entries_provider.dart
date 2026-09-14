@@ -36,9 +36,13 @@ class GuildSidebarEntry {
     this.isCategoryCollapsed = false,
     this.channel,
     this.guildId,
+    this.isLastInGroup = false,
   });
 
   final GuildSidebarEntryKind kind;
+
+  /// Echowire: the last nested thread under its parent (ends the tree line).
+  final bool isLastInGroup;
   final ChannelCategory? category;
   final bool isCategoryCollapsed;
   final Channel? channel;
@@ -51,12 +55,19 @@ class GuildSidebarEntry {
         isCategoryCollapsed == other.isCategoryCollapsed &&
         category == other.category &&
         channel == other.channel &&
-        guildId == other.guildId;
+        guildId == other.guildId &&
+        isLastInGroup == other.isLastInGroup;
   }
 
   @override
-  int get hashCode =>
-      Object.hash(kind, isCategoryCollapsed, category, channel, guildId);
+  int get hashCode => Object.hash(
+    kind,
+    isCategoryCollapsed,
+    category,
+    channel,
+    guildId,
+    isLastInGroup,
+  );
 }
 
 @immutable
@@ -202,14 +213,16 @@ List<GuildSidebarEntry> flattenGuildSidebarEntries({
           ),
         );
       }
-      // Echowire: nest active threads under their parent channel.
-      for (final Channel thread
-          in threadsByParent[channel.id] ?? const <Channel>[]) {
+      // Echowire: nest the user's active threads under their parent channel.
+      final List<Channel> nested =
+          threadsByParent[channel.id] ?? const <Channel>[];
+      for (int i = 0; i < nested.length; i++) {
         entries.add(
           GuildSidebarEntry(
             kind: GuildSidebarEntryKind.thread,
-            channel: thread,
+            channel: nested[i],
             guildId: guildId,
+            isLastInGroup: i == nested.length - 1,
           ),
         );
       }
@@ -255,12 +268,31 @@ List<GuildSidebarEntry> guildSidebarEntries(Ref ref) {
   );
   final List<Channel> guildThreads =
       ref.watch(guildActiveThreadsProvider(guildId)).value ?? const <Channel>[];
+  // Like Discord, only threads and posts the user has joined are nested, plus
+  // the one being viewed. Servers without the guild threads endpoint cannot
+  // report membership, so unknown threads stay visible there.
+  final Map<String, bool> memberships = ref.watch(threadMembershipsProvider);
+  final String? viewingId = ref.watch(activeChannelIdProvider);
+  final bool membershipKnown = ref
+      .read(threadRepositoryProvider)
+      .guildActiveThreadsSupported;
   final Map<String, List<Channel>> threadsByParent = <String, List<Channel>>{};
   for (final Channel t in guildThreads) {
     final String? pid = t.parentId;
-    if (pid != null) {
+    final bool? joined = memberships[t.id];
+    final bool show =
+        (joined ?? false) ||
+        t.id == viewingId ||
+        (joined == null && !membershipKnown);
+    if (pid != null && show) {
       (threadsByParent[pid] ??= <Channel>[]).add(t);
     }
+  }
+  for (final List<Channel> group in threadsByParent.values) {
+    group.sort(
+      (Channel a, Channel b) =>
+          compareSnowflakeStrings(b.activityId, a.activityId),
+    );
   }
   return _GuildSidebarEntries(
     flattenGuildSidebarEntries(

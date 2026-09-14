@@ -37,6 +37,7 @@ import 'package:fluxer_app/features/chat/presentation/widgets/messages/forwarded
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_markdown.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_reactions_bar.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_row_layout.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_thread_link.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_translation_indicator.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/spoiler_overlay.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/expression_picker.dart';
@@ -1184,6 +1185,9 @@ class _MessageItemState extends ConsumerState<MessageItem> {
             ),
           ),
         ),
+      // Echowire: the thread started from this message, if any.
+      if (!widget.isDmChannel && !widget.inboxPreviewMode)
+        MessageThreadLink(messageId: msg.id, channelId: msg.channelId),
       if (renderReactions && msg.reactions.isNotEmpty)
         wrapPart(
           Padding(

@@ -24086,6 +24086,288 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'No archived posts'**
   String get forumNoArchivedPosts;
+
+  /// System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.
+  ///
+  /// In en, this message translates to:
+  /// **'{username} started a thread: {threadName}.'**
+  String systemThreadCreated(String username, String threadName);
+
+  /// Plaintext preview of the system message posted when someone starts a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'{username} started a thread.'**
+  String systemPreviewStartedThread(String username);
+
+  /// Stands in for a thread name in the thread started system message when the thread no longer exists.
+  ///
+  /// In en, this message translates to:
+  /// **'a thread that was deleted'**
+  String get systemThreadDeleted;
+
+  /// Composer placeholder in a locked thread for users who cannot moderate it.
+  ///
+  /// In en, this message translates to:
+  /// **'This thread is locked. Only moderators can send messages.'**
+  String get threadsComposerLockedHint;
+
+  /// Composer placeholder in an archived thread that is not locked.
+  ///
+  /// In en, this message translates to:
+  /// **'This thread is archived. Sending a message reopens it.'**
+  String get threadsComposerArchivedHint;
+
+  /// Sidebar pill on a forum channel counting posts with activity since the user last opened it.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} New'**
+  String forumNewPostsPill(int count);
+
+  /// Placeholder of the forum search field. What is typed also becomes the title of a new post.
+  ///
+  /// In en, this message translates to:
+  /// **'Search or create a post...'**
+  String get forumSearchOrCreatePost;
+
+  /// Section label in the forum Sort & View sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get forumSortBy;
+
+  /// Forum sort option that orders posts by creation date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date posted'**
+  String get forumSortDatePosted;
+
+  /// Section label for the forum layout options in the Sort & View sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'View as'**
+  String get forumViewAs;
+
+  /// Forum layout option showing posts as a list.
+  ///
+  /// In en, this message translates to:
+  /// **'List'**
+  String get forumLayoutList;
+
+  /// Forum layout option showing posts as a grid of image cards.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get forumLayoutGallery;
+
+  /// Returns the forum Sort & View choice to the channel defaults.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset to default'**
+  String get forumResetViewToDefault;
+
+  /// Chip that opens the full list of forum tags to filter by.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get forumAllTags;
+
+  /// Label of the tag filter chip when tags are selected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 tag} other{{count} tags}}'**
+  String forumTagsSelectedCount(int count);
+
+  /// Heading above the forum's guidelines in the new post sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Post guidelines'**
+  String get forumPostGuidelinesLabel;
+
+  /// Menu item and dialog title for editing a forum post's title and tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit post'**
+  String get forumEditPost;
+
+  /// Shown when saving a post without a tag in a forum that requires one.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick at least one tag for this forum.'**
+  String get forumPostTagRequiredToast;
+
+  /// Menu item to follow a thread or forum post and get its notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow'**
+  String get threadsFollow;
+
+  /// Menu item to stop following a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Unfollow'**
+  String get threadsUnfollow;
+
+  /// Header button state when the user follows the thread or post.
+  ///
+  /// In en, this message translates to:
+  /// **'Following'**
+  String get threadsFollowing;
+
+  /// Menu item to mute a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute'**
+  String get threadsMute;
+
+  /// Menu item to unmute a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute'**
+  String get threadsUnmute;
+
+  /// Menu item and dialog title for renaming a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit thread'**
+  String get threadsEditThread;
+
+  /// Heading of the forum-only section in channel settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Forum settings'**
+  String get forumSettingsTitle;
+
+  /// Placeholder of the forum post guidelines field in channel settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell members what to post here'**
+  String get forumSettingsGuidelinesHint;
+
+  /// Switch that makes members pick at least one tag when creating a forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Require tags on new posts'**
+  String get forumSettingsRequireTag;
+
+  /// Explains the require tags switch in forum settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Members must pick at least one tag before they can post.'**
+  String get forumSettingsRequireTagDescription;
+
+  /// Forum setting for how posts are ordered unless a member picks otherwise.
+  ///
+  /// In en, this message translates to:
+  /// **'Default sort order'**
+  String get forumSettingsDefaultSort;
+
+  /// Forum setting for list or gallery layout unless a member picks otherwise.
+  ///
+  /// In en, this message translates to:
+  /// **'Default layout'**
+  String get forumSettingsDefaultLayout;
+
+  /// Forum setting for the emoji used by React to Post.
+  ///
+  /// In en, this message translates to:
+  /// **'Default reaction'**
+  String get forumSettingsDefaultReaction;
+
+  /// Explains the forum default reaction setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown as the quick reaction on every post. Leave empty for none.'**
+  String get forumSettingsDefaultReactionDescription;
+
+  /// Placeholder of the forum default reaction field.
+  ///
+  /// In en, this message translates to:
+  /// **'An emoji, e.g. 👍'**
+  String get forumSettingsDefaultReactionHint;
+
+  /// Forum setting for how long a post stays active without new messages.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide after inactivity'**
+  String get forumSettingsHideAfterInactivity;
+
+  /// Explains the forum hide after inactivity setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive posts move to Archived. Anyone can reopen a post that is not locked.'**
+  String get forumSettingsHideAfterInactivityDescription;
+
+  /// Hide after inactivity option.
+  ///
+  /// In en, this message translates to:
+  /// **'1 hour'**
+  String get forumSettingsHideAfterOneHour;
+
+  /// Hide after inactivity option.
+  ///
+  /// In en, this message translates to:
+  /// **'24 hours'**
+  String get forumSettingsHideAfterOneDay;
+
+  /// Hide after inactivity option, the default.
+  ///
+  /// In en, this message translates to:
+  /// **'3 days'**
+  String get forumSettingsHideAfterThreeDays;
+
+  /// Hide after inactivity option.
+  ///
+  /// In en, this message translates to:
+  /// **'1 week'**
+  String get forumSettingsHideAfterOneWeek;
+
+  /// Forum setting limiting how often a member can create a new post.
+  ///
+  /// In en, this message translates to:
+  /// **'Post creation slowmode'**
+  String get forumSettingsPostCreationSlowmode;
+
+  /// Explains the forum post creation slowmode setting.
+  ///
+  /// In en, this message translates to:
+  /// **'How long members wait between creating posts.'**
+  String get forumSettingsPostCreationSlowmodeDescription;
+
+  /// Forum setting for the slowmode applied to messages inside each new post.
+  ///
+  /// In en, this message translates to:
+  /// **'Slowmode inside new posts'**
+  String get forumSettingsDefaultPostSlowmode;
+
+  /// Explains the default slowmode for new forum posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied to posts when they are created.'**
+  String get forumSettingsDefaultPostSlowmodeDescription;
+
+  /// Button that saves the forum settings section.
+  ///
+  /// In en, this message translates to:
+  /// **'Save forum settings'**
+  String get forumSettingsSave;
+
+  /// Toast after forum settings are saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Forum settings saved'**
+  String get forumSettingsSaved;
+
+  /// Toast when forum settings fail to save.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save forum settings'**
+  String get forumSettingsSaveFailed;
+
+  /// Label above the message a thread was started from, shown at the top of the thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Started from'**
+  String get threadsStarterMessage;
 }
 
 class _FluxerLocalizationsDelegate

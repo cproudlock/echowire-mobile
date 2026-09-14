@@ -9750,5 +9750,14 @@
     "threadsEditThread": "Edit thread",
     "@threadsEditThread": {
         "description": "Menu item and dialog title for renaming a thread."
+    },
+    "forumNewPostsPill": "{count} New",
+    "@forumNewPostsPill": {
+        "description": "Sidebar pill on a forum channel counting posts with activity since the user last opened it.",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
     }
 }

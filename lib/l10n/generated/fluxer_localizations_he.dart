@@ -14313,6 +14313,11 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'This thread is archived. Sending a message reopens it.';
 
   @override
+  String forumNewPostsPill(int count) {
+    return '$count New';
+  }
+
+  @override
   String get forumSearchOrCreatePost => 'Search or create a post...';
 
   @override

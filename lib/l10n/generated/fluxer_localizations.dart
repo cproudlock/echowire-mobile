@@ -24117,6 +24117,12 @@ abstract class FluxerLocalizations {
   /// **'This thread is archived. Sending a message reopens it.'**
   String get threadsComposerArchivedHint;
 
+  /// Sidebar pill on a forum channel counting posts with activity since the user last opened it.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} New'**
+  String forumNewPostsPill(int count);
+
   /// Placeholder of the forum search field. What is typed also becomes the title of a new post.
   ///
   /// In en, this message translates to:

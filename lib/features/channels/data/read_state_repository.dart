@@ -35,6 +35,18 @@ class ReadStateRepository {
     await sendAckHttp(channelId, messageId);
   }
 
+  /// Echowire: marks a forum as visited up to [activityId], the newest post
+  /// activity (post id or last message id). The forum's read state is the
+  /// "last visit" marker its sidebar "N New" count compares against. Never
+  /// regresses an existing ack.
+  Future<void> ackForumActivity(String forumId, String activityId) async {
+    final String? acked = await applyLocalAckUpTo(forumId, activityId);
+    if (acked == null) {
+      return;
+    }
+    await sendAckHttp(forumId, acked);
+  }
+
   Future<void> clearSticky(String channelId) =>
       _db.readStateDao.clearStickyUnread(channelId);
 

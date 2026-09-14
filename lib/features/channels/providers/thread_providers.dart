@@ -82,6 +82,22 @@ final StreamProviderFamily<List<Channel>, String> guildActiveThreadsProvider =
       return repo.watchGuildThreads(guildId);
     });
 
+/// Echowire: a channel's cached threads keyed by id, so messages can find the
+/// thread started from them (a thread from a message reuses the message id).
+final StreamProviderFamily<Map<String, Channel>, String>
+parentThreadsByIdProvider = StreamProvider.family<Map<String, Channel>, String>(
+  (Ref ref, String parentChannelId) {
+    return ref
+        .watch(threadRepositoryProvider)
+        .watchThreads(parentChannelId)
+        .map(
+          (List<Channel> threads) => <String, Channel>{
+            for (final Channel t in threads) t.id: t,
+          },
+        );
+  },
+);
+
 /// Echowire: how many open posts in a forum have activity newer than the
 /// user's last visit (the forum's read state), for the sidebar "N New" pill.
 @riverpod

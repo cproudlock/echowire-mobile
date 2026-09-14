@@ -17137,5 +17137,82 @@
     "threadsComposerArchivedHint": "This thread is archived. Sending a message reopens it.",
     "@threadsComposerArchivedHint": {
         "description": "Composer placeholder in an archived thread that is not locked."
+    },
+    "forumSearchOrCreatePost": "Search or create a post...",
+    "@forumSearchOrCreatePost": {
+        "description": "Placeholder of the forum search field. What is typed also becomes the title of a new post."
+    },
+    "forumSortBy": "Sort by",
+    "@forumSortBy": {
+        "description": "Section label in the forum Sort & View sheet."
+    },
+    "forumSortDatePosted": "Date posted",
+    "@forumSortDatePosted": {
+        "description": "Forum sort option that orders posts by creation date."
+    },
+    "forumViewAs": "View as",
+    "@forumViewAs": {
+        "description": "Section label for the forum layout options in the Sort & View sheet."
+    },
+    "forumLayoutList": "List",
+    "@forumLayoutList": {
+        "description": "Forum layout option showing posts as a list."
+    },
+    "forumLayoutGallery": "Gallery",
+    "@forumLayoutGallery": {
+        "description": "Forum layout option showing posts as a grid of image cards."
+    },
+    "forumResetViewToDefault": "Reset to default",
+    "@forumResetViewToDefault": {
+        "description": "Returns the forum Sort & View choice to the channel defaults."
+    },
+    "forumAllTags": "All",
+    "@forumAllTags": {
+        "description": "Chip that opens the full list of forum tags to filter by."
+    },
+    "forumTagsSelectedCount": "{count, plural, =1{1 tag} other{{count} tags}}",
+    "@forumTagsSelectedCount": {
+        "description": "Label of the tag filter chip when tags are selected.",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "forumPostGuidelinesLabel": "Post guidelines",
+    "@forumPostGuidelinesLabel": {
+        "description": "Heading above the forum's guidelines in the new post sheet."
+    },
+    "forumEditPost": "Edit post",
+    "@forumEditPost": {
+        "description": "Menu item and dialog title for editing a forum post's title and tags."
+    },
+    "forumPostTagRequiredToast": "Pick at least one tag for this forum.",
+    "@forumPostTagRequiredToast": {
+        "description": "Shown when saving a post without a tag in a forum that requires one."
+    },
+    "threadsFollow": "Follow",
+    "@threadsFollow": {
+        "description": "Menu item to follow a thread or forum post and get its notifications."
+    },
+    "threadsUnfollow": "Unfollow",
+    "@threadsUnfollow": {
+        "description": "Menu item to stop following a thread or forum post."
+    },
+    "threadsFollowing": "Following",
+    "@threadsFollowing": {
+        "description": "Header button state when the user follows the thread or post."
+    },
+    "threadsMute": "Mute",
+    "@threadsMute": {
+        "description": "Menu item to mute a thread or forum post."
+    },
+    "threadsUnmute": "Unmute",
+    "@threadsUnmute": {
+        "description": "Menu item to unmute a thread or forum post."
+    },
+    "threadsEditThread": "Edit thread",
+    "@threadsEditThread": {
+        "description": "Menu item and dialog title for renaming a thread."
     }
 }

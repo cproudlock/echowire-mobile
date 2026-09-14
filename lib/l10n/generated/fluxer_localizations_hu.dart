@@ -14645,4 +14645,67 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get threadsComposerArchivedHint =>
       'This thread is archived. Sending a message reopens it.';
+
+  @override
+  String get forumSearchOrCreatePost => 'Search or create a post...';
+
+  @override
+  String get forumSortBy => 'Sort by';
+
+  @override
+  String get forumSortDatePosted => 'Date posted';
+
+  @override
+  String get forumViewAs => 'View as';
+
+  @override
+  String get forumLayoutList => 'List';
+
+  @override
+  String get forumLayoutGallery => 'Gallery';
+
+  @override
+  String get forumResetViewToDefault => 'Reset to default';
+
+  @override
+  String get forumAllTags => 'All';
+
+  @override
+  String forumTagsSelectedCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count tags',
+      one: '1 tag',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostGuidelinesLabel => 'Post guidelines';
+
+  @override
+  String get forumEditPost => 'Edit post';
+
+  @override
+  String get forumPostTagRequiredToast =>
+      'Pick at least one tag for this forum.';
+
+  @override
+  String get threadsFollow => 'Follow';
+
+  @override
+  String get threadsUnfollow => 'Unfollow';
+
+  @override
+  String get threadsFollowing => 'Following';
+
+  @override
+  String get threadsMute => 'Mute';
+
+  @override
+  String get threadsUnmute => 'Unmute';
+
+  @override
+  String get threadsEditThread => 'Edit thread';
 }

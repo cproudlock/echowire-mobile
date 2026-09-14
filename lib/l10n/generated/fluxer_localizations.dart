@@ -24116,6 +24116,114 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'This thread is archived. Sending a message reopens it.'**
   String get threadsComposerArchivedHint;
+
+  /// Placeholder of the forum search field. What is typed also becomes the title of a new post.
+  ///
+  /// In en, this message translates to:
+  /// **'Search or create a post...'**
+  String get forumSearchOrCreatePost;
+
+  /// Section label in the forum Sort & View sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get forumSortBy;
+
+  /// Forum sort option that orders posts by creation date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date posted'**
+  String get forumSortDatePosted;
+
+  /// Section label for the forum layout options in the Sort & View sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'View as'**
+  String get forumViewAs;
+
+  /// Forum layout option showing posts as a list.
+  ///
+  /// In en, this message translates to:
+  /// **'List'**
+  String get forumLayoutList;
+
+  /// Forum layout option showing posts as a grid of image cards.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get forumLayoutGallery;
+
+  /// Returns the forum Sort & View choice to the channel defaults.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset to default'**
+  String get forumResetViewToDefault;
+
+  /// Chip that opens the full list of forum tags to filter by.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get forumAllTags;
+
+  /// Label of the tag filter chip when tags are selected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 tag} other{{count} tags}}'**
+  String forumTagsSelectedCount(int count);
+
+  /// Heading above the forum's guidelines in the new post sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Post guidelines'**
+  String get forumPostGuidelinesLabel;
+
+  /// Menu item and dialog title for editing a forum post's title and tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit post'**
+  String get forumEditPost;
+
+  /// Shown when saving a post without a tag in a forum that requires one.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick at least one tag for this forum.'**
+  String get forumPostTagRequiredToast;
+
+  /// Menu item to follow a thread or forum post and get its notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow'**
+  String get threadsFollow;
+
+  /// Menu item to stop following a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Unfollow'**
+  String get threadsUnfollow;
+
+  /// Header button state when the user follows the thread or post.
+  ///
+  /// In en, this message translates to:
+  /// **'Following'**
+  String get threadsFollowing;
+
+  /// Menu item to mute a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute'**
+  String get threadsMute;
+
+  /// Menu item to unmute a thread or forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute'**
+  String get threadsUnmute;
+
+  /// Menu item and dialog title for renaming a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit thread'**
+  String get threadsEditThread;
 }
 
 class _FluxerLocalizationsDelegate

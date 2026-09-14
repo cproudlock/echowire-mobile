@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
+import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/features/channels/data/thread_repository.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/domain/forum_view.dart';
@@ -51,9 +54,84 @@ ForumExtras? forumExtras(Ref ref, String forumId) {
   return repo.forumExtras.value[forumId];
 }
 
+/// Echowire: the current user's known thread memberships, keyed by thread id.
+@riverpod
+Map<String, bool> threadMemberships(Ref ref) {
+  final ThreadRepository repo = ref.watch(threadRepositoryProvider);
+  void listener() => ref.invalidateSelf();
+  repo.memberships.addListener(listener);
+  ref.onDispose(() => repo.memberships.removeListener(listener));
+  return repo.memberships.value;
+}
+
 /// Echowire: active threads across a guild (for nesting under channels in the
-/// sidebar). Keyed by guild id.
+/// sidebar). Keyed by guild id. Refreshes from the guild active threads
+/// endpoint, which also reports which threads the user has joined.
 final StreamProviderFamily<List<Channel>, String> guildActiveThreadsProvider =
     StreamProvider.family<List<Channel>, String>((Ref ref, String guildId) {
-      return ref.watch(threadRepositoryProvider).watchGuildThreads(guildId);
+      final ThreadRepository repo = ref.watch(threadRepositoryProvider);
+      unawaited(
+        repo.listGuildActiveThreads(guildId).catchError((
+          Object e,
+          StackTrace st,
+        ) {
+          talker.error('Could not load guild threads for $guildId', e, st);
+          return null;
+        }),
+      );
+      return repo.watchGuildThreads(guildId);
     });
+
+/// Echowire: how many open posts in a forum have activity newer than the
+/// user's last visit (the forum's read state), for the sidebar "N New" pill.
+@riverpod
+Stream<int> forumNewPostCount(Ref ref, String forumId) {
+  final db = ref.watch(fluxerDatabaseProvider);
+  final Stream<List<Channel>> posts = ref
+      .watch(threadRepositoryProvider)
+      .watchThreads(forumId);
+  final StreamController<int> controller = StreamController<int>();
+  List<Channel>? latestPosts;
+  String? lastVisit;
+  bool hasReadState = false;
+  void emit() {
+    final List<Channel>? current = latestPosts;
+    if (current == null || !hasReadState) {
+      return;
+    }
+    final String? visit = lastVisit;
+    if (visit == null) {
+      // Never visited: do not flag every post as new.
+      controller.add(0);
+      return;
+    }
+    controller.add(
+      current
+          .where(
+            (Channel p) =>
+                !p.isArchived &&
+                compareSnowflakeStrings(p.activityId, visit) > 0,
+          )
+          .length,
+    );
+  }
+
+  final List<StreamSubscription<Object?>> subs = <StreamSubscription<Object?>>[
+    posts.listen((List<Channel> value) {
+      latestPosts = value;
+      emit();
+    }),
+    db.readStateDao.watchReadState(forumId).listen((rs) {
+      hasReadState = true;
+      lastVisit = rs?.lastMessageId;
+      emit();
+    }),
+  ];
+  ref.onDispose(() {
+    for (final StreamSubscription<Object?> sub in subs) {
+      unawaited(sub.cancel());
+    }
+    unawaited(controller.close());
+  });
+  return controller.stream.distinct();
+}

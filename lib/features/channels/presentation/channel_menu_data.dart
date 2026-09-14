@@ -118,7 +118,15 @@ ChannelMenuState resolveChannelMenuState({
   final bool isTextChannel = channel.type == ChannelType.guildText;
   final bool isVoiceChannel = channel.type == ChannelType.guildVoice;
   final bool isLinkChannel = channel.type == ChannelType.guildLink;
-  final bool isGuildChannel = isTextChannel || isVoiceChannel || isLinkChannel;
+  // Echowire: forums and threads get the channel menu too.
+  final bool isForumChannel = channel.isForum;
+  final bool isThreadChannel = channel.isThread;
+  final bool isGuildChannel =
+      isTextChannel ||
+      isVoiceChannel ||
+      isLinkChannel ||
+      isForumChannel ||
+      isThreadChannel;
   final int bits = permissionBits ?? 0;
   final bool canManageChannels = hasPermission(bits, Permission.manageChannels);
   final bool canUpdateRtcRegion =
@@ -142,16 +150,18 @@ ChannelMenuState resolveChannelMenuState({
   final bool showOpenChat =
       isVoiceChannel && !voiceChannelJoinRequiresDoubleClick;
   final bool canOpenLink = isLinkChannel && (channel.url?.isNotEmpty ?? false);
-  final bool showMute = isTextChannel || isVoiceChannel;
+  final bool showMute =
+      isTextChannel || isVoiceChannel || isForumChannel || isThreadChannel;
   return ChannelMenuState(
-    isTextChannel: isTextChannel,
+    // Forums and threads use the text channel layout of the menu.
+    isTextChannel: isTextChannel || isForumChannel || isThreadChannel,
     isVoiceChannel: isVoiceChannel,
     isLinkChannel: isLinkChannel,
     showOpenChat: showOpenChat,
     showMarkAsRead: isGuildChannel && hasUnread,
     showFavorites: showFavorites,
     isFavorite: isFavorite,
-    canInvite: inviteCapability.canInvite,
+    canInvite: inviteCapability.canInvite && !isThreadChannel,
     useVanityInvite: inviteCapability.useVanityUrl,
     vanityUrlCode: inviteCapability.vanityUrlCode,
     canOpenLink: canOpenLink,
@@ -160,11 +170,12 @@ ChannelMenuState resolveChannelMenuState({
     isMuted: isMuted,
     mutedHint: mutedHint,
     showNotificationSettings: isGuildChannel,
-    showEditChannel: canEditChannel && !nsfwBlockedForMinor,
-    showDuplicateChannel: canManageChannels && !nsfwBlockedForMinor,
+    showEditChannel: canEditChannel && !nsfwBlockedForMinor && !isThreadChannel,
+    showDuplicateChannel:
+        canManageChannels && !nsfwBlockedForMinor && !isThreadChannel,
     showDebugChannel: developerMode,
     showResetMatureContent: developerMode && hasAgreedToMatureContent,
-    showDeleteChannel: canManageChannels,
+    showDeleteChannel: canManageChannels && !isThreadChannel,
     showDeleteMyMessages: isTextChannel || isVoiceChannel,
   );
 }

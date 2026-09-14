@@ -39,6 +39,7 @@ import 'package:fluxer_app/features/channels/providers/channel_sidebar_icon_conn
 import 'package:fluxer_app/features/channels/providers/guild_collapsed_categories_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_sidebar_entries_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_sidebar_scroll_store_provider.dart';
+import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
 import 'package:fluxer_app/features/channels/utils/channel_scroll_indicator_severity.dart';
 import 'package:fluxer_app/features/channels/utils/navigate_to_channel_content.dart';
@@ -642,15 +643,31 @@ class _GuildSidebarChannelListState
             );
           case GuildSidebarEntryKind.thread:
             final String threadId = entry.channel!.id;
-            return Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: _ChannelTile(
-                key: ValueKey<String>('thread:$threadId'),
-                tileKey: _channelKeys.putIfAbsent(threadId, GlobalKey.new),
-                channel: entry.channel!,
-                guildId: widget.guildId,
-                guild: widget.guild,
-              ),
+            return Stack(
+              children: <Widget>[
+                Positioned(
+                  left: 18,
+                  top: 0,
+                  bottom: 0,
+                  width: 12,
+                  child: CustomPaint(
+                    painter: _ThreadConnectorPainter(
+                      color: context.colors.borderColor,
+                      isLast: entry.isLastInGroup,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 26),
+                  child: _ChannelTile(
+                    key: ValueKey<String>('thread:$threadId'),
+                    tileKey: _channelKeys.putIfAbsent(threadId, GlobalKey.new),
+                    channel: entry.channel!,
+                    guildId: widget.guildId,
+                    guild: widget.guild,
+                  ),
+                ),
+              ],
             );
         }
       },
@@ -669,6 +686,38 @@ class _GuildSidebarChannelListState
     _inactiveList = child;
     return child;
   }
+}
+
+/// Echowire: the tree line joining a nested thread to its parent channel. A
+/// vertical spine that curves into the row, stopping at the last thread.
+class _ThreadConnectorPainter extends CustomPainter {
+  const _ThreadConnectorPainter({required this.color, required this.isLast});
+
+  final Color color;
+  final bool isLast;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint()
+      ..color = color
+      ..strokeWidth = 1.5
+      ..style = PaintingStyle.stroke;
+    final double mid = size.height / 2;
+    const double radius = 6;
+    final Path path = Path()
+      ..moveTo(0, 0)
+      ..lineTo(0, mid - radius)
+      ..quadraticBezierTo(0, mid, radius, mid)
+      ..lineTo(size.width, mid);
+    canvas.drawPath(path, paint);
+    if (!isLast) {
+      canvas.drawLine(Offset(0, mid - radius), Offset(0, size.height), paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_ThreadConnectorPainter oldDelegate) =>
+      oldDelegate.color != color || oldDelegate.isLast != isLast;
 }
 
 class _ChannelTile extends ConsumerWidget {
@@ -691,7 +740,11 @@ class _ChannelTile extends ConsumerWidget {
       activeChannelIdProvider.select((String? id) => id == channel.id),
     );
     final unread = ref.watch(channelUnreadProvider(channel.id)).value;
-    final bool hasUnread = unread?.hasUnread ?? false;
+    // Echowire: forums count new posts instead of unread messages.
+    final int forumNewCount = channel.isForum
+        ? ref.watch(forumNewPostCountProvider(channel.id)).value ?? 0
+        : 0;
+    final bool hasUnread = (unread?.hasUnread ?? false) || forumNewCount > 0;
     final int mentionCount = unread?.mentionCount ?? 0;
     final bool hasUnreadMessages = unread?.hasUnreadMessages ?? false;
     final bool isChannelDirectlyMuted = ref.watch(
@@ -855,6 +908,17 @@ class _ChannelTile extends ConsumerWidget {
               if (showMentionBadge) ...[
                 const SizedBox(width: 4),
                 FluxerBadge.count(count: mentionCount),
+              ] else if (forumNewCount > 0 && !isSelected) ...[
+                const SizedBox(width: 4),
+                Text(
+                  FluxerLocalizations.of(
+                    context,
+                  ).forumNewPostsPill(forumNewCount),
+                  style: context.textStyles.label.copyWith(
+                    color: context.colors.brandPrimary,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ],
               if (showVoiceUserCount) ...[
                 const SizedBox(width: 4),
@@ -1007,7 +1071,11 @@ class _ChannelTile extends ConsumerWidget {
         unawaited(_openVoiceChannelChat(menuContext, ref));
       case ChannelMenuAction.markAsRead:
         close();
-        unawaited(_readStateRepository(ref).ackLatest(channel.id));
+        unawaited(
+          channel.isForum
+              ? _readStateRepository(ref).markForumRead(channel.id)
+              : _readStateRepository(ref).ackLatest(channel.id),
+        );
       case ChannelMenuAction.toggleFavorite:
         close();
         unawaited(_toggleFavorite(ref, isFavorite: menuState.isFavorite));

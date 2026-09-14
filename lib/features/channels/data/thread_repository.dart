@@ -41,6 +41,9 @@ class ThreadRepository {
   /// the first 404 so older servers are not asked again this session.
   bool _guildActiveThreadsSupported = true;
 
+  /// False once the server has answered 404 for the guild threads endpoint.
+  bool get guildActiveThreadsSupported => _guildActiveThreadsSupported;
+
   /// Watch the cached thread/forum-post channels under [parentChannelId],
   /// reacting to gateway inserts/updates so new posts appear without a refetch.
   Stream<List<Channel>> watchThreads(String parentChannelId) {

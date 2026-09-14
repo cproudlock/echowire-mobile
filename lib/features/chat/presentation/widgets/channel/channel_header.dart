@@ -403,11 +403,11 @@ class ChannelHeader extends ConsumerWidget {
                     threadChannelTypes.contains(channel.type))
                   FluxerButton.circle(
                     icon: _watchThreadMembership(ref, channel.id)
-                        ? PhosphorIconsFill.userMinus
-                        : PhosphorIconsFill.userPlus,
+                        ? PhosphorIconsFill.bellRinging
+                        : PhosphorIconsBold.bell,
                     semanticLabel: _watchThreadMembership(ref, channel.id)
-                        ? l10n.uiLeaveThread
-                        : l10n.uiJoinThread,
+                        ? l10n.threadsFollowing
+                        : l10n.threadsFollow,
                     variant: FluxerButtonVariant.secondary,
                     size: FluxerButtonSize.small,
                     iconSize: 20,

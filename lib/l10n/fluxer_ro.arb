@@ -17337,5 +17337,9 @@
     "forumSettingsSaveFailed": "Could not save forum settings",
     "@forumSettingsSaveFailed": {
         "description": "Toast when forum settings fail to save."
+    },
+    "threadsStarterMessage": "Started from",
+    "@threadsStarterMessage": {
+        "description": "Label above the message a thread was started from, shown at the top of the thread."
     }
 }

@@ -14631,6 +14631,9 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
 
   @override
   String get forumSettingsSaveFailed => 'Could not save forum settings';
+
+  @override
+  String get threadsStarterMessage => 'Started from';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -29346,4 +29349,7 @@ class FluxerLocalizationsPtBr extends FluxerLocalizationsPt {
 
   @override
   String get forumSettingsSaveFailed => 'Could not save forum settings';
+
+  @override
+  String get threadsStarterMessage => 'Started from';
 }

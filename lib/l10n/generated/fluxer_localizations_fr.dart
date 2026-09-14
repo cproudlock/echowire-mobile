@@ -14896,4 +14896,7 @@ class FluxerLocalizationsFr extends FluxerLocalizations {
 
   @override
   String get forumSettingsSaveFailed => 'Could not save forum settings';
+
+  @override
+  String get threadsStarterMessage => 'Started from';
 }

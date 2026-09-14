@@ -13761,6 +13761,9 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get forumSettingsSaveFailed => 'Could not save forum settings';
+
+  @override
+  String get threadsStarterMessage => 'Started from';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -27478,4 +27481,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get forumSettingsSaveFailed => 'Could not save forum settings';
+
+  @override
+  String get threadsStarterMessage => 'Started from';
 }

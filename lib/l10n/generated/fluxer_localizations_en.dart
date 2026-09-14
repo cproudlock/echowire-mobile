@@ -14569,6 +14569,9 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
 
   @override
   String get forumSettingsSaveFailed => 'Could not save forum settings';
+
+  @override
+  String get threadsStarterMessage => 'Started from';
 }
 
 /// The translations for English, as used in the United Kingdom (`en_GB`).
@@ -29098,6 +29101,9 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
 
   @override
   String get forumSettingsSaveFailed => 'Could not save forum settings';
+
+  @override
+  String get threadsStarterMessage => 'Started from';
 }
 
 /// The translations for English, as used in the United States (`en_US`).
@@ -43641,4 +43647,7 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
 
   @override
   String get forumSettingsSaveFailed => 'Could not save forum settings';
+
+  @override
+  String get threadsStarterMessage => 'Started from';
 }

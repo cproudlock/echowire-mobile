@@ -24362,6 +24362,12 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Could not save forum settings'**
   String get forumSettingsSaveFailed;
+
+  /// Label above the message a thread was started from, shown at the top of the thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Started from'**
+  String get threadsStarterMessage;
 }
 
 class _FluxerLocalizationsDelegate

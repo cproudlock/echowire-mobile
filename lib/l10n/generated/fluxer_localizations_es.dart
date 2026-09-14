@@ -14822,6 +14822,9 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
 
   @override
   String get forumSettingsSaveFailed => 'Could not save forum settings';
+
+  @override
+  String get threadsStarterMessage => 'Started from';
 }
 
 /// The translations for Spanish Castilian, as used in Latin America and the Caribbean (`es_419`).
@@ -29605,4 +29608,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
 
   @override
   String get forumSettingsSaveFailed => 'Could not save forum settings';
+
+  @override
+  String get threadsStarterMessage => 'Started from';
 }

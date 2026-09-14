@@ -14498,6 +14498,77 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
 
   @override
   String get threadsEditThread => 'Edit thread';
+
+  @override
+  String get forumSettingsTitle => 'Forum settings';
+
+  @override
+  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+
+  @override
+  String get forumSettingsRequireTag => 'Require tags on new posts';
+
+  @override
+  String get forumSettingsRequireTagDescription =>
+      'Members must pick at least one tag before they can post.';
+
+  @override
+  String get forumSettingsDefaultSort => 'Default sort order';
+
+  @override
+  String get forumSettingsDefaultLayout => 'Default layout';
+
+  @override
+  String get forumSettingsDefaultReaction => 'Default reaction';
+
+  @override
+  String get forumSettingsDefaultReactionDescription =>
+      'Shown as the quick reaction on every post. Leave empty for none.';
+
+  @override
+  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+
+  @override
+  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+
+  @override
+  String get forumSettingsHideAfterInactivityDescription =>
+      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+
+  @override
+  String get forumSettingsHideAfterOneHour => '1 hour';
+
+  @override
+  String get forumSettingsHideAfterOneDay => '24 hours';
+
+  @override
+  String get forumSettingsHideAfterThreeDays => '3 days';
+
+  @override
+  String get forumSettingsHideAfterOneWeek => '1 week';
+
+  @override
+  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+
+  @override
+  String get forumSettingsPostCreationSlowmodeDescription =>
+      'How long members wait between creating posts.';
+
+  @override
+  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+
+  @override
+  String get forumSettingsDefaultPostSlowmodeDescription =>
+      'Applied to posts when they are created.';
+
+  @override
+  String get forumSettingsSave => 'Save forum settings';
+
+  @override
+  String get forumSettingsSaved => 'Forum settings saved';
+
+  @override
+  String get forumSettingsSaveFailed => 'Could not save forum settings';
 }
 
 /// The translations for English, as used in the United Kingdom (`en_GB`).
@@ -28956,6 +29027,77 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
 
   @override
   String get threadsEditThread => 'Edit thread';
+
+  @override
+  String get forumSettingsTitle => 'Forum settings';
+
+  @override
+  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+
+  @override
+  String get forumSettingsRequireTag => 'Require tags on new posts';
+
+  @override
+  String get forumSettingsRequireTagDescription =>
+      'Members must pick at least one tag before they can post.';
+
+  @override
+  String get forumSettingsDefaultSort => 'Default sort order';
+
+  @override
+  String get forumSettingsDefaultLayout => 'Default layout';
+
+  @override
+  String get forumSettingsDefaultReaction => 'Default reaction';
+
+  @override
+  String get forumSettingsDefaultReactionDescription =>
+      'Shown as the quick reaction on every post. Leave empty for none.';
+
+  @override
+  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+
+  @override
+  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+
+  @override
+  String get forumSettingsHideAfterInactivityDescription =>
+      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+
+  @override
+  String get forumSettingsHideAfterOneHour => '1 hour';
+
+  @override
+  String get forumSettingsHideAfterOneDay => '24 hours';
+
+  @override
+  String get forumSettingsHideAfterThreeDays => '3 days';
+
+  @override
+  String get forumSettingsHideAfterOneWeek => '1 week';
+
+  @override
+  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+
+  @override
+  String get forumSettingsPostCreationSlowmodeDescription =>
+      'How long members wait between creating posts.';
+
+  @override
+  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+
+  @override
+  String get forumSettingsDefaultPostSlowmodeDescription =>
+      'Applied to posts when they are created.';
+
+  @override
+  String get forumSettingsSave => 'Save forum settings';
+
+  @override
+  String get forumSettingsSaved => 'Forum settings saved';
+
+  @override
+  String get forumSettingsSaveFailed => 'Could not save forum settings';
 }
 
 /// The translations for English, as used in the United States (`en_US`).
@@ -43428,4 +43570,75 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
 
   @override
   String get threadsEditThread => 'Edit thread';
+
+  @override
+  String get forumSettingsTitle => 'Forum settings';
+
+  @override
+  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+
+  @override
+  String get forumSettingsRequireTag => 'Require tags on new posts';
+
+  @override
+  String get forumSettingsRequireTagDescription =>
+      'Members must pick at least one tag before they can post.';
+
+  @override
+  String get forumSettingsDefaultSort => 'Default sort order';
+
+  @override
+  String get forumSettingsDefaultLayout => 'Default layout';
+
+  @override
+  String get forumSettingsDefaultReaction => 'Default reaction';
+
+  @override
+  String get forumSettingsDefaultReactionDescription =>
+      'Shown as the quick reaction on every post. Leave empty for none.';
+
+  @override
+  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+
+  @override
+  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+
+  @override
+  String get forumSettingsHideAfterInactivityDescription =>
+      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+
+  @override
+  String get forumSettingsHideAfterOneHour => '1 hour';
+
+  @override
+  String get forumSettingsHideAfterOneDay => '24 hours';
+
+  @override
+  String get forumSettingsHideAfterThreeDays => '3 days';
+
+  @override
+  String get forumSettingsHideAfterOneWeek => '1 week';
+
+  @override
+  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+
+  @override
+  String get forumSettingsPostCreationSlowmodeDescription =>
+      'How long members wait between creating posts.';
+
+  @override
+  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+
+  @override
+  String get forumSettingsDefaultPostSlowmodeDescription =>
+      'Applied to posts when they are created.';
+
+  @override
+  String get forumSettingsSave => 'Save forum settings';
+
+  @override
+  String get forumSettingsSaved => 'Forum settings saved';
+
+  @override
+  String get forumSettingsSaveFailed => 'Could not save forum settings';
 }

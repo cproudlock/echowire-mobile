@@ -17199,5 +17199,93 @@
                 "type": "int"
             }
         }
+    },
+    "forumSettingsTitle": "Forum settings",
+    "@forumSettingsTitle": {
+        "description": "Heading of the forum-only section in channel settings."
+    },
+    "forumSettingsGuidelinesHint": "Tell members what to post here",
+    "@forumSettingsGuidelinesHint": {
+        "description": "Placeholder of the forum post guidelines field in channel settings."
+    },
+    "forumSettingsRequireTag": "Require tags on new posts",
+    "@forumSettingsRequireTag": {
+        "description": "Switch that makes members pick at least one tag when creating a forum post."
+    },
+    "forumSettingsRequireTagDescription": "Members must pick at least one tag before they can post.",
+    "@forumSettingsRequireTagDescription": {
+        "description": "Explains the require tags switch in forum settings."
+    },
+    "forumSettingsDefaultSort": "Default sort order",
+    "@forumSettingsDefaultSort": {
+        "description": "Forum setting for how posts are ordered unless a member picks otherwise."
+    },
+    "forumSettingsDefaultLayout": "Default layout",
+    "@forumSettingsDefaultLayout": {
+        "description": "Forum setting for list or gallery layout unless a member picks otherwise."
+    },
+    "forumSettingsDefaultReaction": "Default reaction",
+    "@forumSettingsDefaultReaction": {
+        "description": "Forum setting for the emoji used by React to Post."
+    },
+    "forumSettingsDefaultReactionDescription": "Shown as the quick reaction on every post. Leave empty for none.",
+    "@forumSettingsDefaultReactionDescription": {
+        "description": "Explains the forum default reaction setting."
+    },
+    "forumSettingsDefaultReactionHint": "An emoji, e.g. 👍",
+    "@forumSettingsDefaultReactionHint": {
+        "description": "Placeholder of the forum default reaction field."
+    },
+    "forumSettingsHideAfterInactivity": "Hide after inactivity",
+    "@forumSettingsHideAfterInactivity": {
+        "description": "Forum setting for how long a post stays active without new messages."
+    },
+    "forumSettingsHideAfterInactivityDescription": "Inactive posts move to Archived. Anyone can reopen a post that is not locked.",
+    "@forumSettingsHideAfterInactivityDescription": {
+        "description": "Explains the forum hide after inactivity setting."
+    },
+    "forumSettingsHideAfterOneHour": "1 hour",
+    "@forumSettingsHideAfterOneHour": {
+        "description": "Hide after inactivity option."
+    },
+    "forumSettingsHideAfterOneDay": "24 hours",
+    "@forumSettingsHideAfterOneDay": {
+        "description": "Hide after inactivity option."
+    },
+    "forumSettingsHideAfterThreeDays": "3 days",
+    "@forumSettingsHideAfterThreeDays": {
+        "description": "Hide after inactivity option, the default."
+    },
+    "forumSettingsHideAfterOneWeek": "1 week",
+    "@forumSettingsHideAfterOneWeek": {
+        "description": "Hide after inactivity option."
+    },
+    "forumSettingsPostCreationSlowmode": "Post creation slowmode",
+    "@forumSettingsPostCreationSlowmode": {
+        "description": "Forum setting limiting how often a member can create a new post."
+    },
+    "forumSettingsPostCreationSlowmodeDescription": "How long members wait between creating posts.",
+    "@forumSettingsPostCreationSlowmodeDescription": {
+        "description": "Explains the forum post creation slowmode setting."
+    },
+    "forumSettingsDefaultPostSlowmode": "Slowmode inside new posts",
+    "@forumSettingsDefaultPostSlowmode": {
+        "description": "Forum setting for the slowmode applied to messages inside each new post."
+    },
+    "forumSettingsDefaultPostSlowmodeDescription": "Applied to posts when they are created.",
+    "@forumSettingsDefaultPostSlowmodeDescription": {
+        "description": "Explains the default slowmode for new forum posts."
+    },
+    "forumSettingsSave": "Save forum settings",
+    "@forumSettingsSave": {
+        "description": "Button that saves the forum settings section."
+    },
+    "forumSettingsSaved": "Forum settings saved",
+    "@forumSettingsSaved": {
+        "description": "Toast after forum settings are saved."
+    },
+    "forumSettingsSaveFailed": "Could not save forum settings",
+    "@forumSettingsSaveFailed": {
+        "description": "Toast when forum settings fail to save."
     }
 }

@@ -24230,6 +24230,138 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Edit thread'**
   String get threadsEditThread;
+
+  /// Heading of the forum-only section in channel settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Forum settings'**
+  String get forumSettingsTitle;
+
+  /// Placeholder of the forum post guidelines field in channel settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell members what to post here'**
+  String get forumSettingsGuidelinesHint;
+
+  /// Switch that makes members pick at least one tag when creating a forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Require tags on new posts'**
+  String get forumSettingsRequireTag;
+
+  /// Explains the require tags switch in forum settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Members must pick at least one tag before they can post.'**
+  String get forumSettingsRequireTagDescription;
+
+  /// Forum setting for how posts are ordered unless a member picks otherwise.
+  ///
+  /// In en, this message translates to:
+  /// **'Default sort order'**
+  String get forumSettingsDefaultSort;
+
+  /// Forum setting for list or gallery layout unless a member picks otherwise.
+  ///
+  /// In en, this message translates to:
+  /// **'Default layout'**
+  String get forumSettingsDefaultLayout;
+
+  /// Forum setting for the emoji used by React to Post.
+  ///
+  /// In en, this message translates to:
+  /// **'Default reaction'**
+  String get forumSettingsDefaultReaction;
+
+  /// Explains the forum default reaction setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown as the quick reaction on every post. Leave empty for none.'**
+  String get forumSettingsDefaultReactionDescription;
+
+  /// Placeholder of the forum default reaction field.
+  ///
+  /// In en, this message translates to:
+  /// **'An emoji, e.g. 👍'**
+  String get forumSettingsDefaultReactionHint;
+
+  /// Forum setting for how long a post stays active without new messages.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide after inactivity'**
+  String get forumSettingsHideAfterInactivity;
+
+  /// Explains the forum hide after inactivity setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive posts move to Archived. Anyone can reopen a post that is not locked.'**
+  String get forumSettingsHideAfterInactivityDescription;
+
+  /// Hide after inactivity option.
+  ///
+  /// In en, this message translates to:
+  /// **'1 hour'**
+  String get forumSettingsHideAfterOneHour;
+
+  /// Hide after inactivity option.
+  ///
+  /// In en, this message translates to:
+  /// **'24 hours'**
+  String get forumSettingsHideAfterOneDay;
+
+  /// Hide after inactivity option, the default.
+  ///
+  /// In en, this message translates to:
+  /// **'3 days'**
+  String get forumSettingsHideAfterThreeDays;
+
+  /// Hide after inactivity option.
+  ///
+  /// In en, this message translates to:
+  /// **'1 week'**
+  String get forumSettingsHideAfterOneWeek;
+
+  /// Forum setting limiting how often a member can create a new post.
+  ///
+  /// In en, this message translates to:
+  /// **'Post creation slowmode'**
+  String get forumSettingsPostCreationSlowmode;
+
+  /// Explains the forum post creation slowmode setting.
+  ///
+  /// In en, this message translates to:
+  /// **'How long members wait between creating posts.'**
+  String get forumSettingsPostCreationSlowmodeDescription;
+
+  /// Forum setting for the slowmode applied to messages inside each new post.
+  ///
+  /// In en, this message translates to:
+  /// **'Slowmode inside new posts'**
+  String get forumSettingsDefaultPostSlowmode;
+
+  /// Explains the default slowmode for new forum posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied to posts when they are created.'**
+  String get forumSettingsDefaultPostSlowmodeDescription;
+
+  /// Button that saves the forum settings section.
+  ///
+  /// In en, this message translates to:
+  /// **'Save forum settings'**
+  String get forumSettingsSave;
+
+  /// Toast after forum settings are saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Forum settings saved'**
+  String get forumSettingsSaved;
+
+  /// Toast when forum settings fail to save.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save forum settings'**
+  String get forumSettingsSaveFailed;
 }
 
 class _FluxerLocalizationsDelegate

@@ -149,6 +149,7 @@ Future<void> showSystemMessageActionsSheet(
       break;
     case MessageAction.reply:
     case MessageAction.forward:
+    case MessageAction.addToPost:
     case MessageAction.createThread:
     case MessageAction.edit:
     case MessageAction.pin:

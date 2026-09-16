@@ -127,6 +127,7 @@ class MessageRenderSettings {
     this.messageDisplayCompact = false,
     this.showUserAvatarsInCompactMode = false,
     this.markdown = MessageMarkdownSettings.defaults,
+    this.threadOwnerId,
   });
 
   final String? activeGuildId;
@@ -140,6 +141,10 @@ class MessageRenderSettings {
   final bool messageDisplayCompact;
   final bool showUserAvatarsInCompactMode;
   final MessageMarkdownSettings markdown;
+
+  /// Echowire: the id of the user who started this thread or forum post, so
+  /// their messages carry an OP badge. Null outside threads.
+  final String? threadOwnerId;
 
   @override
   bool operator ==(Object other) =>
@@ -156,7 +161,8 @@ class MessageRenderSettings {
           messageGroupSpacing == other.messageGroupSpacing &&
           messageDisplayCompact == other.messageDisplayCompact &&
           showUserAvatarsInCompactMode == other.showUserAvatarsInCompactMode &&
-          markdown == other.markdown;
+          markdown == other.markdown &&
+          threadOwnerId == other.threadOwnerId;
 
   @override
   int get hashCode => Object.hash(
@@ -171,6 +177,7 @@ class MessageRenderSettings {
     messageDisplayCompact,
     showUserAvatarsInCompactMode,
     markdown,
+    threadOwnerId,
   );
 }
 
@@ -340,6 +347,10 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       unawaited(_createThreadFromMessage());
       return;
     }
+    if (action == MessageAction.addToPost) {
+      unawaited(_addReplyMediaToPost());
+      return;
+    }
     if (action == MessageAction.addReaction && !isMobile) {
       _hovered.value = true;
       _reactionPickerOpen.value = true;
@@ -483,6 +494,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         userSettingsViewModelProvider.select((s) => s.developerMode),
       ),
       canCreateThread: !widget.isDmChannel && widget.canSendMessages,
+      canAddToPost: _canAddThisReplyToPost(),
       isSendDisabled: widget.isSendDisabled,
       quickItems: frecent,
       onQuickReaction: _dispatchQuickReaction,
@@ -490,6 +502,70 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       linkUrl: linkUrl,
     );
     _dispatchMenuAction(action, onDelete: onDelete, isMobile: true);
+  }
+
+  /// Echowire: whether this message may be appended to the forum post it sits
+  /// in, per the forums phase 2 contract: an image on a message inside a post,
+  /// offered to the post owner and to anyone who can manage the thread.
+  bool _canAddThisReplyToPost() {
+    final Message msg = widget.message;
+    final String? ownerId = widget.renderSettings?.threadOwnerId;
+    if (ownerId == null || widget.isDmChannel) {
+      return false;
+    }
+    final bool isOwner = ownerId == widget.currentUserId;
+    if (!isOwner && !widget.canManageMessages) {
+      return false;
+    }
+    return msg.attachments.any(
+      (Attachment a) => a.contentType?.startsWith('image/') ?? false,
+    );
+  }
+
+  /// Appends this reply's first image to the forum post's starter message.
+  Future<void> _addReplyMediaToPost() async {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final Message msg = widget.message;
+    final Iterable<Attachment> images = msg.attachments.where(
+      (Attachment a) => a.contentType?.startsWith('image/') ?? false,
+    );
+    final Attachment? image = images.isEmpty ? null : images.first;
+    if (image == null) {
+      return;
+    }
+    try {
+      await ref
+          .read(threadRepositoryProvider)
+          .addMediaToPost(
+            threadId: msg.channelId,
+            messageId: msg.id,
+            attachmentId: image.id,
+          );
+      if (!mounted) {
+        return;
+      }
+      ref
+          .read(toastProvider.notifier)
+          .show(
+            FluxerToast(
+              message: l10n.forumAddToPostDone,
+              variant: FluxerToastVariant.success,
+            ),
+          );
+    } on Exception catch (e, st) {
+      talker.error('Could not add media to post ${msg.channelId}', e, st);
+      if (!mounted) {
+        return;
+      }
+      ref
+          .read(toastProvider.notifier)
+          .show(
+            FluxerToast(
+              message: l10n.forumAddToPostFailed,
+              variant: FluxerToastVariant.danger,
+            ),
+          );
+    }
   }
 
   Future<void> _createThreadFromMessage() async {
@@ -1410,6 +1486,14 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     );
   }
 
+  /// Echowire: whether [msg] was written by the thread or post owner.
+  bool _isOriginalPoster(Message msg) {
+    final String? ownerId =
+        widget.renderSettings?.threadOwnerId ??
+        ref.read(threadOwnerIdProvider(msg.channelId));
+    return ownerId != null && ownerId == msg.authorId;
+  }
+
   Widget _buildCompactAuthorPrefix(
     BuildContext context,
     Message msg,
@@ -1435,6 +1519,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
               authorIsSystem: msg.authorIsSystem,
             ),
           ),
+        if (_isOriginalPoster(msg)) const FluxerOpTag(),
         if (showAvatar)
           FluxerGestureDetector(
             behavior: HitTestBehavior.opaque,
@@ -1786,6 +1871,10 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                             ),
                           ),
                         ],
+                        if (_isOriginalPoster(msg)) ...[
+                          const SizedBox(width: 6),
+                          const FluxerOpTag(),
+                        ],
                       ],
                     ),
                   ),
@@ -1895,6 +1984,10 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                               authorIsSystem: msg.authorIsSystem,
                             ),
                           ),
+                        ],
+                        if (_isOriginalPoster(msg)) ...[
+                          const SizedBox(width: 6),
+                          const FluxerOpTag(),
                         ],
                         const SizedBox(width: 8),
                         Text(

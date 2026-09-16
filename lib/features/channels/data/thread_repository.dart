@@ -37,6 +37,13 @@ class ThreadRepository {
   final ValueNotifier<Map<String, ForumExtras>> forumExtras =
       ValueNotifier<Map<String, ForumExtras>>(const <String, ForumExtras>{});
 
+  /// Who has posted in each thread, keyed by thread id. Only populated by
+  /// servers that send `participant_ids`.
+  final ValueNotifier<Map<String, ThreadParticipants>> participants =
+      ValueNotifier<Map<String, ThreadParticipants>>(
+        const <String, ThreadParticipants>{},
+      );
+
   /// Whether the server offers `GET /guilds/:id/threads/active`. Cleared after
   /// the first 404 so older servers are not asked again this session.
   bool _guildActiveThreadsSupported = true;
@@ -121,6 +128,8 @@ class ThreadRepository {
     final List<ChannelResponse> result = <ChannelResponse>[];
     final Map<String, ThreadStarterPreview> previews =
         <String, ThreadStarterPreview>{...starterPreviews.value};
+    final Map<String, ThreadParticipants> posters =
+        <String, ThreadParticipants>{...participants.value};
     for (final Object? entry in threads) {
       if (entry is! Map<String, dynamic>) {
         continue;
@@ -133,8 +142,15 @@ class ThreadRepository {
       if (preview != null) {
         previews[channel.id] = preview;
       }
+      final ThreadParticipants? people = ThreadParticipants.fromThreadJson(
+        entry,
+      );
+      if (people != null) {
+        posters[channel.id] = people;
+      }
     }
     starterPreviews.value = previews;
+    participants.value = posters;
     return result;
   }
 
@@ -243,6 +259,23 @@ class ThreadRepository {
         e.response?.statusMessage ?? 'Failed to list guild threads',
       );
     }
+  }
+
+  /// Append an image from [messageId] to the forum post's starter message, so
+  /// it becomes the post's thumbnail (Discord's "Add to Post"). The caller must
+  /// own the post or be able to manage the thread, per the forums contract.
+  Future<void> addMediaToPost({
+    required String threadId,
+    required String messageId,
+    required String attachmentId,
+  }) async {
+    await _dio.post<Map<String, dynamic>>(
+      '/channels/$threadId/starter-message/attachments',
+      data: <String, Object?>{
+        'message_id': messageId,
+        'attachment_id': attachmentId,
+      },
+    );
   }
 
   /// Load forum fields the SDK does not model (layout, post slowmode).

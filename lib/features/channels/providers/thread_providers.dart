@@ -8,6 +8,7 @@ import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/features/channels/data/thread_repository.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/domain/forum_view.dart';
+import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:riverpod/src/providers/stream_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -42,6 +43,31 @@ Map<String, ThreadStarterPreview> threadStarterPreviews(Ref ref) {
   repo.starterPreviews.addListener(listener);
   ref.onDispose(() => repo.starterPreviews.removeListener(listener));
   return repo.starterPreviews.value;
+}
+
+/// Echowire: the owner of [channelId] when it is a thread or forum post, so
+/// their messages can be badged as the original poster. Null for anything else.
+@riverpod
+String? threadOwnerId(Ref ref, String channelId) {
+  if (channelId.isEmpty) {
+    return null;
+  }
+  final Channel? channel = ref.watch(channelByIdProvider(channelId)).value;
+  if (channel == null || !channel.isThread) {
+    return null;
+  }
+  return channel.ownerId;
+}
+
+/// Echowire: who has posted in each thread, keyed by thread id. Empty on
+/// servers that do not send `participant_ids`.
+@riverpod
+Map<String, ThreadParticipants> threadParticipants(Ref ref) {
+  final ThreadRepository repo = ref.watch(threadRepositoryProvider);
+  void listener() => ref.invalidateSelf();
+  repo.participants.addListener(listener);
+  ref.onDispose(() => repo.participants.removeListener(listener));
+  return repo.participants.value;
 }
 
 /// Echowire: forum fields the SDK does not model, keyed by forum id.

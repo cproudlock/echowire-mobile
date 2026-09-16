@@ -90,14 +90,62 @@ class ThreadStarterPreview {
 /// Forum fields the generated SDK does not model yet.
 @immutable
 class ForumExtras {
-  const ForumExtras({this.defaultLayout, this.defaultThreadRateLimitPerUser});
+  const ForumExtras({
+    this.defaultLayout,
+    this.defaultThreadRateLimitPerUser,
+    this.moderatedTagIds = const <String>{},
+  });
 
   final int? defaultLayout;
   final int? defaultThreadRateLimitPerUser;
+
+  /// Tags only moderators may apply. Empty on servers that do not send
+  /// `moderated`, so every tag stays selectable there.
+  final Set<String> moderatedTagIds;
 
   factory ForumExtras.fromChannelJson(Map<String, dynamic> json) => ForumExtras(
     defaultLayout: (json['default_forum_layout'] as num?)?.toInt(),
     defaultThreadRateLimitPerUser:
         (json['default_thread_rate_limit_per_user'] as num?)?.toInt(),
+    moderatedTagIds: moderatedTagIdsFromChannelJson(json),
   );
+}
+
+/// The ids of the forum's moderator-only tags, read from the raw channel JSON.
+/// The generated SDK drops `moderated`, so it is parsed here and held in
+/// memory beside the other forum extras.
+Set<String> moderatedTagIdsFromChannelJson(Map<String, dynamic> json) {
+  final Object? tags = json['available_tags'];
+  if (tags is! List) {
+    return const <String>{};
+  }
+  return <String>{
+    for (final Object? tag in tags)
+      if (tag is Map<String, dynamic> &&
+          tag['moderated'] == true &&
+          tag['id'] is String)
+        tag['id'] as String,
+  };
+}
+
+/// The recent distinct authors of a forum post, most recent first, for the
+/// avatar row on a post card. A rolling window of up to five, not a membership
+/// list. Absent on servers before the forums phase 2 contract.
+@immutable
+class ThreadParticipants {
+  const ThreadParticipants(this.userIds);
+
+  final List<String> userIds;
+
+  static ThreadParticipants? fromThreadJson(Map<String, dynamic> json) {
+    final Object? ids = json['recent_participant_ids'];
+    if (ids is! List) {
+      return null;
+    }
+    final List<String> userIds = <String>[
+      for (final Object? id in ids)
+        if (id is String) id,
+    ];
+    return userIds.isEmpty ? null : ThreadParticipants(userIds);
+  }
 }

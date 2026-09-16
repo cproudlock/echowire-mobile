@@ -331,6 +331,12 @@ Future<void> showEditThreadModal(
   final List<ForumTag> availableTags = isPost
       ? (parent!.availableTags ?? const <ForumTag>[])
       : const <ForumTag>[];
+  final Set<String> moderatedTagIds = isPost
+      ? (ref.read(forumExtrasProvider(parent!.id))?.moderatedTagIds ??
+            const <String>{})
+      : const <String>{};
+  final bool canManageTags =
+      parentId != null && readCanManageThreads(ref, parentId);
   final TextEditingController title = TextEditingController(text: thread.name);
   final ValueNotifier<Set<String>> tags = ValueNotifier<Set<String>>(<String>{
     ...?thread.appliedTags,
@@ -370,9 +376,12 @@ Future<void> showEditThreadModal(
                   ForumTagChip(
                     label: tag.name,
                     selected: selected.contains(tag.id),
-                    onTap: () => tags.value = selected.contains(tag.id)
-                        ? (<String>{...selected}..remove(tag.id))
-                        : <String>{...selected, tag.id},
+                    moderated: moderatedTagIds.contains(tag.id),
+                    onTap: (!canManageTags && moderatedTagIds.contains(tag.id))
+                        ? null
+                        : () => tags.value = selected.contains(tag.id)
+                              ? (<String>{...selected}..remove(tag.id))
+                              : <String>{...selected, tag.id},
                   ),
               ],
             ),
@@ -415,12 +424,17 @@ class ForumTagChip extends StatelessWidget {
   const ForumTagChip({
     required this.label,
     this.selected = false,
+    this.moderated = false,
     this.onTap,
     super.key,
   });
 
   final String label;
   final bool selected;
+
+  /// Marks a tag only moderators may apply.
+  final bool moderated;
+
   final VoidCallback? onTap;
 
   @override
@@ -430,6 +444,9 @@ class ForumTagChip extends StatelessWidget {
     final layout = context.layout;
     final motion = context.motion;
 
+    final Color contentColor = selected
+        ? colors.textOnBrandPrimary
+        : colors.textSecondary;
     final Widget pill = AnimatedContainer(
       duration: motion.normal,
       curve: motion.curve,
@@ -438,14 +455,25 @@ class ForumTagChip extends StatelessWidget {
         color: selected ? colors.brandPrimary : colors.backgroundTertiary,
         borderRadius: layout.radiusFull,
       ),
-      child: Text(
-        label,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: textStyles.label.copyWith(
-          fontWeight: FontWeight.w600,
-          color: selected ? colors.textOnBrandPrimary : colors.textSecondary,
-        ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          if (moderated) ...<Widget>[
+            Icon(PhosphorIconsFill.shieldCheck, size: 11, color: contentColor),
+            SizedBox(width: layout.s1 / 2),
+          ],
+          Flexible(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: textStyles.label.copyWith(
+                fontWeight: FontWeight.w600,
+                color: contentColor,
+              ),
+            ),
+          ),
+        ],
       ),
     );
     final VoidCallback? handler = onTap;

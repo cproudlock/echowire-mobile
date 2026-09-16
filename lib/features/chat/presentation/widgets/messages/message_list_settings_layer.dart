@@ -89,6 +89,11 @@ class _MessageListSettingsLayer extends ConsumerWidget {
         ),
       ),
       messageDisplayCompact: messageDisplayCompact,
+      // Echowire: hoisted so every row can badge the original poster without
+      // subscribing to the channel itself.
+      threadOwnerId: channelId.isEmpty
+          ? null
+          : ref.watch(threadOwnerIdProvider(channelId)),
       showUserAvatarsInCompactMode: ref.watch(
         appearancePreferencesProvider.select(
           (s) => s.showUserAvatarsInCompactMode,

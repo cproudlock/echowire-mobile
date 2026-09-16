@@ -350,9 +350,17 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
 
   Future<void> _manageTags(List<ForumTag> availableTags) async {
     final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final Set<String> moderatedTagIds =
+        ref.read(forumExtrasProvider(widget.channel.id))?.moderatedTagIds ??
+        const <String>{};
     final List<_EditableTag> draft = <_EditableTag>[
       for (final ForumTag t in availableTags)
-        _EditableTag(id: t.id, name: t.name, emojiName: t.emojiName),
+        _EditableTag(
+          id: t.id,
+          name: t.name,
+          emojiName: t.emojiName,
+          moderated: moderatedTagIds.contains(t.id),
+        ),
     ];
     final bool? save = await FluxerModal.show<bool>(
       context,
@@ -378,6 +386,11 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
               for (final _EditableTag t in draft) t.toJson(),
             ],
           );
+      // The tag PATCH response is read as a channel, which drops `moderated`,
+      // so re-read the forum extras that carry it.
+      await ref
+          .read(threadRepositoryProvider)
+          .loadForumExtras(widget.channel.id);
       if (!mounted) {
         return;
       }
@@ -615,12 +628,19 @@ class _ForumChannelViewState extends ConsumerState<ForumChannelView> {
                       onRefresh: _onRefresh,
                       child: ListView(
                         children: <Widget>[
-                          SizedBox(height: layout.s24),
-                          ThreadListMessage(
-                            text: _showArchived
-                                ? l10n.forumNoArchivedPosts
-                                : l10n.forumNoPosts,
-                          ),
+                          SizedBox(height: layout.s12),
+                          if (_showArchived || _search.text.trim().isNotEmpty)
+                            ThreadListMessage(
+                              text: _showArchived
+                                  ? l10n.forumNoArchivedPosts
+                                  : l10n.forumNoPosts,
+                            )
+                          else
+                            _ForumEmptyState(
+                              forumName: forum.name,
+                              canPost: !forum.isLocked,
+                              onNewPost: _createPost,
+                            ),
                         ],
                       ),
                     );
@@ -692,6 +712,19 @@ class _PostDisplay {
   final ThreadStarterPreview? preview;
   final List<String> tagNames;
   final bool isUnread;
+
+  /// Who has posted, newest first. Falls back to the starter's author when the
+  /// server sends no participant ids.
+  List<String> participantIds(WidgetRef ref, Channel post) {
+    final List<String> ids =
+        ref.watch(threadParticipantsProvider)[post.id]?.userIds ??
+        const <String>[];
+    if (ids.isNotEmpty) {
+      return ids;
+    }
+    final String? authorId = preview?.authorId;
+    return authorId == null ? const <String>[] : <String>[authorId];
+  }
 
   static String lastActivity(FluxerLocalizations l10n, Channel post) {
     final int ms = snowflakeTimestampMs(post.activityId);
@@ -829,7 +862,16 @@ class _ForumPostRow extends ConsumerWidget {
                       ),
                     ),
                   SizedBox(height: layout.s2),
-                  _PostFooter(post: post, l10n: l10n),
+                  Row(
+                    children: <Widget>[
+                      _ParticipantAvatars(
+                        userIds: display.participantIds(ref, post),
+                      ),
+                      Expanded(
+                        child: _PostFooter(post: post, l10n: l10n),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -848,6 +890,145 @@ class _ForumPostRow extends ConsumerWidget {
             ThreadModMenuButton(thread: post, actions: actions),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Up to three overlapping avatars of the people who have posted.
+class _ParticipantAvatars extends StatelessWidget {
+  const _ParticipantAvatars({required this.userIds});
+
+  final List<String> userIds;
+
+  static const double _size = 18;
+  static const double _overlap = 12;
+
+  @override
+  Widget build(BuildContext context) {
+    if (userIds.isEmpty) {
+      return const SizedBox.shrink();
+    }
+    final List<String> shown = userIds.take(3).toList();
+    return Padding(
+      padding: EdgeInsets.only(right: context.layout.s2),
+      child: SizedBox(
+        width: _size + (shown.length - 1) * _overlap,
+        height: _size,
+        child: Stack(
+          children: <Widget>[
+            for (int i = 0; i < shown.length; i++)
+              Positioned(
+                left: i * _overlap,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: context.colors.backgroundSecondary,
+                      width: 1.5,
+                    ),
+                  ),
+                  child: FluxerAvatar.user(
+                    userId: shown[i],
+                    size: _size,
+                    showStatus: false,
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// The invitation shown in a forum with no posts yet.
+class _ForumEmptyState extends StatelessWidget {
+  const _ForumEmptyState({
+    required this.forumName,
+    required this.canPost,
+    required this.onNewPost,
+  });
+
+  final String forumName;
+  final bool canPost;
+  final VoidCallback onNewPost;
+
+  @override
+  Widget build(BuildContext context) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final colors = context.colors;
+    final layout = context.layout;
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: layout.s6),
+      child: Column(
+        children: <Widget>[
+          Icon(
+            PhosphorIconsFill.chatsCircle,
+            size: 48,
+            color: colors.textTertiaryMuted,
+          ),
+          SizedBox(height: layout.s3),
+          Text(
+            l10n.forumEmptyHeading,
+            textAlign: TextAlign.center,
+            style: context.textStyles.heading.copyWith(fontSize: 18),
+          ),
+          SizedBox(height: layout.s1),
+          Text(
+            l10n.forumEmptyBody(forumName),
+            textAlign: TextAlign.center,
+            style: context.textStyles.bodySmall.copyWith(
+              color: colors.textSecondary,
+            ),
+          ),
+          SizedBox(height: layout.s4),
+          FluxerButton.secondary(
+            label: l10n.forumSeeExamples,
+            size: FluxerButtonSize.compact,
+            fitContent: true,
+            onPressed: () => unawaited(_showExamples(context)),
+          ),
+          if (canPost) ...<Widget>[
+            SizedBox(height: layout.s2),
+            FluxerButton.primary(
+              icon: PhosphorIconsBold.plus,
+              label: l10n.forumNewPost,
+              size: FluxerButtonSize.compact,
+              fitContent: true,
+              onPressed: onNewPost,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  /// Example post ideas, so a new forum is not a blank page.
+  Future<void> _showExamples(BuildContext context) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    return FluxerBottomSheet.show<void>(
+      context,
+      title: l10n.forumSeeExamples,
+      builder: (BuildContext sheetContext, VoidCallback close) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          for (final String example in <String>[
+            l10n.forumExampleQuestion,
+            l10n.forumExampleShow,
+            l10n.forumExampleDiscussion,
+          ])
+            Padding(
+              padding: EdgeInsets.only(bottom: sheetContext.layout.s2),
+              child: Text(
+                example,
+                style: sheetContext.textStyles.bodyMedium.copyWith(
+                  color: sheetContext.colors.textPrimary,
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -1018,16 +1199,32 @@ class _SheetSectionLabel extends StatelessWidget {
 }
 
 class _EditableTag {
-  _EditableTag({required this.id, required this.name, this.emojiName});
+  _EditableTag({
+    required this.id,
+    required this.name,
+    this.emojiName,
+    this.moderated = false,
+  });
 
   final String? id;
   final String name;
   final String? emojiName;
 
+  /// Only moderators may apply a moderated tag.
+  final bool moderated;
+
+  _EditableTag copyWith({bool? moderated}) => _EditableTag(
+    id: id,
+    name: name,
+    emojiName: emojiName,
+    moderated: moderated ?? this.moderated,
+  );
+
   Map<String, Object?> toJson() => <String, Object?>{
     'name': name,
     if (id != null) 'id': id,
     if (emojiName != null) 'emoji_name': emojiName,
+    'moderated': moderated,
   };
 }
 
@@ -1080,7 +1277,25 @@ class _ManageForumTagsBodyState extends State<_ManageForumTagsBody> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    ForumTagChip(label: widget.tags[i].name),
+                    ForumTagChip(
+                      label: widget.tags[i].name,
+                      moderated: widget.tags[i].moderated,
+                    ),
+                    FluxerButton.ghost(
+                      icon: widget.tags[i].moderated
+                          ? PhosphorIconsFill.shieldCheck
+                          : PhosphorIconsBold.shield,
+                      isSquare: true,
+                      size: FluxerButtonSize.superCompact,
+                      semanticLabel: widget.tags[i].moderated
+                          ? l10n.forumTagModeratedOn
+                          : l10n.forumTagModeratedOff,
+                      onPressed: () => setState(
+                        () => widget.tags[i] = widget.tags[i].copyWith(
+                          moderated: !widget.tags[i].moderated,
+                        ),
+                      ),
+                    ),
                     FluxerButton.ghost(
                       icon: PhosphorIconsBold.x,
                       isSquare: true,
@@ -1168,6 +1383,9 @@ class _NewForumPostBody extends ConsumerWidget {
         fallbackChannel;
     final List<ForumTag> tags = forum.availableTags ?? const <ForumTag>[];
     final bool requiresTag = forum.forumRequireTag ?? false;
+    final Set<String> moderatedTagIds =
+        ref.watch(forumExtrasProvider(forum.id))?.moderatedTagIds ??
+        const <String>{};
 
     final TextStyle hintStyle = textStyles.bodySmall.copyWith(
       color: colors.textSecondary,
@@ -1240,7 +1458,10 @@ class _NewForumPostBody extends ConsumerWidget {
                   ForumTagChip(
                     label: tag.name,
                     selected: draft.tagIds.contains(tag.id),
-                    onTap: () => draft.toggleTag(tag.id),
+                    moderated: moderatedTagIds.contains(tag.id),
+                    onTap: (!canManage && moderatedTagIds.contains(tag.id))
+                        ? null
+                        : () => draft.toggleTag(tag.id),
                   ),
               ],
             ),

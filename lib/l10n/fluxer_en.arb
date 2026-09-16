@@ -17397,5 +17397,67 @@
     "threadsStarterMessage": "Started from",
     "@threadsStarterMessage": {
         "description": "Label above the message a thread was started from, shown at the top of the thread."
+    },
+    "threadsOriginalPosterTag": "OP",
+    "@threadsOriginalPosterTag": {
+        "description": "Badge marking the author who started a thread or forum post, shown beside their name. Keep it short, two or three characters."
+    },
+    "forumReactToPost": "React to Post",
+    "@forumReactToPost": {
+        "description": "Button under a forum post that reacts to the post itself."
+    },
+    "forumReactToPostOther": "React with another emoji",
+    "@forumReactToPostOther": {
+        "description": "Accessibility label for the button that opens the emoji picker for a forum post."
+    },
+    "forumEmptyHeading": "Be the first to start the conversation!",
+    "@forumEmptyHeading": {
+        "description": "Heading shown in a forum channel that has no posts yet."
+    },
+    "forumEmptyBody": "What do you want to post about in {forumName}?",
+    "@forumEmptyBody": {
+        "description": "Body text shown in a forum channel with no posts. {forumName} is the forum channel name.",
+        "placeholders": {
+            "forumName": {
+                "type": "String",
+                "example": "help"
+            }
+        }
+    },
+    "forumSeeExamples": "See Examples",
+    "@forumSeeExamples": {
+        "description": "Button that shows example forum post ideas."
+    },
+    "forumExampleQuestion": "Ask a question and tag it so people can find it later.",
+    "@forumExampleQuestion": {
+        "description": "First example forum post idea."
+    },
+    "forumExampleShow": "Share something you made and let people reply to it.",
+    "@forumExampleShow": {
+        "description": "Second example forum post idea."
+    },
+    "forumExampleDiscussion": "Start a discussion on one topic and keep it in this post.",
+    "@forumExampleDiscussion": {
+        "description": "Third example forum post idea."
+    },
+    "forumTagModeratedOn": "Moderator only, tap to allow everyone",
+    "@forumTagModeratedOn": {
+        "description": "Accessibility label for the toggle on a tag only moderators may apply."
+    },
+    "forumTagModeratedOff": "Anyone may apply, tap to restrict to moderators",
+    "@forumTagModeratedOff": {
+        "description": "Accessibility label for the toggle on a tag anyone may apply."
+    },
+    "forumAddToPost": "Add to Post",
+    "@forumAddToPost": {
+        "description": "Message action that appends this reply image to the forum post."
+    },
+    "forumAddToPostDone": "Added to the post.",
+    "@forumAddToPostDone": {
+        "description": "Toast confirming the image was appended to the forum post."
+    },
+    "forumAddToPostFailed": "Could not add that to the post. Please try again.",
+    "@forumAddToPostFailed": {
+        "description": "Toast shown when appending an image to a forum post fails."
     }
 }

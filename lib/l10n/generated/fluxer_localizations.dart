@@ -24368,6 +24368,90 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Started from'**
   String get threadsStarterMessage;
+
+  /// Badge marking the author who started a thread or forum post, shown beside their name. Keep it short, two or three characters.
+  ///
+  /// In en, this message translates to:
+  /// **'OP'**
+  String get threadsOriginalPosterTag;
+
+  /// Button under a forum post that reacts to the post itself.
+  ///
+  /// In en, this message translates to:
+  /// **'React to Post'**
+  String get forumReactToPost;
+
+  /// Accessibility label for the button that opens the emoji picker for a forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'React with another emoji'**
+  String get forumReactToPostOther;
+
+  /// Heading shown in a forum channel that has no posts yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Be the first to start the conversation!'**
+  String get forumEmptyHeading;
+
+  /// Body text shown in a forum channel with no posts. {forumName} is the forum channel name.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you want to post about in {forumName}?'**
+  String forumEmptyBody(String forumName);
+
+  /// Button that shows example forum post ideas.
+  ///
+  /// In en, this message translates to:
+  /// **'See Examples'**
+  String get forumSeeExamples;
+
+  /// First example forum post idea.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a question and tag it so people can find it later.'**
+  String get forumExampleQuestion;
+
+  /// Second example forum post idea.
+  ///
+  /// In en, this message translates to:
+  /// **'Share something you made and let people reply to it.'**
+  String get forumExampleShow;
+
+  /// Third example forum post idea.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a discussion on one topic and keep it in this post.'**
+  String get forumExampleDiscussion;
+
+  /// Accessibility label for the toggle on a tag only moderators may apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Moderator only, tap to allow everyone'**
+  String get forumTagModeratedOn;
+
+  /// Accessibility label for the toggle on a tag anyone may apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone may apply, tap to restrict to moderators'**
+  String get forumTagModeratedOff;
+
+  /// Message action that appends this reply image to the forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Post'**
+  String get forumAddToPost;
+
+  /// Toast confirming the image was appended to the forum post.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to the post.'**
+  String get forumAddToPostDone;
+
+  /// Toast shown when appending an image to a forum post fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not add that to the post. Please try again.'**
+  String get forumAddToPostFailed;
 }
 
 class _FluxerLocalizationsDelegate

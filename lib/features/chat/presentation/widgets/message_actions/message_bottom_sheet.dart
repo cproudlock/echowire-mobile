@@ -48,6 +48,9 @@ enum MessageAction {
   forward,
   // Echowire-only action (handled in message_item, not in dispatchMessageAction).
   createThread,
+  // Echowire-only action: append this reply's image to the forum post it is in
+  // (handled in message_item, not in dispatchMessageAction).
+  addToPost,
   copyText,
   copyEmbedText,
   pin,
@@ -79,6 +82,7 @@ Future<MessageAction?> showMessageBottomSheet(
   // Echowire: thread creation is an Echowire-only action (not in upstream's
   // MessageActionPermissions), threaded through separately.
   bool canCreateThread = false,
+  bool canAddToPost = false,
   List<QuickReactionItem>? quickItems,
   ValueChanged<QuickReactionItem>? onQuickReaction,
   MessageActionCallbacks? attachmentCallbacks,
@@ -105,6 +109,7 @@ Future<MessageAction?> showMessageBottomSheet(
       message: message,
       permissions: permissions,
       canCreateThread: canCreateThread,
+      canAddToPost: canAddToPost,
       quickItems: quickItems ?? kQuickReactionDefaults,
       onQuickReaction: onQuickReaction,
       attachmentCallbacks: attachmentCallbacks,
@@ -133,6 +138,7 @@ Future<void> dispatchMessageAction({
   String? previewRoleGuildId,
 }) async {
   switch (action) {
+    case MessageAction.addToPost:
     case MessageAction.createThread:
       // Echowire-only: handled in message_item before delegating here; no-op.
       break;
@@ -319,6 +325,7 @@ List<Widget> buildMessageActionMenuGroups({
   required ValueChanged<MessageAction> onAction,
   // Echowire-only: not part of upstream's MessageActionPermissions.
   bool canCreateThread = false,
+  bool canAddToPost = false,
   MessageActionCallbacks? attachmentCallbacks,
   String? attachmentIdFilter,
   bool includeAttachmentFavoriteActions = true,
@@ -436,6 +443,13 @@ List<Widget> buildMessageActionMenuGroups({
         icon: PhosphorIconsRegular.chatText,
         label: l10n.threadsCreateThreadAction,
         onTap: () => onAction(MessageAction.createThread),
+      ),
+    // Echowire: append this reply's media to the forum post above it.
+    if (canAddToPost)
+      FluxerBottomSheetMenuItem(
+        icon: PhosphorIconsRegular.imageSquare,
+        label: l10n.forumAddToPost,
+        onTap: () => onAction(MessageAction.addToPost),
       ),
     if (canShowEdit)
       FluxerBottomSheetMenuItem(
@@ -644,6 +658,7 @@ class _MessageBottomSheetBody extends ConsumerWidget {
     required this.message,
     required this.permissions,
     required this.canCreateThread,
+    required this.canAddToPost,
     required this.quickItems,
     required this.scrollController,
     required this.hostContext,
@@ -656,6 +671,7 @@ class _MessageBottomSheetBody extends ConsumerWidget {
   final MessageActionPermissions permissions;
   // Echowire-only: not part of upstream's MessageActionPermissions.
   final bool canCreateThread;
+  final bool canAddToPost;
   final List<QuickReactionItem> quickItems;
   final ValueChanged<QuickReactionItem>? onQuickReaction;
   final MessageActionCallbacks? attachmentCallbacks;
@@ -709,6 +725,7 @@ class _MessageBottomSheetBody extends ConsumerWidget {
       message: message,
       permissions: permissions,
       canCreateThread: canCreateThread,
+      canAddToPost: canAddToPost,
       onAction: (MessageAction action) => _pop(context, action),
       attachmentCallbacks: attachmentCallbacks,
     );

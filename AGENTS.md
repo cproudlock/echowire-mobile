@@ -133,3 +133,11 @@ version name from pubspec. iOS is APNs-only, so that workflow strips Firebase.
   on fork PRs for reasons unrelated to the code.
 - **Memory:** do not run a release build alongside the web repo's full vitest
   run or image build; the container's memory cap turns that into hours of thrash.
+- **Widget tests need two things a fresh worktree lacks.** `flutter test` builds
+  `fluxer_markdown_native` through a Dart build hook that cargo-builds the Rust
+  parser from inside the `fluxer` submodule, so an uninitialised submodule fails
+  as "Building native assets failed" and reads like a missing cargo. Run
+  `git submodule update --init --depth 1 fluxer`. Compilation then needs
+  `packages/fluxer_fcm/lib/firebase_options.dart`, which is gitignored local
+  config: copy it from a checkout that has it. With both in place the suites
+  run (`test/features/chat` is about 1780 tests).

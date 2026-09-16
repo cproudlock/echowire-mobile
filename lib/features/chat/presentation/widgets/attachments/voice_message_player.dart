@@ -69,7 +69,7 @@ class _VoiceMessagePlayerState extends State<VoiceMessagePlayer> {
     );
     _sessionReporter = ChatAttachmentAudioSessionReporter(
       binding: _mediaSessionBinding,
-      attachment: widget.attachment,
+      attachment: () => widget.attachment,
       title: () => FluxerLocalizations.of(context).voiceMessageTitle,
       totalDuration: () => _mediaSessionTotalDuration,
       playbackRate: () => _playbackRate,
@@ -430,7 +430,7 @@ class _VoiceMessagePlayerState extends State<VoiceMessagePlayer> {
   }
 
   KeyEventResult _handleWaveformKey(FocusNode node, KeyEvent event) {
-    if (_isLoading || event is! KeyDownEvent) {
+    if (!_isPlaying || _isLoading || event is! KeyDownEvent) {
       return KeyEventResult.ignored;
     }
     const double step = 0.05;
@@ -511,7 +511,7 @@ class _VoiceMessagePlayerState extends State<VoiceMessagePlayer> {
                             increasedValue: l10n.voiceMessageSeekForward,
                             decreasedValue: l10n.voiceMessageSeekBackward,
                             child: PlaybackSeekGestureTarget(
-                              enabled: !_isLoading,
+                              enabled: _isPlaying,
                               onSeekFraction: (double fraction) {
                                 unawaited(_seekToFraction(fraction));
                               },

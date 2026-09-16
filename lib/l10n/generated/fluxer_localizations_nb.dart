@@ -14677,4 +14677,53 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get threadsStarterMessage => 'Started from';
+
+  @override
+  String get threadsOriginalPosterTag => 'OP';
+
+  @override
+  String get forumReactToPost => 'React to Post';
+
+  @override
+  String get forumReactToPostOther => 'React with another emoji';
+
+  @override
+  String get forumEmptyHeading => 'Be the first to start the conversation!';
+
+  @override
+  String forumEmptyBody(String forumName) {
+    return 'What do you want to post about in $forumName?';
+  }
+
+  @override
+  String get forumSeeExamples => 'See Examples';
+
+  @override
+  String get forumExampleQuestion =>
+      'Ask a question and tag it so people can find it later.';
+
+  @override
+  String get forumExampleShow =>
+      'Share something you made and let people reply to it.';
+
+  @override
+  String get forumExampleDiscussion =>
+      'Start a discussion on one topic and keep it in this post.';
+
+  @override
+  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+
+  @override
+  String get forumTagModeratedOff =>
+      'Anyone may apply, tap to restrict to moderators';
+
+  @override
+  String get forumAddToPost => 'Add to Post';
+
+  @override
+  String get forumAddToPostDone => 'Added to the post.';
+
+  @override
+  String get forumAddToPostFailed =>
+      'Could not add that to the post. Please try again.';
 }

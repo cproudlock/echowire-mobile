@@ -9851,5 +9851,19 @@
     "threadsStarterMessage": "Started from",
     "@threadsStarterMessage": {
         "description": "Label above the message a thread was started from, shown at the top of the thread."
-    }
+    },
+    "threadsOriginalPosterTag": "OP",
+    "forumReactToPost": "React to Post",
+    "forumReactToPostOther": "React with another emoji",
+    "forumEmptyHeading": "Be the first to start the conversation!",
+    "forumEmptyBody": "What do you want to post about in {forumName}?",
+    "forumSeeExamples": "See Examples",
+    "forumExampleQuestion": "Ask a question and tag it so people can find it later.",
+    "forumExampleShow": "Share something you made and let people reply to it.",
+    "forumExampleDiscussion": "Start a discussion on one topic and keep it in this post.",
+    "forumTagModeratedOn": "Moderator only, tap to allow everyone",
+    "forumTagModeratedOff": "Anyone may apply, tap to restrict to moderators",
+    "forumAddToPost": "Add to Post",
+    "forumAddToPostDone": "Added to the post.",
+    "forumAddToPostFailed": "Could not add that to the post. Please try again."
 }

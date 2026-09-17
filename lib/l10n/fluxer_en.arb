@@ -14258,6 +14258,38 @@
     "@permissionManageWebhooksDescription": {
         "description": "Permission description."
     },
+    "permissionSendMessagesInThreads": "Send messages in threads",
+    "@permissionSendMessagesInThreads": {
+        "description": "Role permission title: post inside threads and forum posts."
+    },
+    "permissionSendMessagesInThreadsDescription": "Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.",
+    "@permissionSendMessagesInThreadsDescription": {
+        "description": "Role permission description for sending messages in threads."
+    },
+    "permissionCreatePublicThreads": "Create public threads",
+    "@permissionCreatePublicThreads": {
+        "description": "Role permission title: start public threads and forum posts."
+    },
+    "permissionCreatePublicThreadsDescription": "Members can start threads that everyone in the channel can see, and create forum posts.",
+    "@permissionCreatePublicThreadsDescription": {
+        "description": "Role permission description for creating public threads."
+    },
+    "permissionCreatePrivateThreads": "Create private threads",
+    "@permissionCreatePrivateThreads": {
+        "description": "Role permission title: start invite-only threads."
+    },
+    "permissionCreatePrivateThreadsDescription": "Members can start threads that only invited people can see.",
+    "@permissionCreatePrivateThreadsDescription": {
+        "description": "Role permission description for creating private threads."
+    },
+    "permissionManageThreads": "Manage threads and posts",
+    "@permissionManageThreads": {
+        "description": "Role permission title: moderate threads and forum posts."
+    },
+    "permissionManageThreadsDescription": "Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.",
+    "@permissionManageThreadsDescription": {
+        "description": "Role permission description for managing threads."
+    },
     "permissionSendMessages": "Send messages",
     "@permissionSendMessages": {
         "description": "Permission name."
@@ -17058,6 +17090,58 @@
     "threadsMembersLoadFailed": "Could not load members",
     "@threadsMembersLoadFailed": {
         "description": "Title shown when a thread's member list fails to load."
+    },
+    "threadsAddMember": "Add member",
+    "@threadsAddMember": {
+        "description": "Button that opens the picker for adding someone to a thread."
+    },
+    "threadsAddMemberSearchLabel": "Search members",
+    "@threadsAddMemberSearchLabel": {
+        "description": "Label of the search field in the thread add member picker."
+    },
+    "threadsAddMemberNoResults": "No members match that search.",
+    "@threadsAddMemberNoResults": {
+        "description": "Shown when the thread add member search finds nobody."
+    },
+    "threadsRemoveMember": "Remove from thread",
+    "@threadsRemoveMember": {
+        "description": "Accessible label of the button removing another person from a thread."
+    },
+    "threadsLeaveThread": "Leave thread",
+    "@threadsLeaveThread": {
+        "description": "Accessible label of the button that removes yourself from a thread."
+    },
+    "threadsMemberAddedToast": "Member added",
+    "@threadsMemberAddedToast": {
+        "description": "Toast confirming someone was added to a thread."
+    },
+    "threadsMemberRemovedToast": "Member removed",
+    "@threadsMemberRemovedToast": {
+        "description": "Toast confirming someone was removed from a thread."
+    },
+    "threadsLeftToast": "You left the thread",
+    "@threadsLeftToast": {
+        "description": "Toast confirming you removed yourself from a thread."
+    },
+    "threadsMembersFullToast": "This thread has reached its member limit.",
+    "@threadsMembersFullToast": {
+        "description": "Toast shown when adding a thread member hits the server's member cap."
+    },
+    "threadsMemberNotFoundToast": "That person cannot see this channel.",
+    "@threadsMemberNotFoundToast": {
+        "description": "Toast shown when a thread member cannot be added because they cannot view the parent channel."
+    },
+    "threadsMembersForbiddenToast": "You do not have permission to change this thread's members.",
+    "@threadsMembersForbiddenToast": {
+        "description": "Toast shown when the server refuses a thread membership change."
+    },
+    "threadsInvitableLabel": "Anyone in the thread can add others",
+    "@threadsInvitableLabel": {
+        "description": "Label of the toggle controlling whether thread members may invite more people."
+    },
+    "threadsInvitableDescription": "When this is on, every member of this private thread can add other people to it.",
+    "@threadsInvitableDescription": {
+        "description": "Description of the thread invitable toggle."
     },
     "threadsNoMembersTitle": "No thread members yet",
     "@threadsNoMembersTitle": {

@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3655,8 +3654,10 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Това ще излезе от избраните устройства от профила ви. Ще трябва да влезете отново на тези устройства.',
-      one: 'Това ще излезе от избраното устройство от профила ви. Ще трябва да влезете отново на това устройство.',
+      other:
+          'Това ще излезе от избраните устройства от профила ви. Ще трябва да влезете отново на тези устройства.',
+      one:
+          'Това ще излезе от избраното устройство от профила ви. Ще трябва да влезете отново на това устройство.',
     );
     return '$_temp0';
   }
@@ -4640,7 +4641,8 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count общности временно не са достъпни поради неизправност на флукс кондензатора.',
-      one: '1 общност временно не е достъпна поради неизправност на флукс кондензатора.',
+      one:
+          '1 общност временно не е достъпна поради неизправност на флукс кондензатора.',
     );
     return '$_temp0';
   }
@@ -5556,7 +5558,8 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
       locale: localeName,
       other:
           'Вече сте свързани към този гласов канал от $count други устройства. Какво искате да направите?',
-      one: 'Вече сте свързани към този гласов канал от 1 друго устройство. Какво искате да направите?',
+      one:
+          'Вече сте свързани към този гласов канал от 1 друго устройство. Какво искате да направите?',
     );
     return '$_temp0';
   }
@@ -12037,6 +12040,34 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
       'Създаване, редактиране или изтриване на уеб куки.';
 
   @override
+  String get permissionSendMessagesInThreads => 'Send messages in threads';
+
+  @override
+  String get permissionSendMessagesInThreadsDescription =>
+      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
+
+  @override
+  String get permissionCreatePublicThreads => 'Create public threads';
+
+  @override
+  String get permissionCreatePublicThreadsDescription =>
+      'Members can start threads that everyone in the channel can see, and create forum posts.';
+
+  @override
+  String get permissionCreatePrivateThreads => 'Create private threads';
+
+  @override
+  String get permissionCreatePrivateThreadsDescription =>
+      'Members can start threads that only invited people can see.';
+
+  @override
+  String get permissionManageThreads => 'Manage threads and posts';
+
+  @override
+  String get permissionManageThreadsDescription =>
+      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
+
+  @override
   String get permissionSendMessages => 'Изпращане на съобщения';
 
   @override
@@ -14557,7 +14588,7 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
   String get threadsUnlockThread => 'Отключване на темата';
 
   @override
-  String get threadsLeaveThread => 'Напускане на темата';
+  String get threadsLeaveThread => 'Leave thread';
 
   @override
   String get threadsDeleteThread => 'Изтриване на темата';
@@ -14568,6 +14599,46 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
   @override
   String get threadsMembersLoadFailed =>
       'Членовете не можаха да бъдат заредени';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsRemoveMember => 'Remove from thread';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
+
+  @override
+  String get threadsMemberRemovedToast => 'Member removed';
+
+  @override
+  String get threadsLeftToast => 'You left the thread';
+
+  @override
+  String get threadsMembersFullToast =>
+      'This thread has reached its member limit.';
+
+  @override
+  String get threadsMemberNotFoundToast =>
+      'That person cannot see this channel.';
+
+  @override
+  String get threadsMembersForbiddenToast =>
+      'You do not have permission to change this thread\'s members.';
+
+  @override
+  String get threadsInvitableLabel => 'Anyone in the thread can add others';
+
+  @override
+  String get threadsInvitableDescription =>
+      'When this is on, every member of this private thread can add other people to it.';
 
   @override
   String get threadsNoMembersTitle => 'Все още няма членове на темата';

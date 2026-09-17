@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3655,8 +3654,10 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Spowoduje to wylogowanie zaznaczonych urządzeń z Twojego konta. Będziesz musiał/a ponownie zalogować się na tych urządzeniach.',
-      one: 'Spowoduje to wylogowanie zaznaczonego urządzenia z Twojego konta. Będziesz musiał/a ponownie zalogować się na tym urządzeniu.',
+      other:
+          'Spowoduje to wylogowanie zaznaczonych urządzeń z Twojego konta. Będziesz musiał/a ponownie zalogować się na tych urządzeniach.',
+      one:
+          'Spowoduje to wylogowanie zaznaczonego urządzenia z Twojego konta. Będziesz musiał/a ponownie zalogować się na tym urządzeniu.',
     );
     return '$_temp0';
   }
@@ -4638,7 +4639,8 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count społeczności są tymczasowo niedostępne z powodu awarii stabilizatora strumienia.',
-      one: '1 społeczność jest tymczasowo niedostępna z powodu awarii stabilizatora strumienia.',
+      one:
+          '1 społeczność jest tymczasowo niedostępna z powodu awarii stabilizatora strumienia.',
     );
     return '$_temp0';
   }
@@ -5554,7 +5556,8 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
       locale: localeName,
       other:
           'Już jesteś połączony(a) z tym kanałem głosowym z $count innych urządzeń. Co chcesz zrobić?',
-      one: 'Już jesteś połączony(a) z tym kanałem głosowym z 1 innego urządzenia. Co chcesz zrobić?',
+      one:
+          'Już jesteś połączony(a) z tym kanałem głosowym z 1 innego urządzenia. Co chcesz zrobić?',
     );
     return '$_temp0';
   }
@@ -11999,6 +12002,34 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
       'Twórz, edytuj lub usuwaj webhooki.';
 
   @override
+  String get permissionSendMessagesInThreads => 'Send messages in threads';
+
+  @override
+  String get permissionSendMessagesInThreadsDescription =>
+      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
+
+  @override
+  String get permissionCreatePublicThreads => 'Create public threads';
+
+  @override
+  String get permissionCreatePublicThreadsDescription =>
+      'Members can start threads that everyone in the channel can see, and create forum posts.';
+
+  @override
+  String get permissionCreatePrivateThreads => 'Create private threads';
+
+  @override
+  String get permissionCreatePrivateThreadsDescription =>
+      'Members can start threads that only invited people can see.';
+
+  @override
+  String get permissionManageThreads => 'Manage threads and posts';
+
+  @override
+  String get permissionManageThreadsDescription =>
+      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
+
+  @override
   String get permissionSendMessages => 'Wysyłanie wiadomości';
 
   @override
@@ -14514,7 +14545,7 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
   String get threadsUnlockThread => 'Odblokuj wątek';
 
   @override
-  String get threadsLeaveThread => 'Opuść wątek';
+  String get threadsLeaveThread => 'Leave thread';
 
   @override
   String get threadsDeleteThread => 'Usuń wątek';
@@ -14524,6 +14555,46 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
 
   @override
   String get threadsMembersLoadFailed => 'Nie udało się wczytać członków';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsRemoveMember => 'Remove from thread';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
+
+  @override
+  String get threadsMemberRemovedToast => 'Member removed';
+
+  @override
+  String get threadsLeftToast => 'You left the thread';
+
+  @override
+  String get threadsMembersFullToast =>
+      'This thread has reached its member limit.';
+
+  @override
+  String get threadsMemberNotFoundToast =>
+      'That person cannot see this channel.';
+
+  @override
+  String get threadsMembersForbiddenToast =>
+      'You do not have permission to change this thread\'s members.';
+
+  @override
+  String get threadsInvitableLabel => 'Anyone in the thread can add others';
+
+  @override
+  String get threadsInvitableDescription =>
+      'When this is on, every member of this private thread can add other people to it.';
 
   @override
   String get threadsNoMembersTitle => 'Brak członków wątku';

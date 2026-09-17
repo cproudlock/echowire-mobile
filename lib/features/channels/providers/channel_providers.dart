@@ -30,6 +30,24 @@ Stream<Channel?> channelById(Ref ref, String id) {
       .distinct();
 }
 
+/// Echowire: resolve a channel the local database does not hold, by asking the
+/// server for it once. A routed id that is missing locally is usually an
+/// archived thread, because a session payload carries open channels and open
+/// threads only. Null means gone or not visible, so a caller can fall back to
+/// whatever it did before.
+@riverpod
+Future<Channel?> recoveredChannel(Ref ref, String id) async {
+  if (id.isEmpty) {
+    return null;
+  }
+  final db = ref.watch(fluxerDatabaseProvider);
+  final existing = await db.channelDao.getChannelById(id);
+  if (existing != null) {
+    return Channel.fromRow(existing);
+  }
+  return ref.watch(channelRepositoryProvider).fetchChannelById(id);
+}
+
 @riverpod
 Stream<String?> channelGuildId(Ref ref, String id) {
   if (id.isEmpty) {

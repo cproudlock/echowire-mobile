@@ -39,6 +39,33 @@ class ChannelRepository {
     }
   }
 
+  /// Echowire: fetch one channel by id and cache it. A session payload carries
+  /// a guild's open channels and open threads, never its archived ones, so a
+  /// link straight to an archived forum post names an id this database has not
+  /// seen. Returns null when the channel is gone, is not visible to this user,
+  /// or is not a guild channel.
+  Future<Channel?> fetchChannelById(String channelId) async {
+    if (channelId.isEmpty) {
+      return null;
+    }
+    try {
+      final ChannelResponse response = await _client.channels.getChannel(
+        channelId: channelId,
+      );
+      final String? guildId = response.guildId;
+      if (guildId == null) {
+        return null;
+      }
+      await _db.channelDao.upsertChannels(<db.ChannelsCompanion>[
+        channelFromSdk(response, guildId),
+      ]);
+      final db.Channel? row = await _db.channelDao.getChannelById(channelId);
+      return row == null ? null : Channel.fromRow(row);
+    } on DioException {
+      return null;
+    }
+  }
+
   Future<void> applyLocalChannels(
     String guildId,
     List<Channel> channels,

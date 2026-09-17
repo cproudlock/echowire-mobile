@@ -114,9 +114,15 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
     final ChannelListState channelList = ref.watch(
       channelListViewModelProvider,
     );
-    final Channel? channel =
+    final Channel? knownChannel =
         ref.watch(channelByIdProvider(widget.channelId)).value ??
         findChannelById(channelList, widget.channelId);
+    // Echowire: a routed channel this client has never seen is usually an
+    // archived thread, which a session payload leaves out. Ask the server for
+    // it rather than rendering a channel with no name, header or permissions.
+    final Channel? channel =
+        knownChannel ??
+        ref.watch(recoveredChannelProvider(widget.channelId)).value;
     final bool isMemberListVisible = channelList.isMemberListVisibleForChannel(
       channelId: widget.channelId,
       channelType: channel?.type,

@@ -16828,63 +16828,63 @@
     "@homeQuickActionDms": {
         "description": "Home screen quick action that opens Direct Messages."
     },
-    "threadsTitle": "Threads",
+    "threadsTitle": "스레드",
     "@threadsTitle": {
         "description": "Title of the sheet and header button that list a channel's threads."
     },
-    "threadsPostsTitle": "Posts",
+    "threadsPostsTitle": "게시물",
     "@threadsPostsTitle": {
         "description": "Title of the threads sheet when opened on a forum channel."
     },
-    "threadsFilterActive": "Active",
+    "threadsFilterActive": "활성",
     "@threadsFilterActive": {
         "description": "Segmented filter option showing active threads or forum posts."
     },
-    "threadsFilterArchived": "Archived",
+    "threadsFilterArchived": "보관됨",
     "@threadsFilterArchived": {
         "description": "Segmented filter option showing archived threads or forum posts."
     },
-    "threadsNewThread": "New thread",
+    "threadsNewThread": "새 스레드",
     "@threadsNewThread": {
         "description": "Button that starts creating a new thread."
     },
-    "threadsNewThreadTitle": "New thread",
+    "threadsNewThreadTitle": "새 스레드",
     "@threadsNewThreadTitle": {
         "description": "Title of the modal for naming a new thread."
     },
-    "threadsNameLabel": "Thread name",
+    "threadsNameLabel": "스레드 이름",
     "@threadsNameLabel": {
         "description": "Label of the thread name input."
     },
-    "threadsNameHint": "Name your thread",
+    "threadsNameHint": "스레드 이름을 입력하세요",
     "@threadsNameHint": {
         "description": "Placeholder of the thread name input."
     },
-    "threadsCreateThread": "Create thread",
+    "threadsCreateThread": "스레드 만들기",
     "@threadsCreateThread": {
         "description": "Primary button that creates the thread."
     },
-    "threadsCreateThreadAction": "Create Thread",
+    "threadsCreateThreadAction": "스레드 만들기",
     "@threadsCreateThreadAction": {
         "description": "Message action that starts a thread from a message."
     },
-    "threadsCreateFailed": "Could not create the thread. Please try again.",
+    "threadsCreateFailed": "스레드를 만들 수 없습니다. 다시 시도해 주세요.",
     "@threadsCreateFailed": {
         "description": "Toast shown when creating a thread fails."
     },
-    "threadsLoadFailed": "Could not load threads.",
+    "threadsLoadFailed": "스레드를 불러올 수 없습니다.",
     "@threadsLoadFailed": {
         "description": "Shown when the thread list fails to load."
     },
-    "threadsNoActive": "No active threads yet",
+    "threadsNoActive": "아직 활성 스레드가 없습니다",
     "@threadsNoActive": {
         "description": "Empty state of the active threads list."
     },
-    "threadsNoArchived": "No archived threads",
+    "threadsNoArchived": "보관된 스레드가 없습니다",
     "@threadsNoArchived": {
         "description": "Empty state of the archived threads list."
     },
-    "threadsMessageCount": "{count, plural, =1{1 message} other{{count} messages}}",
+    "threadsMessageCount": "{count, plural, =1{메시지 1개} other{메시지 {count}개}}",
     "@threadsMessageCount": {
         "description": "Number of messages in a thread or forum post.",
         "placeholders": {
@@ -16893,7 +16893,7 @@
             }
         }
     },
-    "threadsMemberCount": "{count, plural, =1{1 member} other{{count} members}}",
+    "threadsMemberCount": "{count, plural, =1{멤버 1명} other{멤버 {count}명}}",
     "@threadsMemberCount": {
         "description": "Number of members in a thread or forum post.",
         "placeholders": {
@@ -16902,211 +16902,211 @@
             }
         }
     },
-    "threadsStatusLocked": "Locked",
+    "threadsStatusLocked": "잠김",
     "@threadsStatusLocked": {
         "description": "Status shown on a locked thread."
     },
-    "threadsStatusArchived": "Archived",
+    "threadsStatusArchived": "보관됨",
     "@threadsStatusArchived": {
         "description": "Status shown on an archived thread or forum post."
     },
-    "threadsManage": "Manage",
+    "threadsManage": "관리",
     "@threadsManage": {
         "description": "Accessibility label of the button that opens a thread's moderation menu."
     },
-    "threadsPin": "Pin",
+    "threadsPin": "고정",
     "@threadsPin": {
         "description": "Moderation action that pins a thread or forum post."
     },
-    "threadsUnpin": "Unpin",
+    "threadsUnpin": "고정 해제",
     "@threadsUnpin": {
         "description": "Moderation action that unpins a thread or forum post."
     },
-    "threadsArchive": "Archive",
+    "threadsArchive": "보관",
     "@threadsArchive": {
         "description": "Moderation action that archives a thread or forum post."
     },
-    "threadsUnarchive": "Unarchive",
+    "threadsUnarchive": "보관 해제",
     "@threadsUnarchive": {
         "description": "Moderation action that unarchives a thread or forum post."
     },
-    "threadsLock": "Lock",
+    "threadsLock": "잠그기",
     "@threadsLock": {
         "description": "Moderation action that locks a thread or forum post."
     },
-    "threadsUnlock": "Unlock",
+    "threadsUnlock": "잠금 해제",
     "@threadsUnlock": {
         "description": "Moderation action that unlocks a thread or forum post."
     },
-    "threadsDelete": "Delete",
+    "threadsDelete": "삭제",
     "@threadsDelete": {
         "description": "Moderation action that deletes a thread or forum post."
     },
-    "threadsActionFailed": "Something went wrong. Please try again.",
+    "threadsActionFailed": "문제가 발생했습니다. 다시 시도해 주세요.",
     "@threadsActionFailed": {
         "description": "Generic error toast for a failed thread or forum action."
     },
-    "threadsCloseThread": "Close Thread",
+    "threadsCloseThread": "스레드 닫기",
     "@threadsCloseThread": {
         "description": "Channel details action that archives the current thread."
     },
-    "threadsReopenThread": "Reopen Thread",
+    "threadsReopenThread": "스레드 다시 열기",
     "@threadsReopenThread": {
         "description": "Channel details action that unarchives the current thread."
     },
-    "threadsLockThread": "Lock Thread",
+    "threadsLockThread": "스레드 잠금",
     "@threadsLockThread": {
         "description": "Channel details action that locks the current thread."
     },
-    "threadsUnlockThread": "Unlock Thread",
+    "threadsUnlockThread": "스레드 잠금 해제",
     "@threadsUnlockThread": {
         "description": "Channel details action that unlocks the current thread."
     },
-    "threadsLeaveThread": "Leave Thread",
+    "threadsLeaveThread": "스레드 나가기",
     "@threadsLeaveThread": {
         "description": "Channel details action that leaves the current thread."
     },
-    "threadsDeleteThread": "Delete Thread",
+    "threadsDeleteThread": "스레드 삭제",
     "@threadsDeleteThread": {
         "description": "Channel details action that deletes the current thread."
     },
-    "threadsMembersTab": "Thread Members",
+    "threadsMembersTab": "스레드 멤버",
     "@threadsMembersTab": {
         "description": "Channel details tab listing the members of a thread."
     },
-    "threadsMembersLoadFailed": "Could not load members",
+    "threadsMembersLoadFailed": "멤버를 불러올 수 없습니다",
     "@threadsMembersLoadFailed": {
         "description": "Title shown when a thread's member list fails to load."
     },
-    "threadsNoMembersTitle": "No thread members yet",
+    "threadsNoMembersTitle": "아직 스레드 멤버가 없습니다",
     "@threadsNoMembersTitle": {
         "description": "Empty state title of a thread's member list."
     },
-    "threadsNoMembersBody": "People who join this thread will appear here.",
+    "threadsNoMembersBody": "이 스레드에 참여한 사람이 여기에 표시됩니다.",
     "@threadsNoMembersBody": {
         "description": "Empty state body of a thread's member list."
     },
-    "forumChannelTypeLabel": "Forum",
+    "forumChannelTypeLabel": "포럼",
     "@forumChannelTypeLabel": {
         "description": "Channel type option for a forum channel in the create channel sheet."
     },
-    "forumChannelTypeDescription": "A space for organized, threaded posts",
+    "forumChannelTypeDescription": "정리된 스레드 형식의 게시물을 위한 공간",
     "@forumChannelTypeDescription": {
         "description": "Description of the forum channel type in the create channel sheet."
     },
-    "forumNewPost": "New Post",
+    "forumNewPost": "새 게시물",
     "@forumNewPost": {
         "description": "Button that starts creating a new forum post."
     },
-    "forumNewPostTitle": "New post",
+    "forumNewPostTitle": "새 게시물",
     "@forumNewPostTitle": {
         "description": "Title of the modal for creating a forum post."
     },
-    "forumCreatePost": "Create post",
+    "forumCreatePost": "게시물 만들기",
     "@forumCreatePost": {
         "description": "Primary button that creates the forum post."
     },
-    "forumCreatePostFailed": "Could not create the post. Please try again.",
+    "forumCreatePostFailed": "게시물을 만들 수 없습니다. 다시 시도해 주세요.",
     "@forumCreatePostFailed": {
         "description": "Toast shown when creating a forum post fails."
     },
-    "forumPostMessageFailed": "The post was created, but its message could not be sent.",
+    "forumPostMessageFailed": "게시물은 만들어졌지만 메시지를 보내지 못했습니다.",
     "@forumPostMessageFailed": {
         "description": "Toast shown when a forum post is created but its first message fails to send."
     },
-    "forumPostTitleLabel": "Title",
+    "forumPostTitleLabel": "제목",
     "@forumPostTitleLabel": {
         "description": "Label of the forum post title input."
     },
-    "forumPostTitleHint": "Post title",
+    "forumPostTitleHint": "게시물 제목",
     "@forumPostTitleHint": {
         "description": "Placeholder of the forum post title input."
     },
-    "forumPostMessageLabel": "Message",
+    "forumPostMessageLabel": "메시지",
     "@forumPostMessageLabel": {
         "description": "Label of the forum post first message input."
     },
-    "forumPostMessageHint": "Enter a message",
+    "forumPostMessageHint": "메시지 입력",
     "@forumPostMessageHint": {
         "description": "Placeholder of the forum post first message input."
     },
-    "forumPostTagsLabel": "Tags",
+    "forumPostTagsLabel": "태그",
     "@forumPostTagsLabel": {
         "description": "Label above the tag picker when creating a forum post."
     },
-    "forumPostTagsRequiredLabel": "Tags (pick at least one)",
+    "forumPostTagsRequiredLabel": "태그(하나 이상 선택)",
     "@forumPostTagsRequiredLabel": {
         "description": "Label above the tag picker when the forum requires a tag on every post."
     },
-    "forumPostTagsRequiredNoneHint": "This forum requires a tag, but none have been set up yet.",
+    "forumPostTagsRequiredNoneHint": "이 포럼은 태그가 필요하지만 아직 만들어진 태그가 없습니다.",
     "@forumPostTagsRequiredNoneHint": {
         "description": "Shown when creating a post in a forum that requires a tag but has no tags."
     },
-    "forumPostNoTagsHint": "This forum has no tags yet. Add some with Manage tags.",
+    "forumPostNoTagsHint": "이 포럼에는 아직 태그가 없습니다. 태그 관리에서 추가해 주세요.",
     "@forumPostNoTagsHint": {
         "description": "Hint for channel managers when creating a post in a forum without tags."
     },
-    "forumSearchPosts": "Search posts",
+    "forumSearchPosts": "게시물 검색",
     "@forumSearchPosts": {
         "description": "Placeholder of the forum post search input."
     },
-    "forumSortAndView": "Sort & View",
+    "forumSortAndView": "정렬 및 보기",
     "@forumSortAndView": {
         "description": "Accessibility label of the button that opens forum sort options."
     },
-    "forumSortRecentActivity": "Recent activity",
+    "forumSortRecentActivity": "최근 활동순",
     "@forumSortRecentActivity": {
         "description": "Forum sort option ordering posts by recent activity."
     },
-    "forumSortName": "Name (A-Z)",
+    "forumSortName": "이름 (A-Z)",
     "@forumSortName": {
         "description": "Forum sort option ordering posts alphabetically."
     },
-    "forumManageTags": "Manage tags",
+    "forumManageTags": "태그 관리",
     "@forumManageTags": {
         "description": "Button and modal title for editing a forum's available tags."
     },
-    "forumNoTags": "No tags yet",
+    "forumNoTags": "아직 태그가 없습니다",
     "@forumNoTags": {
         "description": "Empty state in the forum tag editor."
     },
-    "forumRemoveTag": "Remove tag",
+    "forumRemoveTag": "태그 제거",
     "@forumRemoveTag": {
         "description": "Accessibility label of the button that removes a tag in the tag editor."
     },
-    "forumNewTagLabel": "New tag",
+    "forumNewTagLabel": "새 태그",
     "@forumNewTagLabel": {
         "description": "Label of the new tag name input in the tag editor."
     },
-    "forumNewTagHint": "Tag name",
+    "forumNewTagHint": "태그 이름",
     "@forumNewTagHint": {
         "description": "Placeholder of the new tag name input in the tag editor."
     },
-    "forumAddTag": "Add tag",
+    "forumAddTag": "태그 추가",
     "@forumAddTag": {
         "description": "Accessibility label of the button that adds a tag in the tag editor."
     },
-    "forumTagsUpdated": "Tags updated",
+    "forumTagsUpdated": "태그가 업데이트되었습니다",
     "@forumTagsUpdated": {
         "description": "Toast shown after saving a forum's tags."
     },
-    "forumTagsUpdateFailed": "Could not update tags. Please try again.",
+    "forumTagsUpdateFailed": "태그를 업데이트할 수 없습니다. 다시 시도해 주세요.",
     "@forumTagsUpdateFailed": {
         "description": "Toast shown when saving a forum's tags fails."
     },
-    "forumLoadFailed": "Could not load posts.",
+    "forumLoadFailed": "게시물을 불러올 수 없습니다.",
     "@forumLoadFailed": {
         "description": "Shown when the forum post list fails to load."
     },
-    "forumNoPosts": "No posts yet",
+    "forumNoPosts": "아직 게시물이 없습니다",
     "@forumNoPosts": {
         "description": "Empty state of the active forum post list."
     },
-    "forumNoArchivedPosts": "No archived posts",
+    "forumNoArchivedPosts": "보관된 스레드가 없습니다",
     "@forumNoArchivedPosts": {
         "description": "Empty state of the archived forum post list."
     },
-    "systemThreadCreated": "{username} started a thread: {threadName}.",
+    "systemThreadCreated": "{username}님이 스레드를 시작했습니다: {threadName}.",
     "@systemThreadCreated": {
         "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
         "placeholders": {
@@ -17118,7 +17118,7 @@
             }
         }
     },
-    "systemPreviewStartedThread": "{username} started a thread.",
+    "systemPreviewStartedThread": "{username}님이 스레드를 시작했습니다.",
     "@systemPreviewStartedThread": {
         "description": "Plaintext preview of the system message posted when someone starts a thread.",
         "placeholders": {
@@ -17127,51 +17127,51 @@
             }
         }
     },
-    "systemThreadDeleted": "a thread that was deleted",
+    "systemThreadDeleted": "삭제된 스레드",
     "@systemThreadDeleted": {
         "description": "Stands in for a thread name in the thread started system message when the thread no longer exists."
     },
-    "threadsComposerLockedHint": "This thread is locked. Only moderators can send messages.",
+    "threadsComposerLockedHint": "이 스레드는 잠겨 있습니다. 모더레이터만 메시지를 보낼 수 있습니다.",
     "@threadsComposerLockedHint": {
         "description": "Composer placeholder in a locked thread for users who cannot moderate it."
     },
-    "threadsComposerArchivedHint": "This thread is archived. Sending a message reopens it.",
+    "threadsComposerArchivedHint": "이 스레드는 보관되었습니다. 메시지를 보내면 다시 열립니다.",
     "@threadsComposerArchivedHint": {
         "description": "Composer placeholder in an archived thread that is not locked."
     },
-    "forumSearchOrCreatePost": "Search or create a post...",
+    "forumSearchOrCreatePost": "게시물 검색 또는 만들기...",
     "@forumSearchOrCreatePost": {
         "description": "Placeholder of the forum search field. What is typed also becomes the title of a new post."
     },
-    "forumSortBy": "Sort by",
+    "forumSortBy": "정렬 기준",
     "@forumSortBy": {
         "description": "Section label in the forum Sort & View sheet."
     },
-    "forumSortDatePosted": "Date posted",
+    "forumSortDatePosted": "게시 날짜",
     "@forumSortDatePosted": {
         "description": "Forum sort option that orders posts by creation date."
     },
-    "forumViewAs": "View as",
+    "forumViewAs": "보기 방식",
     "@forumViewAs": {
         "description": "Section label for the forum layout options in the Sort & View sheet."
     },
-    "forumLayoutList": "List",
+    "forumLayoutList": "목록",
     "@forumLayoutList": {
         "description": "Forum layout option showing posts as a list."
     },
-    "forumLayoutGallery": "Gallery",
+    "forumLayoutGallery": "갤러리",
     "@forumLayoutGallery": {
         "description": "Forum layout option showing posts as a grid of image cards."
     },
-    "forumResetViewToDefault": "Reset to default",
+    "forumResetViewToDefault": "기본값으로 재설정",
     "@forumResetViewToDefault": {
         "description": "Returns the forum Sort & View choice to the channel defaults."
     },
-    "forumAllTags": "All",
+    "forumAllTags": "전체",
     "@forumAllTags": {
         "description": "Chip that opens the full list of forum tags to filter by."
     },
-    "forumTagsSelectedCount": "{count, plural, =1{1 tag} other{{count} tags}}",
+    "forumTagsSelectedCount": "{count, plural, =1{태그 1개} other{태그 {count}개}}",
     "@forumTagsSelectedCount": {
         "description": "Label of the tag filter chip when tags are selected.",
         "placeholders": {
@@ -17180,43 +17180,43 @@
             }
         }
     },
-    "forumPostGuidelinesLabel": "Post guidelines",
+    "forumPostGuidelinesLabel": "게시 가이드라인",
     "@forumPostGuidelinesLabel": {
         "description": "Heading above the forum's guidelines in the new post sheet."
     },
-    "forumEditPost": "Edit post",
+    "forumEditPost": "게시물 편집",
     "@forumEditPost": {
         "description": "Menu item and dialog title for editing a forum post's title and tags."
     },
-    "forumPostTagRequiredToast": "Pick at least one tag for this forum.",
+    "forumPostTagRequiredToast": "이 포럼에서는 태그를 하나 이상 선택해 주세요.",
     "@forumPostTagRequiredToast": {
         "description": "Shown when saving a post without a tag in a forum that requires one."
     },
-    "threadsFollow": "Follow",
+    "threadsFollow": "팔로우",
     "@threadsFollow": {
         "description": "Menu item to follow a thread or forum post and get its notifications."
     },
-    "threadsUnfollow": "Unfollow",
+    "threadsUnfollow": "팔로우 취소",
     "@threadsUnfollow": {
         "description": "Menu item to stop following a thread or forum post."
     },
-    "threadsFollowing": "Following",
+    "threadsFollowing": "팔로잉",
     "@threadsFollowing": {
         "description": "Header button state when the user follows the thread or post."
     },
-    "threadsMute": "Mute",
+    "threadsMute": "마이크 음소거",
     "@threadsMute": {
         "description": "Menu item to mute a thread or forum post."
     },
-    "threadsUnmute": "Unmute",
+    "threadsUnmute": "마이크 음소거 해제",
     "@threadsUnmute": {
         "description": "Menu item to unmute a thread or forum post."
     },
-    "threadsEditThread": "Edit thread",
+    "threadsEditThread": "스레드 편집",
     "@threadsEditThread": {
         "description": "Menu item and dialog title for renaming a thread."
     },
-    "forumNewPostsPill": "{count} New",
+    "forumNewPostsPill": "새 소식 {count}개",
     "@forumNewPostsPill": {
         "description": "Sidebar pill on a forum channel counting posts with activity since the user last opened it.",
         "placeholders": {
@@ -17225,110 +17225,110 @@
             }
         }
     },
-    "forumSettingsTitle": "Forum settings",
+    "forumSettingsTitle": "포럼 설정",
     "@forumSettingsTitle": {
         "description": "Heading of the forum-only section in channel settings."
     },
-    "forumSettingsGuidelinesHint": "Tell members what to post here",
+    "forumSettingsGuidelinesHint": "멤버에게 여기에 무엇을 올릴지 알려주세요",
     "@forumSettingsGuidelinesHint": {
         "description": "Placeholder of the forum post guidelines field in channel settings."
     },
-    "forumSettingsRequireTag": "Require tags on new posts",
+    "forumSettingsRequireTag": "게시할 때 멤버가 태그를 선택하도록 요구",
     "@forumSettingsRequireTag": {
         "description": "Switch that makes members pick at least one tag when creating a forum post."
     },
-    "forumSettingsRequireTagDescription": "Members must pick at least one tag before they can post.",
+    "forumSettingsRequireTagDescription": "멤버는 게시물을 올리기 전에 태그를 하나 이상 선택해야 합니다.",
     "@forumSettingsRequireTagDescription": {
         "description": "Explains the require tags switch in forum settings."
     },
-    "forumSettingsDefaultSort": "Default sort order",
+    "forumSettingsDefaultSort": "기본 정렬 순서",
     "@forumSettingsDefaultSort": {
         "description": "Forum setting for how posts are ordered unless a member picks otherwise."
     },
-    "forumSettingsDefaultLayout": "Default layout",
+    "forumSettingsDefaultLayout": "기본 레이아웃",
     "@forumSettingsDefaultLayout": {
         "description": "Forum setting for list or gallery layout unless a member picks otherwise."
     },
-    "forumSettingsDefaultReaction": "Default reaction",
+    "forumSettingsDefaultReaction": "기본 반응",
     "@forumSettingsDefaultReaction": {
         "description": "Forum setting for the emoji used by React to Post."
     },
-    "forumSettingsDefaultReactionDescription": "Shown as the quick reaction on every post. Leave empty for none.",
+    "forumSettingsDefaultReactionDescription": "모든 게시물에 빠른 반응으로 표시됩니다. 사용하지 않으려면 비워 두세요.",
     "@forumSettingsDefaultReactionDescription": {
         "description": "Explains the forum default reaction setting."
     },
-    "forumSettingsDefaultReactionHint": "An emoji, e.g. 👍",
+    "forumSettingsDefaultReactionHint": "이모지 하나, 예: 👍",
     "@forumSettingsDefaultReactionHint": {
         "description": "Placeholder of the forum default reaction field."
     },
-    "forumSettingsHideAfterInactivity": "Hide after inactivity",
+    "forumSettingsHideAfterInactivity": "비활성 후 숨기기",
     "@forumSettingsHideAfterInactivity": {
         "description": "Forum setting for how long a post stays active without new messages."
     },
-    "forumSettingsHideAfterInactivityDescription": "Inactive posts move to Archived. Anyone can reopen a post that is not locked.",
+    "forumSettingsHideAfterInactivityDescription": "활동이 없는 게시물은 보관됨으로 이동합니다. 잠기지 않은 게시물은 누구나 다시 열 수 있습니다.",
     "@forumSettingsHideAfterInactivityDescription": {
         "description": "Explains the forum hide after inactivity setting."
     },
-    "forumSettingsHideAfterOneHour": "1 hour",
+    "forumSettingsHideAfterOneHour": "1시간",
     "@forumSettingsHideAfterOneHour": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsHideAfterOneDay": "24 hours",
+    "forumSettingsHideAfterOneDay": "24시간",
     "@forumSettingsHideAfterOneDay": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsHideAfterThreeDays": "3 days",
+    "forumSettingsHideAfterThreeDays": "3일",
     "@forumSettingsHideAfterThreeDays": {
         "description": "Hide after inactivity option, the default."
     },
-    "forumSettingsHideAfterOneWeek": "1 week",
+    "forumSettingsHideAfterOneWeek": "1주",
     "@forumSettingsHideAfterOneWeek": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsPostCreationSlowmode": "Post creation slowmode",
+    "forumSettingsPostCreationSlowmode": "게시물 작성 슬로우 모드",
     "@forumSettingsPostCreationSlowmode": {
         "description": "Forum setting limiting how often a member can create a new post."
     },
-    "forumSettingsPostCreationSlowmodeDescription": "How long members wait between creating posts.",
+    "forumSettingsPostCreationSlowmodeDescription": "멤버가 게시물을 작성하는 사이에 기다리는 시간입니다.",
     "@forumSettingsPostCreationSlowmodeDescription": {
         "description": "Explains the forum post creation slowmode setting."
     },
-    "forumSettingsDefaultPostSlowmode": "Slowmode inside new posts",
+    "forumSettingsDefaultPostSlowmode": "새 게시물의 슬로우 모드",
     "@forumSettingsDefaultPostSlowmode": {
         "description": "Forum setting for the slowmode applied to messages inside each new post."
     },
-    "forumSettingsDefaultPostSlowmodeDescription": "Applied to posts when they are created.",
+    "forumSettingsDefaultPostSlowmodeDescription": "게시물이 만들어질 때 적용됩니다.",
     "@forumSettingsDefaultPostSlowmodeDescription": {
         "description": "Explains the default slowmode for new forum posts."
     },
-    "forumSettingsSave": "Save forum settings",
+    "forumSettingsSave": "포럼 설정 저장",
     "@forumSettingsSave": {
         "description": "Button that saves the forum settings section."
     },
-    "forumSettingsSaved": "Forum settings saved",
+    "forumSettingsSaved": "포럼 설정이 저장되었습니다",
     "@forumSettingsSaved": {
         "description": "Toast after forum settings are saved."
     },
-    "forumSettingsSaveFailed": "Could not save forum settings",
+    "forumSettingsSaveFailed": "포럼 설정을 저장할 수 없습니다",
     "@forumSettingsSaveFailed": {
         "description": "Toast when forum settings fail to save."
     },
-    "threadsStarterMessage": "Started from",
+    "threadsStarterMessage": "시작 위치",
     "@threadsStarterMessage": {
         "description": "Label above the message a thread was started from, shown at the top of the thread."
     },
     "threadsOriginalPosterTag": "OP",
-    "forumReactToPost": "React to Post",
-    "forumReactToPostOther": "React with another emoji",
-    "forumEmptyHeading": "Be the first to start the conversation!",
-    "forumEmptyBody": "What do you want to post about in {forumName}?",
-    "forumSeeExamples": "See Examples",
-    "forumExampleQuestion": "Ask a question and tag it so people can find it later.",
-    "forumExampleShow": "Share something you made and let people reply to it.",
-    "forumExampleDiscussion": "Start a discussion on one topic and keep it in this post.",
-    "forumTagModeratedOn": "Moderator only, tap to allow everyone",
-    "forumTagModeratedOff": "Anyone may apply, tap to restrict to moderators",
-    "forumAddToPost": "Add to Post",
-    "forumAddToPostDone": "Added to the post.",
-    "forumAddToPostFailed": "Could not add that to the post. Please try again."
+    "forumReactToPost": "게시물에 반응",
+    "forumReactToPostOther": "다른 이모지로 반응하기",
+    "forumEmptyHeading": "대화를 시작해 보세요!",
+    "forumEmptyBody": "{forumName}에서 어떤 이야기를 나누고 싶으신가요?",
+    "forumSeeExamples": "예시 보기",
+    "forumExampleQuestion": "질문을 올리고 태그를 달아 나중에도 찾을 수 있게 하세요.",
+    "forumExampleShow": "만든 것을 공유하고 다른 사람들이 답글을 달 수 있게 하세요.",
+    "forumExampleDiscussion": "하나의 주제로 대화를 시작하고 이 게시물에서 이어가세요.",
+    "forumTagModeratedOn": "관리자 전용입니다. 탭하면 모두에게 허용합니다",
+    "forumTagModeratedOff": "누구나 사용할 수 있습니다. 탭하면 관리자로 제한합니다",
+    "forumAddToPost": "게시물에 추가",
+    "forumAddToPostDone": "게시물에 추가했습니다.",
+    "forumAddToPostFailed": "게시물에 추가할 수 없습니다. 다시 시도해 주세요."
 }

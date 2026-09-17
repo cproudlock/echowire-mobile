@@ -16861,55 +16861,55 @@
     "@threadsPostsTitle": {
         "description": "Title of the threads sheet when opened on a forum channel."
     },
-    "threadsFilterActive": "Active",
+    "threadsFilterActive": "Actief",
     "@threadsFilterActive": {
         "description": "Segmented filter option showing active threads or forum posts."
     },
-    "threadsFilterArchived": "Archived",
+    "threadsFilterArchived": "Gearchiveerd",
     "@threadsFilterArchived": {
         "description": "Segmented filter option showing archived threads or forum posts."
     },
-    "threadsNewThread": "New thread",
+    "threadsNewThread": "Nieuwe thread",
     "@threadsNewThread": {
         "description": "Button that starts creating a new thread."
     },
-    "threadsNewThreadTitle": "New thread",
+    "threadsNewThreadTitle": "Nieuwe thread",
     "@threadsNewThreadTitle": {
         "description": "Title of the modal for naming a new thread."
     },
-    "threadsNameLabel": "Thread name",
+    "threadsNameLabel": "Threadnaam",
     "@threadsNameLabel": {
         "description": "Label of the thread name input."
     },
-    "threadsNameHint": "Name your thread",
+    "threadsNameHint": "Geef je thread een naam",
     "@threadsNameHint": {
         "description": "Placeholder of the thread name input."
     },
-    "threadsCreateThread": "Create thread",
+    "threadsCreateThread": "Thread maken",
     "@threadsCreateThread": {
         "description": "Primary button that creates the thread."
     },
-    "threadsCreateThreadAction": "Create Thread",
+    "threadsCreateThreadAction": "Thread maken",
     "@threadsCreateThreadAction": {
         "description": "Message action that starts a thread from a message."
     },
-    "threadsCreateFailed": "Could not create the thread. Please try again.",
+    "threadsCreateFailed": "Kon de thread niet maken. Probeer het opnieuw.",
     "@threadsCreateFailed": {
         "description": "Toast shown when creating a thread fails."
     },
-    "threadsLoadFailed": "Could not load threads.",
+    "threadsLoadFailed": "Kon de threads niet laden.",
     "@threadsLoadFailed": {
         "description": "Shown when the thread list fails to load."
     },
-    "threadsNoActive": "No active threads yet",
+    "threadsNoActive": "Nog geen actieve threads",
     "@threadsNoActive": {
         "description": "Empty state of the active threads list."
     },
-    "threadsNoArchived": "No archived threads",
+    "threadsNoArchived": "Geen gearchiveerde threads",
     "@threadsNoArchived": {
         "description": "Empty state of the archived threads list."
     },
-    "threadsMessageCount": "{count, plural, =1{1 message} other{{count} messages}}",
+    "threadsMessageCount": "{count, plural, =1{1 bericht} other{{count} berichten}}",
     "@threadsMessageCount": {
         "description": "Number of messages in a thread or forum post.",
         "placeholders": {
@@ -16918,7 +16918,7 @@
             }
         }
     },
-    "threadsMemberCount": "{count, plural, =1{1 member} other{{count} members}}",
+    "threadsMemberCount": "{count, plural, =1{1 lid} other{{count} leden}}",
     "@threadsMemberCount": {
         "description": "Number of members in a thread or forum post.",
         "placeholders": {
@@ -16927,87 +16927,87 @@
             }
         }
     },
-    "threadsStatusLocked": "Locked",
+    "threadsStatusLocked": "Vergrendeld",
     "@threadsStatusLocked": {
         "description": "Status shown on a locked thread."
     },
-    "threadsStatusArchived": "Archived",
+    "threadsStatusArchived": "Gearchiveerd",
     "@threadsStatusArchived": {
         "description": "Status shown on an archived thread or forum post."
     },
-    "threadsManage": "Manage",
+    "threadsManage": "Beheren",
     "@threadsManage": {
         "description": "Accessibility label of the button that opens a thread's moderation menu."
     },
-    "threadsPin": "Pin",
+    "threadsPin": "Vastzetten",
     "@threadsPin": {
         "description": "Moderation action that pins a thread or forum post."
     },
-    "threadsUnpin": "Unpin",
+    "threadsUnpin": "Losmaken",
     "@threadsUnpin": {
         "description": "Moderation action that unpins a thread or forum post."
     },
-    "threadsArchive": "Archive",
+    "threadsArchive": "Archiveren",
     "@threadsArchive": {
         "description": "Moderation action that archives a thread or forum post."
     },
-    "threadsUnarchive": "Unarchive",
+    "threadsUnarchive": "Uit archief halen",
     "@threadsUnarchive": {
         "description": "Moderation action that unarchives a thread or forum post."
     },
-    "threadsLock": "Lock",
+    "threadsLock": "Vergrendelen",
     "@threadsLock": {
         "description": "Moderation action that locks a thread or forum post."
     },
-    "threadsUnlock": "Unlock",
+    "threadsUnlock": "Ontgrendelen",
     "@threadsUnlock": {
         "description": "Moderation action that unlocks a thread or forum post."
     },
-    "threadsDelete": "Delete",
+    "threadsDelete": "Verwijderen",
     "@threadsDelete": {
         "description": "Moderation action that deletes a thread or forum post."
     },
-    "threadsActionFailed": "Something went wrong. Please try again.",
+    "threadsActionFailed": "Er ging iets mis. Probeer het opnieuw.",
     "@threadsActionFailed": {
         "description": "Generic error toast for a failed thread or forum action."
     },
-    "threadsCloseThread": "Close Thread",
+    "threadsCloseThread": "Thread sluiten",
     "@threadsCloseThread": {
         "description": "Channel details action that archives the current thread."
     },
-    "threadsReopenThread": "Reopen Thread",
+    "threadsReopenThread": "Thread heropenen",
     "@threadsReopenThread": {
         "description": "Channel details action that unarchives the current thread."
     },
-    "threadsLockThread": "Lock Thread",
+    "threadsLockThread": "Thread vergrendelen",
     "@threadsLockThread": {
         "description": "Channel details action that locks the current thread."
     },
-    "threadsUnlockThread": "Unlock Thread",
+    "threadsUnlockThread": "Thread ontgrendelen",
     "@threadsUnlockThread": {
         "description": "Channel details action that unlocks the current thread."
     },
-    "threadsLeaveThread": "Leave Thread",
+    "threadsLeaveThread": "Thread verlaten",
     "@threadsLeaveThread": {
         "description": "Channel details action that leaves the current thread."
     },
-    "threadsDeleteThread": "Delete Thread",
+    "threadsDeleteThread": "Thread verwijderen",
     "@threadsDeleteThread": {
         "description": "Channel details action that deletes the current thread."
     },
-    "threadsMembersTab": "Thread Members",
+    "threadsMembersTab": "Threadleden",
     "@threadsMembersTab": {
         "description": "Channel details tab listing the members of a thread."
     },
-    "threadsMembersLoadFailed": "Could not load members",
+    "threadsMembersLoadFailed": "Kon de leden niet laden",
     "@threadsMembersLoadFailed": {
         "description": "Title shown when a thread's member list fails to load."
     },
-    "threadsNoMembersTitle": "No thread members yet",
+    "threadsNoMembersTitle": "Nog geen threadleden",
     "@threadsNoMembersTitle": {
         "description": "Empty state title of a thread's member list."
     },
-    "threadsNoMembersBody": "People who join this thread will appear here.",
+    "threadsNoMembersBody": "Mensen die deze thread joinen verschijnen hier.",
     "@threadsNoMembersBody": {
         "description": "Empty state body of a thread's member list."
     },
@@ -17015,43 +17015,43 @@
     "@forumChannelTypeLabel": {
         "description": "Channel type option for a forum channel in the create channel sheet."
     },
-    "forumChannelTypeDescription": "A space for organized, threaded posts",
+    "forumChannelTypeDescription": "Een ruimte voor overzichtelijke posts in threads",
     "@forumChannelTypeDescription": {
         "description": "Description of the forum channel type in the create channel sheet."
     },
-    "forumNewPost": "New Post",
+    "forumNewPost": "Nieuwe post",
     "@forumNewPost": {
         "description": "Button that starts creating a new forum post."
     },
-    "forumNewPostTitle": "New post",
+    "forumNewPostTitle": "Nieuwe post",
     "@forumNewPostTitle": {
         "description": "Title of the modal for creating a forum post."
     },
-    "forumCreatePost": "Create post",
+    "forumCreatePost": "Post maken",
     "@forumCreatePost": {
         "description": "Primary button that creates the forum post."
     },
-    "forumCreatePostFailed": "Could not create the post. Please try again.",
+    "forumCreatePostFailed": "Kon de post niet maken. Probeer het opnieuw.",
     "@forumCreatePostFailed": {
         "description": "Toast shown when creating a forum post fails."
     },
-    "forumPostMessageFailed": "The post was created, but its message could not be sent.",
+    "forumPostMessageFailed": "De post is gemaakt, maar het bericht kon niet worden verzonden.",
     "@forumPostMessageFailed": {
         "description": "Toast shown when a forum post is created but its first message fails to send."
     },
-    "forumPostTitleLabel": "Title",
+    "forumPostTitleLabel": "Titel",
     "@forumPostTitleLabel": {
         "description": "Label of the forum post title input."
     },
-    "forumPostTitleHint": "Post title",
+    "forumPostTitleHint": "Posttitel",
     "@forumPostTitleHint": {
         "description": "Placeholder of the forum post title input."
     },
-    "forumPostMessageLabel": "Message",
+    "forumPostMessageLabel": "Bericht",
     "@forumPostMessageLabel": {
         "description": "Label of the forum post first message input."
     },
-    "forumPostMessageHint": "Enter a message",
+    "forumPostMessageHint": "Voer een bericht in",
     "@forumPostMessageHint": {
         "description": "Placeholder of the forum post first message input."
     },
@@ -17059,79 +17059,79 @@
     "@forumPostTagsLabel": {
         "description": "Label above the tag picker when creating a forum post."
     },
-    "forumPostTagsRequiredLabel": "Tags (pick at least one)",
+    "forumPostTagsRequiredLabel": "Tags (kies er minstens één)",
     "@forumPostTagsRequiredLabel": {
         "description": "Label above the tag picker when the forum requires a tag on every post."
     },
-    "forumPostTagsRequiredNoneHint": "This forum requires a tag, but none have been set up yet.",
+    "forumPostTagsRequiredNoneHint": "Dit forum vereist een tag, maar er zijn nog geen tags ingesteld.",
     "@forumPostTagsRequiredNoneHint": {
         "description": "Shown when creating a post in a forum that requires a tag but has no tags."
     },
-    "forumPostNoTagsHint": "This forum has no tags yet. Add some with Manage tags.",
+    "forumPostNoTagsHint": "Dit forum heeft nog geen tags. Voeg er een paar toe via Tags beheren.",
     "@forumPostNoTagsHint": {
         "description": "Hint for channel managers when creating a post in a forum without tags."
     },
-    "forumSearchPosts": "Search posts",
+    "forumSearchPosts": "Posts zoeken",
     "@forumSearchPosts": {
         "description": "Placeholder of the forum post search input."
     },
-    "forumSortAndView": "Sort & View",
+    "forumSortAndView": "Sorteren en weergeven",
     "@forumSortAndView": {
         "description": "Accessibility label of the button that opens forum sort options."
     },
-    "forumSortRecentActivity": "Recent activity",
+    "forumSortRecentActivity": "Recent actief",
     "@forumSortRecentActivity": {
         "description": "Forum sort option ordering posts by recent activity."
     },
-    "forumSortName": "Name (A-Z)",
+    "forumSortName": "Naam (A-Z)",
     "@forumSortName": {
         "description": "Forum sort option ordering posts alphabetically."
     },
-    "forumManageTags": "Manage tags",
+    "forumManageTags": "Tags beheren",
     "@forumManageTags": {
         "description": "Button and modal title for editing a forum's available tags."
     },
-    "forumNoTags": "No tags yet",
+    "forumNoTags": "Nog geen tags",
     "@forumNoTags": {
         "description": "Empty state in the forum tag editor."
     },
-    "forumRemoveTag": "Remove tag",
+    "forumRemoveTag": "Tag verwijderen",
     "@forumRemoveTag": {
         "description": "Accessibility label of the button that removes a tag in the tag editor."
     },
-    "forumNewTagLabel": "New tag",
+    "forumNewTagLabel": "Nieuwe tag",
     "@forumNewTagLabel": {
         "description": "Label of the new tag name input in the tag editor."
     },
-    "forumNewTagHint": "Tag name",
+    "forumNewTagHint": "Tagnaam",
     "@forumNewTagHint": {
         "description": "Placeholder of the new tag name input in the tag editor."
     },
-    "forumAddTag": "Add tag",
+    "forumAddTag": "Tag toevoegen",
     "@forumAddTag": {
         "description": "Accessibility label of the button that adds a tag in the tag editor."
     },
-    "forumTagsUpdated": "Tags updated",
+    "forumTagsUpdated": "Tags bijgewerkt",
     "@forumTagsUpdated": {
         "description": "Toast shown after saving a forum's tags."
     },
-    "forumTagsUpdateFailed": "Could not update tags. Please try again.",
+    "forumTagsUpdateFailed": "Kon de tags niet bijwerken. Probeer het opnieuw.",
     "@forumTagsUpdateFailed": {
         "description": "Toast shown when saving a forum's tags fails."
     },
-    "forumLoadFailed": "Could not load posts.",
+    "forumLoadFailed": "Kon de posts niet laden.",
     "@forumLoadFailed": {
         "description": "Shown when the forum post list fails to load."
     },
-    "forumNoPosts": "No posts yet",
+    "forumNoPosts": "Nog geen posts",
     "@forumNoPosts": {
         "description": "Empty state of the active forum post list."
     },
-    "forumNoArchivedPosts": "No archived posts",
+    "forumNoArchivedPosts": "Geen gearchiveerde threads",
     "@forumNoArchivedPosts": {
         "description": "Empty state of the archived forum post list."
     },
-    "systemThreadCreated": "{username} started a thread: {threadName}.",
+    "systemThreadCreated": "{username} is een thread gestart: {threadName}.",
     "@systemThreadCreated": {
         "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
         "placeholders": {
@@ -17143,7 +17143,7 @@
             }
         }
     },
-    "systemPreviewStartedThread": "{username} started a thread.",
+    "systemPreviewStartedThread": "{username} is een thread gestart.",
     "@systemPreviewStartedThread": {
         "description": "Plaintext preview of the system message posted when someone starts a thread.",
         "placeholders": {
@@ -17152,47 +17152,47 @@
             }
         }
     },
-    "systemThreadDeleted": "a thread that was deleted",
+    "systemThreadDeleted": "een verwijderde thread",
     "@systemThreadDeleted": {
         "description": "Stands in for a thread name in the thread started system message when the thread no longer exists."
     },
-    "threadsComposerLockedHint": "This thread is locked. Only moderators can send messages.",
+    "threadsComposerLockedHint": "Deze thread is vergrendeld. Alleen moderators kunnen berichten sturen.",
     "@threadsComposerLockedHint": {
         "description": "Composer placeholder in a locked thread for users who cannot moderate it."
     },
-    "threadsComposerArchivedHint": "This thread is archived. Sending a message reopens it.",
+    "threadsComposerArchivedHint": "Deze thread is gearchiveerd. Een bericht sturen opent hem weer.",
     "@threadsComposerArchivedHint": {
         "description": "Composer placeholder in an archived thread that is not locked."
     },
-    "forumSearchOrCreatePost": "Search or create a post...",
+    "forumSearchOrCreatePost": "Zoeken of een post maken...",
     "@forumSearchOrCreatePost": {
         "description": "Placeholder of the forum search field. What is typed also becomes the title of a new post."
     },
-    "forumSortBy": "Sort by",
+    "forumSortBy": "Sorteren op",
     "@forumSortBy": {
         "description": "Section label in the forum Sort & View sheet."
     },
-    "forumSortDatePosted": "Date posted",
+    "forumSortDatePosted": "Plaatsingsdatum",
     "@forumSortDatePosted": {
         "description": "Forum sort option that orders posts by creation date."
     },
-    "forumViewAs": "View as",
+    "forumViewAs": "Weergeven als",
     "@forumViewAs": {
         "description": "Section label for the forum layout options in the Sort & View sheet."
     },
-    "forumLayoutList": "List",
+    "forumLayoutList": "Lijst",
     "@forumLayoutList": {
         "description": "Forum layout option showing posts as a list."
     },
-    "forumLayoutGallery": "Gallery",
+    "forumLayoutGallery": "Galerij",
     "@forumLayoutGallery": {
         "description": "Forum layout option showing posts as a grid of image cards."
     },
-    "forumResetViewToDefault": "Reset to default",
+    "forumResetViewToDefault": "Terugzetten naar standaard",
     "@forumResetViewToDefault": {
         "description": "Returns the forum Sort & View choice to the channel defaults."
     },
-    "forumAllTags": "All",
+    "forumAllTags": "Alles",
     "@forumAllTags": {
         "description": "Chip that opens the full list of forum tags to filter by."
     },
@@ -17205,43 +17205,43 @@
             }
         }
     },
-    "forumPostGuidelinesLabel": "Post guidelines",
+    "forumPostGuidelinesLabel": "Postrichtlijnen",
     "@forumPostGuidelinesLabel": {
         "description": "Heading above the forum's guidelines in the new post sheet."
     },
-    "forumEditPost": "Edit post",
+    "forumEditPost": "Post bewerken",
     "@forumEditPost": {
         "description": "Menu item and dialog title for editing a forum post's title and tags."
     },
-    "forumPostTagRequiredToast": "Pick at least one tag for this forum.",
+    "forumPostTagRequiredToast": "Kies minstens één tag voor dit forum.",
     "@forumPostTagRequiredToast": {
         "description": "Shown when saving a post without a tag in a forum that requires one."
     },
-    "threadsFollow": "Follow",
+    "threadsFollow": "Volgen",
     "@threadsFollow": {
         "description": "Menu item to follow a thread or forum post and get its notifications."
     },
-    "threadsUnfollow": "Unfollow",
+    "threadsUnfollow": "Niet meer volgen",
     "@threadsUnfollow": {
         "description": "Menu item to stop following a thread or forum post."
     },
-    "threadsFollowing": "Following",
+    "threadsFollowing": "Volgend",
     "@threadsFollowing": {
         "description": "Header button state when the user follows the thread or post."
     },
-    "threadsMute": "Mute",
+    "threadsMute": "Dempen",
     "@threadsMute": {
         "description": "Menu item to mute a thread or forum post."
     },
-    "threadsUnmute": "Unmute",
+    "threadsUnmute": "Dempen opheffen",
     "@threadsUnmute": {
         "description": "Menu item to unmute a thread or forum post."
     },
-    "threadsEditThread": "Edit thread",
+    "threadsEditThread": "Thread bewerken",
     "@threadsEditThread": {
         "description": "Menu item and dialog title for renaming a thread."
     },
-    "forumNewPostsPill": "{count} New",
+    "forumNewPostsPill": "{count} nieuw",
     "@forumNewPostsPill": {
         "description": "Sidebar pill on a forum channel counting posts with activity since the user last opened it.",
         "placeholders": {
@@ -17250,59 +17250,59 @@
             }
         }
     },
-    "forumSettingsTitle": "Forum settings",
+    "forumSettingsTitle": "Foruminstellingen",
     "@forumSettingsTitle": {
         "description": "Heading of the forum-only section in channel settings."
     },
-    "forumSettingsGuidelinesHint": "Tell members what to post here",
+    "forumSettingsGuidelinesHint": "Vertel leden wat ze hier kunnen posten",
     "@forumSettingsGuidelinesHint": {
         "description": "Placeholder of the forum post guidelines field in channel settings."
     },
-    "forumSettingsRequireTag": "Require tags on new posts",
+    "forumSettingsRequireTag": "Leden verplichten een tag te kiezen bij het plaatsen",
     "@forumSettingsRequireTag": {
         "description": "Switch that makes members pick at least one tag when creating a forum post."
     },
-    "forumSettingsRequireTagDescription": "Members must pick at least one tag before they can post.",
+    "forumSettingsRequireTagDescription": "Leden moeten minstens één tag kiezen voordat ze kunnen posten.",
     "@forumSettingsRequireTagDescription": {
         "description": "Explains the require tags switch in forum settings."
     },
-    "forumSettingsDefaultSort": "Default sort order",
+    "forumSettingsDefaultSort": "Standaardsortering",
     "@forumSettingsDefaultSort": {
         "description": "Forum setting for how posts are ordered unless a member picks otherwise."
     },
-    "forumSettingsDefaultLayout": "Default layout",
+    "forumSettingsDefaultLayout": "Standaardweergave",
     "@forumSettingsDefaultLayout": {
         "description": "Forum setting for list or gallery layout unless a member picks otherwise."
     },
-    "forumSettingsDefaultReaction": "Default reaction",
+    "forumSettingsDefaultReaction": "Standaardreactie",
     "@forumSettingsDefaultReaction": {
         "description": "Forum setting for the emoji used by React to Post."
     },
-    "forumSettingsDefaultReactionDescription": "Shown as the quick reaction on every post. Leave empty for none.",
+    "forumSettingsDefaultReactionDescription": "Wordt als snelle reactie op elke post weergegeven. Laat leeg voor geen.",
     "@forumSettingsDefaultReactionDescription": {
         "description": "Explains the forum default reaction setting."
     },
-    "forumSettingsDefaultReactionHint": "An emoji, e.g. 👍",
+    "forumSettingsDefaultReactionHint": "Een emoji, bijvoorbeeld 👍",
     "@forumSettingsDefaultReactionHint": {
         "description": "Placeholder of the forum default reaction field."
     },
-    "forumSettingsHideAfterInactivity": "Hide after inactivity",
+    "forumSettingsHideAfterInactivity": "Verbergen na inactiviteit",
     "@forumSettingsHideAfterInactivity": {
         "description": "Forum setting for how long a post stays active without new messages."
     },
-    "forumSettingsHideAfterInactivityDescription": "Inactive posts move to Archived. Anyone can reopen a post that is not locked.",
+    "forumSettingsHideAfterInactivityDescription": "Inactieve posts gaan naar Gearchiveerd. Iedereen kan een post die niet vergrendeld is weer openen.",
     "@forumSettingsHideAfterInactivityDescription": {
         "description": "Explains the forum hide after inactivity setting."
     },
-    "forumSettingsHideAfterOneHour": "1 hour",
+    "forumSettingsHideAfterOneHour": "1 uur",
     "@forumSettingsHideAfterOneHour": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsHideAfterOneDay": "24 hours",
+    "forumSettingsHideAfterOneDay": "24 uur",
     "@forumSettingsHideAfterOneDay": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsHideAfterThreeDays": "3 days",
+    "forumSettingsHideAfterThreeDays": "3 dagen",
     "@forumSettingsHideAfterThreeDays": {
         "description": "Hide after inactivity option, the default."
     },
@@ -17310,50 +17310,50 @@
     "@forumSettingsHideAfterOneWeek": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsPostCreationSlowmode": "Post creation slowmode",
+    "forumSettingsPostCreationSlowmode": "Slowmodus voor het maken van posts",
     "@forumSettingsPostCreationSlowmode": {
         "description": "Forum setting limiting how often a member can create a new post."
     },
-    "forumSettingsPostCreationSlowmodeDescription": "How long members wait between creating posts.",
+    "forumSettingsPostCreationSlowmodeDescription": "Hoe lang leden wachten tussen het maken van posts.",
     "@forumSettingsPostCreationSlowmodeDescription": {
         "description": "Explains the forum post creation slowmode setting."
     },
-    "forumSettingsDefaultPostSlowmode": "Slowmode inside new posts",
+    "forumSettingsDefaultPostSlowmode": "Slowmodus in nieuwe posts",
     "@forumSettingsDefaultPostSlowmode": {
         "description": "Forum setting for the slowmode applied to messages inside each new post."
     },
-    "forumSettingsDefaultPostSlowmodeDescription": "Applied to posts when they are created.",
+    "forumSettingsDefaultPostSlowmodeDescription": "Wordt toegepast op posts wanneer ze worden gemaakt.",
     "@forumSettingsDefaultPostSlowmodeDescription": {
         "description": "Explains the default slowmode for new forum posts."
     },
-    "forumSettingsSave": "Save forum settings",
+    "forumSettingsSave": "Foruminstellingen opslaan",
     "@forumSettingsSave": {
         "description": "Button that saves the forum settings section."
     },
-    "forumSettingsSaved": "Forum settings saved",
+    "forumSettingsSaved": "Foruminstellingen opgeslagen",
     "@forumSettingsSaved": {
         "description": "Toast after forum settings are saved."
     },
-    "forumSettingsSaveFailed": "Could not save forum settings",
+    "forumSettingsSaveFailed": "Kon de foruminstellingen niet opslaan",
     "@forumSettingsSaveFailed": {
         "description": "Toast when forum settings fail to save."
     },
-    "threadsStarterMessage": "Started from",
+    "threadsStarterMessage": "Gestart vanaf",
     "@threadsStarterMessage": {
         "description": "Label above the message a thread was started from, shown at the top of the thread."
     },
     "threadsOriginalPosterTag": "OP",
-    "forumReactToPost": "React to Post",
-    "forumReactToPostOther": "React with another emoji",
-    "forumEmptyHeading": "Be the first to start the conversation!",
-    "forumEmptyBody": "What do you want to post about in {forumName}?",
-    "forumSeeExamples": "See Examples",
-    "forumExampleQuestion": "Ask a question and tag it so people can find it later.",
-    "forumExampleShow": "Share something you made and let people reply to it.",
-    "forumExampleDiscussion": "Start a discussion on one topic and keep it in this post.",
-    "forumTagModeratedOn": "Moderator only, tap to allow everyone",
-    "forumTagModeratedOff": "Anyone may apply, tap to restrict to moderators",
-    "forumAddToPost": "Add to Post",
-    "forumAddToPostDone": "Added to the post.",
-    "forumAddToPostFailed": "Could not add that to the post. Please try again."
+    "forumReactToPost": "Reageren op post",
+    "forumReactToPostOther": "Reageren met een andere emoji",
+    "forumEmptyHeading": "Start het gesprek!",
+    "forumEmptyBody": "Waarover wil je posten in {forumName}?",
+    "forumSeeExamples": "Voorbeelden bekijken",
+    "forumExampleQuestion": "Stel een vraag en geef die een tag, zodat mensen hem later terugvinden.",
+    "forumExampleShow": "Deel iets wat je hebt gemaakt en laat mensen erop reageren.",
+    "forumExampleDiscussion": "Start een discussie over één onderwerp en houd die in deze post.",
+    "forumTagModeratedOn": "Alleen moderators, tik om hem voor iedereen toe te staan",
+    "forumTagModeratedOff": "Iedereen mag hem toevoegen, tik om hem tot moderators te beperken",
+    "forumAddToPost": "Aan post toevoegen",
+    "forumAddToPostDone": "Toegevoegd aan de post.",
+    "forumAddToPostFailed": "Kon dat niet aan de post toevoegen. Probeer het opnieuw."
 }

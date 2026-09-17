@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3633,10 +3634,8 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Dette vil logge de valgte enheder ud af din konto. Du skal logge ind igen på de enheder.',
-      one:
-          'Dette vil logge den valgte enhed ud af din konto. Du skal logge ind igen på den enhed.',
+      other: 'Dette vil logge de valgte enheder ud af din konto. Du skal logge ind igen på de enheder.',
+      one: 'Dette vil logge den valgte enhed ud af din konto. Du skal logge ind igen på den enhed.',
     );
     return '$_temp0';
   }
@@ -4608,8 +4607,7 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count communities er midlertidigt utilgængelige på grund af en fejl i flux-kondensatoren.',
-      one:
-          '1 community er midlertidigt utilgængelig på grund af en fejl i flux-kondensatoren.',
+      one: '1 community er midlertidigt utilgængelig på grund af en fejl i flux-kondensatoren.',
     );
     return '$_temp0';
   }
@@ -5516,8 +5514,7 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
       locale: localeName,
       other:
           'Du er allerede forbundet til denne stemmekanal fra $count andre enheder. Hvad vil du gøre?',
-      one:
-          'Du er allerede forbundet til denne stemmekanal fra 1 anden enhed. Hvad vil du gøre?',
+      one: 'Du er allerede forbundet til denne stemmekanal fra 1 anden enhed. Hvad vil du gøre?',
     );
     return '$_temp0';
   }
@@ -14284,55 +14281,54 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Tråde';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Indlæg';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Aktiv';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Arkiverede';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Ny tråd';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Ny tråd';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Trådnavn';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Giv din tråd et navn';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Opret tråd';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Opret tråd';
 
   @override
-  String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+  String get threadsCreateFailed => 'Kunne ikke oprette tråden. Prøv igen.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'Kunne ikke indlæse trådene.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Ingen aktive tråde endnu';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'Ingen arkiverede tråde';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count beskeder',
+      one: '1 besked',
     );
     return '$_temp0';
   }
@@ -14342,221 +14338,220 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count medlemmer',
+      one: '1 medlem',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Låst';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Arkiverede';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Administrér';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Fastgør';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Frigør';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Arkivér';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Hent ud af arkiv';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Lås';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Lås op';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Slet';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed => 'Der gik noget galt. Prøv igen.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Luk tråd';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Genåbn tråd';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Lås tråd';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Lås tråd op';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Forlad tråden';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Slet tråd';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Trådmedlemmer';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'Kunne ikke indlæse medlemmerne';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Ingen trådmedlemmer endnu';
 
   @override
   String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+      'Personer, der deltager i denne tråd, vises her.';
 
   @override
   String get forumChannelTypeLabel => 'Forum';
 
   @override
   String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+      'Et rum til organiserede indlæg i tråde';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Nyt indlæg';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Nyt indlæg';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Opret indlæg';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'Kunne ikke oprette indlægget. Prøv igen.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'Indlægget blev oprettet, men beskeden kunne ikke sendes.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Titel';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Indlæggets titel';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Besked';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Skriv en besked';
 
   @override
   String get forumPostTagsLabel => 'Tags';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => 'Tags (vælg mindst ét)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Dette forum kræver et tag, men der er endnu ikke oprettet nogen.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'Dette forum har ingen tags endnu. Tilføj nogle under Administrér tags.';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Søg i indlæg';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Sortering og visning';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Senest aktive';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Navn (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Administrér tags';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Ingen tags endnu';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Fjern tag';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Nyt tag';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Tagnavn';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Tilføj tag';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Tags opdateret';
 
   @override
-  String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+  String get forumTagsUpdateFailed => 'Kunne ikke opdatere tags. Prøv igen.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'Kunne ikke indlæse indlæggene.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Ingen indlæg endnu';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'Ingen arkiverede tråde';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username startede en tråd: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username startede en tråd.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'en slettet tråd';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Denne tråd er låst. Kun moderatorer kan sende beskeder.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Denne tråd er arkiveret. At sende en besked genåbner den.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count nye';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Søg eller opret et indlæg...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Sortér efter';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Oprettelsesdato';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Vis som';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Liste';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Galleri';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'Nulstil til standard';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Alle';
 
   @override
   String forumTagsSelectedCount(int count) {
@@ -14570,153 +14565,156 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Retningslinjer for indlæg';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Redigér indlæg';
 
   @override
-  String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+  String get forumPostTagRequiredToast => 'Vælg mindst ét tag til dette forum.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Følg';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Følg ikke længere';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Følger';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Slå mikrofon fra';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Slå mikrofon til';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Redigér tråd';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Forumindstillinger';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Fortæl medlemmerne, hvad de kan skrive om her';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Kræv, at medlemmer vælger et tag, når de poster';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Medlemmer skal vælge mindst ét tag, før de kan skrive.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Standardsortering';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Standardlayout';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Standardreaktion';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Vises som hurtig reaktion på alle indlæg. Lad feltet være tomt for ingen.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'En emoji, for eksempel 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => 'Skjul efter inaktivitet';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Inaktive indlæg flyttes til Arkiverede. Alle kan genåbne et indlæg, der ikke er låst.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 time';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 timer';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 dage';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 uge';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Langsom tilstand for oprettelse af indlæg';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Hvor længe medlemmer venter mellem nye indlæg.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode =>
+      'Langsom tilstand i nye indlæg';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Anvendes på indlæg, når de oprettes.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Gem forumindstillinger';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Forumindstillingerne er gemt';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed => 'Kunne ikke gemme forumindstillingerne';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Startet fra';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Reagér på indlægget';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Reagér med en anden emoji';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => 'Start samtalen!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return 'Hvad vil du skrive om i $forumName?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Se eksempler';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Stil et spørgsmål, og giv det et tag, så andre kan finde det senere.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Del noget, du har lavet, og lad andre svare på det.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Start en diskussion om ét emne, og hold den i dette indlæg.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn => 'Kun moderatorer, tryk for at tillade alle';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Alle må bruge det, tryk for at forbeholde det moderatorer';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Tilføj til indlægget';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Tilføjet til indlægget.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'Kunne ikke tilføje det til indlægget. Prøv igen.';
 }

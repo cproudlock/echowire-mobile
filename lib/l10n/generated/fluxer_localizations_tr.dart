@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3640,10 +3641,8 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Bu, seçilen cihazları hesabından çıkaracaktır. O cihazlarda tekrar giriş yapman gerekecek.',
-      one:
-          'Bu, seçilen cihazı hesabından çıkaracaktır. O cihazda tekrar giriş yapman gerekecek.',
+      other: 'Bu, seçilen cihazları hesabından çıkaracaktır. O cihazlarda tekrar giriş yapman gerekecek.',
+      one: 'Bu, seçilen cihazı hesabından çıkaracaktır. O cihazda tekrar giriş yapman gerekecek.',
     );
     return '$_temp0';
   }
@@ -4617,8 +4616,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count topluluk, akı kapasitörü arızası nedeniyle geçici olarak kullanılamıyor.',
-      one:
-          '1 topluluk, akı kapasitörü arızası nedeniyle geçici olarak kullanılamıyor.',
+      one: '1 topluluk, akı kapasitörü arızası nedeniyle geçici olarak kullanılamıyor.',
     );
     return '$_temp0';
   }
@@ -5524,8 +5522,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       locale: localeName,
       other:
           'Bu sesli kanala zaten $count başka cihazdan bağlısınız. Ne yapmak istersiniz?',
-      one:
-          'Bu sesli kanala zaten 1 başka cihazdan bağlısınız. Ne yapmak istersiniz?',
+      one: 'Bu sesli kanala zaten 1 başka cihazdan bağlısınız. Ne yapmak istersiniz?',
     );
     return '$_temp0';
   }
@@ -14277,55 +14274,55 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Konular';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Gönderiler';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Aktif';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Arşivlenmiş';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Yeni konu';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Yeni konu';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Konu adı';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Konunuza bir ad verin';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Konu oluştur';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Konu oluştur';
 
   @override
   String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+      'Konu oluşturulamadı. Lütfen tekrar deneyin.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'Konular yüklenemedi.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Henüz etkin konu yok';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'Arşivlenmiş konu yok';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count mesaj',
+      one: '1 mesaj',
     );
     return '$_temp0';
   }
@@ -14335,381 +14332,386 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count üye',
+      one: '1 üye',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Kilitli';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Arşivlenmiş';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Yönet';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Sabitle';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Sabitlemeyi kaldır';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Arşivle';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Arşivden çıkar';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Kilitle';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Kilidi aç';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Sil';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed =>
+      'Bir şeyler ters gitti. Lütfen tekrar deneyin.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Konuyu kapat';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Konuyu yeniden aç';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Konuyu Kilitle';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Konunun Kilidini Aç';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Konudan ayrıl';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Konuyu sil';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Konu Üyeleri';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'Üyeler yüklenemedi';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Henüz konu üyesi yok';
 
   @override
   String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+      'Bu konuya katılan kişiler burada görünecek.';
 
   @override
   String get forumChannelTypeLabel => 'Forum';
 
   @override
   String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+      'Düzenli, konu tabanlı gönderiler için bir alan';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Yeni gönderi';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Yeni gönderi';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Gönderi oluştur';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'Gönderi oluşturulamadı. Lütfen tekrar deneyin.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'Gönderi oluşturuldu ancak mesajı gönderilemedi.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Başlık';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Gönderi başlığı';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Mesaj';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Bir mesaj girin';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'Etiketler';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => 'Etiketler (en az bir tane seç)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Bu forum etiket gerektiriyor ancak henüz hiç etiket oluşturulmamış.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'Bu forumda henüz etiket yok. Etiketleri yönet ile birkaç tane ekleyin.';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Gönderilerde ara';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Sıralama ve görünüm';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Son etkinlik';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Ad (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Etiketleri yönet';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Henüz etiket yok';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Etiketi kaldır';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Yeni etiket';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Etiket adı';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Etiket ekle';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Etiketler güncellendi';
 
   @override
   String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+      'Etiketler güncellenemedi. Lütfen tekrar deneyin.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'Gönderiler yüklenemedi.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Henüz gönderi yok';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'Arşivlenmiş konu yok';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username bir konu başlattı: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username bir konu başlattı.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'silinmiş bir konu';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Bu konu kilitli. Yalnızca moderatörler mesaj gönderebilir.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Bu konu arşivlendi. Mesaj göndermek onu yeniden açar.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count yeni';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Gönderi ara veya oluştur...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Sıralama ölçütü';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Paylaşım tarihi';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Görünüm';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Liste';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Galeri';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'Varsayılana sıfırla';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Tümü';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count etiket',
+      one: '1 etiket',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Paylaşım kuralları';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Gönderiyi düzenle';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Bu forum için en az bir etiket seçin.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Takip et';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Takibi bırak';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Takip ediliyor';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Sesi Kapat';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Sesi Aç';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Konuyu düzenle';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Forum ayarları';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Üyelere burada ne paylaşacaklarını anlatın';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Üyelerin paylaşırken etiket seçmesini zorunlu kıl';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Üyeler gönderi paylaşmadan önce en az bir etiket seçmelidir.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Varsayılan sıralama';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Varsayılan düzen';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Varsayılan tepki';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Her gönderide hızlı tepki olarak gösterilir. Hiçbiri için boş bırakın.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'Bir emoji, örn. 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => 'Etkinlik olmadığında gizle';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Etkin olmayan gönderiler Arşivlenenler\'e taşınır. Kilitli olmayan bir gönderiyi herkes yeniden açabilir.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 saat';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 saat';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 gün';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 hafta';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Gönderi oluşturma yavaş modu';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Üyelerin gönderi oluşturmalar arasında ne kadar beklediği.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode => 'Yeni gönderilerde yavaş mod';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Gönderiler oluşturulduğunda uygulanır.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Forum ayarlarını kaydet';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Forum ayarları kaydedildi';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed => 'Forum ayarları kaydedilemedi';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Şuradan başlatıldı';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Gönderiye tepki ver';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Başka bir emojiyle tepki verin';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => 'Sohbeti sen başlat!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return '$forumName içinde ne hakkında gönderi paylaşmak istiyorsunuz?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Örnekleri gör';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Bir soru sorun ve sonradan bulunabilmesi için etiketleyin.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Yaptığınız bir şeyi paylaşın ve insanların yanıtlamasına izin verin.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Tek bir konu hakkında tartışma başlatın ve bu gönderide tutun.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn =>
+      'Yalnızca moderatörler, herkese izin vermek için dokunun';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Herkes uygulayabilir, moderatörlerle sınırlamak için dokunun';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Gönderiye ekle';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Gönderiye eklendi.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'Bu, gönderiye eklenemedi. Lütfen tekrar deneyin.';
 }

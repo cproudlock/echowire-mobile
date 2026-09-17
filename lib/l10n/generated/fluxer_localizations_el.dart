@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3665,10 +3666,8 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Αυτό θα αποσυνδέσει τις επιλεγμένες συσκευές από τον λογαριασμό σας. Θα χρειαστεί να συνδεθείτε ξανά σε αυτές τις συσκευές.',
-      one:
-          'Αυτό θα αποσυνδέσει την επιλεγμένη συσκευή από τον λογαριασμό σας. Θα χρειαστεί να συνδεθείτε ξανά σε αυτήν τη συσκευή.',
+      other: 'Αυτό θα αποσυνδέσει τις επιλεγμένες συσκευές από τον λογαριασμό σας. Θα χρειαστεί να συνδεθείτε ξανά σε αυτές τις συσκευές.',
+      one: 'Αυτό θα αποσυνδέσει την επιλεγμένη συσκευή από τον λογαριασμό σας. Θα χρειαστεί να συνδεθείτε ξανά σε αυτήν τη συσκευή.',
     );
     return '$_temp0';
   }
@@ -4651,8 +4650,7 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count κοινότητες είναι προσωρινά μη διαθέσιμες λόγω δυσλειτουργίας πυκνωτή ροής.',
-      one:
-          '1 κοινότητα είναι προσωρινά μη διαθέσιμη λόγω δυσλειτουργίας πυκνωτή ροής.',
+      one: '1 κοινότητα είναι προσωρινά μη διαθέσιμη λόγω δυσλειτουργίας πυκνωτή ροής.',
     );
     return '$_temp0';
   }
@@ -5566,8 +5564,7 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
       locale: localeName,
       other:
           'Είστε ήδη συνδεδεμένοι σε αυτό το φωνητικό κανάλι από $count άλλες συσκευές. Τι θέλετε να κάνετε;',
-      one:
-          'Είστε ήδη συνδεδεμένοι σε αυτό το φωνητικό κανάλι από 1 άλλη συσκευή. Τι θέλετε να κάνετε;',
+      one: 'Είστε ήδη συνδεδεμένοι σε αυτό το φωνητικό κανάλι από 1 άλλη συσκευή. Τι θέλετε να κάνετε;',
     );
     return '$_temp0';
   }
@@ -14465,55 +14462,55 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Νήματα';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Αναρτήσεις';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Ενεργό';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Αρχειοθετημένα';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Νέο νήμα';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Νέο νήμα';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Όνομα νήματος';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Ονομάστε το νήμα σας';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Δημιουργία νήματος';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Δημιουργία νήματος';
 
   @override
   String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+      'Δεν ήταν δυνατή η δημιουργία του νήματος. Δοκιμάστε ξανά.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'Δεν ήταν δυνατή η φόρτωση των νημάτων.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Κανένα ενεργό νήμα ακόμη';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'Δεν υπάρχουν αρχειοθετημένα νήματα';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count μηνύματα',
+      one: '1 μήνυμα',
     );
     return '$_temp0';
   }
@@ -14523,381 +14520,389 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count μέλη',
+      one: '1 μέλος',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Κλειδωμένο';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Αρχειοθετημένα';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Διαχείριση';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Καρφίτσωμα';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Κατάργηση καρφιτσώματος';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Αρχειοθέτηση';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Κατάργηση αρχειοθέτησης';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Κλείδωμα';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Ξεκλείδωμα';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Διαγραφή';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed =>
+      'Κάτι πήγε στραβά. Παρακαλώ, προσπαθήστε ξανά.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Κλείσιμο νήματος';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Άνοιγμα νήματος ξανά';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Κλείδωμα νήματος';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Ξεκλείδωμα νήματος';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Αποχώρηση από το νήμα';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Διαγραφή νήματος';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Μέλη νήματος';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'Δεν ήταν δυνατή η φόρτωση των μελών';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Κανένα μέλος νήματος ακόμη';
 
   @override
   String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+      'Όσοι συμμετέχουν σε αυτό το νήμα θα εμφανίζονται εδώ.';
 
   @override
-  String get forumChannelTypeLabel => 'Forum';
+  String get forumChannelTypeLabel => 'Φόρουμ';
 
   @override
   String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+      'Ένας χώρος για οργανωμένες αναρτήσεις σε νήματα';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Νέα ανάρτηση';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Νέα ανάρτηση';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Δημιουργία ανάρτησης';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'Δεν ήταν δυνατή η δημιουργία της ανάρτησης. Δοκιμάστε ξανά.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'Η ανάρτηση δημιουργήθηκε, αλλά το μήνυμά της δεν στάλθηκε.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Τίτλος';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Τίτλος ανάρτησης';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Μήνυμα';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Γράψτε ένα μήνυμα';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'Ετικέτες';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel =>
+      'Ετικέτες (επιλέξτε τουλάχιστον μία)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Αυτό το φόρουμ απαιτεί ετικέτα, αλλά δεν έχει δημιουργηθεί καμία ακόμη.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'Αυτό το φόρουμ δεν έχει ακόμη ετικέτες. Προσθέστε μερικές από τη Διαχείριση ετικετών.';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Αναζήτηση αναρτήσεων';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Ταξινόμηση και προβολή';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Πρόσφατη δραστηριότητα';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Όνομα (Α-Ω)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Διαχείριση ετικετών';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Καμία ετικέτα ακόμη';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Αφαίρεση ετικέτας';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Νέα ετικέτα';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Όνομα ετικέτας';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Προσθήκη ετικέτας';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Οι ετικέτες ενημερώθηκαν';
 
   @override
   String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+      'Δεν ήταν δυνατή η ενημέρωση των ετικετών. Δοκιμάστε ξανά.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'Δεν ήταν δυνατή η φόρτωση των αναρτήσεων.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Καμία ανάρτηση ακόμη';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'Δεν υπάρχουν αρχειοθετημένα νήματα';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return 'Ο/Η $username ξεκίνησε ένα νήμα: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return 'Ο/Η $username ξεκίνησε ένα νήμα.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'ένα νήμα που διαγράφηκε';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Αυτό το νήμα είναι κλειδωμένο. Μόνο οι συντονιστές μπορούν να στέλνουν μηνύματα.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Αυτό το νήμα είναι αρχειοθετημένο. Η αποστολή μηνύματος το ανοίγει ξανά.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count νέα';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Αναζήτηση ή δημιουργία ανάρτησης...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Ταξινόμηση κατά';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Ημερομηνία δημοσίευσης';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Προβολή ως';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Λίστα';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Συλλογή';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'Επαναφορά στις προεπιλογές';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Όλα';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count ετικέτες',
+      one: '1 ετικέτα',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Οδηγίες ανάρτησης';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Επεξεργασία ανάρτησης';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Επιλέξτε τουλάχιστον μία ετικέτα για αυτό το φόρουμ.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Παρακολούθηση';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Κατάργηση παρακολούθησης';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Παρακολουθείτε';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Σίγαση';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Αποσίγαση';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Επεξεργασία νήματος';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Ρυθμίσεις φόρουμ';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Πείτε στα μέλη τι να δημοσιεύουν εδώ';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Να απαιτείται από τα μέλη να επιλέγουν ετικέτα κατά την ανάρτηση';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Τα μέλη πρέπει να επιλέξουν τουλάχιστον μία ετικέτα πριν αναρτήσουν.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Προεπιλεγμένη ταξινόμηση';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Προεπιλεγμένη διάταξη';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Προεπιλεγμένη αντίδραση';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Εμφανίζεται ως γρήγορη αντίδραση σε κάθε ανάρτηση. Αφήστε το κενό για καμία.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'Ένα emoji, π.χ. 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => 'Απόκρυψη μετά από αδράνεια';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Οι ανενεργές αναρτήσεις μεταφέρονται στα Αρχειοθετημένα. Οποιοσδήποτε μπορεί να ανοίξει ξανά μια ανάρτηση που δεν είναι κλειδωμένη.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 ώρα';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 ώρες';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 ημέρες';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 εβδομάδα';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Αργή λειτουργία δημιουργίας αναρτήσεων';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Πόσο περιμένουν τα μέλη ανάμεσα σε δημιουργίες αναρτήσεων.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode =>
+      'Αργή λειτουργία σε νέες αναρτήσεις';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Εφαρμόζεται στις αναρτήσεις κατά τη δημιουργία τους.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Αποθήκευση ρυθμίσεων φόρουμ';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Οι ρυθμίσεις του φόρουμ αποθηκεύτηκαν';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed =>
+      'Δεν ήταν δυνατή η αποθήκευση των ρυθμίσεων του φόρουμ';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Ξεκίνησε από';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Αντίδραση στην ανάρτηση';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Αντιδράστε με άλλο emoji';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => 'Ξεκινήστε τη συζήτηση!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return 'Για τι θέλετε να γράψετε στο $forumName;';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Δείτε παραδείγματα';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Κάντε μια ερώτηση και προσθέστε ετικέτα ώστε να τη βρίσκουν αργότερα.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Μοιραστείτε κάτι που φτιάξατε και αφήστε τους άλλους να απαντήσουν.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Ξεκινήστε μια συζήτηση για ένα θέμα και κρατήστε την σε αυτή την ανάρτηση.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn =>
+      'Μόνο συντονιστές, πατήστε για να επιτραπεί σε όλους';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Οποιοσδήποτε μπορεί να την εφαρμόσει, πατήστε για περιορισμό στους συντονιστές';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Προσθήκη στην ανάρτηση';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Προστέθηκε στην ανάρτηση.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'Δεν ήταν δυνατή η προσθήκη στην ανάρτηση. Δοκιμάστε ξανά.';
 }

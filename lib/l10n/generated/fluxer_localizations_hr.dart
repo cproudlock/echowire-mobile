@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3644,10 +3645,8 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Ovo će odjaviti odabrane uređaje s vašeg računa. Morat ćete se ponovno prijaviti na tim uređajima.',
-      one:
-          'Ovo će odjaviti odabrani uređaj s vašeg računa. Morat ćete se ponovno prijaviti na tom uređaju.',
+      other: 'Ovo će odjaviti odabrane uređaje s vašeg računa. Morat ćete se ponovno prijaviti na tim uređajima.',
+      one: 'Ovo će odjaviti odabrani uređaj s vašeg računa. Morat ćete se ponovno prijaviti na tom uređaju.',
     );
     return '$_temp0';
   }
@@ -5532,8 +5531,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
       locale: localeName,
       other:
           'Već ste povezani na ovaj glasovni kanal s $count drugih uređaja. Što želite učiniti?',
-      one:
-          'Već ste povezani na ovaj glasovni kanal s 1 drugog uređaja. Što želite učiniti?',
+      one: 'Već ste povezani na ovaj glasovni kanal s 1 drugog uređaja. Što želite učiniti?',
     );
     return '$_temp0';
   }
@@ -14333,55 +14331,56 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Niti';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Objave';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Aktivno';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Arhivirano';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Nova nit';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Nova nit';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Naziv niti';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Nazovite svoju nit';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Stvori nit';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Stvori nit';
 
   @override
   String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+      'Nije bilo moguće stvoriti nit. Pokušajte ponovno.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'Nije bilo moguće učitati niti.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Još nema aktivnih niti';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'Nema arhiviranih niti';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count poruka',
+      few: '$count poruke',
+      one: '1 poruka',
     );
     return '$_temp0';
   }
@@ -14391,381 +14390,389 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count članova',
+      few: '$count člana',
+      one: '1 član',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Zaključano';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Arhivirano';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Upravljaj';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Prikvači';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Otkvači';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Arhiviraj';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Vrati iz arhive';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Zaključaj';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Otključaj';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Izbriši';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed =>
+      'Nešto je pošlo po zlu. Molimo pokušajte ponovno.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Zatvori nit';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Ponovno otvori nit';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Zaključaj nit';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Otključaj nit';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Napusti nit';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Izbriši nit';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Članovi niti';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'Nije bilo moguće učitati članove';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Još nema članova niti';
 
   @override
   String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+      'Osobe koje se pridruže ovoj niti pojavit će se ovdje.';
 
   @override
   String get forumChannelTypeLabel => 'Forum';
 
   @override
-  String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+  String get forumChannelTypeDescription => 'Prostor za uredne objave u nitima';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Nova objava';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Nova objava';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Stvori objavu';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'Nije bilo moguće stvoriti objavu. Pokušajte ponovno.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'Objava je stvorena, ali njezinu poruku nije bilo moguće poslati.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Naslov';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Naslov objave';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Poruka';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Unesite poruku';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'Oznake';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => 'Oznake (odaberite najmanje jednu)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Ovaj forum zahtijeva oznaku, ali nijedna još nije stvorena.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'Ovaj forum još nema oznake. Dodajte ih u Upravljanju oznakama.';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Pretraži objave';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Sortiranje i prikaz';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Nedavno aktivno';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Naziv (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Upravljanje oznakama';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Još nema oznaka';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Ukloni oznaku';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Nova oznaka';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Naziv oznake';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Dodaj oznaku';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Oznake su ažurirane';
 
   @override
   String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+      'Oznake nije bilo moguće ažurirati. Pokušajte ponovno.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'Nije bilo moguće učitati objave.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Još nema objava';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'Nema arhiviranih niti';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username je pokrenuo nit: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username je pokrenuo nit.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'izbrisana nit';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Ova je nit zaključana. Samo moderatori mogu slati poruke.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Ova je nit arhivirana. Slanje poruke ponovno je otvara.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count novih';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Pretraži ili stvori objavu...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Sortiraj po';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Datum objave';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Prikaži kao';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Popis';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Galerija';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'Vrati na zadano';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Sve';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count oznaka',
+      few: '$count oznake',
+      one: '1 oznaka',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Pravila objavljivanja';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Uredi objavu';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Odaberite najmanje jednu oznaku za ovaj forum.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Prati';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Prestani pratiti';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Pratite';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Utišaj';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Uključi zvuk';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Uredi nit';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Postavke foruma';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Objasnite članovima o čemu se ovdje objavljuje';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Zahtijevaj od članova odabir oznake pri objavljivanju';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Članovi moraju odabrati najmanje jednu oznaku prije objavljivanja.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Zadano sortiranje';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Zadani izgled';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Zadana reakcija';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Prikazuje se kao brza reakcija na svakoj objavi. Ostavite prazno ako je ne želite.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'Emoji, primjerice 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => 'Sakrij nakon neaktivnosti';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Neaktivne objave prelaze u arhivu. Objavu koja nije zaključana svatko može ponovno otvoriti.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 sat';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 sata';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 dana';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 tjedan';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Usporeni način rada za stvaranje objava';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Koliko članovi čekaju između stvaranja objava.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode =>
+      'Usporeni način rada u novim objavama';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Primjenjuje se na objave kada se stvore.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Spremi postavke foruma';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Postavke foruma su spremljene';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed =>
+      'Postavke foruma nije bilo moguće spremiti';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Pokrenuto iz';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Reagiraj na objavu';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Reagiraj drugim emojijem';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => 'Započnite razgovor!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return 'O čemu želite objaviti u $forumName?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Pogledaj primjere';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Postavite pitanje i dodajte oznaku kako bi ga drugi kasnije našli.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Podijelite nešto što ste napravili i pustite druge da odgovore.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Započnite raspravu o jednoj temi i vodite je u ovoj objavi.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn =>
+      'Samo moderatori, dotaknite da je omogućite svima';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Svatko je može dodati, dotaknite da je ograničite na moderatore';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Dodaj u objavu';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Dodano u objavu.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'Nije bilo moguće dodati to u objavu. Pokušajte ponovno.';
 }

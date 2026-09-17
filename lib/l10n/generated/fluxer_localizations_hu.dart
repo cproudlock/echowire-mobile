@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3658,10 +3659,8 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Ez kijelentkezteti a kijelölt eszközöket a fiókodból. Újra be kell jelentkezned azokon az eszközökön.',
-      one:
-          'Ez kijelentkezteti a kijelölt eszközt a fiókodból. Újra be kell jelentkezned azon az eszközön.',
+      other: 'Ez kijelentkezteti a kijelölt eszközöket a fiókodból. Újra be kell jelentkezned azokon az eszközökön.',
+      one: 'Ez kijelentkezteti a kijelölt eszközt a fiókodból. Újra be kell jelentkezned azon az eszközön.',
     );
     return '$_temp0';
   }
@@ -4642,8 +4641,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count közösség átmenetileg nem elérhető egy fluxus kondenzátor meghibásodása miatt.',
-      one:
-          '1 közösség átmenetileg nem elérhető egy fluxus kondenzátor meghibásodása miatt.',
+      one: '1 közösség átmenetileg nem elérhető egy fluxus kondenzátor meghibásodása miatt.',
     );
     return '$_temp0';
   }
@@ -5552,8 +5550,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       locale: localeName,
       other:
           'Már $count másik eszközről csatlakoztál ehhez a hangcsatornához. Mit szeretnél tenni?',
-      one:
-          'Már 1 másik eszközről csatlakoztál ehhez a hangcsatornához. Mit szeretnél tenni?',
+      one: 'Már 1 másik eszközről csatlakoztál ehhez a hangcsatornához. Mit szeretnél tenni?',
     );
     return '$_temp0';
   }
@@ -14401,55 +14398,55 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Szálak';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Bejegyzések';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Aktív';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Archivált';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Új szál';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Új szál';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'A szál neve';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Add meg a szál nevét';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Szál létrehozása';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Szál létrehozása';
 
   @override
   String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+      'Nem sikerült létrehozni a szálat. Kérjük, próbáld újra.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'Nem sikerült betölteni a szálakat.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Még nincsenek aktív szálak';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'Nincsenek archivált szálak';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count üzenet',
+      one: '1 üzenet',
     );
     return '$_temp0';
   }
@@ -14459,381 +14456,389 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get threadsStatusLocked => 'Locked';
-
-  @override
-  String get threadsStatusArchived => 'Archived';
-
-  @override
-  String get threadsManage => 'Manage';
-
-  @override
-  String get threadsPin => 'Pin';
-
-  @override
-  String get threadsUnpin => 'Unpin';
-
-  @override
-  String get threadsArchive => 'Archive';
-
-  @override
-  String get threadsUnarchive => 'Unarchive';
-
-  @override
-  String get threadsLock => 'Lock';
-
-  @override
-  String get threadsUnlock => 'Unlock';
-
-  @override
-  String get threadsDelete => 'Delete';
-
-  @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
-
-  @override
-  String get threadsCloseThread => 'Close Thread';
-
-  @override
-  String get threadsReopenThread => 'Reopen Thread';
-
-  @override
-  String get threadsLockThread => 'Lock Thread';
-
-  @override
-  String get threadsUnlockThread => 'Unlock Thread';
-
-  @override
-  String get threadsLeaveThread => 'Leave Thread';
-
-  @override
-  String get threadsDeleteThread => 'Delete Thread';
-
-  @override
-  String get threadsMembersTab => 'Thread Members';
-
-  @override
-  String get threadsMembersLoadFailed => 'Could not load members';
-
-  @override
-  String get threadsNoMembersTitle => 'No thread members yet';
-
-  @override
-  String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
-
-  @override
-  String get forumChannelTypeLabel => 'Forum';
-
-  @override
-  String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
-
-  @override
-  String get forumNewPost => 'New Post';
-
-  @override
-  String get forumNewPostTitle => 'New post';
-
-  @override
-  String get forumCreatePost => 'Create post';
-
-  @override
-  String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
-
-  @override
-  String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
-
-  @override
-  String get forumPostTitleLabel => 'Title';
-
-  @override
-  String get forumPostTitleHint => 'Post title';
-
-  @override
-  String get forumPostMessageLabel => 'Message';
-
-  @override
-  String get forumPostMessageHint => 'Enter a message';
-
-  @override
-  String get forumPostTagsLabel => 'Tags';
-
-  @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
-
-  @override
-  String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
-
-  @override
-  String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
-
-  @override
-  String get forumSearchPosts => 'Search posts';
-
-  @override
-  String get forumSortAndView => 'Sort & View';
-
-  @override
-  String get forumSortRecentActivity => 'Recent activity';
-
-  @override
-  String get forumSortName => 'Name (A-Z)';
-
-  @override
-  String get forumManageTags => 'Manage tags';
-
-  @override
-  String get forumNoTags => 'No tags yet';
-
-  @override
-  String get forumRemoveTag => 'Remove tag';
-
-  @override
-  String get forumNewTagLabel => 'New tag';
-
-  @override
-  String get forumNewTagHint => 'Tag name';
-
-  @override
-  String get forumAddTag => 'Add tag';
-
-  @override
-  String get forumTagsUpdated => 'Tags updated';
-
-  @override
-  String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
-
-  @override
-  String get forumLoadFailed => 'Could not load posts.';
-
-  @override
-  String get forumNoPosts => 'No posts yet';
-
-  @override
-  String get forumNoArchivedPosts => 'No archived posts';
-
-  @override
-  String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
-  }
-
-  @override
-  String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
-  }
-
-  @override
-  String get systemThreadDeleted => 'a thread that was deleted';
-
-  @override
-  String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
-
-  @override
-  String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
-
-  @override
-  String forumNewPostsPill(int count) {
-    return '$count New';
-  }
-
-  @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
-
-  @override
-  String get forumSortBy => 'Sort by';
-
-  @override
-  String get forumSortDatePosted => 'Date posted';
-
-  @override
-  String get forumViewAs => 'View as';
-
-  @override
-  String get forumLayoutList => 'List';
-
-  @override
-  String get forumLayoutGallery => 'Gallery';
-
-  @override
-  String get forumResetViewToDefault => 'Reset to default';
-
-  @override
-  String get forumAllTags => 'All';
-
-  @override
-  String forumTagsSelectedCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count tags',
+      other: '$count tag',
       one: '1 tag',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get threadsStatusLocked => 'Lezárva';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get threadsStatusArchived => 'Archivált';
+
+  @override
+  String get threadsManage => 'Kezelés';
+
+  @override
+  String get threadsPin => 'Kitűzés';
+
+  @override
+  String get threadsUnpin => 'Kitűzés megszüntetése';
+
+  @override
+  String get threadsArchive => 'Archiválás';
+
+  @override
+  String get threadsUnarchive => 'Visszaállítás az archívumból';
+
+  @override
+  String get threadsLock => 'Lezárás';
+
+  @override
+  String get threadsUnlock => 'Feloldás';
+
+  @override
+  String get threadsDelete => 'Törlés';
+
+  @override
+  String get threadsActionFailed =>
+      'Valami hiba történt. Kérlek, próbáld újra.';
+
+  @override
+  String get threadsCloseThread => 'Szál lezárása';
+
+  @override
+  String get threadsReopenThread => 'Szál újranyitása';
+
+  @override
+  String get threadsLockThread => 'Szál lezárása';
+
+  @override
+  String get threadsUnlockThread => 'Szál feloldása';
+
+  @override
+  String get threadsLeaveThread => 'Szál elhagyása';
+
+  @override
+  String get threadsDeleteThread => 'Szál törlése';
+
+  @override
+  String get threadsMembersTab => 'Szál tagjai';
+
+  @override
+  String get threadsMembersLoadFailed => 'Nem sikerült betölteni a tagokat';
+
+  @override
+  String get threadsNoMembersTitle => 'Még nincsenek száltagok';
+
+  @override
+  String get threadsNoMembersBody =>
+      'Akik csatlakoznak ehhez a szálhoz, itt fognak megjelenni.';
+
+  @override
+  String get forumChannelTypeLabel => 'Fórum';
+
+  @override
+  String get forumChannelTypeDescription =>
+      'Hely a rendezett, szálakba szervezett bejegyzéseknek';
+
+  @override
+  String get forumNewPost => 'Új bejegyzés';
+
+  @override
+  String get forumNewPostTitle => 'Új bejegyzés';
+
+  @override
+  String get forumCreatePost => 'Bejegyzés létrehozása';
+
+  @override
+  String get forumCreatePostFailed =>
+      'Nem sikerült létrehozni a bejegyzést. Kérjük, próbáld újra.';
+
+  @override
+  String get forumPostMessageFailed =>
+      'A bejegyzés létrejött, de az üzenetét nem sikerült elküldeni.';
+
+  @override
+  String get forumPostTitleLabel => 'Cím';
+
+  @override
+  String get forumPostTitleHint => 'A bejegyzés címe';
+
+  @override
+  String get forumPostMessageLabel => 'Üzenet';
+
+  @override
+  String get forumPostMessageHint => 'Írj egy üzenetet';
+
+  @override
+  String get forumPostTagsLabel => 'Címkék';
+
+  @override
+  String get forumPostTagsRequiredLabel => 'Címkék (válassz legalább egyet)';
+
+  @override
+  String get forumPostTagsRequiredNoneHint =>
+      'Ez a fórum címkét kér, de még egyet sem hoztak létre.';
+
+  @override
+  String get forumPostNoTagsHint =>
+      'Ennek a fórumnak még nincsenek címkéi. Adj hozzá néhányat a Címkék kezelése menüpontban.';
+
+  @override
+  String get forumSearchPosts => 'Bejegyzések keresése';
+
+  @override
+  String get forumSortAndView => 'Rendezés és nézet';
+
+  @override
+  String get forumSortRecentActivity => 'Legutóbb aktív';
+
+  @override
+  String get forumSortName => 'Név (A-Z)';
+
+  @override
+  String get forumManageTags => 'Címkék kezelése';
+
+  @override
+  String get forumNoTags => 'Még nincsenek címkék';
+
+  @override
+  String get forumRemoveTag => 'Címke eltávolítása';
+
+  @override
+  String get forumNewTagLabel => 'Új címke';
+
+  @override
+  String get forumNewTagHint => 'Címke neve';
+
+  @override
+  String get forumAddTag => 'Címke hozzáadása';
+
+  @override
+  String get forumTagsUpdated => 'Címkék frissítve';
+
+  @override
+  String get forumTagsUpdateFailed =>
+      'Nem sikerült frissíteni a címkéket. Kérjük, próbáld újra.';
+
+  @override
+  String get forumLoadFailed => 'Nem sikerült betölteni a bejegyzéseket.';
+
+  @override
+  String get forumNoPosts => 'Még nincsenek bejegyzések';
+
+  @override
+  String get forumNoArchivedPosts => 'Nincsenek archivált szálak';
+
+  @override
+  String systemThreadCreated(String username, String threadName) {
+    return '$username szálat indított: $threadName.';
+  }
+
+  @override
+  String systemPreviewStartedThread(String username) {
+    return '$username szálat indított.';
+  }
+
+  @override
+  String get systemThreadDeleted => 'egy törölt szál';
+
+  @override
+  String get threadsComposerLockedHint =>
+      'Ez a szál le van zárva. Csak a moderátorok küldhetnek üzenetet.';
+
+  @override
+  String get threadsComposerArchivedHint =>
+      'Ez a szál archiválva van. Üzenet küldésével újra megnyílik.';
+
+  @override
+  String forumNewPostsPill(int count) {
+    return '$count új';
+  }
+
+  @override
+  String get forumSearchOrCreatePost =>
+      'Bejegyzés keresése vagy létrehozása...';
+
+  @override
+  String get forumSortBy => 'Rendezés';
+
+  @override
+  String get forumSortDatePosted => 'Közzététel dátuma';
+
+  @override
+  String get forumViewAs => 'Nézet';
+
+  @override
+  String get forumLayoutList => 'Lista';
+
+  @override
+  String get forumLayoutGallery => 'Galéria';
+
+  @override
+  String get forumResetViewToDefault => 'Alaphelyzetbe állítás';
+
+  @override
+  String get forumAllTags => 'Összes';
+
+  @override
+  String forumTagsSelectedCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count címke',
+      one: '1 címke',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostGuidelinesLabel => 'Közzétételi irányelvek';
+
+  @override
+  String get forumEditPost => 'Bejegyzés szerkesztése';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Válassz legalább egy címkét ehhez a fórumhoz.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Követés';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Követés megszüntetése';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Követve';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Némítás';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Némítás feloldása';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Szál szerkesztése';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Fórum beállításai';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Mondd el a tagoknak, mit érdemes ide írni';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'A tagoknak címkét kell választaniuk közzétételkor';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'A tagoknak legalább egy címkét ki kell választaniuk, mielőtt bejegyzést írhatnak.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Alapértelmezett rendezés';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Alapértelmezett elrendezés';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Alapértelmezett reakció';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Minden bejegyzésen gyors reakcióként jelenik meg. Hagyd üresen, ha nem kérsz ilyet.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'Egy emoji, például 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => 'Elrejtés inaktivitás után';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Az inaktív bejegyzések az Archiváltak közé kerülnek. Bárki újra megnyithat egy bejegyzést, ha az nincs lezárva.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 óra';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 óra';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 nap';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 hét';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Bejegyzés-létrehozás lassú módja';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Mennyit várnak a tagok két bejegyzés létrehozása között.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode =>
+      'Lassú mód az új bejegyzésekben';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'A bejegyzésekre érvényes a létrehozásukkor.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Fórum beállításainak mentése';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'A fórum beállításai elmentve';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed =>
+      'Nem sikerült menteni a fórum beállításait';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Innen indult';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Reagálás a bejegyzésre';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Reagálj másik emojival';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => 'Indítsd el a beszélgetést!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return 'Miről szeretnél írni itt: $forumName?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Példák megtekintése';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Tegyél fel egy kérdést, és lásd el címkével, hogy később is megtalálható legyen.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Oszd meg, amit készítettél, és hagyd, hogy mások válaszoljanak rá.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Indíts beszélgetést egy témáról, és tartsd ebben a bejegyzésben.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn =>
+      'Csak moderátorok, koppints a mindenkinek engedélyezéshez';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Bárki használhatja, koppints a moderátorokra korlátozáshoz';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Hozzáadás a bejegyzéshez';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Hozzáadva a bejegyzéshez.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'Nem sikerült hozzáadni a bejegyzéshez. Kérjük, próbáld újra.';
 }

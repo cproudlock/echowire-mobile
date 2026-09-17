@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -13644,55 +13645,54 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => '스레드';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => '게시물';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => '활성';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => '보관됨';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => '새 스레드';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => '새 스레드';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => '스레드 이름';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => '스레드 이름을 입력하세요';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => '스레드 만들기';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => '스레드 만들기';
 
   @override
-  String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+  String get threadsCreateFailed => '스레드를 만들 수 없습니다. 다시 시도해 주세요.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => '스레드를 불러올 수 없습니다.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => '아직 활성 스레드가 없습니다';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => '보관된 스레드가 없습니다';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '메시지 $count개',
+      one: '메시지 1개',
     );
     return '$_temp0';
   }
@@ -13702,381 +13702,368 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '멤버 $count명',
+      one: '멤버 1명',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => '잠김';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => '보관됨';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => '관리';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => '고정';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => '고정 해제';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => '보관';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => '보관 해제';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => '잠그기';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => '잠금 해제';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => '삭제';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed => '문제가 발생했습니다. 다시 시도해 주세요.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => '스레드 닫기';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => '스레드 다시 열기';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => '스레드 잠금';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => '스레드 잠금 해제';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => '스레드 나가기';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => '스레드 삭제';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => '스레드 멤버';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => '멤버를 불러올 수 없습니다';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => '아직 스레드 멤버가 없습니다';
 
   @override
-  String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+  String get threadsNoMembersBody => '이 스레드에 참여한 사람이 여기에 표시됩니다.';
 
   @override
-  String get forumChannelTypeLabel => 'Forum';
+  String get forumChannelTypeLabel => '포럼';
 
   @override
-  String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+  String get forumChannelTypeDescription => '정리된 스레드 형식의 게시물을 위한 공간';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => '새 게시물';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => '새 게시물';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => '게시물 만들기';
 
   @override
-  String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+  String get forumCreatePostFailed => '게시물을 만들 수 없습니다. 다시 시도해 주세요.';
 
   @override
-  String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+  String get forumPostMessageFailed => '게시물은 만들어졌지만 메시지를 보내지 못했습니다.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => '제목';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => '게시물 제목';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => '메시지';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => '메시지 입력';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => '태그';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => '태그(하나 이상 선택)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      '이 포럼은 태그가 필요하지만 아직 만들어진 태그가 없습니다.';
 
   @override
-  String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+  String get forumPostNoTagsHint => '이 포럼에는 아직 태그가 없습니다. 태그 관리에서 추가해 주세요.';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => '게시물 검색';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => '정렬 및 보기';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => '최근 활동순';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => '이름 (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => '태그 관리';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => '아직 태그가 없습니다';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => '태그 제거';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => '새 태그';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => '태그 이름';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => '태그 추가';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => '태그가 업데이트되었습니다';
 
   @override
-  String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+  String get forumTagsUpdateFailed => '태그를 업데이트할 수 없습니다. 다시 시도해 주세요.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => '게시물을 불러올 수 없습니다.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => '아직 게시물이 없습니다';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => '보관된 스레드가 없습니다';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username님이 스레드를 시작했습니다: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username님이 스레드를 시작했습니다.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => '삭제된 스레드';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      '이 스레드는 잠겨 있습니다. 모더레이터만 메시지를 보낼 수 있습니다.';
 
   @override
-  String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+  String get threadsComposerArchivedHint => '이 스레드는 보관되었습니다. 메시지를 보내면 다시 열립니다.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '새 소식 $count개';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => '게시물 검색 또는 만들기...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => '정렬 기준';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => '게시 날짜';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => '보기 방식';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => '목록';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => '갤러리';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => '기본값으로 재설정';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => '전체';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '태그 $count개',
+      one: '태그 1개',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => '게시 가이드라인';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => '게시물 편집';
 
   @override
-  String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+  String get forumPostTagRequiredToast => '이 포럼에서는 태그를 하나 이상 선택해 주세요.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => '팔로우';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => '팔로우 취소';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => '팔로잉';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => '마이크 음소거';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => '마이크 음소거 해제';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => '스레드 편집';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => '포럼 설정';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint => '멤버에게 여기에 무엇을 올릴지 알려주세요';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag => '게시할 때 멤버가 태그를 선택하도록 요구';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      '멤버는 게시물을 올리기 전에 태그를 하나 이상 선택해야 합니다.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => '기본 정렬 순서';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => '기본 레이아웃';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => '기본 반응';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      '모든 게시물에 빠른 반응으로 표시됩니다. 사용하지 않으려면 비워 두세요.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => '이모지 하나, 예: 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => '비활성 후 숨기기';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      '활동이 없는 게시물은 보관됨으로 이동합니다. 잠기지 않은 게시물은 누구나 다시 열 수 있습니다.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1시간';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24시간';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3일';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1주';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode => '게시물 작성 슬로우 모드';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      '멤버가 게시물을 작성하는 사이에 기다리는 시간입니다.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode => '새 게시물의 슬로우 모드';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      '게시물이 만들어질 때 적용됩니다.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => '포럼 설정 저장';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => '포럼 설정이 저장되었습니다';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed => '포럼 설정을 저장할 수 없습니다';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => '시작 위치';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => '게시물에 반응';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => '다른 이모지로 반응하기';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => '대화를 시작해 보세요!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return '$forumName에서 어떤 이야기를 나누고 싶으신가요?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => '예시 보기';
 
   @override
-  String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+  String get forumExampleQuestion => '질문을 올리고 태그를 달아 나중에도 찾을 수 있게 하세요.';
 
   @override
-  String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+  String get forumExampleShow => '만든 것을 공유하고 다른 사람들이 답글을 달 수 있게 하세요.';
 
   @override
-  String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+  String get forumExampleDiscussion => '하나의 주제로 대화를 시작하고 이 게시물에서 이어가세요.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn => '관리자 전용입니다. 탭하면 모두에게 허용합니다';
 
   @override
-  String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+  String get forumTagModeratedOff => '누구나 사용할 수 있습니다. 탭하면 관리자로 제한합니다';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => '게시물에 추가';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => '게시물에 추가했습니다.';
 
   @override
-  String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+  String get forumAddToPostFailed => '게시물에 추가할 수 없습니다. 다시 시도해 주세요.';
 }

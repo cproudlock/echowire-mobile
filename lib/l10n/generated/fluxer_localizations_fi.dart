@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3641,10 +3642,8 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Tämä kirjaa valitut laitteet ulos tililtäsi. Sinun on kirjauduttava uudelleen sisään kyseisillä laitteilla.',
-      one:
-          'Tämä kirjaa valitun laitteen ulos tililtäsi. Sinun on kirjauduttava uudelleen sisään kyseisellä laitteella.',
+      other: 'Tämä kirjaa valitut laitteet ulos tililtäsi. Sinun on kirjauduttava uudelleen sisään kyseisillä laitteilla.',
+      one: 'Tämä kirjaa valitun laitteen ulos tililtäsi. Sinun on kirjauduttava uudelleen sisään kyseisellä laitteella.',
     );
     return '$_temp0';
   }
@@ -4616,8 +4615,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count yhteisöä ei ole väliaikaisesti käytettävissä flux capacitor -vian vuoksi.',
-      one:
-          '1 yhteisö ei ole väliaikaisesti käytettävissä flux capacitor -vian vuoksi.',
+      one: '1 yhteisö ei ole väliaikaisesti käytettävissä flux capacitor -vian vuoksi.',
     );
     return '$_temp0';
   }
@@ -5528,8 +5526,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
       locale: localeName,
       other:
           'Olet jo yhdistetty tähän äänikanavaan $count muusta laitteesta. Mitä haluat tehdä?',
-      one:
-          'Olet jo yhdistetty tähän äänikanavaan 1 muusta laitteesta. Mitä haluat tehdä?',
+      one: 'Olet jo yhdistetty tähän äänikanavaan 1 muusta laitteesta. Mitä haluat tehdä?',
     );
     return '$_temp0';
   }
@@ -14304,55 +14301,54 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Ketjut';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Julkaisut';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Aktiivinen';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Arkistoidut';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Uusi ketju';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Uusi ketju';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Ketjun nimi';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Anna ketjulle nimi';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Luo ketju';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Luo ketju';
 
   @override
-  String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+  String get threadsCreateFailed => 'Ketjua ei voitu luoda. Yritä uudelleen.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'Ketjuja ei voitu ladata.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Ei vielä aktiivisia ketjuja';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'Ei arkistoituja ketjuja';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count viestiä',
+      one: '1 viesti',
     );
     return '$_temp0';
   }
@@ -14362,381 +14358,386 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count jäsentä',
+      one: '1 jäsen',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Lukittu';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Arkistoidut';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Hallitse';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Kiinnitä';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Poista kiinnitys';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Arkistoi';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Palauta arkistosta';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Lukitse';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Poista lukitus';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Poista';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed => 'Tapahtui virhe. Yritä uudelleen.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Sulje ketju';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Avaa ketju uudelleen';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Lukitse ketju';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Poista ketjun lukitus';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Poistu ketjusta';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Poista ketju';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Ketjun jäsenet';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'Jäseniä ei voitu ladata';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Ei vielä ketjun jäseniä';
 
   @override
-  String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+  String get threadsNoMembersBody => 'Tähän ketjuun liittyvät näkyvät tässä.';
 
   @override
-  String get forumChannelTypeLabel => 'Forum';
+  String get forumChannelTypeLabel => 'Foorumi';
 
   @override
   String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+      'Tila järjestetyille julkaisuille ketjuissa';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Uusi julkaisu';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Uusi julkaisu';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Luo julkaisu';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'Julkaisua ei voitu luoda. Yritä uudelleen.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'Julkaisu luotiin, mutta sen viestiä ei voitu lähettää.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Otsikko';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Julkaisun otsikko';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Viesti';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Kirjoita viesti';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'Tunnisteet';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel =>
+      'Tunnisteet (valitse vähintään yksi)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Tämä foorumi vaatii tunnisteen, mutta niitä ei ole vielä luotu.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'Tällä foorumilla ei ole vielä tunnisteita. Lisää niitä kohdasta Hallitse tunnisteita.';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Hae julkaisuja';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Järjestys ja näkymä';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Viimeksi aktiiviset';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Nimi (A-Ö)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Hallitse tunnisteita';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Ei vielä tunnisteita';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Poista tunniste';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Uusi tunniste';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Tunnisteen nimi';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Lisää tunniste';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Tunnisteet päivitetty';
 
   @override
   String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+      'Tunnisteita ei voitu päivittää. Yritä uudelleen.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'Julkaisuja ei voitu ladata.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Ei vielä julkaisuja';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'Ei arkistoituja ketjuja';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username aloitti ketjun: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username aloitti ketjun.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'poistettu ketju';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Tämä ketju on lukittu. Vain valvojat voivat lähettää viestejä.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Tämä ketju on arkistoitu. Viestin lähettäminen avaa sen uudelleen.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count uutta';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Hae tai luo julkaisu...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Järjestä';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Julkaisupäivä';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Näytä muodossa';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Luettelo';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Galleria';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'Palauta oletusasetukset';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Kaikki';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count tunnistetta',
+      one: '1 tunniste',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Julkaisuohjeet';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Muokkaa julkaisua';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Valitse vähintään yksi tunniste tälle foorumille.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Seuraa';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Lopeta seuraaminen';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Seurataan';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Mykistä';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Poista mykistys';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Muokkaa ketjua';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Foorumin asetukset';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Kerro jäsenille, mistä täällä julkaistaan';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Vaadi jäseniä valitsemaan tunniste julkaistessa';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Jäsenten on valittava vähintään yksi tunniste ennen julkaisemista.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Oletusjärjestys';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Oletusasettelu';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Oletusreaktio';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Näytetään pikareaktiona jokaisessa julkaisussa. Jätä tyhjäksi, jos et halua reaktiota.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'Emoji, esimerkiksi 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity =>
+      'Piilota käyttämättömyyden jälkeen';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Käyttämättömät julkaisut siirtyvät arkistoon. Kuka tahansa voi avata julkaisun uudelleen, jos sitä ei ole lukittu.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 tunti';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 tuntia';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 päivää';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 viikko';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Hidas tila julkaisujen luomisessa';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Kuinka kauan jäsenet odottavat julkaisujen välillä.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode =>
+      'Hidas tila uusissa julkaisuissa';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Otetaan käyttöön julkaisuissa, kun ne luodaan.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Tallenna foorumin asetukset';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Foorumin asetukset tallennettu';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed => 'Foorumin asetuksia ei voitu tallentaa';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Aloitettu viestistä';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Reagoi julkaisuun';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Reagoi toisella emojilla';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => 'Aloita keskustelu!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return 'Mistä haluat kirjoittaa kanavalla $forumName?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Katso esimerkkejä';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Kysy kysymys ja lisää siihen tunniste, jotta se löytyy myöhemmin.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Jaa jotain, mitä olet tehnyt, ja anna muiden vastata siihen.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Aloita keskustelu yhdestä aiheesta ja pidä se tässä julkaisussa.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn => 'Vain valvojat, napauta sallimaan kaikille';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Kaikki voivat lisätä sen, napauta rajataksesi valvojille';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Lisää julkaisuun';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Lisätty julkaisuun.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'Sitä ei voitu lisätä julkaisuun. Yritä uudelleen.';
 }

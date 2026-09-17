@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3637,10 +3638,8 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Tímto se odhlásí vybraná zařízení z vašeho účtu. Na těchto zařízeních se budete muset znovu přihlásit.',
-      one:
-          'Tímto se odhlásí vybrané zařízení z vašeho účtu. Na tomto zařízení se budete muset znovu přihlásit.',
+      other: 'Tímto se odhlásí vybraná zařízení z vašeho účtu. Na těchto zařízeních se budete muset znovu přihlásit.',
+      one: 'Tímto se odhlásí vybrané zařízení z vašeho účtu. Na tomto zařízení se budete muset znovu přihlásit.',
     );
     return '$_temp0';
   }
@@ -4616,8 +4615,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count komunit je dočasně nedostupných kvůli poruše časového kondenzátoru.',
-      one:
-          '1 komunita je dočasně nedostupná kvůli poruše časového kondenzátoru.',
+      one: '1 komunita je dočasně nedostupná kvůli poruše časového kondenzátoru.',
     );
     return '$_temp0';
   }
@@ -5526,8 +5524,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       locale: localeName,
       other:
           'K tomuto hlasovému kanálu jste již připojeni z $count dalších zařízení. Co chcete udělat?',
-      one:
-          'K tomuto hlasovému kanálu jste již připojeni z 1 dalšího zařízení. Co chcete udělat?',
+      one: 'K tomuto hlasovému kanálu jste již připojeni z 1 dalšího zařízení. Co chcete udělat?',
     );
     return '$_temp0';
   }
@@ -14310,55 +14307,56 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Vlákna';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Příspěvky';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Aktivní';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Archivované';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Nové vlákno';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Nové vlákno';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Název vlákna';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Pojmenujte vlákno';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Vytvořit vlákno';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Vytvořit vlákno';
 
   @override
   String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+      'Vlákno se nepodařilo vytvořit. Zkuste to znovu.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'Vlákna se nepodařilo načíst.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Zatím žádná aktivní vlákna';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'Žádná archivovaná vlákna';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count zpráv',
+      few: '$count zprávy',
+      one: '1 zpráva',
     );
     return '$_temp0';
   }
@@ -14368,381 +14366,386 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count členů',
+      few: '$count členové',
+      one: '1 člen',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Zamčeno';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Archivované';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Spravovat';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Připnout';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Odepnout';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Archivovat';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Vrátit z archivu';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Zamknout';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Odemknout';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Smazat';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed => 'Něco se pokazilo. Zkuste to znovu.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Zavřít vlákno';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Znovu otevřít vlákno';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Zamknout vlákno';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Odemknout vlákno';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Opustit vlákno';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Smazat vlákno';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Členové vlákna';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'Členy se nepodařilo načíst';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Zatím žádní členové vlákna';
 
   @override
   String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+      'Lidé, kteří se k vláknu připojí, se zobrazí tady.';
 
   @override
-  String get forumChannelTypeLabel => 'Forum';
+  String get forumChannelTypeLabel => 'Fórum';
 
   @override
   String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+      'Prostor pro přehledné příspěvky ve vláknech';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Nový příspěvek';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Nový příspěvek';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Vytvořit příspěvek';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'Příspěvek se nepodařilo vytvořit. Zkuste to znovu.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'Příspěvek byl vytvořen, ale jeho zprávu se nepodařilo odeslat.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Název';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Název příspěvku';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Zpráva';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Napište zprávu';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'Štítky';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => 'Štítky (vyberte alespoň jeden)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Toto fórum vyžaduje štítek, ale žádný ještě nebyl vytvořen.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'Toto fórum zatím nemá štítky. Přidejte je ve Správě štítků.';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Hledat příspěvky';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Řazení a zobrazení';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Nedávná aktivita';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Název (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Správa štítků';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Zatím žádné štítky';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Odebrat štítek';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Nový štítek';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Název štítku';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Přidat štítek';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Štítky aktualizovány';
 
   @override
   String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+      'Štítky se nepodařilo aktualizovat. Zkuste to znovu.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'Příspěvky se nepodařilo načíst.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Zatím žádné příspěvky';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'Žádná archivovaná vlákna';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username založil vlákno: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username založil vlákno.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'smazané vlákno';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Toto vlákno je zamčené. Zprávy mohou posílat jen moderátoři.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Toto vlákno je archivováno. Odesláním zprávy se znovu otevře.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count nových';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Hledat nebo vytvořit příspěvek...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Řadit podle';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Datum přidání';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Zobrazit jako';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Seznam';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Galerie';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'Obnovit výchozí';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Vše';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count štítků',
+      few: '$count štítky',
+      one: '1 štítek',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Pravidla přispívání';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Upravit příspěvek';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Vyberte pro toto fórum alespoň jeden štítek.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Sledovat';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Přestat sledovat';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Sledujete';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Ztlumit';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Zrušit ztlumení';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Upravit vlákno';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Nastavení fóra';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint => 'Řekněte členům, co sem psát';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Vyžadovat od členů výběr štítku při přispívání';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Členové musí před přispěním vybrat alespoň jeden štítek.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Výchozí řazení';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Výchozí rozvržení';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Výchozí reakce';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Zobrazuje se jako rychlá reakce u každého příspěvku. Ponechte prázdné, pokud žádnou nechcete.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'Emoji, například 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => 'Skrýt po nečinnosti';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Neaktivní příspěvky se přesunou do archivu. Příspěvek, který není zamčený, může kdokoli znovu otevřít.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 hodina';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 hodin';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 dny';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 týden';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Pomalý režim pro vytváření příspěvků';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Jak dlouho členové čekají mezi vytvářením příspěvků.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode =>
+      'Pomalý režim v nových příspěvcích';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Použije se na příspěvky při jejich vytvoření.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Uložit nastavení fóra';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Nastavení fóra uloženo';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed => 'Nastavení fóra se nepodařilo uložit';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Založeno ze zprávy';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Reagovat na příspěvek';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Reagovat jiným emoji';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => 'Začněte konverzaci!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return 'O čem chcete napsat v $forumName?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Zobrazit příklady';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Zadejte dotaz a označte ho štítkem, aby ho ostatní později našli.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Podělte se o něco, co jste vytvořili, a nechte ostatní odpovídat.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Začněte diskusi na jedno téma a veďte ji v tomto příspěvku.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn => 'Pouze moderátoři, klepnutím povolíte všem';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Může ho přidat kdokoli, klepnutím omezíte na moderátory';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Přidat k příspěvku';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Přidáno k příspěvku.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'Nepodařilo se to přidat k příspěvku. Zkuste to znovu.';
 }

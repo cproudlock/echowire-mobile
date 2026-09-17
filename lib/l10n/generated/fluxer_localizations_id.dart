@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3630,10 +3631,8 @@ class FluxerLocalizationsId extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Ini akan mengeluarkan perangkat yang dipilih dari akun Anda. Anda perlu masuk lagi di perangkat tersebut.',
-      one:
-          'Ini akan mengeluarkan perangkat yang dipilih dari akun Anda. Anda perlu masuk lagi di perangkat tersebut.',
+      other: 'Ini akan mengeluarkan perangkat yang dipilih dari akun Anda. Anda perlu masuk lagi di perangkat tersebut.',
+      one: 'Ini akan mengeluarkan perangkat yang dipilih dari akun Anda. Anda perlu masuk lagi di perangkat tersebut.',
     );
     return '$_temp0';
   }
@@ -4604,8 +4603,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count komunitas tidak tersedia sementara karena malfungsi kapasitor fluks.',
-      one:
-          '1 komunitas tidak tersedia sementara karena malfungsi kapasitor fluks.',
+      one: '1 komunitas tidak tersedia sementara karena malfungsi kapasitor fluks.',
     );
     return '$_temp0';
   }
@@ -5512,8 +5510,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
       locale: localeName,
       other:
           'Anda sudah terhubung ke saluran suara ini dari $count perangkat lain. Apa yang ingin Anda lakukan?',
-      one:
-          'Anda sudah terhubung ke saluran suara ini dari 1 perangkat lain. Apa yang ingin Anda lakukan?',
+      one: 'Anda sudah terhubung ke saluran suara ini dari 1 perangkat lain. Apa yang ingin Anda lakukan?',
     );
     return '$_temp0';
   }
@@ -14287,55 +14284,55 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Utas';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Postingan';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Aktif';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Diarsipkan';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Utas baru';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Utas baru';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Nama utas';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Beri nama utas Anda';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Buat utas';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Buat utas';
 
   @override
   String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+      'Tidak dapat membuat utas. Silakan coba lagi.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'Tidak dapat memuat utas.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Belum ada utas aktif';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'Tidak ada utas yang diarsipkan';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count pesan',
+      one: '1 pesan',
     );
     return '$_temp0';
   }
@@ -14345,381 +14342,388 @@ class FluxerLocalizationsId extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count anggota',
+      one: '1 anggota',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Terkunci';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Diarsipkan';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Kelola';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Sematkan';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Lepas sematan';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Arsipkan';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Keluarkan dari arsip';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Kunci';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Buka kunci';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Hapus';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed => 'Terjadi kesalahan. Coba lagi.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Tutup utas';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Buka kembali utas';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Kunci Utas';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Buka Kunci Utas';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Keluar dari utas';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Hapus utas';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Anggota Utas';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'Tidak dapat memuat anggota';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Belum ada anggota utas';
 
   @override
   String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+      'Orang yang bergabung dengan utas ini akan muncul di sini.';
 
   @override
   String get forumChannelTypeLabel => 'Forum';
 
   @override
   String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+      'Ruang untuk postingan berutas yang tertata';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Postingan baru';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Postingan baru';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Buat postingan';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'Tidak dapat membuat postingan. Silakan coba lagi.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'Postingan berhasil dibuat, tetapi pesannya tidak dapat dikirim.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Judul';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Judul postingan';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Pesan';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Masukkan pesan';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'Tag';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => 'Tag (pilih minimal satu)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Forum ini mewajibkan tag, tetapi belum ada tag yang dibuat.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'Forum ini belum memiliki tag. Tambahkan beberapa melalui Kelola tag.';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Cari postingan';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Urutan dan tampilan';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Baru aktif';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Nama (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Kelola tag';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Belum ada tag';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Hapus tag';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Tag baru';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Nama tag';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Tambah tag';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Tag diperbarui';
 
   @override
   String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+      'Tidak dapat memperbarui tag. Silakan coba lagi.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'Tidak dapat memuat postingan.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Belum ada postingan';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'Tidak ada utas yang diarsipkan';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username memulai utas: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username memulai utas.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'utas yang telah dihapus';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Utas ini dikunci. Hanya moderator yang dapat mengirim pesan.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Utas ini diarsipkan. Mengirim pesan akan membukanya kembali.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count baru';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Cari atau buat postingan...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Urutkan menurut';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Tanggal diposting';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Tampilkan sebagai';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Daftar';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Galeri';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'Setel ulang ke default';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Semua';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
+      other: '$count tag',
       one: '1 tag',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Panduan memposting';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Edit postingan';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Pilih setidaknya satu tag untuk forum ini.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Ikuti';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Berhenti mengikuti';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Mengikuti';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Bisukan';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Buka suara';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Edit utas';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Pengaturan forum';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Beri tahu anggota apa yang bisa diposting di sini';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Wajibkan anggota memilih tag saat memposting';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Anggota harus memilih setidaknya satu tag sebelum dapat memposting.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Urutan bawaan';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Tata letak bawaan';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Reaksi bawaan';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Ditampilkan sebagai reaksi cepat di setiap postingan. Biarkan kosong untuk tidak ada.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'Sebuah emoji, mis. 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity =>
+      'Sembunyikan setelah tidak aktif';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Postingan yang tidak aktif dipindahkan ke Arsip. Siapa pun dapat membuka kembali postingan yang tidak terkunci.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 jam';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 jam';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 hari';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 minggu';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Mode lambat pembuatan postingan';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Berapa lama anggota harus menunggu di antara pembuatan postingan.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode =>
+      'Mode lambat di postingan baru';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Diterapkan ke postingan saat dibuat.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Simpan pengaturan forum';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Pengaturan forum disimpan';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed =>
+      'Tidak dapat menyimpan pengaturan forum';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Dimulai dari';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Beri reaksi ke postingan';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Bereaksi dengan emoji lain';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => 'Mulai percakapan pertama!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return 'Apa yang ingin Anda bahas di $forumName?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Lihat contoh';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Ajukan pertanyaan dan beri tag agar mudah ditemukan nanti.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Bagikan sesuatu yang Anda buat dan biarkan orang lain membalasnya.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Mulai diskusi tentang satu topik dan simpan di postingan ini.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn =>
+      'Hanya moderator, ketuk untuk mengizinkan semua orang';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Siapa pun boleh menerapkannya, ketuk untuk membatasi ke moderator';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Tambahkan ke postingan';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Ditambahkan ke postingan.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'Tidak dapat menambahkan itu ke postingan. Silakan coba lagi.';
 }

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3652,10 +3653,8 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Це виведе вибрані пристрої з вашого облікового запису. Вам потрібно буде знову увійти на тих пристроях.',
-      one:
-          'Це виведе вибраний пристрій з вашого облікового запису. Вам потрібно буде знову увійти на цьому пристрої.',
+      other: 'Це виведе вибрані пристрої з вашого облікового запису. Вам потрібно буде знову увійти на тих пристроях.',
+      one: 'Це виведе вибраний пристрій з вашого облікового запису. Вам потрібно буде знову увійти на цьому пристрої.',
     );
     return '$_temp0';
   }
@@ -4634,8 +4633,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count спільнот тимчасово недоступні через несправність конденсатора потоку.',
-      one:
-          '1 спільнота тимчасово недоступна через несправність конденсатора потоку.',
+      one: '1 спільнота тимчасово недоступна через несправність конденсатора потоку.',
     );
     return '$_temp0';
   }
@@ -5549,8 +5547,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
       locale: localeName,
       other:
           'Ви вже підключені до цього голосового каналу з $count інших пристроїв. Що ви хочете зробити?',
-      one:
-          'Ви вже підключені до цього голосового каналу з 1 іншого пристрою. Що ви хочете зробити?',
+      one: 'Ви вже підключені до цього голосового каналу з 1 іншого пристрою. Що ви хочете зробити?',
     );
     return '$_temp0';
   }
@@ -14400,55 +14397,57 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Гілки';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Публікації';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Активна';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Архівні';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Нова гілка';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Нова гілка';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Назва гілки';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Назвіть гілку';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Створити гілку';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Створити гілку';
 
   @override
   String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+      'Не вдалося створити гілку. Спробуйте ще раз.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'Не вдалося завантажити гілки.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Активних гілок ще немає';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'Немає архівних гілок';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count повідомлення',
+      many: '$count повідомлень',
+      few: '$count повідомлення',
+      one: '1 повідомлення',
     );
     return '$_temp0';
   }
@@ -14458,381 +14457,393 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count учасника',
+      many: '$count учасників',
+      few: '$count учасники',
+      one: '1 учасник',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Заблоковано';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Архівні';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Керування';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Закріпити';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Відкріпити';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Архівувати';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Повернути з архіву';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Заблокувати';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Розблокувати';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Видалити';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed =>
+      'Виникла помилка. Будь ласка, спробуйте ще раз.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Закрити гілку';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Відкрити гілку знову';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Заблокувати гілку';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Розблокувати гілку';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Покинути гілку';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Видалити гілку';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Учасники гілки';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'Не вдалося завантажити учасників';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Учасників гілки ще немає';
 
   @override
   String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+      'Ті, хто приєднається до цієї гілки, з\'являться тут.';
 
   @override
-  String get forumChannelTypeLabel => 'Forum';
+  String get forumChannelTypeLabel => 'Форум';
 
   @override
   String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+      'Простір для впорядкованих публікацій у гілках';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Нова публікація';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Нова публікація';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Створити публікацію';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'Не вдалося створити публікацію. Спробуйте ще раз.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'Публікацію створено, але не вдалося надіслати її повідомлення.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Заголовок';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Заголовок публікації';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Повідомлення';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Введіть повідомлення';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'Теги';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => 'Теги (виберіть хоча б один)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Цей форум вимагає тег, але жодного ще не створено.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'У цього форуму ще немає тегів. Додайте їх у розділі «Керування тегами».';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Пошук публікацій';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Сортування та вигляд';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Нещодавня активність';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Назва (А-Я)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Керування тегами';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Тегів ще немає';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Видалити тег';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Новий тег';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Назва тега';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Додати тег';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Теги оновлено';
 
   @override
   String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+      'Не вдалося оновити теги. Спробуйте ще раз.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'Не вдалося завантажити публікації.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Публікацій ще немає';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'Немає архівних гілок';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username створив гілку: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username створив гілку.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'видалена гілка';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Ця гілка заблокована. Надсилати повідомлення можуть лише модератори.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Ця гілка архівована. Надсилання повідомлення відкриє її знову.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count нових';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Знайти або створити публікацію...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Сортувати за';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Дата публікації';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Вигляд';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Список';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Галерея';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'Скинути до типових';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Усі';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count тега',
+      many: '$count тегів',
+      few: '$count теги',
+      one: '1 тег',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Правила публікації';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Редагувати публікацію';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Виберіть хоча б один тег для цього форуму.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Відслідковувати';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Не відслідковувати';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Відслідковується';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Вимкнути мікрофон';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Увімкнути мікрофон';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Редагувати гілку';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Налаштування форуму';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Розкажіть учасникам, про що тут писати';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Вимагати від учасників вибрати тег під час публікації';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Учасники повинні вибрати хоча б один тег, перш ніж публікувати.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Сортування за замовчуванням';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Вигляд за замовчуванням';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Реакція за замовчуванням';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Показується як швидка реакція під кожною публікацією. Залиште порожнім, якщо не потрібна.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'Емодзі, наприклад 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity =>
+      'Приховувати після неактивності';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Неактивні публікації переходять до архіву. Будь-хто може знову відкрити публікацію, якщо вона не заблокована.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 година';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 години';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 дні';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 тиждень';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Повільний режим при створенні публікацій';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Скільки учасники чекають між створенням публікацій.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode =>
+      'Повільний режим у нових публікаціях';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Застосовується до публікацій під час їх створення.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Зберегти налаштування форуму';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Налаштування форуму збережено';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed =>
+      'Не вдалося зберегти налаштування форуму';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Створено з';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Відреагувати на публікацію';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Відреагувати іншим емодзі';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => 'Розпочніть обговорення!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return 'Про що ви хочете написати в $forumName?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Переглянути приклади';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Поставте питання й додайте тег, щоб його можна було знайти пізніше.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Поділіться тим, що ви зробили, і дайте іншим відповісти.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Розпочніть обговорення однієї теми й ведіть його в цій публікації.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn =>
+      'Лише модератори, натисніть, щоб дозволити всім';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Його може додати будь-хто, натисніть, щоб залишити лише модераторам';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Додати до публікації';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Додано до публікації.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'Не вдалося додати це до публікації. Спробуйте ще раз.';
 }

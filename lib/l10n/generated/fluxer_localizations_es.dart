@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3666,10 +3667,8 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Esto cerrará la sesión de los dispositivos seleccionados en tu cuenta. Deberás iniciar sesión de nuevo en esos dispositivos.',
-      one:
-          'Esto cerrará la sesión del dispositivo seleccionado en tu cuenta. Deberás iniciar sesión de nuevo en ese dispositivo.',
+      other: 'Esto cerrará la sesión de los dispositivos seleccionados en tu cuenta. Deberás iniciar sesión de nuevo en esos dispositivos.',
+      one: 'Esto cerrará la sesión del dispositivo seleccionado en tu cuenta. Deberás iniciar sesión de nuevo en ese dispositivo.',
     );
     return '$_temp0';
   }
@@ -4652,8 +4651,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count comunidades no están disponibles temporalmente debido a un mal funcionamiento del condensador de flujo.',
-      one:
-          '1 comunidad no está disponible temporalmente debido a un mal funcionamiento del condensador de flujo.',
+      one: '1 comunidad no está disponible temporalmente debido a un mal funcionamiento del condensador de flujo.',
     );
     return '$_temp0';
   }
@@ -5565,8 +5563,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
       locale: localeName,
       other:
           'Ya estás conectado a este canal de voz desde $count dispositivos más. ¿Qué quieres hacer?',
-      one:
-          'Ya estás conectado a este canal de voz desde 1 dispositivo más. ¿Qué quieres hacer?',
+      one: 'Ya estás conectado a este canal de voz desde 1 dispositivo más. ¿Qué quieres hacer?',
     );
     return '$_temp0';
   }
@@ -14439,55 +14436,55 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Hilos';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Publicaciones';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Activa';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Archivados';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Nuevo hilo';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Nuevo hilo';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Nombre del hilo';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Dale un nombre a tu hilo';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Crear hilo';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Crear hilo';
 
   @override
   String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+      'No se pudo crear el hilo. Inténtalo de nuevo.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'No se pudieron cargar los hilos.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Aún no hay hilos activos';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'No hay hilos archivados';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count mensajes',
+      one: '1 mensaje',
     );
     return '$_temp0';
   }
@@ -14497,383 +14494,390 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count miembros',
+      one: '1 miembro',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Bloqueado';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Archivados';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Gestionar';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Fijar';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Dejar de fijar';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Archivar';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Desarchivar';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Bloquear';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Desbloquear';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Eliminar';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed => 'Algo salió mal. Inténtalo de nuevo.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Cerrar hilo';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Reabrir hilo';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Bloquear hilo';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Desbloquear hilo';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Salir del hilo';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Eliminar hilo';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Miembros del hilo';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'No se pudieron cargar los miembros';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Aún no hay miembros en el hilo';
 
   @override
   String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+      'Las personas que se unan a este hilo aparecerán aquí.';
 
   @override
-  String get forumChannelTypeLabel => 'Forum';
+  String get forumChannelTypeLabel => 'Foro';
 
   @override
   String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+      'Un espacio para publicaciones organizadas en hilos';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Nueva publicación';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Nueva publicación';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Crear publicación';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'No se pudo crear la publicación. Inténtalo de nuevo.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'La publicación se creó, pero no se pudo enviar su mensaje.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Título';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Título de la publicación';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Mensaje';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Escribe un mensaje';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'Etiquetas';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => 'Etiquetas (elige al menos una)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Este foro exige una etiqueta, pero todavía no se ha creado ninguna.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'Este foro aún no tiene etiquetas. Añade algunas en «Gestionar etiquetas».';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Buscar publicaciones';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Orden y vista';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Actividad reciente';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Nombre (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Gestionar etiquetas';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Aún no hay etiquetas';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Quitar etiqueta';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Nueva etiqueta';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Nombre de la etiqueta';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Añadir etiqueta';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Etiquetas actualizadas';
 
   @override
   String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+      'No se pudieron actualizar las etiquetas. Inténtalo de nuevo.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'No se pudieron cargar las publicaciones.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Aún no hay publicaciones';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'No hay hilos archivados';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username ha creado un hilo: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username ha creado un hilo.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'un hilo eliminado';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Este hilo está bloqueado. Solo los moderadores pueden enviar mensajes.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Este hilo está archivado. Enviar un mensaje lo reabre.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count nuevos';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Buscar o crear una publicación...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Ordenar por';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Fecha de publicación';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Ver como';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Lista';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Galería';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault =>
+      'Restablecer a los valores predeterminados';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Todas';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count etiquetas',
+      one: '1 etiqueta',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Normas de publicación';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Editar publicación';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Elige al menos una etiqueta para este foro.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Seguir';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Dejar de seguir';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Siguiendo';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Silenciar';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Activar sonido';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Editar hilo';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Ajustes del foro';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Explica a los miembros qué se publica aquí';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Exigir a los miembros que elijan una etiqueta al publicar';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Los miembros deben elegir al menos una etiqueta antes de poder publicar.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Orden predeterminado';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Diseño predeterminado';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Reacción predeterminada';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Se muestra como reacción rápida en cada publicación. Déjalo vacío para ninguna.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'Un emoji, por ejemplo 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => 'Ocultar tras inactividad';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Las publicaciones inactivas pasan a Archivadas. Cualquiera puede reabrir una publicación que no esté bloqueada.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 hora';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 horas';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 días';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 semana';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Modo lento para crear publicaciones';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Cuánto esperan los miembros entre publicaciones.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode =>
+      'Modo lento en publicaciones nuevas';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Se aplica a las publicaciones al crearlas.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Guardar ajustes del foro';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Ajustes del foro guardados';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed =>
+      'No se pudieron guardar los ajustes del foro';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Creado a partir de';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Reaccionar a la publicación';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Reaccionar con otro emoji';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => '¡Empieza la conversación!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return '¿Sobre qué quieres publicar en $forumName?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Ver ejemplos';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Haz una pregunta y etiquétala para poder encontrarla más adelante.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Comparte algo que hayas creado y deja que otros respondan.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Inicia un debate sobre un tema y mantenlo en esta publicación.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn =>
+      'Solo moderadores, toca para permitirla a todos';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Cualquiera puede aplicarla, toca para reservarla a moderadores';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Añadir a la publicación';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Añadido a la publicación.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'No se pudo añadir eso a la publicación. Inténtalo de nuevo.';
 }
 
 /// The translations for Spanish Castilian, as used in Latin America and the Caribbean (`es_419`).
@@ -18540,10 +18544,8 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Esto cerrará la sesión de los dispositivos seleccionados en tu cuenta. Deberás iniciar sesión de nuevo en esos dispositivos.',
-      one:
-          'Esto cerrará la sesión del dispositivo seleccionado en tu cuenta. Deberás iniciar sesión de nuevo en ese dispositivo.',
+      other: 'Esto cerrará la sesión de los dispositivos seleccionados en tu cuenta. Deberás iniciar sesión de nuevo en esos dispositivos.',
+      one: 'Esto cerrará la sesión del dispositivo seleccionado en tu cuenta. Deberás iniciar sesión de nuevo en ese dispositivo.',
     );
     return '$_temp0';
   }
@@ -19521,8 +19523,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
       locale: localeName,
       other:
           '$count comunidades no están disponibles temporalmente debido a un mal funcionamiento del condensador de flujo.',
-      one:
-          '1 comunidad no está disponible temporalmente debido a un mal funcionamiento del condensador de flujo.',
+      one: '1 comunidad no está disponible temporalmente debido a un mal funcionamiento del condensador de flujo.',
     );
     return '$_temp0';
   }
@@ -20428,8 +20429,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
       locale: localeName,
       other:
           'Ya estás conectado a este canal de voz desde $count dispositivos más. ¿Qué quieres hacer?',
-      one:
-          'Ya estás conectado a este canal de voz desde 1 dispositivo más. ¿Qué quieres hacer?',
+      one: 'Ya estás conectado a este canal de voz desde 1 dispositivo más. ¿Qué quieres hacer?',
     );
     return '$_temp0';
   }
@@ -29274,55 +29274,55 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   String get homeQuickActionDms => 'Mensajes directos';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Hilos';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Publicaciones';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Activo';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Archivados';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Nuevo hilo';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Nuevo hilo';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Nombre del hilo';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Dale un nombre a tu hilo';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Crear hilo';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Crear hilo';
 
   @override
   String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+      'No se pudo crear el hilo. Inténtalo de nuevo.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'No se pudieron cargar los hilos.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Aún no hay hilos activos';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'No hay hilos archivados';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count mensajes',
+      one: '1 mensaje',
     );
     return '$_temp0';
   }
@@ -29332,381 +29332,388 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count miembros',
+      one: '1 miembro',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Bloqueado';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Archivados';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Administrar';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Fijar';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Dejar de fijar';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Archivar';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Desarchivar';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Bloquear';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Desbloquear';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Eliminar';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed =>
+      'Algo salió mal. Por favor, inténtalo de nuevo.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Cerrar hilo';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Reabrir hilo';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Bloquear hilo';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Desbloquear hilo';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Salir del hilo';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Eliminar hilo';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Miembros del hilo';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'No se pudieron cargar los miembros';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Aún no hay miembros en el hilo';
 
   @override
   String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+      'Las personas que se unan a este hilo aparecerán aquí.';
 
   @override
-  String get forumChannelTypeLabel => 'Forum';
+  String get forumChannelTypeLabel => 'Foro';
 
   @override
   String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+      'Un espacio para publicaciones organizadas en hilos';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Nueva publicación';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Nueva publicación';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Crear publicación';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'No se pudo crear la publicación. Inténtalo de nuevo.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'La publicación se creó, pero no se pudo enviar su mensaje.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Título';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Título de la publicación';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Mensaje';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Escribe un mensaje';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'Etiquetas';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => 'Etiquetas (elige al menos una)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Este foro exige una etiqueta, pero todavía no se ha creado ninguna.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'Este foro aún no tiene etiquetas. Agrega algunas en \"Administrar etiquetas\".';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Buscar publicaciones';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Orden y vista';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Actividad reciente';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Nombre (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Administrar etiquetas';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Aún no hay etiquetas';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Quitar etiqueta';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Nueva etiqueta';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Nombre de la etiqueta';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Agregar etiqueta';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Etiquetas actualizadas';
 
   @override
   String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+      'No se pudieron actualizar las etiquetas. Inténtalo de nuevo.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'No se pudieron cargar las publicaciones.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Aún no hay publicaciones';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'No hay hilos archivados';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username ha creado un hilo: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username ha creado un hilo.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'un hilo eliminado';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Este hilo está bloqueado. Solo los moderadores pueden enviar mensajes.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Este hilo está archivado. Enviar un mensaje lo reabre.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count nuevos';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Buscar o crear una publicación...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Ordenar por';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Fecha de publicación';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Ver como';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Lista';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Galería';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'Restablecer a predeterminado';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Todos';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count etiquetas',
+      one: '1 etiqueta',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Reglas de publicación';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Editar publicación';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Elige al menos una etiqueta para este foro.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Seguir';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Dejar de seguir';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Siguiendo';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Silenciar';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Desactivar silencio';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Editar hilo';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Configuración del foro';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Explica a los miembros qué se publica aquí';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Exigir a los miembros que elijan una etiqueta al publicar';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Los miembros deben elegir al menos una etiqueta antes de poder publicar.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Orden predeterminado';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Diseño predeterminado';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Reacción predeterminada';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Se muestra como reacción rápida en cada publicación. Déjalo vacío para ninguna.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'Un emoji, por ejemplo 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => 'Ocultar tras inactividad';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Las publicaciones inactivas pasan a Archivadas. Cualquiera puede reabrir una publicación que no esté bloqueada.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 hora';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 horas';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 días';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 semana';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Modo lento para crear publicaciones';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Cuánto esperan los miembros entre publicaciones.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode =>
+      'Modo lento en publicaciones nuevas';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Se aplica a las publicaciones al crearlas.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Guardar configuración del foro';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Configuración del foro guardada';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed =>
+      'No se pudo guardar la configuración del foro';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Creado a partir de';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Reaccionar a la publicación';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Reaccionar con otro emoji';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => '¡Empieza la conversación!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return '¿Sobre qué quieres publicar en $forumName?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Ver ejemplos';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Haz una pregunta y etiquétala para poder encontrarla más adelante.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Comparte algo que hayas creado y deja que otros respondan.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Inicia una discusión sobre un tema y mantenla en esta publicación.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn =>
+      'Solo moderadores, toca para permitirla a todos';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Cualquiera puede aplicarla, toca para reservarla a moderadores';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Agregar a la publicación';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Añadido a la publicación.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'No se pudo añadir eso a la publicación. Inténtalo de nuevo.';
 }

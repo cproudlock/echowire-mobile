@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3655,10 +3656,8 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Aceasta va deconecta dispozitivele selectate din contul tău. Va trebui să te conectezi din nou pe acele dispozitive.',
-      one:
-          'Aceasta va deconecta dispozitivul selectat din contul tău. Va trebui să te conectezi din nou pe acel dispozitiv.',
+      other: 'Aceasta va deconecta dispozitivele selectate din contul tău. Va trebui să te conectezi din nou pe acele dispozitive.',
+      one: 'Aceasta va deconecta dispozitivul selectat din contul tău. Va trebui să te conectezi din nou pe acel dispozitiv.',
     );
     return '$_temp0';
   }
@@ -4634,8 +4633,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count comunități sunt temporar indisponibile din cauza unei defecțiuni a condensatorului de flux.',
-      one:
-          '1 comunitate este temporar indisponibilă din cauza unei defecțiuni a condensatorului de flux.',
+      one: '1 comunitate este temporar indisponibilă din cauza unei defecțiuni a condensatorului de flux.',
     );
     return '$_temp0';
   }
@@ -5545,8 +5543,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       locale: localeName,
       other:
           'Te-ai conectat deja la acest canal vocal de pe $count alte dispozitive. Ce dorești să faci?',
-      one:
-          'Te-ai conectat deja la acest canal vocal de pe 1 alt dispozitiv. Ce dorești să faci?',
+      one: 'Te-ai conectat deja la acest canal vocal de pe 1 alt dispozitiv. Ce dorești să faci?',
     );
     return '$_temp0';
   }
@@ -14407,55 +14404,56 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Discuții';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Postări';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Activ';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Arhivate';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Discuție nouă';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Discuție nouă';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Numele discuției';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Denumește discuția';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Creează discuție';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Creează discuție';
 
   @override
   String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+      'Nu am putut crea discuția. Te rugăm să încerci din nou.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'Nu am putut încărca discuțiile.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Nicio discuție activă încă';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'Nicio discuție arhivată';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count de mesaje',
+      few: '$count mesaje',
+      one: '1 mesaj',
     );
     return '$_temp0';
   }
@@ -14465,381 +14463,388 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count de membri',
+      few: '$count membri',
+      one: '1 membru',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Blocată';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Arhivate';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Gestionează';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Fixează';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Anulează fixarea';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Arhivează';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Scoate din arhivă';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Blochează';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Deblochează';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Șterge';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed =>
+      'A apărut o eroare. Te rugăm să încerci din nou.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Închide discuția';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Redeschide discuția';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Blochează discuția';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Deblochează discuția';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Părăsește discuția';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Șterge discuția';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Membrii discuției';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'Nu am putut încărca membrii';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Niciun membru în discuție încă';
 
   @override
   String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+      'Persoanele care se alătură acestei discuții vor apărea aici.';
 
   @override
   String get forumChannelTypeLabel => 'Forum';
 
   @override
   String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+      'Un spațiu pentru postări organizate, pe discuții';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Postare nouă';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Postare nouă';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Creează postare';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'Nu am putut crea postarea. Te rugăm să încerci din nou.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'Postarea a fost creată, dar mesajul ei nu a putut fi trimis.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Titlu';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Titlul postării';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Trimite mesaj';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Scrie un mesaj';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'Etichete';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => 'Etichete (alege cel puțin una)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Acest forum cere o etichetă, dar încă nu a fost creată niciuna.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'Acest forum nu are încă etichete. Adaugă câteva din Gestionează etichetele.';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Caută postări';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Sortare și vizualizare';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Activitate recentă';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Nume (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Gestionează etichetele';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Nicio etichetă încă';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Elimină eticheta';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Etichetă nouă';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Numele etichetei';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Adaugă etichetă';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Etichete actualizate';
 
   @override
   String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+      'Nu am putut actualiza etichetele. Te rugăm să încerci din nou.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'Nu am putut încărca postările.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Nicio postare încă';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'Nicio discuție arhivată';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username a început o discuție: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username a început o discuție.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'o discuție ștearsă';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Această discuție este blocată. Doar moderatorii pot trimite mesaje.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Această discuție este arhivată. Trimiterea unui mesaj o redeschide.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count noi';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Caută sau creează o postare...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Sortează după';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Data publicării';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Vizualizează ca';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Listă';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Galerie';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'Resetare la valorile implicite';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Toate';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count de etichete',
+      few: '$count etichete',
+      one: '1 etichetă',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Reguli de postare';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Editează postarea';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Alege cel puțin o etichetă pentru acest forum.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Urmărește';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Nu mai urmări';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Urmărești';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Dezactivează sunetul';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Anulează mutarea';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Editează discuția';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Setări forum';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Spune-le membrilor ce să posteze aici';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Cere membrilor să aleagă o etichetă când publică';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Membrii trebuie să aleagă cel puțin o etichetă înainte de a putea posta.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Ordine de sortare implicită';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Aspect implicit';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Reacție implicită';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Apare ca reacție rapidă la fiecare postare. Lasă gol pentru niciuna.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'Un emoji, de ex. 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => 'Ascunde după inactivitate';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Postările inactive trec în Arhivate. Oricine poate redeschide o postare care nu este blocată.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 oră';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 de ore';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 zile';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 săptămână';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Mod lent la crearea postărilor';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Cât așteaptă membrii între crearea postărilor.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode => 'Mod lent în postările noi';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Se aplică postărilor la crearea lor.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Salvează setările forumului';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Setările forumului au fost salvate';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed => 'Nu am putut salva setările forumului';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Pornită de la';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Reacționează la postare';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Reacționează cu alt emoji';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => 'Începe conversația!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return 'Despre ce vrei să postezi în $forumName?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Vezi exemple';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Pune o întrebare și etichetează-o ca să poată fi găsită mai târziu.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Împărtășește ceva ce ai creat și lasă-i pe ceilalți să îți răspundă.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Începe o discuție pe un singur subiect și ține-o în această postare.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn =>
+      'Doar moderatorii, atinge pentru a permite tuturor';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Oricine o poate aplica, atinge pentru a o limita la moderatori';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Adaugă la postare';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Adăugat la postare.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'Nu am putut adăuga asta la postare. Te rugăm să încerci din nou.';
 }

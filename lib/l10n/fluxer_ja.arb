@@ -16828,63 +16828,63 @@
     "@homeQuickActionDms": {
         "description": "Home screen quick action that opens Direct Messages."
     },
-    "threadsTitle": "Threads",
+    "threadsTitle": "スレッド",
     "@threadsTitle": {
         "description": "Title of the sheet and header button that list a channel's threads."
     },
-    "threadsPostsTitle": "Posts",
+    "threadsPostsTitle": "投稿",
     "@threadsPostsTitle": {
         "description": "Title of the threads sheet when opened on a forum channel."
     },
-    "threadsFilterActive": "Active",
+    "threadsFilterActive": "有効",
     "@threadsFilterActive": {
         "description": "Segmented filter option showing active threads or forum posts."
     },
-    "threadsFilterArchived": "Archived",
+    "threadsFilterArchived": "アーカイブ済み",
     "@threadsFilterArchived": {
         "description": "Segmented filter option showing archived threads or forum posts."
     },
-    "threadsNewThread": "New thread",
+    "threadsNewThread": "新しいスレッド",
     "@threadsNewThread": {
         "description": "Button that starts creating a new thread."
     },
-    "threadsNewThreadTitle": "New thread",
+    "threadsNewThreadTitle": "新しいスレッド",
     "@threadsNewThreadTitle": {
         "description": "Title of the modal for naming a new thread."
     },
-    "threadsNameLabel": "Thread name",
+    "threadsNameLabel": "スレッド名",
     "@threadsNameLabel": {
         "description": "Label of the thread name input."
     },
-    "threadsNameHint": "Name your thread",
+    "threadsNameHint": "スレッドの名前を入力",
     "@threadsNameHint": {
         "description": "Placeholder of the thread name input."
     },
-    "threadsCreateThread": "Create thread",
+    "threadsCreateThread": "スレッドを作成",
     "@threadsCreateThread": {
         "description": "Primary button that creates the thread."
     },
-    "threadsCreateThreadAction": "Create Thread",
+    "threadsCreateThreadAction": "スレッドを作成",
     "@threadsCreateThreadAction": {
         "description": "Message action that starts a thread from a message."
     },
-    "threadsCreateFailed": "Could not create the thread. Please try again.",
+    "threadsCreateFailed": "スレッドを作成できませんでした。もう一度お試しください。",
     "@threadsCreateFailed": {
         "description": "Toast shown when creating a thread fails."
     },
-    "threadsLoadFailed": "Could not load threads.",
+    "threadsLoadFailed": "スレッドを読み込めませんでした。",
     "@threadsLoadFailed": {
         "description": "Shown when the thread list fails to load."
     },
-    "threadsNoActive": "No active threads yet",
+    "threadsNoActive": "アクティブなスレッドはまだありません",
     "@threadsNoActive": {
         "description": "Empty state of the active threads list."
     },
-    "threadsNoArchived": "No archived threads",
+    "threadsNoArchived": "アーカイブされたスレッドはありません",
     "@threadsNoArchived": {
         "description": "Empty state of the archived threads list."
     },
-    "threadsMessageCount": "{count, plural, =1{1 message} other{{count} messages}}",
+    "threadsMessageCount": "{count, plural, =1{メッセージ1件} other{メッセージ{count}件}}",
     "@threadsMessageCount": {
         "description": "Number of messages in a thread or forum post.",
         "placeholders": {
@@ -16893,7 +16893,7 @@
             }
         }
     },
-    "threadsMemberCount": "{count, plural, =1{1 member} other{{count} members}}",
+    "threadsMemberCount": "{count, plural, =1{メンバー1人} other{メンバー{count}人}}",
     "@threadsMemberCount": {
         "description": "Number of members in a thread or forum post.",
         "placeholders": {
@@ -16902,211 +16902,211 @@
             }
         }
     },
-    "threadsStatusLocked": "Locked",
+    "threadsStatusLocked": "ロック中",
     "@threadsStatusLocked": {
         "description": "Status shown on a locked thread."
     },
-    "threadsStatusArchived": "Archived",
+    "threadsStatusArchived": "アーカイブ済み",
     "@threadsStatusArchived": {
         "description": "Status shown on an archived thread or forum post."
     },
-    "threadsManage": "Manage",
+    "threadsManage": "管理",
     "@threadsManage": {
         "description": "Accessibility label of the button that opens a thread's moderation menu."
     },
-    "threadsPin": "Pin",
+    "threadsPin": "ピン留め",
     "@threadsPin": {
         "description": "Moderation action that pins a thread or forum post."
     },
-    "threadsUnpin": "Unpin",
+    "threadsUnpin": "ピン留めを解除",
     "@threadsUnpin": {
         "description": "Moderation action that unpins a thread or forum post."
     },
-    "threadsArchive": "Archive",
+    "threadsArchive": "アーカイブ",
     "@threadsArchive": {
         "description": "Moderation action that archives a thread or forum post."
     },
-    "threadsUnarchive": "Unarchive",
+    "threadsUnarchive": "アーカイブを解除",
     "@threadsUnarchive": {
         "description": "Moderation action that unarchives a thread or forum post."
     },
-    "threadsLock": "Lock",
+    "threadsLock": "ロック",
     "@threadsLock": {
         "description": "Moderation action that locks a thread or forum post."
     },
-    "threadsUnlock": "Unlock",
+    "threadsUnlock": "ロックを解除",
     "@threadsUnlock": {
         "description": "Moderation action that unlocks a thread or forum post."
     },
-    "threadsDelete": "Delete",
+    "threadsDelete": "削除",
     "@threadsDelete": {
         "description": "Moderation action that deletes a thread or forum post."
     },
-    "threadsActionFailed": "Something went wrong. Please try again.",
+    "threadsActionFailed": "エラーが発生しました。もう一度お試しください。",
     "@threadsActionFailed": {
         "description": "Generic error toast for a failed thread or forum action."
     },
-    "threadsCloseThread": "Close Thread",
+    "threadsCloseThread": "スレッドをクローズ",
     "@threadsCloseThread": {
         "description": "Channel details action that archives the current thread."
     },
-    "threadsReopenThread": "Reopen Thread",
+    "threadsReopenThread": "スレッドを再オープン",
     "@threadsReopenThread": {
         "description": "Channel details action that unarchives the current thread."
     },
-    "threadsLockThread": "Lock Thread",
+    "threadsLockThread": "スレッドをロック",
     "@threadsLockThread": {
         "description": "Channel details action that locks the current thread."
     },
-    "threadsUnlockThread": "Unlock Thread",
+    "threadsUnlockThread": "スレッドのロックを解除",
     "@threadsUnlockThread": {
         "description": "Channel details action that unlocks the current thread."
     },
-    "threadsLeaveThread": "Leave Thread",
+    "threadsLeaveThread": "スレッドから退出",
     "@threadsLeaveThread": {
         "description": "Channel details action that leaves the current thread."
     },
-    "threadsDeleteThread": "Delete Thread",
+    "threadsDeleteThread": "スレッドを削除",
     "@threadsDeleteThread": {
         "description": "Channel details action that deletes the current thread."
     },
-    "threadsMembersTab": "Thread Members",
+    "threadsMembersTab": "スレッドのメンバー",
     "@threadsMembersTab": {
         "description": "Channel details tab listing the members of a thread."
     },
-    "threadsMembersLoadFailed": "Could not load members",
+    "threadsMembersLoadFailed": "メンバーを読み込めませんでした",
     "@threadsMembersLoadFailed": {
         "description": "Title shown when a thread's member list fails to load."
     },
-    "threadsNoMembersTitle": "No thread members yet",
+    "threadsNoMembersTitle": "スレッドのメンバーはまだいません",
     "@threadsNoMembersTitle": {
         "description": "Empty state title of a thread's member list."
     },
-    "threadsNoMembersBody": "People who join this thread will appear here.",
+    "threadsNoMembersBody": "このスレッドに参加した人がここに表示されます。",
     "@threadsNoMembersBody": {
         "description": "Empty state body of a thread's member list."
     },
-    "forumChannelTypeLabel": "Forum",
+    "forumChannelTypeLabel": "フォーラム",
     "@forumChannelTypeLabel": {
         "description": "Channel type option for a forum channel in the create channel sheet."
     },
-    "forumChannelTypeDescription": "A space for organized, threaded posts",
+    "forumChannelTypeDescription": "整理されたスレッド形式の投稿のためのスペース",
     "@forumChannelTypeDescription": {
         "description": "Description of the forum channel type in the create channel sheet."
     },
-    "forumNewPost": "New Post",
+    "forumNewPost": "新しい投稿",
     "@forumNewPost": {
         "description": "Button that starts creating a new forum post."
     },
-    "forumNewPostTitle": "New post",
+    "forumNewPostTitle": "新しい投稿",
     "@forumNewPostTitle": {
         "description": "Title of the modal for creating a forum post."
     },
-    "forumCreatePost": "Create post",
+    "forumCreatePost": "投稿を作成",
     "@forumCreatePost": {
         "description": "Primary button that creates the forum post."
     },
-    "forumCreatePostFailed": "Could not create the post. Please try again.",
+    "forumCreatePostFailed": "投稿を作成できませんでした。もう一度お試しください。",
     "@forumCreatePostFailed": {
         "description": "Toast shown when creating a forum post fails."
     },
-    "forumPostMessageFailed": "The post was created, but its message could not be sent.",
+    "forumPostMessageFailed": "投稿は作成されましたが、メッセージを送信できませんでした。",
     "@forumPostMessageFailed": {
         "description": "Toast shown when a forum post is created but its first message fails to send."
     },
-    "forumPostTitleLabel": "Title",
+    "forumPostTitleLabel": "タイトル",
     "@forumPostTitleLabel": {
         "description": "Label of the forum post title input."
     },
-    "forumPostTitleHint": "Post title",
+    "forumPostTitleHint": "投稿のタイトル",
     "@forumPostTitleHint": {
         "description": "Placeholder of the forum post title input."
     },
-    "forumPostMessageLabel": "Message",
+    "forumPostMessageLabel": "メッセージ",
     "@forumPostMessageLabel": {
         "description": "Label of the forum post first message input."
     },
-    "forumPostMessageHint": "Enter a message",
+    "forumPostMessageHint": "メッセージを入力",
     "@forumPostMessageHint": {
         "description": "Placeholder of the forum post first message input."
     },
-    "forumPostTagsLabel": "Tags",
+    "forumPostTagsLabel": "タグ",
     "@forumPostTagsLabel": {
         "description": "Label above the tag picker when creating a forum post."
     },
-    "forumPostTagsRequiredLabel": "Tags (pick at least one)",
+    "forumPostTagsRequiredLabel": "タグ（1つ以上選択）",
     "@forumPostTagsRequiredLabel": {
         "description": "Label above the tag picker when the forum requires a tag on every post."
     },
-    "forumPostTagsRequiredNoneHint": "This forum requires a tag, but none have been set up yet.",
+    "forumPostTagsRequiredNoneHint": "このフォーラムはタグが必須ですが、まだ1つも作成されていません。",
     "@forumPostTagsRequiredNoneHint": {
         "description": "Shown when creating a post in a forum that requires a tag but has no tags."
     },
-    "forumPostNoTagsHint": "This forum has no tags yet. Add some with Manage tags.",
+    "forumPostNoTagsHint": "このフォーラムにはまだタグがありません。「タグを管理」から追加してください。",
     "@forumPostNoTagsHint": {
         "description": "Hint for channel managers when creating a post in a forum without tags."
     },
-    "forumSearchPosts": "Search posts",
+    "forumSearchPosts": "投稿を検索",
     "@forumSearchPosts": {
         "description": "Placeholder of the forum post search input."
     },
-    "forumSortAndView": "Sort & View",
+    "forumSortAndView": "並び順と表示",
     "@forumSortAndView": {
         "description": "Accessibility label of the button that opens forum sort options."
     },
-    "forumSortRecentActivity": "Recent activity",
+    "forumSortRecentActivity": "最近のアクティビティ",
     "@forumSortRecentActivity": {
         "description": "Forum sort option ordering posts by recent activity."
     },
-    "forumSortName": "Name (A-Z)",
+    "forumSortName": "名前（A-Z）",
     "@forumSortName": {
         "description": "Forum sort option ordering posts alphabetically."
     },
-    "forumManageTags": "Manage tags",
+    "forumManageTags": "タグを管理",
     "@forumManageTags": {
         "description": "Button and modal title for editing a forum's available tags."
     },
-    "forumNoTags": "No tags yet",
+    "forumNoTags": "タグはまだありません",
     "@forumNoTags": {
         "description": "Empty state in the forum tag editor."
     },
-    "forumRemoveTag": "Remove tag",
+    "forumRemoveTag": "タグを削除",
     "@forumRemoveTag": {
         "description": "Accessibility label of the button that removes a tag in the tag editor."
     },
-    "forumNewTagLabel": "New tag",
+    "forumNewTagLabel": "新しいタグ",
     "@forumNewTagLabel": {
         "description": "Label of the new tag name input in the tag editor."
     },
-    "forumNewTagHint": "Tag name",
+    "forumNewTagHint": "タグの名前",
     "@forumNewTagHint": {
         "description": "Placeholder of the new tag name input in the tag editor."
     },
-    "forumAddTag": "Add tag",
+    "forumAddTag": "タグを追加",
     "@forumAddTag": {
         "description": "Accessibility label of the button that adds a tag in the tag editor."
     },
-    "forumTagsUpdated": "Tags updated",
+    "forumTagsUpdated": "タグを更新しました",
     "@forumTagsUpdated": {
         "description": "Toast shown after saving a forum's tags."
     },
-    "forumTagsUpdateFailed": "Could not update tags. Please try again.",
+    "forumTagsUpdateFailed": "タグを更新できませんでした。もう一度お試しください。",
     "@forumTagsUpdateFailed": {
         "description": "Toast shown when saving a forum's tags fails."
     },
-    "forumLoadFailed": "Could not load posts.",
+    "forumLoadFailed": "投稿を読み込めませんでした。",
     "@forumLoadFailed": {
         "description": "Shown when the forum post list fails to load."
     },
-    "forumNoPosts": "No posts yet",
+    "forumNoPosts": "投稿はまだありません",
     "@forumNoPosts": {
         "description": "Empty state of the active forum post list."
     },
-    "forumNoArchivedPosts": "No archived posts",
+    "forumNoArchivedPosts": "アーカイブされたスレッドはありません",
     "@forumNoArchivedPosts": {
         "description": "Empty state of the archived forum post list."
     },
-    "systemThreadCreated": "{username} started a thread: {threadName}.",
+    "systemThreadCreated": "{username}がスレッドを開始しました: {threadName}。",
     "@systemThreadCreated": {
         "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
         "placeholders": {
@@ -17118,7 +17118,7 @@
             }
         }
     },
-    "systemPreviewStartedThread": "{username} started a thread.",
+    "systemPreviewStartedThread": "{username}がスレッドを開始しました。",
     "@systemPreviewStartedThread": {
         "description": "Plaintext preview of the system message posted when someone starts a thread.",
         "placeholders": {
@@ -17127,51 +17127,51 @@
             }
         }
     },
-    "systemThreadDeleted": "a thread that was deleted",
+    "systemThreadDeleted": "削除されたスレッド",
     "@systemThreadDeleted": {
         "description": "Stands in for a thread name in the thread started system message when the thread no longer exists."
     },
-    "threadsComposerLockedHint": "This thread is locked. Only moderators can send messages.",
+    "threadsComposerLockedHint": "このスレッドはロックされています。モデレーターのみがメッセージを送信できます。",
     "@threadsComposerLockedHint": {
         "description": "Composer placeholder in a locked thread for users who cannot moderate it."
     },
-    "threadsComposerArchivedHint": "This thread is archived. Sending a message reopens it.",
+    "threadsComposerArchivedHint": "このスレッドはアーカイブ済みです。メッセージを送信すると再開されます。",
     "@threadsComposerArchivedHint": {
         "description": "Composer placeholder in an archived thread that is not locked."
     },
-    "forumSearchOrCreatePost": "Search or create a post...",
+    "forumSearchOrCreatePost": "投稿を検索または作成...",
     "@forumSearchOrCreatePost": {
         "description": "Placeholder of the forum search field. What is typed also becomes the title of a new post."
     },
-    "forumSortBy": "Sort by",
+    "forumSortBy": "並び替え",
     "@forumSortBy": {
         "description": "Section label in the forum Sort & View sheet."
     },
-    "forumSortDatePosted": "Date posted",
+    "forumSortDatePosted": "投稿日",
     "@forumSortDatePosted": {
         "description": "Forum sort option that orders posts by creation date."
     },
-    "forumViewAs": "View as",
+    "forumViewAs": "表示形式",
     "@forumViewAs": {
         "description": "Section label for the forum layout options in the Sort & View sheet."
     },
-    "forumLayoutList": "List",
+    "forumLayoutList": "リスト",
     "@forumLayoutList": {
         "description": "Forum layout option showing posts as a list."
     },
-    "forumLayoutGallery": "Gallery",
+    "forumLayoutGallery": "ギャラリー",
     "@forumLayoutGallery": {
         "description": "Forum layout option showing posts as a grid of image cards."
     },
-    "forumResetViewToDefault": "Reset to default",
+    "forumResetViewToDefault": "デフォルトにリセット",
     "@forumResetViewToDefault": {
         "description": "Returns the forum Sort & View choice to the channel defaults."
     },
-    "forumAllTags": "All",
+    "forumAllTags": "すべて",
     "@forumAllTags": {
         "description": "Chip that opens the full list of forum tags to filter by."
     },
-    "forumTagsSelectedCount": "{count, plural, =1{1 tag} other{{count} tags}}",
+    "forumTagsSelectedCount": "{count, plural, =1{タグ1個} other{タグ{count}個}}",
     "@forumTagsSelectedCount": {
         "description": "Label of the tag filter chip when tags are selected.",
         "placeholders": {
@@ -17180,43 +17180,43 @@
             }
         }
     },
-    "forumPostGuidelinesLabel": "Post guidelines",
+    "forumPostGuidelinesLabel": "投稿ガイドライン",
     "@forumPostGuidelinesLabel": {
         "description": "Heading above the forum's guidelines in the new post sheet."
     },
-    "forumEditPost": "Edit post",
+    "forumEditPost": "投稿を編集",
     "@forumEditPost": {
         "description": "Menu item and dialog title for editing a forum post's title and tags."
     },
-    "forumPostTagRequiredToast": "Pick at least one tag for this forum.",
+    "forumPostTagRequiredToast": "このフォーラムではタグを1つ以上選んでください。",
     "@forumPostTagRequiredToast": {
         "description": "Shown when saving a post without a tag in a forum that requires one."
     },
-    "threadsFollow": "Follow",
+    "threadsFollow": "フォロー",
     "@threadsFollow": {
         "description": "Menu item to follow a thread or forum post and get its notifications."
     },
-    "threadsUnfollow": "Unfollow",
+    "threadsUnfollow": "フォロー解除",
     "@threadsUnfollow": {
         "description": "Menu item to stop following a thread or forum post."
     },
-    "threadsFollowing": "Following",
+    "threadsFollowing": "フォロー中",
     "@threadsFollowing": {
         "description": "Header button state when the user follows the thread or post."
     },
-    "threadsMute": "Mute",
+    "threadsMute": "ミュート",
     "@threadsMute": {
         "description": "Menu item to mute a thread or forum post."
     },
-    "threadsUnmute": "Unmute",
+    "threadsUnmute": "ミュート解除",
     "@threadsUnmute": {
         "description": "Menu item to unmute a thread or forum post."
     },
-    "threadsEditThread": "Edit thread",
+    "threadsEditThread": "スレッドを編集",
     "@threadsEditThread": {
         "description": "Menu item and dialog title for renaming a thread."
     },
-    "forumNewPostsPill": "{count} New",
+    "forumNewPostsPill": "{count}件の新着",
     "@forumNewPostsPill": {
         "description": "Sidebar pill on a forum channel counting posts with activity since the user last opened it.",
         "placeholders": {
@@ -17225,110 +17225,110 @@
             }
         }
     },
-    "forumSettingsTitle": "Forum settings",
+    "forumSettingsTitle": "フォーラム設定",
     "@forumSettingsTitle": {
         "description": "Heading of the forum-only section in channel settings."
     },
-    "forumSettingsGuidelinesHint": "Tell members what to post here",
+    "forumSettingsGuidelinesHint": "ここに何を投稿すればよいかメンバーに伝えましょう",
     "@forumSettingsGuidelinesHint": {
         "description": "Placeholder of the forum post guidelines field in channel settings."
     },
-    "forumSettingsRequireTag": "Require tags on new posts",
+    "forumSettingsRequireTag": "投稿時にタグの選択を必須にする",
     "@forumSettingsRequireTag": {
         "description": "Switch that makes members pick at least one tag when creating a forum post."
     },
-    "forumSettingsRequireTagDescription": "Members must pick at least one tag before they can post.",
+    "forumSettingsRequireTagDescription": "メンバーは投稿する前にタグを1つ以上選ぶ必要があります。",
     "@forumSettingsRequireTagDescription": {
         "description": "Explains the require tags switch in forum settings."
     },
-    "forumSettingsDefaultSort": "Default sort order",
+    "forumSettingsDefaultSort": "デフォルトの並び順",
     "@forumSettingsDefaultSort": {
         "description": "Forum setting for how posts are ordered unless a member picks otherwise."
     },
-    "forumSettingsDefaultLayout": "Default layout",
+    "forumSettingsDefaultLayout": "デフォルトのレイアウト",
     "@forumSettingsDefaultLayout": {
         "description": "Forum setting for list or gallery layout unless a member picks otherwise."
     },
-    "forumSettingsDefaultReaction": "Default reaction",
+    "forumSettingsDefaultReaction": "デフォルトのリアクション",
     "@forumSettingsDefaultReaction": {
         "description": "Forum setting for the emoji used by React to Post."
     },
-    "forumSettingsDefaultReactionDescription": "Shown as the quick reaction on every post. Leave empty for none.",
+    "forumSettingsDefaultReactionDescription": "すべての投稿でクイックリアクションとして表示されます。不要な場合は空欄にしてください。",
     "@forumSettingsDefaultReactionDescription": {
         "description": "Explains the forum default reaction setting."
     },
-    "forumSettingsDefaultReactionHint": "An emoji, e.g. 👍",
+    "forumSettingsDefaultReactionHint": "絵文字1つ（例: 👍）",
     "@forumSettingsDefaultReactionHint": {
         "description": "Placeholder of the forum default reaction field."
     },
-    "forumSettingsHideAfterInactivity": "Hide after inactivity",
+    "forumSettingsHideAfterInactivity": "一定期間活動がない場合に非表示",
     "@forumSettingsHideAfterInactivity": {
         "description": "Forum setting for how long a post stays active without new messages."
     },
-    "forumSettingsHideAfterInactivityDescription": "Inactive posts move to Archived. Anyone can reopen a post that is not locked.",
+    "forumSettingsHideAfterInactivityDescription": "動きのない投稿は「アーカイブ済み」に移動します。ロックされていない投稿は誰でも再開できます。",
     "@forumSettingsHideAfterInactivityDescription": {
         "description": "Explains the forum hide after inactivity setting."
     },
-    "forumSettingsHideAfterOneHour": "1 hour",
+    "forumSettingsHideAfterOneHour": "1時間",
     "@forumSettingsHideAfterOneHour": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsHideAfterOneDay": "24 hours",
+    "forumSettingsHideAfterOneDay": "24時間",
     "@forumSettingsHideAfterOneDay": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsHideAfterThreeDays": "3 days",
+    "forumSettingsHideAfterThreeDays": "3日",
     "@forumSettingsHideAfterThreeDays": {
         "description": "Hide after inactivity option, the default."
     },
-    "forumSettingsHideAfterOneWeek": "1 week",
+    "forumSettingsHideAfterOneWeek": "1週間",
     "@forumSettingsHideAfterOneWeek": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsPostCreationSlowmode": "Post creation slowmode",
+    "forumSettingsPostCreationSlowmode": "投稿作成のスローモード",
     "@forumSettingsPostCreationSlowmode": {
         "description": "Forum setting limiting how often a member can create a new post."
     },
-    "forumSettingsPostCreationSlowmodeDescription": "How long members wait between creating posts.",
+    "forumSettingsPostCreationSlowmodeDescription": "メンバーが次の投稿を作成するまでの待ち時間です。",
     "@forumSettingsPostCreationSlowmodeDescription": {
         "description": "Explains the forum post creation slowmode setting."
     },
-    "forumSettingsDefaultPostSlowmode": "Slowmode inside new posts",
+    "forumSettingsDefaultPostSlowmode": "新しい投稿のスローモード",
     "@forumSettingsDefaultPostSlowmode": {
         "description": "Forum setting for the slowmode applied to messages inside each new post."
     },
-    "forumSettingsDefaultPostSlowmodeDescription": "Applied to posts when they are created.",
+    "forumSettingsDefaultPostSlowmodeDescription": "投稿が作成されたときに適用されます。",
     "@forumSettingsDefaultPostSlowmodeDescription": {
         "description": "Explains the default slowmode for new forum posts."
     },
-    "forumSettingsSave": "Save forum settings",
+    "forumSettingsSave": "フォーラム設定を保存",
     "@forumSettingsSave": {
         "description": "Button that saves the forum settings section."
     },
-    "forumSettingsSaved": "Forum settings saved",
+    "forumSettingsSaved": "フォーラム設定を保存しました",
     "@forumSettingsSaved": {
         "description": "Toast after forum settings are saved."
     },
-    "forumSettingsSaveFailed": "Could not save forum settings",
+    "forumSettingsSaveFailed": "フォーラム設定を保存できませんでした",
     "@forumSettingsSaveFailed": {
         "description": "Toast when forum settings fail to save."
     },
-    "threadsStarterMessage": "Started from",
+    "threadsStarterMessage": "開始元",
     "@threadsStarterMessage": {
         "description": "Label above the message a thread was started from, shown at the top of the thread."
     },
     "threadsOriginalPosterTag": "OP",
-    "forumReactToPost": "React to Post",
-    "forumReactToPostOther": "React with another emoji",
-    "forumEmptyHeading": "Be the first to start the conversation!",
-    "forumEmptyBody": "What do you want to post about in {forumName}?",
-    "forumSeeExamples": "See Examples",
-    "forumExampleQuestion": "Ask a question and tag it so people can find it later.",
-    "forumExampleShow": "Share something you made and let people reply to it.",
-    "forumExampleDiscussion": "Start a discussion on one topic and keep it in this post.",
-    "forumTagModeratedOn": "Moderator only, tap to allow everyone",
-    "forumTagModeratedOff": "Anyone may apply, tap to restrict to moderators",
-    "forumAddToPost": "Add to Post",
-    "forumAddToPostDone": "Added to the post.",
-    "forumAddToPostFailed": "Could not add that to the post. Please try again."
+    "forumReactToPost": "投稿にリアクション",
+    "forumReactToPostOther": "別の絵文字でリアクション",
+    "forumEmptyHeading": "最初の会話を始めましょう！",
+    "forumEmptyBody": "{forumName}ではどんなことを投稿しますか？",
+    "forumSeeExamples": "例を見る",
+    "forumExampleQuestion": "質問を投稿し、後から見つけてもらえるようにタグを付けましょう。",
+    "forumExampleShow": "作ったものを共有して、みんなに返信してもらいましょう。",
+    "forumExampleDiscussion": "1つのトピックについて話し合いを始めて、この投稿の中で続けましょう。",
+    "forumTagModeratedOn": "モデレーターのみ。タップすると全員に許可します",
+    "forumTagModeratedOff": "誰でも使用できます。タップするとモデレーターのみに制限します",
+    "forumAddToPost": "投稿に追加",
+    "forumAddToPostDone": "投稿に追加しました。",
+    "forumAddToPostFailed": "投稿に追加できませんでした。もう一度お試しください。"
 }

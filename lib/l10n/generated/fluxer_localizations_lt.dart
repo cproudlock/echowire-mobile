@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3657,10 +3658,8 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Tai atjungtų pasirinktus įrenginius nuo jūsų paskyros. Jums reikės vėl prisijungti prie tų įrenginių.',
-      one:
-          'Tai atjungtų pasirinktą įrenginį nuo jūsų paskyros. Jums reikės vėl prisijungti prie to įrenginio.',
+      other: 'Tai atjungtų pasirinktus įrenginius nuo jūsų paskyros. Jums reikės vėl prisijungti prie tų įrenginių.',
+      one: 'Tai atjungtų pasirinktą įrenginį nuo jūsų paskyros. Jums reikės vėl prisijungti prie to įrenginio.',
     );
     return '$_temp0';
   }
@@ -4637,8 +4636,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count bendruomenės laikinai nepasiekiamos dėl srauto kondensatoriaus gedimo.',
-      one:
-          '1 bendruomenė laikinai nepasiekiama dėl srauto kondensatoriaus gedimo.',
+      one: '1 bendruomenė laikinai nepasiekiama dėl srauto kondensatoriaus gedimo.',
     );
     return '$_temp0';
   }
@@ -5589,8 +5587,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
       locale: localeName,
       other:
           'Jūs jau esate prisijungę prie šio balso kanalo iš $count kitų įrenginių. Ką norėtumėte daryti?',
-      one:
-          'Jūs jau esate prisijungę prie šio balso kanalo iš 1 kito įrenginio. Ką norėtumėte daryti?',
+      one: 'Jūs jau esate prisijungę prie šio balso kanalo iš 1 kito įrenginio. Ką norėtumėte daryti?',
     );
     return '$_temp0';
   }
@@ -14428,55 +14425,56 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Gijos';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Įrašai';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Aktyvus';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Archyvuotos';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Nauja gija';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Nauja gija';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Gijos pavadinimas';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Pavadinkite giją';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Kurti giją';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Kurti giją';
 
   @override
   String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+      'Nepavyko sukurti gijos. Pabandykite dar kartą.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'Nepavyko įkelti gijų.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Aktyvių gijų kol kas nėra';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'Archyvuotų gijų nėra';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count žinučių',
+      few: '$count žinutės',
+      one: '1 žinutė',
     );
     return '$_temp0';
   }
@@ -14486,381 +14484,388 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count narių',
+      few: '$count nariai',
+      one: '1 narys',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Užrakinta';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Archyvuotos';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Tvarkyti';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Prisegti';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Atsegti';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Archyvuoti';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Grąžinti iš archyvo';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Užrakinti';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Atrakinti';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Panaikinti';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed =>
+      'Panašu, kad kilo problemų. Pabandykite dar kartą.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Uždaryti giją';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Vėl atidaryti giją';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Užrakinti giją';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Atrakinti giją';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Išeiti iš gijos';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Ištrinti giją';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Gijos nariai';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'Nepavyko įkelti narių';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Gijos narių kol kas nėra';
 
   @override
   String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+      'Žmonės, prisijungę prie šios gijos, bus rodomi čia.';
 
   @override
-  String get forumChannelTypeLabel => 'Forum';
+  String get forumChannelTypeLabel => 'Forumas';
 
   @override
-  String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+  String get forumChannelTypeDescription => 'Vieta tvarkingiems įrašams gijose';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Naujas įrašas';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Naujas įrašas';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Kurti įrašą';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'Nepavyko sukurti įrašo. Pabandykite dar kartą.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'Įrašas sukurtas, bet jo žinutės nepavyko išsiųsti.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Pavadinimas';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Įrašo pavadinimas';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Žinutė';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Įveskite žinutę';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'Žymos';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => 'Žymos (pasirinkite bent vieną)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Šiam forumui reikia žymos, bet nė viena dar nesukurta.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'Šis forumas dar neturi žymų. Pridėkite jų per „Tvarkyti žymas“.';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Ieškoti įrašų';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Rikiavimas ir rodinys';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Neseniai aktyvios';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Pavadinimas (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Tvarkyti žymas';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Žymų kol kas nėra';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Pašalinti žymą';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Nauja žyma';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Žymos pavadinimas';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Pridėti žymą';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Žymos atnaujintos';
 
   @override
   String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+      'Nepavyko atnaujinti žymų. Pabandykite dar kartą.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'Nepavyko įkelti įrašų.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Įrašų kol kas nėra';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'Archyvuotų gijų nėra';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username sukūrė giją: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username sukūrė giją.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'ištrinta gija';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Ši gija užrakinta. Žinutes gali rašyti tik moderatoriai.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Ši gija archyvuota. Išsiuntus žinutę ji vėl atsidarys.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count naujų';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Ieškoti arba kurti įrašą...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Rikiuoti pagal';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Paskelbimo data';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Rodyti kaip';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Sąrašas';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Galerija';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'Atkurti numatytuosius';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Visos';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count žymų',
+      few: '$count žymos',
+      one: '1 žyma',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Rašymo taisyklės';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Redaguoti įrašą';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Pasirinkite bent vieną šio forumo žymą.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Sekti';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Nebesekti';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Sekate';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Nutildyti';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Įjungti garsą';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Redaguoti giją';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Forumo nuostatos';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Paaiškinkite nariams, apie ką čia rašyti';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Reikalauti, kad nariai rašydami pasirinktų žymą';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Nariai prieš rašydami turi pasirinkti bent vieną žymą.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Numatytasis rikiavimas';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Numatytasis išdėstymas';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Numatytoji reakcija';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Rodoma kaip greita reakcija po kiekvienu įrašu. Palikite tuščią, jei nereikia.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => 'Emocija, pavyzdžiui 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => 'Slėpti po neaktyvumo';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Neaktyvūs įrašai perkeliami į archyvą. Bet kas gali vėl atidaryti įrašą, jei jis neužrakintas.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 valanda';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 valandos';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 dienos';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 savaitė';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Lėtasis režimas kuriant įrašus';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Kiek nariai laukia tarp naujų įrašų.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode =>
+      'Lėtasis režimas naujuose įrašuose';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Taikoma įrašams, kai jie sukuriami.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Išsaugoti forumo nuostatas';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Forumo nuostatos išsaugotos';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed => 'Nepavyko išsaugoti forumo nuostatų';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Sukurta iš';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Reaguoti į įrašą';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Reaguoti kita emocija';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => 'Pradėkite pokalbį!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return 'Apie ką norite rašyti kanale $forumName?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Žiūrėti pavyzdžius';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Užduokite klausimą ir pažymėkite jį žyma, kad vėliau būtų lengva rasti.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Pasidalykite tuo, ką sukūrėte, ir leiskite kitiems atsakyti.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Pradėkite diskusiją viena tema ir tęskite ją šiame įraše.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn =>
+      'Tik moderatoriai, palieskite, kad leistumėte visiems';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Gali pridėti bet kas, palieskite, kad leistumėte tik moderatoriams';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Įtraukti į įrašą';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Įtraukta į įrašą.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'Nepavyko to įtraukti į įrašą. Pabandykite dar kartą.';
 }

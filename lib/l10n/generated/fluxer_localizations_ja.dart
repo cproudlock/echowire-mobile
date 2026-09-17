@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -13667,55 +13668,54 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'スレッド';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => '投稿';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => '有効';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'アーカイブ済み';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => '新しいスレッド';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => '新しいスレッド';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'スレッド名';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'スレッドの名前を入力';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'スレッドを作成';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'スレッドを作成';
 
   @override
-  String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+  String get threadsCreateFailed => 'スレッドを作成できませんでした。もう一度お試しください。';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'スレッドを読み込めませんでした。';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'アクティブなスレッドはまだありません';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'アーカイブされたスレッドはありません';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: 'メッセージ$count件',
+      one: 'メッセージ1件',
     );
     return '$_temp0';
   }
@@ -13725,381 +13725,369 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: 'メンバー$count人',
+      one: 'メンバー1人',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'ロック中';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'アーカイブ済み';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => '管理';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'ピン留め';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'ピン留めを解除';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'アーカイブ';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'アーカイブを解除';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'ロック';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'ロックを解除';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => '削除';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed => 'エラーが発生しました。もう一度お試しください。';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'スレッドをクローズ';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'スレッドを再オープン';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'スレッドをロック';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'スレッドのロックを解除';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'スレッドから退出';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'スレッドを削除';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'スレッドのメンバー';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'メンバーを読み込めませんでした';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'スレッドのメンバーはまだいません';
 
   @override
-  String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+  String get threadsNoMembersBody => 'このスレッドに参加した人がここに表示されます。';
 
   @override
-  String get forumChannelTypeLabel => 'Forum';
+  String get forumChannelTypeLabel => 'フォーラム';
 
   @override
-  String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+  String get forumChannelTypeDescription => '整理されたスレッド形式の投稿のためのスペース';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => '新しい投稿';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => '新しい投稿';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => '投稿を作成';
 
   @override
-  String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+  String get forumCreatePostFailed => '投稿を作成できませんでした。もう一度お試しください。';
 
   @override
-  String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+  String get forumPostMessageFailed => '投稿は作成されましたが、メッセージを送信できませんでした。';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'タイトル';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => '投稿のタイトル';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'メッセージ';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'メッセージを入力';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'タグ';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => 'タグ（1つ以上選択）';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'このフォーラムはタグが必須ですが、まだ1つも作成されていません。';
 
   @override
-  String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+  String get forumPostNoTagsHint => 'このフォーラムにはまだタグがありません。「タグを管理」から追加してください。';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => '投稿を検索';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => '並び順と表示';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => '最近のアクティビティ';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => '名前（A-Z）';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'タグを管理';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'タグはまだありません';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'タグを削除';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => '新しいタグ';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'タグの名前';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'タグを追加';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'タグを更新しました';
 
   @override
-  String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+  String get forumTagsUpdateFailed => 'タグを更新できませんでした。もう一度お試しください。';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => '投稿を読み込めませんでした。';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => '投稿はまだありません';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'アーカイブされたスレッドはありません';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$usernameがスレッドを開始しました: $threadName。';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$usernameがスレッドを開始しました。';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => '削除されたスレッド';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'このスレッドはロックされています。モデレーターのみがメッセージを送信できます。';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'このスレッドはアーカイブ済みです。メッセージを送信すると再開されます。';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count件の新着';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => '投稿を検索または作成...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => '並び替え';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => '投稿日';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => '表示形式';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'リスト';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'ギャラリー';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'デフォルトにリセット';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'すべて';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: 'タグ$count個',
+      one: 'タグ1個',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => '投稿ガイドライン';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => '投稿を編集';
 
   @override
-  String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+  String get forumPostTagRequiredToast => 'このフォーラムではタグを1つ以上選んでください。';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'フォロー';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'フォロー解除';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'フォロー中';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'ミュート';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'ミュート解除';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'スレッドを編集';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'フォーラム設定';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint => 'ここに何を投稿すればよいかメンバーに伝えましょう';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag => '投稿時にタグの選択を必須にする';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'メンバーは投稿する前にタグを1つ以上選ぶ必要があります。';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'デフォルトの並び順';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'デフォルトのレイアウト';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'デフォルトのリアクション';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'すべての投稿でクイックリアクションとして表示されます。不要な場合は空欄にしてください。';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => '絵文字1つ（例: 👍）';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => '一定期間活動がない場合に非表示';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      '動きのない投稿は「アーカイブ済み」に移動します。ロックされていない投稿は誰でも再開できます。';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1時間';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24時間';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3日';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1週間';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode => '投稿作成のスローモード';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'メンバーが次の投稿を作成するまでの待ち時間です。';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode => '新しい投稿のスローモード';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      '投稿が作成されたときに適用されます。';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'フォーラム設定を保存';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'フォーラム設定を保存しました';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed => 'フォーラム設定を保存できませんでした';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => '開始元';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => '投稿にリアクション';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => '別の絵文字でリアクション';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => '最初の会話を始めましょう！';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return '$forumNameではどんなことを投稿しますか？';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => '例を見る';
 
   @override
-  String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+  String get forumExampleQuestion => '質問を投稿し、後から見つけてもらえるようにタグを付けましょう。';
 
   @override
-  String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+  String get forumExampleShow => '作ったものを共有して、みんなに返信してもらいましょう。';
 
   @override
-  String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+  String get forumExampleDiscussion => '1つのトピックについて話し合いを始めて、この投稿の中で続けましょう。';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn => 'モデレーターのみ。タップすると全員に許可します';
 
   @override
-  String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+  String get forumTagModeratedOff => '誰でも使用できます。タップするとモデレーターのみに制限します';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => '投稿に追加';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => '投稿に追加しました。';
 
   @override
-  String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+  String get forumAddToPostFailed => '投稿に追加できませんでした。もう一度お試しください。';
 }

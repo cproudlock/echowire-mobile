@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -3627,10 +3628,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Thao tác này sẽ đăng xuất các thiết bị đã chọn khỏi tài khoản của bạn. Bạn sẽ cần đăng nhập lại trên các thiết bị đó.',
-      one:
-          'Thao tác này sẽ đăng xuất thiết bị đã chọn khỏi tài khoản của bạn. Bạn sẽ cần đăng nhập lại trên thiết bị đó.',
+      other: 'Thao tác này sẽ đăng xuất các thiết bị đã chọn khỏi tài khoản của bạn. Bạn sẽ cần đăng nhập lại trên các thiết bị đó.',
+      one: 'Thao tác này sẽ đăng xuất thiết bị đã chọn khỏi tài khoản của bạn. Bạn sẽ cần đăng nhập lại trên thiết bị đó.',
     );
     return '$_temp0';
   }
@@ -5512,8 +5511,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       locale: localeName,
       other:
           'Bạn đã kết nối với kênh thoại này từ $count thiết bị khác. Bạn muốn làm gì?',
-      one:
-          'Bạn đã kết nối với kênh thoại này từ 1 thiết bị khác. Bạn muốn làm gì?',
+      one: 'Bạn đã kết nối với kênh thoại này từ 1 thiết bị khác. Bạn muốn làm gì?',
     );
     return '$_temp0';
   }
@@ -14299,55 +14297,54 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => 'Chủ đề';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => 'Bài đăng';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => 'Đang hoạt động';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => 'Đã lưu trữ';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => 'Chủ đề mới';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => 'Chủ đề mới';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => 'Tên chủ đề';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => 'Đặt tên cho chủ đề của bạn';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => 'Tạo chủ đề';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => 'Tạo chủ đề';
 
   @override
-  String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+  String get threadsCreateFailed => 'Không thể tạo chủ đề. Vui lòng thử lại.';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => 'Không thể tải chủ đề.';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => 'Chưa có chủ đề nào đang hoạt động';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => 'Không có chủ đề đã lưu trữ';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count tin nhắn',
+      one: '1 tin nhắn',
     );
     return '$_temp0';
   }
@@ -14357,381 +14354,387 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count thành viên',
+      one: '1 thành viên',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => 'Đã khóa';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => 'Đã lưu trữ';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => 'Quản lý';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => 'Ghim';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => 'Bỏ ghim';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => 'Lưu trữ';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => 'Bỏ lưu trữ';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => 'Khóa';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => 'Mở khóa';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => 'Xóa';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed => 'Đã xảy ra lỗi. Vui lòng thử lại.';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => 'Đóng chủ đề';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => 'Mở lại chủ đề';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => 'Khóa Chủ Đề';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => 'Mở Khóa Chủ Đề';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Rời chủ đề';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => 'Xóa chủ đề';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => 'Thành Viên Chủ Đề';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => 'Không thể tải thành viên';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => 'Chưa có thành viên nào trong chủ đề';
 
   @override
   String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+      'Những người tham gia chủ đề này sẽ xuất hiện ở đây.';
 
   @override
-  String get forumChannelTypeLabel => 'Forum';
+  String get forumChannelTypeLabel => 'Diễn đàn';
 
   @override
   String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+      'Không gian cho các bài đăng theo chủ đề, được sắp xếp gọn gàng';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'Bài đăng mới';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => 'Bài đăng mới';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => 'Tạo bài đăng';
 
   @override
   String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+      'Không thể tạo bài đăng. Vui lòng thử lại.';
 
   @override
   String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+      'Bài đăng đã được tạo, nhưng không thể gửi tin nhắn của nó.';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => 'Tiêu đề';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => 'Tiêu đề bài đăng';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => 'Nhắn tin';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => 'Nhập tin nhắn';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => 'Thẻ';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => 'Thẻ (chọn ít nhất một)';
 
   @override
   String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+      'Diễn đàn này yêu cầu một thẻ, nhưng chưa có thẻ nào được tạo.';
 
   @override
   String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+      'Diễn đàn này chưa có thẻ nào. Hãy thêm một vài thẻ bằng Quản lý thẻ.';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => 'Tìm bài đăng';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => 'Sắp xếp và xem';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => 'Hoạt động gần đây';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => 'Tên (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => 'Quản lý thẻ';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => 'Chưa có thẻ nào';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => 'Xóa thẻ';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => 'Thẻ mới';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => 'Tên thẻ';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => 'Thêm thẻ';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => 'Đã cập nhật thẻ';
 
   @override
   String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+      'Không thể cập nhật thẻ. Vui lòng thử lại.';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => 'Không thể tải bài đăng.';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => 'Chưa có bài đăng nào';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => 'Không có chủ đề đã lưu trữ';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username đã bắt đầu một chủ đề: $threadName.';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username đã bắt đầu một chủ đề.';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => 'một chủ đề đã bị xóa';
 
   @override
   String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+      'Chủ đề này đã bị khóa. Chỉ người kiểm duyệt có thể gửi tin nhắn.';
 
   @override
   String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+      'Chủ đề này đã được lưu trữ. Gửi tin nhắn sẽ mở lại nó.';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count mới';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => 'Tìm kiếm hoặc tạo bài đăng...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => 'Sắp xếp theo';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => 'Ngày đăng';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => 'Xem dưới dạng';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => 'Danh sách';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => 'Thư viện';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => 'Đặt lại mặc định';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => 'Tất cả';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count thẻ',
+      one: '1 thẻ',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => 'Quy định đăng bài';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => 'Chỉnh sửa bài đăng';
 
   @override
   String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+      'Hãy chọn ít nhất một thẻ cho diễn đàn này.';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => 'Theo dõi';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => 'Bỏ theo dõi';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => 'Đang theo dõi';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => 'Tắt tiếng';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => 'Bật tiếng';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => 'Sửa chủ đề';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => 'Cài đặt diễn đàn';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint =>
+      'Cho thành viên biết nên đăng gì ở đây';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag =>
+      'Yêu cầu thành viên chọn thẻ khi đăng bài';
 
   @override
   String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+      'Thành viên phải chọn ít nhất một thẻ trước khi có thể đăng bài.';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => 'Thứ tự sắp xếp mặc định';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => 'Bố cục mặc định';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => 'Biểu cảm mặc định';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      'Hiển thị làm biểu cảm nhanh trên mọi bài đăng. Để trống nếu không dùng.';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint =>
+      'Một biểu tượng cảm xúc, ví dụ 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => 'Ẩn sau khi không hoạt động';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      'Các bài đăng không hoạt động sẽ chuyển vào Đã lưu trữ. Bất kỳ ai cũng có thể mở lại bài đăng chưa bị khóa.';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 giờ';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 giờ';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 ngày';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 tuần';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode =>
+      'Chế độ chậm khi tạo bài đăng';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      'Thành viên phải chờ bao lâu giữa các lần tạo bài đăng.';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode =>
+      'Chế độ chậm trong bài đăng mới';
 
   @override
   String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+      'Được áp dụng cho bài đăng khi chúng được tạo.';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => 'Lưu cài đặt diễn đàn';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => 'Đã lưu cài đặt diễn đàn';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed => 'Không thể lưu cài đặt diễn đàn';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => 'Bắt đầu từ';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => 'Bày tỏ cảm xúc với bài đăng';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => 'Bày tỏ cảm xúc bằng biểu tượng khác';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => 'Hãy bắt đầu cuộc trò chuyện!';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return 'Bạn muốn đăng về điều gì trong $forumName?';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => 'Xem ví dụ';
 
   @override
   String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+      'Đặt một câu hỏi và gắn thẻ để người khác tìm lại được sau này.';
 
   @override
   String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+      'Chia sẻ điều bạn đã làm và để mọi người trả lời.';
 
   @override
   String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+      'Bắt đầu một cuộc thảo luận về một chủ đề và giữ nó trong bài đăng này.';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn =>
+      'Chỉ người kiểm duyệt, nhấn để cho phép mọi người';
 
   @override
   String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+      'Ai cũng có thể áp dụng, nhấn để chỉ cho phép người kiểm duyệt';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => 'Thêm vào bài đăng';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => 'Đã thêm vào bài đăng.';
 
   @override
   String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+      'Không thể thêm nội dung đó vào bài đăng. Vui lòng thử lại.';
 }

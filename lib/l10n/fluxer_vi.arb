@@ -16853,63 +16853,63 @@
     "@lookAndFeelChatWallpaperPickFailed": {
         "description": "Toast shown when a custom wallpaper image cannot be decoded or saved."
     },
-    "threadsTitle": "Threads",
+    "threadsTitle": "Chủ đề",
     "@threadsTitle": {
         "description": "Title of the sheet and header button that list a channel's threads."
     },
-    "threadsPostsTitle": "Posts",
+    "threadsPostsTitle": "Bài đăng",
     "@threadsPostsTitle": {
         "description": "Title of the threads sheet when opened on a forum channel."
     },
-    "threadsFilterActive": "Active",
+    "threadsFilterActive": "Đang hoạt động",
     "@threadsFilterActive": {
         "description": "Segmented filter option showing active threads or forum posts."
     },
-    "threadsFilterArchived": "Archived",
+    "threadsFilterArchived": "Đã lưu trữ",
     "@threadsFilterArchived": {
         "description": "Segmented filter option showing archived threads or forum posts."
     },
-    "threadsNewThread": "New thread",
+    "threadsNewThread": "Chủ đề mới",
     "@threadsNewThread": {
         "description": "Button that starts creating a new thread."
     },
-    "threadsNewThreadTitle": "New thread",
+    "threadsNewThreadTitle": "Chủ đề mới",
     "@threadsNewThreadTitle": {
         "description": "Title of the modal for naming a new thread."
     },
-    "threadsNameLabel": "Thread name",
+    "threadsNameLabel": "Tên chủ đề",
     "@threadsNameLabel": {
         "description": "Label of the thread name input."
     },
-    "threadsNameHint": "Name your thread",
+    "threadsNameHint": "Đặt tên cho chủ đề của bạn",
     "@threadsNameHint": {
         "description": "Placeholder of the thread name input."
     },
-    "threadsCreateThread": "Create thread",
+    "threadsCreateThread": "Tạo chủ đề",
     "@threadsCreateThread": {
         "description": "Primary button that creates the thread."
     },
-    "threadsCreateThreadAction": "Create Thread",
+    "threadsCreateThreadAction": "Tạo chủ đề",
     "@threadsCreateThreadAction": {
         "description": "Message action that starts a thread from a message."
     },
-    "threadsCreateFailed": "Could not create the thread. Please try again.",
+    "threadsCreateFailed": "Không thể tạo chủ đề. Vui lòng thử lại.",
     "@threadsCreateFailed": {
         "description": "Toast shown when creating a thread fails."
     },
-    "threadsLoadFailed": "Could not load threads.",
+    "threadsLoadFailed": "Không thể tải chủ đề.",
     "@threadsLoadFailed": {
         "description": "Shown when the thread list fails to load."
     },
-    "threadsNoActive": "No active threads yet",
+    "threadsNoActive": "Chưa có chủ đề nào đang hoạt động",
     "@threadsNoActive": {
         "description": "Empty state of the active threads list."
     },
-    "threadsNoArchived": "No archived threads",
+    "threadsNoArchived": "Không có chủ đề đã lưu trữ",
     "@threadsNoArchived": {
         "description": "Empty state of the archived threads list."
     },
-    "threadsMessageCount": "{count, plural, =1{1 message} other{{count} messages}}",
+    "threadsMessageCount": "{count, plural, =1{1 tin nhắn} other{{count} tin nhắn}}",
     "@threadsMessageCount": {
         "description": "Number of messages in a thread or forum post.",
         "placeholders": {
@@ -16918,7 +16918,7 @@
             }
         }
     },
-    "threadsMemberCount": "{count, plural, =1{1 member} other{{count} members}}",
+    "threadsMemberCount": "{count, plural, =1{1 thành viên} other{{count} thành viên}}",
     "@threadsMemberCount": {
         "description": "Number of members in a thread or forum post.",
         "placeholders": {
@@ -16927,211 +16927,211 @@
             }
         }
     },
-    "threadsStatusLocked": "Locked",
+    "threadsStatusLocked": "Đã khóa",
     "@threadsStatusLocked": {
         "description": "Status shown on a locked thread."
     },
-    "threadsStatusArchived": "Archived",
+    "threadsStatusArchived": "Đã lưu trữ",
     "@threadsStatusArchived": {
         "description": "Status shown on an archived thread or forum post."
     },
-    "threadsManage": "Manage",
+    "threadsManage": "Quản lý",
     "@threadsManage": {
         "description": "Accessibility label of the button that opens a thread's moderation menu."
     },
-    "threadsPin": "Pin",
+    "threadsPin": "Ghim",
     "@threadsPin": {
         "description": "Moderation action that pins a thread or forum post."
     },
-    "threadsUnpin": "Unpin",
+    "threadsUnpin": "Bỏ ghim",
     "@threadsUnpin": {
         "description": "Moderation action that unpins a thread or forum post."
     },
-    "threadsArchive": "Archive",
+    "threadsArchive": "Lưu trữ",
     "@threadsArchive": {
         "description": "Moderation action that archives a thread or forum post."
     },
-    "threadsUnarchive": "Unarchive",
+    "threadsUnarchive": "Bỏ lưu trữ",
     "@threadsUnarchive": {
         "description": "Moderation action that unarchives a thread or forum post."
     },
-    "threadsLock": "Lock",
+    "threadsLock": "Khóa",
     "@threadsLock": {
         "description": "Moderation action that locks a thread or forum post."
     },
-    "threadsUnlock": "Unlock",
+    "threadsUnlock": "Mở khóa",
     "@threadsUnlock": {
         "description": "Moderation action that unlocks a thread or forum post."
     },
-    "threadsDelete": "Delete",
+    "threadsDelete": "Xóa",
     "@threadsDelete": {
         "description": "Moderation action that deletes a thread or forum post."
     },
-    "threadsActionFailed": "Something went wrong. Please try again.",
+    "threadsActionFailed": "Đã xảy ra lỗi. Vui lòng thử lại.",
     "@threadsActionFailed": {
         "description": "Generic error toast for a failed thread or forum action."
     },
-    "threadsCloseThread": "Close Thread",
+    "threadsCloseThread": "Đóng chủ đề",
     "@threadsCloseThread": {
         "description": "Channel details action that archives the current thread."
     },
-    "threadsReopenThread": "Reopen Thread",
+    "threadsReopenThread": "Mở lại chủ đề",
     "@threadsReopenThread": {
         "description": "Channel details action that unarchives the current thread."
     },
-    "threadsLockThread": "Lock Thread",
+    "threadsLockThread": "Khóa Chủ Đề",
     "@threadsLockThread": {
         "description": "Channel details action that locks the current thread."
     },
-    "threadsUnlockThread": "Unlock Thread",
+    "threadsUnlockThread": "Mở Khóa Chủ Đề",
     "@threadsUnlockThread": {
         "description": "Channel details action that unlocks the current thread."
     },
-    "threadsLeaveThread": "Leave Thread",
+    "threadsLeaveThread": "Rời chủ đề",
     "@threadsLeaveThread": {
         "description": "Channel details action that leaves the current thread."
     },
-    "threadsDeleteThread": "Delete Thread",
+    "threadsDeleteThread": "Xóa chủ đề",
     "@threadsDeleteThread": {
         "description": "Channel details action that deletes the current thread."
     },
-    "threadsMembersTab": "Thread Members",
+    "threadsMembersTab": "Thành Viên Chủ Đề",
     "@threadsMembersTab": {
         "description": "Channel details tab listing the members of a thread."
     },
-    "threadsMembersLoadFailed": "Could not load members",
+    "threadsMembersLoadFailed": "Không thể tải thành viên",
     "@threadsMembersLoadFailed": {
         "description": "Title shown when a thread's member list fails to load."
     },
-    "threadsNoMembersTitle": "No thread members yet",
+    "threadsNoMembersTitle": "Chưa có thành viên nào trong chủ đề",
     "@threadsNoMembersTitle": {
         "description": "Empty state title of a thread's member list."
     },
-    "threadsNoMembersBody": "People who join this thread will appear here.",
+    "threadsNoMembersBody": "Những người tham gia chủ đề này sẽ xuất hiện ở đây.",
     "@threadsNoMembersBody": {
         "description": "Empty state body of a thread's member list."
     },
-    "forumChannelTypeLabel": "Forum",
+    "forumChannelTypeLabel": "Diễn đàn",
     "@forumChannelTypeLabel": {
         "description": "Channel type option for a forum channel in the create channel sheet."
     },
-    "forumChannelTypeDescription": "A space for organized, threaded posts",
+    "forumChannelTypeDescription": "Không gian cho các bài đăng theo chủ đề, được sắp xếp gọn gàng",
     "@forumChannelTypeDescription": {
         "description": "Description of the forum channel type in the create channel sheet."
     },
-    "forumNewPost": "New Post",
+    "forumNewPost": "Bài đăng mới",
     "@forumNewPost": {
         "description": "Button that starts creating a new forum post."
     },
-    "forumNewPostTitle": "New post",
+    "forumNewPostTitle": "Bài đăng mới",
     "@forumNewPostTitle": {
         "description": "Title of the modal for creating a forum post."
     },
-    "forumCreatePost": "Create post",
+    "forumCreatePost": "Tạo bài đăng",
     "@forumCreatePost": {
         "description": "Primary button that creates the forum post."
     },
-    "forumCreatePostFailed": "Could not create the post. Please try again.",
+    "forumCreatePostFailed": "Không thể tạo bài đăng. Vui lòng thử lại.",
     "@forumCreatePostFailed": {
         "description": "Toast shown when creating a forum post fails."
     },
-    "forumPostMessageFailed": "The post was created, but its message could not be sent.",
+    "forumPostMessageFailed": "Bài đăng đã được tạo, nhưng không thể gửi tin nhắn của nó.",
     "@forumPostMessageFailed": {
         "description": "Toast shown when a forum post is created but its first message fails to send."
     },
-    "forumPostTitleLabel": "Title",
+    "forumPostTitleLabel": "Tiêu đề",
     "@forumPostTitleLabel": {
         "description": "Label of the forum post title input."
     },
-    "forumPostTitleHint": "Post title",
+    "forumPostTitleHint": "Tiêu đề bài đăng",
     "@forumPostTitleHint": {
         "description": "Placeholder of the forum post title input."
     },
-    "forumPostMessageLabel": "Message",
+    "forumPostMessageLabel": "Nhắn tin",
     "@forumPostMessageLabel": {
         "description": "Label of the forum post first message input."
     },
-    "forumPostMessageHint": "Enter a message",
+    "forumPostMessageHint": "Nhập tin nhắn",
     "@forumPostMessageHint": {
         "description": "Placeholder of the forum post first message input."
     },
-    "forumPostTagsLabel": "Tags",
+    "forumPostTagsLabel": "Thẻ",
     "@forumPostTagsLabel": {
         "description": "Label above the tag picker when creating a forum post."
     },
-    "forumPostTagsRequiredLabel": "Tags (pick at least one)",
+    "forumPostTagsRequiredLabel": "Thẻ (chọn ít nhất một)",
     "@forumPostTagsRequiredLabel": {
         "description": "Label above the tag picker when the forum requires a tag on every post."
     },
-    "forumPostTagsRequiredNoneHint": "This forum requires a tag, but none have been set up yet.",
+    "forumPostTagsRequiredNoneHint": "Diễn đàn này yêu cầu một thẻ, nhưng chưa có thẻ nào được tạo.",
     "@forumPostTagsRequiredNoneHint": {
         "description": "Shown when creating a post in a forum that requires a tag but has no tags."
     },
-    "forumPostNoTagsHint": "This forum has no tags yet. Add some with Manage tags.",
+    "forumPostNoTagsHint": "Diễn đàn này chưa có thẻ nào. Hãy thêm một vài thẻ bằng Quản lý thẻ.",
     "@forumPostNoTagsHint": {
         "description": "Hint for channel managers when creating a post in a forum without tags."
     },
-    "forumSearchPosts": "Search posts",
+    "forumSearchPosts": "Tìm bài đăng",
     "@forumSearchPosts": {
         "description": "Placeholder of the forum post search input."
     },
-    "forumSortAndView": "Sort & View",
+    "forumSortAndView": "Sắp xếp và xem",
     "@forumSortAndView": {
         "description": "Accessibility label of the button that opens forum sort options."
     },
-    "forumSortRecentActivity": "Recent activity",
+    "forumSortRecentActivity": "Hoạt động gần đây",
     "@forumSortRecentActivity": {
         "description": "Forum sort option ordering posts by recent activity."
     },
-    "forumSortName": "Name (A-Z)",
+    "forumSortName": "Tên (A-Z)",
     "@forumSortName": {
         "description": "Forum sort option ordering posts alphabetically."
     },
-    "forumManageTags": "Manage tags",
+    "forumManageTags": "Quản lý thẻ",
     "@forumManageTags": {
         "description": "Button and modal title for editing a forum's available tags."
     },
-    "forumNoTags": "No tags yet",
+    "forumNoTags": "Chưa có thẻ nào",
     "@forumNoTags": {
         "description": "Empty state in the forum tag editor."
     },
-    "forumRemoveTag": "Remove tag",
+    "forumRemoveTag": "Xóa thẻ",
     "@forumRemoveTag": {
         "description": "Accessibility label of the button that removes a tag in the tag editor."
     },
-    "forumNewTagLabel": "New tag",
+    "forumNewTagLabel": "Thẻ mới",
     "@forumNewTagLabel": {
         "description": "Label of the new tag name input in the tag editor."
     },
-    "forumNewTagHint": "Tag name",
+    "forumNewTagHint": "Tên thẻ",
     "@forumNewTagHint": {
         "description": "Placeholder of the new tag name input in the tag editor."
     },
-    "forumAddTag": "Add tag",
+    "forumAddTag": "Thêm thẻ",
     "@forumAddTag": {
         "description": "Accessibility label of the button that adds a tag in the tag editor."
     },
-    "forumTagsUpdated": "Tags updated",
+    "forumTagsUpdated": "Đã cập nhật thẻ",
     "@forumTagsUpdated": {
         "description": "Toast shown after saving a forum's tags."
     },
-    "forumTagsUpdateFailed": "Could not update tags. Please try again.",
+    "forumTagsUpdateFailed": "Không thể cập nhật thẻ. Vui lòng thử lại.",
     "@forumTagsUpdateFailed": {
         "description": "Toast shown when saving a forum's tags fails."
     },
-    "forumLoadFailed": "Could not load posts.",
+    "forumLoadFailed": "Không thể tải bài đăng.",
     "@forumLoadFailed": {
         "description": "Shown when the forum post list fails to load."
     },
-    "forumNoPosts": "No posts yet",
+    "forumNoPosts": "Chưa có bài đăng nào",
     "@forumNoPosts": {
         "description": "Empty state of the active forum post list."
     },
-    "forumNoArchivedPosts": "No archived posts",
+    "forumNoArchivedPosts": "Không có chủ đề đã lưu trữ",
     "@forumNoArchivedPosts": {
         "description": "Empty state of the archived forum post list."
     },
-    "systemThreadCreated": "{username} started a thread: {threadName}.",
+    "systemThreadCreated": "{username} đã bắt đầu một chủ đề: {threadName}.",
     "@systemThreadCreated": {
         "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
         "placeholders": {
@@ -17143,7 +17143,7 @@
             }
         }
     },
-    "systemPreviewStartedThread": "{username} started a thread.",
+    "systemPreviewStartedThread": "{username} đã bắt đầu một chủ đề.",
     "@systemPreviewStartedThread": {
         "description": "Plaintext preview of the system message posted when someone starts a thread.",
         "placeholders": {
@@ -17152,51 +17152,51 @@
             }
         }
     },
-    "systemThreadDeleted": "a thread that was deleted",
+    "systemThreadDeleted": "một chủ đề đã bị xóa",
     "@systemThreadDeleted": {
         "description": "Stands in for a thread name in the thread started system message when the thread no longer exists."
     },
-    "threadsComposerLockedHint": "This thread is locked. Only moderators can send messages.",
+    "threadsComposerLockedHint": "Chủ đề này đã bị khóa. Chỉ người kiểm duyệt có thể gửi tin nhắn.",
     "@threadsComposerLockedHint": {
         "description": "Composer placeholder in a locked thread for users who cannot moderate it."
     },
-    "threadsComposerArchivedHint": "This thread is archived. Sending a message reopens it.",
+    "threadsComposerArchivedHint": "Chủ đề này đã được lưu trữ. Gửi tin nhắn sẽ mở lại nó.",
     "@threadsComposerArchivedHint": {
         "description": "Composer placeholder in an archived thread that is not locked."
     },
-    "forumSearchOrCreatePost": "Search or create a post...",
+    "forumSearchOrCreatePost": "Tìm kiếm hoặc tạo bài đăng...",
     "@forumSearchOrCreatePost": {
         "description": "Placeholder of the forum search field. What is typed also becomes the title of a new post."
     },
-    "forumSortBy": "Sort by",
+    "forumSortBy": "Sắp xếp theo",
     "@forumSortBy": {
         "description": "Section label in the forum Sort & View sheet."
     },
-    "forumSortDatePosted": "Date posted",
+    "forumSortDatePosted": "Ngày đăng",
     "@forumSortDatePosted": {
         "description": "Forum sort option that orders posts by creation date."
     },
-    "forumViewAs": "View as",
+    "forumViewAs": "Xem dưới dạng",
     "@forumViewAs": {
         "description": "Section label for the forum layout options in the Sort & View sheet."
     },
-    "forumLayoutList": "List",
+    "forumLayoutList": "Danh sách",
     "@forumLayoutList": {
         "description": "Forum layout option showing posts as a list."
     },
-    "forumLayoutGallery": "Gallery",
+    "forumLayoutGallery": "Thư viện",
     "@forumLayoutGallery": {
         "description": "Forum layout option showing posts as a grid of image cards."
     },
-    "forumResetViewToDefault": "Reset to default",
+    "forumResetViewToDefault": "Đặt lại mặc định",
     "@forumResetViewToDefault": {
         "description": "Returns the forum Sort & View choice to the channel defaults."
     },
-    "forumAllTags": "All",
+    "forumAllTags": "Tất cả",
     "@forumAllTags": {
         "description": "Chip that opens the full list of forum tags to filter by."
     },
-    "forumTagsSelectedCount": "{count, plural, =1{1 tag} other{{count} tags}}",
+    "forumTagsSelectedCount": "{count, plural, =1{1 thẻ} other{{count} thẻ}}",
     "@forumTagsSelectedCount": {
         "description": "Label of the tag filter chip when tags are selected.",
         "placeholders": {
@@ -17205,43 +17205,43 @@
             }
         }
     },
-    "forumPostGuidelinesLabel": "Post guidelines",
+    "forumPostGuidelinesLabel": "Quy định đăng bài",
     "@forumPostGuidelinesLabel": {
         "description": "Heading above the forum's guidelines in the new post sheet."
     },
-    "forumEditPost": "Edit post",
+    "forumEditPost": "Chỉnh sửa bài đăng",
     "@forumEditPost": {
         "description": "Menu item and dialog title for editing a forum post's title and tags."
     },
-    "forumPostTagRequiredToast": "Pick at least one tag for this forum.",
+    "forumPostTagRequiredToast": "Hãy chọn ít nhất một thẻ cho diễn đàn này.",
     "@forumPostTagRequiredToast": {
         "description": "Shown when saving a post without a tag in a forum that requires one."
     },
-    "threadsFollow": "Follow",
+    "threadsFollow": "Theo dõi",
     "@threadsFollow": {
         "description": "Menu item to follow a thread or forum post and get its notifications."
     },
-    "threadsUnfollow": "Unfollow",
+    "threadsUnfollow": "Bỏ theo dõi",
     "@threadsUnfollow": {
         "description": "Menu item to stop following a thread or forum post."
     },
-    "threadsFollowing": "Following",
+    "threadsFollowing": "Đang theo dõi",
     "@threadsFollowing": {
         "description": "Header button state when the user follows the thread or post."
     },
-    "threadsMute": "Mute",
+    "threadsMute": "Tắt tiếng",
     "@threadsMute": {
         "description": "Menu item to mute a thread or forum post."
     },
-    "threadsUnmute": "Unmute",
+    "threadsUnmute": "Bật tiếng",
     "@threadsUnmute": {
         "description": "Menu item to unmute a thread or forum post."
     },
-    "threadsEditThread": "Edit thread",
+    "threadsEditThread": "Sửa chủ đề",
     "@threadsEditThread": {
         "description": "Menu item and dialog title for renaming a thread."
     },
-    "forumNewPostsPill": "{count} New",
+    "forumNewPostsPill": "{count} mới",
     "@forumNewPostsPill": {
         "description": "Sidebar pill on a forum channel counting posts with activity since the user last opened it.",
         "placeholders": {
@@ -17250,110 +17250,110 @@
             }
         }
     },
-    "forumSettingsTitle": "Forum settings",
+    "forumSettingsTitle": "Cài đặt diễn đàn",
     "@forumSettingsTitle": {
         "description": "Heading of the forum-only section in channel settings."
     },
-    "forumSettingsGuidelinesHint": "Tell members what to post here",
+    "forumSettingsGuidelinesHint": "Cho thành viên biết nên đăng gì ở đây",
     "@forumSettingsGuidelinesHint": {
         "description": "Placeholder of the forum post guidelines field in channel settings."
     },
-    "forumSettingsRequireTag": "Require tags on new posts",
+    "forumSettingsRequireTag": "Yêu cầu thành viên chọn thẻ khi đăng bài",
     "@forumSettingsRequireTag": {
         "description": "Switch that makes members pick at least one tag when creating a forum post."
     },
-    "forumSettingsRequireTagDescription": "Members must pick at least one tag before they can post.",
+    "forumSettingsRequireTagDescription": "Thành viên phải chọn ít nhất một thẻ trước khi có thể đăng bài.",
     "@forumSettingsRequireTagDescription": {
         "description": "Explains the require tags switch in forum settings."
     },
-    "forumSettingsDefaultSort": "Default sort order",
+    "forumSettingsDefaultSort": "Thứ tự sắp xếp mặc định",
     "@forumSettingsDefaultSort": {
         "description": "Forum setting for how posts are ordered unless a member picks otherwise."
     },
-    "forumSettingsDefaultLayout": "Default layout",
+    "forumSettingsDefaultLayout": "Bố cục mặc định",
     "@forumSettingsDefaultLayout": {
         "description": "Forum setting for list or gallery layout unless a member picks otherwise."
     },
-    "forumSettingsDefaultReaction": "Default reaction",
+    "forumSettingsDefaultReaction": "Biểu cảm mặc định",
     "@forumSettingsDefaultReaction": {
         "description": "Forum setting for the emoji used by React to Post."
     },
-    "forumSettingsDefaultReactionDescription": "Shown as the quick reaction on every post. Leave empty for none.",
+    "forumSettingsDefaultReactionDescription": "Hiển thị làm biểu cảm nhanh trên mọi bài đăng. Để trống nếu không dùng.",
     "@forumSettingsDefaultReactionDescription": {
         "description": "Explains the forum default reaction setting."
     },
-    "forumSettingsDefaultReactionHint": "An emoji, e.g. 👍",
+    "forumSettingsDefaultReactionHint": "Một biểu tượng cảm xúc, ví dụ 👍",
     "@forumSettingsDefaultReactionHint": {
         "description": "Placeholder of the forum default reaction field."
     },
-    "forumSettingsHideAfterInactivity": "Hide after inactivity",
+    "forumSettingsHideAfterInactivity": "Ẩn sau khi không hoạt động",
     "@forumSettingsHideAfterInactivity": {
         "description": "Forum setting for how long a post stays active without new messages."
     },
-    "forumSettingsHideAfterInactivityDescription": "Inactive posts move to Archived. Anyone can reopen a post that is not locked.",
+    "forumSettingsHideAfterInactivityDescription": "Các bài đăng không hoạt động sẽ chuyển vào Đã lưu trữ. Bất kỳ ai cũng có thể mở lại bài đăng chưa bị khóa.",
     "@forumSettingsHideAfterInactivityDescription": {
         "description": "Explains the forum hide after inactivity setting."
     },
-    "forumSettingsHideAfterOneHour": "1 hour",
+    "forumSettingsHideAfterOneHour": "1 giờ",
     "@forumSettingsHideAfterOneHour": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsHideAfterOneDay": "24 hours",
+    "forumSettingsHideAfterOneDay": "24 giờ",
     "@forumSettingsHideAfterOneDay": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsHideAfterThreeDays": "3 days",
+    "forumSettingsHideAfterThreeDays": "3 ngày",
     "@forumSettingsHideAfterThreeDays": {
         "description": "Hide after inactivity option, the default."
     },
-    "forumSettingsHideAfterOneWeek": "1 week",
+    "forumSettingsHideAfterOneWeek": "1 tuần",
     "@forumSettingsHideAfterOneWeek": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsPostCreationSlowmode": "Post creation slowmode",
+    "forumSettingsPostCreationSlowmode": "Chế độ chậm khi tạo bài đăng",
     "@forumSettingsPostCreationSlowmode": {
         "description": "Forum setting limiting how often a member can create a new post."
     },
-    "forumSettingsPostCreationSlowmodeDescription": "How long members wait between creating posts.",
+    "forumSettingsPostCreationSlowmodeDescription": "Thành viên phải chờ bao lâu giữa các lần tạo bài đăng.",
     "@forumSettingsPostCreationSlowmodeDescription": {
         "description": "Explains the forum post creation slowmode setting."
     },
-    "forumSettingsDefaultPostSlowmode": "Slowmode inside new posts",
+    "forumSettingsDefaultPostSlowmode": "Chế độ chậm trong bài đăng mới",
     "@forumSettingsDefaultPostSlowmode": {
         "description": "Forum setting for the slowmode applied to messages inside each new post."
     },
-    "forumSettingsDefaultPostSlowmodeDescription": "Applied to posts when they are created.",
+    "forumSettingsDefaultPostSlowmodeDescription": "Được áp dụng cho bài đăng khi chúng được tạo.",
     "@forumSettingsDefaultPostSlowmodeDescription": {
         "description": "Explains the default slowmode for new forum posts."
     },
-    "forumSettingsSave": "Save forum settings",
+    "forumSettingsSave": "Lưu cài đặt diễn đàn",
     "@forumSettingsSave": {
         "description": "Button that saves the forum settings section."
     },
-    "forumSettingsSaved": "Forum settings saved",
+    "forumSettingsSaved": "Đã lưu cài đặt diễn đàn",
     "@forumSettingsSaved": {
         "description": "Toast after forum settings are saved."
     },
-    "forumSettingsSaveFailed": "Could not save forum settings",
+    "forumSettingsSaveFailed": "Không thể lưu cài đặt diễn đàn",
     "@forumSettingsSaveFailed": {
         "description": "Toast when forum settings fail to save."
     },
-    "threadsStarterMessage": "Started from",
+    "threadsStarterMessage": "Bắt đầu từ",
     "@threadsStarterMessage": {
         "description": "Label above the message a thread was started from, shown at the top of the thread."
     },
     "threadsOriginalPosterTag": "OP",
-    "forumReactToPost": "React to Post",
-    "forumReactToPostOther": "React with another emoji",
-    "forumEmptyHeading": "Be the first to start the conversation!",
-    "forumEmptyBody": "What do you want to post about in {forumName}?",
-    "forumSeeExamples": "See Examples",
-    "forumExampleQuestion": "Ask a question and tag it so people can find it later.",
-    "forumExampleShow": "Share something you made and let people reply to it.",
-    "forumExampleDiscussion": "Start a discussion on one topic and keep it in this post.",
-    "forumTagModeratedOn": "Moderator only, tap to allow everyone",
-    "forumTagModeratedOff": "Anyone may apply, tap to restrict to moderators",
-    "forumAddToPost": "Add to Post",
-    "forumAddToPostDone": "Added to the post.",
-    "forumAddToPostFailed": "Could not add that to the post. Please try again."
+    "forumReactToPost": "Bày tỏ cảm xúc với bài đăng",
+    "forumReactToPostOther": "Bày tỏ cảm xúc bằng biểu tượng khác",
+    "forumEmptyHeading": "Hãy bắt đầu cuộc trò chuyện!",
+    "forumEmptyBody": "Bạn muốn đăng về điều gì trong {forumName}?",
+    "forumSeeExamples": "Xem ví dụ",
+    "forumExampleQuestion": "Đặt một câu hỏi và gắn thẻ để người khác tìm lại được sau này.",
+    "forumExampleShow": "Chia sẻ điều bạn đã làm và để mọi người trả lời.",
+    "forumExampleDiscussion": "Bắt đầu một cuộc thảo luận về một chủ đề và giữ nó trong bài đăng này.",
+    "forumTagModeratedOn": "Chỉ người kiểm duyệt, nhấn để cho phép mọi người",
+    "forumTagModeratedOff": "Ai cũng có thể áp dụng, nhấn để chỉ cho phép người kiểm duyệt",
+    "forumAddToPost": "Thêm vào bài đăng",
+    "forumAddToPostDone": "Đã thêm vào bài đăng.",
+    "forumAddToPostFailed": "Không thể thêm nội dung đó vào bài đăng. Vui lòng thử lại."
 }

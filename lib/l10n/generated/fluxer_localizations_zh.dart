@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -13378,55 +13379,54 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get uiLeaveThread => 'Leave thread';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => '子区';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => '帖子';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => '有效';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => '已归档';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => '新子区';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => '新子区';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => '子区名称';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => '为你的子区命名';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => '创建子区';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => '创建子区';
 
   @override
-  String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+  String get threadsCreateFailed => '无法创建子区。请重试。';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => '无法加载子区。';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => '还没有活跃的子区';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => '没有已归档的子区';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count 条消息',
+      one: '1 条消息',
     );
     return '$_temp0';
   }
@@ -13436,383 +13436,365 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count 名成员',
+      one: '1 名成员',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => '已锁定';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => '已归档';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => '管理';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => '固定';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => '取消固定';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => '归档';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => '取消归档';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => '锁定';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => '解锁';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => '删除';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed => '出错了。请重试。';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => '关闭子区';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => '重新打开子区';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => '锁定子区';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => '解锁子区';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => '退出子区';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => '删除子区';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => '子区成员';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => '无法加载成员';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => '还没有子区成员';
 
   @override
-  String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+  String get threadsNoMembersBody => '加入此子区的人会显示在这里。';
 
   @override
-  String get forumChannelTypeLabel => 'Forum';
+  String get forumChannelTypeLabel => '论坛';
 
   @override
-  String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+  String get forumChannelTypeDescription => '用于有序的子区帖子的空间';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => '新帖子';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => '新帖子';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => '创建帖子';
 
   @override
-  String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+  String get forumCreatePostFailed => '无法创建帖子。请重试。';
 
   @override
-  String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+  String get forumPostMessageFailed => '帖子已创建，但其消息发送失败。';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => '标题';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => '帖子标题';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => '消息';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => '输入消息';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => '标签';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => '标签（至少选择一个）';
 
   @override
-  String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+  String get forumPostTagsRequiredNoneHint => '此论坛需要标签，但还没有创建任何标签。';
 
   @override
-  String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+  String get forumPostNoTagsHint => '此论坛还没有标签。请通过“管理标签”添加。';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => '搜索帖子';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => '排序与视图';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => '最近活跃';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => '名称 (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => '管理标签';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => '还没有标签';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => '移除标签';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => '新标签';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => '标签名称';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => '添加标签';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => '标签已更新';
 
   @override
-  String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+  String get forumTagsUpdateFailed => '无法更新标签。请重试。';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => '无法加载帖子。';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => '还没有帖子';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => '没有已归档的子区';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username 发起了一个子区：$threadName。';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username 发起了一个子区。';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => '已删除的子区';
 
   @override
-  String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+  String get threadsComposerLockedHint => '此子区已锁定，只有管理员可以发送消息。';
 
   @override
-  String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+  String get threadsComposerArchivedHint => '此子区已归档。发送消息会重新打开它。';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count 条新内容';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => '搜索或创建帖子...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => '排序方式';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => '发布时间';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => '视图';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => '列表';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => '图库';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => '重置为默认值';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => '全部';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count 个标签',
+      one: '1 个标签',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => '发帖须知';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => '编辑帖子';
 
   @override
-  String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+  String get forumPostTagRequiredToast => '请为此论坛选择至少一个标签。';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => '关注';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => '取消关注';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => '已关注';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => '静音';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => '取消静音';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => '编辑子区';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => '论坛设置';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint => '告诉成员这里适合发布什么';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag => '要求成员发帖时选择标签';
 
   @override
-  String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+  String get forumSettingsRequireTagDescription => '成员必须先选择至少一个标签才能发帖。';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => '默认排序方式';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => '默认布局';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => '默认表情回应';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      '作为快捷回应显示在每个帖子上。留空表示不设置。';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => '一个表情符号，例如 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => '无活动后隐藏';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      '不活跃的帖子会移入“已归档”。未锁定的帖子任何人都可以重新打开。';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 小时';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 小时';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 天';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 周';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode => '发帖慢速模式';
 
   @override
-  String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+  String get forumSettingsPostCreationSlowmodeDescription => '成员两次发帖之间需要等待的时间。';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode => '新帖子的慢速模式';
 
   @override
-  String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+  String get forumSettingsDefaultPostSlowmodeDescription => '在帖子创建时应用。';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => '保存论坛设置';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => '论坛设置已保存';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed => '无法保存论坛设置';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => '起始于';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => '回应帖子';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => '用其他表情符号回应';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => '来发起第一次对话吧！';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return '你想在 $forumName 中发布什么内容？';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => '查看示例';
 
   @override
-  String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+  String get forumExampleQuestion => '提出问题并添加标签，方便别人日后查找。';
 
   @override
-  String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+  String get forumExampleShow => '分享你做的东西，让大家来回复。';
 
   @override
-  String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+  String get forumExampleDiscussion => '围绕一个话题发起讨论，并把讨论留在这个帖子里。';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn => '仅版主可用，点按可允许所有人';
 
   @override
-  String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+  String get forumTagModeratedOff => '任何人都可使用，点按可限制为仅版主';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => '添加到帖子';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => '已添加到帖子。';
 
   @override
-  String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+  String get forumAddToPostFailed => '无法将其添加到帖子。请重试。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -27147,55 +27129,54 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get homeQuickActionDms => '私訊';
 
   @override
-  String get threadsTitle => 'Threads';
+  String get threadsTitle => '討論串';
 
   @override
-  String get threadsPostsTitle => 'Posts';
+  String get threadsPostsTitle => '貼文';
 
   @override
-  String get threadsFilterActive => 'Active';
+  String get threadsFilterActive => '啟用中';
 
   @override
-  String get threadsFilterArchived => 'Archived';
+  String get threadsFilterArchived => '已封存';
 
   @override
-  String get threadsNewThread => 'New thread';
+  String get threadsNewThread => '新討論串';
 
   @override
-  String get threadsNewThreadTitle => 'New thread';
+  String get threadsNewThreadTitle => '新討論串';
 
   @override
-  String get threadsNameLabel => 'Thread name';
+  String get threadsNameLabel => '討論串名稱';
 
   @override
-  String get threadsNameHint => 'Name your thread';
+  String get threadsNameHint => '為你的討論串命名';
 
   @override
-  String get threadsCreateThread => 'Create thread';
+  String get threadsCreateThread => '建立討論串';
 
   @override
-  String get threadsCreateThreadAction => 'Create Thread';
+  String get threadsCreateThreadAction => '建立討論串';
 
   @override
-  String get threadsCreateFailed =>
-      'Could not create the thread. Please try again.';
+  String get threadsCreateFailed => '無法建立討論串。請再試一次。';
 
   @override
-  String get threadsLoadFailed => 'Could not load threads.';
+  String get threadsLoadFailed => '無法載入討論串。';
 
   @override
-  String get threadsNoActive => 'No active threads yet';
+  String get threadsNoActive => '還沒有進行中的討論串';
 
   @override
-  String get threadsNoArchived => 'No archived threads';
+  String get threadsNoArchived => '沒有已封存的討論串';
 
   @override
   String threadsMessageCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count messages',
-      one: '1 message',
+      other: '$count 則訊息',
+      one: '1 則訊息',
     );
     return '$_temp0';
   }
@@ -27205,381 +27186,364 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
+      other: '$count 位成員',
+      one: '1 位成員',
     );
     return '$_temp0';
   }
 
   @override
-  String get threadsStatusLocked => 'Locked';
+  String get threadsStatusLocked => '已鎖定';
 
   @override
-  String get threadsStatusArchived => 'Archived';
+  String get threadsStatusArchived => '已封存';
 
   @override
-  String get threadsManage => 'Manage';
+  String get threadsManage => '管理';
 
   @override
-  String get threadsPin => 'Pin';
+  String get threadsPin => '釘選';
 
   @override
-  String get threadsUnpin => 'Unpin';
+  String get threadsUnpin => '取消釘選';
 
   @override
-  String get threadsArchive => 'Archive';
+  String get threadsArchive => '封存';
 
   @override
-  String get threadsUnarchive => 'Unarchive';
+  String get threadsUnarchive => '取消封存';
 
   @override
-  String get threadsLock => 'Lock';
+  String get threadsLock => '鎖定';
 
   @override
-  String get threadsUnlock => 'Unlock';
+  String get threadsUnlock => '解除鎖定';
 
   @override
-  String get threadsDelete => 'Delete';
+  String get threadsDelete => '刪除';
 
   @override
-  String get threadsActionFailed => 'Something went wrong. Please try again.';
+  String get threadsActionFailed => '發生了些問題。請再試一次。';
 
   @override
-  String get threadsCloseThread => 'Close Thread';
+  String get threadsCloseThread => '關閉討論串';
 
   @override
-  String get threadsReopenThread => 'Reopen Thread';
+  String get threadsReopenThread => '重新開啟討論串';
 
   @override
-  String get threadsLockThread => 'Lock Thread';
+  String get threadsLockThread => '鎖定討論串';
 
   @override
-  String get threadsUnlockThread => 'Unlock Thread';
+  String get threadsUnlockThread => '解鎖討論串';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => '離開討論串';
 
   @override
-  String get threadsDeleteThread => 'Delete Thread';
+  String get threadsDeleteThread => '刪除討論串';
 
   @override
-  String get threadsMembersTab => 'Thread Members';
+  String get threadsMembersTab => '討論串成員';
 
   @override
-  String get threadsMembersLoadFailed => 'Could not load members';
+  String get threadsMembersLoadFailed => '無法載入成員';
 
   @override
-  String get threadsNoMembersTitle => 'No thread members yet';
+  String get threadsNoMembersTitle => '還沒有討論串成員';
 
   @override
-  String get threadsNoMembersBody =>
-      'People who join this thread will appear here.';
+  String get threadsNoMembersBody => '加入這個討論串的人會顯示在這裡。';
 
   @override
-  String get forumChannelTypeLabel => 'Forum';
+  String get forumChannelTypeLabel => '論壇';
 
   @override
-  String get forumChannelTypeDescription =>
-      'A space for organized, threaded posts';
+  String get forumChannelTypeDescription => '用於有條理的討論串貼文的空間';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => '新貼文';
 
   @override
-  String get forumNewPostTitle => 'New post';
+  String get forumNewPostTitle => '新貼文';
 
   @override
-  String get forumCreatePost => 'Create post';
+  String get forumCreatePost => '建立貼文';
 
   @override
-  String get forumCreatePostFailed =>
-      'Could not create the post. Please try again.';
+  String get forumCreatePostFailed => '無法建立貼文。請再試一次。';
 
   @override
-  String get forumPostMessageFailed =>
-      'The post was created, but its message could not be sent.';
+  String get forumPostMessageFailed => '貼文已建立，但其訊息傳送失敗。';
 
   @override
-  String get forumPostTitleLabel => 'Title';
+  String get forumPostTitleLabel => '標題';
 
   @override
-  String get forumPostTitleHint => 'Post title';
+  String get forumPostTitleHint => '貼文標題';
 
   @override
-  String get forumPostMessageLabel => 'Message';
+  String get forumPostMessageLabel => '訊息';
 
   @override
-  String get forumPostMessageHint => 'Enter a message';
+  String get forumPostMessageHint => '輸入訊息';
 
   @override
-  String get forumPostTagsLabel => 'Tags';
+  String get forumPostTagsLabel => '標籤';
 
   @override
-  String get forumPostTagsRequiredLabel => 'Tags (pick at least one)';
+  String get forumPostTagsRequiredLabel => '標籤（至少選擇一個）';
 
   @override
-  String get forumPostTagsRequiredNoneHint =>
-      'This forum requires a tag, but none have been set up yet.';
+  String get forumPostTagsRequiredNoneHint => '這個論壇需要標籤，但目前還沒有建立任何標籤。';
 
   @override
-  String get forumPostNoTagsHint =>
-      'This forum has no tags yet. Add some with Manage tags.';
+  String get forumPostNoTagsHint => '這個論壇還沒有標籤。請透過「管理標籤」新增。';
 
   @override
-  String get forumSearchPosts => 'Search posts';
+  String get forumSearchPosts => '搜尋貼文';
 
   @override
-  String get forumSortAndView => 'Sort & View';
+  String get forumSortAndView => '排序與檢視';
 
   @override
-  String get forumSortRecentActivity => 'Recent activity';
+  String get forumSortRecentActivity => '最近活躍';
 
   @override
-  String get forumSortName => 'Name (A-Z)';
+  String get forumSortName => '名稱 (A-Z)';
 
   @override
-  String get forumManageTags => 'Manage tags';
+  String get forumManageTags => '管理標籤';
 
   @override
-  String get forumNoTags => 'No tags yet';
+  String get forumNoTags => '還沒有標籤';
 
   @override
-  String get forumRemoveTag => 'Remove tag';
+  String get forumRemoveTag => '移除標籤';
 
   @override
-  String get forumNewTagLabel => 'New tag';
+  String get forumNewTagLabel => '新標籤';
 
   @override
-  String get forumNewTagHint => 'Tag name';
+  String get forumNewTagHint => '標籤名稱';
 
   @override
-  String get forumAddTag => 'Add tag';
+  String get forumAddTag => '新增標籤';
 
   @override
-  String get forumTagsUpdated => 'Tags updated';
+  String get forumTagsUpdated => '標籤已更新';
 
   @override
-  String get forumTagsUpdateFailed =>
-      'Could not update tags. Please try again.';
+  String get forumTagsUpdateFailed => '無法更新標籤。請再試一次。';
 
   @override
-  String get forumLoadFailed => 'Could not load posts.';
+  String get forumLoadFailed => '無法載入貼文。';
 
   @override
-  String get forumNoPosts => 'No posts yet';
+  String get forumNoPosts => '還沒有貼文';
 
   @override
-  String get forumNoArchivedPosts => 'No archived posts';
+  String get forumNoArchivedPosts => '沒有已封存的討論串';
 
   @override
   String systemThreadCreated(String username, String threadName) {
-    return '$username started a thread: $threadName.';
+    return '$username 建立了一個討論串：$threadName。';
   }
 
   @override
   String systemPreviewStartedThread(String username) {
-    return '$username started a thread.';
+    return '$username 建立了一個討論串。';
   }
 
   @override
-  String get systemThreadDeleted => 'a thread that was deleted';
+  String get systemThreadDeleted => '已刪除的討論串';
 
   @override
-  String get threadsComposerLockedHint =>
-      'This thread is locked. Only moderators can send messages.';
+  String get threadsComposerLockedHint => '這個討論串已鎖定，只有管理員可以傳送訊息。';
 
   @override
-  String get threadsComposerArchivedHint =>
-      'This thread is archived. Sending a message reopens it.';
+  String get threadsComposerArchivedHint => '這個討論串已封存。傳送訊息會重新開啟它。';
 
   @override
   String forumNewPostsPill(int count) {
-    return '$count New';
+    return '$count 則新內容';
   }
 
   @override
-  String get forumSearchOrCreatePost => 'Search or create a post...';
+  String get forumSearchOrCreatePost => '搜尋或建立貼文...';
 
   @override
-  String get forumSortBy => 'Sort by';
+  String get forumSortBy => '排序方式';
 
   @override
-  String get forumSortDatePosted => 'Date posted';
+  String get forumSortDatePosted => '發表時間';
 
   @override
-  String get forumViewAs => 'View as';
+  String get forumViewAs => '檢視方式';
 
   @override
-  String get forumLayoutList => 'List';
+  String get forumLayoutList => '清單';
 
   @override
-  String get forumLayoutGallery => 'Gallery';
+  String get forumLayoutGallery => '圖庫';
 
   @override
-  String get forumResetViewToDefault => 'Reset to default';
+  String get forumResetViewToDefault => '重設為預設值';
 
   @override
-  String get forumAllTags => 'All';
+  String get forumAllTags => '全部';
 
   @override
   String forumTagsSelectedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count tags',
-      one: '1 tag',
+      other: '$count 個標籤',
+      one: '1 個標籤',
     );
     return '$_temp0';
   }
 
   @override
-  String get forumPostGuidelinesLabel => 'Post guidelines';
+  String get forumPostGuidelinesLabel => '發文規範';
 
   @override
-  String get forumEditPost => 'Edit post';
+  String get forumEditPost => '編輯貼文';
 
   @override
-  String get forumPostTagRequiredToast =>
-      'Pick at least one tag for this forum.';
+  String get forumPostTagRequiredToast => '請為這個論壇至少選擇一個標籤。';
 
   @override
-  String get threadsFollow => 'Follow';
+  String get threadsFollow => '追蹤';
 
   @override
-  String get threadsUnfollow => 'Unfollow';
+  String get threadsUnfollow => '取消追蹤';
 
   @override
-  String get threadsFollowing => 'Following';
+  String get threadsFollowing => '追蹤中';
 
   @override
-  String get threadsMute => 'Mute';
+  String get threadsMute => '靜音';
 
   @override
-  String get threadsUnmute => 'Unmute';
+  String get threadsUnmute => '取消靜音';
 
   @override
-  String get threadsEditThread => 'Edit thread';
+  String get threadsEditThread => '編輯討論串';
 
   @override
-  String get forumSettingsTitle => 'Forum settings';
+  String get forumSettingsTitle => '論壇設定';
 
   @override
-  String get forumSettingsGuidelinesHint => 'Tell members what to post here';
+  String get forumSettingsGuidelinesHint => '告訴成員這裡適合發表什麼';
 
   @override
-  String get forumSettingsRequireTag => 'Require tags on new posts';
+  String get forumSettingsRequireTag => '要求成員發文時選擇標籤';
 
   @override
-  String get forumSettingsRequireTagDescription =>
-      'Members must pick at least one tag before they can post.';
+  String get forumSettingsRequireTagDescription => '成員必須先選擇至少一個標籤才能發表貼文。';
 
   @override
-  String get forumSettingsDefaultSort => 'Default sort order';
+  String get forumSettingsDefaultSort => '預設排序方式';
 
   @override
-  String get forumSettingsDefaultLayout => 'Default layout';
+  String get forumSettingsDefaultLayout => '預設版面';
 
   @override
-  String get forumSettingsDefaultReaction => 'Default reaction';
+  String get forumSettingsDefaultReaction => '預設反應';
 
   @override
   String get forumSettingsDefaultReactionDescription =>
-      'Shown as the quick reaction on every post. Leave empty for none.';
+      '以快速回應的形式顯示在每篇貼文上。留空表示不設定。';
 
   @override
-  String get forumSettingsDefaultReactionHint => 'An emoji, e.g. 👍';
+  String get forumSettingsDefaultReactionHint => '一個表情符號，例如 👍';
 
   @override
-  String get forumSettingsHideAfterInactivity => 'Hide after inactivity';
+  String get forumSettingsHideAfterInactivity => '無活動後隱藏';
 
   @override
   String get forumSettingsHideAfterInactivityDescription =>
-      'Inactive posts move to Archived. Anyone can reopen a post that is not locked.';
+      '沒有動態的貼文會移到「已封存」。未鎖定的貼文任何人都可以重新開啟。';
 
   @override
-  String get forumSettingsHideAfterOneHour => '1 hour';
+  String get forumSettingsHideAfterOneHour => '1 小時';
 
   @override
-  String get forumSettingsHideAfterOneDay => '24 hours';
+  String get forumSettingsHideAfterOneDay => '24 小時';
 
   @override
-  String get forumSettingsHideAfterThreeDays => '3 days';
+  String get forumSettingsHideAfterThreeDays => '3 天';
 
   @override
-  String get forumSettingsHideAfterOneWeek => '1 week';
+  String get forumSettingsHideAfterOneWeek => '1 週';
 
   @override
-  String get forumSettingsPostCreationSlowmode => 'Post creation slowmode';
+  String get forumSettingsPostCreationSlowmode => '發表貼文慢速模式';
 
   @override
   String get forumSettingsPostCreationSlowmodeDescription =>
-      'How long members wait between creating posts.';
+      '成員兩次發表貼文之間需要等待的時間。';
 
   @override
-  String get forumSettingsDefaultPostSlowmode => 'Slowmode inside new posts';
+  String get forumSettingsDefaultPostSlowmode => '新貼文的慢速模式';
 
   @override
-  String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Applied to posts when they are created.';
+  String get forumSettingsDefaultPostSlowmodeDescription => '在貼文建立時套用。';
 
   @override
-  String get forumSettingsSave => 'Save forum settings';
+  String get forumSettingsSave => '儲存論壇設定';
 
   @override
-  String get forumSettingsSaved => 'Forum settings saved';
+  String get forumSettingsSaved => '論壇設定已儲存';
 
   @override
-  String get forumSettingsSaveFailed => 'Could not save forum settings';
+  String get forumSettingsSaveFailed => '無法儲存論壇設定';
 
   @override
-  String get threadsStarterMessage => 'Started from';
+  String get threadsStarterMessage => '起始於';
 
   @override
   String get threadsOriginalPosterTag => 'OP';
 
   @override
-  String get forumReactToPost => 'React to Post';
+  String get forumReactToPost => '對貼文做出反應';
 
   @override
-  String get forumReactToPostOther => 'React with another emoji';
+  String get forumReactToPostOther => '用其他表情符號回應';
 
   @override
-  String get forumEmptyHeading => 'Be the first to start the conversation!';
+  String get forumEmptyHeading => '來開始第一段對話吧！';
 
   @override
   String forumEmptyBody(String forumName) {
-    return 'What do you want to post about in $forumName?';
+    return '你想在 $forumName 發表什麼內容？';
   }
 
   @override
-  String get forumSeeExamples => 'See Examples';
+  String get forumSeeExamples => '查看範例';
 
   @override
-  String get forumExampleQuestion =>
-      'Ask a question and tag it so people can find it later.';
+  String get forumExampleQuestion => '提出問題並加上標籤，方便他人日後尋找。';
 
   @override
-  String get forumExampleShow =>
-      'Share something you made and let people reply to it.';
+  String get forumExampleShow => '分享你做的東西，讓大家來回覆。';
 
   @override
-  String get forumExampleDiscussion =>
-      'Start a discussion on one topic and keep it in this post.';
+  String get forumExampleDiscussion => '針對一個主題展開討論，並把討論留在這篇貼文裡。';
 
   @override
-  String get forumTagModeratedOn => 'Moderator only, tap to allow everyone';
+  String get forumTagModeratedOn => '僅管理員可用，輕觸可允許所有人';
 
   @override
-  String get forumTagModeratedOff =>
-      'Anyone may apply, tap to restrict to moderators';
+  String get forumTagModeratedOff => '任何人都可使用，輕觸可限制為僅管理員';
 
   @override
-  String get forumAddToPost => 'Add to Post';
+  String get forumAddToPost => '新增至貼文';
 
   @override
-  String get forumAddToPostDone => 'Added to the post.';
+  String get forumAddToPostDone => '已加入貼文。';
 
   @override
-  String get forumAddToPostFailed =>
-      'Could not add that to the post. Please try again.';
+  String get forumAddToPostFailed => '無法將其加入貼文。請再試一次。';
 }

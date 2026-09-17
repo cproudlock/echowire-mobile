@@ -16853,63 +16853,63 @@
     "@lookAndFeelChatWallpaperPickFailed": {
         "description": "Toast shown when a custom wallpaper image cannot be decoded or saved."
     },
-    "threadsTitle": "Threads",
+    "threadsTitle": "Niti",
     "@threadsTitle": {
         "description": "Title of the sheet and header button that list a channel's threads."
     },
-    "threadsPostsTitle": "Posts",
+    "threadsPostsTitle": "Objave",
     "@threadsPostsTitle": {
         "description": "Title of the threads sheet when opened on a forum channel."
     },
-    "threadsFilterActive": "Active",
+    "threadsFilterActive": "Aktivno",
     "@threadsFilterActive": {
         "description": "Segmented filter option showing active threads or forum posts."
     },
-    "threadsFilterArchived": "Archived",
+    "threadsFilterArchived": "Arhivirano",
     "@threadsFilterArchived": {
         "description": "Segmented filter option showing archived threads or forum posts."
     },
-    "threadsNewThread": "New thread",
+    "threadsNewThread": "Nova nit",
     "@threadsNewThread": {
         "description": "Button that starts creating a new thread."
     },
-    "threadsNewThreadTitle": "New thread",
+    "threadsNewThreadTitle": "Nova nit",
     "@threadsNewThreadTitle": {
         "description": "Title of the modal for naming a new thread."
     },
-    "threadsNameLabel": "Thread name",
+    "threadsNameLabel": "Naziv niti",
     "@threadsNameLabel": {
         "description": "Label of the thread name input."
     },
-    "threadsNameHint": "Name your thread",
+    "threadsNameHint": "Nazovite svoju nit",
     "@threadsNameHint": {
         "description": "Placeholder of the thread name input."
     },
-    "threadsCreateThread": "Create thread",
+    "threadsCreateThread": "Stvori nit",
     "@threadsCreateThread": {
         "description": "Primary button that creates the thread."
     },
-    "threadsCreateThreadAction": "Create Thread",
+    "threadsCreateThreadAction": "Stvori nit",
     "@threadsCreateThreadAction": {
         "description": "Message action that starts a thread from a message."
     },
-    "threadsCreateFailed": "Could not create the thread. Please try again.",
+    "threadsCreateFailed": "Nije bilo moguće stvoriti nit. Pokušajte ponovno.",
     "@threadsCreateFailed": {
         "description": "Toast shown when creating a thread fails."
     },
-    "threadsLoadFailed": "Could not load threads.",
+    "threadsLoadFailed": "Nije bilo moguće učitati niti.",
     "@threadsLoadFailed": {
         "description": "Shown when the thread list fails to load."
     },
-    "threadsNoActive": "No active threads yet",
+    "threadsNoActive": "Još nema aktivnih niti",
     "@threadsNoActive": {
         "description": "Empty state of the active threads list."
     },
-    "threadsNoArchived": "No archived threads",
+    "threadsNoArchived": "Nema arhiviranih niti",
     "@threadsNoArchived": {
         "description": "Empty state of the archived threads list."
     },
-    "threadsMessageCount": "{count, plural, =1{1 message} other{{count} messages}}",
+    "threadsMessageCount": "{count, plural, =1{1 poruka} few{{count} poruke} other{{count} poruka}}",
     "@threadsMessageCount": {
         "description": "Number of messages in a thread or forum post.",
         "placeholders": {
@@ -16918,7 +16918,7 @@
             }
         }
     },
-    "threadsMemberCount": "{count, plural, =1{1 member} other{{count} members}}",
+    "threadsMemberCount": "{count, plural, =1{1 član} few{{count} člana} other{{count} članova}}",
     "@threadsMemberCount": {
         "description": "Number of members in a thread or forum post.",
         "placeholders": {
@@ -16927,87 +16927,87 @@
             }
         }
     },
-    "threadsStatusLocked": "Locked",
+    "threadsStatusLocked": "Zaključano",
     "@threadsStatusLocked": {
         "description": "Status shown on a locked thread."
     },
-    "threadsStatusArchived": "Archived",
+    "threadsStatusArchived": "Arhivirano",
     "@threadsStatusArchived": {
         "description": "Status shown on an archived thread or forum post."
     },
-    "threadsManage": "Manage",
+    "threadsManage": "Upravljaj",
     "@threadsManage": {
         "description": "Accessibility label of the button that opens a thread's moderation menu."
     },
-    "threadsPin": "Pin",
+    "threadsPin": "Prikvači",
     "@threadsPin": {
         "description": "Moderation action that pins a thread or forum post."
     },
-    "threadsUnpin": "Unpin",
+    "threadsUnpin": "Otkvači",
     "@threadsUnpin": {
         "description": "Moderation action that unpins a thread or forum post."
     },
-    "threadsArchive": "Archive",
+    "threadsArchive": "Arhiviraj",
     "@threadsArchive": {
         "description": "Moderation action that archives a thread or forum post."
     },
-    "threadsUnarchive": "Unarchive",
+    "threadsUnarchive": "Vrati iz arhive",
     "@threadsUnarchive": {
         "description": "Moderation action that unarchives a thread or forum post."
     },
-    "threadsLock": "Lock",
+    "threadsLock": "Zaključaj",
     "@threadsLock": {
         "description": "Moderation action that locks a thread or forum post."
     },
-    "threadsUnlock": "Unlock",
+    "threadsUnlock": "Otključaj",
     "@threadsUnlock": {
         "description": "Moderation action that unlocks a thread or forum post."
     },
-    "threadsDelete": "Delete",
+    "threadsDelete": "Izbriši",
     "@threadsDelete": {
         "description": "Moderation action that deletes a thread or forum post."
     },
-    "threadsActionFailed": "Something went wrong. Please try again.",
+    "threadsActionFailed": "Nešto je pošlo po zlu. Molimo pokušajte ponovno.",
     "@threadsActionFailed": {
         "description": "Generic error toast for a failed thread or forum action."
     },
-    "threadsCloseThread": "Close Thread",
+    "threadsCloseThread": "Zatvori nit",
     "@threadsCloseThread": {
         "description": "Channel details action that archives the current thread."
     },
-    "threadsReopenThread": "Reopen Thread",
+    "threadsReopenThread": "Ponovno otvori nit",
     "@threadsReopenThread": {
         "description": "Channel details action that unarchives the current thread."
     },
-    "threadsLockThread": "Lock Thread",
+    "threadsLockThread": "Zaključaj nit",
     "@threadsLockThread": {
         "description": "Channel details action that locks the current thread."
     },
-    "threadsUnlockThread": "Unlock Thread",
+    "threadsUnlockThread": "Otključaj nit",
     "@threadsUnlockThread": {
         "description": "Channel details action that unlocks the current thread."
     },
-    "threadsLeaveThread": "Leave Thread",
+    "threadsLeaveThread": "Napusti nit",
     "@threadsLeaveThread": {
         "description": "Channel details action that leaves the current thread."
     },
-    "threadsDeleteThread": "Delete Thread",
+    "threadsDeleteThread": "Izbriši nit",
     "@threadsDeleteThread": {
         "description": "Channel details action that deletes the current thread."
     },
-    "threadsMembersTab": "Thread Members",
+    "threadsMembersTab": "Članovi niti",
     "@threadsMembersTab": {
         "description": "Channel details tab listing the members of a thread."
     },
-    "threadsMembersLoadFailed": "Could not load members",
+    "threadsMembersLoadFailed": "Nije bilo moguće učitati članove",
     "@threadsMembersLoadFailed": {
         "description": "Title shown when a thread's member list fails to load."
     },
-    "threadsNoMembersTitle": "No thread members yet",
+    "threadsNoMembersTitle": "Još nema članova niti",
     "@threadsNoMembersTitle": {
         "description": "Empty state title of a thread's member list."
     },
-    "threadsNoMembersBody": "People who join this thread will appear here.",
+    "threadsNoMembersBody": "Osobe koje se pridruže ovoj niti pojavit će se ovdje.",
     "@threadsNoMembersBody": {
         "description": "Empty state body of a thread's member list."
     },
@@ -17015,123 +17015,123 @@
     "@forumChannelTypeLabel": {
         "description": "Channel type option for a forum channel in the create channel sheet."
     },
-    "forumChannelTypeDescription": "A space for organized, threaded posts",
+    "forumChannelTypeDescription": "Prostor za uredne objave u nitima",
     "@forumChannelTypeDescription": {
         "description": "Description of the forum channel type in the create channel sheet."
     },
-    "forumNewPost": "New Post",
+    "forumNewPost": "Nova objava",
     "@forumNewPost": {
         "description": "Button that starts creating a new forum post."
     },
-    "forumNewPostTitle": "New post",
+    "forumNewPostTitle": "Nova objava",
     "@forumNewPostTitle": {
         "description": "Title of the modal for creating a forum post."
     },
-    "forumCreatePost": "Create post",
+    "forumCreatePost": "Stvori objavu",
     "@forumCreatePost": {
         "description": "Primary button that creates the forum post."
     },
-    "forumCreatePostFailed": "Could not create the post. Please try again.",
+    "forumCreatePostFailed": "Nije bilo moguće stvoriti objavu. Pokušajte ponovno.",
     "@forumCreatePostFailed": {
         "description": "Toast shown when creating a forum post fails."
     },
-    "forumPostMessageFailed": "The post was created, but its message could not be sent.",
+    "forumPostMessageFailed": "Objava je stvorena, ali njezinu poruku nije bilo moguće poslati.",
     "@forumPostMessageFailed": {
         "description": "Toast shown when a forum post is created but its first message fails to send."
     },
-    "forumPostTitleLabel": "Title",
+    "forumPostTitleLabel": "Naslov",
     "@forumPostTitleLabel": {
         "description": "Label of the forum post title input."
     },
-    "forumPostTitleHint": "Post title",
+    "forumPostTitleHint": "Naslov objave",
     "@forumPostTitleHint": {
         "description": "Placeholder of the forum post title input."
     },
-    "forumPostMessageLabel": "Message",
+    "forumPostMessageLabel": "Poruka",
     "@forumPostMessageLabel": {
         "description": "Label of the forum post first message input."
     },
-    "forumPostMessageHint": "Enter a message",
+    "forumPostMessageHint": "Unesite poruku",
     "@forumPostMessageHint": {
         "description": "Placeholder of the forum post first message input."
     },
-    "forumPostTagsLabel": "Tags",
+    "forumPostTagsLabel": "Oznake",
     "@forumPostTagsLabel": {
         "description": "Label above the tag picker when creating a forum post."
     },
-    "forumPostTagsRequiredLabel": "Tags (pick at least one)",
+    "forumPostTagsRequiredLabel": "Oznake (odaberite najmanje jednu)",
     "@forumPostTagsRequiredLabel": {
         "description": "Label above the tag picker when the forum requires a tag on every post."
     },
-    "forumPostTagsRequiredNoneHint": "This forum requires a tag, but none have been set up yet.",
+    "forumPostTagsRequiredNoneHint": "Ovaj forum zahtijeva oznaku, ali nijedna još nije stvorena.",
     "@forumPostTagsRequiredNoneHint": {
         "description": "Shown when creating a post in a forum that requires a tag but has no tags."
     },
-    "forumPostNoTagsHint": "This forum has no tags yet. Add some with Manage tags.",
+    "forumPostNoTagsHint": "Ovaj forum još nema oznake. Dodajte ih u Upravljanju oznakama.",
     "@forumPostNoTagsHint": {
         "description": "Hint for channel managers when creating a post in a forum without tags."
     },
-    "forumSearchPosts": "Search posts",
+    "forumSearchPosts": "Pretraži objave",
     "@forumSearchPosts": {
         "description": "Placeholder of the forum post search input."
     },
-    "forumSortAndView": "Sort & View",
+    "forumSortAndView": "Sortiranje i prikaz",
     "@forumSortAndView": {
         "description": "Accessibility label of the button that opens forum sort options."
     },
-    "forumSortRecentActivity": "Recent activity",
+    "forumSortRecentActivity": "Nedavno aktivno",
     "@forumSortRecentActivity": {
         "description": "Forum sort option ordering posts by recent activity."
     },
-    "forumSortName": "Name (A-Z)",
+    "forumSortName": "Naziv (A-Z)",
     "@forumSortName": {
         "description": "Forum sort option ordering posts alphabetically."
     },
-    "forumManageTags": "Manage tags",
+    "forumManageTags": "Upravljanje oznakama",
     "@forumManageTags": {
         "description": "Button and modal title for editing a forum's available tags."
     },
-    "forumNoTags": "No tags yet",
+    "forumNoTags": "Još nema oznaka",
     "@forumNoTags": {
         "description": "Empty state in the forum tag editor."
     },
-    "forumRemoveTag": "Remove tag",
+    "forumRemoveTag": "Ukloni oznaku",
     "@forumRemoveTag": {
         "description": "Accessibility label of the button that removes a tag in the tag editor."
     },
-    "forumNewTagLabel": "New tag",
+    "forumNewTagLabel": "Nova oznaka",
     "@forumNewTagLabel": {
         "description": "Label of the new tag name input in the tag editor."
     },
-    "forumNewTagHint": "Tag name",
+    "forumNewTagHint": "Naziv oznake",
     "@forumNewTagHint": {
         "description": "Placeholder of the new tag name input in the tag editor."
     },
-    "forumAddTag": "Add tag",
+    "forumAddTag": "Dodaj oznaku",
     "@forumAddTag": {
         "description": "Accessibility label of the button that adds a tag in the tag editor."
     },
-    "forumTagsUpdated": "Tags updated",
+    "forumTagsUpdated": "Oznake su ažurirane",
     "@forumTagsUpdated": {
         "description": "Toast shown after saving a forum's tags."
     },
-    "forumTagsUpdateFailed": "Could not update tags. Please try again.",
+    "forumTagsUpdateFailed": "Oznake nije bilo moguće ažurirati. Pokušajte ponovno.",
     "@forumTagsUpdateFailed": {
         "description": "Toast shown when saving a forum's tags fails."
     },
-    "forumLoadFailed": "Could not load posts.",
+    "forumLoadFailed": "Nije bilo moguće učitati objave.",
     "@forumLoadFailed": {
         "description": "Shown when the forum post list fails to load."
     },
-    "forumNoPosts": "No posts yet",
+    "forumNoPosts": "Još nema objava",
     "@forumNoPosts": {
         "description": "Empty state of the active forum post list."
     },
-    "forumNoArchivedPosts": "No archived posts",
+    "forumNoArchivedPosts": "Nema arhiviranih niti",
     "@forumNoArchivedPosts": {
         "description": "Empty state of the archived forum post list."
     },
-    "systemThreadCreated": "{username} started a thread: {threadName}.",
+    "systemThreadCreated": "{username} je pokrenuo nit: {threadName}.",
     "@systemThreadCreated": {
         "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
         "placeholders": {
@@ -17143,7 +17143,7 @@
             }
         }
     },
-    "systemPreviewStartedThread": "{username} started a thread.",
+    "systemPreviewStartedThread": "{username} je pokrenuo nit.",
     "@systemPreviewStartedThread": {
         "description": "Plaintext preview of the system message posted when someone starts a thread.",
         "placeholders": {
@@ -17152,51 +17152,51 @@
             }
         }
     },
-    "systemThreadDeleted": "a thread that was deleted",
+    "systemThreadDeleted": "izbrisana nit",
     "@systemThreadDeleted": {
         "description": "Stands in for a thread name in the thread started system message when the thread no longer exists."
     },
-    "threadsComposerLockedHint": "This thread is locked. Only moderators can send messages.",
+    "threadsComposerLockedHint": "Ova je nit zaključana. Samo moderatori mogu slati poruke.",
     "@threadsComposerLockedHint": {
         "description": "Composer placeholder in a locked thread for users who cannot moderate it."
     },
-    "threadsComposerArchivedHint": "This thread is archived. Sending a message reopens it.",
+    "threadsComposerArchivedHint": "Ova je nit arhivirana. Slanje poruke ponovno je otvara.",
     "@threadsComposerArchivedHint": {
         "description": "Composer placeholder in an archived thread that is not locked."
     },
-    "forumSearchOrCreatePost": "Search or create a post...",
+    "forumSearchOrCreatePost": "Pretraži ili stvori objavu...",
     "@forumSearchOrCreatePost": {
         "description": "Placeholder of the forum search field. What is typed also becomes the title of a new post."
     },
-    "forumSortBy": "Sort by",
+    "forumSortBy": "Sortiraj po",
     "@forumSortBy": {
         "description": "Section label in the forum Sort & View sheet."
     },
-    "forumSortDatePosted": "Date posted",
+    "forumSortDatePosted": "Datum objave",
     "@forumSortDatePosted": {
         "description": "Forum sort option that orders posts by creation date."
     },
-    "forumViewAs": "View as",
+    "forumViewAs": "Prikaži kao",
     "@forumViewAs": {
         "description": "Section label for the forum layout options in the Sort & View sheet."
     },
-    "forumLayoutList": "List",
+    "forumLayoutList": "Popis",
     "@forumLayoutList": {
         "description": "Forum layout option showing posts as a list."
     },
-    "forumLayoutGallery": "Gallery",
+    "forumLayoutGallery": "Galerija",
     "@forumLayoutGallery": {
         "description": "Forum layout option showing posts as a grid of image cards."
     },
-    "forumResetViewToDefault": "Reset to default",
+    "forumResetViewToDefault": "Vrati na zadano",
     "@forumResetViewToDefault": {
         "description": "Returns the forum Sort & View choice to the channel defaults."
     },
-    "forumAllTags": "All",
+    "forumAllTags": "Sve",
     "@forumAllTags": {
         "description": "Chip that opens the full list of forum tags to filter by."
     },
-    "forumTagsSelectedCount": "{count, plural, =1{1 tag} other{{count} tags}}",
+    "forumTagsSelectedCount": "{count, plural, =1{1 oznaka} few{{count} oznake} other{{count} oznaka}}",
     "@forumTagsSelectedCount": {
         "description": "Label of the tag filter chip when tags are selected.",
         "placeholders": {
@@ -17205,43 +17205,43 @@
             }
         }
     },
-    "forumPostGuidelinesLabel": "Post guidelines",
+    "forumPostGuidelinesLabel": "Pravila objavljivanja",
     "@forumPostGuidelinesLabel": {
         "description": "Heading above the forum's guidelines in the new post sheet."
     },
-    "forumEditPost": "Edit post",
+    "forumEditPost": "Uredi objavu",
     "@forumEditPost": {
         "description": "Menu item and dialog title for editing a forum post's title and tags."
     },
-    "forumPostTagRequiredToast": "Pick at least one tag for this forum.",
+    "forumPostTagRequiredToast": "Odaberite najmanje jednu oznaku za ovaj forum.",
     "@forumPostTagRequiredToast": {
         "description": "Shown when saving a post without a tag in a forum that requires one."
     },
-    "threadsFollow": "Follow",
+    "threadsFollow": "Prati",
     "@threadsFollow": {
         "description": "Menu item to follow a thread or forum post and get its notifications."
     },
-    "threadsUnfollow": "Unfollow",
+    "threadsUnfollow": "Prestani pratiti",
     "@threadsUnfollow": {
         "description": "Menu item to stop following a thread or forum post."
     },
-    "threadsFollowing": "Following",
+    "threadsFollowing": "Pratite",
     "@threadsFollowing": {
         "description": "Header button state when the user follows the thread or post."
     },
-    "threadsMute": "Mute",
+    "threadsMute": "Utišaj",
     "@threadsMute": {
         "description": "Menu item to mute a thread or forum post."
     },
-    "threadsUnmute": "Unmute",
+    "threadsUnmute": "Uključi zvuk",
     "@threadsUnmute": {
         "description": "Menu item to unmute a thread or forum post."
     },
-    "threadsEditThread": "Edit thread",
+    "threadsEditThread": "Uredi nit",
     "@threadsEditThread": {
         "description": "Menu item and dialog title for renaming a thread."
     },
-    "forumNewPostsPill": "{count} New",
+    "forumNewPostsPill": "{count} novih",
     "@forumNewPostsPill": {
         "description": "Sidebar pill on a forum channel counting posts with activity since the user last opened it.",
         "placeholders": {
@@ -17250,110 +17250,110 @@
             }
         }
     },
-    "forumSettingsTitle": "Forum settings",
+    "forumSettingsTitle": "Postavke foruma",
     "@forumSettingsTitle": {
         "description": "Heading of the forum-only section in channel settings."
     },
-    "forumSettingsGuidelinesHint": "Tell members what to post here",
+    "forumSettingsGuidelinesHint": "Objasnite članovima o čemu se ovdje objavljuje",
     "@forumSettingsGuidelinesHint": {
         "description": "Placeholder of the forum post guidelines field in channel settings."
     },
-    "forumSettingsRequireTag": "Require tags on new posts",
+    "forumSettingsRequireTag": "Zahtijevaj od članova odabir oznake pri objavljivanju",
     "@forumSettingsRequireTag": {
         "description": "Switch that makes members pick at least one tag when creating a forum post."
     },
-    "forumSettingsRequireTagDescription": "Members must pick at least one tag before they can post.",
+    "forumSettingsRequireTagDescription": "Članovi moraju odabrati najmanje jednu oznaku prije objavljivanja.",
     "@forumSettingsRequireTagDescription": {
         "description": "Explains the require tags switch in forum settings."
     },
-    "forumSettingsDefaultSort": "Default sort order",
+    "forumSettingsDefaultSort": "Zadano sortiranje",
     "@forumSettingsDefaultSort": {
         "description": "Forum setting for how posts are ordered unless a member picks otherwise."
     },
-    "forumSettingsDefaultLayout": "Default layout",
+    "forumSettingsDefaultLayout": "Zadani izgled",
     "@forumSettingsDefaultLayout": {
         "description": "Forum setting for list or gallery layout unless a member picks otherwise."
     },
-    "forumSettingsDefaultReaction": "Default reaction",
+    "forumSettingsDefaultReaction": "Zadana reakcija",
     "@forumSettingsDefaultReaction": {
         "description": "Forum setting for the emoji used by React to Post."
     },
-    "forumSettingsDefaultReactionDescription": "Shown as the quick reaction on every post. Leave empty for none.",
+    "forumSettingsDefaultReactionDescription": "Prikazuje se kao brza reakcija na svakoj objavi. Ostavite prazno ako je ne želite.",
     "@forumSettingsDefaultReactionDescription": {
         "description": "Explains the forum default reaction setting."
     },
-    "forumSettingsDefaultReactionHint": "An emoji, e.g. 👍",
+    "forumSettingsDefaultReactionHint": "Emoji, primjerice 👍",
     "@forumSettingsDefaultReactionHint": {
         "description": "Placeholder of the forum default reaction field."
     },
-    "forumSettingsHideAfterInactivity": "Hide after inactivity",
+    "forumSettingsHideAfterInactivity": "Sakrij nakon neaktivnosti",
     "@forumSettingsHideAfterInactivity": {
         "description": "Forum setting for how long a post stays active without new messages."
     },
-    "forumSettingsHideAfterInactivityDescription": "Inactive posts move to Archived. Anyone can reopen a post that is not locked.",
+    "forumSettingsHideAfterInactivityDescription": "Neaktivne objave prelaze u arhivu. Objavu koja nije zaključana svatko može ponovno otvoriti.",
     "@forumSettingsHideAfterInactivityDescription": {
         "description": "Explains the forum hide after inactivity setting."
     },
-    "forumSettingsHideAfterOneHour": "1 hour",
+    "forumSettingsHideAfterOneHour": "1 sat",
     "@forumSettingsHideAfterOneHour": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsHideAfterOneDay": "24 hours",
+    "forumSettingsHideAfterOneDay": "24 sata",
     "@forumSettingsHideAfterOneDay": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsHideAfterThreeDays": "3 days",
+    "forumSettingsHideAfterThreeDays": "3 dana",
     "@forumSettingsHideAfterThreeDays": {
         "description": "Hide after inactivity option, the default."
     },
-    "forumSettingsHideAfterOneWeek": "1 week",
+    "forumSettingsHideAfterOneWeek": "1 tjedan",
     "@forumSettingsHideAfterOneWeek": {
         "description": "Hide after inactivity option."
     },
-    "forumSettingsPostCreationSlowmode": "Post creation slowmode",
+    "forumSettingsPostCreationSlowmode": "Usporeni način rada za stvaranje objava",
     "@forumSettingsPostCreationSlowmode": {
         "description": "Forum setting limiting how often a member can create a new post."
     },
-    "forumSettingsPostCreationSlowmodeDescription": "How long members wait between creating posts.",
+    "forumSettingsPostCreationSlowmodeDescription": "Koliko članovi čekaju između stvaranja objava.",
     "@forumSettingsPostCreationSlowmodeDescription": {
         "description": "Explains the forum post creation slowmode setting."
     },
-    "forumSettingsDefaultPostSlowmode": "Slowmode inside new posts",
+    "forumSettingsDefaultPostSlowmode": "Usporeni način rada u novim objavama",
     "@forumSettingsDefaultPostSlowmode": {
         "description": "Forum setting for the slowmode applied to messages inside each new post."
     },
-    "forumSettingsDefaultPostSlowmodeDescription": "Applied to posts when they are created.",
+    "forumSettingsDefaultPostSlowmodeDescription": "Primjenjuje se na objave kada se stvore.",
     "@forumSettingsDefaultPostSlowmodeDescription": {
         "description": "Explains the default slowmode for new forum posts."
     },
-    "forumSettingsSave": "Save forum settings",
+    "forumSettingsSave": "Spremi postavke foruma",
     "@forumSettingsSave": {
         "description": "Button that saves the forum settings section."
     },
-    "forumSettingsSaved": "Forum settings saved",
+    "forumSettingsSaved": "Postavke foruma su spremljene",
     "@forumSettingsSaved": {
         "description": "Toast after forum settings are saved."
     },
-    "forumSettingsSaveFailed": "Could not save forum settings",
+    "forumSettingsSaveFailed": "Postavke foruma nije bilo moguće spremiti",
     "@forumSettingsSaveFailed": {
         "description": "Toast when forum settings fail to save."
     },
-    "threadsStarterMessage": "Started from",
+    "threadsStarterMessage": "Pokrenuto iz",
     "@threadsStarterMessage": {
         "description": "Label above the message a thread was started from, shown at the top of the thread."
     },
     "threadsOriginalPosterTag": "OP",
-    "forumReactToPost": "React to Post",
-    "forumReactToPostOther": "React with another emoji",
-    "forumEmptyHeading": "Be the first to start the conversation!",
-    "forumEmptyBody": "What do you want to post about in {forumName}?",
-    "forumSeeExamples": "See Examples",
-    "forumExampleQuestion": "Ask a question and tag it so people can find it later.",
-    "forumExampleShow": "Share something you made and let people reply to it.",
-    "forumExampleDiscussion": "Start a discussion on one topic and keep it in this post.",
-    "forumTagModeratedOn": "Moderator only, tap to allow everyone",
-    "forumTagModeratedOff": "Anyone may apply, tap to restrict to moderators",
-    "forumAddToPost": "Add to Post",
-    "forumAddToPostDone": "Added to the post.",
-    "forumAddToPostFailed": "Could not add that to the post. Please try again."
+    "forumReactToPost": "Reagiraj na objavu",
+    "forumReactToPostOther": "Reagiraj drugim emojijem",
+    "forumEmptyHeading": "Započnite razgovor!",
+    "forumEmptyBody": "O čemu želite objaviti u {forumName}?",
+    "forumSeeExamples": "Pogledaj primjere",
+    "forumExampleQuestion": "Postavite pitanje i dodajte oznaku kako bi ga drugi kasnije našli.",
+    "forumExampleShow": "Podijelite nešto što ste napravili i pustite druge da odgovore.",
+    "forumExampleDiscussion": "Započnite raspravu o jednoj temi i vodite je u ovoj objavi.",
+    "forumTagModeratedOn": "Samo moderatori, dotaknite da je omogućite svima",
+    "forumTagModeratedOff": "Svatko je može dodati, dotaknite da je ograničite na moderatore",
+    "forumAddToPost": "Dodaj u objavu",
+    "forumAddToPostDone": "Dodano u objavu.",
+    "forumAddToPostFailed": "Nije bilo moguće dodati to u objavu. Pokušajte ponovno."
 }

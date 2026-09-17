@@ -93,7 +93,9 @@ List<ThreadModAction> threadModActionsFor({
     ThreadModAction.mute,
     ThreadModAction.notificationSettings,
     ThreadModAction.copyLink,
-    if (canManage || isOwner) ThreadModAction.editPost,
+    // echowire: the server refuses an owner edit on a locked thread, so the
+    // sheet must not offer it either.
+    if (canManage || (isOwner && !thread.isLocked)) ThreadModAction.editPost,
     if (canManage) ThreadModAction.togglePin,
     if (canManage || (isOwner && !thread.isLocked))
       ThreadModAction.toggleArchive,

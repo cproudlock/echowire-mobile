@@ -29,7 +29,14 @@ enum Permission {
   manageRoles(1 << 28),
   manageWebhooks(1 << 29),
   manageExpressions(1 << 30),
+  // Echowire: thread permissions, at Discord's bit positions. The server
+  // accepts manageChannels alongside manageThreads permanently, and treats a
+  // mask carrying none of these as predating them.
+  manageThreads(1 << 34),
+  createPublicThreads(1 << 35),
+  createPrivateThreads(1 << 36),
   useExternalStickers(1 << 37),
+  sendMessagesInThreads(1 << 38),
   moderateMembers(1 << 40),
   createExpressions(1 << 43),
   pinMessages(1 << 51),
@@ -60,6 +67,8 @@ final int defaultPermissions =
     Permission.useVad.value |
     Permission.changeNickname.value |
     Permission.useExternalStickers.value |
+    Permission.createPublicThreads.value |
+    Permission.sendMessagesInThreads.value |
     Permission.viewChannelMembers.value;
 
 int everyoneRolePermissionsFromString(String? raw) {

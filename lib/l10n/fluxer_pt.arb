@@ -9513,6 +9513,19 @@
     "@threadsMembersLoadFailed": {
         "description": "Title shown when a thread's member list fails to load."
     },
+    "threadsAddMember": "Add member",
+    "threadsAddMemberSearchLabel": "Search members",
+    "threadsAddMemberNoResults": "No members match that search.",
+    "threadsRemoveMember": "Remove from thread",
+    "threadsLeaveThread": "Leave thread",
+    "threadsMemberAddedToast": "Member added",
+    "threadsMemberRemovedToast": "Member removed",
+    "threadsLeftToast": "You left the thread",
+    "threadsMembersFullToast": "This thread has reached its member limit.",
+    "threadsMemberNotFoundToast": "That person cannot see this channel.",
+    "threadsMembersForbiddenToast": "You do not have permission to change this thread's members.",
+    "threadsInvitableLabel": "Anyone in the thread can add others",
+    "threadsInvitableDescription": "When this is on, every member of this private thread can add other people to it.",
     "threadsNoMembersTitle": "Ainda não há membros no tópico",
     "@threadsNoMembersTitle": {
         "description": "Empty state title of a thread's member list."

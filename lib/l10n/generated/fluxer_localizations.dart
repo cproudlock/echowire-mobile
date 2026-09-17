@@ -19824,6 +19824,54 @@ abstract class FluxerLocalizations {
   /// **'Create, edit, or delete webhooks.'**
   String get permissionManageWebhooksDescription;
 
+  /// Role permission title: post inside threads and forum posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Send messages in threads'**
+  String get permissionSendMessagesInThreads;
+
+  /// Role permission description for sending messages in threads.
+  ///
+  /// In en, this message translates to:
+  /// **'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.'**
+  String get permissionSendMessagesInThreadsDescription;
+
+  /// Role permission title: start public threads and forum posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Create public threads'**
+  String get permissionCreatePublicThreads;
+
+  /// Role permission description for creating public threads.
+  ///
+  /// In en, this message translates to:
+  /// **'Members can start threads that everyone in the channel can see, and create forum posts.'**
+  String get permissionCreatePublicThreadsDescription;
+
+  /// Role permission title: start invite-only threads.
+  ///
+  /// In en, this message translates to:
+  /// **'Create private threads'**
+  String get permissionCreatePrivateThreads;
+
+  /// Role permission description for creating private threads.
+  ///
+  /// In en, this message translates to:
+  /// **'Members can start threads that only invited people can see.'**
+  String get permissionCreatePrivateThreadsDescription;
+
+  /// Role permission title: moderate threads and forum posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage threads and posts'**
+  String get permissionManageThreads;
+
+  /// Role permission description for managing threads.
+  ///
+  /// In en, this message translates to:
+  /// **'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.'**
+  String get permissionManageThreadsDescription;
+
   /// Permission name.
   ///
   /// In en, this message translates to:
@@ -23871,10 +23919,10 @@ abstract class FluxerLocalizations {
   /// **'Unlock Thread'**
   String get threadsUnlockThread;
 
-  /// Channel details action that leaves the current thread.
+  /// Accessible label of the button that removes yourself from a thread.
   ///
   /// In en, this message translates to:
-  /// **'Leave Thread'**
+  /// **'Leave thread'**
   String get threadsLeaveThread;
 
   /// Channel details action that deletes the current thread.
@@ -23894,6 +23942,78 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Could not load members'**
   String get threadsMembersLoadFailed;
+
+  /// Button that opens the picker for adding someone to a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Add member'**
+  String get threadsAddMember;
+
+  /// Label of the search field in the thread add member picker.
+  ///
+  /// In en, this message translates to:
+  /// **'Search members'**
+  String get threadsAddMemberSearchLabel;
+
+  /// Shown when the thread add member search finds nobody.
+  ///
+  /// In en, this message translates to:
+  /// **'No members match that search.'**
+  String get threadsAddMemberNoResults;
+
+  /// Accessible label of the button removing another person from a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from thread'**
+  String get threadsRemoveMember;
+
+  /// Toast confirming someone was added to a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Member added'**
+  String get threadsMemberAddedToast;
+
+  /// Toast confirming someone was removed from a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Member removed'**
+  String get threadsMemberRemovedToast;
+
+  /// Toast confirming you removed yourself from a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'You left the thread'**
+  String get threadsLeftToast;
+
+  /// Toast shown when adding a thread member hits the server's member cap.
+  ///
+  /// In en, this message translates to:
+  /// **'This thread has reached its member limit.'**
+  String get threadsMembersFullToast;
+
+  /// Toast shown when a thread member cannot be added because they cannot view the parent channel.
+  ///
+  /// In en, this message translates to:
+  /// **'That person cannot see this channel.'**
+  String get threadsMemberNotFoundToast;
+
+  /// Toast shown when the server refuses a thread membership change.
+  ///
+  /// In en, this message translates to:
+  /// **'You do not have permission to change this thread\'s members.'**
+  String get threadsMembersForbiddenToast;
+
+  /// Label of the toggle controlling whether thread members may invite more people.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone in the thread can add others'**
+  String get threadsInvitableLabel;
+
+  /// Description of the thread invitable toggle.
+  ///
+  /// In en, this message translates to:
+  /// **'When this is on, every member of this private thread can add other people to it.'**
+  String get threadsInvitableDescription;
 
   /// Empty state title of a thread's member list.
   ///

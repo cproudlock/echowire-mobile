@@ -10427,6 +10427,14 @@
     "@permissionManageWebhooksDescription": {
         "description": "Permission description."
     },
+    "permissionSendMessagesInThreads": "Send messages in threads",
+    "permissionSendMessagesInThreadsDescription": "Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.",
+    "permissionCreatePublicThreads": "Create public threads",
+    "permissionCreatePublicThreadsDescription": "Members can start threads that everyone in the channel can see, and create forum posts.",
+    "permissionCreatePrivateThreads": "Create private threads",
+    "permissionCreatePrivateThreadsDescription": "Members can start threads that only invited people can see.",
+    "permissionManageThreads": "Manage threads and posts",
+    "permissionManageThreadsDescription": "Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.",
     "permissionSendMessages": "Envoyer des messages",
     "@permissionSendMessages": {
         "description": "Permission name."
@@ -16978,6 +16986,19 @@
     "@threadsMembersLoadFailed": {
         "description": "Title shown when a thread's member list fails to load."
     },
+    "threadsAddMember": "Add member",
+    "threadsAddMemberSearchLabel": "Search members",
+    "threadsAddMemberNoResults": "No members match that search.",
+    "threadsRemoveMember": "Remove from thread",
+    "threadsLeaveThread": "Leave thread",
+    "threadsMemberAddedToast": "Member added",
+    "threadsMemberRemovedToast": "Member removed",
+    "threadsLeftToast": "You left the thread",
+    "threadsMembersFullToast": "This thread has reached its member limit.",
+    "threadsMemberNotFoundToast": "That person cannot see this channel.",
+    "threadsMembersForbiddenToast": "You do not have permission to change this thread's members.",
+    "threadsInvitableLabel": "Anyone in the thread can add others",
+    "threadsInvitableDescription": "When this is on, every member of this private thread can add other people to it.",
     "threadsNoMembersTitle": "Aucun membre dans ce fil",
     "@threadsNoMembersTitle": {
         "description": "Empty state title of a thread's member list."

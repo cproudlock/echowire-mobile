@@ -11824,6 +11824,34 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
       'Create, edit, or delete webhooks.';
 
   @override
+  String get permissionSendMessagesInThreads => 'Send messages in threads';
+
+  @override
+  String get permissionSendMessagesInThreadsDescription =>
+      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
+
+  @override
+  String get permissionCreatePublicThreads => 'Create public threads';
+
+  @override
+  String get permissionCreatePublicThreadsDescription =>
+      'Members can start threads that everyone in the channel can see, and create forum posts.';
+
+  @override
+  String get permissionCreatePrivateThreads => 'Create private threads';
+
+  @override
+  String get permissionCreatePrivateThreadsDescription =>
+      'Members can start threads that only invited people can see.';
+
+  @override
+  String get permissionManageThreads => 'Manage threads and posts';
+
+  @override
+  String get permissionManageThreadsDescription =>
+      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
+
+  @override
   String get permissionSendMessages => 'Send messages';
 
   @override
@@ -14293,7 +14321,7 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   String get threadsUnlockThread => 'Unlock Thread';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Leave thread';
 
   @override
   String get threadsDeleteThread => 'Delete Thread';
@@ -14303,6 +14331,46 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
 
   @override
   String get threadsMembersLoadFailed => 'Could not load members';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsRemoveMember => 'Remove from thread';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
+
+  @override
+  String get threadsMemberRemovedToast => 'Member removed';
+
+  @override
+  String get threadsLeftToast => 'You left the thread';
+
+  @override
+  String get threadsMembersFullToast =>
+      'This thread has reached its member limit.';
+
+  @override
+  String get threadsMemberNotFoundToast =>
+      'That person cannot see this channel.';
+
+  @override
+  String get threadsMembersForbiddenToast =>
+      'You do not have permission to change this thread\'s members.';
+
+  @override
+  String get threadsInvitableLabel => 'Anyone in the thread can add others';
+
+  @override
+  String get threadsInvitableDescription =>
+      'When this is on, every member of this private thread can add other people to it.';
 
   @override
   String get threadsNoMembersTitle => 'No thread members yet';
@@ -26412,6 +26480,34 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
       'Create, edit, or delete webhooks.';
 
   @override
+  String get permissionSendMessagesInThreads => 'Send messages in threads';
+
+  @override
+  String get permissionSendMessagesInThreadsDescription =>
+      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
+
+  @override
+  String get permissionCreatePublicThreads => 'Create public threads';
+
+  @override
+  String get permissionCreatePublicThreadsDescription =>
+      'Members can start threads that everyone in the channel can see, and create forum posts.';
+
+  @override
+  String get permissionCreatePrivateThreads => 'Create private threads';
+
+  @override
+  String get permissionCreatePrivateThreadsDescription =>
+      'Members can start threads that only invited people can see.';
+
+  @override
+  String get permissionManageThreads => 'Manage threads and posts';
+
+  @override
+  String get permissionManageThreadsDescription =>
+      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
+
+  @override
   String get permissionSendMessages => 'Send messages';
 
   @override
@@ -28870,7 +28966,7 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
   String get threadsUnlockThread => 'Unlock Thread';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Leave thread';
 
   @override
   String get threadsDeleteThread => 'Delete Thread';
@@ -28880,6 +28976,46 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
 
   @override
   String get threadsMembersLoadFailed => 'Could not load members';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsRemoveMember => 'Remove from thread';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
+
+  @override
+  String get threadsMemberRemovedToast => 'Member removed';
+
+  @override
+  String get threadsLeftToast => 'You left the thread';
+
+  @override
+  String get threadsMembersFullToast =>
+      'This thread has reached its member limit.';
+
+  @override
+  String get threadsMemberNotFoundToast =>
+      'That person cannot see this channel.';
+
+  @override
+  String get threadsMembersForbiddenToast =>
+      'You do not have permission to change this thread\'s members.';
+
+  @override
+  String get threadsInvitableLabel => 'Anyone in the thread can add others';
+
+  @override
+  String get threadsInvitableDescription =>
+      'When this is on, every member of this private thread can add other people to it.';
 
   @override
   String get threadsNoMembersTitle => 'No thread members yet';
@@ -41001,6 +41137,34 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
       'Create, edit, or delete webhooks.';
 
   @override
+  String get permissionSendMessagesInThreads => 'Send messages in threads';
+
+  @override
+  String get permissionSendMessagesInThreadsDescription =>
+      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
+
+  @override
+  String get permissionCreatePublicThreads => 'Create public threads';
+
+  @override
+  String get permissionCreatePublicThreadsDescription =>
+      'Members can start threads that everyone in the channel can see, and create forum posts.';
+
+  @override
+  String get permissionCreatePrivateThreads => 'Create private threads';
+
+  @override
+  String get permissionCreatePrivateThreadsDescription =>
+      'Members can start threads that only invited people can see.';
+
+  @override
+  String get permissionManageThreads => 'Manage threads and posts';
+
+  @override
+  String get permissionManageThreadsDescription =>
+      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
+
+  @override
   String get permissionSendMessages => 'Send messages';
 
   @override
@@ -43461,7 +43625,7 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
   String get threadsUnlockThread => 'Unlock Thread';
 
   @override
-  String get threadsLeaveThread => 'Leave Thread';
+  String get threadsLeaveThread => 'Leave thread';
 
   @override
   String get threadsDeleteThread => 'Delete Thread';
@@ -43471,6 +43635,46 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
 
   @override
   String get threadsMembersLoadFailed => 'Could not load members';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsRemoveMember => 'Remove from thread';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
+
+  @override
+  String get threadsMemberRemovedToast => 'Member removed';
+
+  @override
+  String get threadsLeftToast => 'You left the thread';
+
+  @override
+  String get threadsMembersFullToast =>
+      'This thread has reached its member limit.';
+
+  @override
+  String get threadsMemberNotFoundToast =>
+      'That person cannot see this channel.';
+
+  @override
+  String get threadsMembersForbiddenToast =>
+      'You do not have permission to change this thread\'s members.';
+
+  @override
+  String get threadsInvitableLabel => 'Anyone in the thread can add others';
+
+  @override
+  String get threadsInvitableDescription =>
+      'When this is on, every member of this private thread can add other people to it.';
 
   @override
   String get threadsNoMembersTitle => 'No thread members yet';

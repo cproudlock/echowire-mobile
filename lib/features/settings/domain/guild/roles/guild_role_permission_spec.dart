@@ -56,6 +56,10 @@ List<GuildPermissionCategorySpec> generateGuildPermissionSpec(
       title: l10n.permissionCategoryMessagesMedia,
       permissions: <GuildPermissionEntry>[
         _entry(l10n, Permission.sendMessages),
+        _entry(l10n, Permission.sendMessagesInThreads),
+        _entry(l10n, Permission.createPublicThreads),
+        _entry(l10n, Permission.createPrivateThreads),
+        _entry(l10n, Permission.manageThreads),
         _entry(l10n, Permission.sendTtsMessages),
         _entry(l10n, Permission.manageMessages),
         _entry(l10n, Permission.pinMessages),
@@ -116,6 +120,10 @@ String permissionTitle(FluxerLocalizations l10n, Permission permission) {
     Permission.manageExpressions => l10n.permissionManageEmojiStickers,
     Permission.manageWebhooks => l10n.permissionManageWebhooks,
     Permission.sendMessages => l10n.permissionSendMessages,
+    Permission.sendMessagesInThreads => l10n.permissionSendMessagesInThreads,
+    Permission.createPublicThreads => l10n.permissionCreatePublicThreads,
+    Permission.createPrivateThreads => l10n.permissionCreatePrivateThreads,
+    Permission.manageThreads => l10n.permissionManageThreads,
     Permission.sendTtsMessages => l10n.permissionSendTtsMessages,
     Permission.manageMessages => l10n.permissionManageMessages,
     Permission.pinMessages => l10n.permissionPinMessages,
@@ -156,6 +164,13 @@ String? permissionDescription(FluxerLocalizations l10n, Permission permission) {
     Permission.manageExpressions =>
       l10n.permissionManageEmojiStickersDescription,
     Permission.manageWebhooks => l10n.permissionManageWebhooksDescription,
+    Permission.sendMessagesInThreads =>
+      l10n.permissionSendMessagesInThreadsDescription,
+    Permission.createPublicThreads =>
+      l10n.permissionCreatePublicThreadsDescription,
+    Permission.createPrivateThreads =>
+      l10n.permissionCreatePrivateThreadsDescription,
+    Permission.manageThreads => l10n.permissionManageThreadsDescription,
     Permission.sendTtsMessages => l10n.permissionSendTtsMessagesDescription,
     Permission.manageMessages => l10n.permissionManageMessagesDescription,
     Permission.mentionEveryone => l10n.permissionMentionEveryoneDescription,

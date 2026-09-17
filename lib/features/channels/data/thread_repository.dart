@@ -306,7 +306,12 @@ class ThreadRepository {
     };
   }
 
-  /// Update thread state: archive/unarchive, lock, pin, rename, retag, etc.
+  /// Update thread state: archive/unarchive, lock, pin, rename, retag, and a
+  /// post's own slowmode.
+  ///
+  /// Sent as raw JSON rather than through the SDK: `ThreadUpdateRequest` has no
+  /// `rate_limit_per_user`, which the server accepts for the owner of an
+  /// unlocked thread and for anyone who may manage threads.
   Future<Channel> updateThread(
     String threadId, {
     String? name,
@@ -316,21 +321,29 @@ class ThreadRepository {
     bool? invitable,
     int? autoArchiveDuration,
     List<String>? appliedTags,
+    int? rateLimitPerUser,
   }) async {
+    final Map<String, Object?> body = <String, Object?>{
+      'name': ?name,
+      'archived': ?archived,
+      'locked': ?locked,
+      'pinned': ?pinned,
+      'invitable': ?invitable,
+      'auto_archive_duration': ?autoArchiveDuration,
+      'applied_tags': ?appliedTags,
+      'rate_limit_per_user': ?rateLimitPerUser,
+    };
     try {
-      final ChannelResponse resp = await _client.channels.updateThread(
-        channelId: threadId,
-        body: ThreadUpdateRequest(
-          name: name,
-          archived: archived,
-          locked: locked,
-          pinned: pinned,
-          invitable: invitable,
-          autoArchiveDuration: autoArchiveDuration,
-          appliedTags: appliedTags,
-        ),
-      );
-      return await _cacheAndReturn(resp);
+      final Response<Map<String, dynamic>> response = await _dio
+          .patch<Map<String, dynamic>>(
+            '/channels/$threadId/thread',
+            data: body,
+          );
+      final Map<String, dynamic>? data = response.data;
+      if (data == null) {
+        throw Exception('Failed to update thread');
+      }
+      return await _cacheAndReturn(ChannelResponse.fromJson(data));
     } on DioException catch (e) {
       throw Exception(e.response?.statusMessage ?? 'Failed to update thread');
     }
@@ -402,4 +415,74 @@ class ThreadRepository {
       throw Exception(e.response?.statusMessage ?? 'Failed to leave thread');
     }
   }
+
+  /// Add [userId] to [threadId].
+  ///
+  /// Raw JSON: the SDK models only the `@me` join and leave routes. The server
+  /// allows the thread owner and anyone who may manage threads, plus any member
+  /// when the thread is invitable, and answers 404 when the target cannot see
+  /// the parent channel.
+  Future<void> addThreadMember(String threadId, String userId) async {
+    try {
+      await _dio.put<void>('/channels/$threadId/thread-members/$userId');
+    } on DioException catch (e) {
+      throw ThreadMemberException.fromDioException(e);
+    }
+  }
+
+  /// Remove [userId] from [threadId]. Removing yourself is leaving.
+  Future<void> removeThreadMember(String threadId, String userId) async {
+    try {
+      await _dio.delete<void>('/channels/$threadId/thread-members/$userId');
+    } on DioException catch (e) {
+      throw ThreadMemberException.fromDioException(e);
+    }
+  }
+
+  /// Whether [userId] is a member of [threadId], asked of the server directly.
+  /// Returns false on 404, which is how the server reports "not a member".
+  Future<bool> fetchThreadMember(String threadId, String userId) async {
+    try {
+      await _dio.get<Map<String, dynamic>>(
+        '/channels/$threadId/thread-members/$userId',
+      );
+      return true;
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 404) {
+        return false;
+      }
+      throw ThreadMemberException.fromDioException(e);
+    }
+  }
+}
+
+/// Why a thread membership change failed, so the UI can say something useful
+/// rather than surfacing a status line.
+enum ThreadMemberFailure { full, notFound, forbidden, unknown }
+
+class ThreadMemberException implements Exception {
+  const ThreadMemberException(this.failure);
+
+  final ThreadMemberFailure failure;
+
+  /// The server returns its member cap as a 400 carrying a code; anything else
+  /// maps by status.
+  factory ThreadMemberException.fromDioException(DioException e) {
+    final Object? data = e.response?.data;
+    final String body = data is Map<String, dynamic>
+        ? data.toString().toUpperCase()
+        : '';
+    if (body.contains('MAX_THREAD_MEMBERS') ||
+        body.contains('THREAD_MEMBER_LIMIT')) {
+      return const ThreadMemberException(ThreadMemberFailure.full);
+    }
+    return switch (e.response?.statusCode) {
+      404 => const ThreadMemberException(ThreadMemberFailure.notFound),
+      401 || 403 => const ThreadMemberException(ThreadMemberFailure.forbidden),
+      _ => const ThreadMemberException(ThreadMemberFailure.unknown),
+    };
+  }
+
+  @override
+  String toString() => 'ThreadMemberException(${failure.name})';
 }

@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/permissions/channel_effective_permissions.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
+import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/data/thread_repository.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
+import 'package:fluxer_app/features/channels/domain/channel_overview_update.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/channel_notification_settings_sheet.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/mute_duration_sheet.dart';
 import 'package:fluxer_app/features/channels/providers/channel_mute_provider.dart';
@@ -35,25 +37,46 @@ enum ThreadModAction {
   delete,
 }
 
+/// Whether [bits] may moderate threads. The server takes manageThreads as the
+/// thread moderation permission and keeps accepting manageChannels, so both
+/// grant it here.
+bool canManageThreadsFromBits(int bits) =>
+    hasPermission(bits, Permission.manageThreads) ||
+    hasPermission(bits, Permission.manageChannels);
+
 /// Whether the current user may moderate threads under [parentChannelId].
-bool watchCanManageThreads(WidgetRef ref, String parentChannelId) {
-  final int bits =
+bool watchCanManageThreads(WidgetRef ref, String parentChannelId) =>
+    canManageThreadsFromBits(
       ref
-          .watch(effectiveGuildChannelPermissionBitsProvider(parentChannelId))
-          .value ??
-      0;
-  return hasPermission(bits, Permission.manageChannels);
-}
+              .watch(
+                effectiveGuildChannelPermissionBitsProvider(parentChannelId),
+              )
+              .value ??
+          0,
+    );
 
 /// Non-reactive variant of [watchCanManageThreads] for use outside `build`.
-bool readCanManageThreads(WidgetRef ref, String parentChannelId) {
-  final int bits =
+bool readCanManageThreads(WidgetRef ref, String parentChannelId) =>
+    canManageThreadsFromBits(
       ref
-          .read(effectiveGuildChannelPermissionBitsProvider(parentChannelId))
-          .value ??
-      0;
-  return hasPermission(bits, Permission.manageChannels);
-}
+              .read(
+                effectiveGuildChannelPermissionBitsProvider(parentChannelId),
+              )
+              .value ??
+          0,
+    );
+
+/// Whether [thread] accepts a slowmode change from this user, matching the
+/// server: a moderator always, the owner only while the thread is unlocked.
+bool canEditThreadSlowmode({
+  required Channel thread,
+  required bool canManage,
+  required String? currentUserId,
+}) =>
+    canManage ||
+    (currentUserId != null &&
+        thread.ownerId == currentUserId &&
+        !thread.isLocked);
 
 /// The actions [thread] offers the current user, following the server rules:
 /// anyone can follow, mute, set notifications and copy the link; the owner or
@@ -337,10 +360,29 @@ Future<void> showEditThreadModal(
       : const <String>{};
   final bool canManageTags =
       parentId != null && readCanManageThreads(ref, parentId);
+  // Slowmode follows the server rule, which is not the same as who may edit
+  // the title: a moderator always, the owner only while the post is unlocked.
+  final bool canEditSlowmode = canEditThreadSlowmode(
+    thread: thread,
+    canManage: canManageTags,
+    currentUserId: ref.read(currentUserIdProvider),
+  );
+  // An unset post shows the forum's default, which is what a new post inherits.
+  final int inheritedSlowmode = thread.rateLimitPerUser > 0
+      ? thread.rateLimitPerUser
+      : (parent == null
+            ? 0
+            : (ref
+                      .read(forumExtrasProvider(parent.id))
+                      ?.defaultThreadRateLimitPerUser ??
+                  0));
   final TextEditingController title = TextEditingController(text: thread.name);
   final ValueNotifier<Set<String>> tags = ValueNotifier<Set<String>>(<String>{
     ...?thread.appliedTags,
   });
+  final ValueNotifier<int> slowmode = ValueNotifier<int>(
+    nearestSlowmodeOption(inheritedSlowmode),
+  );
   final bool? save = await FluxerModal.show<bool>(
     context,
     title: isPost ? l10n.forumEditPost : l10n.threadsEditThread,
@@ -387,6 +429,33 @@ Future<void> showEditThreadModal(
             ),
           ),
         ],
+        if (canEditSlowmode) ...<Widget>[
+          SizedBox(height: modalContext.layout.s4),
+          ValueListenableBuilder<int>(
+            valueListenable: slowmode,
+            builder: (BuildContext _, int seconds, Widget? _) =>
+                FluxerSelect<int>(
+                  label: l10n.channelSettingsSlowmode,
+                  value: seconds,
+                  stretch: true,
+                  enableSearch: false,
+                  items: <FluxerSelectItem<int>>[
+                    FluxerSelectItem<int>(
+                      value: 0,
+                      label: l10n.channelSettingsSlowmodeOff,
+                    ),
+                    for (final int option in kSlowmodeOptionsSeconds.where(
+                      (int s) => s > 0,
+                    ))
+                      FluxerSelectItem<int>(
+                        value: option,
+                        label: slowmodeOptionLabel(l10n, option),
+                      ),
+                  ],
+                  onChanged: (int? value) => slowmode.value = value ?? 0,
+                ),
+          ),
+        ],
       ],
     ),
     actionsBuilder: (pop) => <Widget>[
@@ -405,6 +474,10 @@ Future<void> showEditThreadModal(
     showThreadToast(ref, l10n.forumPostTagRequiredToast);
     return;
   }
+  final int? nextSlowmode =
+      canEditSlowmode && slowmode.value != thread.rateLimitPerUser
+      ? slowmode.value
+      : null;
   try {
     await ref
         .read(threadRepositoryProvider)
@@ -412,6 +485,7 @@ Future<void> showEditThreadModal(
           thread.id,
           name: name == thread.name ? null : name,
           appliedTags: availableTags.isEmpty ? null : selectedTags.toList(),
+          rateLimitPerUser: nextSlowmode,
         );
   } on Exception catch (e, st) {
     talker.error('Could not edit thread ${thread.id}', e, st);
@@ -511,4 +585,36 @@ class ThreadListMessage extends StatelessWidget {
       ),
     );
   }
+}
+
+/// The nearest slowmode preset at or below [seconds], so a server value the
+/// presets do not name still selects something.
+int nearestSlowmodeOption(int seconds) {
+  if (seconds <= 0) {
+    return 0;
+  }
+  int best = 0;
+  for (final int option in kSlowmodeOptionsSeconds) {
+    if (option <= seconds && option > best) {
+      best = option;
+    }
+  }
+  return best;
+}
+
+/// Label for a slowmode preset, reusing the channel settings strings.
+String slowmodeOptionLabel(FluxerLocalizations l10n, int seconds) {
+  if (seconds < 60) {
+    return l10n.channelSettingsSlowmodeSeconds(seconds);
+  }
+  if (seconds < 3600) {
+    final int minutes = seconds ~/ 60;
+    return minutes == 1
+        ? l10n.channelSettingsSlowmodeOneMinute(minutes)
+        : l10n.channelSettingsSlowmodeMinutes(minutes);
+  }
+  final int hours = seconds ~/ 3600;
+  return hours == 1
+      ? l10n.channelSettingsSlowmodeOneHour(hours)
+      : l10n.channelSettingsSlowmodeHours(hours);
 }

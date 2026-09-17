@@ -18,6 +18,7 @@ import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/core/utils/channel_jump_link.dart';
 import 'package:fluxer_app/features/channels/data/read_state_repository.dart';
+import 'package:fluxer_app/features/channels/data/thread_repository.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/channel_settings/channel_settings_flow.dart';
 import 'package:fluxer_app/features/channels/presentation/delete_channel_flow.dart';
@@ -25,6 +26,7 @@ import 'package:fluxer_app/features/channels/presentation/modals/show_channel_in
 import 'package:fluxer_app/features/channels/presentation/sheets/channel_notification_settings_sheet.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/mute_duration_sheet.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/channel_icon.dart';
+import 'package:fluxer_app/features/channels/presentation/widgets/thread_ui.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_mute_provider.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';

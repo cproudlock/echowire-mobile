@@ -23,6 +23,7 @@ import 'package:fluxer_app/features/channels/providers/channel_settings_provider
 import 'package:fluxer_app/features/channels/providers/channel_sidebar_icon_connect_bits_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_collapsed_categories_provider.dart';
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
+import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/favorites/providers/favorite_channels_provider.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/presentation/widgets/guild_scroll_indicator.dart';
@@ -1209,6 +1210,14 @@ List<Override> _buildOverrides({
     const Guild(id: _otherGuildId, name: 'Other Guild'),
   ];
   return [
+    // echowire: the sidebar nests joined threads under their channel, which
+    // makes guildActiveThreadsProvider fetch the guild thread list. Left live
+    // it reaches the network, fails, and leaves a pending timer that fails the
+    // test at teardown. Tests that care about nesting override it themselves.
+    guildActiveThreadsProvider.overrideWith(
+      (Ref ref, String guildId) =>
+          Stream<List<Channel>>.value(const <Channel>[]),
+    ),
     fluxerDatabaseProvider.overrideWithValue(db),
     currentUserIdProvider.overrideWithValue('me'),
     routeStateProvider.overrideWithValue(

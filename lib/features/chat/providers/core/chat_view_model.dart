@@ -1188,11 +1188,13 @@ class ChatViewModel extends _$ChatViewModel {
     List<Message> messages,
     int fetchOrdinal,
   ) {
-    return _mergeInFlightSends(
-      channelId,
-      _applyPendingLocalMutations(
-        _retainMessagesForChannel(channelId, messages),
-        fetchOrdinal,
+    return collapseDeliveredLocalSends(
+      _mergeInFlightSends(
+        channelId,
+        _applyPendingLocalMutations(
+          _retainMessagesForChannel(channelId, messages),
+          fetchOrdinal,
+        ),
       ),
     );
   }
@@ -1282,6 +1284,9 @@ class ChatViewModel extends _$ChatViewModel {
         continue;
       }
       if (existingIds.contains(message.id)) {
+        continue;
+      }
+      if (deliveredMatchForLocalSend(messages, message) != null) {
         continue;
       }
       inFlight.add(message);
@@ -1682,15 +1687,7 @@ class ChatViewModel extends _$ChatViewModel {
         final Message msg = _toDomain(
           event.message,
         ).copyWith(isMentioned: snapshot.mentionsCurrentUser);
-        int matchedIndex = messages.indexWhere(
-          (m) =>
-              m.clientNonce != null &&
-              msg.clientNonce != null &&
-              m.clientNonce == msg.clientNonce,
-        );
-        if (matchedIndex == -1) {
-          matchedIndex = _findOptimisticMatchForDelivered(msg);
-        }
+        final int matchedIndex = indexOfLocalSendForDelivered(messages, msg);
         if (matchedIndex != -1) {
           final Message existing = messages[matchedIndex];
           if (existing.id == msg.id &&
@@ -1702,12 +1699,14 @@ class ChatViewModel extends _$ChatViewModel {
             }
             return null;
           }
-          final List<Message> updated = List<Message>.from(messages);
-          updated[matchedIndex] = msg.copyWith(
-            deliveryState: MessageDeliveryState.sent,
-            sendError: null,
+          return _replaceOptimisticWithDelivered(
+            messages: messages,
+            optimisticId: existing.id,
+            delivered: msg.copyWith(
+              deliveryState: MessageDeliveryState.sent,
+              sendError: null,
+            ),
           );
-          return updated;
         }
         final int existingIndex = messages.indexWhere((m) => m.id == msg.id);
         if (existingIndex != -1) {
@@ -1991,7 +1990,8 @@ class ChatViewModel extends _$ChatViewModel {
         loadMessages &&
         (targetMessageId == null || targetMessageId.isEmpty) &&
         parked != null &&
-        parked.messages.isNotEmpty;
+        parked.messages.isNotEmpty &&
+        _canRestoreParkedWindow(parked, channelId);
     if (restoreParked) {
       _replaceLiveWindow(
         channelId: channelId,
@@ -2408,49 +2408,60 @@ class ChatViewModel extends _$ChatViewModel {
         }
         if (!hasUnread) {
           mark('reads');
-          final bool willRefresh = _shouldRefreshChannelFromNetwork(channelId);
-          if (chatWindowMismatchesChannel(
-            expectedChannelId: channelId,
-            channelId: state.channelId,
-            messages: state.messages,
-          )) {
-            _replaceLiveWindow(
-              channelId: channelId,
-              messages: _finalizeLoadedMessages(
-                channelId,
-                parked.messages,
-                cacheOrdinal,
-              ),
-              isLoading: false,
-              isSyncingMessages: willRefresh,
-              hasMoreMessages: parked.hasMoreMessages,
-              hasMoreNewerMessages: parked.hasMoreNewerMessages,
-            );
-            _invalidateMessageCacheTrust();
-            _deferMessageReferencesLoaded(
-              channelId: channelId,
-              messages: parked.messages,
-            );
-          } else if (willRefresh && !state.isSyncingMessages) {
-            state = state.copyWith(isSyncingMessages: true);
+          final bool restoreParked =
+              _canRestoreParkedWindow(parked, channelId) ||
+              await _loadedWindowIsPresent(parked.messages);
+          if (!isCurrentSwitch()) {
+            return;
           }
-          if (willRefresh) {
-            unawaited(
-              _refreshMessagesFromNetwork(
-                channelId,
-                isDirectLatestLoad: false,
-                preserveLoadedWindow: true,
-                shouldApplyResult: isCurrentSwitch,
-              ),
+          if (restoreParked) {
+            final bool willRefresh = _shouldRefreshChannelFromNetwork(
+              channelId,
             );
+            if (state.messages.isEmpty ||
+                chatWindowMismatchesChannel(
+                  expectedChannelId: channelId,
+                  channelId: state.channelId,
+                  messages: state.messages,
+                )) {
+              _replaceLiveWindow(
+                channelId: channelId,
+                messages: _finalizeLoadedMessages(
+                  channelId,
+                  parked.messages,
+                  cacheOrdinal,
+                ),
+                isLoading: false,
+                isSyncingMessages: willRefresh,
+                hasMoreMessages: parked.hasMoreMessages,
+                hasMoreNewerMessages: parked.hasMoreNewerMessages,
+              );
+              _invalidateMessageCacheTrust();
+              _deferMessageReferencesLoaded(
+                channelId: channelId,
+                messages: parked.messages,
+              );
+            } else if (willRefresh && !state.isSyncingMessages) {
+              state = state.copyWith(isSyncingMessages: true);
+            }
+            if (willRefresh) {
+              unawaited(
+                _refreshMessagesFromNetwork(
+                  channelId,
+                  isDirectLatestLoad: false,
+                  preserveLoadedWindow: true,
+                  shouldApplyResult: isCurrentSwitch,
+                ),
+              );
+            }
+            await _applyReadComposerDraft(
+              channelId: channelId,
+              draftFuture: draftFuture,
+              isCurrentSwitch: isCurrentSwitch,
+              mark: mark,
+            );
+            return;
           }
-          await _applyReadComposerDraft(
-            channelId: channelId,
-            draftFuture: draftFuture,
-            isCurrentSwitch: isCurrentSwitch,
-            mark: mark,
-          );
-          return;
         }
       }
       final (List<Message> cachedRows, bool hasUnread) = await (
@@ -2466,45 +2477,48 @@ class ChatViewModel extends _$ChatViewModel {
         currentUserId: currentUserId,
       );
       if (cached.isNotEmpty && !hasUnread) {
-        final bool incompleteCache = cached.length < _kPageSize;
-        // Server never rewinds last_message_id, so only an anchorless latest
-        // page can refute a tail deleted while we were offline (#474).
-        final bool proveTailFromLatestPage = _messagesNeedResync(channelId);
-        final bool willRefresh =
-            incompleteCache ||
-            proveTailFromLatestPage ||
-            _shouldRefreshChannelFromNetwork(channelId);
-        if (state.channelId != channelId) {
+        final bool cachePresent = await _loadedWindowIsPresent(cached);
+        if (!isCurrentSwitch() || state.channelId != channelId) {
           return;
         }
-        _replaceLiveWindow(
-          channelId: channelId,
-          messages: _finalizeLoadedMessages(channelId, cached, cacheOrdinal),
-          isLoading: false,
-          isSyncingMessages: willRefresh,
-          hasMoreMessages: incompleteCache || cached.length >= _kPageSize,
-          hasMoreNewerMessages: false,
-        );
-        _invalidateMessageCacheTrust();
-        _deferMessageReferencesLoaded(channelId: channelId, messages: cached);
-        if (willRefresh) {
-          unawaited(
-            _refreshMessagesFromNetwork(
-              channelId,
-              isDirectLatestLoad: incompleteCache || proveTailFromLatestPage,
-              preserveLoadedWindow:
-                  !incompleteCache && !proveTailFromLatestPage,
-              shouldApplyResult: isCurrentSwitch,
-            ),
+        if (cachePresent) {
+          final bool incompleteCache = cached.length < _kPageSize;
+          // Server never rewinds last_message_id, so only an anchorless latest
+          // page can refute a tail deleted while we were offline (#474).
+          final bool proveTailFromLatestPage = _messagesNeedResync(channelId);
+          final bool willRefresh =
+              incompleteCache ||
+              proveTailFromLatestPage ||
+              _shouldRefreshChannelFromNetwork(channelId);
+          _replaceLiveWindow(
+            channelId: channelId,
+            messages: _finalizeLoadedMessages(channelId, cached, cacheOrdinal),
+            isLoading: false,
+            isSyncingMessages: willRefresh,
+            hasMoreMessages: incompleteCache || cached.length >= _kPageSize,
+            hasMoreNewerMessages: false,
           );
+          _invalidateMessageCacheTrust();
+          _deferMessageReferencesLoaded(channelId: channelId, messages: cached);
+          if (willRefresh) {
+            unawaited(
+              _refreshMessagesFromNetwork(
+                channelId,
+                isDirectLatestLoad: incompleteCache || proveTailFromLatestPage,
+                preserveLoadedWindow:
+                    !incompleteCache && !proveTailFromLatestPage,
+                shouldApplyResult: isCurrentSwitch,
+              ),
+            );
+          }
+          await _applyReadComposerDraft(
+            channelId: channelId,
+            draftFuture: draftFuture,
+            isCurrentSwitch: isCurrentSwitch,
+            mark: mark,
+          );
+          return;
         }
-        await _applyReadComposerDraft(
-          channelId: channelId,
-          draftFuture: draftFuture,
-          isCurrentSwitch: isCurrentSwitch,
-          mark: mark,
-        );
-        return;
       }
       if (state.channelId != channelId) {
         return;
@@ -2889,7 +2903,8 @@ class ChatViewModel extends _$ChatViewModel {
       // again inside the commit closure against the window as it stands at
       // write time. Only the second result is ever installed.
       List<Message> reduceAgainst(List<Message> current) {
-        final List<Message> reconciled = preserveLoadedWindow
+        final List<Message> reconciled =
+            preserveLoadedWindow && current.isNotEmpty
             ? reconcileStaleDeletionsInLoadedWindow(
                 current: current,
                 networkPage: page.messages,
@@ -3928,6 +3943,19 @@ class ChatViewModel extends _$ChatViewModel {
     return dmChannel?.lastMessageId;
   }
 
+  bool _canRestoreParkedWindow(_ParkedChannelWindow parked, String channelId) {
+    return parked.hasMoreNewerMessages || !_messagesNeedResync(channelId);
+  }
+
+  Future<bool> _loadedWindowIsPresent(List<Message> messages) async {
+    if (messages.isEmpty) {
+      return false;
+    }
+    final ({bool hasMoreNewer, bool needsTailProbe}) consult =
+        await _hasNewerMessagesThanChannel(messages.last.id);
+    return !consult.hasMoreNewer;
+  }
+
   /// Verdict of the channel-pointer consult.
   ///
   /// `needsTailProbe` marks a NON-PROOF state: the ladder was asked to seal the
@@ -4943,24 +4971,26 @@ class ChatViewModel extends _$ChatViewModel {
             ref: ref,
             channelId: channelId,
           );
-      if (permissionOutcome.shouldCache) {
-        ref
-            .read(channelPermissionCacheProvider.notifier)
-            .cacheEffectiveBits(
-              channelId: channelId,
-              outcome: permissionOutcome,
-            );
-        final bool canSendMessages = hasPermission(
-          permissionOutcome.value,
-          Permission.sendMessages,
+      if (!permissionOutcome.shouldCache) {
+        talker.debug(
+          '[ChatViewModel] send blocked: permissions_unresolved channelId=$channelId',
         );
-        if (!canSendMessages) {
-          talker.debug(
-            '[ChatViewModel] send blocked: no_permission channelId=$channelId',
-          );
-          _notifySendBlocked(_SendBlockReason.noPermission);
-          return;
-        }
+        _notifySendBlocked(_SendBlockReason.channelNotReady);
+        return;
+      }
+      ref
+          .read(channelPermissionCacheProvider.notifier)
+          .cacheEffectiveBits(channelId: channelId, outcome: permissionOutcome);
+      final bool canSendMessages = hasPermission(
+        permissionOutcome.value,
+        Permission.sendMessages,
+      );
+      if (!canSendMessages) {
+        talker.debug(
+          '[ChatViewModel] send blocked: no_permission channelId=$channelId',
+        );
+        _notifySendBlocked(_SendBlockReason.noPermission);
+        return;
       }
     }
     final rateLimit = channelRow?.rateLimitPerUser ?? 0;
@@ -5302,21 +5332,23 @@ class ChatViewModel extends _$ChatViewModel {
   }
 
   void _handleSendFailure(String optimisticMessageId, Object error) {
-    final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
-    final String failedMessage = l10n.chatMessageFailedToSend;
     final int optimisticIndex = state.messages.indexWhere(
       (Message m) => m.id == optimisticMessageId,
     );
-    List<Message> nextMessages;
     if (optimisticIndex == -1) {
-      nextMessages = List<Message>.from(state.messages);
-    } else {
-      nextMessages = List<Message>.from(state.messages);
-      nextMessages[optimisticIndex] = nextMessages[optimisticIndex].copyWith(
-        deliveryState: MessageDeliveryState.failed,
-        sendError: failedMessage,
-      );
+      return;
     }
+    final Message local = state.messages[optimisticIndex];
+    if (deliveredMatchForLocalSend(state.messages, local) != null) {
+      return;
+    }
+    final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
+    final String failedMessage = l10n.chatMessageFailedToSend;
+    final List<Message> nextMessages = List<Message>.from(state.messages);
+    nextMessages[optimisticIndex] = nextMessages[optimisticIndex].copyWith(
+      deliveryState: MessageDeliveryState.failed,
+      sendError: failedMessage,
+    );
     final String? apiErrorCode = error is DioException
         ? apiErrorCodeFromDioException(error)
         : null;
@@ -5336,10 +5368,6 @@ class ChatViewModel extends _$ChatViewModel {
       state = state.copyWith(
         write: (messages: nextMessages, origin: MessagesOrigin.localMutation),
       );
-      return;
-    }
-    if (optimisticIndex == -1) {
-      state = state.copyWith(errorMessage: failedMessage);
       return;
     }
     state = state.copyWith(
@@ -5418,6 +5446,24 @@ class ChatViewModel extends _$ChatViewModel {
     }
     final Message message = state.messages[messageIndex];
     if (!message.hasFailed) {
+      return;
+    }
+    final Message? alreadyDelivered = deliveredMatchForLocalSend(
+      state.messages,
+      message,
+    );
+    if (alreadyDelivered != null) {
+      state = state.copyWith(
+        write: (
+          messages: _replaceOptimisticWithDelivered(
+            messages: state.messages,
+            optimisticId: message.id,
+            delivered: alreadyDelivered,
+          ),
+          origin: MessagesOrigin.localMutation,
+        ),
+        errorMessage: null,
+      );
       return;
     }
     final List<Message> pendingMessages = List<Message>.from(state.messages);
@@ -6592,39 +6638,6 @@ class ChatViewModel extends _$ChatViewModel {
       ),
     );
     return updated;
-  }
-
-  int _findOptimisticMatchForDelivered(Message delivered) {
-    final String? currentUserId = ref.read(currentUserIdProvider);
-    if (currentUserId == null || currentUserId.isEmpty) {
-      return -1;
-    }
-    for (int i = state.messages.length - 1; i >= 0; i--) {
-      final Message candidate = state.messages[i];
-      if (!candidate.isSending) {
-        continue;
-      }
-      if (candidate.authorId != currentUserId) {
-        continue;
-      }
-      if (candidate.channelId != delivered.channelId) {
-        continue;
-      }
-      if (candidate.content != delivered.content) {
-        continue;
-      }
-      if (candidate.replyToId != delivered.replyToId) {
-        continue;
-      }
-      final Duration timestampDiff = delivered.timestamp
-          .difference(candidate.timestamp)
-          .abs();
-      if (timestampDiff > const Duration(seconds: 30)) {
-        continue;
-      }
-      return i;
-    }
-    return -1;
   }
 
   bool _shouldRefreshChannelFromNetwork(String channelId) {

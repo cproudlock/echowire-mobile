@@ -45,6 +45,8 @@ typedef VoiceBulkCallback = void Function(List<VoiceState> states);
 typedef CallCreateCallback = void Function(CallCreateEvent event);
 typedef CallUpdateCallback = void Function(CallUpdateEvent event);
 typedef ChannelCallback = void Function(String channelId);
+typedef SavedMessageCreateCallback = void Function(Message message);
+typedef SavedMessageDeleteCallback = void Function(String messageId);
 typedef InviteCreateCallback = void Function(Map<String, dynamic> data);
 typedef InviteDeleteCallback = void Function(String code);
 typedef ReadyCallback = void Function();
@@ -134,6 +136,8 @@ class GatewayEventHandler {
     this.onGuildPermissionsEvict,
     this.onChannelPermissionChanged,
     this.onChannelDelete,
+    this.onSavedMessageCreate,
+    this.onSavedMessageDelete,
     this.onPermissionsClearAll,
     this.onMessageCreate,
     this.onMessageUpdate,
@@ -203,6 +207,8 @@ class GatewayEventHandler {
   final GuildCallback? onGuildPermissionsEvict;
   final ChannelCallback? onChannelPermissionChanged;
   final ChannelCallback? onChannelDelete;
+  final SavedMessageCreateCallback? onSavedMessageCreate;
+  final SavedMessageDeleteCallback? onSavedMessageDelete;
   final void Function()? onPermissionsClearAll;
   final MessageCreateCallback? onMessageCreate;
   final MessageUpdateCallback? onMessageUpdate;
@@ -683,14 +689,15 @@ class GatewayEventHandler {
             '[Gateway] SAVED_MESSAGE_CREATE: ${event.message.id}',
           ),
         );
-        unawaited(database.savedMessageDao.addSavedMessage(event.message.id));
+        await _handleSavedMessageCreate(event);
       case SavedMessageDeleteEvent():
         _logGatewayDebug(
           () => talker.debug(
             '[Gateway] SAVED_MESSAGE_DELETE: ${event.messageId}',
           ),
         );
-        unawaited(database.savedMessageDao.removeSavedMessage(event.messageId));
+        await database.savedMessageDao.removeSavedMessage(event.messageId);
+        _emit(() => onSavedMessageDelete?.call(event.messageId));
       case RecentMentionDeleteEvent():
         _logGatewayDebug(
           () => talker.debug(
@@ -811,7 +818,6 @@ class GatewayEventHandler {
         await database.dmChannelDao.clearAll();
         await database.memberDao.clearAll();
         await database.roleDao.clearAll();
-        await database.relationshipDao.clearAll();
         await database.readStateDao.clearAll();
         await database.userSettingsDao.clearAll();
         await database.userGuildSettingsDao.clearAll();
@@ -1884,6 +1890,25 @@ class GatewayEventHandler {
       settings?.channelOverrides?[channelId],
       now: DateTime.now(),
     );
+  }
+
+  Future<void> _handleSavedMessageCreate(SavedMessageCreateEvent event) async {
+    final Message msg = Message.fromSdk(
+      event.message,
+      currentUserId: _selfUserId,
+    );
+    if (event.message.webhookId == null) {
+      unawaited(
+        database.userDao.upsertUser(userFromPartialSdk(event.message.author)),
+      );
+      unawaited(upsertMentionUsersFromSdk(database, event.message.mentions));
+      unawaited(upsertSupplementalUsersFromSdk(database, event.message.users));
+    }
+    await database.transaction(() async {
+      await database.messageDao.upsertMessage(msg.toCompanion());
+      await database.savedMessageDao.addSavedMessage(event.message.id);
+    });
+    _emit(() => onSavedMessageCreate?.call(msg));
   }
 
   Future<void> _handleMessageUpdate(MessageUpdateEvent event) async {

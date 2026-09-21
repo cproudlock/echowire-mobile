@@ -89,6 +89,10 @@ import flutter_callkit_incoming
     )
   }
 
+// echowire: upstream's Siri Assistant and physical keyboard bridges are not wired up
+// here. Their Swift sources sit in ios/Runner/Assistant and PhysicalKeyboardBridge.swift but
+// are absent from our rebranded Xcode project, so registering them would not compile. Adopting
+// them needs the project file edited on a Mac, where the build can be verified.
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
     ApplePushBridge.shared.register(engineBridge: engineBridge)

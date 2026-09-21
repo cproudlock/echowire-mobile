@@ -30,6 +30,11 @@ import 'package:image_picker_platform_interface/image_picker_platform_interface.
 import 'package:media_kit/media_kit.dart';
 import 'package:window_manager/window_manager.dart';
 
+Future<void> _showDesktopWindow() async {
+  await windowManager.show();
+  await windowManager.focus();
+}
+
 void _configureImagePicker() {
   if (kIsWeb || !Platform.isAndroid) {
     return;
@@ -139,9 +144,9 @@ Future<void> _bootstrapFluxer(List<String> args) async {
           title: 'echowire',
         );
 
-        await windowManager.waitUntilReadyToShow(windowOptions, () async {
-          await windowManager.show();
-          await windowManager.focus();
+        await windowManager.waitUntilReadyToShow(windowOptions);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          unawaited(_showDesktopWindow());
         });
       },
     );

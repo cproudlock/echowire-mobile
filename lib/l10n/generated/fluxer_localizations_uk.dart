@@ -10809,6 +10809,13 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'Вийти';
 
   @override
+  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+
+  @override
+  String get userSettingsLogOutConfirmDescription =>
+      'You can sign back in at any time.';
+
+  @override
   String get quickSwitcherTabSearch => 'Пошук';
 
   @override

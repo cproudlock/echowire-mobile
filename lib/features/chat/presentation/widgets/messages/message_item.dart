@@ -1515,10 +1515,18 @@ class _MessageItemState extends ConsumerState<MessageItem> {
   }
 
   /// Echowire: whether [msg] was written by the thread or post owner.
+  ///
+  /// The owner comes only from the render settings the message list supplies.
+  /// There is deliberately no per-row lookup: reading the channel here opened
+  /// a drift query stream for every message row, and the badge is meaningless
+  /// outside a thread anyway, so a row without thread context simply has no
+  /// original poster. Guarding preview mode here rather than at each badge
+  /// keeps a later fourth badge site from reintroducing it.
   bool _isOriginalPoster(Message msg) {
-    final String? ownerId =
-        widget.renderSettings?.threadOwnerId ??
-        ref.read(threadOwnerIdProvider(msg.channelId));
+    if (widget.inboxPreviewMode) {
+      return false;
+    }
+    final String? ownerId = widget.renderSettings?.threadOwnerId;
     return ownerId != null && ownerId == msg.authorId;
   }
 

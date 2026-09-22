@@ -3,7 +3,7 @@ import Foundation
 
 struct SetOnlineIntent: AppIntent {
   static var title: LocalizedStringResource = "Set Online"
-  static var description = IntentDescription("Set your Fluxer status to Online.")
+  static var description = IntentDescription("Set your echowire status to Online.")
   static var openAppWhenRun = false
 
   static var parameterSummary: some ParameterSummary {
@@ -20,7 +20,7 @@ struct SetOnlineIntent: AppIntent {
 
 struct SetDoNotDisturbIntent: AppIntent {
   static var title: LocalizedStringResource = "Set Do Not Disturb"
-  static var description = IntentDescription("Set your Fluxer status to Do Not Disturb.")
+  static var description = IntentDescription("Set your echowire status to Do Not Disturb.")
   static var openAppWhenRun = false
 
   static var parameterSummary: some ParameterSummary {
@@ -38,7 +38,7 @@ struct SetDoNotDisturbIntent: AppIntent {
 struct SetCustomStatusIntent: AppIntent {
   static var title: LocalizedStringResource = "Set Custom Status"
   static var description = IntentDescription(
-    "Set your Fluxer custom status. Leave it blank to clear."
+    "Set your echowire custom status. Leave it blank to clear."
   )
   static var openAppWhenRun = false
 

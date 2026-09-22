@@ -24,7 +24,10 @@
 		A13A9CD5E13588FEA451348C /* RSISharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CDF280DD5CD2DE22D18ADC /* RSISharedModels.swift */; };
 		CA516A592BC72D8572BAC828 /* ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E44A624BDD91C694268C4324 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D24AF0B7FB6A521CFFB270A1 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4482A5829194929EAE90989 /* ShareViewController.swift */; };
+		A15F1E13F500000000000004 /* AssistantFriendMatchingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15F1E13F500000000000003 /* AssistantFriendMatchingTests.swift */; };
+		A15F1E13F500000000000008 /* AssistantSendAndCallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15F1E13F500000000000007 /* AssistantSendAndCallTests.swift */; };
 		FB0ADAC52F5C91D70078A4D4 /* ApplePushBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0ADAC42F5C91D70078A4D4 /* ApplePushBridge.swift */; };
+		FBC1A0022F9E220100EA2F01 /* PhysicalKeyboardBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC1A0012F9E220100EA2F01 /* PhysicalKeyboardBridge.swift */; };
 		FB0ADAC62F5C91D80078A4D4 /* PushNotificationPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0ADAC82F5C91D80078A4D4 /* PushNotificationPayload.swift */; };
 		FB0ADAC72F5C91D80078A4D5 /* PushNotificationPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0ADAC82F5C91D80078A4D4 /* PushNotificationPayload.swift */; };
 		FB0ADAC92F5C91D80078A4D6 /* PushNotificationPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0ADAC82F5C91D80078A4D4 /* PushNotificationPayload.swift */; };
@@ -120,6 +123,8 @@
 		323C4FE138C3CFF89A4B107B /* Pods-RunnerTests.profile-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-beta.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-beta.xcconfig"; sourceTree = "<group>"; };
 		32ADE8DB6964E19E168902C8 /* Pods-Runner.profile-stable.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-stable.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-stable.xcconfig"; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
+		A15F1E13F500000000000003 /* AssistantFriendMatchingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantFriendMatchingTests.swift; sourceTree = "<group>"; };
+		A15F1E13F500000000000007 /* AssistantSendAndCallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantSendAndCallTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C33869E199AFDBEFD8ABB7 /* Pods-RunnerTests.release-canary.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release-canary.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release-canary.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
@@ -164,6 +169,7 @@
 		EC42DC11DD13693F95FB8324 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
 		FB0ADAC12F5C91D50078A4D4 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		FB0ADAC42F5C91D70078A4D4 /* ApplePushBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePushBridge.swift; sourceTree = "<group>"; };
+		FBC1A0012F9E220100EA2F01 /* PhysicalKeyboardBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalKeyboardBridge.swift; sourceTree = "<group>"; };
 		FB0ADBE32F5C93000078A4F3 /* direct_message.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = direct_message.caf; sourceTree = "<group>"; };
 		FB0ADBE02F5C93000078A4F0 /* message.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.caf; sourceTree = "<group>"; };
 		FB0ADAC82F5C91D80078A4D4 /* PushNotificationPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationPayload.swift; sourceTree = "<group>"; };
@@ -257,6 +263,17 @@
 			path = NotificationService;
 			sourceTree = "<group>";
 		};
+		FC0A55157A00000100000010 /* Assistant */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Assistant;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +337,8 @@
 		331C8082294A63A400263BE5 /* RunnerTests */ = {
 			isa = PBXGroup;
 			children = (
+				A15F1E13F500000000000003 /* AssistantFriendMatchingTests.swift */,
+				A15F1E13F500000000000007 /* AssistantSendAndCallTests.swift */,
 				331C807B294A618700263BE5 /* RunnerTests.swift */,
 			);
 			path = RunnerTests;
@@ -378,6 +397,8 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				FB0ADAC42F5C91D70078A4D4 /* ApplePushBridge.swift */,
+				FBC1A0012F9E220100EA2F01 /* PhysicalKeyboardBridge.swift */,
+				FC0A55157A00000100000010 /* Assistant */,
 				7884E8672EC3CC0400C636F2 /* SceneDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 			);
@@ -521,6 +542,9 @@
 				FBA74A072F83B0FA00330527 /* PBXTargetDependency */,
 				FBBF3E5E2FB7A6FD0080FF5E /* PBXTargetDependency */,
 				59884F2F63C34E9482EC5A90 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FC0A55157A00000100000010 /* Assistant */,
 			);
 			name = Runner;
 			packageProductDependencies = (
@@ -790,6 +814,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */,
+				A15F1E13F500000000000004 /* AssistantFriendMatchingTests.swift in Sources */,
+				A15F1E13F500000000000008 /* AssistantSendAndCallTests.swift in Sources */,
 				FB0ADAC92F5C91D80078A4D6 /* PushNotificationPayload.swift in Sources */,
 				FB0ADACD2F5C91D80078A4D9 /* ForegroundPushNotificationPolicy.swift in Sources */,
 				FB0ADB0C2F5C92000078A4EC /* NotificationImageAttachment.swift in Sources */,
@@ -804,6 +830,7 @@
 			files = (
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				FB0ADAC52F5C91D70078A4D4 /* ApplePushBridge.swift in Sources */,
+				FBC1A0022F9E220100EA2F01 /* PhysicalKeyboardBridge.swift in Sources */,
 				FB0ADAC62F5C91D80078A4D4 /* PushNotificationPayload.swift in Sources */,
 				FB0ADACB2F5C91D80078A4D7 /* ForegroundPushNotificationPolicy.swift in Sources */,
 				FB0ADB042F5C92000078A4E4 /* NotificationImageAttachment.swift in Sources */,
@@ -988,7 +1015,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
@@ -1011,7 +1038,7 @@
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = echowire;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1038,7 +1065,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.echowire.ios.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1057,7 +1084,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.echowire.ios.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1074,7 +1101,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.echowire.ios.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1453,7 +1480,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1505,7 +1532,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
@@ -1530,7 +1557,7 @@
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = echowire;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1563,7 +1590,7 @@
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = echowire;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1688,7 +1715,7 @@
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "echowire canary";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1717,7 +1744,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1736,7 +1763,7 @@
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "echowire canary";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1809,7 +1836,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1828,7 +1855,7 @@
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "echowire canary";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1856,7 +1883,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1968,7 +1995,7 @@
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = echowire;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1997,7 +2024,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};
@@ -2016,7 +2043,7 @@
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = echowire;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2044,7 +2071,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};
@@ -2063,7 +2090,7 @@
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = echowire;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2091,7 +2118,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};
@@ -2101,7 +2128,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 54B5F69891A808A2982536F3 /* Pods-RunnerTests.debug-canary.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_NAME = RunnerTests;
 			};
 			name = "Debug-canary";
@@ -2110,7 +2137,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 52A13F4ABC9779741F77C09D /* Pods-RunnerTests.debug-stable.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_NAME = RunnerTests;
 			};
 			name = "Debug-stable";
@@ -2119,7 +2146,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7318F822EA4964C7B0F58847 /* Pods-RunnerTests.debug-beta.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_NAME = RunnerTests;
 			};
 			name = "Debug-beta";
@@ -2128,7 +2155,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 35C33869E199AFDBEFD8ABB7 /* Pods-RunnerTests.release-canary.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_NAME = RunnerTests;
 			};
 			name = "Release-canary";
@@ -2137,7 +2164,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FD58880BB4495395298E1AE8 /* Pods-RunnerTests.release-stable.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_NAME = RunnerTests;
 			};
 			name = "Release-stable";
@@ -2146,7 +2173,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C35AB7B31433FBA527EF547 /* Pods-RunnerTests.release-beta.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_NAME = RunnerTests;
 			};
 			name = "Release-beta";
@@ -2155,7 +2182,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E535D3223D7997B1F27DF7C /* Pods-RunnerTests.profile-canary.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_NAME = RunnerTests;
 			};
 			name = "Profile-canary";
@@ -2164,7 +2191,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E6A7B568B45862F9F5F2219A /* Pods-RunnerTests.profile-stable.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_NAME = RunnerTests;
 			};
 			name = "Profile-stable";
@@ -2173,7 +2200,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 323C4FE138C3CFF89A4B107B /* Pods-RunnerTests.profile-beta.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_NAME = RunnerTests;
 			};
 			name = "Profile-beta";
@@ -3259,7 +3286,7 @@
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "echowire beta";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3288,7 +3315,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};
@@ -3307,7 +3334,7 @@
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "echowire beta";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3335,7 +3362,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};
@@ -3354,7 +3381,7 @@
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "echowire beta";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3382,7 +3409,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};

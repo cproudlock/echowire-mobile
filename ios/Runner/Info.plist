@@ -26,6 +26,8 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleSpokenName</key>
+	<string>echo wire</string>
 	<key>AppGroupId</key>
 	<string>$(CUSTOM_GROUP_ID)</string>
 	<key>CFBundleURLTypes</key>

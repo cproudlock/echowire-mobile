@@ -1,4 +1,5 @@
 import AVFAudio
+import AppIntents
 import CallKit
 import Flutter
 import UIKit
@@ -14,6 +15,7 @@ import flutter_callkit_incoming
   ) -> Bool {
     let result = super.application(application, didFinishLaunchingWithOptions: launchOptions)
     UNUserNotificationCenter.current().delegate = self
+    AssistantAppShortcuts.updateAppShortcutParameters()
     return result
   }
 
@@ -89,13 +91,11 @@ import flutter_callkit_incoming
     )
   }
 
-// echowire: upstream's Siri Assistant and physical keyboard bridges are not wired up
-// here. Their Swift sources sit in ios/Runner/Assistant and PhysicalKeyboardBridge.swift but
-// are absent from our rebranded Xcode project, so registering them would not compile. Adopting
-// them needs the project file edited on a Mac, where the build can be verified.
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
     ApplePushBridge.shared.register(engineBridge: engineBridge)
+    AssistantBridge.shared.register(engineBridge: engineBridge)
+    PhysicalKeyboardBridge.shared.register(engineBridge: engineBridge)
   }
 
   func onAccept(_ call: Call, _ action: CXAnswerCallAction) {

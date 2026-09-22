@@ -107,7 +107,7 @@ workflows:
     publishing:
       app_store_connect:
         auth: integration
-        submit_to_testflight: true
+        submit_to_testflight: false # echowire: compile check only on this branch; set back to true before releasing
         # Only EXTERNAL groups go here (internal groups auto-receive builds and
         # the API rejects assigning to them). "Public Beta" is an external group;
         # its first build per version goes through Apple Beta App Review before

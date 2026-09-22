@@ -7,7 +7,7 @@ import 'package:fluxer_app/features/channels/domain/channel_overview_update.dart
 import 'package:fluxer_app/features/channels/domain/channel_permission_overwrite_update.dart';
 import 'package:fluxer_app/features/channels/domain/forum_view.dart';
 import 'package:fluxer_app/shared/utils/sdk_converters.dart';
-import 'package:fluxer_dart/export.dart';
+import 'package:fluxer_dart/export.dart' hide ChannelType;
 
 class ChannelRepository {
   final FluxerClient _client;
@@ -96,10 +96,11 @@ class ChannelRepository {
     required Channel channel,
     required List<ChannelPermissionOverwriteEntry> overwrites,
   }) {
-    final ChannelUpdateRequest body = buildChannelPermissionOverwritesUpdate(
-      channel: channel,
-      overwrites: overwrites,
-    );
+    final ChannelUpdateRequestBodyVariant1 body =
+        buildChannelPermissionOverwritesUpdate(
+          channel: channel,
+          overwrites: overwrites,
+        );
     return _patchChannel(channel.id, channel.guildId, body);
   }
 
@@ -174,7 +175,7 @@ class ChannelRepository {
   Future<Channel> _patchChannel(
     String channelId,
     String guildId,
-    ChannelUpdateRequest body,
+    ChannelUpdateRequestBodyVariant1 body,
   ) {
     return _patchChannelBody(
       channelId,

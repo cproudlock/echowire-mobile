@@ -4,7 +4,7 @@ import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/domain/forum_view.dart';
 import 'package:fluxer_app/shared/utils/sdk_converters.dart';
-import 'package:fluxer_dart/export.dart';
+import 'package:fluxer_dart/export.dart' hide ChannelType;
 
 /// Echowire: create, list, and moderate threads + forum posts.
 ///

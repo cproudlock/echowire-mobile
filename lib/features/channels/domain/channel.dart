@@ -197,6 +197,26 @@ class Channel {
     int? bitrate,
     String? rtcRegion,
     int? voiceConnectionLimit,
+    // Echowire: the tail pointer and the thread/forum fields. Without these a
+    // copyWith silently erased thread state, so an edited channel came back
+    // looking like a plain text channel.
+    String? lastMessageId,
+    String? ownerId,
+    bool? threadArchived,
+    int? threadAutoArchiveDuration,
+    String? threadArchiveTimestamp,
+    bool? threadLocked,
+    bool? threadInvitable,
+    String? threadCreateTimestamp,
+    int? threadMemberCount,
+    int? threadMessageCount,
+    bool? threadPinned,
+    List<String>? appliedTags,
+    List<ForumTag>? availableTags,
+    int? defaultSortOrder,
+    int? forumDefaultAutoArchiveDuration,
+    bool? forumRequireTag,
+    String? defaultReactionEmojiJson,
   }) {
     return Channel(
       id: id ?? this.id,
@@ -218,6 +238,29 @@ class Channel {
       bitrate: bitrate ?? this.bitrate,
       rtcRegion: rtcRegion ?? this.rtcRegion,
       voiceConnectionLimit: voiceConnectionLimit ?? this.voiceConnectionLimit,
+      lastMessageId: lastMessageId ?? this.lastMessageId,
+      ownerId: ownerId ?? this.ownerId,
+      threadArchived: threadArchived ?? this.threadArchived,
+      threadAutoArchiveDuration:
+          threadAutoArchiveDuration ?? this.threadAutoArchiveDuration,
+      threadArchiveTimestamp:
+          threadArchiveTimestamp ?? this.threadArchiveTimestamp,
+      threadLocked: threadLocked ?? this.threadLocked,
+      threadInvitable: threadInvitable ?? this.threadInvitable,
+      threadCreateTimestamp:
+          threadCreateTimestamp ?? this.threadCreateTimestamp,
+      threadMemberCount: threadMemberCount ?? this.threadMemberCount,
+      threadMessageCount: threadMessageCount ?? this.threadMessageCount,
+      threadPinned: threadPinned ?? this.threadPinned,
+      appliedTags: appliedTags ?? this.appliedTags,
+      availableTags: availableTags ?? this.availableTags,
+      defaultSortOrder: defaultSortOrder ?? this.defaultSortOrder,
+      forumDefaultAutoArchiveDuration:
+          forumDefaultAutoArchiveDuration ??
+          this.forumDefaultAutoArchiveDuration,
+      forumRequireTag: forumRequireTag ?? this.forumRequireTag,
+      defaultReactionEmojiJson:
+          defaultReactionEmojiJson ?? this.defaultReactionEmojiJson,
     );
   }
 
@@ -357,6 +400,19 @@ class Channel {
     }
     return compareSnowflakeStrings(last, id) > 0 ? last : id;
   }
+
+  /// Echowire: equality that ignores [lastMessageId], for watchers that must
+  /// not churn on every incoming message. The tail pointer feeds [activityId]
+  /// only, and forum and thread lists read that from the thread repository
+  /// rather than from a channel watch. This delegates to [==] after
+  /// neutralising the pointer on both sides, so a field added later cannot be
+  /// forgotten here the way it was in [copyWith].
+  bool sameExceptLastMessage(Channel other) =>
+      copyWith(lastMessageId: _tailPlaceholder) ==
+      other.copyWith(lastMessageId: _tailPlaceholder);
+
+  /// Not a valid snowflake, so it cannot collide with a real pointer.
+  static const String _tailPlaceholder = '-';
 
   @override
   bool operator ==(Object other) {

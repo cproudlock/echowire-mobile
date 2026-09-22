@@ -27,7 +27,15 @@ Stream<Channel?> channelById(Ref ref, String id) {
   return db.channelDao
       .watchChannelById(id)
       .map((row) => row == null ? null : Channel.fromRow(row))
-      .distinct();
+      // Echowire: a lastMessageId-only write must not re-emit. The tail
+      // pointer moves on every message, and this provider is watched from
+      // composer permissions and from per-message widgets, so including it
+      // rebuilt those on every message in the channel.
+      .distinct(
+        (Channel? previous, Channel? next) => previous == null || next == null
+            ? previous == next
+            : previous.sameExceptLastMessage(next),
+      );
 }
 
 /// Echowire: resolve a channel the local database does not hold, by asking the

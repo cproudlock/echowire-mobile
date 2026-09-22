@@ -104,7 +104,9 @@ void main() {
         ),
         authorName: 'Monty',
       );
-      expect(text, 'Update Fluxer to view this message.');
+      // Built from the same string and product name the code uses, so a
+      // rebrand cannot turn this into a false failure.
+      expect(text, l10n.systemUnknownMessage(kFluxerProductName));
     });
   });
 

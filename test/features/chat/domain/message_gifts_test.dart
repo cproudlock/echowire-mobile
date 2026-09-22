@@ -13,6 +13,12 @@ void main() {
     timestamp: DateTime.utc(2026),
   );
 
+  // The default gift base is instance-specific, so build the links under test
+  // from it. Hardcoding a host made these assertions brand-dependent: four
+  // failed outright on a rebranded default, and three more passed vacuously,
+  // because a link on a foreign host yields no codes whatever the parser does.
+  String giftUrl(String code) => '${InstanceEndpoints.gift}/$code';
+
   setUp(InstanceEndpoints.resetToDefaults);
 
   tearDown(InstanceEndpoints.resetToDefaults);
@@ -23,10 +29,9 @@ void main() {
     });
 
     test('extracts codes from the instance gift base', () {
-      expect(
-        msg('claim https://fluxer.app/gift/ABCD-1234 please').gifts,
-        <String>['ABCD-1234'],
-      );
+      expect(msg('claim ${giftUrl('ABCD-1234')} please').gifts, <String>[
+        'ABCD-1234',
+      ]);
     });
 
     test('uses well-known gift base host and path', () {
@@ -45,33 +50,30 @@ void main() {
     });
 
     test('dedupes repeated codes', () {
-      expect(
-        msg('https://fluxer.app/gift/dup https://fluxer.app/gift/dup').gifts,
-        <String>['dup'],
-      );
+      expect(msg('${giftUrl('dup')} ${giftUrl('dup')}').gifts, <String>['dup']);
     });
 
     test('caps at 10 codes', () {
       final content = List<String>.generate(
         15,
-        (int i) => 'https://fluxer.app/gift/code$i',
+        (int i) => giftUrl('code$i'),
       ).join(' ');
       expect(msg(content).gifts, hasLength(10));
     });
 
     test('ignores gift inside fenced code block', () {
-      expect(msg('```\nhttps://fluxer.app/gift/abcd\n```').gifts, isEmpty);
+      expect(msg('```\n${giftUrl('abcd')}\n```').gifts, isEmpty);
     });
 
     test('ignores gift inside inline code', () {
-      expect(msg('use `https://fluxer.app/gift/abcd` here').gifts, isEmpty);
+      expect(msg('use `${giftUrl('abcd')}` here').gifts, isEmpty);
     });
 
     test('still extracts gift outside code block', () {
       expect(
         msg(
-          '```https://fluxer.app/gift/hidden``` '
-          'open https://fluxer.app/gift/plain',
+          '```${giftUrl('hidden')}``` '
+          'open ${giftUrl('plain')}',
         ).gifts,
         <String>['plain'],
       );

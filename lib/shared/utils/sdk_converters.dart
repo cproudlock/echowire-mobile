@@ -179,14 +179,7 @@ ChannelResponse channelResponseFromRow(db.Channel row) {
     ),
     nsfw: row.nsfw,
     nsfwOverride: row.nsfwOverride,
-    // Echowire: upstream's c87ac3c5 adaptation passed the request-side
-    // ContentWarningLevelInput here. ChannelResponse wants the response-side
-    // ContentWarningLevel, and the regenerated constructor takes Object? for
-    // optional fields, so the mismatch is a runtime cast failure the analyzer
-    // cannot see.
-    contentWarningLevel: ContentWarningLevel.fromJson(
-      row.contentWarningLevel,
-    ),
+    contentWarningLevel: ContentWarningLevel.fromJson(row.contentWarningLevel),
     contentWarningText: row.contentWarningText,
     rateLimitPerUser: row.rateLimitPerUser,
     userLimit: row.userLimit,

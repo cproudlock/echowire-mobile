@@ -90,8 +90,8 @@ List<GuildNavbarItem> computeOrganizedGuildList({
           id: folder.id!,
           name: folder.name,
           color: folder.color,
-          flags: folder.flags ?? 0,
-          icon: folder.icon?.json,
+          flags: folder.flags,
+          icon: folder.icon.json,
           guilds: folderGuilds,
         ),
       );

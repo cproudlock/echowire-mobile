@@ -6361,6 +6361,12 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get chatMessageReply => '답장';
 
   @override
+  String get notificationReplyPlaceholder => 'Message';
+
+  @override
+  String get notificationReplyFailed => 'Couldn\'t send reply';
+
+  @override
   String get chatMessageForward => '전달';
 
   @override

@@ -1,15 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
-import 'package:fluxer_fcm/fcm_background_handler.dart';
-import 'package:fluxer_fcm/fcm_push_message.dart';
 import 'package:fluxer_fcm/fcm_background_display_hooks.dart';
 import 'package:fluxer_fcm/fcm_background_notification_tap_hooks.dart';
+import 'package:fluxer_fcm/fcm_push_message.dart';
 import 'package:fluxer_fcm/fcm_system_notification_cancel_hooks.dart';
-import 'package:fluxer_fcm/firebase_options.dart';
 import 'package:fluxer_fcm/fcm_tap_payload_cache_hooks.dart';
+import 'package:fluxer_fcm/firebase_options.dart';
 import 'package:fluxer_fcm/fluxer_fcm_push_service.dart';
 
+// Echowire: upstream stripped these along with the plaintext push stack when
+// it moved to encrypted web push only. They are still needed while this
+// instance sends plaintext, because the background handler and the app
+// entrypoint both wire themselves up through configure().
 typedef FcmTapPayloadEnricher =
     Future<Map<String, String>> Function({
       required Map<String, String> mappedPayload,

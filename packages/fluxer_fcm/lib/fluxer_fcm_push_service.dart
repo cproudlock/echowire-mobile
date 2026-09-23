@@ -5,7 +5,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluxer_fcm/fcm_message_mapper.dart';
 import 'package:fluxer_fcm/fcm_push_message.dart';
-import 'package:fluxer_fcm/fcm_tap_payload_cache_hooks.dart';
 
 class FluxerFcmPushService {
   factory FluxerFcmPushService() => instance;
@@ -16,6 +15,8 @@ class FluxerFcmPushService {
 
   final StreamController<FcmPushMessage> _messages =
       StreamController<FcmPushMessage>.broadcast();
+  final StreamController<String> _ciphertext =
+      StreamController<String>.broadcast();
   final StreamController<String> _tokenRefresh =
       StreamController<String>.broadcast();
 
@@ -25,13 +26,6 @@ class FluxerFcmPushService {
   StreamSubscription<RemoteMessage>? _onMessageSubscription;
   StreamSubscription<RemoteMessage>? _onMessageOpenedAppSubscription;
   StreamSubscription<String>? _onTokenRefreshSubscription;
-
-  /// Optional hook to restore navigation fields stripped from hybrid FCM taps.
-  Future<Map<String, String>> Function(
-    RemoteMessage message,
-    Map<String, String> mappedPayload,
-  )?
-  tapPayloadEnricher;
 
   bool Function(FcmPushMessage message)? _foregroundMessageFilter;
 
@@ -115,7 +109,7 @@ class FluxerFcmPushService {
           'id=${initialMessage.messageId} data=${initialMessage.data}',
         );
       }
-      await _dispatchTap(initialMessage);
+      _dispatchTap(initialMessage);
     }
     _initialized = true;
     if (kDebugMode) {
@@ -127,31 +121,34 @@ class FluxerFcmPushService {
     return FirebaseMessaging.instance.getToken();
   }
 
+  /// Echowire: enriches a plaintext tap payload from the cache before it is
+  /// dispatched. Upstream removed this with the plaintext stack; without it a
+  /// tapped notification loses its cached navigation context.
+  Future<Map<String, String>> Function(
+    RemoteMessage message,
+    Map<String, String> mappedPayload,
+  )?
+  tapPayloadEnricher;
+
   Stream<FcmPushMessage> watchMessages() => _messages.stream;
 
-  void _onForegroundMessage(RemoteMessage message) {
-    final FcmPushMessage mapped = mapRemoteMessage(message);
-    if (!shouldProcessForegroundMessage(mapped)) {
-      return;
-    }
-    if (kDebugMode) {
-      debugPrint('[FluxerFcmPushService] foreground id=${mapped.id}');
-    }
-    unawaited(_cacheTapPayloadIfNeeded(message, mapped.payload));
-    _messages.add(mapped);
-  }
+  Stream<String> watchCiphertext() => _ciphertext.stream;
 
-  Future<void> _cacheTapPayloadIfNeeded(
-    RemoteMessage message,
-    Map<String, String> payload,
-  ) async {
-    if (!FcmTapPayloadCacheHooks.shouldSaveTapPayloadCache(payload)) {
+  void _onForegroundMessage(RemoteMessage message) {
+    final String? ciphertext = extractFcmCiphertext(message.data);
+    if (ciphertext != null) {
+      if (kDebugMode) {
+        debugPrint('[FluxerFcmPushService] foreground ciphertext');
+      }
+      _ciphertext.add(ciphertext);
       return;
     }
-    await FcmTapPayloadCacheHooks.saveTapPayloadCache(
-      payload: payload,
-      gcmMessageId: message.messageId,
-    );
+    // Echowire: plaintext fallback while the server relay is disabled.
+    // Upstream returns here and the notification is silently dropped.
+    if (kDebugMode) {
+      debugPrint('[FluxerFcmPushService] foreground plaintext');
+    }
+    _messages.add(mapRemoteMessage(message));
   }
 
   void _onMessageOpenedApp(RemoteMessage message) {
@@ -161,12 +158,25 @@ class FluxerFcmPushService {
         'id=${message.messageId} data=${message.data}',
       );
     }
-    unawaited(_dispatchTap(message));
+    _dispatchTap(message);
   }
 
-  Future<void> _dispatchTap(RemoteMessage message) async {
-    final FcmPushMessage mapped = mapRemoteMessage(message);
-    Map<String, String> payload = mapped.payload;
+  void _dispatchTap(RemoteMessage message) {
+    final String? ciphertext = extractFcmCiphertext(message.data);
+    if (ciphertext != null) {
+      if (kDebugMode) {
+        debugPrint('[FluxerFcmPushService] tap ciphertext');
+      }
+      _dispatchTapPayload(<String, String>{'p': ciphertext});
+      return;
+    }
+    // Echowire: a plaintext tap still has to carry its navigation payload,
+    // enriched from the cache, otherwise opening it lands nowhere.
+    unawaited(_dispatchPlaintextTap(message));
+  }
+
+  Future<void> _dispatchPlaintextTap(RemoteMessage message) async {
+    Map<String, String> payload = mapRemoteMessage(message).payload;
     final Future<Map<String, String>> Function(
       RemoteMessage message,
       Map<String, String> mappedPayload,
@@ -176,7 +186,7 @@ class FluxerFcmPushService {
       payload = await enricher(message, payload);
     }
     if (kDebugMode) {
-      debugPrint('[FluxerFcmPushService] tap payload=$payload');
+      debugPrint('[FluxerFcmPushService] tap plaintext payload=$payload');
     }
     _dispatchTapPayload(payload);
   }
@@ -208,7 +218,5 @@ class FluxerFcmPushService {
     _onMessageOpenedAppSubscription = null;
     _onTokenRefreshSubscription = null;
     _foregroundMessageFilter = null;
-    tapPayloadEnricher = null;
-    FcmTapPayloadCacheHooks.resetForTesting();
   }
 }

@@ -6704,6 +6704,12 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get chatMessageReply => 'Atsakyti';
 
   @override
+  String get notificationReplyPlaceholder => 'Message';
+
+  @override
+  String get notificationReplyFailed => 'Couldn\'t send reply';
+
+  @override
   String get chatMessageForward => 'Persiųsti';
 
   @override

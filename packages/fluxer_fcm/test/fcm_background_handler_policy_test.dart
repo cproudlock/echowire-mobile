@@ -21,7 +21,13 @@ void main() {
       );
     });
 
-    test('skips hybrid messages when display hook is unset', () {
+    // Echowire: this asserted isFalse, which stopped being true when the fork
+    // made the policy always display. The app ships a custom receiver that
+    // suppresses the OS rendering the notification block, so returning false
+    // here dropped every notification+data push silently. The policy comment
+    // records that fix; this test had been left asserting the old contract and
+    // failing.
+    test('displays hybrid messages even when the display hook is unset', () {
       final RemoteMessage input = RemoteMessage(
         messageId: 'msg-hybrid',
         data: <String, String>{'channel_id': '2', 'url': '/channels/@me/2/1'},
@@ -30,7 +36,8 @@ void main() {
       final FcmPushMessage mapped = mapRemoteMessage(input);
       expect(
         shouldDisplayFcmBackgroundLocalNotification(input, mapped),
-        isFalse,
+        isTrue,
+        reason: 'the custom receiver means nothing else can display it',
       );
     });
 

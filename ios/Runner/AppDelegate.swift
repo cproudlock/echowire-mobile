@@ -14,6 +14,7 @@ import flutter_callkit_incoming
   ) -> Bool {
     let result = super.application(application, didFinishLaunchingWithOptions: launchOptions)
     UNUserNotificationCenter.current().delegate = self
+    ApplePushBridge.shared.registerReplyCategory()
     return result
   }
 
@@ -40,12 +41,8 @@ import flutter_callkit_incoming
   ) {
     ApplePushBridge.shared.handleRemoteNotification(
       userInfo: userInfo,
-      applicationState: application.applicationState
-    )
-    super.application(
-      application,
-      didReceiveRemoteNotification: userInfo,
-      fetchCompletionHandler: completionHandler
+      applicationState: application.applicationState,
+      completion: completionHandler
     )
   }
 
@@ -73,6 +70,15 @@ import flutter_callkit_incoming
     didReceive response: UNNotificationResponse,
     withCompletionHandler completionHandler: @escaping () -> Void
   ) {
+    if response.actionIdentifier == PushNotificationPayload.messageReplyActionId {
+      let text = (response as? UNTextInputNotificationResponse)?.userText ?? ""
+      ApplePushBridge.shared.handleNotificationReply(
+        text: text,
+        userInfo: response.notification.request.content.userInfo,
+        completion: completionHandler
+      )
+      return
+    }
     if response.actionIdentifier == CallkitNotificationManager.CALLBACK_ACTION {
       let data = response.notification.request.content.userInfo as? [String: Any]
       SwiftFlutterCallkitIncomingPlugin.sharedInstance?.sendCallbackEvent(data)
@@ -89,13 +95,16 @@ import flutter_callkit_incoming
     )
   }
 
-// echowire: upstream's Siri Assistant and physical keyboard bridges are not wired up
-// here. Their Swift sources sit in ios/Runner/Assistant and PhysicalKeyboardBridge.swift but
-// are absent from our rebranded Xcode project, so registering them would not compile. Adopting
-// them needs the project file edited on a Mac, where the build can be verified.
+// echowire: the Apple push reply category IS registered above, because
+// ApplePushBridge is in our Xcode project. Upstream's Siri Assistant and physical
+// keyboard bridges are still not wired up: their Swift sources sit in
+// ios/Runner/Assistant and PhysicalKeyboardBridge.swift but are absent from our
+// rebranded Xcode project, so registering them would not compile. Adopting them
+// needs the project file edited on a Mac, where the build can be verified.
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
     ApplePushBridge.shared.register(engineBridge: engineBridge)
+    ApplePushBridge.shared.registerReplyCategory()
   }
 
   func onAccept(_ call: Call, _ action: CXAnswerCallAction) {

@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:fluxer_fcm/fcm_background_handler_policy.dart';
 import 'package:fluxer_fcm/fcm_background_local_notifications.dart';
 import 'package:fluxer_fcm/fcm_background_notification_clear.dart';
+import 'package:fluxer_fcm/fcm_ciphertext_hooks.dart';
 import 'package:fluxer_fcm/fcm_message_mapper.dart';
 import 'package:fluxer_fcm/fcm_push_message.dart';
 import 'package:fluxer_fcm/firebase_options.dart';
@@ -19,13 +20,18 @@ Future<void> fcmBackgroundMessageHandler(RemoteMessage message) async {
         options: DefaultFirebaseOptions.currentPlatform,
       );
     }
-    if (kDebugMode) {
-      debugPrint(
-        '[FCM] background message id=${message.messageId} '
-        'hasNotification=${message.notification != null} '
-        'data=${message.data}',
-      );
+    final String? ciphertext = extractFcmCiphertext(message.data);
+    if (ciphertext != null) {
+      final FcmCiphertextHandler? handler = FcmCiphertextHooks.onCiphertext;
+      if (handler == null) {
+        return;
+      }
+      await handler(ciphertextBase64: ciphertext, backgroundMode: true);
+      return;
     }
+    // Echowire: plaintext fallback while the server relay is disabled, so a
+    // backgrounded device still shows and can clear notifications. Upstream
+    // returns above and shows nothing.
     final FcmPushMessage mapped = mapRemoteMessage(message);
     if (shouldHandleFcmBackgroundNotificationClear(mapped)) {
       await handleFcmBackgroundNotificationClear(mapped);

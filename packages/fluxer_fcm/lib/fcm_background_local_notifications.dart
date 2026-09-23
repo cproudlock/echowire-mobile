@@ -11,8 +11,11 @@ import 'package:fluxer_fcm/fcm_push_message.dart';
 import 'package:fluxer_fcm/fcm_push_notification_ids.dart';
 import 'package:fluxer_fcm/fcm_push_notification_sound.dart';
 
+// Echowire: the channel ID must never change, because Android keys the user's
+// per-channel notification preferences on it and a new ID silently resets them.
+// The name is what the user reads in system settings, so it is rebranded.
 const String kFcmBackgroundNotificationChannelId = 'fluxer_default_push';
-const String kFcmBackgroundNotificationChannelName = 'Fluxer';
+const String kFcmBackgroundNotificationChannelName = 'echowire';
 const String kFcmBackgroundNotificationChannelDescription =
     'Messages and alerts';
 const String kFcmBackgroundNotificationIcon =

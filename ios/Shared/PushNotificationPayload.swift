@@ -4,6 +4,28 @@ import UserNotifications
 /// APNs payload helpers: channel `thread-id` for grouping, `message_id` for per-message identity.
 /// Remote pushes need a per-message `apns-collapse-id` (or none); channel-scoped collapse replaces prior messages.
 enum PushNotificationPayload {
+  static let messageReplyCategoryId = "fluxer_message"
+  static let messageReplyActionId = "fluxer_reply"
+
+  static func canReply(from userInfo: [AnyHashable: Any]) -> Bool {
+    if isClearPayload(from: userInfo) {
+      return false
+    }
+    return resolveChannelId(from: userInfo) != nil && replyMessageId(from: userInfo) != nil
+  }
+
+  static func replyMessageId(from userInfo: [AnyHashable: Any]) -> String? {
+    if let messageId = userInfo["message_id"] as? String, !messageId.isEmpty {
+      return messageId
+    }
+    if let data = userInfo["data"] as? [AnyHashable: Any],
+      let messageId = data["message_id"] as? String, !messageId.isEmpty
+    {
+      return messageId
+    }
+    return nil
+  }
+
   static func resolveThreadIdentifier(from userInfo: [AnyHashable: Any]) -> String? {
     resolveChannelThreadIdentifier(from: userInfo)
   }
@@ -26,13 +48,8 @@ enum PushNotificationPayload {
   }
 
   static func resolveMessageId(from userInfo: [AnyHashable: Any]) -> String? {
-    if let messageId = userInfo["message_id"] as? String, !messageId.isEmpty {
+    if let messageId = replyMessageId(from: userInfo) {
       return messageId
-    }
-    if let data = userInfo["data"] as? [AnyHashable: Any] {
-      if let messageId = data["message_id"] as? String, !messageId.isEmpty {
-        return messageId
-      }
     }
     if let id = userInfo["id"] as? String, !id.isEmpty {
       return id
@@ -50,7 +67,7 @@ enum PushNotificationPayload {
   }
 
   static func hasApsAlert(_ userInfo: [AnyHashable: Any]) -> Bool {
-    guard let aps = userInfo["aps"] as? [String: Any] else {
+    guard let aps = userInfo["aps"] as? [AnyHashable: Any] else {
       return false
     }
     return aps["alert"] != nil
@@ -113,8 +130,9 @@ enum PushNotificationPayload {
       threadId.hasPrefix("channel:")
     {
       let suffix = String(threadId.dropFirst("channel:".count))
-      if !suffix.isEmpty {
-        return suffix
+      let channelPart = suffix.split(separator: ":", maxSplits: 1).first.map(String.init) ?? ""
+      if !channelPart.isEmpty {
+        return channelPart
       }
     }
     if let url = resolveNavigationUrl(from: userInfo) {
@@ -172,18 +190,26 @@ enum PushNotificationPayload {
     channelId: String
   ) -> Bool {
     let userInfo = notification.request.content.userInfo
-    if let resolvedChannelId = resolveChannelId(from: userInfo), resolvedChannelId == channelId {
-      return true
+    if let resolvedChannelId = resolveChannelId(from: userInfo) {
+      return resolvedChannelId == channelId
     }
     let channelTag = "channel:\(channelId)"
-    if let threadId = resolveChannelThreadIdentifier(from: userInfo),
-      threadId == channelTag || threadId == channelId
+    let contentThread = notification.request.content.threadIdentifier
+    if contentThread == channelTag ||
+      contentThread == channelId ||
+      contentThread.hasPrefix("\(channelTag):")
     {
       return true
     }
-    if let messageId = resolveMessageId(from: userInfo),
-      notification.request.identifier == messageId
+    if let threadId = resolveChannelThreadIdentifier(from: userInfo),
+      threadId == channelTag ||
+      threadId == channelId ||
+      threadId.hasPrefix("\(channelTag):")
     {
+      return true
+    }
+    let tag = (userInfo["tag"] as? String) ?? (userInfo["notification_tag"] as? String)
+    if let tag, tag == channelTag || tag.hasPrefix("\(channelTag):") {
       return true
     }
     return false

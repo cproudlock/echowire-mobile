@@ -20,6 +20,7 @@ import 'package:fluxer_app/core/providers/active_instance_provider.dart';
 import 'package:fluxer_app/core/providers/app_startup_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/push/fcm/fcm_entrypoint.dart';
+import 'package:fluxer_app/core/push/services/apple_push_service.dart';
 import 'package:fluxer_app/core/push/services/unified_push_service.dart';
 import 'package:fluxer_app/features/auth/providers/auth_providers.dart';
 import 'package:fluxer_app/features/settings/providers/haptics_preferences_provider.dart';
@@ -77,6 +78,7 @@ void _configureFluxerErrorReporting() {
 
 Future<void> _bootstrapFluxer(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
+  unawaited(ApplePushService.installReplyHandler());
   PointerDeliveryProfiler.instance.attach();
   assertPushProviderBuildConfig();
   if (!kIsWeb &&

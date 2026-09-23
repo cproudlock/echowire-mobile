@@ -10,6 +10,7 @@ import 'package:fluxer_app/core/providers/app_ui_lifecycle_provider.dart';
 import 'package:fluxer_app/core/providers/push_provider.dart';
 import 'package:fluxer_app/core/push/push_notification_permission.dart';
 import 'package:fluxer_app/core/push/push_service.dart';
+import 'package:fluxer_app/core/push/relay_registration.dart';
 import 'package:fluxer_app/core/push/web_push/web_push_key_store.dart';
 import 'package:fluxer_app/core/push/web_push/web_push_registration.dart';
 import 'package:fluxer_app/core/push/web_push/web_push_relay.dart';
@@ -156,6 +157,17 @@ class ApnsMobileDeviceRegistration extends _$ApnsMobileDeviceRegistration {
       return;
     }
     const String environmentName = kDebugMode ? 'development' : 'production';
+    // Echowire: while the relay is disabled, register the raw APNs token our
+    // gateway sends to directly, and leave the legacy registration alone.
+    // See relay_registration.dart.
+    if (!kEchowireWebPushRegistrationEnabled) {
+      await _registerRawApnsToken(
+        userId: userId,
+        hex: hex,
+        environmentName: environmentName,
+      );
+      return;
+    }
     final String relayUrl = apnsRelayUrl(
       appId: AppBuildConfig.mobilePushAppId,
       environment: environmentName,
@@ -226,6 +238,43 @@ class ApnsMobileDeviceRegistration extends _$ApnsMobileDeviceRegistration {
 
   void _logApnsWarning(String message) {
     talker.warning('[ApnsMobileDeviceRegistration] $message');
+  }
+
+  /// Echowire: the pre-relay registration path, kept while
+  /// [kEchowireWebPushRegistrationEnabled] is false.
+  Future<void> _registerRawApnsToken({
+    required String userId,
+    required String hex,
+    required String environmentName,
+  }) async {
+    if (_lastRegisteredUserId == userId && _lastRegisteredRelayUrl == hex) {
+      _logApnsInfo('submit skipped: raw token already registered');
+      return;
+    }
+    final String appId = AppBuildConfig.mobilePushAppId;
+    _logApnsInfo(
+      'submitting APNs raw token userId=$userId appId=$appId '
+      'environment=$environmentName',
+    );
+    try {
+      await ref
+          .read(fluxerClientProvider)
+          .users
+          .registerMobilePushDevice(
+            body: RegisterMobileDeviceRequest(
+              platform: RegisterMobileDeviceRequestPlatformPlatform.iosApns,
+              token: hex,
+              userAgent: ref.read(fluxerClientPropertiesProvider).userAgent,
+              appId: appId,
+              providerEnvironment: _registerProviderEnvironment,
+            ),
+          );
+      _lastRegisteredUserId = userId;
+      _lastRegisteredRelayUrl = hex;
+      _lastRegisteredPublicKey = null;
+    } on DioException catch (error, stackTrace) {
+      _logApnsWarning('raw token registration failed: $error\n$stackTrace');
+    }
   }
 
   Future<void> unregisterCurrentToken() async {

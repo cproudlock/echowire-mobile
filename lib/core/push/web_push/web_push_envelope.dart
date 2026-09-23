@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:fluxer_app/core/push/push_message.dart';
 import 'package:fluxer_app/core/push/push_notification_payload.dart';
 
-const String kWebPushDefaultTitle = 'Fluxer';
+// Echowire: fallback title shown when a push payload carries none.
+const String kWebPushDefaultTitle = 'echowire';
 
 const String kWebPushDefaultBody = 'New message';
 

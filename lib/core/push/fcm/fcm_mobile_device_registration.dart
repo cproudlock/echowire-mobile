@@ -11,6 +11,7 @@ import 'package:fluxer_app/core/providers/app_ui_lifecycle_provider.dart';
 import 'package:fluxer_app/core/providers/push_provider.dart';
 import 'package:fluxer_app/core/push/push_notification_permission.dart';
 import 'package:fluxer_app/core/push/push_service.dart';
+import 'package:fluxer_app/core/push/relay_registration.dart';
 import 'package:fluxer_app/core/push/services/firebase_messaging_push_service.dart';
 import 'package:fluxer_app/core/push/web_push/web_push_key_store.dart';
 import 'package:fluxer_app/core/push/web_push/web_push_registration.dart';
@@ -136,6 +137,13 @@ class FcmMobileDeviceRegistration extends _$FcmMobileDeviceRegistration {
       }
       return;
     }
+    // Echowire: while the relay is disabled this registers the raw FCM token,
+    // which is what our gateway's direct send needs, and leaves the legacy
+    // registration in place instead of clearing it. See relay_registration.dart.
+    if (!kEchowireWebPushRegistrationEnabled) {
+      await _registerRawToken(userId: userId, token: token);
+      return;
+    }
     final String relayUrl = fcmRelayUrl(
       appId: AppBuildConfig.mobilePushAppId,
       deviceToken: token,
@@ -180,6 +188,42 @@ class FcmMobileDeviceRegistration extends _$FcmMobileDeviceRegistration {
       if (kDebugMode) {
         debugPrint(
           '[FcmMobileDeviceRegistration] registered relay for user $userId',
+        );
+      }
+    } on DioException catch (e, st) {
+      if (kDebugMode) {
+        debugPrint('[FcmMobileDeviceRegistration] register failed: $e\n$st');
+      }
+    }
+  }
+
+  /// Echowire: the pre-relay registration path, kept while
+  /// [kEchowireWebPushRegistrationEnabled] is false.
+  Future<void> _registerRawToken({
+    required String userId,
+    required String token,
+  }) async {
+    if (_lastRegisteredUserId == userId && _lastRegisteredRelayUrl == token) {
+      return;
+    }
+    try {
+      await ref
+          .read(fluxerClientProvider)
+          .users
+          .registerMobilePushDevice(
+            body: RegisterMobileDeviceRequest(
+              platform: RegisterMobileDeviceRequestPlatformPlatform.androidFcm,
+              token: token,
+              userAgent: ref.read(fluxerClientPropertiesProvider).userAgent,
+              appId: AppBuildConfig.mobilePushAppId,
+            ),
+          );
+      _lastRegisteredUserId = userId;
+      _lastRegisteredRelayUrl = token;
+      _lastRegisteredPublicKey = null;
+      if (kDebugMode) {
+        debugPrint(
+          '[FcmMobileDeviceRegistration] registered raw token for $userId',
         );
       }
     } on DioException catch (e, st) {

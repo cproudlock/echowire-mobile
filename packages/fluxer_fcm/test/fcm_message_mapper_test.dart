@@ -18,12 +18,18 @@ void main() {
       expect(message.body, isNull);
     });
 
-    test('ignores messages without ciphertext', () {
+    // Echowire: upstream maps a message without ciphertext to an empty
+    // payload, which shows nothing. This instance still sends plaintext while
+    // the server relay is disabled, so the mapper falls back instead of
+    // dropping. See fcm_dual_path_test.dart.
+    test('falls back to plaintext when there is no ciphertext', () {
       final RemoteMessage input = RemoteMessage(
         data: <String, String>{'title': 'from-data', 'body': 'body-data'},
       );
       expect(extractFcmCiphertext(input.data), isNull);
-      expect(mapRemoteMessage(input).payload, isEmpty);
+      final FcmPushMessage message = mapRemoteMessage(input);
+      expect(message.title, 'from-data');
+      expect(message.body, 'body-data');
     });
   });
 }

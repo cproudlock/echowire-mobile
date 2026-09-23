@@ -121,19 +121,34 @@ class FluxerFcmPushService {
     return FirebaseMessaging.instance.getToken();
   }
 
+  /// Echowire: enriches a plaintext tap payload from the cache before it is
+  /// dispatched. Upstream removed this with the plaintext stack; without it a
+  /// tapped notification loses its cached navigation context.
+  Future<Map<String, String>> Function(
+    RemoteMessage message,
+    Map<String, String> mappedPayload,
+  )?
+  tapPayloadEnricher;
+
   Stream<FcmPushMessage> watchMessages() => _messages.stream;
 
   Stream<String> watchCiphertext() => _ciphertext.stream;
 
   void _onForegroundMessage(RemoteMessage message) {
     final String? ciphertext = extractFcmCiphertext(message.data);
-    if (ciphertext == null) {
+    if (ciphertext != null) {
+      if (kDebugMode) {
+        debugPrint('[FluxerFcmPushService] foreground ciphertext');
+      }
+      _ciphertext.add(ciphertext);
       return;
     }
+    // Echowire: plaintext fallback while the server relay is disabled.
+    // Upstream returns here and the notification is silently dropped.
     if (kDebugMode) {
-      debugPrint('[FluxerFcmPushService] foreground ciphertext');
+      debugPrint('[FluxerFcmPushService] foreground plaintext');
     }
-    _ciphertext.add(ciphertext);
+    _messages.add(mapRemoteMessage(message));
   }
 
   void _onMessageOpenedApp(RemoteMessage message) {
@@ -148,13 +163,30 @@ class FluxerFcmPushService {
 
   void _dispatchTap(RemoteMessage message) {
     final String? ciphertext = extractFcmCiphertext(message.data);
-    final Map<String, String> payload = ciphertext == null
-        ? <String, String>{}
-        : <String, String>{'p': ciphertext};
+    if (ciphertext != null) {
+      if (kDebugMode) {
+        debugPrint('[FluxerFcmPushService] tap ciphertext');
+      }
+      _dispatchTapPayload(<String, String>{'p': ciphertext});
+      return;
+    }
+    // Echowire: a plaintext tap still has to carry its navigation payload,
+    // enriched from the cache, otherwise opening it lands nowhere.
+    unawaited(_dispatchPlaintextTap(message));
+  }
+
+  Future<void> _dispatchPlaintextTap(RemoteMessage message) async {
+    Map<String, String> payload = mapRemoteMessage(message).payload;
+    final Future<Map<String, String>> Function(
+      RemoteMessage message,
+      Map<String, String> mappedPayload,
+    )?
+    enricher = tapPayloadEnricher;
+    if (enricher != null) {
+      payload = await enricher(message, payload);
+    }
     if (kDebugMode) {
-      debugPrint(
-        '[FluxerFcmPushService] tap hasCiphertext=${ciphertext != null}',
-      );
+      debugPrint('[FluxerFcmPushService] tap plaintext payload=$payload');
     }
     _dispatchTapPayload(payload);
   }

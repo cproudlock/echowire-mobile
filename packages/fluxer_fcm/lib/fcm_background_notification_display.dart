@@ -1,7 +1,7 @@
 import 'package:fluxer_fcm/fcm_push_message.dart';
 import 'package:fluxer_fcm/fcm_push_notification_ids.dart';
 
-const String kFcmBackgroundNotificationFallbackTitle = 'Fluxer';
+const String kFcmBackgroundNotificationFallbackTitle = 'echowire';
 const String kFcmBackgroundNotificationFallbackBody = 'New message';
 
 String resolveFcmBackgroundNotificationTitle(FcmPushMessage message) {

@@ -107,3 +107,6 @@ secrets.md
 
 # Kotlin compiler daemon session state
 android/.kotlin/
+
+# Perf drive credentials (tool/perf_drive.sh)
+.env.perf

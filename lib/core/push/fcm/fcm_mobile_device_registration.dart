@@ -197,6 +197,15 @@ class FcmMobileDeviceRegistration extends _$FcmMobileDeviceRegistration {
     }
   }
 
+  static RegisterMobileDeviceRequestProviderEnvironmentProviderEnvironment
+  get _registerProviderEnvironment {
+    return kDebugMode
+        ? RegisterMobileDeviceRequestProviderEnvironmentProviderEnvironment
+              .development
+        : RegisterMobileDeviceRequestProviderEnvironmentProviderEnvironment
+              .production;
+  }
+
   /// Echowire: the pre-relay registration path, kept while
   /// [kEchowireWebPushRegistrationEnabled] is false.
   Future<void> _registerRawToken({
@@ -216,6 +225,11 @@ class FcmMobileDeviceRegistration extends _$FcmMobileDeviceRegistration {
               token: token,
               userAgent: ref.read(fluxerClientPropertiesProvider).userAgent,
               appId: AppBuildConfig.mobilePushAppId,
+              // echowire: the server folds this into the subscription id, so
+              // omitting it re-keys an existing device onto a second row and
+              // doubles every notification. 1.7.29 dropped it and did exactly
+              // that. Keep sending what releases before it sent.
+              providerEnvironment: _registerProviderEnvironment,
             ),
           );
       _lastRegisteredUserId = userId;

@@ -5856,6 +5856,15 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'Utilizar el auricular';
 
   @override
+  String get voiceOutputRouteSpeaker => 'Speaker';
+
+  @override
+  String get voiceOutputRouteEarpiece => 'Earpiece';
+
+  @override
+  String get voiceOutputRouteHeadset => 'Headphones';
+
+  @override
   String get voicePanelOnlyShowVideosLabel => 'Solo mostrar vídeos';
 
   @override
@@ -17029,10 +17038,11 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   String get crop => 'Recortar';
 
   @override
-  String get cropTouchHint => 'Pinch to zoom, drag to reposition';
+  String get cropTouchHint => 'Junta para acercar, arrastra para reposicionar';
 
   @override
-  String get cropMouseHint => 'Drag corners to resize, drag inside to move';
+  String get cropMouseHint =>
+      'Arrastra las esquinas para cambiar el tamaño, arrastra el interior para mover';
 
   @override
   String get changeYourFluxerTag => 'Cambiar tu usuario';
@@ -19768,6 +19778,9 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   String get lookAndFeelThemeDark => 'Tema oscuro';
 
   @override
+  String get lookAndFeelThemeDarkLegacy => 'Tema oscuro (clásico)';
+
+  @override
   String get lookAndFeelThemeCoal => 'Tema carbón';
 
   @override
@@ -19829,6 +19842,9 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
 
   @override
   String get lookAndFeelChatWallpaperCustomLabel => 'Imagen personalizada';
+
+  @override
+  String get lookAndFeelChatWallpaperStarfieldLabel => 'Starfield';
 
   @override
   String lookAndFeelChatWallpaperColorLabel(String id) {
@@ -20468,6 +20484,14 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   @override
   String get accessibilityAlwaysUnderlineLinksLabel =>
       'Subrayar siempre los enlaces';
+
+  @override
+  String get accessibilityShowAltTextOnImagesLabel =>
+      'Mostrar texto alternativo en las imágenes';
+
+  @override
+  String get accessibilityShowAltTextOnImagesDescription =>
+      'Muestra texto alternativo debajo de las imágenes cuando esté disponible.';
 
   @override
   String get accessibilityDimStrikethroughTextLabel => 'Atenuar texto tachado';
@@ -22002,10 +22026,29 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   String get chatMessageAddReaction => 'Añadir reacción';
 
   @override
+  String get doubleTapReactionHint => 'Pulsa dos veces un mensaje para';
+
+  @override
+  String get doubleTapReactionEdit => 'Editar';
+
+  @override
+  String get doubleTapReactionEditTitle => 'Editar predeterminado';
+
+  @override
+  String get doubleTapReactionEditSubtitle =>
+      'Elige el emoji de la doble pulsación';
+
+  @override
   String get chatMessageEdit => 'Editar mensaje';
 
   @override
   String get chatMessageReply => 'Responder';
+
+  @override
+  String get notificationReplyPlaceholder => 'Mensaje';
+
+  @override
+  String get notificationReplyFailed => 'No se pudo enviar la respuesta';
 
   @override
   String get chatMessageForward => 'Reenviar';
@@ -22755,6 +22798,9 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
 
   @override
   String get chatVideoPlaybackFailed => 'No se pudo reproducir este video.';
+
+  @override
+  String get chatImageCouldNotLoad => 'No se pudo cargar esta imagen.';
 
   @override
   String get composerAutocompleteRoleMentionDescription =>
@@ -26143,6 +26189,13 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   String get userSettingsNavLogOut => 'Cerrar sesión';
 
   @override
+  String get userSettingsLogOutConfirmTitle => '¿Cerrar sesión?';
+
+  @override
+  String get userSettingsLogOutConfirmDescription =>
+      'Puedes volver a iniciar sesión en cualquier momento.';
+
+  @override
   String get quickSwitcherTabSearch => 'Buscar';
 
   @override
@@ -26340,6 +26393,10 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   @override
   String get instanceUrlPlaceholder =>
       'Introduce la URL de la instancia (ej. echowire.org)';
+
+  @override
+  String get instanceUrlHelper =>
+      'Usa echowire.org para la instancia oficial o la URL exacta de una instancia propia.';
 
   @override
   String get resetToDefaultInstance => 'Restablecer a echowire';
@@ -30258,4 +30315,392 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   @override
   String get forumAddToPostFailed =>
       'No se pudo añadir eso a la publicación. Inténtalo de nuevo.';
+
+  @override
+  String get applicationsTitle => 'Aplicaciones';
+
+  @override
+  String get applicationsCreate => 'Crear aplicación';
+
+  @override
+  String get applicationsCreateSubmit => 'Crear';
+
+  @override
+  String get applicationsCreateClaimTooltip =>
+      'Reclama tu cuenta para crear aplicaciones.';
+
+  @override
+  String applicationsDocsLink(String domain) {
+    return 'Leer la documentación ($domain)';
+  }
+
+  @override
+  String get applicationsLoadError => 'No se pueden cargar las aplicaciones';
+
+  @override
+  String get applicationsLoadErrorDescription =>
+      'Comprueba tu conexión e inténtalo de nuevo.';
+
+  @override
+  String applicationsEmptyDescription(String apiName) {
+    return 'Crea tu primera aplicación para empezar con $apiName.';
+  }
+
+  @override
+  String applicationsCreated(String date) {
+    return 'Creado el $date';
+  }
+
+  @override
+  String get applicationsName => 'Nombre de la aplicación';
+
+  @override
+  String get applicationsNameHint => 'Mi aplicación';
+
+  @override
+  String get applicationsNameRequired =>
+      'El nombre de la aplicación es obligatorio';
+
+  @override
+  String get applicationsBackToList => 'Volver a la lista';
+
+  @override
+  String get applicationsDetailLoadError => 'No se pudo cargar esta aplicación';
+
+  @override
+  String get applicationsDetailLoadErrorDescription =>
+      'Inténtalo de nuevo o vuelve a la lista de aplicaciones.';
+
+  @override
+  String get applicationsId => 'ID de la aplicación';
+
+  @override
+  String get applicationsCopyId => 'Copiar ID';
+
+  @override
+  String get applicationsSecretsTitle => 'Secretos y tokens';
+
+  @override
+  String get applicationsSecretsDescription =>
+      'Mantenlos seguros. Regenerarlos interrumpirá las integraciones existentes.';
+
+  @override
+  String get applicationsClientSecret => 'Secreto de cliente';
+
+  @override
+  String get applicationsBotToken => 'Token de bot';
+
+  @override
+  String get applicationsRegenerate => 'Regenerar';
+
+  @override
+  String get applicationsRegenerateClientSecretTitle =>
+      '¿Regenerar el secreto de cliente?';
+
+  @override
+  String get applicationsRegenerateBotTokenTitle =>
+      '¿Regenerar el token de bot?';
+
+  @override
+  String get applicationsRegenerateClientSecretDescription =>
+      'Regenerar invalidará el secreto actual. Actualiza cualquier código que utilice el valor anterior.';
+
+  @override
+  String get applicationsRegenerateBotTokenDescription =>
+      'Regenerar invalidará el token actual. Actualiza cualquier código que utilice el valor anterior.';
+
+  @override
+  String get applicationsClientSecretRegenerated =>
+      'Secreto de cliente regenerado. Actualiza cualquier código que utilice el secreto anterior.';
+
+  @override
+  String get applicationsBotTokenRegenerated =>
+      'Token de bot regenerado. Actualiza cualquier código que utilice el token anterior.';
+
+  @override
+  String get applicationsRegenerateFailed => 'No se pudo regenerar el secreto.';
+
+  @override
+  String get applicationsInfoTitle => 'Información de la aplicación';
+
+  @override
+  String get applicationsInfoDescription =>
+      'Configuración básica y URIs de redirección permitidas.';
+
+  @override
+  String get applicationsPublicBot => 'Bot público';
+
+  @override
+  String get applicationsPublicBotDescription =>
+      'Permitir que cualquier usuario invite este bot a sus comunidades.';
+
+  @override
+  String get applicationsRequireCodeGrant =>
+      'Requerir concesión de código OAuth2';
+
+  @override
+  String get applicationsRequireCodeGrantDescription =>
+      'Requiere una URI de redirección y un código de autorización al invitar este bot.';
+
+  @override
+  String get applicationsRedirectUris => 'URIs de redirección';
+
+  @override
+  String get applicationsAddRedirect => 'Añadir redirección';
+
+  @override
+  String get applicationsDeleteRedirect => 'Eliminar URI de redirección';
+
+  @override
+  String get applicationsBotProfileTitle => 'Perfil del bot';
+
+  @override
+  String get applicationsBotProfileDescription =>
+      'Avatar, etiqueta y detalles avanzados del perfil para tu bot.';
+
+  @override
+  String get applicationsBotAvatar => 'Avatar del bot';
+
+  @override
+  String get applicationsUsernameRequired =>
+      'El nombre de usuario es obligatorio';
+
+  @override
+  String get applicationsUsernameTooLong =>
+      'El nombre de usuario debe tener como máximo 32 caracteres';
+
+  @override
+  String get applicationsUsernameInvalid =>
+      'El nombre de usuario solo puede contener letras, números y guiones bajos';
+
+  @override
+  String get applicationsBotUsername => 'Nombre de usuario del bot';
+
+  @override
+  String get applicationsDiscriminator => 'Discriminator';
+
+  @override
+  String get applicationsBotBio => 'Biografía del bot';
+
+  @override
+  String get applicationsBotBioHint =>
+      '¡Un bot útil que hace cosas increíbles!';
+
+  @override
+  String get applicationsNoBotBanner => 'Bot sin banner';
+
+  @override
+  String get applicationsFriendlyBot => 'Bot amistoso';
+
+  @override
+  String get applicationsFriendlyBotDescription =>
+      'Permitir que los usuarios envíen solicitudes de amistad a este bot para su aprobación manual.';
+
+  @override
+  String get applicationsManualFriendApproval =>
+      'Requerir aprobación manual de amistad';
+
+  @override
+  String get applicationsManualFriendApprovalDescription =>
+      'Las solicitudes de amistad para este bot requieren aprobación manual.';
+
+  @override
+  String get applicationsOauthBuilderTitle => 'Generador de URLs OAuth2';
+
+  @override
+  String get applicationsOauthBuilderDescription =>
+      'Construye una URL de autorización con ámbitos y permisos.';
+
+  @override
+  String get applicationsScopes => 'Ámbitos';
+
+  @override
+  String get applicationsRedirectUri => 'URI de redirección';
+
+  @override
+  String get applicationsSelectRedirectUri =>
+      'Selecciona una URI de redirección';
+
+  @override
+  String get applicationsRedirectRequiredCodeGrant =>
+      'La URI de redirección es obligatoria porque este bot requiere una concesión de código OAuth2.';
+
+  @override
+  String get applicationsRedirectRequiredScopes =>
+      'La URI de redirección es obligatoria cuando no se utiliza únicamente el ámbito del bot.';
+
+  @override
+  String get applicationsBotPermissions => 'Permisos del bot';
+
+  @override
+  String get applicationsAuthorizeUrl => 'URL de autorización';
+
+  @override
+  String get applicationsAuthorizeUrlPlaceholder =>
+      'Selecciona los ámbitos (y la URI de redirección si es obligatoria)';
+
+  @override
+  String get applicationsCopyAuthorizeUrl => 'Copiar URL de autorización';
+
+  @override
+  String get applicationsCopiedUrl => 'URL copiada al portapapeles';
+
+  @override
+  String get applicationsDangerTitle => 'Zona de peligro';
+
+  @override
+  String get applicationsDangerSubtitle =>
+      'Esto no se puede deshacer. Eliminar la aplicación también borra su bot.';
+
+  @override
+  String get applicationsDangerHelper =>
+      'Una vez eliminada, la aplicación y sus credenciales se borran de forma permanente.';
+
+  @override
+  String get applicationsDelete => 'Eliminar aplicación';
+
+  @override
+  String applicationsDeleteConfirmDescription(String name) {
+    return '¿Seguro que quieres eliminar $name? Esta acción no se puede deshacer. Todos los datos asociados, incluido el usuario bot, se eliminarán de forma permanente.';
+  }
+
+  @override
+  String get applicationsDeleteFailed => 'No se pudo eliminar la aplicación';
+
+  @override
+  String get applicationsUpdated => 'Aplicación actualizada con éxito';
+
+  @override
+  String get applicationsNoChanges => 'No hay cambios que guardar';
+
+  @override
+  String get applicationsSearchBots => 'Aplicaciones y bots';
+
+  @override
+  String get applicationsSearchBotsDescription =>
+      'Crea y administra aplicaciones y bots para tu cuenta';
+
+  @override
+  String get applicationsSearchInfoDescription =>
+      'Edita la información básica de la aplicación y las URI de redirección';
+
+  @override
+  String get applicationsSearchBotProfileDescription =>
+      'Edita el avatar, la etiqueta, la biografía, el banner y el comportamiento de solicitudes de amistad del bot';
+
+  @override
+  String get applicationsSearchOauthDescription =>
+      'Construye una URL de autorización con ámbitos, redirecciones y permisos de bot';
+
+  @override
+  String get applicationsSearchSecretsDescription =>
+      'Consulta y regenera los secretos de cliente y los tokens de bot';
+
+  @override
+  String get applicationsSearchBotsKeyword => 'Bots';
+
+  @override
+  String get applicationsSearchDocumentation => 'Documentación';
+
+  @override
+  String get linkedDevicesViewDetails => 'Ver detalles';
+
+  @override
+  String get linkedDevicesDetailsTitle => 'Detalles del dispositivo';
+
+  @override
+  String get linkedDevicesDetailsDevice => 'Dispositivo';
+
+  @override
+  String get linkedDevicesDetailsClient => 'Cliente';
+
+  @override
+  String get linkedDevicesDetailsLocation => 'Ubicación';
+
+  @override
+  String get linkedDevicesDetailsIp => 'Dirección IP';
+
+  @override
+  String get linkedDevicesDetailsLastUsed => 'Último uso';
+
+  @override
+  String get linkedDevicesCurrentSession => 'Sesión actual';
+
+  @override
+  String get linkedDevicesUnknown => 'Desconocido';
+
+  @override
+  String get chatMessagePinConfirm => 'Fijar';
+
+  @override
+  String get chatMessagePinConfirmDescription =>
+      'Fija este mensaje en el canal para que todos puedan verlo.';
+
+  @override
+  String get savedMessagesAddedToast => 'Añadido a los marcadores';
+
+  @override
+  String get savedMessagesRemovedToast => 'Eliminado de los marcadores';
+
+  @override
+  String get guildSettingsDeleteCommunity => 'Eliminar comunidad';
+
+  @override
+  String get guildSettingsDeleteCommunityConfirm =>
+      '¿Seguro que quieres eliminar esta comunidad? Esta acción no se puede deshacer. Todos los canales, mensajes y ajustes se eliminarán de forma permanente.';
+
+  @override
+  String get guildSettingsCommunityDeleted => 'Comunidad eliminada';
+
+  @override
+  String get guildSettingsDeleteCommunityFailed =>
+      'No se pudo eliminar esta comunidad';
+
+  @override
+  String get assistantNeedsLogin => 'Abre echowire e inicia sesión primero.';
+
+  @override
+  String get assistantNotInVoice => 'No estás en ninguna llamada.';
+
+  @override
+  String get assistantNotFound => 'echowire no pudo encontrar eso.';
+
+  @override
+  String get assistantDmsDisabled =>
+      'Los mensajes directos están desactivados en esta instancia.';
+
+  @override
+  String get assistantFailed => 'echowire no pudo completar la acción.';
+
+  @override
+  String get assistantOkMuted => 'Silenciado.';
+
+  @override
+  String get assistantOkUnmuted => 'Silenciamiento desactivado';
+
+  @override
+  String get assistantOkLeftVoice => 'Ha salido de la llamada.';
+
+  @override
+  String get assistantOkJoinedVoice => 'Uniéndose a la llamada.';
+
+  @override
+  String get assistantOkStartedCall => 'Iniciando la llamada.';
+
+  @override
+  String assistantOkStatusSet(String status) {
+    return 'Estado establecido como $status.';
+  }
+
+  @override
+  String get assistantOkOpened => 'Abriendo echowire.';
+
+  @override
+  String get assistantOkMessageSent => 'Mensaje enviado.';
+
+  @override
+  String get assistantOkCustomStatusSet => 'Estado personalizado actualizado.';
+
+  @override
+  String get assistantOkCustomStatusCleared => 'Estado personalizado borrado.';
 }

@@ -38,7 +38,7 @@ class AuthRepository {
     final request = LoginRequest(
       email: email.trim(),
       password: password,
-      inviteCode: inviteCode,
+      inviteCode: JsonNullable.of(inviteCode),
     );
 
     try {
@@ -181,8 +181,8 @@ class AuthRepository {
           globalName: (displayName?.trim().isNotEmpty ?? false)
               ? displayName!.trim()
               : null,
-          inviteCode: inviteCode,
-          registrationUrlCode: registrationUrlCode,
+          inviteCode: JsonNullable.of(inviteCode),
+          registrationUrlCode: JsonNullable.of(registrationUrlCode),
         ),
       );
 
@@ -301,13 +301,15 @@ class AuthRepository {
     String? discriminator,
     String? avatar,
   }) async {
+    final InstanceConfigSnapshot snapshot = _readInstanceSnapshot();
     await _tokenStorage.saveToken(userId: session.userId, token: session.token);
+    await _persistApiBaseUrl(session.userId, snapshot.apiBaseUrl);
     await _db.authSessionDao.saveSessionMetadata(
       userId: session.userId,
       username: username,
       discriminator: discriminator,
       avatar: avatar,
-      instanceSnapshotJson: _readInstanceSnapshot().toJson(),
+      instanceSnapshotJson: snapshot.toJson(),
     );
   }
 
@@ -334,6 +336,39 @@ class AuthRepository {
       avatar: row.avatar,
       instanceSnapshotJson: snapshot.toJson(),
     );
+    await _persistApiBaseUrl(row.userId, snapshot.apiBaseUrl);
+  }
+
+  Future<void> persistApiBaseUrls() async {
+    final sessions = await _db.authSessionDao.getAllSessions();
+    for (final session in sessions) {
+      try {
+        await _persistApiBaseUrlForUser(session.userId);
+      } on Object {
+        // Bad snapshot json should not block startup.
+      }
+    }
+  }
+
+  Future<void> _persistApiBaseUrlForUser(String userId) async {
+    final String? token = await _tokenStorage.readToken(userId);
+    if (token == null || token.isEmpty) {
+      return;
+    }
+    final InstanceConfigSnapshot snapshot =
+        await resolveInstanceSnapshotForUser(userId);
+    await _persistApiBaseUrl(userId, snapshot.apiBaseUrl);
+  }
+
+  Future<void> _persistApiBaseUrl(String userId, String apiBaseUrl) async {
+    if (apiBaseUrl.isEmpty) {
+      return;
+    }
+    final String? existing = await _tokenStorage.readApiBaseUrl(userId);
+    if (existing == apiBaseUrl) {
+      return;
+    }
+    await _tokenStorage.saveApiBaseUrl(userId: userId, apiBaseUrl: apiBaseUrl);
   }
 
   Future<InstanceConfigSnapshot> resolveInstanceSnapshotForUser(
@@ -402,11 +437,14 @@ class AuthRepository {
     }
   }
 
-  Future<dynamic> getMfaWebauthnOptions({required String ticket}) async {
+  Future<Map<String, dynamic>> getMfaWebauthnOptions({
+    required String ticket,
+  }) async {
     try {
-      return await _client.auth.getWebauthnMfaOptions(
+      final options = await _client.auth.getWebauthnMfaOptions(
         body: MfaTicketRequest(ticket: ticket),
       );
+      return jsonDecode(jsonEncode(options)) as Map<String, dynamic>;
     } on DioException catch (error) {
       throw _failureFromDio(error);
     }
@@ -435,9 +473,10 @@ class AuthRepository {
     }
   }
 
-  Future<dynamic> getPasskeyLoginOptions() async {
+  Future<Map<String, dynamic>> getPasskeyLoginOptions() async {
     try {
-      return await _client.auth.getWebauthnAuthenticationOptions();
+      final options = await _client.auth.getWebauthnAuthenticationOptions();
+      return jsonDecode(jsonEncode(options)) as Map<String, dynamic>;
     } on DioException catch (error) {
       throw _failureFromDio(error);
     }
@@ -449,7 +488,10 @@ class AuthRepository {
   }) async {
     try {
       return await _client.auth.startSso(
-        body: SsoStartRequest(redirectTo: redirectTo, redirectUri: redirectUri),
+        body: SsoStartRequest(
+          redirectTo: JsonNullable.of(redirectTo),
+          redirectUri: JsonNullable.of(redirectUri),
+        ),
       );
     } on DioException catch (error) {
       throw _failureFromDio(error);

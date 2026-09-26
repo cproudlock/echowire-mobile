@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -15,6 +17,7 @@ import 'package:fluxer_fcm/fluxer_fcm_bootstrap.dart';
 Future<void> fcmBackgroundMessageHandler(RemoteMessage message) async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
+    DartPluginRegistrant.ensureInitialized();
     if (Firebase.apps.isEmpty) {
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
@@ -24,6 +27,9 @@ Future<void> fcmBackgroundMessageHandler(RemoteMessage message) async {
     if (ciphertext != null) {
       final FcmCiphertextHandler? handler = FcmCiphertextHooks.onCiphertext;
       if (handler == null) {
+        if (kDebugMode) {
+          debugPrint('[FCM] background ciphertext handler missing');
+        }
         return;
       }
       await handler(ciphertextBase64: ciphertext, backgroundMode: true);
@@ -31,7 +37,10 @@ Future<void> fcmBackgroundMessageHandler(RemoteMessage message) async {
     }
     // Echowire: plaintext fallback while the server relay is disabled, so a
     // backgrounded device still shows and can clear notifications. Upstream
-    // returns above and shows nothing.
+    // logs the missing ciphertext and returns, showing nothing.
+    if (kDebugMode) {
+      debugPrint('[FCM] background message has no ciphertext, using plaintext');
+    }
     final FcmPushMessage mapped = mapRemoteMessage(message);
     if (shouldHandleFcmBackgroundNotificationClear(mapped)) {
       await handleFcmBackgroundNotificationClear(mapped);

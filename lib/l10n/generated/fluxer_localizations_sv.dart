@@ -5807,6 +5807,15 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'Använd hörsnäcka';
 
   @override
+  String get voiceOutputRouteSpeaker => 'Speaker';
+
+  @override
+  String get voiceOutputRouteEarpiece => 'Earpiece';
+
+  @override
+  String get voiceOutputRouteHeadset => 'Headphones';
+
+  @override
   String get voicePanelOnlyShowVideosLabel => 'Visa bara videor';
 
   @override

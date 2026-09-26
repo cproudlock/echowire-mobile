@@ -1,6 +1,8 @@
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fluxer_app/core/push/push_notification_ids.dart';
+import 'package:fluxer_app/core/push/push_notification_payload.dart';
 import 'package:fluxer_app/core/push/push_notification_reply.dart';
+import 'package:fluxer_app/features/auth/data/auth_token_storage.dart';
 
 void main() {
   group('pushNotificationCanReply', () {
@@ -31,32 +33,78 @@ void main() {
     });
   });
 
-  group('androidPushReplyActions', () {
-    test('message action stays in the background', () {
-      final List<AndroidNotificationAction> actions = androidPushReplyActions(
-        <String, String>{'channel_id': 'c', 'message_id': 'm'},
-        title: 'Reply',
-        hint: 'Message',
-      );
-      expect(actions, hasLength(1));
-      expect(actions.single.id, kPushReplyActionId);
-      expect(actions.single.showsUserInterface, isFalse);
-      expect(actions.single.cancelNotification, isFalse);
-      expect(actions.single.inputs.single.label, 'Message');
-    });
-
-    test('clears have no reply action', () {
-      expect(
-        androidPushReplyActions(
-          <String, String>{
-            'action': 'clear_channel',
+  group('androidNotificationReplyTarget', () {
+    test('message replies identify the account without a token', () {
+      final AndroidNotificationReplyTarget? target =
+          androidNotificationReplyTarget(<String, String>{
             'channel_id': 'c',
             'message_id': 'm',
-          },
-          title: 'Reply',
-          hint: 'Message',
+            'target_user_id': 'user-b',
+          });
+      expect(target?.channelId, 'c');
+      expect(target?.messageId, 'm');
+      expect(target?.userId, 'user-b');
+    });
+
+    test('clears and missing accounts are not reply targets', () {
+      expect(
+        androidNotificationReplyTarget(<String, String>{
+          'action': 'clear_channel',
+          'channel_id': 'c',
+          'message_id': 'm',
+          'target_user_id': 'user-b',
+        }),
+        isNull,
+      );
+      expect(
+        androidNotificationReplyTarget(<String, String>{
+          'channel_id': 'c',
+          'message_id': 'm',
+        }),
+        isNull,
+      );
+    });
+  });
+
+  group('pushReplyDismissal', () {
+    test('uses the posted id and display tag', () {
+      final PushReplyDismissal? dismissal = pushReplyDismissal(
+        notificationId: 42,
+        payload: <String, String>{
+          'channel_id': 'c',
+          'message_id': 'm',
+          'tag': 'channel:c:m',
+        },
+      );
+      expect(dismissal?.id, 42);
+      expect(dismissal?.tag, 'channel:c:m');
+    });
+
+    test('falls back to the message id when the response id is missing', () {
+      final PushReplyDismissal? dismissal = pushReplyDismissal(
+        notificationId: 0,
+        payload: <String, String>{
+          kLocalNotificationMessageIdKey: 'local-1',
+          'channel_id': 'c',
+        },
+      );
+      expect(dismissal?.id, pushMessageNotificationId('local-1'));
+      expect(
+        dismissal?.tag,
+        resolvePushDisplayTag(<String, String>{
+          kLocalNotificationMessageIdKey: 'local-1',
+          'channel_id': 'c',
+        }),
+      );
+    });
+
+    test('returns null when there is nothing to dismiss', () {
+      expect(
+        pushReplyDismissal(
+          notificationId: null,
+          payload: const <String, String>{},
         ),
-        isEmpty,
+        isNull,
       );
     });
   });
@@ -158,6 +206,45 @@ void main() {
       );
       expect(result, PushReplyResult.failed);
       expect(posted, isFalse);
+    });
+  });
+
+  group('lookupPushReplyAccount', () {
+    test('reads token and api url from storage', () async {
+      final MapAuthTokenStorage storage = MapAuthTokenStorage();
+      await storage.saveToken(userId: 'user-b', token: 'token-b');
+      await storage.saveApiBaseUrl(
+        userId: 'user-b',
+        apiBaseUrl: 'https://chat.example.com/api',
+      );
+
+      final PushReplyAccount? account = await lookupPushReplyAccount(
+        'user-b',
+        tokenStorage: storage,
+      );
+
+      expect(account?.token, 'token-b');
+      expect(account?.apiBaseUrl, 'https://chat.example.com/api');
+    });
+
+    test('returns null when no api url is stored', () async {
+      final MapAuthTokenStorage storage = MapAuthTokenStorage();
+      await storage.saveToken(userId: 'user-b', token: 'token-b');
+
+      expect(
+        await lookupPushReplyAccount('user-b', tokenStorage: storage),
+        isNull,
+      );
+    });
+
+    test('returns null when that account has no token', () async {
+      expect(
+        await lookupPushReplyAccount(
+          'user-b',
+          tokenStorage: MapAuthTokenStorage(),
+        ),
+        isNull,
+      );
     });
   });
 }

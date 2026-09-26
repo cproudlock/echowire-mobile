@@ -111,6 +111,12 @@ class ReadStateRepository {
     if (current?.lastMessageId == messageId &&
         current?.mentionCount == 0 &&
         current?.manual != true) {
+      unawaited(
+        PushNotificationClear.cancelForChannel(
+          channelId,
+          upToMessageId: messageId,
+        ),
+      );
       return null;
     }
 
@@ -119,7 +125,12 @@ class ReadStateRepository {
       messageId: messageId,
       mentionCount: 0,
     );
-    unawaited(PushNotificationClear.cancelForChannel(channelId));
+    unawaited(
+      PushNotificationClear.cancelForChannel(
+        channelId,
+        upToMessageId: messageId,
+      ),
+    );
     return messageId;
   }
 
@@ -135,6 +146,12 @@ class ReadStateRepository {
         comparison >= 0 &&
         current?.mentionCount == 0 &&
         current?.manual != true) {
+      unawaited(
+        PushNotificationClear.cancelForChannel(
+          channelId,
+          upToMessageId: currentAck,
+        ),
+      );
       return null;
     }
     final String ackId = comparison != null && comparison > 0
@@ -145,7 +162,9 @@ class ReadStateRepository {
       messageId: ackId,
       mentionCount: 0,
     );
-    unawaited(PushNotificationClear.cancelForChannel(channelId));
+    unawaited(
+      PushNotificationClear.cancelForChannel(channelId, upToMessageId: ackId),
+    );
     return ackId;
   }
 
@@ -168,6 +187,12 @@ class ReadStateRepository {
       if (current?.lastMessageId == messageId &&
           current?.mentionCount == 0 &&
           current?.manual != true) {
+        unawaited(
+          PushNotificationClear.cancelForChannel(
+            channelId,
+            upToMessageId: messageId,
+          ),
+        );
         continue;
       }
 
@@ -189,7 +214,12 @@ class ReadStateRepository {
         messageId: entry.messageId,
         mentionCount: 0,
       );
-      unawaited(PushNotificationClear.cancelForChannel(entry.channelId));
+      unawaited(
+        PushNotificationClear.cancelForChannel(
+          entry.channelId,
+          upToMessageId: entry.messageId,
+        ),
+      );
     }
 
     await _client.readStates.ackBulkMessages(

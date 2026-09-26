@@ -5842,6 +5842,15 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Hangszóró helyett a telefon hangszóróját használja';
 
   @override
+  String get voiceOutputRouteSpeaker => 'Speaker';
+
+  @override
+  String get voiceOutputRouteEarpiece => 'Earpiece';
+
+  @override
+  String get voiceOutputRouteHeadset => 'Headphones';
+
+  @override
   String get voicePanelOnlyShowVideosLabel => 'Csak a videók megjelenítése';
 
   @override

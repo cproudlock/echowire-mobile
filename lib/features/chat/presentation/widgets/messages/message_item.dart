@@ -27,7 +27,6 @@ import 'package:fluxer_app/features/chat/presentation/widgets/media/embed_animat
 import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/message_bottom_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/'
     'widgets/message_actions/message_context_menu.dart';
-import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/quick_reaction_loader.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/quick_reaction_row.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/reply_preview.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/swipe_to_reply.dart';
@@ -446,16 +445,6 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         widget.message.type == messageTypeReply;
   }
 
-  Future<List<QuickReactionItem>?> _loadQuickReactionItems() {
-    final guildId =
-        widget.previewRoleGuildId ?? ref.read(contextualGuildIdProvider);
-    return loadQuickReactionItems(
-      ref,
-      channelId: widget.message.channelId,
-      guildId: guildId,
-    );
-  }
-
   void _dispatchQuickReaction(QuickReactionItem item) {
     // Frecency is tracked centrally in ChatViewModel.toggleReaction, so the
     // quick-row tap only needs to fire the reaction.
@@ -477,12 +466,10 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       final String? linkUrl = renderObject is RenderBox
           ? fluxerMarkdownLinkHrefAt(renderObject, globalPosition)
           : null;
-      final frecent = await _loadQuickReactionItems();
-      if (!context.mounted) {
-        return;
-      }
       FluxerHaptics.medium();
       final VoidCallback? onDelete = widget.onDelete;
+      final String? guildId =
+          widget.previewRoleGuildId ?? ref.read(contextualGuildIdProvider);
       final MessageAction? action = await showMessageBottomSheet(
         context,
         message: widget.message,
@@ -501,7 +488,8 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         canCreateThread: !widget.isDmChannel && widget.canSendMessages,
         canAddToPost: _canAddThisReplyToPost(),
         isSendDisabled: widget.isSendDisabled,
-        quickItems: frecent,
+        quickReactionChannelId: widget.message.channelId,
+        quickReactionGuildId: guildId,
         onQuickReaction: _dispatchQuickReaction,
         attachmentCallbacks: _videoActionScope.callbacks,
         linkUrl: linkUrl,
@@ -612,11 +600,8 @@ class _MessageItemState extends ConsumerState<MessageItem> {
   }
 
   Future<void> _showContextMenu(BuildContext context, Offset position) async {
-    final frecent = await _loadQuickReactionItems();
-    if (!context.mounted) {
-      return;
-    }
-
+    final String? guildId =
+        widget.previewRoleGuildId ?? ref.read(contextualGuildIdProvider);
     final VoidCallback? onDelete = widget.onDelete;
     final MessageAction? action = await showMessageContextMenu(
       context,
@@ -625,7 +610,8 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       permissions: _videoActionScope.permissions,
       callbacks: _videoActionScope.callbacks,
       onQuickReaction: _dispatchQuickReaction,
-      quickItems: frecent,
+      quickReactionChannelId: widget.message.channelId,
+      quickReactionGuildId: guildId,
     );
     _dispatchMenuAction(action, onDelete: onDelete, isMobile: false);
   }

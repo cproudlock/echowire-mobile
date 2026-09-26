@@ -5803,6 +5803,15 @@ class FluxerLocalizationsDa extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'Brug øresnegl';
 
   @override
+  String get voiceOutputRouteSpeaker => 'Speaker';
+
+  @override
+  String get voiceOutputRouteEarpiece => 'Earpiece';
+
+  @override
+  String get voiceOutputRouteHeadset => 'Headphones';
+
+  @override
   String get voicePanelOnlyShowVideosLabel => 'Vis kun videoer';
 
   @override

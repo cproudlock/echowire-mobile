@@ -33,7 +33,7 @@ class _FakeUsersApi implements UsersApi {
       'status': 'online',
       'theme': 'dark',
       'locale': 'en-US',
-      'synced_preferences': body?.syncedPreferences ?? '',
+      'synced_preferences': body?.syncedPreferences.value ?? '',
       'render_embeds': true,
       'profile_privacy': 0,
       'restricted_guilds': <String>[],
@@ -166,7 +166,7 @@ void main() {
     await flushSyncedPreferencesDebounce(store);
 
     expect(usersApi.pushCount, 1);
-    final pushedWire = usersApi.lastPushBody!.syncedPreferences!;
+    final pushedWire = usersApi.lastPushBody!.syncedPreferences.value!;
     final pushed = pb.SyncedPreferences.fromBuffer(base64Decode(pushedWire));
 
     expect(pushed.hasSound(), isTrue);
@@ -185,5 +185,35 @@ void main() {
       SyncedPreferenceField.guildFolders.fieldNumber,
     );
     expect(pushedFolderChunks, folderChunks);
+  });
+
+  test('empty synced_preferences after hydrate does not push', () async {
+    final database = openTestDatabase();
+    final usersApi = _FakeUsersApi();
+    addTearDown(database.close);
+
+    final container = ProviderContainer(
+      overrides: [
+        fluxerDatabaseProvider.overrideWithValue(database),
+        fluxerClientProvider.overrideWithValue(_FakeClient(usersApi)),
+      ],
+    );
+    addTearDown(container.dispose);
+
+    final store = container.read(syncedPreferencesStoreProvider);
+    await store.hydrateFromUserSettings(
+      _testUserSettings(
+        syncedPreferences: _wireWithGuildFoldersAndSound(
+          folderIds: {42},
+          masterVolume: 50,
+        ),
+      ),
+    );
+    await store.hydrateFromUserSettings(
+      _testUserSettings(syncedPreferences: ''),
+    );
+
+    expect(store.hasDebouncedPushScheduledForTest, isFalse);
+    expect(usersApi.pushCount, 0);
   });
 }

@@ -15,6 +15,7 @@ final class NotificationService: UNNotificationServiceExtension {
     private var contentHandler: ((UNNotificationContent) -> Void)?
     private var bestAttemptContent: UNMutableNotificationContent?
     private var fallbackContent: UNNotificationContent?
+    private var downloadedAvatarData: Data?
     private var didDeliver: Bool = false
     private let deliverLock = NSLock()
 
@@ -27,6 +28,12 @@ final class NotificationService: UNNotificationServiceExtension {
         }
         let resolved = WebPushRecordDecryptor.resolvedUserInfo(request.content.userInfo)
         applyDecryptedFields(to: mutableContent, userInfo: resolved)
+        if PushNotificationPayload.isCallRingPayload(from: resolved) {
+            Self.applyCallRingFields(to: mutableContent, userInfo: resolved)
+            bestAttemptContent = mutableContent
+            deliver(content: mutableContent)
+            return
+        }
         Self.applyReplyCategory(to: mutableContent, userInfo: resolved)
         Self.applyThreadIdentifier(to: mutableContent, userInfo: resolved)
         Self.applyNotificationSound(to: mutableContent, userInfo: resolved)
@@ -37,7 +44,7 @@ final class NotificationService: UNNotificationServiceExtension {
         let avatarUrl = NotificationPayloadMedia.resolveAvatarUrl(from: resolved)
         let emojiImageUrl = emojiResult.imageUrls.first
         guard messageImageUrl != nil || emojiImageUrl != nil || avatarUrl != nil else {
-            deliver(content: mutableContent)
+            deliver(content: Self.communicationContent(mutableContent, avatarData: nil))
             return
         }
         downloadMedia(
@@ -50,8 +57,16 @@ final class NotificationService: UNNotificationServiceExtension {
     }
 
     override func serviceExtensionTimeWillExpire() {
-        let content: UNNotificationContent = bestAttemptContent ?? fallbackContent ?? UNNotificationContent()
-        deliver(content: content)
+        deliverLock.lock()
+        let avatarData = downloadedAvatarData
+        let pending = bestAttemptContent
+        let fallback = fallbackContent
+        deliverLock.unlock()
+        if let pending {
+            deliver(content: Self.communicationContent(pending, avatarData: avatarData))
+        } else {
+            deliver(content: fallback ?? UNNotificationContent())
+        }
     }
 
     private func applyDecryptedFields(
@@ -70,7 +85,6 @@ final class NotificationService: UNNotificationServiceExtension {
     private func downloadMedia(messageImageUrl: URL?, imageIdentifier: String, avatarUrl: URL?) {
         let group = DispatchGroup()
         var imageFile: URL?
-        var avatarData: Data?
         if let messageImageUrl {
             group.enter()
             NotificationImageAttachment.downloadImage(from: messageImageUrl) { file in
@@ -80,15 +94,21 @@ final class NotificationService: UNNotificationServiceExtension {
         }
         if let avatarUrl {
             group.enter()
-            NotificationImageAttachment.downloadImage(from: avatarUrl) { file in
+            NotificationImageAttachment.downloadImage(from: avatarUrl, timeout: 8) { file in
                 if let file {
-                    avatarData = try? Data(contentsOf: file)
+                    let data = try? Data(contentsOf: file)
                     try? FileManager.default.removeItem(at: file)
+                    self.deliverLock.lock()
+                    self.downloadedAvatarData = data
+                    self.deliverLock.unlock()
                 }
                 group.leave()
             }
         }
         group.notify(queue: .main) {
+            self.deliverLock.lock()
+            let avatarData = self.downloadedAvatarData
+            self.deliverLock.unlock()
             self.finishDownload(
                 imageFile: imageFile,
                 imageIdentifier: imageIdentifier,
@@ -162,38 +182,71 @@ private extension NotificationService {
         content.sound = sound
     }
 
+    static func applyCallRingFields(
+        to content: UNMutableNotificationContent,
+        userInfo: [AnyHashable: Any]
+    ) {
+        guard PushNotificationPayload.isCallRingPayload(from: userInfo) else {
+            return
+        }
+        if content.title.isEmpty {
+            if let callerName = userInfo["caller_name"] as? String, !callerName.isEmpty {
+                content.title = callerName
+            } else {
+                content.title = "Fluxer"
+            }
+        }
+        if content.body.isEmpty {
+            content.body = "Incoming call"
+        }
+    }
+
     static func communicationContent(
         _ content: UNMutableNotificationContent,
         avatarData: Data?
     ) -> UNNotificationContent {
-        guard let avatarData else {
+        if PushNotificationPayload.isCallRingPayload(from: content.userInfo)
+          || !PushNotificationPayload.hasDisplayableAlert(
+            title: content.title,
+            body: content.body
+          )
+        {
             return content
         }
+        let userInfo = content.userInfo
         let title = content.title.isEmpty ? "Fluxer" : content.title
-        let avatar = INImage(imageData: avatarData)
+        let senderId = PushNotificationPayload.resolveSenderIdentifier(from: userInfo) ?? title
+        let avatar = avatarData.map { INImage(imageData: $0) }
         let sender = INPerson(
-            personHandle: INPersonHandle(value: title, type: .unknown),
+            personHandle: INPersonHandle(value: senderId, type: .unknown),
             nameComponents: nil,
             displayName: title,
             image: avatar,
             contactIdentifier: nil,
-            customIdentifier: nil,
+            customIdentifier: senderId,
             isMe: false,
             suggestionType: .none
         )
+        let threadId = content.threadIdentifier
+        let groupName = PushNotificationPayload.resolveSpeakableGroupName(title: title)
         let intent = INSendMessageIntent(
             recipients: nil,
             outgoingMessageType: .outgoingMessageText,
             content: content.body,
-            speakableGroupName: nil,
-            conversationIdentifier: content.threadIdentifier.isEmpty ? nil : content.threadIdentifier,
+            speakableGroupName: groupName.map { INSpeakableString(spokenPhrase: $0) },
+            conversationIdentifier: threadId.isEmpty ? nil : threadId,
             serviceName: nil,
             sender: sender,
             attachments: nil
         )
-        intent.setImage(avatar, forParameterNamed: \.sender)
+        if let avatar {
+            intent.setImage(avatar, forParameterNamed: \.sender)
+        }
         let interaction = INInteraction(intent: intent, response: nil)
         interaction.direction = .incoming
+        if let sentDate = PushNotificationPayload.resolveMessageSentDate(from: userInfo) {
+            interaction.dateInterval = DateInterval(start: sentDate, duration: 0)
+        }
         interaction.donate(completion: nil)
         guard let updated = try? content.updating(from: intent).mutableCopy()
           as? UNMutableNotificationContent
@@ -203,6 +256,9 @@ private extension NotificationService {
         updated.userInfo = content.userInfo
         updated.sound = content.sound
         updated.categoryIdentifier = content.categoryIdentifier
+        if !threadId.isEmpty {
+            updated.threadIdentifier = threadId
+        }
         if !content.attachments.isEmpty {
             updated.attachments = content.attachments
         }

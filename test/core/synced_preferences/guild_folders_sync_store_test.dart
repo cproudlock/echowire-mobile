@@ -32,7 +32,7 @@ class _FakeUsersApi implements UsersApi {
       'status': 'online',
       'theme': 'dark',
       'locale': 'en-US',
-      'synced_preferences': body?.syncedPreferences ?? '',
+      'synced_preferences': body?.syncedPreferences.value ?? '',
       'render_embeds': true,
       'profile_privacy': 0,
       'restricted_guilds': <String>[],
@@ -179,7 +179,9 @@ void main() {
       await _waitForDebounce(store);
 
       expect(usersApi.pushCount, 1);
-      final bytes = base64Decode(usersApi.lastPushBody!.syncedPreferences!);
+      final bytes = base64Decode(
+        usersApi.lastPushBody!.syncedPreferences.value!,
+      );
       final synced = pb.SyncedPreferences.fromBuffer(bytes);
       expect(synced.hasGuildFolders(), isTrue);
       expect(synced.guildFolders.expandedFolderIds.map((id) => id.toInt()), [

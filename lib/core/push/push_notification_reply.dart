@@ -1,11 +1,8 @@
 import 'dart:ui' show Locale, PlatformDispatcher;
 
 import 'package:dio/dio.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluxer_app/core/api/session_authorization_header.dart';
-import 'package:fluxer_app/core/database/fluxer_database.dart';
-import 'package:fluxer_app/core/instance/instance_config_snapshot.dart';
-import 'package:fluxer_app/core/instance/instance_constants.dart';
+import 'package:fluxer_app/core/push/push_notification_ids.dart';
 import 'package:fluxer_app/core/push/push_notification_payload.dart';
 import 'package:fluxer_app/features/auth/data/auth_token_storage.dart';
 import 'package:fluxer_app/features/chat/data/message_repository.dart';
@@ -20,6 +17,13 @@ class PushReplyAccount {
 
   final String token;
   final String apiBaseUrl;
+}
+
+class PushReplyDismissal {
+  const PushReplyDismissal({required this.id, this.tag});
+
+  final int id;
+  final String? tag;
 }
 
 class PushReplySend {
@@ -45,27 +49,50 @@ bool pushNotificationCanReply(Map<String, String> payload) {
   return channelId != null && messageId != null;
 }
 
-List<AndroidNotificationAction> androidPushReplyActions(
-  Map<String, String> payload, {
-  required String title,
-  required String hint,
-}) {
+class AndroidNotificationReplyTarget {
+  const AndroidNotificationReplyTarget({
+    required this.channelId,
+    required this.messageId,
+    required this.userId,
+  });
+
+  final String channelId;
+  final String messageId;
+  final String userId;
+}
+
+AndroidNotificationReplyTarget? androidNotificationReplyTarget(
+  Map<String, String> payload,
+) {
   if (!pushNotificationCanReply(payload)) {
-    return const <AndroidNotificationAction>[];
+    return null;
   }
-  return <AndroidNotificationAction>[
-    AndroidNotificationAction(
-      kPushReplyActionId,
-      title,
-      // ignore: avoid_redundant_argument_values
-      showsUserInterface: false,
-      cancelNotification: false,
-      semanticAction: SemanticAction.reply,
-      inputs: <AndroidNotificationActionInput>[
-        AndroidNotificationActionInput(label: hint),
-      ],
-    ),
-  ];
+  final String? userId = _nonEmpty(payload['target_user_id']);
+  final String? channelId = _nonEmpty(payload['channel_id']);
+  final String? messageId = _nonEmpty(payload['message_id']);
+  if (userId == null || channelId == null || messageId == null) {
+    return null;
+  }
+  return AndroidNotificationReplyTarget(
+    channelId: channelId,
+    messageId: messageId,
+    userId: userId,
+  );
+}
+
+PushReplyDismissal? pushReplyDismissal({
+  required int? notificationId,
+  required Map<String, String> payload,
+}) {
+  final int? id = _replyNotificationId(notificationId, payload);
+  if (id == null) {
+    return null;
+  }
+  final String? tag = resolvePushDisplayTag(payload);
+  return PushReplyDismissal(
+    id: id,
+    tag: tag == null || tag.isEmpty ? null : tag,
+  );
 }
 
 String pushReplyActionTitle() {
@@ -117,15 +144,20 @@ Future<PushReplyResult> sendPushNotificationReply({
   return PushReplyResult.sent;
 }
 
-Future<PushReplyAccount?> lookupPushReplyAccount(String userId) async {
-  final String? token = await SecureAuthTokenStorage().readToken(userId);
+Future<PushReplyAccount?> lookupPushReplyAccount(
+  String userId, {
+  AuthTokenStorage? tokenStorage,
+}) async {
+  final AuthTokenStorage storage = tokenStorage ?? SecureAuthTokenStorage();
+  final String? token = await storage.readToken(userId);
   if (token == null || token.isEmpty) {
     return null;
   }
-  return PushReplyAccount(
-    token: token,
-    apiBaseUrl: await _apiBaseUrlFor(userId),
-  );
+  final String? stored = await storage.readApiBaseUrl(userId);
+  if (stored == null || stored.isEmpty) {
+    return null;
+  }
+  return PushReplyAccount(token: token, apiBaseUrl: stored);
 }
 
 Future<void> postPushReply(PushReplySend send) async {
@@ -149,29 +181,23 @@ Future<void> postPushReply(PushReplySend send) async {
   }
 }
 
-Future<String> _apiBaseUrlFor(String userId) async {
-  final FluxerDatabase database = FluxerDatabase();
-  try {
-    final String? raw = await database.authSessionDao.getInstanceSnapshotJson(
-      userId,
-    );
-    if (raw == null || raw.isEmpty) {
-      return InstanceConstants.defaultApiBaseUrl;
-    }
-    return InstanceConfigSnapshot.fromJson(raw).apiBaseUrl;
-  } on Object {
-    return InstanceConstants.defaultApiBaseUrl;
-  } finally {
-    await database.close();
-  }
-}
-
 FluxerLocalizations _pushReplyLocalizations() {
   try {
     return lookupFluxerLocalizations(PlatformDispatcher.instance.locale);
   } on Object {
     return lookupFluxerLocalizations(const Locale('en'));
   }
+}
+
+int? _replyNotificationId(int? notificationId, Map<String, String> payload) {
+  if (notificationId != null && notificationId > 0) {
+    return notificationId;
+  }
+  final String? messageId = resolvePushNotificationMessageId(payload);
+  if (messageId == null) {
+    return null;
+  }
+  return pushMessageNotificationId(messageId);
 }
 
 String? _nonEmpty(String? value) {

@@ -56,10 +56,10 @@ void main() {
       );
     });
 
-    test('uses root well-known for official api host', () {
+    test('uses api well-known for official marketing api path', () {
       expect(
-        normalizer.buildWellKnownUrl('https://api.fluxer.app/v1'),
-        'https://api.fluxer.app/.well-known/fluxer',
+        normalizer.buildWellKnownUrl('https://fluxer.com/api'),
+        'https://fluxer.com/api/.well-known/fluxer',
       );
     });
 

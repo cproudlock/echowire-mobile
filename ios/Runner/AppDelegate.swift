@@ -3,24 +3,21 @@ import CallKit
 import Flutter
 import UIKit
 import UserNotifications
-import WebRTC
 import flutter_callkit_incoming
 
 @main
 @objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate, CallkitIncomingAppDelegate {
-  private var callKitTeardownTask = UIBackgroundTaskIdentifier.invalid
-  private var callKitTeardownGeneration = 0
-
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+    VoipRegistry.shared.start()
     let result = super.application(application, didFinishLaunchingWithOptions: launchOptions)
     UNUserNotificationCenter.current().delegate = self
     ApplePushBridge.shared.registerReplyCategory()
     // echowire: AssistantAppShortcuts is not in our Xcode target, so upstream's
-    // call to it is omitted. See feat/ios-assistant.
-    VoipPushHandler.shared.start()
+    // call to it is omitted. See feat/ios-assistant. VoipPushHandler was
+    // replaced upstream by VoipRegistry, started above.
     return result
   }
 
@@ -109,8 +106,7 @@ import flutter_callkit_incoming
 // needs the project file edited on a Mac, where the build can be verified.
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
-    VoipPushHandler.shared.applyPendingVoipToken()
-    VoipPushHandler.shared.register(messenger: engineBridge.applicationRegistrar.messenger())
+    VoipRegistry.shared.register(messenger: engineBridge.applicationRegistrar.messenger())
     ApplePushBridge.shared.register(engineBridge: engineBridge)
     ApplePushBridge.shared.registerReplyCategory()
     // echowire: AssistantBridge is not in our Xcode target; the other two are.
@@ -125,56 +121,21 @@ import flutter_callkit_incoming
   }
 
   func onDecline(_ call: Call, _ action: CXEndCallAction) {
-    keepAliveForCallKitTeardown()
     action.fulfill()
   }
 
   func onEnd(_ call: Call, _ action: CXEndCallAction) {
-    keepAliveForCallKitTeardown()
     action.fulfill()
-  }
-
-  private func keepAliveForCallKitTeardown() {
-    endCallKitTeardownTask()
-    callKitTeardownGeneration += 1
-    let generation = callKitTeardownGeneration
-    callKitTeardownTask = UIApplication.shared.beginBackgroundTask(
-      withName: "CallKitTeardown"
-    ) { [weak self] in
-      self?.endCallKitTeardownTask()
-    }
-    DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-      guard let self, self.callKitTeardownGeneration == generation else {
-        return
-      }
-      self.endCallKitTeardownTask()
-    }
-  }
-
-  private func endCallKitTeardownTask() {
-    guard callKitTeardownTask != .invalid else {
-      return
-    }
-    UIApplication.shared.endBackgroundTask(callKitTeardownTask)
-    callKitTeardownTask = .invalid
   }
 
   func onTimeOut(_ call: Call) {}
 
   func didActivateAudioSession(_ audioSession: AVAudioSession) {
-    let rtc = RTCAudioSession.sharedInstance()
-    rtc.useManualAudio = true
-    rtc.audioSessionDidActivate(audioSession)
-    rtc.isAudioEnabled = true
+    CallAudioSession.activate(audioSession)
   }
 
   func didDeactivateAudioSession(_ audioSession: AVAudioSession) {
-    let rtc = RTCAudioSession.sharedInstance()
-    rtc.audioSessionDidDeactivate(audioSession)
-    rtc.isAudioEnabled = false
-    if CXCallObserver().calls.isEmpty {
-      rtc.useManualAudio = false
-    }
+    CallAudioSession.deactivate(audioSession)
   }
 
   func providerDidReset() {}

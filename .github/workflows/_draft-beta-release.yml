@@ -52,6 +52,8 @@ jobs:
           token: ${{ steps.create-token.outputs.token }}
           # echowire: we release from canary and there is no beta branch here,
           # and the version comes from pubspec rather than upstream's resolver.
+          # Upstream also passes version: release_drafter_version here; taking it
+          # would put their resolver back in charge of the drafted release name.
           commitish: canary
 
       - name: Append direct commits

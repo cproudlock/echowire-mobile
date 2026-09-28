@@ -52,6 +52,7 @@ class VoiceActiveSpeakersState {
 @Riverpod(keepAlive: true)
 class VoiceActiveSpeakers extends _$VoiceActiveSpeakers {
   EventsListener<RoomEvent>? _listener;
+  Room? _attachedRoom;
   final Map<String, Timer> _holdTimers = <String, Timer>{};
   Set<String> _speakingKeys = <String>{};
   final Set<String> _recentlySpokeKeys = <String>{};
@@ -63,15 +64,20 @@ class VoiceActiveSpeakers extends _$VoiceActiveSpeakers {
     final Room? room = ref.watch(
       voiceSessionProvider.select((VoiceSessionState s) => s.liveKitRoom),
     );
-    ref.onDispose(_detach);
+    ref.onDispose(_detachForDispose);
     _attachTo(room);
     return const VoiceActiveSpeakersState();
   }
 
   void _attachTo(Room? room) {
+    if (identical(_attachedRoom, room)) {
+      return;
+    }
+    _detach();
     if (room == null) {
       return;
     }
+    _attachedRoom = room;
     final EventsListener<RoomEvent> listener = room.createListener();
     _listener = listener;
     listener.on<ActiveSpeakersChangedEvent>((ActiveSpeakersChangedEvent event) {
@@ -132,7 +138,11 @@ class VoiceActiveSpeakers extends _$VoiceActiveSpeakers {
     );
   }
 
-  void _detach() {
+  void _detachForDispose() {
+    _detach(emitState: false);
+  }
+
+  void _detach({bool emitState = true}) {
     _debounceTimer?.cancel();
     _debounceTimer = null;
     _hasPendingEmit = false;
@@ -144,8 +154,12 @@ class VoiceActiveSpeakers extends _$VoiceActiveSpeakers {
     _speakingKeys = <String>{};
     final EventsListener<RoomEvent>? listener = _listener;
     _listener = null;
+    _attachedRoom = null;
     if (listener != null) {
       unawaited(listener.dispose());
+    }
+    if (emitState) {
+      _emit();
     }
   }
 }

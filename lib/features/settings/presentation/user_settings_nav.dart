@@ -1,8 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/build/app_build_config.dart';
+import 'package:fluxer_app/core/instance/instance_constants.dart';
+import 'package:fluxer_app/core/platform/alternate_app_icon_settings.dart';
 import 'package:fluxer_app/core/platform/fluxer_platform.dart';
 import 'package:fluxer_app/features/settings/domain/user_settings_nav_group.dart';
 import 'package:fluxer_app/features/settings/domain/user_settings_section.dart';
+import 'package:fluxer_app/features/settings/presentation/widgets/settings_fluxer_logo_icon.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/settings_sidebar.dart';
 import 'package:fluxer_app/features/settings/utils/user_settings_billing_utils.dart';
 import 'package:fluxer_app/features/settings/utils/user_settings_nav_l10n.dart';
@@ -25,6 +28,7 @@ class UserSettingsDesktopNavEntry {
     this.group,
     this.section,
     this.icon,
+    this.leading,
     this.isSeparator = false,
     this.isLogout = false,
     this.isJoinFluxerLabs = false,
@@ -38,6 +42,11 @@ class UserSettingsDesktopNavEntry {
     required IconData icon,
   }) : this._(section: section, icon: icon);
 
+  const UserSettingsDesktopNavEntry.linkWithLeading(
+    UserSettingsSection section, {
+    required Widget leading,
+  }) : this._(section: section, leading: leading);
+
   const UserSettingsDesktopNavEntry.logout()
     : this._(icon: PhosphorIconsFill.signOut, isLogout: true);
 
@@ -47,6 +56,7 @@ class UserSettingsDesktopNavEntry {
   final UserSettingsNavGroup? group;
   final UserSettingsSection? section;
   final IconData? icon;
+  final Widget? leading;
   final bool isSeparator;
   final bool isLogout;
   final bool isJoinFluxerLabs;
@@ -73,6 +83,7 @@ class UserSettingsDesktopNavEntry {
     return SettingsSidebarItem(
       userSettingsSectionLabel(l10n, section!),
       icon: icon,
+      leading: leading,
     );
   }
 
@@ -228,6 +239,11 @@ List<UserSettingsDesktopNavEntry> buildUserSettingsDesktopNav({
       UserSettingsSection.defaultApps,
       icon: PhosphorIconsFill.squaresFour,
     ),
+  if (isAlternateAppIconSettingsAvailable)
+    const UserSettingsDesktopNavEntry.linkWithLeading(
+      UserSettingsSection.appIcon,
+      leading: SettingsFluxerLogoIcon(),
+    ),
   ..._userSettingsDesktopNavAfterLanguageAndTime,
   if (AppBuildConfig.isCanary) ..._userSettingsDesktopNavStaffOnly,
   ..._userSettingsDesktopNavWhatsNew,
@@ -278,6 +294,14 @@ IconData? iconForUserSettingsSection(
     if (entry.section == section) {
       return entry.icon;
     }
+  }
+  return null;
+}
+
+Widget? leadingForUserSettingsSection(UserSettingsSection section) {
+  if (section == UserSettingsSection.appIcon &&
+      isAlternateAppIconSettingsAvailable) {
+    return const SettingsFluxerLogoIcon();
   }
   return null;
 }
@@ -337,6 +361,12 @@ List<FluxerSettingsNavGroup> buildUserSettingsMobileNavGroups({
         link(UserSettingsSection.languageAndTime, PhosphorIconsBold.translate),
         if (isFluxerNativeMobileOs)
           link(UserSettingsSection.defaultApps, PhosphorIconsFill.squaresFour),
+        if (isAlternateAppIconSettingsAvailable)
+          FluxerSettingsNavItem(
+            label: userSettingsSectionLabel(l10n, UserSettingsSection.appIcon),
+            leading: leadingForUserSettingsSection(UserSettingsSection.appIcon),
+            onTap: () => onOpenSection(UserSettingsSection.appIcon),
+          ),
         link(UserSettingsSection.advanced, PhosphorIconsFill.gear),
       ],
     ),
@@ -426,14 +456,17 @@ UserSettingsSearchSidebar buildUserSettingsSearchSidebar({
       );
       hitAtIndex.add(null);
     }
-    final IconData icon = _searchSectionIcon(
-      section,
-      showBilling: showBilling,
-      showJoinFluxerLabs: false,
-      isTouchPrimary: isTouchPrimary,
-    );
+    final Widget? leading = leadingForUserSettingsSection(section);
+    final IconData? icon = leading == null
+        ? _searchSectionIcon(
+            section,
+            showBilling: showBilling,
+            showJoinFluxerLabs: false,
+            isTouchPrimary: isTouchPrimary,
+          )
+        : null;
     for (final UserSettingsSearchHit hit in sectionHits) {
-      items.add(SettingsSidebarItem(hit.label, icon: icon));
+      items.add(SettingsSidebarItem(hit.label, icon: icon, leading: leading));
       hitAtIndex.add(hit);
     }
   }
@@ -448,6 +481,29 @@ List<FluxerSettingsNavGroup> buildUserSettingsSearchNavGroups({
   required bool showBilling,
   required bool isTouchPrimary,
 }) {
+  FluxerSettingsNavItem searchHitItem(
+    UserSettingsSection section,
+    UserSettingsSearchHit hit,
+  ) {
+    final Widget? leading = leadingForUserSettingsSection(section);
+    return FluxerSettingsNavItem(
+      label: hit.label,
+      hint: hit.fieldId == null
+          ? null
+          : userSettingsSectionLabel(l10n, section),
+      icon: leading == null
+          ? _searchSectionIcon(
+              section,
+              showBilling: showBilling,
+              showJoinFluxerLabs: false,
+              isTouchPrimary: isTouchPrimary,
+            )
+          : null,
+      leading: leading,
+      onTap: () => onOpen(section, initialFieldId: hit.fieldId),
+    );
+  }
+
   return [
     for (final MapEntry<UserSettingsSection, List<UserSettingsSearchHit>> entry
         in groupUserSettingsSearchHits(hits))
@@ -455,19 +511,7 @@ List<FluxerSettingsNavGroup> buildUserSettingsSearchNavGroups({
         label: userSettingsSectionLabel(l10n, entry.key),
         items: [
           for (final UserSettingsSearchHit hit in entry.value)
-            FluxerSettingsNavItem(
-              label: hit.label,
-              hint: hit.fieldId == null
-                  ? null
-                  : userSettingsSectionLabel(l10n, entry.key),
-              icon: _searchSectionIcon(
-                entry.key,
-                showBilling: showBilling,
-                showJoinFluxerLabs: false,
-                isTouchPrimary: isTouchPrimary,
-              ),
-              onTap: () => onOpen(entry.key, initialFieldId: hit.fieldId),
-            ),
+            searchHitItem(entry.key, hit),
         ],
       ),
   ];

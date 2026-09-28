@@ -31,7 +31,6 @@ class Toast extends _$Toast {
   Timer? _autoDismissTimer;
   Timer? _removalTimer;
   Timer? _replacementTimer;
-  FluxerToast? _pendingToast;
 
   @override
   List<ToastEntry> build() {
@@ -41,14 +40,12 @@ class Toast extends _$Toast {
 
   void show(FluxerToast toast) {
     _autoDismissTimer?.cancel();
-    _cancelPendingToast();
+    _replacementTimer?.cancel();
     final ToastEntry? visibleEntry = _findVisibleEntry();
     if (visibleEntry != null) {
       dismiss(visibleEntry.id);
-      _pendingToast = toast;
       _replacementTimer = Timer(fluxerToastAnimationDuration, () {
         _replacementTimer = null;
-        _pendingToast = null;
         _presentToast(toast);
       });
       return;
@@ -82,25 +79,6 @@ class Toast extends _$Toast {
     });
   }
 
-  void hide(FluxerToast toast) {
-    if (identical(_pendingToast, toast)) {
-      _cancelPendingToast();
-      return;
-    }
-    for (final ToastEntry entry in state) {
-      if (entry.isVisible && identical(entry.toast, toast)) {
-        dismiss(entry.id);
-        return;
-      }
-    }
-  }
-
-  void _cancelPendingToast() {
-    _replacementTimer?.cancel();
-    _replacementTimer = null;
-    _pendingToast = null;
-  }
-
   void _presentToast(FluxerToast toast) {
     final ToastEntry entry = ToastEntry(
       toast: toast,
@@ -129,6 +107,7 @@ class Toast extends _$Toast {
     _autoDismissTimer = null;
     _removalTimer?.cancel();
     _removalTimer = null;
-    _cancelPendingToast();
+    _replacementTimer?.cancel();
+    _replacementTimer = null;
   }
 }

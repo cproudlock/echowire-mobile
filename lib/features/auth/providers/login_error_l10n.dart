@@ -19,7 +19,6 @@ extension LoginErrorL10n on LoginError {
       LoginError.ssoCancelled => l10n.ssoCancelled,
       LoginError.ssoFailed => l10n.failedToStartSso,
       LoginError.serviceUnavailable => l10n.errorServiceUnavailable,
-      LoginError.verificationFailed => l10n.authVerificationFailed,
     };
   }
 }

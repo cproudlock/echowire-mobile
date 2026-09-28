@@ -4419,7 +4419,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'Tema oscuro';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'Tema oscuro (heredado)';
 
   @override
   String get lookAndFeelThemeCoal => 'Tema carbón';
@@ -5856,13 +5856,13 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'Utilizar el auricular';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => 'Altavoz';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'Auriculares';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'Solo mostrar vídeos';
@@ -6678,7 +6678,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => 'Editar';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10837,11 +10837,11 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'Cerrar sesión';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => '¿Cerrar sesión?';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'Puedes volver a iniciar sesión en cualquier momento.';
 
   @override
   String get quickSwitcherTabSearch => 'Buscar';
@@ -14973,36 +14973,37 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
       'No se pudo añadir eso a la publicación. Inténtalo de nuevo.';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'Aplicaciones';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'Crear aplicación';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'Crear';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'Completa el registro de tu cuenta para crear aplicaciones.';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'Leer la documentación ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError =>
+      'No se han podido cargar las aplicaciones';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'Comprueba tu conexión y vuelve a intentarlo.';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'Aún no hay aplicaciones';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return 'Crea tu primera aplicación para empezar a usar la $apiName.';
   }
 
   @override
@@ -15011,207 +15012,212 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'Nombre de la aplicación';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'Mi aplicación';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired =>
+      'El nombre de la aplicación es obligatorio';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'Volver a la lista';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError =>
+      'No se ha podido cargar esta aplicación';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'Inténtalo de nuevo o vuelve a la lista de aplicaciones.';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'ID de la aplicación';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'Copiar ID';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'Secretos y tokens';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'Guarda estas credenciales en un lugar seguro. Si las regeneras, las integraciones existentes dejarán de funcionar.';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => 'Secreto de cliente';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'Token del bot';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'Regenerar';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      '¿Regenerar el secreto del cliente?';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle =>
+      '¿Regenerar el token del bot?';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'Al regenerar, se invalidará el secreto actual. Actualiza cualquier código que use el valor antiguo.';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'Regenerar invalidará el token actual. Actualiza cualquier código que use el valor antiguo.';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'Se ha regenerado el secreto de cliente. Actualiza cualquier código que use el secreto antiguo.';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'Token de bot regenerado. Actualiza cualquier código que use el token antiguo.';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed => 'No se pudo regenerar el secreto';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'Información de la aplicación';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'Ajustes básicos y URI de redirección permitidas.';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'Bot público';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'Permitir que cualquiera invite a este bot a sus comunidades.';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant =>
+      'Solicitar concesión de código OAuth2';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'Requiere una URI de redirección y un código de autorización al invitar a este bot.';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'URI de redirección';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'Añadir redirección';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'Eliminar URI de redirección';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'Perfil del bot';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'Avatar, etiqueta y detalles de perfil completos para tu bot.';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'Avatar del bot';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => 'Se requiere un nombre de usuario';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'El nombre de usuario debe tener 32 caracteres como máximo';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'El nombre de usuario solo puede contener letras, números y guiones bajos';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'Nombre de usuario del bot';
 
   @override
-  String get applicationsDiscriminator => 'Discriminator';
+  String get applicationsDiscriminator => 'Discriminador';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'Biografía del bot';
 
   @override
   String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+      '¡Un bot útil que hace cosas increíbles!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'Sin banner de bot';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'Bot amistoso';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'Permitir que los usuarios envíen solicitudes de amistad a este bot para aprobación manual.';
 
   @override
   String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+      'Requerir aprobación manual de las solicitudes de amistad';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'Las solicitudes de amistad para este bot requieren aprobación manual.';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'Constructor de URL de OAuth2';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'Ámbitos';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'URI de redirección';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri =>
+      'Selecciona una URI de redirección';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'La URI de redirección es obligatoria porque este bot requiere la concesión de código OAuth2.';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'La URI de redirección es obligatoria si no se usa únicamente el ámbito \"bot\".';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'Permisos del bot';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'Autorizar URL';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'Selecciona los ámbitos (y la URI de redirección si es necesaria)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => 'URL copiada al portapapeles';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'Zona de peligro';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'Esto no se puede deshacer. Al eliminar la aplicación, también se borrará su bot.';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'Una vez eliminada, la aplicación y sus credenciales se borrarán permanentemente.';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'Eliminar aplicación';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -15219,92 +15225,92 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => 'No se pudo eliminar la aplicación';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'Aplicación actualizada correctamente';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'No hay cambios que guardar';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'Aplicaciones y bots';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'Crea y gestiona aplicaciones y bots para tu cuenta';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'Editar aspectos básicos de la aplicación y URI de redireccionamiento';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'Editar el avatar, la etiqueta, la biografía, el banner y el comportamiento de solicitud de amistad del bot';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'Crea una URL de autorización con ámbitos, redirecciones y permisos de bot';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'Ver y regenerar secretos de cliente y tokens de bot';
 
   @override
   String get applicationsSearchBotsKeyword => 'Bots';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'Documentación';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'Ver detalles';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'Detalles del dispositivo';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'Dispositivo';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => 'Cliente';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'Ubicación';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'Dirección IP';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'Último uso';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'Sesión actual';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'Desconocido';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'Fijar';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'Fija este mensaje en el canal para que todos lo vean.';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'Añadido a mensajes guardados';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => 'Eliminado de mensajes guardados';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'Eliminar comunidad';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      '¿Seguro que quieres eliminar esta comunidad? Esta acción no se puede deshacer. Todos los canales, mensajes y ajustes se eliminarán permanentemente.';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'Comunidad eliminada';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15350,13 +15356,85 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'Mensaje enviado.';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle =>
+      'Retransmisión de notificaciones push';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider solo entrega notificaciones push a través de su propio servicio, así que las de este dispositivo pasan por la retransmisión de Fluxer.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Usar la retransmisión push de Fluxer';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Si lo desactivas, se elimina el registro push de este dispositivo y dejará de recibir notificaciones push.';
+
+  @override
+  String get pushRelayConsentTitle => 'Retransmisión de notificaciones push';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider solo entrega notificaciones push a través de su propio servicio, así que las de este dispositivo pasan por la retransmisión de Fluxer.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Acepta el ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'aviso de privacidad de la retransmisión push';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' para activar las notificaciones push en este dispositivo. Solo necesitas aceptar una vez por dispositivo.';
+
+  @override
+  String get pushRelayConsentAgree => 'Aceptar y continuar';
+
+  @override
+  String get pushRelayConsentDecline => 'Ahora no';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'Predeterminado';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'Suecia';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }
 
 /// The translations for Spanish Castilian, as used in Latin America and the Caribbean (`es_419`).
@@ -21213,6 +21291,12 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
 
   @override
   String get voicePanelUseEarpieceLabel => 'Usar auricular';
+
+  @override
+  String get voiceOutputRouteSpeaker => 'Altavoz';
+
+  @override
+  String get voiceOutputRouteHeadset => 'Auriculares';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'Mostrar solo videos';
@@ -30342,6 +30426,9 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
       'Comprueba tu conexión e inténtalo de nuevo.';
 
   @override
+  String get applicationsEmptyTitle => 'Aún no hay aplicaciones';
+
+  @override
   String applicationsEmptyDescription(String apiName) {
     return 'Crea tu primera aplicación para empezar con $apiName.';
   }
@@ -30703,4 +30790,52 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
 
   @override
   String get assistantOkCustomStatusCleared => 'Estado personalizado borrado.';
+
+  @override
+  String get notificationsPushRelaySectionTitle =>
+      'Retransmisión de notificaciones push';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider solo entrega notificaciones push a través de su propio servicio, así que las de este dispositivo pasan por la retransmisión de Fluxer.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Usar la retransmisión push de Fluxer';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Si lo desactivas, se elimina el registro push de este dispositivo y dejará de recibir notificaciones push.';
+
+  @override
+  String get pushRelayConsentTitle => 'Retransmisión de notificaciones push';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider solo entrega notificaciones push a través de su propio servicio, así que las de este dispositivo pasan por la retransmisión de Fluxer.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Acepta el ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'aviso de privacidad de la retransmisión push';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' para activar las notificaciones push en este dispositivo. Solo necesitas aceptar una vez por dispositivo.';
+
+  @override
+  String get pushRelayConsentAgree => 'Aceptar y continuar';
+
+  @override
+  String get pushRelayConsentDecline => 'Ahora no';
+
+  @override
+  String get appIconOptionDefault => 'Predeterminado';
+
+  @override
+  String get appIconOptionSweden => 'Suecia';
 }

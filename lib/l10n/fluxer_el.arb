@@ -16966,7 +16966,7 @@
     "@threadsUnlockThread": {
         "description": "Channel details action that unlocks the current thread."
     },
-    "threadsLeaveThread": "Αποχώρηση από το νήμα",
+    "threadsLeaveThread": "Leave thread",
     "@threadsLeaveThread": {
         "description": "Channel details action that leaves the current thread."
     },
@@ -16986,7 +16986,6 @@
     "threadsAddMemberSearchLabel": "Search members",
     "threadsAddMemberNoResults": "No members match that search.",
     "threadsRemoveMember": "Remove from thread",
-    "threadsLeaveThread": "Leave thread",
     "threadsMemberAddedToast": "Member added",
     "threadsMemberRemovedToast": "Member removed",
     "threadsLeftToast": "You left the thread",
@@ -17347,5 +17346,478 @@
     "forumTagModeratedOff": "Οποιοσδήποτε μπορεί να την εφαρμόσει, πατήστε για περιορισμό στους συντονιστές",
     "forumAddToPost": "Προσθήκη στην ανάρτηση",
     "forumAddToPostDone": "Προστέθηκε στην ανάρτηση.",
-    "forumAddToPostFailed": "Δεν ήταν δυνατή η προσθήκη στην ανάρτηση. Δοκιμάστε ξανά."
+    "forumAddToPostFailed": "Δεν ήταν δυνατή η προσθήκη στην ανάρτηση. Δοκιμάστε ξανά.",
+    "notificationsPushRelaySectionTitle": "Αναμετάδοση ειδοποιήσεων push",
+    "@notificationsPushRelaySectionTitle": {
+        "description": "Notification settings section title for the Fluxer push relay."
+    },
+    "notificationsPushRelaySectionDescription": "Η {pushProvider} παραδίδει ειδοποιήσεις push μόνο μέσω της δικής της υπηρεσίας, οπότε οι ειδοποιήσεις αυτής της συσκευής περνούν από την αναμετάδοση του Fluxer.",
+    "@notificationsPushRelaySectionDescription": {
+        "description": "Notification settings section description explaining why the push relay exists.",
+        "placeholders": {
+            "pushProvider": {
+                "type": "String"
+            }
+        }
+    },
+    "notificationsPushRelayConsentLabel": "Χρήση της αναμετάδοσης push του Fluxer",
+    "@notificationsPushRelayConsentLabel": {
+        "description": "Toggle label for agreeing to the Fluxer push relay on this device."
+    },
+    "notificationsPushRelayConsentDescription": "Αν το απενεργοποιήσετε, η εγγραφή push αυτής της συσκευής αφαιρείται και η συσκευή σταματά να λαμβάνει ειδοποιήσεις push.",
+    "@notificationsPushRelayConsentDescription": {
+        "description": "Toggle description explaining that revoking push relay consent unregisters the device."
+    },
+    "pushRelayConsentTitle": "Αναμετάδοση ειδοποιήσεων push",
+    "@pushRelayConsentTitle": {
+        "description": "Title of the one-time Fluxer push relay consent sheet."
+    },
+    "pushRelayConsentDescription": "Η {pushProvider} παραδίδει ειδοποιήσεις push μόνο μέσω της δικής της υπηρεσίας, οπότε οι ειδοποιήσεις αυτής της συσκευής περνούν από την αναμετάδοση του Fluxer.",
+    "@pushRelayConsentDescription": {
+        "description": "Subtitle of the push relay consent sheet explaining why the relay exists.",
+        "placeholders": {
+            "pushProvider": {
+                "type": "String"
+            }
+        }
+    },
+    "pushRelayConsentNoticePrefix": "Αποδεχτείτε τη ",
+    "@pushRelayConsentNoticePrefix": {
+        "description": "Text before the push relay privacy notice link in the consent sheet."
+    },
+    "pushRelayConsentNoticeLink": "δήλωση απορρήτου της αναμετάδοσης push",
+    "@pushRelayConsentNoticeLink": {
+        "description": "Link text for the supplemental push relay privacy notice."
+    },
+    "pushRelayConsentNoticeSuffix": " για να ενεργοποιήσετε τις ειδοποιήσεις push σε αυτήν τη συσκευή. Χρειάζεται αποδοχή μία φορά ανά συσκευή.",
+    "@pushRelayConsentNoticeSuffix": {
+        "description": "Text after the push relay privacy notice link in the consent sheet."
+    },
+    "pushRelayConsentAgree": "Αποδοχή και συνέχεια",
+    "@pushRelayConsentAgree": {
+        "description": "Button that records agreement to the push relay privacy notice."
+    },
+    "pushRelayConsentDecline": "Όχι τώρα",
+    "@pushRelayConsentDecline": {
+        "description": "Button that declines the push relay privacy notice and leaves push notifications off."
+    },
+    "applicationsTitle": "Εφαρμογές",
+    "@applicationsTitle": {
+        "description": "Title for the developer Applications settings tab."
+    },
+    "applicationsCreate": "Δημιουργία εφαρμογής",
+    "@applicationsCreate": {
+        "description": "Button that opens the create-application sheet."
+    },
+    "applicationsCreateSubmit": "Δημιουργία",
+    "@applicationsCreateSubmit": {
+        "description": "Primary submit label in the create-application sheet."
+    },
+    "applicationsCreateClaimTooltip": "Διεκδικήστε τον λογαριασμό σας για να δημιουργήσετε εφαρμογές.",
+    "@applicationsCreateClaimTooltip": {
+        "description": "Tooltip on the disabled create button for unclaimed accounts."
+    },
+    "applicationsDocsLink": "Διαβάστε την τεκμηρίωση ({domain})",
+    "@applicationsDocsLink": {
+        "description": "Link to developer documentation. domain is the docs host.",
+        "placeholders": {
+            "domain": {
+                "type": "String"
+            }
+        }
+    },
+    "applicationsLoadError": "Δεν είναι δυνατή η φόρτωση των εφαρμογών",
+    "@applicationsLoadError": {
+        "description": "Error title when the applications list fails to load."
+    },
+    "applicationsLoadErrorDescription": "Έλεγξε τη σύνδεσή σου και δοκίμασε ξανά.",
+    "@applicationsLoadErrorDescription": {
+        "description": "Error body when the applications list fails to load."
+    },
+    "applicationsEmptyTitle": "Δεν υπάρχουν εφαρμογές ακόμα",
+    "@applicationsEmptyTitle": {
+        "description": "Empty-state title when the user has no developer applications."
+    },
+    "applicationsEmptyDescription": "Δημιουργήστε την πρώτη σας εφαρμογή για να ξεκινήσετε με το {apiName}.",
+    "@applicationsEmptyDescription": {
+        "description": "Empty-state body. apiName is the product API display name.",
+        "placeholders": {
+            "apiName": {
+                "type": "String"
+            }
+        }
+    },
+    "applicationsName": "Όνομα εφαρμογής",
+    "@applicationsName": {
+        "description": "Label for the application name field."
+    },
+    "applicationsNameHint": "Η εφαρμογή μου",
+    "@applicationsNameHint": {
+        "description": "Placeholder for the application name field."
+    },
+    "applicationsNameRequired": "Απαιτείται όνομα εφαρμογής",
+    "@applicationsNameRequired": {
+        "description": "Validation error when the application name is empty."
+    },
+    "applicationsBackToList": "Επιστροφή στη λίστα",
+    "@applicationsBackToList": {
+        "description": "Button that returns from application details to the list."
+    },
+    "applicationsDetailLoadError": "Δεν ήταν δυνατή η φόρτωση αυτής της εφαρμογής",
+    "@applicationsDetailLoadError": {
+        "description": "Error title when a single application fails to load."
+    },
+    "applicationsDetailLoadErrorDescription": "Δοκιμάστε ξανά ή επιστρέψτε στη λίστα εφαρμογών.",
+    "@applicationsDetailLoadErrorDescription": {
+        "description": "Error body when a single application fails to load."
+    },
+    "applicationsId": "Αναγνωριστικό εφαρμογής",
+    "@applicationsId": {
+        "description": "Label for the read-only application ID field."
+    },
+    "applicationsCopyId": "Αντιγραφή ID",
+    "@applicationsCopyId": {
+        "description": "Button that copies the application ID."
+    },
+    "applicationsSecretsTitle": "Μυστικά και token",
+    "@applicationsSecretsTitle": {
+        "description": "Section title for client secret and bot token."
+    },
+    "applicationsSecretsDescription": "Κράτησέ τα ασφαλή. Η αναδημιουργία θα διακόψει τις υπάρχουσες ενσωματώσεις.",
+    "@applicationsSecretsDescription": {
+        "description": "Section description for secrets and tokens."
+    },
+    "applicationsClientSecret": "Μυστικό πελάτη",
+    "@applicationsClientSecret": {
+        "description": "Label for the OAuth2 client secret field."
+    },
+    "applicationsBotToken": "Token bot",
+    "@applicationsBotToken": {
+        "description": "Label for the bot token field."
+    },
+    "applicationsRegenerate": "Αναδημιουργία",
+    "@applicationsRegenerate": {
+        "description": "Button that rotates a secret or token."
+    },
+    "applicationsRegenerateClientSecretTitle": "Να δημιουργηθεί ξανά το μυστικό πελάτη;",
+    "@applicationsRegenerateClientSecretTitle": {
+        "description": "Confirmation title when regenerating the client secret."
+    },
+    "applicationsRegenerateBotTokenTitle": "Να δημιουργηθεί ξανά το διακριτικό του bot;",
+    "@applicationsRegenerateBotTokenTitle": {
+        "description": "Confirmation title when regenerating the bot token."
+    },
+    "applicationsRegenerateClientSecretDescription": "Η αναδημιουργία θα ακυρώσει το τρέχον μυστικό. Ενημερώστε κάθε κώδικα που χρησιμοποιεί την παλιά τιμή.",
+    "@applicationsRegenerateClientSecretDescription": {
+        "description": "Confirmation body when regenerating the client secret."
+    },
+    "applicationsRegenerateBotTokenDescription": "Η αναδημιουργία θα ακυρώσει το τρέχον διακριτικό. Ενημερώστε κάθε κώδικα που χρησιμοποιεί την παλιά τιμή.",
+    "@applicationsRegenerateBotTokenDescription": {
+        "description": "Confirmation body when regenerating the bot token."
+    },
+    "applicationsClientSecretRegenerated": "Το μυστικό του πελάτη ανανεώθηκε. Ενημερώστε κάθε κώδικα που χρησιμοποιεί το παλιό μυστικό.",
+    "@applicationsClientSecretRegenerated": {
+        "description": "Toast after a client secret is rotated."
+    },
+    "applicationsBotTokenRegenerated": "Το bot token ανανεώθηκε. Ενημερώστε κάθε κώδικα που χρησιμοποιεί το παλιό token.",
+    "@applicationsBotTokenRegenerated": {
+        "description": "Toast after a bot token is rotated."
+    },
+    "applicationsRegenerateFailed": "Δεν ήταν δυνατή η ανανέωση του μυστικού κλειδιού",
+    "@applicationsRegenerateFailed": {
+        "description": "Error toast when rotating a secret or token fails."
+    },
+    "applicationsInfoTitle": "Πληροφορίες εφαρμογής",
+    "@applicationsInfoTitle": {
+        "description": "Section title for basic application settings."
+    },
+    "applicationsInfoDescription": "Βασικές ρυθμίσεις και επιτρεπόμενα URI ανακατεύθυνσης.",
+    "@applicationsInfoDescription": {
+        "description": "Section description for basic application settings."
+    },
+    "applicationsPublicBot": "Δημόσιο bot",
+    "@applicationsPublicBot": {
+        "description": "Switch label for allowing anyone to invite the bot."
+    },
+    "applicationsPublicBotDescription": "Να επιτρέπεται σε οποιονδήποτε να προσκαλεί αυτό το bot στις κοινότητές του.",
+    "@applicationsPublicBotDescription": {
+        "description": "Switch description for public bot."
+    },
+    "applicationsRequireCodeGrant": "Απαίτηση εκχώρησης κωδικού OAuth2",
+    "@applicationsRequireCodeGrant": {
+        "description": "Switch label for requiring an OAuth2 code grant on invite."
+    },
+    "applicationsRequireCodeGrantDescription": "Απαιτεί URI ανακατεύθυνσης και κωδικό εξουσιοδότησης κατά την πρόσκληση αυτού του bot.",
+    "@applicationsRequireCodeGrantDescription": {
+        "description": "Switch description for OAuth2 code grant."
+    },
+    "applicationsRedirectUris": "URI ανακατεύθυνσης",
+    "@applicationsRedirectUris": {
+        "description": "Label for the redirect URI list."
+    },
+    "applicationsAddRedirect": "Προσθήκη ανακατεύθυνσης",
+    "@applicationsAddRedirect": {
+        "description": "Button that adds another redirect URI row."
+    },
+    "applicationsDeleteRedirect": "Διαγραφή διεύθυνσης ανακατεύθυνσης",
+    "@applicationsDeleteRedirect": {
+        "description": "Accessibility label for removing a redirect URI row."
+    },
+    "applicationsBotProfileTitle": "Προφίλ bot",
+    "@applicationsBotProfileTitle": {
+        "description": "Section title for bot profile settings."
+    },
+    "applicationsBotProfileDescription": "Εικόνα προφίλ, ετικέτα και λεπτομέρειες εμπλουτισμένου προφίλ για το bot σας.",
+    "@applicationsBotProfileDescription": {
+        "description": "Section description for bot profile settings."
+    },
+    "applicationsBotAvatar": "Εικόνα προφίλ bot",
+    "@applicationsBotAvatar": {
+        "description": "Label for the bot avatar preview."
+    },
+    "applicationsUsernameRequired": "Απαιτείται όνομα χρήστη",
+    "@applicationsUsernameRequired": {
+        "description": "Validation error when the bot username is empty."
+    },
+    "applicationsUsernameTooLong": "Το όνομα χρήστη πρέπει να έχει έως 32 χαρακτήρες",
+    "@applicationsUsernameTooLong": {
+        "description": "Validation error when the bot username is too long."
+    },
+    "applicationsUsernameInvalid": "Το όνομα χρήστη μπορεί να περιέχει μόνο γράμματα, αριθμούς και κάτω παύλες",
+    "@applicationsUsernameInvalid": {
+        "description": "Validation error when the bot username has invalid characters."
+    },
+    "applicationsBotUsername": "Όνομα χρήστη bot",
+    "@applicationsBotUsername": {
+        "description": "Label for the bot username field."
+    },
+    "applicationsDiscriminator": "Διακριτικό",
+    "@applicationsDiscriminator": {
+        "description": "Label for the read-only bot discriminator."
+    },
+    "applicationsBotBio": "Βιογραφικό bot",
+    "@applicationsBotBio": {
+        "description": "Label for the bot biography field."
+    },
+    "applicationsBotBioHint": "Ένα εξυπηρετικό bot που κάνει καταπληκτικά πράγματα!",
+    "@applicationsBotBioHint": {
+        "description": "Placeholder for the bot biography field."
+    },
+    "applicationsNoBotBanner": "Χωρίς banner bot",
+    "@applicationsNoBotBanner": {
+        "description": "Placeholder shown when the bot has no banner."
+    },
+    "applicationsFriendlyBot": "Φιλικό bot",
+    "@applicationsFriendlyBot": {
+        "description": "Switch label for allowing friend requests to the bot."
+    },
+    "applicationsFriendlyBotDescription": "Να επιτρέπεται στους χρήστες να στέλνουν αιτήματα φιλίας σε αυτό το bot για μη αυτόματη έγκριση.",
+    "@applicationsFriendlyBotDescription": {
+        "description": "Switch description for friendly bot."
+    },
+    "applicationsManualFriendApproval": "Να απαιτείται μη αυτόματη έγκριση φιλίας",
+    "@applicationsManualFriendApproval": {
+        "description": "Switch label for requiring manual friend-request approval."
+    },
+    "applicationsManualFriendApprovalDescription": "Τα αιτήματα φιλίας προς αυτό το bot χρειάζονται μη αυτόματη έγκριση.",
+    "@applicationsManualFriendApprovalDescription": {
+        "description": "Switch description for manual friend approval."
+    },
+    "applicationsOauthBuilderTitle": "Δημιουργία URL OAuth2",
+    "@applicationsOauthBuilderTitle": {
+        "description": "Section title for the authorize URL builder."
+    },
+    "applicationsScopes": "Δικαιώματα πρόσβασης",
+    "@applicationsScopes": {
+        "description": "Label for OAuth2 scope checkboxes."
+    },
+    "applicationsRedirectUri": "URI ανακατεύθυνσης",
+    "@applicationsRedirectUri": {
+        "description": "Label for the authorize URL redirect selector."
+    },
+    "applicationsSelectRedirectUri": "Επιλέξτε ένα URI ανακατεύθυνσης",
+    "@applicationsSelectRedirectUri": {
+        "description": "Placeholder for the authorize URL redirect selector."
+    },
+    "applicationsRedirectRequiredCodeGrant": "Απαιτείται URI ανακατεύθυνσης, επειδή αυτό το bot απαιτεί εκχώρηση κωδικού OAuth2.",
+    "@applicationsRedirectRequiredCodeGrant": {
+        "description": "Validation shown when a redirect is required by code grant."
+    },
+    "applicationsRedirectRequiredScopes": "Το URI ανακατεύθυνσης απαιτείται όταν δεν χρησιμοποιείται μόνο το πεδίο εφαρμογής του bot.",
+    "@applicationsRedirectRequiredScopes": {
+        "description": "Validation shown when a redirect is required by selected scopes."
+    },
+    "applicationsBotPermissions": "Δικαιώματα bot",
+    "@applicationsBotPermissions": {
+        "description": "Label for bot permission checkboxes in the URL builder."
+    },
+    "applicationsAuthorizeUrl": "URL εξουσιοδότησης",
+    "@applicationsAuthorizeUrl": {
+        "description": "Label for the generated authorize URL field."
+    },
+    "applicationsAuthorizeUrlPlaceholder": "Επιλέξτε πεδία εφαρμογής (και URI ανακατεύθυνσης, αν χρειάζεται)",
+    "@applicationsAuthorizeUrlPlaceholder": {
+        "description": "Placeholder when the authorize URL cannot be built yet."
+    },
+    "applicationsCopiedUrl": "Αντιγράφηκε η διεύθυνση URL στο πρόχειρο",
+    "@applicationsCopiedUrl": {
+        "description": "Toast after copying the authorize URL."
+    },
+    "applicationsDangerTitle": "Επικίνδυνη ζώνη",
+    "@applicationsDangerTitle": {
+        "description": "Section title for deleting an application."
+    },
+    "applicationsDangerSubtitle": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Με την κατάργηση της εφαρμογής διαγράφεται και το bot της.",
+    "@applicationsDangerSubtitle": {
+        "description": "Section subtitle for deleting an application."
+    },
+    "applicationsDangerHelper": "Μόλις διαγραφεί, η εφαρμογή και τα διαπιστευτήριά της καταργούνται οριστικά.",
+    "@applicationsDangerHelper": {
+        "description": "Helper text in the application danger zone."
+    },
+    "applicationsDelete": "Διαγραφή εφαρμογής",
+    "@applicationsDelete": {
+        "description": "Button that deletes the current application."
+    },
+    "applicationsDeleteFailed": "Δεν ήταν δυνατή η διαγραφή της εφαρμογής",
+    "@applicationsDeleteFailed": {
+        "description": "Error toast when deleting an application fails."
+    },
+    "applicationsUpdated": "Η εφαρμογή ενημερώθηκε",
+    "@applicationsUpdated": {
+        "description": "Toast after saving application changes."
+    },
+    "applicationsNoChanges": "Δεν υπάρχουν αλλαγές για αποθήκευση",
+    "@applicationsNoChanges": {
+        "description": "Toast when save is pressed with no dirty fields."
+    },
+    "applicationsSearchBots": "Εφαρμογές και bot",
+    "@applicationsSearchBots": {
+        "description": "Settings search entry for the Applications tab."
+    },
+    "applicationsSearchBotsDescription": "Δημιουργία και διαχείριση εφαρμογών και bot για τον λογαριασμό σας",
+    "@applicationsSearchBotsDescription": {
+        "description": "Settings search description for the Applications tab."
+    },
+    "applicationsSearchInfoDescription": "Επεξεργασία βασικών στοιχείων εφαρμογής και URI ανακατεύθυνσης",
+    "@applicationsSearchInfoDescription": {
+        "description": "Settings search description for application information."
+    },
+    "applicationsSearchBotProfileDescription": "Επεξεργασία του avatar, της ετικέτας, του βιογραφικού, του banner και της συμπεριφοράς αιτήματος φιλίας του bot",
+    "@applicationsSearchBotProfileDescription": {
+        "description": "Settings search description for bot profile."
+    },
+    "applicationsSearchOauthDescription": "Δημιουργία URL εξουσιοδότησης με πεδία εφαρμογής, ανακατευθύνσεις και δικαιώματα bot",
+    "@applicationsSearchOauthDescription": {
+        "description": "Settings search description for the OAuth2 URL builder."
+    },
+    "applicationsSearchSecretsDescription": "Προβολή και αναδημιουργία μυστικών πελάτη και bot tokens",
+    "@applicationsSearchSecretsDescription": {
+        "description": "Settings search description for secrets and tokens."
+    },
+    "applicationsSearchBotsKeyword": "Bot",
+    "@applicationsSearchBotsKeyword": {
+        "description": "Settings search synonym for applications."
+    },
+    "applicationsSearchDocumentation": "Τεκμηρίωση",
+    "@applicationsSearchDocumentation": {
+        "description": "Settings search synonym for the applications docs link."
+    },
+    "linkedDevicesViewDetails": "Προβολή λεπτομερειών",
+    "@linkedDevicesViewDetails": {
+        "description": "Tooltip and accessibility label for opening a linked device details modal."
+    },
+    "linkedDevicesDetailsTitle": "Λεπτομέρειες συσκευής",
+    "@linkedDevicesDetailsTitle": {
+        "description": "Title of the linked device details modal."
+    },
+    "linkedDevicesDetailsDevice": "Συσκευή",
+    "@linkedDevicesDetailsDevice": {
+        "description": "Label for the operating system in the linked device details modal."
+    },
+    "linkedDevicesDetailsClient": "Εφαρμογή",
+    "@linkedDevicesDetailsClient": {
+        "description": "Label for the client/platform in the linked device details modal."
+    },
+    "linkedDevicesDetailsLocation": "Τοποθεσία",
+    "@linkedDevicesDetailsLocation": {
+        "description": "Label for the approximate location in the linked device details modal."
+    },
+    "linkedDevicesDetailsIp": "Διεύθυνση IP",
+    "@linkedDevicesDetailsIp": {
+        "description": "Label for the masked IP address in the linked device details modal."
+    },
+    "linkedDevicesDetailsLastUsed": "Τελευταία χρήση",
+    "@linkedDevicesDetailsLastUsed": {
+        "description": "Label for last activity time in the linked device details modal."
+    },
+    "linkedDevicesCurrentSession": "Τρέχουσα συνεδρία",
+    "@linkedDevicesCurrentSession": {
+        "description": "Last-used value shown for the session currently making the request."
+    },
+    "linkedDevicesUnknown": "Άγνωστο",
+    "@linkedDevicesUnknown": {
+        "description": "Fallback when a linked device detail such as last used time is missing."
+    },
+    "lookAndFeelThemeDarkLegacy": "Σκούρο θέμα (παλιό)",
+    "@lookAndFeelThemeDarkLegacy": {
+        "description": "Label on the legacy dark theme swatch button."
+    },
+    "voiceOutputRouteSpeaker": "Ηχείο",
+    "@voiceOutputRouteSpeaker": {
+        "description": "Voice output route that plays call audio through the phone speaker."
+    },
+    "voiceOutputRouteHeadset": "Ακουστικά",
+    "@voiceOutputRouteHeadset": {
+        "description": "Voice output route that plays call audio through a connected Bluetooth or wired headset."
+    },
+    "doubleTapReactionEdit": "Επεξεργασία",
+    "@doubleTapReactionEdit": {
+        "description": "Button that opens the double-tap default emoji picker."
+    },
+    "chatMessagePinConfirm": "Καρφίτσωμα",
+    "@chatMessagePinConfirm": {
+        "description": "Confirm button label on the pin message confirmation modal."
+    },
+    "chatMessagePinConfirmDescription": "Καρφιτσώστε αυτό το μήνυμα στο κανάλι για να το βλέπουν όλοι.",
+    "@chatMessagePinConfirmDescription": {
+        "description": "Body text for the pin message confirmation modal."
+    },
+    "appIconOptionDefault": "Προεπιλογή",
+    "@appIconOptionDefault": {
+        "description": "App icon option for the build default icon (release or canary)."
+    },
+    "appIconOptionSweden": "Σουηδία",
+    "@appIconOptionSweden": {
+        "description": "App icon option for the Sweden flag alternate icon."
+    },
+    "userSettingsLogOutConfirmTitle": "Αποσύνδεση;",
+    "@userSettingsLogOutConfirmTitle": {
+        "description": "Title of the confirmation shown before logging out from user settings."
+    },
+    "userSettingsLogOutConfirmDescription": "Μπορείτε να συνδεθείτε ξανά οποιαδήποτε στιγμή.",
+    "@userSettingsLogOutConfirmDescription": {
+        "description": "Body of the confirmation shown before logging out from user settings."
+    },
+    "savedMessagesAddedToast": "Προστέθηκε στους σελιδοδείκτες",
+    "@savedMessagesAddedToast": {
+        "description": "Toast confirming a message was bookmarked."
+    },
+    "savedMessagesRemovedToast": "Αφαιρέθηκε από τους σελιδοδείκτες",
+    "@savedMessagesRemovedToast": {
+        "description": "Toast confirming a message bookmark was removed."
+    },
+    "guildSettingsDeleteCommunity": "Διαγραφή κοινότητας",
+    "@guildSettingsDeleteCommunity": {
+        "description": "Destructive footer button in community settings. Opens the delete-community confirmation."
+    },
+    "guildSettingsDeleteCommunityConfirm": "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτήν την κοινότητα; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Όλα τα κανάλια, τα μηνύματα και οι ρυθμίσεις θα διαγραφούν οριστικά.",
+    "@guildSettingsDeleteCommunityConfirm": {
+        "description": "Confirmation copy for deleting a community."
+    },
+    "guildSettingsCommunityDeleted": "Η κοινότητα διαγράφηκε",
+    "@guildSettingsCommunityDeleted": {
+        "description": "Success toast after a community is deleted."
+    },
+    "assistantOkMessageSent": "Το μήνυμα στάλθηκε."
 }

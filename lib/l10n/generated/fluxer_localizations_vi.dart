@@ -4371,7 +4371,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'Chủ đề tối';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'Giao diện tối (cũ)';
 
   @override
   String get lookAndFeelThemeCoal => 'Chủ đề Than';
@@ -5802,13 +5802,13 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'Dùng tai nghe';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => 'Loa';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'Tai nghe';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'Chỉ hiển thị video';
@@ -6620,7 +6620,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => 'Chỉnh sửa';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10732,11 +10732,11 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'Đăng xuất';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => 'Đăng xuất?';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'Bạn có thể đăng nhập lại bất cứ lúc nào.';
 
   @override
   String get quickSwitcherTabSearch => 'Tìm kiếm';
@@ -14831,36 +14831,36 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Không thể thêm nội dung đó vào bài đăng. Vui lòng thử lại.';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'Ứng dụng';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'Tạo ứng dụng';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'Tạo';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'Xác nhận tài khoản để tạo ứng dụng.';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'Đọc tài liệu ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError => 'Không thể tải ứng dụng';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'Kiểm tra kết nối mạng và thử lại.';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'Chưa có ứng dụng nào';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return 'Tạo ứng dụng đầu tiên của bạn để bắt đầu với $apiName.';
   }
 
   @override
@@ -14869,207 +14869,207 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'Tên ứng dụng';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'Ứng dụng của tôi';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => 'Tên ứng dụng là bắt buộc';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'Quay lại danh sách';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError => 'Không thể tải ứng dụng này';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'Thử lại hoặc quay lại danh sách ứng dụng.';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'ID ứng dụng';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'Sao chép ID';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'Mã bí mật & token';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'Hãy bảo mật những thông tin này. Việc tạo lại sẽ làm hỏng các tích hợp hiện có.';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => 'Mã bí mật của máy khách';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'Token bot';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'Tạo lại';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      'Tạo lại mã bí mật của máy khách?';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle => 'Tạo lại token bot?';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'Việc tạo lại sẽ làm mất hiệu lực mã bí mật hiện tại. Hãy cập nhật mọi đoạn mã đang dùng giá trị cũ.';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'Việc tạo lại sẽ làm mất hiệu lực token hiện tại. Hãy cập nhật mọi đoạn mã đang dùng giá trị cũ.';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'Đã tạo lại mã bí mật của máy khách. Hãy cập nhật bất kỳ mã nào đang sử dụng mã bí mật cũ.';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'Đã tạo lại token bot. Hãy cập nhật mọi đoạn mã đang dùng token cũ.';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed => 'Không thể tạo lại khóa bí mật';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'Thông tin ứng dụng';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'Cài đặt cơ bản và URI chuyển hướng được phép.';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'Bot công khai';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'Cho phép mọi người mời bot này vào cộng đồng của họ.';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant => 'Yêu cầu cấp quyền OAuth2';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'Yêu cầu URI chuyển hướng và mã ủy quyền khi mời bot này.';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'URI chuyển hướng';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'Thêm chuyển hướng';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'Xóa URI chuyển hướng';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'Hồ sơ bot';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'Ảnh đại diện, thẻ và thông tin chi tiết phong phú cho bot của bạn.';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'Ảnh đại diện bot';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => 'Cần có tên người dùng';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'Tên người dùng phải có tối đa 32 ký tự';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'Tên người dùng chỉ có thể chứa chữ cái, số và dấu gạch dưới';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'Tên người dùng bot';
 
   @override
-  String get applicationsDiscriminator => 'Discriminator';
+  String get applicationsDiscriminator => 'Mã phân biệt';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'Tiểu sử bot';
 
   @override
   String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+      'Một bot hữu ích có thể làm được nhiều điều tuyệt vời!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'Không có ảnh bìa bot';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'Bot thân thiện';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'Cho phép người dùng gửi lời mời kết bạn đến bot này để phê duyệt thủ công.';
 
   @override
   String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+      'Yêu cầu duyệt bạn bè thủ công';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'Lời mời kết bạn với bot này cần được phê duyệt thủ công.';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'Trình tạo URL OAuth2';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'Phạm vi';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'URI chuyển hướng';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri => 'Chọn URI chuyển hướng';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'Cần có URI chuyển hướng vì bot này yêu cầu cấp quyền bằng mã OAuth2.';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'Cần có URI chuyển hướng khi không chỉ dùng phạm vi bot.';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'Quyền của bot';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'URL ủy quyền';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'Chọn phạm vi (và URI chuyển hướng nếu cần)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => 'Đã sao chép URL vào bảng nhớ tạm';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'Khu vực nguy hiểm';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'Thao tác này không thể hoàn tác. Việc gỡ ứng dụng cũng sẽ xóa bot của ứng dụng.';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'Sau khi xóa, ứng dụng và thông tin đăng nhập của ứng dụng sẽ bị gỡ vĩnh viễn.';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'Xóa ứng dụng';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -15077,92 +15077,92 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => 'Không thể xóa ứng dụng';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'Đã cập nhật ứng dụng thành công';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'Không có thay đổi nào để lưu';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'Ứng dụng & bot';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'Tạo và quản lý ứng dụng, bot cho tài khoản của bạn';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'Chỉnh sửa thông tin cơ bản và URI chuyển hướng của ứng dụng';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'Chỉnh sửa ảnh đại diện, thẻ, tiểu sử, ảnh bìa và hành vi yêu cầu kết bạn của bot';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'Tạo URL ủy quyền với phạm vi, chuyển hướng và quyền của bot';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'Xem và tạo lại mã bí mật của máy khách và token bot';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => 'Bot';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'Tài liệu';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'Xem chi tiết';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'Chi tiết thiết bị';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'Thiết bị';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => 'Ứng dụng khách';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'Vị trí';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'Địa chỉ IP';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'Lần sử dụng cuối cùng';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'Phiên hiện tại';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'Không rõ';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'Ghim';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'Ghim tin nhắn này lên kênh để mọi người cùng xem.';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'Đã thêm vào tin nhắn đã lưu';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => 'Đã xóa khỏi tin nhắn đã lưu';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'Xóa cộng đồng';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      'Bạn có chắc chắn muốn xóa cộng đồng này không? Thao tác này không thể hoàn tác. Tất cả kênh, tin nhắn và cài đặt sẽ bị xóa vĩnh viễn.';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'Đã xoá cộng đồng';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15208,11 +15208,83 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'Đã gửi tin nhắn.';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle =>
+      'Bộ chuyển tiếp thông báo đẩy';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider chỉ gửi thông báo đẩy qua dịch vụ của riêng họ, nên thông báo cho thiết bị này đi qua bộ chuyển tiếp của Fluxer.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Dùng bộ chuyển tiếp đẩy của Fluxer';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Tắt tùy chọn này sẽ xóa đăng ký đẩy của thiết bị, nên thiết bị sẽ ngừng nhận thông báo đẩy.';
+
+  @override
+  String get pushRelayConsentTitle => 'Bộ chuyển tiếp thông báo đẩy';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider chỉ gửi thông báo đẩy qua dịch vụ của riêng họ, nên thông báo cho thiết bị này đi qua bộ chuyển tiếp của Fluxer.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Đồng ý với ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'thông báo quyền riêng tư của bộ chuyển tiếp đẩy';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' để bật thông báo đẩy trên thiết bị này. Bạn chỉ cần đồng ý một lần cho mỗi thiết bị.';
+
+  @override
+  String get pushRelayConsentAgree => 'Đồng ý và tiếp tục';
+
+  @override
+  String get pushRelayConsentDecline => 'Để sau';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'Mặc định';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'Thụy Điển';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }

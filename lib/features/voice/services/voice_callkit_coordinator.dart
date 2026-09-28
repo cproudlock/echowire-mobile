@@ -22,6 +22,7 @@ import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/features/settings/providers/voice_settings_provider.dart';
 import 'package:fluxer_app/features/voice/domain/voice_settings_state.dart';
 import 'package:fluxer_app/features/voice/providers/pending_incoming_voice_calls_provider.dart';
+import 'package:fluxer_app/features/voice/providers/voice_callkit_engine_gate_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
 import 'package:fluxer_app/features/voice/services/voice_settings_applicator.dart';
@@ -80,6 +81,7 @@ class VoiceCallKitCoordinatorLogic {
   final Set<String> _acceptInFlight = <String>{};
   final Set<String> _pendingRingsSeen = <String>{};
   final Set<String> _handledAcceptIds = <String>{};
+  final Set<String> _handledEndIds = <String>{};
   Timer? _audioSessionRecoveryTimer;
   final List<Timer> _speakerReapplyTimers = <Timer>[];
 
@@ -87,7 +89,7 @@ class VoiceCallKitCoordinatorLogic {
     _eventSubscription = FlutterCallkitIncoming.onEvent.listen(
       _handleCallEvent,
     );
-    unawaited(_adoptNativeCalls());
+    unawaited(_attachNativeCalls());
     _ref
       ..listen<List<String>>(pendingIncomingVoiceChannelIdsProvider, (
         List<String>? _,
@@ -226,6 +228,9 @@ class VoiceCallKitCoordinatorLogic {
       await AudioManager.instance.setEngineAvailability(
         AudioEngineAvailability.defaultAvailability,
       );
+      _ref
+          .read(voiceCallKitEngineSuppressedProvider.notifier)
+          .setSuppressed(false);
     } on Object catch (error) {
       talker.warning(
         '[VoiceCallKit] audio session recovery setEngineAvailability failed: $error',
@@ -264,6 +269,9 @@ class VoiceCallKitCoordinatorLogic {
       await AudioManager.instance.setEngineAvailability(
         AudioEngineAvailability.defaultAvailability,
       );
+      _ref
+          .read(voiceCallKitEngineSuppressedProvider.notifier)
+          .setSuppressed(false);
       await AudioManager.instance.setAudioSessionManagementMode(
         AudioSessionManagementMode.automatic,
       );
@@ -311,8 +319,12 @@ class VoiceCallKitCoordinatorLogic {
             ? AudioEngineAvailability.defaultAvailability
             : AudioEngineAvailability.none,
       );
+      _ref
+          .read(voiceCallKitEngineSuppressedProvider.notifier)
+          .setSuppressed(!enableEngine);
     } on Object catch (error) {
       talker.warning('[VoiceCallKit] setEngineAvailability failed: $error');
+      return;
     }
   }
 
@@ -551,13 +563,37 @@ class VoiceCallKitCoordinatorLogic {
         .setActive(value: _sessions.hasIncomingRing);
   }
 
-  Future<void> _adoptNativeCalls() async {
-    final List<CallKitParams> calls;
-    try {
-      calls = await FlutterCallkitIncoming.activeCalls();
-    } on Object {
-      return;
+  Future<void> _attachNativeCalls() async {
+    if (Platform.isIOS) {
+      try {
+        await _iosVoipCallKit.invokeMethod<void>('listening');
+      } on Object catch (error) {
+        talker.warning('[VoiceCallKit] listening failed: $error');
+      }
     }
+    await _adoptNativeCalls();
+  }
+
+  Future<List<CallKitParams>> _reportedCalls() async {
+    if (Platform.isIOS) {
+      try {
+        final Object? raw = await _iosVoipCallKit.invokeMethod<Object>(
+          'currentCalls',
+        );
+        return callKitParamsFromNativeVoipCalls(raw);
+      } on Object {
+        return const <CallKitParams>[];
+      }
+    }
+    try {
+      return await FlutterCallkitIncoming.activeCalls();
+    } on Object {
+      return const <CallKitParams>[];
+    }
+  }
+
+  Future<void> _adoptNativeCalls() async {
+    final List<CallKitParams> calls = await _reportedCalls();
     for (final CallKitParams params in calls) {
       final bool accepted = await _adoptCall(params);
       if (accepted) {
@@ -570,12 +606,7 @@ class VoiceCallKitCoordinatorLogic {
     if (channelIds.isEmpty) {
       return;
     }
-    final List<CallKitParams> calls;
-    try {
-      calls = await FlutterCallkitIncoming.activeCalls();
-    } on Object {
-      return;
-    }
+    final List<CallKitParams> calls = await _reportedCalls();
     for (final CallKitParams params in calls) {
       final String? channelId = _resolveChannelId(
         callKitId: params.id,
@@ -1093,19 +1124,14 @@ class VoiceCallKitCoordinatorLogic {
     }
     for (var attempt = 0; attempt < 10; attempt++) {
       await Future<void>.delayed(const Duration(milliseconds: 200));
-      try {
-        final List<CallKitParams> calls =
-            await FlutterCallkitIncoming.activeCalls();
-        for (final CallKitParams call in calls) {
-          if (call.id != params.id) {
-            continue;
-          }
-          if (_resolveChannelId(callKitId: call.id, params: call) != null) {
-            return call;
-          }
+      final List<CallKitParams> calls = await _reportedCalls();
+      for (final CallKitParams call in calls) {
+        if (call.id != params.id) {
+          continue;
         }
-      } on Object {
-        break;
+        if (_resolveChannelId(callKitId: call.id, params: call) != null) {
+          return call;
+        }
       }
     }
     return params;
@@ -1171,6 +1197,9 @@ class VoiceCallKitCoordinatorLogic {
       return;
     }
     if (channelId == null) {
+      return;
+    }
+    if (!_handledEndIds.add(params.id)) {
       return;
     }
     _cancelAudioSessionRecovery();

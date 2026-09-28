@@ -4416,7 +4416,7 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'Σκούρο Θέμα';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'Σκούρο θέμα (παλιό)';
 
   @override
   String get lookAndFeelThemeCoal => 'Θέμα Ανθρακί';
@@ -5857,13 +5857,13 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'Χρήση ακουστικού';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => 'Ηχείο';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'Ακουστικά';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'Εμφάνιση μόνο βίντεο';
@@ -6678,7 +6678,7 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => 'Επεξεργασία';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10849,11 +10849,11 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'Αποσύνδεση';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => 'Αποσύνδεση;';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'Μπορείτε να συνδεθείτε ξανά οποιαδήποτε στιγμή.';
 
   @override
   String get quickSwitcherTabSearch => 'Αναζήτηση';
@@ -15000,36 +15000,37 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
       'Δεν ήταν δυνατή η προσθήκη στην ανάρτηση. Δοκιμάστε ξανά.';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'Εφαρμογές';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'Δημιουργία εφαρμογής';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'Δημιουργία';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'Διεκδικήστε τον λογαριασμό σας για να δημιουργήσετε εφαρμογές.';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'Διαβάστε την τεκμηρίωση ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError =>
+      'Δεν είναι δυνατή η φόρτωση των εφαρμογών';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'Έλεγξε τη σύνδεσή σου και δοκίμασε ξανά.';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'Δεν υπάρχουν εφαρμογές ακόμα';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return 'Δημιουργήστε την πρώτη σας εφαρμογή για να ξεκινήσετε με το $apiName.';
   }
 
   @override
@@ -15038,207 +15039,212 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'Όνομα εφαρμογής';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'Η εφαρμογή μου';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => 'Απαιτείται όνομα εφαρμογής';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'Επιστροφή στη λίστα';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError =>
+      'Δεν ήταν δυνατή η φόρτωση αυτής της εφαρμογής';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'Δοκιμάστε ξανά ή επιστρέψτε στη λίστα εφαρμογών.';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'Αναγνωριστικό εφαρμογής';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'Αντιγραφή ID';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'Μυστικά και token';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'Κράτησέ τα ασφαλή. Η αναδημιουργία θα διακόψει τις υπάρχουσες ενσωματώσεις.';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => 'Μυστικό πελάτη';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'Token bot';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'Αναδημιουργία';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      'Να δημιουργηθεί ξανά το μυστικό πελάτη;';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle =>
+      'Να δημιουργηθεί ξανά το διακριτικό του bot;';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'Η αναδημιουργία θα ακυρώσει το τρέχον μυστικό. Ενημερώστε κάθε κώδικα που χρησιμοποιεί την παλιά τιμή.';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'Η αναδημιουργία θα ακυρώσει το τρέχον διακριτικό. Ενημερώστε κάθε κώδικα που χρησιμοποιεί την παλιά τιμή.';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'Το μυστικό του πελάτη ανανεώθηκε. Ενημερώστε κάθε κώδικα που χρησιμοποιεί το παλιό μυστικό.';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'Το bot token ανανεώθηκε. Ενημερώστε κάθε κώδικα που χρησιμοποιεί το παλιό token.';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed =>
+      'Δεν ήταν δυνατή η ανανέωση του μυστικού κλειδιού';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'Πληροφορίες εφαρμογής';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'Βασικές ρυθμίσεις και επιτρεπόμενα URI ανακατεύθυνσης.';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'Δημόσιο bot';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'Να επιτρέπεται σε οποιονδήποτε να προσκαλεί αυτό το bot στις κοινότητές του.';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant =>
+      'Απαίτηση εκχώρησης κωδικού OAuth2';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'Απαιτεί URI ανακατεύθυνσης και κωδικό εξουσιοδότησης κατά την πρόσκληση αυτού του bot.';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'URI ανακατεύθυνσης';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'Προσθήκη ανακατεύθυνσης';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'Διαγραφή διεύθυνσης ανακατεύθυνσης';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'Προφίλ bot';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'Εικόνα προφίλ, ετικέτα και λεπτομέρειες εμπλουτισμένου προφίλ για το bot σας.';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'Εικόνα προφίλ bot';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => 'Απαιτείται όνομα χρήστη';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'Το όνομα χρήστη πρέπει να έχει έως 32 χαρακτήρες';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'Το όνομα χρήστη μπορεί να περιέχει μόνο γράμματα, αριθμούς και κάτω παύλες';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'Όνομα χρήστη bot';
 
   @override
-  String get applicationsDiscriminator => 'Discriminator';
+  String get applicationsDiscriminator => 'Διακριτικό';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'Βιογραφικό bot';
 
   @override
   String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+      'Ένα εξυπηρετικό bot που κάνει καταπληκτικά πράγματα!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'Χωρίς banner bot';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'Φιλικό bot';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'Να επιτρέπεται στους χρήστες να στέλνουν αιτήματα φιλίας σε αυτό το bot για μη αυτόματη έγκριση.';
 
   @override
   String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+      'Να απαιτείται μη αυτόματη έγκριση φιλίας';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'Τα αιτήματα φιλίας προς αυτό το bot χρειάζονται μη αυτόματη έγκριση.';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'Δημιουργία URL OAuth2';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'Δικαιώματα πρόσβασης';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'URI ανακατεύθυνσης';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri => 'Επιλέξτε ένα URI ανακατεύθυνσης';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'Απαιτείται URI ανακατεύθυνσης, επειδή αυτό το bot απαιτεί εκχώρηση κωδικού OAuth2.';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'Το URI ανακατεύθυνσης απαιτείται όταν δεν χρησιμοποιείται μόνο το πεδίο εφαρμογής του bot.';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'Δικαιώματα bot';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'URL εξουσιοδότησης';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'Επιλέξτε πεδία εφαρμογής (και URI ανακατεύθυνσης, αν χρειάζεται)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl =>
+      'Αντιγράφηκε η διεύθυνση URL στο πρόχειρο';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'Επικίνδυνη ζώνη';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Με την κατάργηση της εφαρμογής διαγράφεται και το bot της.';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'Μόλις διαγραφεί, η εφαρμογή και τα διαπιστευτήριά της καταργούνται οριστικά.';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'Διαγραφή εφαρμογής';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -15246,92 +15252,93 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed =>
+      'Δεν ήταν δυνατή η διαγραφή της εφαρμογής';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'Η εφαρμογή ενημερώθηκε';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'Δεν υπάρχουν αλλαγές για αποθήκευση';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'Εφαρμογές και bot';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'Δημιουργία και διαχείριση εφαρμογών και bot για τον λογαριασμό σας';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'Επεξεργασία βασικών στοιχείων εφαρμογής και URI ανακατεύθυνσης';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'Επεξεργασία του avatar, της ετικέτας, του βιογραφικού, του banner και της συμπεριφοράς αιτήματος φιλίας του bot';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'Δημιουργία URL εξουσιοδότησης με πεδία εφαρμογής, ανακατευθύνσεις και δικαιώματα bot';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'Προβολή και αναδημιουργία μυστικών πελάτη και bot tokens';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => 'Bot';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'Τεκμηρίωση';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'Προβολή λεπτομερειών';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'Λεπτομέρειες συσκευής';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'Συσκευή';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => 'Εφαρμογή';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'Τοποθεσία';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'Διεύθυνση IP';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'Τελευταία χρήση';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'Τρέχουσα συνεδρία';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'Άγνωστο';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'Καρφίτσωμα';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'Καρφιτσώστε αυτό το μήνυμα στο κανάλι για να το βλέπουν όλοι.';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'Προστέθηκε στους σελιδοδείκτες';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => 'Αφαιρέθηκε από τους σελιδοδείκτες';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'Διαγραφή κοινότητας';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      'Είστε σίγουροι ότι θέλετε να διαγράψετε αυτήν την κοινότητα; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Όλα τα κανάλια, τα μηνύματα και οι ρυθμίσεις θα διαγραφούν οριστικά.';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'Η κοινότητα διαγράφηκε';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15377,11 +15384,83 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'Το μήνυμα στάλθηκε.';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle =>
+      'Αναμετάδοση ειδοποιήσεων push';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return 'Η $pushProvider παραδίδει ειδοποιήσεις push μόνο μέσω της δικής της υπηρεσίας, οπότε οι ειδοποιήσεις αυτής της συσκευής περνούν από την αναμετάδοση του Fluxer.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Χρήση της αναμετάδοσης push του Fluxer';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Αν το απενεργοποιήσετε, η εγγραφή push αυτής της συσκευής αφαιρείται και η συσκευή σταματά να λαμβάνει ειδοποιήσεις push.';
+
+  @override
+  String get pushRelayConsentTitle => 'Αναμετάδοση ειδοποιήσεων push';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return 'Η $pushProvider παραδίδει ειδοποιήσεις push μόνο μέσω της δικής της υπηρεσίας, οπότε οι ειδοποιήσεις αυτής της συσκευής περνούν από την αναμετάδοση του Fluxer.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Αποδεχτείτε τη ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'δήλωση απορρήτου της αναμετάδοσης push';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' για να ενεργοποιήσετε τις ειδοποιήσεις push σε αυτήν τη συσκευή. Χρειάζεται αποδοχή μία φορά ανά συσκευή.';
+
+  @override
+  String get pushRelayConsentAgree => 'Αποδοχή και συνέχεια';
+
+  @override
+  String get pushRelayConsentDecline => 'Όχι τώρα';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'Προεπιλογή';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'Σουηδία';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }

@@ -4347,7 +4347,7 @@ class FluxerLocalizationsTh extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'ธีมมืด';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'ธีมมืด (เดิม)';
 
   @override
   String get lookAndFeelThemeCoal => 'ธีมถ่าน';
@@ -5765,13 +5765,13 @@ class FluxerLocalizationsTh extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'ใช้หูฟัง';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => 'ลำโพง';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'หูฟัง';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'แสดงเฉพาะวิดีโอ';
@@ -6576,7 +6576,7 @@ class FluxerLocalizationsTh extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => 'แก้ไข';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10628,11 +10628,11 @@ class FluxerLocalizationsTh extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'ออกจากระบบ';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => 'ออกจากระบบหรือไม่';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'คุณสามารถลงชื่อเข้าใช้ได้ทุกเมื่อ';
 
   @override
   String get quickSwitcherTabSearch => 'ค้นหา';
@@ -14662,36 +14662,36 @@ class FluxerLocalizationsTh extends FluxerLocalizations {
       'ไม่สามารถเพิ่มสิ่งนั้นลงในโพสต์ได้ โปรดลองอีกครั้ง';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'แอปพลิเคชัน';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'สร้างแอปพลิเคชัน';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'สร้าง';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'ยืนยันบัญชีของคุณเพื่อสร้างแอปพลิเคชัน';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'อ่านเอกสารประกอบ ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError => 'ไม่สามารถโหลดแอปพลิเคชันได้';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'ตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'ยังไม่มีแอปพลิเคชัน';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return 'สร้างแอปพลิเคชันแรกของคุณเพื่อเริ่มต้นใช้งาน $apiName';
   }
 
   @override
@@ -14700,207 +14700,206 @@ class FluxerLocalizationsTh extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'ชื่อแอปพลิเคชัน';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'แอปของฉัน';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => 'ต้องระบุชื่อแอปพลิเคชัน';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'กลับสู่รายการ';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError => 'ไม่สามารถโหลดแอปพลิเคชันนี้ได้';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'ลองอีกครั้งหรือกลับไปที่รายการแอปพลิเคชัน';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'ID แอปพลิเคชัน';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'คัดลอก ID';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'รหัสลับและโทเค็น';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'เก็บข้อมูลนี้ไว้ให้ปลอดภัย การสร้างใหม่จะทำให้การเชื่อมต่อที่มีอยู่ใช้งานไม่ได้';
 
   @override
   String get applicationsClientSecret => 'Client secret';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'โทเค็นบอท';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'สร้างใหม่';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      'สร้าง Client Secret ใหม่หรือไม่';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle => 'สร้างโทเค็นบอทใหม่หรือไม่';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'การสร้างใหม่จะทำให้ Client Secret ปัจจุบันใช้งานไม่ได้ โปรดอัปเดตโค้ดที่ใช้ค่าเดิม';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'การสร้างใหม่จะทำให้โทเค็นปัจจุบันใช้ไม่ได้ โปรดอัปเดตโค้ดที่ใช้ค่าเดิม';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'สร้าง Client secret ใหม่แล้ว โปรดอัปเดตโค้ดที่ใช้ secret เก่า';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'สร้างโทเค็นบอทใหม่แล้ว โปรดอัปเดตโค้ดที่ใช้โทเค็นเก่า';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed => 'สร้างข้อมูลลับใหม่ไม่ได้';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'ข้อมูลแอปพลิเคชัน';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'การตั้งค่าพื้นฐานและ URI เปลี่ยนเส้นทางที่อนุญาต';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'บอทสาธารณะ';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'อนุญาตให้ทุกคนเชิญบอทนี้เข้าสู่คอมมูนิตี้ของตนเองได้';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant => 'ต้องใช้ OAuth2 code grant';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'ต้องใช้ URI การเปลี่ยนเส้นทางและรหัสการอนุญาตเมื่อเชิญบอทนี้';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'URI สำหรับเปลี่ยนเส้นทาง';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'เพิ่มการเปลี่ยนเส้นทาง';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'ลบ URI การเปลี่ยนเส้นทาง';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'โปรไฟล์บอท';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'รูปโปรไฟล์, แท็ก และรายละเอียดโปรไฟล์ที่สมบูรณ์สำหรับบอทของคุณ';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'รูปโปรไฟล์บอท';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => 'ต้องระบุชื่อผู้ใช้';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'ชื่อผู้ใช้ต้องมีความยาวไม่เกิน 32 ตัวอักษร';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'ชื่อผู้ใช้ต้องประกอบด้วยตัวอักษร ตัวเลข และขีดล่างเท่านั้น';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'ชื่อผู้ใช้บอท';
 
   @override
   String get applicationsDiscriminator => 'Discriminator';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'เกี่ยวกับบอท';
 
   @override
-  String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+  String get applicationsBotBioHint => 'บอทตัวช่วยที่ทำสิ่งน่าทึ่งได้!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'ไม่มีแบนเนอร์บอท';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'บอทเป็นกันเอง';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'อนุญาตให้ผู้ใช้ส่งคำขอเป็นเพื่อนไปยังบอทนี้เพื่อรอการอนุมัติด้วยตนเอง';
 
   @override
-  String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+  String get applicationsManualFriendApproval => 'ต้องอนุมัติเพื่อนด้วยตนเอง';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'คำขอเป็นเพื่อนที่ส่งถึงบอทนี้ต้องได้รับการอนุมัติด้วยตนเอง';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle =>
+      'เครื่องมือสร้าง URL สำหรับ OAuth2';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'ขอบเขตการเข้าถึง';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'URI สำหรับเปลี่ยนเส้นทาง';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri => 'เลือก URI การเปลี่ยนเส้นทาง';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'ต้องระบุ URI สำหรับเปลี่ยนเส้นทาง เนื่องจากบอทนี้ต้องใช้ OAuth2 code grant';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'ต้องระบุ URI สำหรับเปลี่ยนเส้นทาง เมื่อขอบเขต bot ไม่ใช่ขอบเขตเดียวที่ใช้';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'สิทธิ์ของบอท';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'URL การอนุญาต';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'เลือกขอบเขต (และ URI การเปลี่ยนเส้นทาง หากจำเป็น)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => 'คัดลอก URL ไปยังคลิปบอร์ดแล้ว';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'พื้นที่อันตราย';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'การดำเนินการนี้ไม่สามารถเลิกทำได้ การลบแอปพลิเคชันจะลบบอทของแอปพลิเคชันนั้นด้วย';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'เมื่อลบแล้ว แอปพลิเคชันและข้อมูลรับรองจะถูกนำออกอย่างถาวร';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'ลบแอปพลิเคชัน';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -14908,92 +14907,92 @@ class FluxerLocalizationsTh extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => 'ไม่สามารถลบแอปพลิเคชันได้';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'อัปเดตแอปพลิเคชันแล้ว';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'ไม่มีการเปลี่ยนแปลงที่ต้องบันทึก';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'แอปพลิเคชันและบอท';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'สร้างและจัดการแอปพลิเคชันและบอทสำหรับบัญชีของคุณ';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'แก้ไขข้อมูลพื้นฐานแอปและ URI การเปลี่ยนเส้นทาง';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'แก้ไขรูปโปรไฟล์บอท แท็ก ประวัติ แบนเนอร์ และลักษณะการทำงานของคำขอเป็นเพื่อน';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'สร้าง URL การอนุญาตพร้อมขอบเขต การเปลี่ยนเส้นทาง และสิทธิ์ของบอท';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'ดูและสร้าง client secret และโทเค็นบอทใหม่';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => 'บอท';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'เอกสารประกอบ';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'ดูรายละเอียด';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'รายละเอียดอุปกรณ์';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'อุปกรณ์';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => 'ไคลเอ็นต์';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'ตำแหน่งที่ตั้ง';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'ที่อยู่ IP';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'ใช้งานล่าสุด';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'เซสชันปัจจุบัน';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'ไม่ทราบ';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'ปักหมุด';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'ปักหมุดข้อความนี้ในช่องเพื่อให้ทุกคนเห็น';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'เพิ่มไปยังบุ๊กมาร์กแล้ว';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => 'นำออกจากบุ๊กมาร์กแล้ว';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'ลบคอมมูนิตี้';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      'คุณแน่ใจหรือไม่ว่าต้องการลบคอมมูนิตี้นี้ การดำเนินการนี้ไม่สามารถยกเลิกได้ ทุกช่อง ข้อความ และการตั้งค่าจะถูกลบอย่างถาวร';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'ลบคอมมูนิตี้แล้ว';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15039,11 +15038,83 @@ class FluxerLocalizationsTh extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'ส่งข้อความแล้ว';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle =>
+      'ตัวส่งต่อการแจ้งเตือนแบบพุช';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider ส่งการแจ้งเตือนแบบพุชผ่านบริการของตนเองเท่านั้น การแจ้งเตือนของอุปกรณ์นี้จึงผ่านตัวส่งต่อของ Fluxer';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel => 'ใช้ตัวส่งต่อพุชของ Fluxer';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'หากปิดใช้งาน การลงทะเบียนพุชของอุปกรณ์นี้จะถูกลบ และอุปกรณ์จะหยุดรับการแจ้งเตือนแบบพุช';
+
+  @override
+  String get pushRelayConsentTitle => 'ตัวส่งต่อการแจ้งเตือนแบบพุช';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider ส่งการแจ้งเตือนแบบพุชผ่านบริการของตนเองเท่านั้น การแจ้งเตือนของอุปกรณ์นี้จึงผ่านตัวส่งต่อของ Fluxer';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix =>
+      'หากต้องการเปิดการแจ้งเตือนแบบพุชบนอุปกรณ์นี้ โปรดยอมรับ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'ประกาศความเป็นส่วนตัวของตัวส่งต่อพุช';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' คุณยอมรับเพียงครั้งเดียวต่ออุปกรณ์';
+
+  @override
+  String get pushRelayConsentAgree => 'ยอมรับและดำเนินการต่อ';
+
+  @override
+  String get pushRelayConsentDecline => 'ไม่ใช่ตอนนี้';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'ค่าเริ่มต้น';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'สวีเดน';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }

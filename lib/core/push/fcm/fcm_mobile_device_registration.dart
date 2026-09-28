@@ -11,6 +11,7 @@ import 'package:fluxer_app/core/providers/app_ui_lifecycle_provider.dart';
 import 'package:fluxer_app/core/providers/push_provider.dart';
 import 'package:fluxer_app/core/push/push_notification_permission.dart';
 import 'package:fluxer_app/core/push/push_service.dart';
+import 'package:fluxer_app/core/push/relay_consent/push_relay_consent_provider.dart';
 import 'package:fluxer_app/core/push/relay_registration.dart';
 import 'package:fluxer_app/core/push/services/firebase_messaging_push_service.dart';
 import 'package:fluxer_app/core/push/web_push/web_push_key_store.dart';
@@ -63,6 +64,11 @@ class FcmMobileDeviceRegistration extends _$FcmMobileDeviceRegistration {
         }
       })
       ..listen<bool>(appUiForegroundProvider, (bool? previous, bool next) {
+        if (next && previous == false) {
+          unawaited(sync());
+        }
+      })
+      ..listen<bool>(pushRelayConsentProvider, (bool? previous, bool next) {
         if (next && previous == false) {
           unawaited(sync());
         }
@@ -148,6 +154,14 @@ class FcmMobileDeviceRegistration extends _$FcmMobileDeviceRegistration {
       appId: AppBuildConfig.mobilePushAppId,
       deviceToken: token,
     );
+    if (!await ensurePushRelayConsent(ref, relayUrl)) {
+      if (kDebugMode) {
+        debugPrint(
+          '[FcmMobileDeviceRegistration] push relay consent not granted',
+        );
+      }
+      return;
+    }
     final WebPushAccountKeys keys = await _keyStore.ensureKeys(userId);
     await unregisterLegacyRawTokenOnce(
       keyStore: _keyStore,

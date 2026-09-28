@@ -4405,7 +4405,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'Tamsi tema';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'Tamsioji (sena) tema';
 
   @override
   String get lookAndFeelThemeCoal => 'Anglies tema';
@@ -5877,13 +5877,13 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'Naudoti ausinę';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => 'Garsiakalbis';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'Ausinės';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'Rodyti tik vaizdo įrašus';
@@ -6698,7 +6698,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => 'Redaguoti';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10835,11 +10835,11 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'Atsijungti';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => 'Atsijungti?';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'Prisijungti galėsite bet kada.';
 
   @override
   String get quickSwitcherTabSearch => 'Ieškoti';
@@ -14963,36 +14963,36 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
       'Nepavyko to įtraukti į įrašą. Pabandykite dar kartą.';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'Programos';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'Sukurti programą';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'Sukurti';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'Norėdami kurti programas, užregistruokite paskyrą.';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'Skaityti dokumentaciją ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError => 'Nepavyko įkelti programų';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'Patikrinkite ryšį ir bandykite dar kartą.';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'Dar nėra programų';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return 'Sukurkite pirmąją programą, kad pradėtumėte naudotis $apiName.';
   }
 
   @override
@@ -15001,207 +15001,210 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'Programos pavadinimas';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'Mano programa';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => 'Reikalingas programos pavadinimas';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'Grįžti į sąrašą';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError => 'Nepavyko įkelti šios programos';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'Bandyti dar kartą arba grįžti į programų sąrašą.';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'Programos ID';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'Kopijuoti ID';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'Paslaptys ir prieigos raktai';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'Saugokite juos. Sugeneravus iš naujo, esamos integracijos nutrūks.';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => 'Kliento paslaptis';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'Boto prieigos raktas';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'Generuoti iš naujo';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      'Iš naujo generuoti kliento paslaptį?';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle =>
+      'Iš naujo sugeneruoti boto prieigos raktą?';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'Sugeneravus iš naujo, dabartinė paslaptis taps negaliojanti. Atnaujinkite visą kodą, kuriame naudojama sena reikšmė.';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'Sugeneravus iš naujo, dabartinis prieigos raktas taps nebegaliojantis. Atnaujinkite visą kodą, kuriame naudojama sena reikšmė.';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'Kliento paslaptis sugeneruota iš naujo. Atnaujinkite visą kodą, kuriame naudojama senoji paslaptis.';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'Boto prieigos raktas iš naujo sugeneruotas. Atnaujinkite visą kodą, kuriame naudojamas senas raktas.';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed =>
+      'Nepavyko iš naujo sugeneruoti paslapties';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'Programos informacija';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'Pagrindiniai nustatymai ir leidžiami nukreipimo URI.';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'Viešasis botas';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'Leisti bet kam pakviesti šį botą į savo bendruomenes.';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant =>
+      'Reikalauti „OAuth2“ kodo suteikimo';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'Kviečiant šį botą, reikalingas nukreipimo URI ir autorizacijos kodas.';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'Nukreipimo URI';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'Pridėti nukreipimą';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'Ištrinti nukreipimo URI';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'Boto profilis';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'Jūsų boto avataras, žyma ir išsami profilio informacija.';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'Boto avataras';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => 'Reikalingas naudotojo vardas';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'Naudotojo vardas turi būti ne ilgesnis nei 32 simboliai';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'Naudotojo vardą gali sudaryti tik raidės, skaičiai ir apatiniai brūkšniai';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'Boto naudotojo vardas';
 
   @override
-  String get applicationsDiscriminator => 'Discriminator';
+  String get applicationsDiscriminator => 'Diskriminatorius';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'Boto biografija';
 
   @override
   String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+      'Naudingas botas, kuris daro nuostabius dalykus!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'Nėra boto reklamjuostės';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'Draugiškas botas';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'Leisti naudotojams siųsti šiam botui draugystės užklausas, kurias reikės patvirtinti rankiniu būdu.';
 
   @override
   String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+      'Reikalauti rankinio draugystės patvirtinimo';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'Šiam botui siunčiamos draugystės užklausos turi būti patvirtintos rankiniu būdu.';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'OAuth2 URL kūrimo priemonė';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'Leidimų sritys';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'Nukreipimo URI';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri => 'Pasirinkite nukreipimo URI';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'Nukreipimo URI yra privalomas, nes šiam botui reikalingas OAuth2 kodo suteikimas.';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'Nukreipimo URI būtinas, kai naudojama ne tik boto leidimų sritis.';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'boto leidimai';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'Autorizavimo URL';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'Pasirinkite leidimų sritis (ir nukreipimo URI, jei reikia)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => 'URL nukopijuotas į iškarpinę';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'Pavojinga zona';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'To negalima anuliuoti. Pašalinus programą, taip pat ištrinamas ir jos botas.';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'Ištrynus programą, ji ir jos prisijungimo duomenys bus visam laikui pašalinti.';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'Ištrinti programą';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -15209,92 +15212,92 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => 'Nepavyko ištrinti programos';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'Programa sėkmingai atnaujinta';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'Nėra išsaugotinų pakeitimų';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'Programos ir botai';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'Kurkite ir tvarkykite savo paskyros programas ir botus';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'Redaguoti pagrindinius programos nustatymus ir nukreipimo URI';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'Redaguoti boto avatarą, žymą, biografiją, reklamjuostę ir draugystės užklausų elgseną';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'Sukurti autorizavimo URL su aprėptimis, nukreipimais ir boto leidimais';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'Peržiūrėti ir iš naujo sugeneruoti kliento paslaptis ir boto prieigos raktus';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => 'Botai';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'Dokumentacija';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'Peržiūrėti išsamią informaciją';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'Įrenginio informacija';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'Įrenginys';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => 'Klientas';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'Vieta';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'IP adresas';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'Paskutinį kartą naudotas';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'Dabartinis seansas';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'Nežinoma';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'Prisegti';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'Prisegti šią žinutę prie kanalo, kad visi matytų.';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'Pridėta prie žymių';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => 'Pašalinta iš žymių';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'Ištrinti bendruomenę';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      'Ar tikrai norite ištrinti šią bendruomenę? Šio veiksmo anuliuoti negalima. Visi kanalai, žinutės ir nustatymai bus visam laikui ištrinti.';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'Bendruomenė ištrinta';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15340,11 +15343,83 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'Žinutė išsiųsta.';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle =>
+      'Tiesioginių pranešimų perdavimas';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider pristato tiesioginius pranešimus tik per savo paslaugą, todėl šio įrenginio pranešimai keliauja per Fluxer perdavimą.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Naudoti Fluxer pranešimų perdavimą';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Išjungus tai, šio įrenginio pranešimų registracija pašalinama ir įrenginys nebegauna tiesioginių pranešimų.';
+
+  @override
+  String get pushRelayConsentTitle => 'Tiesioginių pranešimų perdavimas';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider pristato tiesioginius pranešimus tik per savo paslaugą, todėl šio įrenginio pranešimai keliauja per Fluxer perdavimą.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Sutik su ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'pranešimų perdavimo privatumo pranešimu';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ', kad įjungtum tiesioginius pranešimus šiame įrenginyje. Sutikti reikia tik kartą kiekviename įrenginyje.';
+
+  @override
+  String get pushRelayConsentAgree => 'Sutinku ir tęsti';
+
+  @override
+  String get pushRelayConsentDecline => 'Ne dabar';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'Numatytasis';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'Švedija';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }

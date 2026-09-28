@@ -4386,7 +4386,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'Tumma teema';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'Tumma (vanha) teema';
 
   @override
   String get lookAndFeelThemeCoal => 'Hiiliteema';
@@ -5815,13 +5815,13 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'Käytä kuuloketta';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => 'Kaiutin';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'Kuulokkeet';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'Näytä vain videot';
@@ -6628,7 +6628,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => 'Muokkaa';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10738,11 +10738,11 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'Kirjaudu ulos';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => 'Kirjaudutaanko ulos?';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'Voit kirjautua takaisin milloin tahansa.';
 
   @override
   String get quickSwitcherTabSearch => 'Haku';
@@ -14835,36 +14835,36 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
       'Sitä ei voitu lisätä julkaisuun. Yritä uudelleen.';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'Sovellukset';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'Luo sovellus';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'Luo';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'Viimeistele tilisi rekisteröinti, jotta voit luoda sovelluksia.';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'Lue dokumentaatio ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError => 'Sovellusten lataaminen epäonnistui';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'Tarkista verkkoyhteytesi ja yritä uudelleen.';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'Ei vielä sovelluksia';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return 'Luo ensimmäinen sovelluksesi ja aloita $apiName:n käyttö.';
   }
 
   @override
@@ -14873,207 +14873,209 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'Sovelluksen nimi';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'Oma sovellukseni';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => 'Sovelluksen nimi on pakollinen';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'Takaisin luetteloon';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError => 'Sovellusta ei voitu ladata';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'Yritä uudelleen tai palaa sovellusluetteloon.';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'Sovelluksen tunnus';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'Kopioi tunnus';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'Salaisuudet ja tunnukset';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'Pidä nämä turvassa. Uuden luominen rikkoo olemassa olevat integraatiot.';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => 'Asiakassalaisuus';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'Bottitunnus';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'Luo uudelleen';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      'Luodaanko uusi asiakassalaisuus?';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle =>
+      'Luodaanko bottitunnus uudelleen?';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'Uudelleenluonti mitätöi nykyisen salaisuuden. Päivitä kaikki koodi, joka käyttää vanhaa arvoa.';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'Uudelleenluonti mitätöi nykyisen tunnuksen. Päivitä kaikki koodi, joka käyttää vanhaa arvoa.';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'Asiakassalaisuus luotu uudelleen. Päivitä kaikki koodi, joka käyttää vanhaa salaisuutta.';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'Botin tunnus luotiin uudelleen. Päivitä kaikki vanhaa tunnusta käyttävä koodi.';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed =>
+      'Salaisuuden luominen uudelleen epäonnistui';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'Sovelluksen tiedot';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'Perusasetukset ja sallitut uudelleenohjaus-URI:t.';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'Julkinen botti';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'Salli kenen tahansa kutsua tämä botti yhteisöihinsä.';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant => 'Vaadi OAuth2-koodivaltuutus';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'Vaatii uudelleenohjaus-URI:n ja valtuutuskoodin, kun tämä botti kutsutaan.';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'Uudelleenohjauksen URI:t';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'Lisää uudelleenohjaus';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'Poista uudelleenohjauksen URI';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'Botin profiili';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'Botin profiilikuva, tunniste ja kattavat profiilitiedot.';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'Botin profiilikuva';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => 'Käyttäjänimi on pakollinen';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'Käyttäjänimen pituus saa olla enintään 32 merkkiä';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'Käyttäjänimi voi sisältää vain kirjaimia, numeroita ja alaviivoja';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'Botin käyttäjänimi';
 
   @override
-  String get applicationsDiscriminator => 'Discriminator';
+  String get applicationsDiscriminator => 'Tunnistenumero';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'Botin kuvaus';
 
   @override
   String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+      'Auttavainen botti, joka tekee uskomattomia asioita!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'Ei bottibanneria';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'Ystävällinen botti';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'Salli käyttäjien lähettää tälle botille kaveripyyntöjä manuaalista hyväksyntää varten.';
 
   @override
   String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+      'Vaadi kaveripyyntöjen manuaalinen hyväksyntä';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'Tälle botille lähetetyt kaveripyynnöt vaativat manuaalisen hyväksynnän.';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'OAuth2-URL-muodostin';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'Käyttöoikeudet';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'Uudelleenohjauksen URI';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri => 'Valitse uudelleenohjaus-URI';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'Uudelleenohjauksen URI tarvitaan, koska tämä botti edellyttää OAuth2-valtuutuskoodin myöntämistä.';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'Uudelleenohjauksen URI vaaditaan, jos bot-käyttöoikeus ei ole ainoa käyttöoikeus.';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'Botin käyttöoikeudet';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'Valtuutus-URL';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'Valitse käyttöoikeudet (ja tarvittaessa uudelleenohjaus-URI)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => 'URL-osoite kopioitu leikepöydälle';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'Vaaravyöhyke';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'Tätä toimintoa ei voi kumota. Sovelluksen poistaminen poistaa myös sen botin.';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'Kun sovellus ja sen tunnistetiedot on poistettu, niitä ei voi enää palauttaa.';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'Poista sovellus';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -15081,92 +15083,92 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => 'Sovelluksen poistaminen epäonnistui';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'Sovellus päivitetty';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'Ei tallennettavia muutoksia';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'Sovellukset ja botit';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'Luo ja hallinnoi tilisi sovelluksia ja botteja';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'Muokkaa sovelluksen perustietoja ja uudelleenohjaus-URI-osoitteita';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'Muokkaa botin avataria, tunnistetta, kuvausta, banneria ja kaveripyyntöjen toimintaa';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'Muodosta valtuutus-URL käyttöoikeuksilla, uudelleenohjauksilla ja bottiluvilla';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'Näytä ja luo uudelleen asiakassalaisuudet ja bottitunnukset';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => 'Botit';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'Dokumentaatio';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'Näytä tiedot';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'Laitteen tiedot';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'Laite';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => 'Asiakasohjelma';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'Sijainti';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'IP-osoite';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'Viimeksi käytetty';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'Nykyinen istunto';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'Tuntematon';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'Kiinnitä';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'Kiinnitä tämä viesti kanavalle kaikkien nähtäväksi.';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'Lisätty kirjanmerkkeihin';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => 'Poistettu kirjanmerkeistä';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'Poista yhteisö';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      'Haluatko varmasti poistaa tämän yhteisön? Tätä toimintoa ei voi kumota. Kaikki kanavat, viestit ja asetukset poistetaan pysyvästi.';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'Yhteisö poistettu';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15212,11 +15214,83 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'Viesti lähetetty.';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle =>
+      'Push-ilmoitusten välityspalvelin';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider toimittaa push-ilmoituksia vain oman palvelunsa kautta, joten tämän laitteen ilmoitukset kulkevat Fluxerin välityspalvelimen kautta.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Käytä Fluxerin push-välityspalvelinta';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Jos otat tämän pois käytöstä, laitteen push-rekisteröinti poistetaan eikä laite enää saa push-ilmoituksia.';
+
+  @override
+  String get pushRelayConsentTitle => 'Push-ilmoitusten välityspalvelin';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider toimittaa push-ilmoituksia vain oman palvelunsa kautta, joten tämän laitteen ilmoitukset kulkevat Fluxerin välityspalvelimen kautta.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Hyväksy ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'push-välityspalvelimen tietosuojailmoitus';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' ottaaksesi push-ilmoitukset käyttöön tällä laitteella. Sinun tarvitsee hyväksyä vain kerran laitetta kohden.';
+
+  @override
+  String get pushRelayConsentAgree => 'Hyväksy ja jatka';
+
+  @override
+  String get pushRelayConsentDecline => 'Ei nyt';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'Oletus';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'Ruotsi';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }

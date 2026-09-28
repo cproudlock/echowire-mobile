@@ -3,17 +3,24 @@ import 'dart:async';
 import 'package:drift/drift.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/push/push_notification_clear.dart';
+import 'package:fluxer_app/core/push/push_tray_registry.dart';
 import 'package:fluxer_app/features/channels/data/ack_batcher.dart';
 import 'package:fluxer_app/features/channels/data/read_state_utils.dart';
 import 'package:fluxer_app/features/channels/data/unread_settings_resolver.dart';
 import 'package:fluxer_dart/export.dart';
 
 class ReadStateRepository {
-  const ReadStateRepository(this._client, this._db, {this._batcher});
+  const ReadStateRepository(
+    this._client,
+    this._db, {
+    this._batcher,
+    this._trayRegistry,
+  });
 
   final FluxerClient _client;
   final FluxerDatabase _db;
   final AckBatcher? _batcher;
+  final PushTrayRegistry? _trayRegistry;
 
   Future<void> ackLatest(String channelId) async {
     final prior = await _db.readStateDao.getReadState(channelId);
@@ -111,12 +118,7 @@ class ReadStateRepository {
     if (current?.lastMessageId == messageId &&
         current?.mentionCount == 0 &&
         current?.manual != true) {
-      unawaited(
-        PushNotificationClear.cancelForChannel(
-          channelId,
-          upToMessageId: messageId,
-        ),
-      );
+      _syncPushTray(channelId, messageId, manual: current?.manual);
       return null;
     }
 
@@ -125,12 +127,7 @@ class ReadStateRepository {
       messageId: messageId,
       mentionCount: 0,
     );
-    unawaited(
-      PushNotificationClear.cancelForChannel(
-        channelId,
-        upToMessageId: messageId,
-      ),
-    );
+    _syncPushTray(channelId, messageId);
     return messageId;
   }
 
@@ -146,12 +143,7 @@ class ReadStateRepository {
         comparison >= 0 &&
         current?.mentionCount == 0 &&
         current?.manual != true) {
-      unawaited(
-        PushNotificationClear.cancelForChannel(
-          channelId,
-          upToMessageId: currentAck,
-        ),
-      );
+      _syncPushTray(channelId, currentAck, manual: current?.manual);
       return null;
     }
     final String ackId = comparison != null && comparison > 0
@@ -162,9 +154,7 @@ class ReadStateRepository {
       messageId: ackId,
       mentionCount: 0,
     );
-    unawaited(
-      PushNotificationClear.cancelForChannel(channelId, upToMessageId: ackId),
-    );
+    _syncPushTray(channelId, ackId, manual: current?.manual);
     return ackId;
   }
 
@@ -187,12 +177,7 @@ class ReadStateRepository {
       if (current?.lastMessageId == messageId &&
           current?.mentionCount == 0 &&
           current?.manual != true) {
-        unawaited(
-          PushNotificationClear.cancelForChannel(
-            channelId,
-            upToMessageId: messageId,
-          ),
-        );
+        _syncPushTray(channelId, messageId, manual: current?.manual);
         continue;
       }
 
@@ -214,12 +199,7 @@ class ReadStateRepository {
         messageId: entry.messageId,
         mentionCount: 0,
       );
-      unawaited(
-        PushNotificationClear.cancelForChannel(
-          entry.channelId,
-          upToMessageId: entry.messageId,
-        ),
-      );
+      _syncPushTray(entry.channelId, entry.messageId);
     }
 
     await _client.readStates.ackBulkMessages(
@@ -622,6 +602,22 @@ class ReadStateRepository {
       }
     }
     return mentionCount;
+  }
+
+  void _syncPushTray(String channelId, String? upToMessageId, {bool? manual}) {
+    if (upToMessageId == null || upToMessageId.isEmpty) {
+      return;
+    }
+    if (manual ?? false) {
+      return;
+    }
+    unawaited(
+      PushNotificationClear.cancelForChannel(
+        channelId,
+        upToMessageId: upToMessageId,
+      ),
+    );
+    _trayRegistry?.markChannelRead(channelId, upToMessageId);
   }
 
   Future<bool> _isDmMuted(String channelId) async {

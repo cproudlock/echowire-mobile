@@ -33,6 +33,18 @@ void main() {
     expect(display.durationMs, kCallRingMinimumDurationMs);
   });
 
+  test('uses a generic label when caller fields are missing', () {
+    final CallRingDisplay display = resolveCallRingDisplay(
+      payload: const <String, String>{
+        'type': 'call_ring',
+        'expires_at_ms': '1045000',
+      },
+      nowMs: nowMs,
+    );
+    expect(display.nameCaller, kCallRingFallbackHandle);
+    expect(display.handle, kCallRingFallbackHandle);
+  });
+
   test('falls back to a known channel name without caller fields', () {
     final CallRingDisplay display = resolveCallRingDisplay(
       payload: const <String, String>{'caller_id': '9'},

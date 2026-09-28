@@ -4153,7 +4153,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get lookAndFeelThemeDark => '深色主题';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => '深色（旧版）主题';
 
   @override
   String get lookAndFeelThemeCoal => '煤黑色主题';
@@ -5473,13 +5473,13 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => '使用听筒';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => '扬声器';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => '耳机';
 
   @override
   String get voicePanelOnlyShowVideosLabel => '仅显示视频';
@@ -6210,7 +6210,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => '编辑';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10026,11 +10026,10 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get userSettingsNavLogOut => '退出登录';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => '要退出登录吗？';
 
   @override
-  String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+  String get userSettingsLogOutConfirmDescription => '你可以随时重新登录。';
 
   @override
   String get quickSwitcherTabSearch => '搜索';
@@ -13886,36 +13885,34 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get forumAddToPostFailed => '无法将其添加到帖子。请重试。';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => '应用';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => '创建应用';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => '创建';
 
   @override
-  String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+  String get applicationsCreateClaimTooltip => '认领你的账号以创建应用。';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return '阅读文档（$domain）';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError => '无法加载应用';
 
   @override
-  String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+  String get applicationsLoadErrorDescription => '请检查你的网络连接，然后重试。';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => '暂无应用';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return '创建你的第一个应用，开始使用 $apiName。';
   }
 
   @override
@@ -13924,207 +13921,190 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => '应用名称';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => '我的应用';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => '应用名称为必填项';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => '返回列表';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError => '无法加载此应用';
 
   @override
-  String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+  String get applicationsDetailLoadErrorDescription => '请重试或返回应用列表。';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => '应用 ID';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => '复制 ID';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => '密钥和令牌';
 
   @override
-  String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+  String get applicationsSecretsDescription => '请妥善保管。重新生成会破坏现有集成。';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => '客户端密钥';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => '机器人令牌';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => '重新生成';
 
   @override
-  String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+  String get applicationsRegenerateClientSecretTitle => '重新生成客户端密钥？';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle => '重新生成机器人令牌？';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      '重新生成会使当前密钥失效。请更新所有使用旧值的代码。';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      '重新生成会使当前令牌失效。请更新所有使用旧值的代码。';
 
   @override
-  String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+  String get applicationsClientSecretRegenerated => '客户端密钥已重新生成。请更新所有使用旧密钥的代码。';
 
   @override
-  String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+  String get applicationsBotTokenRegenerated => '机器人令牌已重新生成。请更新所有使用旧令牌的代码。';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed => '无法重新生成密钥';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => '应用信息';
 
   @override
-  String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+  String get applicationsInfoDescription => '基本设置和允许的重定向 URI。';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => '公开机器人';
 
   @override
-  String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+  String get applicationsPublicBotDescription => '允许任何人邀请此机器人加入自己的社区。';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant => '需要 OAuth2 授权码';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      '邀请此机器人时，需要重定向 URI 和授权码。';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => '重定向 URI';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => '添加重定向';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => '删除重定向 URI';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => '机器人资料';
 
   @override
-  String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+  String get applicationsBotProfileDescription => '机器人的头像、标签和丰富的个人资料信息。';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => '机器人头像';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => '需要填写用户名';
 
   @override
-  String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+  String get applicationsUsernameTooLong => '用户名最多 32 个字符';
 
   @override
-  String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+  String get applicationsUsernameInvalid => '用户名只能包含字母、数字和下划线';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => '机器人用户名';
 
   @override
-  String get applicationsDiscriminator => 'Discriminator';
+  String get applicationsDiscriminator => '识别码';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => '机器人简介';
 
   @override
-  String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+  String get applicationsBotBioHint => '一个能做很多厉害事情的实用机器人！';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => '无机器人横幅';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => '友好机器人';
 
   @override
-  String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+  String get applicationsFriendlyBotDescription => '允许用户向此机器人发送好友请求，以便手动批准。';
 
   @override
-  String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+  String get applicationsManualFriendApproval => '需要手动批准好友申请';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      '此机器人收到的好友请求需要手动批准。';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'OAuth2 URL 构建器';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => '权限范围';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => '重定向 URI';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri => '选择重定向 URI';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      '此机器人需要 OAuth2 授权码，因此必须填写重定向 URI。';
 
   @override
-  String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+  String get applicationsRedirectRequiredScopes => '当权限范围不止机器人一项时，必须填写重定向 URI。';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => '机器人权限';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => '授权网址';
 
   @override
-  String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+  String get applicationsAuthorizeUrlPlaceholder => '选择权限范围（如果需要，可填写重定向 URI）';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => '已将网址复制到剪贴板';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => '危险区域';
 
   @override
-  String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+  String get applicationsDangerSubtitle => '此操作无法撤销。移除应用也会删除其机器人。';
 
   @override
-  String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+  String get applicationsDangerHelper => '删除后，该应用及其凭据将被永久删除。';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => '删除应用';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -14132,92 +14112,87 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => '无法删除应用';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => '应用更新成功';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => '没有要保存的更改';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => '应用与机器人';
 
   @override
-  String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+  String get applicationsSearchBotsDescription => '创建和管理你账号下的应用和机器人';
 
   @override
-  String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+  String get applicationsSearchInfoDescription => '编辑应用基本信息和重定向 URI';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      '编辑机器人头像、标签、简介、横幅和好友请求行为';
 
   @override
-  String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+  String get applicationsSearchOauthDescription => '构建包含权限范围、重定向和机器人权限的授权网址';
 
   @override
-  String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+  String get applicationsSearchSecretsDescription => '查看和重新生成客户端密钥与机器人令牌';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => '机器人';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => '文档';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => '查看详情';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => '设备详情';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => '设备';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => '客户端';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => '位置';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'IP 地址';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => '上次使用';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => '当前会话';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => '未知';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => '置顶';
 
   @override
-  String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+  String get chatMessagePinConfirmDescription => '将这条消息置顶到频道，让大家都能看到。';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => '已添加到书签';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => '已从书签中移除';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => '删除社区';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      '确定要删除此社区吗？此操作无法撤销。所有频道、消息和设置都将被永久删除。';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => '社区已删除';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -14263,13 +14238,81 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => '消息已发送。';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle => '推送通知中继';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider 只通过自家服务投递推送通知，因此本设备的推送会经过 Fluxer 中继。';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel => '使用 Fluxer 推送中继';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      '关闭后将移除本设备的推送注册，本设备将不再接收推送通知。';
+
+  @override
+  String get pushRelayConsentTitle => '推送通知中继';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider 只通过自家服务投递推送通知，因此本设备的推送会经过 Fluxer 中继。';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => '若要在本设备上开启推送通知，请同意';
+
+  @override
+  String get pushRelayConsentNoticeLink => '推送中继隐私声明';
+
+  @override
+  String get pushRelayConsentNoticeSuffix => '。每台设备只需同意一次。';
+
+  @override
+  String get pushRelayConsentAgree => '同意并继续';
+
+  @override
+  String get pushRelayConsentDecline => '暂不';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => '默认';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => '瑞典';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -18422,6 +18465,9 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get lookAndFeelThemeDark => '深色佈景主題';
 
   @override
+  String get lookAndFeelThemeDarkLegacy => '深色（舊版）主題';
+
+  @override
   String get lookAndFeelThemeCoal => '煤炭黑佈景主題';
 
   @override
@@ -19730,6 +19776,12 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get voicePanelUseEarpieceLabel => '使用聽筒';
 
   @override
+  String get voiceOutputRouteSpeaker => '揚聲器';
+
+  @override
+  String get voiceOutputRouteHeadset => '耳機';
+
+  @override
   String get voicePanelOnlyShowVideosLabel => '只顯示影片';
 
   @override
@@ -20458,6 +20510,9 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get chatMessageAddReaction => '新增反應';
+
+  @override
+  String get doubleTapReactionEdit => '編輯';
 
   @override
   String get chatMessageEdit => '編輯訊息';
@@ -24246,6 +24301,12 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get userSettingsNavLogOut => '登出';
+
+  @override
+  String get userSettingsLogOutConfirmTitle => '要登出嗎？';
+
+  @override
+  String get userSettingsLogOutConfirmDescription => '您可以隨時重新登入。';
 
   @override
   String get quickSwitcherTabSearch => '搜尋';
@@ -28089,4 +28150,346 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get forumAddToPostFailed => '無法將其加入貼文。請再試一次。';
+
+  @override
+  String get applicationsTitle => '應用程式';
+
+  @override
+  String get applicationsCreate => '建立應用程式';
+
+  @override
+  String get applicationsCreateSubmit => '建立';
+
+  @override
+  String get applicationsCreateClaimTooltip => '認領您的帳號以建立應用程式。';
+
+  @override
+  String applicationsDocsLink(String domain) {
+    return '閱讀說明文件（$domain）';
+  }
+
+  @override
+  String get applicationsLoadError => '無法載入應用程式';
+
+  @override
+  String get applicationsLoadErrorDescription => '請檢查您的連線，然後再試一次。';
+
+  @override
+  String get applicationsEmptyTitle => '還沒有任何應用程式';
+
+  @override
+  String applicationsEmptyDescription(String apiName) {
+    return '建立您的第一個應用程式，以開始使用 $apiName。';
+  }
+
+  @override
+  String get applicationsName => '應用程式名稱';
+
+  @override
+  String get applicationsNameHint => '我的應用程式';
+
+  @override
+  String get applicationsNameRequired => '請輸入應用程式名稱';
+
+  @override
+  String get applicationsBackToList => '返回列表';
+
+  @override
+  String get applicationsDetailLoadError => '無法載入此應用程式';
+
+  @override
+  String get applicationsDetailLoadErrorDescription => '請再試一次，或返回應用程式清單。';
+
+  @override
+  String get applicationsId => '應用程式 ID';
+
+  @override
+  String get applicationsCopyId => '複製 ID';
+
+  @override
+  String get applicationsSecretsTitle => '密鑰與權杖';
+
+  @override
+  String get applicationsSecretsDescription => '請妥善保管。重新產生金鑰會導致現有的整合服務中斷。';
+
+  @override
+  String get applicationsClientSecret => '用戶端密鑰';
+
+  @override
+  String get applicationsBotToken => '機器人權杖';
+
+  @override
+  String get applicationsRegenerate => '重新產生';
+
+  @override
+  String get applicationsRegenerateClientSecretTitle => '要重新產生用戶端密鑰嗎？';
+
+  @override
+  String get applicationsRegenerateBotTokenTitle => '要重新產生機器人權杖嗎？';
+
+  @override
+  String get applicationsRegenerateClientSecretDescription =>
+      '重新產生會讓目前的密鑰失效。請更新所有使用舊值的程式碼。';
+
+  @override
+  String get applicationsRegenerateBotTokenDescription =>
+      '重新產生會讓目前的權杖失效。請更新所有使用舊值的程式碼。';
+
+  @override
+  String get applicationsClientSecretRegenerated =>
+      '用戶端密鑰已重新產生。請更新任何使用舊密鑰的程式碼。';
+
+  @override
+  String get applicationsBotTokenRegenerated => '機器人權杖已重新產生。請更新所有使用舊權杖的程式碼。';
+
+  @override
+  String get applicationsRegenerateFailed => '無法重新產生密鑰';
+
+  @override
+  String get applicationsInfoTitle => '應用程式資訊';
+
+  @override
+  String get applicationsInfoDescription => '基本設定和允許的重新導向 URI。';
+
+  @override
+  String get applicationsPublicBot => '公開機器人';
+
+  @override
+  String get applicationsPublicBotDescription => '允許任何人邀請此機器人至他們的社群。';
+
+  @override
+  String get applicationsRequireCodeGrant => '需要 OAuth2 授權碼授予';
+
+  @override
+  String get applicationsRequireCodeGrantDescription =>
+      '邀請此機器人時，需要重新導向 URI 和授權碼。';
+
+  @override
+  String get applicationsRedirectUris => '重新導向 URI';
+
+  @override
+  String get applicationsAddRedirect => '新增重新導向';
+
+  @override
+  String get applicationsDeleteRedirect => '刪除重新導向 URI';
+
+  @override
+  String get applicationsBotProfileTitle => '機器人個人檔案';
+
+  @override
+  String get applicationsBotProfileDescription => '機器人的大頭貼、標籤和詳細個人檔案。';
+
+  @override
+  String get applicationsBotAvatar => '機器人大頭貼';
+
+  @override
+  String get applicationsUsernameRequired => '必須填寫使用者名稱';
+
+  @override
+  String get applicationsUsernameTooLong => '使用者名稱最多 32 個字元';
+
+  @override
+  String get applicationsUsernameInvalid => '使用者名稱只能包含字母、數字和底線';
+
+  @override
+  String get applicationsBotUsername => '機器人使用者名稱';
+
+  @override
+  String get applicationsDiscriminator => '識別碼';
+
+  @override
+  String get applicationsBotBio => '機器人簡介';
+
+  @override
+  String get applicationsBotBioHint => '一個能做許多驚人事情的實用機器人！';
+
+  @override
+  String get applicationsNoBotBanner => '沒有機器人橫幅';
+
+  @override
+  String get applicationsFriendlyBot => '友善的機器人';
+
+  @override
+  String get applicationsFriendlyBotDescription => '允許使用者傳送好友邀請給此機器人，以便手動核准。';
+
+  @override
+  String get applicationsManualFriendApproval => '需要手動核准好友';
+
+  @override
+  String get applicationsManualFriendApprovalDescription =>
+      '此機器人收到的好友邀請需要手動核准。';
+
+  @override
+  String get applicationsOauthBuilderTitle => 'OAuth2 URL 產生器';
+
+  @override
+  String get applicationsScopes => '權限';
+
+  @override
+  String get applicationsRedirectUri => '重新導向 URI';
+
+  @override
+  String get applicationsSelectRedirectUri => '選取重新導向 URI';
+
+  @override
+  String get applicationsRedirectRequiredCodeGrant =>
+      '此機器人需要 OAuth2 授權碼，因此必須填寫重新導向 URI。';
+
+  @override
+  String get applicationsRedirectRequiredScopes => '當不只使用機器人範圍時，需要重新導向 URI。';
+
+  @override
+  String get applicationsBotPermissions => '機器人權限';
+
+  @override
+  String get applicationsAuthorizeUrl => '授權網址';
+
+  @override
+  String get applicationsAuthorizeUrlPlaceholder =>
+      '選取授權範圍（如有需要，請一併選取重新導向 URI）';
+
+  @override
+  String get applicationsCopiedUrl => '已將網址複製到剪貼簿';
+
+  @override
+  String get applicationsDangerTitle => '危險區域';
+
+  @override
+  String get applicationsDangerSubtitle => '此動作無法復原。移除應用程式也會一併刪除其機器人。';
+
+  @override
+  String get applicationsDangerHelper => '一旦刪除，應用程式和其憑證將永久移除。';
+
+  @override
+  String get applicationsDelete => '刪除應用程式';
+
+  @override
+  String get applicationsDeleteFailed => '無法刪除應用程式';
+
+  @override
+  String get applicationsUpdated => '應用程式已成功更新';
+
+  @override
+  String get applicationsNoChanges => '沒有要儲存的變更';
+
+  @override
+  String get applicationsSearchBots => '應用程式與機器人';
+
+  @override
+  String get applicationsSearchBotsDescription => '為您的帳號建立及管理應用程式和機器人';
+
+  @override
+  String get applicationsSearchInfoDescription => '編輯應用程式基本資訊和重新導向 URI';
+
+  @override
+  String get applicationsSearchBotProfileDescription =>
+      '編輯機器人頭像、標籤、個人簡介、橫幅和好友邀請行為';
+
+  @override
+  String get applicationsSearchOauthDescription => '使用範圍、重新導向和機器人權限來建立授權網址';
+
+  @override
+  String get applicationsSearchSecretsDescription => '檢視並重新產生用戶端密鑰和機器人權杖';
+
+  @override
+  String get applicationsSearchBotsKeyword => '機器人';
+
+  @override
+  String get applicationsSearchDocumentation => '說明文件';
+
+  @override
+  String get linkedDevicesViewDetails => '查看詳情';
+
+  @override
+  String get linkedDevicesDetailsTitle => '裝置詳細資訊';
+
+  @override
+  String get linkedDevicesDetailsDevice => '裝置';
+
+  @override
+  String get linkedDevicesDetailsClient => '用戶端';
+
+  @override
+  String get linkedDevicesDetailsLocation => '地點';
+
+  @override
+  String get linkedDevicesDetailsIp => 'IP 位址';
+
+  @override
+  String get linkedDevicesDetailsLastUsed => '上次使用';
+
+  @override
+  String get linkedDevicesCurrentSession => '目前的工作階段';
+
+  @override
+  String get linkedDevicesUnknown => '不明';
+
+  @override
+  String get chatMessagePinConfirm => '釘選';
+
+  @override
+  String get chatMessagePinConfirmDescription => '將此訊息釘選到頻道，讓所有人都能看到。';
+
+  @override
+  String get savedMessagesAddedToast => '已加入書籤';
+
+  @override
+  String get savedMessagesRemovedToast => '已從書籤中移除';
+
+  @override
+  String get guildSettingsDeleteCommunity => '刪除社群';
+
+  @override
+  String get guildSettingsDeleteCommunityConfirm =>
+      '確定要刪除這個社群嗎？此動作無法復原。所有頻道、訊息和設定都將永久刪除。';
+
+  @override
+  String get guildSettingsCommunityDeleted => '社群已刪除';
+
+  @override
+  String get assistantOkMessageSent => '訊息已傳送。';
+
+  @override
+  String get notificationsPushRelaySectionTitle => '推播通知中繼';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider 只透過自家服務傳送推播通知，因此本裝置的推播會經過 Fluxer 中繼。';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel => '使用 Fluxer 推播中繼';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      '關閉後會移除本裝置的推播註冊，本裝置將不再收到推播通知。';
+
+  @override
+  String get pushRelayConsentTitle => '推播通知中繼';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider 只透過自家服務傳送推播通知，因此本裝置的推播會經過 Fluxer 中繼。';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => '若要在本裝置上開啟推播通知，請同意';
+
+  @override
+  String get pushRelayConsentNoticeLink => '推播中繼隱私權聲明';
+
+  @override
+  String get pushRelayConsentNoticeSuffix => '。每部裝置只需同意一次。';
+
+  @override
+  String get pushRelayConsentAgree => '同意並繼續';
+
+  @override
+  String get pushRelayConsentDecline => '暫時不要';
+
+  @override
+  String get appIconOptionDefault => '預設';
+
+  @override
+  String get appIconOptionSweden => '瑞典';
 }

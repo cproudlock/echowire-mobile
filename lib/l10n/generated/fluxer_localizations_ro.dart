@@ -4401,7 +4401,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'Temă întunecată';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'Temă întunecată (veche)';
 
   @override
   String get lookAndFeelThemeCoal => 'Tema Cărbune';
@@ -5835,13 +5835,13 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'Folosește receptorul';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => 'Difuzor';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'Căști';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'Afișează doar videoclipuri';
@@ -6655,7 +6655,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => 'Editează';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10806,11 +10806,11 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'Deconectare';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => 'Deconectare?';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'Te poți conecta oricând din nou.';
 
   @override
   String get quickSwitcherTabSearch => 'Căutare';
@@ -14942,36 +14942,36 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu am putut adăuga asta la postare. Te rugăm să încerci din nou.';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'Aplicații';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'Creează aplicație';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'Creează';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'Revendică-ți contul pentru a crea aplicații.';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'Citește documentația ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError => 'Nu se pot încărca aplicațiile';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'Verifică-ți conexiunea și încearcă din nou.';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'Încă nicio aplicație';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return 'Creează prima ta aplicație pentru a începe cu $apiName.';
   }
 
   @override
@@ -14980,207 +14980,212 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'Numele aplicației';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'Aplicația mea';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => 'Numele aplicației este obligatoriu';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'Înapoi la listă';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError =>
+      'Nu s-a putut încărca această aplicație';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'Încearcă din nou sau revino la lista de aplicații.';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'ID aplicație';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'Copiază ID-ul';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'Secrete și tokenuri';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'Păstrează-le în siguranță. Regenerarea va întrerupe integrările existente.';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => 'Secret client';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'Token bot';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'Regenerează';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      'Regenerezi secretul clientului?';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle =>
+      'Regenerezi tokenul botului?';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'Regenerarea va invalida secretul curent. Actualizează orice cod care folosește valoarea veche.';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'Regenerarea va invalida tokenul curent. Actualizează orice cod care folosește valoarea veche.';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'Secretul clientului a fost regenerat. Actualizează orice cod care folosește vechiul secret.';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'Tokenul botului a fost regenerat. Actualizează orice cod care folosește vechiul token.';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed => 'Nu s-a putut regenera secretul';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'Informații despre aplicație';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'Setări de bază și URI-uri de redirecționare permise.';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'Bot public';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'Permite oricui să invite acest bot în comunitățile sale.';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant =>
+      'Necesită acordarea codului OAuth2';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'Necesită un URI de redirecționare și un cod de autorizare la invitarea acestui bot.';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'URI-uri de redirecționare';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'Adaugă redirecționare';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'Șterge URI-ul de redirecționare';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'Profil bot';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'Avatar, tag și detalii complexe de profil pentru botul tău.';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'Avatar bot';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired =>
+      'Numele de utilizator este obligatoriu';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'Numele de utilizator trebuie să aibă maximum 32 de caractere';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'Numele de utilizator poate conține doar litere, cifre și liniuțe de subliniere';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'Nume de utilizator bot';
 
   @override
   String get applicationsDiscriminator => 'Discriminator';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'Biografie bot';
 
   @override
   String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+      'Un bot util care face lucruri uimitoare!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'Fără banner de bot';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'Bot prietenos';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'Permite utilizatorilor să trimită cereri de prietenie acestui bot, pentru aprobare manuală.';
 
   @override
   String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+      'Necesită aprobare manuală a cererii de prietenie';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'Cererile de prietenie către acest bot necesită aprobare manuală.';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'Constructor de URL-uri OAuth2';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'Domenii';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'URI de redirecționare';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri =>
+      'Selectează un URI de redirecționare';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'URI-ul de redirecționare este obligatoriu, deoarece acest bot necesită acordarea codului OAuth2.';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'URI-ul de redirecționare este necesar atunci când nu se utilizează doar domeniul bot.';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'Permisiuni bot';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'URL de autorizare';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'Selectează domeniile (și URI-ul de redirecționare, dacă este necesar)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => 'URL copiat în clipboard';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'Zonă de risc';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'Această acțiune nu poate fi anulată. Eliminarea aplicației șterge și botul acesteia.';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'Odată ștearsă, aplicația și credențialele ei sunt eliminate definitiv.';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'Șterge aplicația';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -15188,92 +15193,92 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => 'Nu s-a putut șterge aplicația';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'Aplicație actualizată cu succes';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'Nicio modificare de salvat';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'Aplicații și boți';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'Creează și gestionează aplicații și boți pentru contul tău';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'Editează elementele de bază ale aplicației și URI-urile de redirecționare';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'Editează avatarul, tagul, biografia, bannerul și comportamentul cererilor de prietenie ale botului';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'Construiește un URL de autorizare cu domenii, redirecționări și permisiuni bot';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'Vezi și regenerează secretele clientului și tokenurile botului';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => 'Boți';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'Documentație';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'Vezi detalii';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'Detalii dispozitiv';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'Dispozitiv';
 
   @override
   String get linkedDevicesDetailsClient => 'Client';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'Locație';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'Adresa IP';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'Ultima utilizare';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'Sesiunea curentă';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'Necunoscut';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'Fixare';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'Fixează acest mesaj pe canal pentru ca toată lumea să-l vadă.';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'Adăugat la mesaje salvate';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => 'Eliminat din mesaje salvate';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'Șterge comunitatea';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      'Sigur dorești să ștergi această comunitate? Această acțiune nu poate fi anulată. Toate canalele, mesajele și setările vor fi șterse definitiv.';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'Comunitate ștearsă';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15319,11 +15324,82 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'Mesaj trimis.';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle => 'Releu de notificări push';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider livrează notificări push doar prin propriul serviciu, așa că notificările pentru acest dispozitiv trec prin releul Fluxer.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Folosește releul push Fluxer';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Dacă dezactivezi asta, înregistrarea push a acestui dispozitiv este eliminată, iar dispozitivul nu mai primește notificări push.';
+
+  @override
+  String get pushRelayConsentTitle => 'Releu de notificări push';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider livrează notificări push doar prin propriul serviciu, așa că notificările pentru acest dispozitiv trec prin releul Fluxer.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Acceptă ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'nota de confidențialitate a releului push';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' pentru a activa notificările push pe acest dispozitiv. Trebuie să accepți o singură dată per dispozitiv.';
+
+  @override
+  String get pushRelayConsentAgree => 'Acceptă și continuă';
+
+  @override
+  String get pushRelayConsentDecline => 'Nu acum';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'Implicit';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'Suedia';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }

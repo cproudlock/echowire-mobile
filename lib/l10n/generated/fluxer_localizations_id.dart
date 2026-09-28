@@ -4373,7 +4373,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'Tema Gelap';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'Tema gelap (lama)';
 
   @override
   String get lookAndFeelThemeCoal => 'Tema Batu Bara';
@@ -5807,7 +5807,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'Headphone';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'Tampilkan video saja';
@@ -10722,11 +10722,11 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'Keluar';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => 'Keluar?';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'Kamu dapat masuk kembali kapan saja.';
 
   @override
   String get quickSwitcherTabSearch => 'Cari';
@@ -14821,36 +14821,36 @@ class FluxerLocalizationsId extends FluxerLocalizations {
       'Tidak dapat menambahkan itu ke postingan. Silakan coba lagi.';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'Aplikasi';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'Buat aplikasi';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'Buat';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'Klaim akunmu untuk membuat aplikasi.';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'Baca dokumentasi ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError => 'Tidak dapat memuat aplikasi';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'Periksa koneksimu dan coba lagi.';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'Belum ada aplikasi';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return 'Buat aplikasi pertamamu untuk memulai dengan $apiName.';
   }
 
   @override
@@ -14859,207 +14859,208 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'Nama aplikasi';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'Aplikasi saya';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => 'Nama aplikasi wajib diisi';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'Kembali ke daftar';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError => 'Tidak dapat memuat aplikasi ini';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'Coba lagi atau kembali ke daftar aplikasi.';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'ID aplikasi';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'Salin ID';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'Rahasia & token';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'Jaga kerahasiaan ini. Membuat ulang akan merusak integrasi yang ada.';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => 'Rahasia klien';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'Token bot';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'Buat ulang';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      'Buat ulang rahasia klien?';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle => 'Buat ulang token bot?';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'Membuat ulang akan membatalkan rahasia saat ini. Perbarui kode apa pun yang menggunakan nilai lama.';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'Membuat ulang akan membatalkan token saat ini. Perbarui kode apa pun yang menggunakan nilai lama.';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'Rahasia klien dibuat ulang. Perbarui kode apa pun yang menggunakan rahasia lama.';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'Token bot berhasil dibuat ulang. Perbarui kode apa pun yang menggunakan token lama.';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed =>
+      'Tidak dapat membuat ulang rahasia';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'Informasi aplikasi';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'Pengaturan dasar dan URI pengalihan yang diizinkan.';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'Bot publik';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'Izinkan siapa pun mengundang bot ini ke komunitas mereka.';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant => 'Wajibkan pemberian kode OAuth2';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'Memerlukan URI pengalihan dan kode otorisasi saat mengundang bot ini.';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'URI pengalihan';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'Tambahkan pengalihan';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'Hapus URI pengalihan';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'Profil bot';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'Avatar, tag, dan detail profil lengkap untuk botmu.';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'Avatar bot';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => 'Nama pengguna wajib diisi';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'Nama pengguna maksimal 32 karakter';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'Nama pengguna hanya bisa berisi huruf, angka, dan garis bawah';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'Nama pengguna bot';
 
   @override
-  String get applicationsDiscriminator => 'Discriminator';
+  String get applicationsDiscriminator => 'Diskriminator';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'Bio bot';
 
   @override
   String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+      'Bot penolong yang bisa melakukan hal-hal menakjubkan!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'Tidak ada banner bot';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'Bot ramah';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'Izinkan pengguna mengirim permintaan pertemanan ke bot ini untuk persetujuan manual.';
 
   @override
   String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+      'Wajibkan persetujuan teman secara manual';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'Permintaan pertemanan ke bot ini memerlukan persetujuan manual.';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'Pembuat URL OAuth2';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'Cakupan';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'URI pengalihan';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri => 'Pilih URI pengalihan';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'URI pengalihan diperlukan karena bot ini membutuhkan pemberian kode OAuth2.';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'URI pengalihan wajib diisi jika tidak hanya menggunakan cakupan bot.';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'Izin bot';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'URL otorisasi';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'Pilih cakupan (dan URI pengalihan jika diperlukan)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => 'URL disalin ke papan klip';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'Zona bahaya';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'Tindakan ini tidak dapat dibatalkan. Menghapus aplikasi juga akan menghapus botnya.';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'Setelah dihapus, aplikasi dan kredensialnya akan terhapus secara permanen.';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'Hapus aplikasi';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -15067,92 +15068,92 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => 'Tidak dapat menghapus aplikasi';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'Aplikasi berhasil diperbarui';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'Tidak ada perubahan untuk disimpan';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'Aplikasi & bot';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'Buat dan kelola aplikasi serta bot untuk akunmu';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'Edit pengaturan dasar aplikasi dan URI pengalihan';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'Edit avatar, tag, bio, banner, dan perilaku permintaan pertemanan bot';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'Buat URL otorisasi dengan cakupan, pengalihan, dan izin bot';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'Lihat dan buat ulang rahasia klien serta token bot';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => 'Bot';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'Dokumentasi';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'Lihat detail';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'Detail perangkat';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'Perangkat';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => 'Klien';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'Lokasi';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'Alamat IP';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'Terakhir digunakan';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'Sesi saat ini';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'Tidak diketahui';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'Sematkan';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'Sematkan pesan ini ke saluran agar semua orang bisa melihatnya.';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'Ditambahkan ke bookmark';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => 'Dihapus dari bookmark';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'Hapus komunitas';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      'Yakin ingin menghapus komunitas ini? Tindakan ini tidak bisa dibatalkan. Semua saluran, pesan, dan pengaturan akan dihapus secara permanen.';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'Komunitas dihapus';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15198,11 +15199,80 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'Pesan terkirim.';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle => 'Relai notifikasi push';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider hanya mengirim notifikasi push lewat layanannya sendiri, jadi notifikasi untuk perangkat ini melewati relai Fluxer.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel => 'Gunakan relai push Fluxer';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Menonaktifkan ini menghapus pendaftaran push perangkat ini, sehingga perangkat berhenti menerima notifikasi push.';
+
+  @override
+  String get pushRelayConsentTitle => 'Relai notifikasi push';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider hanya mengirim notifikasi push lewat layanannya sendiri, jadi notifikasi untuk perangkat ini melewati relai Fluxer.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Setujui ';
+
+  @override
+  String get pushRelayConsentNoticeLink => 'pemberitahuan privasi relai push';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' untuk mengaktifkan notifikasi push di perangkat ini. Kamu hanya perlu menyetujui sekali per perangkat.';
+
+  @override
+  String get pushRelayConsentAgree => 'Setujui dan lanjutkan';
+
+  @override
+  String get pushRelayConsentDecline => 'Nanti saja';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'Default';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'Swedia';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }

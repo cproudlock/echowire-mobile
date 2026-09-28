@@ -4377,7 +4377,7 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'डार्क थीम';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'डार्क (पुराना) थीम';
 
   @override
   String get lookAndFeelThemeCoal => 'कोल थीम';
@@ -5800,13 +5800,13 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'ईयरपीस का उपयोग करें';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => 'स्पीकर';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'हेडफ़ोन';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'सिर्फ़ वीडियो दिखाएँ';
@@ -6612,7 +6612,7 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => 'एडिट करें';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10707,11 +10707,11 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'लॉग आउट';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => 'साइन आउट करें?';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'आप कभी भी वापस साइन इन कर सकते हैं।';
 
   @override
   String get quickSwitcherTabSearch => 'खोजें';
@@ -14797,36 +14797,36 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
       'उसे पोस्ट में नहीं जोड़ा जा सका। कृपया पुनः प्रयास करें।';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'ऐप्लिकेशन';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'ऐप्लिकेशन बनाएँ';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'बनाएँ';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'ऐप्लिकेशन बनाने के लिए अपना अकाउंट क्लेम करें।';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'डॉक्यूमेंटेशन पढ़ें ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError => 'ऐप्लिकेशन लोड नहीं हो पा रहे हैं';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'अपना कनेक्शन जाँचें और फिर से कोशिश करें।';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'अभी तक कोई ऐप्लिकेशन नहीं';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return '$apiName के साथ शुरुआत करने के लिए अपना पहला ऐप्लिकेशन बनाएँ।';
   }
 
   @override
@@ -14835,207 +14835,208 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'ऐप्लिकेशन का नाम';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'मेरा ऐप्लिकेशन';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => 'ऐप्लिकेशन का नाम ज़रूरी है';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'सूची पर वापस';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError => 'यह ऐप्लिकेशन लोड नहीं हो सका';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'फिर से कोशिश करें या ऐप्लिकेशन सूची पर वापस जाएँ।';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'ऐप्लिकेशन आईडी';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'आईडी कॉपी करें';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'सीक्रेट और टोकन';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'इन्हें सुरक्षित रखें। फिर से जनरेट करने पर मौजूदा इंटिग्रेशन टूट जाएँगे।';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => 'क्लाइंट सीक्रेट';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'बॉट टोकन';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'फिर से जनरेट करें';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      'क्लाइंट सीक्रेट फिर से जनरेट करें?';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle =>
+      'बॉट टोकन फिर से जनरेट करें?';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'फिर से जनरेट करने से मौजूदा सीक्रेट अमान्य हो जाएगा। पुराने मान का इस्तेमाल करने वाले किसी भी कोड को अपडेट करें।';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'फिर से जनरेट करने से मौजूदा टोकन अमान्य हो जाएगा। पुराने मान का इस्तेमाल करने वाले किसी भी कोड को अपडेट करें।';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'क्लाइंट सीक्रेट फिर से जनरेट हो गया है। पुराने सीक्रेट का इस्तेमाल करने वाले किसी भी कोड को अपडेट करें।';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'बॉट टोकन फिर से जनरेट हो गया है। पुराने टोकन का इस्तेमाल करने वाले किसी भी कोड को अपडेट करें।';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed =>
+      'सीक्रेट रीजेनरेट नहीं किया जा सका';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'ऐप्लिकेशन की जानकारी';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'बुनियादी सेटिंग्स और अनुमत रीडायरेक्ट यूआरआई।';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'सार्वजनिक बॉट';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'किसी को भी इस बॉट को अपनी कम्युनिटी में आमंत्रित करने की अनुमति दें।';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant => 'OAuth2 कोड ग्रांट ज़रूरी है';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'इस बॉट को आमंत्रित करते समय रीडायरेक्ट यूआरआई और ऑथराइज़ेशन कोड ज़रूरी होता है।';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'रीडायरेक्ट यूआरआई';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'रीडायरेक्ट जोड़ें';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'रीडायरेक्ट यूआरआई मिटाएँ';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'बॉट प्रोफ़ाइल';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'आपके बॉट के लिए अवतार, टैग और विस्तृत प्रोफ़ाइल जानकारी।';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'बॉट अवतार';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => 'यूज़रनेम ज़रूरी है';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'यूज़रनेम ज़्यादा से ज़्यादा 32 वर्णों का होना चाहिए';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'यूज़रनेम में सिर्फ़ अक्षर, नंबर और अंडरस्कोर हो सकते हैं';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'बॉट यूज़रनेम';
 
   @override
-  String get applicationsDiscriminator => 'Discriminator';
+  String get applicationsDiscriminator => 'डिस्क्रिमिनेटर';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'बॉट बायो';
 
   @override
-  String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+  String get applicationsBotBioHint => 'एक मददगार बॉट जो कमाल के काम करता है!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'कोई बॉट बैनर नहीं';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'फ्रेंडली बॉट';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'यूज़र को मैन्युअल मंज़ूरी के लिए इस बॉट को फ्रेंड रिक्वेस्ट भेजने दें।';
 
   @override
   String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+      'दोस्ती के लिए मैन्युअल मंज़ूरी ज़रूरी है';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'इस बॉट को भेजी गई फ्रेंड रिक्वेस्ट को मैन्युअल मंज़ूरी की ज़रूरत है।';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'OAuth2 यूआरएल बिल्डर';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'अनुमतियाँ';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'रीडायरेक्ट यूआरआई';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri => 'रीडायरेक्ट यूआरआई चुनें';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'रीडायरेक्ट यूआरआई ज़रूरी है क्योंकि इस बॉट को OAuth2 कोड ग्रांट चाहिए।';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'जब केवल बॉट स्कोप का उपयोग नहीं किया जा रहा हो, तो रीडायरेक्ट यूआरआई ज़रूरी है।';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'बॉट अनुमतियाँ';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'ऑथराइज़ यूआरएल';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'स्कोप चुनें (और अगर ज़रूरी हो, तो रीडायरेक्ट यूआरआई)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => 'यूआरएल क्लिपबोर्ड पर कॉपी किया गया';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'खतरे का क्षेत्र';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'इसे पूर्ववत नहीं किया जा सकता। ऐप्लिकेशन हटाने से उसका बॉट भी हट जाएगा।';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'एक बार डिलीट होने के बाद, ऐप्लिकेशन और उसके क्रेडेंशियल हमेशा के लिए हटा दिए जाते हैं।';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'ऐप्लिकेशन मिटाएँ';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -15043,92 +15044,92 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => 'ऐप्लिकेशन को हटाया नहीं जा सका';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'ऐप्लिकेशन सफलतापूर्वक अपडेट किया गया';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'सेव करने के लिए कोई बदलाव नहीं';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'ऐप्लिकेशन और बॉट';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'अपने अकाउंट के लिए ऐप्लिकेशन और बॉट बनाएँ और मैनेज करें';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'ऐप्लिकेशन की बुनियादी बातें और रीडायरेक्ट यूआरआई एडिट करें';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'बॉट अवतार, टैग, बायो, बैनर और फ्रेंड रिक्वेस्ट व्यवहार को एडिट करें';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'स्कोप, रीडायरेक्ट और बॉट अनुमतियों के साथ एक ऑथराइज़ेशन यूआरएल बनाएँ';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'क्लाइंट सीक्रेट और बॉट टोकन देखें और फिर से जनरेट करें';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => 'बॉट';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'डॉक्यूमेंटेशन';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'विवरण देखें';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'डिवाइस विवरण';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'डिवाइस';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => 'क्लाइंट';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'जगह';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'आईपी पता';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'अंतिम उपयोग';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'मौजूदा सेशन';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'अज्ञात';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'पिन करें';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'इस मैसेज को चैनल में पिन करें ताकि सभी देख सकें।';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'बुकमार्क में जोड़ा गया';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => 'बुकमार्क से हटाया गया';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'कम्युनिटी मिटाएँ';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      'क्या आप वाकई इस कम्युनिटी को मिटाना चाहते हैं? इस कार्रवाई को पहले जैसा नहीं किया जा सकता। सभी चैनल, मैसेज और सेटिंग्स हमेशा के लिए मिटा दिए जाएंगे।';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'कम्युनिटी मिटा दी गई';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15174,11 +15175,82 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'मैसेज भेजा गया।';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle => 'पुश सूचना रिले';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider पुश सूचनाएँ केवल अपनी सेवा के ज़रिए भेजता है, इसलिए इस डिवाइस की सूचनाएँ Fluxer रिले से होकर जाती हैं।';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Fluxer पुश रिले का उपयोग करें';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'इसे बंद करने पर इस डिवाइस का पुश पंजीकरण हट जाएगा और डिवाइस को पुश सूचनाएँ मिलना बंद हो जाएँगी।';
+
+  @override
+  String get pushRelayConsentTitle => 'पुश सूचना रिले';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider पुश सूचनाएँ केवल अपनी सेवा के ज़रिए भेजता है, इसलिए इस डिवाइस की सूचनाएँ Fluxer रिले से होकर जाती हैं।';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix =>
+      'इस डिवाइस पर पुश सूचनाएँ चालू करने के लिए ';
+
+  @override
+  String get pushRelayConsentNoticeLink => 'पुश रिले गोपनीयता सूचना';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' स्वीकार करें। हर डिवाइस पर केवल एक बार स्वीकार करना होता है।';
+
+  @override
+  String get pushRelayConsentAgree => 'स्वीकार करें और जारी रखें';
+
+  @override
+  String get pushRelayConsentDecline => 'अभी नहीं';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'डिफ़ॉल्ट';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'स्वीडन';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }

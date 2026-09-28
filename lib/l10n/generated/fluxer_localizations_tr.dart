@@ -4384,7 +4384,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'Koyu Tema';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'Koyu (eski) tema';
 
   @override
   String get lookAndFeelThemeCoal => 'Kömür Teması';
@@ -5813,13 +5813,13 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'Ahizeyi kullan';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => 'Hoparlör';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'Kulaklık';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'Yalnızca videoları göster';
@@ -6626,7 +6626,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => 'Düzenle';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10730,11 +10730,11 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'Oturumu Kapat';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => 'Çıkış yapılsın mı?';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'İstediğiniz zaman tekrar giriş yapabilirsiniz.';
 
   @override
   String get quickSwitcherTabSearch => 'Ara';
@@ -14809,36 +14809,36 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       'Bu, gönderiye eklenemedi. Lütfen tekrar deneyin.';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'Uygulamalar';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'Uygulama oluştur';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'Oluştur';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'Uygulama oluşturmak için hesabınızı sahiplenin.';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'Belgeleri oku ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError => 'Uygulamalar yüklenemedi';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'Bağlantınızı kontrol edin ve tekrar deneyin.';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'Henüz uygulama yok';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return '$apiName ile başlamak için ilk uygulamanızı oluşturun.';
   }
 
   @override
@@ -14847,207 +14847,207 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'Uygulama adı';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'Uygulamam';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => 'Uygulama adı gerekli';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'Listeye geri dön';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError => 'Bu uygulama yüklenemedi';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'Tekrar deneyin veya uygulamalar listesine geri dönün.';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'Uygulama kimliği';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'Kimliği kopyala';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'Gizli anahtarlar ve belirteçler';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'Bunları güvende tutun. Yeniden oluşturmak mevcut entegrasyonları bozacaktır.';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => 'İstemci gizli anahtarı';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'Bot belirteci';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'Yeniden oluştur';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      'İstemci gizli anahtarı yeniden oluşturulsun mu?';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle =>
+      'Bot belirteci yeniden oluşturulsun mu?';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'Yeniden oluşturmak mevcut gizli anahtarı geçersiz kılar. Eski değeri kullanan tüm kodları güncelleyin.';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'Yeniden oluşturmak mevcut belirteci geçersiz kılar. Eski değeri kullanan tüm kodları güncelleyin.';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'İstemci gizli anahtarı yeniden oluşturuldu. Eski gizli anahtarı kullanan tüm kodları güncelleyin.';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'Bot belirteci yeniden oluşturuldu. Eski belirteci kullanan tüm kodları güncelleyin.';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed => 'Gizli anahtar yenilenemedi';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'Uygulama bilgileri';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'Temel ayarlar ve izin verilen yönlendirme URI\'leri.';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'Herkese açık bot';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'Herkesin bu botu topluluklarına davet etmesine izin ver.';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant => 'OAuth2 kod izni gerektir';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'Bu botu davet ederken bir yönlendirme URI\'si ve yetkilendirme kodu gerektirir.';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'Yönlendirme URI\'leri';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'Yönlendirme ekle';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'Yönlendirme URI\'sini sil';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'Bot profili';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'Botunuzun avatarı, etiketi ve zengin profil detayları.';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'Bot avatarı';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => 'Kullanıcı adı gerekli';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'Kullanıcı adı en fazla 32 karakter olmalı';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'Kullanıcı adı yalnızca harf, rakam ve alt çizgi içerebilir';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'Bot kullanıcı adı';
 
   @override
-  String get applicationsDiscriminator => 'Discriminator';
+  String get applicationsDiscriminator => 'Etiket';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'Bot biyografisi';
 
   @override
-  String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+  String get applicationsBotBioHint => 'Harika şeyler yapan yardımcı bir bot!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'Bot afişi yok';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'Arkadaş canlısı bot';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'Kullanıcıların manuel onay için bu bota arkadaşlık isteği göndermesine izin ver.';
 
   @override
   String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+      'Manuel arkadaş onayı gerektir';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'Bu bota gelen arkadaşlık isteklerinin manuel olarak onaylanması gerekir.';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'OAuth2 URL oluşturucu';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'Kapsamlar';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'Yönlendirme URI\'si';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri => 'Yönlendirme URI\'si seçin';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'Bu bot OAuth2 kod izni gerektirdiğinden yönlendirme URI\'si zorunludur.';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'Yalnızca bot kapsamı kullanılmadığında yönlendirme URI\'si gereklidir.';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'Bot izinleri';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'Yetkilendirme URL\'si';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'Kapsamları seçin (ve gerekirse yönlendirme URI\'sini)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => 'URL panoya kopyalandı';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'Tehlike bölgesi';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'Bu işlem geri alınamaz. Uygulamayı kaldırmak, botunu da siler.';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'Uygulama ve kimlik bilgileri silindikten sonra kalıcı olarak kaldırılır.';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'Uygulamayı sil';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -15055,92 +15055,92 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => 'Uygulama silinemedi';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'Uygulama başarıyla güncellendi';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'Kaydedilecek değişiklik yok';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'Uygulamalar ve botlar';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'Hesabınız için uygulama ve bot oluşturun ve yönetin';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'Uygulama temel bilgilerini ve yönlendirme URI\'lerini düzenle';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'Bot avatarını, etiketini, biyografisini, banner\'ını ve arkadaşlık isteği davranışını düzenle';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'Kapsamlar, yönlendirmeler ve bot izinleriyle bir yetkilendirme URL\'si oluşturun';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'İstemci gizli anahtarlarını ve bot belirteçlerini görüntüleyin ve yeniden oluşturun';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => 'Botlar';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'Belgeler';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'Ayrıntıları görüntüle';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'Cihaz ayrıntıları';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'Cihaz';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => 'İstemci';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'Konum';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'IP adresi';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'Son kullanım';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'Mevcut oturum';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'Bilinmiyor';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'Sabitle';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'Bu mesajı herkesin görmesi için kanala sabitleyin.';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'Yer işaretlerine eklendi';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => 'Yer işaretlerinden kaldırıldı';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'Topluluğu sil';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      'Bu topluluğu silmek istediğinizden emin misiniz? Bu işlem geri alınamaz. Tüm kanallar, mesajlar ve ayarlar kalıcı olarak silinecektir.';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'Topluluk silindi';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15186,11 +15186,83 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'Mesaj gönderildi.';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle => 'Anlık bildirim aktarıcısı';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider anlık bildirimleri yalnızca kendi hizmeti üzerinden iletir, bu yüzden bu cihazın bildirimleri Fluxer aktarıcısından geçer.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Fluxer anlık bildirim aktarıcısını kullan';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Bunu kapatırsan bu cihazın bildirim kaydı silinir ve cihaz anlık bildirim almayı bırakır.';
+
+  @override
+  String get pushRelayConsentTitle => 'Anlık bildirim aktarıcısı';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider anlık bildirimleri yalnızca kendi hizmeti üzerinden iletir, bu yüzden bu cihazın bildirimleri Fluxer aktarıcısından geçer.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix =>
+      'Bu cihazda anlık bildirimleri açmak için ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'anlık bildirim aktarıcısı gizlilik bildirimini';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' kabul et. Cihaz başına yalnızca bir kez kabul etmen yeterli.';
+
+  @override
+  String get pushRelayConsentAgree => 'Kabul et ve devam et';
+
+  @override
+  String get pushRelayConsentDecline => 'Şimdi değil';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'Varsayılan';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'İsveç';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }

@@ -4409,7 +4409,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'Sötét téma';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'Sötét (régi) téma';
 
   @override
   String get lookAndFeelThemeCoal => 'Szén téma';
@@ -5842,13 +5842,13 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Hangszóró helyett a telefon hangszóróját használja';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => 'Hangszóró';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'Fejhallgató';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'Csak a videók megjelenítése';
@@ -6659,7 +6659,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => 'Szerkesztés';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10812,11 +10812,11 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'Kijelentkezés';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => 'Kijelentkezés?';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'Bármikor újra bejelentkezhetsz.';
 
   @override
   String get quickSwitcherTabSearch => 'Keresés';
@@ -14936,36 +14936,37 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Nem sikerült hozzáadni a bejegyzéshez. Kérjük, próbáld újra.';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'Alkalmazások';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'Alkalmazás létrehozása';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'Létrehozás';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'Alkalmazások létrehozásához fejezd be a fiókod regisztrációját.';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'Dokumentáció olvasása ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError =>
+      'Nem sikerült betölteni az alkalmazásokat';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'Ellenőrizd a kapcsolatot, és próbáld újra.';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'Még nincsenek alkalmazások';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return 'Hozd létre az első alkalmazásodat a(z) $apiName használatához.';
   }
 
   @override
@@ -14974,207 +14975,211 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'Alkalmazás neve';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'Saját alkalmazás';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => 'Az alkalmazás neve kötelező';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'Vissza a listához';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError =>
+      'Nem sikerült betölteni az alkalmazást';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'Próbáld újra, vagy térj vissza az alkalmazások listájához.';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'Alkalmazásazonosító';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'Azonosító másolása';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'Titkos kulcsok és tokenek';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'Őrizd meg őket biztonságosan. Az újragenerálás működésképtelenné teszi a meglévő integrációkat.';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => 'Kliens titkos kulcsa';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'Bottoken';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'Újragenerálás';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      'Újragenerálod a kliens titkos kulcsát?';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle =>
+      'Újragenerálod a bot tokenjét?';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'Az újragenerálás érvényteleníti a jelenlegi titkos kulcsot. Frissítsd az összes kódot, amely a régi értéket használja.';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'Az újragenerálás érvényteleníti az aktuális tokent. Frissítsd az összes kódot, amely a régi értéket használja.';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'A kliens titkos kulcsa újra lett generálva. Frissítsd az összes kódot, amely a régi kulcsot használja.';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'A bottoken újra lett generálva. Frissítsd az összes kódot, amely a régi tokent használja.';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed =>
+      'Nem sikerült újra létrehozni a titkos kulcsot';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'Alkalmazás adatai';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'Alapbeállítások és engedélyezett átirányítási URI-k.';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'Nyilvános bot';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'Engedélyezi, hogy bárki meghívhassa ezt a botot a közösségeibe.';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant =>
+      'OAuth2 engedélyezési kód megkövetelése';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'A bot meghívásához átirányítási URI és engedélyezési kód szükséges.';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'Átirányítási URI-k';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'Átirányítás hozzáadása';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'Átirányítási URI törlése';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'Botprofil';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'A botod profilképe, címkéje és részletes profiladatai.';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'Bot profilképe';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => 'Felhasználónév megadása kötelező';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'A felhasználónév legfeljebb 32 karakterből állhat';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'A felhasználónév csak betűket, számokat és aláhúzásjeleket tartalmazhat';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'Bot felhasználóneve';
 
   @override
-  String get applicationsDiscriminator => 'Discriminator';
+  String get applicationsDiscriminator => 'Számazonosító';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'Bot bemutatkozása';
 
   @override
   String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+      'Egy segítőkész bot, ami csodálatos dolgokra képes!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'A botnak nincs borítóképe';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'Barátságos bot';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'A felhasználók kézi jóváhagyást igénylő ismerősjelöléseket küldhetnek ennek a botnak.';
 
   @override
   String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+      'Ismerősjelölések kézi jóváhagyásának megkövetelése';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'A botnak küldött ismerősjelöléseket kézzel kell jóváhagyni.';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'OAuth2 URL-készítő';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'Hatókörök';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'Átirányítási URI';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri => 'Átirányítási URI kiválasztása';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'Átirányítási URI szükséges, mert ez a bot OAuth2 engedélyezési kódot igényel.';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'Átirányítási URI szükséges, ha a bot hatókörön kívül más hatókört is használsz.';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'Botjogosultságok';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'URL engedélyezése';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'Hatókörök kiválasztása (és átirányítási URI, ha szükséges)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => 'URL kimásolva a vágólapra';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'Veszélyzóna';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'Ezt nem lehet visszavonni. Az alkalmazás eltávolítása a botját is törli.';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'Törlés után az alkalmazás és a hitelesítő adatai véglegesen eltávolításra kerülnek.';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'Alkalmazás törlése';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -15182,92 +15187,93 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => 'Nem sikerült törölni az alkalmazást';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'Alkalmazás sikeresen frissítve';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'Nincs menthető változás';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'Alkalmazások és botok';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'Alkalmazások és botok létrehozása és kezelése a fiókodhoz';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'Alapvető alkalmazásadatok és átirányítási URI-k szerkesztése';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'A bot profilképének, címkéjének, bemutatkozásának, borítóképének és ismerősjelölési beállításainak szerkesztése';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'Engedélyezési URL létrehozása hatókörökkel, átirányításokkal és botjogosultságokkal';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'Kliensek titkos kulcsainak és bottokeneknek a megtekintése és újragenerálása';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => 'Botok';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'Dokumentáció';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'Részletek megtekintése';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'Eszköz részletei';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'Eszköz';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => 'Kliens';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'Hely';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'IP-cím';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'Utolsó használat';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'Jelenlegi munkamenet';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'Ismeretlen';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'Rögzítés';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'Rögzítsd ezt az üzenetet a csatornában, hogy mindenki láthassa.';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'Hozzáadva a mentett üzenetekhez';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast =>
+      'Eltávolítva a mentett üzenetek közül';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'Közösség törlése';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      'Biztosan törölni szeretnéd ezt a közösséget? Ez a művelet nem vonható vissza. Minden csatorna, üzenet és beállítás véglegesen törlődik.';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'Közösség törölve';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15313,11 +15319,83 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'Üzenet elküldve.';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle =>
+      'Push-értesítések továbbítója';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return 'A(z) $pushProvider csak a saját szolgáltatásán keresztül kézbesít push-értesítéseket, ezért az eszköz értesítései a Fluxer továbbítóján haladnak át.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'A Fluxer push-továbbítójának használata';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Ha ezt kikapcsolod, az eszköz push-regisztrációja törlődik, és az eszköz nem kap több push-értesítést.';
+
+  @override
+  String get pushRelayConsentTitle => 'Push-értesítések továbbítója';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return 'A(z) $pushProvider csak a saját szolgáltatásán keresztül kézbesít push-értesítéseket, ezért az eszköz értesítései a Fluxer továbbítóján haladnak át.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Fogadd el a ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'push-továbbító adatvédelmi tájékoztatóját';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ', hogy bekapcsold a push-értesítéseket ezen az eszközön. Eszközönként csak egyszer kell elfogadnod.';
+
+  @override
+  String get pushRelayConsentAgree => 'Elfogadom és folytatom';
+
+  @override
+  String get pushRelayConsentDecline => 'Most nem';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'Alapértelmezett';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'Svédország';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }

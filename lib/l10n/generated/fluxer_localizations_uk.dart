@@ -4402,7 +4402,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'Темна тема';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'Темна (застаріла) тема';
 
   @override
   String get lookAndFeelThemeCoal => 'Вугільна тема';
@@ -5838,13 +5838,13 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'Використовувати слухавку';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => 'Динамік';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'Навушники';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'Показувати лише відео';
@@ -6670,7 +6670,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => 'Редагувати';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10824,11 +10824,11 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'Вийти';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => 'Вийти?';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'Ви можете ввійти знову в будь-який час.';
 
   @override
   String get quickSwitcherTabSearch => 'Пошук';
@@ -14941,36 +14941,36 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
       'Не вдалося додати це до публікації. Спробуйте ще раз.';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'Застосунки';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'Створити застосунок';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'Створити';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'Щоб створювати застосунки, зареєструйте свій обліковий запис.';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'Прочитати документацію ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError => 'Не вдалося завантажити застосунки';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'Перевірте з\'єднання та спробуйте ще раз.';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'Ще немає застосунків';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return 'Створіть свій перший застосунок, щоб почати роботу з $apiName.';
   }
 
   @override
@@ -14979,207 +14979,210 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'Назва застосунку';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'Мій застосунок';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => 'Потрібна назва застосунку';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'Назад до списку';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError =>
+      'Не вдалося завантажити цей застосунок';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'Спробуйте ще раз або поверніться до списку застосунків.';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'ID застосунку';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'Копіювати ID';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'Секрети й токени';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'Зберігайте їх у безпеці. Повторне генерування призведе до порушення наявних інтеграцій.';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => 'Секрет клієнта';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'Токен бота';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'Згенерувати повторно';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      'Згенерувати секрет клієнта повторно?';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle =>
+      'Згенерувати токен бота повторно?';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'Повторна генерація зробить поточний секрет недійсним. Оновіть весь код, що використовує старе значення.';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'Повторна генерація зробить поточний токен недійсним. Оновіть весь код, що використовує старе значення.';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'Секрет клієнта оновлено. Оновіть весь код, що використовує старий секрет.';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'Токен бота оновлено. Оновіть код, який використовує старий токен.';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed =>
+      'Не вдалося повторно згенерувати секрет';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'Інформація про застосунок';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'Основні налаштування та дозволені URI переспрямування.';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'Публічний бот';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'Дозволити будь-кому запрошувати цього бота до своїх спільнот.';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant => 'Вимагати надання коду OAuth2';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'Потрібні URI переспрямування та код авторизації під час запрошення цього бота.';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'URI переспрямування';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'Додати переспрямування';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'Видалити URI переспрямування';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'Профіль бота';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'Аватар, тег і розширені дані профілю для вашого бота.';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'Аватар бота';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => 'Ім\'я користувача обов\'язкове';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'Ім\'я користувача має містити не більше 32 символів';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'Ім\'я користувача може містити лише літери, цифри та символи підкреслення';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'Ім\'я користувача бота';
 
   @override
-  String get applicationsDiscriminator => 'Discriminator';
+  String get applicationsDiscriminator => 'Дискримінатор';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'Про бота';
 
   @override
   String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+      'Корисний бот, який робить дивовижні речі!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'Без банера бота';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'Дружній бот';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'Дозволити користувачам надсилати цьому боту запити на додавання в друзі для ручного схвалення.';
 
   @override
   String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+      'Вимагати ручного схвалення запитів на додавання в друзі';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'Запити на додавання в друзі до цього бота потребують ручного схвалення.';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'Конструктор URL-адрес OAuth2';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'Області дії';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'URI переспрямування';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri => 'Виберіть URI переспрямування';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'URI переспрямування обов\'язковий, оскільки цей бот вимагає надання коду OAuth2.';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'URI переспрямування потрібен, якщо використовується не лише область дії бота.';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'Дозволи бота';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'URL-адреса авторизації';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'Виберіть області дії (і URI переспрямування, якщо потрібно)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => 'URL скопійовано в буфер обміну';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'Небезпечна зона';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'Цю дію не можна скасувати. Видалення застосунку також призведе до видалення його бота.';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'Після видалення застосунок та його облікові дані будуть назавжди видалені.';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'Видалити застосунок';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -15187,92 +15190,92 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => 'Не вдалося видалити застосунок';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'Застосунок успішно оновлено';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'Немає змін для збереження';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'Застосунки та боти';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'Створюйте застосунки та ботів для свого облікового запису й керуйте ними';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'Редагувати основні дані застосунку та URI переспрямування';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'Змінити аватар, тег, біографію, банер бота та поведінку запитів на додавання в друзі';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'Створіть URL-адресу авторизації з областями дії, переспрямуваннями та дозволами бота';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'Переглянути та повторно згенерувати секрети клієнта й токени бота';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => 'Боти';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'Документація';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'Переглянути деталі';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'Деталі пристрою';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'Пристрій';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => 'Клієнт';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'Місцезнаходження';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'IP-адреса';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'Востаннє використано';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'Поточна сесія';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'Невідомо';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'Закріпити';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'Закріпити це повідомлення в каналі, щоб його бачили всі.';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'Додано до закладок';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => 'Видалено із закладок';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'Видалити спільноту';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      'Ви впевнені, що хочете видалити цю спільноту? Цю дію не можна скасувати. Усі канали, повідомлення та налаштування буде видалено назавжди.';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'Спільноту видалено';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15318,11 +15321,83 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'Повідомлення надіслано.';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle =>
+      'Ретранслятор push-сповіщень';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider доставляє push-сповіщення лише через власну службу, тож сповіщення для цього пристрою йдуть через ретранслятор Fluxer.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Використовувати push-ретранслятор Fluxer';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Якщо вимкнути, реєстрацію push для цього пристрою буде видалено, і він перестане отримувати сповіщення.';
+
+  @override
+  String get pushRelayConsentTitle => 'Ретранслятор push-сповіщень';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider доставляє push-сповіщення лише через власну службу, тож сповіщення для цього пристрою йдуть через ретранслятор Fluxer.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Прийміть ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'повідомлення про конфіденційність push-ретранслятора';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ', щоб увімкнути push-сповіщення на цьому пристрої. Прийняти потрібно один раз для кожного пристрою.';
+
+  @override
+  String get pushRelayConsentAgree => 'Прийняти та продовжити';
+
+  @override
+  String get pushRelayConsentDecline => 'Не зараз';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'Default';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'Швеція';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }

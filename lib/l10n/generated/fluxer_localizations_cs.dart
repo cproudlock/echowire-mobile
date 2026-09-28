@@ -4384,7 +4384,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get lookAndFeelThemeDark => 'Tmavý motiv';
 
   @override
-  String get lookAndFeelThemeDarkLegacy => 'Dark (Legacy) Theme';
+  String get lookAndFeelThemeDarkLegacy => 'Tmavý (starší) motiv';
 
   @override
   String get lookAndFeelThemeCoal => 'Uhelný motiv';
@@ -5814,13 +5814,13 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get voicePanelUseEarpieceLabel => 'Použít sluchátko';
 
   @override
-  String get voiceOutputRouteSpeaker => 'Speaker';
+  String get voiceOutputRouteSpeaker => 'Reproduktor';
 
   @override
   String get voiceOutputRouteEarpiece => 'Earpiece';
 
   @override
-  String get voiceOutputRouteHeadset => 'Headphones';
+  String get voiceOutputRouteHeadset => 'Sluchátka';
 
   @override
   String get voicePanelOnlyShowVideosLabel => 'Zobrazit jen videa';
@@ -6638,7 +6638,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get doubleTapReactionHint => 'Double tap a message to';
 
   @override
-  String get doubleTapReactionEdit => 'Edit';
+  String get doubleTapReactionEdit => 'Upravit';
 
   @override
   String get doubleTapReactionEditTitle => 'Edit default';
@@ -10749,11 +10749,11 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get userSettingsNavLogOut => 'Odhlásit se';
 
   @override
-  String get userSettingsLogOutConfirmTitle => 'Sign out?';
+  String get userSettingsLogOutConfirmTitle => 'Odhlásit se?';
 
   @override
   String get userSettingsLogOutConfirmDescription =>
-      'You can sign back in at any time.';
+      'Kdykoli se můžete znovu přihlásit.';
 
   @override
   String get quickSwitcherTabSearch => 'Hledat';
@@ -14843,36 +14843,36 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       'Nepodařilo se to přidat k příspěvku. Zkuste to znovu.';
 
   @override
-  String get applicationsTitle => 'Applications';
+  String get applicationsTitle => 'Aplikace';
 
   @override
-  String get applicationsCreate => 'Create application';
+  String get applicationsCreate => 'Vytvořit aplikaci';
 
   @override
-  String get applicationsCreateSubmit => 'Create';
+  String get applicationsCreateSubmit => 'Vytvořit';
 
   @override
   String get applicationsCreateClaimTooltip =>
-      'Claim your account to create applications.';
+      'Dokončete registraci účtu, abyste mohli vytvářet aplikace.';
 
   @override
   String applicationsDocsLink(String domain) {
-    return 'Read the documentation ($domain)';
+    return 'Přečtěte si dokumentaci ($domain)';
   }
 
   @override
-  String get applicationsLoadError => 'Unable to load applications';
+  String get applicationsLoadError => 'Nepodařilo se načíst aplikace';
 
   @override
   String get applicationsLoadErrorDescription =>
-      'Check your connection and try again.';
+      'Zkontrolujte připojení a zkuste to znovu.';
 
   @override
-  String get applicationsEmptyTitle => 'No applications yet';
+  String get applicationsEmptyTitle => 'Zatím žádné aplikace';
 
   @override
   String applicationsEmptyDescription(String apiName) {
-    return 'Create your first application to get started with the $apiName.';
+    return 'Vytvořte svou první aplikaci a začněte používat $apiName.';
   }
 
   @override
@@ -14881,207 +14881,210 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsName => 'Application name';
+  String get applicationsName => 'Název aplikace';
 
   @override
-  String get applicationsNameHint => 'My application';
+  String get applicationsNameHint => 'Moje aplikace';
 
   @override
-  String get applicationsNameRequired => 'Application name is required';
+  String get applicationsNameRequired => 'Je vyžadován název aplikace';
 
   @override
-  String get applicationsBackToList => 'Back to list';
+  String get applicationsBackToList => 'Zpět na seznam';
 
   @override
-  String get applicationsDetailLoadError => 'Couldn\'t load this application';
+  String get applicationsDetailLoadError =>
+      'Nepodařilo se načíst tuto aplikaci';
 
   @override
   String get applicationsDetailLoadErrorDescription =>
-      'Try again or go back to the applications list.';
+      'Zkusit znovu, nebo se vrátit na seznam aplikací.';
 
   @override
-  String get applicationsId => 'Application ID';
+  String get applicationsId => 'ID aplikace';
 
   @override
-  String get applicationsCopyId => 'Copy ID';
+  String get applicationsCopyId => 'Kopírovat ID';
 
   @override
-  String get applicationsSecretsTitle => 'Secrets & tokens';
+  String get applicationsSecretsTitle => 'Tajné klíče a tokeny';
 
   @override
   String get applicationsSecretsDescription =>
-      'Keep these safe. Regenerating will break existing integrations.';
+      'Uchovávejte je v bezpečí. Opětovné vygenerování přeruší stávající integrace.';
 
   @override
-  String get applicationsClientSecret => 'Client secret';
+  String get applicationsClientSecret => 'Tajný klíč klienta';
 
   @override
-  String get applicationsBotToken => 'Bot token';
+  String get applicationsBotToken => 'Token bota';
 
   @override
-  String get applicationsRegenerate => 'Regenerate';
+  String get applicationsRegenerate => 'Znovu vygenerovat';
 
   @override
   String get applicationsRegenerateClientSecretTitle =>
-      'Regenerate client secret?';
+      'Znovu vygenerovat klientský tajný klíč?';
 
   @override
-  String get applicationsRegenerateBotTokenTitle => 'Regenerate bot token?';
+  String get applicationsRegenerateBotTokenTitle =>
+      'Znovu vygenerovat token bota?';
 
   @override
   String get applicationsRegenerateClientSecretDescription =>
-      'Regenerating will invalidate the current secret. Update any code that uses the old value.';
+      'Opětovné vygenerování zneplatní aktuální tajný klíč. Aktualizujte veškerý kód, který používá starou hodnotu.';
 
   @override
   String get applicationsRegenerateBotTokenDescription =>
-      'Regenerating will invalidate the current token. Update any code that uses the old value.';
+      'Opětovné vygenerování zneplatní aktuální token. Aktualizujte veškerý kód, který používá starou hodnotu.';
 
   @override
   String get applicationsClientSecretRegenerated =>
-      'Client secret regenerated. Update any code that uses the old secret.';
+      'Klientský tajný klíč byl vygenerován znovu. Aktualizujte veškerý kód, který používá starý klíč.';
 
   @override
   String get applicationsBotTokenRegenerated =>
-      'Bot token regenerated. Update any code that uses the old token.';
+      'Token bota byl znovu vygenerován. Aktualizujte veškerý kód, který používá starý token.';
 
   @override
-  String get applicationsRegenerateFailed => 'Couldn\'t regenerate secret';
+  String get applicationsRegenerateFailed =>
+      'Nepodařilo se znovu vygenerovat tajný klíč';
 
   @override
-  String get applicationsInfoTitle => 'Application information';
+  String get applicationsInfoTitle => 'Informace o aplikaci';
 
   @override
   String get applicationsInfoDescription =>
-      'Basic settings and allowed redirect URIs.';
+      'Základní nastavení a povolené URI pro přesměrování.';
 
   @override
-  String get applicationsPublicBot => 'Public bot';
+  String get applicationsPublicBot => 'Veřejný bot';
 
   @override
   String get applicationsPublicBotDescription =>
-      'Allow anyone to invite this bot to their communities.';
+      'Povolit komukoli pozvat tohoto bota do svých komunit.';
 
   @override
-  String get applicationsRequireCodeGrant => 'Require OAuth2 code grant';
+  String get applicationsRequireCodeGrant =>
+      'Vyžadovat autorizační tok OAuth2 s kódem';
 
   @override
   String get applicationsRequireCodeGrantDescription =>
-      'Requires a redirect URI and an authorization code when inviting this bot.';
+      'Při pozvání tohoto bota vyžaduje URI přesměrování a autorizační kód.';
 
   @override
-  String get applicationsRedirectUris => 'Redirect URIs';
+  String get applicationsRedirectUris => 'URI pro přesměrování';
 
   @override
-  String get applicationsAddRedirect => 'Add redirect';
+  String get applicationsAddRedirect => 'Přidat přesměrování';
 
   @override
-  String get applicationsDeleteRedirect => 'Delete redirect URI';
+  String get applicationsDeleteRedirect => 'Smazat URI přesměrování';
 
   @override
-  String get applicationsBotProfileTitle => 'Bot profile';
+  String get applicationsBotProfileTitle => 'Profil bota';
 
   @override
   String get applicationsBotProfileDescription =>
-      'Avatar, tag, and rich profile details for your bot.';
+      'Avatar, uživatelský tag a podrobné údaje profilu vašeho bota.';
 
   @override
-  String get applicationsBotAvatar => 'Bot avatar';
+  String get applicationsBotAvatar => 'Avatar bota';
 
   @override
-  String get applicationsUsernameRequired => 'Username is required';
+  String get applicationsUsernameRequired => 'Uživatelské jméno je povinné';
 
   @override
   String get applicationsUsernameTooLong =>
-      'Username must be at most 32 characters';
+      'Uživatelské jméno může mít maximálně 32 znaků';
 
   @override
   String get applicationsUsernameInvalid =>
-      'Username can only contain letters, numbers, and underscores';
+      'Uživatelské jméno může obsahovat pouze písmena, čísla a podtržítka';
 
   @override
-  String get applicationsBotUsername => 'Bot username';
+  String get applicationsBotUsername => 'Uživatelské jméno bota';
 
   @override
-  String get applicationsDiscriminator => 'Discriminator';
+  String get applicationsDiscriminator => 'Čtyřmístný identifikátor';
 
   @override
-  String get applicationsBotBio => 'Bot bio';
+  String get applicationsBotBio => 'Popis bota';
 
   @override
-  String get applicationsBotBioHint =>
-      'A helpful bot that does amazing things!';
+  String get applicationsBotBioHint => 'Užitečný bot, který umí úžasné věci!';
 
   @override
-  String get applicationsNoBotBanner => 'No bot banner';
+  String get applicationsNoBotBanner => 'Žádný banner bota';
 
   @override
-  String get applicationsFriendlyBot => 'Friendly bot';
+  String get applicationsFriendlyBot => 'Přátelský bot';
 
   @override
   String get applicationsFriendlyBotDescription =>
-      'Allow users to send this bot friend requests for manual approval.';
+      'Povolit uživatelům posílat tomuto botovi žádosti o přátelství k ručnímu schválení.';
 
   @override
   String get applicationsManualFriendApproval =>
-      'Require manual friend approval';
+      'Vyžadovat ruční schválení žádosti o přátelství';
 
   @override
   String get applicationsManualFriendApprovalDescription =>
-      'Friend requests to this bot need manual approval.';
+      'Žádosti o přátelství odeslané tomuto botovi vyžadují ruční schválení.';
 
   @override
-  String get applicationsOauthBuilderTitle => 'OAuth2 URL builder';
+  String get applicationsOauthBuilderTitle => 'Nástroj pro tvorbu OAuth2 URL';
 
   @override
   String get applicationsOauthBuilderDescription =>
       'Construct an authorize URL with scopes and permissions.';
 
   @override
-  String get applicationsScopes => 'Scopes';
+  String get applicationsScopes => 'Oprávnění';
 
   @override
-  String get applicationsRedirectUri => 'Redirect URI';
+  String get applicationsRedirectUri => 'URI pro přesměrování';
 
   @override
-  String get applicationsSelectRedirectUri => 'Select a redirect URI';
+  String get applicationsSelectRedirectUri => 'Vyberte URI přesměrování';
 
   @override
   String get applicationsRedirectRequiredCodeGrant =>
-      'Redirect URI is required because this bot requires OAuth2 code grant.';
+      'URI pro přesměrování je povinné, protože tento bot vyžaduje autorizační tok OAuth2 s kódem.';
 
   @override
   String get applicationsRedirectRequiredScopes =>
-      'Redirect URI is required when not using only the bot scope.';
+      'URI pro přesměrování je povinné, pokud nepoužíváte pouze rozsah „bot“.';
 
   @override
-  String get applicationsBotPermissions => 'Bot permissions';
+  String get applicationsBotPermissions => 'Oprávnění bota';
 
   @override
-  String get applicationsAuthorizeUrl => 'Authorize URL';
+  String get applicationsAuthorizeUrl => 'Autorizační URL';
 
   @override
   String get applicationsAuthorizeUrlPlaceholder =>
-      'Select scopes (and redirect URI if required)';
+      'Vyberte oprávnění (a v případě potřeby URI pro přesměrování)';
 
   @override
   String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
 
   @override
-  String get applicationsCopiedUrl => 'Copied URL to clipboard';
+  String get applicationsCopiedUrl => 'Adresa URL zkopírována do schránky';
 
   @override
-  String get applicationsDangerTitle => 'Danger zone';
+  String get applicationsDangerTitle => 'Nebezpečná zóna';
 
   @override
   String get applicationsDangerSubtitle =>
-      'This cannot be undone. Removing the application also deletes its bot.';
+      'Tuto akci nelze vrátit zpět. Odebráním aplikace se odstraní i její bot.';
 
   @override
   String get applicationsDangerHelper =>
-      'Once deleted, the application and its credentials are permanently removed.';
+      'Po smazání budou aplikace a její přihlašovací údaje trvale odstraněny.';
 
   @override
-  String get applicationsDelete => 'Delete application';
+  String get applicationsDelete => 'Smazat aplikaci';
 
   @override
   String applicationsDeleteConfirmDescription(String name) {
@@ -15089,92 +15092,92 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   }
 
   @override
-  String get applicationsDeleteFailed => 'Couldn\'t delete application';
+  String get applicationsDeleteFailed => 'Aplikaci se nepodařilo smazat';
 
   @override
-  String get applicationsUpdated => 'Application updated successfully';
+  String get applicationsUpdated => 'Aplikace byla úspěšně aktualizována';
 
   @override
-  String get applicationsNoChanges => 'No changes to save';
+  String get applicationsNoChanges => 'Žádné změny k uložení';
 
   @override
-  String get applicationsSearchBots => 'Applications & bots';
+  String get applicationsSearchBots => 'Aplikace a boti';
 
   @override
   String get applicationsSearchBotsDescription =>
-      'Create and manage applications and bots for your account';
+      'Vytvářejte a spravujte aplikace a boty pro svůj účet';
 
   @override
   String get applicationsSearchInfoDescription =>
-      'Edit application basics and redirect URIs';
+      'Upravit základní údaje aplikace a URI pro přesměrování';
 
   @override
   String get applicationsSearchBotProfileDescription =>
-      'Edit the bot avatar, tag, bio, banner, and friend request behavior';
+      'Upravit avatar, uživatelský tag, popis, banner a přijímání žádostí o přátelství u bota';
 
   @override
   String get applicationsSearchOauthDescription =>
-      'Build an authorization URL with scopes, redirects, and bot permissions';
+      'Vytvořit autorizační URL s rozsahy, přesměrováními a oprávněními bota';
 
   @override
   String get applicationsSearchSecretsDescription =>
-      'View and regenerate client secrets and bot tokens';
+      'Zobrazit a znovu vygenerovat klientské tajné klíče a tokeny bota';
 
   @override
-  String get applicationsSearchBotsKeyword => 'Bots';
+  String get applicationsSearchBotsKeyword => 'Boti';
 
   @override
-  String get applicationsSearchDocumentation => 'Documentation';
+  String get applicationsSearchDocumentation => 'Dokumentace';
 
   @override
-  String get linkedDevicesViewDetails => 'View details';
+  String get linkedDevicesViewDetails => 'Zobrazit podrobnosti';
 
   @override
-  String get linkedDevicesDetailsTitle => 'Device details';
+  String get linkedDevicesDetailsTitle => 'Podrobnosti o zařízení';
 
   @override
-  String get linkedDevicesDetailsDevice => 'Device';
+  String get linkedDevicesDetailsDevice => 'Zařízení';
 
   @override
-  String get linkedDevicesDetailsClient => 'Client';
+  String get linkedDevicesDetailsClient => 'Klient';
 
   @override
-  String get linkedDevicesDetailsLocation => 'Location';
+  String get linkedDevicesDetailsLocation => 'Poloha';
 
   @override
-  String get linkedDevicesDetailsIp => 'IP address';
+  String get linkedDevicesDetailsIp => 'IP adresa';
 
   @override
-  String get linkedDevicesDetailsLastUsed => 'Last used';
+  String get linkedDevicesDetailsLastUsed => 'Poslední použití';
 
   @override
-  String get linkedDevicesCurrentSession => 'Current session';
+  String get linkedDevicesCurrentSession => 'Aktuální relace';
 
   @override
-  String get linkedDevicesUnknown => 'Unknown';
+  String get linkedDevicesUnknown => 'Neznámý';
 
   @override
-  String get chatMessagePinConfirm => 'Pin';
+  String get chatMessagePinConfirm => 'Připnout';
 
   @override
   String get chatMessagePinConfirmDescription =>
-      'Pin this message to the channel for everyone to see.';
+      'Připnout tuto zprávu do kanálu, aby ji všichni viděli.';
 
   @override
-  String get savedMessagesAddedToast => 'Added to bookmarks';
+  String get savedMessagesAddedToast => 'Přidáno do záložek';
 
   @override
-  String get savedMessagesRemovedToast => 'Removed from bookmarks';
+  String get savedMessagesRemovedToast => 'Odebráno ze záložek';
 
   @override
-  String get guildSettingsDeleteCommunity => 'Delete community';
+  String get guildSettingsDeleteCommunity => 'Smazat komunitu';
 
   @override
   String get guildSettingsDeleteCommunityConfirm =>
-      'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.';
+      'Opravdu chcete smazat tuto komunitu? Tuto akci nelze vrátit zpět. Všechny kanály, zprávy a nastavení budou trvale smazány.';
 
   @override
-  String get guildSettingsCommunityDeleted => 'Community deleted';
+  String get guildSettingsCommunityDeleted => 'Komunita smazána';
 
   @override
   String get guildSettingsDeleteCommunityFailed =>
@@ -15220,11 +15223,81 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get assistantOkOpened => 'Opening echowire.';
 
   @override
-  String get assistantOkMessageSent => 'Message sent.';
+  String get assistantOkMessageSent => 'Zpráva odeslána.';
 
   @override
   String get assistantOkCustomStatusSet => 'Custom status updated.';
 
   @override
   String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+
+  @override
+  String get notificationsPushRelaySectionTitle => 'Přenos push oznámení';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider doručuje push oznámení jen přes vlastní službu, takže oznámení pro toto zařízení procházejí přes přenos Fluxeru.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Používat push přenos Fluxeru';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Vypnutím se odstraní registrace push pro toto zařízení a zařízení přestane dostávat push oznámení.';
+
+  @override
+  String get pushRelayConsentTitle => 'Přenos push oznámení';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider doručuje push oznámení jen přes vlastní službu, takže oznámení pro toto zařízení procházejí přes přenos Fluxeru.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Odsouhlas ';
+
+  @override
+  String get pushRelayConsentNoticeLink => 'oznámení o soukromí push přenosu';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ', abys na tomto zařízení zapnul push oznámení. Stačí odsouhlasit jednou na zařízení.';
+
+  @override
+  String get pushRelayConsentAgree => 'Souhlasím a pokračovat';
+
+  @override
+  String get pushRelayConsentDecline => 'Teď ne';
+
+  @override
+  String get userSettingsNavAppIcon => 'App icon';
+
+  @override
+  String get appIconSectionTitle => 'App icon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Choose which icon appears on your home screen.';
+
+  @override
+  String get appIconOptionDefault => 'Výchozí';
+
+  @override
+  String get appIconOptionStarfield => 'Starfield';
+
+  @override
+  String get appIconOptionSweden => 'Švédsko';
+
+  @override
+  String get appIconUnsupported =>
+      'Changing the app icon is not available on this device.';
+
+  @override
+  String get authCheckStillWorking => 'Still working on it…';
+
+  @override
+  String get authVerificationFailed =>
+      'Couldn\'t complete verification. Try again.';
 }

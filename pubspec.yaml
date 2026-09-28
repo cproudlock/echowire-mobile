@@ -3,7 +3,7 @@ description: "echowire, native chat client."
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # versionName + versionCode. Play floor is 56 (old TWA), so build number must stay > 56.
-version: 1.7.30+20260926
+version: 1.7.31+20260928
 
 environment:
   sdk: ^3.12.0

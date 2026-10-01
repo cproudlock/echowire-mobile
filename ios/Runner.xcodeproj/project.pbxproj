@@ -71,10 +71,8 @@
 		FBA74A293F83B0FA00330527 /* SampleUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA74A243F83B0FA00330527 /* SampleUploader.swift */; };
 		FBA74A2A3F83B0FA00330527 /* SocketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA74A253F83B0FA00330527 /* SocketConnection.swift */; };
 		FBBF3E5F2FB7A6FD0080FF5E /* NotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FBBF3E582FB7A6FD0080FF5E /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		FB041B002F4B711E00771E23 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = FB041AFF2F4B711E00771E23 /* AppIcon.icon */; };
 		FBF7EE55306987EF00160D72 /* AppIconStarfield.icon in Resources */ = {isa = PBXBuildFile; fileRef = FBF7EE54306987EF00160D72 /* AppIconStarfield.icon */; };
 		FBF7EE57306989E000160D72 /* AppIconSweden.icon in Resources */ = {isa = PBXBuildFile; fileRef = FBF7EE56306989E000160D72 /* AppIconSweden.icon */; };
-		FBF8ABC92F9E0F4900EA2D6F /* CanaryAppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = FBF8ABC82F9E0F4900EA2D6F /* CanaryAppIcon.icon */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,10 +264,8 @@
 		FBA74A253F83B0FA00330527 /* SocketConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketConnection.swift; sourceTree = "<group>"; };
 		FBBF3E582FB7A6FD0080FF5E /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD58880BB4495395298E1AE8 /* Pods-RunnerTests.release-stable.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release-stable.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release-stable.xcconfig"; sourceTree = "<group>"; };
-		FB041AFF2F4B711E00771E23 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		FBF7EE54306987EF00160D72 /* AppIconStarfield.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconStarfield.icon; sourceTree = "<group>"; };
 		FBF7EE56306989E000160D72 /* AppIconSweden.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconSweden.icon; sourceTree = "<group>"; };
-		FBF8ABC82F9E0F4900EA2D6F /* CanaryAppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = CanaryAppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -421,8 +417,6 @@
 			children = (
 				FBF7EE53306987C500160D72 /* AppIcons */,
 				FB0ADAC12F5C91D50078A4D4 /* Runner.entitlements */,
-				FB041AFF2F4B711E00771E23 /* AppIcon.icon */,
-				FBF8ABC82F9E0F4900EA2D6F /* CanaryAppIcon.icon */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -736,10 +730,8 @@
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
-				FB041B002F4B711E00771E23 /* AppIcon.icon in Resources */,
 				FBF7EE55306987EF00160D72 /* AppIconStarfield.icon in Resources */,
 				FBF7EE57306989E000160D72 /* AppIconSweden.icon in Resources */,
-				FBF8ABC92F9E0F4900EA2D6F /* CanaryAppIcon.icon in Resources */,
 				FB0ADBE12F5C93000078A4F1 /* message.caf in Resources */,
 				FB0ADBE22F5C93000078A4F2 /* direct_message.caf in Resources */,
 				FB0AF0092F5C97000078A538 /* incoming_ring.caf in Resources */,

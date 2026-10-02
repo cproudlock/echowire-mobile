@@ -406,11 +406,8 @@ class AuthRepository {
     if (row == null) {
       return;
     }
-    await _db.authSessionDao.saveSessionMetadata(
+    await _db.authSessionDao.updateInstanceSnapshotJson(
       userId: row.userId,
-      username: row.username,
-      discriminator: row.discriminator,
-      avatar: row.avatar,
       instanceSnapshotJson: snapshot.toJson(),
     );
     await _persistApiBaseUrl(row.userId, snapshot.apiBaseUrl);

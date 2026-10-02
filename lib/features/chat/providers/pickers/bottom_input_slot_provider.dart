@@ -224,11 +224,13 @@ class BottomInputSlot extends _$BottomInputSlot {
         (preserveTransition ? state.transition : BottomInputTransition.idle);
     final double resolvedLockedHeight =
         lockedHeight ?? (preserveTransition ? state.lockedHeight : 0);
+    final bool keyboardSlotActive =
+        metrics.isKeyboardVisible || metrics.unmeasuredKeyboardReserved;
     final BottomInputMode resolvedMode =
         mode ??
         (isPanelOpen
             ? BottomInputMode.panelAnchored
-            : (metrics.isKeyboardVisible
+            : (keyboardSlotActive
                   ? BottomInputMode.keyboard
                   : BottomInputMode.none));
     final double resolvedPanelHeight =
@@ -243,8 +245,8 @@ class BottomInputSlot extends _$BottomInputSlot {
       panelHeight: resolvedPanelHeight,
       liveKeyboardHeight: metrics.liveKeyboardHeight,
       isKeyboardVisible: metrics.isKeyboardVisible,
-      safeAreaBottom: metrics.safeAreaBottom,
       heldSlotHeightOverride: _heldSlotHeightOverride,
+      unmeasuredKeyboardReserved: metrics.unmeasuredKeyboardReserved,
     );
     return BottomInputSlotState(
       mode: resolvedMode,

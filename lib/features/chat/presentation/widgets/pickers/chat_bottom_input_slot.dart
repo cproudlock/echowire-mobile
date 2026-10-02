@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/attachment_panel_provider.dart';
@@ -60,14 +62,17 @@ class BottomInputSpacer extends ConsumerWidget {
   }
 
   double _keyboardSpacerHeight(BuildContext context, double slotHeight) {
-    if (slotHeight <= 0) {
+    final double inset = resolvedKeyboardInsetBottom(context);
+    final double resolved = inset > 0
+        ? math.max(inset, slotHeight)
+        : slotHeight;
+    if (resolved <= 0) {
       return 0;
     }
-    final double homeInset = MediaQuery.viewPaddingOf(context).bottom;
-    if (slotHeight >= homeInset) {
-      return slotHeight;
-    }
-    return homeInset > 0 ? homeInset : slotHeight;
+    return bottomInputKeyboardSpacerHeight(
+      slotHeight: resolved,
+      homeIndicatorInset: MediaQuery.viewPaddingOf(context).bottom,
+    );
   }
 
   Widget _animatedSpacer(BuildContext context, double height) {

@@ -6,8 +6,11 @@ import 'package:fluxer_app/features/chat/presentation/widgets/composer/channel_t
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/composer_autocomplete_field.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/chat_bottom_input_slot.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/mobile_keyboard_metrics_provider.dart';
+import 'package:fluxer_app/features/chat/utils/composer/bottom_input_slot_layout.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/material_ui.dart';
+
+const int _kResumeInsetSyncFrames = 4;
 
 class ChatComposerColumn extends ConsumerStatefulWidget {
   const ChatComposerColumn({
@@ -28,6 +31,8 @@ class ChatComposerColumn extends ConsumerStatefulWidget {
 class _ChatComposerColumnState extends ConsumerState<ChatComposerColumn>
     with WidgetsBindingObserver {
   bool _syncScheduled = false;
+  int _resumeInsetSyncFramesRemaining = 0;
+  double? _lastSyncedViewInsetsBottom;
 
   @override
   void initState() {
@@ -46,6 +51,7 @@ class _ChatComposerColumnState extends ConsumerState<ChatComposerColumn>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       _scheduleKeyboardMetricsSync();
+      _scheduleResumeInsetSyncRetries();
     }
   }
 
@@ -74,6 +80,22 @@ class _ChatComposerColumnState extends ConsumerState<ChatComposerColumn>
     });
   }
 
+  void _scheduleResumeInsetSyncRetries() {
+    _resumeInsetSyncFramesRemaining = _kResumeInsetSyncFrames;
+    WidgetsBinding.instance.addPostFrameCallback(_resumeInsetSyncTick);
+  }
+
+  void _resumeInsetSyncTick(Duration _) {
+    if (!mounted || _resumeInsetSyncFramesRemaining <= 0) {
+      return;
+    }
+    _resumeInsetSyncFramesRemaining--;
+    _syncKeyboardMetrics();
+    if (_resumeInsetSyncFramesRemaining > 0) {
+      WidgetsBinding.instance.addPostFrameCallback(_resumeInsetSyncTick);
+    }
+  }
+
   void _syncKeyboardMetrics() {
     if (!isMobileLayout(context)) {
       return;
@@ -86,13 +108,22 @@ class _ChatComposerColumnState extends ConsumerState<ChatComposerColumn>
         isIos: !kIsWeb && Platform.isIOS,
       )
       ..syncViewInsets(
-        mediaQuery.viewInsets.bottom,
+        resolvedKeyboardInsetBottom(context),
         safeAreaBottom: mediaQuery.padding.bottom,
       );
   }
 
   @override
   Widget build(BuildContext context) {
+    if (!isMobileLayout(context)) {
+      _lastSyncedViewInsetsBottom = null;
+    } else {
+      final double viewInsetsBottom = resolvedKeyboardInsetBottom(context);
+      if (viewInsetsBottom != _lastSyncedViewInsetsBottom) {
+        _lastSyncedViewInsetsBottom = viewInsetsBottom;
+        _scheduleKeyboardMetricsSync();
+      }
+    }
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[

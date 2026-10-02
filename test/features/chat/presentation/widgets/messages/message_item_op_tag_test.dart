@@ -6,6 +6,7 @@ import 'package:fluxer_app/core/theme/fluxer_theme.dart';
 import 'package:fluxer_app/core/theme/themes/dark.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_item.dart';
+import 'package:fluxer_app/features/chat/providers/publish_nudge_provider.dart';
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
 import 'package:fluxer_app/features/ui/badge/fluxer_op_tag.dart';
 import 'package:fluxer_app/material_ui.dart';
@@ -45,7 +46,14 @@ MessageRenderSettings _settings({String? threadOwnerId}) =>
 Widget _app(Widget child) {
   final colorTheme = buildDarkColorTheme();
   return ProviderScope(
-    overrides: [instanceRuntimeConfigOverride()],
+    overrides: [
+      instanceRuntimeConfigOverride(),
+      // Upstream's crosspost nudge is built inside every row and resolves
+      // its target through the chat view model, which opens the database.
+      // This row is rendered on its own, so pin the nudge to no message and
+      // keep the test free of providers it does not exercise.
+      publishNudgeMessageIdProvider.overrideWithValue(null),
+    ],
     child: MaterialApp(
       locale: kTestLocale,
       localizationsDelegates: FluxerLocalizations.localizationsDelegates,

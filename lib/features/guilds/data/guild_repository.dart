@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
+import 'package:fluxer_app/features/channels/domain/channel.dart'
+    as app_channel;
 import 'package:fluxer_app/features/guilds/data/guild_local_cleanup.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/shared/utils/sdk_converters.dart';
@@ -34,6 +36,9 @@ class GuildRepository {
 
   Future<void> syncServers() async {
     try {
+      final Set<String> localIdsBeforeFetch = (await _db.guildDao.getServers())
+          .map((row) => row.id)
+          .toSet();
       final guilds = await _client.guilds.listGuilds();
       final guildOrder = await _fetchGuildOrder();
       final unavailableIds = await _unavailableGuildIds();
@@ -46,8 +51,18 @@ class GuildRepository {
         );
       }).toList();
       await _db.guildDao.upsertServers(companions);
-      final apiIds = guilds.map((guild) => guild.id).toSet();
-      await removeGuildsNotInLocalDb(_db, apiIds);
+      final Set<String> apiIds = guilds.map((guild) => guild.id).toSet();
+      final Set<String> localIdsAfterUpsert = (await _db.guildDao.getServers())
+          .map((row) => row.id)
+          .toSet();
+      await removeGuildsNotInLocalDb(
+        _db,
+        guildIdsKeptAfterMembershipSync(
+          apiGuildIds: apiIds,
+          localGuildIdsBeforeFetch: localIdsBeforeFetch,
+          localGuildIdsAfterUpsert: localIdsAfterUpsert,
+        ),
+      );
     } on DioException catch (e) {
       throw Exception(e.response?.statusMessage ?? 'Failed to fetch servers');
     }
@@ -81,7 +96,7 @@ class GuildRepository {
         id: channel.id,
         guildId: guild.id,
         name: channel.name ?? 'general',
-        type: Value(channel.type.json ?? 0),
+        type: Value(app_channel.persistedChannelTypeWire(channel.type.json)),
       ),
     ]);
   }

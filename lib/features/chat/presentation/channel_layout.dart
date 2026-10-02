@@ -5,6 +5,7 @@ import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/category_channel_route_handler.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/forum_channel_view.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/link_channel_route_handler.dart';
+import 'package:fluxer_app/features/channels/presentation/widgets/unrecognized_channel_view.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/channel/channel_chat_content.dart';
@@ -87,7 +88,7 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
       guildAvailabilityProvider,
     );
     final AsyncValue<Guild?> guildAsync = ref.watch(
-      guildByIdProvider(widget.guildId),
+      guildStreamByIdProvider(widget.guildId),
     );
     final Guild? guild = guildAsync.value;
     final bool guildOutageUnavailable = isGuildOutageUnavailable(
@@ -134,6 +135,7 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
     final bool isCategoryChannel = channel?.type == ChannelType.guildCategory;
     final bool isVoiceChannel = channel?.type == ChannelType.guildVoice;
     final bool isForumChannel = channel?.type == ChannelType.guildForum;
+    final bool isUnrecognizedChannel = channel?.type == ChannelType.unknown;
     final bool isMobile = isMobileLayout(context);
     final AsyncValue<bool> showGateAsync = ref.watch(
       shouldShowMatureContentGateProvider(widget.channelId),
@@ -156,9 +158,12 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
       channelHeaderSearchProvider,
     );
     final bool isSearchActive =
-        searchState.isActive && searchState.channelId == widget.channelId;
-    // Keep the auto-dispose search provider alive while this channel is open.
-    ref.watch(channelSearchProvider(widget.channelId, widget.guildId));
+        !isUnrecognizedChannel &&
+        searchState.isActive &&
+        searchState.channelId == widget.channelId;
+    if (!isUnrecognizedChannel) {
+      ref.watch(channelSearchProvider(widget.channelId, widget.guildId));
+    }
     final VoiceSessionState voice = ref.watch(voiceSessionProvider);
     final bool forceVoiceCallStyle =
         isVoiceChannel &&
@@ -179,7 +184,9 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
       ..listen<String?>(activeGuildIdProvider, scheduleSearchContextSync)
       ..listen<String?>(activeChannelIdProvider, scheduleSearchContextSync);
 
-    final Widget primaryContent = showMatureContentGate
+    final Widget primaryContent = isUnrecognizedChannel
+        ? const UnrecognizedChannelView()
+        : showMatureContentGate
         ? MatureContentChannelGate(
             channelId: widget.channelId,
             guildId: widget.guildId,

@@ -36,7 +36,6 @@ void main() {
           panelHeight: 302,
           liveKeyboardHeight: 120,
           isKeyboardVisible: true,
-          safeAreaBottom: 34,
         ),
         302,
       );
@@ -52,7 +51,6 @@ void main() {
           panelHeight: 0,
           liveKeyboardHeight: 336,
           isKeyboardVisible: true,
-          safeAreaBottom: 34,
         ),
         336,
       );
@@ -68,7 +66,6 @@ void main() {
           panelHeight: 0,
           liveKeyboardHeight: 336,
           isKeyboardVisible: true,
-          safeAreaBottom: 0,
         ),
         336,
       );
@@ -86,7 +83,6 @@ void main() {
             panelHeight: 640,
             liveKeyboardHeight: 0,
             isKeyboardVisible: false,
-            safeAreaBottom: 34,
           ),
           336,
         );
@@ -103,9 +99,81 @@ void main() {
           panelHeight: 0,
           liveKeyboardHeight: 0,
           isKeyboardVisible: false,
-          safeAreaBottom: 34,
         ),
         0,
+      );
+    });
+
+    test('reserves anchor height when keyboard is focused but unmeasured', () {
+      expect(
+        resolveBottomInputSlotHeight(
+          isPanelOpen: false,
+          transition: BottomInputTransition.idle,
+          lockedHeight: 0,
+          anchorHeight: 302,
+          panelHeight: 0,
+          liveKeyboardHeight: 0,
+          isKeyboardVisible: false,
+          unmeasuredKeyboardReserved: true,
+        ),
+        302,
+      );
+    });
+
+    test('live keyboard height replaces unmeasured reservation', () {
+      expect(
+        resolveBottomInputSlotHeight(
+          isPanelOpen: false,
+          transition: BottomInputTransition.idle,
+          lockedHeight: 0,
+          anchorHeight: 302,
+          panelHeight: 0,
+          liveKeyboardHeight: 318,
+          isKeyboardVisible: true,
+          unmeasuredKeyboardReserved: true,
+        ),
+        318,
+      );
+    });
+  });
+
+  group('shouldClearUnmeasuredKeyboardReservation', () {
+    test('clears after live height drops to zero', () {
+      expect(
+        shouldClearUnmeasuredKeyboardReservation(
+          unmeasuredKeyboardReserved: true,
+          previousLiveHeight: 302,
+          mergedHeight: 0,
+          hadKeyboardInsetWhileReserved: false,
+        ),
+        isTrue,
+      );
+    });
+
+    test(
+      'clears when inset was seen then keyboard hides without live height',
+      () {
+        expect(
+          shouldClearUnmeasuredKeyboardReservation(
+            unmeasuredKeyboardReserved: true,
+            previousLiveHeight: 0,
+            mergedHeight: 0,
+            hadKeyboardInsetWhileReserved: true,
+          ),
+          isTrue,
+        );
+      },
+    );
+
+    test('keeps reservation before any inset while opening', () {
+      expect(
+        shouldClearUnmeasuredKeyboardReservation(
+          unmeasuredKeyboardReserved: true,
+          previousLiveHeight: 0,
+          mergedHeight: 0,
+          hadKeyboardInsetWhileReserved: false,
+        ),
+        isFalse,
       );
     });
   });
@@ -285,59 +353,60 @@ void main() {
     });
   });
 
+  group('resolvedKeyboardInsetBottomFrom', () {
+    test('converts physical view insets to logical pixels', () {
+      expect(
+        resolvedKeyboardInsetBottomFrom(
+          mediaQueryInsetBottom: 0,
+          physicalViewInsetBottom: 906,
+          devicePixelRatio: 3,
+        ),
+        302,
+      );
+      expect(
+        resolvedKeyboardInsetBottomFrom(
+          mediaQueryInsetBottom: 302,
+          physicalViewInsetBottom: 906,
+          devicePixelRatio: 3,
+        ),
+        302,
+      );
+    });
+  });
+
   group('resolveDualSourceLiveKeyboardHeight', () {
-    test(
-      'gap case: normalized native matches viewInsets → slot 302 not 336',
-      () {
-        final double nativeIme = resolveNativeImeOnlyHeight(
-          nativeKeyboardHeight: 336,
-          nativeSafeAreaBottom: 34,
-        );
-        expect(nativeIme, 302);
-        expect(
-          resolveDualSourceLiveKeyboardHeight(
-            nativeHeight: nativeIme,
-            viewInsetsHeight: 302,
-          ),
-          302,
-        );
-        expect(
-          resolveBottomInputSlotHeight(
-            isPanelOpen: false,
-            transition: BottomInputTransition.idle,
-            lockedHeight: 0,
-            anchorHeight: 336,
-            panelHeight: 0,
-            liveKeyboardHeight: 302,
-            isKeyboardVisible: true,
-            safeAreaBottom: 0,
-          ),
-          302,
-        );
-      },
-    );
+    test('viewInsets wins over a taller native height', () {
+      expect(
+        resolveDualSourceLiveKeyboardHeight(
+          nativeHeight: 336,
+          viewInsetsHeight: 302,
+        ),
+        302,
+      );
+      expect(
+        resolveDualSourceLiveKeyboardHeight(
+          nativeHeight: 302,
+          viewInsetsHeight: 180,
+        ),
+        180,
+      );
+      expect(
+        resolveDualSourceLiveKeyboardHeight(
+          nativeHeight: 120,
+          viewInsetsHeight: 302,
+        ),
+        302,
+      );
+    });
 
-    test(
-      'takes max in IME-only units so stale lower source cannot regress',
-      () {
-        expect(
-          resolveDualSourceLiveKeyboardHeight(
-            nativeHeight: 302,
-            viewInsetsHeight: 180,
-          ),
-          302,
-        );
-        expect(
-          resolveDualSourceLiveKeyboardHeight(
-            nativeHeight: 120,
-            viewInsetsHeight: 302,
-          ),
-          302,
-        );
-      },
-    );
-
-    test('collapses to zero when both sources report hidden', () {
+    test('uses gross native height only while viewInsets is hidden', () {
+      expect(
+        resolveDualSourceLiveKeyboardHeight(
+          nativeHeight: 336,
+          viewInsetsHeight: 0,
+        ),
+        336,
+      );
       expect(
         resolveDualSourceLiveKeyboardHeight(
           nativeHeight: 0,
@@ -347,13 +416,13 @@ void main() {
       );
     });
 
-    test('allows close animation as both sources shrink', () {
+    test('follows viewInsets down while the keyboard closes', () {
       expect(
         resolveDualSourceLiveKeyboardHeight(
           nativeHeight: 200,
           viewInsetsHeight: 180,
         ),
-        200,
+        180,
       );
       expect(
         resolveDualSourceLiveKeyboardHeight(
@@ -361,13 +430,6 @@ void main() {
           viewInsetsHeight: 90,
         ),
         90,
-      );
-      expect(
-        resolveDualSourceLiveKeyboardHeight(
-          nativeHeight: 0,
-          viewInsetsHeight: 0,
-        ),
-        0,
       );
     });
   });
@@ -476,7 +538,6 @@ void main() {
           panelHeight: 335,
           liveKeyboardHeight: 0,
           isKeyboardVisible: false,
-          safeAreaBottom: 34,
         ),
         335,
       );
@@ -492,7 +553,6 @@ void main() {
           panelHeight: 0,
           liveKeyboardHeight: 0,
           isKeyboardVisible: false,
-          safeAreaBottom: 34,
           heldSlotHeightOverride: 302,
         ),
         302,
@@ -509,7 +569,6 @@ void main() {
           panelHeight: 336,
           liveKeyboardHeight: 0,
           isKeyboardVisible: false,
-          safeAreaBottom: 34,
           heldSlotHeightOverride: 0,
         ),
         0,
@@ -528,7 +587,6 @@ void main() {
           panelHeight: 0,
           liveKeyboardHeight: 335.6,
           isKeyboardVisible: true,
-          safeAreaBottom: 0,
         ),
         336,
       );
@@ -537,7 +595,6 @@ void main() {
     test(
       'locking keyboard transition keeps locked height while inset animates',
       () {
-        const double safeAreaBottom = 34;
         const double lockedNetHeight = 302;
 
         expect(
@@ -549,7 +606,6 @@ void main() {
             panelHeight: lockedNetHeight,
             liveKeyboardHeight: 180,
             isKeyboardVisible: true,
-            safeAreaBottom: safeAreaBottom,
           ),
           lockedNetHeight,
         );

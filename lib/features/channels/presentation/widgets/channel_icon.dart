@@ -21,6 +21,12 @@ const String _kAssetLink = 'assets/images/icons/channels/link.svg';
 const String _kAssetLinkLocked = 'assets/images/icons/channels/link_locked.svg';
 const String _kAssetLinkNsfw = 'assets/images/icons/channels/link_nsfw.svg';
 const String _kAssetThread = 'assets/images/icons/channels/thread.svg';
+const String _kAssetAnnouncement =
+    'assets/images/icons/channels/announcement.svg';
+const String _kAssetAnnouncementLocked =
+    'assets/images/icons/channels/announcement_locked.svg';
+const String _kAssetAnnouncementNsfw =
+    'assets/images/icons/channels/announcement_nsfw.svg';
 
 enum ChannelIconAccessOverlay { none, nsfw, lock, noConnect }
 
@@ -81,6 +87,14 @@ String? _svgAssetForChannelVisual({
       ChannelIconAccessOverlay.noConnect => _kAssetVoiceNoConnect,
       ChannelIconAccessOverlay.lock => _kAssetVoiceLocked,
       ChannelIconAccessOverlay.none => _kAssetVoice,
+    };
+  }
+  if (type == ChannelType.guildAnnouncement) {
+    return switch (overlay) {
+      ChannelIconAccessOverlay.nsfw => _kAssetAnnouncementNsfw,
+      ChannelIconAccessOverlay.lock => _kAssetAnnouncementLocked,
+      ChannelIconAccessOverlay.noConnect => _kAssetAnnouncement,
+      ChannelIconAccessOverlay.none => _kAssetAnnouncement,
     };
   }
   if (type == ChannelType.guildLink) {
@@ -158,6 +172,8 @@ class ChannelIcon extends StatelessWidget {
     switch (type) {
       case ChannelType.guildText:
         return PhosphorIconsBold.hash;
+      case ChannelType.guildAnnouncement:
+        return PhosphorIconsBold.megaphone;
       case ChannelType.guildVoice:
         return PhosphorIconsFill.speakerHigh;
       case ChannelType.guildCategory:
@@ -169,6 +185,8 @@ class ChannelIcon extends StatelessWidget {
       case ChannelType.publicThread:
       case ChannelType.privateThread:
         return PhosphorIconsBold.chatText;
+      case ChannelType.unknown:
+        return PhosphorIconsBold.question;
       case ChannelType.dm:
       case ChannelType.groupDm:
       case ChannelType.dmPersonalNotes:

@@ -145,6 +145,7 @@ Future<void> showSystemMessageActionsSheet(
     case MessageAction.createThread:
     case MessageAction.edit:
     case MessageAction.pin:
+    case MessageAction.publish:
     case MessageAction.bookmark:
     case MessageAction.suppressEmbeds:
     case MessageAction.copyEmbedText:

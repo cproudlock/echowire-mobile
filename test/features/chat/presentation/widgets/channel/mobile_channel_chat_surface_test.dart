@@ -1381,12 +1381,12 @@ class _FakeWellKnown extends WellKnown {
       ),
       captcha: InstanceCaptchaSchema(
         provider: InstanceCaptchaProviderSchema.none,
-        hcaptchaSiteKey: null,
-        turnstileSiteKey: null,
       ),
       features: InstanceFeaturesSchema(
         voiceEnabled: false,
         stripeEnabled: false,
+        premiumEnabled: false,
+        stripeServiceable: false,
         selfHosted: false,
         presignedAttachmentUploads: false,
         emailsEnabled: false,
@@ -1410,6 +1410,7 @@ class _FakeWellKnown extends WellKnown {
         singleCommunity: false,
         singleCommunityGuildId: null,
         directMessagesDisabled: false,
+        guildCreateAccess: true,
       ),
       services: InstanceServicesSchema(
         gifEnabled: false,
@@ -1434,6 +1435,8 @@ class _FakeWellKnown extends WellKnown {
           themeColor: null,
           statusPageUrl: null,
           statusPageIncidentHistoryUrl: null,
+          premiumProductName: 'Plutonium',
+          premiumInfoUrl: null,
         ),
         setup: InstanceSetupSchema(configured: true, adminUrl: null),
         legal: InstanceAppPublicSchemaLegal(termsUrl: null, privacyUrl: null),

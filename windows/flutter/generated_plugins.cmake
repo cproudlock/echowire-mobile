@@ -3,7 +3,6 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  altcha_widget
   app_links
   audioplayers_windows
   connectivity_plus
@@ -13,7 +12,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   firebase_core
   flutter_inappwebview_windows
   flutter_secure_storage_windows
-  flutter_timezone
   flutter_tts
   flutter_webrtc
   gal

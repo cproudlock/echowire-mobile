@@ -7,6 +7,7 @@ import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
+import 'package:fluxer_app/features/chat/presentation/sheets/crosspost_community_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/message_reactions_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_long_press_highlight.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_reactions_bar.dart';
@@ -151,6 +152,15 @@ class SystemMessage extends ConsumerWidget {
         context: context,
         guildId: resolvedGuildId,
       ),
+      onSourceTap: message.type == messageTypeChannelFollowAdd
+          ? () => unawaited(
+              CrosspostCommunitySheet.show(
+                context,
+                channelId: message.channelId,
+                messageId: message.id,
+              ),
+            )
+          : null,
       currentUserId: currentUserId,
       threadName: threadName,
       onThreadTap: thread == null
@@ -408,6 +418,7 @@ class SystemMessage extends ConsumerWidget {
   }) {
     switch (message.type) {
       case messageTypeUserJoin:
+      case messageTypeChannelFollowAdd:
         return (
           PhosphorIconsBold.arrowRight,
           _kSystemMessageOnlineIconColor,

@@ -13,6 +13,7 @@
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.vending.BILLING" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
@@ -47,11 +48,13 @@
     <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" />
 
+    <!-- Without a category, Xiaomi Game Turbo treats the app as a game and caps it at 60 Hz (flutter/flutter#192600). -->
     <application
         android:name=".FluxerApplication"
         android:label="${appLabel}"
         android:icon="@mipmap/ic_launcher"
         android:localeConfig="@xml/locales_config"
+        android:appCategory="social"
         android:enableOnBackInvokedCallback="true">
         <activity
             android:name=".MainActivity"
@@ -127,10 +130,18 @@
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" />
         <activity
-            android:name="com.linusu.flutter_web_auth_2.CallbackActivity"
+            android:name="com.linusu.flutter_web_auth_2.AuthenticationManagementActivity"
+            android:autoRemoveFromRecents="true"
+            android:excludeFromRecents="true" />
+        <activity
+            android:name=".SsoCallbackActivity"
             android:exported="true"
-            android:taskAffinity="">
-            <intent-filter android:label="flutter_web_auth_2">
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:autoRemoveFromRecents="true"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter android:label="fluxer_sso_callback">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -206,6 +217,9 @@
         </intent>
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+        <intent>
+            <action android:name="com.android.vending.billing.InAppBillingService.BIND" />
         </intent>
         <package android:name="com.android.chrome" />
         <package android:name="org.mozilla.firefox" />

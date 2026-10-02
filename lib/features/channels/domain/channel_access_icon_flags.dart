@@ -39,6 +39,7 @@ bool isChannelEveryonePrivateForIcon({
       final BigInt connectMask = BigInt.from(Permission.connect.value);
       return (allow == BigInt.zero) && (deny & connectMask) == connectMask;
     case ChannelType.guildText:
+    case ChannelType.guildAnnouncement:
     case ChannelType.guildLink:
     case ChannelType.guildForum:
     case ChannelType.publicThread:
@@ -46,6 +47,7 @@ bool isChannelEveryonePrivateForIcon({
       final BigInt mask = BigInt.from(Permission.viewChannel.value);
       return (deny & mask) == mask;
     case ChannelType.guildCategory:
+    case ChannelType.unknown:
     case ChannelType.dm:
     case ChannelType.groupDm:
     case ChannelType.dmPersonalNotes:

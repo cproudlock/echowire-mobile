@@ -12,6 +12,7 @@ enum InlineExpressionPanelSnapTarget { close, anchor, expanded }
 
 const double kKeyboardHeightQuantizeThreshold = 1;
 const double kKeyboardAnchorPersistThreshold = 4;
+const double kShortKeyboardInsetGap = 48;
 const double kMinImeKeyboardHeight = 120;
 const double kInlineExpressionPanelAnchorMagneticFraction = 0.12;
 const double kInlineExpressionPanelDismissHeightFraction = 0.55;
@@ -103,8 +104,8 @@ double resolveBottomInputSlotHeight({
   required double panelHeight,
   required double liveKeyboardHeight,
   required bool isKeyboardVisible,
-  required double safeAreaBottom,
   double? heldSlotHeightOverride,
+  bool unmeasuredKeyboardReserved = false,
 }) {
   if (heldSlotHeightOverride != null) {
     return heldSlotHeightOverride;
@@ -122,7 +123,30 @@ double resolveBottomInputSlotHeight({
   if (isKeyboardVisible && liveKeyboardHeight > 0) {
     return quantizeBottomInputHeight(liveKeyboardHeight);
   }
+  if (unmeasuredKeyboardReserved &&
+      liveKeyboardHeight <= 0 &&
+      anchorHeight > 0) {
+    return quantizeBottomInputHeight(anchorHeight);
+  }
   return 0;
+}
+
+bool shouldClearUnmeasuredKeyboardReservation({
+  required bool unmeasuredKeyboardReserved,
+  required double previousLiveHeight,
+  required double mergedHeight,
+  required bool hadKeyboardInsetWhileReserved,
+}) {
+  if (!unmeasuredKeyboardReserved) {
+    return false;
+  }
+  if (mergedHeight > 0) {
+    return true;
+  }
+  if (previousLiveHeight > 0 && mergedHeight <= 0) {
+    return true;
+  }
+  return hadKeyboardInsetWhileReserved && mergedHeight <= 0;
 }
 
 InlineExpressionPanelSnapTarget inlineExpressionPanelSnapTarget({
@@ -192,12 +216,39 @@ double resolveNativeImeOnlyHeight({
   return imeOnly > 0 ? imeOnly : 0;
 }
 
-/// Max of IME-normalized native height and Flutter viewInsets.bottom.
+double resolvedKeyboardInsetBottomFrom({
+  required double mediaQueryInsetBottom,
+  required double physicalViewInsetBottom,
+  required double devicePixelRatio,
+}) {
+  if (devicePixelRatio <= 0) {
+    return mediaQueryInsetBottom;
+  }
+  final double viewInsetLogical = physicalViewInsetBottom / devicePixelRatio;
+  return math.max(mediaQueryInsetBottom, viewInsetLogical);
+}
+
+double resolvedKeyboardInsetBottom(BuildContext context) {
+  final MediaQueryData mediaQuery = MediaQuery.of(context);
+  return resolvedKeyboardInsetBottomFrom(
+    mediaQueryInsetBottom: mediaQuery.viewInsets.bottom,
+    physicalViewInsetBottom: View.of(context).viewInsets.bottom,
+    devicePixelRatio: mediaQuery.devicePixelRatio,
+  );
+}
+
+/// viewInsets when it is non-zero, otherwise the native height.
 double resolveDualSourceLiveKeyboardHeight({
   required double nativeHeight,
   required double viewInsetsHeight,
 }) {
-  return math.max(nativeHeight, viewInsetsHeight);
+  if (viewInsetsHeight > 0) {
+    return viewInsetsHeight;
+  }
+  if (nativeHeight > 0) {
+    return nativeHeight;
+  }
+  return 0;
 }
 
 bool shouldPersistKeyboardAnchor({

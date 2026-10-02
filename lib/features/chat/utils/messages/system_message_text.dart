@@ -9,6 +9,7 @@ import 'package:fluxer_app/shared/utils/snowflake_time.dart';
 const String kSystemMessageUsernamePlaceholder = '{username}';
 const String kSystemMessageMentionedUsernamePlaceholder = '{userName}';
 const String kSystemMessageNewNamePlaceholder = '{newName}';
+const String kSystemMessageSourcePlaceholder = '{source}';
 const String kSystemMessageMessageLinkPlaceholder = '{messageLink}';
 const String kSystemMessageAllPinsLinkPlaceholder = '{allPinsLink}';
 const String kSystemMessageDurationPlaceholder = '{duration}';
@@ -131,6 +132,8 @@ String? stringifySystemMessage({
       return l10n.systemPreviewChangedChannelName(authorName);
     case messageTypeChannelIconChange:
       return l10n.systemPreviewChangedChannelIcon(authorName);
+    case messageTypeChannelFollowAdd:
+      return l10n.systemPreviewFollowAdd(authorName, message.content);
     case messageTypeCall:
       return l10n.systemPreviewStartedCall(authorName);
     case messageTypeThreadCreated:
@@ -191,6 +194,7 @@ List<InlineSpan> buildSystemMessageTextSpans({
   VoidCallback? onMessageLinkTap,
   VoidCallback? onAllPinsLinkTap,
   VoidCallback? onJoinCallTap,
+  VoidCallback? onSourceTap,
   String? currentUserId,
   String? threadName,
   VoidCallback? onThreadTap,
@@ -227,6 +231,21 @@ List<InlineSpan> buildSystemMessageTextSpans({
       onAuthorTap: onAuthorTap,
       onMessageLinkTap: onMessageLinkTap,
       onAllPinsLinkTap: onAllPinsLinkTap,
+    );
+  }
+  if (message.type == messageTypeChannelFollowAdd) {
+    return expandSystemMessageTemplate(
+      l10n.systemFollowAdd(
+        kSystemMessageUsernamePlaceholder,
+        kSystemMessageSourcePlaceholder,
+      ),
+      authorName: authorName,
+      sourceName: message.content,
+      textStyle: textStyle,
+      usernameStyle: usernameStyle,
+      sourceStyle: linkStyle ?? usernameStyle,
+      onAuthorTap: onAuthorTap,
+      onSourceTap: onSourceTap,
     );
   }
   if (message.type == messageTypeCall) {
@@ -498,7 +517,7 @@ List<InlineSpan> buildPinMessageTextSpans({
   );
 }
 
-enum _SystemMessagePlaceholder { username, mentionedUsername, newName }
+enum _SystemMessagePlaceholder { username, mentionedUsername, newName, source }
 
 List<InlineSpan> expandSystemMessageTemplate(
   String input, {
@@ -508,8 +527,11 @@ List<InlineSpan> expandSystemMessageTemplate(
   String? mentionedUserName,
   String? newName,
   TextStyle? newNameStyle,
+  String? sourceName,
+  TextStyle? sourceStyle,
   VoidCallback? onAuthorTap,
   VoidCallback? onMentionedUserTap,
+  VoidCallback? onSourceTap,
 }) {
   if (input.isEmpty) {
     return <InlineSpan>[];
@@ -519,12 +541,14 @@ List<InlineSpan> expandSystemMessageTemplate(
     kSystemMessageMentionedUsernamePlaceholder,
   );
   final int newNameIndex = input.indexOf(kSystemMessageNewNamePlaceholder);
+  final int sourceIndex = input.indexOf(kSystemMessageSourcePlaceholder);
   final List<(int, _SystemMessagePlaceholder)>
   markers = <(int, _SystemMessagePlaceholder)>[
     if (usernameIndex >= 0) (usernameIndex, _SystemMessagePlaceholder.username),
     if (mentionedUsernameIndex >= 0)
       (mentionedUsernameIndex, _SystemMessagePlaceholder.mentionedUsername),
     if (newNameIndex >= 0) (newNameIndex, _SystemMessagePlaceholder.newName),
+    if (sourceIndex >= 0) (sourceIndex, _SystemMessagePlaceholder.source),
   ]..sort((a, b) => a.$1.compareTo(b.$1));
   if (markers.isEmpty) {
     return <InlineSpan>[TextSpan(text: input, style: textStyle)];
@@ -540,6 +564,9 @@ List<InlineSpan> expandSystemMessageTemplate(
     ),
     _SystemMessagePlaceholder.newName => input.substring(
       index + kSystemMessageNewNamePlaceholder.length,
+    ),
+    _SystemMessagePlaceholder.source => input.substring(
+      index + kSystemMessageSourcePlaceholder.length,
     ),
   };
   final InlineSpan replacement = switch (placeholder) {
@@ -557,6 +584,11 @@ List<InlineSpan> expandSystemMessageTemplate(
       text: newName ?? '',
       style: newNameStyle ?? usernameStyle,
     ),
+    _SystemMessagePlaceholder.source => _systemMessageActionSpan(
+      label: sourceName ?? '',
+      style: sourceStyle ?? usernameStyle,
+      onTap: onSourceTap,
+    ),
   };
   return <InlineSpan>[
     ...expandSystemMessageTemplate(
@@ -564,11 +596,14 @@ List<InlineSpan> expandSystemMessageTemplate(
       authorName: authorName,
       mentionedUserName: mentionedUserName,
       newName: newName,
+      sourceName: sourceName,
       textStyle: textStyle,
       usernameStyle: usernameStyle,
       newNameStyle: newNameStyle,
+      sourceStyle: sourceStyle,
       onAuthorTap: onAuthorTap,
       onMentionedUserTap: onMentionedUserTap,
+      onSourceTap: onSourceTap,
     ),
     replacement,
     ...expandSystemMessageTemplate(
@@ -576,11 +611,14 @@ List<InlineSpan> expandSystemMessageTemplate(
       authorName: authorName,
       mentionedUserName: mentionedUserName,
       newName: newName,
+      sourceName: sourceName,
       textStyle: textStyle,
       usernameStyle: usernameStyle,
       newNameStyle: newNameStyle,
+      sourceStyle: sourceStyle,
       onAuthorTap: onAuthorTap,
       onMentionedUserTap: onMentionedUserTap,
+      onSourceTap: onSourceTap,
     ),
   ];
 }

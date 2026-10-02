@@ -55,9 +55,14 @@ void main() {
     expect(display.nameCaller, isNot('9'));
   });
 
-  test('call kit id is stable for one message', () {
-    expect(callKitIdForMessageId('m-1'), callKitIdForMessageId('m-1'));
-    expect(callKitIdForMessageId('m-1'), isNot(callKitIdForMessageId('m-2')));
+  test('call kit id matches the native ring uuid', () {
+    expect(callKitIdForMessageId('m'), '1bd2b375-788b-5871-9fbb-3b369b2519d1');
+    expect(
+      callKitIdForMessageId('message-1'),
+      '8146be86-bada-5038-87d5-7b21e7c93021',
+    );
+    expect(callKitIdForMessageId('m'), callKitIdForMessageId('m'));
+    expect(callKitIdForMessageId('m'), isNot(callKitIdForMessageId('m-2')));
   });
 
   test('a message notification collapses onto the ring', () {

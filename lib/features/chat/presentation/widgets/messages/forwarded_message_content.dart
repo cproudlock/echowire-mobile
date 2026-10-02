@@ -17,6 +17,7 @@ import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_rich.
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_spoiler_wrap.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_video.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_markdown.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_sticker_image.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/wallpaper/chat_wallpaper_text_theme.dart';
 import 'package:fluxer_app/features/chat/utils/channel_jump_navigator.dart';
 import 'package:fluxer_app/features/chat/utils/embeds/embed_gallery_utils.dart';
@@ -152,6 +153,22 @@ class ForwardedMessageContent extends ConsumerWidget {
                           );
                         });
                   }(),
+                if (snapshot.stickers.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4),
+                    child: Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        for (final MessageSticker sticker in snapshot.stickers)
+                          MessageStickerImage(
+                            sticker: sticker,
+                            visibilityKey:
+                                '${message.channelId}_${message.id}_forward_${sticker.id}',
+                          ),
+                      ],
+                    ),
+                  ),
                 if (message.messageReference != null)
                   Padding(
                     padding: const EdgeInsets.only(top: 6),
@@ -304,6 +321,10 @@ class _ForwardedSourceButtonState
   }
 
   Future<_ForwardedSourceData?> _load() async {
+    final String? messageId = widget.reference.messageId;
+    if (messageId == null || messageId.isEmpty) {
+      return null;
+    }
     final db = ref.read(fluxerDatabaseProvider);
     final guildChannel = await db.channelDao.getChannelById(
       widget.reference.channelId,
@@ -313,7 +334,7 @@ class _ForwardedSourceButtonState
       final guildRow = await db.guildDao.getServerById(guildId);
       return _ForwardedSourceData.guildChannel(
         channelId: widget.reference.channelId,
-        messageId: widget.reference.messageId,
+        messageId: messageId,
         guildId: guildId,
         channelName: guildChannel.name,
         channelType: ChannelType.fromWire(guildChannel.type),
@@ -334,7 +355,7 @@ class _ForwardedSourceButtonState
           .conversationFromChannelRow(dmChannel);
       return _ForwardedSourceData.groupDm(
         channelId: widget.reference.channelId,
-        messageId: widget.reference.messageId,
+        messageId: messageId,
         name: resolveGroupDmDisplayName(dm: conversation),
       );
     }
@@ -350,7 +371,7 @@ class _ForwardedSourceButtonState
     );
     return _ForwardedSourceData.dm(
       channelId: widget.reference.channelId,
-      messageId: widget.reference.messageId,
+      messageId: messageId,
       name: name,
       avatar: user?.avatar,
       userId: user?.id ?? dmChannel.recipientId,

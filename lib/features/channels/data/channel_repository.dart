@@ -16,10 +16,12 @@ class ChannelRepository {
 
   const ChannelRepository(this._client, this._dio, this._db);
 
+  /// Emits only when the domain channels change, not on tail-pointer writes.
   Stream<List<Channel>> watchChannels(String guildId) {
     return _db.channelDao
         .watchChannels(guildId)
-        .map((rows) => rows.map(Channel.fromRow).toList());
+        .map((rows) => rows.map(Channel.fromRow).toList())
+        .distinct(_sameExceptPointers);
   }
 
   Future<List<ChannelCategory>> getChannels(String guildId) async {
@@ -207,9 +209,23 @@ class ChannelRepository {
         throw Exception('Failed to load updated channel');
       }
       return Channel.fromRow(row);
-    } on DioException catch (e) {
-      throw Exception(e.response?.statusMessage ?? 'Failed to update channel');
+    } on DioException {
+      rethrow;
     }
+  }
+
+  Future<ChannelFollowerStatsResponse> getFollowerStats(String channelId) {
+    return _client.channels.getChannelFollowerStats(channelId: channelId);
+  }
+
+  Future<FollowedChannelResponse> followAnnouncementChannel({
+    required String channelId,
+    required String webhookChannelId,
+  }) {
+    return _client.channels.followChannel(
+      channelId: channelId,
+      body: ChannelFollowRequest(webhookChannelId: webhookChannelId),
+    );
   }
 
   Future<void> moveChannel({
@@ -229,4 +245,20 @@ class ChannelRepository {
       throw Exception(e.response?.statusMessage ?? 'Failed to move channel');
     }
   }
+}
+
+/// Echowire: upstream compares with listEquals, which relies on Channel.==
+/// ignoring lastMessageId. This fork keeps the pointer in == and exposes
+/// sameExceptLastMessage, so the channel list uses that to ignore
+/// pointer-only writes without changing equality for other consumers.
+bool _sameExceptPointers(List<Channel> a, List<Channel> b) {
+  if (a.length != b.length) {
+    return false;
+  }
+  for (int i = 0; i < a.length; i++) {
+    if (!a[i].sameExceptLastMessage(b[i])) {
+      return false;
+    }
+  }
+  return true;
 }

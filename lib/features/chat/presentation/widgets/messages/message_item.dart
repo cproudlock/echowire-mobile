@@ -1,20 +1,22 @@
 import 'dart:async';
 
-import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
+import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/thread_name_prompt.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/thread_ui.dart';
+import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_context.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/domain/message_translation.dart';
+import 'package:fluxer_app/features/chat/presentation/sheets/crosspost_community_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/message_reactions_sheet.dart';
+import 'package:fluxer_app/features/chat/presentation/sheets/publish_message_sheets.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/attachments/attachment_list_renderer.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_gift.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_image.dart';
@@ -24,13 +26,13 @@ import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_rich.
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_spoiler_wrap.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_theme.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_video.dart';
-import 'package:fluxer_app/features/chat/presentation/widgets/media/embed_animated_image.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/message_bottom_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/'
     'widgets/message_actions/message_context_menu.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/quick_reaction_row.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/reply_preview.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/swipe_to_reply.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/messages/crosspost_publish_nudge.dart';
 import 'package:fluxer_app/features/chat/presentation/'
     'widgets/messages/forward_indicator.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/forwarded_message_content.dart';
@@ -38,6 +40,7 @@ import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_l
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_markdown.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_reactions_bar.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_row_layout.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_sticker_image.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_thread_link.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_translation_indicator.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/expression_picker.dart';
@@ -49,6 +52,7 @@ import 'package:fluxer_app/features/chat/utils/attachments/uploading_attachment_
 import 'package:fluxer_app/features/chat/utils/embeds/embed_gallery_utils.dart';
 import 'package:fluxer_app/features/chat/utils/messages/double_tap_reaction.dart';
 import 'package:fluxer_app/features/chat/utils/messages/message_accessibility_summary.dart';
+import 'package:fluxer_app/features/chat/utils/messages/message_action_permissions.dart';
 import 'package:fluxer_app/features/chat/utils/messages/message_timestamp_format.dart';
 import 'package:fluxer_app/features/chat/utils/messages/spoiler_utils.dart';
 import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
@@ -71,7 +75,7 @@ import 'package:fluxer_app/shared/providers/member_role_color.dart';
 import 'package:fluxer_app/shared/utils/fluxer_haptics.dart';
 import 'package:fluxer_app/shared/utils/guild_user_display.dart';
 import 'package:fluxer_app/shared/utils/user_date_formatting.dart';
-import 'package:fluxer_dart/export.dart';
+import 'package:fluxer_dart/export.dart' hide ChannelType;
 import 'package:fluxer_markdown/fluxer_markdown.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -102,8 +106,6 @@ const _kReplyBottomGap = 4.0;
 /// and the reply content.
 const _kReplyLineEndGap = 6.0;
 
-const _kMessageStickerSize = 160.0;
-const _kMessageStickerRequestSize = 320;
 const double _kMessageSendingOpacity = 0.5;
 
 /// Immutable bundle of per-list render settings hoisted out of [MessageItem].
@@ -271,6 +273,11 @@ class _MessageItemState extends ConsumerState<MessageItem> {
   final _reactionPickerKey = GlobalKey<FluxerEmojiPickerPopoutState>();
   final _reactionPickerOpen = ValueNotifier<bool>(false);
   bool _animateJumpHighlight = false;
+  Message? _semanticLabelMessage;
+  FluxerLocalizations? _semanticLabelL10n;
+  bool _semanticLabelSending = false;
+  bool _semanticLabelFailed = false;
+  String? _semanticLabel;
 
   FluxerSpoilerSyncController get _spoilerSyncController => ref
       .watch(channelSpoilerSyncProvider(widget.message.channelId).notifier)
@@ -314,8 +321,51 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     );
   }
 
+  Widget? _authorTag(BuildContext context, Message msg) {
+    if (msg.isCrosspostCopy) {
+      return FluxerUserTag(
+        isSystem: false,
+        label: FluxerLocalizations.of(context).userTagCommunity,
+      );
+    }
+    if (!messageAuthorShowsUserTag(
+      authorIsBot: msg.authorIsBot,
+      authorIsSystem: msg.authorIsSystem,
+    )) {
+      return null;
+    }
+    return FluxerUserTag(
+      isSystem: messageAuthorUserTagIsSystem(
+        authorIsSystem: msg.authorIsSystem,
+      ),
+    );
+  }
+
+  bool _canPublish(Message message) {
+    final Channel? channel = ref
+        .read(channelByIdProvider(message.channelId))
+        .value;
+    return canPublishMessage(
+      message: message,
+      channelType: channel?.type,
+      isOwnMessage:
+          widget.currentUserId != null &&
+          message.authorId == widget.currentUserId,
+      canSendMessages: widget.canSendMessages,
+      canManageMessages: widget.canManageMessages,
+      isDmChannel: widget.isDmChannel,
+      isSendDisabled: widget.isSendDisabled,
+    );
+  }
+
   bool _canOpenAuthorProfile(Message msg) {
-    if (widget.inboxPreviewMode || msg.isSystemMessage) {
+    if (widget.inboxPreviewMode) {
+      return false;
+    }
+    if (msg.isCrosspostCopy) {
+      return true;
+    }
+    if (msg.isSystemMessage) {
       return false;
     }
     return msg.authorId.isNotEmpty;
@@ -323,6 +373,16 @@ class _MessageItemState extends ConsumerState<MessageItem> {
 
   void _openAuthorProfile(BuildContext context, Message msg) {
     if (!_canOpenAuthorProfile(msg)) {
+      return;
+    }
+    if (msg.isCrosspostCopy) {
+      unawaited(
+        CrosspostCommunitySheet.show(
+          context,
+          channelId: msg.channelId,
+          messageId: msg.id,
+        ),
+      );
       return;
     }
     final String? guildId =
@@ -430,6 +490,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
           userSettingsViewModelProvider.select((s) => s.developerMode),
         ),
         isSendDisabled: widget.isSendDisabled,
+        canPublish: _canPublish(message),
       ),
     );
   }
@@ -493,6 +554,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         canCreateThread: !widget.isDmChannel && widget.canSendMessages,
         canAddToPost: _canAddThisReplyToPost(),
         isSendDisabled: widget.isSendDisabled,
+        canPublish: _canPublish(widget.message),
         quickReactionChannelId: widget.message.channelId,
         quickReactionGuildId: guildId,
         onQuickReaction: _dispatchQuickReaction,
@@ -1001,6 +1063,14 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     required bool isFailed,
   }) {
     final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final String? cached = _semanticLabel;
+    if (cached != null &&
+        identical(msg, _semanticLabelMessage) &&
+        identical(l10n, _semanticLabelL10n) &&
+        isSending == _semanticLabelSending &&
+        isFailed == _semanticLabelFailed) {
+      return cached;
+    }
     final String author = msg.authorName.isNotEmpty
         ? msg.authorName
         : msg.authorId;
@@ -1013,7 +1083,11 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     } else if (isFailed) {
       label.write(l10n.messageAccessibilityFailedSuffix);
     }
-    return label.toString();
+    _semanticLabelMessage = msg;
+    _semanticLabelL10n = l10n;
+    _semanticLabelSending = isSending;
+    _semanticLabelFailed = isFailed;
+    return _semanticLabel = label.toString();
   }
 
   bool _hasUploadingPlaceholderAttachments(Message msg) {
@@ -1183,7 +1257,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         : chatPreferences.attachmentMediaDimensionSize;
 
     return [
-      if (msg.content.isNotEmpty &&
+      if ((msg.content.isNotEmpty || msg.isCrosspostSourceDeleted) &&
           !msg.shouldHideContent(renderEmbeds: renderEmbeds))
         wrapPart(
           _buildMessageTextWithEditedTag(
@@ -1193,6 +1267,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
             revealSpoilers: revealSpoilers,
           ),
         ),
+      if (!widget.inboxPreviewMode) CrosspostPublishNudge(message: msg),
       if (msg.hasForwardSnapshots)
         wrapPart(
           ForwardedMessageContent(
@@ -1275,7 +1350,13 @@ class _MessageItemState extends ConsumerState<MessageItem> {
             child: Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: msg.stickers.map(_buildSticker).toList(),
+              children: [
+                for (final MessageSticker sticker in msg.stickers)
+                  MessageStickerImage(
+                    sticker: sticker,
+                    visibilityKey: '${msg.channelId}_${msg.id}_${sticker.id}',
+                  ),
+              ],
             ),
           ),
         ),
@@ -1351,7 +1432,9 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     required bool revealSpoilers,
   }) {
     Widget markdown = MessageMarkdown(
-      data: msg.displayedContent,
+      data: msg.isCrosspostSourceDeleted
+          ? FluxerLocalizations.of(context).chatMessageOriginalDeleted
+          : msg.displayedContent,
       messageId: msg.id,
       selectable:
           (widget.renderSettings?.markdown.enableTextSelection ??
@@ -1536,15 +1619,8 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       runSpacing: 2,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        if (messageAuthorShowsUserTag(
-          authorIsBot: msg.authorIsBot,
-          authorIsSystem: msg.authorIsSystem,
-        ))
-          FluxerUserTag(
-            isSystem: messageAuthorUserTagIsSystem(
-              authorIsSystem: msg.authorIsSystem,
-            ),
-          ),
+        if (_authorTag(context, msg) case final Widget tag) tag,
+        // Echowire: the OP badge, shown only where thread context is on screen.
         if (_isOriginalPoster(msg)) const FluxerOpTag(),
         if (showAvatar)
           FluxerGestureDetector(
@@ -1886,16 +1962,9 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                             ),
                           ),
                         ),
-                        if (messageAuthorShowsUserTag(
-                          authorIsBot: msg.authorIsBot,
-                          authorIsSystem: msg.authorIsSystem,
-                        )) ...[
+                        if (_authorTag(context, msg) case final Widget tag) ...[
                           const SizedBox(width: 6),
-                          FluxerUserTag(
-                            isSystem: messageAuthorUserTagIsSystem(
-                              authorIsSystem: msg.authorIsSystem,
-                            ),
-                          ),
+                          tag,
                         ],
                         if (_isOriginalPoster(msg)) ...[
                           const SizedBox(width: 6),
@@ -2000,16 +2069,9 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                             maxLines: 1,
                           ),
                         ),
-                        if (messageAuthorShowsUserTag(
-                          authorIsBot: msg.authorIsBot,
-                          authorIsSystem: msg.authorIsSystem,
-                        )) ...[
+                        if (_authorTag(context, msg) case final Widget tag) ...[
                           const SizedBox(width: 6),
-                          FluxerUserTag(
-                            isSystem: messageAuthorUserTagIsSystem(
-                              authorIsSystem: msg.authorIsSystem,
-                            ),
-                          ),
+                          tag,
                         ],
                         if (_isOriginalPoster(msg)) ...[
                           const SizedBox(width: 6),
@@ -2141,55 +2203,6 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     );
   }
 
-  Widget _buildSticker(MessageSticker sticker) {
-    final Widget stickerImage;
-    if (sticker.animated) {
-      stickerImage = SizedBox(
-        width: _kMessageStickerSize,
-        height: _kMessageStickerSize,
-        child: EmbedAnimatedImage(
-          animatedUrl: sticker.urlForSize(_kMessageStickerRequestSize),
-          staticUrl: FluxerMediaUrl.sticker(id: sticker.id),
-          visibilityKey:
-              '${widget.message.channelId}_${widget.message.id}_${sticker.id}',
-          useStickerAnimationPreference: true,
-          fit: BoxFit.contain,
-          placeholder: const SizedBox(
-            width: _kMessageStickerSize,
-            height: _kMessageStickerSize,
-          ),
-        ),
-      );
-    } else {
-      stickerImage = CachedNetworkImage(
-        imageUrl: sticker.urlForSize(_kMessageStickerRequestSize),
-        cacheKey: sticker.cacheKeyForSize(_kMessageStickerRequestSize),
-        width: _kMessageStickerSize,
-        height: _kMessageStickerSize,
-        memCacheWidth: _kMessageStickerSize.toInt(),
-        fadeInDuration: Duration.zero,
-        fadeOutDuration: Duration.zero,
-        fit: BoxFit.contain,
-        placeholder: (_, _) => const SizedBox(
-          width: _kMessageStickerSize,
-          height: _kMessageStickerSize,
-        ),
-        errorBuilder: (_, _, _) => SizedBox(
-          width: _kMessageStickerSize,
-          height: _kMessageStickerSize,
-          child: Center(
-            child: PhosphorIcon(
-              PhosphorIconsDuotone.sticker,
-              size: 48,
-              color: context.colors.textTertiaryMuted,
-            ),
-          ),
-        ),
-      );
-    }
-    return Semantics(label: sticker.name, image: true, child: stickerImage);
-  }
-
   Widget _buildActions(
     BuildContext context, {
     required bool onlyMoreButton,
@@ -2258,6 +2271,23 @@ class _MessageItemState extends ConsumerState<MessageItem> {
               FluxerLocalizations.of(context).chatMessageForward,
               widget.onForward,
             ),
+            if (_canPublish(widget.message))
+              _actionButton(
+                context,
+                PhosphorIconsFill.megaphone,
+                widget.message.isCrossposted
+                    ? FluxerLocalizations.of(context).chatMessagePublished
+                    : FluxerLocalizations.of(context).chatMessagePublish,
+                widget.message.isCrossposted
+                    ? null
+                    : () => unawaited(
+                        publishMessage(
+                          ref: ref,
+                          context: context,
+                          message: widget.message,
+                        ),
+                      ),
+              ),
             _actionButton(
               context,
               PhosphorIconsFill.dotsThree,

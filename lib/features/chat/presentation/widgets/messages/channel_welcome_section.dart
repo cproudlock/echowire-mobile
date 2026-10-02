@@ -32,7 +32,7 @@ class ChannelWelcomeSection extends ConsumerWidget {
     }
     final String displayName = '#${channel.name}';
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
+      padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,

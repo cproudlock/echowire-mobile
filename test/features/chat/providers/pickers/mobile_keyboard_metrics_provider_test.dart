@@ -57,7 +57,7 @@ void main() {
       },
     );
 
-    test('out-of-order IME-only samples settle at final max height', () async {
+    test('viewInsets wins over a taller native sample', () async {
       final ProviderContainer container = ProviderContainer();
       addTearDown(container.dispose);
       final ProviderSubscription<MobileKeyboardMetricsState> metricsSub =
@@ -83,7 +83,7 @@ void main() {
         180,
       );
 
-      // Native stream reaches full height (gross 336, safe 34 → IME 302).
+      // Native gross height must not replace a live viewInsets sample.
       notifier.debugApplyNativeMetrics(
         keyboardHeight: 336,
         isKeyboardVisible: true,
@@ -91,11 +91,10 @@ void main() {
       );
       expect(
         container.read(mobileKeyboardMetricsProvider).liveKeyboardHeight,
-        302,
+        180,
       );
 
-      // Lagged lower viewInsets must not regress the live IME height.
-      notifier.syncViewInsets(200, safeAreaBottom: 0);
+      notifier.syncViewInsets(302, safeAreaBottom: 0);
       final MobileKeyboardMetricsState settled = container.read(
         mobileKeyboardMetricsProvider,
       );
@@ -136,11 +135,12 @@ void main() {
           302,
         );
 
-        // One source drops first during close — keep the remaining IME source.
+        // viewInsets dropped first. Keep the gross native height, not the
+        // stripped IME-only value, until the plugin also reports hidden.
         notifier.syncViewInsets(0, safeAreaBottom: 34);
         expect(
           container.read(mobileKeyboardMetricsProvider).liveKeyboardHeight,
-          302,
+          336,
         );
 
         notifier.debugApplyNativeMetrics(
@@ -156,6 +156,57 @@ void main() {
       },
     );
 
+    test('stale native height drops after viewInsets closes', () async {
+      final ProviderContainer container = ProviderContainer();
+      addTearDown(container.dispose);
+      container.listen(
+        mobileKeyboardMetricsProvider,
+        (_, _) {},
+        fireImmediately: true,
+      );
+      await Future<void>.value();
+
+      final MobileKeyboardMetrics notifier = container.read(
+        mobileKeyboardMetricsProvider.notifier,
+      );
+      notifier
+        ..debugApplyNativeMetrics(
+          keyboardHeight: 336,
+          isKeyboardVisible: true,
+          nativeSafeAreaBottom: 34,
+        )
+        ..syncViewInsets(302, safeAreaBottom: 0)
+        ..syncViewInsets(0, safeAreaBottom: 0);
+      expect(
+        container.read(mobileKeyboardMetricsProvider).liveKeyboardHeight,
+        336,
+      );
+
+      await Future<void>.delayed(kUnmeasuredKeyboardReservationTimeout);
+      await Future<void>.value();
+
+      expect(
+        container.read(mobileKeyboardMetricsProvider).liveKeyboardHeight,
+        0,
+      );
+
+      notifier.debugApplyNativeMetrics(
+        keyboardHeight: 336,
+        isKeyboardVisible: true,
+        nativeSafeAreaBottom: 34,
+      );
+      expect(
+        container.read(mobileKeyboardMetricsProvider).liveKeyboardHeight,
+        0,
+      );
+
+      notifier.syncViewInsets(302, safeAreaBottom: 0);
+      expect(
+        container.read(mobileKeyboardMetricsProvider).liveKeyboardHeight,
+        302,
+      );
+    });
+
     test(
       'slot height is full IME height without MediaQuery safe-area netting',
       () {
@@ -168,7 +219,6 @@ void main() {
             panelHeight: 0,
             liveKeyboardHeight: 302,
             isKeyboardVisible: true,
-            safeAreaBottom: 34,
           ),
           302,
         );
@@ -204,6 +254,272 @@ void main() {
     expect(
       container.read(mobileKeyboardMetricsProvider).resolveAnchorHeight(),
       kIosFallbackKeyboardHeight,
+    );
+  });
+
+  group('unmeasured keyboard reservation', () {
+    test('reserve sets flag when live height is zero', () async {
+      final ProviderContainer container = ProviderContainer();
+      addTearDown(container.dispose);
+      container.listen(mobileKeyboardMetricsProvider, (_, _) {});
+      await Future<void>.value();
+
+      container
+          .read(mobileKeyboardMetricsProvider.notifier)
+          .reserveUnmeasuredKeyboard();
+
+      expect(
+        container
+            .read(mobileKeyboardMetricsProvider)
+            .unmeasuredKeyboardReserved,
+        isTrue,
+      );
+    });
+
+    test('live inset clears reservation', () async {
+      final ProviderContainer container = ProviderContainer();
+      addTearDown(container.dispose);
+      container.listen(
+        bottomInputSlotProvider,
+        (_, _) {},
+        fireImmediately: true,
+      );
+      await Future<void>.value();
+
+      final MobileKeyboardMetrics notifier = container.read(
+        mobileKeyboardMetricsProvider.notifier,
+      );
+      notifier.reserveUnmeasuredKeyboard();
+      notifier.syncViewInsets(302, safeAreaBottom: 0);
+
+      expect(
+        container
+            .read(mobileKeyboardMetricsProvider)
+            .unmeasuredKeyboardReserved,
+        isFalse,
+      );
+      expect(
+        container.read(mobileKeyboardMetricsProvider).liveKeyboardHeight,
+        302,
+      );
+    });
+
+    test('reservation clears when no inset arrives', () async {
+      final ProviderContainer container = ProviderContainer();
+      addTearDown(container.dispose);
+      container.listen(mobileKeyboardMetricsProvider, (_, _) {});
+      await Future<void>.value();
+
+      container
+          .read(mobileKeyboardMetricsProvider.notifier)
+          .reserveUnmeasuredKeyboard();
+      expect(
+        container
+            .read(mobileKeyboardMetricsProvider)
+            .unmeasuredKeyboardReserved,
+        isTrue,
+      );
+
+      await Future<void>.delayed(kUnmeasuredKeyboardReservationTimeout);
+      await Future<void>.value();
+
+      expect(
+        container
+            .read(mobileKeyboardMetricsProvider)
+            .unmeasuredKeyboardReserved,
+        isFalse,
+      );
+    });
+
+    test('clearUnmeasuredKeyboardReservation drops flag', () async {
+      final ProviderContainer container = ProviderContainer();
+      addTearDown(container.dispose);
+      container.listen(mobileKeyboardMetricsProvider, (_, _) {});
+      await Future<void>.value();
+
+      final MobileKeyboardMetrics notifier = container.read(
+        mobileKeyboardMetricsProvider.notifier,
+      );
+      notifier.reserveUnmeasuredKeyboard();
+      notifier.clearUnmeasuredKeyboardReservation();
+
+      expect(
+        container
+            .read(mobileKeyboardMetricsProvider)
+            .unmeasuredKeyboardReserved,
+        isFalse,
+      );
+    });
+
+    test(
+      'keyboard dismiss after inset clears reservation without live height',
+      () async {
+        final ProviderContainer container = ProviderContainer();
+        addTearDown(container.dispose);
+        container.listen(
+          bottomInputSlotProvider,
+          (_, _) {},
+          fireImmediately: true,
+        );
+        await Future<void>.value();
+
+        final MobileKeyboardMetrics notifier = container.read(
+          mobileKeyboardMetricsProvider.notifier,
+        );
+        notifier.reserveUnmeasuredKeyboard();
+        notifier.syncViewInsets(180, safeAreaBottom: 0);
+        notifier.syncViewInsets(0, safeAreaBottom: 0);
+
+        expect(
+          container
+              .read(mobileKeyboardMetricsProvider)
+              .unmeasuredKeyboardReserved,
+          isFalse,
+        );
+        expect(container.read(bottomInputSlotProvider).slotHeight, 0);
+      },
+    );
+
+    test('keyboard dismiss after open clears reservation', () async {
+      final ProviderContainer container = ProviderContainer();
+      addTearDown(container.dispose);
+      container.listen(mobileKeyboardMetricsProvider, (_, _) {});
+      await Future<void>.value();
+
+      final MobileKeyboardMetrics notifier = container.read(
+        mobileKeyboardMetricsProvider.notifier,
+      );
+      notifier
+        ..syncViewInsets(302, safeAreaBottom: 0)
+        ..reserveUnmeasuredKeyboard();
+      notifier.syncViewInsets(0, safeAreaBottom: 0);
+
+      expect(
+        container
+            .read(mobileKeyboardMetricsProvider)
+            .unmeasuredKeyboardReserved,
+        isFalse,
+      );
+      expect(
+        container.read(mobileKeyboardMetricsProvider).liveKeyboardHeight,
+        0,
+      );
+    });
+
+    test('reserved slot uses anchor until live height arrives', () async {
+      final ProviderContainer container = ProviderContainer();
+      addTearDown(container.dispose);
+      container
+        ..listen(
+          mobileKeyboardMetricsProvider,
+          (_, _) {},
+          fireImmediately: true,
+        )
+        ..listen(bottomInputSlotProvider, (_, _) {}, fireImmediately: true);
+      await Future<void>.value();
+
+      final MobileKeyboardMetrics notifier = container.read(
+        mobileKeyboardMetricsProvider.notifier,
+      );
+      notifier
+        ..updateLayout(screenHeight: 800, isPortrait: true, isIos: true)
+        ..debugApplyNativeMetrics(
+          keyboardHeight: 336,
+          isKeyboardVisible: true,
+          nativeSafeAreaBottom: 34,
+        )
+        ..syncViewInsets(0, safeAreaBottom: 0);
+      notifier.clearUnmeasuredKeyboardReservation();
+      notifier.syncViewInsets(0, safeAreaBottom: 0);
+      notifier.debugApplyNativeMetrics(
+        keyboardHeight: 0,
+        isKeyboardVisible: false,
+        nativeSafeAreaBottom: 34,
+      );
+
+      notifier.reserveUnmeasuredKeyboard();
+      expect(
+        container.read(bottomInputSlotProvider).slotHeight,
+        container.read(mobileKeyboardMetricsProvider).resolveAnchorHeight(),
+      );
+
+      notifier.syncViewInsets(318, safeAreaBottom: 0);
+      expect(container.read(bottomInputSlotProvider).slotHeight, 318);
+    });
+  });
+
+  test('shorter keyboard replaces a taller saved anchor', () async {
+    SharedPreferences.setMockInitialValues(<String, Object>{
+      'mobile_keyboard_anchor_height_portrait': 420.0,
+    });
+    final ProviderContainer container = ProviderContainer();
+    addTearDown(container.dispose);
+    container.listen(mobileKeyboardMetricsProvider, (_, _) {});
+    await Future<void>.value();
+    await Future<void>.delayed(Duration.zero);
+
+    expect(
+      container.read(mobileKeyboardMetricsProvider).anchoredKeyboardHeight,
+      420,
+    );
+
+    final MobileKeyboardMetrics notifier = container.read(
+      mobileKeyboardMetricsProvider.notifier,
+    );
+    notifier.updateLayout(screenHeight: 800, isPortrait: true, isIos: true);
+    notifier.syncViewInsets(180, safeAreaBottom: 0);
+    expect(
+      container.read(mobileKeyboardMetricsProvider).anchoredKeyboardHeight,
+      420,
+    );
+
+    notifier.syncViewInsets(302, safeAreaBottom: 0);
+    expect(
+      container.read(mobileKeyboardMetricsProvider).anchoredKeyboardHeight,
+      420,
+    );
+
+    notifier.syncViewInsets(0, safeAreaBottom: 0);
+    expect(
+      container.read(mobileKeyboardMetricsProvider).anchoredKeyboardHeight,
+      302,
+    );
+
+    await Future<void>.delayed(const Duration(milliseconds: 350));
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    expect(
+      preferences.getDouble('mobile_keyboard_anchor_height_portrait'),
+      302,
+    );
+  });
+
+  test('stuck short viewInsets yields to the native ime', () async {
+    final ProviderContainer container = ProviderContainer();
+    addTearDown(container.dispose);
+    container.listen(mobileKeyboardMetricsProvider, (_, _) {});
+    await Future<void>.value();
+
+    final MobileKeyboardMetrics notifier = container.read(
+      mobileKeyboardMetricsProvider.notifier,
+    );
+    notifier
+      ..debugApplyNativeMetrics(
+        keyboardHeight: 336,
+        isKeyboardVisible: true,
+        nativeSafeAreaBottom: 34,
+      )
+      ..syncViewInsets(180, safeAreaBottom: 0);
+    expect(
+      container.read(mobileKeyboardMetricsProvider).liveKeyboardHeight,
+      180,
+    );
+
+    await Future<void>.delayed(kUnmeasuredKeyboardReservationTimeout);
+    await Future<void>.value();
+
+    expect(
+      container.read(mobileKeyboardMetricsProvider).liveKeyboardHeight,
+      302,
     );
   });
 

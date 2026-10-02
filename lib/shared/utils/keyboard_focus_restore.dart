@@ -1,12 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
+import 'package:fluxer_app/features/chat/utils/composer/bottom_input_slot_layout.dart';
 
-const Duration kKeyboardFocusRestoreRetryDelay = Duration(milliseconds: 100);
+const Duration kKeyboardFocusRestoreRetryDelay = Duration(milliseconds: 350);
 
-/// True when the app is no longer visible (switched away / backgrounded).
-///
-/// Excludes [AppLifecycleState.inactive]: that also fires for system UI that
-/// stays over the app (paste permission, control center, notification shade).
-/// Re-requesting focus in those cases can break paste into the focused field.
+/// paused or hidden. inactive is system UI over the app, like paste.
 bool isAppBackgroundLifecycleState(AppLifecycleState state) {
   return state == AppLifecycleState.paused || state == AppLifecycleState.hidden;
 }
@@ -31,8 +30,38 @@ class KeyboardFocusRestoreHandle {
 
   bool _pendingRestore = false;
   int _restoreGeneration = 0;
+  Timer? _deadImeRetry;
 
   bool get hasPendingRestore => _pendingRestore;
+
+  void dispose() {
+    _deadImeRetry?.cancel();
+    _restoreGeneration++;
+  }
+
+  void reconnectOpenField() {
+    _pendingRestore = false;
+    if (!_canAttemptRestore() || _anotherEditableHasFocus()) {
+      return;
+    }
+    if (!focusNode.hasFocus) {
+      focusNode.requestFocus();
+      return;
+    }
+    final int generation = ++_restoreGeneration;
+    _reconnectFocused(generation);
+  }
+
+  void replaceFocusedConnection() {
+    _pendingRestore = false;
+    if (!focusNode.hasFocus || !_canAttemptRestore()) {
+      return;
+    }
+    _deadImeRetry?.cancel();
+    final int generation = ++_restoreGeneration;
+    focusNode.unfocus();
+    _focusOnNextFrame(generation);
+  }
 
   void handleLifecycleState(AppLifecycleState state) {
     if (isAppBackgroundLifecycleState(state)) {
@@ -43,6 +72,7 @@ class KeyboardFocusRestoreHandle {
     }
     if (state == AppLifecycleState.inactive) {
       _restoreGeneration++;
+      _deadImeRetry?.cancel();
       return;
     }
     if (state == AppLifecycleState.resumed) {
@@ -54,43 +84,117 @@ class KeyboardFocusRestoreHandle {
     if (!_pendingRestore || !canRestoreFocus()) {
       return;
     }
-    _pendingRestore = false;
     final int generation = ++_restoreGeneration;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (generation != _restoreGeneration) {
-        return;
-      }
-      _restoreFocus();
-    });
+    WidgetsBinding.instance
+      ..scheduleFrame()
+      ..addPostFrameCallback((_) {
+        if (generation != _restoreGeneration) {
+          return;
+        }
+        _pendingRestore = false;
+        _restoreFocus(generation);
+      });
   }
 
-  void _restoreFocus() {
-    if (!_shouldRequestFocus()) {
+  void _restoreFocus(int generation) {
+    if (!_canAttemptRestore()) {
+      return;
+    }
+    if (_anotherEditableHasFocus()) {
+      return;
+    }
+    if (focusNode.hasFocus) {
+      _reconnectFocused(generation);
       return;
     }
     focusNode.requestFocus();
   }
 
-  bool _shouldRequestFocus() {
+  void _reconnectFocused(int generation) {
+    reconnectComposerKeyboard(focusNode);
+    _scheduleDeadImeRetry(generation);
+  }
+
+  bool _canAttemptRestore() {
     if (!canRestoreFocus() || !focusNode.canRequestFocus) {
       return false;
     }
-    if (!_canSafelyRequestFocus()) {
-      return false;
-    }
-    // Re-requesting focus while the field is already focused can drop the
-    // text input connection and make system paste a no-op.
-    if (focusNode.hasFocus) {
-      return false;
-    }
+    return _canSafelyRequestFocus();
+  }
+
+  bool _anotherEditableHasFocus() {
     final FocusNode? primary = FocusManager.instance.primaryFocus;
-    if (primary != null &&
+    return primary != null &&
         primary.hasFocus &&
         primary != focusNode &&
-        _isEditableFocus(primary)) {
+        _isEditableFocus(primary);
+  }
+
+  void _scheduleDeadImeRetry(int generation) {
+    _deadImeRetry?.cancel();
+    _deadImeRetry = Timer(kKeyboardFocusRestoreRetryDelay, () {
+      if (generation != _restoreGeneration || !_canAttemptRestore()) {
+        return;
+      }
+      if (!focusNode.hasFocus || _keyboardInsetBottom() > 0) {
+        return;
+      }
+      if (_anotherEditableHasFocus() || _fieldIsComposing()) {
+        return;
+      }
+      focusNode.unfocus();
+      _focusOnNextFrame(generation);
+    });
+  }
+
+  void _focusOnNextFrame(int generation) {
+    WidgetsBinding.instance
+      ..scheduleFrame()
+      ..addPostFrameCallback((_) {
+        if (generation != _restoreGeneration || !_canAttemptRestore()) {
+          return;
+        }
+        if (focusNode.context == null ||
+            focusNode.hasFocus ||
+            _anotherEditableHasFocus()) {
+          return;
+        }
+        focusNode.requestFocus();
+      });
+  }
+
+  double _keyboardInsetBottom() {
+    final BuildContext? context = focusNode.context;
+    if (context == null) {
+      return 0;
+    }
+    final double mediaQueryInset = MediaQuery.viewInsetsOf(context).bottom;
+    final view = View.of(context);
+    return resolvedKeyboardInsetBottomFrom(
+      mediaQueryInsetBottom: mediaQueryInset,
+      physicalViewInsetBottom: view.viewInsets.bottom,
+      devicePixelRatio: view.devicePixelRatio,
+    );
+  }
+
+  bool _fieldIsComposing() {
+    final EditableTextState? editable = _editableTextState(focusNode);
+    if (editable == null) {
       return false;
     }
-    return true;
+    final TextRange composing = editable.widget.controller.value.composing;
+    return composing.isValid && !composing.isCollapsed;
+  }
+}
+
+void reconnectComposerKeyboard(FocusNode node) {
+  final EditableTextState? editable = _editableTextState(node);
+  if (editable != null) {
+    editable.requestKeyboard();
+    return;
+  }
+  if (node.canRequestFocus) {
+    node.requestFocus();
   }
 }
 
@@ -99,5 +203,14 @@ bool _isEditableFocus(FocusNode node) {
   if (context == null) {
     return false;
   }
-  return context.findAncestorWidgetOfExactType<EditableText>() != null;
+  return context.widget is EditableText ||
+      context.findAncestorWidgetOfExactType<EditableText>() != null;
+}
+
+EditableTextState? _editableTextState(FocusNode node) {
+  final BuildContext? context = node.context;
+  if (context == null) {
+    return null;
+  }
+  return context.findAncestorStateOfType<EditableTextState>();
 }

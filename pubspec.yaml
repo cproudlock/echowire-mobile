@@ -106,7 +106,12 @@ dependencies:
   riverpod: ^3.4.3
   riverpod_annotation: ^4.0.7
   sensors_plus: ^7.1.0
-  sentry_flutter: ^9.23.0
+  # echowire: pinned. 9.30.1 ships an Android module with a legacy build
+  # script (ext.kotlin_version = 1.8.0 plus its own kotlin-gradle-plugin
+  # classpath) which produces no class against this project Kotlin 2.2.20,
+  # so GeneratedPluginRegistrant fails to compile with no error of its own.
+  # 9.26.0 is what 1.7.31 built with. Revisit when Kotlin is upgraded.
+  sentry_flutter: 9.26.0
   shared_preferences: ^2.5.5
   skeletonizer: ^3.0.0
   smart_keyboard_insets: ^0.2.0

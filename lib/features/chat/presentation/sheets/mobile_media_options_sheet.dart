@@ -6,6 +6,7 @@ import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_con
 import 'package:fluxer_app/features/chat/domain/media_options_launch_context.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/presentation/sheets/attachment_alt_text_sheet.dart';
+import 'package:fluxer_app/features/chat/presentation/sheets/delete_message_confirm_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/message_actions/message_bottom_sheet.dart';
 import 'package:fluxer_app/features/chat/utils/attachments/attachment_display_utils.dart';
 import 'package:fluxer_app/features/chat/utils/attachments/attachment_download_service.dart';
@@ -139,8 +140,21 @@ class _MobileMediaOptionsSheetBody extends ConsumerWidget {
               unawaited(_handleMessageAction(actionScope, action)),
           attachmentCallbacks: MessageActionCallbacks(
             onDeleteAttachment: (Attachment attachment) {
-              actionScope.callbacks.onDeleteAttachment?.call(attachment);
-              onCloseViewer?.call();
+              onCloseSheet.call();
+              WidgetsBinding.instance.addPostFrameCallback((_) async {
+                if (!hostContext.mounted) {
+                  return;
+                }
+                final bool? confirmed = await showDeleteAttachmentConfirmSheet(
+                  hostContext,
+                  hostRef,
+                  messageId: actionScope.message.id,
+                  attachment: attachment,
+                );
+                if (confirmed ?? false) {
+                  onCloseViewer?.call();
+                }
+              });
             },
             onEditAttachmentAltText: (Attachment attachment) {
               unawaited(_editAttachmentAltText(actionScope, attachment));
@@ -247,7 +261,8 @@ class _MobileMediaOptionsSheetBody extends ConsumerWidget {
         callbacks: actionScope.callbacks,
         previewRoleGuildId: actionScope.previewRoleGuildId,
       );
-      if (!shouldCloseMediaViewerForMessageAction(action)) {
+      if (action == MessageAction.delete ||
+          !shouldCloseMediaViewerForMessageAction(action)) {
         return;
       }
       WidgetsBinding.instance.addPostFrameCallback((_) {

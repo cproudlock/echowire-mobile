@@ -72,18 +72,22 @@ void main() {
       expect(content, isNot(contains('putString("title"')));
     });
 
-    test('fcm entrypoint decrypts ciphertext in the background isolate', () {
-      final String content = entrypointTemplate.readAsStringSync();
-      expect(content, contains('fcmBackgroundMessageHandlerEntry'));
-      expect(content, contains('DartPluginRegistrant.ensureInitialized'));
-      expect(content, contains('_configureFcmBootstrap'));
-      expect(content, contains('FcmCiphertextHooks.onCiphertext'));
-      expect(content, contains('AndroidPushPipeline.handleCiphertext'));
-      expect(
-        content,
-        contains('onBackgroundMessage: fcmBackgroundMessageHandlerEntry'),
-      );
-    });
+    // Echowire: upstream asserts the relay-ciphertext pipeline here. This fork receives raw
+    // FCM messages through packages/fluxer_fcm, so the template configures FluxerFcmBootstrap
+    // instead (the guard in test/build/conditional_compilation_test.dart forbids the pipeline).
+    test(
+      'fcm entrypoint configures the raw-FCM bootstrap in the background isolate',
+      () {
+        final String content = entrypointTemplate.readAsStringSync();
+        expect(content, contains('fcmBackgroundMessageHandlerEntry'));
+        expect(content, contains('_configureFcmBootstrap'));
+        expect(content, contains('FluxerFcmBootstrap.configure'));
+        expect(
+          content,
+          contains('onBackgroundMessage: fcmBackgroundMessageHandlerEntry'),
+        );
+      },
+    );
 
     test('background handler registers dart plugins before decrypt', () {
       final File handler = File(

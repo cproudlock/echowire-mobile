@@ -53,15 +53,15 @@ workflows:
           echo 'PATH=$HOME/.cargo/bin:$PATH' >> "$CM_ENV"
           cargo --version
           rustup target list --installed
-      - name: Strip Firebase dependencies
-        # iOS is APNs-only (PUSH_PROVIDER=apns) — it does NOT use Firebase/FCM.
-        # This removes fluxer_fcm + firebase_core/messaging from pubspec.yaml and
-        # swaps in the stub push services, so the build never tries to compile
-        # `packages/fluxer_fcm/lib/firebase_options.dart` (a gitignored, generated
-        # file that isn't present in CI). Mirrors the GHA ios-*-testflight
-        # workflows. Without it the archive fails at kernel_snapshot with
-        # "firebase_options.dart: No such file or directory".
-        script: dart run tool/strip_firebase_deps.dart
+      - name: Configure the iOS build profile
+        # iOS is APNs-only (PUSH_PROVIDER=apns): it does NOT use Firebase/FCM, but it DOES use
+        # store billing. Echowire: upstream replaced strip_firebase_deps with
+        # tool/configure_build.dart. Its ios-store profile strips Firebase (so the build never
+        # compiles the gitignored packages/fluxer_fcm/lib/firebase_options.dart, which fails the
+        # archive at kernel_snapshot) and keeps in_app_purchase. strip_firebase_deps now means the
+        # oss profile, which would also drop store billing. Mirrors upstream's ios-*-testflight
+        # workflows. The committed tree is already this state, so the step is idempotent.
+        script: dart run tool/configure_build.dart --profile=ios-store
       - name: Flutter pub get
         script: flutter pub get
       - name: Generate code (build_runner)

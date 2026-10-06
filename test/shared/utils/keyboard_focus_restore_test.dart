@@ -46,7 +46,7 @@ void main() {
 
     await resumeApp(handle);
     await tester.pump();
-    await tester.pump(kKeyboardFocusRestoreRetryDelay);
+    await tester.pump();
 
     expect(focusNode.hasFocus, isTrue);
   });
@@ -79,7 +79,6 @@ void main() {
 
     await resumeApp(handle);
     await tester.pump();
-    await tester.pump(kKeyboardFocusRestoreRetryDelay);
     expect(focusNode.hasFocus, isFalse);
     expect(handle.hasPendingRestore, isTrue);
 
@@ -87,7 +86,6 @@ void main() {
     handle.scheduleRestoreIfPending();
     await tester.pump();
     await tester.pump();
-    await tester.pump(kKeyboardFocusRestoreRetryDelay);
     expect(focusNode.hasFocus, isTrue);
     expect(handle.hasPendingRestore, isFalse);
   });
@@ -119,7 +117,6 @@ void main() {
 
     handle.handleLifecycleState(AppLifecycleState.resumed);
     await tester.pump();
-    await tester.pump(kKeyboardFocusRestoreRetryDelay);
 
     expect(focusNode.hasFocus, isTrue);
     expect(handle.hasPendingRestore, isFalse);
@@ -151,6 +148,7 @@ void main() {
     await backgroundApp(handle);
     await resumeApp(handle);
     await tester.pump();
+    await tester.pump();
 
     expect(focusNode.hasFocus, isTrue);
     expect(handle.hasPendingRestore, isFalse);
@@ -158,12 +156,9 @@ void main() {
       tester.testTextInput.log.map((call) => call.method),
       contains('TextInput.show'),
     );
-
-    await tester.pump(kKeyboardFocusRestoreRetryDelay);
-    await tester.pump();
   });
 
-  testWidgets('replaces a focused connection on the next frame', (
+  testWidgets('reconnectOpenField restores a focused connection', (
     tester,
   ) async {
     final FocusNode focusNode = FocusNode();
@@ -186,7 +181,8 @@ void main() {
     await tester.pumpAndSettle();
     tester.testTextInput.log.clear();
 
-    handle.replaceFocusedConnection();
+    handle.reconnectOpenField();
+    await tester.pump();
     await tester.pump();
 
     expect(focusNode.hasFocus, isTrue);
@@ -194,37 +190,6 @@ void main() {
       tester.testTextInput.log.map((call) => call.method),
       contains('TextInput.show'),
     );
-  });
-
-  testWidgets('refocuses when the keyboard stays closed after resume', (
-    tester,
-  ) async {
-    final FocusNode focusNode = FocusNode();
-    addTearDown(focusNode.dispose);
-    final KeyboardFocusRestoreHandle handle = KeyboardFocusRestoreHandle(
-      focusNode: focusNode,
-      shouldTrackOnBackground: () => true,
-      canRestoreFocus: () => true,
-    );
-
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(body: TextField(focusNode: focusNode)),
-      ),
-    );
-    await tester.pumpAndSettle();
-
-    focusNode.requestFocus();
-    await tester.pumpAndSettle();
-
-    await backgroundApp(handle);
-    await resumeApp(handle);
-    await tester.pump();
-    await tester.pump(kKeyboardFocusRestoreRetryDelay);
-    await tester.pump();
-
-    expect(focusNode.hasFocus, isTrue);
-    expect(handle.hasPendingRestore, isFalse);
   });
 
   testWidgets('keeps pending restore when the resume frame is cancelled', (
@@ -261,6 +226,7 @@ void main() {
 
     handle.handleLifecycleState(AppLifecycleState.resumed);
     await tester.pump();
+    await tester.pump();
 
     expect(focusNode.hasFocus, isTrue);
     expect(handle.hasPendingRestore, isFalse);
@@ -293,13 +259,13 @@ void main() {
 
     await resumeApp(handle);
     await tester.pump();
+    await tester.pump();
     expect(focusNode.hasFocus, isTrue);
 
     focusNode.unfocus();
     await tester.pump();
     handle.handleLifecycleState(AppLifecycleState.inactive);
     await tester.pump();
-    await tester.pump(kKeyboardFocusRestoreRetryDelay);
 
     expect(focusNode.hasFocus, isFalse);
   });

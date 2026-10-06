@@ -7,6 +7,7 @@ import 'package:fluxer_app/core/instance/instance_config_snapshot.dart';
 import 'package:fluxer_app/core/instance/instance_endpoint_normalizer.dart';
 import 'package:fluxer_app/core/instance/instance_legacy_endpoint_migrator.dart';
 import 'package:fluxer_app/features/auth/data/auth_token_storage.dart';
+import 'package:fluxer_app/features/auth/domain/account_recovery_result.dart';
 import 'package:fluxer_app/features/auth/domain/auth_failure.dart';
 import 'package:fluxer_app/features/auth/domain/auth_session.dart';
 import 'package:fluxer_app/features/auth/domain/ban_view.dart';
@@ -35,12 +36,19 @@ class AuthRepository {
     required String email,
     required String password,
     String? inviteCode,
+    bool usernameSignIn = false,
   }) async {
-    final request = LoginRequest(
-      email: email.trim(),
-      password: password,
-      inviteCode: JsonNullable.of(inviteCode),
-    );
+    final request = usernameSignIn
+        ? LoginRequest(
+            login: email.trim(),
+            password: password,
+            inviteCode: JsonNullable.of(inviteCode),
+          )
+        : LoginRequest(
+            email: email.trim(),
+            password: password,
+            inviteCode: JsonNullable.of(inviteCode),
+          );
 
     try {
       final response = await _client.auth.loginUser(body: request);
@@ -147,6 +155,59 @@ class AuthRepository {
     }
   }
 
+  Future<AccountRecoveryResult> recoverAccount({
+    required String login,
+    required String recoveryKey,
+    required String password,
+  }) async {
+    try {
+      final response = await _client.auth.recoverAccount(
+        body: RecoverAccountRequest(
+          login: login.trim(),
+          recoveryKey: recoveryKey,
+          password: password,
+        ),
+      );
+      if (response.toJson()['mfa'] == true) {
+        final mfaResponse = response.toVariant2();
+        return AccountRecoveryResult(
+          login: LoginMfaRequired(
+            MfaChallenge(
+              ticket: mfaResponse.ticket,
+              totp: mfaResponse.totp,
+              sms: false,
+              webauthn: mfaResponse.webauthn,
+            ),
+          ),
+          recoveryKey: mfaResponse.recoveryKey,
+          recoveryKitCreatedAt: mfaResponse.recoveryKitCreatedAt,
+        );
+      }
+      final tokenResponse = response.toVariant1();
+      final session = AuthSession(
+        token: tokenResponse.token,
+        userId: tokenResponse.userId,
+      );
+      await _saveSession(session);
+      return AccountRecoveryResult(
+        login: LoginSuccess(session),
+        recoveryKey: tokenResponse.recoveryKey,
+        recoveryKitCreatedAt: tokenResponse.recoveryKitCreatedAt,
+        username: tokenResponse.user.username,
+        discriminator: tokenResponse.user.discriminator,
+      );
+    } on DioException catch (error) {
+      throw _failureFromDio(error);
+    }
+  }
+
+  Future<bool> isUsernameAvailable(String username) async {
+    final response = await _client.auth.getUsernameAvailability(
+      username: username,
+    );
+    return response.available;
+  }
+
   Future<List<String>> getUsernameSuggestions({
     required String globalName,
   }) async {
@@ -161,7 +222,7 @@ class AuthRepository {
   }
 
   Future<RegistrationResult> register({
-    required String email,
+    required String? email,
     required String password,
     String? dateOfBirth,
     String? username,
@@ -172,7 +233,7 @@ class AuthRepository {
     try {
       final response = await _client.auth.registerAccount(
         body: RegisterRequest(
-          email: email.trim(),
+          email: email?.trim(),
           password: password,
           dateOfBirth: dateOfBirth,
           consent: true,
@@ -725,7 +786,8 @@ class AuthRepository {
           if (item is! Map<String, dynamic>) {
             continue;
           }
-          if (item['code'] == 'INVALID_EMAIL_OR_PASSWORD') {
+          if (item['code'] == 'INVALID_EMAIL_OR_PASSWORD' ||
+              item['code'] == 'INVALID_LOGIN_OR_PASSWORD') {
             sawInvalidCredentials = true;
           }
           // The live API names the failing field `path`; the OpenAPI spec

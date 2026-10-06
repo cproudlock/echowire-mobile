@@ -1,9 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:fluxer_app/features/chat/utils/composer/bottom_input_slot_layout.dart';
-
-const Duration kKeyboardFocusRestoreRetryDelay = Duration(milliseconds: 350);
 
 /// paused or hidden. inactive is system UI over the app, like paste.
 bool isAppBackgroundLifecycleState(AppLifecycleState state) {
@@ -16,26 +14,118 @@ bool _canSafelyRequestFocus([AppLifecycleState? state]) {
   return current == null || current == AppLifecycleState.resumed;
 }
 
+bool _useReadOnlyImeReconnect(
+  void Function({required bool readOnly})? toggleReadOnly,
+) {
+  if (toggleReadOnly == null || kIsWeb) {
+    return false;
+  }
+  return defaultTargetPlatform == TargetPlatform.iOS ||
+      defaultTargetPlatform == TargetPlatform.android;
+}
+
+void _showKeyboard(FocusNode node) {
+  if (!node.hasFocus) {
+    if (node.canRequestFocus) {
+      node.requestFocus();
+    }
+    return;
+  }
+  final BuildContext? context = node.context;
+  if (context == null || !context.mounted) {
+    return;
+  }
+  final EditableTextState? editable = context
+      .findAncestorStateOfType<EditableTextState>();
+  if (editable != null) {
+    editable.requestKeyboard();
+    return;
+  }
+  node.requestFocus();
+}
+
+/// Reopens the IME for [node]. On mobile, a brief read-only toggle recreates the
+/// TextInputConnection without dismissing the keyboard. Elsewhere, focus cycles.
+void reconnectComposerKeyboard(
+  FocusNode node, {
+  void Function({required bool readOnly})? toggleReadOnly,
+}) {
+  if (!node.canRequestFocus) {
+    return;
+  }
+  if (!node.hasFocus) {
+    node.requestFocus();
+    return;
+  }
+  if (_useReadOnlyImeReconnect(toggleReadOnly)) {
+    _readOnlyToggle(node, toggleReadOnly!);
+    return;
+  }
+  node.unfocus();
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (node.canRequestFocus && !node.hasFocus) {
+      node.requestFocus();
+    }
+  });
+}
+
+/// read-only flash with abort and fallback safety nets.
+void _readOnlyToggle(
+  FocusNode node,
+  void Function({required bool readOnly}) toggleReadOnly,
+) {
+  final int id = _nextReconnectId++;
+
+  bool isAborted() => _activeReconnectId != id || !node.hasFocus;
+
+  _activeReconnectId = id;
+  toggleReadOnly(readOnly: true);
+
+  Future.delayed(const Duration(milliseconds: 50), () {
+    if (!isAborted()) {
+      toggleReadOnly(readOnly: false);
+    }
+  });
+
+  Future.delayed(const Duration(milliseconds: 100), () {
+    if (!isAborted()) {
+      _showKeyboard(node);
+      _activeReconnectId = null;
+    }
+  });
+
+  Timer(const Duration(milliseconds: 400), () {
+    if (_activeReconnectId == id && node.hasFocus) {
+      toggleReadOnly(readOnly: false);
+      _showKeyboard(node);
+      _activeReconnectId = null;
+    }
+  });
+}
+
+int _nextReconnectId = 0;
+int? _activeReconnectId;
+
 /// Re-requests [focusNode] on resume when the keyboard was open before backgrounding.
 class KeyboardFocusRestoreHandle {
   KeyboardFocusRestoreHandle({
     required this.focusNode,
     required this.shouldTrackOnBackground,
     required this.canRestoreFocus,
+    this.toggleReadOnly,
   });
 
   final FocusNode focusNode;
   final bool Function() shouldTrackOnBackground;
   final bool Function() canRestoreFocus;
+  final void Function({required bool readOnly})? toggleReadOnly;
 
   bool _pendingRestore = false;
   int _restoreGeneration = 0;
-  Timer? _deadImeRetry;
 
   bool get hasPendingRestore => _pendingRestore;
 
   void dispose() {
-    _deadImeRetry?.cancel();
     _restoreGeneration++;
   }
 
@@ -44,23 +134,7 @@ class KeyboardFocusRestoreHandle {
     if (!_canAttemptRestore() || _anotherEditableHasFocus()) {
       return;
     }
-    if (!focusNode.hasFocus) {
-      focusNode.requestFocus();
-      return;
-    }
-    final int generation = ++_restoreGeneration;
-    _reconnectFocused(generation);
-  }
-
-  void replaceFocusedConnection() {
-    _pendingRestore = false;
-    if (!focusNode.hasFocus || !_canAttemptRestore()) {
-      return;
-    }
-    _deadImeRetry?.cancel();
-    final int generation = ++_restoreGeneration;
-    focusNode.unfocus();
-    _focusOnNextFrame(generation);
+    reconnectComposerKeyboard(focusNode, toggleReadOnly: toggleReadOnly);
   }
 
   void handleLifecycleState(AppLifecycleState state) {
@@ -72,7 +146,6 @@ class KeyboardFocusRestoreHandle {
     }
     if (state == AppLifecycleState.inactive) {
       _restoreGeneration++;
-      _deadImeRetry?.cancel();
       return;
     }
     if (state == AppLifecycleState.resumed) {
@@ -92,27 +165,19 @@ class KeyboardFocusRestoreHandle {
           return;
         }
         _pendingRestore = false;
-        _restoreFocus(generation);
+        _restoreFocus();
       });
   }
 
-  void _restoreFocus(int generation) {
-    if (!_canAttemptRestore()) {
+  void _restoreFocus() {
+    if (!_canAttemptRestore() || _anotherEditableHasFocus()) {
       return;
     }
-    if (_anotherEditableHasFocus()) {
+    if (!focusNode.hasFocus) {
+      focusNode.requestFocus();
       return;
     }
-    if (focusNode.hasFocus) {
-      _reconnectFocused(generation);
-      return;
-    }
-    focusNode.requestFocus();
-  }
-
-  void _reconnectFocused(int generation) {
-    reconnectComposerKeyboard(focusNode);
-    _scheduleDeadImeRetry(generation);
+    reconnectComposerKeyboard(focusNode, toggleReadOnly: toggleReadOnly);
   }
 
   bool _canAttemptRestore() {
@@ -129,73 +194,6 @@ class KeyboardFocusRestoreHandle {
         primary != focusNode &&
         _isEditableFocus(primary);
   }
-
-  void _scheduleDeadImeRetry(int generation) {
-    _deadImeRetry?.cancel();
-    _deadImeRetry = Timer(kKeyboardFocusRestoreRetryDelay, () {
-      if (generation != _restoreGeneration || !_canAttemptRestore()) {
-        return;
-      }
-      if (!focusNode.hasFocus || _keyboardInsetBottom() > 0) {
-        return;
-      }
-      if (_anotherEditableHasFocus() || _fieldIsComposing()) {
-        return;
-      }
-      focusNode.unfocus();
-      _focusOnNextFrame(generation);
-    });
-  }
-
-  void _focusOnNextFrame(int generation) {
-    WidgetsBinding.instance
-      ..scheduleFrame()
-      ..addPostFrameCallback((_) {
-        if (generation != _restoreGeneration || !_canAttemptRestore()) {
-          return;
-        }
-        if (focusNode.context == null ||
-            focusNode.hasFocus ||
-            _anotherEditableHasFocus()) {
-          return;
-        }
-        focusNode.requestFocus();
-      });
-  }
-
-  double _keyboardInsetBottom() {
-    final BuildContext? context = focusNode.context;
-    if (context == null) {
-      return 0;
-    }
-    final double mediaQueryInset = MediaQuery.viewInsetsOf(context).bottom;
-    final view = View.of(context);
-    return resolvedKeyboardInsetBottomFrom(
-      mediaQueryInsetBottom: mediaQueryInset,
-      physicalViewInsetBottom: view.viewInsets.bottom,
-      devicePixelRatio: view.devicePixelRatio,
-    );
-  }
-
-  bool _fieldIsComposing() {
-    final EditableTextState? editable = _editableTextState(focusNode);
-    if (editable == null) {
-      return false;
-    }
-    final TextRange composing = editable.widget.controller.value.composing;
-    return composing.isValid && !composing.isCollapsed;
-  }
-}
-
-void reconnectComposerKeyboard(FocusNode node) {
-  final EditableTextState? editable = _editableTextState(node);
-  if (editable != null) {
-    editable.requestKeyboard();
-    return;
-  }
-  if (node.canRequestFocus) {
-    node.requestFocus();
-  }
 }
 
 bool _isEditableFocus(FocusNode node) {
@@ -205,12 +203,4 @@ bool _isEditableFocus(FocusNode node) {
   }
   return context.widget is EditableText ||
       context.findAncestorWidgetOfExactType<EditableText>() != null;
-}
-
-EditableTextState? _editableTextState(FocusNode node) {
-  final BuildContext? context = node.context;
-  if (context == null) {
-    return null;
-  }
-  return context.findAncestorStateOfType<EditableTextState>();
 }

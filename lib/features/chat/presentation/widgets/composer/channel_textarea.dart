@@ -271,7 +271,10 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
 
   bool _isApplyingWireText = false;
   bool _composerFocused = false;
+  bool _composerReconnectReadOnly = false;
   String? _lastWireTextPushedToState;
+  Timer? _wireSyncDebounceTimer;
+  String? _wireSyncPendingWire;
   final ValueNotifier<bool> _showComposerCounter = ValueNotifier<bool>(false);
 
   Widget _wideComposerIconButton({
@@ -397,6 +400,7 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
       focusNode: _focusNode,
       shouldTrackOnBackground: _shouldTrackKeyboardRestore,
       canRestoreFocus: _canRestoreKeyboardFocus,
+      toggleReadOnly: _setComposerReconnectReadOnly,
     );
     WidgetsBinding.instance.addObserver(this);
     _controller = ComposerMentionController(ref: ref);
@@ -467,7 +471,17 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     return _focusNode.canRequestFocus;
   }
 
+  void _setComposerReconnectReadOnly({required bool readOnly}) {
+    if (!mounted || _composerReconnectReadOnly == readOnly) {
+      return;
+    }
+    setState(() => _composerReconnectReadOnly = readOnly);
+  }
+
   void _syncStateFromController() {
+    if (_controller.value.composing.isValid) {
+      return;
+    }
     _syncComposerCounterPadding();
     if (_isApplyingWireText) {
       return;
@@ -484,6 +498,9 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     if (_isApplyingWireText) {
       return;
     }
+    if (_focusNode.hasFocus && _controller.value.composing.isValid) {
+      return;
+    }
     final String messageText = ref.read(chatViewModelProvider).messageText;
     if (messageText == _lastWireTextPushedToState) {
       return;
@@ -497,16 +514,21 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     if (_shouldDeferComposerStateWriteBack(wire)) {
       return;
     }
-    unawaited(_applyWireTextFromState(wire));
+
+    _wireSyncDebounceTimer?.cancel();
+    _wireSyncPendingWire = wire;
+    _wireSyncDebounceTimer = Timer(const Duration(milliseconds: 150), () {
+      final pendingWire = _wireSyncPendingWire;
+      if (pendingWire == null || pendingWire == _lastWireTextPushedToState) {
+        return;
+      }
+      unawaited(_applyWireTextFromState(pendingWire));
+    });
   }
 
   bool _shouldDeferComposerStateWriteBack(String wireFromState) {
     if (!_focusNode.hasFocus) {
       return false;
-    }
-    final TextEditingValue editing = _controller.value;
-    if (editing.composing.isValid) {
-      return true;
     }
     final String localWire = stripPrivateUseCharacters(
       _controller.toWireText(),
@@ -560,7 +582,14 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     }
     _isApplyingWireText = true;
     try {
-      await _controller.applyWireText(wire, force: force);
+      await _controller
+          .applyWireText(wire, force: force)
+          .timeout(
+            const Duration(seconds: 1),
+            onTimeout: () {
+              // drop stale apply to avoid blocking the field
+            },
+          );
       _lastWireTextPushedToState = wire;
     } finally {
       _isApplyingWireText = false;
@@ -674,7 +703,7 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     }
     if (focused) {
       _maybeReserveUnmeasuredKeyboard();
-    } else {
+    } else if (mounted) {
       ref
           .read(mobileKeyboardMetricsProvider.notifier)
           .clearUnmeasuredKeyboardReservation();
@@ -721,6 +750,8 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
 
   @override
   void dispose() {
+    _composerReconnectReadOnly = false;
+    _wireSyncDebounceTimer?.cancel();
     _chatKeybindEffectsSubscription?.close();
     _keyboardRestore.dispose();
     _composerFocus.unregister(_requestComposerFocus);
@@ -912,6 +943,7 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
                                   controller: _controller,
                                   focusNode: focusNode,
                                   scrollController: _composerScrollController,
+                                  readOnly: _composerReconnectReadOnly,
                                   enabled: perms.isComposerEnabled,
                                   style: context.textStyles.inputText,
                                   strutStyle: boundedStrutFor(
@@ -1140,9 +1172,6 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
         (String? previous, String next) {
           if (previous != null && previous != next && mounted) {
             _clearSlashSession();
-            if (resolvedKeyboardInsetBottom(context) <= 0) {
-              _keyboardRestore.replaceFocusedConnection();
-            }
           }
           final DmConversation? nextDm = findDmById(
             ref.read(
@@ -1249,7 +1278,8 @@ class _ChannelTextareaState extends ConsumerState<ChannelTextarea>
     final bool showComposerSafeBar =
         MediaQuery.paddingOf(context).bottom > 0 &&
         bottomSlotHeight <= 0 &&
-        !isPanelOpen;
+        !isPanelOpen &&
+        resolvedKeyboardInsetBottom(context) <= 0;
     final Color composerBackgroundColor = mobileComposer
         ? context.colors.chatInputBackground
         : context.colors.backgroundSecondaryLighter;

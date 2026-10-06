@@ -134,22 +134,6 @@
     "@orDivider": {
         "description": "Divider between alternative actions (e.g. email login vs SSO)."
     },
-    "captchaTitle": "請驗證您是人類",
-    "@captchaTitle": {
-        "description": "Title for the captcha verification modal."
-    },
-    "captchaDescription": "我們需要確認您不是機器人。請完成下方的驗證。",
-    "@captchaDescription": {
-        "description": "Explanatory text in the captcha modal body."
-    },
-    "captchaSwitchToHcaptcha": "有問題嗎？試試 hCaptcha",
-    "@captchaSwitchToHcaptcha": {
-        "description": "Link to switch from Turnstile to hCaptcha provider."
-    },
-    "captchaSwitchToTurnstile": "試試 Turnstile",
-    "@captchaSwitchToTurnstile": {
-        "description": "Link to switch from hCaptcha to Turnstile provider."
-    },
     "cancel": "取消",
     "@cancel": {
         "description": "Generic cancel button label."
@@ -560,6 +544,205 @@
     "@resetPasswordMismatch": {
         "description": "Error when password and confirmation don't match."
     },
+    "recoverAccountTitle": "復原你的帳號",
+    "@recoverAccountTitle": {
+        "description": "Title of the screen where someone resets their password with a recovery kit."
+    },
+    "recoverAccountDescription": "輸入你的使用者名稱和復原套件中的復原金鑰，然後選擇一個新密碼。",
+    "@recoverAccountDescription": {
+        "description": "Description on the account recovery screen."
+    },
+    "recoverAccountNoKit": "沒有復原工具？請詢問此伺服器的管理員以取得重設密碼連結。",
+    "@recoverAccountNoKit": {
+        "description": "Hint under the account recovery form for people without a recovery kit."
+    },
+    "recoveryKitTitle": "你的復原工具組",
+    "@recoveryKitTitle": {
+        "description": "Title of the sheet that shows a newly created account recovery kit."
+    },
+    "recoveryKitCreatedDescription": "如果忘記密碼，這個還原套件是您重新登入帳戶的唯一方法。請將它存放在安全的地方，例如密碼管理器或列印副本。",
+    "@recoveryKitCreatedDescription": {
+        "description": "Recovery kit sheet description for a newly created kit."
+    },
+    "recoveryKitReplacedDescription": "你舊的復原工具組已失效。請將這個新的工具組存放在安全的地方。",
+    "@recoveryKitReplacedDescription": {
+        "description": "Recovery kit sheet description shown after a kit replaces an older one."
+    },
+    "recoveryKitRecoveredDescription": "你的密碼已重設。你舊的復原套件已失效。請將這個新的套件存放在安全的地方。",
+    "@recoveryKitRecoveredDescription": {
+        "description": "Recovery kit sheet description shown after someone recovers their account with a recovery key."
+    },
+    "recoveryKitWarning": "擁有此金鑰的任何人都可以重設您的密碼。請勿分享。",
+    "@recoveryKitWarning": {
+        "description": "Warning under the recovery key in the recovery kit sheet."
+    },
+    "recoveryKitKeyLabel": "復原金鑰",
+    "@recoveryKitKeyLabel": {
+        "description": "Label for the account recovery key."
+    },
+    "recoveryKitDocumentTitle": "{productName} 復原套件",
+    "@recoveryKitDocumentTitle": {
+        "description": "Title of the saved recovery kit image. productName is the app name.",
+        "placeholders": {
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "recoveryKitDocumentIntro": "請將此頁面妥善保管。若您忘記密碼，可使用此頁面重新登入您的帳號。持有此還原金鑰的任何人皆可重設您的密碼，請勿與他人分享。",
+    "@recoveryKitDocumentIntro": {
+        "description": "Introduction on the saved recovery kit image."
+    },
+    "recoveryKitInstanceLabel": "伺服器位址",
+    "@recoveryKitInstanceLabel": {
+        "description": "Label for the server address on the saved recovery kit."
+    },
+    "recoveryKitCreatedAtLabel": "建立時間",
+    "@recoveryKitCreatedAtLabel": {
+        "description": "Label for the creation date on the saved recovery kit."
+    },
+    "recoveryKitQrCaption": "掃描以開啟復原頁面，並填入您的詳細資料。",
+    "@recoveryKitQrCaption": {
+        "description": "Caption under the QR code on the saved recovery kit."
+    },
+    "recoveryKitStepsTitle": "如何復原你的帳號",
+    "@recoveryKitStepsTitle": {
+        "description": "Heading above the recovery steps on the saved recovery kit."
+    },
+    "recoveryKitStepOpen": "前往 {recoverUrl} 或掃描 QR code。",
+    "@recoveryKitStepOpen": {
+        "description": "First recovery step on the saved recovery kit. recoverUrl is the address of the recovery page.",
+        "placeholders": {
+            "recoverUrl": {
+                "type": "String"
+            }
+        }
+    },
+    "recoveryKitStepEnter": "輸入你的使用者名稱和這個復原金鑰。",
+    "@recoveryKitStepEnter": {
+        "description": "Second recovery step on the saved recovery kit."
+    },
+    "recoveryKitStepPassword": "設定新密碼。你會收到一份新的復原套件，而這份就無法使用了。",
+    "@recoveryKitStepPassword": {
+        "description": "Third recovery step on the saved recovery kit."
+    },
+    "recoveryKitBackupCodesTitle": "兩步驟驗證備份驗證碼",
+    "@recoveryKitBackupCodesTitle": {
+        "description": "Heading above the two-factor backup codes on the saved recovery kit."
+    },
+    "recoveryKitBackupCodesNote": "每個代碼都可供您在驗證器應用程式中使用一次。",
+    "@recoveryKitBackupCodesNote": {
+        "description": "Note under the two-factor backup codes heading on the saved recovery kit."
+    },
+    "recoveryKitBackupCodesFailed": "無法載入您的備份驗證碼。",
+    "@recoveryKitBackupCodesFailed": {
+        "description": "Toast shown when the two-factor backup codes for the recovery kit cannot be loaded."
+    },
+    "recoveryKitIncludeBackupCodes": "在儲存的圖片中加入我的雙重驗證備用碼",
+    "@recoveryKitIncludeBackupCodes": {
+        "description": "Checkbox in the recovery kit sheet that adds the two-factor backup codes to the saved image."
+    },
+    "recoveryKitCopy": "複製",
+    "@recoveryKitCopy": {
+        "description": "Button that copies the account recovery key."
+    },
+    "recoveryKitCopied": "已複製復原金鑰",
+    "@recoveryKitCopied": {
+        "description": "Toast shown after the recovery key is copied."
+    },
+    "recoveryKitSaveImage": "儲存圖片",
+    "@recoveryKitSaveImage": {
+        "description": "Button that saves the recovery kit as an image."
+    },
+    "recoveryKitSaved": "已儲存復原套件",
+    "@recoveryKitSaved": {
+        "description": "Toast shown after the recovery kit image is saved to a file."
+    },
+    "recoveryKitSavedToPhotos": "已將復原套件儲存至照片",
+    "@recoveryKitSavedToPhotos": {
+        "description": "Toast shown after the recovery kit image is saved to the photo library."
+    },
+    "recoveryKitSaveFailed": "無法儲存復原套件。請再試一次，或改為複製金鑰。",
+    "@recoveryKitSaveFailed": {
+        "description": "Toast shown when saving the recovery kit image fails."
+    },
+    "recoveryKitAcknowledge": "我已將我的復原套件存放在安全的地方",
+    "@recoveryKitAcknowledge": {
+        "description": "Checkbox that confirms the recovery kit is stored before closing the sheet."
+    },
+    "recoveryKitCreateFailed": "無法建立你的復原工具組。你之後可以在帳戶設定中建立。",
+    "@recoveryKitCreateFailed": {
+        "description": "Toast shown when a recovery kit cannot be created."
+    },
+    "recoveryKitSectionTitle": "復原工具組",
+    "@recoveryKitSectionTitle": {
+        "description": "Title of the recovery kit section in security settings."
+    },
+    "recoveryKitSectionDescription": "讓你忘記密碼時可以重設。",
+    "@recoveryKitSectionDescription": {
+        "description": "Description of the recovery kit section in security settings."
+    },
+    "recoveryKitNone": "你還沒有復原套件",
+    "@recoveryKitNone": {
+        "description": "Shown in security settings when the account has no recovery kit."
+    },
+    "recoveryKitCreatedRelative": "建立於 {time}",
+    "@recoveryKitCreatedRelative": {
+        "description": "When the current recovery kit was created. time is a relative time such as 3 days ago.",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "recoveryKitCreate": "建立復原套件",
+    "@recoveryKitCreate": {
+        "description": "Button that creates a recovery kit."
+    },
+    "recoveryKitCreateNew": "建立新套件",
+    "@recoveryKitCreateNew": {
+        "description": "Button that replaces the existing recovery kit with a new one."
+    },
+    "recoveryKitReplaceTitle": "要建立新的復原套件嗎？",
+    "@recoveryKitReplaceTitle": {
+        "description": "Title of the confirmation shown before replacing an existing recovery kit."
+    },
+    "recoveryKitReplaceDescription": "你目前的套件將在新套件建立後立即失效。",
+    "@recoveryKitReplaceDescription": {
+        "description": "Body of the confirmation shown before replacing an existing recovery kit."
+    },
+    "recoveryKitReminderTitle": "儲存復原套件",
+    "@recoveryKitReminderTitle": {
+        "description": "Title of the one-time prompt asking a signed-in user without a recovery kit to create one."
+    },
+    "recoveryKitReminderBody": "你的帳號沒有設定電子郵件。如果忘記密碼，恢復套件是唯一能重新登入的方式。只需一分鐘即可完成。",
+    "@recoveryKitReminderBody": {
+        "description": "Body of the one-time prompt asking a signed-in user without a recovery kit to create one."
+    },
+    "registerUsernameSignInHint": "你將使用此使用者名稱登入。請選擇一個你會記得的。",
+    "@registerUsernameSignInHint": {
+        "description": "Helper text under the required username field when the instance uses usernames to sign in."
+    },
+    "registerUsernameTaken": "這個使用者名稱已被註冊",
+    "@registerUsernameTaken": {
+        "description": "Registration form message when the chosen username belongs to someone else."
+    },
+    "registerUsernameAvailable": "這個使用者名稱可以使用",
+    "@registerUsernameAvailable": {
+        "description": "Registration form message when the chosen username is free to use."
+    },
+    "claimAccountUsernameDescription": "選擇使用者名稱和密碼來領取你的帳號。你將使用它們來登入，所以請選擇你會記住的。",
+    "@claimAccountUsernameDescription": {
+        "description": "Description in the claim account sheet on instances where people sign in with a username."
+    },
+    "unclaimedAccountDescriptionUsername": "您的帳戶尚未領取。沒有使用者名稱和密碼，您將無法從其他裝置登入，並且可能會遺失帳戶存取權。立即領取您的帳戶以確保安全。",
+    "@unclaimedAccountDescriptionUsername": {
+        "description": "Description for the unclaimed account warning on instances where people sign in with a username."
+    },
+    "addFriendUsernameOnlyHint": "使用者名稱",
+    "@addFriendUsernameOnlyHint": {
+        "description": "Placeholder for the add friend field on instances where usernames have no tag."
+    },
     "registerTitle": "建立帳戶",
     "@registerTitle": {
         "description": "Title for the registration screen."
@@ -667,6 +850,10 @@
     "errorInvalidEmailOrPassword": "電子郵件或密碼無效。",
     "@errorInvalidEmailOrPassword": {
         "description": "Error shown on the login screen when the email and password combination is incorrect."
+    },
+    "errorInvalidUsernameOrPassword": "使用者名稱或密碼無效。",
+    "@errorInvalidUsernameOrPassword": {
+        "description": "Sign-in error on instances where people sign in with a username."
     },
     "errorUnableToSendResetLink": "無法傳送重設連結。請再試一次。",
     "@errorUnableToSendResetLink": {
@@ -9730,6 +9917,60 @@
     "@notificationsEnableNotificationsPermissionDenied": {
         "description": "Toast shown when enabling notifications fails because permission was denied."
     },
+    "notificationsPushRelaySectionTitle": "推播通知中繼",
+    "@notificationsPushRelaySectionTitle": {
+        "description": "Notification settings section title for the Fluxer push relay."
+    },
+    "notificationsPushRelaySectionDescription": "{pushProvider} 只透過自家服務傳送推播通知，因此本裝置的推播會經過 Fluxer 中繼。",
+    "@notificationsPushRelaySectionDescription": {
+        "description": "Notification settings section description explaining why the push relay exists.",
+        "placeholders": {
+            "pushProvider": {
+                "type": "String"
+            }
+        }
+    },
+    "notificationsPushRelayConsentLabel": "使用 Fluxer 推播中繼",
+    "@notificationsPushRelayConsentLabel": {
+        "description": "Toggle label for agreeing to the Fluxer push relay on this device."
+    },
+    "notificationsPushRelayConsentDescription": "關閉後會移除本裝置的推播註冊，本裝置將不再收到推播通知。",
+    "@notificationsPushRelayConsentDescription": {
+        "description": "Toggle description explaining that revoking push relay consent unregisters the device."
+    },
+    "pushRelayConsentTitle": "推播通知中繼",
+    "@pushRelayConsentTitle": {
+        "description": "Title of the one-time Fluxer push relay consent sheet."
+    },
+    "pushRelayConsentDescription": "{pushProvider} 只透過自家服務傳送推播通知，因此本裝置的推播會經過 Fluxer 中繼。",
+    "@pushRelayConsentDescription": {
+        "description": "Subtitle of the push relay consent sheet explaining why the relay exists.",
+        "placeholders": {
+            "pushProvider": {
+                "type": "String"
+            }
+        }
+    },
+    "pushRelayConsentNoticePrefix": "若要在本裝置上開啟推播通知，請同意",
+    "@pushRelayConsentNoticePrefix": {
+        "description": "Text before the push relay privacy notice link in the consent sheet."
+    },
+    "pushRelayConsentNoticeLink": "推播中繼隱私權聲明",
+    "@pushRelayConsentNoticeLink": {
+        "description": "Link text for the supplemental push relay privacy notice."
+    },
+    "pushRelayConsentNoticeSuffix": "。每部裝置只需同意一次。",
+    "@pushRelayConsentNoticeSuffix": {
+        "description": "Text after the push relay privacy notice link in the consent sheet."
+    },
+    "pushRelayConsentAgree": "同意並繼續",
+    "@pushRelayConsentAgree": {
+        "description": "Button that records agreement to the push relay privacy notice."
+    },
+    "pushRelayConsentDecline": "暫時不要",
+    "@pushRelayConsentDecline": {
+        "description": "Button that declines the push relay privacy notice and leaves push notifications off."
+    },
     "voiceJoinFailedTitle": "無法加入語音",
     "@voiceJoinFailedTitle": {
         "description": "Title for the modal shown when a voice join attempt fails."
@@ -10530,14 +10771,6 @@
     "@permissionManageWebhooksDescription": {
         "description": "Permission description."
     },
-    "permissionSendMessagesInThreads": "Send messages in threads",
-    "permissionSendMessagesInThreadsDescription": "Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.",
-    "permissionCreatePublicThreads": "Create public threads",
-    "permissionCreatePublicThreadsDescription": "Members can start threads that everyone in the channel can see, and create forum posts.",
-    "permissionCreatePrivateThreads": "Create private threads",
-    "permissionCreatePrivateThreadsDescription": "Members can start threads that only invited people can see.",
-    "permissionManageThreads": "Manage threads and posts",
-    "permissionManageThreadsDescription": "Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.",
     "permissionSendMessages": "傳送訊息",
     "@permissionSendMessages": {
         "description": "Permission name."
@@ -12431,10 +12664,6 @@
     "phoneNotEligible": "此帳號無法使用電話驗證。請使用其他方式或聯絡客服。",
     "@phoneNotEligible": {
         "description": "Account not eligible for phone verification."
-    },
-    "phoneCaptchaRequired": "電話驗證前需要進行瀏覽器檢查。請從登入頁面重試，或聯絡客服。",
-    "@phoneCaptchaRequired": {
-        "description": "Captcha required for phone verification."
     },
     "phoneSomethingWentWrong": "發生錯誤。請再試一次。",
     "@phoneSomethingWentWrong": {
@@ -15793,8 +16022,6 @@
     "advancedSettingShowNekoLabel": "顯示 Pickles",
     "advancedSettingShowNekoDescription": "追逐你游標的貓咪",
     "advancedSettingShowNekoDescriptionTouch": "在聊天輸入框顯示 Pickles",
-    "advancedSettingShowNekoKeywordCat": "貓",
-    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "啟動縮放動畫",
     "advancedSettingMobileSplashZoomAnimationDescription": "縮放標誌以在離開啟動畫面時縮小",
     "advancedSettingKeyboardHintsLabel": "鍵盤提示",
@@ -16832,6 +17059,455 @@
     "@homeQuickActionDms": {
         "description": "Home screen quick action that opens Direct Messages."
     },
+    "applicationsTitle": "應用程式",
+    "@applicationsTitle": {
+        "description": "Title for the developer Applications settings tab."
+    },
+    "applicationsCreate": "建立應用程式",
+    "@applicationsCreate": {
+        "description": "Button that opens the create-application sheet."
+    },
+    "applicationsCreateSubmit": "建立",
+    "@applicationsCreateSubmit": {
+        "description": "Primary submit label in the create-application sheet."
+    },
+    "applicationsCreateClaimTooltip": "認領您的帳號以建立應用程式。",
+    "@applicationsCreateClaimTooltip": {
+        "description": "Tooltip on the disabled create button for unclaimed accounts."
+    },
+    "applicationsDocsLink": "閱讀說明文件（{domain}）",
+    "@applicationsDocsLink": {
+        "description": "Link to developer documentation. domain is the docs host.",
+        "placeholders": {
+            "domain": {
+                "type": "String"
+            }
+        }
+    },
+    "applicationsLoadError": "無法載入應用程式",
+    "@applicationsLoadError": {
+        "description": "Error title when the applications list fails to load."
+    },
+    "applicationsLoadErrorDescription": "請檢查您的連線，然後再試一次。",
+    "@applicationsLoadErrorDescription": {
+        "description": "Error body when the applications list fails to load."
+    },
+    "applicationsEmptyTitle": "還沒有任何應用程式",
+    "@applicationsEmptyTitle": {
+        "description": "Empty-state title when the user has no developer applications."
+    },
+    "applicationsEmptyDescription": "建立您的第一個應用程式，以開始使用 {apiName}。",
+    "@applicationsEmptyDescription": {
+        "description": "Empty-state body. apiName is the product API display name.",
+        "placeholders": {
+            "apiName": {
+                "type": "String"
+            }
+        }
+    },
+    "applicationsName": "應用程式名稱",
+    "@applicationsName": {
+        "description": "Label for the application name field."
+    },
+    "applicationsNameHint": "我的應用程式",
+    "@applicationsNameHint": {
+        "description": "Placeholder for the application name field."
+    },
+    "applicationsNameRequired": "請輸入應用程式名稱",
+    "@applicationsNameRequired": {
+        "description": "Validation error when the application name is empty."
+    },
+    "applicationsBackToList": "返回列表",
+    "@applicationsBackToList": {
+        "description": "Button that returns from application details to the list."
+    },
+    "applicationsDetailLoadError": "無法載入此應用程式",
+    "@applicationsDetailLoadError": {
+        "description": "Error title when a single application fails to load."
+    },
+    "applicationsDetailLoadErrorDescription": "請再試一次，或返回應用程式清單。",
+    "@applicationsDetailLoadErrorDescription": {
+        "description": "Error body when a single application fails to load."
+    },
+    "applicationsId": "應用程式 ID",
+    "@applicationsId": {
+        "description": "Label for the read-only application ID field."
+    },
+    "applicationsCopyId": "複製 ID",
+    "@applicationsCopyId": {
+        "description": "Button that copies the application ID."
+    },
+    "applicationsSecretsTitle": "密鑰與權杖",
+    "@applicationsSecretsTitle": {
+        "description": "Section title for client secret and bot token."
+    },
+    "applicationsSecretsDescription": "請妥善保管。重新產生金鑰會導致現有的整合服務中斷。",
+    "@applicationsSecretsDescription": {
+        "description": "Section description for secrets and tokens."
+    },
+    "applicationsClientSecret": "用戶端密鑰",
+    "@applicationsClientSecret": {
+        "description": "Label for the OAuth2 client secret field."
+    },
+    "applicationsBotToken": "機器人權杖",
+    "@applicationsBotToken": {
+        "description": "Label for the bot token field."
+    },
+    "applicationsRegenerate": "重新產生",
+    "@applicationsRegenerate": {
+        "description": "Button that rotates a secret or token."
+    },
+    "applicationsRegenerateClientSecretTitle": "要重新產生用戶端密鑰嗎？",
+    "@applicationsRegenerateClientSecretTitle": {
+        "description": "Confirmation title when regenerating the client secret."
+    },
+    "applicationsRegenerateBotTokenTitle": "要重新產生機器人權杖嗎？",
+    "@applicationsRegenerateBotTokenTitle": {
+        "description": "Confirmation title when regenerating the bot token."
+    },
+    "applicationsRegenerateClientSecretDescription": "重新產生會讓目前的密鑰失效。請更新所有使用舊值的程式碼。",
+    "@applicationsRegenerateClientSecretDescription": {
+        "description": "Confirmation body when regenerating the client secret."
+    },
+    "applicationsRegenerateBotTokenDescription": "重新產生會讓目前的權杖失效。請更新所有使用舊值的程式碼。",
+    "@applicationsRegenerateBotTokenDescription": {
+        "description": "Confirmation body when regenerating the bot token."
+    },
+    "applicationsClientSecretRegenerated": "用戶端密鑰已重新產生。請更新任何使用舊密鑰的程式碼。",
+    "@applicationsClientSecretRegenerated": {
+        "description": "Toast after a client secret is rotated."
+    },
+    "applicationsBotTokenRegenerated": "機器人權杖已重新產生。請更新所有使用舊權杖的程式碼。",
+    "@applicationsBotTokenRegenerated": {
+        "description": "Toast after a bot token is rotated."
+    },
+    "applicationsRegenerateFailed": "無法重新產生密鑰",
+    "@applicationsRegenerateFailed": {
+        "description": "Error toast when rotating a secret or token fails."
+    },
+    "applicationsInfoTitle": "應用程式資訊",
+    "@applicationsInfoTitle": {
+        "description": "Section title for basic application settings."
+    },
+    "applicationsInfoDescription": "基本設定和允許的重新導向 URI。",
+    "@applicationsInfoDescription": {
+        "description": "Section description for basic application settings."
+    },
+    "applicationsPublicBot": "公開機器人",
+    "@applicationsPublicBot": {
+        "description": "Switch label for allowing anyone to invite the bot."
+    },
+    "applicationsPublicBotDescription": "允許任何人邀請此機器人至他們的社群。",
+    "@applicationsPublicBotDescription": {
+        "description": "Switch description for public bot."
+    },
+    "applicationsRequireCodeGrant": "需要 OAuth2 授權碼授予",
+    "@applicationsRequireCodeGrant": {
+        "description": "Switch label for requiring an OAuth2 code grant on invite."
+    },
+    "applicationsRequireCodeGrantDescription": "邀請此機器人時，需要重新導向 URI 和授權碼。",
+    "@applicationsRequireCodeGrantDescription": {
+        "description": "Switch description for OAuth2 code grant."
+    },
+    "applicationsRedirectUris": "重新導向 URI",
+    "@applicationsRedirectUris": {
+        "description": "Label for the redirect URI list."
+    },
+    "applicationsAddRedirect": "新增重新導向",
+    "@applicationsAddRedirect": {
+        "description": "Button that adds another redirect URI row."
+    },
+    "applicationsDeleteRedirect": "刪除重新導向 URI",
+    "@applicationsDeleteRedirect": {
+        "description": "Accessibility label for removing a redirect URI row."
+    },
+    "applicationsBotProfileTitle": "機器人個人檔案",
+    "@applicationsBotProfileTitle": {
+        "description": "Section title for bot profile settings."
+    },
+    "applicationsBotProfileDescription": "機器人的大頭貼、標籤和詳細個人檔案。",
+    "@applicationsBotProfileDescription": {
+        "description": "Section description for bot profile settings."
+    },
+    "applicationsBotAvatar": "機器人大頭貼",
+    "@applicationsBotAvatar": {
+        "description": "Label for the bot avatar preview."
+    },
+    "applicationsUsernameRequired": "必須填寫使用者名稱",
+    "@applicationsUsernameRequired": {
+        "description": "Validation error when the bot username is empty."
+    },
+    "applicationsUsernameTooLong": "使用者名稱最多 32 個字元",
+    "@applicationsUsernameTooLong": {
+        "description": "Validation error when the bot username is too long."
+    },
+    "applicationsUsernameInvalid": "使用者名稱只能包含字母、數字和底線",
+    "@applicationsUsernameInvalid": {
+        "description": "Validation error when the bot username has invalid characters."
+    },
+    "applicationsBotUsername": "機器人使用者名稱",
+    "@applicationsBotUsername": {
+        "description": "Label for the bot username field."
+    },
+    "applicationsDiscriminator": "識別碼",
+    "@applicationsDiscriminator": {
+        "description": "Label for the read-only bot discriminator."
+    },
+    "applicationsBotBio": "機器人簡介",
+    "@applicationsBotBio": {
+        "description": "Label for the bot biography field."
+    },
+    "applicationsBotBioHint": "一個能做許多驚人事情的實用機器人！",
+    "@applicationsBotBioHint": {
+        "description": "Placeholder for the bot biography field."
+    },
+    "applicationsNoBotBanner": "沒有機器人橫幅",
+    "@applicationsNoBotBanner": {
+        "description": "Placeholder shown when the bot has no banner."
+    },
+    "applicationsFriendlyBot": "友善的機器人",
+    "@applicationsFriendlyBot": {
+        "description": "Switch label for allowing friend requests to the bot."
+    },
+    "applicationsFriendlyBotDescription": "允許使用者傳送好友邀請給此機器人，以便手動核准。",
+    "@applicationsFriendlyBotDescription": {
+        "description": "Switch description for friendly bot."
+    },
+    "applicationsManualFriendApproval": "需要手動核准好友",
+    "@applicationsManualFriendApproval": {
+        "description": "Switch label for requiring manual friend-request approval."
+    },
+    "applicationsManualFriendApprovalDescription": "此機器人收到的好友邀請需要手動核准。",
+    "@applicationsManualFriendApprovalDescription": {
+        "description": "Switch description for manual friend approval."
+    },
+    "applicationsOauthBuilderTitle": "OAuth2 URL 產生器",
+    "@applicationsOauthBuilderTitle": {
+        "description": "Section title for the authorize URL builder."
+    },
+    "applicationsScopes": "權限",
+    "@applicationsScopes": {
+        "description": "Label for OAuth2 scope checkboxes."
+    },
+    "applicationsRedirectUri": "重新導向 URI",
+    "@applicationsRedirectUri": {
+        "description": "Label for the authorize URL redirect selector."
+    },
+    "applicationsSelectRedirectUri": "選取重新導向 URI",
+    "@applicationsSelectRedirectUri": {
+        "description": "Placeholder for the authorize URL redirect selector."
+    },
+    "applicationsRedirectRequiredCodeGrant": "此機器人需要 OAuth2 授權碼，因此必須填寫重新導向 URI。",
+    "@applicationsRedirectRequiredCodeGrant": {
+        "description": "Validation shown when a redirect is required by code grant."
+    },
+    "applicationsRedirectRequiredScopes": "當不只使用機器人範圍時，需要重新導向 URI。",
+    "@applicationsRedirectRequiredScopes": {
+        "description": "Validation shown when a redirect is required by selected scopes."
+    },
+    "applicationsBotPermissions": "機器人權限",
+    "@applicationsBotPermissions": {
+        "description": "Label for bot permission checkboxes in the URL builder."
+    },
+    "applicationsAuthorizeUrl": "授權網址",
+    "@applicationsAuthorizeUrl": {
+        "description": "Label for the generated authorize URL field."
+    },
+    "applicationsAuthorizeUrlPlaceholder": "選取授權範圍（如有需要，請一併選取重新導向 URI）",
+    "@applicationsAuthorizeUrlPlaceholder": {
+        "description": "Placeholder when the authorize URL cannot be built yet."
+    },
+    "applicationsCopiedUrl": "已將網址複製到剪貼簿",
+    "@applicationsCopiedUrl": {
+        "description": "Toast after copying the authorize URL."
+    },
+    "applicationsDangerTitle": "危險區域",
+    "@applicationsDangerTitle": {
+        "description": "Section title for deleting an application."
+    },
+    "applicationsDangerSubtitle": "此動作無法復原。移除應用程式也會一併刪除其機器人。",
+    "@applicationsDangerSubtitle": {
+        "description": "Section subtitle for deleting an application."
+    },
+    "applicationsDangerHelper": "一旦刪除，應用程式和其憑證將永久移除。",
+    "@applicationsDangerHelper": {
+        "description": "Helper text in the application danger zone."
+    },
+    "applicationsDelete": "刪除應用程式",
+    "@applicationsDelete": {
+        "description": "Button that deletes the current application."
+    },
+    "applicationsDeleteFailed": "無法刪除應用程式",
+    "@applicationsDeleteFailed": {
+        "description": "Error toast when deleting an application fails."
+    },
+    "applicationsUpdated": "應用程式已成功更新",
+    "@applicationsUpdated": {
+        "description": "Toast after saving application changes."
+    },
+    "applicationsNoChanges": "沒有要儲存的變更",
+    "@applicationsNoChanges": {
+        "description": "Toast when save is pressed with no dirty fields."
+    },
+    "applicationsSearchBots": "應用程式與機器人",
+    "@applicationsSearchBots": {
+        "description": "Settings search entry for the Applications tab."
+    },
+    "applicationsSearchBotsDescription": "為您的帳號建立及管理應用程式和機器人",
+    "@applicationsSearchBotsDescription": {
+        "description": "Settings search description for the Applications tab."
+    },
+    "applicationsSearchInfoDescription": "編輯應用程式基本資訊和重新導向 URI",
+    "@applicationsSearchInfoDescription": {
+        "description": "Settings search description for application information."
+    },
+    "applicationsSearchBotProfileDescription": "編輯機器人頭像、標籤、個人簡介、橫幅和好友邀請行為",
+    "@applicationsSearchBotProfileDescription": {
+        "description": "Settings search description for bot profile."
+    },
+    "applicationsSearchOauthDescription": "使用範圍、重新導向和機器人權限來建立授權網址",
+    "@applicationsSearchOauthDescription": {
+        "description": "Settings search description for the OAuth2 URL builder."
+    },
+    "applicationsSearchSecretsDescription": "檢視並重新產生用戶端密鑰和機器人權杖",
+    "@applicationsSearchSecretsDescription": {
+        "description": "Settings search description for secrets and tokens."
+    },
+    "applicationsSearchBotsKeyword": "機器人",
+    "@applicationsSearchBotsKeyword": {
+        "description": "Settings search synonym for applications."
+    },
+    "applicationsSearchDocumentation": "說明文件",
+    "@applicationsSearchDocumentation": {
+        "description": "Settings search synonym for the applications docs link."
+    },
+    "linkedDevicesViewDetails": "查看詳情",
+    "@linkedDevicesViewDetails": {
+        "description": "Tooltip and accessibility label for opening a linked device details modal."
+    },
+    "linkedDevicesDetailsTitle": "裝置詳細資訊",
+    "@linkedDevicesDetailsTitle": {
+        "description": "Title of the linked device details modal."
+    },
+    "linkedDevicesDetailsDevice": "裝置",
+    "@linkedDevicesDetailsDevice": {
+        "description": "Label for the operating system in the linked device details modal."
+    },
+    "linkedDevicesDetailsClient": "用戶端",
+    "@linkedDevicesDetailsClient": {
+        "description": "Label for the client/platform in the linked device details modal."
+    },
+    "linkedDevicesDetailsLocation": "地點",
+    "@linkedDevicesDetailsLocation": {
+        "description": "Label for the approximate location in the linked device details modal."
+    },
+    "linkedDevicesDetailsIp": "IP 位址",
+    "@linkedDevicesDetailsIp": {
+        "description": "Label for the masked IP address in the linked device details modal."
+    },
+    "linkedDevicesDetailsLastUsed": "上次使用",
+    "@linkedDevicesDetailsLastUsed": {
+        "description": "Label for last activity time in the linked device details modal."
+    },
+    "linkedDevicesCurrentSession": "目前的工作階段",
+    "@linkedDevicesCurrentSession": {
+        "description": "Last-used value shown for the session currently making the request."
+    },
+    "linkedDevicesUnknown": "不明",
+    "@linkedDevicesUnknown": {
+        "description": "Fallback when a linked device detail such as last used time is missing."
+    },
+    "lookAndFeelThemeDarkLegacy": "深色（舊版）主題",
+    "@lookAndFeelThemeDarkLegacy": {
+        "description": "Label on the legacy dark theme swatch button."
+    },
+    "voiceOutputRouteSpeaker": "揚聲器",
+    "@voiceOutputRouteSpeaker": {
+        "description": "Voice output route that plays call audio through the phone speaker."
+    },
+    "voiceOutputRouteHeadset": "耳機",
+    "@voiceOutputRouteHeadset": {
+        "description": "Voice output route that plays call audio through a connected Bluetooth or wired headset."
+    },
+    "doubleTapReactionEdit": "編輯",
+    "@doubleTapReactionEdit": {
+        "description": "Button that opens the double-tap default emoji picker."
+    },
+    "chatMessagePinConfirm": "釘選",
+    "@chatMessagePinConfirm": {
+        "description": "Confirm button label on the pin message confirmation modal."
+    },
+    "chatMessagePinConfirmDescription": "將此訊息釘選到頻道，讓所有人都能看到。",
+    "@chatMessagePinConfirmDescription": {
+        "description": "Body text for the pin message confirmation modal."
+    },
+    "appIconOptionDefault": "預設",
+    "@appIconOptionDefault": {
+        "description": "App icon option for the build default icon (release or canary)."
+    },
+    "appIconOptionSweden": "瑞典",
+    "@appIconOptionSweden": {
+        "description": "App icon option for the Sweden flag alternate icon."
+    },
+    "userSettingsLogOutConfirmTitle": "要登出嗎？",
+    "@userSettingsLogOutConfirmTitle": {
+        "description": "Title of the confirmation shown before logging out from user settings."
+    },
+    "userSettingsLogOutConfirmDescription": "您可以隨時重新登入。",
+    "@userSettingsLogOutConfirmDescription": {
+        "description": "Body of the confirmation shown before logging out from user settings."
+    },
+    "savedMessagesAddedToast": "已加入書籤",
+    "@savedMessagesAddedToast": {
+        "description": "Toast confirming a message was bookmarked."
+    },
+    "savedMessagesRemovedToast": "已從書籤中移除",
+    "@savedMessagesRemovedToast": {
+        "description": "Toast confirming a message bookmark was removed."
+    },
+    "guildSettingsDeleteCommunity": "刪除社群",
+    "@guildSettingsDeleteCommunity": {
+        "description": "Destructive footer button in community settings. Opens the delete-community confirmation."
+    },
+    "guildSettingsDeleteCommunityConfirm": "確定要刪除這個社群嗎？此動作無法復原。所有頻道、訊息和設定都將永久刪除。",
+    "@guildSettingsDeleteCommunityConfirm": {
+        "description": "Confirmation copy for deleting a community."
+    },
+    "guildSettingsCommunityDeleted": "社群已刪除",
+    "@guildSettingsCommunityDeleted": {
+        "description": "Success toast after a community is deleted."
+    },
+    "assistantOkMessageSent": "訊息已傳送。",
+    "captchaTitle": "請驗證您是人類",
+    "@captchaTitle": {
+        "description": "Title for the captcha verification modal."
+    },
+    "captchaDescription": "我們需要確認您不是機器人。請完成下方的驗證。",
+    "@captchaDescription": {
+        "description": "Explanatory text in the captcha modal body."
+    },
+    "captchaSwitchToHcaptcha": "有問題嗎？試試 hCaptcha",
+    "@captchaSwitchToHcaptcha": {
+        "description": "Link to switch from Turnstile to hCaptcha provider."
+    },
+    "captchaSwitchToTurnstile": "試試 Turnstile",
+    "@captchaSwitchToTurnstile": {
+        "description": "Link to switch from hCaptcha to Turnstile provider."
+    },
+    "permissionSendMessagesInThreads": "Send messages in threads",
+    "permissionSendMessagesInThreadsDescription": "Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.",
+    "permissionCreatePublicThreads": "Create public threads",
+    "permissionCreatePublicThreadsDescription": "Members can start threads that everyone in the channel can see, and create forum posts.",
+    "permissionCreatePrivateThreads": "Create private threads",
+    "permissionCreatePrivateThreadsDescription": "Members can start threads that only invited people can see.",
+    "permissionManageThreads": "Manage threads and posts",
+    "permissionManageThreadsDescription": "Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.",
+    "phoneCaptchaRequired": "電話驗證前需要進行瀏覽器檢查。請從登入頁面重試，或聯絡客服。",
+    "@phoneCaptchaRequired": {
+        "description": "Captcha required for phone verification."
+    },
+    "advancedSettingShowNekoKeywordCat": "貓",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
     "threadsTitle": "討論串",
     "@threadsTitle": {
         "description": "Title of the sheet and header button that list a channel's threads."
@@ -17346,478 +18022,5 @@
     "forumTagModeratedOff": "任何人都可使用，輕觸可限制為僅管理員",
     "forumAddToPost": "新增至貼文",
     "forumAddToPostDone": "已加入貼文。",
-    "forumAddToPostFailed": "無法將其加入貼文。請再試一次。",
-    "notificationsPushRelaySectionTitle": "推播通知中繼",
-    "@notificationsPushRelaySectionTitle": {
-        "description": "Notification settings section title for the Fluxer push relay."
-    },
-    "notificationsPushRelaySectionDescription": "{pushProvider} 只透過自家服務傳送推播通知，因此本裝置的推播會經過 Fluxer 中繼。",
-    "@notificationsPushRelaySectionDescription": {
-        "description": "Notification settings section description explaining why the push relay exists.",
-        "placeholders": {
-            "pushProvider": {
-                "type": "String"
-            }
-        }
-    },
-    "notificationsPushRelayConsentLabel": "使用 Fluxer 推播中繼",
-    "@notificationsPushRelayConsentLabel": {
-        "description": "Toggle label for agreeing to the Fluxer push relay on this device."
-    },
-    "notificationsPushRelayConsentDescription": "關閉後會移除本裝置的推播註冊，本裝置將不再收到推播通知。",
-    "@notificationsPushRelayConsentDescription": {
-        "description": "Toggle description explaining that revoking push relay consent unregisters the device."
-    },
-    "pushRelayConsentTitle": "推播通知中繼",
-    "@pushRelayConsentTitle": {
-        "description": "Title of the one-time Fluxer push relay consent sheet."
-    },
-    "pushRelayConsentDescription": "{pushProvider} 只透過自家服務傳送推播通知，因此本裝置的推播會經過 Fluxer 中繼。",
-    "@pushRelayConsentDescription": {
-        "description": "Subtitle of the push relay consent sheet explaining why the relay exists.",
-        "placeholders": {
-            "pushProvider": {
-                "type": "String"
-            }
-        }
-    },
-    "pushRelayConsentNoticePrefix": "若要在本裝置上開啟推播通知，請同意",
-    "@pushRelayConsentNoticePrefix": {
-        "description": "Text before the push relay privacy notice link in the consent sheet."
-    },
-    "pushRelayConsentNoticeLink": "推播中繼隱私權聲明",
-    "@pushRelayConsentNoticeLink": {
-        "description": "Link text for the supplemental push relay privacy notice."
-    },
-    "pushRelayConsentNoticeSuffix": "。每部裝置只需同意一次。",
-    "@pushRelayConsentNoticeSuffix": {
-        "description": "Text after the push relay privacy notice link in the consent sheet."
-    },
-    "pushRelayConsentAgree": "同意並繼續",
-    "@pushRelayConsentAgree": {
-        "description": "Button that records agreement to the push relay privacy notice."
-    },
-    "pushRelayConsentDecline": "暫時不要",
-    "@pushRelayConsentDecline": {
-        "description": "Button that declines the push relay privacy notice and leaves push notifications off."
-    },
-    "applicationsTitle": "應用程式",
-    "@applicationsTitle": {
-        "description": "Title for the developer Applications settings tab."
-    },
-    "applicationsCreate": "建立應用程式",
-    "@applicationsCreate": {
-        "description": "Button that opens the create-application sheet."
-    },
-    "applicationsCreateSubmit": "建立",
-    "@applicationsCreateSubmit": {
-        "description": "Primary submit label in the create-application sheet."
-    },
-    "applicationsCreateClaimTooltip": "認領您的帳號以建立應用程式。",
-    "@applicationsCreateClaimTooltip": {
-        "description": "Tooltip on the disabled create button for unclaimed accounts."
-    },
-    "applicationsDocsLink": "閱讀說明文件（{domain}）",
-    "@applicationsDocsLink": {
-        "description": "Link to developer documentation. domain is the docs host.",
-        "placeholders": {
-            "domain": {
-                "type": "String"
-            }
-        }
-    },
-    "applicationsLoadError": "無法載入應用程式",
-    "@applicationsLoadError": {
-        "description": "Error title when the applications list fails to load."
-    },
-    "applicationsLoadErrorDescription": "請檢查您的連線，然後再試一次。",
-    "@applicationsLoadErrorDescription": {
-        "description": "Error body when the applications list fails to load."
-    },
-    "applicationsEmptyTitle": "還沒有任何應用程式",
-    "@applicationsEmptyTitle": {
-        "description": "Empty-state title when the user has no developer applications."
-    },
-    "applicationsEmptyDescription": "建立您的第一個應用程式，以開始使用 {apiName}。",
-    "@applicationsEmptyDescription": {
-        "description": "Empty-state body. apiName is the product API display name.",
-        "placeholders": {
-            "apiName": {
-                "type": "String"
-            }
-        }
-    },
-    "applicationsName": "應用程式名稱",
-    "@applicationsName": {
-        "description": "Label for the application name field."
-    },
-    "applicationsNameHint": "我的應用程式",
-    "@applicationsNameHint": {
-        "description": "Placeholder for the application name field."
-    },
-    "applicationsNameRequired": "請輸入應用程式名稱",
-    "@applicationsNameRequired": {
-        "description": "Validation error when the application name is empty."
-    },
-    "applicationsBackToList": "返回列表",
-    "@applicationsBackToList": {
-        "description": "Button that returns from application details to the list."
-    },
-    "applicationsDetailLoadError": "無法載入此應用程式",
-    "@applicationsDetailLoadError": {
-        "description": "Error title when a single application fails to load."
-    },
-    "applicationsDetailLoadErrorDescription": "請再試一次，或返回應用程式清單。",
-    "@applicationsDetailLoadErrorDescription": {
-        "description": "Error body when a single application fails to load."
-    },
-    "applicationsId": "應用程式 ID",
-    "@applicationsId": {
-        "description": "Label for the read-only application ID field."
-    },
-    "applicationsCopyId": "複製 ID",
-    "@applicationsCopyId": {
-        "description": "Button that copies the application ID."
-    },
-    "applicationsSecretsTitle": "密鑰與權杖",
-    "@applicationsSecretsTitle": {
-        "description": "Section title for client secret and bot token."
-    },
-    "applicationsSecretsDescription": "請妥善保管。重新產生金鑰會導致現有的整合服務中斷。",
-    "@applicationsSecretsDescription": {
-        "description": "Section description for secrets and tokens."
-    },
-    "applicationsClientSecret": "用戶端密鑰",
-    "@applicationsClientSecret": {
-        "description": "Label for the OAuth2 client secret field."
-    },
-    "applicationsBotToken": "機器人權杖",
-    "@applicationsBotToken": {
-        "description": "Label for the bot token field."
-    },
-    "applicationsRegenerate": "重新產生",
-    "@applicationsRegenerate": {
-        "description": "Button that rotates a secret or token."
-    },
-    "applicationsRegenerateClientSecretTitle": "要重新產生用戶端密鑰嗎？",
-    "@applicationsRegenerateClientSecretTitle": {
-        "description": "Confirmation title when regenerating the client secret."
-    },
-    "applicationsRegenerateBotTokenTitle": "要重新產生機器人權杖嗎？",
-    "@applicationsRegenerateBotTokenTitle": {
-        "description": "Confirmation title when regenerating the bot token."
-    },
-    "applicationsRegenerateClientSecretDescription": "重新產生會讓目前的密鑰失效。請更新所有使用舊值的程式碼。",
-    "@applicationsRegenerateClientSecretDescription": {
-        "description": "Confirmation body when regenerating the client secret."
-    },
-    "applicationsRegenerateBotTokenDescription": "重新產生會讓目前的權杖失效。請更新所有使用舊值的程式碼。",
-    "@applicationsRegenerateBotTokenDescription": {
-        "description": "Confirmation body when regenerating the bot token."
-    },
-    "applicationsClientSecretRegenerated": "用戶端密鑰已重新產生。請更新任何使用舊密鑰的程式碼。",
-    "@applicationsClientSecretRegenerated": {
-        "description": "Toast after a client secret is rotated."
-    },
-    "applicationsBotTokenRegenerated": "機器人權杖已重新產生。請更新所有使用舊權杖的程式碼。",
-    "@applicationsBotTokenRegenerated": {
-        "description": "Toast after a bot token is rotated."
-    },
-    "applicationsRegenerateFailed": "無法重新產生密鑰",
-    "@applicationsRegenerateFailed": {
-        "description": "Error toast when rotating a secret or token fails."
-    },
-    "applicationsInfoTitle": "應用程式資訊",
-    "@applicationsInfoTitle": {
-        "description": "Section title for basic application settings."
-    },
-    "applicationsInfoDescription": "基本設定和允許的重新導向 URI。",
-    "@applicationsInfoDescription": {
-        "description": "Section description for basic application settings."
-    },
-    "applicationsPublicBot": "公開機器人",
-    "@applicationsPublicBot": {
-        "description": "Switch label for allowing anyone to invite the bot."
-    },
-    "applicationsPublicBotDescription": "允許任何人邀請此機器人至他們的社群。",
-    "@applicationsPublicBotDescription": {
-        "description": "Switch description for public bot."
-    },
-    "applicationsRequireCodeGrant": "需要 OAuth2 授權碼授予",
-    "@applicationsRequireCodeGrant": {
-        "description": "Switch label for requiring an OAuth2 code grant on invite."
-    },
-    "applicationsRequireCodeGrantDescription": "邀請此機器人時，需要重新導向 URI 和授權碼。",
-    "@applicationsRequireCodeGrantDescription": {
-        "description": "Switch description for OAuth2 code grant."
-    },
-    "applicationsRedirectUris": "重新導向 URI",
-    "@applicationsRedirectUris": {
-        "description": "Label for the redirect URI list."
-    },
-    "applicationsAddRedirect": "新增重新導向",
-    "@applicationsAddRedirect": {
-        "description": "Button that adds another redirect URI row."
-    },
-    "applicationsDeleteRedirect": "刪除重新導向 URI",
-    "@applicationsDeleteRedirect": {
-        "description": "Accessibility label for removing a redirect URI row."
-    },
-    "applicationsBotProfileTitle": "機器人個人檔案",
-    "@applicationsBotProfileTitle": {
-        "description": "Section title for bot profile settings."
-    },
-    "applicationsBotProfileDescription": "機器人的大頭貼、標籤和詳細個人檔案。",
-    "@applicationsBotProfileDescription": {
-        "description": "Section description for bot profile settings."
-    },
-    "applicationsBotAvatar": "機器人大頭貼",
-    "@applicationsBotAvatar": {
-        "description": "Label for the bot avatar preview."
-    },
-    "applicationsUsernameRequired": "必須填寫使用者名稱",
-    "@applicationsUsernameRequired": {
-        "description": "Validation error when the bot username is empty."
-    },
-    "applicationsUsernameTooLong": "使用者名稱最多 32 個字元",
-    "@applicationsUsernameTooLong": {
-        "description": "Validation error when the bot username is too long."
-    },
-    "applicationsUsernameInvalid": "使用者名稱只能包含字母、數字和底線",
-    "@applicationsUsernameInvalid": {
-        "description": "Validation error when the bot username has invalid characters."
-    },
-    "applicationsBotUsername": "機器人使用者名稱",
-    "@applicationsBotUsername": {
-        "description": "Label for the bot username field."
-    },
-    "applicationsDiscriminator": "識別碼",
-    "@applicationsDiscriminator": {
-        "description": "Label for the read-only bot discriminator."
-    },
-    "applicationsBotBio": "機器人簡介",
-    "@applicationsBotBio": {
-        "description": "Label for the bot biography field."
-    },
-    "applicationsBotBioHint": "一個能做許多驚人事情的實用機器人！",
-    "@applicationsBotBioHint": {
-        "description": "Placeholder for the bot biography field."
-    },
-    "applicationsNoBotBanner": "沒有機器人橫幅",
-    "@applicationsNoBotBanner": {
-        "description": "Placeholder shown when the bot has no banner."
-    },
-    "applicationsFriendlyBot": "友善的機器人",
-    "@applicationsFriendlyBot": {
-        "description": "Switch label for allowing friend requests to the bot."
-    },
-    "applicationsFriendlyBotDescription": "允許使用者傳送好友邀請給此機器人，以便手動核准。",
-    "@applicationsFriendlyBotDescription": {
-        "description": "Switch description for friendly bot."
-    },
-    "applicationsManualFriendApproval": "需要手動核准好友",
-    "@applicationsManualFriendApproval": {
-        "description": "Switch label for requiring manual friend-request approval."
-    },
-    "applicationsManualFriendApprovalDescription": "此機器人收到的好友邀請需要手動核准。",
-    "@applicationsManualFriendApprovalDescription": {
-        "description": "Switch description for manual friend approval."
-    },
-    "applicationsOauthBuilderTitle": "OAuth2 URL 產生器",
-    "@applicationsOauthBuilderTitle": {
-        "description": "Section title for the authorize URL builder."
-    },
-    "applicationsScopes": "權限",
-    "@applicationsScopes": {
-        "description": "Label for OAuth2 scope checkboxes."
-    },
-    "applicationsRedirectUri": "重新導向 URI",
-    "@applicationsRedirectUri": {
-        "description": "Label for the authorize URL redirect selector."
-    },
-    "applicationsSelectRedirectUri": "選取重新導向 URI",
-    "@applicationsSelectRedirectUri": {
-        "description": "Placeholder for the authorize URL redirect selector."
-    },
-    "applicationsRedirectRequiredCodeGrant": "此機器人需要 OAuth2 授權碼，因此必須填寫重新導向 URI。",
-    "@applicationsRedirectRequiredCodeGrant": {
-        "description": "Validation shown when a redirect is required by code grant."
-    },
-    "applicationsRedirectRequiredScopes": "當不只使用機器人範圍時，需要重新導向 URI。",
-    "@applicationsRedirectRequiredScopes": {
-        "description": "Validation shown when a redirect is required by selected scopes."
-    },
-    "applicationsBotPermissions": "機器人權限",
-    "@applicationsBotPermissions": {
-        "description": "Label for bot permission checkboxes in the URL builder."
-    },
-    "applicationsAuthorizeUrl": "授權網址",
-    "@applicationsAuthorizeUrl": {
-        "description": "Label for the generated authorize URL field."
-    },
-    "applicationsAuthorizeUrlPlaceholder": "選取授權範圍（如有需要，請一併選取重新導向 URI）",
-    "@applicationsAuthorizeUrlPlaceholder": {
-        "description": "Placeholder when the authorize URL cannot be built yet."
-    },
-    "applicationsCopiedUrl": "已將網址複製到剪貼簿",
-    "@applicationsCopiedUrl": {
-        "description": "Toast after copying the authorize URL."
-    },
-    "applicationsDangerTitle": "危險區域",
-    "@applicationsDangerTitle": {
-        "description": "Section title for deleting an application."
-    },
-    "applicationsDangerSubtitle": "此動作無法復原。移除應用程式也會一併刪除其機器人。",
-    "@applicationsDangerSubtitle": {
-        "description": "Section subtitle for deleting an application."
-    },
-    "applicationsDangerHelper": "一旦刪除，應用程式和其憑證將永久移除。",
-    "@applicationsDangerHelper": {
-        "description": "Helper text in the application danger zone."
-    },
-    "applicationsDelete": "刪除應用程式",
-    "@applicationsDelete": {
-        "description": "Button that deletes the current application."
-    },
-    "applicationsDeleteFailed": "無法刪除應用程式",
-    "@applicationsDeleteFailed": {
-        "description": "Error toast when deleting an application fails."
-    },
-    "applicationsUpdated": "應用程式已成功更新",
-    "@applicationsUpdated": {
-        "description": "Toast after saving application changes."
-    },
-    "applicationsNoChanges": "沒有要儲存的變更",
-    "@applicationsNoChanges": {
-        "description": "Toast when save is pressed with no dirty fields."
-    },
-    "applicationsSearchBots": "應用程式與機器人",
-    "@applicationsSearchBots": {
-        "description": "Settings search entry for the Applications tab."
-    },
-    "applicationsSearchBotsDescription": "為您的帳號建立及管理應用程式和機器人",
-    "@applicationsSearchBotsDescription": {
-        "description": "Settings search description for the Applications tab."
-    },
-    "applicationsSearchInfoDescription": "編輯應用程式基本資訊和重新導向 URI",
-    "@applicationsSearchInfoDescription": {
-        "description": "Settings search description for application information."
-    },
-    "applicationsSearchBotProfileDescription": "編輯機器人頭像、標籤、個人簡介、橫幅和好友邀請行為",
-    "@applicationsSearchBotProfileDescription": {
-        "description": "Settings search description for bot profile."
-    },
-    "applicationsSearchOauthDescription": "使用範圍、重新導向和機器人權限來建立授權網址",
-    "@applicationsSearchOauthDescription": {
-        "description": "Settings search description for the OAuth2 URL builder."
-    },
-    "applicationsSearchSecretsDescription": "檢視並重新產生用戶端密鑰和機器人權杖",
-    "@applicationsSearchSecretsDescription": {
-        "description": "Settings search description for secrets and tokens."
-    },
-    "applicationsSearchBotsKeyword": "機器人",
-    "@applicationsSearchBotsKeyword": {
-        "description": "Settings search synonym for applications."
-    },
-    "applicationsSearchDocumentation": "說明文件",
-    "@applicationsSearchDocumentation": {
-        "description": "Settings search synonym for the applications docs link."
-    },
-    "linkedDevicesViewDetails": "查看詳情",
-    "@linkedDevicesViewDetails": {
-        "description": "Tooltip and accessibility label for opening a linked device details modal."
-    },
-    "linkedDevicesDetailsTitle": "裝置詳細資訊",
-    "@linkedDevicesDetailsTitle": {
-        "description": "Title of the linked device details modal."
-    },
-    "linkedDevicesDetailsDevice": "裝置",
-    "@linkedDevicesDetailsDevice": {
-        "description": "Label for the operating system in the linked device details modal."
-    },
-    "linkedDevicesDetailsClient": "用戶端",
-    "@linkedDevicesDetailsClient": {
-        "description": "Label for the client/platform in the linked device details modal."
-    },
-    "linkedDevicesDetailsLocation": "地點",
-    "@linkedDevicesDetailsLocation": {
-        "description": "Label for the approximate location in the linked device details modal."
-    },
-    "linkedDevicesDetailsIp": "IP 位址",
-    "@linkedDevicesDetailsIp": {
-        "description": "Label for the masked IP address in the linked device details modal."
-    },
-    "linkedDevicesDetailsLastUsed": "上次使用",
-    "@linkedDevicesDetailsLastUsed": {
-        "description": "Label for last activity time in the linked device details modal."
-    },
-    "linkedDevicesCurrentSession": "目前的工作階段",
-    "@linkedDevicesCurrentSession": {
-        "description": "Last-used value shown for the session currently making the request."
-    },
-    "linkedDevicesUnknown": "不明",
-    "@linkedDevicesUnknown": {
-        "description": "Fallback when a linked device detail such as last used time is missing."
-    },
-    "lookAndFeelThemeDarkLegacy": "深色（舊版）主題",
-    "@lookAndFeelThemeDarkLegacy": {
-        "description": "Label on the legacy dark theme swatch button."
-    },
-    "voiceOutputRouteSpeaker": "揚聲器",
-    "@voiceOutputRouteSpeaker": {
-        "description": "Voice output route that plays call audio through the phone speaker."
-    },
-    "voiceOutputRouteHeadset": "耳機",
-    "@voiceOutputRouteHeadset": {
-        "description": "Voice output route that plays call audio through a connected Bluetooth or wired headset."
-    },
-    "doubleTapReactionEdit": "編輯",
-    "@doubleTapReactionEdit": {
-        "description": "Button that opens the double-tap default emoji picker."
-    },
-    "chatMessagePinConfirm": "釘選",
-    "@chatMessagePinConfirm": {
-        "description": "Confirm button label on the pin message confirmation modal."
-    },
-    "chatMessagePinConfirmDescription": "將此訊息釘選到頻道，讓所有人都能看到。",
-    "@chatMessagePinConfirmDescription": {
-        "description": "Body text for the pin message confirmation modal."
-    },
-    "appIconOptionDefault": "預設",
-    "@appIconOptionDefault": {
-        "description": "App icon option for the build default icon (release or canary)."
-    },
-    "appIconOptionSweden": "瑞典",
-    "@appIconOptionSweden": {
-        "description": "App icon option for the Sweden flag alternate icon."
-    },
-    "userSettingsLogOutConfirmTitle": "要登出嗎？",
-    "@userSettingsLogOutConfirmTitle": {
-        "description": "Title of the confirmation shown before logging out from user settings."
-    },
-    "userSettingsLogOutConfirmDescription": "您可以隨時重新登入。",
-    "@userSettingsLogOutConfirmDescription": {
-        "description": "Body of the confirmation shown before logging out from user settings."
-    },
-    "savedMessagesAddedToast": "已加入書籤",
-    "@savedMessagesAddedToast": {
-        "description": "Toast confirming a message was bookmarked."
-    },
-    "savedMessagesRemovedToast": "已從書籤中移除",
-    "@savedMessagesRemovedToast": {
-        "description": "Toast confirming a message bookmark was removed."
-    },
-    "guildSettingsDeleteCommunity": "刪除社群",
-    "@guildSettingsDeleteCommunity": {
-        "description": "Destructive footer button in community settings. Opens the delete-community confirmation."
-    },
-    "guildSettingsDeleteCommunityConfirm": "確定要刪除這個社群嗎？此動作無法復原。所有頻道、訊息和設定都將永久刪除。",
-    "@guildSettingsDeleteCommunityConfirm": {
-        "description": "Confirmation copy for deleting a community."
-    },
-    "guildSettingsCommunityDeleted": "社群已刪除",
-    "@guildSettingsCommunityDeleted": {
-        "description": "Success toast after a community is deleted."
-    },
-    "assistantOkMessageSent": "訊息已傳送。"
+    "forumAddToPostFailed": "無法將其加入貼文。請再試一次。"
 }

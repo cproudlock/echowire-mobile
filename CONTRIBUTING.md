@@ -11,7 +11,7 @@ request.
 ## Scope during beta
 
 During the current beta we only accept contributions for **bug fixes**, and a pull
-request must be for a linked, reported issue. App translations are handled through
+request must be for a bug reported on [feedback.fluxer.com](https://feedback.fluxer.com). App translations are handled through
 our Weblate instance (see [Translating](#translating)). These guidelines will be
 expanded after the beta.
 
@@ -161,6 +161,8 @@ flutter run --flavor stableFcm --dart-define-from-file=tool/dart_defines/stable.
 For iOS, use the scheme name as the flavor and `PUSH_PROVIDER=apns`:
 
 ```text
+dart tool/configure_build.dart --profile=ios-store
+flutter pub get
 flutter build ios --flavor canary --dart-define-from-file=tool/dart_defines/canary.json --dart-define=PUSH_PROVIDER=apns
 ```
 

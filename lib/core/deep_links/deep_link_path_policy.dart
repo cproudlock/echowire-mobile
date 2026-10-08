@@ -3,7 +3,28 @@ import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/utils/channel_jump_link.dart';
 import 'package:fluxer_app/features/guilds/utils/invite_link_parser.dart';
 
+/// The scheme we write into links. Stays `fluxer` until builds that register `echowire` are what
+/// people have installed; see docs/adr/0011-echowire-url-scheme.md in the server repo.
 const String appProtocolScheme = 'fluxer';
+
+/// Echowire: every scheme the app answers to. `echowire` is ours; `fluxer` stays accepted so links
+/// from other instances, or written for the upstream app, still open here. Links carry no
+/// instance, so both mean the same thing.
+const Set<String> appProtocolSchemes = <String>{'echowire', 'fluxer'};
+
+bool isAppProtocolScheme(String scheme) =>
+    appProtocolSchemes.contains(scheme.toLowerCase());
+
+/// The app scheme `href` starts with (`echowire` or `fluxer`), or null.
+String? appProtocolSchemeOf(String href) {
+  final String lower = href.toLowerCase();
+  for (final String scheme in appProtocolSchemes) {
+    if (lower.startsWith('$scheme:')) {
+      return scheme;
+    }
+  }
+  return null;
+}
 
 const Set<String> kInviteShortLinkHosts = <String>{'echowire.org'};
 
@@ -49,14 +70,14 @@ String normalizeDeepLinkPath(String path) {
   return trimmed.isEmpty ? '/' : trimmed;
 }
 
-/// Converts `fluxer://` URIs into path only form matching https deep links.
+/// Converts `echowire://` and `fluxer://` URIs into path only form matching https deep links.
 ///
 /// Examples:
 /// - `fluxer://channels/@me/123` → `/channels/@me/123`
 /// - `fluxer://invite/abc` → `/invite/abc`
 /// - `fluxer:/channels/@me` → `/channels/@me`
 Uri normalizeAppProtocolDeepLinkUri(Uri uri) {
-  if (uri.scheme != appProtocolScheme) {
+  if (!isAppProtocolScheme(uri.scheme)) {
     return uri;
   }
   final String host = uri.host;
@@ -74,7 +95,7 @@ Uri normalizeAppProtocolDeepLinkUri(Uri uri) {
 /// Normalizes invite URLs (fluxer.gg short links, /invite paths) to `/invite/:code`.
 Uri normalizeInviteDeepLinkUri(Uri uri) {
   final Uri protocolNormalized = normalizeAppProtocolDeepLinkUri(uri);
-  if (protocolNormalized.scheme == appProtocolScheme) {
+  if (isAppProtocolScheme(protocolNormalized.scheme)) {
     return protocolNormalized;
   }
   final String host = protocolNormalized.host.toLowerCase();

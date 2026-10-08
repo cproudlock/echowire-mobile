@@ -88,6 +88,7 @@
 			<string>fluxer</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>echowire</string>
 				<string>fluxer</string>
 			</array>
 		</dict>

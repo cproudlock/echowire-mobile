@@ -60,6 +60,35 @@ void main() {
       }
     });
 
+    test('allows echowire:// app protocol URLs the same way', () {
+      const allowedEchowireUrls = [
+        'echowire://channels/@me',
+        'echowire://channels/123456789012345678/987654321098765432',
+        'echowire://invite/abc',
+        'echowire://gift/xyz',
+        'echowire://users/123456789012345678',
+        'echowire://settings/user',
+        'echowire://settings/user?tab=appearance',
+        'echowire://notifications',
+        'echowire://you',
+        'echowire:/channels/@me',
+      ];
+      for (final String url in allowedEchowireUrls) {
+        expect(isAllowedDeepLinkPath(Uri.parse(url)), isTrue, reason: url);
+      }
+    });
+
+    test('ignores echowire:// auth and infra paths', () {
+      const ignoredEchowireUrls = [
+        'echowire://auth/sso/callback?code=1&state=2',
+        'echowire://login',
+        'echowire://',
+      ];
+      for (final String url in ignoredEchowireUrls) {
+        expect(isAllowedDeepLinkPath(Uri.parse(url)), isFalse, reason: url);
+      }
+    });
+
     test('ignores fluxer:// auth and infra paths', () {
       const ignoredFluxerUrls = [
         'fluxer://auth/sso/callback?code=1&state=2',
@@ -90,6 +119,32 @@ void main() {
         ),
         Uri(path: '/settings/user', queryParameters: {'tab': 'appearance'}),
       );
+    });
+
+    test('maps host-style echowire URLs to the same path form', () {
+      expect(
+        normalizeAppProtocolDeepLinkUri(
+          Uri.parse('echowire://channels/@me/123'),
+        ).path,
+        '/channels/@me/123',
+      );
+      expect(
+        normalizeAppProtocolDeepLinkUri(
+          Uri.parse('echowire://invite/abc'),
+        ).path,
+        '/invite/abc',
+      );
+      expect(
+        normalizeAppProtocolDeepLinkUri(
+          Uri.parse('echowire://settings/user?tab=appearance'),
+        ),
+        Uri(path: '/settings/user', queryParameters: {'tab': 'appearance'}),
+      );
+    });
+
+    test('does not treat a different scheme as ours', () {
+      final Uri uri = Uri.parse('discord://invite/abc');
+      expect(normalizeAppProtocolDeepLinkUri(uri), uri);
     });
 
     test('leaves https URLs unchanged', () {
@@ -182,6 +237,28 @@ void main() {
         ),
         isFalse,
       );
+    });
+  });
+
+  group('app protocol schemes', () {
+    test('answers to echowire and keeps fluxer, and still writes fluxer', () {
+      expect(appProtocolSchemes, {'echowire', 'fluxer'});
+      expect(appProtocolScheme, 'fluxer');
+    });
+
+    test('recognises either scheme case-insensitively and nothing else', () {
+      expect(isAppProtocolScheme('echowire'), isTrue);
+      expect(isAppProtocolScheme('FLUXER'), isTrue);
+      expect(isAppProtocolScheme('https'), isFalse);
+      expect(isAppProtocolScheme('echowirex'), isFalse);
+    });
+
+    test('finds the scheme a link starts with', () {
+      expect(appProtocolSchemeOf('echowire://invite/abc'), 'echowire');
+      expect(appProtocolSchemeOf('fluxer:/channels/@me'), 'fluxer');
+      expect(appProtocolSchemeOf('Echowire:gift/xyz'), 'echowire');
+      expect(appProtocolSchemeOf('https://echowire.org/invite/abc'), isNull);
+      expect(appProtocolSchemeOf('echowirex://invite/abc'), isNull);
     });
   });
 }

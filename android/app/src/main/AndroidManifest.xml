@@ -89,6 +89,19 @@
                 <data android:scheme="fluxer" android:host="notifications" />
                 <data android:scheme="fluxer" android:host="you" />
             </intent-filter>
+            <!-- Echowire: our own scheme. fluxer:// above stays for links written for other instances. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="echowire" android:host="channels" />
+                <data android:scheme="echowire" android:host="invite" />
+                <data android:scheme="echowire" android:host="gift" />
+                <data android:scheme="echowire" android:host="users" />
+                <data android:scheme="echowire" android:host="settings" android:pathPrefix="/user" />
+                <data android:scheme="echowire" android:host="notifications" />
+                <data android:scheme="echowire" android:host="you" />
+            </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />

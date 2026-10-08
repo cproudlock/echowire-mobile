@@ -24,32 +24,40 @@ import 'package:fluxer_app/shared/utils/emoji_utils.dart';
 import 'package:fluxer_markdown/fluxer_markdown.dart';
 import 'package:go_router/go_router.dart';
 
+// Echowire: where an app-scheme link points when it is read as a web link. fluxer: keeps the
+// upstream host it always used; echowire: points at ours.
+const Map<String, String> _appSchemeWebHosts = <String, String>{
+  'echowire': 'echowire.org',
+  'fluxer': 'fluxer.app',
+};
+
 String _fluxerAppLinkToHttps(String href) {
-  if (href.startsWith('fluxer://')) {
+  final String? scheme = appProtocolSchemeOf(href);
+  if (scheme == null) {
+    return href;
+  }
+  final String host = _appSchemeWebHosts[scheme]!;
+  if (href.startsWith('$scheme://')) {
     final Uri uri = Uri.parse(href);
-    return 'https://fluxer.app${uri.path}';
+    return 'https://$host${uri.path}';
   }
-  if (href.startsWith('fluxer:/')) {
-    return 'https://fluxer.app/${href.substring('fluxer:/'.length)}';
-  }
-  if (href.startsWith('fluxer:')) {
-    return 'https://fluxer.app/${href.substring('fluxer:'.length)}';
-  }
-  return href;
+  final String rest = href.substring(scheme.length + 1);
+  return 'https://$host/${rest.startsWith('/') ? rest.substring(1) : rest}';
 }
 
 Uri? _parseFluxerAppLinkPath(String href) {
-  if (!href.startsWith('fluxer:')) {
+  final String? scheme = appProtocolSchemeOf(href);
+  if (scheme == null) {
     return null;
   }
-  if (href.startsWith('fluxer://') || href.startsWith('fluxer:/')) {
+  if (href.startsWith('$scheme://') || href.startsWith('$scheme:/')) {
     final String normalized =
-        href.startsWith('fluxer:/') && !href.startsWith('fluxer://')
-        ? 'fluxer://${href.substring('fluxer:/'.length)}'
+        href.startsWith('$scheme:/') && !href.startsWith('$scheme://')
+        ? '$scheme://${href.substring(scheme.length + 2)}'
         : href;
     return normalizeAppProtocolDeepLinkUri(Uri.parse(normalized));
   }
-  final String path = href.substring('fluxer:'.length);
+  final String path = href.substring(scheme.length + 1);
   return Uri(path: path.startsWith('/') ? path : '/$path');
 }
 
@@ -140,7 +148,7 @@ Widget? _fluxerLinkWidgetBuilder(
   if (settingsTarget != null) {
     return SettingsJumpLinkMention(target: settingsTarget, baseStyle: style);
   }
-  final String resolvedHref = href.startsWith('fluxer:')
+  final String resolvedHref = appProtocolSchemeOf(href) != null
       ? _fluxerAppLinkToHttps(href)
       : href;
   final ChannelJumpLink? link = parseChannelJumpLink(resolvedHref);
@@ -170,7 +178,7 @@ Future<void> _fluxerOnTapLink(BuildContext context, String href) async {
     }
   }
 
-  final String resolvedHref = href.startsWith('fluxer:')
+  final String resolvedHref = appProtocolSchemeOf(href) != null
       ? _fluxerAppLinkToHttps(href)
       : href;
   final ChannelJumpLink? jump = parseChannelJumpLink(resolvedHref);

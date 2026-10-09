@@ -28,10 +28,6 @@
     "@retry": {
         "description": "Generic label for retry actions (splash, errors, network, etc.)."
     },
-    "connectingCaps": "CONNECTING",
-    "@connectingCaps": {
-        "description": "Connecting text on the splash screen"
-    },
     "splashConnectionLost": "Forbindelse mistet",
     "@splashConnectionLost": {
         "description": "Fallback headline on splash when gateway is unavailable (web parity)."
@@ -93,10 +89,6 @@
             }
         }
     },
-    "ssoRequired": "SSO kræves for at få adgang til denne instans.",
-    "@ssoRequired": {
-        "description": "Short sign-in note shown when the instance requires single sign-on."
-    },
     "organizationSsoProvider": "Log ind med din organisations single sign-on-udbyder.",
     "@organizationSsoProvider": {
         "description": "Description shown when sign-in is restricted to the configured SSO provider."
@@ -117,10 +109,6 @@
                 "type": "String"
             }
         }
-    },
-    "logInViaBrowser": "Log ind via browser",
-    "@logInViaBrowser": {
-        "description": "Secondary login that opens or uses the system browser."
     },
     "needAccountPrompt": "Har du brug for en konto? ",
     "@needAccountPrompt": {
@@ -248,26 +236,9 @@
     "@accountAdd": {
         "description": "Button to add a new account."
     },
-    "accountRemove": "Fjern",
-    "@accountRemove": {
-        "description": "Context menu option to remove a stored account."
-    },
-    "accountRemoveTitle": "Fjern {username}",
-    "@accountRemoveTitle": {
-        "description": "Title for the remove account confirmation modal.",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "accountRemoveDescription": "Dette fjerner den gemte session for denne konto.",
     "@accountRemoveDescription": {
         "description": "Description for the remove account confirmation modal."
-    },
-    "accountRemoveOnlyDescription": "Dette fjerner den eneste gemte konto på denne enhed.",
-    "@accountRemoveOnlyDescription": {
-        "description": "Description when removing the last stored account."
     },
     "accountExpired": "Udløbet",
     "@accountExpired": {
@@ -652,7 +623,7 @@
     },
     "recoveryKitBackupCodesFailed": "Kunne ikke indlæse dine backupkoder.",
     "@recoveryKitBackupCodesFailed": {
-        "description": "Toast shown when the two-factor backup codes for the recovery kit cannot be loaded."
+        "description": "Toast shown when the two-factor backup codes cannot be loaded, in the recovery kit sheet or from View codes in security settings."
     },
     "recoveryKitIncludeBackupCodes": "Medtag mine backupkoder til totrinsbekræftelse i det gemte billede",
     "@recoveryKitIncludeBackupCodes": {
@@ -799,10 +770,6 @@
     "@registerYear": {
         "description": "Placeholder for the year select."
     },
-    "registerConsent": "Jeg accepterer servicevilkårene og privatlivspolitikken",
-    "@registerConsent": {
-        "description": "Consent checkbox label for registration (plain text fallback)."
-    },
     "registerConsentPrefix": "Jeg accepterer ",
     "@registerConsentPrefix": {
         "description": "Text before the Terms of Service link in the consent checkbox."
@@ -846,10 +813,6 @@
     "passkeyTimeout": "Passkey-godkendelse udløb. Prøv igen.",
     "@passkeyTimeout": {
         "description": "Error when passkey authentication times out."
-    },
-    "passkeyNotAvailable": "Passkeys er ikke tilgængelige for denne app. Log ind med e-mail og adgangskode i stedet.",
-    "@passkeyNotAvailable": {
-        "description": "Error for unknown passkey provider errors (e.g. TYPE_UNKNOWN)."
     },
     "passkeyFailed": "Adgangskoden-godkendelse mislykkedes. Prøv igen.",
     "@passkeyFailed": {
@@ -958,26 +921,6 @@
     "@inviteAcceptSomeone": {
         "description": "Fallback inviter name when the inviter is unknown."
     },
-    "inviteAcceptEmojiPack": "Emoji-pakke",
-    "@inviteAcceptEmojiPack": {
-        "description": "Label for an emoji pack invite."
-    },
-    "inviteAcceptStickerPack": "Klistermærkepakke",
-    "@inviteAcceptStickerPack": {
-        "description": "Label for a sticker pack invite."
-    },
-    "inviteAcceptInstallEmojiPack": "Installer emoji-pakke",
-    "@inviteAcceptInstallEmojiPack": {
-        "description": "Primary action to install an emoji pack from an invite."
-    },
-    "inviteAcceptInstallStickerPack": "Installer klistermærkepakke",
-    "@inviteAcceptInstallStickerPack": {
-        "description": "Primary action to install a sticker pack from an invite."
-    },
-    "inviteAcceptPackInstallNote": "Ved at acceptere denne invitation installeres pakken automatisk.",
-    "@inviteAcceptPackInstallNote": {
-        "description": "Note shown on expression pack invites before accepting."
-    },
     "mentionUnknownChannel": "unknown-channel",
     "@mentionUnknownChannel": {
         "description": "Fallback name shown in a channel mention pill when the channel is not found."
@@ -1002,13 +945,13 @@
     "@embedThemeTitle": {
         "description": "Title on the theme embed card in chat."
     },
-    "embedThemeSubtitle": "Denne klient understøtter ikke brugerdefinerede temaer.",
-    "@embedThemeSubtitle": {
-        "description": "Subtitle on the theme embed card."
+    "embedThemeWebOnly": "Du kan kun importere temaer på web eller computer.",
+    "@embedThemeWebOnly": {
+        "description": "Subtitle on a shared theme link embed in chat. Themes cannot be imported in this client."
     },
-    "embedThemeUnavailableButton": "Temaer utilgængelige",
-    "@embedThemeUnavailableButton": {
-        "description": "Button on the theme embed card - themes aren't supported in the client."
+    "embedThemeImport": "Importer tema",
+    "@embedThemeImport": {
+        "description": "Disabled button on a shared theme link embed. Themes can only be imported on web or desktop."
     },
     "privacySettings": "Privatlivsindstillinger",
     "@privacySettings": {
@@ -1236,9 +1179,18 @@
     "@dmLeaveGroup": {
         "description": "DM context menu action to leave a group DM."
     },
-    "dmNoCommunitiesAvailable": "Ingen fællesskaber tilgængelige",
-    "@dmNoCommunitiesAvailable": {
-        "description": "Shown when no communities are available to invite to."
+    "dmInviteSentFor": "Invitation til {communityName} sendt",
+    "@dmInviteSentFor": {
+        "description": "Toast confirming a community invite was sent to a DM recipient.",
+        "placeholders": {
+            "communityName": {
+                "type": "String"
+            }
+        }
+    },
+    "dmInviteSendFailed": "Kunne ikke sende invitation. Prøv igen.",
+    "@dmInviteSendFailed": {
+        "description": "Toast shown when sending a community invite from the DM menu fails."
     },
     "dmGroupMemberCount": "{count} medlemmer",
     "@dmGroupMemberCount": {
@@ -1683,10 +1635,6 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Få Reverb",
-    "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Reverb upsell banner."
-    },
     "emojiPlutoniumUpsellDismiss": "Vis mig ikke dette igen",
     "@emojiPlutoniumUpsellDismiss": {
         "description": "Dismiss link on the Reverb upsell banner."
@@ -1853,10 +1801,6 @@
     "@changeYourFluxerTag": {
         "description": "Title for the username change bottom sheet."
     },
-    "fluxerTagInputLabel": "Brugernavn",
-    "@fluxerTagInputLabel": {
-        "description": "Label above the username and discriminator input fields."
-    },
     "fluxerTagDescriptionBase": "Brugernavne kan kun indeholde bogstaver (a-z, A-Z), tal (0-9) og understregninger. Brugernavne er ufølsomme over for store og små bogstaver.",
     "@fluxerTagDescriptionBase": {
         "description": "Base description text on the username change sheet."
@@ -1884,10 +1828,6 @@
     "validationAllowedChars": "Kun bogstaver (a-z, A-Z), tal (0-9) og understregninger (_)",
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
-    },
-    "discriminatorPremiumTooltip": "Få Reverb til at tilpasse din tag eller behold den, når du ændrer dit brugernavn",
-    "@discriminatorPremiumTooltip": {
-        "description": "Tooltip on disabled discriminator field for non-premium users."
     },
     "fluxerTagAlreadyTaken": "Brugernavn er allerede taget",
     "@fluxerTagAlreadyTaken": {
@@ -1942,19 +1882,6 @@
     "premiumUpsellCustomizeTag": "Tilpas din 4-cifrede tag eller behold den, når du ændrer dit brugernavn",
     "@premiumUpsellCustomizeTag": {
         "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
-    },
-    "premiumTrialExpiresOn": "Din Reverb-prøveperiode udløber den {date}. Opgrader for at beholde din brugerdefinerede tag og optjene et badge på din profil.",
-    "@premiumTrialExpiresOn": {
-        "description": "Trial upsell with expiry date.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumTrialActive": "Du er på en Reverb-prøveperiode. Opgrader for at beholde din brugerdefinerede tag og optjene et badge på din profil.",
-    "@premiumTrialActive": {
-        "description": "Trial upsell without specific expiry date."
     },
     "fluxerTagUpdated": "Brugernavn opdateret",
     "@fluxerTagUpdated": {
@@ -2128,32 +2055,6 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "Du er på en Reverb-prøveperiode — dit abonnement starter den {date}",
-    "@premiumTrialSubscriptionStarts": {
-        "description": "Trial banner title when user has an active subscription pending after trial.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumTrialSubscriptionStartsDescription": "Dit abonnement starter automatisk, når din prøveperiode slutter. Ingen handling er nødvendig.",
-    "@premiumTrialSubscriptionStartsDescription": {
-        "description": "Trial banner description when user has an active subscription pending after trial."
-    },
-    "premiumTrialExpiresOnProfile": "Du er på en Reverb-prøveperiode, der udløber den {date}",
-    "@premiumTrialExpiresOnProfile": {
-        "description": "Trial banner title with expiry date.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumTrialActiveProfile": "Du er på en Reverb-prøveperiode",
-    "@premiumTrialActiveProfile": {
-        "description": "Trial banner title without specific expiry date."
-    },
     "avatarDescriptionNonPremium": "JPEG, PNG, WebP. Maks. 10MB. Anbefalet: 512×512px. Animerede avatarer (GIF) kræver Reverb.",
     "@avatarDescriptionNonPremium": {
         "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
@@ -2238,22 +2139,6 @@
     "profileSavedToast": "Profil opdateret",
     "@profileSavedToast": {
         "description": "Toast message shown after successfully saving profile changes."
-    },
-    "profileEditButton": "Rediger profil",
-    "@profileEditButton": {
-        "description": "Button label to open profile editing from the profile content card."
-    },
-    "profileNoteLabel": "Note",
-    "@profileNoteLabel": {
-        "description": "Label for the personal note section on a user profile."
-    },
-    "profileNoteVisibility": "(kun synlig for dig)",
-    "@profileNoteVisibility": {
-        "description": "Hint that the note is private and only visible to the current user."
-    },
-    "profileNoteEmpty": "Ingen note endnu.",
-    "@profileNoteEmpty": {
-        "description": "Placeholder shown when no personal note has been set for a user."
     },
     "sudoTitle": "Bekræft din identitet",
     "@sudoTitle": {
@@ -2626,42 +2511,6 @@
     "@securityPasskeyNameHint": {
         "description": "Hint for passkey name input."
     },
-    "securityPhoneSectionTitle": "Telefonnummer",
-    "@securityPhoneSectionTitle": {
-        "description": "Title for phone number section."
-    },
-    "securityPhoneSectionDescription": "Administrer dit telefonnummer.",
-    "@securityPhoneSectionDescription": {
-        "description": "Description for phone number section."
-    },
-    "securityPhoneLabel": "Telefonnummer",
-    "@securityPhoneLabel": {
-        "description": "Label for phone number row."
-    },
-    "securityPhoneNone": "Intet telefonnummer tilføjet.",
-    "@securityPhoneNone": {
-        "description": "Shown when no phone number is set."
-    },
-    "securityPhoneAdd": "Tilføj telefon",
-    "@securityPhoneAdd": {
-        "description": "Button to add phone number."
-    },
-    "securityPhoneRemove": "Fjern",
-    "@securityPhoneRemove": {
-        "description": "Button to remove phone number."
-    },
-    "securityPhoneRemoveTitle": "Fjern telefonnummer",
-    "@securityPhoneRemoveTitle": {
-        "description": "Title for phone remove confirmation."
-    },
-    "securityPhoneRemoveDescription": "Er du sikker på, at du vil fjerne dit telefonnummer?",
-    "@securityPhoneRemoveDescription": {
-        "description": "Description for phone remove confirmation."
-    },
-    "securityPhoneRemoved": "Telefonnummer fjernet",
-    "@securityPhoneRemoved": {
-        "description": "Toast after phone removed."
-    },
     "securityClaimTitle": "Sikkerhedsfunktioner",
     "@securityClaimTitle": {
         "description": "Title when user needs to claim account for security."
@@ -2670,7 +2519,7 @@
     "@securityClaimDescription": {
         "description": "Description prompting user to claim account."
     },
-    "securityVerifyEmailRequired": "Du skal bekræfte din e-mailadresse, før du kan opsætte totrinsgodkendelse, adgangsnøgler eller SMS-bekræftelse.",
+    "securityVerifyEmailRequired": "Du skal bekræfte din e-mailadresse, før du kan opsætte totrinsgodkendelse eller adgangsnøgler.",
     "@securityVerifyEmailRequired": {
         "description": "Warning when email is not verified."
     },
@@ -2714,10 +2563,6 @@
     "@backupCodesWarning": {
         "description": "Warning about backup codes."
     },
-    "backupCodesDownload": "Download",
-    "@backupCodesDownload": {
-        "description": "Button to download backup codes."
-    },
     "backupCodesCopy": "Kopiér",
     "@backupCodesCopy": {
         "description": "Button to copy backup codes."
@@ -2733,46 +2578,6 @@
     "backupCodesDone": "Færdig",
     "@backupCodesDone": {
         "description": "Button to close backup codes sheet."
-    },
-    "backupCodesViewTitle": "Vis sikkerhedskopieringskoder",
-    "@backupCodesViewTitle": {
-        "description": "Title for viewing existing backup codes."
-    },
-    "backupCodesViewDescription": "Verifikation kan være påkrævet, før du kan se dine sikkerhedskopieringskoder.",
-    "@backupCodesViewDescription": {
-        "description": "Description for view backup codes."
-    },
-    "phoneAddTitle": "Tilføj telefonnummer",
-    "@phoneAddTitle": {
-        "description": "Title for phone add sheet."
-    },
-    "phoneAddLabel": "Telefonnummer",
-    "@phoneAddLabel": {
-        "description": "Label for phone input."
-    },
-    "phoneAddHint": "Indtast dit telefonnummer",
-    "@phoneAddHint": {
-        "description": "Hint for phone input."
-    },
-    "phoneAddFooter": "Vi sender en SMS-kode, når den er tilgængelig. Dit nummer er ikke knyttet til din konto. Vi gemmer kun en krypteret markør, uden bruger-id, for at tillade højst 2 bekræftelser inden for ca. 30 dage.",
-    "@phoneAddFooter": {
-        "description": "Footer text for phone input."
-    },
-    "phoneAddSendCode": "Send kode",
-    "@phoneAddSendCode": {
-        "description": "Button to send phone verification code."
-    },
-    "phoneVerifyTitle": "Bekræft telefonnummer",
-    "@phoneVerifyTitle": {
-        "description": "Title for phone verify step."
-    },
-    "phoneVerifyDescription": "Indtast bekræftelseskoden, der blev sendt til dit telefonnummer.",
-    "@phoneVerifyDescription": {
-        "description": "Description for phone verify step."
-    },
-    "phoneAddSuccess": "Telefonnummer bekræftet",
-    "@phoneAddSuccess": {
-        "description": "Toast after phone added."
     },
     "dangerZoneSectionTitle": "Farezone",
     "@dangerZoneSectionTitle": {
@@ -3024,10 +2829,6 @@
     "@authorizedAppsScopeAdmin": {
         "description": "OAuth2 scope description: admin."
     },
-    "privacyPendingDeletionTitle": "Afventer sletning",
-    "@privacyPendingDeletionTitle": {
-        "description": "Title of the warning alert shown when a bulk message deletion is pending."
-    },
     "blockedUsersTitle": "Blokerede brugere",
     "@blockedUsersTitle": {
         "description": "Header title of the Blocked Users settings page."
@@ -3264,10 +3065,6 @@
     "@userProfileNoteDelete": {
         "description": "Delete button in the note editor sheet."
     },
-    "userProfileNoteEmpty": "Klik for at tilføje en note",
-    "@userProfileNoteEmpty": {
-        "description": "Hint text when no note has been written yet."
-    },
     "userProfileMemberSince": "Medlem siden",
     "@userProfileMemberSince": {
         "description": "Header of the member-since section in the bio card."
@@ -3379,13 +3176,13 @@
     "@userProfileTransferOwnership": {
         "description": "Three-dot menu item to transfer community ownership to the member."
     },
-    "userProfileReportUser": "Anmeld bruger",
-    "@userProfileReportUser": {
-        "description": "Three-dot menu item to report the user."
-    },
     "userProfileReportMessage": "Anmeld besked",
     "@userProfileReportMessage": {
         "description": "Three-dot menu item to report the message that opened this profile."
+    },
+    "userProfileReportUserProfile": "Anmeld profil",
+    "@userProfileReportUserProfile": {
+        "description": "Three-dot menu item on the full profile to report this user's profile (avatar, banner, name, bio and other profile parts). Message behavior is reported from the message instead."
     },
     "userProfileKickConfirmTitle": "Spark {username} ud?",
     "@userProfileKickConfirmTitle": {
@@ -3612,18 +3409,6 @@
     "durationCustom": "Brugerdefineret...",
     "@durationCustom": {
         "description": "Duration option label for a user-specified custom duration."
-    },
-    "iarReportUserTitle": "Anmeld bruger",
-    "@iarReportUserTitle": {
-        "description": "Title of the simple user-report sheet."
-    },
-    "iarReasonInappropriateProfile": "Upassende profil",
-    "@iarReasonInappropriateProfile": {
-        "description": "User-report reason: the user's profile contains inappropriate content."
-    },
-    "iarReasonInappropriateProfileDescription": "Denne brugers profil indeholder upassende indhold",
-    "@iarReasonInappropriateProfileDescription": {
-        "description": "Description for the inappropriate-profile user-report reason."
     },
     "typingIndicatorOne": "{name} skriver...",
     "@typingIndicatorOne": {
@@ -4050,17 +3835,9 @@
     "@channelComposerBarrierNotMemberLongEnough": {
         "description": "Composer barrier when the user's guild membership is too recent."
     },
-    "channelComposerBarrierNoPhoneNumber": "Du skal bekræfte et telefonnummer for at sende beskeder i dette fællesskab.",
-    "@channelComposerBarrierNoPhoneNumber": {
-        "description": "Composer barrier when the user must verify a phone number before messaging."
-    },
     "channelComposerBarrierVerifyEmail": "Bekræft e-mail",
     "@channelComposerBarrierVerifyEmail": {
         "description": "Action button on the composer barrier for unverified email."
-    },
-    "channelComposerBarrierVerifyPhone": "Bekræft telefon",
-    "@channelComposerBarrierVerifyPhone": {
-        "description": "Action button on the composer barrier for missing phone verification."
     },
     "chatAttachmentTooMany": "For mange vedhæftninger (max {max})",
     "@chatAttachmentTooMany": {
@@ -4087,10 +3864,6 @@
     "@chatAttachmentDropToSend": {
         "description": "Overlay hint when dragging files over chat with Shift held."
     },
-    "chatAttachmentSendVoiceMessage": "Send stemmemeddelelse",
-    "@chatAttachmentSendVoiceMessage": {
-        "description": "Menu item to open the voice message recorder."
-    },
     "voiceMessageTitle": "Stemmemeddelelse",
     "@voiceMessageTitle": {
         "description": "Title for voice message recording UI."
@@ -4111,10 +3884,6 @@
     "@voiceMessageMicPermissionDenied": {
         "description": "Shown when microphone permission is denied for voice messages."
     },
-    "voiceMessageRecordingNotSupported": "Stemmeoptagelse understøttes ikke på denne enhed.",
-    "@voiceMessageRecordingNotSupported": {
-        "description": "Shown when the device cannot record voice messages."
-    },
     "voiceMessageMicInUse": "Forlad taleopkaldet for at optage en stemmemeddelelse.",
     "@voiceMessageMicInUse": {
         "description": "Shown when the microphone is already used by an active voice call."
@@ -4127,26 +3896,6 @@
     "@voiceMessageSendFailed": {
         "description": "Shown when sending a voice message fails."
     },
-    "voiceMessageRecordingHint": "Tal nu. Tryk på Stop, når du er færdig — du kan trimme bagefter.",
-    "@voiceMessageRecordingHint": {
-        "description": "Help text while recording a voice message on desktop."
-    },
-    "voiceMessageReviewHint": "Træk i håndtagene for at trimme, og tryk derefter på Send.",
-    "@voiceMessageReviewHint": {
-        "description": "Help text while reviewing a voice message before send."
-    },
-    "voiceMessageStop": "Stop",
-    "@voiceMessageStop": {
-        "description": "Stop recording button in voice message composer."
-    },
-    "voiceMessageStartRecording": "Start optagelse",
-    "@voiceMessageStartRecording": {
-        "description": "Button to retry voice recording after permission error."
-    },
-    "voiceMessageRerecord": "Re-record",
-    "@voiceMessageRerecord": {
-        "description": "Button to discard review and record again."
-    },
     "voiceMessagePlay": "Afspil",
     "@voiceMessagePlay": {
         "description": "Play voice message preview."
@@ -4154,16 +3903,6 @@
     "voiceMessagePause": "Pause",
     "@voiceMessagePause": {
         "description": "Pause voice message preview."
-    },
-    "voiceMessageSelectionTooShort": "Udvalg skal være mindst {seconds}s.",
-    "@voiceMessageSelectionTooShort": {
-        "description": "Error when trimmed voice message is too short.",
-        "placeholders": {
-            "seconds": {
-                "type": "num",
-                "format": "compact"
-            }
-        }
     },
     "chatAttachmentEditTitle": "Rediger vedhæftning",
     "@chatAttachmentEditTitle": {
@@ -4208,10 +3947,6 @@
     "chatAttachmentSourceBrowse": "Gennemse filer",
     "@chatAttachmentSourceBrowse": {
         "description": "Option to pick arbitrary files from storage."
-    },
-    "chatAttachmentPasteTooltip": "Indsæt fil fra udklipsholder",
-    "@chatAttachmentPasteTooltip": {
-        "description": "Tooltip for pasting an image attachment from the clipboard."
     },
     "chatAttachmentSpoiler": "Spoiler",
     "@chatAttachmentSpoiler": {
@@ -4309,14 +4044,6 @@
     "@matureContentOpenLinkButton": {
         "description": "Primary action on mature link channel gates."
     },
-    "sensitiveContentSectionTitle": "Følsomt indhold",
-    "@sensitiveContentSectionTitle": {
-        "description": "Privacy settings section title for sensitive content filters."
-    },
-    "sensitiveContentSectionDescription": "Styr, hvordan modent eller følsomt medie filtreres i forskellige sammenhænge",
-    "@sensitiveContentSectionDescription": {
-        "description": "Privacy settings section description for sensitive content filters."
-    },
     "sensitiveContentFriendDmLabel": "Direkte beskeder fra venner",
     "@sensitiveContentFriendDmLabel": {
         "description": "Label for friend DM sensitive content filter."
@@ -4341,18 +4068,6 @@
     "@sensitiveContentFilterBlock": {
         "description": "Sensitive content filter option to block media."
     },
-    "sensitiveContentBlurUnscannedLabel": "Slør medie, indtil sikkerhedsscanning er færdig",
-    "@sensitiveContentBlurUnscannedLabel": {
-        "description": "Toggle label for blurring unscanned media."
-    },
-    "sensitiveContentBlurUnscannedDescriptionAdult": "Når det er aktiveret, sløres billeder og videoer, indtil indholdssikkerhedsscanningen er færdig.",
-    "@sensitiveContentBlurUnscannedDescriptionAdult": {
-        "description": "Description for blur-unscanned toggle for adult accounts."
-    },
-    "sensitiveContentBlurUnscannedDescriptionMinor": "Denne indstilling er altid slået til for din konto.",
-    "@sensitiveContentBlurUnscannedDescriptionMinor": {
-        "description": "Description for blur-unscanned toggle for minor accounts."
-    },
     "sensitiveContentResetButton": "Nulstil",
     "@sensitiveContentResetButton": {
         "description": "Reset button for sensitive content settings."
@@ -4369,10 +4084,6 @@
                 "type": "int"
             }
         }
-    },
-    "chatCancelUpload": "Annuller overførsel",
-    "@chatCancelUpload": {
-        "description": "Button or menu action label for canceling an in-flight message attachment upload."
     },
     "chatAttachmentExpiresOn": "Udløber den {date}",
     "@chatAttachmentExpiresOn": {
@@ -4642,10 +4353,6 @@
     "@connectionEnterDomain": {
         "description": "Inline error shown when the domain input is empty."
     },
-    "lookAndFeelTitle": "Udseende",
-    "@lookAndFeelTitle": {
-        "description": "Title of the Look & Feel (Appearance) settings page."
-    },
     "lookAndFeelThemeSectionTitle": "Tema",
     "@lookAndFeelThemeSectionTitle": {
         "description": "Section title for theme selection."
@@ -4685,14 +4392,6 @@
     "lookAndFeelThemeSyncFailed": "Kunne ikke synkronisere tema til din konto. Prøv igen.",
     "@lookAndFeelThemeSyncFailed": {
         "description": "Toast message shown when the server PATCH for a theme change or sync toggle fails."
-    },
-    "lookAndFeelChatFontScalingTitle": "Skalering af chat-skrifttype",
-    "@lookAndFeelChatFontScalingTitle": {
-        "description": "Section title for the chat font size slider."
-    },
-    "lookAndFeelChatFontScalingDescription": "Juster skriftstørrelsen i chatområdet.",
-    "@lookAndFeelChatFontScalingDescription": {
-        "description": "Section description for the chat font size slider."
     },
     "lookAndFeelInterfaceTitle": "Brugerflade",
     "@lookAndFeelInterfaceTitle": {
@@ -4761,42 +4460,6 @@
     "lookAndFeelHideKeyboardHintsDescription": "Når det er aktiveret, skjules genvejs-ikoner i værktøjstip-popups.",
     "@lookAndFeelHideKeyboardHintsDescription": {
         "description": "Toggle description for the hide-keyboard-hints switch."
-    },
-    "lookAndFeelNekoTitle": "Diverse",
-    "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Pickles appearance settings."
-    },
-    "lookAndFeelNekoDescription": "Diverse brugerfladeindstillinger.",
-    "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Pickles appearance settings."
-    },
-    "lookAndFeelShowNekoLabel": "Vis Pickles",
-    "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Pickles in the chat footer."
-    },
-    "lookAndFeelShowNekoDescription": "Når det er aktiveret, vises Pickles nær chat-inputfeltet.",
-    "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Pickles in chat."
-    },
-    "lookAndFeelVoiceChannelJoinTitle": "Adgang til stemmekanal",
-    "@lookAndFeelVoiceChannelJoinTitle": {
-        "description": "Subsection title under Interface — voice channel join behavior."
-    },
-    "lookAndFeelVoiceChannelJoinDescription": "Styr, hvordan du tilgår stemmekanaler i communities.",
-    "@lookAndFeelVoiceChannelJoinDescription": {
-        "description": "Subsection description for voice channel join behavior."
-    },
-    "lookAndFeelRequireDoubleClickJoinLabel": "Kræv dobbeltklik for at tilgå stemmekanaler",
-    "@lookAndFeelRequireDoubleClickJoinLabel": {
-        "description": "Toggle label — require double-click to join voice channels."
-    },
-    "lookAndFeelRequireDoubleClickJoinDescription": "Når det er aktiveret, skal du dobbeltklikke på stemmekanaler for at tilgå dem. Når det er deaktiveret (standard), tilgår et enkelt klik kanalen med det samme.",
-    "@lookAndFeelRequireDoubleClickJoinDescription": {
-        "description": "Toggle description for the require-double-click voice channel join switch."
-    },
-    "lookAndFeelChatFontPreviewSample": "Den hurtige brune ræv springer over den dovne hund.",
-    "@lookAndFeelChatFontPreviewSample": {
-        "description": "Sample text rendered at the selected chat font size to preview scaling."
     },
     "lookAndFeelGuildSidebarTitle": "Server-sidebar",
     "@lookAndFeelGuildSidebarTitle": {
@@ -5205,25 +4868,9 @@
     "@messagesMediaAutocompleteSavedMediaLabel": {
         "description": "Toggle label for saved media in expression autocomplete."
     },
-    "messagesMediaEditingSectionTitle": "Redigering af beskeder",
-    "@messagesMediaEditingSectionTitle": {
-        "description": "Section title for message editing settings."
-    },
-    "messagesMediaEditingSectionDescription": "Styr, hvad der sker med dit redigeringsudkast, når du annullerer.",
-    "@messagesMediaEditingSectionDescription": {
-        "description": "Section description for message editing settings."
-    },
-    "messagesMediaEditingPreserveDraftLabel": "Behold redigeringsudkast ved annullering",
-    "@messagesMediaEditingPreserveDraftLabel": {
-        "description": "Toggle label for preserving edit drafts on cancel."
-    },
     "accessibilityDmMessagePreviewGroupTitle": "DM-beskedforhåndsvisninger",
     "@accessibilityDmMessagePreviewGroupTitle": {
         "description": "Section title for DM message preview accessibility settings."
-    },
-    "accessibilityDmMessagePreviewGroupDescription": "Styr, hvornår beskedforhåndsvisninger vises i DM-listen.",
-    "@accessibilityDmMessagePreviewGroupDescription": {
-        "description": "Section description for DM message preview accessibility settings."
     },
     "accessibilityDmMessagePreviewModeLabel": "DM-beskedforhåndsvisningstilstand",
     "@accessibilityDmMessagePreviewModeLabel": {
@@ -5381,10 +5028,6 @@
     "@voiceConnectionConfirmDoNothing": {
         "description": "Dismiss the dialog without joining voice."
     },
-    "voiceChannelEmptyDescription": "Dette er en stemmekanal. Opret forbindelse for at begynde at tale!",
-    "@voiceChannelEmptyDescription": {
-        "description": "Empty state body when viewing a guild voice channel while not in the call."
-    },
     "voiceChannelJoin": "Deltag i talechat",
     "@voiceChannelJoin": {
         "description": "Primary action to connect to a voice channel from the empty state."
@@ -5424,14 +5067,6 @@
     "voiceChannelStatusConnecting": "Forbinder...",
     "@voiceChannelStatusConnecting": {
         "description": "Status in the in-page voice view while LiveKit is connecting."
-    },
-    "voiceChannelStatusConnected": "Forbundet",
-    "@voiceChannelStatusConnected": {
-        "description": "Status in the in-page voice view when the voice session is active."
-    },
-    "voiceChannelStatusError": "Fejl",
-    "@voiceChannelStatusError": {
-        "description": "Short label in the channel header when the voice session reports an error."
     },
     "voiceParticipantTooltipMobileDevice": "Mobil enhed",
     "@voiceParticipantTooltipMobileDevice": {
@@ -5506,10 +5141,6 @@
     "voiceScreenShareNotificationText": "Deler din skærm.",
     "@voiceScreenShareNotificationText": {
         "description": "Body text for the Android foreground notification shown while screen sharing."
-    },
-    "voiceControlMore": "Mere",
-    "@voiceControlMore": {
-        "description": "Tooltip: more voice actions in the voice call control bar."
     },
     "voiceControlDisconnect": "Afbryd",
     "@voiceControlDisconnect": {
@@ -5761,6 +5392,10 @@
     "@chatSendFailureContentBlocked": {
         "description": "echowirebot system message when message content is blocked by safety systems."
     },
+    "chatSendFailureContentBlockedSelfHosted": "Din besked kunne ikke leveres, fordi den blev markeret af vores sikkerhedssystemer. Hvis du mener, at dette er en fejl, bedes du kontakte administratorerne af denne instans.",
+    "@chatSendFailureContentBlockedSelfHosted": {
+        "description": "Fluxerbot system message on a self-hosted instance when message content is blocked by safety systems. Names no support mailbox."
+    },
     "chatSendFailureNsfwEmojiSticker": "Din besked kunne ikke leveres, fordi den indeholder modne emoji eller klistermærker, der ikke er tilladt i denne kontekst.",
     "@chatSendFailureNsfwEmojiSticker": {
         "description": "echowirebot system message when mature emoji or stickers are blocked."
@@ -5785,6 +5420,10 @@
     "@chatMessageAddReaction": {
         "description": "Action label for opening reaction picker for a message."
     },
+    "doubleTapReactionHint": "Dobbelttryk på en besked for at",
+    "@doubleTapReactionHint": {
+        "description": "Hint under quick reactions explaining double-tap to react."
+    },
     "chatMessageEdit": "Rediger besked",
     "@chatMessageEdit": {
         "description": "Action label for editing a sent message."
@@ -5792,6 +5431,14 @@
     "chatMessageReply": "Svar",
     "@chatMessageReply": {
         "description": "Action label for replying to a message."
+    },
+    "notificationReplyPlaceholder": "Besked",
+    "@notificationReplyPlaceholder": {
+        "description": "Placeholder for the text field on a notification reply action."
+    },
+    "notificationReplyFailed": "Kunne ikke sende svar",
+    "@notificationReplyFailed": {
+        "description": "Body of the local notification shown when a notification reply fails to send."
     },
     "chatMessageForward": "Videresend",
     "@chatMessageForward": {
@@ -5942,420 +5589,155 @@
     "@chatMessageReport": {
         "description": "Action label that opens the report-message sheet so the user can flag the message to moderators."
     },
-    "iarReportMessageTitle": "Anmeld besked",
-    "@iarReportMessageTitle": {
-        "description": "Title shown at the top of the In-App Reporting (IAR) sheet when the user is reporting a specific message."
+    "reportFlowTitleMessage": "Anmeld besked",
+    "@reportFlowTitleMessage": {
+        "description": "Report flow: sheet title while the message report form loads or fails to load."
     },
-    "iarThisUserFallback": "denne bruger",
-    "@iarThisUserFallback": {
-        "description": "Lowercase phrase used mid-sentence in IAR copy when referring to the reported user without a name (e.g. inside the close-DM confirmation)."
+    "reportFlowTitleUserProfile": "Anmeld profil",
+    "@reportFlowTitleUserProfile": {
+        "description": "Report flow: sheet title while the user profile report form loads or fails to load."
     },
-    "iarModalDescription": "Anmeld en regelovertrædelse, eller find værktøjer til at administrere kontakt og præferencer.",
-    "@iarModalDescription": {
-        "description": "Screen-reader description for the IAR sheet announcing what the flow is for."
+    "reportFlowSummaryTitle": "Tjek din anmeldelse",
+    "@reportFlowSummaryTitle": {
+        "description": "Report flow: title of the last screen, where the reporter reviews the report before sending it."
     },
-    "iarPathStepAriaLabel": "Hvad har du brug for?",
-    "@iarPathStepAriaLabel": {
-        "description": "Accessible label for the primary-path radio group on the first step of the IAR sheet. Not shown visually; the radios are labelled inline."
+    "reportFlowSummarySubtitle": "Sørg for, at det ser rigtigt ud, før du sender det.",
+    "@reportFlowSummarySubtitle": {
+        "description": "Report flow: subtitle of the report summary screen."
     },
-    "iarCategoryStepTitle": "Hvilken slags regel blev brudt?",
-    "@iarCategoryStepTitle": {
-        "description": "Title shown on the category step of the IAR sheet (platform-report path)."
+    "reportFlowDisclaimer": "Anmeld kun det, du ærligt mener bryder reglerne. Misbrug af anmeldelser går imod vores {guidelines}.",
+    "@reportFlowDisclaimer": {
+        "description": "Report flow: disclaimer on the report summary screen. {guidelines} is a link whose text is reportFlowCommunityGuidelinesLink.",
+        "placeholders": {
+            "guidelines": {
+                "type": "String",
+                "example": "Community Guidelines"
+            }
+        }
     },
-    "iarReasonStepTitle": "Hvilken regel blev brudt?",
-    "@iarReasonStepTitle": {
-        "description": "Title shown on the reason step of the IAR sheet after the user has picked a rule category."
+    "reportFlowCommunityGuidelinesLink": "retningslinjer for fællesskabet",
+    "@reportFlowCommunityGuidelinesLink": {
+        "description": "Report flow: link text inside reportFlowDisclaimer. Opens the community guidelines page."
     },
-    "iarReasonSelectHint": "Vælg en årsag",
-    "@iarReasonSelectHint": {
-        "description": "Placeholder shown in the message-report reason dropdown before the user picks a rule."
+    "reportFlowDisclaimerNoLink": "Anmeld kun det, du ærligt mener bryder reglerne, og send helst ikke den samme anmeldelse to gange.",
+    "@reportFlowDisclaimerNoLink": {
+        "description": "Report flow: disclaimer on the report summary screen when the instance has no community guidelines page."
     },
-    "iarPickAnOptionToast": "Vælg en mulighed for at fortsætte.",
-    "@iarPickAnOptionToast": {
-        "description": "Toast shown when the user taps Continue on a step without selecting any radio option."
+    "reportFlowSelectedMessage": "Besked, du anmelder",
+    "@reportFlowSelectedMessage": {
+        "description": "Report flow: heading above the preview of the reported message on the report summary screen."
     },
-    "iarPickARuleToast": "Vælg den regel, der blev brudt.",
-    "@iarPickARuleToast": {
-        "description": "Toast shown when the user taps Send report without selecting a rule reason."
+    "reportFlowSelectedUser": "Profil, du anmelder",
+    "@reportFlowSelectedUser": {
+        "description": "Report flow: heading above the card of the reported user on the first screen and the report summary screen."
     },
-    "iarPathPlatform": "Anmeld en platformregelovertrædelse",
-    "@iarPathPlatform": {
-        "description": "Primary-path radio label: file a real DSA / platform-level report."
+    "reportFlowReportCategory": "Dine svar",
+    "@reportFlowReportCategory": {
+        "description": "Report flow: heading above the list of answers the reporter picked, on the report summary screen."
     },
-    "iarPathCommunity": "Anmeld til administratorerne af dette fællesskab",
-    "@iarPathCommunity": {
-        "description": "Primary-path radio label: surface this to community moderators rather than platform safety."
+    "reportFlowSubmit": "Send anmeldelse",
+    "@reportFlowSubmit": {
+        "description": "Report flow: button on the report summary screen that sends the report."
     },
-    "iarPathPreferenceMessage": "Jeg kan ikke lide dette indhold",
-    "@iarPathPreferenceMessage": {
-        "description": "Primary-path radio label: the user doesn't want platform action, they want self-service tools (block, leave, settings)."
+    "reportFlowBack": "Tilbage",
+    "@reportFlowBack": {
+        "description": "Report flow: button that returns to the previous screen of the report form."
     },
-    "iarCategoryTargetedHarmLabel": "Trusler, chikane eller skade",
-    "@iarCategoryTargetedHarmLabel": {
-        "description": "Rule-category label grouping harassment, hate, violence, terrorism, raids, and self-harm content."
+    "reportFlowNext": "Næste",
+    "@reportFlowNext": {
+        "description": "Report flow: button that goes to the next screen of the report form."
     },
-    "iarCategoryTargetedHarmDescription": "Mobning, trusler, had, vold, raids eller indhold, der fremmer selvskade.",
-    "@iarCategoryTargetedHarmDescription": {
-        "description": "One-line description for the targeted-harm rule category."
+    "reportFlowDone": "Færdig",
+    "@reportFlowDone": {
+        "description": "Report flow: button that closes the report form when it is finished."
     },
-    "iarCategorySafetyMinorsLabel": "Børnesikkerhed eller voksent indhold",
-    "@iarCategorySafetyMinorsLabel": {
-        "description": "Rule-category label grouping child-safety and mature-content reports."
+    "reportFlowThankYouTitle": "Anmeldelse sendt",
+    "@reportFlowThankYouTitle": {
+        "description": "Report flow: title of the screen shown after a report was sent."
     },
-    "iarCategorySafetyMinorsDescription": "Mindreårige i fare, voksent indhold på et forkert sted eller uønsket adfærd.",
-    "@iarCategorySafetyMinorsDescription": {
-        "description": "One-line description for the child-safety / mature-content rule category."
+    "reportFlowThankYouNoReportTitle": "Tak, fordi du gjorde os opmærksom på det",
+    "@reportFlowThankYouNoReportTitle": {
+        "description": "Report flow: title of the screen shown when the chosen answer does not send a report."
     },
-    "iarCategoryPrivacyIdentityLabel": "Privatliv eller udgivelse af sig som en anden",
-    "@iarCategoryPrivacyIdentityLabel": {
-        "description": "Rule-category label grouping privacy violations and impersonation."
-    },
-    "iarCategoryPrivacyIdentityDescription": "Doxxing, stalking, udgive sig for at være en anden eller en upassende profil.",
-    "@iarCategoryPrivacyIdentityDescription": {
-        "description": "One-line description for the privacy / impersonation rule category."
-    },
-    "iarCategoryDeceptionLabel": "Svindel, malware eller misinformation",
-    "@iarCategoryDeceptionLabel": {
-        "description": "Rule-category label grouping spam/scams, malware, and harmful misinformation."
-    },
-    "iarCategoryDeceptionDescription": "Phishing, bedrageri, ondsindede links eller falske påstande, der sandsynligvis vil forårsage skade i den virkelige verden.",
-    "@iarCategoryDeceptionDescription": {
-        "description": "One-line description for the scams / malware / misinformation rule category."
-    },
-    "iarCategoryIllegalOtherLabel": "Ulovlig aktivitet eller noget andet",
-    "@iarCategoryIllegalOtherLabel": {
-        "description": "Rule-category label grouping illegal activity and the catch-all Other reason."
-    },
-    "iarCategoryIllegalOtherDescription": "Ulovligt salg, kriminel facilitering eller en klar regelovertrædelse, der ikke passer ovenfor.",
-    "@iarCategoryIllegalOtherDescription": {
-        "description": "One-line description for the illegal / other rule category."
-    },
-    "iarReasonHarassmentLabel": "Chikane eller trusler",
-    "@iarReasonHarassmentLabel": {
-        "description": "Rule-reason label for harassment in the IAR message flow."
-    },
-    "iarReasonHarassmentMessageDescription": "Mobning, gentagen uønsket kontakt, stalking eller målrettet misbrug.",
-    "@iarReasonHarassmentMessageDescription": {
-        "description": "Rule-reason description for harassment in the IAR message flow."
-    },
-    "iarReasonHateLabel": "Hadytringer",
-    "@iarReasonHateLabel": {
-        "description": "Rule-reason label for hate speech in the IAR message flow."
-    },
-    "iarReasonHateMessageDescription": "Slagsmål, dehumaniserende sprog eller angreb på beskyttede grupper.",
-    "@iarReasonHateMessageDescription": {
-        "description": "Rule-reason description for hate speech in the IAR message flow."
-    },
-    "iarReasonViolenceLabel": "Vold eller voldelige trusler",
-    "@iarReasonViolenceLabel": {
-        "description": "Rule-reason label for violence in the IAR message flow."
-    },
-    "iarReasonViolenceDescription": "Troværdige trusler, grafisk vold eller glorificering af vold.",
-    "@iarReasonViolenceDescription": {
-        "description": "Rule-reason description for violence in the IAR message flow."
-    },
-    "iarReasonMatureContentLabel": "Voksent indhold eller chikane",
-    "@iarReasonMatureContentLabel": {
-        "description": "Rule-reason label for mature content / unwanted conduct in the IAR message flow."
-    },
-    "iarReasonMatureContentMessageDescription": "Uønsket adfærd eller voksent indhold på et forkert sted.",
-    "@iarReasonMatureContentMessageDescription": {
-        "description": "Rule-reason description for mature content in the IAR message flow."
-    },
-    "iarReasonChildSafetyLabel": "Børnesikkerhed eller udnyttelse af mindreårige",
-    "@iarReasonChildSafetyLabel": {
-        "description": "Rule-reason label for child-safety reports in the IAR message flow. Also used as the {childSafetyReason} placeholder in iarUseChildSafetyInstead."
-    },
-    "iarReasonChildSafetyMessageDescription": "Grooming eller indhold, der udnytter børn.",
-    "@iarReasonChildSafetyMessageDescription": {
-        "description": "Rule-reason description for child-safety reports in the IAR message flow."
-    },
-    "iarReasonHarmfulMisinfoLabel": "Skadelig misinformation",
-    "@iarReasonHarmfulMisinfoLabel": {
-        "description": "Rule-reason label for harmful misinformation in the IAR message flow."
-    },
-    "iarReasonHarmfulMisinfoDescription": "Falske påstande, der sandsynligvis vil forårsage skade i den virkelige verden.",
-    "@iarReasonHarmfulMisinfoDescription": {
-        "description": "Rule-reason description for harmful misinformation."
-    },
-    "iarReasonSpamLabel": "Spam, svindel eller phishing",
-    "@iarReasonSpamLabel": {
-        "description": "Rule-reason label for spam/scams/phishing in the IAR message flow."
-    },
-    "iarReasonSpamMessageDescription": "Masse-spam, bedrageri, falske giveaways eller misbrug af konto.",
-    "@iarReasonSpamMessageDescription": {
-        "description": "Rule-reason description for spam/scams in the IAR message flow."
-    },
-    "iarReasonMalwareLabel": "Malware eller farlige links",
-    "@iarReasonMalwareLabel": {
-        "description": "Rule-reason label for malware / dangerous links in the IAR message flow."
-    },
-    "iarReasonMalwareDescription": "Malware, tyveri af legitimationsoplysninger eller skadelige filer.",
-    "@iarReasonMalwareDescription": {
-        "description": "Rule-reason description for malware."
-    },
-    "iarReasonPrivacyLabel": "Privatlivskrænkelse",
-    "@iarReasonPrivacyLabel": {
-        "description": "Rule-reason label for privacy violations in the IAR message flow."
-    },
-    "iarReasonPrivacyDescription": "Doxxing, afslørede private oplysninger eller stalking.",
-    "@iarReasonPrivacyDescription": {
-        "description": "Rule-reason description for privacy violations."
-    },
-    "iarReasonImpersonationLabel": "Udgivelse af sig som en anden eller vildledende medier",
-    "@iarReasonImpersonationLabel": {
-        "description": "Rule-reason label for impersonation in the IAR message flow."
-    },
-    "iarReasonImpersonationMessageDescription": "Udgive sig for at være en anden, herunder vildledende AI-genereret indhold.",
-    "@iarReasonImpersonationMessageDescription": {
-        "description": "Rule-reason description for impersonation in the IAR message flow."
-    },
-    "iarReasonIllegalLabel": "Ulovlig aktivitet",
-    "@iarReasonIllegalLabel": {
-        "description": "Rule-reason label for illegal activity in the IAR message flow."
-    },
-    "iarReasonIllegalDescription": "Ulovligt salg, kriminel facilitering eller ulovlig aktivitet.",
-    "@iarReasonIllegalDescription": {
-        "description": "Rule-reason description for illegal activity."
-    },
-    "iarReasonSelfHarmLabel": "Selvskade eller selvmord",
-    "@iarReasonSelfHarmLabel": {
-        "description": "Rule-reason label for self-harm content in the IAR message flow."
-    },
-    "iarReasonSelfHarmMessageDescription": "Fremme eller instruktioner, der opfordrer til selvskade eller spiseforstyrrelser.",
-    "@iarReasonSelfHarmMessageDescription": {
-        "description": "Rule-reason description for self-harm content in the IAR message flow."
-    },
-    "iarReasonOtherLabel": "En anden klar regelovertrædelse",
-    "@iarReasonOtherLabel": {
-        "description": "Rule-reason label for the catch-all option in the IAR message flow."
-    },
-    "iarReasonOtherDescription": "Brug kun, hvis det tydeligt bryder {productName} regler og ikke passer ovenfor.",
-    "@iarReasonOtherDescription": {
-        "description": "Rule-reason description for the catch-all option.",
+    "reportFlowThankYouBody": "Sikkerhedsteamet hos {productName} vil gennemgå din anmeldelse. Vi afslører ikke, at den kom fra dig.",
+    "@reportFlowThankYouBody": {
+        "description": "Report flow: body of the thank-you screen after a report was sent. {productName} is the name of the app.",
         "placeholders": {
             "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "iarUseChildSafetyInstead": "Hvis en mindreårig er involveret, skal du bruge \"{childSafetyReason}\" i stedet.",
-    "@iarUseChildSafetyInstead": {
-        "description": "Inline routing nudge shown under reasons (e.g. mature content) that overlap with child safety.",
-        "placeholders": {
-            "childSafetyReason": {
                 "type": "String",
-                "example": "Child safety or exploitation of minors"
+                "example": "Fluxer"
             }
         }
     },
-    "iarSafetyNoteChildSafety": "Hvis dette involverer CSAM eller udnyttelse af en mindreårig, skal du sende det nu og ikke dele materialet igen.",
-    "@iarSafetyNoteChildSafety": {
-        "description": "Inline safety note shown for child-safety reports on the reason step."
+    "reportFlowThankYouNoReportBody": "Tak, fordi du fortalte os det. Dette overtræder ikke i sig selv vores regler, så vi har ikke sendt en anmeldelse. Hvis det er rettet mod nogen eller indeholder nedsættende udtryk, så anmeld det igen, og vælg »Krænkende eller skadeligt indhold«.",
+    "@reportFlowThankYouNoReportBody": {
+        "description": "Report flow: body of the thank-you screen when the chosen answer does not send a report. \"Abusive or harmful content\" is the name of an option on the first screen of the message report form."
     },
-    "iarSafetyNoteSelfHarm": "Hvis nogen kan være i umiddelbar fare, skal du kontakte de lokale nødtjenester, hvis du kan gøre det sikkert.",
-    "@iarSafetyNoteSelfHarm": {
-        "description": "Inline safety note shown for self-harm reports on the reason step."
+    "reportFlowThankYouNoReportBodyShort": "Tak, fordi du fortalte os det. Dette overtræder ikke i sig selv vores regler, så vi har ikke sendt en anmeldelse.",
+    "@reportFlowThankYouNoReportBodyShort": {
+        "description": "Report flow: body of the thank-you screen when the chosen answer does not send a report and the reporter is already past the first screen of the form."
     },
-    "iarSafetyNoteViolence": "Hvis dette er en troværdig umiddelbar trussel, skal du også kontakte de lokale nødtjenester.",
-    "@iarSafetyNoteViolence": {
-        "description": "Inline safety note shown for violence reports on the reason step."
+    "reportFlowMoreYouCanDo": "Dine muligheder",
+    "@reportFlowMoreYouCanDo": {
+        "description": "Report flow: heading above the extra actions (such as blocking the user) on the thank-you screen."
     },
-    "iarSafetyNoteTerrorism": "Hvis dette er en umiddelbar terrorhandling, skal du også kontakte de lokale nødtjenester.",
-    "@iarSafetyNoteTerrorism": {
-        "description": "Inline safety note shown for terrorism reports on the reason step."
-    },
-    "iarActionBlockUserTitle": "Bloker denne bruger",
-    "@iarActionBlockUserTitle": {
-        "description": "Action card title for blocking the reported user."
-    },
-    "iarActionBlockUserDescription": "Stop beskeder og venneanmodninger.",
-    "@iarActionBlockUserDescription": {
-        "description": "Action card description for blocking the reported user."
-    },
-    "iarActionBlockUserButton": "Bloker",
-    "@iarActionBlockUserButton": {
-        "description": "Trailing button label on the block-user action card."
-    },
-    "iarActionCopyMessageLinkTitle": "Kopiér beskedlink",
-    "@iarActionCopyMessageLinkTitle": {
-        "description": "Action card title for copying a link to the reported message so the user can share it with community moderators."
-    },
-    "iarActionCopyMessageLinkDescription": "Del med community-moderatorer.",
-    "@iarActionCopyMessageLinkDescription": {
-        "description": "Action card description for copying a message link."
-    },
-    "iarActionCopyMessageLinkButton": "Kopiér",
-    "@iarActionCopyMessageLinkButton": {
-        "description": "Trailing button label on the copy-message-link action card."
-    },
-    "iarActionCloseDmTitle": "Luk denne DM",
-    "@iarActionCloseDmTitle": {
-        "description": "Action card title for closing the DM with the reported user."
-    },
-    "iarActionCloseDmDescription": "Blokerer ikke. Du kan genåbne senere.",
-    "@iarActionCloseDmDescription": {
-        "description": "Action card description for closing the DM."
-    },
-    "iarActionCloseDmButton": "Luk DM",
-    "@iarActionCloseDmButton": {
-        "description": "Trailing button label on the close-DM action card."
-    },
-    "iarActionLeaveCommunityTitle": "Forlad fællesskabet",
-    "@iarActionLeaveCommunityTitle": {
-        "description": "Action card title for leaving the guild the reported message was sent in."
-    },
-    "iarActionLeaveCommunityDescription": "Stop med at se dets indhold og medlemmer.",
-    "@iarActionLeaveCommunityDescription": {
-        "description": "Action card description for leaving the community."
-    },
-    "iarActionLeaveCommunityButton": "Forlad",
-    "@iarActionLeaveCommunityButton": {
-        "description": "Trailing button label on the leave-community action card."
-    },
-    "iarActionDmSettingsTitle": "DM & venneanmodningsindstillinger",
-    "@iarActionDmSettingsTitle": {
-        "description": "Action card title for opening the DM / friend-request privacy settings."
-    },
-    "iarActionDmSettingsDescription": "Skift hvem der kan kontakte dig.",
-    "@iarActionDmSettingsDescription": {
-        "description": "Action card description for DM / friend-request privacy settings."
-    },
-    "iarActionCallSettingsTitle": "Opkald & gruppechatindstillinger",
-    "@iarActionCallSettingsTitle": {
-        "description": "Action card title for opening the call / group-chat privacy settings."
-    },
-    "iarActionCallSettingsDescription": "Skift hvem der kan ringe til eller tilføje dig.",
-    "@iarActionCallSettingsDescription": {
-        "description": "Action card description for call / group-chat privacy settings."
-    },
-    "iarActionOpenButton": "Åbn",
-    "@iarActionOpenButton": {
-        "description": "Trailing button label for action cards that navigate the user into a settings section."
-    },
-    "iarActionDeleteMessageTitle": "Slet denne besked",
-    "@iarActionDeleteMessageTitle": {
-        "description": "Action card title (moderator-only) for deleting the reported message."
-    },
-    "iarActionDeleteMessageDescription": "Fjern den fra kanalen for alle.",
-    "@iarActionDeleteMessageDescription": {
-        "description": "Action card description (moderator-only) for deleting the reported message."
-    },
-    "iarActionDeleteMessageButton": "Slet",
-    "@iarActionDeleteMessageButton": {
-        "description": "Trailing button label on the delete-message action card."
-    },
-    "iarActionDeleteMessageDeletedButton": "Slettet",
-    "@iarActionDeleteMessageDeletedButton": {
-        "description": "Disabled-state trailing button label on the delete-message action card after the message is already gone."
-    },
-    "iarActionDeleteMessageDeletedTooltip": "Denne besked er allerede blevet slettet.",
-    "@iarActionDeleteMessageDeletedTooltip": {
-        "description": "Tooltip on the disabled delete-message action card."
-    },
-    "iarActionBanUserTitle": "Ban denne bruger",
-    "@iarActionBanUserTitle": {
-        "description": "Action card title (moderator-only) for opening the ban dialog against the reported user."
-    },
-    "iarActionBanUserDescription": "Åbn ban-dialogen for dette fællesskab.",
-    "@iarActionBanUserDescription": {
-        "description": "Action card description (moderator-only) for banning the reported user."
-    },
-    "iarActionBanUserButton": "Ban",
-    "@iarActionBanUserButton": {
-        "description": "Trailing button label on the ban-user action card."
-    },
-    "iarActionBanUserBannedButton": "Bannet",
-    "@iarActionBanUserBannedButton": {
-        "description": "Disabled-state trailing button label on the ban-user action card after the target is already banned."
-    },
-    "iarActionBanUserBannedTooltip": "Denne bruger er allerede bannet fra fællesskabet.",
-    "@iarActionBanUserBannedTooltip": {
-        "description": "Tooltip on the disabled ban-user action card."
-    },
-    "iarCloseDmConfirmTitle": "Luk DM",
-    "@iarCloseDmConfirmTitle": {
-        "description": "Title of the confirm-close-DM bottom sheet shown after the user taps Close DM on the action card."
-    },
-    "iarCloseDmConfirmDescription": "Luk din nuværende DM med {name}. Dette blokerer dem ikke; du kan genåbne senere.",
-    "@iarCloseDmConfirmDescription": {
-        "description": "Body of the confirm-close-DM bottom sheet.",
+    "reportFlowBlockName": "Bloker {name}",
+    "@reportFlowBlockName": {
+        "description": "Report flow: title of the row on the thank-you screen that blocks the reported user. {name} is the display name of that user.",
         "placeholders": {
             "name": {
                 "type": "String",
-                "example": "ada"
+                "example": "Alice"
             }
         }
     },
-    "iarSuccessTitle": "Rapport sendt",
-    "@iarSuccessTitle": {
-        "description": "Title shown on the success step after a platform report is submitted."
+    "reportFlowBlockDescription": "Skjuler vedkommendes beskeder og forhindrer vedkommende i at sende dig direkte beskeder",
+    "@reportFlowBlockDescription": {
+        "description": "Report flow: description under reportFlowBlockName on the thank-you screen."
     },
-    "iarSuccessBody": "Vores sikkerhedsteam gennemgår den. Vi sender dig en DM og en e-mail, når vi har truffet en afgørelse.",
-    "@iarSuccessBody": {
-        "description": "Body shown on the success step after a platform report is submitted."
+    "reportFlowBlockButton": "Bloker",
+    "@reportFlowBlockButton": {
+        "description": "Report flow: button on the thank-you screen that blocks the reported user."
     },
-    "iarAlreadyReportedTitle": "Allerede rapporteret",
-    "@iarAlreadyReportedTitle": {
-        "description": "Title shown on the IAR success step when the message had already been reported by this user (HTTP 409); the existing report is under review."
+    "reportFlowBlockedButton": "Blokeret",
+    "@reportFlowBlockedButton": {
+        "description": "Report flow: disabled button on the thank-you screen after the reported user was blocked."
     },
-    "iarAlreadyReportedBody": "Du har allerede rapporteret denne besked. Vores sikkerhedsteam gennemgår den.",
-    "@iarAlreadyReportedBody": {
-        "description": "Body shown on the IAR success step when the message had already been reported by this user (HTTP 409)."
+    "reportFlowUrgentBanner": "Hvis nogen er i umiddelbar fare, skal du først kontakte de lokale nødtjenester.",
+    "@reportFlowUrgentBanner": {
+        "description": "Report flow: banner on screens about urgent harm, such as threats, self-harm or the safety of minors."
     },
-    "iarBackButton": "Tilbage",
-    "@iarBackButton": {
-        "description": "Footer button label that returns the user to the previous IAR step."
+    "reportFlowLoadFailed": "Kunne ikke indlæse anmeldelsesformularen.",
+    "@reportFlowLoadFailed": {
+        "description": "Report flow: error shown when the report form could not be loaded."
     },
-    "iarContinueButton": "Fortsæt",
-    "@iarContinueButton": {
-        "description": "Footer button label that advances the user to the next IAR step."
+    "reportFlowTryAgain": "Prøv igen",
+    "@reportFlowTryAgain": {
+        "description": "Report flow: button that loads the report form again after an error."
     },
-    "iarSendReportButton": "Send rapport",
-    "@iarSendReportButton": {
-        "description": "Footer button label that submits the IAR report."
+    "reportFlowOutdated": "Anmeldelsesformularen er ændret. Start venligst forfra.",
+    "@reportFlowOutdated": {
+        "description": "Report flow: toast shown when the report form changed on the server while the reporter was filling it in. The form restarts from the first screen."
     },
-    "iarDoneButton": "Færdig",
-    "@iarDoneButton": {
-        "description": "Footer button label that closes the IAR sheet from the success or guidance step."
+    "reportFlowAlreadyReported": "Du har allerede anmeldt denne besked.",
+    "@reportFlowAlreadyReported": {
+        "description": "Report flow: note on the report summary screen when the reporter already reported this message."
     },
-    "iarCouldntSendToast": "Kunne ikke sende rapporten. Prøv igen.",
-    "@iarCouldntSendToast": {
-        "description": "Toast shown when the IAR report submission fails."
+    "reportFlowAlreadyReportedProfile": "Du har allerede anmeldt denne profil i dag.",
+    "@reportFlowAlreadyReportedProfile": {
+        "description": "Report flow: note on the report summary screen when the reporter already reported this user profile in the last 24 hours."
     },
-    "iarRateLimitedToast": "Du rapporterer for hurtigt. Vent et øjeblik og prøv igen.",
-    "@iarRateLimitedToast": {
-        "description": "Toast shown when an IAR report submission is rejected for rate limiting (HTTP 429)."
+    "reportFlowRateLimited": "Du sender anmeldelser for hurtigt. Prøv igen senere.",
+    "@reportFlowRateLimited": {
+        "description": "Report flow: note on the report summary screen when the reporter sent too many reports."
     },
-    "iarReportSentToast": "Rapport sendt. Vores sikkerhedsteam vil gennemgå den.",
-    "@iarReportSentToast": {
-        "description": "Toast shown after a message report is submitted successfully from the simple mobile report sheet."
+    "reportFlowSubmitFailed": "Din anmeldelse blev ikke sendt. Prøv igen.",
+    "@reportFlowSubmitFailed": {
+        "description": "Report flow: note on the report summary screen when the report could not be sent."
     },
-    "iarBlockUserConfirmDescription": "Bloker {name}? De vil ikke kunne sende dig beskeder eller venneanmodninger. Du kan fjerne blokeringen senere.",
-    "@iarBlockUserConfirmDescription": {
-        "description": "Body of the confirm-block-user bottom sheet shown after the user taps Block on the IAR action card.",
-        "placeholders": {
-            "name": {
-                "type": "String",
-                "example": "ada"
-            }
-        }
-    },
-    "iarBlockUserFailedToast": "Kunne ikke blokere denne bruger. Prøv igen.",
-    "@iarBlockUserFailedToast": {
-        "description": "Toast shown when blocking the reported user from the IAR action card fails."
-    },
-    "iarCloseDmSuccessToast": "DM lukket.",
-    "@iarCloseDmSuccessToast": {
-        "description": "Toast shown after the DM with the reported user is closed from the IAR action card."
-    },
-    "iarCloseDmFailedToast": "Kunne ikke lukke denne DM. Prøv igen.",
-    "@iarCloseDmFailedToast": {
-        "description": "Toast shown when closing the DM from the IAR action card fails."
-    },
-    "iarLeaveCommunityFailedToast": "Kunne ikke forlade dette fællesskab. Prøv igen.",
-    "@iarLeaveCommunityFailedToast": {
-        "description": "Toast shown when leaving the community from the IAR action card fails."
+    "reportFlowAccountSetupRequired": "Fuldfør oprettelsen af din konto, og bekræft din e-mailadresse for at sende anmeldelser.",
+    "@reportFlowAccountSetupRequired": {
+        "description": "Report flow: notice on the report summary screen when the account must be claimed and its email verified before it can send reports."
     },
     "chatMessageSuppressEmbeds": "Undertryk embeds",
     "@chatMessageSuppressEmbeds": {
@@ -6563,6 +5945,10 @@
     "@chatVideoPlaybackFailed": {
         "description": "Shown when embedded or attachment video playback fails in the chat player."
     },
+    "chatImageCouldNotLoad": "Kunne ikke indlæse dette billede.",
+    "@chatImageCouldNotLoad": {
+        "description": "Shown when an attached, embedded, or viewed image fails to download or decode."
+    },
     "composerAutocompleteRoleMentionDescription": "Giv besked til brugere med denne rolle, som har tilladelse til at se denne kanal.",
     "@composerAutocompleteRoleMentionDescription": {
         "description": "Secondary line in the @ mention autocomplete when the row is a mentionable guild role."
@@ -6610,10 +5996,6 @@
     "addGuildJoinFailed": "Kunne ikke tilmelde dig fællesskabet. Prøv igen.",
     "@addGuildJoinFailed": {
         "description": "Generic error when joining a community via invite fails."
-    },
-    "addGuildPackInstalled": "Pakke installeret succesfuldt.",
-    "@addGuildPackInstalled": {
-        "description": "Toast shown after accepting an emoji or sticker pack invite."
     },
     "chatMessageRemoveAllReactionsConfirmTitle": "Fjern alle reaktioner",
     "@chatMessageRemoveAllReactionsConfirmTitle": {
@@ -6701,7 +6083,7 @@
             }
         }
     },
-    "dmComposerHint": "Message @{recipientName}",
+    "dmComposerHint": "Skriv til @{recipientName}",
     "@dmComposerHint": {
         "description": "Placeholder in the message composer for a one-to-one DM.",
         "placeholders": {
@@ -7103,6 +6485,10 @@
     "instanceUrlPlaceholder": "Indtast instans-URL (f.eks. echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
+    },
+    "instanceUrlHelper": "Brug fluxer.app til den officielle instans, eller den nøjagtige URL for en selvhostet instans.",
+    "@instanceUrlHelper": {
+        "description": "Helper text explaining official vs self-hosted instance URLs."
     },
     "resetToDefaultInstance": "Nulstil til echowire",
     "@resetToDefaultInstance": {
@@ -7644,10 +7030,6 @@
     "@guildMenuHideMutedChannels": {
         "description": "Guild menu checkbox to hide muted channels."
     },
-    "guildMenuReportCommunity": "Anmeld fællesskab",
-    "@guildMenuReportCommunity": {
-        "description": "Guild menu action to report the community."
-    },
     "guildMenuDebugCommunity": "Fejlfinding af fællesskab",
     "@guildMenuDebugCommunity": {
         "description": "Guild menu action to open community debug info."
@@ -7693,10 +7075,6 @@
     "@guildMenuSettingsWebhooks": {
         "description": "Community settings tab for webhooks."
     },
-    "guildMenuSettingsCustomInviteUrl": "Brugerdefineret invitations-URL",
-    "@guildMenuSettingsCustomInviteUrl": {
-        "description": "Community settings tab for custom invite URLs."
-    },
     "guildMenuSettingsDiscovery": "Opdagelse",
     "@guildMenuSettingsDiscovery": {
         "description": "Community settings tab for discovery settings."
@@ -7721,17 +7099,9 @@
     "@guildSettingsOverviewIconTitle": {
         "description": "Title for the guild icon section in overview settings."
     },
-    "guildSettingsUploadImage": "Upload billede",
-    "@guildSettingsUploadImage": {
-        "description": "Button label to upload an image in guild settings."
-    },
     "guildSettingsOverviewBannerTitle": "Banner",
     "@guildSettingsOverviewBannerTitle": {
         "description": "Title for the guild banner section."
-    },
-    "guildSettingsOverviewBannerHint": "Upload et banner til din server.",
-    "@guildSettingsOverviewBannerHint": {
-        "description": "Hint text for guild banner upload."
     },
     "guildSettingsOverviewNameTitle": "Navn",
     "@guildSettingsOverviewNameTitle": {
@@ -7741,22 +7111,6 @@
     "@guildSettingsOverviewNameHint": {
         "description": "Hint for the guild name field."
     },
-    "guildSettingsOverviewStatsTitle": "Statistik",
-    "@guildSettingsOverviewStatsTitle": {
-        "description": "Title for guild statistics section."
-    },
-    "guildSettingsOverviewMembers": "Medlemmer",
-    "@guildSettingsOverviewMembers": {
-        "description": "Label for member count in overview."
-    },
-    "guildSettingsOverviewOnline": "Online",
-    "@guildSettingsOverviewOnline": {
-        "description": "Label for online count in overview."
-    },
-    "guildSettingsRolesDescription": "Brug roller til at gruppere medlemmer og tildele tilladelser.",
-    "@guildSettingsRolesDescription": {
-        "description": "Description for the roles settings tab."
-    },
     "guildSettingsCreateRole": "Opret rolle",
     "@guildSettingsCreateRole": {
         "description": "Button to create a new role."
@@ -7765,30 +7119,9 @@
     "@guildSettingsRolesListTitle": {
         "description": "Title for the roles list section."
     },
-    "guildSettingsEmojiSlotInfo": "{staticCount} statiske, {animatedCount} animerede emoji-pladser brugt",
-    "@guildSettingsEmojiSlotInfo": {
-        "description": "Emoji slot usage summary.",
-        "placeholders": {
-            "staticCount": {
-                "type": "int"
-            },
-            "animatedCount": {
-                "type": "int"
-            }
-        }
-    },
     "guildSettingsEmojiEmpty": "Ingen brugerdefinerede emojis endnu.",
     "@guildSettingsEmojiEmpty": {
         "description": "Empty state for emoji settings."
-    },
-    "guildSettingsStickersSlotInfo": "{count} klistermærker uploadet",
-    "@guildSettingsStickersSlotInfo": {
-        "description": "Sticker slot usage summary.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
     },
     "guildSettingsStickersEmpty": "Ingen brugerdefinerede klistermærker endnu.",
     "@guildSettingsStickersEmpty": {
@@ -7834,8 +7167,6 @@
     "guildSettingsVerificationMediumDescription": "Kræver en verificeret e-mailadresse og en konto, der er mindst 5 minutter gammel.",
     "guildSettingsVerificationHigh": "Høj",
     "guildSettingsVerificationHighDescription": "Kræver alt i medium, plus at være medlem af community'et i mindst 10 minutter.",
-    "guildSettingsVerificationHighest": "Meget høj",
-    "guildSettingsVerificationHighestDescription": "Kræver et verificeret telefonnummer.",
     "guildSettingsAuditLogDescription": "Spor moderatorhandlinger på tværs af community'et.",
     "@guildSettingsAuditLogDescription": {
         "description": "Subtitle under the activity-log page title."
@@ -7863,14 +7194,6 @@
     "guildSettingsAuditLogUnknownUser": "Ukendt bruger",
     "@guildSettingsAuditLogUnknownUser": {
         "description": "Fallback avatar label when the acting user is unavailable."
-    },
-    "guildSettingsAuditLogLoadError": "Noget gik galt under indlæsning af aktivitetsloggen.",
-    "@guildSettingsAuditLogLoadError": {
-        "description": "Generic error shown when fetching log entries fails."
-    },
-    "guildSettingsAuditLogLoadErrorTitle": "Kunne ikke indlæse aktivitetslogs",
-    "@guildSettingsAuditLogLoadErrorTitle": {
-        "description": "Error-state title when fetching log entries failed."
     },
     "guildSettingsAuditLogReason": "Grund",
     "@guildSettingsAuditLogReason": {
@@ -8842,14 +8165,6 @@
     "@auditLogOptionPermanentMembership": {
         "description": "Audit log option detail sentence."
     },
-    "guildSettingsLoadMore": "Indlæs mere",
-    "@guildSettingsLoadMore": {
-        "description": "Button to load more audit log entries."
-    },
-    "guildSettingsLoadingMore": "Loading...",
-    "@guildSettingsLoadingMore": {
-        "description": "Loading state for pagination."
-    },
     "guildSettingsWebhooksDescription": "Se og administrer alle webhooks, der er konfigureret i dit fællesskab.",
     "@guildSettingsWebhooksDescription": {
         "description": "Description for webhooks tab."
@@ -8858,42 +8173,9 @@
     "@guildSettingsWebhooksEmpty": {
         "description": "Empty state for webhooks."
     },
-    "guildSettingsCopyUrl": "Kopiér URL",
-    "@guildSettingsCopyUrl": {
-        "description": "Tooltip to copy a URL."
-    },
     "guildSettingsCopiedUrl": "URL kopieret til udklipsholder",
     "@guildSettingsCopiedUrl": {
         "description": "Snackbar after copying a URL."
-    },
-    "guildSettingsDeleteWebhook": "Slet webhook",
-    "@guildSettingsDeleteWebhook": {
-        "description": "Tooltip to delete a webhook."
-    },
-    "guildSettingsVanityUrlDescription": "Indstil et brugerdefineret invitationslink til din server.",
-    "@guildSettingsVanityUrlDescription": {
-        "description": "Description for vanity URL tab."
-    },
-    "guildSettingsVanityUrlHint": "my-server",
-    "@guildSettingsVanityUrlHint": {
-        "description": "Hint for vanity URL input."
-    },
-    "guildSettingsSave": "Gem",
-    "@guildSettingsSave": {
-        "description": "Generic save button label."
-    },
-    "guildSettingsVanityUrlUsageTitle": "Brug",
-    "@guildSettingsVanityUrlUsageTitle": {
-        "description": "Title for vanity URL usage section."
-    },
-    "guildSettingsVanityUrlUses": "{count} anvendelser",
-    "@guildSettingsVanityUrlUses": {
-        "description": "Vanity URL usage count.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
     },
     "guildSettingsDiscoveryDescription": "Vis dit fællesskab i Oplev, så andre kan finde og tilmelde sig det.",
     "@guildSettingsDiscoveryDescription": {
@@ -8932,10 +8214,6 @@
     "@guildSettingsDiscoveryWithdraw": {
         "description": "Button to withdraw discovery application."
     },
-    "guildSettingsMembersDescription": "Søg og administrer servermedlemmer.",
-    "@guildSettingsMembersDescription": {
-        "description": "Description for members tab."
-    },
     "guildSettingsMembersSearchHint": "Søg efter brugernavn eller id",
     "@guildSettingsMembersSearchHint": {
         "description": "Hint for member search field."
@@ -8957,27 +8235,6 @@
     "@guildSettingsInvitesEmpty": {
         "description": "Empty state for invites."
     },
-    "guildSettingsInviteUses": "{uses} / {maxUses} anvendelser",
-    "@guildSettingsInviteUses": {
-        "description": "Invite usage count.",
-        "placeholders": {
-            "uses": {
-                "type": "int"
-            },
-            "maxUses": {
-                "type": "int"
-            }
-        }
-    },
-    "guildSettingsInviteExpires": "Udløber {date}",
-    "@guildSettingsInviteExpires": {
-        "description": "Invite expiration date.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
     "guildSettingsBansDescription": "Se og administrer udelukkede brugere.",
     "@guildSettingsBansDescription": {
         "description": "Description for bans tab."
@@ -8990,30 +8247,9 @@
     "@guildSettingsBansEmpty": {
         "description": "Empty state for bans."
     },
-    "guildSettingsBanPermanent": "Permanent udelukkelse",
-    "@guildSettingsBanPermanent": {
-        "description": "Label for permanent ban."
-    },
-    "guildSettingsBanExpires": "Udløber {date}",
-    "@guildSettingsBanExpires": {
-        "description": "Ban expiration date.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
     "guildSettingsBanExpiresLabel": "Udløber",
     "@guildSettingsBanExpiresLabel": {
         "description": "Label for ban expiration row."
-    },
-    "guildSettingsUnban": "Ophæv udelukkelse",
-    "@guildSettingsUnban": {
-        "description": "Button to unban a user."
-    },
-    "guildSettingsBansLoading": "Indlæser udelukkede brugere",
-    "@guildSettingsBansLoading": {
-        "description": "Loading state for the guild bans list."
     },
     "guildSettingsBansNoSearchResults": "Ingen udelukkelser fundet, der matcher din søgning.",
     "@guildSettingsBansNoSearchResults": {
@@ -9057,10 +8293,6 @@
             }
         }
     },
-    "guildSettingsBansLoadError": "Kunne ikke indlæse udelukkelser. Prøv igen.",
-    "@guildSettingsBansLoadError": {
-        "description": "Error when loading the guild bans list fails."
-    },
     "guildSettingsRevokeBanError": "Kunne ikke ophæve udelukkelse. Prøv igen.",
     "@guildSettingsRevokeBanError": {
         "description": "Error when revoking a ban fails."
@@ -9085,7 +8317,6 @@
     "@guildSettingsCategoryPeople": {
         "description": "Sidebar category for members, invites, and bans."
     },
-    "guildSettingsOverviewDescription": "Administrer din fællesskabsprofil, kanaler og standardindstillinger.",
     "guildSettingsOverviewBrandingTitle": "Branding",
     "guildSettingsOverviewBrandingDescription": "Opdater dit ikon, navn, banner og invitationsbaggrund",
     "@guildSettingsOverviewBrandingDescription": {
@@ -9104,7 +8335,6 @@
     },
     "guildSettingsOverviewNotificationsTitle": "Standardnotifikationer",
     "guildSettingsOverviewNotificationsLargeGuild": "Fællesskaber med over 250 personer tvinges til indstillingen \"kun @omtaler\". Din oprindelige indstilling bevares og gendannes, hvis fællesskabet falder til under 250 medlemmer.",
-    "guildSettingsOverviewAdvancedTitle": "Avanceret",
     "guildSettingsOverviewFlexibleNames": "Tillad fleksible tekstkanalnavne",
     "guildSettingsOverviewHideOwnerCrown": "Skjul community-ejerkrone",
     "guildSettingsOverviewDetachedBanner": "Adskilt banner",
@@ -9130,10 +8360,6 @@
     "guildSettingsOverviewEmbedSplashTitle": "Baggrund for chat-embed",
     "@guildSettingsOverviewEmbedSplashTitle": {
         "description": "Title for embed splash upload section."
-    },
-    "guildSettingsOverviewEmbedSplashHint": "Vises i invite-embeds i chat.",
-    "@guildSettingsOverviewEmbedSplashHint": {
-        "description": "Note shown when uploading chat embed background."
     },
     "guildSettingsOverviewUploadBackground": "Upload baggrund",
     "@guildSettingsOverviewUploadBackground": {
@@ -9300,8 +8526,6 @@
     "@guildSettingsOverviewEmbedSplashUploadHint": {
         "description": "Upload requirements for chat embed background images."
     },
-    "guildSettingsModerationDescription": "Konfigurer verificering, indholdsfiltrering og indstillinger for modent indhold.",
-    "guildSettingsModerationDiscoveryNotice": "Fællesskaber, der er listet i Discovery, har begrænsede moderationsmuligheder.",
     "guildSettingsModerationContentFilterTitle": "Indholdsfiltrering",
     "guildSettingsModerationContentFilterDescription": "Screen beskedder automatisk for eksplicit indhold i kanaler, der ikke er markeret som modent indhold.",
     "guildSettingsModerationContentFilterDiscoveryNote": "Fællesskaber, der er listet i Discovery, skal scanne alle medlemmer. Denne indstilling kan ikke ændres, mens Discovery er aktiveret.",
@@ -9311,8 +8535,6 @@
     "guildSettingsContentFilterNoRoleDescription": "Anbefales til de fleste fællesskaber",
     "guildSettingsContentFilterAll": "Filtrer alle",
     "guildSettingsContentFilterAllDescription": "Maksimal beskyttelse til familievenlige rum",
-    "guildSettingsModerationMatureOff": "Fra",
-    "guildSettingsModerationMatureOn": "Til",
     "guildSettingsContentWarningToggle": "Vis en indholdsadvarsel",
     "@guildSettingsContentWarningToggle": {
         "description": "Switch label for the community content warning setting."
@@ -9332,7 +8554,6 @@
     "guildSettingsModeration2faTitle": "2FA-krav",
     "guildSettingsModeration2faDescription": "Kræv to-faktor-godkendelse for moderatorer, før de kan forbyde, sparke, timeout eller fjerne beskeder.",
     "guildSettingsModeration2faSwitchLabel": "Kræv 2FA for moderationshandlinger",
-    "guildSettingsModeration2faOwnerOnlyTooltip": "Kun fællesskabsejeren kan ændre denne indstilling",
     "guildSettingsModeration2faEnableFirstTooltip": "Aktivér 2FA på din konto for at ændre denne indstilling",
     "guildSettingsEmojiSearchHint": "Søg efter emojis",
     "guildSettingsEmojiUploadTitle": "Upload emoji",
@@ -9354,8 +8575,6 @@
     },
     "guildSettingsStickersSearchHint": "Søg efter klistermærker",
     "guildSettingsWebhooksInfo": "For at oprette en webhook skal du åbne {channelSettingsPath}. Du kan stadig redigere og organisere alle eksisterende webhooks her.",
-    "guildSettingsVanityUrlWarning": "Din vanity URL vil ikke virke, medmindre mindst én kanal er synlig for alle.",
-    "guildSettingsVanityUrlRemove": "Fjern",
     "guildSettingsBannedUsersTitle": "Bannlyste brugere",
     "guildSettingsInvitesTableInviter": "Inviterer",
     "guildSettingsInvitesTableChannel": "Kanal",
@@ -9394,6 +8613,10 @@
     "lookAndFeelChatWallpaperCustomLabel": "Brugerdefineret billede",
     "@lookAndFeelChatWallpaperCustomLabel": {
         "description": "Chat wallpaper option that picks an image from the gallery."
+    },
+    "lookAndFeelChatWallpaperStarfieldLabel": "Stjernefelt",
+    "@lookAndFeelChatWallpaperStarfieldLabel": {
+        "description": "Chat wallpaper preset that uses the static starfield background."
     },
     "lookAndFeelChatWallpaperColorLabel": "Farve {id}",
     "@lookAndFeelChatWallpaperColorLabel": {
@@ -9786,34 +9009,6 @@
     "@savedMessagesRemoveTooltip": {
         "description": "Tooltip for removing a saved message bookmark."
     },
-    "iarReportGuildTitle": "Anmeld fællesskab",
-    "@iarReportGuildTitle": {
-        "description": "Title of the simple community-report sheet."
-    },
-    "iarReasonTerrorismLabel": "Terrorisme eller voldelig ekstremisme",
-    "@iarReasonTerrorismLabel": {
-        "description": "Community-report reason label for terrorism or violent extremism."
-    },
-    "iarReasonTerrorismDescription": "Fremmer, rekrutterer til eller koordinerer voldelig ekstremistisk aktivitet.",
-    "@iarReasonTerrorismDescription": {
-        "description": "Community-report reason description for terrorism or violent extremism."
-    },
-    "iarReasonMatureContentGuildLabel": "Modent indhold eller usikker afskærmning",
-    "@iarReasonMatureContentGuildLabel": {
-        "description": "Community-report reason label for mature content or unsafe gating."
-    },
-    "iarReasonMatureContentGuildDescription": "Modent indhold uden korrekt afskærmning.",
-    "@iarReasonMatureContentGuildDescription": {
-        "description": "Community-report reason description for mature content or unsafe gating."
-    },
-    "iarReasonMalwareGuildDescription": "Distribuerer malware, stjæler loginoplysninger eller skadelige filer.",
-    "@iarReasonMalwareGuildDescription": {
-        "description": "Community-report reason description for malware distribution."
-    },
-    "iarReasonPrivacyGuildLabel": "Krænkelse af privatlivets fred eller doxxing",
-    "@iarReasonPrivacyGuildLabel": {
-        "description": "Community-report reason label for privacy violation or doxxing."
-    },
     "nagbarViewPremiumFeatures": "Se {productName}-funktioner",
     "@nagbarViewPremiumFeatures": {
         "description": "Premium onboarding nagbar CTA.",
@@ -9838,10 +9033,6 @@
     "notificationsEnableDesktopNotificationsDescription": "Bruger OS'ens notifikationscenter. For notifikationsindstillinger pr. kanal/fællesskab skal du højreklikke på et fællesskabsikon og åbne notifikationsindstillingerne.",
     "@notificationsEnableDesktopNotificationsDescription": {
         "description": "Description for the enable desktop notifications toggle."
-    },
-    "notificationsEnableBrowserNotificationsLabel": "Slå browsernotifikationer til",
-    "@notificationsEnableBrowserNotificationsLabel": {
-        "description": "Toggle label for enabling browser notifications."
     },
     "notificationsPushInactiveTimeoutDescription": "{productName} forhindrer, at der sendes push-notifikationer til dine mobilenheder, når du er ved din computer. Vælg hvor længe du skal være inaktiv på din computer, før du modtager push-notifikationer.",
     "@notificationsPushInactiveTimeoutDescription": {
@@ -9953,29 +9144,9 @@
     "@notificationsSoundCameraOff": {
         "description": "Sound toggle label for camera off."
     },
-    "iarReportGuildPreconfirmBody": "Hvis denne anmeldelse handler om en specifik besked i dette fællesskab, skal du anmelde den besked i stedet. Beskedanmeldelser giver vores sikkerhedsteam den tydeligste kontekst, og hvis du tilføjer detaljer i kommentarerne, kan det hjælpe os med at gennemgå den hurtigere. Fortsæt kun med at anmelde fællesskabet som helhed, hvis en beskedanmeldelse ikke ville dække det bredere problem.",
-    "@iarReportGuildPreconfirmBody": {
-        "description": "Body shown in the pre-confirm dialog before opening the community report sheet."
-    },
-    "iarReasonRaidDescription": "Koordinerer raids, brigading eller chikane mod personer eller fællesskaber.",
-    "@iarReasonRaidDescription": {
-        "description": "Community-report reason description for raid coordination."
-    },
-    "iarReasonSpamGuildDescription": "Fællesskabet eksisterer for at spamme, svindle eller misbruge platformen.",
-    "@iarReasonSpamGuildDescription": {
-        "description": "Community-report reason description for spam, scams, or phishing."
-    },
     "notificationsSoundScreenShareStop": "Skærmdeling stoppet",
     "@notificationsSoundScreenShareStop": {
         "description": "Sound toggle label for screen share stop."
-    },
-    "iarReasonPrivacyGuildDescription": "Deler personlige oplysninger, stalker brugere eller koordinerer misbrug af privatlivets fred.",
-    "@iarReasonPrivacyGuildDescription": {
-        "description": "Community-report reason description for privacy violation or doxxing."
-    },
-    "iarReasonSelfHarmGuildLabel": "Opmuntrer til selvskade",
-    "@iarReasonSelfHarmGuildLabel": {
-        "description": "Community-report reason label for self-harm encouragement."
     },
     "notificationsPermissionDeniedTitle": "Notifikationer blokeret",
     "@notificationsPermissionDeniedTitle": {
@@ -10058,42 +9229,6 @@
     "@createDmUnaddableNoneRemaining": {
         "description": "Shown when every selected recipient is unaddable."
     },
-    "iarContinueToReportCommunity": "Fortsæt med at anmelde fællesskab",
-    "@iarContinueToReportCommunity": {
-        "description": "Primary button in the community report pre-confirm dialog."
-    },
-    "iarPreviewCommunitySubtitle": "Fællesskab",
-    "@iarPreviewCommunitySubtitle": {
-        "description": "Subtitle shown under the community name in the IAR preview card."
-    },
-    "iarReasonHarassmentGuildLabel": "Chikane eller målrettet misbrug",
-    "@iarReasonHarassmentGuildLabel": {
-        "description": "Community-report reason label for harassment or targeted abuse."
-    },
-    "iarReasonHarassmentGuildDescription": "Fællesskaber kan føre til koordinerede angreb eller målrettet chikane.",
-    "@iarReasonHarassmentGuildDescription": {
-        "description": "Community-report reason description for harassment or targeted abuse."
-    },
-    "iarReasonHateGuildDescription": "Fremmer had mod beskyttede grupper.",
-    "@iarReasonHateGuildDescription": {
-        "description": "Community-report reason description for hate speech."
-    },
-    "iarReasonChildSafetyGuildDescription": "Bringes mindreårige i fare eller indeholder materiale med udnyttelse af børn.",
-    "@iarReasonChildSafetyGuildDescription": {
-        "description": "Community-report reason description for child safety."
-    },
-    "iarReasonRaidLabel": "Koordinering af raid",
-    "@iarReasonRaidLabel": {
-        "description": "Community-report reason label for raid coordination."
-    },
-    "iarReasonMalwareGuildLabel": "Distribution af malware",
-    "@iarReasonMalwareGuildLabel": {
-        "description": "Community-report reason label for malware distribution."
-    },
-    "iarReasonSelfHarmGuildDescription": "Opmuntrer til selvmord, selvskade eller spiseforstyrrelser.",
-    "@iarReasonSelfHarmGuildDescription": {
-        "description": "Community-report reason description for self-harm encouragement."
-    },
     "mentionConfirmRoleBody": "Dette vil give besked til {count} medlemmer med rollen {roleName}. Fortsæt?",
     "@mentionConfirmRoleBody": {
         "description": "Body of the large role mention confirmation dialog.",
@@ -10136,18 +9271,6 @@
                 "type": "int"
             }
         }
-    },
-    "channelSettingsResetSlider": "Nulstil skyder til standardværdi",
-    "@channelSettingsResetSlider": {
-        "description": "Tooltip for reset buttons on channel settings sliders."
-    },
-    "channelSettingsMatureContentCategorySource": "Kategori",
-    "@channelSettingsMatureContentCategorySource": {
-        "description": "Lowercase source label for inherited mature content from category."
-    },
-    "channelSettingsMatureContentCommunitySource": "fællesskab",
-    "@channelSettingsMatureContentCommunitySource": {
-        "description": "Lowercase source label for inherited mature content from community."
     },
     "channelSettingsContentWarningDefault": "Dette indeholder følsomt indhold.",
     "@channelSettingsContentWarningDefault": {
@@ -10274,10 +9397,6 @@
     "@groupDmInviteExpires24Hours": {
         "description": "Note below the invite link field in add friends to group."
     },
-    "groupDmCreateInviteFailed": "Kunne ikke oprette invitationslink",
-    "@groupDmCreateInviteFailed": {
-        "description": "Title when invite link generation fails."
-    },
     "groupDmCreateInviteFailedBody": "Kunne ikke oprette et invitationslink. Prøv venligst igen.",
     "@groupDmCreateInviteFailedBody": {
         "description": "Body when invite link generation fails."
@@ -10313,16 +9432,6 @@
     "audioAndVideoScreenShareQualitySectionTitle": "Kvalitet af skærmdeling",
     "@audioAndVideoScreenShareQualitySectionTitle": {
         "description": "Subsection title for screen share resolution selection."
-    },
-    "audioAndVideoCameraPermissionRequired": "{productName} skal have adgang til kameraet for at vise dine enheder.",
-    "@audioAndVideoCameraPermissionRequired": {
-        "description": "Shown when camera permission is required to enumerate video devices.",
-        "placeholders": {
-            "productName": {
-                "type": "String",
-                "example": "echowire"
-            }
-        }
     },
     "notificationsMentionPreferMentionName": "Foretræk omtale",
     "@notificationsMentionPreferMentionName": {
@@ -10553,14 +9662,6 @@
     "@guildSettingsRolesDenseLayout": {
         "description": "Tooltip when permission list is in comfy layout."
     },
-    "guildSettingsRolesSwitchToDenseLayout": "Skift til kompakt visning",
-    "@guildSettingsRolesSwitchToDenseLayout": {
-        "description": "Aria label for switching to dense layout."
-    },
-    "guildSettingsRolesSwitchToComfyLayout": "Skift til kompakt layout",
-    "@guildSettingsRolesSwitchToComfyLayout": {
-        "description": "Aria label for switching to comfy layout."
-    },
     "guildSettingsRolesSingleColumn": "Enkelt kolonne",
     "@guildSettingsRolesSingleColumn": {
         "description": "Tooltip when permission list is in two-column layout."
@@ -10777,15 +9878,6 @@
             }
         }
     },
-    "channelSettingsPermissionsNeedManageChannels": "Du skal have tilladelsen \"{manageChannelsPermissionLabel}\" for at redigere disse tilladelser.",
-    "@channelSettingsPermissionsNeedManageChannels": {
-        "description": "Error when user lacks manage channels permission for channel permissions tab.",
-        "placeholders": {
-            "manageChannelsPermissionLabel": {
-                "type": "String"
-            }
-        }
-    },
     "channelSettingsPermissionsSearchPlaceholder": "Søg tilladelser…",
     "@channelSettingsPermissionsSearchPlaceholder": {
         "description": "Placeholder for channel permissions search field."
@@ -10793,14 +9885,6 @@
     "channelSettingsPermissionsChannelAccessUpdated": "Kanaladgang opdateret",
     "@channelSettingsPermissionsChannelAccessUpdated": {
         "description": "Success toast after saving channel permission overwrites."
-    },
-    "channelSettingsPermissionsRolesAndMembers": "Roller og medlemmer",
-    "@channelSettingsPermissionsRolesAndMembers": {
-        "description": "Section title in the add override picker."
-    },
-    "channelSettingsWebhooksUnknownUser": "Ukendt bruger",
-    "@channelSettingsWebhooksUnknownUser": {
-        "description": "Fallback label when webhook creator is unavailable."
     },
     "channelMenuDuplicateChannel": "Duplikér kanal",
     "@channelMenuDuplicateChannel": {
@@ -10940,9 +10024,59 @@
     "@notificationsEnableNotificationsPermissionDenied": {
         "description": "Toast shown when enabling notifications fails because permission was denied."
     },
-    "languageAndTimeOpenLanguageSettings": "Åbn sprogindstillinger",
-    "@languageAndTimeOpenLanguageSettings": {
-        "description": "Button that opens the system per-app language settings."
+    "notificationsPushRelaySectionTitle": "Relæ til push-notifikationer",
+    "@notificationsPushRelaySectionTitle": {
+        "description": "Notification settings section title for the Fluxer push relay."
+    },
+    "notificationsPushRelaySectionDescription": "{pushProvider} leverer kun push-notifikationer via sin egen tjeneste, så notifikationer til denne enhed går gennem Fluxers relæ.",
+    "@notificationsPushRelaySectionDescription": {
+        "description": "Notification settings section description explaining why the push relay exists.",
+        "placeholders": {
+            "pushProvider": {
+                "type": "String"
+            }
+        }
+    },
+    "notificationsPushRelayConsentLabel": "Brug Fluxers push-relæ",
+    "@notificationsPushRelayConsentLabel": {
+        "description": "Toggle label for agreeing to the Fluxer push relay on this device."
+    },
+    "notificationsPushRelayConsentDescription": "Hvis du slår dette fra, fjernes enhedens push-registrering, og enheden holder op med at modtage push-notifikationer.",
+    "@notificationsPushRelayConsentDescription": {
+        "description": "Toggle description explaining that revoking push relay consent unregisters the device."
+    },
+    "pushRelayConsentTitle": "Relæ til push-notifikationer",
+    "@pushRelayConsentTitle": {
+        "description": "Title of the one-time Fluxer push relay consent sheet."
+    },
+    "pushRelayConsentDescription": "{pushProvider} leverer kun push-notifikationer via sin egen tjeneste, så notifikationer til denne enhed går gennem Fluxers relæ.",
+    "@pushRelayConsentDescription": {
+        "description": "Subtitle of the push relay consent sheet explaining why the relay exists.",
+        "placeholders": {
+            "pushProvider": {
+                "type": "String"
+            }
+        }
+    },
+    "pushRelayConsentNoticePrefix": "Accepter ",
+    "@pushRelayConsentNoticePrefix": {
+        "description": "Text before the push relay privacy notice link in the consent sheet."
+    },
+    "pushRelayConsentNoticeLink": "privatlivsmeddelelsen for push-relæet",
+    "@pushRelayConsentNoticeLink": {
+        "description": "Link text for the supplemental push relay privacy notice."
+    },
+    "pushRelayConsentNoticeSuffix": " for at slå push-notifikationer til på denne enhed. Du skal kun acceptere én gang pr. enhed.",
+    "@pushRelayConsentNoticeSuffix": {
+        "description": "Text after the push relay privacy notice link in the consent sheet."
+    },
+    "pushRelayConsentAgree": "Accepter og fortsæt",
+    "@pushRelayConsentAgree": {
+        "description": "Button that records agreement to the push relay privacy notice."
+    },
+    "pushRelayConsentDecline": "Ikke nu",
+    "@pushRelayConsentDecline": {
+        "description": "Button that declines the push relay privacy notice and leaves push notifications off."
     },
     "languageAndTimeTimeFormat24Hour": "24-timers",
     "@languageAndTimeTimeFormat24Hour": {
@@ -10980,14 +10114,6 @@
     "guildSettingsRolesTwoColumns": "To kolonner",
     "@guildSettingsRolesTwoColumns": {
         "description": "Tooltip when permission list is in single-column layout."
-    },
-    "guildSettingsRolesSwitchToSingleColumn": "Skift til enkelt kolonne",
-    "@guildSettingsRolesSwitchToSingleColumn": {
-        "description": "Aria label for switching to single column."
-    },
-    "guildSettingsRolesSwitchToTwoColumns": "Skift til to kolonner",
-    "@guildSettingsRolesSwitchToTwoColumns": {
-        "description": "Aria label for switching to two columns."
     },
     "guildSettingsRolesDeletedSuccess": "Rolle slettet",
     "@guildSettingsRolesDeletedSuccess": {
@@ -11069,23 +10195,9 @@
     "@audioAndVideoInstanceVideoQualityLimit": {
         "description": "Note shown when instance limits block higher screen share quality."
     },
-    "audioAndVideoMicrophonePermissionRequired": "{productName} skal have adgang til mikrofonen for at vise dine enheder.",
-    "@audioAndVideoMicrophonePermissionRequired": {
-        "description": "Shown when microphone permission is required to enumerate audio input devices.",
-        "placeholders": {
-            "productName": {
-                "type": "String",
-                "example": "echowire"
-            }
-        }
-    },
     "guildSettingsRolesPermissionsSection": "Tilladelser",
     "@guildSettingsRolesPermissionsSection": {
         "description": "Section title for role permissions."
-    },
-    "permissionUnknown": "Ukendt tilladelse",
-    "@permissionUnknown": {
-        "description": "Fallback permission label."
     },
     "guildSettingsInvitesLoadFailedTitle": "Kunne ikke indlæse invitationer",
     "@guildSettingsInvitesLoadFailedTitle": {
@@ -11126,6 +10238,80 @@
     "userProfileLocalTime": "Lokaltid",
     "@userProfileLocalTime": {
         "description": "Profile section title for a user's local time."
+    },
+    "profileLocalTimeSettingsTitle": "Profilens lokale tid",
+    "@profileLocalTimeSettingsTitle": {
+        "description": "Profile settings row title for profile local time."
+    },
+    "profileLocalTimeSettingsSummary": "Indstil din tidszone én gang, så {productName} kan holde din UTC-forskel opdateret, når sommertiden ændres. Andre brugere kan kun se din UTC-forskel og ikke din præcise tidszoneidentifikator.",
+    "@profileLocalTimeSettingsSummary": {
+        "description": "Description for the profile local time settings section.",
+        "placeholders": {
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "profileLocalTimeEditButton": "Rediger lokal tid for profil",
+    "@profileLocalTimeEditButton": {
+        "description": "Opens the profile local time editor."
+    },
+    "profileLocalTimeTimezoneLabel": "Tidszone",
+    "@profileLocalTimeTimezoneLabel": {
+        "description": "Field label for the profile timezone picker."
+    },
+    "profileLocalTimeTimezoneHelp": "Vælg den tidszone, som {productName} bruger til at beregne UTC-forskydningen for den lokale tid på din profil.",
+    "@profileLocalTimeTimezoneHelp": {
+        "description": "Helper text under the profile timezone picker.",
+        "placeholders": {
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "profileLocalTimeSearchTimezones": "Søg tidszoner",
+    "@profileLocalTimeSearchTimezones": {
+        "description": "Placeholder in the profile timezone picker."
+    },
+    "profileLocalTimeNotSet": "Ikke angivet",
+    "@profileLocalTimeNotSet": {
+        "description": "Profile timezone picker option when no timezone is selected."
+    },
+    "profileLocalTimePrivacyNote": "Andre kan kun se din aktuelle UTC-tidsforskel, når du vælger at dele din lokale tid i profilen. De ser ikke dit præcise tidszone-id, som f.eks. {timezoneIdentifierExample}. {productName} gemmer dette id, så tidsforskellen automatisk kan opdateres, når sommertiden ændres.",
+    "@profileLocalTimePrivacyNote": {
+        "description": "Privacy note in profile timezone settings.",
+        "placeholders": {
+            "timezoneIdentifierExample": {
+                "type": "String"
+            },
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "profileLocalTimePrivacyEveryone": "Alle",
+    "@profileLocalTimePrivacyEveryone": {
+        "description": "Profile timezone privacy option label."
+    },
+    "profileLocalTimePrivacyEveryoneDesc": "Tillad alle, der kan se din fulde profil, at se din lokale tid på profilen",
+    "@profileLocalTimePrivacyEveryoneDesc": {
+        "description": "Profile timezone privacy option description for Everyone."
+    },
+    "profileLocalTimePrivacyFriends": "Venner",
+    "@profileLocalTimePrivacyFriends": {
+        "description": "Profile timezone privacy option label."
+    },
+    "profileLocalTimePrivacyFriendsDesc": "Tillad dine venner at se din lokale tid på profilen",
+    "@profileLocalTimePrivacyFriendsDesc": {
+        "description": "Profile timezone privacy option description for Friends."
+    },
+    "profileLocalTimePrivacyCommunityMembers": "Fællesskabsmedlemmer",
+    "@profileLocalTimePrivacyCommunityMembers": {
+        "description": "Profile timezone privacy option label."
+    },
+    "profileLocalTimePrivacyCommunityMembersDesc": "Tillad medlemmer fra fællesskaber, du er med i, at se din lokale tid på profilen",
+    "@profileLocalTimePrivacyCommunityMembersDesc": {
+        "description": "Profile timezone privacy option description for Community members."
     },
     "userProfileSameTimeAsYou": "Samme tid som dig",
     "@userProfileSameTimeAsYou": {
@@ -11269,26 +10455,9 @@
     "@channelSettingsVoiceRegionsLoadFailedDescription": {
         "description": "Error modal body when voice regions fail to load in channel settings."
     },
-    "channelSettingsAdvanced": "Avanceret",
-    "@channelSettingsAdvanced": {
-        "description": "Collapsible advanced section title in channel overview."
-    },
-    "channelSettingsMatureContentOverride": "Tilsidesæt voksenindhold",
-    "@channelSettingsMatureContentOverride": {
-        "description": "Accessibility label for mature content override control."
-    },
     "channelSettingsMatureContentOffDescription": "Lad denne kanal være åben for voksent indhold.",
     "@channelSettingsMatureContentOffDescription": {
         "description": "Description for the mature content off override option."
-    },
-    "channelSettingsPermissionsNeedManageRoles": "Du skal have tilladelsen \"{manageRolesPermissionLabel}\" for at redigere disse tilladelser.",
-    "@channelSettingsPermissionsNeedManageRoles": {
-        "description": "Error when user lacks manage roles permission for channel permissions tab.",
-        "placeholders": {
-            "manageRolesPermissionLabel": {
-                "type": "String"
-            }
-        }
     },
     "channelSettingsPermissionsConfigureMemberOverrides": "Konfigurer tilsidesættelser for dette medlem",
     "@channelSettingsPermissionsConfigureMemberOverrides": {
@@ -11556,10 +10725,6 @@
     "@groupDmEditTitle": {
         "description": "Title for the edit group DM modal or sheet."
     },
-    "groupDmEditDetailsTooltip": "Rediger gruppeoplysninger",
-    "@groupDmEditDetailsTooltip": {
-        "description": "Tooltip on the desktop group DM header edit action."
-    },
     "groupDmMyGroup": "Min gruppe",
     "@groupDmMyGroup": {
         "description": "Placeholder for the group name field in edit group."
@@ -11589,17 +10754,9 @@
             }
         }
     },
-    "groupDmFailedToProcessCroppedImage": "Kunne ikke behandle det beskårede billede. Prøv igen.",
-    "@groupDmFailedToProcessCroppedImage": {
-        "description": "Body when a cropped group icon cannot be processed."
-    },
     "groupDmInvalidImageBody": "Billedet er ugyldigt. Prøv et andet.",
     "@groupDmInvalidImageBody": {
         "description": "Body when the selected group icon image cannot be used."
-    },
-    "groupDmAddFailed": "Kunne ikke føje til gruppe",
-    "@groupDmAddFailed": {
-        "description": "Title when adding friends to a group DM fails."
     },
     "groupDmGroupFull": "Denne gruppe er fuld. Fjern en person, før du tilføjer flere.",
     "@groupDmGroupFull": {
@@ -11637,16 +10794,6 @@
     "audioAndVideoMicTestStartLabel": "Start mikrofontest",
     "@audioAndVideoMicTestStartLabel": {
         "description": "Button label to start the microphone test."
-    },
-    "audioAndVideoMicTestPermissionRequired": "{productName} skal bruge adgang til mikrofonen for at teste din lyd.",
-    "@audioAndVideoMicTestPermissionRequired": {
-        "description": "Shown when microphone permission is required for the mic test.",
-        "placeholders": {
-            "productName": {
-                "type": "String",
-                "example": "echowire"
-            }
-        }
     },
     "audioAndVideoCameraQuality720pLabel": "720p",
     "@audioAndVideoCameraQuality720pLabel": {
@@ -11974,18 +11121,6 @@
     "@nagbarPushNotification": {
         "description": "Push notification permission nagbar body."
     },
-    "phoneCountryLabel": "Land",
-    "@phoneCountryLabel": {
-        "description": "Label for country selector in phone verification."
-    },
-    "phoneSearchCountries": "Søg lande...",
-    "@phoneSearchCountries": {
-        "description": "Search hint for country selector."
-    },
-    "phoneNumberRequired": "Telefonnummer er påkrævet",
-    "@phoneNumberRequired": {
-        "description": "Validation error when phone number is empty."
-    },
     "nagbarGiftInventoryMany": "Du har {count} nye gavekoder, der venter i din gavebeholdning.",
     "@nagbarGiftInventoryMany": {
         "description": "Gift inventory nagbar when multiple unread gifts exist.",
@@ -11994,46 +11129,6 @@
                 "type": "int"
             }
         }
-    },
-    "phoneTooManyAttempts": "For mange forsøg. Vent lidt, og prøv så igen.",
-    "@phoneTooManyAttempts": {
-        "description": "Rate limit error for phone verification."
-    },
-    "phoneInboundExpensiveDescription": "At sende en SMS til dette telefonnummer er for dyrt, så vi beder dig om at sende os en SMS i stedet. Du kan også kontakte support for at få os til at fjerne dette krav fra din konto.",
-    "@phoneInboundExpensiveDescription": {
-        "description": "Inbound challenge reason for expensive destinations."
-    },
-    "phoneInboundDefaultDescription": "Vi skal bruge en SMS fra dig for at bekræfte dit telefonnummer.",
-    "@phoneInboundDefaultDescription": {
-        "description": "Default inbound challenge description."
-    },
-    "phoneInboundStepSendCode": "Send koden {code} til {number}.",
-    "@phoneInboundStepSendCode": {
-        "description": "Inbound verification step 2.",
-        "placeholders": {
-            "code": {
-                "type": "String"
-            },
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "phoneInboundStepWait": "Vent på, at vi modtager din besked. Det kan tage et minut.",
-    "@phoneInboundStepWait": {
-        "description": "Inbound verification step 3."
-    },
-    "requiredActionCheckEmailTitle": "Tjek din e-mail",
-    "@requiredActionCheckEmailTitle": {
-        "description": "Title for email verification instructions."
-    },
-    "requiredActionUsePhone": "Brug telefon",
-    "@requiredActionUsePhone": {
-        "description": "Button to choose phone verification."
-    },
-    "requiredActionCheckEmailDescription": "Vi har sendt et bekræftelseslink til din e-mailadresse. Åbn det for at fortsætte.",
-    "@requiredActionCheckEmailDescription": {
-        "description": "Description for email verification instructions."
     },
     "systemCallDurationYears": "{count} år",
     "@systemCallDurationYears": {
@@ -12174,10 +11269,6 @@
     "@groupDmWelcomeAddFriends": {
         "description": "Primary action on the group DM welcome hero."
     },
-    "groupDmCouldntProcessImage": "Kunne ikke behandle billede",
-    "@groupDmCouldntProcessImage": {
-        "description": "Title when a cropped group icon cannot be processed."
-    },
     "groupDmOrSendInvite": "eller send en invitation til en ven:",
     "@groupDmOrSendInvite": {
         "description": "Label above the invite link field in add friends to group."
@@ -12264,10 +11355,6 @@
     "@mediaViewerCopyLink": {
         "description": "Media viewer action that copies the media URL to the clipboard."
     },
-    "accessibilitySaturationDescription": "Juster, hvor levende temafarver vises i hele appen.",
-    "@accessibilitySaturationDescription": {
-        "description": "Section description for the theme saturation slider on the accessibility settings page."
-    },
     "guildNavbarChannelTypeSelection": "Vælg kanaltype",
     "@guildNavbarChannelTypeSelection": {
         "description": "Accessibility label for channel type radio group in create channel modal."
@@ -12292,81 +11379,9 @@
     "@addGuildCreateIconHint": {
         "description": "Helper text under the community icon upload buttons listing accepted formats and size guidance."
     },
-    "phoneCannotBeUsed": "Dette telefonnummer kan ikke bruges. Prøv et andet mobilnummer, eller kontakt support.",
-    "@phoneCannotBeUsed": {
-        "description": "API error when phone number is rejected."
-    },
-    "phoneAlreadyUsed": "Dette telefonnummer er allerede i brug. Prøv et andet nummer, eller kontakt support.",
-    "@phoneAlreadyUsed": {
-        "description": "API error when phone number was reused."
-    },
-    "phoneCodeDidNotWork": "Koden virkede ikke. Tjek den, og prøv igen.",
-    "@phoneCodeDidNotWork": {
-        "description": "API error for invalid verification code."
-    },
-    "phoneSmsUnavailable": "SMS-bekræftelse er ikke tilgængelig lige nu. Prøv igen senere, eller kontakt support.",
-    "@phoneSmsUnavailable": {
-        "description": "SMS provider unavailable error."
-    },
-    "phoneNotEligible": "Telefonbekræftelse er ikke tilgængelig for denne konto. Brug en anden metode, eller kontakt support.",
-    "@phoneNotEligible": {
-        "description": "Account not eligible for phone verification."
-    },
-    "requiredActionIntroPhone": "Din registrering kræver et ekstra anti-spam-tjek, før du kan fortsætte.",
-    "@requiredActionIntroPhone": {
-        "description": "Phone-only required action intro."
-    },
-    "requiredActionVerificationEmailSent": "Bekræftelsesmail sendt. Tjek din indbakke.",
-    "@requiredActionVerificationEmailSent": {
-        "description": "Toast after resending verification email."
-    },
-    "phoneEnterValidNumber": "Indtast et gyldigt mobilnummer.",
-    "@phoneEnterValidNumber": {
-        "description": "Validation error for invalid phone format."
-    },
     "phoneCaptchaRequired": "Der kræves et browsertjek, før telefonbekræftelse kan udføres. Prøv igen fra loginskærmen, eller kontakt support.",
     "@phoneCaptchaRequired": {
         "description": "Captcha required for phone verification."
-    },
-    "phoneSomethingWentWrong": "Der opstod en fejl. Prøv igen.",
-    "@phoneSomethingWentWrong": {
-        "description": "Generic phone verification error."
-    },
-    "phoneInboundStepOpenMessaging": "Åbn din telefons beskedapp, og opret en ny sms.",
-    "@phoneInboundStepOpenMessaging": {
-        "description": "Inbound verification step 1."
-    },
-    "phoneInboundGetNewCode": "Få ny kode",
-    "@phoneInboundGetNewCode": {
-        "description": "Button to refresh inbound challenge."
-    },
-    "phoneInboundChallengeCodeLabel": "Kode til at sende",
-    "@phoneInboundChallengeCodeLabel": {
-        "description": "Label for inbound challenge code."
-    },
-    "phoneInboundOurNumberLabel": "Send til",
-    "@phoneInboundOurNumberLabel": {
-        "description": "Label for inbound destination number."
-    },
-    "requiredActionTitle": "Kontobekræftelse påkrævet",
-    "@requiredActionTitle": {
-        "description": "Title for required action blocking modal."
-    },
-    "requiredActionChooseMethodTitle": "Vælg en bekræftelsesmetode",
-    "@requiredActionChooseMethodTitle": {
-        "description": "Title when user can pick email or phone."
-    },
-    "requiredActionUseEmail": "Brug e-mail",
-    "@requiredActionUseEmail": {
-        "description": "Button to choose email verification."
-    },
-    "requiredActionResendVerificationEmail": "Send bekræftelsesmail igen",
-    "@requiredActionResendVerificationEmail": {
-        "description": "Button to resend verification email."
-    },
-    "requiredActionSignOut": "Log ud",
-    "@requiredActionSignOut": {
-        "description": "Sign out button in required action modal."
     },
     "channelDetailsMemberYou": "Dig",
     "@channelDetailsMemberYou": {
@@ -12433,10 +11448,6 @@
     "notificationsEnableDesktopNotificationsLabel": "Slå notifikationer til på computeren",
     "@notificationsEnableDesktopNotificationsLabel": {
         "description": "Toggle label for enabling desktop notifications."
-    },
-    "notificationsEnableBrowserNotificationsDescription": "Få besked, når du modtager beskeder. Du skal muligvis tillade notifikationer i dine browserindstillinger. For at styre notifikationer for specifikke kanaler/fællesskaber skal du højreklikke på et fællesskabsikon og åbne notifikationsindstillingerne.",
-    "@notificationsEnableBrowserNotificationsDescription": {
-        "description": "Description for the enable browser notifications toggle."
     },
     "notificationsPushInactiveTimeoutLabel": "Inaktivitetstimeout for push-notifikationer",
     "@notificationsPushInactiveTimeoutLabel": {
@@ -12512,27 +11523,9 @@
     "@audioAndVideoFrameRate60Label": {
         "description": "Screen share frame rate option for 60 FPS."
     },
-    "audioAndVideoHigherQualityRequiresPremium": "1080p og 60 FPS kræver {premiumProductName}.",
-    "@audioAndVideoHigherQualityRequiresPremium": {
-        "description": "Note shown when higher video quality options require premium.",
-        "placeholders": {
-            "premiumProductName": {
-                "type": "String",
-                "example": "Reverb"
-            }
-        }
-    },
-    "guildSettingsRolesCustomHoistOrder": "Brugerdefineret rækkefølge for fremhævelse",
-    "@guildSettingsRolesCustomHoistOrder": {
-        "description": "Button to enter custom hoist order mode."
-    },
     "guildSettingsRolesNoHoistedRoles": "Ingen fremhævede roller. Aktivér \"Vis denne rolle separat\" for en rolle for at se den her.",
     "@guildSettingsRolesNoHoistedRoles": {
         "description": "Empty state when no roles are hoisted."
-    },
-    "guildSettingsRolesLockedTooltip": "Du kan ikke redigere denne rolle, da det er din højeste rolle eller over dig",
-    "@guildSettingsRolesLockedTooltip": {
-        "description": "Tooltip on locked role rows."
     },
     "guildSettingsRolesCannotEditHigherRole": "Du kan ikke redigere en rolle, der er på niveau med eller over din højeste rolle",
     "@guildSettingsRolesCannotEditHigherRole": {
@@ -12577,10 +11570,6 @@
     "channelDetailsDeleteChannel": "Slet kanal",
     "@channelDetailsDeleteChannel": {
         "description": "Channel details menu action to delete a guild channel."
-    },
-    "channelSettingsCategorySettingsTitle": "Kategoriindstillinger",
-    "@channelSettingsCategorySettingsTitle": {
-        "description": "Title for category settings modal."
     },
     "channelSettingsEditCategory": "Rediger kategori",
     "@channelSettingsEditCategory": {
@@ -13255,42 +12244,6 @@
     "@gifPickerFavoritesEmptyDescription": {
         "description": "Empty state description for the GIF picker favorites view."
     },
-    "requiredActionIntroGeneric": "Gennemfør den påkrævede bekræftelse for at fortsætte med at bruge {productName}.",
-    "@requiredActionIntroGeneric": {
-        "description": "Generic required action intro.",
-        "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "requiredActionIntroEmailOrPhone": "Bekræft din e-mail eller telefon for at fortsætte med at bruge {productName}.",
-    "@requiredActionIntroEmailOrPhone": {
-        "description": "Email or phone required action intro.",
-        "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "requiredActionIntroEmailAndPhone": "Gennemfør de påkrævede trin til bekræftelse af e-mail og telefon herunder for at fortsætte med at bruge {productName}.",
-    "@requiredActionIntroEmailAndPhone": {
-        "description": "Email and phone required action intro.",
-        "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "requiredActionChooseMethodDescription": "Gennemfør en af bekræftelsesvejene herunder for at fortsætte med at bruge {productName}.",
-    "@requiredActionChooseMethodDescription": {
-        "description": "Description when user can pick email or phone.",
-        "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
     "networkErrorMessage": "Der gik noget galt. Prøv igen.",
     "@networkErrorMessage": {
         "description": "Generic message shown when a network request fails."
@@ -13797,6 +12750,14 @@
     "@accessibilityAlwaysUnderlineLinksLabel": {
         "description": "Toggle label for always underlining links in messages."
     },
+    "accessibilityShowAltTextOnImagesLabel": "Vis alternativ tekst på billeder",
+    "@accessibilityShowAltTextOnImagesLabel": {
+        "description": "Toggle label for showing image alternative text as a caption."
+    },
+    "accessibilityShowAltTextOnImagesDescription": "Vis alternativ tekst under billeder, når den er tilgængelig.",
+    "@accessibilityShowAltTextOnImagesDescription": {
+        "description": "Description for the show alternative text on images toggle."
+    },
     "accessibilityDimStrikethroughTextLabel": "Dæmp gennemstreget tekst",
     "@accessibilityDimStrikethroughTextLabel": {
         "description": "Toggle label for dimming strikethrough text in messages."
@@ -13915,10 +12876,6 @@
     "accessibilityPausedGifByReducedMotion": "Sat på pause på grund af reduceret bevægelse. Slå til for at afspille GIF'er.",
     "@accessibilityPausedGifByReducedMotion": {
         "description": "Description for GIF toggle while reduced motion is active."
-    },
-    "accessibilityGifDefaultsOffOnMobile": "Standardindstillingen er slået fra på mobil for at spare på batteri og data.",
-    "@accessibilityGifDefaultsOffOnMobile": {
-        "description": "Helper text for GIF autoplay default on mobile."
     },
     "accessibilityStickerAnimationsTitle": "Stickeranimationer",
     "@accessibilityStickerAnimationsTitle": {
@@ -14375,25 +13332,13 @@
     "@privacyDashboardFriendRequestsEveryone": {
         "description": "Privacy dashboard friend request toggle label."
     },
-    "privacyDashboardFriendRequestsEveryoneDesc": "Tillad alle at sende dig venneanmodninger",
-    "@privacyDashboardFriendRequestsEveryoneDesc": {
-        "description": "Privacy dashboard friend request toggle description."
-    },
     "privacyDashboardFriendRequestsFriendsOfFriends": "Venner af venner",
     "@privacyDashboardFriendRequestsFriendsOfFriends": {
         "description": "Privacy dashboard friend request toggle label."
     },
-    "privacyDashboardFriendRequestsFriendsOfFriendsDesc": "Tillad venner af dine venner at sende dig anmodninger",
-    "@privacyDashboardFriendRequestsFriendsOfFriendsDesc": {
-        "description": "Privacy dashboard friend request toggle description."
-    },
     "privacyDashboardFriendRequestsCommunityMembers": "Fællesskabsmedlemmer",
     "@privacyDashboardFriendRequestsCommunityMembers": {
         "description": "Privacy dashboard friend request toggle label."
-    },
-    "privacyDashboardFriendRequestsCommunityMembersDesc": "Tillad medlemmer fra fællesskaber, du er en del af, at sende dig anmodninger",
-    "@privacyDashboardFriendRequestsCommunityMembersDesc": {
-        "description": "Privacy dashboard friend request toggle description."
     },
     "privacyDashboardDirectMessagesTitle": "Direkte beskeder",
     "@privacyDashboardDirectMessagesTitle": {
@@ -14403,65 +13348,29 @@
     "@privacyDashboardDirectMessagesMembers": {
         "description": "Privacy dashboard DM toggle label."
     },
-    "privacyDashboardDirectMessagesMembersDesc": "Tillad medlemmer fra fællesskaber, du er en del af, at sende dig direkte beskeder",
-    "@privacyDashboardDirectMessagesMembersDesc": {
-        "description": "Privacy dashboard DM toggle description."
-    },
     "privacyDashboardDirectMessagesBots": "Tillad direkte beskeder fra community-bots",
     "@privacyDashboardDirectMessagesBots": {
         "description": "Privacy dashboard bot DM toggle label."
-    },
-    "privacyDashboardDirectMessagesBotsDesc": "Tillad bots fra fællesskaber, du er en del af, at sende dig direkte beskeder",
-    "@privacyDashboardDirectMessagesBotsDesc": {
-        "description": "Privacy dashboard bot DM toggle description."
-    },
-    "privacyDashboardConnectionsSectionDesc": "Styr, hvem der kan sende dig venneanmodninger og direkte beskeder",
-    "@privacyDashboardConnectionsSectionDesc": {
-        "description": "Privacy dashboard connections section description."
-    },
-    "privacyDashboardCommunicationSectionDesc": "Styr, hvem der kan ringe til dig, og hvem der kan tilføje dig til gruppechats",
-    "@privacyDashboardCommunicationSectionDesc": {
-        "description": "Privacy dashboard communication section description."
     },
     "privacyDashboardIncomingCallsTitle": "Indgående opkald",
     "@privacyDashboardIncomingCallsTitle": {
         "description": "Privacy dashboard incoming calls subsection title."
     },
-    "privacyDashboardIncomingCallsDesc": "Styr, hvem der kan ringe til dig",
-    "@privacyDashboardIncomingCallsDesc": {
-        "description": "Privacy dashboard incoming calls subsection description."
-    },
     "privacyDashboardAllowedCallers": "Tilladte opkaldere",
     "@privacyDashboardAllowedCallers": {
         "description": "Privacy > Communication: select label."
-    },
-    "privacyDashboardIncomingCallNobody": "Ingen",
-    "@privacyDashboardIncomingCallNobody": {
-        "description": "Privacy > Communication: radio option label."
     },
     "privacyDashboardIncomingCallNobodyDesc": "Bloker alle indgående opkald",
     "@privacyDashboardIncomingCallNobodyDesc": {
         "description": "Privacy > Communication: select option description."
     },
-    "privacyDashboardIncomingCallFriendsOnly": "Kun venner",
-    "@privacyDashboardIncomingCallFriendsOnly": {
-        "description": "Privacy > Communication: radio option label."
-    },
     "privacyDashboardIncomingCallFriendsOnlyDesc": "Tillad kun venner at ringe til dig (anbefalet)",
     "@privacyDashboardIncomingCallFriendsOnlyDesc": {
         "description": "Privacy > Communication: select option description."
     },
-    "privacyDashboardIncomingCallCustom": "Venner + Brugerdefineret",
-    "@privacyDashboardIncomingCallCustom": {
-        "description": "Privacy > Communication: radio option label."
-    },
     "privacyDashboardIncomingCallCustomDesc": "Tillad venner plus yderligere grupper, du vælger",
     "@privacyDashboardIncomingCallCustomDesc": {
         "description": "Privacy > Communication: select option description."
-    },
-    "privacyDashboardIncomingCallEveryone": "Alle",
-    "@privacyDashboardIncomingCallEveryone": {
-        "description": "Privacy > Communication: radio option label."
     },
     "privacyDashboardIncomingCallEveryoneDesc": "Tillad alle at ringe til dig, selv fremmede",
     "@privacyDashboardIncomingCallEveryoneDesc": {
@@ -14471,14 +13380,6 @@
     "@privacyDashboardAdditionalGroups": {
         "description": "Privacy dashboard label for custom permission groups."
     },
-    "privacyDashboardCallFriendsOfFriendsDesc": "Folk, der er venner med dine venner, kan ringe til dig",
-    "@privacyDashboardCallFriendsOfFriendsDesc": {
-        "description": "Privacy dashboard incoming call custom toggle description."
-    },
-    "privacyDashboardCallGuildMembersDesc": "Folk fra fællesskaber, I begge er en del af, kan ringe til dig",
-    "@privacyDashboardCallGuildMembersDesc": {
-        "description": "Privacy dashboard incoming call custom toggle description."
-    },
     "privacyDashboardRingBehavior": "Ringadfærd",
     "@privacyDashboardRingBehavior": {
         "description": "Privacy dashboard ring behavior subsection label."
@@ -14487,17 +13388,9 @@
     "@privacyDashboardSilentCalls": {
         "description": "Privacy dashboard silent calls toggle label."
     },
-    "privacyDashboardSilentCallsDesc": "Alle opkald vil notificere lydløst i stedet for at ringe. Som standard er opkald fra ikke-venner altid lydløse.",
-    "@privacyDashboardSilentCallsDesc": {
-        "description": "Privacy dashboard silent calls toggle description."
-    },
     "privacyDashboardGroupDmTitle": "Hvem kan tilføje dig til gruppechats",
     "@privacyDashboardGroupDmTitle": {
         "description": "Privacy dashboard group DM subsection title."
-    },
-    "privacyDashboardGroupDmDesc": "Styr, hvem der kan tilføje dig til gruppechats uden at spørge. Alle kan stadig sende dig invitationslinks for at deltage.",
-    "@privacyDashboardGroupDmDesc": {
-        "description": "Privacy dashboard group DM subsection description."
     },
     "privacyDashboardAllowedInvites": "Tilladte invitationer",
     "@privacyDashboardAllowedInvites": {
@@ -14518,14 +13411,6 @@
     "privacyDashboardGroupDmEveryoneDesc": "Tillad alle at tilføje dig til gruppechats uden at spørge",
     "@privacyDashboardGroupDmEveryoneDesc": {
         "description": "Privacy > Communication: select option description."
-    },
-    "privacyDashboardGroupDmFriendsOfFriendsDesc": "Folk, der er venner med dine venner, kan tilføje dig til gruppechats",
-    "@privacyDashboardGroupDmFriendsOfFriendsDesc": {
-        "description": "Privacy dashboard group DM custom toggle description."
-    },
-    "privacyDashboardGroupDmGuildMembersDesc": "Personer fra fællesskaber, I begge er en del af, kan tilføje dig til gruppechats",
-    "@privacyDashboardGroupDmGuildMembersDesc": {
-        "description": "Privacy dashboard group DM custom toggle description."
     },
     "privacyDashboardVoiceActivityTitle": "Stemmeaktivitet i aktiv nu",
     "@privacyDashboardVoiceActivityTitle": {
@@ -15058,26 +13943,6 @@
     "@composerAutocompleteOptionalArgumentsHeading": {
         "description": "Section heading in composer autocomplete for adding optional slash-command arguments."
     },
-    "composerAutocompleteChannelsHeading": "Kanaler",
-    "@composerAutocompleteChannelsHeading": {
-        "description": "Section heading in composer autocomplete for channel suggestions."
-    },
-    "composerAutocompleteMembersHeading": "Medlemmer",
-    "@composerAutocompleteMembersHeading": {
-        "description": "Section heading in composer autocomplete for member suggestions."
-    },
-    "composerAutocompleteUsersHeading": "Brugere",
-    "@composerAutocompleteUsersHeading": {
-        "description": "Section heading in composer autocomplete for user suggestions."
-    },
-    "composerAutocompleteMentionsHeading": "Omtaler",
-    "@composerAutocompleteMentionsHeading": {
-        "description": "Section heading in composer autocomplete for mixed mention suggestions."
-    },
-    "composerAutocompleteRolesHeading": "Roller",
-    "@composerAutocompleteRolesHeading": {
-        "description": "Section heading in composer autocomplete for role suggestions."
-    },
     "composerAutocompleteMediaHeading": "Medier",
     "@composerAutocompleteMediaHeading": {
         "description": "Section heading in composer autocomplete for saved media."
@@ -15294,10 +14159,6 @@
     "memberListUnavailableBody": "Medlemslister er midlertidigt utilgængelige i dette fællesskab",
     "@memberListUnavailableBody": {
         "description": "Body when member list updates are disabled for the community."
-    },
-    "channelHeaderOpenDetails": "Åbn kanaloplysninger",
-    "@channelHeaderOpenDetails": {
-        "description": "Accessibility label for the channel header title area."
     },
     "channelHeaderPinnedMessages": "Fastgjorte beskeder",
     "@channelHeaderPinnedMessages": {
@@ -15660,10 +14521,6 @@
     "@userSettingsSearchPlaceholder": {
         "description": "Placeholder for the user settings search field."
     },
-    "userSettingsSearchFieldLabel": "Søg i indstillinger",
-    "@userSettingsSearchFieldLabel": {
-        "description": "Accessibility label for the user settings search field."
-    },
     "userSettingsSearchClear": "Ryd søgning",
     "@userSettingsSearchClear": {
         "description": "Accessibility label for clearing the user settings search field."
@@ -15690,8 +14547,6 @@
     "giftSettingsGiftUrl": "Gave-URL",
     "giftSettingsCopy": "Kopiér",
     "giftSettingsCopied": "Kopieret",
-    "giftSettingsGiftUrlCopied": "Gave-URL kopieret til udklipsholder!",
-    "giftSettingsGiftUrlCopyFailed": "Kunne ikke kopiere gave-URL",
     "giftSettingsPurchasedDate": "Købt {date}",
     "@giftSettingsPurchasedDate": {
         "placeholders": {
@@ -15733,7 +14588,6 @@
     "premiumBuyGift": "Køb gave",
     "premiumOneYearGift": "1 års gave",
     "premiumOneMonthGift": "1 måneds gave",
-    "premiumMostPopular": "Mest populær",
     "premiumScrollPrompt": "Rul ned for at se alle fordelene ved Reverb",
     "premiumFreeVsPlutonium": "Gratis vs Reverb",
     "premiumFreeColumn": "Gratis",
@@ -15751,50 +14605,15 @@
     "premiumViewGifts": "Se gaver",
     "premiumReadyToUpgrade": "Klar til at opgradere?",
     "premiumReadyToBuyGift": "Klar til at købe en gave?",
-    "premiumMonthlyPrice": "Månedligt {price}",
-    "@premiumMonthlyPrice": {
-        "placeholders": {
-            "price": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumYearlyPrice": "Årligt {price}",
-    "@premiumYearlyPrice": {
-        "placeholders": {
-            "price": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumOneYearPrice": "1 år {price}",
-    "@premiumOneYearPrice": {
-        "placeholders": {
-            "price": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumOneMonthPrice": "1 måned {price}",
-    "@premiumOneMonthPrice": {
-        "placeholders": {
-            "price": {
-                "type": "String"
-            }
-        }
-    },
     "premiumManageSubscription": "Administrer abonnement",
     "premiumRedeemGiftCode": "Indløs gavekode",
     "premiumGiftBadge": "Gave",
     "premiumCancelSubscriptionTitle": "Annuller abonnement?",
     "premiumCancelSubscriptionBody": "Du beholder dine fordele indtil din næste fornyelsesdato og har derefter en respitperiode på 3 dage til at genabonnere og bevare din abonnementshistorik.",
     "premiumCancelSubscriptionConfirm": "Annuller abonnement",
-    "premiumKeepSubscription": "Behold abonnement",
     "premiumPurchaseHistoryTitle": "Købshistorik",
     "premiumPurchaseHistoryDescription": "Dine seneste fakturaer. For at ændre betalingsmetoden for dit abonnement, skal du tilføje eller vælge en i faktureringsportalen og gøre den til standard.",
     "premiumManagePaymentMethods": "Administrer betalingsmetoder",
-    "premiumBillingHistory": "Faktureringshistorik",
-    "premiumSelfServeRefundTitle": "Selvbetjent refusion",
     "premiumSelfServeRefundButton": "Tilbagebetal seneste køb",
     "premiumDisclaimerAgreementPrefix": "Ved køb accepterer du vores ",
     "premiumDisclaimerAgreementPastPrefix": "Ved køb accepterede du vores ",
@@ -15825,25 +14644,25 @@
             }
         }
     },
-    "premiumComparisonFeatureColumn": "Funktion",
-    "premiumDisclaimerPurchased": "Ved køb accepterer du vores {terms} og {privacy}.",
-    "@premiumDisclaimerPurchased": {
-        "placeholders": {
-            "terms": {
-                "type": "String"
-            },
-            "privacy": {
-                "type": "String"
-            }
-        }
+    "premiumGiftGraceEnded": "Din gaveperiode er udløbet. Abonner for at beholde Plutonium.",
+    "@premiumGiftGraceEnded": {
+        "description": "Plutonium settings summary line shown during the grace period after gifted Plutonium time runs out."
     },
+    "premiumGiftTimeAddedAfterSubscription": "Du bliver opkrævet nu. Din resterende gavetid lægges til efter din betalte periode, så intet går tabt.",
+    "@premiumGiftTimeAddedAfterSubscription": {
+        "description": "Note next to the subscription plans when the user still has gifted Plutonium time left."
+    },
+    "premiumComparisonFeatureColumn": "Funktion",
     "premiumDisclaimerRefund": "Selvbetjent refusion er tilgængelig inden for 3 dage efter betaling, én gang hver 30. dag. Refusion af et abonnement annullerer det. Købere fra EU/EØS frasiger sig den 14-dages fortrydelsesret ved kassen for at få øjeblikkelig adgang til indhold. Brug refusionsknappen i appen i stedet for en tilbageførsel. Tilbageførsler kan permanent begrænse din konto. Stripe håndterer betaling sikkert. Vi ser aldrig dit fulde kortnummer.",
     "premiumTermsOfService": "Servicevilkår",
     "premiumPrivacyPolicy": "Fortrolighedspolitik",
     "premiumCheckoutStartFailedTitle": "Kunne ikke starte betaling",
     "premiumCheckoutStartFailedBody": "Der opstod en fejl under start af betaling. Prøv venligst igen om et øjeblik.",
-    "premiumGiftSubscriptionBlocksRecurring": "Du har i øjeblikket et gaveabonnement. Det fornys ikke automatisk. Du kan indløse flere gavekoder for at forlænge det. Du kan starte et tilbagevendende abonnement, når din gaveperiode udløber.",
     "premiumPlanUnavailable": "Denne plan er ikke tilgængelig. Kontakt support.",
+    "premiumPlanUnavailableSelfHosted": "Dette abonnement er ikke tilgængeligt. Kontakt administratorerne af denne instans.",
+    "@premiumPlanUnavailableSelfHosted": {
+        "description": "Error shown on a self-hosted instance when the selected Plutonium plan is not available. Names no support mailbox."
+    },
     "premiumCompletePaymentTitle": "Gennemfør betaling",
     "premiumCompletePaymentBody": "Du navigerer nu til Stripe for at gennemføre betalingen. Vend tilbage til echowire, når du er færdig.",
     "premiumChoosePaymentMethodTitle": "Vælg betalingsmetode",
@@ -15859,29 +14678,97 @@
     "premiumExistingSubscriptionTitle": "Abonnementet findes allerede",
     "premiumExistingSubscriptionBody": "Vi fandt et eksisterende Reverb-abonnement til denne konto. Administrer det i den sikre faktureringsportal for at opdatere betalingsoplysninger eller kontrollere fornyelsesstatus. Hvis du lige har betalt, skal du vente et minut og genåbne denne side.",
     "premiumPurchasesDisabledTitle": "Køb er ikke tilgængelige",
-    "premiumPurchasesDisabledBody": "Køb er deaktiveret for denne konto. Kontakt support@echowire.org, hvis dette ser forkert ud.",
+    "premiumPurchasesDisabledBody": "Køb er deaktiveret for denne konto. Kontakt {supportEmail}, hvis dette ser forkert ud.",
+    "@premiumPurchasesDisabledBody": {
+        "description": "Shown on the official hosted instance when purchases are disabled for the account. supportEmail is the support mailbox.",
+        "placeholders": {
+            "supportEmail": {
+                "type": "String"
+            }
+        }
+    },
+    "premiumPurchasesDisabledBodySelfHosted": "Køb er deaktiveret for denne konto. Kontakt administratorerne af denne instans, hvis dette ser forkert ud.",
+    "@premiumPurchasesDisabledBodySelfHosted": {
+        "description": "Shown on a self-hosted instance when purchases are disabled for the account. Names no email address."
+    },
     "premiumClaimAccountToPurchase": "Gør krav på din konto for at købe Reverb.",
     "premiumVerifyEmailToPurchase": "Du skal bekræfte din e-mail, før du kan købe Reverb.",
-    "premiumPerkCustomUsernameTag": "Brugerdefineret brugernavn",
-    "premiumPerkPerCommunityProfiles": "Profiler pr. fællesskab",
-    "premiumPerkMessageScheduling": "Planlægning af beskeder",
-    "premiumPerkProfileBadge": "Profilbadge",
-    "premiumPerkCustomVideoBackgrounds": "Brugerdefinerede video-baggrunde",
-    "premiumPerkEntranceSounds": "Lyd ved indgang",
     "premiumPerkCommunities": "Fællesskaber",
     "premiumPerkMessageCharacterLimit": "Tegnbegrænsning for beskeder",
     "premiumPerkBookmarkedMessages": "Bogmærkede beskeder",
     "premiumPerkFileUploadSize": "Filoverførselsstørrelse",
-    "premiumPerkEmojiStickerPacks": "Emoji- og sticker-pakker",
-    "premiumPerkSavedMedia": "Gemte medier",
     "premiumPerkUseAnimatedEmojis": "Brug animerede emojis",
-    "premiumPerkGlobalEmojiStickerAccess": "Adgang til emojis og stickers globalt",
     "premiumPerkVideoQuality": "Videokvalitet",
     "premiumPerkAnimatedAvatarsBanners": "Animerede avatarer og profilbannere",
     "premiumPerkEarlyAccess": "Tidlig adgang til nye funktioner",
-    "premiumPerkCustomThemes": "Brugerdefinerede temaer",
     "premiumPerkVideoQualityRestricted": "720p/30fps",
     "premiumPerkVideoQualityStock": "Op til 4K/60 fps",
+    "storePlutoniumPriceLine": "{monthly} eller {yearly}",
+    "@storePlutoniumPriceLine": {
+        "placeholders": {
+            "monthly": {
+                "type": "String"
+            },
+            "yearly": {
+                "type": "String"
+            }
+        }
+    },
+    "storePlutoniumMonthSuffix": "/md.",
+    "storePlutoniumYearSuffix": "/år",
+    "storePlutoniumPriceOr": "eller",
+    "storePlutoniumEmojiTitle": "Dine emojis, overalt",
+    "storePlutoniumEmojiBody": "Brug brugerdefinerede emojis og klistermærker fra alle dine fællesskaber i enhver chat og ethvert fællesskab, du er en del af.",
+    "storePlutoniumProfileTitle": "En profil, der skiller sig ud",
+    "storePlutoniumProfileBody": "Få en animeret avatar og et banner, et abonnentbadge, det firecifrede tag, du ønsker efter dit brugernavn*, og en separat profil for hvert fællesskab.",
+    "storePlutoniumFilesTitle": "Send filer på op til 500 MB",
+    "storePlutoniumFilesBody": "Del videoer i fuld længde og store filer uden at formindske dem først. Gratis konti kan sende op til 25 MB.",
+    "storePlutoniumCompareTitle": "Sammenlign Gratis og Plutonium",
+    "storePlutoniumCompareMobileNote": "Ikke alle disse funktioner er tilgængelige i mobilappen. Nogle er kun tilgængelige på computeren.",
+    "storePlutoniumNotAvailable": "Ikke tilgængelig",
+    "storePlutoniumAvailable": "Tilgængelig",
+    "storePlutoniumCompareTag": "Vælg det 4-cifrede nummer efter dit brugernavn*",
+    "storePlutoniumCompareProfile": "En separat profil for hvert fællesskab",
+    "storePlutoniumCompareBadge": "Abonnent-badge på din profil",
+    "storePlutoniumCompareBackgrounds": "Videoopkaldsbaggrunde, du kan gemme",
+    "storePlutoniumCompareCommunities": "Fællesskaber, du kan deltage i",
+    "storePlutoniumCompareCharacters": "Tegn i en enkelt besked",
+    "storePlutoniumCompareBookmarks": "Beskeder, du kan gemme",
+    "storePlutoniumCompareUpload": "Største fil, du kan uploade",
+    "storePlutoniumCompareSavedMedia": "Medieelementer, du kan gemme til senere",
+    "storePlutoniumCompareAnimatedEmoji": "Brug animerede emojis i beskeder",
+    "storePlutoniumCompareCustomEmoji": "Brug brugerdefinerede emojis og klistermærker i ethvert fællesskab",
+    "storePlutoniumCompareVideo": "Videokvalitet til videoopkald og skærmdeling",
+    "storePlutoniumCompareAvatar": "Animeret avatar og profilbanner",
+    "storePlutoniumCompareEarlyAccess": "Tidlig adgang til nye funktioner",
+    "storePlutoniumCompareThemes": "Brugerdefinerede temaer til appen",
+    "storePlutoniumVideoFree": "Op til 720p ved 30 billeder/sek",
+    "storePlutoniumVideoPlutonium": "Op til 4K ved 60 FPS",
+    "storePlutoniumTagFootnote": "Du kan kun vælge et tag, som ingen andre med det samme brugernavn allerede har. Brugernavne skelner ikke mellem store og små bogstaver, så Mina#4821 og mina#4821 tæller som det samme. Tagget #0000 er reserveret til Fluxer Visionary-medlemmer.",
+    "storePlutoniumLearnVisionary": "Læs mere om Visionary.",
+    "storePlutoniumDonatePrompt": "Vil du bare støtte Fluxers open source-udvikling? ",
+    "storePlutoniumDonateLink": "Donér i stedet.",
+    "storePlutoniumHighlightsLead": "Et abonnement finansierer Fluxer og låser op for",
+    "storePlutoniumHighlightEmoji": "Brugerdefinerede emojis og klistermærker i enhver chat",
+    "storePlutoniumHighlightProfile": "Animeret profil, badge og brugerdefineret 4-cifret nummer",
+    "storePlutoniumHighlightFiles": "Uploads på op til 500 MB",
+    "storePlutoniumHighlightMessages": "Send beskeder på op til 4.000 tegn",
+    "storePlutoniumHighlightCommunityProfile": "En separat profil for hvert fællesskab",
+    "storePlutoniumHighlightsMore": "Og mere",
+    "storePlutoniumRenewsThroughPlay": "Fornyes automatisk via Google Play, indtil du opsiger det.",
+    "storePlutoniumRenewsThroughAppStore": "Fornyes automatisk via App Store, indtil du opsiger det.",
+    "storePlutoniumAlreadySubscribed": "Du har allerede et Fluxer Plutonium-abonnement.",
+    "storePlutoniumSavePercent": "Spar {percent}%",
+    "@storePlutoniumSavePercent": {
+        "placeholders": {
+            "percent": {
+                "type": "int"
+            }
+        }
+    },
+    "storePlutoniumWaiting": "Køb modtaget. Plutonium vises her, når det er aktiveret.",
+    "storePlutoniumUnavailable": "Abonnementer i appen er ikke tilgængelige på denne enhed endnu.",
+    "storePlutoniumVisionaryStatus": "Visionary inkluderer allerede permanent adgang, så et tilbagevendende abonnement er ikke nødvendigt.",
     "userSettingsNavShortcuts": "Genveje",
     "@userSettingsNavShortcuts": {
         "description": "User settings navigation item for keyboard shortcuts."
@@ -15970,6 +14857,18 @@
     "@defaultAppsWebBrowserExternal": {
         "description": "Default web browser option for the system default browser."
     },
+    "userSettingsNavAppIcon": "App-ikon",
+    "@userSettingsNavAppIcon": {
+        "description": "User settings navigation item for choosing the home screen app icon."
+    },
+    "appIconSectionTitle": "App-ikon",
+    "@appIconSectionTitle": {
+        "description": "Title for the app icon settings section."
+    },
+    "appIconSectionDescription": "Vælg, hvilket ikon der vises på din startskærm.",
+    "@appIconSectionDescription": {
+        "description": "Description for the app icon settings section."
+    },
     "advancedSettingsConfigure": "Konfigurer",
     "@advancedSettingsConfigure": {
         "description": "Button label that opens a dedicated advanced settings modal."
@@ -16019,7 +14918,6 @@
     "advancedSettingStripTrackingLabel": "Fjern sporingsparametre fra webadresser",
     "advancedSettingStripTrackingDescription": "Fjern automatisk sporingsparametre fra webadresser i beskeder, du sender",
     "advancedSettingTrustAllLinksLabel": "Stol på alle eksterne links",
-    "advancedSettingTrustAllLinksDescription": "Spring advarsel om eksternt link over for alle domæner",
     "advancedSettingSearchEnginesLabel": "Søgemaskiner",
     "advancedSettingSearchEnginesDescription": "Konfigurer søgemaskiner, der bruges til at søge i valgt tekst",
     "advancedSettingTranslatorsLabel": "Oversættere",
@@ -16075,13 +14973,6 @@
     "advancedSettingHideStreamPreviewLabel": "Skjul miniature for forhåndsvisning af min stream",
     "advancedSettingDeveloperModeLabel": "Slå udviklertilstand til",
     "advancedSettingDeveloperModeDescription": "Slå udviklertilstand til",
-    "advancedSettingSearchEngineGoogle": "Google",
-    "advancedSettingSearchEngineDuckDuckGo": "DuckDuckGo",
-    "advancedSettingSearchEngineBing": "Bing",
-    "advancedSettingSearchEngineGoogleLens": "Google Lens",
-    "advancedSettingSearchEngineTinEye": "TinEye",
-    "advancedSettingTranslatorGoogle": "Google Oversæt",
-    "advancedSettingTranslatorDeepL": "DeepL",
     "advancedSettingDefaultSearchEngineLabel": "Standard søgemaskine",
     "advancedSettingDefaultSearchEngineDescription": "Vælg, hvilken søgemaskine der skal bruges som standard, når du søger efter markeret tekst.",
     "advancedSettingBuiltInSearchEnginesLabel": "Indbyggede søgemaskiner",
@@ -16220,6 +15111,14 @@
     "authHidePassword": "Skjul adgangskode",
     "@authHidePassword": {
         "description": "Screen reader label for the hide-password toggle on auth forms."
+    },
+    "authCheckStillWorking": "Stadig i gang…",
+    "@authCheckStillWorking": {
+        "description": "Small toast shown only when the automatic anti-spam check behind sign-in, sign-up or a similar action takes more than a couple of seconds. No user action needed."
+    },
+    "authVerificationFailed": "Kunne ikke gennemføre bekræftelse. Prøv igen.",
+    "@authVerificationFailed": {
+        "description": "Shown when the automatic anti-spam check behind sign-in, sign-up, phone verification or a similar action could not be completed."
     },
     "chatLoadingMessages": "Indlæser beskeder",
     "@chatLoadingMessages": {
@@ -16627,10 +15526,6 @@
     "@guildMembersColumnRoles": {
         "description": "Table column header on the community members page."
     },
-    "guildMembersColumnActions": "Handlinger",
-    "@guildMembersColumnActions": {
-        "description": "Table column header on the community members page."
-    },
     "guildMembersFilterMemberSince": "Filtrer efter medlem siden",
     "@guildMembersFilterMemberSince": {
         "description": "Filter menu label on the community members page."
@@ -16715,23 +15610,6 @@
     "@guildMembersIndexing": {
         "description": "Banner shown while guild members are being indexed."
     },
-    "guildMembersGoToPage": "Gå til side",
-    "@guildMembersGoToPage": {
-        "description": "Pagination jump label on the community members page."
-    },
-    "guildMembersGoToPageItem": "Gå til side {page}",
-    "@guildMembersGoToPageItem": {
-        "description": "Accessibility label for a pagination page button.",
-        "placeholders": {
-            "page": {
-                "type": "int"
-            }
-        }
-    },
-    "guildMembersJumpToPage": "Gå til side",
-    "@guildMembersJumpToPage": {
-        "description": "Label for pagination jump input on the community members page."
-    },
     "guildMembersJoinSourceCreator": "Fællesskabets skaber",
     "@guildMembersJoinSourceCreator": {
         "description": "Join method label on the community members page."
@@ -16808,28 +15686,14 @@
             }
         }
     },
-    "guildMembersJoinedDaysAgo": "{count, plural, one {1 dag siden} other {{count} dage siden}}",
-    "@guildMembersJoinedDaysAgo": {
-        "description": "Relative join time on the community members page.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
     "guildMembersChannelListLabel": "Medlemmer",
     "@guildMembersChannelListLabel": {
         "description": "Label for the Members item at the top of the guild channel list."
-    },
-    "guildMembersChannelListSelected": "Medlemmer valgt",
-    "@guildMembersChannelListSelected": {
-        "description": "Accessibility label when the Members channel list item is selected."
     },
     "guildSettingsEmojiSlotsTitle": "Emoji-pladser",
     "guildSettingsEmojiDropZone": "Træk og slip emoji-filer her",
     "guildSettingsEmojiLoadFailed": "Kunne ikke indlæse emojis. Prøv igen senere.",
     "guildSettingsEmojiSearchEmpty": "Ingen emojis fundet, der matcher din søgning.",
-    "guildSettingsEmojiNoSlots": "Ingen ledige emoji-pladser",
     "guildSettingsEmojiSlotsFull": "Du har nået det maksimale antal emojis. Slet nogle eksisterende emojis for at gøre plads.",
     "guildSettingsEmojiUploadRequirements": "Emoji-navne skal have mindst 2 tegn og kan bruge bogstaver, tal og understregninger. Emoji'er skal være under {maxSize}. Statiske billeder ændres størrelse til 128x128 pixels og komprimeres automatisk. Animerede emoji'er og SVG'er skal allerede passe ind i grænsen.",
     "@guildSettingsEmojiUploadRequirements": {
@@ -16839,24 +15703,11 @@
             }
         }
     },
-    "guildSettingsEmojiUploadingTitle": "Uploader emojis",
-    "guildSettingsEmojiUploadingBody": "Overfører {count, plural, one {# emoji} other {# emojis}}. Det kan tage lidt tid.",
-    "@guildSettingsEmojiUploadingBody": {
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "guildSettingsEmojiUploadFailed": "Kunne ikke uploade emojis. Prøv igen.",
     "guildSettingsEmojiSomeFailedTitle": "Nogle emojis kunne ikke tilføjes",
-    "guildSettingsEmojiSomeFailedBody": "Gennemgå disse filer, og prøv igen med mindre eller enklere billeder.",
     "guildSettingsEmojiRenameTitle": "Omdøb emoji",
     "guildSettingsEmojiRenameHint": "2-32 tegn, bogstaver, tal, understreger.",
-    "guildSettingsEmojiColumnEmoji": "Emoji",
     "guildSettingsEmojiColumnName": "Navn",
     "guildSettingsEmojiColumnUploader": "Uploadet af",
-    "guildSettingsEmojiUnknownUploader": "Ukendt",
     "guildSettingsEmojiDeleteTitle": "Slet emoji",
     "guildSettingsEmojiDeleteBody": "Slet :{name}:? Kan ikke fortrydes.",
     "@guildSettingsEmojiDeleteBody": {
@@ -16871,15 +15722,7 @@
     "guildSettingsEmojiNameTooLong": "Emonavnet må højst være 32 tegn langt",
     "guildSettingsEmojiInvalidNameTitle": "Ugyldigt emoji-navn",
     "guildSettingsEmojiRenameFailedTitle": "Kunne ikke omdøbe denne emoji",
-    "guildSettingsEmojiRenameFailedBody": "Navnet blev gendannet til det, det var før. Prøv venligst igen om et øjeblik.",
-    "guildSettingsEmojiGoneTitle": "Denne emoji findes ikke længere",
-    "guildSettingsEmojiGoneBody": "Den er muligvis blevet slettet. Navnet blev gendannet til det, det var før.",
-    "guildSettingsEmojiNoPermissionRenameTitle": "Du kan ikke omdøbe denne emoji",
-    "guildSettingsEmojiNoPermissionRenameBody": "Du har ikke tilladelse til at omdøbe denne emoji. Navnet blev gendannet til det oprindelige.",
-    "guildSettingsEmojiRateLimitedTitle": "Du er for hurtig",
-    "guildSettingsEmojiRateLimitedBody": "Vent venligst et øjeblik, og prøv at omdøbe igen.",
     "guildSettingsEmojiDeleteFailedTitle": "Kunne ikke slette denne emoji",
-    "guildSettingsEmojiDeleteNoPermissionTitle": "Du kan ikke slette denne emoji",
     "guildSettingsCloneEmojiTitle": "Tillad andre at klone dine emojis",
     "guildSettingsCloneEmojiDescription": "Når den er aktiveret, kan medlemmer af andre fællesskaber bruge genvejen \"Klon\" med ét klik i appen på dine tilpassede emojis. Dette forhindrer dem ikke i at gemme billedet og uploade det selv.",
     "guildSettingsCloneStickerTitle": "Tillad andre at klone dine klistermærker",
@@ -16903,8 +15746,6 @@
     "guildSettingsStickersLoadFailedTitle": "Kunne ikke indlæse klistermærker",
     "guildSettingsStickersLoadFailedBody": "Der opstod en fejl under indlæsning af klistermærkerne. Prøv igen.",
     "guildSettingsStickersSearchEmpty": "Ingen klistermærker fundet, der matcher din søgning.",
-    "guildSettingsStickersEmptySearch": "Ingen stickers fundet",
-    "guildSettingsStickerNoSlots": "Ingen ledige klistermærkepladser",
     "guildSettingsStickerSlotsFull": "Du har nået det maksimale antal klistermærker. Slet nogle eksisterende klistermærker for at gøre plads.",
     "guildSettingsStickerUploadRequirements": "Klistermærker gemmes i 320x320 pixels og skal være under {maxSize}. Statiske billeder ændres størrelse og komprimeres automatisk. Animerede klistermærker og SVG'er skal allerede passe ind i grænsen.",
     "@guildSettingsStickerUploadRequirements": {
@@ -16914,7 +15755,6 @@
             }
         }
     },
-    "guildSettingsStickerUnsupportedTitle": "Ikke-understøttet stickerfil",
     "guildSettingsStickerAddTitle": "Tilføj sticker",
     "guildSettingsStickerEditTitle": "Rediger sticker",
     "guildSettingsStickerNameLabel": "Navn",
@@ -16939,8 +15779,6 @@
     "guildSettingsStickerNameTooLong": "Navnet må højst være 30 tegn",
     "guildSettingsStickerDescriptionTooLong": "Beskrivelsen må højst være 500 tegn",
     "guildSettingsStickerCreateFailedTitle": "Kunne ikke oprette dette klistermærke",
-    "guildSettingsStickerTooLargeTitle": "Klistermærket er for stort",
-    "guildSettingsStickerCompressFailedTitle": "Klistermærket kunne ikke komprimeres nok",
     "guildSettingsStickerDeleteTitle": "Slet sticker",
     "guildSettingsStickerDeleteBody": "Slet \"{name}\"? Kan ikke fortrydes.",
     "@guildSettingsStickerDeleteBody": {
@@ -16952,7 +15790,6 @@
     },
     "guildSettingsStickerPurgeLabel": "Slet dette sticker fra lager og CDN",
     "guildSettingsStickerDeleteFailedTitle": "Kunne ikke slette dette klistermærke",
-    "guildSettingsStickerDeleteNoPermissionTitle": "Du kan ikke slette dette klistermærke",
     "keybindsSearchShortcuts": "Søg genveje",
     "@keybindsSearchShortcuts": {
         "description": "Placeholder for the shortcuts settings search field."
@@ -17035,295 +15872,21 @@
     "@homeQuickActionDms": {
         "description": "Home screen quick action that opens Direct Messages."
     },
-    "threadsTitle": "Tråde",
-    "@threadsTitle": {
-        "description": "Title of the sheet and header button that list a channel's threads."
-    },
-    "threadsPostsTitle": "Indlæg",
-    "@threadsPostsTitle": {
-        "description": "Title of the threads sheet when opened on a forum channel."
-    },
-    "threadsFilterActive": "Aktiv",
-    "@threadsFilterActive": {
-        "description": "Segmented filter option showing active threads or forum posts."
-    },
-    "threadsFilterArchived": "Arkiverede",
-    "@threadsFilterArchived": {
-        "description": "Segmented filter option showing archived threads or forum posts."
-    },
-    "threadsNewThread": "Ny tråd",
-    "@threadsNewThread": {
-        "description": "Button that starts creating a new thread."
-    },
-    "threadsNewThreadTitle": "Ny tråd",
-    "@threadsNewThreadTitle": {
-        "description": "Title of the modal for naming a new thread."
-    },
-    "threadsNameLabel": "Trådnavn",
-    "@threadsNameLabel": {
-        "description": "Label of the thread name input."
-    },
-    "threadsNameHint": "Giv din tråd et navn",
-    "@threadsNameHint": {
-        "description": "Placeholder of the thread name input."
-    },
-    "threadsCreateThread": "Opret tråd",
-    "@threadsCreateThread": {
-        "description": "Primary button that creates the thread."
-    },
-    "threadsCreateThreadAction": "Opret tråd",
-    "@threadsCreateThreadAction": {
-        "description": "Message action that starts a thread from a message."
-    },
-    "threadsCreateFailed": "Kunne ikke oprette tråden. Prøv igen.",
-    "@threadsCreateFailed": {
-        "description": "Toast shown when creating a thread fails."
-    },
-    "threadsLoadFailed": "Kunne ikke indlæse trådene.",
-    "@threadsLoadFailed": {
-        "description": "Shown when the thread list fails to load."
-    },
-    "threadsNoActive": "Ingen aktive tråde endnu",
-    "@threadsNoActive": {
-        "description": "Empty state of the active threads list."
-    },
-    "threadsNoArchived": "Ingen arkiverede tråde",
-    "@threadsNoArchived": {
-        "description": "Empty state of the archived threads list."
-    },
-    "threadsMessageCount": "{count, plural, =1{1 besked} other{{count} beskeder}}",
-    "@threadsMessageCount": {
-        "description": "Number of messages in a thread or forum post.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "threadsMemberCount": "{count, plural, =1{1 medlem} other{{count} medlemmer}}",
-    "@threadsMemberCount": {
-        "description": "Number of members in a thread or forum post.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "threadsStatusLocked": "Låst",
-    "@threadsStatusLocked": {
-        "description": "Status shown on a locked thread."
-    },
-    "threadsStatusArchived": "Arkiverede",
-    "@threadsStatusArchived": {
-        "description": "Status shown on an archived thread or forum post."
-    },
-    "threadsManage": "Administrér",
-    "@threadsManage": {
-        "description": "Accessibility label of the button that opens a thread's moderation menu."
-    },
-    "threadsPin": "Fastgør",
-    "@threadsPin": {
-        "description": "Moderation action that pins a thread or forum post."
-    },
-    "threadsUnpin": "Frigør",
-    "@threadsUnpin": {
-        "description": "Moderation action that unpins a thread or forum post."
-    },
-    "threadsArchive": "Arkivér",
-    "@threadsArchive": {
-        "description": "Moderation action that archives a thread or forum post."
-    },
-    "threadsUnarchive": "Hent ud af arkiv",
-    "@threadsUnarchive": {
-        "description": "Moderation action that unarchives a thread or forum post."
-    },
-    "threadsLock": "Lås",
-    "@threadsLock": {
-        "description": "Moderation action that locks a thread or forum post."
-    },
-    "threadsUnlock": "Lås op",
-    "@threadsUnlock": {
-        "description": "Moderation action that unlocks a thread or forum post."
-    },
-    "threadsDelete": "Slet",
-    "@threadsDelete": {
-        "description": "Moderation action that deletes a thread or forum post."
-    },
-    "threadsActionFailed": "Der gik noget galt. Prøv igen.",
-    "@threadsActionFailed": {
-        "description": "Generic error toast for a failed thread or forum action."
-    },
-    "threadsCloseThread": "Luk tråd",
-    "@threadsCloseThread": {
-        "description": "Channel details action that archives the current thread."
-    },
-    "threadsReopenThread": "Genåbn tråd",
-    "@threadsReopenThread": {
-        "description": "Channel details action that unarchives the current thread."
-    },
-    "threadsLockThread": "Lås tråd",
-    "@threadsLockThread": {
-        "description": "Channel details action that locks the current thread."
-    },
-    "threadsUnlockThread": "Lås tråd op",
-    "@threadsUnlockThread": {
-        "description": "Channel details action that unlocks the current thread."
-    },
-    "threadsLeaveThread": "Leave thread",
-    "@threadsLeaveThread": {
-        "description": "Channel details action that leaves the current thread."
-    },
-    "threadsDeleteThread": "Slet tråd",
-    "@threadsDeleteThread": {
-        "description": "Channel details action that deletes the current thread."
-    },
-    "threadsMembersTab": "Trådmedlemmer",
-    "@threadsMembersTab": {
-        "description": "Channel details tab listing the members of a thread."
-    },
-    "threadsMembersLoadFailed": "Kunne ikke indlæse medlemmerne",
-    "@threadsMembersLoadFailed": {
-        "description": "Title shown when a thread's member list fails to load."
-    },
     "threadsAddMember": "Add member",
     "threadsAddMemberSearchLabel": "Search members",
     "threadsAddMemberNoResults": "No members match that search.",
-    "threadsRemoveMember": "Remove from thread",
     "threadsMemberAddedToast": "Member added",
-    "threadsMemberRemovedToast": "Member removed",
-    "threadsLeftToast": "You left the thread",
-    "threadsMembersFullToast": "This thread has reached its member limit.",
-    "threadsMemberNotFoundToast": "That person cannot see this channel.",
-    "threadsMembersForbiddenToast": "You do not have permission to change this thread's members.",
-    "threadsInvitableLabel": "Anyone in the thread can add others",
-    "threadsInvitableDescription": "When this is on, every member of this private thread can add other people to it.",
-    "threadsNoMembersTitle": "Ingen trådmedlemmer endnu",
-    "@threadsNoMembersTitle": {
-        "description": "Empty state title of a thread's member list."
-    },
-    "threadsNoMembersBody": "Personer, der deltager i denne tråd, vises her.",
-    "@threadsNoMembersBody": {
-        "description": "Empty state body of a thread's member list."
-    },
-    "forumChannelTypeLabel": "Forum",
-    "@forumChannelTypeLabel": {
-        "description": "Channel type option for a forum channel in the create channel sheet."
-    },
-    "forumChannelTypeDescription": "Et rum til organiserede indlæg i tråde",
-    "@forumChannelTypeDescription": {
-        "description": "Description of the forum channel type in the create channel sheet."
-    },
     "forumNewPost": "Nyt indlæg",
     "@forumNewPost": {
         "description": "Button that starts creating a new forum post."
-    },
-    "forumNewPostTitle": "Nyt indlæg",
-    "@forumNewPostTitle": {
-        "description": "Title of the modal for creating a forum post."
-    },
-    "forumCreatePost": "Opret indlæg",
-    "@forumCreatePost": {
-        "description": "Primary button that creates the forum post."
-    },
-    "forumCreatePostFailed": "Kunne ikke oprette indlægget. Prøv igen.",
-    "@forumCreatePostFailed": {
-        "description": "Toast shown when creating a forum post fails."
-    },
-    "forumPostMessageFailed": "Indlægget blev oprettet, men beskeden kunne ikke sendes.",
-    "@forumPostMessageFailed": {
-        "description": "Toast shown when a forum post is created but its first message fails to send."
-    },
-    "forumPostTitleLabel": "Titel",
-    "@forumPostTitleLabel": {
-        "description": "Label of the forum post title input."
-    },
-    "forumPostTitleHint": "Indlæggets titel",
-    "@forumPostTitleHint": {
-        "description": "Placeholder of the forum post title input."
-    },
-    "forumPostMessageLabel": "Besked",
-    "@forumPostMessageLabel": {
-        "description": "Label of the forum post first message input."
-    },
-    "forumPostMessageHint": "Skriv en besked",
-    "@forumPostMessageHint": {
-        "description": "Placeholder of the forum post first message input."
-    },
-    "forumPostTagsLabel": "Tags",
-    "@forumPostTagsLabel": {
-        "description": "Label above the tag picker when creating a forum post."
-    },
-    "forumPostTagsRequiredLabel": "Tags (vælg mindst ét)",
-    "@forumPostTagsRequiredLabel": {
-        "description": "Label above the tag picker when the forum requires a tag on every post."
-    },
-    "forumPostTagsRequiredNoneHint": "Dette forum kræver et tag, men der er endnu ikke oprettet nogen.",
-    "@forumPostTagsRequiredNoneHint": {
-        "description": "Shown when creating a post in a forum that requires a tag but has no tags."
-    },
-    "forumPostNoTagsHint": "Dette forum har ingen tags endnu. Tilføj nogle under Administrér tags.",
-    "@forumPostNoTagsHint": {
-        "description": "Hint for channel managers when creating a post in a forum without tags."
     },
     "forumSearchPosts": "Søg i indlæg",
     "@forumSearchPosts": {
         "description": "Placeholder of the forum post search input."
     },
-    "forumSortAndView": "Sortering og visning",
-    "@forumSortAndView": {
-        "description": "Accessibility label of the button that opens forum sort options."
-    },
-    "forumSortRecentActivity": "Senest aktive",
-    "@forumSortRecentActivity": {
-        "description": "Forum sort option ordering posts by recent activity."
-    },
-    "forumSortName": "Navn (A-Z)",
-    "@forumSortName": {
-        "description": "Forum sort option ordering posts alphabetically."
-    },
-    "forumManageTags": "Administrér tags",
-    "@forumManageTags": {
-        "description": "Button and modal title for editing a forum's available tags."
-    },
-    "forumNoTags": "Ingen tags endnu",
-    "@forumNoTags": {
-        "description": "Empty state in the forum tag editor."
-    },
-    "forumRemoveTag": "Fjern tag",
-    "@forumRemoveTag": {
-        "description": "Accessibility label of the button that removes a tag in the tag editor."
-    },
-    "forumNewTagLabel": "Nyt tag",
-    "@forumNewTagLabel": {
-        "description": "Label of the new tag name input in the tag editor."
-    },
-    "forumNewTagHint": "Tagnavn",
-    "@forumNewTagHint": {
-        "description": "Placeholder of the new tag name input in the tag editor."
-    },
-    "forumAddTag": "Tilføj tag",
-    "@forumAddTag": {
-        "description": "Accessibility label of the button that adds a tag in the tag editor."
-    },
-    "forumTagsUpdated": "Tags opdateret",
-    "@forumTagsUpdated": {
-        "description": "Toast shown after saving a forum's tags."
-    },
-    "forumTagsUpdateFailed": "Kunne ikke opdatere tags. Prøv igen.",
-    "@forumTagsUpdateFailed": {
-        "description": "Toast shown when saving a forum's tags fails."
-    },
-    "forumLoadFailed": "Kunne ikke indlæse indlæggene.",
-    "@forumLoadFailed": {
-        "description": "Shown when the forum post list fails to load."
-    },
     "forumNoPosts": "Ingen indlæg endnu",
     "@forumNoPosts": {
         "description": "Empty state of the active forum post list."
-    },
-    "forumNoArchivedPosts": "Ingen arkiverede tråde",
-    "@forumNoArchivedPosts": {
-        "description": "Empty state of the archived forum post list."
     },
     "systemThreadCreated": "{username} startede en tråd: {threadName}.",
     "@systemThreadCreated": {
@@ -17337,43 +15900,6 @@
             }
         }
     },
-    "systemPreviewStartedThread": "{username} startede en tråd.",
-    "@systemPreviewStartedThread": {
-        "description": "Plaintext preview of the system message posted when someone starts a thread.",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "systemThreadDeleted": "en slettet tråd",
-    "@systemThreadDeleted": {
-        "description": "Stands in for a thread name in the thread started system message when the thread no longer exists."
-    },
-    "threadsComposerLockedHint": "Denne tråd er låst. Kun moderatorer kan sende beskeder.",
-    "@threadsComposerLockedHint": {
-        "description": "Composer placeholder in a locked thread for users who cannot moderate it."
-    },
-    "threadsComposerArchivedHint": "Denne tråd er arkiveret. At sende en besked genåbner den.",
-    "@threadsComposerArchivedHint": {
-        "description": "Composer placeholder in an archived thread that is not locked."
-    },
-    "forumSearchOrCreatePost": "Søg eller opret et indlæg...",
-    "@forumSearchOrCreatePost": {
-        "description": "Placeholder of the forum search field. What is typed also becomes the title of a new post."
-    },
-    "forumSortBy": "Sortér efter",
-    "@forumSortBy": {
-        "description": "Section label in the forum Sort & View sheet."
-    },
-    "forumSortDatePosted": "Oprettelsesdato",
-    "@forumSortDatePosted": {
-        "description": "Forum sort option that orders posts by creation date."
-    },
-    "forumViewAs": "Vis som",
-    "@forumViewAs": {
-        "description": "Section label for the forum layout options in the Sort & View sheet."
-    },
     "forumLayoutList": "Liste",
     "@forumLayoutList": {
         "description": "Forum layout option showing posts as a list."
@@ -17382,228 +15908,40 @@
     "@forumLayoutGallery": {
         "description": "Forum layout option showing posts as a grid of image cards."
     },
-    "forumResetViewToDefault": "Nulstil til standard",
-    "@forumResetViewToDefault": {
-        "description": "Returns the forum Sort & View choice to the channel defaults."
+    "assistantNeedsLogin": "Åbn Fluxer, og log ind først.",
+    "@assistantNeedsLogin": {
+        "description": "Siri/Shortcuts result when the user is logged out."
     },
-    "forumAllTags": "Alle",
-    "@forumAllTags": {
-        "description": "Chip that opens the full list of forum tags to filter by."
+    "assistantNotInVoice": "Du er ikke i et opkald.",
+    "@assistantNotInVoice": {
+        "description": "Siri/Shortcuts result when mute or leave runs with no live call."
     },
-    "forumTagsSelectedCount": "{count, plural, =1{1 tag} other{{count} tags}}",
-    "@forumTagsSelectedCount": {
-        "description": "Label of the tag filter chip when tags are selected.",
+    "assistantNotFound": "Fluxer kunne ikke finde det.",
+    "@assistantNotFound": {
+        "description": "Siri/Shortcuts result when a friend, channel, or community cannot be resolved."
+    },
+    "assistantDmsDisabled": "Direkte beskeder er deaktiveret på denne instans.",
+    "@assistantDmsDisabled": {
+        "description": "Siri/Shortcuts result when DM actions are blocked by instance config."
+    },
+    "assistantFailed": "Fluxer kunne ikke udføre det.",
+    "@assistantFailed": {
+        "description": "Siri/Shortcuts fallback when an assistant command fails."
+    },
+    "assistantOkMuted": "Mikrofonen er slået fra.",
+    "assistantOkUnmuted": "Mikrofonen er slået til.",
+    "assistantOkLeftVoice": "Forlod stemmekanalen.",
+    "assistantOkJoinedVoice": "Går ind i stemmekanalen.",
+    "assistantOkStartedCall": "Starter opkaldet.",
+    "assistantOkStatusSet": "Status sat til {status}.",
+    "@assistantOkStatusSet": {
         "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "forumPostGuidelinesLabel": "Retningslinjer for indlæg",
-    "@forumPostGuidelinesLabel": {
-        "description": "Heading above the forum's guidelines in the new post sheet."
-    },
-    "forumEditPost": "Redigér indlæg",
-    "@forumEditPost": {
-        "description": "Menu item and dialog title for editing a forum post's title and tags."
-    },
-    "forumPostTagRequiredToast": "Vælg mindst ét tag til dette forum.",
-    "@forumPostTagRequiredToast": {
-        "description": "Shown when saving a post without a tag in a forum that requires one."
-    },
-    "threadsFollow": "Følg",
-    "@threadsFollow": {
-        "description": "Menu item to follow a thread or forum post and get its notifications."
-    },
-    "threadsUnfollow": "Følg ikke længere",
-    "@threadsUnfollow": {
-        "description": "Menu item to stop following a thread or forum post."
-    },
-    "threadsFollowing": "Følger",
-    "@threadsFollowing": {
-        "description": "Header button state when the user follows the thread or post."
-    },
-    "threadsMute": "Slå mikrofon fra",
-    "@threadsMute": {
-        "description": "Menu item to mute a thread or forum post."
-    },
-    "threadsUnmute": "Slå mikrofon til",
-    "@threadsUnmute": {
-        "description": "Menu item to unmute a thread or forum post."
-    },
-    "threadsEditThread": "Redigér tråd",
-    "@threadsEditThread": {
-        "description": "Menu item and dialog title for renaming a thread."
-    },
-    "forumNewPostsPill": "{count} nye",
-    "@forumNewPostsPill": {
-        "description": "Sidebar pill on a forum channel counting posts with activity since the user last opened it.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "forumSettingsTitle": "Forumindstillinger",
-    "@forumSettingsTitle": {
-        "description": "Heading of the forum-only section in channel settings."
-    },
-    "forumSettingsGuidelinesHint": "Fortæl medlemmerne, hvad de kan skrive om her",
-    "@forumSettingsGuidelinesHint": {
-        "description": "Placeholder of the forum post guidelines field in channel settings."
-    },
-    "forumSettingsRequireTag": "Kræv, at medlemmer vælger et tag, når de poster",
-    "@forumSettingsRequireTag": {
-        "description": "Switch that makes members pick at least one tag when creating a forum post."
-    },
-    "forumSettingsRequireTagDescription": "Medlemmer skal vælge mindst ét tag, før de kan skrive.",
-    "@forumSettingsRequireTagDescription": {
-        "description": "Explains the require tags switch in forum settings."
-    },
-    "forumSettingsDefaultSort": "Standardsortering",
-    "@forumSettingsDefaultSort": {
-        "description": "Forum setting for how posts are ordered unless a member picks otherwise."
-    },
-    "forumSettingsDefaultLayout": "Standardlayout",
-    "@forumSettingsDefaultLayout": {
-        "description": "Forum setting for list or gallery layout unless a member picks otherwise."
-    },
-    "forumSettingsDefaultReaction": "Standardreaktion",
-    "@forumSettingsDefaultReaction": {
-        "description": "Forum setting for the emoji used by React to Post."
-    },
-    "forumSettingsDefaultReactionDescription": "Vises som hurtig reaktion på alle indlæg. Lad feltet være tomt for ingen.",
-    "@forumSettingsDefaultReactionDescription": {
-        "description": "Explains the forum default reaction setting."
-    },
-    "forumSettingsDefaultReactionHint": "En emoji, for eksempel 👍",
-    "@forumSettingsDefaultReactionHint": {
-        "description": "Placeholder of the forum default reaction field."
-    },
-    "forumSettingsHideAfterInactivity": "Skjul efter inaktivitet",
-    "@forumSettingsHideAfterInactivity": {
-        "description": "Forum setting for how long a post stays active without new messages."
-    },
-    "forumSettingsHideAfterInactivityDescription": "Inaktive indlæg flyttes til Arkiverede. Alle kan genåbne et indlæg, der ikke er låst.",
-    "@forumSettingsHideAfterInactivityDescription": {
-        "description": "Explains the forum hide after inactivity setting."
-    },
-    "forumSettingsHideAfterOneHour": "1 time",
-    "@forumSettingsHideAfterOneHour": {
-        "description": "Hide after inactivity option."
-    },
-    "forumSettingsHideAfterOneDay": "24 timer",
-    "@forumSettingsHideAfterOneDay": {
-        "description": "Hide after inactivity option."
-    },
-    "forumSettingsHideAfterThreeDays": "3 dage",
-    "@forumSettingsHideAfterThreeDays": {
-        "description": "Hide after inactivity option, the default."
-    },
-    "forumSettingsHideAfterOneWeek": "1 uge",
-    "@forumSettingsHideAfterOneWeek": {
-        "description": "Hide after inactivity option."
-    },
-    "forumSettingsPostCreationSlowmode": "Langsom tilstand for oprettelse af indlæg",
-    "@forumSettingsPostCreationSlowmode": {
-        "description": "Forum setting limiting how often a member can create a new post."
-    },
-    "forumSettingsPostCreationSlowmodeDescription": "Hvor længe medlemmer venter mellem nye indlæg.",
-    "@forumSettingsPostCreationSlowmodeDescription": {
-        "description": "Explains the forum post creation slowmode setting."
-    },
-    "forumSettingsDefaultPostSlowmode": "Langsom tilstand i nye indlæg",
-    "@forumSettingsDefaultPostSlowmode": {
-        "description": "Forum setting for the slowmode applied to messages inside each new post."
-    },
-    "forumSettingsDefaultPostSlowmodeDescription": "Anvendes på indlæg, når de oprettes.",
-    "@forumSettingsDefaultPostSlowmodeDescription": {
-        "description": "Explains the default slowmode for new forum posts."
-    },
-    "forumSettingsSave": "Gem forumindstillinger",
-    "@forumSettingsSave": {
-        "description": "Button that saves the forum settings section."
-    },
-    "forumSettingsSaved": "Forumindstillingerne er gemt",
-    "@forumSettingsSaved": {
-        "description": "Toast after forum settings are saved."
-    },
-    "forumSettingsSaveFailed": "Kunne ikke gemme forumindstillingerne",
-    "@forumSettingsSaveFailed": {
-        "description": "Toast when forum settings fail to save."
-    },
-    "threadsStarterMessage": "Startet fra",
-    "@threadsStarterMessage": {
-        "description": "Label above the message a thread was started from, shown at the top of the thread."
-    },
-    "threadsOriginalPosterTag": "OP",
-    "forumReactToPost": "Reagér på indlægget",
-    "forumReactToPostOther": "Reagér med en anden emoji",
-    "forumEmptyHeading": "Start samtalen!",
-    "forumEmptyBody": "Hvad vil du skrive om i {forumName}?",
-    "forumSeeExamples": "Se eksempler",
-    "forumExampleQuestion": "Stil et spørgsmål, og giv det et tag, så andre kan finde det senere.",
-    "forumExampleShow": "Del noget, du har lavet, og lad andre svare på det.",
-    "forumExampleDiscussion": "Start en diskussion om ét emne, og hold den i dette indlæg.",
-    "forumTagModeratedOn": "Kun moderatorer, tryk for at tillade alle",
-    "forumTagModeratedOff": "Alle må bruge det, tryk for at forbeholde det moderatorer",
-    "forumAddToPost": "Tilføj til indlægget",
-    "forumAddToPostDone": "Tilføjet til indlægget.",
-    "forumAddToPostFailed": "Kunne ikke tilføje det til indlægget. Prøv igen.",
-    "notificationsPushRelaySectionTitle": "Relæ til push-notifikationer",
-    "@notificationsPushRelaySectionTitle": {
-        "description": "Notification settings section title for the Fluxer push relay."
-    },
-    "notificationsPushRelaySectionDescription": "{pushProvider} leverer kun push-notifikationer via sin egen tjeneste, så notifikationer til denne enhed går gennem Fluxers relæ.",
-    "@notificationsPushRelaySectionDescription": {
-        "description": "Notification settings section description explaining why the push relay exists.",
-        "placeholders": {
-            "pushProvider": {
+            "status": {
                 "type": "String"
             }
         }
     },
-    "notificationsPushRelayConsentLabel": "Brug Fluxers push-relæ",
-    "@notificationsPushRelayConsentLabel": {
-        "description": "Toggle label for agreeing to the Fluxer push relay on this device."
-    },
-    "notificationsPushRelayConsentDescription": "Hvis du slår dette fra, fjernes enhedens push-registrering, og enheden holder op med at modtage push-notifikationer.",
-    "@notificationsPushRelayConsentDescription": {
-        "description": "Toggle description explaining that revoking push relay consent unregisters the device."
-    },
-    "pushRelayConsentTitle": "Relæ til push-notifikationer",
-    "@pushRelayConsentTitle": {
-        "description": "Title of the one-time Fluxer push relay consent sheet."
-    },
-    "pushRelayConsentDescription": "{pushProvider} leverer kun push-notifikationer via sin egen tjeneste, så notifikationer til denne enhed går gennem Fluxers relæ.",
-    "@pushRelayConsentDescription": {
-        "description": "Subtitle of the push relay consent sheet explaining why the relay exists.",
-        "placeholders": {
-            "pushProvider": {
-                "type": "String"
-            }
-        }
-    },
-    "pushRelayConsentNoticePrefix": "Accepter ",
-    "@pushRelayConsentNoticePrefix": {
-        "description": "Text before the push relay privacy notice link in the consent sheet."
-    },
-    "pushRelayConsentNoticeLink": "privatlivsmeddelelsen for push-relæet",
-    "@pushRelayConsentNoticeLink": {
-        "description": "Link text for the supplemental push relay privacy notice."
-    },
-    "pushRelayConsentNoticeSuffix": " for at slå push-notifikationer til på denne enhed. Du skal kun acceptere én gang pr. enhed.",
-    "@pushRelayConsentNoticeSuffix": {
-        "description": "Text after the push relay privacy notice link in the consent sheet."
-    },
-    "pushRelayConsentAgree": "Accepter og fortsæt",
-    "@pushRelayConsentAgree": {
-        "description": "Button that records agreement to the push relay privacy notice."
-    },
-    "pushRelayConsentDecline": "Ikke nu",
-    "@pushRelayConsentDecline": {
-        "description": "Button that declines the push relay privacy notice and leaves push notifications off."
-    },
+    "assistantOkOpened": "Åbner Fluxer.",
     "applicationsTitle": "Apps",
     "@applicationsTitle": {
         "description": "Title for the developer Applications settings tab."
@@ -17646,6 +15984,15 @@
         "description": "Empty-state body. apiName is the product API display name.",
         "placeholders": {
             "apiName": {
+                "type": "String"
+            }
+        }
+    },
+    "applicationsCreated": "Oprettet {date}",
+    "@applicationsCreated": {
+        "description": "List row subtitle showing when an application was created.",
+        "placeholders": {
+            "date": {
                 "type": "String"
             }
         }
@@ -17830,6 +16177,10 @@
     "@applicationsOauthBuilderTitle": {
         "description": "Section title for the authorize URL builder."
     },
+    "applicationsOauthBuilderDescription": "Konstruer en autoriserings-URL med scopes og tilladelser.",
+    "@applicationsOauthBuilderDescription": {
+        "description": "Section description for the authorize URL builder."
+    },
     "applicationsScopes": "Adgangsområder",
     "@applicationsScopes": {
         "description": "Label for OAuth2 scope checkboxes."
@@ -17862,6 +16213,10 @@
     "@applicationsAuthorizeUrlPlaceholder": {
         "description": "Placeholder when the authorize URL cannot be built yet."
     },
+    "applicationsCopyAuthorizeUrl": "Kopiér autoriserings-URL",
+    "@applicationsCopyAuthorizeUrl": {
+        "description": "Button that copies the generated authorize URL."
+    },
     "applicationsCopiedUrl": "URL kopieret til udklipsholder",
     "@applicationsCopiedUrl": {
         "description": "Toast after copying the authorize URL."
@@ -17881,6 +16236,15 @@
     "applicationsDelete": "Slet app",
     "@applicationsDelete": {
         "description": "Button that deletes the current application."
+    },
+    "applicationsDeleteConfirmDescription": "Er du sikker på, at du vil slette {name}? Denne handling kan ikke fortrydes. Alle tilknyttede data, inklusive botbrugeren, vil blive permanent slettet.",
+    "@applicationsDeleteConfirmDescription": {
+        "description": "Confirmation body when deleting an application.",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
     },
     "applicationsDeleteFailed": "Kunne ikke slette appen",
     "@applicationsDeleteFailed": {
@@ -17970,6 +16334,10 @@
     "@voiceOutputRouteSpeaker": {
         "description": "Voice output route that plays call audio through the phone speaker."
     },
+    "voiceOutputRouteEarpiece": "Øresnegl",
+    "@voiceOutputRouteEarpiece": {
+        "description": "Voice output route that plays call audio through the phone earpiece."
+    },
     "voiceOutputRouteHeadset": "Hovedtelefoner",
     "@voiceOutputRouteHeadset": {
         "description": "Voice output route that plays call audio through a connected Bluetooth or wired headset."
@@ -17977,6 +16345,14 @@
     "doubleTapReactionEdit": "Rediger",
     "@doubleTapReactionEdit": {
         "description": "Button that opens the double-tap default emoji picker."
+    },
+    "doubleTapReactionEditTitle": "Rediger standard",
+    "@doubleTapReactionEditTitle": {
+        "description": "Title of the double-tap default emoji picker sheet."
+    },
+    "doubleTapReactionEditSubtitle": "Vælg emoji til dobbelttryk",
+    "@doubleTapReactionEditSubtitle": {
+        "description": "Subtitle of the double-tap default emoji picker sheet."
     },
     "chatMessagePinConfirm": "Fastgør",
     "@chatMessagePinConfirm": {
@@ -17990,9 +16366,17 @@
     "@appIconOptionDefault": {
         "description": "App icon option for the build default icon (release or canary)."
     },
+    "appIconOptionStarfield": "Stjernefelt",
+    "@appIconOptionStarfield": {
+        "description": "App icon option for the starfield alternate icon."
+    },
     "appIconOptionSweden": "Sverige",
     "@appIconOptionSweden": {
         "description": "App icon option for the Sweden flag alternate icon."
+    },
+    "appIconUnsupported": "Ændring af appikon er ikke tilgængelig på denne enhed.",
+    "@appIconUnsupported": {
+        "description": "Shown when alternate app icons cannot be used on the current platform."
     },
     "userSettingsLogOutConfirmTitle": "Log ud?",
     "@userSettingsLogOutConfirmTitle": {
@@ -18022,5 +16406,178 @@
     "@guildSettingsCommunityDeleted": {
         "description": "Success toast after a community is deleted."
     },
-    "assistantOkMessageSent": "Besked sendt."
+    "guildSettingsDeleteCommunityFailed": "Kunne ikke slette dette fællesskab",
+    "@guildSettingsDeleteCommunityFailed": {
+        "description": "Error toast when deleting a community fails."
+    },
+    "assistantOkMessageSent": "Besked sendt.",
+    "assistantOkCustomStatusSet": "Tilpasset status opdateret.",
+    "assistantOkCustomStatusCleared": "Tilpasset status ryddet.",
+    "guildNavbarAnnouncementChannel": "Annonceringskanal",
+    "guildNavbarAnnouncementChannelDescription": "Send opdateringer, som andre fællesskaber kan følge i deres egne kanaler",
+    "channelDetailsAnnouncementChannel": "Annonceringskanal",
+    "channelSettingsAnnouncementChannel": "Annonceringskanal",
+    "channelSettingsAnnouncementChannelDescription": "Giver andre fællesskaber mulighed for at følge denne kanal og få kopier af det, du udgiver.",
+    "channelSettingsStopAnnouncementTitle": "Stop med at være en annonceringskanal?",
+    "channelSettingsStopAnnouncementBody": "{count, plural, =1{1 kanal følger denne kanal. Hvis du konverterer den til en tekstkanal, holder den kanal op med at følge den.} other{{count} kanaler følger denne kanal. Hvis du konverterer den til en tekstkanal, holder de kanaler op med at følge den.}}",
+    "@channelSettingsStopAnnouncementBody": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "channelSettingsStopAnnouncementUnknown": "Hvis du konverterer denne kanal til en tekstkanal, holder alle kanaler, der følger den, op med at følge den.",
+    "channelSettingsConvertChannel": "Konverter",
+    "channelSettingsConvertFailed": "Kunne ikke konvertere denne kanal",
+    "channelSettingsChannelHasFollowers": "Andre kanaler følger stadig denne kanal. Fjern dem, før du konverterer den.",
+    "channelMenuFollow": "Følg kanal",
+    "channelFollowTitle": "Følg denne kanal",
+    "channelFollowBody": "Vælg, hvor de udgivne beskeder skal sendes hen. Du kan til enhver tid stoppe med at følge under Fællesskabsindstillinger → Webhooks.",
+    "channelFollowCommunity": "Fællesskab",
+    "channelFollowChannel": "Kanal",
+    "channelFollowAgeWarning": "Dette er en aldersbegrænset kanal. Opdateringer kan kun sendes til aldersbegrænsede kanaler.",
+    "channelFollowContentWarning": "Denne kanal har en indholdsadvarsel. Opdateringer kan kun sendes til kanaler med en indholdsadvarsel eller en aldersbegrænsning.",
+    "channelFollowHiddenHint": "Fællesskaber og kanaler, hvor du ikke kan administrere webhooks, er skjult.",
+    "channelFollowEmpty": "Du kan ikke administrere webhooks i noget fællesskab. Bed en administrator om at følge denne kanal.",
+    "channelFollowSubmit": "Følg",
+    "channelFollowFailed": "Kunne ikke følge denne kanal.",
+    "channelFollowSuccessTitle": "Opdateringer er på vej!",
+    "channelFollowSuccessBody": "Beskeder, der er udgivet i {sourceName}, vises i #{targetName}.",
+    "@channelFollowSuccessBody": {
+        "placeholders": {
+            "sourceName": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "channelFollowSuccessDismiss": "Forstået!",
+    "channelFollowBarrier": "Følg denne kanal for at få disse annonceringer i en kanal, du vælger.",
+    "channelHeaderFollow": "Følg kanal",
+    "chatMessagePublish": "Udgiv",
+    "chatMessagePublished": "Udgivet",
+    "chatMessagePublishConfirmTitle": "Udgiv besked?",
+    "chatMessagePublishConfirmBody": "Dette sender en kopi til alle kanaler, der følger denne.",
+    "chatMessagePublishedToast": "Besked udgivet",
+    "chatMessageAlreadyPublished": "Denne besked er allerede udgivet.",
+    "chatMessagePublishFailedTitle": "Kunne ikke udgive denne besked",
+    "chatMessagePublishFailedBody": "Der opstod en fejl. Prøv igen om et øjeblik.",
+    "chatMessagePublishLimitTitle": "Lidt langsommere",
+    "chatMessagePublishLimitBody": "Du kan udgive igen om {duration}.",
+    "@chatMessagePublishLimitBody": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "chatMessagePublishLimitUnknown": "Du udgiver for hurtigt. Prøv igen om et øjeblik.",
+    "chatMessageDeletePublished": "Dette fjerner også de kopier, der blev sendt til kanaler, der følger denne.",
+    "chatMessageEditPublishedTitle": "Rediger udgivet besked?",
+    "chatMessageEditPublishedBody": "Dette opdaterer de kopier, der blev sendt til kanaler, der følger denne.",
+    "chatMessageEditPublishedSave": "Gem",
+    "chatMessageEditLimitTitle": "Lidt langsommere",
+    "chatMessageEditLimitBody": "Du kan redigere denne udgivne besked igen om {duration}.",
+    "@chatMessageEditLimitBody": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "chatMessageEditLimitUnknown": "Du redigerer denne udgivne besked for hurtigt. Prøv igen om et øjeblik.",
+    "chatMessageOriginalDeleted": "[Oprindelig besked slettet]",
+    "userTagCommunity": "Fællesskab",
+    "systemFollowAdd": "{username} fik denne kanal til at følge {source}. Beskeder, der udgives der, vises her.",
+    "@systemFollowAdd": {
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "source": {
+                "type": "String"
+            }
+        }
+    },
+    "systemPreviewFollowAdd": "{username} fik denne kanal til at følge {source}.",
+    "@systemPreviewFollowAdd": {
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "source": {
+                "type": "String"
+            }
+        }
+    },
+    "publishNudgeNotSent": "Ikke sendt til følgere endnu.",
+    "publishNudgeHideForever": "Vis ikke igen",
+    "publishNudgeDismiss": "Luk",
+    "channelSettingsFollowedChannels": "Fulgte kanaler",
+    "channelSettingsFollowedChannelsDescription": "Annonceringskanaler, som denne kanal følger. Stop med at følge for ikke længere at modtage kopier.",
+    "guildSettingsFollowedChannelsDescription": "Annonceringskanaler, der følges af kanaler i dette fællesskab.",
+    "channelSettingsFollowedFrom": "Fra {guildName} #{channelName}",
+    "@channelSettingsFollowedFrom": {
+        "placeholders": {
+            "guildName": {
+                "type": "String"
+            },
+            "channelName": {
+                "type": "String"
+            }
+        }
+    },
+    "channelSettingsFollowedPaused": "Opdateringer er sat på pause, fordi kildekanalen ikke længere er tilgængelig.",
+    "channelSettingsUnfollowTitle": "Stop med at følge {name}?",
+    "@channelSettingsUnfollowTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "channelSettingsUnfollowBody": "Denne kanal stopper med at modtage kopier fra den annonceringskanal.",
+    "channelSettingsUnfollow": "Stop med at følge",
+    "crosspostCommunityTitle": "Fællesskab",
+    "crosspostGoToCommunity": "Gå til fællesskab",
+    "crosspostJoinCommunity": "Deltag i fællesskabet",
+    "crosspostSourceFailed": "Kunne ikke indlæse dette fællesskab. Prøv igen om et øjeblik.",
+    "crosspostMembers": "{count} medlemmer",
+    "@crosspostMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "crosspostOnline": "{count} online",
+    "@crosspostOnline": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "durationMinutes": "{count, plural, =1{1 minut} other{{count} minutter}}",
+    "@durationMinutes": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSeconds": "{count, plural, =1{1 sekund} other{{count} sekunder}}",
+    "@durationSeconds": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "channelUnsupportedTitle": "Kanaltype understøttes ikke",
+    "channelUnsupportedBody": "Denne version af appen understøtter ikke denne kanaltype.",
+    "channelDetailsUnsupportedChannel": "Kanal understøttes ikke"
 }

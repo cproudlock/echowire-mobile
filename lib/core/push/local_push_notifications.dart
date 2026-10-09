@@ -14,7 +14,6 @@ import 'package:fluxer_app/core/push/push_notification_ids.dart'
         pushNotificationCancelIds;
 import 'package:fluxer_app/core/push/push_notification_media.dart';
 import 'package:fluxer_app/core/push/push_notification_payload.dart';
-import 'package:fluxer_app/core/push/push_notification_permission.dart';
 import 'package:fluxer_app/core/push/push_notification_reply.dart';
 import 'package:fluxer_app/core/push/push_notification_reply_background.dart';
 import 'package:fluxer_app/core/push/push_notification_sound.dart';
@@ -26,11 +25,17 @@ const String _kMessageChannelId = 'fluxer_messages';
 const String _kDirectMessageChannelId = 'fluxer_direct_messages';
 const String _kMessageChannelName = 'Messages';
 const String _kDirectMessageChannelName = 'Direct messages';
+const String _kForumThreadCreatedChannelId = 'fluxer_forum_thread_created';
+const String _kForumThreadCreatedChannelName = 'New forum posts';
 const String _kChannelDescription = 'Messages and alerts';
 
-String _androidChannelId(Map<String, String> payload) {
+@visibleForTesting
+String androidPushChannelId(Map<String, String> payload) {
   if (isDmPushPayload(payload)) {
     return _kDirectMessageChannelId;
+  }
+  if (isForumThreadCreatedPushPayload(payload)) {
+    return _kForumThreadCreatedChannelId;
   }
   return _kMessageChannelId;
 }
@@ -38,6 +43,9 @@ String _androidChannelId(Map<String, String> payload) {
 String _androidChannelName(Map<String, String> payload) {
   if (isDmPushPayload(payload)) {
     return _kDirectMessageChannelName;
+  }
+  if (isForumThreadCreatedPushPayload(payload)) {
+    return _kForumThreadCreatedChannelName;
   }
   return _kMessageChannelName;
 }
@@ -59,7 +67,7 @@ final class LocalPushNotifications {
 
   /// Android launch payload. Does not deliver the tap.
   Future<String?> peekLaunchPayload() async {
-    if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) {
+    if (defaultTargetPlatform != TargetPlatform.android) {
       return null;
     }
     final bool ready = await _initializePlugin();
@@ -74,9 +82,6 @@ final class LocalPushNotifications {
   }) async {
     if (onNotificationTap != null) {
       _onNotificationTap = onNotificationTap;
-    }
-    if (kIsWeb) {
-      return true;
     }
     final bool ready = await _initializePlugin();
     if (!ready) {
@@ -187,8 +192,23 @@ final class LocalPushNotifications {
     );
   }
 
-  Future<void> requestDisplayPermission() async {
-    await requestPushNotificationPermission();
+  Future<void> ensureForumThreadCreatedChannel() async {
+    if (!_initialized || defaultTargetPlatform != TargetPlatform.android) {
+      return;
+    }
+    await _plugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >()
+        ?.createNotificationChannel(
+          const AndroidNotificationChannel(
+            _kForumThreadCreatedChannelId,
+            _kForumThreadCreatedChannelName,
+            description: _kChannelDescription,
+            importance: Importance.high,
+            sound: kPushNotificationMessageAndroidSound,
+          ),
+        );
   }
 
   void _onNotificationResponse(NotificationResponse response) {
@@ -219,9 +239,6 @@ final class LocalPushNotifications {
   }
 
   Future<void> showReplyFailed() async {
-    if (kIsWeb) {
-      return;
-    }
     if (!_initialized) {
       final bool ready = await ensureInitialized();
       if (!ready) {
@@ -276,9 +293,6 @@ final class LocalPushNotifications {
   }
 
   Future<void> showPushMessage(PushMessage message) async {
-    if (kIsWeb) {
-      return;
-    }
     if (!_initialized) {
       final bool ready = await ensureInitialized();
       if (!ready) {
@@ -358,7 +372,7 @@ final class LocalPushNotifications {
     String channelId, {
     String? upToMessageId,
   }) async {
-    if (kIsWeb || channelId.isEmpty) {
+    if (channelId.isEmpty) {
       return;
     }
     if (!_initialized) {
@@ -471,7 +485,7 @@ final class LocalPushNotifications {
   }
 
   Future<void> cancelAll() async {
-    if (kIsWeb || !_initialized) {
+    if (!_initialized) {
       return;
     }
     try {
@@ -484,9 +498,6 @@ final class LocalPushNotifications {
   }
 
   Future<void> cancelForPayload(Map<String, String> payload) async {
-    if (kIsWeb) {
-      return;
-    }
     if (!_initialized) {
       final bool ready = await ensureInitialized();
       if (!ready) {
@@ -618,7 +629,7 @@ final class LocalPushNotifications {
             hideExpandedLargeIcon: true,
           );
     return AndroidNotificationDetails(
-      _androidChannelId(payload),
+      androidPushChannelId(payload),
       _androidChannelName(payload),
       channelDescription: _kChannelDescription,
       importance: Importance.high,
@@ -670,7 +681,7 @@ final class LocalPushNotifications {
         body: body,
         notificationDetails: NotificationDetails(
           android: AndroidNotificationDetails(
-            _androidChannelId(payload),
+            androidPushChannelId(payload),
             _androidChannelName(payload),
             channelDescription: _kChannelDescription,
             importance: Importance.high,

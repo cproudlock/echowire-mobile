@@ -14,6 +14,8 @@ part 'gateway_connection_provider.g.dart';
 /// Mirrors web GatewayIdentifyFlags.DEBOUNCE_MESSAGE_REACTIONS (1 << 1).
 const int kGatewayDebounceMessageReactions = 1 << 1;
 
+const int kGatewayChannelThreads = 1 << 2;
+
 @Riverpod(keepAlive: true)
 bool gatewayHasAuthToken(Ref ref) {
   final String? token = ref.watch(fluxerAuthTokenProvider);
@@ -27,6 +29,9 @@ class IdentifyInitialGuildId extends _$IdentifyInitialGuildId {
 
   // Applied from the persisted last location before Identify.
   void set(String? guildId) {
+    if (state == guildId) {
+      return;
+    }
     state = guildId;
   }
 }
@@ -62,7 +67,7 @@ GatewayConnection gatewayConnection(Ref ref) {
     dio: dio,
     gatewayUrl: ref.watch(activeInstanceGatewayUrlProvider),
     initialGuildId: initialGuildId,
-    flags: kGatewayDebounceMessageReactions,
+    flags: kGatewayDebounceMessageReactions | kGatewayChannelThreads,
     traceAsync: FluxerObservability.instance.traceAsync,
     traceSync: FluxerObservability.instance.traceSync,
     properties: buildGatewayIdentifyProperties(clientProperties),

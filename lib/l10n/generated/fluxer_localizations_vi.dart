@@ -13,7 +13,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get reconnectingBody =>
-      'Có lỗi xảy ra với phiên bản này.\nSẽ được khắc phục trong giây lát!';
+      'Có lỗi xảy ra với máy chủ này.\nSẽ được khắc phục trong giây lát!';
 
   @override
   String get gatewayReconnectingToast => 'Đang kết nối lại…';
@@ -32,9 +32,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get retry => 'Thử lại';
-
-  @override
-  String get connectingCaps => 'CONNECTING';
 
   @override
   String get splashConnectionLost => 'Mất kết nối';
@@ -209,10 +206,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   }
 
   @override
-  String get ssoRequired =>
-      'Bạn cần đăng nhập một lần để truy cập phiên bản này.';
-
-  @override
   String get organizationSsoProvider =>
       'Đăng nhập bằng nhà cung cấp đăng nhập một lần của tổ chức bạn.';
 
@@ -226,9 +219,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String preferSso(String provider) {
     return 'Ưu tiên dùng SSO? Tiếp tục với $provider.';
   }
-
-  @override
-  String get logInViaBrowser => 'Đăng nhập qua trình duyệt';
 
   @override
   String get needAccountPrompt => 'Cần tài khoản? ';
@@ -330,20 +320,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get accountAdd => 'Thêm tài khoản';
 
   @override
-  String get accountRemove => 'Xóa';
-
-  @override
-  String accountRemoveTitle(String username) {
-    return 'Xóa $username';
-  }
-
-  @override
   String get accountRemoveDescription =>
       'Thao tác này sẽ xoá phiên đã lưu cho tài khoản này.';
-
-  @override
-  String get accountRemoveOnlyDescription =>
-      'Thao tác này sẽ xoá tài khoản duy nhất đã lưu trên thiết bị này.';
 
   @override
   String get accountExpired => 'Đã hết hạn';
@@ -577,7 +555,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get recoverAccountNoKit =>
-      'Không có bộ phục hồi? Hãy yêu cầu quản trị viên của phiên bản này cung cấp liên kết đặt lại mật khẩu.';
+      'Không có bộ phục hồi? Hãy yêu cầu quản trị viên của máy chủ này cung cấp liên kết đặt lại mật khẩu.';
 
   @override
   String get recoveryKitTitle => 'Bộ dụng cụ khôi phục của bạn';
@@ -611,7 +589,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Hãy giữ trang này ở nơi an toàn. Nếu bạn quên mật khẩu, bạn có thể sử dụng nó để truy cập lại vào tài khoản của mình. Bất kỳ ai có khóa khôi phục này đều có thể đặt lại mật khẩu của bạn, vì vậy đừng bao giờ chia sẻ nó.';
 
   @override
-  String get recoveryKitInstanceLabel => 'Phiên bản';
+  String get recoveryKitInstanceLabel => 'Máy chủ';
 
   @override
   String get recoveryKitCreatedAtLabel => 'Đã tạo';
@@ -766,10 +744,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get registerYear => 'Năm';
 
   @override
-  String get registerConsent =>
-      'Tôi đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư';
-
-  @override
   String get registerConsentPrefix => 'Tôi đồng ý với ';
 
   @override
@@ -815,10 +789,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Xác thực khóa truy cập đã hết thời gian. Vui lòng thử lại.';
 
   @override
-  String get passkeyNotAvailable =>
-      'Tạo khóa không khả dụng cho ứng dụng này. Thay vào đó, hãy đăng nhập bằng email và mật khẩu.';
-
-  @override
   String get passkeyFailed =>
       'Xác thực khóa truy cập thất bại. Vui lòng thử lại.';
 
@@ -832,7 +802,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get errorServiceUnavailable =>
-      'Phiên bản này tạm thời không khả dụng. Vui lòng thử lại sau.';
+      'Máy chủ này tạm thời không khả dụng. Vui lòng thử lại sau.';
 
   @override
   String get errorInvalidEmailOrPassword => 'Email hoặc mật khẩu không hợp lệ.';
@@ -941,22 +911,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get inviteAcceptSomeone => 'ai đó';
 
   @override
-  String get inviteAcceptEmojiPack => 'Gói biểu tượng cảm xúc';
-
-  @override
-  String get inviteAcceptStickerPack => 'Gói nhãn dán';
-
-  @override
-  String get inviteAcceptInstallEmojiPack => 'Cài đặt gói biểu tượng cảm xúc';
-
-  @override
-  String get inviteAcceptInstallStickerPack => 'Cài đặt bộ sticker';
-
-  @override
-  String get inviteAcceptPackInstallNote =>
-      'Chấp nhận lời mời này sẽ tự động cài đặt gói.';
-
-  @override
   String get mentionUnknownChannel => 'unknown-channel';
 
   @override
@@ -976,11 +930,11 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get embedThemeTitle => 'Chủ đề được chia sẻ';
 
   @override
-  String get embedThemeSubtitle =>
-      'Ứng dụng này không hỗ trợ tùy chỉnh giao diện.';
+  String get embedThemeWebOnly =>
+      'Bạn chỉ có thể nhập chủ đề trên web hoặc máy tính.';
 
   @override
-  String get embedThemeUnavailableButton => 'Chủ đề không khả dụng';
+  String get embedThemeImport => 'Nhập chủ đề';
 
   @override
   String embedGiftVisionaryLifetime(String productName) {
@@ -1304,7 +1258,12 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get dmLeaveGroup => 'Rời nhóm';
 
   @override
-  String get dmNoCommunitiesAvailable => 'Không có cộng đồng nào khả dụng';
+  String dmInviteSentFor(String communityName) {
+    return 'Đã gửi lời mời tham gia $communityName';
+  }
+
+  @override
+  String get dmInviteSendFailed => 'Không gửi được lời mời. Vui lòng thử lại.';
 
   @override
   String dmGroupMemberCount(int count) {
@@ -1695,9 +1654,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Nhận Reverb';
-
-  @override
   String get emojiPlutoniumUpsellDismiss => 'Không hiển thị lại';
 
   @override
@@ -1845,9 +1801,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get changeYourFluxerTag => 'Đổi tên người dùng';
 
   @override
-  String get fluxerTagInputLabel => 'Tên người dùng';
-
-  @override
   String get fluxerTagDescriptionBase =>
       'Tên người dùng chỉ có thể chứa chữ cái (a-z, A-Z), số (0-9) và dấu gạch dưới. Tên người dùng không phân biệt chữ hoa, chữ thường.';
 
@@ -1867,10 +1820,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get validationAllowedChars =>
       'Chỉ dùng chữ cái (a-z, A-Z), số (0-9) và dấu gạch dưới (_)';
-
-  @override
-  String get discriminatorPremiumTooltip =>
-      'Nhận Reverb để tùy chỉnh thẻ của bạn hoặc giữ nguyên khi đổi tên người dùng';
 
   @override
   String get fluxerTagAlreadyTaken => 'Tên người dùng đã được sử dụng';
@@ -1907,15 +1856,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get premiumUpsellCustomizeTag =>
       'Tùy chỉnh thẻ 4 chữ số của bạn hoặc giữ nguyên khi đổi tên người dùng';
-
-  @override
-  String premiumTrialExpiresOn(String date) {
-    return 'Gói Reverb dùng thử của bạn sẽ hết hạn vào ngày $date. Nâng cấp để giữ thẻ tùy chỉnh của bạn và nhận huy hiệu trên hồ sơ.';
-  }
-
-  @override
-  String get premiumTrialActive =>
-      'Bạn đang dùng thử Reverb. Nâng cấp để giữ thẻ tùy chỉnh và nhận huy hiệu trên hồ sơ của bạn.';
 
   @override
   String get fluxerTagUpdated => 'Đã cập nhật tên người dùng';
@@ -2053,23 +1993,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get hideVisionaryIdDescription => 'Gỡ huy hiệu ID Visionary của bạn';
 
   @override
-  String premiumTrialSubscriptionStarts(String date) {
-    return 'Bạn đang dùng thử Reverb — gói đăng ký của bạn sẽ bắt đầu vào ngày $date';
-  }
-
-  @override
-  String get premiumTrialSubscriptionStartsDescription =>
-      'Đăng ký của bạn sẽ tự động bắt đầu khi bản dùng thử kết thúc. Bạn không cần thực hiện hành động nào.';
-
-  @override
-  String premiumTrialExpiresOnProfile(String date) {
-    return 'Bạn đang dùng thử Reverb, sẽ hết hạn vào ngày $date';
-  }
-
-  @override
-  String get premiumTrialActiveProfile => 'Bạn đang dùng thử Reverb';
-
-  @override
   String get avatarDescriptionNonPremium =>
       'JPEG, PNG, WebP. Tối đa 10MB. Khuyến nghị: 512×512px. Ảnh đại diện động (GIF) yêu cầu Reverb.';
 
@@ -2136,18 +2059,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get profileSavedToast => 'Đã cập nhật hồ sơ';
-
-  @override
-  String get profileEditButton => 'Chỉnh sửa hồ sơ';
-
-  @override
-  String get profileNoteLabel => 'Ghi chú';
-
-  @override
-  String get profileNoteVisibility => '(chỉ mình bạn thấy)';
-
-  @override
-  String get profileNoteEmpty => 'Chưa có ghi chú.';
 
   @override
   String get sudoTitle => 'Xác minh danh tính của bạn';
@@ -2438,35 +2349,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'ví dụ: YubiKey, iPhone, Máy tính cơ quan';
 
   @override
-  String get securityPhoneSectionTitle => 'Số điện thoại';
-
-  @override
-  String get securityPhoneSectionDescription =>
-      'Quản lý số điện thoại của bạn.';
-
-  @override
-  String get securityPhoneLabel => 'Số điện thoại';
-
-  @override
-  String get securityPhoneNone => 'Chưa thêm số điện thoại.';
-
-  @override
-  String get securityPhoneAdd => 'Thêm số điện thoại';
-
-  @override
-  String get securityPhoneRemove => 'Xóa';
-
-  @override
-  String get securityPhoneRemoveTitle => 'Xóa số điện thoại';
-
-  @override
-  String get securityPhoneRemoveDescription =>
-      'Bạn có chắc chắn muốn xóa số điện thoại của mình không?';
-
-  @override
-  String get securityPhoneRemoved => 'Số điện thoại đã bị xóa';
-
-  @override
   String get securityClaimTitle => 'Tính năng bảo mật';
 
   @override
@@ -2475,7 +2357,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get securityVerifyEmailRequired =>
-      'Bạn phải xác minh địa chỉ email của mình trước khi có thể thiết lập xác thực hai yếu tố, khóa truy cập hoặc xác minh qua SMS.';
+      'Bạn phải xác minh địa chỉ email của mình trước khi có thể thiết lập xác thực hai yếu tố hoặc khóa truy cập.';
 
   @override
   String get totpEnableTitle => 'Thiết lập ứng dụng xác thực';
@@ -2512,9 +2394,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Nếu bạn mất quyền truy cập vào ứng dụng xác thực và không có các mã này, bạn sẽ bị khóa vĩnh viễn khỏi tài khoản của mình. Tải xuống hoặc sao chép chúng ngay bây giờ và lưu trữ ở nơi an toàn.';
 
   @override
-  String get backupCodesDownload => 'Tải xuống';
-
-  @override
   String get backupCodesCopy => 'Sao chép';
 
   @override
@@ -2528,163 +2407,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get backupCodesDone => 'Xong';
 
   @override
-  String get backupCodesViewTitle => 'Xem mã sao lưu';
-
-  @override
-  String get backupCodesViewDescription =>
-      'Bạn có thể cần xác minh danh tính trước khi xem mã sao lưu.';
-
-  @override
-  String get phoneAddTitle => 'Thêm số điện thoại';
-
-  @override
-  String get phoneAddLabel => 'Số điện thoại';
-
-  @override
-  String get phoneAddHint => 'Nhập số điện thoại của bạn';
-
-  @override
-  String get phoneAddFooter =>
-      'Chúng tôi sẽ gửi mã SMS khi có sẵn. Số của bạn không được liên kết với tài khoản của bạn. Chúng tôi chỉ giữ một mã đánh dấu được mã hóa, không có ID người dùng, để cho phép tối đa 2 lần xác minh trong khoảng 30 ngày.';
-
-  @override
-  String get phoneAddSendCode => 'Gửi mã';
-
-  @override
-  String get phoneVerifyTitle => 'Xác minh số điện thoại';
-
-  @override
-  String get phoneVerifyDescription =>
-      'Nhập mã xác minh đã gửi đến số điện thoại của bạn.';
-
-  @override
-  String get phoneAddSuccess => 'Đã xác minh số điện thoại';
-
-  @override
-  String get phoneCountryLabel => 'Quốc gia';
-
-  @override
-  String get phoneSearchCountries => 'Tìm kiếm quốc gia...';
-
-  @override
-  String get phoneNumberRequired => 'Cần có số điện thoại';
-
-  @override
-  String get phoneEnterValidNumber => 'Nhập số điện thoại di động hợp lệ.';
-
-  @override
-  String get phoneCannotBeUsed =>
-      'Không thể sử dụng số điện thoại này. Hãy thử số di động khác hoặc liên hệ bộ phận hỗ trợ.';
-
-  @override
-  String get phoneAlreadyUsed =>
-      'Số điện thoại này đã được sử dụng. Hãy thử số khác hoặc liên hệ bộ phận hỗ trợ.';
-
-  @override
-  String get phoneCodeDidNotWork =>
-      'Mã đó không đúng. Vui lòng kiểm tra lại và thử lại.';
-
-  @override
-  String get phoneTooManyAttempts =>
-      'Đã thử quá nhiều lần. Vui lòng đợi một lát rồi thử lại.';
-
-  @override
-  String get phoneSmsUnavailable =>
-      'Xác minh SMS hiện không khả dụng. Vui lòng thử lại sau hoặc liên hệ với bộ phận hỗ trợ.';
-
-  @override
-  String get phoneNotEligible =>
-      'Xác minh số điện thoại không khả dụng cho tài khoản này. Hãy dùng phương thức khác hoặc liên hệ bộ phận hỗ trợ.';
-
-  @override
   String get phoneCaptchaRequired =>
       'Cần xác minh trình duyệt trước khi xác minh số điện thoại. Vui lòng thử lại từ trang đăng nhập hoặc liên hệ bộ phận hỗ trợ.';
-
-  @override
-  String get phoneSomethingWentWrong => 'Đã xảy ra lỗi. Vui lòng thử lại.';
-
-  @override
-  String get phoneInboundExpensiveDescription =>
-      'Gửi SMS đến số điện thoại này quá đắt, vì vậy chúng tôi cần bạn gửi SMS cho chúng tôi thay thế. Bạn cũng có thể liên hệ bộ phận hỗ trợ để chúng tôi gỡ bỏ yêu cầu này khỏi tài khoản của bạn.';
-
-  @override
-  String get phoneInboundDefaultDescription =>
-      'Chúng tôi cần bạn gửi SMS để xác minh số điện thoại của mình.';
-
-  @override
-  String get phoneInboundStepOpenMessaging =>
-      'Mở ứng dụng nhắn tin trên điện thoại của bạn và tạo tin nhắn văn bản mới.';
-
-  @override
-  String phoneInboundStepSendCode(String code, String number) {
-    return 'Gửi mã $code đến $number.';
-  }
-
-  @override
-  String get phoneInboundStepWait =>
-      'Chờ chúng tôi nhận được tin nhắn của bạn. Việc này có thể mất một phút.';
-
-  @override
-  String get phoneInboundGetNewCode => 'Lấy mã mới';
-
-  @override
-  String get phoneInboundChallengeCodeLabel => 'Mã để gửi';
-
-  @override
-  String get phoneInboundOurNumberLabel => 'Gửi đến';
-
-  @override
-  String get requiredActionTitle => 'Cần xác minh tài khoản';
-
-  @override
-  String requiredActionIntroGeneric(String productName) {
-    return 'Hoàn tất xác minh bắt buộc để tiếp tục sử dụng $productName.';
-  }
-
-  @override
-  String get requiredActionIntroPhone =>
-      'Đăng ký của bạn cần một bước kiểm tra chống spam bổ sung trước khi tiếp tục.';
-
-  @override
-  String requiredActionIntroEmailOrPhone(String productName) {
-    return 'Xác minh email hoặc số điện thoại của bạn để tiếp tục sử dụng $productName.';
-  }
-
-  @override
-  String requiredActionIntroEmailAndPhone(String productName) {
-    return 'Hoàn tất các bước xác minh email và điện thoại bắt buộc bên dưới để tiếp tục sử dụng $productName.';
-  }
-
-  @override
-  String get requiredActionChooseMethodTitle => 'Chọn phương thức xác minh';
-
-  @override
-  String requiredActionChooseMethodDescription(String productName) {
-    return 'Hoàn tất một trong các phương thức xác minh dưới đây để tiếp tục sử dụng $productName.';
-  }
-
-  @override
-  String get requiredActionUseEmail => 'Dùng email';
-
-  @override
-  String get requiredActionUsePhone => 'Dùng số điện thoại';
-
-  @override
-  String get requiredActionCheckEmailTitle => 'Kiểm tra email của bạn';
-
-  @override
-  String get requiredActionCheckEmailDescription =>
-      'Chúng tôi đã gửi một liên kết xác minh đến địa chỉ email của bạn. Hãy mở nó để tiếp tục.';
-
-  @override
-  String get requiredActionResendVerificationEmail => 'Gửi lại email xác minh';
-
-  @override
-  String get requiredActionVerificationEmailSent =>
-      'Đã gửi email xác minh. Vui lòng kiểm tra hộp thư đến của bạn.';
-
-  @override
-  String get requiredActionSignOut => 'Đăng xuất';
 
   @override
   String get dangerZoneSectionTitle => 'Khu vực nguy hiểm';
@@ -2984,7 +2708,288 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get authorizedAppsScopeAdmin => 'Truy cập các điểm cuối quản trị';
 
   @override
-  String get privacyPendingDeletionTitle => 'Đang chờ xóa';
+  String get applicationsTitle => 'Ứng dụng';
+
+  @override
+  String get applicationsCreate => 'Tạo ứng dụng';
+
+  @override
+  String get applicationsCreateSubmit => 'Tạo';
+
+  @override
+  String get applicationsCreateClaimTooltip =>
+      'Xác nhận tài khoản để tạo ứng dụng.';
+
+  @override
+  String applicationsDocsLink(String domain) {
+    return 'Đọc tài liệu ($domain)';
+  }
+
+  @override
+  String get applicationsLoadError => 'Không thể tải ứng dụng';
+
+  @override
+  String get applicationsLoadErrorDescription =>
+      'Kiểm tra kết nối mạng và thử lại.';
+
+  @override
+  String get applicationsEmptyTitle => 'Chưa có ứng dụng nào';
+
+  @override
+  String applicationsEmptyDescription(String apiName) {
+    return 'Tạo ứng dụng đầu tiên của bạn để bắt đầu với $apiName.';
+  }
+
+  @override
+  String applicationsCreated(String date) {
+    return 'Đã tạo $date';
+  }
+
+  @override
+  String get applicationsName => 'Tên ứng dụng';
+
+  @override
+  String get applicationsNameHint => 'Ứng dụng của tôi';
+
+  @override
+  String get applicationsNameRequired => 'Tên ứng dụng là bắt buộc';
+
+  @override
+  String get applicationsBackToList => 'Quay lại danh sách';
+
+  @override
+  String get applicationsDetailLoadError => 'Không thể tải ứng dụng này';
+
+  @override
+  String get applicationsDetailLoadErrorDescription =>
+      'Thử lại hoặc quay lại danh sách ứng dụng.';
+
+  @override
+  String get applicationsId => 'ID ứng dụng';
+
+  @override
+  String get applicationsCopyId => 'Sao chép ID';
+
+  @override
+  String get applicationsSecretsTitle => 'Mã bí mật & token';
+
+  @override
+  String get applicationsSecretsDescription =>
+      'Hãy bảo mật những thông tin này. Việc tạo lại sẽ làm hỏng các tích hợp hiện có.';
+
+  @override
+  String get applicationsClientSecret => 'Mã bí mật của máy khách';
+
+  @override
+  String get applicationsBotToken => 'Token bot';
+
+  @override
+  String get applicationsRegenerate => 'Tạo lại';
+
+  @override
+  String get applicationsRegenerateClientSecretTitle =>
+      'Tạo lại mã bí mật của máy khách?';
+
+  @override
+  String get applicationsRegenerateBotTokenTitle => 'Tạo lại token bot?';
+
+  @override
+  String get applicationsRegenerateClientSecretDescription =>
+      'Việc tạo lại sẽ làm mất hiệu lực mã bí mật hiện tại. Hãy cập nhật mọi đoạn mã đang dùng giá trị cũ.';
+
+  @override
+  String get applicationsRegenerateBotTokenDescription =>
+      'Việc tạo lại sẽ làm mất hiệu lực token hiện tại. Hãy cập nhật mọi đoạn mã đang dùng giá trị cũ.';
+
+  @override
+  String get applicationsClientSecretRegenerated =>
+      'Đã tạo lại mã bí mật của máy khách. Hãy cập nhật bất kỳ mã nào đang sử dụng mã bí mật cũ.';
+
+  @override
+  String get applicationsBotTokenRegenerated =>
+      'Đã tạo lại token bot. Hãy cập nhật mọi đoạn mã đang dùng token cũ.';
+
+  @override
+  String get applicationsRegenerateFailed => 'Không thể tạo lại khóa bí mật';
+
+  @override
+  String get applicationsInfoTitle => 'Thông tin ứng dụng';
+
+  @override
+  String get applicationsInfoDescription =>
+      'Cài đặt cơ bản và URI chuyển hướng được phép.';
+
+  @override
+  String get applicationsPublicBot => 'Bot công khai';
+
+  @override
+  String get applicationsPublicBotDescription =>
+      'Cho phép mọi người mời bot này vào cộng đồng của họ.';
+
+  @override
+  String get applicationsRequireCodeGrant => 'Yêu cầu cấp quyền OAuth2';
+
+  @override
+  String get applicationsRequireCodeGrantDescription =>
+      'Yêu cầu URI chuyển hướng và mã ủy quyền khi mời bot này.';
+
+  @override
+  String get applicationsRedirectUris => 'URI chuyển hướng';
+
+  @override
+  String get applicationsAddRedirect => 'Thêm chuyển hướng';
+
+  @override
+  String get applicationsDeleteRedirect => 'Xóa URI chuyển hướng';
+
+  @override
+  String get applicationsBotProfileTitle => 'Hồ sơ bot';
+
+  @override
+  String get applicationsBotProfileDescription =>
+      'Ảnh đại diện, thẻ và thông tin chi tiết phong phú cho bot của bạn.';
+
+  @override
+  String get applicationsBotAvatar => 'Ảnh đại diện bot';
+
+  @override
+  String get applicationsUsernameRequired => 'Cần có tên người dùng';
+
+  @override
+  String get applicationsUsernameTooLong =>
+      'Tên người dùng phải có tối đa 32 ký tự';
+
+  @override
+  String get applicationsUsernameInvalid =>
+      'Tên người dùng chỉ có thể chứa chữ cái, số và dấu gạch dưới';
+
+  @override
+  String get applicationsBotUsername => 'Tên người dùng bot';
+
+  @override
+  String get applicationsDiscriminator => 'Mã phân biệt';
+
+  @override
+  String get applicationsBotBio => 'Tiểu sử bot';
+
+  @override
+  String get applicationsBotBioHint =>
+      'Một bot hữu ích có thể làm được nhiều điều tuyệt vời!';
+
+  @override
+  String get applicationsNoBotBanner => 'Không có ảnh bìa bot';
+
+  @override
+  String get applicationsFriendlyBot => 'Bot thân thiện';
+
+  @override
+  String get applicationsFriendlyBotDescription =>
+      'Cho phép người dùng gửi lời mời kết bạn đến bot này để phê duyệt thủ công.';
+
+  @override
+  String get applicationsManualFriendApproval =>
+      'Yêu cầu duyệt bạn bè thủ công';
+
+  @override
+  String get applicationsManualFriendApprovalDescription =>
+      'Lời mời kết bạn với bot này cần được phê duyệt thủ công.';
+
+  @override
+  String get applicationsOauthBuilderTitle => 'Trình tạo URL OAuth2';
+
+  @override
+  String get applicationsOauthBuilderDescription =>
+      'Tạo URL ủy quyền với các phạm vi và quyền.';
+
+  @override
+  String get applicationsScopes => 'Phạm vi';
+
+  @override
+  String get applicationsRedirectUri => 'URI chuyển hướng';
+
+  @override
+  String get applicationsSelectRedirectUri => 'Chọn URI chuyển hướng';
+
+  @override
+  String get applicationsRedirectRequiredCodeGrant =>
+      'Cần có URI chuyển hướng vì bot này yêu cầu cấp quyền bằng mã OAuth2.';
+
+  @override
+  String get applicationsRedirectRequiredScopes =>
+      'Cần có URI chuyển hướng khi không chỉ dùng phạm vi bot.';
+
+  @override
+  String get applicationsBotPermissions => 'Quyền của bot';
+
+  @override
+  String get applicationsAuthorizeUrl => 'URL ủy quyền';
+
+  @override
+  String get applicationsAuthorizeUrlPlaceholder =>
+      'Chọn phạm vi (và URI chuyển hướng nếu cần)';
+
+  @override
+  String get applicationsCopyAuthorizeUrl => 'Sao chép URL ủy quyền';
+
+  @override
+  String get applicationsCopiedUrl => 'Đã sao chép URL vào bảng nhớ tạm';
+
+  @override
+  String get applicationsDangerTitle => 'Khu vực nguy hiểm';
+
+  @override
+  String get applicationsDangerSubtitle =>
+      'Thao tác này không thể hoàn tác. Việc gỡ ứng dụng cũng sẽ xóa bot của ứng dụng.';
+
+  @override
+  String get applicationsDangerHelper =>
+      'Sau khi xóa, ứng dụng và thông tin đăng nhập của ứng dụng sẽ bị gỡ vĩnh viễn.';
+
+  @override
+  String get applicationsDelete => 'Xóa ứng dụng';
+
+  @override
+  String applicationsDeleteConfirmDescription(String name) {
+    return 'Bạn có chắc chắn muốn xóa $name không? Hành động này không thể hoàn tác. Tất cả dữ liệu liên quan, bao gồm người dùng bot, sẽ bị xóa vĩnh viễn.';
+  }
+
+  @override
+  String get applicationsDeleteFailed => 'Không thể xóa ứng dụng';
+
+  @override
+  String get applicationsUpdated => 'Đã cập nhật ứng dụng thành công';
+
+  @override
+  String get applicationsNoChanges => 'Không có thay đổi nào để lưu';
+
+  @override
+  String get applicationsSearchBots => 'Ứng dụng & bot';
+
+  @override
+  String get applicationsSearchBotsDescription =>
+      'Tạo và quản lý ứng dụng, bot cho tài khoản của bạn';
+
+  @override
+  String get applicationsSearchInfoDescription =>
+      'Chỉnh sửa thông tin cơ bản và URI chuyển hướng của ứng dụng';
+
+  @override
+  String get applicationsSearchBotProfileDescription =>
+      'Chỉnh sửa ảnh đại diện, thẻ, tiểu sử, ảnh bìa và hành vi yêu cầu kết bạn của bot';
+
+  @override
+  String get applicationsSearchOauthDescription =>
+      'Tạo URL ủy quyền với phạm vi, chuyển hướng và quyền của bot';
+
+  @override
+  String get applicationsSearchSecretsDescription =>
+      'Xem và tạo lại mã bí mật của máy khách và token bot';
+
+  @override
+  String get applicationsSearchBotsKeyword => 'Bot';
+
+  @override
+  String get applicationsSearchDocumentation => 'Tài liệu';
 
   @override
   String get blockedUsersTitle => 'Người dùng bị chặn';
@@ -3146,9 +3151,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get userProfileNoteDelete => 'Xóa';
 
   @override
-  String get userProfileNoteEmpty => 'Nhấn để thêm ghi chú';
-
-  @override
   String get userProfileMemberSince => 'Thành viên từ';
 
   @override
@@ -3193,6 +3195,61 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get userProfileLocalTime => 'Giờ địa phương';
+
+  @override
+  String get profileLocalTimeSettingsTitle => 'Giờ địa phương trên hồ sơ';
+
+  @override
+  String profileLocalTimeSettingsSummary(String productName) {
+    return 'Đặt múi giờ một lần để $productName luôn cập nhật độ lệch UTC của bạn khi giờ mùa hè thay đổi. Những người khác chỉ thấy độ lệch UTC của bạn, không thấy mã định danh múi giờ chính xác.';
+  }
+
+  @override
+  String get profileLocalTimeEditButton =>
+      'Chỉnh sửa giờ địa phương trên hồ sơ';
+
+  @override
+  String get profileLocalTimeTimezoneLabel => 'Múi giờ';
+
+  @override
+  String profileLocalTimeTimezoneHelp(String productName) {
+    return 'Chọn múi giờ mà $productName sử dụng để tính toán độ lệch UTC cho thời gian hiển thị trên hồ sơ của bạn.';
+  }
+
+  @override
+  String get profileLocalTimeSearchTimezones => 'Tìm múi giờ';
+
+  @override
+  String get profileLocalTimeNotSet => 'Chưa đặt';
+
+  @override
+  String profileLocalTimePrivacyNote(
+    String timezoneIdentifierExample,
+    String productName,
+  ) {
+    return 'Những người khác chỉ thấy được độ lệch UTC hiện tại của bạn khi bạn chọn chia sẻ giờ địa phương trong hồ sơ. Họ không thấy mã định danh múi giờ chính xác của bạn, chẳng hạn như $timezoneIdentifierExample. $productName chỉ lưu mã định danh đó để độ lệch có thể tự động cập nhật khi giờ mùa hè thay đổi.';
+  }
+
+  @override
+  String get profileLocalTimePrivacyEveryone => 'Mọi người';
+
+  @override
+  String get profileLocalTimePrivacyEveryoneDesc =>
+      'Cho phép bất kỳ ai xem được hồ sơ đầy đủ của bạn thấy giờ địa phương của bạn';
+
+  @override
+  String get profileLocalTimePrivacyFriends => 'Bạn bè';
+
+  @override
+  String get profileLocalTimePrivacyFriendsDesc =>
+      'Cho phép bạn bè xem giờ địa phương của bạn';
+
+  @override
+  String get profileLocalTimePrivacyCommunityMembers => 'Thành viên cộng đồng';
+
+  @override
+  String get profileLocalTimePrivacyCommunityMembersDesc =>
+      'Cho phép thành viên từ các cộng đồng bạn tham gia xem giờ địa phương của bạn';
 
   @override
   String get userProfileSameTimeAsYou => 'Cùng múi giờ với bạn';
@@ -3319,10 +3376,10 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get userProfileTransferOwnership => 'Chuyển quyền sở hữu';
 
   @override
-  String get userProfileReportUser => 'Báo cáo người dùng';
+  String get userProfileReportMessage => 'Báo cáo tin nhắn';
 
   @override
-  String get userProfileReportMessage => 'Báo cáo tin nhắn';
+  String get userProfileReportUserProfile => 'Báo cáo hồ sơ';
 
   @override
   String userProfileKickConfirmTitle(String username) {
@@ -3471,93 +3528,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get durationCustom => 'Tùy chỉnh…';
-
-  @override
-  String get iarReportUserTitle => 'Báo cáo người dùng';
-
-  @override
-  String get iarReportGuildTitle => 'Báo cáo cộng đồng';
-
-  @override
-  String get iarReportGuildPreconfirmBody =>
-      'Nếu báo cáo này liên quan đến một tin nhắn cụ thể trong cộng đồng này, hãy báo cáo tin nhắn đó thay vì báo cáo cộng đồng. Báo cáo tin nhắn cung cấp cho đội ngũ an toàn của chúng tôi ngữ cảnh rõ ràng nhất và việc thêm chi tiết vào phần bình luận có thể giúp chúng tôi xem xét nhanh hơn. Chỉ tiếp tục báo cáo toàn bộ cộng đồng nếu việc báo cáo một tin nhắn không thể giải quyết được vấn đề lớn hơn.';
-
-  @override
-  String get iarContinueToReportCommunity => 'Tiếp tục báo cáo cộng đồng';
-
-  @override
-  String get iarPreviewCommunitySubtitle => 'Cộng đồng';
-
-  @override
-  String get iarReasonHarassmentGuildLabel =>
-      'Quấy rối hoặc nhắm mục tiêu lạm dụng';
-
-  @override
-  String get iarReasonHarassmentGuildDescription =>
-      'Cộng đồng tạo điều kiện cho các cuộc tấn công hoặc lạm dụng có chủ đích.';
-
-  @override
-  String get iarReasonHateGuildDescription =>
-      'Cổ súy thù ghét các nhóm được bảo vệ.';
-
-  @override
-  String get iarReasonTerrorismLabel => 'Khủng bố hoặc cực đoan bạo lực';
-
-  @override
-  String get iarReasonTerrorismDescription =>
-      'Quảng bá, tuyển mộ hoặc điều phối hoạt động cực đoan bạo lực.';
-
-  @override
-  String get iarReasonMatureContentGuildLabel =>
-      'Nội dung người lớn hoặc kiểm duyệt không an toàn';
-
-  @override
-  String get iarReasonMatureContentGuildDescription =>
-      'Nội dung người lớn không được kiểm soát đúng cách.';
-
-  @override
-  String get iarReasonChildSafetyGuildDescription =>
-      'Gây nguy hiểm cho trẻ vị thành niên hoặc chứa nội dung bóc lột trẻ em.';
-
-  @override
-  String get iarReasonRaidLabel => 'Phối hợp tấn công';
-
-  @override
-  String get iarReasonRaidDescription =>
-      'Điều phối các cuộc tấn công, quấy rối hoặc gây rối có tổ chức nhắm vào người hoặc cộng đồng.';
-
-  @override
-  String get iarReasonSpamGuildDescription =>
-      'Cộng đồng tồn tại để spam, lừa đảo hoặc lạm dụng nền tảng.';
-
-  @override
-  String get iarReasonMalwareGuildLabel => 'Phân phối phần mềm độc hại';
-
-  @override
-  String get iarReasonMalwareGuildDescription =>
-      'Phân phối phần mềm độc hại, đánh cắp thông tin đăng nhập hoặc các tệp độc hại.';
-
-  @override
-  String get iarReasonPrivacyGuildLabel =>
-      'Vi phạm quyền riêng tư hoặc doxxing';
-
-  @override
-  String get iarReasonPrivacyGuildDescription =>
-      'Chia sẻ thông tin cá nhân, theo dõi người dùng hoặc phối hợp lạm dụng quyền riêng tư.';
-
-  @override
-  String get iarReasonSelfHarmGuildLabel => 'Khuyến khích tự làm hại bản thân';
-
-  @override
-  String get iarReasonSelfHarmGuildDescription =>
-      'Khuyến khích tự tử, tự làm hại bản thân hoặc rối loạn ăn uống.';
-
-  @override
-  String get iarReasonInappropriateProfile => 'Hồ sơ không phù hợp';
-
-  @override
-  String get iarReasonInappropriateProfileDescription =>
-      'Hồ sơ người dùng này chứa nội dung không phù hợp';
 
   @override
   String typingIndicatorOne(String name) {
@@ -3845,6 +3815,33 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get linkedDevicesUnknownPlatform => 'Nền tảng không xác định';
 
   @override
+  String get linkedDevicesViewDetails => 'Xem chi tiết';
+
+  @override
+  String get linkedDevicesDetailsTitle => 'Chi tiết thiết bị';
+
+  @override
+  String get linkedDevicesDetailsDevice => 'Thiết bị';
+
+  @override
+  String get linkedDevicesDetailsClient => 'Ứng dụng khách';
+
+  @override
+  String get linkedDevicesDetailsLocation => 'Vị trí';
+
+  @override
+  String get linkedDevicesDetailsIp => 'Địa chỉ IP';
+
+  @override
+  String get linkedDevicesDetailsLastUsed => 'Lần sử dụng cuối cùng';
+
+  @override
+  String get linkedDevicesCurrentSession => 'Phiên hiện tại';
+
+  @override
+  String get linkedDevicesUnknown => 'Không rõ';
+
+  @override
   String slowmodeLabel(String duration) {
     return '$duration chế độ chậm';
   }
@@ -3914,14 +3911,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Bạn chưa phải là thành viên đủ lâu để gửi tin nhắn trong cộng đồng này.';
 
   @override
-  String get channelComposerBarrierNoPhoneNumber =>
-      'Bạn cần xác minh số điện thoại để gửi tin nhắn trong cộng đồng này.';
-
-  @override
   String get channelComposerBarrierVerifyEmail => 'Xác minh email';
-
-  @override
-  String get channelComposerBarrierVerifyPhone => 'Xác minh số điện thoại';
 
   @override
   String chatAttachmentTooMany(int max) {
@@ -3944,9 +3934,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get chatAttachmentDropToSend => 'Thả tệp để gửi ngay';
 
   @override
-  String get chatAttachmentSendVoiceMessage => 'Gửi tin nhắn thoại';
-
-  @override
   String get voiceMessageTitle => 'Tin nhắn thoại';
 
   @override
@@ -3964,10 +3951,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Không thể bắt đầu ghi âm. Vui lòng cho phép truy cập micrô.';
 
   @override
-  String get voiceMessageRecordingNotSupported =>
-      'Thiết bị này không hỗ trợ ghi âm giọng nói.';
-
-  @override
   String get voiceMessageMicInUse =>
       'Rời khỏi cuộc gọi thoại để ghi âm tin nhắn thoại.';
 
@@ -3977,23 +3960,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get voiceMessageSendFailed =>
       'Không gửi được tin nhắn thoại. Vui lòng thử lại.';
-
-  @override
-  String get voiceMessageRecordingHint =>
-      'Bắt đầu nói. Nhấn Dừng khi bạn hoàn tất — bạn có thể cắt sau.';
-
-  @override
-  String get voiceMessageReviewHint =>
-      'Kéo các điểm điều khiển để cắt, sau đó nhấn Gửi.';
-
-  @override
-  String get voiceMessageStop => 'Dừng';
-
-  @override
-  String get voiceMessageStartRecording => 'Bắt đầu ghi âm';
-
-  @override
-  String get voiceMessageRerecord => 'Ghi âm lại';
 
   @override
   String get voiceMessagePlay => 'Phát';
@@ -4006,16 +3972,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get voiceMessageSeekBackward => 'Lùi lại';
-
-  @override
-  String voiceMessageSelectionTooShort(num seconds) {
-    final intl.NumberFormat secondsNumberFormat = intl.NumberFormat.compact(
-      locale: localeName,
-    );
-    final String secondsString = secondsNumberFormat.format(seconds);
-
-    return 'Đoạn đã chọn phải dài tối thiểu $secondsString giây.';
-  }
 
   @override
   String get chatAttachmentEditTitle => 'Chỉnh sửa tệp đính kèm';
@@ -4159,9 +4115,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get chatAttachmentSourceBrowse => 'Duyệt tệp';
 
   @override
-  String get chatAttachmentPasteTooltip => 'Dán tệp từ khay nhớ tạm';
-
-  @override
   String get chatAttachmentSpoiler => 'Nội dung ẩn';
 
   @override
@@ -4243,13 +4196,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get matureContentOpenLinkButton => 'Mở liên kết';
 
   @override
-  String get sensitiveContentSectionTitle => 'Nội dung nhạy cảm';
-
-  @override
-  String get sensitiveContentSectionDescription =>
-      'Kiểm soát mức độ lọc nội dung đa phương tiện nhạy cảm hoặc trưởng thành trong các ngữ cảnh khác nhau';
-
-  @override
   String get sensitiveContentFriendDmLabel => 'Tin nhắn trực tiếp từ bạn bè';
 
   @override
@@ -4269,18 +4215,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get sensitiveContentFilterBlock => 'Chặn';
 
   @override
-  String get sensitiveContentBlurUnscannedLabel =>
-      'Che ảnh phương tiện cho đến khi quét an toàn hoàn tất';
-
-  @override
-  String get sensitiveContentBlurUnscannedDescriptionAdult =>
-      'Khi bật, ảnh và video sẽ bị làm mờ cho đến khi quá trình quét an toàn nội dung hoàn tất.';
-
-  @override
-  String get sensitiveContentBlurUnscannedDescriptionMinor =>
-      'Cài đặt này luôn bật cho tài khoản của bạn.';
-
-  @override
   String get sensitiveContentResetButton => 'Đặt lại';
 
   @override
@@ -4296,9 +4230,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     );
     return 'Đang tải lên $_temp0';
   }
-
-  @override
-  String get chatCancelUpload => 'Hủy tải lên';
 
   @override
   String chatAttachmentExpiresOn(String date) {
@@ -4503,9 +4434,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get connectionEnterDomain => 'Nhập một tên miền.';
 
   @override
-  String get lookAndFeelTitle => 'Giao diện';
-
-  @override
   String get lookAndFeelThemeSectionTitle => 'Giao diện';
 
   @override
@@ -4569,11 +4497,93 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Không thể đồng bộ giao diện với tài khoản của bạn. Vui lòng thử lại.';
 
   @override
-  String get lookAndFeelChatFontScalingTitle => 'Tỷ lệ cỡ chữ trò chuyện';
+  String get lookAndFeelThemeColorsTitle => 'Theme colors';
+
+  @override
+  String get lookAndFeelThemeColorsConfigureDescription =>
+      'Customize individual theme colors for this device.';
+
+  @override
+  String lookAndFeelThemeColorsEditingMode(String mode) {
+    return 'Editing $mode';
+  }
+
+  @override
+  String get lookAndFeelThemeColorsSyncSectionTitle => 'Theme Studio sync';
+
+  @override
+  String get lookAndFeelThemeColorsSyncFromStudioLabel =>
+      'Use colors from Theme Studio';
+
+  @override
+  String get lookAndFeelThemeColorsSyncFromStudioDescription =>
+      'When enabled, color changes from Theme Studio on desktop apply on this device. When disabled, this device keeps its own colors.';
+
+  @override
+  String get lookAndFeelThemeColorsSyncToStudioLabel =>
+      'Send color changes to Theme Studio';
+
+  @override
+  String get lookAndFeelThemeColorsSyncToStudioDescription =>
+      'When enabled, colors you change here sync to Theme Studio on your other devices. When disabled, desktop Theme Studio keeps its own colors.';
+
+  @override
+  String get lookAndFeelThemeColorsSyncFromStudioOffBanner =>
+      'Desktop Theme Studio color changes will not apply on this device.';
+
+  @override
+  String get lookAndFeelThemeColorsEssentialSectionTitle => 'Essential colors';
+
+  @override
+  String get lookAndFeelThemeColorsChatBackgroundWallpaperNote =>
+      'If you have a chat wallpaper set, you won\'t see this color.';
+
+  @override
+  String lookAndFeelThemeColorsResetForMode(String mode) {
+    return 'Reset all colors for $mode';
+  }
+
+  @override
+  String get lookAndFeelThemeColorsResetConfirmTitle => 'Reset theme colors?';
+
+  @override
+  String lookAndFeelThemeColorsResetConfirmBody(String mode) {
+    return 'This removes your custom color overrides for $mode on this device.';
+  }
+
+  @override
+  String get lookAndFeelThemeColorsGroupBrandButtons => 'Brand & buttons';
+
+  @override
+  String get lookAndFeelThemeColorsGroupChatSurfaces => 'Chat & messages';
+
+  @override
+  String get lookAndFeelThemeColorsGroupSidebars => 'Sidebars & navigation';
+
+  @override
+  String get lookAndFeelThemeColorsGroupText => 'Text';
+
+  @override
+  String get lookAndFeelThemeColorsGroupHeaders => 'Headers';
+
+  @override
+  String get lookAndFeelThemeColorsGroupStatus => 'Status';
+
+  @override
+  String get lookAndFeelThemeColorsGroupEmbedsMarkup => 'Embeds & mentions';
+
+  @override
+  String get lookAndFeelThemeColorsGroupAccentsAlerts => 'Accents & alerts';
+
+  @override
+  String get lookAndFeelThemeColorsGroupControls => 'Surfaces & controls';
+
+  @override
+  String get lookAndFeelChatFontScalingTitle => 'Chat font scaling';
 
   @override
   String get lookAndFeelChatFontScalingDescription =>
-      'Điều chỉnh cỡ chữ trong cuộc trò chuyện.';
+      'Adjust the font size in the chat area.';
 
   @override
   String get lookAndFeelChatFontSizeLabel => 'Cỡ chữ trò chuyện';
@@ -4607,7 +4617,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get lookAndFeelChatWallpaperCustomLabel => 'Ảnh tùy chỉnh';
 
   @override
-  String get lookAndFeelChatWallpaperStarfieldLabel => 'Starfield';
+  String get lookAndFeelChatWallpaperStarfieldLabel => 'Bầu trời sao';
 
   @override
   String lookAndFeelChatWallpaperColorLabel(String id) {
@@ -4725,39 +4735,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get lookAndFeelHideKeyboardHintsDescription =>
       'Khi bật, các huy hiệu phím tắt sẽ bị ẩn trong các cửa sổ bật lên gợi ý.';
-
-  @override
-  String get lookAndFeelNekoTitle => 'Khác';
-
-  @override
-  String get lookAndFeelNekoDescription => 'Các tùy chọn giao diện khác.';
-
-  @override
-  String get lookAndFeelShowNekoLabel => 'Hiện Pickles';
-
-  @override
-  String get lookAndFeelShowNekoDescription =>
-      'Khi bật, Pickles sẽ xuất hiện gần thanh nhập tin nhắn.';
-
-  @override
-  String get lookAndFeelVoiceChannelJoinTitle =>
-      'Hành vi khi tham gia kênh thoại';
-
-  @override
-  String get lookAndFeelVoiceChannelJoinDescription =>
-      'Kiểm soát cách bạn tham gia các kênh thoại trong cộng đồng.';
-
-  @override
-  String get lookAndFeelRequireDoubleClickJoinLabel =>
-      'Yêu cầu nhấp đúp để vào kênh thoại';
-
-  @override
-  String get lookAndFeelRequireDoubleClickJoinDescription =>
-      'Khi bật, bạn sẽ cần nhấp đúp vào kênh thoại để tham gia. Khi tắt (mặc định), nhấp một lần sẽ tham gia kênh ngay lập tức.';
-
-  @override
-  String get lookAndFeelChatFontPreviewSample =>
-      'Con cáo nâu nhanh nhẹn nhảy qua con chó lười.';
 
   @override
   String get lookAndFeelGuildSidebarTitle => 'Thanh bên máy chủ';
@@ -5217,22 +5194,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Hiển thị ảnh/video đã lưu trong gợi ý biểu cảm';
 
   @override
-  String get messagesMediaEditingSectionTitle => 'Chỉnh sửa tin nhắn';
-
-  @override
-  String get messagesMediaEditingSectionDescription =>
-      'Kiểm soát những gì xảy ra với bản nháp chỉnh sửa của bạn khi bạn hủy.';
-
-  @override
-  String get messagesMediaEditingPreserveDraftLabel =>
-      'Lưu bản nháp chỉnh sửa khi hủy';
-
-  @override
   String get accessibilitySaturationTitle => 'Độ bão hòa';
-
-  @override
-  String get accessibilitySaturationDescription =>
-      'Điều chỉnh mức độ rực rỡ của màu sắc chủ đề trên toàn bộ ứng dụng.';
 
   @override
   String get accessibilityVisualGroupTitle => 'Hiển thị';
@@ -5243,11 +5205,11 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get accessibilityShowAltTextOnImagesLabel =>
-      'Show alternative text on images';
+      'Hiển thị văn bản thay thế trên hình ảnh';
 
   @override
   String get accessibilityShowAltTextOnImagesDescription =>
-      'Display alternative text below images when it is available.';
+      'Hiển thị văn bản thay thế bên dưới hình ảnh khi có sẵn.';
 
   @override
   String get accessibilityDimStrikethroughTextLabel =>
@@ -5255,10 +5217,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get accessibilityDmMessagePreviewGroupTitle => 'Xem trước tin nhắn DM';
-
-  @override
-  String get accessibilityDmMessagePreviewGroupDescription =>
-      'Kiểm soát thời điểm xem trước tin nhắn được hiển thị trong danh sách DM.';
 
   @override
   String get accessibilityDmMessagePreviewModeLabel =>
@@ -5379,10 +5337,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get accessibilityPausedGifByReducedMotion =>
       'Đã tạm dừng do giảm chuyển động. Bật để tiếp tục phát ảnh GIF.';
-
-  @override
-  String get accessibilityGifDefaultsOffOnMobile =>
-      'Mặc định tắt trên di động để tiết kiệm pin và dữ liệu.';
 
   @override
   String get accessibilityStickerAnimationsTitle => 'Ảnh động nhãn dán';
@@ -5707,10 +5661,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Không thể ngắt kết nối các thiết bị khác của bạn. Vui lòng thử lại sau.';
 
   @override
-  String get voiceChannelEmptyDescription =>
-      'Đây là một kênh thoại. Kết nối để bắt đầu trò chuyện!';
-
-  @override
   String get voiceChannelJoin => 'Tham gia kênh thoại';
 
   @override
@@ -5749,12 +5699,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get voiceChannelStatusConnecting => 'Đang kết nối…';
-
-  @override
-  String get voiceChannelStatusConnected => 'Đã kết nối';
-
-  @override
-  String get voiceChannelStatusError => 'Lỗi';
 
   @override
   String get voiceParticipantTooltipMobileDevice => 'Thiết bị di động';
@@ -5819,9 +5763,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get voiceScreenShareNotificationText =>
       'Đang chia sẻ màn hình của bạn.';
-
-  @override
-  String get voiceControlMore => 'Thêm';
 
   @override
   String get voiceControlDisconnect => 'Ngắt kết nối';
@@ -5975,7 +5916,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get voiceOutputRouteSpeaker => 'Loa';
 
   @override
-  String get voiceOutputRouteEarpiece => 'Earpiece';
+  String get voiceOutputRouteEarpiece => 'Tai nghe';
 
   @override
   String get voiceOutputRouteHeadset => 'Tai nghe';
@@ -6189,6 +6130,10 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Tin nhắn của bạn không thể gửi đi vì đã bị hệ thống an toàn của chúng tôi gắn cờ. Nếu bạn cho rằng đây là lỗi, vui lòng liên hệ bộ phận hỗ trợ.';
 
   @override
+  String get chatSendFailureContentBlockedSelfHosted =>
+      'Tin nhắn của bạn không thể gửi đi vì đã bị hệ thống an toàn của chúng tôi gắn cờ. Nếu bạn cho rằng đây là lỗi, vui lòng liên hệ quản trị viên của máy chủ này.';
+
+  @override
   String get chatSendFailureNsfwEmojiSticker =>
       'Tin nhắn của bạn không thể gửi vì chứa biểu tượng cảm xúc hoặc nhãn dán nhạy cảm không được phép trong ngữ cảnh này.';
 
@@ -6256,24 +6201,12 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get privacyDashboardFriendRequestsEveryone => 'Mọi người';
 
   @override
-  String get privacyDashboardFriendRequestsEveryoneDesc =>
-      'Cho phép mọi người gửi cho bạn lời mời kết bạn';
-
-  @override
   String get privacyDashboardFriendRequestsFriendsOfFriends =>
       'Bạn bè của bạn bè';
 
   @override
-  String get privacyDashboardFriendRequestsFriendsOfFriendsDesc =>
-      'Cho phép bạn bè của bạn bè gửi yêu cầu cho bạn';
-
-  @override
   String get privacyDashboardFriendRequestsCommunityMembers =>
       'Thành viên cộng đồng';
-
-  @override
-  String get privacyDashboardFriendRequestsCommunityMembersDesc =>
-      'Cho phép thành viên từ các cộng đồng bạn tham gia gửi yêu cầu cho bạn';
 
   @override
   String get privacyDashboardDirectMessagesTitle => 'Tin nhắn trực tiếp';
@@ -6283,58 +6216,26 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Cho phép thành viên cộng đồng nhắn tin trực tiếp';
 
   @override
-  String get privacyDashboardDirectMessagesMembersDesc =>
-      'Cho phép thành viên từ các cộng đồng bạn tham gia gửi tin nhắn trực tiếp cho bạn';
-
-  @override
   String get privacyDashboardDirectMessagesBots =>
       'Cho phép bot cộng đồng nhắn tin trực tiếp';
-
-  @override
-  String get privacyDashboardDirectMessagesBotsDesc =>
-      'Cho phép bot từ các cộng đồng bạn tham gia gửi tin nhắn trực tiếp cho bạn';
-
-  @override
-  String get privacyDashboardConnectionsSectionDesc =>
-      'Kiểm soát những ai có thể gửi cho bạn yêu cầu kết bạn và tin nhắn trực tiếp';
-
-  @override
-  String get privacyDashboardCommunicationSectionDesc =>
-      'Kiểm soát ai có thể gọi cho bạn và thêm bạn vào các cuộc trò chuyện nhóm';
 
   @override
   String get privacyDashboardIncomingCallsTitle => 'Cuộc gọi đến';
 
   @override
-  String get privacyDashboardIncomingCallsDesc =>
-      'Kiểm soát người có thể gọi cho bạn';
-
-  @override
   String get privacyDashboardAllowedCallers => 'Người gọi được phép';
-
-  @override
-  String get privacyDashboardIncomingCallNobody => 'Không ai';
 
   @override
   String get privacyDashboardIncomingCallNobodyDesc =>
       'Chặn tất cả cuộc gọi đến';
 
   @override
-  String get privacyDashboardIncomingCallFriendsOnly => 'Chỉ bạn bè';
-
-  @override
   String get privacyDashboardIncomingCallFriendsOnlyDesc =>
       'Chỉ cho phép bạn bè gọi cho bạn (được khuyến nghị)';
 
   @override
-  String get privacyDashboardIncomingCallCustom => 'Bạn bè + Tùy chỉnh';
-
-  @override
   String get privacyDashboardIncomingCallCustomDesc =>
       'Cho phép bạn bè và các nhóm khác bạn chọn';
-
-  @override
-  String get privacyDashboardIncomingCallEveryone => 'Mọi người';
 
   @override
   String get privacyDashboardIncomingCallEveryoneDesc =>
@@ -6344,30 +6245,14 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get privacyDashboardAdditionalGroups => 'Nhóm bổ sung';
 
   @override
-  String get privacyDashboardCallFriendsOfFriendsDesc =>
-      'Những người là bạn bè của bạn bè có thể gọi cho bạn';
-
-  @override
-  String get privacyDashboardCallGuildMembersDesc =>
-      'Những người từ các cộng đồng mà cả hai bạn cùng tham gia có thể gọi cho bạn';
-
-  @override
   String get privacyDashboardRingBehavior => 'Hành vi vòng';
 
   @override
   String get privacyDashboardSilentCalls => 'Tắt tiếng cuộc gọi từ mọi người';
 
   @override
-  String get privacyDashboardSilentCallsDesc =>
-      'Tất cả các cuộc gọi sẽ thông báo im lặng thay vì đổ chuông. Theo mặc định, các cuộc gọi từ người lạ luôn im lặng.';
-
-  @override
   String get privacyDashboardGroupDmTitle =>
       'Ai có thể thêm bạn vào nhóm trò chuyện';
-
-  @override
-  String get privacyDashboardGroupDmDesc =>
-      'Kiểm soát những ai có thể thêm bạn vào nhóm mà không cần hỏi. Mọi người vẫn có thể gửi cho bạn liên kết mời tham gia.';
 
   @override
   String get privacyDashboardAllowedInvites => 'Lời mời được phép';
@@ -6387,14 +6272,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get privacyDashboardGroupDmEveryoneDesc =>
       'Cho phép mọi người thêm bạn vào nhóm mà không cần hỏi';
-
-  @override
-  String get privacyDashboardGroupDmFriendsOfFriendsDesc =>
-      'Những người là bạn bè của bạn bè có thể thêm bạn vào các cuộc trò chuyện nhóm';
-
-  @override
-  String get privacyDashboardGroupDmGuildMembersDesc =>
-      'Người từ các cộng đồng mà cả hai bạn cùng tham gia có thể thêm bạn vào các nhóm chat';
 
   @override
   String get privacyDashboardVoiceActivityTitle =>
@@ -6787,16 +6664,49 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get chatMessageAddReaction => 'Thêm biểu tượng cảm xúc';
 
   @override
-  String get doubleTapReactionHint => 'Double tap a message to';
+  String get doubleTapReactionHint =>
+      'Chạm hai lần vào tin nhắn để bày tỏ cảm xúc';
 
   @override
   String get doubleTapReactionEdit => 'Chỉnh sửa';
 
   @override
-  String get doubleTapReactionEditTitle => 'Edit default';
+  String get doubleTapReactionEditTitle => 'Chỉnh sửa mặc định';
 
   @override
-  String get doubleTapReactionEditSubtitle => 'Choose double tap emoji';
+  String get doubleTapReactionEditSubtitle =>
+      'Chọn biểu tượng cảm xúc nhấn đúp';
+
+  @override
+  String get messagesMediaDoubleTapSectionTitle => 'Double tap';
+
+  @override
+  String get messagesMediaDoubleTapSectionDescription =>
+      'Choose what happens when you double tap a message.';
+
+  @override
+  String get messagesMediaDoubleTapActionLabel => 'Double tap action';
+
+  @override
+  String get messagesMediaDoubleTapActionReactName => 'Add reaction';
+
+  @override
+  String get messagesMediaDoubleTapActionReactDescription =>
+      'Adds your default double-tap emoji as a reaction.';
+
+  @override
+  String get messagesMediaDoubleTapActionEditName => 'Edit message';
+
+  @override
+  String get messagesMediaDoubleTapActionEditDescription =>
+      'Opens the editor on messages you sent. Other messages are unchanged.';
+
+  @override
+  String get messagesMediaDoubleTapActionNoneName => 'Nothing';
+
+  @override
+  String get messagesMediaDoubleTapActionNoneDescription =>
+      'Double tap is disabled.';
 
   @override
   String get chatMessageEdit => 'Chỉnh sửa tin nhắn';
@@ -6805,10 +6715,10 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get chatMessageReply => 'Trả lời';
 
   @override
-  String get notificationReplyPlaceholder => 'Message';
+  String get notificationReplyPlaceholder => 'Tin nhắn';
 
   @override
-  String get notificationReplyFailed => 'Couldn\'t send reply';
+  String get notificationReplyFailed => 'Không thể gửi trả lời';
 
   @override
   String get chatMessageForward => 'Chuyển tiếp';
@@ -7006,351 +6916,120 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get chatMessageReport => 'Báo cáo tin nhắn';
 
   @override
-  String get iarReportMessageTitle => 'Báo cáo tin nhắn';
+  String get reportFlowTitleMessage => 'Báo cáo tin nhắn';
 
   @override
-  String get iarThisUserFallback => 'người dùng này';
+  String get reportFlowTitleUserProfile => 'Báo cáo hồ sơ';
 
   @override
-  String get iarModalDescription =>
-      'Báo cáo vi phạm quy tắc hoặc tìm công cụ để quản lý liên hệ và tùy chọn.';
+  String get reportFlowSummaryTitle => 'Kiểm tra báo cáo của bạn';
 
   @override
-  String get iarPathStepAriaLabel => 'Bạn cần gì?';
+  String get reportFlowSummarySubtitle =>
+      'Hãy đảm bảo mọi thứ trông ổn trước khi bạn gửi.';
 
   @override
-  String get iarCategoryStepTitle => 'Quy tắc nào đã bị vi phạm?';
-
-  @override
-  String get iarReasonStepTitle => 'Quy tắc nào đã bị vi phạm?';
-
-  @override
-  String get iarReasonSelectHint => 'Chọn một lý do';
-
-  @override
-  String get iarPickAnOptionToast => 'Chọn một tùy chọn để tiếp tục.';
-
-  @override
-  String get iarPickARuleToast => 'Chọn quy tắc đã vi phạm.';
-
-  @override
-  String get iarPathPlatform => 'Báo cáo vi phạm quy tắc nền tảng';
-
-  @override
-  String get iarPathCommunity =>
-      'Báo cáo cho người kiểm duyệt của cộng đồng này';
-
-  @override
-  String get iarPathPreferenceMessage => 'Tôi không thích nội dung này';
-
-  @override
-  String get iarCategoryTargetedHarmLabel => 'Đe dọa, quấy rối hoặc gây hại';
-
-  @override
-  String get iarCategoryTargetedHarmDescription =>
-      'Bắt nạt, đe dọa, thù ghét, bạo lực, tấn công hoặc nội dung khuyến khích tự làm hại bản thân.';
-
-  @override
-  String get iarCategorySafetyMinorsLabel =>
-      'An toàn cho trẻ em hoặc nội dung người lớn';
-
-  @override
-  String get iarCategorySafetyMinorsDescription =>
-      'Trẻ vị thành niên gặp rủi ro, nội dung người lớn không phù hợp hoặc hành vi không mong muốn.';
-
-  @override
-  String get iarCategoryPrivacyIdentityLabel => 'Quyền riêng tư hoặc mạo danh';
-
-  @override
-  String get iarCategoryPrivacyIdentityDescription =>
-      'Doxxing, rình rập, mạo danh hoặc hồ sơ không phù hợp.';
-
-  @override
-  String get iarCategoryDeceptionLabel =>
-      'Lừa đảo, phần mềm độc hại hoặc thông tin sai lệch';
-
-  @override
-  String get iarCategoryDeceptionDescription =>
-      'Lừa đảo, gian lận, liên kết độc hại hoặc thông tin sai lệch có khả năng gây hại trong thế giới thực.';
-
-  @override
-  String get iarCategoryIllegalOtherLabel =>
-      'Hoạt động trái phép hoặc nội dung khác';
-
-  @override
-  String get iarCategoryIllegalOtherDescription =>
-      'Mua bán trái phép, tiếp tay cho tội phạm hoặc vi phạm quy tắc rõ ràng không thuộc các mục trên.';
-
-  @override
-  String get iarReasonHarassmentLabel => 'Quấy rối hoặc đe dọa';
-
-  @override
-  String get iarReasonHarassmentMessageDescription =>
-      'Bắt nạt, liên tục liên hệ không mong muốn, rình rập hoặc lạm dụng có chủ đích.';
-
-  @override
-  String get iarReasonHateLabel => 'Lời lẽ gây thù ghét';
-
-  @override
-  String get iarReasonHateMessageDescription =>
-      'Lời lẽ xúc phạm, phi nhân tính hoặc công kích các nhóm được bảo vệ.';
-
-  @override
-  String get iarReasonViolenceLabel => 'Bạo lực hoặc đe dọa bạo lực';
-
-  @override
-  String get iarReasonViolenceDescription =>
-      'Các mối đe dọa đáng tin cậy, bạo lực ghê rợn hoặc cổ súy bạo lực.';
-
-  @override
-  String get iarReasonMatureContentLabel => 'Nội dung người lớn hoặc quấy rối';
-
-  @override
-  String get iarReasonMatureContentMessageDescription =>
-      'Hành vi không mong muốn hoặc nội dung người lớn không đúng chỗ.';
-
-  @override
-  String get iarReasonChildSafetyLabel =>
-      'An toàn cho trẻ em hoặc bóc lột trẻ vị thành niên';
-
-  @override
-  String get iarReasonChildSafetyMessageDescription =>
-      'Nội dung có hành vi dụ dỗ hoặc bóc lột trẻ em.';
-
-  @override
-  String get iarReasonHarmfulMisinfoLabel => 'Thông tin sai lệch có hại';
-
-  @override
-  String get iarReasonHarmfulMisinfoDescription =>
-      'Tuyên bố sai sự thật có khả năng gây hại trong thế giới thực.';
-
-  @override
-  String get iarReasonSpamLabel =>
-      'Spam, lừa đảo hoặc lừa đảo chiếm đoạt thông tin';
-
-  @override
-  String get iarReasonSpamMessageDescription =>
-      'Spam hàng loạt, lừa đảo, tặng quà giả mạo hoặc lạm dụng tài khoản.';
-
-  @override
-  String get iarReasonMalwareLabel =>
-      'Phần mềm độc hại hoặc liên kết nguy hiểm';
-
-  @override
-  String get iarReasonMalwareDescription =>
-      'Phần mềm độc hại, đánh cắp thông tin đăng nhập hoặc các tệp độc hại.';
-
-  @override
-  String get iarReasonPrivacyLabel => 'Vi phạm quyền riêng tư';
-
-  @override
-  String get iarReasonPrivacyDescription =>
-      'Doxxing, lộ thông tin cá nhân hoặc quấy rối.';
-
-  @override
-  String get iarReasonImpersonationLabel => 'Mạo danh hoặc nội dung lừa đảo';
-
-  @override
-  String get iarReasonImpersonationMessageDescription =>
-      'Mạo danh người khác, bao gồm cả nội dung do AI tạo ra nhằm mục đích lừa đảo.';
-
-  @override
-  String get iarReasonIllegalLabel => 'Hoạt động trái phép';
-
-  @override
-  String get iarReasonIllegalDescription =>
-      'Hoạt động mua bán trái phép, tiếp tay cho tội phạm hoặc các hành vi phi pháp khác.';
-
-  @override
-  String get iarReasonSelfHarmLabel => 'Tự làm hại bản thân hoặc tự tử';
-
-  @override
-  String get iarReasonSelfHarmMessageDescription =>
-      'Quảng bá hoặc hướng dẫn tự làm hại bản thân hoặc rối loạn ăn uống.';
-
-  @override
-  String get iarReasonOtherLabel => 'Một vi phạm quy tắc rõ ràng khác';
-
-  @override
-  String iarReasonOtherDescription(String productName) {
-    return 'Chỉ sử dụng tùy chọn này nếu nội dung vi phạm rõ ràng các quy tắc của $productName và không thuộc các danh mục trên.';
+  String reportFlowDisclaimer(String guidelines) {
+    return 'Chỉ báo cáo những nội dung bạn thực sự tin là vi phạm quy tắc. Lạm dụng tính năng báo cáo là đi ngược lại $guidelines của chúng tôi.';
   }
 
   @override
-  String iarUseChildSafetyInstead(String childSafetyReason) {
-    return 'Nếu có trẻ vị thành niên liên quan, hãy sử dụng \"$childSafetyReason\" thay thế.';
+  String get reportFlowCommunityGuidelinesLink => 'nguyên tắc cộng đồng';
+
+  @override
+  String get reportFlowDisclaimerNoLink =>
+      'Chỉ báo cáo những gì bạn thực sự tin là vi phạm quy tắc và vui lòng không gửi cùng một báo cáo hai lần.';
+
+  @override
+  String get reportFlowSelectedMessage => 'Tin nhắn bạn đang báo cáo';
+
+  @override
+  String get reportFlowSelectedUser => 'Hồ sơ bạn đang báo cáo';
+
+  @override
+  String get reportFlowReportCategory => 'Câu trả lời của bạn';
+
+  @override
+  String get reportFlowSubmit => 'Gửi báo cáo';
+
+  @override
+  String get reportFlowBack => 'Quay lại';
+
+  @override
+  String get reportFlowNext => 'Tiếp';
+
+  @override
+  String get reportFlowDone => 'Xong';
+
+  @override
+  String get reportFlowThankYouTitle => 'Đã gửi báo cáo';
+
+  @override
+  String get reportFlowThankYouNoReportTitle => 'Cảm ơn bạn đã báo cáo';
+
+  @override
+  String reportFlowThankYouBody(String productName) {
+    return 'Đội ngũ an toàn của $productName sẽ xem xét báo cáo của bạn. Chúng tôi sẽ không tiết lộ báo cáo này đến từ bạn.';
   }
 
   @override
-  String get iarSafetyNoteChildSafety =>
-      'Nếu báo cáo này liên quan đến CSAM hoặc hành vi bóc lột trẻ vị thành niên, hãy gửi ngay và không chia sẻ lại tài liệu này.';
+  String get reportFlowThankYouNoReportBody =>
+      'Cảm ơn bạn đã cho chúng tôi biết. Bản thân điều này không vi phạm quy tắc của chúng tôi, vì vậy chúng tôi đã không gửi báo cáo. Nếu nội dung này nhắm vào ai đó hoặc sử dụng lời lẽ miệt thị, hãy báo cáo lại và chọn “Nội dung lạm dụng hoặc có hại”.';
 
   @override
-  String get iarSafetyNoteSelfHarm =>
-      'Nếu có ai đó đang gặp nguy hiểm tức thì, hãy liên hệ với dịch vụ khẩn cấp địa phương nếu bạn có thể làm điều đó một cách an toàn.';
+  String get reportFlowThankYouNoReportBodyShort =>
+      'Cảm ơn bạn đã cho chúng tôi biết. Bản thân điều này không vi phạm quy tắc của chúng tôi, vì vậy chúng tôi đã không gửi báo cáo.';
 
   @override
-  String get iarSafetyNoteViolence =>
-      'Nếu đây là mối đe dọa đáng tin cậy và sắp xảy ra, hãy liên hệ với các dịch vụ khẩn cấp địa phương nữa.';
+  String get reportFlowMoreYouCanDo => 'Các tùy chọn của bạn';
 
   @override
-  String get iarSafetyNoteTerrorism =>
-      'Nếu đây là mối đe dọa khủng bố sắp xảy ra, hãy liên hệ với dịch vụ khẩn cấp địa phương nữa.';
-
-  @override
-  String get iarActionBlockUserTitle => 'Chặn người dùng này';
-
-  @override
-  String get iarActionBlockUserDescription =>
-      'Dừng tin nhắn và lời mời kết bạn.';
-
-  @override
-  String get iarActionBlockUserButton => 'Chặn';
-
-  @override
-  String get iarActionCopyMessageLinkTitle => 'Sao chép liên kết tin nhắn';
-
-  @override
-  String get iarActionCopyMessageLinkDescription =>
-      'Chia sẻ với người kiểm duyệt cộng đồng.';
-
-  @override
-  String get iarActionCopyMessageLinkButton => 'Sao chép';
-
-  @override
-  String get iarActionCloseDmTitle => 'Đóng tin nhắn này';
-
-  @override
-  String get iarActionCloseDmDescription =>
-      'Không chặn. Bạn có thể mở lại sau.';
-
-  @override
-  String get iarActionCloseDmButton => 'Đóng tin nhắn';
-
-  @override
-  String get iarActionLeaveCommunityTitle => 'Rời khỏi cộng đồng';
-
-  @override
-  String get iarActionLeaveCommunityDescription =>
-      'Ngừng xem nội dung và thành viên của nhóm này.';
-
-  @override
-  String get iarActionLeaveCommunityButton => 'Rời đi';
-
-  @override
-  String get iarActionDmSettingsTitle => 'Cài đặt DM & lời mời kết bạn';
-
-  @override
-  String get iarActionDmSettingsDescription =>
-      'Thay đổi người có thể liên hệ với bạn.';
-
-  @override
-  String get iarActionCallSettingsTitle => 'Cài đặt cuộc gọi & trò chuyện nhóm';
-
-  @override
-  String get iarActionCallSettingsDescription =>
-      'Thay đổi người có thể gọi hoặc thêm bạn.';
-
-  @override
-  String get iarActionOpenButton => 'Mở';
-
-  @override
-  String get iarActionDeleteMessageTitle => 'Xóa tin nhắn này';
-
-  @override
-  String get iarActionDeleteMessageDescription =>
-      'Xóa tin nhắn này khỏi kênh đối với mọi người.';
-
-  @override
-  String get iarActionDeleteMessageButton => 'Xóa';
-
-  @override
-  String get iarActionDeleteMessageDeletedButton => 'Đã xóa';
-
-  @override
-  String get iarActionDeleteMessageDeletedTooltip => 'Tin nhắn này đã bị xóa.';
-
-  @override
-  String get iarActionBanUserTitle => 'Cấm người dùng này';
-
-  @override
-  String get iarActionBanUserDescription =>
-      'Mở hộp thoại cấm cho cộng đồng này.';
-
-  @override
-  String get iarActionBanUserButton => 'Cấm';
-
-  @override
-  String get iarActionBanUserBannedButton => 'Đã cấm';
-
-  @override
-  String get iarActionBanUserBannedTooltip =>
-      'Người dùng này đã bị cấm khỏi cộng đồng.';
-
-  @override
-  String get iarCloseDmConfirmTitle => 'Đóng tin nhắn';
-
-  @override
-  String iarCloseDmConfirmDescription(String name) {
-    return 'Đóng cuộc trò chuyện trực tiếp hiện tại của bạn với $name. Thao tác này không chặn họ; bạn có thể mở lại sau.';
+  String reportFlowBlockName(String name) {
+    return 'Chặn $name';
   }
 
   @override
-  String get iarSuccessTitle => 'Đã gửi báo cáo';
+  String get reportFlowBlockDescription =>
+      'Ẩn tin nhắn của họ và chặn họ gửi tin nhắn cho bạn';
 
   @override
-  String get iarSuccessBody =>
-      'Đội ngũ an toàn của chúng tôi đang xem xét báo cáo. Chúng tôi sẽ gửi cho bạn tin nhắn trực tiếp và email sau khi có kết quả.';
+  String get reportFlowBlockButton => 'Chặn';
 
   @override
-  String get iarAlreadyReportedTitle => 'Đã báo cáo';
+  String get reportFlowBlockedButton => 'Đã chặn';
 
   @override
-  String get iarAlreadyReportedBody =>
-      'Bạn đã báo cáo tin nhắn này rồi. Đội ngũ an toàn của chúng tôi đang xem xét.';
+  String get reportFlowUrgentBanner =>
+      'Nếu có người đang gặp nguy hiểm cấp bách, trước tiên hãy liên hệ dịch vụ khẩn cấp tại địa phương.';
 
   @override
-  String get iarBackButton => 'Quay lại';
+  String get reportFlowLoadFailed => 'Không thể tải biểu mẫu báo cáo.';
 
   @override
-  String get iarContinueButton => 'Tiếp tục';
+  String get reportFlowTryAgain => 'Thử lại';
 
   @override
-  String get iarSendReportButton => 'Gửi báo cáo';
+  String get reportFlowOutdated =>
+      'Biểu mẫu báo cáo đã thay đổi. Vui lòng bắt đầu lại.';
 
   @override
-  String get iarDoneButton => 'Xong';
+  String get reportFlowAlreadyReported => 'Bạn đã báo cáo tin nhắn này rồi.';
 
   @override
-  String get iarCouldntSendToast => 'Không thể gửi báo cáo. Vui lòng thử lại.';
+  String get reportFlowAlreadyReportedProfile =>
+      'Bạn đã báo cáo hồ sơ này hôm nay.';
 
   @override
-  String get iarRateLimitedToast =>
-      'Bạn đang báo cáo quá nhanh. Vui lòng đợi một lát rồi thử lại.';
+  String get reportFlowRateLimited =>
+      'Bạn đang gửi báo cáo quá nhanh. Vui lòng thử lại sau.';
 
   @override
-  String get iarReportSentToast =>
-      'Đã gửi báo cáo. Đội ngũ an toàn của chúng tôi sẽ xem xét.';
+  String get reportFlowSubmitFailed =>
+      'Không gửi được báo cáo của bạn. Vui lòng thử lại.';
 
   @override
-  String iarBlockUserConfirmDescription(String name) {
-    return 'Chặn $name chứ? Họ sẽ không thể nhắn tin hoặc gửi lời mời kết bạn cho bạn. Bạn có thể bỏ chặn họ sau.';
-  }
-
-  @override
-  String get iarBlockUserFailedToast =>
-      'Không thể chặn người dùng này. Vui lòng thử lại.';
-
-  @override
-  String get iarCloseDmSuccessToast => 'Đã đóng DM.';
-
-  @override
-  String get iarCloseDmFailedToast =>
-      'Không thể đóng DM này. Vui lòng thử lại.';
-
-  @override
-  String get iarLeaveCommunityFailedToast =>
-      'Không thể rời khỏi cộng đồng này. Vui lòng thử lại.';
+  String get reportFlowAccountSetupRequired =>
+      'Xác nhận tài khoản và xác minh email của bạn để gửi báo cáo.';
 
   @override
   String get chatMessageSuppressEmbeds => 'Tắt xem trước đường dẫn';
@@ -7561,7 +7240,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get chatVideoPlaybackFailed => 'Không thể phát video này.';
 
   @override
-  String get chatImageCouldNotLoad => 'Could not load this image.';
+  String get chatImageCouldNotLoad => 'Không thể tải hình ảnh này.';
 
   @override
   String get composerAutocompleteRoleMentionDescription =>
@@ -7579,21 +7258,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get composerAutocompleteOptionalArgumentsHeading =>
       'Các đối số tùy chọn';
-
-  @override
-  String get composerAutocompleteChannelsHeading => 'Kênh';
-
-  @override
-  String get composerAutocompleteMembersHeading => 'Thành viên';
-
-  @override
-  String get composerAutocompleteUsersHeading => 'Người dùng';
-
-  @override
-  String get composerAutocompleteMentionsHeading => 'Lượt nhắc đến';
-
-  @override
-  String get composerAutocompleteRolesHeading => 'Vai trò';
 
   @override
   String get composerAutocompleteMediaHeading => 'Phương tiện';
@@ -7851,15 +7515,19 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Dữ liệu mẫu cộng đồng không hợp lệ hoặc bị lỗi định dạng.';
 
   @override
-  String get addGuildPackInstalled => 'Đã cài đặt gói thành công.';
-
-  @override
   String get chatMessageRemoveAllReactionsConfirmTitle =>
       'Xóa tất cả biểu tượng cảm xúc';
 
   @override
   String get chatMessageRemoveAllReactionsConfirmDescription =>
       'Bạn có chắc chắn muốn xóa tất cả các phản ứng khỏi tin nhắn này không?';
+
+  @override
+  String get chatMessagePinConfirm => 'Ghim';
+
+  @override
+  String get chatMessagePinConfirmDescription =>
+      'Ghim tin nhắn này lên kênh để mọi người cùng xem.';
 
   @override
   String get chatMessageUnpinConfirmTitle => 'Bỏ ghim tin nhắn';
@@ -7939,9 +7607,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get channelDetailsDeleteChannel => 'Xóa kênh';
-
-  @override
-  String get channelSettingsCategorySettingsTitle => 'Cài đặt danh mục';
 
   @override
   String get channelSettingsEditCategory => 'Sửa danh mục';
@@ -8140,16 +7805,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Thử lại sau giây lát.';
 
   @override
-  String get channelSettingsResetSlider =>
-      'Đặt lại thanh trượt về giá trị mặc định';
-
-  @override
-  String get channelSettingsAdvanced => 'Nâng cao';
-
-  @override
-  String get channelSettingsMatureContentOverride => 'Ghi đè nội dung nhạy cảm';
-
-  @override
   String channelSettingsMatureContentSectionDescription(String scopeLevel) {
     return 'Ghi đè cài đặt cấp độ $scopeLevel cho kênh này. Nội dung nhạy cảm sẽ được hiển thị sau một lớp cổng trước khi vào.';
   }
@@ -8182,12 +7837,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   }
 
   @override
-  String get channelSettingsMatureContentCategorySource => 'Danh mục';
-
-  @override
-  String get channelSettingsMatureContentCommunitySource => 'cộng đồng';
-
-  @override
   String get channelSettingsMatureContentCategoryScope => 'Danh mục';
 
   @override
@@ -8207,20 +7856,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get channelSettingsContentWarningDefault =>
       'Nội dung này có chứa thông tin nhạy cảm.';
-
-  @override
-  String channelSettingsPermissionsNeedManageChannels(
-    String manageChannelsPermissionLabel,
-  ) {
-    return 'Bạn cần quyền \"$manageChannelsPermissionLabel\" để chỉnh sửa các quyền này.';
-  }
-
-  @override
-  String channelSettingsPermissionsNeedManageRoles(
-    String manageRolesPermissionLabel,
-  ) {
-    return 'Bạn cần quyền \"$manageRolesPermissionLabel\" để chỉnh sửa các quyền này.';
-  }
 
   @override
   String get channelSettingsUnknownRole => 'Vai trò không xác định';
@@ -8296,10 +7931,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Tìm kiếm vai trò hoặc thành viên…';
 
   @override
-  String get channelSettingsPermissionsRolesAndMembers =>
-      'Vai trò và thành viên';
-
-  @override
   String get channelSettingsDeleteInvite => 'Xóa lời mời';
 
   @override
@@ -8371,9 +8002,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String channelSettingsWebhooksCreatedBy(String creator, String date) {
     return 'Được tạo bởi $creator vào $date';
   }
-
-  @override
-  String get channelSettingsWebhooksUnknownUser => 'Người dùng không xác định';
 
   @override
   String get channelSettingsWebhooksAvatar => 'Ảnh đại diện';
@@ -8528,9 +8156,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get channelDetailsPinsEndReached => 'Bạn đã xem hết';
-
-  @override
-  String get channelHeaderOpenDetails => 'Mở chi tiết kênh';
 
   @override
   String get channelHeaderPinnedMessages => 'Tin nhắn đã ghim';
@@ -8994,9 +8619,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get groupDmEditTitle => 'Sửa nhóm';
 
   @override
-  String get groupDmEditDetailsTooltip => 'Chỉnh sửa chi tiết nhóm';
-
-  @override
   String get groupDmGroupName => 'Tên nhóm';
 
   @override
@@ -9048,13 +8670,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get groupDmUnsupportedIconFormatBody => 'Loại tệp không được hỗ trợ.';
 
   @override
-  String get groupDmCouldntProcessImage => 'Không xử lý được hình ảnh';
-
-  @override
-  String get groupDmFailedToProcessCroppedImage =>
-      'Không xử lý được hình ảnh đã cắt. Vui lòng thử lại.';
-
-  @override
   String get groupDmInvalidImage => 'Hình ảnh không hợp lệ';
 
   @override
@@ -9082,18 +8697,12 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Không thể thêm người bạn này vào nhóm. Vui lòng thử lại.';
 
   @override
-  String get groupDmAddFailed => 'Không thể thêm vào nhóm';
-
-  @override
   String get groupDmGroupFull =>
       'Nhóm này đã đầy. Vui lòng xóa bớt thành viên trước khi thêm người khác.';
 
   @override
   String get groupDmRateLimited =>
       'Bạn đang thao tác quá nhanh. Vui lòng đợi một lát rồi thử lại.';
-
-  @override
-  String get groupDmCreateInviteFailed => 'Không thể tạo liên kết mời';
 
   @override
   String get groupDmCreateInviteFailedBody =>
@@ -9295,9 +8904,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get userSettingsSearchPlaceholder => 'Tìm kiếm cài đặt...';
 
   @override
-  String get userSettingsSearchFieldLabel => 'Tìm kiếm cài đặt';
-
-  @override
   String get userSettingsSearchClear => 'Xóa tìm kiếm';
 
   @override
@@ -9375,12 +8981,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get giftSettingsCopied => 'Đã sao chép';
 
   @override
-  String get giftSettingsGiftUrlCopied => 'Đã sao chép đường dẫn quà tặng!';
-
-  @override
-  String get giftSettingsGiftUrlCopyFailed => 'Không thể sao chép URL quà tặng';
-
-  @override
   String giftSettingsPurchasedDate(String date) {
     return 'Đã mua $date';
   }
@@ -9448,9 +9048,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get premiumOneMonthGift => 'Gói quà 1 tháng';
 
   @override
-  String get premiumMostPopular => 'Phổ biến nhất';
-
-  @override
   String get premiumScrollPrompt =>
       'Cuộn xuống để xem tất cả các đặc quyền đi kèm với Reverb';
 
@@ -9485,26 +9082,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get premiumReadyToBuyGift => 'Sẵn sàng mua quà chưa?';
 
   @override
-  String premiumMonthlyPrice(String price) {
-    return 'Hàng tháng $price';
-  }
-
-  @override
-  String premiumYearlyPrice(String price) {
-    return 'Hàng năm $price';
-  }
-
-  @override
-  String premiumOneYearPrice(String price) {
-    return '1 năm $price';
-  }
-
-  @override
-  String premiumOneMonthPrice(String price) {
-    return '1 tháng $price';
-  }
-
-  @override
   String get premiumManageSubscription => 'Quản lý gói đăng ký';
 
   @override
@@ -9524,9 +9101,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get premiumCancelSubscriptionConfirm => 'Hủy gói đăng ký';
 
   @override
-  String get premiumKeepSubscription => 'Giữ gói đăng ký';
-
-  @override
   String get premiumPurchaseHistoryTitle => 'Lịch sử mua hàng';
 
   @override
@@ -9535,12 +9109,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get premiumManagePaymentMethods => 'Quản lý phương thức thanh toán';
-
-  @override
-  String get premiumBillingHistory => 'Lịch sử thanh toán';
-
-  @override
-  String get premiumSelfServeRefundTitle => 'Hoàn tiền tự phục vụ';
 
   @override
   String get premiumSelfServeRefundButton => 'Hoàn tiền giao dịch gần nhất';
@@ -9577,12 +9145,15 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   }
 
   @override
-  String get premiumComparisonFeatureColumn => 'Tính năng';
+  String get premiumGiftGraceEnded =>
+      'Thời gian quà tặng của bạn đã kết thúc. Hãy đăng ký để tiếp tục nhận Plutonium.';
 
   @override
-  String premiumDisclaimerPurchased(String terms, String privacy) {
-    return 'Bằng cách mua, bạn đã đồng ý với $terms và $privacy của chúng tôi.';
-  }
+  String get premiumGiftTimeAddedAfterSubscription =>
+      'Bạn sẽ bị tính phí ngay bây giờ. Thời gian quà tặng còn lại của bạn sẽ được cộng dồn vào sau thời gian đã thanh toán, vì vậy sẽ không bị mất đi.';
+
+  @override
+  String get premiumComparisonFeatureColumn => 'Tính năng';
 
   @override
   String get premiumDisclaimerRefund =>
@@ -9602,12 +9173,12 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Đã xảy ra lỗi khi bắt đầu thanh toán. Vui lòng thử lại sau.';
 
   @override
-  String get premiumGiftSubscriptionBlocksRecurring =>
-      'Bạn đang dùng gói quà tặng. Gói này sẽ không tự động gia hạn. Bạn có thể đổi thêm mã quà tặng để gia hạn. Gói tự động gia hạn có thể được bắt đầu sau khi gói quà tặng của bạn kết thúc.';
-
-  @override
   String get premiumPlanUnavailable =>
       'Gói này không khả dụng. Vui lòng liên hệ bộ phận hỗ trợ.';
+
+  @override
+  String get premiumPlanUnavailableSelfHosted =>
+      'Gói này không khả dụng. Hãy liên hệ quản trị viên của máy chủ này.';
 
   @override
   String get premiumCompletePaymentTitle => 'Hoàn tất thanh toán';
@@ -9663,8 +9234,13 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Tính năng mua hàng không khả dụng';
 
   @override
-  String get premiumPurchasesDisabledBody =>
-      'Giao dịch đã bị tắt cho tài khoản này. Liên hệ support@echowire.org nếu bạn thấy có gì đó không đúng.';
+  String premiumPurchasesDisabledBody(String supportEmail) {
+    return 'Giao dịch đã bị tắt cho tài khoản này. Liên hệ $supportEmail nếu bạn thấy có gì đó không đúng.';
+  }
+
+  @override
+  String get premiumPurchasesDisabledBodySelfHosted =>
+      'Giao dịch đã bị tắt cho tài khoản này. Liên hệ quản trị viên của máy chủ này nếu bạn thấy có gì đó không đúng.';
 
   @override
   String get premiumClaimAccountToPurchase =>
@@ -9673,25 +9249,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get premiumVerifyEmailToPurchase =>
       'Bạn cần xác minh email trước khi có thể mua Reverb.';
-
-  @override
-  String get premiumPerkCustomUsernameTag => 'Tên người dùng tùy chỉnh';
-
-  @override
-  String get premiumPerkPerCommunityProfiles =>
-      'Hồ sơ riêng cho từng cộng đồng';
-
-  @override
-  String get premiumPerkMessageScheduling => 'Lên lịch tin nhắn';
-
-  @override
-  String get premiumPerkProfileBadge => 'Huy hiệu hồ sơ';
-
-  @override
-  String get premiumPerkCustomVideoBackgrounds => 'Hình nền video tùy chỉnh';
-
-  @override
-  String get premiumPerkEntranceSounds => 'Âm thanh vào phòng';
 
   @override
   String get premiumPerkCommunities => 'Cộng đồng';
@@ -9706,18 +9263,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get premiumPerkFileUploadSize => 'Kích thước tệp tải lên';
 
   @override
-  String get premiumPerkEmojiStickerPacks =>
-      'Gói biểu tượng cảm xúc & nhãn dán';
-
-  @override
-  String get premiumPerkSavedMedia => 'Ảnh/video đã lưu';
-
-  @override
   String get premiumPerkUseAnimatedEmojis => 'Dùng biểu tượng cảm xúc động';
-
-  @override
-  String get premiumPerkGlobalEmojiStickerAccess =>
-      'Truy cập biểu tượng cảm xúc và nhãn dán toàn cầu';
 
   @override
   String get premiumPerkVideoQuality => 'Chất lượng video';
@@ -9730,13 +9276,189 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get premiumPerkEarlyAccess => 'Truy cập sớm các tính năng mới';
 
   @override
-  String get premiumPerkCustomThemes => 'Giao diện tùy chỉnh';
-
-  @override
   String get premiumPerkVideoQualityRestricted => '720p/30fps';
 
   @override
   String get premiumPerkVideoQualityStock => 'Lên đến 4K/60fps';
+
+  @override
+  String storePlutoniumPriceLine(String monthly, String yearly) {
+    return '$monthly hoặc $yearly';
+  }
+
+  @override
+  String get storePlutoniumMonthSuffix => '/tháng';
+
+  @override
+  String get storePlutoniumYearSuffix => '/năm';
+
+  @override
+  String get storePlutoniumPriceOr => 'hoặc';
+
+  @override
+  String get storePlutoniumEmojiTitle =>
+      'Biểu tượng cảm xúc của bạn, ở mọi nơi';
+
+  @override
+  String get storePlutoniumEmojiBody =>
+      'Mang biểu tượng cảm xúc và nhãn dán tùy chỉnh từ bất kỳ cộng đồng nào của bạn vào mọi cuộc trò chuyện và cộng đồng bạn tham gia.';
+
+  @override
+  String get storePlutoniumProfileTitle => 'Một hồ sơ nổi bật';
+
+  @override
+  String get storePlutoniumProfileBody =>
+      'Nhận ảnh đại diện và ảnh bìa động, huy hiệu người đăng ký, thẻ bốn chữ số bạn muốn sau tên người dùng*, và một hồ sơ riêng cho mỗi cộng đồng.';
+
+  @override
+  String get storePlutoniumFilesTitle => 'Gửi tệp lên đến 500 MB';
+
+  @override
+  String get storePlutoniumFilesBody =>
+      'Chia sẻ video dài và tệp lớn mà không cần nén trước. Tài khoản miễn phí có thể gửi tối đa 25 MB.';
+
+  @override
+  String get storePlutoniumCompareTitle => 'So sánh gói Miễn phí và Plutonium';
+
+  @override
+  String get storePlutoniumCompareMobileNote =>
+      'Không phải tất cả các tính năng này đều có trong ứng dụng di động. Một số chỉ có trên máy tính để bàn.';
+
+  @override
+  String get storePlutoniumNotAvailable => 'Không có sẵn';
+
+  @override
+  String get storePlutoniumAvailable => 'Khả dụng';
+
+  @override
+  String get storePlutoniumCompareTag =>
+      'Chọn số có 4 chữ số sau tên người dùng của bạn*';
+
+  @override
+  String get storePlutoniumCompareProfile =>
+      'Một hồ sơ riêng cho mỗi cộng đồng';
+
+  @override
+  String get storePlutoniumCompareBadge =>
+      'Huy hiệu người đăng ký trên hồ sơ của bạn';
+
+  @override
+  String get storePlutoniumCompareBackgrounds =>
+      'Hình nền cuộc gọi video bạn có thể lưu';
+
+  @override
+  String get storePlutoniumCompareCommunities =>
+      'Cộng đồng bạn có thể tham gia';
+
+  @override
+  String get storePlutoniumCompareCharacters => 'Ký tự trong một tin nhắn';
+
+  @override
+  String get storePlutoniumCompareBookmarks => 'Tin nhắn bạn có thể đánh dấu';
+
+  @override
+  String get storePlutoniumCompareUpload => 'Tệp lớn nhất bạn có thể tải lên';
+
+  @override
+  String get storePlutoniumCompareSavedMedia =>
+      'Phương tiện bạn có thể lưu lại để xem sau';
+
+  @override
+  String get storePlutoniumCompareAnimatedEmoji =>
+      'Sử dụng biểu tượng cảm xúc động trong tin nhắn';
+
+  @override
+  String get storePlutoniumCompareCustomEmoji =>
+      'Sử dụng biểu tượng cảm xúc và nhãn dán tùy chỉnh trong mọi cộng đồng';
+
+  @override
+  String get storePlutoniumCompareVideo =>
+      'Chất lượng cuộc gọi video và chia sẻ màn hình';
+
+  @override
+  String get storePlutoniumCompareAvatar => 'Ảnh đại diện và banner hồ sơ động';
+
+  @override
+  String get storePlutoniumCompareEarlyAccess =>
+      'Truy cập sớm các tính năng mới';
+
+  @override
+  String get storePlutoniumCompareThemes => 'Chủ đề tùy chỉnh cho ứng dụng';
+
+  @override
+  String get storePlutoniumVideoFree => 'Lên đến 720p ở 30 FPS';
+
+  @override
+  String get storePlutoniumVideoPlutonium => 'Lên đến 4K ở 60 FPS';
+
+  @override
+  String get storePlutoniumTagFootnote =>
+      'Bạn chỉ có thể chọn một thẻ mà chưa có ai khác có cùng tên người dùng. Tên người dùng không phân biệt chữ hoa chữ thường, vì vậy Mina#4821 và mina#4821 được tính là giống nhau. Thẻ #0000 được dành riêng cho thành viên Fluxer Visionary.';
+
+  @override
+  String get storePlutoniumLearnVisionary => 'Tìm hiểu thêm về Visionary.';
+
+  @override
+  String get storePlutoniumDonatePrompt =>
+      'Chỉ muốn ủng hộ việc phát triển mã nguồn mở của Fluxer? ';
+
+  @override
+  String get storePlutoniumDonateLink => 'Hoặc quyên góp.';
+
+  @override
+  String get storePlutoniumHighlightsLead =>
+      'Đăng ký tài trợ cho Fluxer và mở khóa';
+
+  @override
+  String get storePlutoniumHighlightEmoji =>
+      'Biểu tượng cảm xúc và nhãn dán tùy chỉnh trong mọi cuộc trò chuyện';
+
+  @override
+  String get storePlutoniumHighlightProfile =>
+      'Hồ sơ động, huy hiệu và số tùy chỉnh gồm 4 chữ số';
+
+  @override
+  String get storePlutoniumHighlightFiles => 'Tải lên tối đa 500 MB';
+
+  @override
+  String get storePlutoniumHighlightMessages =>
+      'Gửi tin nhắn tối đa 4.000 ký tự';
+
+  @override
+  String get storePlutoniumHighlightCommunityProfile =>
+      'Một hồ sơ riêng cho mỗi cộng đồng';
+
+  @override
+  String get storePlutoniumHighlightsMore => 'Và nhiều hơn nữa';
+
+  @override
+  String get storePlutoniumRenewsThroughPlay =>
+      'Tự động gia hạn qua Google Play cho đến khi bạn hủy.';
+
+  @override
+  String get storePlutoniumRenewsThroughAppStore =>
+      'Tự động gia hạn qua App Store cho đến khi bạn hủy.';
+
+  @override
+  String get storePlutoniumAlreadySubscribed =>
+      'Bạn đã có gói đăng ký Fluxer Plutonium.';
+
+  @override
+  String storePlutoniumSavePercent(int percent) {
+    return 'Tiết kiệm $percent%';
+  }
+
+  @override
+  String get storePlutoniumWaiting =>
+      'Đã nhận giao dịch mua. Plutonium sẽ hiển thị ở đây sau khi được kích hoạt.';
+
+  @override
+  String get storePlutoniumUnavailable =>
+      'Tính năng đăng ký trong ứng dụng chưa khả dụng trên thiết bị này.';
+
+  @override
+  String get storePlutoniumVisionaryStatus =>
+      'Visionary đã bao gồm quyền truy cập vĩnh viễn, vì vậy không cần gói đăng ký định kỳ.';
 
   @override
   String get userSettingsNavPrivacyDashboard =>
@@ -9869,11 +9591,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get audioAndVideoMicTestStopLabel => 'Dừng kiểm tra mic';
 
   @override
-  String audioAndVideoMicTestPermissionRequired(String productName) {
-    return '$productName cần quyền truy cập micrô để kiểm tra đầu vào của bạn.';
-  }
-
-  @override
   String get audioAndVideoCameraLabel => 'Máy ảnh';
 
   @override
@@ -9908,23 +9625,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get audioAndVideoFrameRate60Label => '60 FPS';
 
   @override
-  String audioAndVideoHigherQualityRequiresPremium(String premiumProductName) {
-    return 'Chất lượng 1080p và 60 FPS yêu cầu $premiumProductName.';
-  }
-
-  @override
   String get audioAndVideoInstanceVideoQualityLimit =>
-      'Phiên bản này hiện cho phép chia sẻ màn hình lên tới 720p ở 30 FPS.';
-
-  @override
-  String audioAndVideoMicrophonePermissionRequired(String productName) {
-    return '$productName cần quyền truy cập micrô để liệt kê thiết bị của bạn.';
-  }
-
-  @override
-  String audioAndVideoCameraPermissionRequired(String productName) {
-    return '$productName cần quyền truy cập camera để liệt kê thiết bị của bạn.';
-  }
+      'Máy chủ này hiện cho phép chia sẻ màn hình lên tới 720p ở 30 FPS.';
 
   @override
   String get audioAndVideoSkipHideOwnCameraConfirmLabel =>
@@ -9955,14 +9657,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get notificationsEnableDesktopNotificationsDescription =>
       'Sử dụng trung tâm thông báo của hệ điều hành. Để kiểm soát thông báo cho từng kênh/cộng đồng, nhấp chuột phải vào biểu tượng cộng đồng và mở cài đặt thông báo.';
-
-  @override
-  String get notificationsEnableBrowserNotificationsLabel =>
-      'Bật thông báo trên trình duyệt';
-
-  @override
-  String get notificationsEnableBrowserNotificationsDescription =>
-      'Nhận thông báo khi có tin nhắn mới. Bạn có thể cần bật thông báo trong cài đặt trình duyệt. Để cài đặt thông báo cho từng kênh/cộng đồng, nhấp chuột phải vào biểu tượng cộng đồng và mở cài đặt thông báo.';
 
   @override
   String get notificationsPushInactiveTimeoutLabel =>
@@ -10206,6 +9900,48 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Không thể bật thông báo. Vui lòng cho phép quyền thông báo để tiếp tục.';
 
   @override
+  String get notificationsPushRelaySectionTitle =>
+      'Bộ chuyển tiếp thông báo đẩy';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider chỉ gửi thông báo đẩy qua dịch vụ của riêng họ, nên thông báo cho thiết bị này đi qua bộ chuyển tiếp của Fluxer.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Dùng bộ chuyển tiếp đẩy của Fluxer';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Tắt tùy chọn này sẽ xóa đăng ký đẩy của thiết bị, nên thiết bị sẽ ngừng nhận thông báo đẩy.';
+
+  @override
+  String get pushRelayConsentTitle => 'Bộ chuyển tiếp thông báo đẩy';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider chỉ gửi thông báo đẩy qua dịch vụ của riêng họ, nên thông báo cho thiết bị này đi qua bộ chuyển tiếp của Fluxer.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Đồng ý với ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'thông báo quyền riêng tư của bộ chuyển tiếp đẩy';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' để bật thông báo đẩy trên thiết bị này. Bạn chỉ cần đồng ý một lần cho mỗi thiết bị.';
+
+  @override
+  String get pushRelayConsentAgree => 'Đồng ý và tiếp tục';
+
+  @override
+  String get pushRelayConsentDecline => 'Để sau';
+
+  @override
   String get userSettingsNavLanguageAndTime => 'Ngôn ngữ & Thời gian';
 
   @override
@@ -10214,9 +9950,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get languageAndTimeLanguageSectionDescription =>
       'Chọn ngôn ngữ được sử dụng trong ứng dụng';
-
-  @override
-  String get languageAndTimeOpenLanguageSettings => 'Mở cài đặt ngôn ngữ';
 
   @override
   String get languageAndTimeTimeFormatSectionTitle => 'Định dạng thời gian';
@@ -10275,6 +10008,47 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get defaultAppsWebBrowserExternal => 'Trình duyệt ngoài';
+
+  @override
+  String get userSettingsNavAppIcon => 'Biểu tượng ứng dụng';
+
+  @override
+  String get appIconSectionTitle => 'Biểu tượng ứng dụng';
+
+  @override
+  String get appIconSectionDescription =>
+      'Chọn biểu tượng xuất hiện trên màn hình chính của bạn.';
+
+  @override
+  String get appIconOptionDefault => 'Mặc định';
+
+  @override
+  String get appIconOptionStarfield => 'Bầu trời sao';
+
+  @override
+  String get appIconOptionSweden => 'Thụy Điển';
+
+  @override
+  String get appIconOptionGreyscale => 'Greyscale';
+
+  @override
+  String get appIconOptionRainbow => 'Rainbow';
+
+  @override
+  String get appIconOptionWaves => 'Waves';
+
+  @override
+  String get appIconOptionChromaticAberration => 'Chromatic aberration';
+
+  @override
+  String get appIconOptionDefaultBrutalist => 'Brutalist';
+
+  @override
+  String get appIconOptionGreyscaleBrutalist => 'Greyscale brutalist';
+
+  @override
+  String get appIconUnsupported =>
+      'Thay đổi biểu tượng ứng dụng không khả dụng trên thiết bị này.';
 
   @override
   String get userSettingsNavAdvanced => 'Nâng cao';
@@ -10439,10 +10213,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get advancedSettingTrustAllLinksLabel =>
       'Luôn tin cậy các liên kết bên ngoài';
-
-  @override
-  String get advancedSettingTrustAllLinksDescription =>
-      'Bỏ qua cảnh báo liên kết ngoài cho tất cả các miền';
 
   @override
   String get advancedSettingSearchEnginesLabel => 'Công cụ tìm kiếm';
@@ -10641,27 +10411,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get advancedSettingDeveloperModeDescription =>
       'Bật chế độ nhà phát triển';
-
-  @override
-  String get advancedSettingSearchEngineGoogle => 'Google';
-
-  @override
-  String get advancedSettingSearchEngineDuckDuckGo => 'DuckDuckGo';
-
-  @override
-  String get advancedSettingSearchEngineBing => 'Bing';
-
-  @override
-  String get advancedSettingSearchEngineGoogleLens => 'Google Lens';
-
-  @override
-  String get advancedSettingSearchEngineTinEye => 'TinEye';
-
-  @override
-  String get advancedSettingTranslatorGoogle => 'Dịch bởi Google';
-
-  @override
-  String get advancedSettingTranslatorDeepL => 'DeepL';
 
   @override
   String get advancedSettingDefaultSearchEngineLabel =>
@@ -10941,6 +10690,9 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get quickSwitcherSectionTextChannels => 'Kênh văn bản';
 
   @override
+  String get quickSwitcherSectionThreads => 'Threads';
+
+  @override
   String get quickSwitcherSectionVoiceChannels => 'Kênh thoại';
 
   @override
@@ -10978,6 +10730,12 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get savedMessagesRemoveTooltip => 'Xóa dấu trang';
+
+  @override
+  String get savedMessagesAddedToast => 'Đã thêm vào tin nhắn đã lưu';
+
+  @override
+  String get savedMessagesRemovedToast => 'Đã xóa khỏi tin nhắn đã lưu';
 
   @override
   String get quickSwitcherMentionsLabel => 'Lượt nhắc đến';
@@ -11105,7 +10863,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Bạn không thể dùng biểu tượng cảm xúc đó ở đây.';
 
   @override
-  String get instanceUrlLabel => 'URL của phiên bản';
+  String get instanceUrlLabel => 'URL của máy chủ';
 
   @override
   String get instanceUrlPlaceholder =>
@@ -11113,7 +10871,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get instanceUrlHelper =>
-      'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
+      'Sử dụng fluxer.app cho máy chủ chính thức hoặc URL chính xác của máy chủ tự lưu trữ.';
 
   @override
   String get resetToDefaultInstance => 'Đặt lại về echowire';
@@ -11125,14 +10883,18 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get instanceConnecting => 'Đang kết nối…';
 
   @override
-  String get instanceConnectFailed => 'Không thể kết nối tới phiên bản';
+  String get instanceConnectFailed => 'Không thể kết nối tới máy chủ';
 
   @override
-  String get recentInstances => 'Các phiên bản gần đây';
+  String get instanceInvalidDiscoveryResponse =>
+      'This client cannot connect to this instance. The instance is likely out of date. If the instance is up to date, try updating this app.';
+
+  @override
+  String get recentInstances => 'Các máy chủ gần đây';
 
   @override
   String removeRecentInstance(String domain) {
-    return 'Xóa $domain khỏi các phiên gần đây';
+    return 'Xóa $domain khỏi các máy chủ gần đây';
   }
 
   @override
@@ -11142,7 +10904,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get changeInstance => 'Thay đổi';
 
   @override
-  String get instanceConnectionRequired => 'Kết nối với phiên bản để đăng nhập';
+  String get instanceConnectionRequired => 'Kết nối với máy chủ để đăng nhập';
 
   @override
   String get comingSoon => 'Sắp ra mắt';
@@ -11332,6 +11094,13 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get authHidePassword => 'Ẩn mật khẩu';
 
   @override
+  String get authCheckStillWorking => 'Vẫn đang xử lý…';
+
+  @override
+  String get authVerificationFailed =>
+      'Không thể hoàn tất xác minh. Vui lòng thử lại.';
+
+  @override
   String get chatLoadingMessages => 'Đang tải tin nhắn';
 
   @override
@@ -11505,6 +11274,19 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get guildNavbarChannelTypeSelection => 'Chọn loại kênh';
+
+  @override
+  String get guildNavbarPrivateChannel => 'Private channel';
+
+  @override
+  String get guildNavbarPrivateChannelDescription =>
+      'Only selected members and roles will be able to view this channel.';
+
+  @override
+  String get guildNavbarAddMembersOrRoles => 'Add members or roles';
+
+  @override
+  String get guildNavbarAddMembersOrRolesHint => 'Search members or roles';
 
   @override
   String get guildNavbarCreateCategory => 'Tạo danh mục';
@@ -11696,9 +11478,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get guildMenuHideMutedChannels => 'Ẩn kênh đã tắt tiếng';
 
   @override
-  String get guildMenuReportCommunity => 'Báo cáo cộng đồng';
-
-  @override
   String get guildMenuDebugCommunity => 'Gỡ lỗi cộng đồng';
 
   @override
@@ -11731,9 +11510,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get guildMenuSettingsWebhooks => 'Webhook';
 
   @override
-  String get guildMenuSettingsCustomInviteUrl => 'URL mời tùy chỉnh';
-
-  @override
   String get guildMenuSettingsDiscovery => 'Khám phá';
 
   @override
@@ -11756,33 +11532,13 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get guildSettingsOverviewIconTitle => 'Biểu tượng';
 
   @override
-  String get guildSettingsUploadImage => 'Tải ảnh lên';
-
-  @override
   String get guildSettingsOverviewBannerTitle => 'Ảnh bìa';
-
-  @override
-  String get guildSettingsOverviewBannerHint =>
-      'Tải lên ảnh bìa cho máy chủ của bạn.';
 
   @override
   String get guildSettingsOverviewNameTitle => 'Tên';
 
   @override
   String get guildSettingsOverviewNameHint => 'Cộng đồng tuyệt vời của tôi';
-
-  @override
-  String get guildSettingsOverviewStatsTitle => 'Thống kê';
-
-  @override
-  String get guildSettingsOverviewMembers => 'Thành viên';
-
-  @override
-  String get guildSettingsOverviewOnline => 'Đang hoạt động';
-
-  @override
-  String get guildSettingsRolesDescription =>
-      'Sử dụng vai trò để nhóm thành viên và cấp quyền.';
 
   @override
   String get guildSettingsCreateRole => 'Tạo vai trò';
@@ -11860,31 +11616,13 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get guildSettingsRolesComfyLayout => 'Bố cục thoải mái';
 
   @override
-  String get guildSettingsRolesSwitchToDenseLayout =>
-      'Chuyển sang bố cục gọn gàng';
-
-  @override
-  String get guildSettingsRolesSwitchToComfyLayout =>
-      'Chuyển sang bố cục thoải mái';
-
-  @override
   String get guildSettingsRolesSingleColumn => 'Một cột';
 
   @override
   String get guildSettingsRolesTwoColumns => 'Hai cột';
 
   @override
-  String get guildSettingsRolesSwitchToSingleColumn => 'Chuyển sang một cột';
-
-  @override
-  String get guildSettingsRolesSwitchToTwoColumns =>
-      'Chuyển sang chế độ hai cột';
-
-  @override
   String get guildSettingsRolesNoPermissionsFound => 'Không tìm thấy quyền nào';
-
-  @override
-  String get guildSettingsRolesCustomHoistOrder => 'Thứ tự hiển thị tùy chỉnh';
 
   @override
   String get guildSettingsRolesHoistOrder => 'Thứ tự hiển thị';
@@ -11899,10 +11637,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get guildSettingsRolesNoHoistedRoles =>
       'Không có vai trò nổi bật. Bật \"Hiển thị vai trò này riêng biệt\" cho một vai trò để xem ở đây.';
-
-  @override
-  String get guildSettingsRolesLockedTooltip =>
-      'Bạn không thể chỉnh sửa vai trò này vì đây là vai trò cao nhất của bạn hoặc cao hơn vai trò của bạn';
 
   @override
   String guildSettingsRolesNeedManageRolesPermission(String permission) {
@@ -11986,9 +11720,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get permissionCategoryAudioVideo => 'Âm thanh & video';
-
-  @override
-  String get permissionUnknown => 'Quyền không xác định';
 
   @override
   String get permissionAdministrator => 'Quản trị viên';
@@ -12111,34 +11842,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Tạo, chỉnh sửa hoặc xoá webhook.';
 
   @override
-  String get permissionSendMessagesInThreads => 'Send messages in threads';
-
-  @override
-  String get permissionSendMessagesInThreadsDescription =>
-      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
-
-  @override
-  String get permissionCreatePublicThreads => 'Create public threads';
-
-  @override
-  String get permissionCreatePublicThreadsDescription =>
-      'Members can start threads that everyone in the channel can see, and create forum posts.';
-
-  @override
-  String get permissionCreatePrivateThreads => 'Create private threads';
-
-  @override
-  String get permissionCreatePrivateThreadsDescription =>
-      'Members can start threads that only invited people can see.';
-
-  @override
-  String get permissionManageThreads => 'Manage threads and posts';
-
-  @override
-  String get permissionManageThreadsDescription =>
-      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
-
-  @override
   String get permissionSendMessages => 'Gửi tin nhắn';
 
   @override
@@ -12250,18 +11953,357 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get permissionSetVoiceRegion => 'Đặt vùng thoại';
 
   @override
-  String guildSettingsEmojiSlotInfo(int staticCount, int animatedCount) {
-    return '$staticCount biểu tượng cảm xúc tĩnh, $animatedCount biểu tượng cảm xúc động đã sử dụng';
+  String get permissionManageThreads => 'Manage threads and posts';
+
+  @override
+  String get permissionManageThreadsDescription =>
+      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
+
+  @override
+  String get permissionCreatePublicThreads => 'Create public threads';
+
+  @override
+  String get permissionCreatePublicThreadsDescription =>
+      'Members can start threads that everyone in the channel can see, and create forum posts.';
+
+  @override
+  String get permissionCreatePrivateThreads => 'Create private threads';
+
+  @override
+  String get permissionCreatePrivateThreadsDescription =>
+      'Members can start threads that only invited people can see.';
+
+  @override
+  String get permissionSendMessagesInThreads => 'Send messages in threads';
+
+  @override
+  String get permissionSendMessagesInThreadsDescription =>
+      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
+
+  @override
+  String get threadErrorArchived => 'This thread is archived.';
+
+  @override
+  String get threadErrorLocked =>
+      'This thread is locked. Only moderators can post or reopen it.';
+
+  @override
+  String get threadErrorAlreadyCreated =>
+      'A thread already exists for this message.';
+
+  @override
+  String get threadErrorMaxActiveThreads =>
+      'This community has reached its limit of active threads.';
+
+  @override
+  String get threadErrorMaxMembers =>
+      'This thread has reached its member limit.';
+
+  @override
+  String get threadErrorMaxPinnedPosts =>
+      'Only one post can be pinned in this forum.';
+
+  @override
+  String get threadErrorMaxForumTags => 'A forum can have at most 20 tags.';
+
+  @override
+  String get threadErrorTagNamesUnique => 'Tag names must be unique.';
+
+  @override
+  String get threadErrorNoTagsForEveryone =>
+      'Add a tag everyone can use before requiring tags.';
+
+  @override
+  String get threadErrorTagRequired => 'Pick at least one tag for this post.';
+
+  @override
+  String get threadErrorUnknownTag =>
+      'One of the selected tags no longer exists.';
+
+  @override
+  String get threadErrorInvalidNotificationSettings =>
+      'Those notification settings are not valid for a thread.';
+
+  @override
+  String get threadErrorSearchIndexNotReady =>
+      'Posts are still being indexed. Try again in a moment.';
+
+  @override
+  String get threadErrorInvalidChannelType =>
+      'This action is not available in this channel.';
+
+  @override
+  String get threadCreate => 'Create thread';
+
+  @override
+  String get threadName => 'Thread name';
+
+  @override
+  String get threadNameRequired => 'Give the thread a name.';
+
+  @override
+  String get threadNewThreadPlaceholder => 'New thread';
+
+  @override
+  String get threadPrivate => 'Private thread';
+
+  @override
+  String get threadPrivateDescription =>
+      'Only people you invite and moderators can see this thread.';
+
+  @override
+  String get threadStarterMessage => 'Message';
+
+  @override
+  String get threadStarterMessagePlaceholder =>
+      'Enter a message to start the conversation!';
+
+  @override
+  String threadCreateCooldown(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'You can start another thread in $seconds seconds.',
+      one: 'You can start another thread in 1 second.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String threadCreateFailed(String detail) {
+    return 'Could not start the thread: $detail';
+  }
+
+  @override
+  String get threadBrowserTitle => 'Threads';
+
+  @override
+  String get threadBrowserActive => 'Active';
+
+  @override
+  String get threadBrowserArchived => 'Closed';
+
+  @override
+  String get threadBrowserJoined => 'Joined';
+
+  @override
+  String get threadBrowserOtherActive => 'Other active threads';
+
+  @override
+  String get threadBrowserPublic => 'Public threads';
+
+  @override
+  String get threadBrowserPrivate => 'Private threads';
+
+  @override
+  String get threadBrowserEmpty =>
+      'There are no threads. Stay focused on a conversation with a thread, a temporary text channel.';
+
+  @override
+  String get threadBrowserArchivedEmpty => 'There are no closed threads.';
+
+  @override
+  String get threadBrowserLoadMore => 'Load more';
+
+  @override
+  String get threadBrowserSearch => 'Search threads';
+
+  @override
+  String get threadBrowserSearchEmpty => 'No threads match';
+
+  @override
+  String get threadBrowserSearchEmptyHint =>
+      'Try a different name or check the other tab.';
+
+  @override
+  String get threadBrowserSearchFailed =>
+      'Couldn\'t search threads. Try again later.';
+
+  @override
+  String get threadBrowserSearchIndexing =>
+      'Search is getting ready for this community. Trying again shortly...';
+
+  @override
+  String threadMessageCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count messages',
+      one: '1 message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get threadFailedToMentionSomeRoles =>
+      'Some mentioned roles were not added to this thread.';
+
+  @override
+  String get threadMembers => 'Thread members';
+
+  @override
+  String threadMembersCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count members',
+      one: '1 member',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get threadMembersEmpty => 'Nobody has joined this thread yet.';
+
+  @override
+  String threadRemoveMember(String name) {
+    return 'Remove $name from thread';
+  }
+
+  @override
+  String get threadJoin => 'Join thread';
+
+  @override
+  String get threadLeave => 'Leave thread';
+
+  @override
+  String get threadJoinNotice =>
+      'Join this thread to follow it in your channel list and get notifications.';
+
+  @override
+  String get threadArchivedNotice =>
+      'This thread is closed. Sending a message will open it again.';
+
+  @override
+  String get threadLockedNotice =>
+      'This thread is locked. Only moderators can send messages.';
+
+  @override
+  String get threadArchive => 'Close thread';
+
+  @override
+  String get threadUnarchive => 'Open thread again';
+
+  @override
+  String get threadLock => 'Lock thread';
+
+  @override
+  String get threadUnlock => 'Unlock thread';
+
+  @override
+  String get threadDelete => 'Delete thread';
+
+  @override
+  String threadDeleteConfirm(String threadName) {
+    return 'Are you sure you want to delete $threadName? This cannot be undone.';
+  }
+
+  @override
+  String get threadDeleted => 'Thread deleted';
+
+  @override
+  String get threadMarkAsRead => 'Mark as read';
+
+  @override
+  String get threadMute => 'Mute thread';
+
+  @override
+  String get threadUnmute => 'Unmute thread';
+
+  @override
+  String get threadMuted => 'Thread muted';
+
+  @override
+  String get threadUnmuted => 'Thread unmuted';
+
+  @override
+  String get threadNotificationSettings => 'Notification settings';
+
+  @override
+  String get threadNotificationParentDefault => 'Use channel default';
+
+  @override
+  String get threadCopyLink => 'Copy link';
+
+  @override
+  String get threadCopyId => 'Copy thread ID';
+
+  @override
+  String get threadMoreOptions => 'More options';
+
+  @override
+  String get threadSettings => 'Thread settings';
+
+  @override
+  String get threadSettingsSaved => 'Thread settings saved';
+
+  @override
+  String get threadAutoArchive => 'Hide after inactivity';
+
+  @override
+  String get threadAutoArchiveDescription =>
+      'The thread stops showing in the channel list after this period of inactivity.';
+
+  @override
+  String get threadDefaultAutoArchive => 'Default hide after inactivity';
+
+  @override
+  String get threadDefaultAutoArchiveDescription =>
+      'New threads stop showing in the channel list after this period of inactivity.';
+
+  @override
+  String get threadDefaultSlowmode => 'Default thread slowmode';
+
+  @override
+  String get threadAutoArchiveOneHour => '1 Hour';
+
+  @override
+  String get threadAutoArchiveOneDay => '24 Hours';
+
+  @override
+  String get threadAutoArchiveThreeDays => '3 Days';
+
+  @override
+  String get threadAutoArchiveOneWeek => '1 Week';
+
+  @override
+  String get threadInvitable => 'Allow anyone to invite';
+
+  @override
+  String get threadInvitableDescription =>
+      'Members of this private thread can add other people.';
+
+  @override
+  String threadStartedBy(String name) {
+    return 'Started by $name';
+  }
+
+  @override
+  String get threadStarterDeleted => 'Original message was deleted.';
+
+  @override
+  String systemThreadCreated(
+    String username,
+    String threadLink,
+    String allThreadsLink,
+  ) {
+    return '$username đã bắt đầu một chủ đề: $threadName.';
+  }
+
+  @override
+  String get systemThreadCreatedAllThreadsLink => 'all threads';
+
+  @override
+  String get systemThreadCreatedThreadFallback => 'a thread';
+
+  @override
+  String systemPreviewThreadCreated(String username) {
+    return '$username started a thread.';
   }
 
   @override
   String get guildSettingsEmojiEmpty =>
       'Chưa có biểu tượng cảm xúc tùy chỉnh nào.';
-
-  @override
-  String guildSettingsStickersSlotInfo(int count) {
-    return '$count sticker đã tải lên';
-  }
 
   @override
   String get guildSettingsStickersEmpty => 'Chưa có nhãn dán tùy chỉnh nào.';
@@ -12325,13 +12367,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Yêu cầu tất cả các mục trong mức trung bình, cộng với việc là thành viên của cộng đồng trong ít nhất 10 phút.';
 
   @override
-  String get guildSettingsVerificationHighest => 'Rất cao';
-
-  @override
-  String get guildSettingsVerificationHighestDescription =>
-      'Yêu cầu số điện thoại đã được xác minh.';
-
-  @override
   String get guildSettingsAuditLogDescription =>
       'Theo dõi hành động của người kiểm duyệt trong cộng đồng.';
 
@@ -12354,14 +12389,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get guildSettingsAuditLogUnknownUser => 'Người dùng không xác định';
-
-  @override
-  String get guildSettingsAuditLogLoadError =>
-      'Đã xảy ra lỗi khi tải nhật ký hoạt động.';
-
-  @override
-  String get guildSettingsAuditLogLoadErrorTitle =>
-      'Không thể tải nhật ký hoạt động';
 
   @override
   String get guildSettingsAuditLogReason => 'Lý do';
@@ -12392,6 +12419,15 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get auditLogActionChannelDelete => 'Đã xoá kênh';
+
+  @override
+  String get auditLogActionThreadCreate => 'Thread created';
+
+  @override
+  String get auditLogActionThreadUpdate => 'Thread updated';
+
+  @override
+  String get auditLogActionThreadDelete => 'Thread deleted';
 
   @override
   String get auditLogActionChannelOverwriteCreate =>
@@ -12505,6 +12541,21 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String auditLogSummaryChannelDelete(String actor, String target) {
     return '$actor đã xóa kênh $target.';
+  }
+
+  @override
+  String auditLogSummaryThreadCreate(String actor, String target) {
+    return '$actor started the thread $target.';
+  }
+
+  @override
+  String auditLogSummaryThreadUpdate(String actor, String target) {
+    return '$actor updated the thread $target.';
+  }
+
+  @override
+  String auditLogSummaryThreadDelete(String actor, String target) {
+    return '$actor deleted the thread $target.';
   }
 
   @override
@@ -12906,12 +12957,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Cấp quyền thành viên vĩnh viễn.';
 
   @override
-  String get guildSettingsLoadMore => 'Tải thêm';
-
-  @override
-  String get guildSettingsLoadingMore => 'Đang tải...';
-
-  @override
   String get guildSettingsWebhooksDescription =>
       'Xem và quản lý tất cả webhook đã định cấu hình trong cộng đồng của bạn.';
 
@@ -12946,31 +12991,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get guildSettingsUnknownChannel => 'Kênh không xác định';
 
   @override
-  String get guildSettingsCopyUrl => 'Sao chép URL';
-
-  @override
   String get guildSettingsCopiedUrl => 'Đã sao chép URL vào bộ nhớ tạm';
-
-  @override
-  String get guildSettingsDeleteWebhook => 'Xóa webhook';
-
-  @override
-  String get guildSettingsVanityUrlDescription =>
-      'Đặt một liên kết mời tùy chỉnh cho máy chủ của bạn.';
-
-  @override
-  String get guildSettingsVanityUrlHint => 'my-server';
-
-  @override
-  String get guildSettingsSave => 'Lưu';
-
-  @override
-  String get guildSettingsVanityUrlUsageTitle => 'Cách sử dụng';
-
-  @override
-  String guildSettingsVanityUrlUses(int count) {
-    return '$count lượt sử dụng';
-  }
 
   @override
   String get guildSettingsDiscoveryDescription =>
@@ -13109,10 +13130,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Thử lại sau giây lát.';
 
   @override
-  String get guildSettingsMembersDescription =>
-      'Tìm kiếm và quản lý thành viên máy chủ.';
-
-  @override
   String get guildSettingsMembersSearchHint =>
       'Tìm theo tên người dùng hoặc ID';
 
@@ -13154,9 +13171,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get guildMembersColumnRoles => 'Vai trò';
-
-  @override
-  String get guildMembersColumnActions => 'Thao tác';
 
   @override
   String get guildMembersFilterMemberSince => 'Lọc theo ngày tham gia';
@@ -13223,17 +13237,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get guildMembersIndexing => 'Đang lập chỉ mục thành viên…';
 
   @override
-  String get guildMembersGoToPage => 'Đi đến trang';
-
-  @override
-  String guildMembersGoToPageItem(int page) {
-    return 'Đi đến trang $page';
-  }
-
-  @override
-  String get guildMembersJumpToPage => 'Chuyển đến trang';
-
-  @override
   String get guildMembersJoinSourceCreator => 'Người tạo cộng đồng';
 
   @override
@@ -13296,21 +13299,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   }
 
   @override
-  String guildMembersJoinedDaysAgo(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count ngày trước',
-      one: '1 ngày trước',
-    );
-    return '$_temp0';
-  }
-
-  @override
   String get guildMembersChannelListLabel => 'Thành viên';
-
-  @override
-  String get guildMembersChannelListSelected => 'Đã chọn thành viên';
 
   @override
   String get guildSettingsInvitesTitle => 'Lời mời';
@@ -13419,16 +13408,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Liên kết có thể vẫn hoạt động. Vui lòng thử lại sau ít phút.';
 
   @override
-  String guildSettingsInviteUses(int uses, int maxUses) {
-    return '$uses / $maxUses lượt sử dụng';
-  }
-
-  @override
-  String guildSettingsInviteExpires(String date) {
-    return 'Hết hạn $date';
-  }
-
-  @override
   String get guildSettingsBansDescription =>
       'Xem và quản lý người dùng bị cấm.';
 
@@ -13439,21 +13418,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get guildSettingsBansEmpty => 'Không có người dùng nào bị cấm.';
 
   @override
-  String get guildSettingsBanPermanent => 'Cấm vĩnh viễn';
-
-  @override
-  String guildSettingsBanExpires(String date) {
-    return 'Hết hạn vào $date';
-  }
-
-  @override
   String get guildSettingsBanExpiresLabel => 'Hết hạn';
-
-  @override
-  String get guildSettingsUnban => 'Bỏ cấm';
-
-  @override
-  String get guildSettingsBansLoading => 'Đang tải người dùng bị cấm';
 
   @override
   String get guildSettingsBansNoSearchResults =>
@@ -13485,14 +13450,25 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   }
 
   @override
-  String get guildSettingsBansLoadError => 'Không tải được lệnh cấm. Thử lại.';
-
-  @override
   String get guildSettingsRevokeBanError =>
       'Không thể gỡ bỏ lệnh cấm. Vui lòng thử lại.';
 
   @override
   String get guildSettingsCommunitySettings => 'Cài đặt cộng đồng';
+
+  @override
+  String get guildSettingsDeleteCommunity => 'Xóa cộng đồng';
+
+  @override
+  String get guildSettingsDeleteCommunityConfirm =>
+      'Bạn có chắc chắn muốn xóa cộng đồng này không? Thao tác này không thể hoàn tác. Tất cả kênh, tin nhắn và cài đặt sẽ bị xóa vĩnh viễn.';
+
+  @override
+  String get guildSettingsCommunityDeleted => 'Đã xoá cộng đồng';
+
+  @override
+  String get guildSettingsDeleteCommunityFailed =>
+      'Không thể xóa cộng đồng này';
 
   @override
   String get guildSettingsCategoryExpressions => 'EXPRESSIONS';
@@ -13505,10 +13481,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get guildSettingsCategoryPeople => 'PEOPLE';
-
-  @override
-  String get guildSettingsOverviewDescription =>
-      'Quản lý hồ sơ, kênh và cài đặt mặc định của cộng đồng của bạn.';
 
   @override
   String get guildSettingsOverviewBrandingTitle => 'Thương hiệu';
@@ -13542,9 +13514,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Các cộng đồng có hơn 250 người sẽ tự động chuyển sang chế độ \"chỉ nhắc đến\". Cài đặt ban đầu của bạn sẽ được giữ nguyên và khôi phục nếu số thành viên cộng đồng giảm xuống dưới 250 người.';
 
   @override
-  String get guildSettingsOverviewAdvancedTitle => 'Nâng cao';
-
-  @override
   String get guildSettingsOverviewFlexibleNames =>
       'Cho phép đặt tên kênh văn bản linh hoạt';
 
@@ -13571,10 +13540,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get guildSettingsOverviewEmbedSplashTitle =>
       'Ảnh nền nhúng trò chuyện';
-
-  @override
-  String get guildSettingsOverviewEmbedSplashHint =>
-      'Hiển thị trong các bản nhúng mời trong cuộc trò chuyện.';
 
   @override
   String get guildSettingsOverviewUploadBackground => 'Tải ảnh nền lên';
@@ -13749,14 +13714,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'JPEG, PNG, WebP, AVIF. Tối đa 10MB. Tối thiểu: 960×540px (tỷ lệ 16:9). Hiển thị trong các lượt mời nhúng trên trò chuyện.';
 
   @override
-  String get guildSettingsModerationDescription =>
-      'Cấu hình cài đặt xác minh, lọc nội dung và nội dung nhạy cảm.';
-
-  @override
-  String get guildSettingsModerationDiscoveryNotice =>
-      'Cộng đồng được liệt kê trong Khám phá có các tùy chọn kiểm duyệt bị hạn chế.';
-
-  @override
   String get guildSettingsModerationContentFilterTitle => 'Lọc nội dung';
 
   @override
@@ -13790,12 +13747,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Bảo vệ tối đa cho không gian thân thiện với gia đình';
 
   @override
-  String get guildSettingsModerationMatureOff => 'Tắt';
-
-  @override
-  String get guildSettingsModerationMatureOn => 'Bật';
-
-  @override
   String get guildSettingsContentWarningToggle => 'Hiển thị cảnh báo nội dung';
 
   @override
@@ -13819,10 +13770,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get guildSettingsModeration2faSwitchLabel =>
       'Yêu cầu xác thực 2 yếu tố cho hành động kiểm duyệt';
-
-  @override
-  String get guildSettingsModeration2faOwnerOnlyTooltip =>
-      'Chỉ chủ sở hữu cộng đồng mới có thể thay đổi cài đặt này';
 
   @override
   String get guildSettingsModeration2faEnableFirstTooltip =>
@@ -13850,10 +13797,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Không tìm thấy biểu tượng cảm xúc nào khớp với tìm kiếm của bạn.';
 
   @override
-  String get guildSettingsEmojiNoSlots =>
-      'Không còn ô trống cho biểu tượng cảm xúc';
-
-  @override
   String get guildSettingsEmojiSlotsFull =>
       'Bạn đã đạt đến số lượng biểu tượng cảm xúc tối đa. Hãy xóa bớt một số biểu tượng cảm xúc hiện có để tạo chỗ trống.';
 
@@ -13863,31 +13806,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   }
 
   @override
-  String get guildSettingsEmojiUploadingTitle =>
-      'Đang tải biểu tượng cảm xúc lên';
-
-  @override
-  String guildSettingsEmojiUploadingBody(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '# biểu tượng cảm xúc',
-      one: '# biểu tượng cảm xúc',
-    );
-    return 'Đang tải lên $_temp0. Việc này có thể mất một chút thời gian.';
-  }
-
-  @override
-  String get guildSettingsEmojiUploadFailed =>
-      'Không thể tải emoji lên. Vui lòng thử lại.';
-
-  @override
   String get guildSettingsEmojiSomeFailedTitle =>
       'Không thể thêm một số biểu tượng cảm xúc';
-
-  @override
-  String get guildSettingsEmojiSomeFailedBody =>
-      'Xem lại các tệp này và thử lại với hình ảnh nhỏ hơn hoặc đơn giản hơn.';
 
   @override
   String get guildSettingsEmojiRenameTitle => 'Đổi tên biểu tượng cảm xúc';
@@ -13897,16 +13817,10 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       '2-32 ký tự, chữ cái, số, dấu gạch dưới.';
 
   @override
-  String get guildSettingsEmojiColumnEmoji => 'Biểu tượng cảm xúc';
-
-  @override
   String get guildSettingsEmojiColumnName => 'Tên';
 
   @override
   String get guildSettingsEmojiColumnUploader => 'Đã tải lên bởi';
-
-  @override
-  String get guildSettingsEmojiUnknownUploader => 'Không rõ';
 
   @override
   String get guildSettingsEmojiDeleteTitle => 'Xóa biểu tượng cảm xúc';
@@ -13937,40 +13851,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Không thể đổi tên biểu tượng cảm xúc này';
 
   @override
-  String get guildSettingsEmojiRenameFailedBody =>
-      'Tên đã được khôi phục về trạng thái trước đó. Vui lòng thử lại sau giây lát.';
-
-  @override
-  String get guildSettingsEmojiGoneTitle =>
-      'Biểu tượng cảm xúc này không còn tồn tại';
-
-  @override
-  String get guildSettingsEmojiGoneBody =>
-      'Biểu tượng cảm xúc có thể đã bị xóa. Tên đã được khôi phục về trạng thái ban đầu.';
-
-  @override
-  String get guildSettingsEmojiNoPermissionRenameTitle =>
-      'Bạn không thể đổi tên biểu tượng cảm xúc này';
-
-  @override
-  String get guildSettingsEmojiNoPermissionRenameBody =>
-      'Bạn không có quyền đổi tên biểu tượng cảm xúc này. Tên đã được khôi phục về trạng thái trước đó.';
-
-  @override
-  String get guildSettingsEmojiRateLimitedTitle =>
-      'Bạn đang thao tác quá nhanh';
-
-  @override
-  String get guildSettingsEmojiRateLimitedBody =>
-      'Vui lòng đợi một lát rồi thử đổi tên lại.';
-
-  @override
   String get guildSettingsEmojiDeleteFailedTitle =>
       'Không thể xóa biểu tượng cảm xúc này';
-
-  @override
-  String get guildSettingsEmojiDeleteNoPermissionTitle =>
-      'Bạn không thể xóa biểu tượng cảm xúc này';
 
   @override
   String get guildSettingsCloneEmojiTitle =>
@@ -14045,12 +13927,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Không tìm thấy nhãn dán nào khớp với tìm kiếm của bạn.';
 
   @override
-  String get guildSettingsStickersEmptySearch => 'Không tìm thấy sticker nào';
-
-  @override
-  String get guildSettingsStickerNoSlots => 'Không có ô nhãn dán nào khả dụng';
-
-  @override
   String get guildSettingsStickerSlotsFull =>
       'Bạn đã đạt đến số lượng nhãn dán tối đa. Xóa một số nhãn dán hiện có để tạo thêm chỗ trống.';
 
@@ -14058,10 +13934,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String guildSettingsStickerUploadRequirements(String maxSize) {
     return 'Nhãn dán được lưu ở kích thước 320x320 pixel và không được vượt quá $maxSize. Ảnh tĩnh sẽ được tự động thay đổi kích thước và nén. Nhãn dán động và SVG phải đã phù hợp với giới hạn này.';
   }
-
-  @override
-  String get guildSettingsStickerUnsupportedTitle =>
-      'Tệp nhãn dán không được hỗ trợ';
 
   @override
   String get guildSettingsStickerAddTitle => 'Thêm nhãn dán';
@@ -14110,13 +13982,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Không thể tạo nhãn dán này';
 
   @override
-  String get guildSettingsStickerTooLargeTitle => 'Hình dán quá lớn';
-
-  @override
-  String get guildSettingsStickerCompressFailedTitle =>
-      'Không thể nén sticker đủ nhỏ';
-
-  @override
   String get guildSettingsStickerDeleteTitle => 'Xóa nhãn dán';
 
   @override
@@ -14133,20 +13998,9 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Không thể xóa sticker này';
 
   @override
-  String get guildSettingsStickerDeleteNoPermissionTitle =>
-      'Bạn không thể xóa nhãn dán này';
-
-  @override
   String guildSettingsWebhooksInfo(String channelSettingsPath) {
     return 'Để tạo webhook, hãy mở $channelSettingsPath. Bạn vẫn có thể chỉnh sửa và sắp xếp tất cả các webhook hiện có tại đây.';
   }
-
-  @override
-  String get guildSettingsVanityUrlWarning =>
-      'URL tùy chỉnh của bạn sẽ không hoạt động trừ khi có ít nhất một kênh hiển thị cho mọi người.';
-
-  @override
-  String get guildSettingsVanityUrlRemove => 'Xóa';
 
   @override
   String get guildSettingsBannedUsersTitle => 'Người dùng bị cấm';
@@ -14514,136 +14368,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get homeQuickActionDms => 'Tin nhắn trực tiếp';
 
   @override
-  String get uiViewThreads => 'View threads';
-
-  @override
-  String get uiJoinThread => 'Join thread';
-
-  @override
-  String get uiLeaveThread => 'Leave thread';
-
-  @override
-  String get threadsTitle => 'Chủ đề';
-
-  @override
-  String get threadsPostsTitle => 'Bài đăng';
-
-  @override
-  String get threadsFilterActive => 'Đang hoạt động';
-
-  @override
-  String get threadsFilterArchived => 'Đã lưu trữ';
-
-  @override
-  String get threadsNewThread => 'Chủ đề mới';
-
-  @override
-  String get threadsNewThreadTitle => 'Chủ đề mới';
-
-  @override
-  String get threadsNameLabel => 'Tên chủ đề';
-
-  @override
-  String get threadsNameHint => 'Đặt tên cho chủ đề của bạn';
-
-  @override
-  String get threadsCreateThread => 'Tạo chủ đề';
-
-  @override
-  String get threadsCreateThreadAction => 'Tạo chủ đề';
-
-  @override
-  String get threadsCreateFailed => 'Không thể tạo chủ đề. Vui lòng thử lại.';
-
-  @override
-  String get threadsLoadFailed => 'Không thể tải chủ đề.';
-
-  @override
-  String get threadsNoActive => 'Chưa có chủ đề nào đang hoạt động';
-
-  @override
-  String get threadsNoArchived => 'Không có chủ đề đã lưu trữ';
-
-  @override
-  String threadsMessageCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count tin nhắn',
-      one: '1 tin nhắn',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String threadsMemberCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count thành viên',
-      one: '1 thành viên',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get threadsStatusLocked => 'Đã khóa';
-
-  @override
-  String get threadsStatusArchived => 'Đã lưu trữ';
-
-  @override
-  String get threadsManage => 'Quản lý';
-
-  @override
-  String get threadsPin => 'Ghim';
-
-  @override
-  String get threadsUnpin => 'Bỏ ghim';
-
-  @override
-  String get threadsArchive => 'Lưu trữ';
-
-  @override
-  String get threadsUnarchive => 'Bỏ lưu trữ';
-
-  @override
-  String get threadsLock => 'Khóa';
-
-  @override
-  String get threadsUnlock => 'Mở khóa';
-
-  @override
-  String get threadsDelete => 'Xóa';
-
-  @override
-  String get threadsActionFailed => 'Đã xảy ra lỗi. Vui lòng thử lại.';
-
-  @override
-  String get threadsCloseThread => 'Đóng chủ đề';
-
-  @override
-  String get threadsReopenThread => 'Mở lại chủ đề';
-
-  @override
-  String get threadsLockThread => 'Khóa Chủ Đề';
-
-  @override
-  String get threadsUnlockThread => 'Mở Khóa Chủ Đề';
-
-  @override
-  String get threadsLeaveThread => 'Leave thread';
-
-  @override
-  String get threadsDeleteThread => 'Xóa chủ đề';
-
-  @override
-  String get threadsMembersTab => 'Thành Viên Chủ Đề';
-
-  @override
-  String get threadsMembersLoadFailed => 'Không thể tải thành viên';
-
-  @override
   String get threadsAddMember => 'Add member';
 
   @override
@@ -14653,1066 +14377,75 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get threadsAddMemberNoResults => 'No members match that search.';
 
   @override
-  String get threadsRemoveMember => 'Remove from thread';
-
-  @override
   String get threadsMemberAddedToast => 'Member added';
 
   @override
-  String get threadsMemberRemovedToast => 'Member removed';
+  String get assistantNeedsLogin => 'Mở Fluxer và đăng nhập trước.';
 
   @override
-  String get threadsLeftToast => 'You left the thread';
+  String get assistantNotInVoice => 'Bạn không có trong cuộc gọi.';
 
   @override
-  String get threadsMembersFullToast =>
-      'This thread has reached its member limit.';
-
-  @override
-  String get threadsMemberNotFoundToast =>
-      'That person cannot see this channel.';
-
-  @override
-  String get threadsMembersForbiddenToast =>
-      'You do not have permission to change this thread\'s members.';
-
-  @override
-  String get threadsInvitableLabel => 'Anyone in the thread can add others';
-
-  @override
-  String get threadsInvitableDescription =>
-      'When this is on, every member of this private thread can add other people to it.';
-
-  @override
-  String get threadsNoMembersTitle => 'Chưa có thành viên nào trong chủ đề';
-
-  @override
-  String get threadsNoMembersBody =>
-      'Những người tham gia chủ đề này sẽ xuất hiện ở đây.';
-
-  @override
-  String get forumChannelTypeLabel => 'Diễn đàn';
-
-  @override
-  String get forumChannelTypeDescription =>
-      'Không gian cho các bài đăng theo chủ đề, được sắp xếp gọn gàng';
-
-  @override
-  String get forumNewPost => 'Bài đăng mới';
-
-  @override
-  String get forumNewPostTitle => 'Bài đăng mới';
-
-  @override
-  String get forumCreatePost => 'Tạo bài đăng';
-
-  @override
-  String get forumCreatePostFailed =>
-      'Không thể tạo bài đăng. Vui lòng thử lại.';
-
-  @override
-  String get forumPostMessageFailed =>
-      'Bài đăng đã được tạo, nhưng không thể gửi tin nhắn của nó.';
-
-  @override
-  String get forumPostTitleLabel => 'Tiêu đề';
-
-  @override
-  String get forumPostTitleHint => 'Tiêu đề bài đăng';
-
-  @override
-  String get forumPostMessageLabel => 'Nhắn tin';
-
-  @override
-  String get forumPostMessageHint => 'Nhập tin nhắn';
-
-  @override
-  String get forumPostTagsLabel => 'Thẻ';
-
-  @override
-  String get forumPostTagsRequiredLabel => 'Thẻ (chọn ít nhất một)';
-
-  @override
-  String get forumPostTagsRequiredNoneHint =>
-      'Diễn đàn này yêu cầu một thẻ, nhưng chưa có thẻ nào được tạo.';
-
-  @override
-  String get forumPostNoTagsHint =>
-      'Diễn đàn này chưa có thẻ nào. Hãy thêm một vài thẻ bằng Quản lý thẻ.';
-
-  @override
-  String get forumSearchPosts => 'Tìm bài đăng';
-
-  @override
-  String get forumSortAndView => 'Sắp xếp và xem';
-
-  @override
-  String get forumSortRecentActivity => 'Hoạt động gần đây';
-
-  @override
-  String get forumSortName => 'Tên (A-Z)';
-
-  @override
-  String get forumManageTags => 'Quản lý thẻ';
-
-  @override
-  String get forumNoTags => 'Chưa có thẻ nào';
-
-  @override
-  String get forumRemoveTag => 'Xóa thẻ';
-
-  @override
-  String get forumNewTagLabel => 'Thẻ mới';
-
-  @override
-  String get forumNewTagHint => 'Tên thẻ';
-
-  @override
-  String get forumAddTag => 'Thêm thẻ';
-
-  @override
-  String get forumTagsUpdated => 'Đã cập nhật thẻ';
-
-  @override
-  String get forumTagsUpdateFailed =>
-      'Không thể cập nhật thẻ. Vui lòng thử lại.';
-
-  @override
-  String get forumLoadFailed => 'Không thể tải bài đăng.';
-
-  @override
-  String get forumNoPosts => 'Chưa có bài đăng nào';
-
-  @override
-  String get forumNoArchivedPosts => 'Không có chủ đề đã lưu trữ';
-
-  @override
-  String systemThreadCreated(String username, String threadName) {
-    return '$username đã bắt đầu một chủ đề: $threadName.';
-  }
-
-  @override
-  String systemPreviewStartedThread(String username) {
-    return '$username đã bắt đầu một chủ đề.';
-  }
-
-  @override
-  String get systemThreadDeleted => 'một chủ đề đã bị xóa';
-
-  @override
-  String get threadsComposerLockedHint =>
-      'Chủ đề này đã bị khóa. Chỉ người kiểm duyệt có thể gửi tin nhắn.';
-
-  @override
-  String get threadsComposerArchivedHint =>
-      'Chủ đề này đã được lưu trữ. Gửi tin nhắn sẽ mở lại nó.';
-
-  @override
-  String forumNewPostsPill(int count) {
-    return '$count mới';
-  }
-
-  @override
-  String get forumSearchOrCreatePost => 'Tìm kiếm hoặc tạo bài đăng...';
-
-  @override
-  String get forumSortBy => 'Sắp xếp theo';
-
-  @override
-  String get forumSortDatePosted => 'Ngày đăng';
-
-  @override
-  String get forumViewAs => 'Xem dưới dạng';
-
-  @override
-  String get forumLayoutList => 'Danh sách';
-
-  @override
-  String get forumLayoutGallery => 'Thư viện';
-
-  @override
-  String get forumResetViewToDefault => 'Đặt lại mặc định';
-
-  @override
-  String get forumAllTags => 'Tất cả';
-
-  @override
-  String forumTagsSelectedCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count thẻ',
-      one: '1 thẻ',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get forumPostGuidelinesLabel => 'Quy định đăng bài';
-
-  @override
-  String get forumEditPost => 'Chỉnh sửa bài đăng';
-
-  @override
-  String get forumPostTagRequiredToast =>
-      'Hãy chọn ít nhất một thẻ cho diễn đàn này.';
-
-  @override
-  String get threadsFollow => 'Theo dõi';
-
-  @override
-  String get threadsUnfollow => 'Bỏ theo dõi';
-
-  @override
-  String get threadsFollowing => 'Đang theo dõi';
-
-  @override
-  String get threadsMute => 'Tắt tiếng';
-
-  @override
-  String get threadsUnmute => 'Bật tiếng';
-
-  @override
-  String get threadsEditThread => 'Sửa chủ đề';
-
-  @override
-  String get forumSettingsTitle => 'Cài đặt diễn đàn';
-
-  @override
-  String get forumSettingsGuidelinesHint =>
-      'Cho thành viên biết nên đăng gì ở đây';
-
-  @override
-  String get forumSettingsRequireTag =>
-      'Yêu cầu thành viên chọn thẻ khi đăng bài';
-
-  @override
-  String get forumSettingsRequireTagDescription =>
-      'Thành viên phải chọn ít nhất một thẻ trước khi có thể đăng bài.';
-
-  @override
-  String get forumSettingsDefaultSort => 'Thứ tự sắp xếp mặc định';
-
-  @override
-  String get forumSettingsDefaultLayout => 'Bố cục mặc định';
-
-  @override
-  String get forumSettingsDefaultReaction => 'Biểu cảm mặc định';
-
-  @override
-  String get forumSettingsDefaultReactionDescription =>
-      'Hiển thị làm biểu cảm nhanh trên mọi bài đăng. Để trống nếu không dùng.';
-
-  @override
-  String get forumSettingsDefaultReactionHint =>
-      'Một biểu tượng cảm xúc, ví dụ 👍';
-
-  @override
-  String get forumSettingsHideAfterInactivity => 'Ẩn sau khi không hoạt động';
-
-  @override
-  String get forumSettingsHideAfterInactivityDescription =>
-      'Các bài đăng không hoạt động sẽ chuyển vào Đã lưu trữ. Bất kỳ ai cũng có thể mở lại bài đăng chưa bị khóa.';
-
-  @override
-  String get forumSettingsHideAfterOneHour => '1 giờ';
-
-  @override
-  String get forumSettingsHideAfterOneDay => '24 giờ';
-
-  @override
-  String get forumSettingsHideAfterThreeDays => '3 ngày';
-
-  @override
-  String get forumSettingsHideAfterOneWeek => '1 tuần';
-
-  @override
-  String get forumSettingsPostCreationSlowmode =>
-      'Chế độ chậm khi tạo bài đăng';
-
-  @override
-  String get forumSettingsPostCreationSlowmodeDescription =>
-      'Thành viên phải chờ bao lâu giữa các lần tạo bài đăng.';
-
-  @override
-  String get forumSettingsDefaultPostSlowmode =>
-      'Chế độ chậm trong bài đăng mới';
-
-  @override
-  String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Được áp dụng cho bài đăng khi chúng được tạo.';
-
-  @override
-  String get forumSettingsSave => 'Lưu cài đặt diễn đàn';
-
-  @override
-  String get forumSettingsSaved => 'Đã lưu cài đặt diễn đàn';
-
-  @override
-  String get forumSettingsSaveFailed => 'Không thể lưu cài đặt diễn đàn';
-
-  @override
-  String get threadsStarterMessage => 'Bắt đầu từ';
-
-  @override
-  String get threadsOriginalPosterTag => 'OP';
-
-  @override
-  String get forumReactToPost => 'Bày tỏ cảm xúc với bài đăng';
-
-  @override
-  String get forumReactToPostOther => 'Bày tỏ cảm xúc bằng biểu tượng khác';
-
-  @override
-  String get forumEmptyHeading => 'Hãy bắt đầu cuộc trò chuyện!';
-
-  @override
-  String forumEmptyBody(String forumName) {
-    return 'Bạn muốn đăng về điều gì trong $forumName?';
-  }
-
-  @override
-  String get forumSeeExamples => 'Xem ví dụ';
-
-  @override
-  String get forumExampleQuestion =>
-      'Đặt một câu hỏi và gắn thẻ để người khác tìm lại được sau này.';
-
-  @override
-  String get forumExampleShow =>
-      'Chia sẻ điều bạn đã làm và để mọi người trả lời.';
-
-  @override
-  String get forumExampleDiscussion =>
-      'Bắt đầu một cuộc thảo luận về một chủ đề và giữ nó trong bài đăng này.';
-
-  @override
-  String get forumTagModeratedOn =>
-      'Chỉ người kiểm duyệt, nhấn để cho phép mọi người';
-
-  @override
-  String get forumTagModeratedOff =>
-      'Ai cũng có thể áp dụng, nhấn để chỉ cho phép người kiểm duyệt';
-
-  @override
-  String get forumAddToPost => 'Thêm vào bài đăng';
-
-  @override
-  String get forumAddToPostDone => 'Đã thêm vào bài đăng.';
-
-  @override
-  String get forumAddToPostFailed =>
-      'Không thể thêm nội dung đó vào bài đăng. Vui lòng thử lại.';
-
-  @override
-  String get applicationsTitle => 'Ứng dụng';
-
-  @override
-  String get applicationsCreate => 'Tạo ứng dụng';
-
-  @override
-  String get applicationsCreateSubmit => 'Tạo';
-
-  @override
-  String get applicationsCreateClaimTooltip =>
-      'Xác nhận tài khoản để tạo ứng dụng.';
-
-  @override
-  String applicationsDocsLink(String domain) {
-    return 'Đọc tài liệu ($domain)';
-  }
-
-  @override
-  String get applicationsLoadError => 'Không thể tải ứng dụng';
-
-  @override
-  String get applicationsLoadErrorDescription =>
-      'Kiểm tra kết nối mạng và thử lại.';
-
-  @override
-  String get applicationsEmptyTitle => 'Chưa có ứng dụng nào';
-
-  @override
-  String applicationsEmptyDescription(String apiName) {
-    return 'Tạo ứng dụng đầu tiên của bạn để bắt đầu với $apiName.';
-  }
-
-  @override
-  String applicationsCreated(String date) {
-    return 'Created $date';
-  }
-
-  @override
-  String get applicationsName => 'Tên ứng dụng';
-
-  @override
-  String get applicationsNameHint => 'Ứng dụng của tôi';
-
-  @override
-  String get applicationsNameRequired => 'Tên ứng dụng là bắt buộc';
-
-  @override
-  String get applicationsBackToList => 'Quay lại danh sách';
-
-  @override
-  String get applicationsDetailLoadError => 'Không thể tải ứng dụng này';
-
-  @override
-  String get applicationsDetailLoadErrorDescription =>
-      'Thử lại hoặc quay lại danh sách ứng dụng.';
-
-  @override
-  String get applicationsId => 'ID ứng dụng';
-
-  @override
-  String get applicationsCopyId => 'Sao chép ID';
-
-  @override
-  String get applicationsSecretsTitle => 'Mã bí mật & token';
-
-  @override
-  String get applicationsSecretsDescription =>
-      'Hãy bảo mật những thông tin này. Việc tạo lại sẽ làm hỏng các tích hợp hiện có.';
-
-  @override
-  String get applicationsClientSecret => 'Mã bí mật của máy khách';
-
-  @override
-  String get applicationsBotToken => 'Token bot';
-
-  @override
-  String get applicationsRegenerate => 'Tạo lại';
-
-  @override
-  String get applicationsRegenerateClientSecretTitle =>
-      'Tạo lại mã bí mật của máy khách?';
-
-  @override
-  String get applicationsRegenerateBotTokenTitle => 'Tạo lại token bot?';
-
-  @override
-  String get applicationsRegenerateClientSecretDescription =>
-      'Việc tạo lại sẽ làm mất hiệu lực mã bí mật hiện tại. Hãy cập nhật mọi đoạn mã đang dùng giá trị cũ.';
-
-  @override
-  String get applicationsRegenerateBotTokenDescription =>
-      'Việc tạo lại sẽ làm mất hiệu lực token hiện tại. Hãy cập nhật mọi đoạn mã đang dùng giá trị cũ.';
-
-  @override
-  String get applicationsClientSecretRegenerated =>
-      'Đã tạo lại mã bí mật của máy khách. Hãy cập nhật bất kỳ mã nào đang sử dụng mã bí mật cũ.';
-
-  @override
-  String get applicationsBotTokenRegenerated =>
-      'Đã tạo lại token bot. Hãy cập nhật mọi đoạn mã đang dùng token cũ.';
-
-  @override
-  String get applicationsRegenerateFailed => 'Không thể tạo lại khóa bí mật';
-
-  @override
-  String get applicationsInfoTitle => 'Thông tin ứng dụng';
-
-  @override
-  String get applicationsInfoDescription =>
-      'Cài đặt cơ bản và URI chuyển hướng được phép.';
-
-  @override
-  String get applicationsPublicBot => 'Bot công khai';
-
-  @override
-  String get applicationsPublicBotDescription =>
-      'Cho phép mọi người mời bot này vào cộng đồng của họ.';
-
-  @override
-  String get applicationsRequireCodeGrant => 'Yêu cầu cấp quyền OAuth2';
-
-  @override
-  String get applicationsRequireCodeGrantDescription =>
-      'Yêu cầu URI chuyển hướng và mã ủy quyền khi mời bot này.';
-
-  @override
-  String get applicationsRedirectUris => 'URI chuyển hướng';
-
-  @override
-  String get applicationsAddRedirect => 'Thêm chuyển hướng';
-
-  @override
-  String get applicationsDeleteRedirect => 'Xóa URI chuyển hướng';
-
-  @override
-  String get applicationsBotProfileTitle => 'Hồ sơ bot';
-
-  @override
-  String get applicationsBotProfileDescription =>
-      'Ảnh đại diện, thẻ và thông tin chi tiết phong phú cho bot của bạn.';
-
-  @override
-  String get applicationsBotAvatar => 'Ảnh đại diện bot';
-
-  @override
-  String get applicationsUsernameRequired => 'Cần có tên người dùng';
-
-  @override
-  String get applicationsUsernameTooLong =>
-      'Tên người dùng phải có tối đa 32 ký tự';
-
-  @override
-  String get applicationsUsernameInvalid =>
-      'Tên người dùng chỉ có thể chứa chữ cái, số và dấu gạch dưới';
-
-  @override
-  String get applicationsBotUsername => 'Tên người dùng bot';
-
-  @override
-  String get applicationsDiscriminator => 'Mã phân biệt';
-
-  @override
-  String get applicationsBotBio => 'Tiểu sử bot';
-
-  @override
-  String get applicationsBotBioHint =>
-      'Một bot hữu ích có thể làm được nhiều điều tuyệt vời!';
-
-  @override
-  String get applicationsNoBotBanner => 'Không có ảnh bìa bot';
-
-  @override
-  String get applicationsFriendlyBot => 'Bot thân thiện';
-
-  @override
-  String get applicationsFriendlyBotDescription =>
-      'Cho phép người dùng gửi lời mời kết bạn đến bot này để phê duyệt thủ công.';
-
-  @override
-  String get applicationsManualFriendApproval =>
-      'Yêu cầu duyệt bạn bè thủ công';
-
-  @override
-  String get applicationsManualFriendApprovalDescription =>
-      'Lời mời kết bạn với bot này cần được phê duyệt thủ công.';
-
-  @override
-  String get applicationsOauthBuilderTitle => 'Trình tạo URL OAuth2';
-
-  @override
-  String get applicationsOauthBuilderDescription =>
-      'Construct an authorize URL with scopes and permissions.';
-
-  @override
-  String get applicationsScopes => 'Phạm vi';
-
-  @override
-  String get applicationsRedirectUri => 'URI chuyển hướng';
-
-  @override
-  String get applicationsSelectRedirectUri => 'Chọn URI chuyển hướng';
-
-  @override
-  String get applicationsRedirectRequiredCodeGrant =>
-      'Cần có URI chuyển hướng vì bot này yêu cầu cấp quyền bằng mã OAuth2.';
-
-  @override
-  String get applicationsRedirectRequiredScopes =>
-      'Cần có URI chuyển hướng khi không chỉ dùng phạm vi bot.';
-
-  @override
-  String get applicationsBotPermissions => 'Quyền của bot';
-
-  @override
-  String get applicationsAuthorizeUrl => 'URL ủy quyền';
-
-  @override
-  String get applicationsAuthorizeUrlPlaceholder =>
-      'Chọn phạm vi (và URI chuyển hướng nếu cần)';
-
-  @override
-  String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
-
-  @override
-  String get applicationsCopiedUrl => 'Đã sao chép URL vào bảng nhớ tạm';
-
-  @override
-  String get applicationsDangerTitle => 'Khu vực nguy hiểm';
-
-  @override
-  String get applicationsDangerSubtitle =>
-      'Thao tác này không thể hoàn tác. Việc gỡ ứng dụng cũng sẽ xóa bot của ứng dụng.';
-
-  @override
-  String get applicationsDangerHelper =>
-      'Sau khi xóa, ứng dụng và thông tin đăng nhập của ứng dụng sẽ bị gỡ vĩnh viễn.';
-
-  @override
-  String get applicationsDelete => 'Xóa ứng dụng';
-
-  @override
-  String applicationsDeleteConfirmDescription(String name) {
-    return 'Are you sure you want to delete $name? This action cannot be undone. All associated data, including the bot user, will be permanently deleted.';
-  }
-
-  @override
-  String get applicationsDeleteFailed => 'Không thể xóa ứng dụng';
-
-  @override
-  String get applicationsUpdated => 'Đã cập nhật ứng dụng thành công';
-
-  @override
-  String get applicationsNoChanges => 'Không có thay đổi nào để lưu';
-
-  @override
-  String get applicationsSearchBots => 'Ứng dụng & bot';
-
-  @override
-  String get applicationsSearchBotsDescription =>
-      'Tạo và quản lý ứng dụng, bot cho tài khoản của bạn';
-
-  @override
-  String get applicationsSearchInfoDescription =>
-      'Chỉnh sửa thông tin cơ bản và URI chuyển hướng của ứng dụng';
-
-  @override
-  String get applicationsSearchBotProfileDescription =>
-      'Chỉnh sửa ảnh đại diện, thẻ, tiểu sử, ảnh bìa và hành vi yêu cầu kết bạn của bot';
-
-  @override
-  String get applicationsSearchOauthDescription =>
-      'Tạo URL ủy quyền với phạm vi, chuyển hướng và quyền của bot';
-
-  @override
-  String get applicationsSearchSecretsDescription =>
-      'Xem và tạo lại mã bí mật của máy khách và token bot';
-
-  @override
-  String get applicationsSearchBotsKeyword => 'Bot';
-
-  @override
-  String get applicationsSearchDocumentation => 'Tài liệu';
-
-  @override
-  String get linkedDevicesViewDetails => 'Xem chi tiết';
-
-  @override
-  String get linkedDevicesDetailsTitle => 'Chi tiết thiết bị';
-
-  @override
-  String get linkedDevicesDetailsDevice => 'Thiết bị';
-
-  @override
-  String get linkedDevicesDetailsClient => 'Ứng dụng khách';
-
-  @override
-  String get linkedDevicesDetailsLocation => 'Vị trí';
-
-  @override
-  String get linkedDevicesDetailsIp => 'Địa chỉ IP';
-
-  @override
-  String get linkedDevicesDetailsLastUsed => 'Lần sử dụng cuối cùng';
-
-  @override
-  String get linkedDevicesCurrentSession => 'Phiên hiện tại';
-
-  @override
-  String get linkedDevicesUnknown => 'Không rõ';
-
-  @override
-  String get chatMessagePinConfirm => 'Ghim';
-
-  @override
-  String get chatMessagePinConfirmDescription =>
-      'Ghim tin nhắn này lên kênh để mọi người cùng xem.';
-
-  @override
-  String get savedMessagesAddedToast => 'Đã thêm vào tin nhắn đã lưu';
-
-  @override
-  String get savedMessagesRemovedToast => 'Đã xóa khỏi tin nhắn đã lưu';
-
-  @override
-  String get guildSettingsDeleteCommunity => 'Xóa cộng đồng';
-
-  @override
-  String get guildSettingsDeleteCommunityConfirm =>
-      'Bạn có chắc chắn muốn xóa cộng đồng này không? Thao tác này không thể hoàn tác. Tất cả kênh, tin nhắn và cài đặt sẽ bị xóa vĩnh viễn.';
-
-  @override
-  String get guildSettingsCommunityDeleted => 'Đã xoá cộng đồng';
-
-  @override
-  String get guildSettingsDeleteCommunityFailed =>
-      'Couldn\'t delete this community';
-
-  @override
-  String get assistantNeedsLogin => 'Open echowire and sign in first.';
-
-  @override
-  String get assistantNotInVoice => 'You\'re not in a call.';
-
-  @override
-  String get assistantNotFound => 'echowire could not find that.';
+  String get assistantNotFound => 'Fluxer không thể tìm thấy mục đó.';
 
   @override
   String get assistantDmsDisabled =>
-      'Direct messages are disabled on this instance.';
+      'Tin nhắn trực tiếp đã bị tắt trên máy chủ này.';
 
   @override
-  String get assistantFailed => 'echowire could not complete that.';
+  String get assistantFailed => 'Fluxer không thể hoàn thành tác vụ đó.';
 
   @override
-  String get assistantOkMuted => 'Muted.';
+  String get assistantOkMuted => 'Đã tắt micrô.';
 
   @override
-  String get assistantOkUnmuted => 'Unmuted.';
+  String get assistantOkUnmuted => 'Đã bật micrô.';
 
   @override
-  String get assistantOkLeftVoice => 'Left voice.';
+  String get assistantOkLeftVoice => 'Đã rời kênh thoại.';
 
   @override
-  String get assistantOkJoinedVoice => 'Joining voice.';
+  String get assistantOkJoinedVoice => 'Đang tham gia kênh thoại.';
 
   @override
-  String get assistantOkStartedCall => 'Starting the call.';
+  String get assistantOkStartedCall => 'Đang bắt đầu cuộc gọi.';
 
   @override
   String assistantOkStatusSet(String status) {
-    return 'Status set to $status.';
+    return 'Đã đặt trạng thái thành $status.';
   }
 
   @override
-  String get assistantOkOpened => 'Opening echowire.';
+  String get assistantOkOpened => 'Đang mở Fluxer.';
 
   @override
   String get assistantOkMessageSent => 'Đã gửi tin nhắn.';
 
   @override
-  String get assistantOkCustomStatusSet => 'Custom status updated.';
+  String get assistantOkCustomStatusSet => 'Đã cập nhật trạng thái tùy chỉnh.';
 
   @override
-  String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+  String get assistantOkCustomStatusCleared => 'Đã xóa trạng thái tùy chỉnh.';
 
   @override
-  String get notificationsPushRelaySectionTitle =>
-      'Bộ chuyển tiếp thông báo đẩy';
-
-  @override
-  String notificationsPushRelaySectionDescription(String pushProvider) {
-    return '$pushProvider chỉ gửi thông báo đẩy qua dịch vụ của riêng họ, nên thông báo cho thiết bị này đi qua bộ chuyển tiếp của Fluxer.';
-  }
-
-  @override
-  String get notificationsPushRelayConsentLabel =>
-      'Dùng bộ chuyển tiếp đẩy của Fluxer';
-
-  @override
-  String get notificationsPushRelayConsentDescription =>
-      'Tắt tùy chọn này sẽ xóa đăng ký đẩy của thiết bị, nên thiết bị sẽ ngừng nhận thông báo đẩy.';
-
-  @override
-  String get pushRelayConsentTitle => 'Bộ chuyển tiếp thông báo đẩy';
-
-  @override
-  String pushRelayConsentDescription(String pushProvider) {
-    return '$pushProvider chỉ gửi thông báo đẩy qua dịch vụ của riêng họ, nên thông báo cho thiết bị này đi qua bộ chuyển tiếp của Fluxer.';
-  }
-
-  @override
-  String get pushRelayConsentNoticePrefix => 'Đồng ý với ';
-
-  @override
-  String get pushRelayConsentNoticeLink =>
-      'thông báo quyền riêng tư của bộ chuyển tiếp đẩy';
-
-  @override
-  String get pushRelayConsentNoticeSuffix =>
-      ' để bật thông báo đẩy trên thiết bị này. Bạn chỉ cần đồng ý một lần cho mỗi thiết bị.';
-
-  @override
-  String get pushRelayConsentAgree => 'Đồng ý và tiếp tục';
-
-  @override
-  String get pushRelayConsentDecline => 'Để sau';
-
-  @override
-  String get userSettingsNavAppIcon => 'App icon';
-
-  @override
-  String get appIconSectionTitle => 'App icon';
-
-  @override
-  String get appIconSectionDescription =>
-      'Choose which icon appears on your home screen.';
-
-  @override
-  String get appIconOptionDefault => 'Mặc định';
-
-  @override
-  String get appIconOptionStarfield => 'Starfield';
-
-  @override
-  String get appIconOptionSweden => 'Thụy Điển';
-
-  @override
-  String get appIconUnsupported =>
-      'Changing the app icon is not available on this device.';
-
-  @override
-  String get authCheckStillWorking => 'Still working on it…';
-
-  @override
-  String get authVerificationFailed =>
-      'Couldn\'t complete verification. Try again.';
-
-  @override
-  String get profileLocalTimeSettingsTitle => 'Profile local time';
-
-  @override
-  String profileLocalTimeSettingsSummary(String productName) {
-    return 'Set your time zone once so $productName can keep your UTC offset current when daylight saving time changes. Other people can only see your UTC offset, not your exact time zone identifier.';
-  }
-
-  @override
-  String get profileLocalTimeEditButton => 'Edit profile local time';
-
-  @override
-  String get profileLocalTimeTimezoneLabel => 'Time zone';
-
-  @override
-  String profileLocalTimeTimezoneHelp(String productName) {
-    return 'Choose the time zone $productName uses to calculate your UTC offset for profile local time.';
-  }
-
-  @override
-  String get profileLocalTimeSearchTimezones => 'Search time zones';
-
-  @override
-  String get profileLocalTimeNotSet => 'Not set';
-
-  @override
-  String profileLocalTimePrivacyNote(
-    String timezoneIdentifierExample,
-    String productName,
-  ) {
-    return 'Other people can only see your current UTC offset when you choose to share profile local time. They do not see your exact time zone identifier, such as $timezoneIdentifierExample. $productName stores that identifier only so the offset can update automatically when daylight saving time changes.';
-  }
-
-  @override
-  String get profileLocalTimePrivacyEveryone => 'Everyone';
-
-  @override
-  String get profileLocalTimePrivacyEveryoneDesc =>
-      'Allow anyone who can view your full profile to see your local time';
-
-  @override
-  String get profileLocalTimePrivacyFriends => 'Friends';
-
-  @override
-  String get profileLocalTimePrivacyFriendsDesc =>
-      'Allow your friends to see your local time';
-
-  @override
-  String get profileLocalTimePrivacyCommunityMembers => 'Community members';
-
-  @override
-  String get profileLocalTimePrivacyCommunityMembersDesc =>
-      'Allow members from communities you\'re in to see your local time';
-
-  @override
-  String storePlutoniumPriceLine(String monthly, String yearly) {
-    return '$monthly or $yearly';
-  }
-
-  @override
-  String get storePlutoniumMonthSuffix => '/mo';
-
-  @override
-  String get storePlutoniumYearSuffix => '/yr';
-
-  @override
-  String get storePlutoniumPriceOr => 'or';
-
-  @override
-  String get storePlutoniumEmojiTitle => 'Your emojis, everywhere';
-
-  @override
-  String get storePlutoniumEmojiBody =>
-      'Bring custom emojis and stickers from any of your communities into every chat and community you\'re in.';
-
-  @override
-  String get storePlutoniumProfileTitle => 'A profile that stands out';
-
-  @override
-  String get storePlutoniumProfileBody =>
-      'Get an animated avatar and banner, a subscriber badge, the four-digit tag you want after your username*, and a separate profile for each community.';
-
-  @override
-  String get storePlutoniumFilesTitle => 'Send files up to 500 MB';
-
-  @override
-  String get storePlutoniumFilesBody =>
-      'Share full-length videos and big files without shrinking them first. Free accounts can send up to 25 MB.';
-
-  @override
-  String get storePlutoniumCompareTitle => 'Compare Free and Reverb';
-
-  @override
-  String get storePlutoniumCompareMobileNote =>
-      'Not all of these features are in the mobile app. Some are only available on desktop.';
-
-  @override
-  String get storePlutoniumNotAvailable => 'Not available';
-
-  @override
-  String get storePlutoniumAvailable => 'Available';
-
-  @override
-  String get storePlutoniumCompareTag =>
-      'Pick the 4-digit number after your username*';
-
-  @override
-  String get storePlutoniumCompareProfile =>
-      'A separate profile for each community';
-
-  @override
-  String get storePlutoniumCompareBadge => 'Subscriber badge on your profile';
-
-  @override
-  String get storePlutoniumCompareBackgrounds =>
-      'Video call backgrounds you can save';
-
-  @override
-  String get storePlutoniumCompareCommunities => 'Communities you can join';
-
-  @override
-  String get storePlutoniumCompareCharacters =>
-      'Characters in a single message';
-
-  @override
-  String get storePlutoniumCompareBookmarks => 'Messages you can bookmark';
-
-  @override
-  String get storePlutoniumCompareUpload => 'Largest file you can upload';
-
-  @override
-  String get storePlutoniumCompareSavedMedia =>
-      'Media items you can save for later';
-
-  @override
-  String get storePlutoniumCompareAnimatedEmoji =>
-      'Use animated emojis in messages';
-
-  @override
-  String get storePlutoniumCompareCustomEmoji =>
-      'Use custom emojis and stickers in any community';
-
-  @override
-  String get storePlutoniumCompareVideo =>
-      'Video call and screen share quality';
-
-  @override
-  String get storePlutoniumCompareAvatar =>
-      'Animated avatar and profile banner';
-
-  @override
-  String get storePlutoniumCompareEarlyAccess => 'Early access to new features';
-
-  @override
-  String get storePlutoniumCompareThemes => 'Custom themes for the app';
-
-  @override
-  String get storePlutoniumVideoFree => 'Up to 720p at 30 FPS';
-
-  @override
-  String get storePlutoniumVideoPlutonium => 'Up to 4K at 60 FPS';
-
-  @override
-  String get storePlutoniumTagFootnote =>
-      'You can only pick a tag that nobody else with the same username already has. Usernames aren\'t case sensitive, so Mina#4821 and mina#4821 count as the same. The #0000 tag is reserved for echowire Visionary members.';
-
-  @override
-  String get storePlutoniumLearnVisionary => 'Learn more about Visionary.';
-
-  @override
-  String get storePlutoniumDonatePrompt =>
-      'Just want to support echowire\'s open source development? ';
-
-  @override
-  String get storePlutoniumDonateLink => 'Donate instead.';
-
-  @override
-  String get storePlutoniumHighlightsLead =>
-      'Subscribing funds echowire and unlocks';
-
-  @override
-  String get storePlutoniumHighlightEmoji =>
-      'Custom emoji and stickers in any chat';
-
-  @override
-  String get storePlutoniumHighlightProfile =>
-      'Animated profile, badge, and custom 4-digit number';
-
-  @override
-  String get storePlutoniumHighlightFiles => 'Uploads up to 500 MB';
-
-  @override
-  String get storePlutoniumHighlightMessages =>
-      'Send messages up to 4,000 characters';
-
-  @override
-  String get storePlutoniumHighlightCommunityProfile =>
-      'A separate profile for each community';
-
-  @override
-  String get storePlutoniumHighlightsMore => 'And more';
-
-  @override
-  String get storePlutoniumRenewsThroughPlay =>
-      'Renews automatically through Google Play until you cancel.';
-
-  @override
-  String get storePlutoniumRenewsThroughAppStore =>
-      'Renews automatically through the App Store until you cancel.';
-
-  @override
-  String get storePlutoniumAlreadySubscribed =>
-      'You already have an echowire Reverb subscription.';
-
-  @override
-  String storePlutoniumSavePercent(int percent) {
-    return 'Save $percent%';
-  }
-
-  @override
-  String get storePlutoniumWaiting =>
-      'Purchase received. Reverb will show here once it activates.';
-
-  @override
-  String get storePlutoniumUnavailable =>
-      'Subscriptions in the app aren\'t available on this device yet.';
-
-  @override
-  String get storePlutoniumVisionaryStatus =>
-      'Visionary already includes permanent access, so a recurring subscription isn\'t needed.';
-
-  @override
-  String get guildNavbarAnnouncementChannel => 'Announcement Channel';
+  String get guildNavbarAnnouncementChannel => 'Kênh thông báo';
 
   @override
   String get guildNavbarAnnouncementChannelDescription =>
-      'Post updates that other communities can follow into their own channels';
+      'Đăng các bản cập nhật mà các cộng đồng khác có thể theo dõi vào kênh của họ';
 
   @override
-  String get channelDetailsAnnouncementChannel => 'Announcement Channel';
+  String get channelDetailsAnnouncementChannel => 'Kênh thông báo';
 
   @override
-  String get channelSettingsAnnouncementChannel => 'Announcement Channel';
+  String get channelSettingsAnnouncementChannel => 'Kênh thông báo';
 
   @override
   String get channelSettingsAnnouncementChannelDescription =>
-      'Lets other communities follow this channel and get copies of what you publish.';
+      'Cho phép các cộng đồng khác theo dõi kênh này và nhận bản sao những gì bạn đăng.';
 
   @override
-  String get channelSettingsStopAnnouncementTitle =>
-      'Stop being an announcement channel?';
+  String get channelSettingsStopAnnouncementTitle => 'Dừng làm kênh thông báo?';
 
   @override
   String channelSettingsStopAnnouncementBody(int count) {
@@ -15720,245 +14453,225 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       count,
       locale: localeName,
       other:
-          '$count channels follow this channel. Converting it to a text channel removes those follows.',
+          '$count kênh đang theo dõi kênh này. Việc chuyển đổi kênh này thành kênh văn bản sẽ xóa các lượt theo dõi đó.',
       one:
-          '1 channel follows this channel. Converting it to a text channel removes that follow.',
+          '1 kênh đang theo dõi kênh này. Việc chuyển đổi kênh này thành kênh văn bản sẽ xóa lượt theo dõi đó.',
     );
     return '$_temp0';
   }
 
   @override
   String get channelSettingsStopAnnouncementUnknown =>
-      'Converting this channel to a text channel removes every channel that follows it.';
+      'Chuyển kênh này thành kênh văn bản sẽ khiến mọi kênh đang theo dõi nó ngừng theo dõi.';
 
   @override
-  String get channelSettingsConvertChannel => 'Convert';
+  String get channelSettingsConvertChannel => 'Chuyển đổi';
 
   @override
-  String get channelSettingsConvertFailed => 'Couldn\'t convert this channel';
+  String get channelSettingsConvertFailed => 'Không thể chuyển đổi kênh này';
 
   @override
   String get channelSettingsChannelHasFollowers =>
-      'This channel still has followers. Remove those follows before converting it.';
+      'Vẫn còn kênh khác đang theo dõi kênh này. Hãy xóa các lượt theo dõi đó trước khi chuyển đổi.';
 
   @override
-  String get channelMenuFollow => 'Follow Channel';
+  String get channelMenuFollow => 'Theo dõi kênh';
 
   @override
-  String get channelFollowTitle => 'Follow this channel';
+  String get channelFollowTitle => 'Theo dõi kênh này';
 
   @override
   String get channelFollowBody =>
-      'Choose where its published messages should go. You can unfollow any time in Community settings → Webhooks.';
+      'Chọn nơi các tin nhắn đã xuất bản của kênh sẽ hiển thị. Bạn có thể bỏ theo dõi bất cứ lúc nào trong Cài đặt cộng đồng → Webhook.';
 
   @override
-  String get channelFollowCommunity => 'Community';
+  String get channelFollowCommunity => 'Cộng đồng';
 
   @override
-  String get channelFollowChannel => 'Channel';
-
-  @override
-  String get channelFollowSelectCommunity => 'Select a community';
-
-  @override
-  String get channelFollowSelectChannel => 'Select a channel';
+  String get channelFollowChannel => 'Kênh';
 
   @override
   String get channelFollowAgeWarning =>
-      'This is an age-restricted channel. Updates can only go to age-restricted channels.';
+      'Đây là kênh giới hạn độ tuổi. Các cập nhật chỉ có thể được gửi đến các kênh giới hạn độ tuổi.';
 
   @override
   String get channelFollowContentWarning =>
-      'This channel has a content warning. Updates can only go to channels with a content warning or an age restriction.';
+      'Kênh này có cảnh báo nội dung. Các cập nhật chỉ có thể được gửi đến các kênh có cảnh báo nội dung hoặc giới hạn độ tuổi.';
 
   @override
   String get channelFollowHiddenHint =>
-      'Communities and channels where you can\'t manage webhooks are hidden.';
+      'Cộng đồng và kênh mà bạn không thể quản lý webhook sẽ bị ẩn.';
 
   @override
   String get channelFollowEmpty =>
-      'You can\'t manage webhooks in any community. Ask an admin to follow this channel.';
+      'Bạn không thể quản lý webhook ở bất kỳ cộng đồng nào. Hãy yêu cầu quản trị viên theo dõi kênh này.';
 
   @override
-  String get channelFollowSubmit => 'Follow';
+  String get channelFollowSubmit => 'Theo dõi';
 
   @override
-  String get channelFollowFailed => 'Couldn\'t follow this channel.';
+  String get channelFollowFailed => 'Không thể theo dõi kênh này.';
 
   @override
-  String get channelFollowSuccessTitle => 'Updates are on their way!';
+  String get channelFollowSuccessTitle => 'Các bản cập nhật đang được gửi đến!';
 
   @override
   String channelFollowSuccessBody(String sourceName, String targetName) {
-    return 'Messages published in $sourceName will show up in #$targetName.';
+    return 'Các tin nhắn được đăng trong $sourceName sẽ hiển thị trong #$targetName.';
   }
 
   @override
-  String get channelFollowSuccessDismiss => 'Got it!';
+  String get channelFollowSuccessDismiss => 'Đã hiểu!';
 
   @override
   String get channelFollowBarrier =>
-      'Follow to get these announcements in a channel you choose.';
+      'Theo dõi kênh này để nhận các thông báo này trong kênh bạn chọn.';
 
   @override
-  String get channelHeaderFollow => 'Follow channel';
+  String get channelHeaderFollow => 'Theo dõi kênh';
 
   @override
-  String get chatMessagePublish => 'Publish';
+  String get chatMessagePublish => 'Đăng';
 
   @override
-  String get chatMessagePublished => 'Published';
+  String get chatMessagePublished => 'Đã đăng';
 
   @override
-  String get chatMessagePublishConfirmTitle => 'Publish message?';
+  String get chatMessagePublishConfirmTitle => 'Đăng tin nhắn?';
 
   @override
   String get chatMessagePublishConfirmBody =>
-      'This sends a copy to every channel that follows this one.';
+      'Thao tác này sẽ gửi một bản sao đến mọi kênh theo dõi kênh này.';
 
   @override
-  String get chatMessagePublishedToast => 'Message published';
+  String get chatMessagePublishedToast => 'Tin nhắn đã được đăng';
 
   @override
-  String get chatMessageAlreadyPublished =>
-      'This message is already published.';
+  String get chatMessageAlreadyPublished => 'Tin nhắn này đã được đăng.';
 
   @override
-  String get chatMessagePublishFailedTitle => 'Couldn\'t publish this message';
+  String get chatMessagePublishFailedTitle => 'Không thể đăng tin nhắn này';
 
   @override
   String get chatMessagePublishFailedBody =>
-      'Something went wrong. Try again in a moment.';
+      'Đã xảy ra lỗi. Vui lòng thử lại sau.';
 
   @override
-  String get chatMessagePublishLimitTitle => 'Slow down';
+  String get chatMessagePublishLimitTitle => 'Chậm lại chút';
 
   @override
   String chatMessagePublishLimitBody(String duration) {
-    return 'You can publish again in $duration.';
+    return 'Bạn có thể đăng lại sau $duration.';
   }
 
   @override
   String get chatMessagePublishLimitUnknown =>
-      'You are publishing too quickly. Try again in a moment.';
+      'Bạn đang đăng quá nhanh. Vui lòng thử lại sau.';
 
   @override
   String get chatMessageDeletePublished =>
-      'This also removes the copies that were sent to channels following this one.';
+      'Thao tác này cũng xóa các bản sao đã được gửi đến các kênh theo dõi kênh này.';
 
   @override
-  String get chatMessageEditPublishedTitle => 'Edit published message?';
+  String get chatMessageEditPublishedTitle => 'Chỉnh sửa tin nhắn đã đăng?';
 
   @override
   String get chatMessageEditPublishedBody =>
-      'This updates the copies that were sent to channels following this one.';
+      'Thao tác này cập nhật các bản sao đã được gửi đến các kênh theo dõi kênh này.';
 
   @override
-  String get chatMessageEditPublishedSave => 'Save';
+  String get chatMessageEditPublishedSave => 'Lưu';
 
   @override
-  String get chatMessageEditLimitTitle => 'Slow down';
+  String get chatMessageEditLimitTitle => 'Chậm lại chút';
 
   @override
   String chatMessageEditLimitBody(String duration) {
-    return 'You can edit this published message again in $duration.';
+    return 'Bạn có thể chỉnh sửa lại tin nhắn đã đăng này sau $duration.';
   }
 
   @override
   String get chatMessageEditLimitUnknown =>
-      'You are editing this published message too quickly. Try again in a moment.';
+      'Bạn đang chỉnh sửa tin nhắn đã đăng này quá nhanh. Vui lòng thử lại sau.';
 
   @override
-  String get chatMessageOriginalDeleted => '[Original message deleted]';
+  String get chatMessageOriginalDeleted => '[Tin nhắn gốc đã bị xóa]';
 
   @override
-  String get userTagCommunity => 'Community';
+  String get userTagCommunity => 'Cộng đồng';
 
   @override
   String systemFollowAdd(String username, String source) {
-    return '$username followed $source into this channel. Messages published there will appear here.';
+    return '$username đã cho kênh này theo dõi $source. Các tin nhắn được đăng ở đó sẽ xuất hiện tại đây.';
   }
 
   @override
   String systemPreviewFollowAdd(String username, String source) {
-    return '$username followed $source into this channel.';
+    return '$username đã cho kênh này theo dõi $source.';
   }
 
   @override
-  String get publishNudgeNotSent => 'Not sent to followers yet.';
+  String get publishNudgeNotSent => 'Chưa gửi cho người theo dõi.';
 
   @override
-  String get publishNudgeHideForever => 'Don\'t show again';
+  String get publishNudgeHideForever => 'Không hiển thị lại';
 
   @override
-  String get publishNudgeDismiss => 'Dismiss';
+  String get publishNudgeDismiss => 'Bỏ qua';
 
   @override
-  String get channelSettingsFollowedChannels => 'Followed channels';
+  String get channelSettingsFollowedChannels => 'Kênh đang theo dõi';
 
   @override
   String get channelSettingsFollowedChannelsDescription =>
-      'Announcement channels this channel follows. Unfollow to stop receiving copies.';
+      'Các kênh thông báo mà kênh này đang theo dõi. Bỏ theo dõi để ngừng nhận bản sao.';
 
   @override
   String get guildSettingsFollowedChannelsDescription =>
-      'Announcement channels followed by channels in this community.';
+      'Kênh thông báo được theo dõi bởi các kênh trong cộng đồng này.';
 
   @override
   String channelSettingsFollowedFrom(String guildName, String channelName) {
-    return 'From $guildName #$channelName';
+    return 'Từ $guildName #$channelName';
   }
 
   @override
   String get channelSettingsFollowedPaused =>
-      'Updates are paused because the source channel is no longer available.';
+      'Đã tạm dừng cập nhật vì kênh nguồn không còn khả dụng.';
 
   @override
   String channelSettingsUnfollowTitle(String name) {
-    return 'Unfollow $name?';
+    return 'Bỏ theo dõi $name?';
   }
 
   @override
   String get channelSettingsUnfollowBody =>
-      'This channel will stop receiving copies from that announcement channel.';
+      'Kênh này sẽ ngừng nhận bản sao từ kênh thông báo đó.';
 
   @override
-  String get channelSettingsUnfollow => 'Unfollow';
+  String get channelSettingsUnfollow => 'Bỏ theo dõi';
 
   @override
-  String get channelSettingsUnfollowFailed =>
-      'Couldn\'t unfollow this channel.';
+  String get crosspostCommunityTitle => 'Cộng đồng';
 
   @override
-  String channelSettingsDeliveredTo(String channelName) {
-    return 'Delivered to #$channelName';
-  }
+  String get crosspostGoToCommunity => 'Đi đến cộng đồng';
 
   @override
-  String get crosspostCommunityTitle => 'Community';
-
-  @override
-  String get crosspostGoToCommunity => 'Go to community';
-
-  @override
-  String get crosspostJoinCommunity => 'Join Community';
+  String get crosspostJoinCommunity => 'Tham gia cộng đồng';
 
   @override
   String get crosspostSourceFailed =>
-      'Couldn\'t load this community. Try again in a moment.';
-
-  @override
-  String get crosspostSourceUnavailable =>
-      'This community is no longer available';
+      'Không thể tải cộng đồng này. Hãy thử lại sau.';
 
   @override
   String crosspostMembers(int count) {
-    return '$count members';
+    return '$count thành viên';
   }
 
   @override
   String crosspostOnline(int count) {
-    return '$count online';
+    return '$count trực tuyến';
   }
 
   @override
@@ -15966,8 +14679,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count minutes',
-      one: '1 minute',
+      other: '$count phút',
+      one: '1 phút',
     );
     return '$_temp0';
   }
@@ -15977,19 +14690,321 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count seconds',
-      one: '1 second',
+      other: '$count giây',
+      one: '1 giây',
     );
     return '$_temp0';
   }
 
   @override
-  String get channelUnsupportedTitle => 'Unsupported channel type';
+  String get channelUnsupportedTitle => 'Loại kênh không được hỗ trợ';
 
   @override
   String get channelUnsupportedBody =>
-      'This version of the app doesn\'t support this channel type.';
+      'Phiên bản ứng dụng này không hỗ trợ loại kênh này.';
 
   @override
-  String get channelDetailsUnsupportedChannel => 'Unsupported channel';
+  String get channelDetailsUnsupportedChannel => 'Kênh không được hỗ trợ';
+
+  @override
+  String get forumChannelTypeForum => 'Forum';
+
+  @override
+  String get forumChannelTypeForumDescription =>
+      'Posts organized by topic and tags';
+
+  @override
+  String get forumChannelTypeMedia => 'Media';
+
+  @override
+  String get forumChannelTypeMediaDescription =>
+      'Posts built around images and videos';
+
+  @override
+  String get forumNewPost => 'Bài đăng mới';
+
+  @override
+  String get forumNewMediaPost => 'New media post';
+
+  @override
+  String get forumSearchPosts => 'Tìm bài đăng';
+
+  @override
+  String get forumViewOptions => 'Sort and view';
+
+  @override
+  String get forumSearchIndexing =>
+      'Search is still being prepared for this community. Posts appear here as soon as it is ready.';
+
+  @override
+  String get forumNoPosts => 'Chưa có bài đăng nào';
+
+  @override
+  String get forumNoPostsHint => 'Be the first to start a conversation here.';
+
+  @override
+  String get forumNoSearchResults => 'No posts match your search';
+
+  @override
+  String get forumNoSearchResultsHint =>
+      'Try different words or clear the tag filter.';
+
+  @override
+  String get forumCreateFirstPost => 'Create the first post';
+
+  @override
+  String get forumOlderPosts => 'Older posts';
+
+  @override
+  String get forumPostsLoadFailed => 'Posts could not be loaded.';
+
+  @override
+  String get forumRetry => 'Try again';
+
+  @override
+  String get forumPostPinned => 'Pinned';
+
+  @override
+  String get forumPostLocked => 'Locked';
+
+  @override
+  String get forumPostArchived => 'Archived';
+
+  @override
+  String get forumPostNewBadge => 'NEW';
+
+  @override
+  String get forumPostStarterDeleted => 'The original message was deleted.';
+
+  @override
+  String forumPostSnippet(String author, String content) {
+    return '$author: $content';
+  }
+
+  @override
+  String forumPostNewMessages(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new messages',
+      one: '1 new message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostReact => 'Add the default reaction';
+
+  @override
+  String get forumOpenPost => 'Open post';
+
+  @override
+  String get forumEditTags => 'Edit tags';
+
+  @override
+  String get forumSaveTags => 'Save tags';
+
+  @override
+  String forumTagsLimitHint(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Pick up to $count tags.',
+      one: 'Pick up to 1 tag.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPinPost => 'Pin post';
+
+  @override
+  String get forumUnpinPost => 'Unpin post';
+
+  @override
+  String get forumMarkPostRead => 'Mark as read';
+
+  @override
+  String get forumCopyPostLink => 'Copy link';
+
+  @override
+  String get forumPostGuidelines => 'Post guidelines';
+
+  @override
+  String get forumGuidelinesPlaceholder =>
+      'Tell people what to post here and how to post it.';
+
+  @override
+  String get forumPostTitle => 'Title';
+
+  @override
+  String get forumPostMessage => 'Message';
+
+  @override
+  String get forumPostMessagePlaceholder =>
+      'Write the first message of your post';
+
+  @override
+  String get forumPostMediaPlaceholder => 'Add a caption';
+
+  @override
+  String get forumPostTags => 'Tags';
+
+  @override
+  String get forumPostTagsRequired => 'Tags (required)';
+
+  @override
+  String get forumPostAddMedia => 'Add media';
+
+  @override
+  String get forumPostAddFile => 'Add file';
+
+  @override
+  String get forumPostRemoveAttachment => 'Remove attachment';
+
+  @override
+  String get forumPostSubmit => 'Post';
+
+  @override
+  String get forumPostTitleRequired => 'Give your post a title.';
+
+  @override
+  String get forumPostMediaRequired =>
+      'Add at least one image or video to post here.';
+
+  @override
+  String get forumPostContentRequired => 'Write a message or add a file.';
+
+  @override
+  String get forumSortLatestActivity => 'Recently active';
+
+  @override
+  String get forumSortCreationTime => 'Date posted';
+
+  @override
+  String get forumLayoutList => 'Danh sách';
+
+  @override
+  String get forumLayoutGallery => 'Thư viện';
+
+  @override
+  String get forumNewPostsUnread => 'Show unread for new posts';
+
+  @override
+  String get forumNewPostsUnreadDescription =>
+      'Mark this channel unread when someone creates a post.';
+
+  @override
+  String get forumPostSlowmode => 'Post slowmode';
+
+  @override
+  String forumPostSlowmodeDescription(String bypassSlowmodePermissionLabel) {
+    return 'Wait between creating posts. \"$bypassSlowmodePermissionLabel\" can bypass it.';
+  }
+
+  @override
+  String get forumMessageSlowmode => 'Message slowmode in posts';
+
+  @override
+  String get forumMessageSlowmodeDescription =>
+      'Slowmode applied to messages in new posts.';
+
+  @override
+  String get forumDefaultAutoArchive => 'Hide after inactivity';
+
+  @override
+  String get forumDefaultAutoArchiveDescription =>
+      'New posts are archived after this long without activity.';
+
+  @override
+  String get forumDefaultReaction => 'Default reaction';
+
+  @override
+  String get forumSetDefaultReaction => 'Pick an emoji';
+
+  @override
+  String get forumChangeDefaultReaction => 'Change';
+
+  @override
+  String get forumRemoveDefaultReaction => 'Remove';
+
+  @override
+  String get forumDefaultSortOrder => 'Default sort order';
+
+  @override
+  String get forumDefaultLayout => 'Default layout';
+
+  @override
+  String get forumTagMatchSetting => 'Tag filter';
+
+  @override
+  String get forumTagMatchSome => 'Match any selected tag';
+
+  @override
+  String get forumTagMatchAll => 'Match all selected tags';
+
+  @override
+  String get forumRequireTag => 'Require tags';
+
+  @override
+  String get forumRequireTagDescription =>
+      'People must pick at least one tag when they create a post.';
+
+  @override
+  String get forumHideMediaDownloads => 'Hide media download options';
+
+  @override
+  String get forumHideMediaDownloadsDescription =>
+      'Hide download, open in browser and copy link for images and videos in posts.';
+
+  @override
+  String forumTagsTitle(int count, int max) {
+    return 'Tags ($count/$max)';
+  }
+
+  @override
+  String get forumTagsDescription =>
+      'Tags help people find and filter posts. Only moderators can apply moderated tags.';
+
+  @override
+  String get forumCreateTag => 'Create tag';
+
+  @override
+  String get forumEditTag => 'Edit tag';
+
+  @override
+  String get forumSaveTag => 'Save tag';
+
+  @override
+  String get forumDeleteTag => 'Delete tag';
+
+  @override
+  String get forumTagName => 'Tag name';
+
+  @override
+  String get forumTagEmoji => 'Emoji';
+
+  @override
+  String get forumTagRemoveEmoji => 'Remove emoji';
+
+  @override
+  String get forumTagModerated => 'Only moderators can apply';
+
+  @override
+  String get forumTagModeratedDescription =>
+      'Only members who can manage threads can apply or remove this tag.';
+
+  @override
+  String get forumTagModeratedBadge => 'Moderated';
+
+  @override
+  String forumPostCooldown(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'You can post again in $seconds seconds.',
+      one: 'You can post again in 1 second.',
+    );
+    return '$_temp0';
+  }
 }

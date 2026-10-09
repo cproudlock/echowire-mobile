@@ -8,6 +8,7 @@ import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet_drag.dart';
 import 'package:fluxer_app/features/ui/overlay/fluxer_overlay_back_handler.dart';
 import 'package:fluxer_app/features/ui/preview/fluxer_widget_preview.dart';
+import 'package:fluxer_app/features/ui/radio_group/fluxer_radio_group.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_tappable.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
@@ -1273,8 +1274,13 @@ class FluxerBottomSheetFooter extends StatelessWidget {
 
 class FluxerMenuGroup extends StatelessWidget {
   final List<Widget> children;
+  final bool bordered;
 
-  const FluxerMenuGroup({required this.children, super.key});
+  const FluxerMenuGroup({
+    required this.children,
+    this.bordered = false,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -1284,33 +1290,47 @@ class FluxerMenuGroup extends StatelessWidget {
 
     final colors = context.colors;
     final layout = context.layout;
+    final dividerColor = bordered
+        ? colors.backgroundModifierAccent
+        : colors.backgroundHeaderSecondary.withValues(alpha: 0.3);
+    final dividerInset = bordered ? layout.s3 : 16.0;
 
     return Material(
       color: colors.backgroundSecondaryAlt,
       surfaceTintColor: Colors.transparent,
-      borderRadius: layout.radiusXl,
+      shape: bordered
+          ? RoundedRectangleBorder(
+              borderRadius: layout.radiusXl,
+              side: BorderSide(color: colors.backgroundModifierAccent),
+            )
+          : null,
+      borderRadius: bordered ? null : layout.radiusXl,
       clipBehavior: Clip.antiAlias,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: _intersperseDividers(children, colors),
+        children: _intersperseDividers(
+          children,
+          dividerColor: dividerColor,
+          dividerInset: dividerInset,
+        ),
       ),
     );
   }
 }
 
-List<Widget> _intersperseDividers(List<Widget> items, FluxerColorTheme colors) {
+List<Widget> _intersperseDividers(
+  List<Widget> items, {
+  required Color dividerColor,
+  required double dividerInset,
+}) {
   final result = <Widget>[];
   for (var i = 0; i < items.length; i++) {
     result.add(items[i]);
     if (i < items.length - 1) {
       result.add(
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Divider(
-            height: 1,
-            thickness: 1,
-            color: colors.backgroundHeaderSecondary.withValues(alpha: 0.3),
-          ),
+          padding: EdgeInsets.symmetric(horizontal: dividerInset),
+          child: Divider(height: 1, thickness: 1, color: dividerColor),
         ),
       );
     }
@@ -1321,42 +1341,6 @@ List<Widget> _intersperseDividers(List<Widget> items, FluxerColorTheme colors) {
 // ---------------------------------------------------------------------------
 // Menu items
 // ---------------------------------------------------------------------------
-
-class FluxerMenuRadioIndicator extends StatelessWidget {
-  const FluxerMenuRadioIndicator({required this.selected, super.key});
-
-  final bool selected;
-
-  @override
-  Widget build(BuildContext context) {
-    final FluxerColorTheme colors = context.colors;
-
-    return Container(
-      width: 20,
-      height: 20,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: selected ? colors.brandPrimary : Colors.transparent,
-        border: Border.all(
-          color: selected ? colors.brandPrimary : colors.interactiveMuted,
-          width: 2,
-        ),
-      ),
-      child: selected
-          ? Center(
-              child: Container(
-                width: 8,
-                height: 8,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colors.textPrimary,
-                ),
-              ),
-            )
-          : null,
-    );
-  }
-}
 
 class FluxerBottomSheetMenuItem extends StatelessWidget {
   final String label;
@@ -1576,7 +1560,7 @@ class FluxerBottomSheetMenuRadioItem extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  FluxerMenuRadioIndicator(selected: isSelected),
+                  FluxerRadioIndicator(selected: isSelected),
                 ],
               ),
             ),

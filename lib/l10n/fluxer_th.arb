@@ -28,10 +28,6 @@
     "@retry": {
         "description": "Generic label for retry actions (splash, errors, network, etc.)."
     },
-    "connectingCaps": "CONNECTING",
-    "@connectingCaps": {
-        "description": "Connecting text on the splash screen"
-    },
     "splashConnectionLost": "การเชื่อมต่อขาดหาย",
     "@splashConnectionLost": {
         "description": "Fallback headline on splash when gateway is unavailable (web parity)."
@@ -93,10 +89,6 @@
             }
         }
     },
-    "ssoRequired": "ต้องใช้ SSO เพื่อเข้าถึงอินสแตนซ์นี้",
-    "@ssoRequired": {
-        "description": "Short sign-in note shown when the instance requires single sign-on."
-    },
     "organizationSsoProvider": "ลงชื่อเข้าใช้ด้วยผู้ให้บริการ Single Sign-On ขององค์กรของคุณ",
     "@organizationSsoProvider": {
         "description": "Description shown when sign-in is restricted to the configured SSO provider."
@@ -117,10 +109,6 @@
                 "type": "String"
             }
         }
-    },
-    "logInViaBrowser": "เข้าสู่ระบบผ่านเบราว์เซอร์",
-    "@logInViaBrowser": {
-        "description": "Secondary login that opens or uses the system browser."
     },
     "needAccountPrompt": "ยังไม่มีบัญชี? ",
     "@needAccountPrompt": {
@@ -248,26 +236,9 @@
     "@accountAdd": {
         "description": "Button to add a new account."
     },
-    "accountRemove": "ลบ",
-    "@accountRemove": {
-        "description": "Context menu option to remove a stored account."
-    },
-    "accountRemoveTitle": "ลบบัญชี {username}",
-    "@accountRemoveTitle": {
-        "description": "Title for the remove account confirmation modal.",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "accountRemoveDescription": "การดำเนินการนี้จะลบเซสชันที่บันทึกไว้สำหรับบัญชีนี้",
     "@accountRemoveDescription": {
         "description": "Description for the remove account confirmation modal."
-    },
-    "accountRemoveOnlyDescription": "การดำเนินการนี้จะลบบัญชีเดียวที่บันทึกไว้ในอุปกรณ์นี้",
-    "@accountRemoveOnlyDescription": {
-        "description": "Description when removing the last stored account."
     },
     "accountExpired": "หมดอายุ",
     "@accountExpired": {
@@ -652,7 +623,7 @@
     },
     "recoveryKitBackupCodesFailed": "ไม่สามารถโหลดรหัสสำรองของคุณได้",
     "@recoveryKitBackupCodesFailed": {
-        "description": "Toast shown when the two-factor backup codes for the recovery kit cannot be loaded."
+        "description": "Toast shown when the two-factor backup codes cannot be loaded, in the recovery kit sheet or from View codes in security settings."
     },
     "recoveryKitIncludeBackupCodes": "รวมรหัสสำรองการยืนยันตัวตนแบบสองขั้นตอนของฉันไว้ในรูปภาพที่บันทึก",
     "@recoveryKitIncludeBackupCodes": {
@@ -799,10 +770,6 @@
     "@registerYear": {
         "description": "Placeholder for the year select."
     },
-    "registerConsent": "ฉันยอมรับข้อกำหนดในการให้บริการและนโยบายความเป็นส่วนตัว",
-    "@registerConsent": {
-        "description": "Consent checkbox label for registration (plain text fallback)."
-    },
     "registerConsentPrefix": "ฉันยอมรับ ",
     "@registerConsentPrefix": {
         "description": "Text before the Terms of Service link in the consent checkbox."
@@ -846,10 +813,6 @@
     "passkeyTimeout": "การยืนยันตัวตนด้วย passkey หมดเวลา โปรดลองอีกครั้ง",
     "@passkeyTimeout": {
         "description": "Error when passkey authentication times out."
-    },
-    "passkeyNotAvailable": "ไม่สามารถใช้ passkey สำหรับแอปนี้ได้ โปรดเข้าสู่ระบบด้วยอีเมลและรหัสผ่านแทน",
-    "@passkeyNotAvailable": {
-        "description": "Error for unknown passkey provider errors (e.g. TYPE_UNKNOWN)."
     },
     "passkeyFailed": "การยืนยันด้วยรหัสผ่านล้มเหลว โปรดลองอีกครั้ง",
     "@passkeyFailed": {
@@ -958,26 +921,6 @@
     "@inviteAcceptSomeone": {
         "description": "Fallback inviter name when the inviter is unknown."
     },
-    "inviteAcceptEmojiPack": "ชุดอิโมจิ",
-    "@inviteAcceptEmojiPack": {
-        "description": "Label for an emoji pack invite."
-    },
-    "inviteAcceptStickerPack": "ชุดสติกเกอร์",
-    "@inviteAcceptStickerPack": {
-        "description": "Label for a sticker pack invite."
-    },
-    "inviteAcceptInstallEmojiPack": "ติดตั้งชุดอิโมจิ",
-    "@inviteAcceptInstallEmojiPack": {
-        "description": "Primary action to install an emoji pack from an invite."
-    },
-    "inviteAcceptInstallStickerPack": "ติดตั้งชุดสติกเกอร์",
-    "@inviteAcceptInstallStickerPack": {
-        "description": "Primary action to install a sticker pack from an invite."
-    },
-    "inviteAcceptPackInstallNote": "การยอมรับคำเชิญนี้จะติดตั้งแพ็กโดยอัตโนมัติ",
-    "@inviteAcceptPackInstallNote": {
-        "description": "Note shown on expression pack invites before accepting."
-    },
     "mentionUnknownChannel": "unknown-channel",
     "@mentionUnknownChannel": {
         "description": "Fallback name shown in a channel mention pill when the channel is not found."
@@ -1002,13 +945,13 @@
     "@embedThemeTitle": {
         "description": "Title on the theme embed card in chat."
     },
-    "embedThemeSubtitle": "ไคลเอ็นต์นี้ไม่รองรับธีมที่กำหนดเอง",
-    "@embedThemeSubtitle": {
-        "description": "Subtitle on the theme embed card."
+    "embedThemeWebOnly": "นำเข้าธีมได้เฉพาะบนเว็บหรือเดสก์ท็อปเท่านั้น",
+    "@embedThemeWebOnly": {
+        "description": "Subtitle on a shared theme link embed in chat. Themes cannot be imported in this client."
     },
-    "embedThemeUnavailableButton": "ธีมไม่พร้อมใช้งาน",
-    "@embedThemeUnavailableButton": {
-        "description": "Button on the theme embed card - themes aren't supported in the client."
+    "embedThemeImport": "นำเข้าธีม",
+    "@embedThemeImport": {
+        "description": "Disabled button on a shared theme link embed. Themes can only be imported on web or desktop."
     },
     "privacySettings": "การตั้งค่าความเป็นส่วนตัว",
     "@privacySettings": {
@@ -1236,9 +1179,18 @@
     "@dmLeaveGroup": {
         "description": "DM context menu action to leave a group DM."
     },
-    "dmNoCommunitiesAvailable": "ไม่มีชุมชนให้เข้าร่วม",
-    "@dmNoCommunitiesAvailable": {
-        "description": "Shown when no communities are available to invite to."
+    "dmInviteSentFor": "ส่งคำเชิญเข้าร่วม {communityName} แล้ว",
+    "@dmInviteSentFor": {
+        "description": "Toast confirming a community invite was sent to a DM recipient.",
+        "placeholders": {
+            "communityName": {
+                "type": "String"
+            }
+        }
+    },
+    "dmInviteSendFailed": "ส่งคำเชิญไม่ได้ ลองอีกครั้ง",
+    "@dmInviteSendFailed": {
+        "description": "Toast shown when sending a community invite from the DM menu fails."
     },
     "dmGroupMemberCount": "{count} คน",
     "@dmGroupMemberCount": {
@@ -1683,10 +1635,6 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "รับ Reverb",
-    "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Reverb upsell banner."
-    },
     "emojiPlutoniumUpsellDismiss": "ไม่ต้องแสดงอีก",
     "@emojiPlutoniumUpsellDismiss": {
         "description": "Dismiss link on the Reverb upsell banner."
@@ -1853,10 +1801,6 @@
     "@changeYourFluxerTag": {
         "description": "Title for the username change bottom sheet."
     },
-    "fluxerTagInputLabel": "ชื่อผู้ใช้",
-    "@fluxerTagInputLabel": {
-        "description": "Label above the username and discriminator input fields."
-    },
     "fluxerTagDescriptionBase": "ชื่อผู้ใช้สามารถมีได้เฉพาะตัวอักษร (a-z, A-Z) ตัวเลข (0-9) และขีดล่างเท่านั้น ชื่อผู้ใช้ไม่คำนึงถึงตัวพิมพ์เล็ก/ใหญ่",
     "@fluxerTagDescriptionBase": {
         "description": "Base description text on the username change sheet."
@@ -1884,10 +1828,6 @@
     "validationAllowedChars": "เฉพาะตัวอักษร (a-z, A-Z) ตัวเลข (0-9) และขีดล่าง (_)",
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
-    },
-    "discriminatorPremiumTooltip": "รับ Reverb เพื่อปรับแต่งแท็กของคุณ หรือเก็บไว้เมื่อเปลี่ยนชื่อผู้ใช้",
-    "@discriminatorPremiumTooltip": {
-        "description": "Tooltip on disabled discriminator field for non-premium users."
     },
     "fluxerTagAlreadyTaken": "ชื่อผู้ใช้ มีผู้ใช้แล้ว",
     "@fluxerTagAlreadyTaken": {
@@ -1942,19 +1882,6 @@
     "premiumUpsellCustomizeTag": "ปรับแต่งแท็ก 4 หลักของคุณ หรือเก็บไว้เมื่อเปลี่ยนชื่อผู้ใช้",
     "@premiumUpsellCustomizeTag": {
         "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
-    },
-    "premiumTrialExpiresOn": "การทดลองใช้ Reverb ของคุณจะหมดอายุในวันที่ {date} อัปเกรดเพื่อเก็บแท็กที่กำหนดเองของคุณและรับป้ายบนโปรไฟล์ของคุณ",
-    "@premiumTrialExpiresOn": {
-        "description": "Trial upsell with expiry date.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumTrialActive": "คุณกำลังทดลองใช้ Reverb อัปเกรดเพื่อเก็บแท็กที่กำหนดเองของคุณและรับป้ายบนโปรไฟล์ของคุณ",
-    "@premiumTrialActive": {
-        "description": "Trial upsell without specific expiry date."
     },
     "fluxerTagUpdated": "ชื่อผู้ใช้ ได้รับการอัปเดตแล้ว",
     "@fluxerTagUpdated": {
@@ -2128,32 +2055,6 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "คุณกำลังทดลองใช้ Reverb — การสมัครสมาชิกของคุณจะเริ่มในวันที่ {date}",
-    "@premiumTrialSubscriptionStarts": {
-        "description": "Trial banner title when user has an active subscription pending after trial.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumTrialSubscriptionStartsDescription": "การสมัครสมาชิกของคุณจะเริ่มโดยอัตโนมัติเมื่อการทดลองใช้ของคุณสิ้นสุดลง ไม่ต้องดำเนินการใดๆ",
-    "@premiumTrialSubscriptionStartsDescription": {
-        "description": "Trial banner description when user has an active subscription pending after trial."
-    },
-    "premiumTrialExpiresOnProfile": "คุณกำลังทดลองใช้ Reverb ซึ่งจะหมดอายุในวันที่ {date}",
-    "@premiumTrialExpiresOnProfile": {
-        "description": "Trial banner title with expiry date.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumTrialActiveProfile": "คุณกำลังทดลองใช้ Reverb",
-    "@premiumTrialActiveProfile": {
-        "description": "Trial banner title without specific expiry date."
-    },
     "avatarDescriptionNonPremium": "JPEG, PNG, WebP. สูงสุด 10MB. แนะนำ: 512×512px. อวาตาร์เคลื่อนไหว (GIF) ต้องใช้ Reverb",
     "@avatarDescriptionNonPremium": {
         "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
@@ -2238,22 +2139,6 @@
     "profileSavedToast": "อัปเดตโปรไฟล์แล้ว",
     "@profileSavedToast": {
         "description": "Toast message shown after successfully saving profile changes."
-    },
-    "profileEditButton": "แก้ไขโปรไฟล์",
-    "@profileEditButton": {
-        "description": "Button label to open profile editing from the profile content card."
-    },
-    "profileNoteLabel": "หมายเหตุ",
-    "@profileNoteLabel": {
-        "description": "Label for the personal note section on a user profile."
-    },
-    "profileNoteVisibility": "(เฉพาะคุณที่มองเห็น)",
-    "@profileNoteVisibility": {
-        "description": "Hint that the note is private and only visible to the current user."
-    },
-    "profileNoteEmpty": "ยังไม่มีหมายเหตุ",
-    "@profileNoteEmpty": {
-        "description": "Placeholder shown when no personal note has been set for a user."
     },
     "sudoTitle": "ยืนยันตัวตนของคุณ",
     "@sudoTitle": {
@@ -2626,42 +2511,6 @@
     "@securityPasskeyNameHint": {
         "description": "Hint for passkey name input."
     },
-    "securityPhoneSectionTitle": "หมายเลขโทรศัพท์",
-    "@securityPhoneSectionTitle": {
-        "description": "Title for phone number section."
-    },
-    "securityPhoneSectionDescription": "จัดการหมายเลขโทรศัพท์ของคุณ",
-    "@securityPhoneSectionDescription": {
-        "description": "Description for phone number section."
-    },
-    "securityPhoneLabel": "หมายเลขโทรศัพท์",
-    "@securityPhoneLabel": {
-        "description": "Label for phone number row."
-    },
-    "securityPhoneNone": "ยังไม่ได้เพิ่มหมายเลขโทรศัพท์",
-    "@securityPhoneNone": {
-        "description": "Shown when no phone number is set."
-    },
-    "securityPhoneAdd": "เพิ่มโทรศัพท์",
-    "@securityPhoneAdd": {
-        "description": "Button to add phone number."
-    },
-    "securityPhoneRemove": "ลบ",
-    "@securityPhoneRemove": {
-        "description": "Button to remove phone number."
-    },
-    "securityPhoneRemoveTitle": "ลบหมายเลขโทรศัพท์",
-    "@securityPhoneRemoveTitle": {
-        "description": "Title for phone remove confirmation."
-    },
-    "securityPhoneRemoveDescription": "คุณแน่ใจหรือไม่ว่าต้องการลบหมายเลขโทรศัพท์ของคุณ?",
-    "@securityPhoneRemoveDescription": {
-        "description": "Description for phone remove confirmation."
-    },
-    "securityPhoneRemoved": "ลบหมายเลขโทรศัพท์แล้ว",
-    "@securityPhoneRemoved": {
-        "description": "Toast after phone removed."
-    },
     "securityClaimTitle": "คุณสมบัติความปลอดภัย",
     "@securityClaimTitle": {
         "description": "Title when user needs to claim account for security."
@@ -2670,7 +2519,7 @@
     "@securityClaimDescription": {
         "description": "Description prompting user to claim account."
     },
-    "securityVerifyEmailRequired": "คุณต้องยืนยันที่อยู่อีเมลของคุณก่อนจึงจะสามารถตั้งค่าการยืนยันตัวตนสองชั้น รหัสผ่าน หรือการยืนยันทาง SMS ได้",
+    "securityVerifyEmailRequired": "คุณต้องยืนยันที่อยู่อีเมลของคุณก่อนจึงจะสามารถตั้งค่าการยืนยันตัวตนสองชั้นหรือรหัสผ่านได้",
     "@securityVerifyEmailRequired": {
         "description": "Warning when email is not verified."
     },
@@ -2714,10 +2563,6 @@
     "@backupCodesWarning": {
         "description": "Warning about backup codes."
     },
-    "backupCodesDownload": "ดาวน์โหลด",
-    "@backupCodesDownload": {
-        "description": "Button to download backup codes."
-    },
     "backupCodesCopy": "คัดลอก",
     "@backupCodesCopy": {
         "description": "Button to copy backup codes."
@@ -2733,46 +2578,6 @@
     "backupCodesDone": "เสร็จสิ้น",
     "@backupCodesDone": {
         "description": "Button to close backup codes sheet."
-    },
-    "backupCodesViewTitle": "ดูรหัสสำรอง",
-    "@backupCodesViewTitle": {
-        "description": "Title for viewing existing backup codes."
-    },
-    "backupCodesViewDescription": "อาจต้องมีการยืนยันก่อนดูรหัสสำรองของคุณ",
-    "@backupCodesViewDescription": {
-        "description": "Description for view backup codes."
-    },
-    "phoneAddTitle": "เพิ่มหมายเลขโทรศัพท์",
-    "@phoneAddTitle": {
-        "description": "Title for phone add sheet."
-    },
-    "phoneAddLabel": "หมายเลขโทรศัพท์",
-    "@phoneAddLabel": {
-        "description": "Label for phone input."
-    },
-    "phoneAddHint": "ป้อนหมายเลขโทรศัพท์ของคุณ",
-    "@phoneAddHint": {
-        "description": "Hint for phone input."
-    },
-    "phoneAddFooter": "เราจะส่งรหัส SMS ไปให้เมื่อพร้อม หมายเลขของคุณจะไม่เชื่อมโยงกับบัญชีของคุณ เราจะเก็บเฉพาะเครื่องหมายที่เข้ารหัสไว้เท่านั้น โดยไม่มีรหัสผู้ใช้ เพื่อให้สามารถยืนยันได้สูงสุด 2 ครั้งภายในประมาณ 30 วัน",
-    "@phoneAddFooter": {
-        "description": "Footer text for phone input."
-    },
-    "phoneAddSendCode": "ส่งรหัส",
-    "@phoneAddSendCode": {
-        "description": "Button to send phone verification code."
-    },
-    "phoneVerifyTitle": "ยืนยันหมายเลขโทรศัพท์",
-    "@phoneVerifyTitle": {
-        "description": "Title for phone verify step."
-    },
-    "phoneVerifyDescription": "ป้อนรหัสยืนยันที่ส่งไปยังหมายเลขโทรศัพท์ของคุณ",
-    "@phoneVerifyDescription": {
-        "description": "Description for phone verify step."
-    },
-    "phoneAddSuccess": "ยืนยันเบอร์โทรศัพท์แล้ว",
-    "@phoneAddSuccess": {
-        "description": "Toast after phone added."
     },
     "dangerZoneSectionTitle": "โซนอันตราย",
     "@dangerZoneSectionTitle": {
@@ -3024,10 +2829,6 @@
     "@authorizedAppsScopeAdmin": {
         "description": "OAuth2 scope description: admin."
     },
-    "privacyPendingDeletionTitle": "รอดำเนินการลบ",
-    "@privacyPendingDeletionTitle": {
-        "description": "Title of the warning alert shown when a bulk message deletion is pending."
-    },
     "blockedUsersTitle": "ผู้ใช้ที่ถูกบล็อก",
     "@blockedUsersTitle": {
         "description": "Header title of the Blocked Users settings page."
@@ -3264,10 +3065,6 @@
     "@userProfileNoteDelete": {
         "description": "Delete button in the note editor sheet."
     },
-    "userProfileNoteEmpty": "แตะเพื่อเพิ่มหมายเหตุ",
-    "@userProfileNoteEmpty": {
-        "description": "Hint text when no note has been written yet."
-    },
     "userProfileMemberSince": "สมาชิกตั้งแต่",
     "@userProfileMemberSince": {
         "description": "Header of the member-since section in the bio card."
@@ -3379,13 +3176,13 @@
     "@userProfileTransferOwnership": {
         "description": "Three-dot menu item to transfer community ownership to the member."
     },
-    "userProfileReportUser": "รายงานผู้ใช้",
-    "@userProfileReportUser": {
-        "description": "Three-dot menu item to report the user."
-    },
     "userProfileReportMessage": "รายงานข้อความ",
     "@userProfileReportMessage": {
         "description": "Three-dot menu item to report the message that opened this profile."
+    },
+    "userProfileReportUserProfile": "รายงานโปรไฟล์",
+    "@userProfileReportUserProfile": {
+        "description": "Three-dot menu item on the full profile to report this user's profile (avatar, banner, name, bio and other profile parts). Message behavior is reported from the message instead."
     },
     "userProfileKickConfirmTitle": "เตะ {username} ออก?",
     "@userProfileKickConfirmTitle": {
@@ -3612,18 +3409,6 @@
     "durationCustom": "กำหนดเอง…",
     "@durationCustom": {
         "description": "Duration option label for a user-specified custom duration."
-    },
-    "iarReportUserTitle": "รายงานผู้ใช้",
-    "@iarReportUserTitle": {
-        "description": "Title of the simple user-report sheet."
-    },
-    "iarReasonInappropriateProfile": "โปรไฟล์ไม่เหมาะสม",
-    "@iarReasonInappropriateProfile": {
-        "description": "User-report reason: the user's profile contains inappropriate content."
-    },
-    "iarReasonInappropriateProfileDescription": "โปรไฟล์ของผู้ใช้นี้มีเนื้อหาไม่เหมาะสม",
-    "@iarReasonInappropriateProfileDescription": {
-        "description": "Description for the inappropriate-profile user-report reason."
     },
     "typingIndicatorOne": "{name} กำลังพิมพ์...",
     "@typingIndicatorOne": {
@@ -4050,17 +3835,9 @@
     "@channelComposerBarrierNotMemberLongEnough": {
         "description": "Composer barrier when the user's guild membership is too recent."
     },
-    "channelComposerBarrierNoPhoneNumber": "คุณต้องยืนยันหมายเลขโทรศัพท์เพื่อส่งข้อความในชุมชนนี้",
-    "@channelComposerBarrierNoPhoneNumber": {
-        "description": "Composer barrier when the user must verify a phone number before messaging."
-    },
     "channelComposerBarrierVerifyEmail": "ยืนยันอีเมล",
     "@channelComposerBarrierVerifyEmail": {
         "description": "Action button on the composer barrier for unverified email."
-    },
-    "channelComposerBarrierVerifyPhone": "ยืนยันโทรศัพท์",
-    "@channelComposerBarrierVerifyPhone": {
-        "description": "Action button on the composer barrier for missing phone verification."
     },
     "chatAttachmentTooMany": "ไฟล์แนบมากเกินไป (สูงสุด {max} ไฟล์)",
     "@chatAttachmentTooMany": {
@@ -4087,10 +3864,6 @@
     "@chatAttachmentDropToSend": {
         "description": "Overlay hint when dragging files over chat with Shift held."
     },
-    "chatAttachmentSendVoiceMessage": "ส่งข้อความเสียง",
-    "@chatAttachmentSendVoiceMessage": {
-        "description": "Menu item to open the voice message recorder."
-    },
     "voiceMessageTitle": "ข้อความเสียง",
     "@voiceMessageTitle": {
         "description": "Title for voice message recording UI."
@@ -4111,10 +3884,6 @@
     "@voiceMessageMicPermissionDenied": {
         "description": "Shown when microphone permission is denied for voice messages."
     },
-    "voiceMessageRecordingNotSupported": "อุปกรณ์นี้ไม่รองรับการบันทึกเสียง",
-    "@voiceMessageRecordingNotSupported": {
-        "description": "Shown when the device cannot record voice messages."
-    },
     "voiceMessageMicInUse": "ออกจากสายสนทนาเพื่อบันทึกข้อความเสียง",
     "@voiceMessageMicInUse": {
         "description": "Shown when the microphone is already used by an active voice call."
@@ -4127,26 +3896,6 @@
     "@voiceMessageSendFailed": {
         "description": "Shown when sending a voice message fails."
     },
-    "voiceMessageRecordingHint": "พูดได้เลย กดหยุดเมื่อคุณทำเสร็จแล้ว คุณสามารถตัดแต่งได้ในภายหลัง",
-    "@voiceMessageRecordingHint": {
-        "description": "Help text while recording a voice message on desktop."
-    },
-    "voiceMessageReviewHint": "ลากที่จับเพื่อตัดแต่ง จากนั้นกดส่ง",
-    "@voiceMessageReviewHint": {
-        "description": "Help text while reviewing a voice message before send."
-    },
-    "voiceMessageStop": "หยุด",
-    "@voiceMessageStop": {
-        "description": "Stop recording button in voice message composer."
-    },
-    "voiceMessageStartRecording": "เริ่มบันทึก",
-    "@voiceMessageStartRecording": {
-        "description": "Button to retry voice recording after permission error."
-    },
-    "voiceMessageRerecord": "Re-record",
-    "@voiceMessageRerecord": {
-        "description": "Button to discard review and record again."
-    },
     "voiceMessagePlay": "เล่น",
     "@voiceMessagePlay": {
         "description": "Play voice message preview."
@@ -4154,16 +3903,6 @@
     "voiceMessagePause": "หยุดชั่วคราว",
     "@voiceMessagePause": {
         "description": "Pause voice message preview."
-    },
-    "voiceMessageSelectionTooShort": "การเลือกต้องมีความยาวอย่างน้อย {seconds} วินาที",
-    "@voiceMessageSelectionTooShort": {
-        "description": "Error when trimmed voice message is too short.",
-        "placeholders": {
-            "seconds": {
-                "type": "num",
-                "format": "compact"
-            }
-        }
     },
     "chatAttachmentEditTitle": "แก้ไขไฟล์แนบ",
     "@chatAttachmentEditTitle": {
@@ -4208,10 +3947,6 @@
     "chatAttachmentSourceBrowse": "เรียกดูไฟล์",
     "@chatAttachmentSourceBrowse": {
         "description": "Option to pick arbitrary files from storage."
-    },
-    "chatAttachmentPasteTooltip": "วางไฟล์จากคลิปบอร์ด",
-    "@chatAttachmentPasteTooltip": {
-        "description": "Tooltip for pasting an image attachment from the clipboard."
     },
     "chatAttachmentSpoiler": "สปอยเลอร์",
     "@chatAttachmentSpoiler": {
@@ -4309,14 +4044,6 @@
     "@matureContentOpenLinkButton": {
         "description": "Primary action on mature link channel gates."
     },
-    "sensitiveContentSectionTitle": "เนื้อหาที่ละเอียดอ่อน",
-    "@sensitiveContentSectionTitle": {
-        "description": "Privacy settings section title for sensitive content filters."
-    },
-    "sensitiveContentSectionDescription": "ควบคุมการกรองสื่อสำหรับผู้ใหญ่หรือสื่อที่ละเอียดอ่อนในบริบทต่างๆ",
-    "@sensitiveContentSectionDescription": {
-        "description": "Privacy settings section description for sensitive content filters."
-    },
     "sensitiveContentFriendDmLabel": "ข้อความส่วนตัวจากเพื่อน",
     "@sensitiveContentFriendDmLabel": {
         "description": "Label for friend DM sensitive content filter."
@@ -4341,18 +4068,6 @@
     "@sensitiveContentFilterBlock": {
         "description": "Sensitive content filter option to block media."
     },
-    "sensitiveContentBlurUnscannedLabel": "เบลอสื่อจนกว่าการสแกนความปลอดภัยจะเสร็จสิ้น",
-    "@sensitiveContentBlurUnscannedLabel": {
-        "description": "Toggle label for blurring unscanned media."
-    },
-    "sensitiveContentBlurUnscannedDescriptionAdult": "เมื่อเปิดใช้งาน รูปภาพและวิดีโอจะถูกเบลอจนกว่าการสแกนความปลอดภัยของเนื้อหาจะเสร็จสิ้น",
-    "@sensitiveContentBlurUnscannedDescriptionAdult": {
-        "description": "Description for blur-unscanned toggle for adult accounts."
-    },
-    "sensitiveContentBlurUnscannedDescriptionMinor": "การตั้งค่านี้เปิดอยู่เสมอสำหรับบัญชีของคุณ",
-    "@sensitiveContentBlurUnscannedDescriptionMinor": {
-        "description": "Description for blur-unscanned toggle for minor accounts."
-    },
     "sensitiveContentResetButton": "รีเซ็ต",
     "@sensitiveContentResetButton": {
         "description": "Reset button for sensitive content settings."
@@ -4369,10 +4084,6 @@
                 "type": "int"
             }
         }
-    },
-    "chatCancelUpload": "ยกเลิกการอัปโหลด",
-    "@chatCancelUpload": {
-        "description": "Button or menu action label for canceling an in-flight message attachment upload."
     },
     "chatAttachmentExpiresOn": "หมดอายุวันที่ {date}",
     "@chatAttachmentExpiresOn": {
@@ -4642,10 +4353,6 @@
     "@connectionEnterDomain": {
         "description": "Inline error shown when the domain input is empty."
     },
-    "lookAndFeelTitle": "รูปลักษณ์และการแสดงผล",
-    "@lookAndFeelTitle": {
-        "description": "Title of the Look & Feel (Appearance) settings page."
-    },
     "lookAndFeelThemeSectionTitle": "ธีม",
     "@lookAndFeelThemeSectionTitle": {
         "description": "Section title for theme selection."
@@ -4685,14 +4392,6 @@
     "lookAndFeelThemeSyncFailed": "ไม่สามารถซิงค์ธีมไปยังบัญชีของคุณได้ โปรดลองอีกครั้ง",
     "@lookAndFeelThemeSyncFailed": {
         "description": "Toast message shown when the server PATCH for a theme change or sync toggle fails."
-    },
-    "lookAndFeelChatFontScalingTitle": "ขนาดตัวอักษรแชท",
-    "@lookAndFeelChatFontScalingTitle": {
-        "description": "Section title for the chat font size slider."
-    },
-    "lookAndFeelChatFontScalingDescription": "ปรับขนาดฟอนต์ในพื้นที่แชท",
-    "@lookAndFeelChatFontScalingDescription": {
-        "description": "Section description for the chat font size slider."
     },
     "lookAndFeelInterfaceTitle": "อินเทอร์เฟซ",
     "@lookAndFeelInterfaceTitle": {
@@ -4761,42 +4460,6 @@
     "lookAndFeelHideKeyboardHintsDescription": "เมื่อเปิดใช้งาน จะซ่อนป้ายทางลัดในป๊อปอัปคำแนะนำเครื่องมือ",
     "@lookAndFeelHideKeyboardHintsDescription": {
         "description": "Toggle description for the hide-keyboard-hints switch."
-    },
-    "lookAndFeelNekoTitle": "เบ็ดเตล็ด",
-    "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Pickles appearance settings."
-    },
-    "lookAndFeelNekoDescription": "ตัวเลือกอินเทอร์เฟซเบ็ดเตล็ด",
-    "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Pickles appearance settings."
-    },
-    "lookAndFeelShowNekoLabel": "แสดง Pickles",
-    "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Pickles in the chat footer."
-    },
-    "lookAndFeelShowNekoDescription": "เมื่อเปิดใช้งาน Pickles จะปรากฏใกล้แถบป้อนข้อมูลแชท",
-    "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Pickles in chat."
-    },
-    "lookAndFeelVoiceChannelJoinTitle": "พฤติกรรมการเข้าร่วมช่องเสียง",
-    "@lookAndFeelVoiceChannelJoinTitle": {
-        "description": "Subsection title under Interface — voice channel join behavior."
-    },
-    "lookAndFeelVoiceChannelJoinDescription": "ควบคุมวิธีที่คุณเข้าร่วมช่องเสียงในชุมชน",
-    "@lookAndFeelVoiceChannelJoinDescription": {
-        "description": "Subsection description for voice channel join behavior."
-    },
-    "lookAndFeelRequireDoubleClickJoinLabel": "ต้องดับเบิลคลิกเพื่อเข้าร่วมช่องเสียง",
-    "@lookAndFeelRequireDoubleClickJoinLabel": {
-        "description": "Toggle label — require double-click to join voice channels."
-    },
-    "lookAndFeelRequireDoubleClickJoinDescription": "เมื่อเปิดใช้งาน คุณจะต้องดับเบิลคลิกที่ช่องเสียงเพื่อเข้าร่วม เมื่อปิดใช้งาน (ค่าเริ่มต้น) การคลิกเพียงครั้งเดียวจะเข้าร่วมช่องทันที",
-    "@lookAndFeelRequireDoubleClickJoinDescription": {
-        "description": "Toggle description for the require-double-click voice channel join switch."
-    },
-    "lookAndFeelChatFontPreviewSample": "หมาจิ้งจอกสีน้ำตาลตัวเร็ว กระโดดข้ามหมาแก่",
-    "@lookAndFeelChatFontPreviewSample": {
-        "description": "Sample text rendered at the selected chat font size to preview scaling."
     },
     "lookAndFeelGuildSidebarTitle": "แถบด้านข้างเซิร์ฟเวอร์",
     "@lookAndFeelGuildSidebarTitle": {
@@ -5205,25 +4868,9 @@
     "@messagesMediaAutocompleteSavedMediaLabel": {
         "description": "Toggle label for saved media in expression autocomplete."
     },
-    "messagesMediaEditingSectionTitle": "การแก้ไขข้อความ",
-    "@messagesMediaEditingSectionTitle": {
-        "description": "Section title for message editing settings."
-    },
-    "messagesMediaEditingSectionDescription": "ควบคุมสิ่งที่เกิดขึ้นกับร่างการแก้ไขของคุณเมื่อคุณยกเลิก",
-    "@messagesMediaEditingSectionDescription": {
-        "description": "Section description for message editing settings."
-    },
-    "messagesMediaEditingPreserveDraftLabel": "เก็บร่างการแก้ไขไว้เมื่อยกเลิก",
-    "@messagesMediaEditingPreserveDraftLabel": {
-        "description": "Toggle label for preserving edit drafts on cancel."
-    },
     "accessibilityDmMessagePreviewGroupTitle": "ตัวอย่างข้อความ DM",
     "@accessibilityDmMessagePreviewGroupTitle": {
         "description": "Section title for DM message preview accessibility settings."
-    },
-    "accessibilityDmMessagePreviewGroupDescription": "ควบคุมเมื่อใดที่จะแสดงตัวอย่างข้อความในรายการ DM",
-    "@accessibilityDmMessagePreviewGroupDescription": {
-        "description": "Section description for DM message preview accessibility settings."
     },
     "accessibilityDmMessagePreviewModeLabel": "โหมดตัวอย่างข้อความ DM",
     "@accessibilityDmMessagePreviewModeLabel": {
@@ -5381,10 +5028,6 @@
     "@voiceConnectionConfirmDoNothing": {
         "description": "Dismiss the dialog without joining voice."
     },
-    "voiceChannelEmptyDescription": "นี่คือช่องเสียง เชื่อมต่อเพื่อเริ่มพูดคุย!",
-    "@voiceChannelEmptyDescription": {
-        "description": "Empty state body when viewing a guild voice channel while not in the call."
-    },
     "voiceChannelJoin": "เข้าร่วมช่องเสียง",
     "@voiceChannelJoin": {
         "description": "Primary action to connect to a voice channel from the empty state."
@@ -5424,14 +5067,6 @@
     "voiceChannelStatusConnecting": "กำลังเชื่อมต่อ…",
     "@voiceChannelStatusConnecting": {
         "description": "Status in the in-page voice view while LiveKit is connecting."
-    },
-    "voiceChannelStatusConnected": "เชื่อมต่อแล้ว",
-    "@voiceChannelStatusConnected": {
-        "description": "Status in the in-page voice view when the voice session is active."
-    },
-    "voiceChannelStatusError": "ข้อผิดพลาด",
-    "@voiceChannelStatusError": {
-        "description": "Short label in the channel header when the voice session reports an error."
     },
     "voiceParticipantTooltipMobileDevice": "อุปกรณ์มือถือ",
     "@voiceParticipantTooltipMobileDevice": {
@@ -5506,10 +5141,6 @@
     "voiceScreenShareNotificationText": "กำลังแชร์หน้าจอของคุณ",
     "@voiceScreenShareNotificationText": {
         "description": "Body text for the Android foreground notification shown while screen sharing."
-    },
-    "voiceControlMore": "เพิ่มเติม",
-    "@voiceControlMore": {
-        "description": "Tooltip: more voice actions in the voice call control bar."
     },
     "voiceControlDisconnect": "ตัดการเชื่อมต่อ",
     "@voiceControlDisconnect": {
@@ -5761,6 +5392,10 @@
     "@chatSendFailureContentBlocked": {
         "description": "echowirebot system message when message content is blocked by safety systems."
     },
+    "chatSendFailureContentBlockedSelfHosted": "ไม่สามารถส่งข้อความของคุณได้ เนื่องจากถูกระบบความปลอดภัยของเราตรวจจับไว้ หากคุณคิดว่านี่เป็นความผิดพลาด โปรดติดต่อผู้ดูแลระบบของอินสแตนซ์นี้",
+    "@chatSendFailureContentBlockedSelfHosted": {
+        "description": "Fluxerbot system message on a self-hosted instance when message content is blocked by safety systems. Names no support mailbox."
+    },
     "chatSendFailureNsfwEmojiSticker": "ไม่สามารถส่งข้อความของคุณได้เนื่องจากมีอิโมจิหรือสติกเกอร์สำหรับผู้ใหญ่ที่ไม่ได้รับอนุญาตในบริบทนี้",
     "@chatSendFailureNsfwEmojiSticker": {
         "description": "echowirebot system message when mature emoji or stickers are blocked."
@@ -5785,6 +5420,10 @@
     "@chatMessageAddReaction": {
         "description": "Action label for opening reaction picker for a message."
     },
+    "doubleTapReactionHint": "แตะสองครั้งที่ข้อความเพื่อ",
+    "@doubleTapReactionHint": {
+        "description": "Hint under quick reactions explaining double-tap to react."
+    },
     "chatMessageEdit": "แก้ไขข้อความ",
     "@chatMessageEdit": {
         "description": "Action label for editing a sent message."
@@ -5792,6 +5431,14 @@
     "chatMessageReply": "ตอบกลับ",
     "@chatMessageReply": {
         "description": "Action label for replying to a message."
+    },
+    "notificationReplyPlaceholder": "ข้อความ",
+    "@notificationReplyPlaceholder": {
+        "description": "Placeholder for the text field on a notification reply action."
+    },
+    "notificationReplyFailed": "ส่งข้อความตอบกลับไม่ได้",
+    "@notificationReplyFailed": {
+        "description": "Body of the local notification shown when a notification reply fails to send."
     },
     "chatMessageForward": "ส่งต่อ",
     "@chatMessageForward": {
@@ -5942,420 +5589,155 @@
     "@chatMessageReport": {
         "description": "Action label that opens the report-message sheet so the user can flag the message to moderators."
     },
-    "iarReportMessageTitle": "รายงานข้อความ",
-    "@iarReportMessageTitle": {
-        "description": "Title shown at the top of the In-App Reporting (IAR) sheet when the user is reporting a specific message."
+    "reportFlowTitleMessage": "รายงานข้อความ",
+    "@reportFlowTitleMessage": {
+        "description": "Report flow: sheet title while the message report form loads or fails to load."
     },
-    "iarThisUserFallback": "ผู้ใช้รายนี้",
-    "@iarThisUserFallback": {
-        "description": "Lowercase phrase used mid-sentence in IAR copy when referring to the reported user without a name (e.g. inside the close-DM confirmation)."
+    "reportFlowTitleUserProfile": "รายงานโปรไฟล์",
+    "@reportFlowTitleUserProfile": {
+        "description": "Report flow: sheet title while the user profile report form loads or fails to load."
     },
-    "iarModalDescription": "รายงานการละเมิดกฎ หรือค้นหาเครื่องมือเพื่อจัดการการติดต่อและการตั้งค่า",
-    "@iarModalDescription": {
-        "description": "Screen-reader description for the IAR sheet announcing what the flow is for."
+    "reportFlowSummaryTitle": "ตรวจสอบรายงานของคุณ",
+    "@reportFlowSummaryTitle": {
+        "description": "Report flow: title of the last screen, where the reporter reviews the report before sending it."
     },
-    "iarPathStepAriaLabel": "คุณต้องการอะไร?",
-    "@iarPathStepAriaLabel": {
-        "description": "Accessible label for the primary-path radio group on the first step of the IAR sheet. Not shown visually; the radios are labelled inline."
+    "reportFlowSummarySubtitle": "ตรวจสอบให้แน่ใจว่าถูกต้องก่อนส่ง",
+    "@reportFlowSummarySubtitle": {
+        "description": "Report flow: subtitle of the report summary screen."
     },
-    "iarCategoryStepTitle": "ละเมิดกฎประเภทใด?",
-    "@iarCategoryStepTitle": {
-        "description": "Title shown on the category step of the IAR sheet (platform-report path)."
+    "reportFlowDisclaimer": "รายงานเฉพาะสิ่งที่คุณเชื่อด้วยความสุจริตใจว่าละเมิดกฎ การใช้รายงานในทางที่ผิดขัดต่อ{guidelines}ของเรา",
+    "@reportFlowDisclaimer": {
+        "description": "Report flow: disclaimer on the report summary screen. {guidelines} is a link whose text is reportFlowCommunityGuidelinesLink.",
+        "placeholders": {
+            "guidelines": {
+                "type": "String",
+                "example": "Community Guidelines"
+            }
+        }
     },
-    "iarReasonStepTitle": "ละเมิดกฎข้อใด?",
-    "@iarReasonStepTitle": {
-        "description": "Title shown on the reason step of the IAR sheet after the user has picked a rule category."
+    "reportFlowCommunityGuidelinesLink": "หลักเกณฑ์คอมมูนิตี้",
+    "@reportFlowCommunityGuidelinesLink": {
+        "description": "Report flow: link text inside reportFlowDisclaimer. Opens the community guidelines page."
     },
-    "iarReasonSelectHint": "เลือกเหตุผล",
-    "@iarReasonSelectHint": {
-        "description": "Placeholder shown in the message-report reason dropdown before the user picks a rule."
+    "reportFlowDisclaimerNoLink": "รายงานเฉพาะสิ่งที่คุณเชื่อด้วยความสุจริตใจว่าละเมิดกฎ และโปรดอย่าส่งรายงานเดียวกันซ้ำ",
+    "@reportFlowDisclaimerNoLink": {
+        "description": "Report flow: disclaimer on the report summary screen when the instance has no community guidelines page."
     },
-    "iarPickAnOptionToast": "เลือกตัวเลือกเพื่อดำเนินการต่อ",
-    "@iarPickAnOptionToast": {
-        "description": "Toast shown when the user taps Continue on a step without selecting any radio option."
+    "reportFlowSelectedMessage": "ข้อความที่คุณกำลังรายงาน",
+    "@reportFlowSelectedMessage": {
+        "description": "Report flow: heading above the preview of the reported message on the report summary screen."
     },
-    "iarPickARuleToast": "เลือกกฎที่ละเมิด",
-    "@iarPickARuleToast": {
-        "description": "Toast shown when the user taps Send report without selecting a rule reason."
+    "reportFlowSelectedUser": "โปรไฟล์ที่คุณกำลังรายงาน",
+    "@reportFlowSelectedUser": {
+        "description": "Report flow: heading above the card of the reported user on the first screen and the report summary screen."
     },
-    "iarPathPlatform": "รายงานการละเมิดกฎแพลตฟอร์ม",
-    "@iarPathPlatform": {
-        "description": "Primary-path radio label: file a real DSA / platform-level report."
+    "reportFlowReportCategory": "คำตอบของคุณ",
+    "@reportFlowReportCategory": {
+        "description": "Report flow: heading above the list of answers the reporter picked, on the report summary screen."
     },
-    "iarPathCommunity": "รายงานต่อผู้ดูแลชุมชนนี้",
-    "@iarPathCommunity": {
-        "description": "Primary-path radio label: surface this to community moderators rather than platform safety."
+    "reportFlowSubmit": "ส่งรายงาน",
+    "@reportFlowSubmit": {
+        "description": "Report flow: button on the report summary screen that sends the report."
     },
-    "iarPathPreferenceMessage": "ฉันไม่ชอบเนื้อหานี้",
-    "@iarPathPreferenceMessage": {
-        "description": "Primary-path radio label: the user doesn't want platform action, they want self-service tools (block, leave, settings)."
+    "reportFlowBack": "ย้อนกลับ",
+    "@reportFlowBack": {
+        "description": "Report flow: button that returns to the previous screen of the report form."
     },
-    "iarCategoryTargetedHarmLabel": "การคุกคาม การข่มขู่ หรืออันตราย",
-    "@iarCategoryTargetedHarmLabel": {
-        "description": "Rule-category label grouping harassment, hate, violence, terrorism, raids, and self-harm content."
+    "reportFlowNext": "ถัดไป",
+    "@reportFlowNext": {
+        "description": "Report flow: button that goes to the next screen of the report form."
     },
-    "iarCategoryTargetedHarmDescription": "การกลั่นแกล้ง การข่มขู่ การเกลียดชัง ความรุนแรง การบุกโจมตี หรือเนื้อหาที่ส่งเสริมการทำร้ายตนเอง",
-    "@iarCategoryTargetedHarmDescription": {
-        "description": "One-line description for the targeted-harm rule category."
+    "reportFlowDone": "เสร็จสิ้น",
+    "@reportFlowDone": {
+        "description": "Report flow: button that closes the report form when it is finished."
     },
-    "iarCategorySafetyMinorsLabel": "ความปลอดภัยของเด็กหรือเนื้อหาสำหรับผู้ใหญ่",
-    "@iarCategorySafetyMinorsLabel": {
-        "description": "Rule-category label grouping child-safety and mature-content reports."
+    "reportFlowThankYouTitle": "ส่งรายงานแล้ว",
+    "@reportFlowThankYouTitle": {
+        "description": "Report flow: title of the screen shown after a report was sent."
     },
-    "iarCategorySafetyMinorsDescription": "เด็กตกอยู่ในความเสี่ยง เนื้อหาสำหรับผู้ใหญ่ในที่ที่ไม่เหมาะสม หรือพฤติกรรมที่ไม่พึงประสงค์",
-    "@iarCategorySafetyMinorsDescription": {
-        "description": "One-line description for the child-safety / mature-content rule category."
+    "reportFlowThankYouNoReportTitle": "ขอบคุณที่แจ้งให้เราทราบ",
+    "@reportFlowThankYouNoReportTitle": {
+        "description": "Report flow: title of the screen shown when the chosen answer does not send a report."
     },
-    "iarCategoryPrivacyIdentityLabel": "ความเป็นส่วนตัวหรือการปลอมแปลงตัวตน",
-    "@iarCategoryPrivacyIdentityLabel": {
-        "description": "Rule-category label grouping privacy violations and impersonation."
-    },
-    "iarCategoryPrivacyIdentityDescription": "การเปิดเผยข้อมูลส่วนตัว การสะกดรอยตาม การแอบอ้างเป็นผู้อื่น หรือโปรไฟล์ที่ไม่เหมาะสม",
-    "@iarCategoryPrivacyIdentityDescription": {
-        "description": "One-line description for the privacy / impersonation rule category."
-    },
-    "iarCategoryDeceptionLabel": "การหลอกลวง มัลแวร์ หรือข้อมูลเท็จ",
-    "@iarCategoryDeceptionLabel": {
-        "description": "Rule-category label grouping spam/scams, malware, and harmful misinformation."
-    },
-    "iarCategoryDeceptionDescription": "ฟิชชิง การฉ้อโกง ลิงก์ที่เป็นอันตราย หรือการอ้างเท็จที่อาจก่อให้เกิดอันตรายในโลกจริง",
-    "@iarCategoryDeceptionDescription": {
-        "description": "One-line description for the scams / malware / misinformation rule category."
-    },
-    "iarCategoryIllegalOtherLabel": "กิจกรรมที่ผิดกฎหมาย หรืออื่นๆ",
-    "@iarCategoryIllegalOtherLabel": {
-        "description": "Rule-category label grouping illegal activity and the catch-all Other reason."
-    },
-    "iarCategoryIllegalOtherDescription": "การขายที่ผิดกฎหมาย การอำนวยความสะดวกทางอาญา หรือการละเมิดกฎที่ชัดเจนซึ่งไม่เข้าข่ายข้างต้น",
-    "@iarCategoryIllegalOtherDescription": {
-        "description": "One-line description for the illegal / other rule category."
-    },
-    "iarReasonHarassmentLabel": "การคุกคามหรือการข่มขู่",
-    "@iarReasonHarassmentLabel": {
-        "description": "Rule-reason label for harassment in the IAR message flow."
-    },
-    "iarReasonHarassmentMessageDescription": "การกลั่นแกล้ง การติดต่อที่ไม่ต้องการซ้ำๆ การสะกดรอยตาม หรือการล่วงละเมิดที่มุ่งเป้า",
-    "@iarReasonHarassmentMessageDescription": {
-        "description": "Rule-reason description for harassment in the IAR message flow."
-    },
-    "iarReasonHateLabel": "คำพูดแสดงความเกลียดชัง",
-    "@iarReasonHateLabel": {
-        "description": "Rule-reason label for hate speech in the IAR message flow."
-    },
-    "iarReasonHateMessageDescription": "การใช้คำหยาบ การลดทอนความเป็นมนุษย์ หรือการโจมตีกลุ่มที่ได้รับการคุ้มครอง",
-    "@iarReasonHateMessageDescription": {
-        "description": "Rule-reason description for hate speech in the IAR message flow."
-    },
-    "iarReasonViolenceLabel": "ความรุนแรงหรือการข่มขู่ว่าจะใช้ความรุนแรง",
-    "@iarReasonViolenceLabel": {
-        "description": "Rule-reason label for violence in the IAR message flow."
-    },
-    "iarReasonViolenceDescription": "การข่มขู่ที่น่าเชื่อถือ ความรุนแรงที่โจ่งแจ้ง หรือการยกย่องความรุนแรง",
-    "@iarReasonViolenceDescription": {
-        "description": "Rule-reason description for violence in the IAR message flow."
-    },
-    "iarReasonMatureContentLabel": "เนื้อหาสำหรับผู้ใหญ่หรือการคุกคาม",
-    "@iarReasonMatureContentLabel": {
-        "description": "Rule-reason label for mature content / unwanted conduct in the IAR message flow."
-    },
-    "iarReasonMatureContentMessageDescription": "พฤติกรรมที่ไม่พึงประสงค์หรือเนื้อหาสำหรับผู้ใหญ่ในที่ที่ไม่เหมาะสม",
-    "@iarReasonMatureContentMessageDescription": {
-        "description": "Rule-reason description for mature content in the IAR message flow."
-    },
-    "iarReasonChildSafetyLabel": "ความปลอดภัยของเด็กหรือการแสวงหาประโยชน์จากผู้เยาว์",
-    "@iarReasonChildSafetyLabel": {
-        "description": "Rule-reason label for child-safety reports in the IAR message flow. Also used as the {childSafetyReason} placeholder in iarUseChildSafetyInstead."
-    },
-    "iarReasonChildSafetyMessageDescription": "เนื้อหาเกี่ยวกับการชักจูงหรือการแสวงหาประโยชน์จากเด็ก",
-    "@iarReasonChildSafetyMessageDescription": {
-        "description": "Rule-reason description for child-safety reports in the IAR message flow."
-    },
-    "iarReasonHarmfulMisinfoLabel": "ข้อมูลเท็จที่เป็นอันตราย",
-    "@iarReasonHarmfulMisinfoLabel": {
-        "description": "Rule-reason label for harmful misinformation in the IAR message flow."
-    },
-    "iarReasonHarmfulMisinfoDescription": "การอ้างเท็จที่อาจก่อให้เกิดอันตรายในโลกจริง",
-    "@iarReasonHarmfulMisinfoDescription": {
-        "description": "Rule-reason description for harmful misinformation."
-    },
-    "iarReasonSpamLabel": "สแปม การหลอกลวง หรือฟิชชิง",
-    "@iarReasonSpamLabel": {
-        "description": "Rule-reason label for spam/scams/phishing in the IAR message flow."
-    },
-    "iarReasonSpamMessageDescription": "สแปมจำนวนมาก การฉ้อโกง การแจกของรางวัลปลอม หรือการละเมิดบัญชี",
-    "@iarReasonSpamMessageDescription": {
-        "description": "Rule-reason description for spam/scams in the IAR message flow."
-    },
-    "iarReasonMalwareLabel": "มัลแวร์หรือลิงก์อันตราย",
-    "@iarReasonMalwareLabel": {
-        "description": "Rule-reason label for malware / dangerous links in the IAR message flow."
-    },
-    "iarReasonMalwareDescription": "มัลแวร์ การขโมยข้อมูลประจำตัว หรือไฟล์ที่เป็นอันตราย",
-    "@iarReasonMalwareDescription": {
-        "description": "Rule-reason description for malware."
-    },
-    "iarReasonPrivacyLabel": "การละเมิดความเป็นส่วนตัว",
-    "@iarReasonPrivacyLabel": {
-        "description": "Rule-reason label for privacy violations in the IAR message flow."
-    },
-    "iarReasonPrivacyDescription": "การเปิดเผยข้อมูลส่วนตัว ข้อมูลส่วนตัวที่ถูกเปิดเผย หรือการสะกดรอยตาม",
-    "@iarReasonPrivacyDescription": {
-        "description": "Rule-reason description for privacy violations."
-    },
-    "iarReasonImpersonationLabel": "การปลอมแปลงตัวตนหรือสื่อที่หลอกลวง",
-    "@iarReasonImpersonationLabel": {
-        "description": "Rule-reason label for impersonation in the IAR message flow."
-    },
-    "iarReasonImpersonationMessageDescription": "การแอบอ้างเป็นผู้อื่น รวมถึงเนื้อหาที่สร้างโดย AI ที่หลอกลวง",
-    "@iarReasonImpersonationMessageDescription": {
-        "description": "Rule-reason description for impersonation in the IAR message flow."
-    },
-    "iarReasonIllegalLabel": "กิจกรรมที่ผิดกฎหมาย",
-    "@iarReasonIllegalLabel": {
-        "description": "Rule-reason label for illegal activity in the IAR message flow."
-    },
-    "iarReasonIllegalDescription": "การขายที่ผิดกฎหมาย การอำนวยความสะดวกทางอาญา หรือกิจกรรมที่ผิดกฎหมาย",
-    "@iarReasonIllegalDescription": {
-        "description": "Rule-reason description for illegal activity."
-    },
-    "iarReasonSelfHarmLabel": "การทำร้ายตนเองหรือการฆ่าตัวตาย",
-    "@iarReasonSelfHarmLabel": {
-        "description": "Rule-reason label for self-harm content in the IAR message flow."
-    },
-    "iarReasonSelfHarmMessageDescription": "การส่งเสริมหรือคำแนะนำที่กระตุ้นให้เกิดการทำร้ายตนเองหรือความผิดปกติของการกิน",
-    "@iarReasonSelfHarmMessageDescription": {
-        "description": "Rule-reason description for self-harm content in the IAR message flow."
-    },
-    "iarReasonOtherLabel": "การละเมิดกฎที่ชัดเจนอื่นๆ",
-    "@iarReasonOtherLabel": {
-        "description": "Rule-reason label for the catch-all option in the IAR message flow."
-    },
-    "iarReasonOtherDescription": "ใช้เฉพาะเมื่อละเมิดกฎของ {productName} อย่างชัดเจนและไม่เข้าข่ายข้างต้น",
-    "@iarReasonOtherDescription": {
-        "description": "Rule-reason description for the catch-all option.",
+    "reportFlowThankYouBody": "ทีมความปลอดภัยของ {productName} จะตรวจสอบรายงานของคุณ เราจะไม่เปิดเผยว่ารายงานนี้มาจากคุณ",
+    "@reportFlowThankYouBody": {
+        "description": "Report flow: body of the thank-you screen after a report was sent. {productName} is the name of the app.",
         "placeholders": {
             "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "iarUseChildSafetyInstead": "หากเกี่ยวข้องกับผู้เยาว์ ให้ใช้ \"{childSafetyReason}\" แทน",
-    "@iarUseChildSafetyInstead": {
-        "description": "Inline routing nudge shown under reasons (e.g. mature content) that overlap with child safety.",
-        "placeholders": {
-            "childSafetyReason": {
                 "type": "String",
-                "example": "Child safety or exploitation of minors"
+                "example": "Fluxer"
             }
         }
     },
-    "iarSafetyNoteChildSafety": "หากเกี่ยวข้องกับ CSAM หรือการแสวงหาประโยชน์จากผู้เยาว์ โปรดส่งทันทีและอย่าแชร์เนื้อหาซ้ำ",
-    "@iarSafetyNoteChildSafety": {
-        "description": "Inline safety note shown for child-safety reports on the reason step."
+    "reportFlowThankYouNoReportBody": "ขอบคุณที่แจ้งให้เราทราบ เรื่องนี้เพียงอย่างเดียวยังไม่ถือว่าละเมิดกฎของเรา เราจึงไม่ได้ส่งรายงาน หากมุ่งเป้าไปที่ใครบางคนหรือใช้ถ้อยคำเหยียดหยาม โปรดรายงานอีกครั้งและเลือก “เนื้อหาที่ล่วงละเมิดหรือเป็นอันตราย”",
+    "@reportFlowThankYouNoReportBody": {
+        "description": "Report flow: body of the thank-you screen when the chosen answer does not send a report. \"Abusive or harmful content\" is the name of an option on the first screen of the message report form."
     },
-    "iarSafetyNoteSelfHarm": "หากมีผู้ที่อาจตกอยู่ในอันตรายทันที โปรดติดต่อบริการฉุกเฉินในพื้นที่หากคุณสามารถทำได้อย่างปลอดภัย",
-    "@iarSafetyNoteSelfHarm": {
-        "description": "Inline safety note shown for self-harm reports on the reason step."
+    "reportFlowThankYouNoReportBodyShort": "ขอบคุณที่แจ้งให้เราทราบ เรื่องนี้เพียงอย่างเดียวยังไม่ถือว่าละเมิดกฎของเรา เราจึงไม่ได้ส่งรายงาน",
+    "@reportFlowThankYouNoReportBodyShort": {
+        "description": "Report flow: body of the thank-you screen when the chosen answer does not send a report and the reporter is already past the first screen of the form."
     },
-    "iarSafetyNoteViolence": "หากเป็นการข่มขู่ที่ใกล้จะเกิดขึ้นและน่าเชื่อถือ โปรดติดต่อบริการฉุกเฉินในพื้นที่ด้วย",
-    "@iarSafetyNoteViolence": {
-        "description": "Inline safety note shown for violence reports on the reason step."
+    "reportFlowMoreYouCanDo": "ตัวเลือกของคุณ",
+    "@reportFlowMoreYouCanDo": {
+        "description": "Report flow: heading above the extra actions (such as blocking the user) on the thank-you screen."
     },
-    "iarSafetyNoteTerrorism": "หากเป็นการคุกคามการก่อการร้ายที่ใกล้จะเกิดขึ้น โปรดติดต่อบริการฉุกเฉินในพื้นที่ด้วย",
-    "@iarSafetyNoteTerrorism": {
-        "description": "Inline safety note shown for terrorism reports on the reason step."
-    },
-    "iarActionBlockUserTitle": "บล็อกผู้ใช้นี้",
-    "@iarActionBlockUserTitle": {
-        "description": "Action card title for blocking the reported user."
-    },
-    "iarActionBlockUserDescription": "หยุดรับข้อความและคำขอเป็นเพื่อน",
-    "@iarActionBlockUserDescription": {
-        "description": "Action card description for blocking the reported user."
-    },
-    "iarActionBlockUserButton": "บล็อก",
-    "@iarActionBlockUserButton": {
-        "description": "Trailing button label on the block-user action card."
-    },
-    "iarActionCopyMessageLinkTitle": "คัดลอกลิงก์ข้อความ",
-    "@iarActionCopyMessageLinkTitle": {
-        "description": "Action card title for copying a link to the reported message so the user can share it with community moderators."
-    },
-    "iarActionCopyMessageLinkDescription": "แชร์กับผู้ดูแลชุมชน",
-    "@iarActionCopyMessageLinkDescription": {
-        "description": "Action card description for copying a message link."
-    },
-    "iarActionCopyMessageLinkButton": "คัดลอก",
-    "@iarActionCopyMessageLinkButton": {
-        "description": "Trailing button label on the copy-message-link action card."
-    },
-    "iarActionCloseDmTitle": "ปิด DM นี้",
-    "@iarActionCloseDmTitle": {
-        "description": "Action card title for closing the DM with the reported user."
-    },
-    "iarActionCloseDmDescription": "ไม่บล็อก คุณสามารถเปิดใหม่ได้ในภายหลัง",
-    "@iarActionCloseDmDescription": {
-        "description": "Action card description for closing the DM."
-    },
-    "iarActionCloseDmButton": "ปิด DM",
-    "@iarActionCloseDmButton": {
-        "description": "Trailing button label on the close-DM action card."
-    },
-    "iarActionLeaveCommunityTitle": "ออกจากชุมชน",
-    "@iarActionLeaveCommunityTitle": {
-        "description": "Action card title for leaving the guild the reported message was sent in."
-    },
-    "iarActionLeaveCommunityDescription": "หยุดดูเนื้อหาและสมาชิก",
-    "@iarActionLeaveCommunityDescription": {
-        "description": "Action card description for leaving the community."
-    },
-    "iarActionLeaveCommunityButton": "ออก",
-    "@iarActionLeaveCommunityButton": {
-        "description": "Trailing button label on the leave-community action card."
-    },
-    "iarActionDmSettingsTitle": "การตั้งค่า DM และคำขอเป็นเพื่อน",
-    "@iarActionDmSettingsTitle": {
-        "description": "Action card title for opening the DM / friend-request privacy settings."
-    },
-    "iarActionDmSettingsDescription": "เปลี่ยนผู้ที่สามารถติดต่อคุณได้",
-    "@iarActionDmSettingsDescription": {
-        "description": "Action card description for DM / friend-request privacy settings."
-    },
-    "iarActionCallSettingsTitle": "การตั้งค่าการโทรและแชทกลุ่ม",
-    "@iarActionCallSettingsTitle": {
-        "description": "Action card title for opening the call / group-chat privacy settings."
-    },
-    "iarActionCallSettingsDescription": "เปลี่ยนผู้ที่สามารถโทรหาหรือเพิ่มคุณได้",
-    "@iarActionCallSettingsDescription": {
-        "description": "Action card description for call / group-chat privacy settings."
-    },
-    "iarActionOpenButton": "เปิด",
-    "@iarActionOpenButton": {
-        "description": "Trailing button label for action cards that navigate the user into a settings section."
-    },
-    "iarActionDeleteMessageTitle": "ลบข้อความนี้",
-    "@iarActionDeleteMessageTitle": {
-        "description": "Action card title (moderator-only) for deleting the reported message."
-    },
-    "iarActionDeleteMessageDescription": "ลบออกจากช่องสำหรับทุกคน",
-    "@iarActionDeleteMessageDescription": {
-        "description": "Action card description (moderator-only) for deleting the reported message."
-    },
-    "iarActionDeleteMessageButton": "ลบ",
-    "@iarActionDeleteMessageButton": {
-        "description": "Trailing button label on the delete-message action card."
-    },
-    "iarActionDeleteMessageDeletedButton": "ลบแล้ว",
-    "@iarActionDeleteMessageDeletedButton": {
-        "description": "Disabled-state trailing button label on the delete-message action card after the message is already gone."
-    },
-    "iarActionDeleteMessageDeletedTooltip": "ข้อความนี้ถูกลบไปแล้ว",
-    "@iarActionDeleteMessageDeletedTooltip": {
-        "description": "Tooltip on the disabled delete-message action card."
-    },
-    "iarActionBanUserTitle": "แบนผู้ใช้รายนี้",
-    "@iarActionBanUserTitle": {
-        "description": "Action card title (moderator-only) for opening the ban dialog against the reported user."
-    },
-    "iarActionBanUserDescription": "เปิดหน้าต่างแบนสำหรับชุมชนนี้",
-    "@iarActionBanUserDescription": {
-        "description": "Action card description (moderator-only) for banning the reported user."
-    },
-    "iarActionBanUserButton": "แบน",
-    "@iarActionBanUserButton": {
-        "description": "Trailing button label on the ban-user action card."
-    },
-    "iarActionBanUserBannedButton": "ถูกแบนแล้ว",
-    "@iarActionBanUserBannedButton": {
-        "description": "Disabled-state trailing button label on the ban-user action card after the target is already banned."
-    },
-    "iarActionBanUserBannedTooltip": "ผู้ใช้รายนี้ถูกแบนจากชุมชนแล้ว",
-    "@iarActionBanUserBannedTooltip": {
-        "description": "Tooltip on the disabled ban-user action card."
-    },
-    "iarCloseDmConfirmTitle": "ปิด DM",
-    "@iarCloseDmConfirmTitle": {
-        "description": "Title of the confirm-close-DM bottom sheet shown after the user taps Close DM on the action card."
-    },
-    "iarCloseDmConfirmDescription": "ปิด DM ปัจจุบันของคุณกับ {name} การดำเนินการนี้จะไม่บล็อกพวกเขา คุณสามารถเปิดใหม่ได้ในภายหลัง",
-    "@iarCloseDmConfirmDescription": {
-        "description": "Body of the confirm-close-DM bottom sheet.",
+    "reportFlowBlockName": "บล็อก {name}",
+    "@reportFlowBlockName": {
+        "description": "Report flow: title of the row on the thank-you screen that blocks the reported user. {name} is the display name of that user.",
         "placeholders": {
             "name": {
                 "type": "String",
-                "example": "ada"
+                "example": "Alice"
             }
         }
     },
-    "iarSuccessTitle": "ส่งรายงานแล้ว",
-    "@iarSuccessTitle": {
-        "description": "Title shown on the success step after a platform report is submitted."
+    "reportFlowBlockDescription": "ซ่อนข้อความของพวกเขาและหยุดไม่ให้ส่งข้อความถึงคุณ",
+    "@reportFlowBlockDescription": {
+        "description": "Report flow: description under reportFlowBlockName on the thank-you screen."
     },
-    "iarSuccessBody": "ทีมความปลอดภัยของเรากำลังตรวจสอบรายงาน เราจะส่ง DM และอีเมลถึงคุณเมื่อได้ข้อสรุปแล้ว",
-    "@iarSuccessBody": {
-        "description": "Body shown on the success step after a platform report is submitted."
+    "reportFlowBlockButton": "บล็อก",
+    "@reportFlowBlockButton": {
+        "description": "Report flow: button on the thank-you screen that blocks the reported user."
     },
-    "iarAlreadyReportedTitle": "รายงานแล้ว",
-    "@iarAlreadyReportedTitle": {
-        "description": "Title shown on the IAR success step when the message had already been reported by this user (HTTP 409); the existing report is under review."
+    "reportFlowBlockedButton": "ถูกบล็อก",
+    "@reportFlowBlockedButton": {
+        "description": "Report flow: disabled button on the thank-you screen after the reported user was blocked."
     },
-    "iarAlreadyReportedBody": "คุณได้รายงานข้อความนี้แล้ว ทีมความปลอดภัยของเรากำลังตรวจสอบรายงาน",
-    "@iarAlreadyReportedBody": {
-        "description": "Body shown on the IAR success step when the message had already been reported by this user (HTTP 409)."
+    "reportFlowUrgentBanner": "หากมีใครกำลังตกอยู่ในอันตรายเฉพาะหน้า โปรดติดต่อหน่วยบริการฉุกเฉินในพื้นที่ก่อน",
+    "@reportFlowUrgentBanner": {
+        "description": "Report flow: banner on screens about urgent harm, such as threats, self-harm or the safety of minors."
     },
-    "iarBackButton": "ย้อนกลับ",
-    "@iarBackButton": {
-        "description": "Footer button label that returns the user to the previous IAR step."
+    "reportFlowLoadFailed": "ไม่สามารถโหลดแบบฟอร์มรายงานได้",
+    "@reportFlowLoadFailed": {
+        "description": "Report flow: error shown when the report form could not be loaded."
     },
-    "iarContinueButton": "ต่อไป",
-    "@iarContinueButton": {
-        "description": "Footer button label that advances the user to the next IAR step."
+    "reportFlowTryAgain": "ลองอีกครั้ง",
+    "@reportFlowTryAgain": {
+        "description": "Report flow: button that loads the report form again after an error."
     },
-    "iarSendReportButton": "ส่งรายงาน",
-    "@iarSendReportButton": {
-        "description": "Footer button label that submits the IAR report."
+    "reportFlowOutdated": "แบบฟอร์มรายงานมีการเปลี่ยนแปลง โปรดเริ่มใหม่",
+    "@reportFlowOutdated": {
+        "description": "Report flow: toast shown when the report form changed on the server while the reporter was filling it in. The form restarts from the first screen."
     },
-    "iarDoneButton": "เสร็จสิ้น",
-    "@iarDoneButton": {
-        "description": "Footer button label that closes the IAR sheet from the success or guidance step."
+    "reportFlowAlreadyReported": "คุณได้รายงานข้อความนี้ไปแล้ว",
+    "@reportFlowAlreadyReported": {
+        "description": "Report flow: note on the report summary screen when the reporter already reported this message."
     },
-    "iarCouldntSendToast": "ไม่สามารถส่งรายงานได้ โปรดลองอีกครั้ง",
-    "@iarCouldntSendToast": {
-        "description": "Toast shown when the IAR report submission fails."
+    "reportFlowAlreadyReportedProfile": "คุณได้รายงานโปรไฟล์นี้ไปแล้ววันนี้",
+    "@reportFlowAlreadyReportedProfile": {
+        "description": "Report flow: note on the report summary screen when the reporter already reported this user profile in the last 24 hours."
     },
-    "iarRateLimitedToast": "คุณกำลังรายงานเร็วเกินไป โปรดรอสักครู่แล้วลองอีกครั้ง",
-    "@iarRateLimitedToast": {
-        "description": "Toast shown when an IAR report submission is rejected for rate limiting (HTTP 429)."
+    "reportFlowRateLimited": "คุณส่งรายงานเร็วเกินไป ลองอีกครั้งภายหลัง",
+    "@reportFlowRateLimited": {
+        "description": "Report flow: note on the report summary screen when the reporter sent too many reports."
     },
-    "iarReportSentToast": "ส่งรายงานแล้ว ทีมความปลอดภัยของเราจะตรวจสอบ",
-    "@iarReportSentToast": {
-        "description": "Toast shown after a message report is submitted successfully from the simple mobile report sheet."
+    "reportFlowSubmitFailed": "ส่งรายงานของคุณไม่สำเร็จ ลองอีกครั้ง",
+    "@reportFlowSubmitFailed": {
+        "description": "Report flow: note on the report summary screen when the report could not be sent."
     },
-    "iarBlockUserConfirmDescription": "บล็อก {name} หรือไม่? พวกเขาจะไม่สามารถส่งข้อความถึงคุณหรือส่งคำขอเป็นเพื่อนได้ คุณสามารถเลิกบล็อกพวกเขาได้ในภายหลัง",
-    "@iarBlockUserConfirmDescription": {
-        "description": "Body of the confirm-block-user bottom sheet shown after the user taps Block on the IAR action card.",
-        "placeholders": {
-            "name": {
-                "type": "String",
-                "example": "ada"
-            }
-        }
-    },
-    "iarBlockUserFailedToast": "ไม่สามารถบล็อกผู้ใช้รายนี้ได้ โปรดลองอีกครั้ง",
-    "@iarBlockUserFailedToast": {
-        "description": "Toast shown when blocking the reported user from the IAR action card fails."
-    },
-    "iarCloseDmSuccessToast": "ปิด DM แล้ว",
-    "@iarCloseDmSuccessToast": {
-        "description": "Toast shown after the DM with the reported user is closed from the IAR action card."
-    },
-    "iarCloseDmFailedToast": "ไม่สามารถปิด DM นี้ได้ โปรดลองอีกครั้ง",
-    "@iarCloseDmFailedToast": {
-        "description": "Toast shown when closing the DM from the IAR action card fails."
-    },
-    "iarLeaveCommunityFailedToast": "ไม่สามารถออกจากชุมชนนี้ได้ โปรดลองอีกครั้ง",
-    "@iarLeaveCommunityFailedToast": {
-        "description": "Toast shown when leaving the community from the IAR action card fails."
+    "reportFlowAccountSetupRequired": "ยืนยันบัญชีและอีเมลของคุณเพื่อส่งรายงาน",
+    "@reportFlowAccountSetupRequired": {
+        "description": "Report flow: notice on the report summary screen when the account must be claimed and its email verified before it can send reports."
     },
     "chatMessageSuppressEmbeds": "ซ่อน Embeds",
     "@chatMessageSuppressEmbeds": {
@@ -6563,6 +5945,10 @@
     "@chatVideoPlaybackFailed": {
         "description": "Shown when embedded or attachment video playback fails in the chat player."
     },
+    "chatImageCouldNotLoad": "ไม่สามารถโหลดรูปภาพนี้ได้",
+    "@chatImageCouldNotLoad": {
+        "description": "Shown when an attached, embedded, or viewed image fails to download or decode."
+    },
     "composerAutocompleteRoleMentionDescription": "แจ้งเตือนผู้ใช้ที่มีบทบาทนี้ซึ่งได้รับอนุญาตให้ดูช่องนี้",
     "@composerAutocompleteRoleMentionDescription": {
         "description": "Secondary line in the @ mention autocomplete when the row is a mentionable guild role."
@@ -6610,10 +5996,6 @@
     "addGuildJoinFailed": "ไม่สามารถเข้าร่วมชุมชนได้ โปรดลองอีกครั้ง",
     "@addGuildJoinFailed": {
         "description": "Generic error when joining a community via invite fails."
-    },
-    "addGuildPackInstalled": "ติดตั้งแพ็กสำเร็จแล้ว",
-    "@addGuildPackInstalled": {
-        "description": "Toast shown after accepting an emoji or sticker pack invite."
     },
     "chatMessageRemoveAllReactionsConfirmTitle": "ลบอิโมจิทั้งหมด",
     "@chatMessageRemoveAllReactionsConfirmTitle": {
@@ -6701,7 +6083,7 @@
             }
         }
     },
-    "dmComposerHint": "Message @{recipientName}",
+    "dmComposerHint": "ส่งข้อความไปยัง @{recipientName}",
     "@dmComposerHint": {
         "description": "Placeholder in the message composer for a one-to-one DM.",
         "placeholders": {
@@ -7103,6 +6485,10 @@
     "instanceUrlPlaceholder": "ป้อน URL อินสแตนซ์ (เช่น echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
+    },
+    "instanceUrlHelper": "ใช้ fluxer.app สำหรับอินสแตนซ์อย่างเป็นทางการ หรือ URL ที่ถูกต้องของอินสแตนซ์ที่โฮสต์เอง",
+    "@instanceUrlHelper": {
+        "description": "Helper text explaining official vs self-hosted instance URLs."
     },
     "resetToDefaultInstance": "รีเซ็ตเป็น echowire",
     "@resetToDefaultInstance": {
@@ -7644,10 +7030,6 @@
     "@guildMenuHideMutedChannels": {
         "description": "Guild menu checkbox to hide muted channels."
     },
-    "guildMenuReportCommunity": "รายงานชุมชน",
-    "@guildMenuReportCommunity": {
-        "description": "Guild menu action to report the community."
-    },
     "guildMenuDebugCommunity": "ดีบักชุมชน",
     "@guildMenuDebugCommunity": {
         "description": "Guild menu action to open community debug info."
@@ -7693,10 +7075,6 @@
     "@guildMenuSettingsWebhooks": {
         "description": "Community settings tab for webhooks."
     },
-    "guildMenuSettingsCustomInviteUrl": "URL เชิญที่กำหนดเอง",
-    "@guildMenuSettingsCustomInviteUrl": {
-        "description": "Community settings tab for custom invite URLs."
-    },
     "guildMenuSettingsDiscovery": "การค้นพบ",
     "@guildMenuSettingsDiscovery": {
         "description": "Community settings tab for discovery settings."
@@ -7721,17 +7099,9 @@
     "@guildSettingsOverviewIconTitle": {
         "description": "Title for the guild icon section in overview settings."
     },
-    "guildSettingsUploadImage": "อัปโหลดรูปภาพ",
-    "@guildSettingsUploadImage": {
-        "description": "Button label to upload an image in guild settings."
-    },
     "guildSettingsOverviewBannerTitle": "แบนเนอร์",
     "@guildSettingsOverviewBannerTitle": {
         "description": "Title for the guild banner section."
-    },
-    "guildSettingsOverviewBannerHint": "อัปโหลดแบนเนอร์สำหรับเซิร์ฟเวอร์ของคุณ",
-    "@guildSettingsOverviewBannerHint": {
-        "description": "Hint text for guild banner upload."
     },
     "guildSettingsOverviewNameTitle": "ชื่อ",
     "@guildSettingsOverviewNameTitle": {
@@ -7741,22 +7111,6 @@
     "@guildSettingsOverviewNameHint": {
         "description": "Hint for the guild name field."
     },
-    "guildSettingsOverviewStatsTitle": "สถิติ",
-    "@guildSettingsOverviewStatsTitle": {
-        "description": "Title for guild statistics section."
-    },
-    "guildSettingsOverviewMembers": "สมาชิก",
-    "@guildSettingsOverviewMembers": {
-        "description": "Label for member count in overview."
-    },
-    "guildSettingsOverviewOnline": "ออนไลน์",
-    "@guildSettingsOverviewOnline": {
-        "description": "Label for online count in overview."
-    },
-    "guildSettingsRolesDescription": "ใช้บทบาทเพื่อจัดกลุ่มสมาชิกและกำหนดสิทธิ์",
-    "@guildSettingsRolesDescription": {
-        "description": "Description for the roles settings tab."
-    },
     "guildSettingsCreateRole": "สร้างบทบาท",
     "@guildSettingsCreateRole": {
         "description": "Button to create a new role."
@@ -7765,30 +7119,9 @@
     "@guildSettingsRolesListTitle": {
         "description": "Title for the roles list section."
     },
-    "guildSettingsEmojiSlotInfo": "ใช้ {staticCount} อิโมจิแบบคงที่, {animatedCount} อิโมจิแบบเคลื่อนไหว",
-    "@guildSettingsEmojiSlotInfo": {
-        "description": "Emoji slot usage summary.",
-        "placeholders": {
-            "staticCount": {
-                "type": "int"
-            },
-            "animatedCount": {
-                "type": "int"
-            }
-        }
-    },
     "guildSettingsEmojiEmpty": "ยังไม่มีอิโมจิที่กำหนดเอง",
     "@guildSettingsEmojiEmpty": {
         "description": "Empty state for emoji settings."
-    },
-    "guildSettingsStickersSlotInfo": "อัปโหลดสติกเกอร์แล้ว {count} รายการ",
-    "@guildSettingsStickersSlotInfo": {
-        "description": "Sticker slot usage summary.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
     },
     "guildSettingsStickersEmpty": "ยังไม่มีสติกเกอร์ที่กำหนดเอง",
     "@guildSettingsStickersEmpty": {
@@ -7834,8 +7167,6 @@
     "guildSettingsVerificationMediumDescription": "ต้องมีที่อยู่อีเมลที่ยืนยันแล้ว และบัญชีที่มีอายุอย่างน้อย 5 นาที",
     "guildSettingsVerificationHigh": "สูง",
     "guildSettingsVerificationHighDescription": "ต้องมีทุกอย่างในระดับปานกลาง บวกกับการเป็นสมาชิกชุมชนอย่างน้อย 10 นาที",
-    "guildSettingsVerificationHighest": "สูงมาก",
-    "guildSettingsVerificationHighestDescription": "ต้องมีหมายเลขโทรศัพท์ที่ยืนยันแล้ว",
     "guildSettingsAuditLogDescription": "ติดตามการดำเนินการของผู้ดูแลในชุมชน",
     "@guildSettingsAuditLogDescription": {
         "description": "Subtitle under the activity-log page title."
@@ -7863,14 +7194,6 @@
     "guildSettingsAuditLogUnknownUser": "ผู้ใช้ที่ไม่รู้จัก",
     "@guildSettingsAuditLogUnknownUser": {
         "description": "Fallback avatar label when the acting user is unavailable."
-    },
-    "guildSettingsAuditLogLoadError": "เกิดข้อผิดพลาดขณะโหลดบันทึกกิจกรรม",
-    "@guildSettingsAuditLogLoadError": {
-        "description": "Generic error shown when fetching log entries fails."
-    },
-    "guildSettingsAuditLogLoadErrorTitle": "ไม่สามารถโหลดบันทึกกิจกรรมได้",
-    "@guildSettingsAuditLogLoadErrorTitle": {
-        "description": "Error-state title when fetching log entries failed."
     },
     "guildSettingsAuditLogReason": "เหตุผล",
     "@guildSettingsAuditLogReason": {
@@ -8842,14 +8165,6 @@
     "@auditLogOptionPermanentMembership": {
         "description": "Audit log option detail sentence."
     },
-    "guildSettingsLoadMore": "โหลดเพิ่มเติม",
-    "@guildSettingsLoadMore": {
-        "description": "Button to load more audit log entries."
-    },
-    "guildSettingsLoadingMore": "Loading...",
-    "@guildSettingsLoadingMore": {
-        "description": "Loading state for pagination."
-    },
     "guildSettingsWebhooksDescription": "ดูและจัดการ Webhook ทั้งหมดที่ตั้งค่าไว้ในคอมมูนิตี้ของคุณ",
     "@guildSettingsWebhooksDescription": {
         "description": "Description for webhooks tab."
@@ -8858,42 +8173,9 @@
     "@guildSettingsWebhooksEmpty": {
         "description": "Empty state for webhooks."
     },
-    "guildSettingsCopyUrl": "คัดลอก URL",
-    "@guildSettingsCopyUrl": {
-        "description": "Tooltip to copy a URL."
-    },
     "guildSettingsCopiedUrl": "คัดลอก URL ไปยังคลิปบอร์ดแล้ว",
     "@guildSettingsCopiedUrl": {
         "description": "Snackbar after copying a URL."
-    },
-    "guildSettingsDeleteWebhook": "ลบเว็บฮุค",
-    "@guildSettingsDeleteWebhook": {
-        "description": "Tooltip to delete a webhook."
-    },
-    "guildSettingsVanityUrlDescription": "ตั้งค่าลิงก์เชิญแบบกำหนดเองสำหรับเซิร์ฟเวอร์ของคุณ",
-    "@guildSettingsVanityUrlDescription": {
-        "description": "Description for vanity URL tab."
-    },
-    "guildSettingsVanityUrlHint": "my-server",
-    "@guildSettingsVanityUrlHint": {
-        "description": "Hint for vanity URL input."
-    },
-    "guildSettingsSave": "บันทึก",
-    "@guildSettingsSave": {
-        "description": "Generic save button label."
-    },
-    "guildSettingsVanityUrlUsageTitle": "การใช้งาน",
-    "@guildSettingsVanityUrlUsageTitle": {
-        "description": "Title for vanity URL usage section."
-    },
-    "guildSettingsVanityUrlUses": "{count} ครั้ง",
-    "@guildSettingsVanityUrlUses": {
-        "description": "Vanity URL usage count.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
     },
     "guildSettingsDiscoveryDescription": "แสดงคอมมูนิตี้ของคุณในหน้าค้นหา เพื่อให้คนอื่นหาเจอและเข้าร่วมได้",
     "@guildSettingsDiscoveryDescription": {
@@ -8932,10 +8214,6 @@
     "@guildSettingsDiscoveryWithdraw": {
         "description": "Button to withdraw discovery application."
     },
-    "guildSettingsMembersDescription": "ค้นหาและจัดการสมาชิกเซิร์ฟเวอร์",
-    "@guildSettingsMembersDescription": {
-        "description": "Description for members tab."
-    },
     "guildSettingsMembersSearchHint": "ค้นหาด้วยชื่อผู้ใช้หรือ ID",
     "@guildSettingsMembersSearchHint": {
         "description": "Hint for member search field."
@@ -8957,27 +8235,6 @@
     "@guildSettingsInvitesEmpty": {
         "description": "Empty state for invites."
     },
-    "guildSettingsInviteUses": "{uses} / {maxUses} ครั้ง",
-    "@guildSettingsInviteUses": {
-        "description": "Invite usage count.",
-        "placeholders": {
-            "uses": {
-                "type": "int"
-            },
-            "maxUses": {
-                "type": "int"
-            }
-        }
-    },
-    "guildSettingsInviteExpires": "หมดอายุ {date}",
-    "@guildSettingsInviteExpires": {
-        "description": "Invite expiration date.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
     "guildSettingsBansDescription": "ดูและจัดการผู้ใช้ที่ถูกแบน",
     "@guildSettingsBansDescription": {
         "description": "Description for bans tab."
@@ -8990,30 +8247,9 @@
     "@guildSettingsBansEmpty": {
         "description": "Empty state for bans."
     },
-    "guildSettingsBanPermanent": "แบนถาวร",
-    "@guildSettingsBanPermanent": {
-        "description": "Label for permanent ban."
-    },
-    "guildSettingsBanExpires": "หมดอายุ {date}",
-    "@guildSettingsBanExpires": {
-        "description": "Ban expiration date.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
     "guildSettingsBanExpiresLabel": "หมดอายุ",
     "@guildSettingsBanExpiresLabel": {
         "description": "Label for ban expiration row."
-    },
-    "guildSettingsUnban": "เลิกแบน",
-    "@guildSettingsUnban": {
-        "description": "Button to unban a user."
-    },
-    "guildSettingsBansLoading": "กำลังโหลดผู้ใช้ที่ถูกแบน",
-    "@guildSettingsBansLoading": {
-        "description": "Loading state for the guild bans list."
     },
     "guildSettingsBansNoSearchResults": "ไม่พบการแบนที่ตรงกับการค้นหาของคุณ",
     "@guildSettingsBansNoSearchResults": {
@@ -9057,10 +8293,6 @@
             }
         }
     },
-    "guildSettingsBansLoadError": "ไม่สามารถโหลดการแบนได้ ลองอีกครั้ง",
-    "@guildSettingsBansLoadError": {
-        "description": "Error when loading the guild bans list fails."
-    },
     "guildSettingsRevokeBanError": "ไม่สามารถเพิกถอนการแบนได้ ลองอีกครั้ง",
     "@guildSettingsRevokeBanError": {
         "description": "Error when revoking a ban fails."
@@ -9085,7 +8317,6 @@
     "@guildSettingsCategoryPeople": {
         "description": "Sidebar category for members, invites, and bans."
     },
-    "guildSettingsOverviewDescription": "จัดการโปรไฟล์ ช่อง และการตั้งค่าเริ่มต้นของชุมชนของคุณ",
     "guildSettingsOverviewBrandingTitle": "การสร้างแบรนด์",
     "guildSettingsOverviewBrandingDescription": "อัปเดตไอคอน ชื่อ แบนเนอร์ และพื้นหลังคำเชิญของคุณ",
     "@guildSettingsOverviewBrandingDescription": {
@@ -9104,7 +8335,6 @@
     },
     "guildSettingsOverviewNotificationsTitle": "การแจ้งเตือนเริ่มต้น",
     "guildSettingsOverviewNotificationsLargeGuild": "ชุมชนที่มีสมาชิกมากกว่า 250 คนจะถูกบังคับให้ใช้การตั้งค่า \"เฉพาะการกล่าวถึง\" การตั้งค่าเดิมของคุณจะยังคงอยู่และจะถูกกู้คืนหากชุมชนมีสมาชิกน้อยกว่า 250 คน",
-    "guildSettingsOverviewAdvancedTitle": "ขั้นสูง",
     "guildSettingsOverviewFlexibleNames": "อนุญาตชื่อช่องข้อความที่ยืดหยุ่น",
     "guildSettingsOverviewHideOwnerCrown": "ซ่อนมงกุฎเจ้าของชุมชน",
     "guildSettingsOverviewDetachedBanner": "แบนเนอร์แยก",
@@ -9130,10 +8360,6 @@
     "guildSettingsOverviewEmbedSplashTitle": "พื้นหลังการฝังแชท",
     "@guildSettingsOverviewEmbedSplashTitle": {
         "description": "Title for embed splash upload section."
-    },
-    "guildSettingsOverviewEmbedSplashHint": "แสดงในการฝังคำเชิญในแชท",
-    "@guildSettingsOverviewEmbedSplashHint": {
-        "description": "Note shown when uploading chat embed background."
     },
     "guildSettingsOverviewUploadBackground": "อัปโหลดพื้นหลัง",
     "@guildSettingsOverviewUploadBackground": {
@@ -9300,8 +8526,6 @@
     "@guildSettingsOverviewEmbedSplashUploadHint": {
         "description": "Upload requirements for chat embed background images."
     },
-    "guildSettingsModerationDescription": "กำหนดการตั้งค่าการยืนยัน การกรองเนื้อหา และเนื้อหาสำหรับผู้ใหญ่",
-    "guildSettingsModerationDiscoveryNotice": "ชุมชนที่แสดงใน Discovery มีตัวเลือกการกลั่นกรองที่จำกัด",
     "guildSettingsModerationContentFilterTitle": "การกรองเนื้อหา",
     "guildSettingsModerationContentFilterDescription": "คัดกรองข้อความที่มีเนื้อหาโจ่งแจ้งโดยอัตโนมัติในช่องที่ไม่ได้ตั้งค่าสำหรับเนื้อหาสำหรับผู้ใหญ่",
     "guildSettingsModerationContentFilterDiscoveryNote": "ชุมชนที่แสดงใน Discovery ต้องสแกนสมาชิกทั้งหมด การตั้งค่านี้ไม่สามารถเปลี่ยนแปลงได้ในขณะที่เปิดใช้งาน Discovery",
@@ -9311,8 +8535,6 @@
     "guildSettingsContentFilterNoRoleDescription": "แนะนำสำหรับชุมชนส่วนใหญ่",
     "guildSettingsContentFilterAll": "กรองทุกคน",
     "guildSettingsContentFilterAllDescription": "การป้องกันสูงสุดสำหรับพื้นที่ที่เป็นมิตรกับครอบครัว",
-    "guildSettingsModerationMatureOff": "ปิด",
-    "guildSettingsModerationMatureOn": "เปิด",
     "guildSettingsContentWarningToggle": "แสดงคำเตือนเนื้อหา",
     "@guildSettingsContentWarningToggle": {
         "description": "Switch label for the community content warning setting."
@@ -9332,7 +8554,6 @@
     "guildSettingsModeration2faTitle": "ข้อกำหนด 2FA",
     "guildSettingsModeration2faDescription": "กำหนดให้มีการยืนยันตัวตนสองปัจจัยสำหรับผู้กลั่นกรองก่อนที่พวกเขาจะสามารถแบน, ไล่ออก, ระงับเวลา หรือลบข้อความได้",
     "guildSettingsModeration2faSwitchLabel": "ต้องใช้ 2FA สำหรับการดำเนินการกลั่นกรอง",
-    "guildSettingsModeration2faOwnerOnlyTooltip": "เฉพาะเจ้าของชุมชนเท่านั้นที่สามารถเปลี่ยนการตั้งค่านี้ได้",
     "guildSettingsModeration2faEnableFirstTooltip": "เปิดใช้งาน 2FA ในบัญชีของคุณเพื่อเปลี่ยนการตั้งค่านี้",
     "guildSettingsEmojiSearchHint": "ค้นหาอิโมจิ",
     "guildSettingsEmojiUploadTitle": "อัปโหลดอิโมจิ",
@@ -9354,8 +8575,6 @@
     },
     "guildSettingsStickersSearchHint": "ค้นหาสติกเกอร์",
     "guildSettingsWebhooksInfo": "หากต้องการสร้างเว็ةฮุค ให้เปิดที่ {channelSettingsPath} คุณยังสามารถแก้ไขและจัดระเบียบเว็ะฮุคที่มีอยู่ทั้งหมดได้ที่นี่",
-    "guildSettingsVanityUrlWarning": "URL พิเศษของคุณจะไม่ทำงาน เว้นแต่จะมีอย่างน้อยหนึ่งช่องที่ทุกคนมองเห็นได้",
-    "guildSettingsVanityUrlRemove": "ลบ",
     "guildSettingsBannedUsersTitle": "ผู้ใช้ที่ถูกแบน",
     "guildSettingsInvitesTableInviter": "ผู้เชิญ",
     "guildSettingsInvitesTableChannel": "ช่อง",
@@ -9394,6 +8613,10 @@
     "lookAndFeelChatWallpaperCustomLabel": "รูปภาพที่กำหนดเอง",
     "@lookAndFeelChatWallpaperCustomLabel": {
         "description": "Chat wallpaper option that picks an image from the gallery."
+    },
+    "lookAndFeelChatWallpaperStarfieldLabel": "ทุ่งดาว",
+    "@lookAndFeelChatWallpaperStarfieldLabel": {
+        "description": "Chat wallpaper preset that uses the static starfield background."
     },
     "lookAndFeelChatWallpaperColorLabel": "สี {id}",
     "@lookAndFeelChatWallpaperColorLabel": {
@@ -9507,6 +8730,60 @@
     "@notificationsEnableNotificationsPermissionDenied": {
         "description": "Toast shown when enabling notifications fails because permission was denied."
     },
+    "notificationsPushRelaySectionTitle": "ตัวส่งต่อการแจ้งเตือนแบบพุช",
+    "@notificationsPushRelaySectionTitle": {
+        "description": "Notification settings section title for the Fluxer push relay."
+    },
+    "notificationsPushRelaySectionDescription": "{pushProvider} ส่งการแจ้งเตือนแบบพุชผ่านบริการของตนเองเท่านั้น การแจ้งเตือนของอุปกรณ์นี้จึงผ่านตัวส่งต่อของ Fluxer",
+    "@notificationsPushRelaySectionDescription": {
+        "description": "Notification settings section description explaining why the push relay exists.",
+        "placeholders": {
+            "pushProvider": {
+                "type": "String"
+            }
+        }
+    },
+    "notificationsPushRelayConsentLabel": "ใช้ตัวส่งต่อพุชของ Fluxer",
+    "@notificationsPushRelayConsentLabel": {
+        "description": "Toggle label for agreeing to the Fluxer push relay on this device."
+    },
+    "notificationsPushRelayConsentDescription": "หากปิดใช้งาน การลงทะเบียนพุชของอุปกรณ์นี้จะถูกลบ และอุปกรณ์จะหยุดรับการแจ้งเตือนแบบพุช",
+    "@notificationsPushRelayConsentDescription": {
+        "description": "Toggle description explaining that revoking push relay consent unregisters the device."
+    },
+    "pushRelayConsentTitle": "ตัวส่งต่อการแจ้งเตือนแบบพุช",
+    "@pushRelayConsentTitle": {
+        "description": "Title of the one-time Fluxer push relay consent sheet."
+    },
+    "pushRelayConsentDescription": "{pushProvider} ส่งการแจ้งเตือนแบบพุชผ่านบริการของตนเองเท่านั้น การแจ้งเตือนของอุปกรณ์นี้จึงผ่านตัวส่งต่อของ Fluxer",
+    "@pushRelayConsentDescription": {
+        "description": "Subtitle of the push relay consent sheet explaining why the relay exists.",
+        "placeholders": {
+            "pushProvider": {
+                "type": "String"
+            }
+        }
+    },
+    "pushRelayConsentNoticePrefix": "หากต้องการเปิดการแจ้งเตือนแบบพุชบนอุปกรณ์นี้ โปรดยอมรับ",
+    "@pushRelayConsentNoticePrefix": {
+        "description": "Text before the push relay privacy notice link in the consent sheet."
+    },
+    "pushRelayConsentNoticeLink": "ประกาศความเป็นส่วนตัวของตัวส่งต่อพุช",
+    "@pushRelayConsentNoticeLink": {
+        "description": "Link text for the supplemental push relay privacy notice."
+    },
+    "pushRelayConsentNoticeSuffix": " คุณยอมรับเพียงครั้งเดียวต่ออุปกรณ์",
+    "@pushRelayConsentNoticeSuffix": {
+        "description": "Text after the push relay privacy notice link in the consent sheet."
+    },
+    "pushRelayConsentAgree": "ยอมรับและดำเนินการต่อ",
+    "@pushRelayConsentAgree": {
+        "description": "Button that records agreement to the push relay privacy notice."
+    },
+    "pushRelayConsentDecline": "ไม่ใช่ตอนนี้",
+    "@pushRelayConsentDecline": {
+        "description": "Button that declines the push relay privacy notice and leaves push notifications off."
+    },
     "addGuildCreateGuidelinesLink": "แนวทางปฏิบัติของชุมชน {productName}",
     "@addGuildCreateGuidelinesLink": {
         "description": "Link label for community guidelines on the create sub-view.",
@@ -9614,18 +8891,6 @@
     "notificationsPermissionDeniedTitle": "ปิดการแจ้งเตือน",
     "@notificationsPermissionDeniedTitle": {
         "description": "Banner title when OS notification permission is denied."
-    },
-    "iarReportGuildTitle": "รายงานคอมมูนิตี้",
-    "@iarReportGuildTitle": {
-        "description": "Title of the simple community-report sheet."
-    },
-    "iarPreviewCommunitySubtitle": "ชุมชน",
-    "@iarPreviewCommunitySubtitle": {
-        "description": "Subtitle shown under the community name in the IAR preview card."
-    },
-    "iarReasonTerrorismLabel": "การก่อการร้ายหรือแนวคิดสุดโต่ง",
-    "@iarReasonTerrorismLabel": {
-        "description": "Community-report reason label for terrorism or violent extremism."
     },
     "voiceJoinFailedTitle": "เข้าร่วมเสียงไม่ได้",
     "@voiceJoinFailedTitle": {
@@ -9735,22 +9000,6 @@
     "@systemPermissionSettingsOpenSettings": {
         "description": "Primary action that opens the device app settings for a blocked permission."
     },
-    "iarReasonMatureContentGuildDescription": "เนื้อหาสำหรับผู้ใหญ่ที่ไม่มีการคัดกรองที่เหมาะสม",
-    "@iarReasonMatureContentGuildDescription": {
-        "description": "Community-report reason description for mature content or unsafe gating."
-    },
-    "iarReasonChildSafetyGuildDescription": "เป็นอันตรายต่อผู้เยาว์หรือมีเนื้อหาเกี่ยวกับการแสวงหาประโยชน์จากเด็ก",
-    "@iarReasonChildSafetyGuildDescription": {
-        "description": "Community-report reason description for child safety."
-    },
-    "iarReasonRaidLabel": "ประสานงานการโจมตี",
-    "@iarReasonRaidLabel": {
-        "description": "Community-report reason label for raid coordination."
-    },
-    "iarReasonSelfHarmGuildLabel": "ส่งเสริมการทำร้ายตัวเอง",
-    "@iarReasonSelfHarmGuildLabel": {
-        "description": "Community-report reason label for self-harm encouragement."
-    },
     "systemCallDurationWeeks": "{count} สัปดาห์",
     "@systemCallDurationWeeks": {
         "description": "Duration label for multiple weeks in a call duration.",
@@ -9826,14 +9075,6 @@
     "@channelSettingsVoiceRegionsLoadFailedDescription": {
         "description": "Error modal body when voice regions fail to load in channel settings."
     },
-    "channelSettingsResetSlider": "รีเซ็ตแถบเลื่อนเป็นค่าเริ่มต้น",
-    "@channelSettingsResetSlider": {
-        "description": "Tooltip for reset buttons on channel settings sliders."
-    },
-    "channelSettingsAdvanced": "ขั้นสูง",
-    "@channelSettingsAdvanced": {
-        "description": "Collapsible advanced section title in channel overview."
-    },
     "channelSettingsMatureContentOffDescription": "เปิดช่องทางนี้ให้แสดงเนื้อหาสำหรับผู้ใหญ่ได้",
     "@channelSettingsMatureContentOffDescription": {
         "description": "Description for the mature content off override option."
@@ -9856,10 +9097,6 @@
             }
         }
     },
-    "channelSettingsMatureContentCategorySource": "หมวดหมู่",
-    "@channelSettingsMatureContentCategorySource": {
-        "description": "Lowercase source label for inherited mature content from category."
-    },
     "channelSettingsContentWarningDefault": "มีเนื้อหาที่ละเอียดอ่อน",
     "@channelSettingsContentWarningDefault": {
         "description": "Default content warning text placeholder."
@@ -9875,10 +9112,6 @@
     "channelSettingsInvitesCreate": "สร้างคำเชิญ",
     "@channelSettingsInvitesCreate": {
         "description": "Button to create a new invite in channel settings."
-    },
-    "channelSettingsPermissionsRolesAndMembers": "บทบาทและสมาชิก",
-    "@channelSettingsPermissionsRolesAndMembers": {
-        "description": "Section title in the add override picker."
     },
     "channelSettingsDeleteInvite": "ลบคำเชิญ",
     "@channelSettingsDeleteInvite": {
@@ -9981,10 +9214,6 @@
     "@dmGroupInvites": {
         "description": "Menu label for managing group DM invites."
     },
-    "groupDmEditDetailsTooltip": "แก้ไขรายละเอียดกลุ่ม",
-    "@groupDmEditDetailsTooltip": {
-        "description": "Tooltip on the desktop group DM header edit action."
-    },
     "groupDmGroupName": "ชื่อกลุ่ม",
     "@groupDmGroupName": {
         "description": "Label for the group name field in edit group."
@@ -10074,42 +9303,6 @@
     "@guildSettingsInvitesPauseForCommunityTitle": {
         "description": "Confirmation title before pausing invites."
     },
-    "iarReasonHarassmentGuildLabel": "การคุกคามหรือการกลั่นแกล้ง",
-    "@iarReasonHarassmentGuildLabel": {
-        "description": "Community-report reason label for harassment or targeted abuse."
-    },
-    "iarReasonHarassmentGuildDescription": "ชุมชนอาจนำไปสู่การรุมโจมตีหรือการกลั่นแกล้ง",
-    "@iarReasonHarassmentGuildDescription": {
-        "description": "Community-report reason description for harassment or targeted abuse."
-    },
-    "iarReasonHateGuildDescription": "ส่งเสริมความเกลียดชังต่อกลุ่มที่ได้รับการคุ้มครอง",
-    "@iarReasonHateGuildDescription": {
-        "description": "Community-report reason description for hate speech."
-    },
-    "iarReasonRaidDescription": "ประสานงานการโจมตี, การรวมกลุ่ม หรือการคุกคามต่อบุคคลหรือชุมชน",
-    "@iarReasonRaidDescription": {
-        "description": "Community-report reason description for raid coordination."
-    },
-    "iarReasonSpamGuildDescription": "ชุมชนมีไว้เพื่อสแปม หลอกลวง หรือใช้แพลตฟอร์มในทางที่ผิด",
-    "@iarReasonSpamGuildDescription": {
-        "description": "Community-report reason description for spam, scams, or phishing."
-    },
-    "iarReasonMalwareGuildLabel": "เผยแพร่มัลแวร์",
-    "@iarReasonMalwareGuildLabel": {
-        "description": "Community-report reason label for malware distribution."
-    },
-    "iarReasonMalwareGuildDescription": "เผยแพร่มัลแวร์, ขโมยข้อมูลประจำตัว หรือไฟล์อันตราย",
-    "@iarReasonMalwareGuildDescription": {
-        "description": "Community-report reason description for malware distribution."
-    },
-    "iarReasonPrivacyGuildLabel": "การละเมิดความเป็นส่วนตัวหรือการเปิดเผยข้อมูลส่วนตัว",
-    "@iarReasonPrivacyGuildLabel": {
-        "description": "Community-report reason label for privacy violation or doxxing."
-    },
-    "iarReasonPrivacyGuildDescription": "แชร์ข้อมูลส่วนตัว, สะกดรอยตามผู้ใช้ หรือประสานงานการละเมิดความเป็นส่วนตัว",
-    "@iarReasonPrivacyGuildDescription": {
-        "description": "Community-report reason description for privacy violation or doxxing."
-    },
     "guildSettingsRolesEditTitle": "แก้ไข \"{name}\"",
     "@guildSettingsRolesEditTitle": {
         "description": "Title for the role editor panel.",
@@ -10189,24 +9382,6 @@
     "@channelSettingsVoiceQuality": {
         "description": "Voice channel setting label for voice bitrate preset."
     },
-    "channelSettingsPermissionsNeedManageChannels": "คุณต้องมีสิทธิ์ \"{manageChannelsPermissionLabel}\" เพื่อแก้ไขการอนุญาตเหล่านี้",
-    "@channelSettingsPermissionsNeedManageChannels": {
-        "description": "Error when user lacks manage channels permission for channel permissions tab.",
-        "placeholders": {
-            "manageChannelsPermissionLabel": {
-                "type": "String"
-            }
-        }
-    },
-    "channelSettingsPermissionsNeedManageRoles": "คุณต้องมีสิทธิ์ \"{manageRolesPermissionLabel}\" เพื่อแก้ไขการอนุญาตเหล่านี้",
-    "@channelSettingsPermissionsNeedManageRoles": {
-        "description": "Error when user lacks manage roles permission for channel permissions tab.",
-        "placeholders": {
-            "manageRolesPermissionLabel": {
-                "type": "String"
-            }
-        }
-    },
     "channelSettingsPermissionsConfigureRoleOverrides": "กำหนดการตั้งค่าสำหรับบทบาทนี้",
     "@channelSettingsPermissionsConfigureRoleOverrides": {
         "description": "Subtitle when editing a role channel permission overwrite."
@@ -10279,10 +9454,6 @@
     "guildSettingsRolesNewRole": "บทบาทใหม่",
     "@guildSettingsRolesNewRole": {
         "description": "Default name for a newly created role."
-    },
-    "guildSettingsRolesSwitchToComfyLayout": "เปลี่ยนเป็นเลย์เอาต์สบายตา",
-    "@guildSettingsRolesSwitchToComfyLayout": {
-        "description": "Aria label for switching to comfy layout."
     },
     "guildSettingsRolesTwoColumns": "สองคอลัมน์",
     "@guildSettingsRolesTwoColumns": {
@@ -10504,10 +9675,6 @@
             }
         }
     },
-    "channelSettingsWebhooksUnknownUser": "ผู้ใช้ไม่รู้จัก",
-    "@channelSettingsWebhooksUnknownUser": {
-        "description": "Fallback label when webhook creator is unavailable."
-    },
     "channelSettingsWebhooksCopyUrl": "คัดลอก URL เว็บฮุค",
     "@channelSettingsWebhooksCopyUrl": {
         "description": "Button to copy webhook URL."
@@ -10630,10 +9797,6 @@
     "@channelDetailsSearchContentStickerDescription": {
         "description": "Description for the sticker content filter."
     },
-    "groupDmCreateInviteFailed": "สร้างลิงก์เชิญไม่ได้",
-    "@groupDmCreateInviteFailed": {
-        "description": "Title when invite link generation fails."
-    },
     "audioAndVideoFocusedVoiceDescription": "แนะนำ: ปรับปรุงไมโครโฟนของคุณเพื่อให้เสียงพูดชัดเจน",
     "@audioAndVideoFocusedVoiceDescription": {
         "description": "Description for the focused voice processing profile."
@@ -10743,21 +9906,9 @@
     "@guildSettingsRolesComfyLayout": {
         "description": "Tooltip when permission list is in dense layout."
     },
-    "guildSettingsRolesSwitchToDenseLayout": "เปลี่ยนเป็นเลย์เอาต์แบบกระชับ",
-    "@guildSettingsRolesSwitchToDenseLayout": {
-        "description": "Aria label for switching to dense layout."
-    },
-    "guildSettingsRolesSwitchToSingleColumn": "เปลี่ยนเป็นคอลัมน์เดียว",
-    "@guildSettingsRolesSwitchToSingleColumn": {
-        "description": "Aria label for switching to single column."
-    },
     "guildSettingsRolesHoistOrderHelp": "ลากบทบาทเพื่อจัดเรียงลำดับการแสดงในรายการสมาชิก",
     "@guildSettingsRolesHoistOrderHelp": {
         "description": "Help text in hoist order mode."
-    },
-    "guildSettingsRolesLockedTooltip": "คุณไม่สามารถแก้ไขบทบาทนี้ได้ เนื่องจากเป็นบทบาทสูงสุดของคุณหรือสูงกว่าคุณ",
-    "@guildSettingsRolesLockedTooltip": {
-        "description": "Tooltip on locked role rows."
     },
     "permissionCategoryChannelManagement": "การจัดการช่อง",
     "@permissionCategoryChannelManagement": {
@@ -10766,10 +9917,6 @@
     "permissionCategoryAudioVideo": "เสียงและวิดีโอ",
     "@permissionCategoryAudioVideo": {
         "description": "Permission category label."
-    },
-    "permissionUnknown": "สิทธิ์ที่ไม่รู้จัก",
-    "@permissionUnknown": {
-        "description": "Fallback permission label."
     },
     "permissionAdministrator": "ผู้ดูแลระบบ",
     "@permissionAdministrator": {
@@ -10970,6 +10117,80 @@
     "@userProfileLocalTime": {
         "description": "Profile section title for a user's local time."
     },
+    "profileLocalTimeSettingsTitle": "เวลาท้องถิ่นในโปรไฟล์",
+    "@profileLocalTimeSettingsTitle": {
+        "description": "Profile settings row title for profile local time."
+    },
+    "profileLocalTimeSettingsSummary": "ตั้งค่าเขตเวลาของคุณเพียงครั้งเดียว เพื่อให้ {productName} อัปเดตค่าชดเชยเวลา UTC ของคุณได้เมื่อมีการเปลี่ยนแปลงช่วงเวลาฤดูร้อน ผู้ใช้รายอื่นจะเห็นเฉพาะค่าชดเชยเวลา UTC ของคุณเท่านั้น ไม่เห็นตัวระบุเขตเวลาที่แน่นอนของคุณ",
+    "@profileLocalTimeSettingsSummary": {
+        "description": "Description for the profile local time settings section.",
+        "placeholders": {
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "profileLocalTimeEditButton": "แก้ไขเวลาท้องถิ่นในโปรไฟล์",
+    "@profileLocalTimeEditButton": {
+        "description": "Opens the profile local time editor."
+    },
+    "profileLocalTimeTimezoneLabel": "เขตเวลา",
+    "@profileLocalTimeTimezoneLabel": {
+        "description": "Field label for the profile timezone picker."
+    },
+    "profileLocalTimeTimezoneHelp": "เลือกเขตเวลาที่ {productName} ใช้ในการคำนวณค่าชดเชยเวลาสากล (UTC) สำหรับเวลาในโปรไฟล์ของคุณ",
+    "@profileLocalTimeTimezoneHelp": {
+        "description": "Helper text under the profile timezone picker.",
+        "placeholders": {
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "profileLocalTimeSearchTimezones": "ค้นหาเขตเวลา",
+    "@profileLocalTimeSearchTimezones": {
+        "description": "Placeholder in the profile timezone picker."
+    },
+    "profileLocalTimeNotSet": "ไม่ได้ตั้งค่า",
+    "@profileLocalTimeNotSet": {
+        "description": "Profile timezone picker option when no timezone is selected."
+    },
+    "profileLocalTimePrivacyNote": "ผู้ใช้อื่น ๆ จะเห็นเฉพาะค่าออฟเซ็ต UTC ปัจจุบันของคุณเมื่อคุณเลือกแชร์เวลาท้องถิ่นในโปรไฟล์ พวกเขาจะไม่เห็นตัวระบุเขตเวลาที่แน่นอน เช่น {timezoneIdentifierExample} {productName} จัดเก็บตัวระบุนั้นไว้เพียงเพื่อให้ค่าออฟเซ็ตอัปเดตโดยอัตโนมัติเมื่อมีการเปลี่ยนเวลาออมแสง",
+    "@profileLocalTimePrivacyNote": {
+        "description": "Privacy note in profile timezone settings.",
+        "placeholders": {
+            "timezoneIdentifierExample": {
+                "type": "String"
+            },
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "profileLocalTimePrivacyEveryone": "ทุกคน",
+    "@profileLocalTimePrivacyEveryone": {
+        "description": "Profile timezone privacy option label."
+    },
+    "profileLocalTimePrivacyEveryoneDesc": "อนุญาตให้ทุกคนที่ดูโปรไฟล์แบบเต็มของคุณได้ เห็นเวลาท้องถิ่นของคุณ",
+    "@profileLocalTimePrivacyEveryoneDesc": {
+        "description": "Profile timezone privacy option description for Everyone."
+    },
+    "profileLocalTimePrivacyFriends": "เพื่อน",
+    "@profileLocalTimePrivacyFriends": {
+        "description": "Profile timezone privacy option label."
+    },
+    "profileLocalTimePrivacyFriendsDesc": "อนุญาตให้เพื่อนเห็นเวลาท้องถิ่นของคุณ",
+    "@profileLocalTimePrivacyFriendsDesc": {
+        "description": "Profile timezone privacy option description for Friends."
+    },
+    "profileLocalTimePrivacyCommunityMembers": "สมาชิกคอมมูนิตี้",
+    "@profileLocalTimePrivacyCommunityMembers": {
+        "description": "Profile timezone privacy option label."
+    },
+    "profileLocalTimePrivacyCommunityMembersDesc": "อนุญาตให้สมาชิกจากคอมมูนิตี้ที่คุณอยู่เห็นเวลาท้องถิ่นของคุณ",
+    "@profileLocalTimePrivacyCommunityMembersDesc": {
+        "description": "Profile timezone privacy option description for Community members."
+    },
     "userProfileSameTimeAsYou": "เวลาเดียวกับคุณ",
     "@userProfileSameTimeAsYou": {
         "description": "Profile timezone difference when the target matches the viewer."
@@ -11108,29 +10329,9 @@
     "@audioAndVideoMicTestStopLabel": {
         "description": "Button label to stop the microphone test."
     },
-    "audioAndVideoMicTestPermissionRequired": "{productName} ต้องการสิทธิ์เข้าถึงไมโครโฟนเพื่อทดสอบอินพุตของคุณ",
-    "@audioAndVideoMicTestPermissionRequired": {
-        "description": "Shown when microphone permission is required for the mic test.",
-        "placeholders": {
-            "productName": {
-                "type": "String",
-                "example": "echowire"
-            }
-        }
-    },
     "audioAndVideoFrameRate30Label": "30 เฟรมต่อวินาที",
     "@audioAndVideoFrameRate30Label": {
         "description": "Screen share frame rate option for 30 FPS."
-    },
-    "audioAndVideoHigherQualityRequiresPremium": "1080p และ 60 FPS ต้องใช้ {premiumProductName}",
-    "@audioAndVideoHigherQualityRequiresPremium": {
-        "description": "Note shown when higher video quality options require premium.",
-        "placeholders": {
-            "premiumProductName": {
-                "type": "String",
-                "example": "Reverb"
-            }
-        }
     },
     "audioAndVideoSkipHideOwnScreenshareConfirmLabel": "ไม่ถามเมื่อซ่อนการแชร์หน้าจอของฉัน",
     "@audioAndVideoSkipHideOwnScreenshareConfirmLabel": {
@@ -11208,14 +10409,6 @@
     "guildSettingsRolesSingleColumn": "คอลัมน์เดียว",
     "@guildSettingsRolesSingleColumn": {
         "description": "Tooltip when permission list is in two-column layout."
-    },
-    "guildSettingsRolesSwitchToTwoColumns": "เปลี่ยนเป็นสองคอลัมน์",
-    "@guildSettingsRolesSwitchToTwoColumns": {
-        "description": "Aria label for switching to two columns."
-    },
-    "guildSettingsRolesCustomHoistOrder": "ลำดับการแสดงผลแบบกำหนดเอง",
-    "@guildSettingsRolesCustomHoistOrder": {
-        "description": "Button to enter custom hoist order mode."
     },
     "guildSettingsRolesHoistOrder": "ลำดับการแสดงแยก",
     "@guildSettingsRolesHoistOrder": {
@@ -11300,30 +10493,6 @@
     "channelDetailsSearchFilterByUser": "กรองตามผู้ใช้",
     "@channelDetailsSearchFilterByUser": {
         "description": "Title for the author filter sheet in channel message search."
-    },
-    "audioAndVideoMicrophonePermissionRequired": "{productName} ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟนเพื่อแสดงรายการอุปกรณ์ของคุณ",
-    "@audioAndVideoMicrophonePermissionRequired": {
-        "description": "Shown when microphone permission is required to enumerate audio input devices.",
-        "placeholders": {
-            "productName": {
-                "type": "String",
-                "example": "echowire"
-            }
-        }
-    },
-    "audioAndVideoCameraPermissionRequired": "{productName} ต้องเข้าถึงกล้องเพื่อแสดงรายการอุปกรณ์ของคุณ",
-    "@audioAndVideoCameraPermissionRequired": {
-        "description": "Shown when camera permission is required to enumerate video devices.",
-        "placeholders": {
-            "productName": {
-                "type": "String",
-                "example": "echowire"
-            }
-        }
-    },
-    "languageAndTimeOpenLanguageSettings": "เปิดการตั้งค่าภาษา",
-    "@languageAndTimeOpenLanguageSettings": {
-        "description": "Button that opens the system per-app language settings."
     },
     "addGuildCreateTitle": "สร้างคอมมูนิตี้",
     "@addGuildCreateTitle": {
@@ -11601,26 +10770,6 @@
     "@languageAndTimeTimeFormatSelectionLabel": {
         "description": "Accessibility label for the time format radio group."
     },
-    "iarReportGuildPreconfirmBody": "หากรายงานนี้เกี่ยวกับข้อความใดข้อความหนึ่งในคอมมูนิตี้นี้ ให้รายงานข้อความนั้นแทน การรายงานข้อความจะช่วยให้ทีมความปลอดภัยของเราเข้าใจบริบทได้ชัดเจนที่สุด และการเพิ่มรายละเอียดในความคิดเห็นจะช่วยให้เราตรวจสอบได้เร็วขึ้น ดำเนินการรายงานทั้งคอมมูนิตี้ก็ต่อเมื่อการรายงานข้อความไม่สามารถครอบคลุมปัญหาในวงกว้างได้",
-    "@iarReportGuildPreconfirmBody": {
-        "description": "Body shown in the pre-confirm dialog before opening the community report sheet."
-    },
-    "iarContinueToReportCommunity": "รายงานคอมมูนิตี้ต่อ",
-    "@iarContinueToReportCommunity": {
-        "description": "Primary button in the community report pre-confirm dialog."
-    },
-    "iarReasonTerrorismDescription": "ส่งเสริม ชักชวน หรือประสานงานกิจกรรมความรุนแรงสุดโต่ง",
-    "@iarReasonTerrorismDescription": {
-        "description": "Community-report reason description for terrorism or violent extremism."
-    },
-    "iarReasonMatureContentGuildLabel": "เนื้อหาสำหรับผู้ใหญ่หรือไม่ปลอดภัย",
-    "@iarReasonMatureContentGuildLabel": {
-        "description": "Community-report reason label for mature content or unsafe gating."
-    },
-    "iarReasonSelfHarmGuildDescription": "สนับสนุนการฆ่าตัวตาย ทำร้ายตัวเอง หรือการกินที่ผิดปกติ",
-    "@iarReasonSelfHarmGuildDescription": {
-        "description": "Community-report reason description for self-harm encouragement."
-    },
     "shareMediaTitle": "แชร์ไปยัง",
     "@shareMediaTitle": {
         "description": "Title of the share-media bottom sheet."
@@ -11755,10 +10904,6 @@
     "@channelMenuDeleteMyMessagesConfirm": {
         "description": "Confirm button for deleting all of the caller's messages in a channel."
     },
-    "groupDmFailedToProcessCroppedImage": "ประมวลผลรูปภาพที่ครอบตัดไม่สำเร็จ โปรดลองอีกครั้ง",
-    "@groupDmFailedToProcessCroppedImage": {
-        "description": "Body when a cropped group icon cannot be processed."
-    },
     "groupDmInvalidImage": "รูปภาพไม่ถูกต้อง",
     "@groupDmInvalidImage": {
         "description": "Title when the selected group icon image cannot be used."
@@ -11831,10 +10976,6 @@
     "@groupDmAddFriends": {
         "description": "Button to add selected friends to a group DM."
     },
-    "groupDmCouldntProcessImage": "ประมวลผลรูปภาพไม่ได้",
-    "@groupDmCouldntProcessImage": {
-        "description": "Title when a cropped group icon cannot be processed."
-    },
     "groupDmGroupFull": "กลุ่มนี้เต็มแล้ว ลบสมาชิกบางคนออกก่อนที่จะเพิ่มคนอื่น",
     "@groupDmGroupFull": {
         "description": "Error when the group DM has no remaining member slots."
@@ -11846,10 +10987,6 @@
     "groupDmAddFriendFailed": "เพิ่มเพื่อนคนนี้เข้ากลุ่มไม่ได้ โปรดลองอีกครั้ง",
     "@groupDmAddFriendFailed": {
         "description": "Error when adding a single friend to a group DM fails."
-    },
-    "groupDmAddFailed": "เพิ่มเข้ากลุ่มไม่ได้",
-    "@groupDmAddFailed": {
-        "description": "Title when adding friends to a group DM fails."
     },
     "groupDmLoadingInvites": "กำลังโหลดคำเชิญ...",
     "@groupDmLoadingInvites": {
@@ -12101,10 +11238,6 @@
     "@accessibilitySaturationTitle": {
         "description": "Section title for the theme saturation slider on the accessibility settings page."
     },
-    "accessibilitySaturationDescription": "ปรับความสดใสของสีธีมที่แสดงทั่วทั้งแอป",
-    "@accessibilitySaturationDescription": {
-        "description": "Section description for the theme saturation slider on the accessibility settings page."
-    },
     "channelDetailsLeaveGroupDescription": "ออกจาก {name} ไหม",
     "@channelDetailsLeaveGroupDescription": {
         "description": "Confirmation body when leaving a group DM from channel details.",
@@ -12277,133 +11410,9 @@
     "@guildSettingsInvitesLabelCode": {
         "description": "Mobile invite row label for invite code."
     },
-    "requiredActionChooseMethodTitle": "เลือกวิธีการยืนยัน",
-    "@requiredActionChooseMethodTitle": {
-        "description": "Title when user can pick email or phone."
-    },
-    "requiredActionUseEmail": "ใช้ที่อยู่อีเมล",
-    "@requiredActionUseEmail": {
-        "description": "Button to choose email verification."
-    },
-    "requiredActionUsePhone": "ใช้โทรศัพท์",
-    "@requiredActionUsePhone": {
-        "description": "Button to choose phone verification."
-    },
-    "phoneCountryLabel": "ประเทศ",
-    "@phoneCountryLabel": {
-        "description": "Label for country selector in phone verification."
-    },
-    "phoneSearchCountries": "ค้นหาประเทศ...",
-    "@phoneSearchCountries": {
-        "description": "Search hint for country selector."
-    },
-    "phoneNumberRequired": "ต้องระบุหมายเลขโทรศัพท์",
-    "@phoneNumberRequired": {
-        "description": "Validation error when phone number is empty."
-    },
-    "phoneEnterValidNumber": "ป้อนหมายเลขโทรศัพท์มือถือที่ถูกต้อง",
-    "@phoneEnterValidNumber": {
-        "description": "Validation error for invalid phone format."
-    },
-    "phoneCannotBeUsed": "ไม่สามารถใช้หมายเลขโทรศัพท์นี้ได้ โปรดลองใช้หมายเลขโทรศัพท์มือถืออื่นหรือติดต่อฝ่ายสนับสนุน",
-    "@phoneCannotBeUsed": {
-        "description": "API error when phone number is rejected."
-    },
-    "phoneAlreadyUsed": "หมายเลขโทรศัพท์นี้ถูกใช้ไปแล้ว ลองใช้หมายเลขอื่นหรือติดต่อฝ่ายสนับสนุน",
-    "@phoneAlreadyUsed": {
-        "description": "API error when phone number was reused."
-    },
-    "phoneCodeDidNotWork": "รหัสไม่ถูกต้อง โปรดตรวจสอบแล้วลองอีกครั้ง",
-    "@phoneCodeDidNotWork": {
-        "description": "API error for invalid verification code."
-    },
-    "phoneTooManyAttempts": "พยายามหลายครั้งเกินไป โปรดรอสักครู่แล้วลองอีกครั้ง",
-    "@phoneTooManyAttempts": {
-        "description": "Rate limit error for phone verification."
-    },
-    "phoneSmsUnavailable": "ไม่สามารถยืนยัน SMS ได้ในขณะนี้ โปรดลองอีกครั้งในภายหลังหรือติดต่อฝ่ายสนับสนุน",
-    "@phoneSmsUnavailable": {
-        "description": "SMS provider unavailable error."
-    },
-    "phoneNotEligible": "การยืนยันทางโทรศัพท์ไม่พร้อมใช้งานสำหรับบัญชีนี้ โปรดใช้วิธีอื่นหรือติดต่อฝ่ายสนับสนุน",
-    "@phoneNotEligible": {
-        "description": "Account not eligible for phone verification."
-    },
     "phoneCaptchaRequired": "ต้องมีการตรวจสอบเบราว์เซอร์ก่อนยืนยันเบอร์โทรศัพท์ ลองอีกครั้งจากหน้าลงชื่อเข้าใช้หรือติดต่อฝ่ายสนับสนุน",
     "@phoneCaptchaRequired": {
         "description": "Captcha required for phone verification."
-    },
-    "phoneSomethingWentWrong": "เกิดข้อผิดพลาดบางอย่าง โปรดลองอีกครั้ง",
-    "@phoneSomethingWentWrong": {
-        "description": "Generic phone verification error."
-    },
-    "phoneInboundExpensiveDescription": "การส่ง SMS ไปยังหมายเลขโทรศัพท์นี้มีค่าใช้จ่ายสูง เราจึงต้องการให้คุณส่ง SMS มาให้เราแทน คุณสามารถติดต่อฝ่ายสนับสนุนเพื่อขอให้เรายกเลิกข้อกำหนดนี้สำหรับบัญชีของคุณได้",
-    "@phoneInboundExpensiveDescription": {
-        "description": "Inbound challenge reason for expensive destinations."
-    },
-    "phoneInboundDefaultDescription": "เราต้องการให้คุณส่ง SMS เพื่อยืนยันหมายเลขโทรศัพท์ของคุณ",
-    "@phoneInboundDefaultDescription": {
-        "description": "Default inbound challenge description."
-    },
-    "phoneInboundStepOpenMessaging": "เปิดแอปข้อความในโทรศัพท์ของคุณ แล้วสร้างข้อความใหม่",
-    "@phoneInboundStepOpenMessaging": {
-        "description": "Inbound verification step 1."
-    },
-    "phoneInboundStepSendCode": "ส่งรหัส {code} ไปยัง {number}",
-    "@phoneInboundStepSendCode": {
-        "description": "Inbound verification step 2.",
-        "placeholders": {
-            "code": {
-                "type": "String"
-            },
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "phoneInboundStepWait": "รอสักครู่เพื่อให้เราได้รับข้อความของคุณ อาจใช้เวลาสักครู่",
-    "@phoneInboundStepWait": {
-        "description": "Inbound verification step 3."
-    },
-    "phoneInboundGetNewCode": "ขอรหัสใหม่",
-    "@phoneInboundGetNewCode": {
-        "description": "Button to refresh inbound challenge."
-    },
-    "phoneInboundChallengeCodeLabel": "รหัสที่จะส่ง",
-    "@phoneInboundChallengeCodeLabel": {
-        "description": "Label for inbound challenge code."
-    },
-    "phoneInboundOurNumberLabel": "ส่งไปที่",
-    "@phoneInboundOurNumberLabel": {
-        "description": "Label for inbound destination number."
-    },
-    "requiredActionTitle": "ต้องยืนยันบัญชี",
-    "@requiredActionTitle": {
-        "description": "Title for required action blocking modal."
-    },
-    "requiredActionIntroPhone": "การลงทะเบียนของคุณต้องผ่านการตรวจสอบสแปมเพิ่มเติมก่อนดำเนินการต่อ",
-    "@requiredActionIntroPhone": {
-        "description": "Phone-only required action intro."
-    },
-    "requiredActionCheckEmailTitle": "ตรวจสอบอีเมลของคุณ",
-    "@requiredActionCheckEmailTitle": {
-        "description": "Title for email verification instructions."
-    },
-    "requiredActionCheckEmailDescription": "เราส่งลิงก์ยืนยันไปยังอีเมลของคุณแล้ว เปิดลิงก์นั้นเพื่อดำเนินการต่อ",
-    "@requiredActionCheckEmailDescription": {
-        "description": "Description for email verification instructions."
-    },
-    "requiredActionResendVerificationEmail": "ส่งอีเมลยืนยันอีกครั้ง",
-    "@requiredActionResendVerificationEmail": {
-        "description": "Button to resend verification email."
-    },
-    "requiredActionVerificationEmailSent": "ส่งอีเมลยืนยันแล้ว โปรดตรวจสอบกล่องจดหมายเข้าของคุณ",
-    "@requiredActionVerificationEmailSent": {
-        "description": "Toast after resending verification email."
-    },
-    "requiredActionSignOut": "ออกจากระบบ",
-    "@requiredActionSignOut": {
-        "description": "Sign out button in required action modal."
     },
     "channelDetailsPinsEndReached": "คุณดูจนหมดแล้ว",
     "@channelDetailsPinsEndReached": {
@@ -12448,10 +11457,6 @@
     "channelDetailsDeleteChannel": "ลบช่อง",
     "@channelDetailsDeleteChannel": {
         "description": "Channel details menu action to delete a guild channel."
-    },
-    "channelSettingsCategorySettingsTitle": "การตั้งค่าหมวดหมู่",
-    "@channelSettingsCategorySettingsTitle": {
-        "description": "Title for category settings modal."
     },
     "channelSettingsEditCategory": "แก้ไขหมวดหมู่",
     "@channelSettingsEditCategory": {
@@ -12593,10 +11598,6 @@
     "@channelSettingsVoiceRegion": {
         "description": "Label for voice region picker."
     },
-    "channelSettingsMatureContentOverride": "การแทนที่เนื้อหาสำหรับผู้ใหญ่",
-    "@channelSettingsMatureContentOverride": {
-        "description": "Accessibility label for mature content override control."
-    },
     "channelSettingsMatureContentSectionDescription": "เปลี่ยนการตั้งค่าระดับ {scopeLevel} สำหรับช่องนี้ เนื้อหาสำหรับผู้ใหญ่จะแสดงหลังประตูทางเข้า",
     "@channelSettingsMatureContentSectionDescription": {
         "description": "Section description for mature content settings in channel overview.",
@@ -12621,10 +11622,6 @@
     "channelSettingsMatureContentOnDescription": "ตั้งค่าช่องนี้สำหรับเนื้อหาสำหรับผู้ใหญ่",
     "@channelSettingsMatureContentOnDescription": {
         "description": "Description for the mature content on override option."
-    },
-    "channelSettingsMatureContentCommunitySource": "ชุมชน",
-    "@channelSettingsMatureContentCommunitySource": {
-        "description": "Lowercase source label for inherited mature content from community."
     },
     "channelSettingsMatureContentCategoryScope": "หมวดหมู่",
     "@channelSettingsMatureContentCategoryScope": {
@@ -12778,14 +11775,6 @@
     "notificationsEnableDesktopNotificationsDescription": "ใช้ศูนย์การแจ้งเตือนของระบบปฏิบัติการ หากต้องการควบคุมการแจ้งเตือนแต่ละช่อง/แต่ละชุมชน ให้คลิกขวาที่ไอคอนชุมชนแล้วเปิดการตั้งค่าการแจ้งเตือน",
     "@notificationsEnableDesktopNotificationsDescription": {
         "description": "Description for the enable desktop notifications toggle."
-    },
-    "notificationsEnableBrowserNotificationsLabel": "เปิดการแจ้งเตือนในเบราว์เซอร์",
-    "@notificationsEnableBrowserNotificationsLabel": {
-        "description": "Toggle label for enabling browser notifications."
-    },
-    "notificationsEnableBrowserNotificationsDescription": "รับการแจ้งเตือนเมื่อมีข้อความเข้า คุณอาจต้องอนุญาตการแจ้งเตือนในการตั้งค่าเบราว์เซอร์ หากต้องการควบคุมการแจ้งเตือนแต่ละช่อง/แต่ละคอมมูนิตี้ ให้คลิกขวาที่ไอคอนคอมมูนิตี้แล้วเปิดการตั้งค่าการแจ้งเตือน",
-    "@notificationsEnableBrowserNotificationsDescription": {
-        "description": "Description for the enable browser notifications toggle."
     },
     "notificationsPushInactiveTimeoutLabel": "หมดเวลาการแจ้งเตือนแบบพุชเมื่อไม่ใช้งาน",
     "@notificationsPushInactiveTimeoutLabel": {
@@ -13254,42 +12243,6 @@
     "gifPickerFavoritesEmptyDescription": "ปักหมุด GIF ที่ชอบเพื่อดูที่นี่",
     "@gifPickerFavoritesEmptyDescription": {
         "description": "Empty state description for the GIF picker favorites view."
-    },
-    "requiredActionIntroGeneric": "ดำเนินการยืนยันที่จำเป็นเพื่อใช้งาน {productName} ต่อไป",
-    "@requiredActionIntroGeneric": {
-        "description": "Generic required action intro.",
-        "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "requiredActionIntroEmailOrPhone": "ยืนยันอีเมลหรือเบอร์โทรศัพท์ของคุณเพื่อใช้งาน {productName} ต่อไป",
-    "@requiredActionIntroEmailOrPhone": {
-        "description": "Email or phone required action intro.",
-        "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "requiredActionIntroEmailAndPhone": "โปรดยืนยันอีเมลและเบอร์โทรศัพท์ให้เรียบร้อยเพื่อใช้งาน {productName} ต่อไป",
-    "@requiredActionIntroEmailAndPhone": {
-        "description": "Email and phone required action intro.",
-        "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "requiredActionChooseMethodDescription": "ดำเนินการยืนยันตัวตนวิธีใดวิธีหนึ่งด้านล่างเพื่อใช้งาน {productName} ต่อไป",
-    "@requiredActionChooseMethodDescription": {
-        "description": "Description when user can pick email or phone.",
-        "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
     },
     "networkErrorMessage": "เกิดข้อผิดพลาดบางอย่าง โปรดลองอีกครั้ง",
     "@networkErrorMessage": {
@@ -13797,6 +12750,14 @@
     "@accessibilityAlwaysUnderlineLinksLabel": {
         "description": "Toggle label for always underlining links in messages."
     },
+    "accessibilityShowAltTextOnImagesLabel": "แสดงข้อความอธิบายรูปภาพ",
+    "@accessibilityShowAltTextOnImagesLabel": {
+        "description": "Toggle label for showing image alternative text as a caption."
+    },
+    "accessibilityShowAltTextOnImagesDescription": "แสดงข้อความอธิบายรูปภาพด้านล่างรูปภาพเมื่อมีข้อความดังกล่าว",
+    "@accessibilityShowAltTextOnImagesDescription": {
+        "description": "Description for the show alternative text on images toggle."
+    },
     "accessibilityDimStrikethroughTextLabel": "หรี่ข้อความขีดทับ",
     "@accessibilityDimStrikethroughTextLabel": {
         "description": "Toggle label for dimming strikethrough text in messages."
@@ -13915,10 +12876,6 @@
     "accessibilityPausedGifByReducedMotion": "หยุดชั่วคราวเนื่องจากการเคลื่อนไหวลดลง เปิดเพื่อเล่น GIF ต่อไป",
     "@accessibilityPausedGifByReducedMotion": {
         "description": "Description for GIF toggle while reduced motion is active."
-    },
-    "accessibilityGifDefaultsOffOnMobile": "ค่าเริ่มต้นคือปิดในมือถือเพื่อประหยัดแบตเตอรี่และอินเทอร์เน็ต",
-    "@accessibilityGifDefaultsOffOnMobile": {
-        "description": "Helper text for GIF autoplay default on mobile."
     },
     "accessibilityStickerAnimationsTitle": "ภาพเคลื่อนไหวสติกเกอร์",
     "@accessibilityStickerAnimationsTitle": {
@@ -14375,25 +13332,13 @@
     "@privacyDashboardFriendRequestsEveryone": {
         "description": "Privacy dashboard friend request toggle label."
     },
-    "privacyDashboardFriendRequestsEveryoneDesc": "อนุญาตให้ทุกคนส่งคำขอเป็นเพื่อนถึงคุณได้",
-    "@privacyDashboardFriendRequestsEveryoneDesc": {
-        "description": "Privacy dashboard friend request toggle description."
-    },
     "privacyDashboardFriendRequestsFriendsOfFriends": "เพื่อนของเพื่อน",
     "@privacyDashboardFriendRequestsFriendsOfFriends": {
         "description": "Privacy dashboard friend request toggle label."
     },
-    "privacyDashboardFriendRequestsFriendsOfFriendsDesc": "อนุญาตให้เพื่อนของเพื่อนส่งคำขอหาคุณได้",
-    "@privacyDashboardFriendRequestsFriendsOfFriendsDesc": {
-        "description": "Privacy dashboard friend request toggle description."
-    },
     "privacyDashboardFriendRequestsCommunityMembers": "สมาชิกชุมชน",
     "@privacyDashboardFriendRequestsCommunityMembers": {
         "description": "Privacy dashboard friend request toggle label."
-    },
-    "privacyDashboardFriendRequestsCommunityMembersDesc": "อนุญาตให้สมาชิกจากชุมชนที่คุณอยู่ส่งคำขอถึงคุณได้",
-    "@privacyDashboardFriendRequestsCommunityMembersDesc": {
-        "description": "Privacy dashboard friend request toggle description."
     },
     "privacyDashboardDirectMessagesTitle": "ข้อความส่วนตัว",
     "@privacyDashboardDirectMessagesTitle": {
@@ -14403,65 +13348,29 @@
     "@privacyDashboardDirectMessagesMembers": {
         "description": "Privacy dashboard DM toggle label."
     },
-    "privacyDashboardDirectMessagesMembersDesc": "อนุญาตให้สมาชิกจากชุมชนที่คุณอยู่ส่งข้อความส่วนตัวถึงคุณได้",
-    "@privacyDashboardDirectMessagesMembersDesc": {
-        "description": "Privacy dashboard DM toggle description."
-    },
     "privacyDashboardDirectMessagesBots": "อนุญาตข้อความโดยตรงจากบอทของคอมมูนิตี้",
     "@privacyDashboardDirectMessagesBots": {
         "description": "Privacy dashboard bot DM toggle label."
-    },
-    "privacyDashboardDirectMessagesBotsDesc": "อนุญาตให้บอทจากชุมชนที่คุณอยู่ส่งข้อความส่วนตัวถึงคุณได้",
-    "@privacyDashboardDirectMessagesBotsDesc": {
-        "description": "Privacy dashboard bot DM toggle description."
-    },
-    "privacyDashboardConnectionsSectionDesc": "ควบคุมว่าใครสามารถส่งคำขอเป็นเพื่อนและข้อความส่วนตัวถึงคุณได้",
-    "@privacyDashboardConnectionsSectionDesc": {
-        "description": "Privacy dashboard connections section description."
-    },
-    "privacyDashboardCommunicationSectionDesc": "ควบคุมว่าใครสามารถโทรหาคุณและเพิ่มคุณเข้ากลุ่มแชทได้",
-    "@privacyDashboardCommunicationSectionDesc": {
-        "description": "Privacy dashboard communication section description."
     },
     "privacyDashboardIncomingCallsTitle": "สายเรียกเข้า",
     "@privacyDashboardIncomingCallsTitle": {
         "description": "Privacy dashboard incoming calls subsection title."
     },
-    "privacyDashboardIncomingCallsDesc": "ควบคุมว่าใครสามารถโทรหาคุณได้",
-    "@privacyDashboardIncomingCallsDesc": {
-        "description": "Privacy dashboard incoming calls subsection description."
-    },
     "privacyDashboardAllowedCallers": "ผู้ที่ได้รับอนุญาตให้โทรออก",
     "@privacyDashboardAllowedCallers": {
         "description": "Privacy > Communication: select label."
-    },
-    "privacyDashboardIncomingCallNobody": "ไม่มีใคร",
-    "@privacyDashboardIncomingCallNobody": {
-        "description": "Privacy > Communication: radio option label."
     },
     "privacyDashboardIncomingCallNobodyDesc": "บล็อกสายเรียกเข้าทั้งหมด",
     "@privacyDashboardIncomingCallNobodyDesc": {
         "description": "Privacy > Communication: select option description."
     },
-    "privacyDashboardIncomingCallFriendsOnly": "เฉพาะเพื่อน",
-    "@privacyDashboardIncomingCallFriendsOnly": {
-        "description": "Privacy > Communication: radio option label."
-    },
     "privacyDashboardIncomingCallFriendsOnlyDesc": "อนุญาตให้เฉพาะเพื่อนโทรหาคุณเท่านั้น (แนะนำ)",
     "@privacyDashboardIncomingCallFriendsOnlyDesc": {
         "description": "Privacy > Communication: select option description."
     },
-    "privacyDashboardIncomingCallCustom": "เพื่อน + กำหนดเอง",
-    "@privacyDashboardIncomingCallCustom": {
-        "description": "Privacy > Communication: radio option label."
-    },
     "privacyDashboardIncomingCallCustomDesc": "อนุญาตให้เพื่อนและกลุ่มเพิ่มเติมที่คุณเลือก",
     "@privacyDashboardIncomingCallCustomDesc": {
         "description": "Privacy > Communication: select option description."
-    },
-    "privacyDashboardIncomingCallEveryone": "ทุกคน",
-    "@privacyDashboardIncomingCallEveryone": {
-        "description": "Privacy > Communication: radio option label."
     },
     "privacyDashboardIncomingCallEveryoneDesc": "อนุญาตให้ทุกคนโทรหาคุณได้ แม้แต่คนแปลกหน้า",
     "@privacyDashboardIncomingCallEveryoneDesc": {
@@ -14471,14 +13380,6 @@
     "@privacyDashboardAdditionalGroups": {
         "description": "Privacy dashboard label for custom permission groups."
     },
-    "privacyDashboardCallFriendsOfFriendsDesc": "เพื่อนของเพื่อนของคุณสามารถโทรหาคุณได้",
-    "@privacyDashboardCallFriendsOfFriendsDesc": {
-        "description": "Privacy dashboard incoming call custom toggle description."
-    },
-    "privacyDashboardCallGuildMembersDesc": "คนจากชุมชนที่คุณอยู่ร่วมกันสามารถโทรหาคุณได้",
-    "@privacyDashboardCallGuildMembersDesc": {
-        "description": "Privacy dashboard incoming call custom toggle description."
-    },
     "privacyDashboardRingBehavior": "พฤติกรรมวงแหวน",
     "@privacyDashboardRingBehavior": {
         "description": "Privacy dashboard ring behavior subsection label."
@@ -14487,17 +13388,9 @@
     "@privacyDashboardSilentCalls": {
         "description": "Privacy dashboard silent calls toggle label."
     },
-    "privacyDashboardSilentCallsDesc": "สายเรียกเข้าทั้งหมดจะแจ้งเตือนแบบเงียบแทนการส่งเสียงเรียกเข้า โดยปกติแล้ว สายจากผู้ที่ไม่ใช่เพื่อนจะเงียบเสมอ",
-    "@privacyDashboardSilentCallsDesc": {
-        "description": "Privacy dashboard silent calls toggle description."
-    },
     "privacyDashboardGroupDmTitle": "ใครสามารถเพิ่มคุณเข้ากลุ่มแชทได้บ้าง",
     "@privacyDashboardGroupDmTitle": {
         "description": "Privacy dashboard group DM subsection title."
-    },
-    "privacyDashboardGroupDmDesc": "ควบคุมว่าใครสามารถเพิ่มคุณเข้ากลุ่มแชทได้โดยไม่ต้องขออนุญาต ทุกคนยังคงสามารถส่งลิงก์เชิญให้คุณเข้าร่วมได้",
-    "@privacyDashboardGroupDmDesc": {
-        "description": "Privacy dashboard group DM subsection description."
     },
     "privacyDashboardAllowedInvites": "ผู้ที่ได้รับอนุญาตให้เชิญ",
     "@privacyDashboardAllowedInvites": {
@@ -14518,14 +13411,6 @@
     "privacyDashboardGroupDmEveryoneDesc": "อนุญาตให้ทุกคนเพิ่มคุณเข้ากลุ่มแชทได้โดยไม่ต้องขอ",
     "@privacyDashboardGroupDmEveryoneDesc": {
         "description": "Privacy > Communication: select option description."
-    },
-    "privacyDashboardGroupDmFriendsOfFriendsDesc": "เพื่อนของเพื่อนของคุณสามารถเพิ่มคุณเข้ากลุ่มแชทได้",
-    "@privacyDashboardGroupDmFriendsOfFriendsDesc": {
-        "description": "Privacy dashboard group DM custom toggle description."
-    },
-    "privacyDashboardGroupDmGuildMembersDesc": "ผู้คนจากชุมชนที่คุณอยู่ร่วมกันสามารถเพิ่มคุณเข้ากลุ่มแชทได้",
-    "@privacyDashboardGroupDmGuildMembersDesc": {
-        "description": "Privacy dashboard group DM custom toggle description."
     },
     "privacyDashboardVoiceActivityTitle": "กิจกรรมเสียงบนกำลังใช้งานอยู่",
     "@privacyDashboardVoiceActivityTitle": {
@@ -15058,26 +13943,6 @@
     "@composerAutocompleteOptionalArgumentsHeading": {
         "description": "Section heading in composer autocomplete for adding optional slash-command arguments."
     },
-    "composerAutocompleteChannelsHeading": "ช่อง",
-    "@composerAutocompleteChannelsHeading": {
-        "description": "Section heading in composer autocomplete for channel suggestions."
-    },
-    "composerAutocompleteMembersHeading": "สมาชิก",
-    "@composerAutocompleteMembersHeading": {
-        "description": "Section heading in composer autocomplete for member suggestions."
-    },
-    "composerAutocompleteUsersHeading": "ผู้ใช้",
-    "@composerAutocompleteUsersHeading": {
-        "description": "Section heading in composer autocomplete for user suggestions."
-    },
-    "composerAutocompleteMentionsHeading": "การกล่าวถึง",
-    "@composerAutocompleteMentionsHeading": {
-        "description": "Section heading in composer autocomplete for mixed mention suggestions."
-    },
-    "composerAutocompleteRolesHeading": "บทบาท",
-    "@composerAutocompleteRolesHeading": {
-        "description": "Section heading in composer autocomplete for role suggestions."
-    },
     "composerAutocompleteMediaHeading": "สื่อ",
     "@composerAutocompleteMediaHeading": {
         "description": "Section heading in composer autocomplete for saved media."
@@ -15294,10 +14159,6 @@
     "memberListUnavailableBody": "ขณะนี้ยังไม่สามารถดูรายชื่อสมาชิกในคอมมูนิตี้นี้ได้",
     "@memberListUnavailableBody": {
         "description": "Body when member list updates are disabled for the community."
-    },
-    "channelHeaderOpenDetails": "เปิดรายละเอียดช่อง",
-    "@channelHeaderOpenDetails": {
-        "description": "Accessibility label for the channel header title area."
     },
     "channelHeaderPinnedMessages": "ข้อความปักหมุด",
     "@channelHeaderPinnedMessages": {
@@ -15660,10 +14521,6 @@
     "@userSettingsSearchPlaceholder": {
         "description": "Placeholder for the user settings search field."
     },
-    "userSettingsSearchFieldLabel": "ค้นหาการตั้งค่า",
-    "@userSettingsSearchFieldLabel": {
-        "description": "Accessibility label for the user settings search field."
-    },
     "userSettingsSearchClear": "ล้างการค้นหา",
     "@userSettingsSearchClear": {
         "description": "Accessibility label for clearing the user settings search field."
@@ -15690,8 +14547,6 @@
     "giftSettingsGiftUrl": "ลิงก์ของขวัญ",
     "giftSettingsCopy": "คัดลอก",
     "giftSettingsCopied": "คัดลอกแล้ว",
-    "giftSettingsGiftUrlCopied": "คัดลอกลิงก์ของขวัญแล้ว",
-    "giftSettingsGiftUrlCopyFailed": "คัดลอก URL ของขวัญไม่ได้",
     "giftSettingsPurchasedDate": "ซื้อเมื่อ {date}",
     "@giftSettingsPurchasedDate": {
         "placeholders": {
@@ -15733,7 +14588,6 @@
     "premiumBuyGift": "ซื้อของขวัญ",
     "premiumOneYearGift": "ของขวัญ 1 ปี",
     "premiumOneMonthGift": "ของขวัญ 1 เดือน",
-    "premiumMostPopular": "เป็นที่นิยมที่สุด",
     "premiumScrollPrompt": "เลื่อนลงเพื่อดูสิทธิประโยชน์ทั้งหมดที่มีให้สำหรับ Reverb",
     "premiumFreeVsPlutonium": "ฟรีเทียบกับ Reverb",
     "premiumFreeColumn": "ฟรี",
@@ -15751,50 +14605,15 @@
     "premiumViewGifts": "ดูของขวัญ",
     "premiumReadyToUpgrade": "พร้อมจะอัปเกรดหรือยัง?",
     "premiumReadyToBuyGift": "พร้อมซื้อของขวัญหรือยัง",
-    "premiumMonthlyPrice": "รายเดือน {price}",
-    "@premiumMonthlyPrice": {
-        "placeholders": {
-            "price": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumYearlyPrice": "รายปี {price}",
-    "@premiumYearlyPrice": {
-        "placeholders": {
-            "price": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumOneYearPrice": "1 ปี {price}",
-    "@premiumOneYearPrice": {
-        "placeholders": {
-            "price": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumOneMonthPrice": "1 เดือน {price}",
-    "@premiumOneMonthPrice": {
-        "placeholders": {
-            "price": {
-                "type": "String"
-            }
-        }
-    },
     "premiumManageSubscription": "จัดการการสมัครสมาชิก",
     "premiumRedeemGiftCode": "แลกรหัสของขวัญ",
     "premiumGiftBadge": "ของขวัญ",
     "premiumCancelSubscriptionTitle": "ยกเลิกการสมัครสมาชิกใช่หรือไม่",
     "premiumCancelSubscriptionBody": "คุณจะยังคงได้รับสิทธิพิเศษจนถึงวันต่ออายุครั้งถัดไป จากนั้นจะมีระยะเวลาผ่อนผัน 3 วันในการสมัครสมาชิกอีกครั้งและรักษาวันที่สมัครสมาชิกของคุณไว้",
     "premiumCancelSubscriptionConfirm": "ยกเลิกการสมัครสมาชิก",
-    "premiumKeepSubscription": "คงการสมัครสมาชิก",
     "premiumPurchaseHistoryTitle": "ประวัติการซื้อ",
     "premiumPurchaseHistoryDescription": "ใบแจ้งหนี้ล่าสุดของคุณ หากต้องการเปลี่ยนวิธีการชำระเงินสำหรับการสมัครใช้งานของคุณ ให้เพิ่มหรือเลือกวิธีการชำระเงินในพอร์ทัลการเรียกเก็บเงิน แล้วตั้งเป็นค่าเริ่มต้น",
     "premiumManagePaymentMethods": "จัดการวิธีการชำระเงิน",
-    "premiumBillingHistory": "ประวัติการเรียกเก็บเงิน",
-    "premiumSelfServeRefundTitle": "การคืนเงินด้วยตนเอง",
     "premiumSelfServeRefundButton": "คืนเงินการซื้อล่าสุด",
     "premiumDisclaimerAgreementPrefix": "เมื่อซื้อ คุณยอมรับ ",
     "premiumDisclaimerAgreementPastPrefix": "เมื่อซื้อ คุณได้ตกลงตาม ",
@@ -15825,25 +14644,25 @@
             }
         }
     },
-    "premiumComparisonFeatureColumn": "ฟีเจอร์",
-    "premiumDisclaimerPurchased": "เมื่อซื้อสินค้า คุณได้ยอมรับ{terms}และ{privacy}ของเรา",
-    "@premiumDisclaimerPurchased": {
-        "placeholders": {
-            "terms": {
-                "type": "String"
-            },
-            "privacy": {
-                "type": "String"
-            }
-        }
+    "premiumGiftGraceEnded": "เวลาของขวัญของคุณหมดแล้ว สมัครสมาชิกเพื่อรับ Plutonium ต่อไป",
+    "@premiumGiftGraceEnded": {
+        "description": "Plutonium settings summary line shown during the grace period after gifted Plutonium time runs out."
     },
+    "premiumGiftTimeAddedAfterSubscription": "คุณจะถูกเรียกเก็บเงินทันที เวลาของขวัญที่เหลือของคุณจะถูกเพิ่มหลังจากช่วงเวลาที่ชำระเงินของคุณ ดังนั้นจะไม่มีการสูญเสีย",
+    "@premiumGiftTimeAddedAfterSubscription": {
+        "description": "Note next to the subscription plans when the user still has gifted Plutonium time left."
+    },
+    "premiumComparisonFeatureColumn": "ฟีเจอร์",
     "premiumDisclaimerRefund": "สามารถขอคืนเงินด้วยตนเองได้ภายใน 3 วันหลังชำระเงิน และทำได้เดือนละครั้ง การคืนเงินค่าสมัครสมาชิกจะถือเป็นการยกเลิกการสมัครสมาชิก ผู้ซื้อใน EU/EEA สละสิทธิ์การถอนเงินภายใน 14 วันเมื่อชำระเงินเพื่อเข้าถึงเนื้อหาได้ทันที โปรดใช้ปุ่มคืนเงินในแอปแทนการปฏิเสธการชำระเงิน การปฏิเสธการชำระเงินอาจจำกัดบัญชีของคุณอย่างถาวร Stripe จัดการการชำระเงินอย่างปลอดภัย เราไม่เคยเห็นหมายเลขบัตรเต็มของคุณ",
     "premiumTermsOfService": "ข้อกำหนดในการให้บริการ",
     "premiumPrivacyPolicy": "นโยบายความเป็นส่วนตัว",
     "premiumCheckoutStartFailedTitle": "ไม่สามารถเริ่มชำระเงินได้",
     "premiumCheckoutStartFailedBody": "เกิดข้อผิดพลาดขณะเริ่มต้นการชำระเงิน โปรดลองอีกครั้งในภายหลัง",
-    "premiumGiftSubscriptionBlocksRecurring": "คุณกำลังใช้การสมัครสมาชิกแบบของขวัญ ซึ่งจะไม่มีการต่ออายุ คุณสามารถแลกรหัสของขวัญเพิ่มเพื่อขยายระยะเวลาได้ การสมัครสมาชิกแบบต่ออายุอัตโนมัติจะสามารถเริ่มต้นได้หลังจากระยะเวลาของขวัญของคุณสิ้นสุดลง",
     "premiumPlanUnavailable": "แพ็กเกจนี้ไม่พร้อมใช้งาน โปรดติดต่อฝ่ายสนับสนุน",
+    "premiumPlanUnavailableSelfHosted": "แพ็กเกจนี้ไม่พร้อมใช้งาน โปรดติดต่อผู้ดูแลระบบของอินสแตนซ์นี้",
+    "@premiumPlanUnavailableSelfHosted": {
+        "description": "Error shown on a self-hosted instance when the selected Plutonium plan is not available. Names no support mailbox."
+    },
     "premiumCompletePaymentTitle": "ชำระเงินให้เสร็จสมบูรณ์",
     "premiumCompletePaymentBody": "คุณกำลังไปยัง Stripe เพื่อดำเนินการชำระเงินให้เสร็จสิ้น กลับไปที่ echowire เมื่อคุณดำเนินการเสร็จแล้ว",
     "premiumChoosePaymentMethodTitle": "เลือกช่องทางการชำระเงิน",
@@ -15859,29 +14678,97 @@
     "premiumExistingSubscriptionTitle": "มีแพ็กเกจนี้อยู่แล้ว",
     "premiumExistingSubscriptionBody": "เราพบการสมัครใช้งาน Reverb ที่มีอยู่สำหรับบัญชีนี้ จัดการได้ที่พอร์ทัลการเรียกเก็บเงินที่ปลอดภัยเพื่ออัปเดตรายละเอียดการชำระเงินหรือตรวจสอบสถานะการต่ออายุ หากคุณเพิ่งชำระเงิน โปรดรอสักครู่แล้วเปิดหน้านี้อีกครั้ง",
     "premiumPurchasesDisabledTitle": "ซื้อไม่ได้",
-    "premiumPurchasesDisabledBody": "การซื้อถูกปิดใช้งานสำหรับบัญชีนี้ ติดต่อ support@echowire.org หากดูเหมือนว่ามีข้อผิดพลาด",
+    "premiumPurchasesDisabledBody": "การซื้อถูกปิดใช้งานสำหรับบัญชีนี้ ติดต่อ {supportEmail} หากดูเหมือนว่ามีข้อผิดพลาด",
+    "@premiumPurchasesDisabledBody": {
+        "description": "Shown on the official hosted instance when purchases are disabled for the account. supportEmail is the support mailbox.",
+        "placeholders": {
+            "supportEmail": {
+                "type": "String"
+            }
+        }
+    },
+    "premiumPurchasesDisabledBodySelfHosted": "การซื้อถูกปิดใช้งานสำหรับบัญชีนี้ ติดต่อผู้ดูแลระบบของอินสแตนซ์นี้หากดูเหมือนว่ามีข้อผิดพลาด",
+    "@premiumPurchasesDisabledBodySelfHosted": {
+        "description": "Shown on a self-hosted instance when purchases are disabled for the account. Names no email address."
+    },
     "premiumClaimAccountToPurchase": "รับสิทธิ์บัญชีของคุณเพื่อซื้อ Reverb",
     "premiumVerifyEmailToPurchase": "คุณต้องยืนยันอีเมลของคุณก่อนจึงจะสามารถซื้อ Reverb ได้",
-    "premiumPerkCustomUsernameTag": "แท็กชื่อผู้ใช้แบบกำหนดเอง",
-    "premiumPerkPerCommunityProfiles": "โปรไฟล์แยกตามแต่ละชุมชน",
-    "premiumPerkMessageScheduling": "การตั้งเวลาข้อความ",
-    "premiumPerkProfileBadge": "ป้ายโปรไฟล์",
-    "premiumPerkCustomVideoBackgrounds": "พื้นหลังวิดีโอแบบกำหนดเอง",
-    "premiumPerkEntranceSounds": "เสียงเข้าห้องแชท",
     "premiumPerkCommunities": "คอมมูนิตี้",
     "premiumPerkMessageCharacterLimit": "จำกัดจำนวนอักขระในข้อความ",
     "premiumPerkBookmarkedMessages": "ข้อความที่คั่นหน้า",
     "premiumPerkFileUploadSize": "ขนาดไฟล์ที่อัปโหลด",
-    "premiumPerkEmojiStickerPacks": "ชุดอิโมจิและสติกเกอร์",
-    "premiumPerkSavedMedia": "สื่อที่บันทึกไว้",
     "premiumPerkUseAnimatedEmojis": "ใช้อีโมจิเคลื่อนไหว",
-    "premiumPerkGlobalEmojiStickerAccess": "อิโมจิและสติกเกอร์ทั่วโลก",
     "premiumPerkVideoQuality": "คุณภาพวิดีโอ",
     "premiumPerkAnimatedAvatarsBanners": "อวตารและแบนเนอร์โปรไฟล์แบบเคลื่อนไหว",
     "premiumPerkEarlyAccess": "เข้าถึงฟีเจอร์ใหม่ก่อนใคร",
-    "premiumPerkCustomThemes": "ธีมที่กำหนดเอง",
     "premiumPerkVideoQualityRestricted": "720p/30fps",
     "premiumPerkVideoQualityStock": "สูงสุด 4K/60fps",
+    "storePlutoniumPriceLine": "{monthly} หรือ {yearly}",
+    "@storePlutoniumPriceLine": {
+        "placeholders": {
+            "monthly": {
+                "type": "String"
+            },
+            "yearly": {
+                "type": "String"
+            }
+        }
+    },
+    "storePlutoniumMonthSuffix": "/เดือน",
+    "storePlutoniumYearSuffix": "/ปี",
+    "storePlutoniumPriceOr": "หรือ",
+    "storePlutoniumEmojiTitle": "อิโมจิของคุณ ใช้ได้ทุกที่",
+    "storePlutoniumEmojiBody": "นำอิโมจิและสติกเกอร์ที่กำหนดเองจากคอมมูนิตี้ใดก็ได้ของคุณมาใช้ในทุกแชทและทุกคอมมูนิตี้ที่คุณอยู่",
+    "storePlutoniumProfileTitle": "โปรไฟล์ที่โดดเด่น",
+    "storePlutoniumProfileBody": "รับรูปโปรไฟล์และแบนเนอร์แบบเคลื่อนไหว, ป้ายสมาชิก, แท็กสี่หลักที่คุณต้องการต่อท้ายชื่อผู้ใช้ของคุณ* และโปรไฟล์แยกต่างหากสำหรับแต่ละคอมมูนิตี้",
+    "storePlutoniumFilesTitle": "ส่งไฟล์ขนาดสูงสุด 500 MB",
+    "storePlutoniumFilesBody": "แชร์วิดีโอความยาวเต็มและไฟล์ขนาดใหญ่ได้โดยไม่ต้องย่อขนาดก่อน บัญชีฟรีสามารถส่งได้สูงสุด 25 MB",
+    "storePlutoniumCompareTitle": "เปรียบเทียบแบบฟรีและ Plutonium",
+    "storePlutoniumCompareMobileNote": "ฟีเจอร์เหล่านี้บางส่วนไม่มีในแอปมือถือ บางฟีเจอร์ใช้ได้บนเดสก์ท็อปเท่านั้น",
+    "storePlutoniumNotAvailable": "ไม่พร้อมใช้งาน",
+    "storePlutoniumAvailable": "พร้อมใช้งาน",
+    "storePlutoniumCompareTag": "เลือกตัวเลข 4 หลักหลังชื่อผู้ใช้ของคุณ*",
+    "storePlutoniumCompareProfile": "โปรไฟล์แยกสำหรับแต่ละคอมมูนิตี้",
+    "storePlutoniumCompareBadge": "ป้ายสมาชิกบนโปรไฟล์ของคุณ",
+    "storePlutoniumCompareBackgrounds": "พื้นหลังโทรวิดีโอที่คุณบันทึกได้",
+    "storePlutoniumCompareCommunities": "คอมมูนิตี้ที่คุณเข้าร่วมได้",
+    "storePlutoniumCompareCharacters": "อักขระในข้อความเดียว",
+    "storePlutoniumCompareBookmarks": "ข้อความที่คุณสามารถบุ๊กมาร์กได้",
+    "storePlutoniumCompareUpload": "ไฟล์ที่ใหญ่ที่สุดที่คุณสามารถอัปโหลดได้",
+    "storePlutoniumCompareSavedMedia": "รายการสื่อที่คุณสามารถบันทึกไว้ดูภายหลังได้",
+    "storePlutoniumCompareAnimatedEmoji": "ใช้อิโมจิเคลื่อนไหวในข้อความ",
+    "storePlutoniumCompareCustomEmoji": "ใช้อิโมจิและสติกเกอร์ที่กำหนดเองในคอมมูนิตี้ใดก็ได้",
+    "storePlutoniumCompareVideo": "คุณภาพการโทรวิดีโอและการแชร์หน้าจอ",
+    "storePlutoniumCompareAvatar": "รูปโปรไฟล์และแบนเนอร์แบบเคลื่อนไหว",
+    "storePlutoniumCompareEarlyAccess": "เข้าถึงฟีเจอร์ใหม่ก่อนใคร",
+    "storePlutoniumCompareThemes": "ธีมแบบกำหนดเองสำหรับแอป",
+    "storePlutoniumVideoFree": "สูงสุด 720p ที่ 30 FPS",
+    "storePlutoniumVideoPlutonium": "สูงสุด 4K ที่ 60 FPS",
+    "storePlutoniumTagFootnote": "คุณเลือกได้เฉพาะแท็กที่ยังไม่มีผู้อื่นซึ่งใช้ชื่อผู้ใช้เดียวกันใช้อยู่ ชื่อผู้ใช้ไม่คำนึงถึงตัวพิมพ์เล็กและใหญ่ ดังนั้น Mina#4821 และ mina#4821 จึงถือว่าเป็นชื่อเดียวกัน แท็ก #0000 สงวนไว้สำหรับสมาชิก Fluxer Visionary",
+    "storePlutoniumLearnVisionary": "เรียนรู้เพิ่มเติมเกี่ยวกับ Visionary",
+    "storePlutoniumDonatePrompt": "แค่อยากสนับสนุนการพัฒนาโอเพนซอร์สของ Fluxer ใช่ไหม ",
+    "storePlutoniumDonateLink": "บริจาคแทน",
+    "storePlutoniumHighlightsLead": "การสมัครสมาชิกจะช่วยสนับสนุน Fluxer และปลดล็อก",
+    "storePlutoniumHighlightEmoji": "อิโมจิและสติกเกอร์ที่กำหนดเองในทุกแชท",
+    "storePlutoniumHighlightProfile": "โปรไฟล์เคลื่อนไหว ป้าย และตัวเลข 4 หลักที่เลือกเอง",
+    "storePlutoniumHighlightFiles": "อัปโหลดได้สูงสุด 500 MB",
+    "storePlutoniumHighlightMessages": "ส่งข้อความได้สูงสุด 4,000 ตัวอักษร",
+    "storePlutoniumHighlightCommunityProfile": "โปรไฟล์แยกสำหรับแต่ละคอมมูนิตี้",
+    "storePlutoniumHighlightsMore": "และอีกมากมาย",
+    "storePlutoniumRenewsThroughPlay": "ต่ออายุอัตโนมัติผ่าน Google Play จนกว่าคุณจะยกเลิก",
+    "storePlutoniumRenewsThroughAppStore": "ต่ออายุอัตโนมัติผ่าน App Store จนกว่าคุณจะยกเลิก",
+    "storePlutoniumAlreadySubscribed": "คุณมีการสมัครสมาชิก Fluxer Plutonium อยู่แล้ว",
+    "storePlutoniumSavePercent": "ประหยัด {percent}%",
+    "@storePlutoniumSavePercent": {
+        "placeholders": {
+            "percent": {
+                "type": "int"
+            }
+        }
+    },
+    "storePlutoniumWaiting": "ได้รับคำสั่งซื้อแล้ว Plutonium จะแสดงที่นี่เมื่อเปิดใช้งาน",
+    "storePlutoniumUnavailable": "การสมัครสมาชิกในแอปยังไม่พร้อมใช้งานบนอุปกรณ์นี้",
+    "storePlutoniumVisionaryStatus": "Visionary มีสิทธิ์เข้าถึงถาวรอยู่แล้ว จึงไม่จำเป็นต้องมีการสมัครสมาชิกแบบประจำ",
     "userSettingsNavShortcuts": "ปุ่มลัด",
     "@userSettingsNavShortcuts": {
         "description": "User settings navigation item for keyboard shortcuts."
@@ -15970,6 +14857,18 @@
     "@defaultAppsWebBrowserExternal": {
         "description": "Default web browser option for the system default browser."
     },
+    "userSettingsNavAppIcon": "ไอคอนแอป",
+    "@userSettingsNavAppIcon": {
+        "description": "User settings navigation item for choosing the home screen app icon."
+    },
+    "appIconSectionTitle": "ไอคอนแอป",
+    "@appIconSectionTitle": {
+        "description": "Title for the app icon settings section."
+    },
+    "appIconSectionDescription": "เลือกไอคอนที่จะแสดงบนหน้าจอหลักของคุณ",
+    "@appIconSectionDescription": {
+        "description": "Description for the app icon settings section."
+    },
     "advancedSettingsConfigure": "กำหนดค่า",
     "@advancedSettingsConfigure": {
         "description": "Button label that opens a dedicated advanced settings modal."
@@ -16019,7 +14918,6 @@
     "advancedSettingStripTrackingLabel": "ลบพารามิเตอร์ติดตามออกจาก URL",
     "advancedSettingStripTrackingDescription": "ลบพารามิเตอร์ติดตามออกจาก URL ในข้อความที่คุณส่งโดยอัตโนมัติ",
     "advancedSettingTrustAllLinksLabel": "เชื่อถือลิงก์ภายนอกทั้งหมด",
-    "advancedSettingTrustAllLinksDescription": "ข้ามคำเตือนลิงก์ภายนอกสำหรับทุกโดเมน",
     "advancedSettingSearchEnginesLabel": "เครื่องมือค้นหา",
     "advancedSettingSearchEnginesDescription": "กำหนดค่าเครื่องมือค้นหาที่จะใช้เมื่อเลือกข้อความ",
     "advancedSettingTranslatorsLabel": "ผู้แปล",
@@ -16075,13 +14973,6 @@
     "advancedSettingHideStreamPreviewLabel": "ซ่อนภาพตัวอย่างสตรีมของฉัน",
     "advancedSettingDeveloperModeLabel": "เปิดโหมดนักพัฒนา",
     "advancedSettingDeveloperModeDescription": "เปิดโหมดนักพัฒนา",
-    "advancedSettingSearchEngineGoogle": "Google",
-    "advancedSettingSearchEngineDuckDuckGo": "DuckDuckGo",
-    "advancedSettingSearchEngineBing": "Bing",
-    "advancedSettingSearchEngineGoogleLens": "Google Lens",
-    "advancedSettingSearchEngineTinEye": "TinEye",
-    "advancedSettingTranslatorGoogle": "Google Translate",
-    "advancedSettingTranslatorDeepL": "DeepL",
     "advancedSettingDefaultSearchEngineLabel": "เครื่องมือค้นหาเริ่มต้น",
     "advancedSettingDefaultSearchEngineDescription": "เลือกเครื่องมือค้นหาที่จะใช้เป็นค่าเริ่มต้นเมื่อค้นหาข้อความที่เลือก",
     "advancedSettingBuiltInSearchEnginesLabel": "เครื่องมือค้นหาในตัว",
@@ -16220,6 +15111,14 @@
     "authHidePassword": "ซ่อนรหัสผ่าน",
     "@authHidePassword": {
         "description": "Screen reader label for the hide-password toggle on auth forms."
+    },
+    "authCheckStillWorking": "กำลังดำเนินการอยู่…",
+    "@authCheckStillWorking": {
+        "description": "Small toast shown only when the automatic anti-spam check behind sign-in, sign-up or a similar action takes more than a couple of seconds. No user action needed."
+    },
+    "authVerificationFailed": "ยืนยันตัวตนไม่สำเร็จ โปรดลองอีกครั้ง",
+    "@authVerificationFailed": {
+        "description": "Shown when the automatic anti-spam check behind sign-in, sign-up, phone verification or a similar action could not be completed."
     },
     "chatLoadingMessages": "กำลังโหลดข้อความ",
     "@chatLoadingMessages": {
@@ -16627,10 +15526,6 @@
     "@guildMembersColumnRoles": {
         "description": "Table column header on the community members page."
     },
-    "guildMembersColumnActions": "การดำเนินการ",
-    "@guildMembersColumnActions": {
-        "description": "Table column header on the community members page."
-    },
     "guildMembersFilterMemberSince": "กรองตามวันที่เป็นสมาชิก",
     "@guildMembersFilterMemberSince": {
         "description": "Filter menu label on the community members page."
@@ -16715,23 +15610,6 @@
     "@guildMembersIndexing": {
         "description": "Banner shown while guild members are being indexed."
     },
-    "guildMembersGoToPage": "ไปที่หน้า",
-    "@guildMembersGoToPage": {
-        "description": "Pagination jump label on the community members page."
-    },
-    "guildMembersGoToPageItem": "ไปที่หน้า {page}",
-    "@guildMembersGoToPageItem": {
-        "description": "Accessibility label for a pagination page button.",
-        "placeholders": {
-            "page": {
-                "type": "int"
-            }
-        }
-    },
-    "guildMembersJumpToPage": "ข้ามไปที่หน้า",
-    "@guildMembersJumpToPage": {
-        "description": "Label for pagination jump input on the community members page."
-    },
     "guildMembersJoinSourceCreator": "ผู้สร้างคอมมูนิตี้",
     "@guildMembersJoinSourceCreator": {
         "description": "Join method label on the community members page."
@@ -16808,28 +15686,14 @@
             }
         }
     },
-    "guildMembersJoinedDaysAgo": "{count, plural, one {เมื่อวานนี้} other {{count} วันที่แล้ว}}",
-    "@guildMembersJoinedDaysAgo": {
-        "description": "Relative join time on the community members page.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
     "guildMembersChannelListLabel": "สมาชิก",
     "@guildMembersChannelListLabel": {
         "description": "Label for the Members item at the top of the guild channel list."
-    },
-    "guildMembersChannelListSelected": "สมาชิกที่เลือก",
-    "@guildMembersChannelListSelected": {
-        "description": "Accessibility label when the Members channel list item is selected."
     },
     "guildSettingsEmojiSlotsTitle": "ช่องอิโมจิ",
     "guildSettingsEmojiDropZone": "ลากและวางไฟล์อิโมจิที่นี่",
     "guildSettingsEmojiLoadFailed": "โหลดอิโมจิไม่สำเร็จ ลองอีกครั้งในภายหลัง",
     "guildSettingsEmojiSearchEmpty": "ไม่พบอิโมจิที่ตรงกับการค้นหาของคุณ",
-    "guildSettingsEmojiNoSlots": "ไม่มีช่องใส่อีโมจิว่าง",
     "guildSettingsEmojiSlotsFull": "คุณใช้จำนวนอีโมจิสูงสุดแล้ว ลบอีโมจิที่มีอยู่บางส่วนเพื่อเพิ่มพื้นที่ว่าง",
     "guildSettingsEmojiUploadRequirements": "ชื่ออีโมจิควรมีอย่างน้อย 2 ตัวอักษร และสามารถใช้ตัวอักษร ตัวเลข และขีดล่างได้ อีโมจิจะต้องมีขนาดไม่เกิน {maxSize} ภาพนิ่งจะถูกปรับขนาดเป็น 128x128 พิกเซลและบีบอัดโดยอัตโนมัติ ภาพเคลื่อนไหวและ SVG จะต้องมีขนาดตามที่กำหนด",
     "@guildSettingsEmojiUploadRequirements": {
@@ -16839,24 +15703,11 @@
             }
         }
     },
-    "guildSettingsEmojiUploadingTitle": "กำลังอัปโหลดอิโมจิ",
-    "guildSettingsEmojiUploadingBody": "กำลังอัปโหลด {count, plural, one {# อิโมจิ} other {# อิโมจิ}} อาจใช้เวลาสักครู่",
-    "@guildSettingsEmojiUploadingBody": {
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "guildSettingsEmojiUploadFailed": "อัปโหลดอิโมจิไม่สำเร็จ โปรดลองอีกครั้ง",
     "guildSettingsEmojiSomeFailedTitle": "เพิ่มอิโมจิบางรายการไม่ได้",
-    "guildSettingsEmojiSomeFailedBody": "ตรวจสอบไฟล์เหล่านี้แล้วลองอีกครั้งด้วยรูปภาพที่เล็กลงหรือเรียบง่ายขึ้น",
     "guildSettingsEmojiRenameTitle": "เปลี่ยนชื่ออิโมจิ",
     "guildSettingsEmojiRenameHint": "2-32 ตัวอักษร, ตัวเลข, ขีดล่าง",
-    "guildSettingsEmojiColumnEmoji": "อิโมจิ",
     "guildSettingsEmojiColumnName": "ชื่อ",
     "guildSettingsEmojiColumnUploader": "อัปโหลดโดย",
-    "guildSettingsEmojiUnknownUploader": "ไม่ทราบ",
     "guildSettingsEmojiDeleteTitle": "ลบอิโมจิ",
     "guildSettingsEmojiDeleteBody": "ลบ :{name}:? การดำเนินการนี้ไม่สามารถยกเลิกได้",
     "@guildSettingsEmojiDeleteBody": {
@@ -16871,15 +15722,7 @@
     "guildSettingsEmojiNameTooLong": "ชื่ออิโมจิมีความยาวได้สูงสุด 32 ตัวอักษร",
     "guildSettingsEmojiInvalidNameTitle": "ชื่ออิโมจิไม่ถูกต้อง",
     "guildSettingsEmojiRenameFailedTitle": "เปลี่ยนชื่ออิโมจินี้ไม่ได้",
-    "guildSettingsEmojiRenameFailedBody": "ชื่อถูกเปลี่ยนกลับเป็นชื่อเดิม โปรดลองอีกครั้งในภายหลัง",
-    "guildSettingsEmojiGoneTitle": "อิโมจินี้ไม่มีแล้ว",
-    "guildSettingsEmojiGoneBody": "อิโมจิอาจถูกลบไปแล้ว ชื่อจึงเปลี่ยนกลับไปเป็นชื่อเดิม",
-    "guildSettingsEmojiNoPermissionRenameTitle": "คุณไม่สามารถเปลี่ยนชื่ออิโมจินี้ได้",
-    "guildSettingsEmojiNoPermissionRenameBody": "คุณไม่มีสิทธิ์เปลี่ยนชื่ออีโมจินี้ ชื่อจึงถูกเปลี่ยนกลับเป็นชื่อเดิม",
-    "guildSettingsEmojiRateLimitedTitle": "คุณทำเร็วเกินไป",
-    "guildSettingsEmojiRateLimitedBody": "โปรดรอสักครู่แล้วลองเปลี่ยนชื่ออีกครั้ง",
     "guildSettingsEmojiDeleteFailedTitle": "ไม่สามารถลบอิโมจินี้ได้",
-    "guildSettingsEmojiDeleteNoPermissionTitle": "คุณไม่สามารถลบอิโมจินี้ได้",
     "guildSettingsCloneEmojiTitle": "อนุญาตให้ผู้อื่นโคลนอิโมจิของคุณได้",
     "guildSettingsCloneEmojiDescription": "เมื่อเปิดใช้งาน สมาชิกของชุมชนอื่นจะสามารถใช้ปุ่ม \"คัดลอก\" ในแอปเพื่อคัดลอกอิโมจิที่คุณกำหนดเองได้ทันที อย่างไรก็ตาม การตั้งค่านี้ไม่ได้ป้องกันไม่ให้พวกเขาบันทึกรูปภาพและอัปโหลดด้วยตนเอง",
     "guildSettingsCloneStickerTitle": "อนุญาตให้ผู้อื่นคัดลอกสติกเกอร์ของคุณได้",
@@ -16903,8 +15746,6 @@
     "guildSettingsStickersLoadFailedTitle": "โหลดสติกเกอร์ไม่สำเร็จ",
     "guildSettingsStickersLoadFailedBody": "เกิดข้อผิดพลาดในการโหลดสติกเกอร์ โปรดลองอีกครั้ง",
     "guildSettingsStickersSearchEmpty": "ไม่พบสติกเกอร์ที่ตรงกับการค้นหาของคุณ",
-    "guildSettingsStickersEmptySearch": "ไม่พบสติกเกอร์",
-    "guildSettingsStickerNoSlots": "ไม่มีช่องสติกเกอร์ว่าง",
     "guildSettingsStickerSlotsFull": "คุณใช้สติกเกอร์ครบตามจำนวนสูงสุดแล้ว ลบสติกเกอร์บางส่วนออกเพื่อเพิ่มพื้นที่",
     "guildSettingsStickerUploadRequirements": "สติกเกอร์จะถูกบันทึกที่ 320x320 พิกเซล และต้องมีขนาดไม่เกิน {maxSize} ภาพนิ่งจะถูกปรับขนาดและบีบอัดโดยอัตโนมัติ ภาพเคลื่อนไหวและ SVG จะต้องมีขนาดตามที่กำหนด",
     "@guildSettingsStickerUploadRequirements": {
@@ -16914,7 +15755,6 @@
             }
         }
     },
-    "guildSettingsStickerUnsupportedTitle": "ไฟล์สติกเกอร์ไม่รองรับ",
     "guildSettingsStickerAddTitle": "เพิ่มสติกเกอร์",
     "guildSettingsStickerEditTitle": "แก้ไขสติกเกอร์",
     "guildSettingsStickerNameLabel": "ชื่อ",
@@ -16939,8 +15779,6 @@
     "guildSettingsStickerNameTooLong": "ชื่อต้องมีความยาวไม่เกิน 30 ตัวอักษร",
     "guildSettingsStickerDescriptionTooLong": "คำอธิบายต้องมีความยาวไม่เกิน 500 ตัวอักษร",
     "guildSettingsStickerCreateFailedTitle": "สร้างสติกเกอร์นี้ไม่ได้",
-    "guildSettingsStickerTooLargeTitle": "สติกเกอร์มีขนาดใหญ่เกินไป",
-    "guildSettingsStickerCompressFailedTitle": "บีบอัดสติกเกอร์ไม่สำเร็จ",
     "guildSettingsStickerDeleteTitle": "ลบสติกเกอร์",
     "guildSettingsStickerDeleteBody": "ลบ \"{name}\" หรือไม่? การดำเนินการนี้ไม่สามารถย้อนกลับได้",
     "@guildSettingsStickerDeleteBody": {
@@ -16952,7 +15790,6 @@
     },
     "guildSettingsStickerPurgeLabel": "ลบสติกเกอร์นี้ออกจากที่เก็บและ CDN",
     "guildSettingsStickerDeleteFailedTitle": "ไม่สามารถลบสติกเกอร์นี้ได้",
-    "guildSettingsStickerDeleteNoPermissionTitle": "คุณไม่สามารถลบสติกเกอร์นี้ได้",
     "keybindsSearchShortcuts": "ค้นหาปุ่มลัด",
     "@keybindsSearchShortcuts": {
         "description": "Placeholder for the shortcuts settings search field."
@@ -17035,295 +15872,21 @@
     "@homeQuickActionDms": {
         "description": "Home screen quick action that opens Direct Messages."
     },
-    "threadsTitle": "เธรด",
-    "@threadsTitle": {
-        "description": "Title of the sheet and header button that list a channel's threads."
-    },
-    "threadsPostsTitle": "โพสต์",
-    "@threadsPostsTitle": {
-        "description": "Title of the threads sheet when opened on a forum channel."
-    },
-    "threadsFilterActive": "ใช้งานอยู่",
-    "@threadsFilterActive": {
-        "description": "Segmented filter option showing active threads or forum posts."
-    },
-    "threadsFilterArchived": "เก็บเข้าคลังแล้ว",
-    "@threadsFilterArchived": {
-        "description": "Segmented filter option showing archived threads or forum posts."
-    },
-    "threadsNewThread": "เธรดใหม่",
-    "@threadsNewThread": {
-        "description": "Button that starts creating a new thread."
-    },
-    "threadsNewThreadTitle": "เธรดใหม่",
-    "@threadsNewThreadTitle": {
-        "description": "Title of the modal for naming a new thread."
-    },
-    "threadsNameLabel": "ชื่อเธรด",
-    "@threadsNameLabel": {
-        "description": "Label of the thread name input."
-    },
-    "threadsNameHint": "ตั้งชื่อเธรดของคุณ",
-    "@threadsNameHint": {
-        "description": "Placeholder of the thread name input."
-    },
-    "threadsCreateThread": "สร้างเธรด",
-    "@threadsCreateThread": {
-        "description": "Primary button that creates the thread."
-    },
-    "threadsCreateThreadAction": "สร้างเธรด",
-    "@threadsCreateThreadAction": {
-        "description": "Message action that starts a thread from a message."
-    },
-    "threadsCreateFailed": "ไม่สามารถสร้างเธรดได้ โปรดลองอีกครั้ง",
-    "@threadsCreateFailed": {
-        "description": "Toast shown when creating a thread fails."
-    },
-    "threadsLoadFailed": "ไม่สามารถโหลดเธรดได้",
-    "@threadsLoadFailed": {
-        "description": "Shown when the thread list fails to load."
-    },
-    "threadsNoActive": "ยังไม่มีเธรดที่ใช้งานอยู่",
-    "@threadsNoActive": {
-        "description": "Empty state of the active threads list."
-    },
-    "threadsNoArchived": "ไม่มีเธรดที่เก็บเข้าคลัง",
-    "@threadsNoArchived": {
-        "description": "Empty state of the archived threads list."
-    },
-    "threadsMessageCount": "{count, plural, =1{ข้อความ 1 รายการ} other{ข้อความ {count} รายการ}}",
-    "@threadsMessageCount": {
-        "description": "Number of messages in a thread or forum post.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "threadsMemberCount": "{count, plural, =1{สมาชิก 1 คน} other{สมาชิก {count} คน}}",
-    "@threadsMemberCount": {
-        "description": "Number of members in a thread or forum post.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "threadsStatusLocked": "ล็อกอยู่",
-    "@threadsStatusLocked": {
-        "description": "Status shown on a locked thread."
-    },
-    "threadsStatusArchived": "เก็บเข้าคลังแล้ว",
-    "@threadsStatusArchived": {
-        "description": "Status shown on an archived thread or forum post."
-    },
-    "threadsManage": "จัดการ",
-    "@threadsManage": {
-        "description": "Accessibility label of the button that opens a thread's moderation menu."
-    },
-    "threadsPin": "ปักหมุด",
-    "@threadsPin": {
-        "description": "Moderation action that pins a thread or forum post."
-    },
-    "threadsUnpin": "เลิกปักหมุด",
-    "@threadsUnpin": {
-        "description": "Moderation action that unpins a thread or forum post."
-    },
-    "threadsArchive": "เก็บถาวร",
-    "@threadsArchive": {
-        "description": "Moderation action that archives a thread or forum post."
-    },
-    "threadsUnarchive": "นำออกจากคลัง",
-    "@threadsUnarchive": {
-        "description": "Moderation action that unarchives a thread or forum post."
-    },
-    "threadsLock": "ล็อก",
-    "@threadsLock": {
-        "description": "Moderation action that locks a thread or forum post."
-    },
-    "threadsUnlock": "ปลดล็อก",
-    "@threadsUnlock": {
-        "description": "Moderation action that unlocks a thread or forum post."
-    },
-    "threadsDelete": "ลบ",
-    "@threadsDelete": {
-        "description": "Moderation action that deletes a thread or forum post."
-    },
-    "threadsActionFailed": "เกิดข้อผิดพลาดบางอย่าง โปรดลองอีกครั้ง",
-    "@threadsActionFailed": {
-        "description": "Generic error toast for a failed thread or forum action."
-    },
-    "threadsCloseThread": "ปิดเธรด",
-    "@threadsCloseThread": {
-        "description": "Channel details action that archives the current thread."
-    },
-    "threadsReopenThread": "เปิดเธรดอีกครั้ง",
-    "@threadsReopenThread": {
-        "description": "Channel details action that unarchives the current thread."
-    },
-    "threadsLockThread": "ล็อกเธรด",
-    "@threadsLockThread": {
-        "description": "Channel details action that locks the current thread."
-    },
-    "threadsUnlockThread": "ปลดล็อกเธรด",
-    "@threadsUnlockThread": {
-        "description": "Channel details action that unlocks the current thread."
-    },
-    "threadsLeaveThread": "Leave thread",
-    "@threadsLeaveThread": {
-        "description": "Channel details action that leaves the current thread."
-    },
-    "threadsDeleteThread": "ลบเธรด",
-    "@threadsDeleteThread": {
-        "description": "Channel details action that deletes the current thread."
-    },
-    "threadsMembersTab": "สมาชิกเธรด",
-    "@threadsMembersTab": {
-        "description": "Channel details tab listing the members of a thread."
-    },
-    "threadsMembersLoadFailed": "ไม่สามารถโหลดสมาชิกได้",
-    "@threadsMembersLoadFailed": {
-        "description": "Title shown when a thread's member list fails to load."
-    },
     "threadsAddMember": "Add member",
     "threadsAddMemberSearchLabel": "Search members",
     "threadsAddMemberNoResults": "No members match that search.",
-    "threadsRemoveMember": "Remove from thread",
     "threadsMemberAddedToast": "Member added",
-    "threadsMemberRemovedToast": "Member removed",
-    "threadsLeftToast": "You left the thread",
-    "threadsMembersFullToast": "This thread has reached its member limit.",
-    "threadsMemberNotFoundToast": "That person cannot see this channel.",
-    "threadsMembersForbiddenToast": "You do not have permission to change this thread's members.",
-    "threadsInvitableLabel": "Anyone in the thread can add others",
-    "threadsInvitableDescription": "When this is on, every member of this private thread can add other people to it.",
-    "threadsNoMembersTitle": "ยังไม่มีสมาชิกในเธรด",
-    "@threadsNoMembersTitle": {
-        "description": "Empty state title of a thread's member list."
-    },
-    "threadsNoMembersBody": "ผู้ที่เข้าร่วมเธรดนี้จะปรากฏที่นี่",
-    "@threadsNoMembersBody": {
-        "description": "Empty state body of a thread's member list."
-    },
-    "forumChannelTypeLabel": "ฟอรัม",
-    "@forumChannelTypeLabel": {
-        "description": "Channel type option for a forum channel in the create channel sheet."
-    },
-    "forumChannelTypeDescription": "พื้นที่สำหรับโพสต์แบบเธรดที่จัดระเบียบไว้",
-    "@forumChannelTypeDescription": {
-        "description": "Description of the forum channel type in the create channel sheet."
-    },
     "forumNewPost": "โพสต์ใหม่",
     "@forumNewPost": {
         "description": "Button that starts creating a new forum post."
-    },
-    "forumNewPostTitle": "โพสต์ใหม่",
-    "@forumNewPostTitle": {
-        "description": "Title of the modal for creating a forum post."
-    },
-    "forumCreatePost": "สร้างโพสต์",
-    "@forumCreatePost": {
-        "description": "Primary button that creates the forum post."
-    },
-    "forumCreatePostFailed": "ไม่สามารถสร้างโพสต์ได้ โปรดลองอีกครั้ง",
-    "@forumCreatePostFailed": {
-        "description": "Toast shown when creating a forum post fails."
-    },
-    "forumPostMessageFailed": "สร้างโพสต์แล้ว แต่ไม่สามารถส่งข้อความของโพสต์ได้",
-    "@forumPostMessageFailed": {
-        "description": "Toast shown when a forum post is created but its first message fails to send."
-    },
-    "forumPostTitleLabel": "ชื่อเรื่อง",
-    "@forumPostTitleLabel": {
-        "description": "Label of the forum post title input."
-    },
-    "forumPostTitleHint": "ชื่อโพสต์",
-    "@forumPostTitleHint": {
-        "description": "Placeholder of the forum post title input."
-    },
-    "forumPostMessageLabel": "ข้อความ",
-    "@forumPostMessageLabel": {
-        "description": "Label of the forum post first message input."
-    },
-    "forumPostMessageHint": "พิมพ์ข้อความ",
-    "@forumPostMessageHint": {
-        "description": "Placeholder of the forum post first message input."
-    },
-    "forumPostTagsLabel": "แท็ก",
-    "@forumPostTagsLabel": {
-        "description": "Label above the tag picker when creating a forum post."
-    },
-    "forumPostTagsRequiredLabel": "แท็ก (เลือกอย่างน้อยหนึ่งรายการ)",
-    "@forumPostTagsRequiredLabel": {
-        "description": "Label above the tag picker when the forum requires a tag on every post."
-    },
-    "forumPostTagsRequiredNoneHint": "ฟอรัมนี้กำหนดให้ต้องมีแท็ก แต่ยังไม่มีการสร้างแท็กไว้",
-    "@forumPostTagsRequiredNoneHint": {
-        "description": "Shown when creating a post in a forum that requires a tag but has no tags."
-    },
-    "forumPostNoTagsHint": "ฟอรัมนี้ยังไม่มีแท็ก เพิ่มแท็กได้ที่ จัดการแท็ก",
-    "@forumPostNoTagsHint": {
-        "description": "Hint for channel managers when creating a post in a forum without tags."
     },
     "forumSearchPosts": "ค้นหาโพสต์",
     "@forumSearchPosts": {
         "description": "Placeholder of the forum post search input."
     },
-    "forumSortAndView": "การเรียงลำดับและมุมมอง",
-    "@forumSortAndView": {
-        "description": "Accessibility label of the button that opens forum sort options."
-    },
-    "forumSortRecentActivity": "มีการเคลื่อนไหวล่าสุด",
-    "@forumSortRecentActivity": {
-        "description": "Forum sort option ordering posts by recent activity."
-    },
-    "forumSortName": "ชื่อ (A-Z)",
-    "@forumSortName": {
-        "description": "Forum sort option ordering posts alphabetically."
-    },
-    "forumManageTags": "จัดการแท็ก",
-    "@forumManageTags": {
-        "description": "Button and modal title for editing a forum's available tags."
-    },
-    "forumNoTags": "ยังไม่มีแท็ก",
-    "@forumNoTags": {
-        "description": "Empty state in the forum tag editor."
-    },
-    "forumRemoveTag": "ลบแท็ก",
-    "@forumRemoveTag": {
-        "description": "Accessibility label of the button that removes a tag in the tag editor."
-    },
-    "forumNewTagLabel": "แท็กใหม่",
-    "@forumNewTagLabel": {
-        "description": "Label of the new tag name input in the tag editor."
-    },
-    "forumNewTagHint": "ชื่อแท็ก",
-    "@forumNewTagHint": {
-        "description": "Placeholder of the new tag name input in the tag editor."
-    },
-    "forumAddTag": "เพิ่มแท็ก",
-    "@forumAddTag": {
-        "description": "Accessibility label of the button that adds a tag in the tag editor."
-    },
-    "forumTagsUpdated": "อัปเดตแท็กแล้ว",
-    "@forumTagsUpdated": {
-        "description": "Toast shown after saving a forum's tags."
-    },
-    "forumTagsUpdateFailed": "ไม่สามารถอัปเดตแท็กได้ โปรดลองอีกครั้ง",
-    "@forumTagsUpdateFailed": {
-        "description": "Toast shown when saving a forum's tags fails."
-    },
-    "forumLoadFailed": "ไม่สามารถโหลดโพสต์ได้",
-    "@forumLoadFailed": {
-        "description": "Shown when the forum post list fails to load."
-    },
     "forumNoPosts": "ยังไม่มีโพสต์",
     "@forumNoPosts": {
         "description": "Empty state of the active forum post list."
-    },
-    "forumNoArchivedPosts": "ไม่มีเธรดที่เก็บเข้าคลัง",
-    "@forumNoArchivedPosts": {
-        "description": "Empty state of the archived forum post list."
     },
     "systemThreadCreated": "{username} เริ่มเธรด: {threadName}",
     "@systemThreadCreated": {
@@ -17337,43 +15900,6 @@
             }
         }
     },
-    "systemPreviewStartedThread": "{username} เริ่มเธรด",
-    "@systemPreviewStartedThread": {
-        "description": "Plaintext preview of the system message posted when someone starts a thread.",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "systemThreadDeleted": "เธรดที่ถูกลบ",
-    "@systemThreadDeleted": {
-        "description": "Stands in for a thread name in the thread started system message when the thread no longer exists."
-    },
-    "threadsComposerLockedHint": "เธรดนี้ถูกล็อก มีเพียงผู้ดูแลที่ส่งข้อความได้",
-    "@threadsComposerLockedHint": {
-        "description": "Composer placeholder in a locked thread for users who cannot moderate it."
-    },
-    "threadsComposerArchivedHint": "เธรดนี้ถูกเก็บถาวรแล้ว การส่งข้อความจะเปิดเธรดขึ้นมาใหม่",
-    "@threadsComposerArchivedHint": {
-        "description": "Composer placeholder in an archived thread that is not locked."
-    },
-    "forumSearchOrCreatePost": "ค้นหาหรือสร้างโพสต์...",
-    "@forumSearchOrCreatePost": {
-        "description": "Placeholder of the forum search field. What is typed also becomes the title of a new post."
-    },
-    "forumSortBy": "เรียงตาม",
-    "@forumSortBy": {
-        "description": "Section label in the forum Sort & View sheet."
-    },
-    "forumSortDatePosted": "วันที่โพสต์",
-    "@forumSortDatePosted": {
-        "description": "Forum sort option that orders posts by creation date."
-    },
-    "forumViewAs": "แสดงเป็น",
-    "@forumViewAs": {
-        "description": "Section label for the forum layout options in the Sort & View sheet."
-    },
     "forumLayoutList": "รายการ",
     "@forumLayoutList": {
         "description": "Forum layout option showing posts as a list."
@@ -17382,228 +15908,40 @@
     "@forumLayoutGallery": {
         "description": "Forum layout option showing posts as a grid of image cards."
     },
-    "forumResetViewToDefault": "รีเซ็ตเป็นค่าเริ่มต้น",
-    "@forumResetViewToDefault": {
-        "description": "Returns the forum Sort & View choice to the channel defaults."
+    "assistantNeedsLogin": "เปิด Fluxer และลงชื่อเข้าใช้ก่อน",
+    "@assistantNeedsLogin": {
+        "description": "Siri/Shortcuts result when the user is logged out."
     },
-    "forumAllTags": "ทั้งหมด",
-    "@forumAllTags": {
-        "description": "Chip that opens the full list of forum tags to filter by."
+    "assistantNotInVoice": "คุณไม่ได้อยู่ในการโทร",
+    "@assistantNotInVoice": {
+        "description": "Siri/Shortcuts result when mute or leave runs with no live call."
     },
-    "forumTagsSelectedCount": "{count, plural, =1{แท็ก 1 รายการ} other{แท็ก {count} รายการ}}",
-    "@forumTagsSelectedCount": {
-        "description": "Label of the tag filter chip when tags are selected.",
+    "assistantNotFound": "Fluxer ไม่พบรายการนั้น",
+    "@assistantNotFound": {
+        "description": "Siri/Shortcuts result when a friend, channel, or community cannot be resolved."
+    },
+    "assistantDmsDisabled": "ปิดใช้งานข้อความส่วนตัวในอินสแตนซ์นี้",
+    "@assistantDmsDisabled": {
+        "description": "Siri/Shortcuts result when DM actions are blocked by instance config."
+    },
+    "assistantFailed": "Fluxer ทำสิ่งนั้นไม่สำเร็จ",
+    "@assistantFailed": {
+        "description": "Siri/Shortcuts fallback when an assistant command fails."
+    },
+    "assistantOkMuted": "ปิดไมค์แล้ว",
+    "assistantOkUnmuted": "เปิดไมค์แล้ว",
+    "assistantOkLeftVoice": "ออกจากช่องเสียงแล้ว",
+    "assistantOkJoinedVoice": "กำลังเข้าร่วมช่องเสียง",
+    "assistantOkStartedCall": "กำลังเริ่มการโทร",
+    "assistantOkStatusSet": "ตั้งสถานะเป็น {status} แล้ว",
+    "@assistantOkStatusSet": {
         "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "forumPostGuidelinesLabel": "แนวทางการโพสต์",
-    "@forumPostGuidelinesLabel": {
-        "description": "Heading above the forum's guidelines in the new post sheet."
-    },
-    "forumEditPost": "แก้ไขโพสต์",
-    "@forumEditPost": {
-        "description": "Menu item and dialog title for editing a forum post's title and tags."
-    },
-    "forumPostTagRequiredToast": "เลือกแท็กอย่างน้อยหนึ่งรายการสำหรับฟอรัมนี้",
-    "@forumPostTagRequiredToast": {
-        "description": "Shown when saving a post without a tag in a forum that requires one."
-    },
-    "threadsFollow": "ติดตาม",
-    "@threadsFollow": {
-        "description": "Menu item to follow a thread or forum post and get its notifications."
-    },
-    "threadsUnfollow": "เลิกติดตาม",
-    "@threadsUnfollow": {
-        "description": "Menu item to stop following a thread or forum post."
-    },
-    "threadsFollowing": "กำลังติดตาม",
-    "@threadsFollowing": {
-        "description": "Header button state when the user follows the thread or post."
-    },
-    "threadsMute": "ปิดเสียง",
-    "@threadsMute": {
-        "description": "Menu item to mute a thread or forum post."
-    },
-    "threadsUnmute": "เปิดเสียง",
-    "@threadsUnmute": {
-        "description": "Menu item to unmute a thread or forum post."
-    },
-    "threadsEditThread": "แก้ไขเธรด",
-    "@threadsEditThread": {
-        "description": "Menu item and dialog title for renaming a thread."
-    },
-    "forumNewPostsPill": "ใหม่ {count} รายการ",
-    "@forumNewPostsPill": {
-        "description": "Sidebar pill on a forum channel counting posts with activity since the user last opened it.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "forumSettingsTitle": "การตั้งค่าฟอรัม",
-    "@forumSettingsTitle": {
-        "description": "Heading of the forum-only section in channel settings."
-    },
-    "forumSettingsGuidelinesHint": "บอกสมาชิกว่าควรโพสต์อะไรที่นี่",
-    "@forumSettingsGuidelinesHint": {
-        "description": "Placeholder of the forum post guidelines field in channel settings."
-    },
-    "forumSettingsRequireTag": "กำหนดให้สมาชิกเลือกแท็กเมื่อโพสต์",
-    "@forumSettingsRequireTag": {
-        "description": "Switch that makes members pick at least one tag when creating a forum post."
-    },
-    "forumSettingsRequireTagDescription": "สมาชิกต้องเลือกแท็กอย่างน้อยหนึ่งรายการก่อนจึงจะโพสต์ได้",
-    "@forumSettingsRequireTagDescription": {
-        "description": "Explains the require tags switch in forum settings."
-    },
-    "forumSettingsDefaultSort": "การเรียงลำดับเริ่มต้น",
-    "@forumSettingsDefaultSort": {
-        "description": "Forum setting for how posts are ordered unless a member picks otherwise."
-    },
-    "forumSettingsDefaultLayout": "เลย์เอาต์เริ่มต้น",
-    "@forumSettingsDefaultLayout": {
-        "description": "Forum setting for list or gallery layout unless a member picks otherwise."
-    },
-    "forumSettingsDefaultReaction": "รีแอคชันเริ่มต้น",
-    "@forumSettingsDefaultReaction": {
-        "description": "Forum setting for the emoji used by React to Post."
-    },
-    "forumSettingsDefaultReactionDescription": "แสดงเป็นการแสดงความรู้สึกแบบด่วนในทุกโพสต์ เว้นว่างไว้หากไม่ต้องการ",
-    "@forumSettingsDefaultReactionDescription": {
-        "description": "Explains the forum default reaction setting."
-    },
-    "forumSettingsDefaultReactionHint": "อิโมจิหนึ่งตัว เช่น 👍",
-    "@forumSettingsDefaultReactionHint": {
-        "description": "Placeholder of the forum default reaction field."
-    },
-    "forumSettingsHideAfterInactivity": "ซ่อนเมื่อไม่มีการเคลื่อนไหว",
-    "@forumSettingsHideAfterInactivity": {
-        "description": "Forum setting for how long a post stays active without new messages."
-    },
-    "forumSettingsHideAfterInactivityDescription": "โพสต์ที่ไม่มีความเคลื่อนไหวจะย้ายไปที่ เก็บถาวรแล้ว ใครก็เปิดโพสต์ที่ไม่ได้ล็อกขึ้นมาใหม่ได้",
-    "@forumSettingsHideAfterInactivityDescription": {
-        "description": "Explains the forum hide after inactivity setting."
-    },
-    "forumSettingsHideAfterOneHour": "1 ชั่วโมง",
-    "@forumSettingsHideAfterOneHour": {
-        "description": "Hide after inactivity option."
-    },
-    "forumSettingsHideAfterOneDay": "24 ชั่วโมง",
-    "@forumSettingsHideAfterOneDay": {
-        "description": "Hide after inactivity option."
-    },
-    "forumSettingsHideAfterThreeDays": "3 วัน",
-    "@forumSettingsHideAfterThreeDays": {
-        "description": "Hide after inactivity option, the default."
-    },
-    "forumSettingsHideAfterOneWeek": "1 สัปดาห์",
-    "@forumSettingsHideAfterOneWeek": {
-        "description": "Hide after inactivity option."
-    },
-    "forumSettingsPostCreationSlowmode": "โหมดจำกัดเวลาการสร้างโพสต์",
-    "@forumSettingsPostCreationSlowmode": {
-        "description": "Forum setting limiting how often a member can create a new post."
-    },
-    "forumSettingsPostCreationSlowmodeDescription": "ระยะเวลาที่สมาชิกต้องรอระหว่างการสร้างโพสต์",
-    "@forumSettingsPostCreationSlowmodeDescription": {
-        "description": "Explains the forum post creation slowmode setting."
-    },
-    "forumSettingsDefaultPostSlowmode": "โหมดจำกัดเวลาในโพสต์ใหม่",
-    "@forumSettingsDefaultPostSlowmode": {
-        "description": "Forum setting for the slowmode applied to messages inside each new post."
-    },
-    "forumSettingsDefaultPostSlowmodeDescription": "ใช้กับโพสต์เมื่อถูกสร้างขึ้น",
-    "@forumSettingsDefaultPostSlowmodeDescription": {
-        "description": "Explains the default slowmode for new forum posts."
-    },
-    "forumSettingsSave": "บันทึกการตั้งค่าฟอรัม",
-    "@forumSettingsSave": {
-        "description": "Button that saves the forum settings section."
-    },
-    "forumSettingsSaved": "บันทึกการตั้งค่าฟอรัมแล้ว",
-    "@forumSettingsSaved": {
-        "description": "Toast after forum settings are saved."
-    },
-    "forumSettingsSaveFailed": "ไม่สามารถบันทึกการตั้งค่าฟอรัมได้",
-    "@forumSettingsSaveFailed": {
-        "description": "Toast when forum settings fail to save."
-    },
-    "threadsStarterMessage": "เริ่มจาก",
-    "@threadsStarterMessage": {
-        "description": "Label above the message a thread was started from, shown at the top of the thread."
-    },
-    "threadsOriginalPosterTag": "OP",
-    "forumReactToPost": "แสดงความรู้สึกต่อโพสต์",
-    "forumReactToPostOther": "แสดงความรู้สึกด้วยอิโมจิอื่น",
-    "forumEmptyHeading": "เริ่มการสนทนาเลย!",
-    "forumEmptyBody": "คุณต้องการโพสต์เรื่องอะไรใน {forumName}?",
-    "forumSeeExamples": "ดูตัวอย่าง",
-    "forumExampleQuestion": "ถามคำถามและติดแท็กไว้เพื่อให้คนอื่นค้นหาได้ในภายหลัง",
-    "forumExampleShow": "แบ่งปันสิ่งที่คุณสร้างขึ้นและให้คนอื่นตอบกลับได้",
-    "forumExampleDiscussion": "เริ่มการสนทนาในหัวข้อเดียวและเก็บไว้ในโพสต์นี้",
-    "forumTagModeratedOn": "เฉพาะผู้ดูแลเท่านั้น แตะเพื่ออนุญาตให้ทุกคนใช้",
-    "forumTagModeratedOff": "ใครก็ใช้ได้ แตะเพื่อจำกัดให้เฉพาะผู้ดูแล",
-    "forumAddToPost": "เพิ่มลงในโพสต์",
-    "forumAddToPostDone": "เพิ่มลงในโพสต์แล้ว",
-    "forumAddToPostFailed": "ไม่สามารถเพิ่มสิ่งนั้นลงในโพสต์ได้ โปรดลองอีกครั้ง",
-    "notificationsPushRelaySectionTitle": "ตัวส่งต่อการแจ้งเตือนแบบพุช",
-    "@notificationsPushRelaySectionTitle": {
-        "description": "Notification settings section title for the Fluxer push relay."
-    },
-    "notificationsPushRelaySectionDescription": "{pushProvider} ส่งการแจ้งเตือนแบบพุชผ่านบริการของตนเองเท่านั้น การแจ้งเตือนของอุปกรณ์นี้จึงผ่านตัวส่งต่อของ Fluxer",
-    "@notificationsPushRelaySectionDescription": {
-        "description": "Notification settings section description explaining why the push relay exists.",
-        "placeholders": {
-            "pushProvider": {
+            "status": {
                 "type": "String"
             }
         }
     },
-    "notificationsPushRelayConsentLabel": "ใช้ตัวส่งต่อพุชของ Fluxer",
-    "@notificationsPushRelayConsentLabel": {
-        "description": "Toggle label for agreeing to the Fluxer push relay on this device."
-    },
-    "notificationsPushRelayConsentDescription": "หากปิดใช้งาน การลงทะเบียนพุชของอุปกรณ์นี้จะถูกลบ และอุปกรณ์จะหยุดรับการแจ้งเตือนแบบพุช",
-    "@notificationsPushRelayConsentDescription": {
-        "description": "Toggle description explaining that revoking push relay consent unregisters the device."
-    },
-    "pushRelayConsentTitle": "ตัวส่งต่อการแจ้งเตือนแบบพุช",
-    "@pushRelayConsentTitle": {
-        "description": "Title of the one-time Fluxer push relay consent sheet."
-    },
-    "pushRelayConsentDescription": "{pushProvider} ส่งการแจ้งเตือนแบบพุชผ่านบริการของตนเองเท่านั้น การแจ้งเตือนของอุปกรณ์นี้จึงผ่านตัวส่งต่อของ Fluxer",
-    "@pushRelayConsentDescription": {
-        "description": "Subtitle of the push relay consent sheet explaining why the relay exists.",
-        "placeholders": {
-            "pushProvider": {
-                "type": "String"
-            }
-        }
-    },
-    "pushRelayConsentNoticePrefix": "หากต้องการเปิดการแจ้งเตือนแบบพุชบนอุปกรณ์นี้ โปรดยอมรับ",
-    "@pushRelayConsentNoticePrefix": {
-        "description": "Text before the push relay privacy notice link in the consent sheet."
-    },
-    "pushRelayConsentNoticeLink": "ประกาศความเป็นส่วนตัวของตัวส่งต่อพุช",
-    "@pushRelayConsentNoticeLink": {
-        "description": "Link text for the supplemental push relay privacy notice."
-    },
-    "pushRelayConsentNoticeSuffix": " คุณยอมรับเพียงครั้งเดียวต่ออุปกรณ์",
-    "@pushRelayConsentNoticeSuffix": {
-        "description": "Text after the push relay privacy notice link in the consent sheet."
-    },
-    "pushRelayConsentAgree": "ยอมรับและดำเนินการต่อ",
-    "@pushRelayConsentAgree": {
-        "description": "Button that records agreement to the push relay privacy notice."
-    },
-    "pushRelayConsentDecline": "ไม่ใช่ตอนนี้",
-    "@pushRelayConsentDecline": {
-        "description": "Button that declines the push relay privacy notice and leaves push notifications off."
-    },
+    "assistantOkOpened": "กำลังเปิด Fluxer",
     "applicationsTitle": "แอปพลิเคชัน",
     "@applicationsTitle": {
         "description": "Title for the developer Applications settings tab."
@@ -17646,6 +15984,15 @@
         "description": "Empty-state body. apiName is the product API display name.",
         "placeholders": {
             "apiName": {
+                "type": "String"
+            }
+        }
+    },
+    "applicationsCreated": "สร้างเมื่อ {date}",
+    "@applicationsCreated": {
+        "description": "List row subtitle showing when an application was created.",
+        "placeholders": {
+            "date": {
                 "type": "String"
             }
         }
@@ -17830,6 +16177,10 @@
     "@applicationsOauthBuilderTitle": {
         "description": "Section title for the authorize URL builder."
     },
+    "applicationsOauthBuilderDescription": "สร้าง URL การอนุญาตด้วยขอบเขตและสิทธิ์",
+    "@applicationsOauthBuilderDescription": {
+        "description": "Section description for the authorize URL builder."
+    },
     "applicationsScopes": "ขอบเขตการเข้าถึง",
     "@applicationsScopes": {
         "description": "Label for OAuth2 scope checkboxes."
@@ -17862,6 +16213,10 @@
     "@applicationsAuthorizeUrlPlaceholder": {
         "description": "Placeholder when the authorize URL cannot be built yet."
     },
+    "applicationsCopyAuthorizeUrl": "คัดลอก URL การอนุญาต",
+    "@applicationsCopyAuthorizeUrl": {
+        "description": "Button that copies the generated authorize URL."
+    },
     "applicationsCopiedUrl": "คัดลอก URL ไปยังคลิปบอร์ดแล้ว",
     "@applicationsCopiedUrl": {
         "description": "Toast after copying the authorize URL."
@@ -17881,6 +16236,15 @@
     "applicationsDelete": "ลบแอปพลิเคชัน",
     "@applicationsDelete": {
         "description": "Button that deletes the current application."
+    },
+    "applicationsDeleteConfirmDescription": "คุณแน่ใจหรือไม่ว่าต้องการลบ {name} การดำเนินการนี้ไม่สามารถเลิกทำได้ ข้อมูลที่เกี่ยวข้องทั้งหมด รวมถึงผู้ใช้บอทจะถูกลบอย่างถาวร",
+    "@applicationsDeleteConfirmDescription": {
+        "description": "Confirmation body when deleting an application.",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
     },
     "applicationsDeleteFailed": "ไม่สามารถลบแอปพลิเคชันได้",
     "@applicationsDeleteFailed": {
@@ -17970,6 +16334,10 @@
     "@voiceOutputRouteSpeaker": {
         "description": "Voice output route that plays call audio through the phone speaker."
     },
+    "voiceOutputRouteEarpiece": "ลำโพงหูฟัง",
+    "@voiceOutputRouteEarpiece": {
+        "description": "Voice output route that plays call audio through the phone earpiece."
+    },
     "voiceOutputRouteHeadset": "หูฟัง",
     "@voiceOutputRouteHeadset": {
         "description": "Voice output route that plays call audio through a connected Bluetooth or wired headset."
@@ -17977,6 +16345,14 @@
     "doubleTapReactionEdit": "แก้ไข",
     "@doubleTapReactionEdit": {
         "description": "Button that opens the double-tap default emoji picker."
+    },
+    "doubleTapReactionEditTitle": "แก้ไขค่าเริ่มต้น",
+    "@doubleTapReactionEditTitle": {
+        "description": "Title of the double-tap default emoji picker sheet."
+    },
+    "doubleTapReactionEditSubtitle": "เลือกอิโมจิแตะสองครั้ง",
+    "@doubleTapReactionEditSubtitle": {
+        "description": "Subtitle of the double-tap default emoji picker sheet."
     },
     "chatMessagePinConfirm": "ปักหมุด",
     "@chatMessagePinConfirm": {
@@ -17990,9 +16366,17 @@
     "@appIconOptionDefault": {
         "description": "App icon option for the build default icon (release or canary)."
     },
+    "appIconOptionStarfield": "ทุ่งดาว",
+    "@appIconOptionStarfield": {
+        "description": "App icon option for the starfield alternate icon."
+    },
     "appIconOptionSweden": "สวีเดน",
     "@appIconOptionSweden": {
         "description": "App icon option for the Sweden flag alternate icon."
+    },
+    "appIconUnsupported": "การเปลี่ยนไอคอนแอปไม่สามารถใช้งานได้บนอุปกรณ์นี้",
+    "@appIconUnsupported": {
+        "description": "Shown when alternate app icons cannot be used on the current platform."
     },
     "userSettingsLogOutConfirmTitle": "ออกจากระบบหรือไม่",
     "@userSettingsLogOutConfirmTitle": {
@@ -18022,5 +16406,178 @@
     "@guildSettingsCommunityDeleted": {
         "description": "Success toast after a community is deleted."
     },
-    "assistantOkMessageSent": "ส่งข้อความแล้ว"
+    "guildSettingsDeleteCommunityFailed": "ไม่สามารถลบคอมมูนิตี้นี้ได้",
+    "@guildSettingsDeleteCommunityFailed": {
+        "description": "Error toast when deleting a community fails."
+    },
+    "assistantOkMessageSent": "ส่งข้อความแล้ว",
+    "assistantOkCustomStatusSet": "อัปเดตสถานะกำหนดเองแล้ว",
+    "assistantOkCustomStatusCleared": "ล้างสถานะกำหนดเองแล้ว",
+    "guildNavbarAnnouncementChannel": "ช่องประกาศ",
+    "guildNavbarAnnouncementChannelDescription": "โพสต์อัปเดตที่คอมมูนิตี้อื่นสามารถติดตามไปยังช่องของตนเองได้",
+    "channelDetailsAnnouncementChannel": "ช่องประกาศ",
+    "channelSettingsAnnouncementChannel": "ช่องประกาศ",
+    "channelSettingsAnnouncementChannelDescription": "ให้คอมมูนิตี้อื่นติดตามช่องนี้และรับสำเนาข้อความที่คุณเผยแพร่",
+    "channelSettingsStopAnnouncementTitle": "หยุดเป็นช่องประกาศหรือไม่",
+    "channelSettingsStopAnnouncementBody": "{count, plural, =1{1 ช่องกำลังติดตามช่องนี้ การแปลงเป็นช่องข้อความจะลบการติดตามนั้นออก} other{{count} ช่องกำลังติดตามช่องนี้ การแปลงเป็นช่องข้อความจะลบการติดตามเหล่านั้นออก}}",
+    "@channelSettingsStopAnnouncementBody": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "channelSettingsStopAnnouncementUnknown": "การแปลงช่องนี้เป็นช่องข้อความจะทำให้ทุกช่องที่ติดตามช่องนี้เลิกติดตาม",
+    "channelSettingsConvertChannel": "แปลง",
+    "channelSettingsConvertFailed": "ไม่สามารถแปลงช่องนี้ได้",
+    "channelSettingsChannelHasFollowers": "ยังมีช่องอื่นติดตามช่องนี้อยู่ โปรดลบการติดตามเหล่านั้นก่อนแปลงช่อง",
+    "channelMenuFollow": "ติดตามช่อง",
+    "channelFollowTitle": "ติดตามช่องนี้",
+    "channelFollowBody": "เลือกตำแหน่งที่ควรเผยแพร่ข้อความ คุณสามารถยกเลิกการติดตามได้ทุกเมื่อในการตั้งค่าคอมมูนิตี้ → Webhook",
+    "channelFollowCommunity": "คอมมูนิตี้",
+    "channelFollowChannel": "ช่อง",
+    "channelFollowAgeWarning": "ช่องนี้จำกัดอายุ สามารถส่งอัปเดตไปยังช่องที่จำกัดอายุเท่านั้น",
+    "channelFollowContentWarning": "ช่องนี้มีคำเตือนเนื้อหา การอัปเดตจะส่งไปยังช่องที่มีคำเตือนเนื้อหาหรือการจำกัดอายุเท่านั้น",
+    "channelFollowHiddenHint": "คอมมูนิตี้และช่องที่คุณไม่สามารถจัดการ Webhook ได้จะถูกซ่อนไว้",
+    "channelFollowEmpty": "คุณไม่สามารถจัดการ Webhook ในคอมมูนิตี้ใดๆ ได้ โปรดขอให้ผู้ดูแลระบบติดตามช่องนี้",
+    "channelFollowSubmit": "ติดตาม",
+    "channelFollowFailed": "ติดตามช่องนี้ไม่ได้",
+    "channelFollowSuccessTitle": "กำลังมีอัปเดตเข้ามา!",
+    "channelFollowSuccessBody": "ข้อความที่เผยแพร่ใน {sourceName} จะแสดงใน #{targetName}",
+    "@channelFollowSuccessBody": {
+        "placeholders": {
+            "sourceName": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "channelFollowSuccessDismiss": "เข้าใจแล้ว!",
+    "channelFollowBarrier": "ติดตามช่องนี้เพื่อรับประกาศเหล่านี้ในช่องที่คุณเลือก",
+    "channelHeaderFollow": "ติดตามช่อง",
+    "chatMessagePublish": "เผยแพร่",
+    "chatMessagePublished": "เผยแพร่แล้ว",
+    "chatMessagePublishConfirmTitle": "เผยแพร่ข้อความหรือไม่",
+    "chatMessagePublishConfirmBody": "การดำเนินการนี้จะส่งสำเนาไปยังทุกช่องที่ติดตามช่องนี้",
+    "chatMessagePublishedToast": "ข้อความเผยแพร่แล้ว",
+    "chatMessageAlreadyPublished": "ข้อความนี้เผยแพร่แล้ว",
+    "chatMessagePublishFailedTitle": "ไม่สามารถเผยแพร่ข้อความนี้ได้",
+    "chatMessagePublishFailedBody": "เกิดข้อผิดพลาด ลองอีกครั้งในภายหลัง",
+    "chatMessagePublishLimitTitle": "ช้าลงหน่อย",
+    "chatMessagePublishLimitBody": "คุณจะสามารถเผยแพร่ได้อีกครั้งใน {duration}",
+    "@chatMessagePublishLimitBody": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "chatMessagePublishLimitUnknown": "คุณกำลังเผยแพร่เร็วเกินไป โปรดลองอีกครั้งในอีกสักครู่",
+    "chatMessageDeletePublished": "การดำเนินการนี้จะลบสำเนาที่ส่งไปยังช่องที่ติดตามช่องนี้ด้วย",
+    "chatMessageEditPublishedTitle": "แก้ไขข้อความที่เผยแพร่แล้วหรือไม่?",
+    "chatMessageEditPublishedBody": "การดำเนินการนี้จะอัปเดตสำเนาที่ส่งไปยังช่องที่ติดตามช่องนี้ด้วย",
+    "chatMessageEditPublishedSave": "บันทึก",
+    "chatMessageEditLimitTitle": "ช้าลงหน่อย",
+    "chatMessageEditLimitBody": "คุณสามารถแก้ไขข้อความที่เผยแพร่นี้ได้อีกครั้งใน {duration}",
+    "@chatMessageEditLimitBody": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "chatMessageEditLimitUnknown": "คุณกำลังแก้ไขข้อความที่เผยแพร่นี้เร็วเกินไป โปรดลองอีกครั้งในอีกสักครู่",
+    "chatMessageOriginalDeleted": "[ข้อความต้นฉบับถูกลบแล้ว]",
+    "userTagCommunity": "คอมมูนิตี้",
+    "systemFollowAdd": "{username} ตั้งให้ช่องนี้ติดตาม {source} ข้อความที่เผยแพร่ที่นั่นจะปรากฏที่นี่",
+    "@systemFollowAdd": {
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "source": {
+                "type": "String"
+            }
+        }
+    },
+    "systemPreviewFollowAdd": "{username} ตั้งให้ช่องนี้ติดตาม {source}",
+    "@systemPreviewFollowAdd": {
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "source": {
+                "type": "String"
+            }
+        }
+    },
+    "publishNudgeNotSent": "ยังไม่ได้ส่งให้ผู้ติดตาม",
+    "publishNudgeHideForever": "ไม่ต้องแสดงอีก",
+    "publishNudgeDismiss": "ปิด",
+    "channelSettingsFollowedChannels": "ช่องที่ติดตาม",
+    "channelSettingsFollowedChannelsDescription": "ช่องประกาศที่ช่องนี้ติดตาม หากต้องการหยุดรับสำเนา ให้ยกเลิกการติดตาม",
+    "guildSettingsFollowedChannelsDescription": "ช่องประกาศที่ช่องต่างๆ ในคอมมูนิตี้นี้ติดตามอยู่",
+    "channelSettingsFollowedFrom": "จาก {guildName} #{channelName}",
+    "@channelSettingsFollowedFrom": {
+        "placeholders": {
+            "guildName": {
+                "type": "String"
+            },
+            "channelName": {
+                "type": "String"
+            }
+        }
+    },
+    "channelSettingsFollowedPaused": "หยุดอัปเดตชั่วคราวเนื่องจากช่องต้นทางไม่พร้อมใช้งานแล้ว",
+    "channelSettingsUnfollowTitle": "เลิกติดตาม {name} ไหม",
+    "@channelSettingsUnfollowTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "channelSettingsUnfollowBody": "ช่องนี้จะหยุดรับสำเนาจากช่องประกาศนั้น",
+    "channelSettingsUnfollow": "ยกเลิกการติดตาม",
+    "crosspostCommunityTitle": "คอมมูนิตี้",
+    "crosspostGoToCommunity": "ไปที่คอมมูนิตี้",
+    "crosspostJoinCommunity": "เข้าร่วมคอมมูนิตี้",
+    "crosspostSourceFailed": "ไม่สามารถโหลดคอมมูนิตี้นี้ได้ ลองอีกครั้งในอีกสักครู่",
+    "crosspostMembers": "สมาชิก {count} คน",
+    "@crosspostMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "crosspostOnline": "{count} ออนไลน์",
+    "@crosspostOnline": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "durationMinutes": "{count, plural, =1{1 นาที} other{{count} นาที}}",
+    "@durationMinutes": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSeconds": "{count, plural, =1{1 วินาที} other{{count} วินาที}}",
+    "@durationSeconds": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "channelUnsupportedTitle": "ไม่รองรับประเภทช่องนี้",
+    "channelUnsupportedBody": "แอปเวอร์ชันนี้ไม่รองรับช่องประเภทนี้",
+    "channelDetailsUnsupportedChannel": "ช่องที่ไม่รองรับ"
 }

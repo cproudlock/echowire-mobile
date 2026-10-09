@@ -14,11 +14,9 @@ import 'package:fluxer_app/core/permissions/permission.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/providers/obscuring_overlay_tracker_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
-import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/core/utils/channel_jump_link.dart';
 import 'package:fluxer_app/features/channels/data/read_state_repository.dart';
-import 'package:fluxer_app/features/channels/data/thread_repository.dart';
 import 'package:fluxer_app/features/channels/domain/announcement_follow.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/channel_settings/channel_settings_flow.dart';
@@ -28,11 +26,8 @@ import 'package:fluxer_app/features/channels/presentation/sheets/channel_follow_
 import 'package:fluxer_app/features/channels/presentation/sheets/channel_notification_settings_sheet.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/mute_duration_sheet.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/channel_icon.dart';
-import 'package:fluxer_app/features/channels/presentation/widgets/thread_ui.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_mute_provider.dart';
-import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
-import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
 import 'package:fluxer_app/features/channels/utils/channel_invite_capability.dart';
 import 'package:fluxer_app/features/channels/utils/show_channel_debug_sheet.dart';
@@ -570,18 +565,10 @@ class _ChannelDetailsSheetState extends ConsumerState<ChannelDetailsSheet> {
                       false
                   ? 1
                   : 0);
-    // Echowire: threads have their own membership; relabel the members tab.
-    final bool isThreadChannel =
-        widget.channel != null &&
-        threadChannelTypes.contains(widget.channel!.type);
     final tabs = <FluxerTab>[
       FluxerTab(
-        label: isThreadChannel
-            ? l10n.threadsMembersTab
-            : l10n.channelDetailsTabMembers,
-        icon: isThreadChannel
-            ? PhosphorIconsFill.usersThree
-            : PhosphorIconsFill.users,
+        label: l10n.channelDetailsTabMembers,
+        icon: PhosphorIconsFill.users,
       ),
       if (hasPins)
         FluxerTab(
@@ -721,7 +708,6 @@ class _ChannelDetailsSheetState extends ConsumerState<ChannelDetailsSheet> {
                   channelId: targetChannelId,
                   guildId: widget.channel?.guildId,
                   scrollController: widget.scrollController,
-                  close: widget.close,
                 )
               : _MembersTab(
                   dm: widget.dm,

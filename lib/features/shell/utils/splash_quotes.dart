@@ -80,7 +80,8 @@ const List<SplashQuote> _baseSplashQuotes = <SplashQuote>[
     source: 'viriona',
   ),
   SplashQuote(
-    text: 'Is echowire an instrument? No, echowire is a communication platform.',
+    text:
+        'Is echowire an instrument? No, echowire is a communication platform.',
     source: 'Comfy_Deer',
   ),
   SplashQuote(text: "Hi! I'm a loading screen!", source: 'jackzie'),

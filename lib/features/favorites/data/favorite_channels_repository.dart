@@ -1,6 +1,8 @@
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preference_field.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preferences_store.dart';
+import 'package:fluxer_app/features/channels/domain/channel.dart'
+    show isThreadFeatureChannelType;
 
 class FavoriteChannelsRepository {
   FavoriteChannelsRepository(this._database, this._store);
@@ -29,6 +31,12 @@ class FavoriteChannelsRepository {
     String? parentId,
     String? nickname,
   }) async {
+    final db.Channel? channel = await _database.channelDao.getChannelById(
+      channelId,
+    );
+    if (channel != null && isThreadFeatureChannelType(channel.type)) {
+      return false;
+    }
     final added = await _database.favoriteChannelsDao.addChannel(
       channelId: channelId,
       guildId: guildId,
@@ -73,36 +81,6 @@ class FavoriteChannelsRepository {
       _store.markDirty(SyncedPreferenceField.favorites);
     }
     return added;
-  }
-
-  Future<bool> removeCategory(String id) async {
-    final removed = await _database.favoriteChannelsDao.removeCategory(id);
-    if (removed) {
-      _store.markDirty(SyncedPreferenceField.favorites);
-    }
-    return removed;
-  }
-
-  Future<bool> renameCategory({
-    required String id,
-    required String name,
-  }) async {
-    final renamed = await _database.favoriteChannelsDao.renameCategory(
-      id: id,
-      name: name,
-    );
-    if (renamed) {
-      _store.markDirty(SyncedPreferenceField.favorites);
-    }
-    return renamed;
-  }
-
-  Future<void> moveCategory({required String id, required int position}) async {
-    await _database.favoriteChannelsDao.moveCategory(
-      id: id,
-      position: position,
-    );
-    _store.markDirty(SyncedPreferenceField.favorites);
   }
 
   Future<bool> setChannelNickname({

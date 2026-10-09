@@ -28,10 +28,6 @@
     "@retry": {
         "description": "Generic label for retry actions (splash, errors, network, etc.)."
     },
-    "connectingCaps": "CONNECTING",
-    "@connectingCaps": {
-        "description": "Connecting text on the splash screen"
-    },
     "splashConnectionLost": "接続が失われました",
     "@splashConnectionLost": {
         "description": "Fallback headline on splash when gateway is unavailable (web parity)."
@@ -93,10 +89,6 @@
             }
         }
     },
-    "ssoRequired": "このインスタンスにアクセスするにはSSOが必要です。",
-    "@ssoRequired": {
-        "description": "Short sign-in note shown when the instance requires single sign-on."
-    },
     "organizationSsoProvider": "組織のシングルサインオンプロバイダーでサインインしてください。",
     "@organizationSsoProvider": {
         "description": "Description shown when sign-in is restricted to the configured SSO provider."
@@ -117,10 +109,6 @@
                 "type": "String"
             }
         }
-    },
-    "logInViaBrowser": "ブラウザでログイン",
-    "@logInViaBrowser": {
-        "description": "Secondary login that opens or uses the system browser."
     },
     "needAccountPrompt": "アカウントが必要ですか？ ",
     "@needAccountPrompt": {
@@ -248,26 +236,9 @@
     "@accountAdd": {
         "description": "Button to add a new account."
     },
-    "accountRemove": "削除",
-    "@accountRemove": {
-        "description": "Context menu option to remove a stored account."
-    },
-    "accountRemoveTitle": "{username} を削除",
-    "@accountRemoveTitle": {
-        "description": "Title for the remove account confirmation modal.",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "accountRemoveDescription": "このアカウントの保存済みセッションが削除されます。",
     "@accountRemoveDescription": {
         "description": "Description for the remove account confirmation modal."
-    },
-    "accountRemoveOnlyDescription": "このデバイスに保存されている唯一のアカウントが削除されます。",
-    "@accountRemoveOnlyDescription": {
-        "description": "Description when removing the last stored account."
     },
     "accountExpired": "期限切れ",
     "@accountExpired": {
@@ -652,7 +623,7 @@
     },
     "recoveryKitBackupCodesFailed": "バックアップコードを読み込めませんでした。",
     "@recoveryKitBackupCodesFailed": {
-        "description": "Toast shown when the two-factor backup codes for the recovery kit cannot be loaded."
+        "description": "Toast shown when the two-factor backup codes cannot be loaded, in the recovery kit sheet or from View codes in security settings."
     },
     "recoveryKitIncludeBackupCodes": "保存する画像に二要素認証のバックアップコードを含める",
     "@recoveryKitIncludeBackupCodes": {
@@ -799,10 +770,6 @@
     "@registerYear": {
         "description": "Placeholder for the year select."
     },
-    "registerConsent": "利用規約とプライバシーポリシーに同意します",
-    "@registerConsent": {
-        "description": "Consent checkbox label for registration (plain text fallback)."
-    },
     "registerConsentPrefix": "同意する",
     "@registerConsentPrefix": {
         "description": "Text before the Terms of Service link in the consent checkbox."
@@ -846,10 +813,6 @@
     "passkeyTimeout": "パスキー認証がタイムアウトしました。もう一度お試しください。",
     "@passkeyTimeout": {
         "description": "Error when passkey authentication times out."
-    },
-    "passkeyNotAvailable": "このアプリではパスキーが利用できません。代わりにメールとパスワードでログインしてください。",
-    "@passkeyNotAvailable": {
-        "description": "Error for unknown passkey provider errors (e.g. TYPE_UNKNOWN)."
     },
     "passkeyFailed": "パスキー認証に失敗しました。もう一度お試しください。",
     "@passkeyFailed": {
@@ -958,26 +921,6 @@
     "@inviteAcceptSomeone": {
         "description": "Fallback inviter name when the inviter is unknown."
     },
-    "inviteAcceptEmojiPack": "絵文字パック",
-    "@inviteAcceptEmojiPack": {
-        "description": "Label for an emoji pack invite."
-    },
-    "inviteAcceptStickerPack": "スタンプパック",
-    "@inviteAcceptStickerPack": {
-        "description": "Label for a sticker pack invite."
-    },
-    "inviteAcceptInstallEmojiPack": "絵文字パックをインストール",
-    "@inviteAcceptInstallEmojiPack": {
-        "description": "Primary action to install an emoji pack from an invite."
-    },
-    "inviteAcceptInstallStickerPack": "スタンプパックをインストール",
-    "@inviteAcceptInstallStickerPack": {
-        "description": "Primary action to install a sticker pack from an invite."
-    },
-    "inviteAcceptPackInstallNote": "この招待を承認すると、パックが自動的にインストールされます。",
-    "@inviteAcceptPackInstallNote": {
-        "description": "Note shown on expression pack invites before accepting."
-    },
     "mentionUnknownChannel": "unknown-channel",
     "@mentionUnknownChannel": {
         "description": "Fallback name shown in a channel mention pill when the channel is not found."
@@ -1002,13 +945,13 @@
     "@embedThemeTitle": {
         "description": "Title on the theme embed card in chat."
     },
-    "embedThemeSubtitle": "このクライアントではカスタムテーマはサポートされていません。",
-    "@embedThemeSubtitle": {
-        "description": "Subtitle on the theme embed card."
+    "embedThemeWebOnly": "テーマはウェブ版またはデスクトップ版でのみインポートできます。",
+    "@embedThemeWebOnly": {
+        "description": "Subtitle on a shared theme link embed in chat. Themes cannot be imported in this client."
     },
-    "embedThemeUnavailableButton": "テーマは利用できません",
-    "@embedThemeUnavailableButton": {
-        "description": "Button on the theme embed card - themes aren't supported in the client."
+    "embedThemeImport": "テーマをインポート",
+    "@embedThemeImport": {
+        "description": "Disabled button on a shared theme link embed. Themes can only be imported on web or desktop."
     },
     "privacySettings": "プライバシー設定",
     "@privacySettings": {
@@ -1236,9 +1179,18 @@
     "@dmLeaveGroup": {
         "description": "DM context menu action to leave a group DM."
     },
-    "dmNoCommunitiesAvailable": "コミュニティがありません",
-    "@dmNoCommunitiesAvailable": {
-        "description": "Shown when no communities are available to invite to."
+    "dmInviteSentFor": "{communityName}への招待を送信しました",
+    "@dmInviteSentFor": {
+        "description": "Toast confirming a community invite was sent to a DM recipient.",
+        "placeholders": {
+            "communityName": {
+                "type": "String"
+            }
+        }
+    },
+    "dmInviteSendFailed": "招待を送信できませんでした。もう一度お試しください。",
+    "@dmInviteSendFailed": {
+        "description": "Toast shown when sending a community invite from the DM menu fails."
     },
     "dmGroupMemberCount": "{count}人",
     "@dmGroupMemberCount": {
@@ -1683,10 +1635,6 @@
             }
         }
     },
-    "emojiPlutoniumUpsellButton": "Reverbを入手",
-    "@emojiPlutoniumUpsellButton": {
-        "description": "Button label on the Reverb upsell banner."
-    },
     "emojiPlutoniumUpsellDismiss": "これを再度表示しない",
     "@emojiPlutoniumUpsellDismiss": {
         "description": "Dismiss link on the Reverb upsell banner."
@@ -1853,10 +1801,6 @@
     "@changeYourFluxerTag": {
         "description": "Title for the username change bottom sheet."
     },
-    "fluxerTagInputLabel": "ユーザー名",
-    "@fluxerTagInputLabel": {
-        "description": "Label above the username and discriminator input fields."
-    },
     "fluxerTagDescriptionBase": "ユーザー名は、文字（a-z、A-Z）、数字（0-9）、およびアンダースコアのみを含むことができます。ユーザー名は大文字と小文字を区別しません。",
     "@fluxerTagDescriptionBase": {
         "description": "Base description text on the username change sheet."
@@ -1884,10 +1828,6 @@
     "validationAllowedChars": "文字（a-z、A-Z）、数字（0-9）、およびアンダースコア（_）のみ",
     "@validationAllowedChars": {
         "description": "Validation rule for allowed username characters."
-    },
-    "discriminatorPremiumTooltip": "Reverbを入手してタグをカスタマイズするか、ユーザー名を変更するときに保持してください",
-    "@discriminatorPremiumTooltip": {
-        "description": "Tooltip on disabled discriminator field for non-premium users."
     },
     "fluxerTagAlreadyTaken": "ユーザー名",
     "@fluxerTagAlreadyTaken": {
@@ -1942,19 +1882,6 @@
     "premiumUpsellCustomizeTag": "4桁のタグをカスタマイズするか、ユーザー名を変更するときに保持してください",
     "@premiumUpsellCustomizeTag": {
         "description": "Upsell text encouraging non-premium users to get Reverb for tag customization."
-    },
-    "premiumTrialExpiresOn": "Reverbトライアルは{date}に期限切れになります。カスタムタグを保持し、プロフィールにバッジを獲得するにはアップグレードしてください。",
-    "@premiumTrialExpiresOn": {
-        "description": "Trial upsell with expiry date.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumTrialActive": "Reverbトライアル中です。カスタムタグを保持し、プロフィールにバッジを獲得するにはアップグレードしてください。",
-    "@premiumTrialActive": {
-        "description": "Trial upsell without specific expiry date."
     },
     "fluxerTagUpdated": "ユーザー名",
     "@fluxerTagUpdated": {
@@ -2128,32 +2055,6 @@
     "@hideVisionaryIdDescription": {
         "description": "Description for the toggle to hide the Visionary ID badge."
     },
-    "premiumTrialSubscriptionStarts": "Reverbのトライアル中です — サブスクリプションは{date}から開始されます",
-    "@premiumTrialSubscriptionStarts": {
-        "description": "Trial banner title when user has an active subscription pending after trial.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumTrialSubscriptionStartsDescription": "トライアル終了時にサブスクリプションが自動的に開始されます。操作は不要です。",
-    "@premiumTrialSubscriptionStartsDescription": {
-        "description": "Trial banner description when user has an active subscription pending after trial."
-    },
-    "premiumTrialExpiresOnProfile": "Reverbのトライアルは{date}に期限切れになります",
-    "@premiumTrialExpiresOnProfile": {
-        "description": "Trial banner title with expiry date.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumTrialActiveProfile": "Reverbのトライアル中です",
-    "@premiumTrialActiveProfile": {
-        "description": "Trial banner title without specific expiry date."
-    },
     "avatarDescriptionNonPremium": "JPEG、PNG、WebP。最大10MB。推奨：512×512px。アニメーションアバター（GIF）にはReverbが必要です。",
     "@avatarDescriptionNonPremium": {
         "description": "Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars."
@@ -2238,22 +2139,6 @@
     "profileSavedToast": "プロフィールが更新されました",
     "@profileSavedToast": {
         "description": "Toast message shown after successfully saving profile changes."
-    },
-    "profileEditButton": "プロフィールを編集",
-    "@profileEditButton": {
-        "description": "Button label to open profile editing from the profile content card."
-    },
-    "profileNoteLabel": "メモ",
-    "@profileNoteLabel": {
-        "description": "Label for the personal note section on a user profile."
-    },
-    "profileNoteVisibility": "（あなたのみ表示）",
-    "@profileNoteVisibility": {
-        "description": "Hint that the note is private and only visible to the current user."
-    },
-    "profileNoteEmpty": "まだメモがありません。",
-    "@profileNoteEmpty": {
-        "description": "Placeholder shown when no personal note has been set for a user."
     },
     "sudoTitle": "本人確認",
     "@sudoTitle": {
@@ -2626,42 +2511,6 @@
     "@securityPasskeyNameHint": {
         "description": "Hint for passkey name input."
     },
-    "securityPhoneSectionTitle": "電話番号",
-    "@securityPhoneSectionTitle": {
-        "description": "Title for phone number section."
-    },
-    "securityPhoneSectionDescription": "電話番号を管理する",
-    "@securityPhoneSectionDescription": {
-        "description": "Description for phone number section."
-    },
-    "securityPhoneLabel": "電話番号",
-    "@securityPhoneLabel": {
-        "description": "Label for phone number row."
-    },
-    "securityPhoneNone": "電話番号は追加されていません。",
-    "@securityPhoneNone": {
-        "description": "Shown when no phone number is set."
-    },
-    "securityPhoneAdd": "電話番号を追加",
-    "@securityPhoneAdd": {
-        "description": "Button to add phone number."
-    },
-    "securityPhoneRemove": "削除",
-    "@securityPhoneRemove": {
-        "description": "Button to remove phone number."
-    },
-    "securityPhoneRemoveTitle": "電話番号を削除",
-    "@securityPhoneRemoveTitle": {
-        "description": "Title for phone remove confirmation."
-    },
-    "securityPhoneRemoveDescription": "電話番号を削除してもよろしいですか？",
-    "@securityPhoneRemoveDescription": {
-        "description": "Description for phone remove confirmation."
-    },
-    "securityPhoneRemoved": "電話番号を削除しました",
-    "@securityPhoneRemoved": {
-        "description": "Toast after phone removed."
-    },
     "securityClaimTitle": "セキュリティ機能",
     "@securityClaimTitle": {
         "description": "Title when user needs to claim account for security."
@@ -2670,7 +2519,7 @@
     "@securityClaimDescription": {
         "description": "Description prompting user to claim account."
     },
-    "securityVerifyEmailRequired": "2段階認証、パスキー、またはSMS認証を設定する前に、メールアドレスを確認する必要があります。",
+    "securityVerifyEmailRequired": "2段階認証またはパスキーを設定する前に、メールアドレスを確認する必要があります。",
     "@securityVerifyEmailRequired": {
         "description": "Warning when email is not verified."
     },
@@ -2714,10 +2563,6 @@
     "@backupCodesWarning": {
         "description": "Warning about backup codes."
     },
-    "backupCodesDownload": "ダウンロード",
-    "@backupCodesDownload": {
-        "description": "Button to download backup codes."
-    },
     "backupCodesCopy": "コピー",
     "@backupCodesCopy": {
         "description": "Button to copy backup codes."
@@ -2733,46 +2578,6 @@
     "backupCodesDone": "完了",
     "@backupCodesDone": {
         "description": "Button to close backup codes sheet."
-    },
-    "backupCodesViewTitle": "バックアップコードを表示",
-    "@backupCodesViewTitle": {
-        "description": "Title for viewing existing backup codes."
-    },
-    "backupCodesViewDescription": "バックアップコードを表示する前に、確認が必要になる場合があります。",
-    "@backupCodesViewDescription": {
-        "description": "Description for view backup codes."
-    },
-    "phoneAddTitle": "電話番号を追加",
-    "@phoneAddTitle": {
-        "description": "Title for phone add sheet."
-    },
-    "phoneAddLabel": "電話番号",
-    "@phoneAddLabel": {
-        "description": "Label for phone input."
-    },
-    "phoneAddHint": "電話番号を入力してください",
-    "@phoneAddHint": {
-        "description": "Hint for phone input."
-    },
-    "phoneAddFooter": "SMSコードを送信します。この番号はアカウントとは紐づけられません。ユーザーIDを含まない暗号化されたマーカーのみを保持し、約30日間で最大2回の認証を許可します。",
-    "@phoneAddFooter": {
-        "description": "Footer text for phone input."
-    },
-    "phoneAddSendCode": "コードを送信",
-    "@phoneAddSendCode": {
-        "description": "Button to send phone verification code."
-    },
-    "phoneVerifyTitle": "電話番号を確認",
-    "@phoneVerifyTitle": {
-        "description": "Title for phone verify step."
-    },
-    "phoneVerifyDescription": "お使いの電話番号に送信された確認コードを入力してください。",
-    "@phoneVerifyDescription": {
-        "description": "Description for phone verify step."
-    },
-    "phoneAddSuccess": "電話番号を確認しました",
-    "@phoneAddSuccess": {
-        "description": "Toast after phone added."
     },
     "dangerZoneSectionTitle": "危険ゾーン",
     "@dangerZoneSectionTitle": {
@@ -3024,10 +2829,6 @@
     "@authorizedAppsScopeAdmin": {
         "description": "OAuth2 scope description: admin."
     },
-    "privacyPendingDeletionTitle": "削除保留中",
-    "@privacyPendingDeletionTitle": {
-        "description": "Title of the warning alert shown when a bulk message deletion is pending."
-    },
     "blockedUsersTitle": "ブロックしたユーザー",
     "@blockedUsersTitle": {
         "description": "Header title of the Blocked Users settings page."
@@ -3264,10 +3065,6 @@
     "@userProfileNoteDelete": {
         "description": "Delete button in the note editor sheet."
     },
-    "userProfileNoteEmpty": "クリックしてメモを追加",
-    "@userProfileNoteEmpty": {
-        "description": "Hint text when no note has been written yet."
-    },
     "userProfileMemberSince": "メンバーになった日",
     "@userProfileMemberSince": {
         "description": "Header of the member-since section in the bio card."
@@ -3379,13 +3176,13 @@
     "@userProfileTransferOwnership": {
         "description": "Three-dot menu item to transfer community ownership to the member."
     },
-    "userProfileReportUser": "ユーザーを報告",
-    "@userProfileReportUser": {
-        "description": "Three-dot menu item to report the user."
-    },
     "userProfileReportMessage": "メッセージを報告",
     "@userProfileReportMessage": {
         "description": "Three-dot menu item to report the message that opened this profile."
+    },
+    "userProfileReportUserProfile": "プロフィールを報告",
+    "@userProfileReportUserProfile": {
+        "description": "Three-dot menu item on the full profile to report this user's profile (avatar, banner, name, bio and other profile parts). Message behavior is reported from the message instead."
     },
     "userProfileKickConfirmTitle": "{username}をキックしますか？",
     "@userProfileKickConfirmTitle": {
@@ -3612,18 +3409,6 @@
     "durationCustom": "カスタム…",
     "@durationCustom": {
         "description": "Duration option label for a user-specified custom duration."
-    },
-    "iarReportUserTitle": "ユーザーを報告",
-    "@iarReportUserTitle": {
-        "description": "Title of the simple user-report sheet."
-    },
-    "iarReasonInappropriateProfile": "不適切なプロフィール",
-    "@iarReasonInappropriateProfile": {
-        "description": "User-report reason: the user's profile contains inappropriate content."
-    },
-    "iarReasonInappropriateProfileDescription": "このユーザーのプロフィールには不適切なコンテンツが含まれています",
-    "@iarReasonInappropriateProfileDescription": {
-        "description": "Description for the inappropriate-profile user-report reason."
     },
     "typingIndicatorOne": "{name}が入力中です…",
     "@typingIndicatorOne": {
@@ -4050,17 +3835,9 @@
     "@channelComposerBarrierNotMemberLongEnough": {
         "description": "Composer barrier when the user's guild membership is too recent."
     },
-    "channelComposerBarrierNoPhoneNumber": "このコミュニティでメッセージを送信するには、電話番号の認証が必要です。",
-    "@channelComposerBarrierNoPhoneNumber": {
-        "description": "Composer barrier when the user must verify a phone number before messaging."
-    },
     "channelComposerBarrierVerifyEmail": "メールアドレスを認証",
     "@channelComposerBarrierVerifyEmail": {
         "description": "Action button on the composer barrier for unverified email."
-    },
-    "channelComposerBarrierVerifyPhone": "電話番号を認証",
-    "@channelComposerBarrierVerifyPhone": {
-        "description": "Action button on the composer barrier for missing phone verification."
     },
     "chatAttachmentTooMany": "添付ファイルが多すぎます（最大 {max} 個）",
     "@chatAttachmentTooMany": {
@@ -4087,10 +3864,6 @@
     "@chatAttachmentDropToSend": {
         "description": "Overlay hint when dragging files over chat with Shift held."
     },
-    "chatAttachmentSendVoiceMessage": "ボイスメッセージを送信",
-    "@chatAttachmentSendVoiceMessage": {
-        "description": "Menu item to open the voice message recorder."
-    },
     "voiceMessageTitle": "ボイスメッセージ",
     "@voiceMessageTitle": {
         "description": "Title for voice message recording UI."
@@ -4111,10 +3884,6 @@
     "@voiceMessageMicPermissionDenied": {
         "description": "Shown when microphone permission is denied for voice messages."
     },
-    "voiceMessageRecordingNotSupported": "このデバイスではボイスメッセージの録音はサポートされていません。",
-    "@voiceMessageRecordingNotSupported": {
-        "description": "Shown when the device cannot record voice messages."
-    },
     "voiceMessageMicInUse": "ボイスメッセージを録音するには、ボイス通話を終了してください。",
     "@voiceMessageMicInUse": {
         "description": "Shown when the microphone is already used by an active voice call."
@@ -4127,26 +3896,6 @@
     "@voiceMessageSendFailed": {
         "description": "Shown when sending a voice message fails."
     },
-    "voiceMessageRecordingHint": "話してください。終了したら停止を押してください。後でトリミングできます。",
-    "@voiceMessageRecordingHint": {
-        "description": "Help text while recording a voice message on desktop."
-    },
-    "voiceMessageReviewHint": "ハンドルをドラッグしてトリミングし、送信を押してください。",
-    "@voiceMessageReviewHint": {
-        "description": "Help text while reviewing a voice message before send."
-    },
-    "voiceMessageStop": "停止",
-    "@voiceMessageStop": {
-        "description": "Stop recording button in voice message composer."
-    },
-    "voiceMessageStartRecording": "録音を開始",
-    "@voiceMessageStartRecording": {
-        "description": "Button to retry voice recording after permission error."
-    },
-    "voiceMessageRerecord": "Re-record",
-    "@voiceMessageRerecord": {
-        "description": "Button to discard review and record again."
-    },
     "voiceMessagePlay": "再生",
     "@voiceMessagePlay": {
         "description": "Play voice message preview."
@@ -4154,16 +3903,6 @@
     "voiceMessagePause": "一時停止",
     "@voiceMessagePause": {
         "description": "Pause voice message preview."
-    },
-    "voiceMessageSelectionTooShort": "選択範囲は少なくとも {seconds} 秒必要です。",
-    "@voiceMessageSelectionTooShort": {
-        "description": "Error when trimmed voice message is too short.",
-        "placeholders": {
-            "seconds": {
-                "type": "num",
-                "format": "compact"
-            }
-        }
     },
     "chatAttachmentEditTitle": "添付ファイルを編集",
     "@chatAttachmentEditTitle": {
@@ -4208,10 +3947,6 @@
     "chatAttachmentSourceBrowse": "ファイルをブラウズ",
     "@chatAttachmentSourceBrowse": {
         "description": "Option to pick arbitrary files from storage."
-    },
-    "chatAttachmentPasteTooltip": "クリップボードからファイルを貼り付け",
-    "@chatAttachmentPasteTooltip": {
-        "description": "Tooltip for pasting an image attachment from the clipboard."
     },
     "chatAttachmentSpoiler": "ネタバレ",
     "@chatAttachmentSpoiler": {
@@ -4309,14 +4044,6 @@
     "@matureContentOpenLinkButton": {
         "description": "Primary action on mature link channel gates."
     },
-    "sensitiveContentSectionTitle": "機密コンテンツ",
-    "@sensitiveContentSectionTitle": {
-        "description": "Privacy settings section title for sensitive content filters."
-    },
-    "sensitiveContentSectionDescription": "さまざまなコンテキストで年齢制限のある、または機密性の高いメディアがどのようにフィルタリングされるかを制御します",
-    "@sensitiveContentSectionDescription": {
-        "description": "Privacy settings section description for sensitive content filters."
-    },
     "sensitiveContentFriendDmLabel": "友達からのダイレクトメッセージ",
     "@sensitiveContentFriendDmLabel": {
         "description": "Label for friend DM sensitive content filter."
@@ -4341,18 +4068,6 @@
     "@sensitiveContentFilterBlock": {
         "description": "Sensitive content filter option to block media."
     },
-    "sensitiveContentBlurUnscannedLabel": "安全スキャン完了までメディアをぼかす",
-    "@sensitiveContentBlurUnscannedLabel": {
-        "description": "Toggle label for blurring unscanned media."
-    },
-    "sensitiveContentBlurUnscannedDescriptionAdult": "有効にすると、コンテンツ安全スキャンが完了するまで画像と動画がぼかされます。",
-    "@sensitiveContentBlurUnscannedDescriptionAdult": {
-        "description": "Description for blur-unscanned toggle for adult accounts."
-    },
-    "sensitiveContentBlurUnscannedDescriptionMinor": "この設定はアカウントで常にオンになっています。",
-    "@sensitiveContentBlurUnscannedDescriptionMinor": {
-        "description": "Description for blur-unscanned toggle for minor accounts."
-    },
     "sensitiveContentResetButton": "リセット",
     "@sensitiveContentResetButton": {
         "description": "Reset button for sensitive content settings."
@@ -4369,10 +4084,6 @@
                 "type": "int"
             }
         }
-    },
-    "chatCancelUpload": "アップロードをキャンセル",
-    "@chatCancelUpload": {
-        "description": "Button or menu action label for canceling an in-flight message attachment upload."
     },
     "chatAttachmentExpiresOn": "{date}に期限切れ",
     "@chatAttachmentExpiresOn": {
@@ -4642,10 +4353,6 @@
     "@connectionEnterDomain": {
         "description": "Inline error shown when the domain input is empty."
     },
-    "lookAndFeelTitle": "見た目",
-    "@lookAndFeelTitle": {
-        "description": "Title of the Look & Feel (Appearance) settings page."
-    },
     "lookAndFeelThemeSectionTitle": "テーマ",
     "@lookAndFeelThemeSectionTitle": {
         "description": "Section title for theme selection."
@@ -4685,14 +4392,6 @@
     "lookAndFeelThemeSyncFailed": "テーマをアカウントに同期できませんでした。もう一度お試しください。",
     "@lookAndFeelThemeSyncFailed": {
         "description": "Toast message shown when the server PATCH for a theme change or sync toggle fails."
-    },
-    "lookAndFeelChatFontScalingTitle": "チャットのフォントサイズ",
-    "@lookAndFeelChatFontScalingTitle": {
-        "description": "Section title for the chat font size slider."
-    },
-    "lookAndFeelChatFontScalingDescription": "チャットエリアのフォントサイズを調整します。",
-    "@lookAndFeelChatFontScalingDescription": {
-        "description": "Section description for the chat font size slider."
     },
     "lookAndFeelInterfaceTitle": "インターフェース",
     "@lookAndFeelInterfaceTitle": {
@@ -4761,42 +4460,6 @@
     "lookAndFeelHideKeyboardHintsDescription": "有効にすると、ツールチップのポップアップでショートカットバッジが非表示になります。",
     "@lookAndFeelHideKeyboardHintsDescription": {
         "description": "Toggle description for the hide-keyboard-hints switch."
-    },
-    "lookAndFeelNekoTitle": "その他",
-    "@lookAndFeelNekoTitle": {
-        "description": "Subsection title under Interface for Pickles appearance settings."
-    },
-    "lookAndFeelNekoDescription": "その他のインターフェースオプション。",
-    "@lookAndFeelNekoDescription": {
-        "description": "Subsection description for Pickles appearance settings."
-    },
-    "lookAndFeelShowNekoLabel": "Picklesを表示",
-    "@lookAndFeelShowNekoLabel": {
-        "description": "Toggle label for showing Pickles in the chat footer."
-    },
-    "lookAndFeelShowNekoDescription": "有効にすると、Picklesがチャット入力バーの近くに表示されます。",
-    "@lookAndFeelShowNekoDescription": {
-        "description": "Toggle description for showing Pickles in chat."
-    },
-    "lookAndFeelVoiceChannelJoinTitle": "ボイスチャンネル参加時の動作",
-    "@lookAndFeelVoiceChannelJoinTitle": {
-        "description": "Subsection title under Interface — voice channel join behavior."
-    },
-    "lookAndFeelVoiceChannelJoinDescription": "コミュニティでのボイスチャンネルへの参加方法を制御します。",
-    "@lookAndFeelVoiceChannelJoinDescription": {
-        "description": "Subsection description for voice channel join behavior."
-    },
-    "lookAndFeelRequireDoubleClickJoinLabel": "ボイスチャンネル参加にはダブルクリックが必要",
-    "@lookAndFeelRequireDoubleClickJoinLabel": {
-        "description": "Toggle label — require double-click to join voice channels."
-    },
-    "lookAndFeelRequireDoubleClickJoinDescription": "有効にすると、ボイスチャンネルに参加するにはダブルクリックが必要になります。無効（デフォルト）の場合、シングルクリックで即座に参加できます。",
-    "@lookAndFeelRequireDoubleClickJoinDescription": {
-        "description": "Toggle description for the require-double-click voice channel join switch."
-    },
-    "lookAndFeelChatFontPreviewSample": "すばやい茶色のキツネは怠惰な犬を飛び越える。",
-    "@lookAndFeelChatFontPreviewSample": {
-        "description": "Sample text rendered at the selected chat font size to preview scaling."
     },
     "lookAndFeelGuildSidebarTitle": "サーバーサイドバー",
     "@lookAndFeelGuildSidebarTitle": {
@@ -5205,25 +4868,9 @@
     "@messagesMediaAutocompleteSavedMediaLabel": {
         "description": "Toggle label for saved media in expression autocomplete."
     },
-    "messagesMediaEditingSectionTitle": "メッセージ編集",
-    "@messagesMediaEditingSectionTitle": {
-        "description": "Section title for message editing settings."
-    },
-    "messagesMediaEditingSectionDescription": "キャンセル時に編集中の下書きがどうなるかを制御します。",
-    "@messagesMediaEditingSectionDescription": {
-        "description": "Section description for message editing settings."
-    },
-    "messagesMediaEditingPreserveDraftLabel": "キャンセル時に編集下書きを保持",
-    "@messagesMediaEditingPreserveDraftLabel": {
-        "description": "Toggle label for preserving edit drafts on cancel."
-    },
     "accessibilityDmMessagePreviewGroupTitle": "DMメッセージプレビュー",
     "@accessibilityDmMessagePreviewGroupTitle": {
         "description": "Section title for DM message preview accessibility settings."
-    },
-    "accessibilityDmMessagePreviewGroupDescription": "DMリストにメッセージプレビューが表示されるタイミングを制御します。",
-    "@accessibilityDmMessagePreviewGroupDescription": {
-        "description": "Section description for DM message preview accessibility settings."
     },
     "accessibilityDmMessagePreviewModeLabel": "DMメッセージプレビューモード",
     "@accessibilityDmMessagePreviewModeLabel": {
@@ -5381,10 +5028,6 @@
     "@voiceConnectionConfirmDoNothing": {
         "description": "Dismiss the dialog without joining voice."
     },
-    "voiceChannelEmptyDescription": "これはボイスチャンネルです。話すには接続してください！",
-    "@voiceChannelEmptyDescription": {
-        "description": "Empty state body when viewing a guild voice channel while not in the call."
-    },
     "voiceChannelJoin": "音声チャンネルに参加",
     "@voiceChannelJoin": {
         "description": "Primary action to connect to a voice channel from the empty state."
@@ -5424,14 +5067,6 @@
     "voiceChannelStatusConnecting": "接続中…",
     "@voiceChannelStatusConnecting": {
         "description": "Status in the in-page voice view while LiveKit is connecting."
-    },
-    "voiceChannelStatusConnected": "接続済み",
-    "@voiceChannelStatusConnected": {
-        "description": "Status in the in-page voice view when the voice session is active."
-    },
-    "voiceChannelStatusError": "エラー",
-    "@voiceChannelStatusError": {
-        "description": "Short label in the channel header when the voice session reports an error."
     },
     "voiceParticipantTooltipMobileDevice": "モバイルデバイス",
     "@voiceParticipantTooltipMobileDevice": {
@@ -5506,10 +5141,6 @@
     "voiceScreenShareNotificationText": "画面を共有しています。",
     "@voiceScreenShareNotificationText": {
         "description": "Body text for the Android foreground notification shown while screen sharing."
-    },
-    "voiceControlMore": "その他",
-    "@voiceControlMore": {
-        "description": "Tooltip: more voice actions in the voice call control bar."
     },
     "voiceControlDisconnect": "切断",
     "@voiceControlDisconnect": {
@@ -5761,6 +5392,10 @@
     "@chatSendFailureContentBlocked": {
         "description": "echowirebot system message when message content is blocked by safety systems."
     },
+    "chatSendFailureContentBlockedSelfHosted": "メッセージは安全システムによって不適切と判断されたため、送信できませんでした。誤りだと思われる場合は、このインスタンスの管理者にお問い合わせください。",
+    "@chatSendFailureContentBlockedSelfHosted": {
+        "description": "Fluxerbot system message on a self-hosted instance when message content is blocked by safety systems. Names no support mailbox."
+    },
     "chatSendFailureNsfwEmojiSticker": "このコンテキストで許可されていない成人向け絵文字またはステッカーが含まれているため、メッセージを配信できませんでした。",
     "@chatSendFailureNsfwEmojiSticker": {
         "description": "echowirebot system message when mature emoji or stickers are blocked."
@@ -5785,6 +5420,10 @@
     "@chatMessageAddReaction": {
         "description": "Action label for opening reaction picker for a message."
     },
+    "doubleTapReactionHint": "メッセージをダブルタップしてリアクション:",
+    "@doubleTapReactionHint": {
+        "description": "Hint under quick reactions explaining double-tap to react."
+    },
     "chatMessageEdit": "メッセージを編集",
     "@chatMessageEdit": {
         "description": "Action label for editing a sent message."
@@ -5792,6 +5431,14 @@
     "chatMessageReply": "返信する",
     "@chatMessageReply": {
         "description": "Action label for replying to a message."
+    },
+    "notificationReplyPlaceholder": "メッセージ",
+    "@notificationReplyPlaceholder": {
+        "description": "Placeholder for the text field on a notification reply action."
+    },
+    "notificationReplyFailed": "返信を送信できませんでした",
+    "@notificationReplyFailed": {
+        "description": "Body of the local notification shown when a notification reply fails to send."
     },
     "chatMessageForward": "転送する",
     "@chatMessageForward": {
@@ -5942,420 +5589,155 @@
     "@chatMessageReport": {
         "description": "Action label that opens the report-message sheet so the user can flag the message to moderators."
     },
-    "iarReportMessageTitle": "メッセージを報告",
-    "@iarReportMessageTitle": {
-        "description": "Title shown at the top of the In-App Reporting (IAR) sheet when the user is reporting a specific message."
+    "reportFlowTitleMessage": "メッセージを報告",
+    "@reportFlowTitleMessage": {
+        "description": "Report flow: sheet title while the message report form loads or fails to load."
     },
-    "iarThisUserFallback": "このユーザー",
-    "@iarThisUserFallback": {
-        "description": "Lowercase phrase used mid-sentence in IAR copy when referring to the reported user without a name (e.g. inside the close-DM confirmation)."
+    "reportFlowTitleUserProfile": "プロフィールを報告",
+    "@reportFlowTitleUserProfile": {
+        "description": "Report flow: sheet title while the user profile report form loads or fails to load."
     },
-    "iarModalDescription": "ルール違反を報告するか、連絡先や設定を管理するツールを見つけます。",
-    "@iarModalDescription": {
-        "description": "Screen-reader description for the IAR sheet announcing what the flow is for."
+    "reportFlowSummaryTitle": "報告内容の確認",
+    "@reportFlowSummaryTitle": {
+        "description": "Report flow: title of the last screen, where the reporter reviews the report before sending it."
     },
-    "iarPathStepAriaLabel": "何が必要ですか？",
-    "@iarPathStepAriaLabel": {
-        "description": "Accessible label for the primary-path radio group on the first step of the IAR sheet. Not shown visually; the radios are labelled inline."
+    "reportFlowSummarySubtitle": "送信する前に、内容が正しいか確認してください。",
+    "@reportFlowSummarySubtitle": {
+        "description": "Report flow: subtitle of the report summary screen."
     },
-    "iarCategoryStepTitle": "どのようなルールが違反されましたか？",
-    "@iarCategoryStepTitle": {
-        "description": "Title shown on the category step of the IAR sheet (platform-report path)."
+    "reportFlowDisclaimer": "ルール違反だと正直に思うものだけを報告してください。報告の悪用は、当社の{guidelines}に違反します。",
+    "@reportFlowDisclaimer": {
+        "description": "Report flow: disclaimer on the report summary screen. {guidelines} is a link whose text is reportFlowCommunityGuidelinesLink.",
+        "placeholders": {
+            "guidelines": {
+                "type": "String",
+                "example": "Community Guidelines"
+            }
+        }
     },
-    "iarReasonStepTitle": "どのルールが違反されましたか？",
-    "@iarReasonStepTitle": {
-        "description": "Title shown on the reason step of the IAR sheet after the user has picked a rule category."
+    "reportFlowCommunityGuidelinesLink": "コミュニティガイドライン",
+    "@reportFlowCommunityGuidelinesLink": {
+        "description": "Report flow: link text inside reportFlowDisclaimer. Opens the community guidelines page."
     },
-    "iarReasonSelectHint": "理由を選択",
-    "@iarReasonSelectHint": {
-        "description": "Placeholder shown in the message-report reason dropdown before the user picks a rule."
+    "reportFlowDisclaimerNoLink": "ルール違反だと正直に思うものだけを報告してください。同じ報告を複数回送信しないでください。",
+    "@reportFlowDisclaimerNoLink": {
+        "description": "Report flow: disclaimer on the report summary screen when the instance has no community guidelines page."
     },
-    "iarPickAnOptionToast": "続行するにはオプションを選択してください。",
-    "@iarPickAnOptionToast": {
-        "description": "Toast shown when the user taps Continue on a step without selecting any radio option."
+    "reportFlowSelectedMessage": "報告するメッセージ",
+    "@reportFlowSelectedMessage": {
+        "description": "Report flow: heading above the preview of the reported message on the report summary screen."
     },
-    "iarPickARuleToast": "違反されたルールを選択してください。",
-    "@iarPickARuleToast": {
-        "description": "Toast shown when the user taps Send report without selecting a rule reason."
+    "reportFlowSelectedUser": "報告するプロフィール",
+    "@reportFlowSelectedUser": {
+        "description": "Report flow: heading above the card of the reported user on the first screen and the report summary screen."
     },
-    "iarPathPlatform": "プラットフォームのルール違反を報告",
-    "@iarPathPlatform": {
-        "description": "Primary-path radio label: file a real DSA / platform-level report."
+    "reportFlowReportCategory": "あなたの回答",
+    "@reportFlowReportCategory": {
+        "description": "Report flow: heading above the list of answers the reporter picked, on the report summary screen."
     },
-    "iarPathCommunity": "このコミュニティのモデレーターに報告",
-    "@iarPathCommunity": {
-        "description": "Primary-path radio label: surface this to community moderators rather than platform safety."
+    "reportFlowSubmit": "報告を送信",
+    "@reportFlowSubmit": {
+        "description": "Report flow: button on the report summary screen that sends the report."
     },
-    "iarPathPreferenceMessage": "このコンテンツは好きではありません",
-    "@iarPathPreferenceMessage": {
-        "description": "Primary-path radio label: the user doesn't want platform action, they want self-service tools (block, leave, settings)."
+    "reportFlowBack": "戻る",
+    "@reportFlowBack": {
+        "description": "Report flow: button that returns to the previous screen of the report form."
     },
-    "iarCategoryTargetedHarmLabel": "脅迫、嫌がらせ、または危害",
-    "@iarCategoryTargetedHarmLabel": {
-        "description": "Rule-category label grouping harassment, hate, violence, terrorism, raids, and self-harm content."
+    "reportFlowNext": "次へ",
+    "@reportFlowNext": {
+        "description": "Report flow: button that goes to the next screen of the report form."
     },
-    "iarCategoryTargetedHarmDescription": "いじめ、脅迫、ヘイトスピーチ、暴力、荒らし、または自傷行為を助長するコンテンツ。",
-    "@iarCategoryTargetedHarmDescription": {
-        "description": "One-line description for the targeted-harm rule category."
+    "reportFlowDone": "完了",
+    "@reportFlowDone": {
+        "description": "Report flow: button that closes the report form when it is finished."
     },
-    "iarCategorySafetyMinorsLabel": "児童の安全または不適切なコンテンツ",
-    "@iarCategorySafetyMinorsLabel": {
-        "description": "Rule-category label grouping child-safety and mature-content reports."
+    "reportFlowThankYouTitle": "報告を送信しました",
+    "@reportFlowThankYouTitle": {
+        "description": "Report flow: title of the screen shown after a report was sent."
     },
-    "iarCategorySafetyMinorsDescription": "未成年者の危険、不適切な場所での不適切コンテンツ、または望まない行為。",
-    "@iarCategorySafetyMinorsDescription": {
-        "description": "One-line description for the child-safety / mature-content rule category."
+    "reportFlowThankYouNoReportTitle": "お知らせいただきありがとうございます",
+    "@reportFlowThankYouNoReportTitle": {
+        "description": "Report flow: title of the screen shown when the chosen answer does not send a report."
     },
-    "iarCategoryPrivacyIdentityLabel": "プライバシーまたはなりすまし",
-    "@iarCategoryPrivacyIdentityLabel": {
-        "description": "Rule-category label grouping privacy violations and impersonation."
-    },
-    "iarCategoryPrivacyIdentityDescription": "個人情報の暴露、ストーキング、他人のふり、または不適切なプロフィール。",
-    "@iarCategoryPrivacyIdentityDescription": {
-        "description": "One-line description for the privacy / impersonation rule category."
-    },
-    "iarCategoryDeceptionLabel": "詐欺、マルウェア、または誤情報",
-    "@iarCategoryDeceptionLabel": {
-        "description": "Rule-category label grouping spam/scams, malware, and harmful misinformation."
-    },
-    "iarCategoryDeceptionDescription": "フィッシング、詐欺、悪意のあるリンク、または現実世界での危害を引き起こす可能性のある虚偽の主張。",
-    "@iarCategoryDeceptionDescription": {
-        "description": "One-line description for the scams / malware / misinformation rule category."
-    },
-    "iarCategoryIllegalOtherLabel": "違法行為またはその他の問題",
-    "@iarCategoryIllegalOtherLabel": {
-        "description": "Rule-category label grouping illegal activity and the catch-all Other reason."
-    },
-    "iarCategoryIllegalOtherDescription": "違法な販売、犯罪の幇助、または上記に当てはまらない明確なルール違反。",
-    "@iarCategoryIllegalOtherDescription": {
-        "description": "One-line description for the illegal / other rule category."
-    },
-    "iarReasonHarassmentLabel": "嫌がらせまたは脅迫",
-    "@iarReasonHarassmentLabel": {
-        "description": "Rule-reason label for harassment in the IAR message flow."
-    },
-    "iarReasonHarassmentMessageDescription": "いじめ、繰り返し行われる迷惑行為、ストーキング、または標的を絞った虐待。",
-    "@iarReasonHarassmentMessageDescription": {
-        "description": "Rule-reason description for harassment in the IAR message flow."
-    },
-    "iarReasonHateLabel": "ヘイトスピーチ",
-    "@iarReasonHateLabel": {
-        "description": "Rule-reason label for hate speech in the IAR message flow."
-    },
-    "iarReasonHateMessageDescription": "差別用語、非人間的な言葉遣い、または保護されたグループへの攻撃。",
-    "@iarReasonHateMessageDescription": {
-        "description": "Rule-reason description for hate speech in the IAR message flow."
-    },
-    "iarReasonViolenceLabel": "暴力または暴力的な脅迫",
-    "@iarReasonViolenceLabel": {
-        "description": "Rule-reason label for violence in the IAR message flow."
-    },
-    "iarReasonViolenceDescription": "信憑性のある脅迫、過激な暴力、または暴力の賛美。",
-    "@iarReasonViolenceDescription": {
-        "description": "Rule-reason description for violence in the IAR message flow."
-    },
-    "iarReasonMatureContentLabel": "不適切なコンテンツまたは嫌がらせ",
-    "@iarReasonMatureContentLabel": {
-        "description": "Rule-reason label for mature content / unwanted conduct in the IAR message flow."
-    },
-    "iarReasonMatureContentMessageDescription": "不適切な場所での望まない行為または不適切なコンテンツ。",
-    "@iarReasonMatureContentMessageDescription": {
-        "description": "Rule-reason description for mature content in the IAR message flow."
-    },
-    "iarReasonChildSafetyLabel": "児童の安全または未成年者の搾取",
-    "@iarReasonChildSafetyLabel": {
-        "description": "Rule-reason label for child-safety reports in the IAR message flow. Also used as the {childSafetyReason} placeholder in iarUseChildSafetyInstead."
-    },
-    "iarReasonChildSafetyMessageDescription": "グルーミングまたは未成年者搾取のコンテンツ。",
-    "@iarReasonChildSafetyMessageDescription": {
-        "description": "Rule-reason description for child-safety reports in the IAR message flow."
-    },
-    "iarReasonHarmfulMisinfoLabel": "有害な誤情報",
-    "@iarReasonHarmfulMisinfoLabel": {
-        "description": "Rule-reason label for harmful misinformation in the IAR message flow."
-    },
-    "iarReasonHarmfulMisinfoDescription": "現実世界での危害を引き起こす可能性のある虚偽の主張。",
-    "@iarReasonHarmfulMisinfoDescription": {
-        "description": "Rule-reason description for harmful misinformation."
-    },
-    "iarReasonSpamLabel": "スパム、詐欺、またはフィッシング",
-    "@iarReasonSpamLabel": {
-        "description": "Rule-reason label for spam/scams/phishing in the IAR message flow."
-    },
-    "iarReasonSpamMessageDescription": "大量のスパム、詐欺、偽の景品、またはアカウントの悪用。",
-    "@iarReasonSpamMessageDescription": {
-        "description": "Rule-reason description for spam/scams in the IAR message flow."
-    },
-    "iarReasonMalwareLabel": "マルウェアまたは危険なリンク",
-    "@iarReasonMalwareLabel": {
-        "description": "Rule-reason label for malware / dangerous links in the IAR message flow."
-    },
-    "iarReasonMalwareDescription": "マルウェア、認証情報窃盗、または有害なファイル。",
-    "@iarReasonMalwareDescription": {
-        "description": "Rule-reason description for malware."
-    },
-    "iarReasonPrivacyLabel": "プライバシー侵害",
-    "@iarReasonPrivacyLabel": {
-        "description": "Rule-reason label for privacy violations in the IAR message flow."
-    },
-    "iarReasonPrivacyDescription": "個人情報の暴露、プライベート情報の漏洩、またはストーキング。",
-    "@iarReasonPrivacyDescription": {
-        "description": "Rule-reason description for privacy violations."
-    },
-    "iarReasonImpersonationLabel": "なりすましまたは詐欺的なメディア",
-    "@iarReasonImpersonationLabel": {
-        "description": "Rule-reason label for impersonation in the IAR message flow."
-    },
-    "iarReasonImpersonationMessageDescription": "他人になりすますこと、AI生成の詐欺的コンテンツを含む。",
-    "@iarReasonImpersonationMessageDescription": {
-        "description": "Rule-reason description for impersonation in the IAR message flow."
-    },
-    "iarReasonIllegalLabel": "違法行為",
-    "@iarReasonIllegalLabel": {
-        "description": "Rule-reason label for illegal activity in the IAR message flow."
-    },
-    "iarReasonIllegalDescription": "違法な販売、犯罪の幇助、または違法行為。",
-    "@iarReasonIllegalDescription": {
-        "description": "Rule-reason description for illegal activity."
-    },
-    "iarReasonSelfHarmLabel": "自傷行為または自殺",
-    "@iarReasonSelfHarmLabel": {
-        "description": "Rule-reason label for self-harm content in the IAR message flow."
-    },
-    "iarReasonSelfHarmMessageDescription": "自傷行為または摂食障害を助長または指示するコンテンツ。",
-    "@iarReasonSelfHarmMessageDescription": {
-        "description": "Rule-reason description for self-harm content in the IAR message flow."
-    },
-    "iarReasonOtherLabel": "その他の明確なルール違反",
-    "@iarReasonOtherLabel": {
-        "description": "Rule-reason label for the catch-all option in the IAR message flow."
-    },
-    "iarReasonOtherDescription": "{productName}のルールに明確に違反し、上記に当てはまらない場合のみ使用してください。",
-    "@iarReasonOtherDescription": {
-        "description": "Rule-reason description for the catch-all option.",
+    "reportFlowThankYouBody": "{productName}の安全チームがあなたの報告を確認します。あなたからの報告であることは明かしません。",
+    "@reportFlowThankYouBody": {
+        "description": "Report flow: body of the thank-you screen after a report was sent. {productName} is the name of the app.",
         "placeholders": {
             "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "iarUseChildSafetyInstead": "未成年者が関与している場合は、代わりに「{childSafetyReason}」を使用してください。",
-    "@iarUseChildSafetyInstead": {
-        "description": "Inline routing nudge shown under reasons (e.g. mature content) that overlap with child safety.",
-        "placeholders": {
-            "childSafetyReason": {
                 "type": "String",
-                "example": "Child safety or exploitation of minors"
+                "example": "Fluxer"
             }
         }
     },
-    "iarSafetyNoteChildSafety": "CSAMまたは未成年者の搾取が関わる場合は、すぐに送信し、資料を再共有しないでください。",
-    "@iarSafetyNoteChildSafety": {
-        "description": "Inline safety note shown for child-safety reports on the reason step."
+    "reportFlowThankYouNoReportBody": "お知らせいただきありがとうございます。この内容だけでは規約違反にはあたらないため、報告は送信されませんでした。もし誰かを標的にしたり、差別的な言葉を使用したりしている場合は、再度報告して「攻撃的または有害なコンテンツ」を選択してください。",
+    "@reportFlowThankYouNoReportBody": {
+        "description": "Report flow: body of the thank-you screen when the chosen answer does not send a report. \"Abusive or harmful content\" is the name of an option on the first screen of the message report form."
     },
-    "iarSafetyNoteSelfHarm": "誰かが差し迫った危険にさらされている可能性がある場合は、安全にできる限り、現地の緊急サービスに連絡してください。",
-    "@iarSafetyNoteSelfHarm": {
-        "description": "Inline safety note shown for self-harm reports on the reason step."
+    "reportFlowThankYouNoReportBodyShort": "お知らせいただきありがとうございます。この内容だけでは規約違反にはあたらないため、報告は送信されませんでした。",
+    "@reportFlowThankYouNoReportBodyShort": {
+        "description": "Report flow: body of the thank-you screen when the chosen answer does not send a report and the reporter is already past the first screen of the form."
     },
-    "iarSafetyNoteViolence": "差し迫った脅迫である場合は、現地の緊急サービスにも連絡してください。",
-    "@iarSafetyNoteViolence": {
-        "description": "Inline safety note shown for violence reports on the reason step."
+    "reportFlowMoreYouCanDo": "選択肢",
+    "@reportFlowMoreYouCanDo": {
+        "description": "Report flow: heading above the extra actions (such as blocking the user) on the thank-you screen."
     },
-    "iarSafetyNoteTerrorism": "差し迫ったテロの脅威である場合は、現地の緊急サービスにも連絡してください。",
-    "@iarSafetyNoteTerrorism": {
-        "description": "Inline safety note shown for terrorism reports on the reason step."
-    },
-    "iarActionBlockUserTitle": "このユーザーをブロック",
-    "@iarActionBlockUserTitle": {
-        "description": "Action card title for blocking the reported user."
-    },
-    "iarActionBlockUserDescription": "メッセージとフレンドリクエストを停止します。",
-    "@iarActionBlockUserDescription": {
-        "description": "Action card description for blocking the reported user."
-    },
-    "iarActionBlockUserButton": "ブロック",
-    "@iarActionBlockUserButton": {
-        "description": "Trailing button label on the block-user action card."
-    },
-    "iarActionCopyMessageLinkTitle": "メッセージリンクをコピー",
-    "@iarActionCopyMessageLinkTitle": {
-        "description": "Action card title for copying a link to the reported message so the user can share it with community moderators."
-    },
-    "iarActionCopyMessageLinkDescription": "コミュニティモデレーターと共有します。",
-    "@iarActionCopyMessageLinkDescription": {
-        "description": "Action card description for copying a message link."
-    },
-    "iarActionCopyMessageLinkButton": "コピー",
-    "@iarActionCopyMessageLinkButton": {
-        "description": "Trailing button label on the copy-message-link action card."
-    },
-    "iarActionCloseDmTitle": "このDMを閉じる",
-    "@iarActionCloseDmTitle": {
-        "description": "Action card title for closing the DM with the reported user."
-    },
-    "iarActionCloseDmDescription": "ブロックはしません。後で再開できます。",
-    "@iarActionCloseDmDescription": {
-        "description": "Action card description for closing the DM."
-    },
-    "iarActionCloseDmButton": "DMを閉じる",
-    "@iarActionCloseDmButton": {
-        "description": "Trailing button label on the close-DM action card."
-    },
-    "iarActionLeaveCommunityTitle": "コミュニティを退出",
-    "@iarActionLeaveCommunityTitle": {
-        "description": "Action card title for leaving the guild the reported message was sent in."
-    },
-    "iarActionLeaveCommunityDescription": "コンテンツとメンバーの表示を停止します。",
-    "@iarActionLeaveCommunityDescription": {
-        "description": "Action card description for leaving the community."
-    },
-    "iarActionLeaveCommunityButton": "退出",
-    "@iarActionLeaveCommunityButton": {
-        "description": "Trailing button label on the leave-community action card."
-    },
-    "iarActionDmSettingsTitle": "DMとフレンドリクエストの設定",
-    "@iarActionDmSettingsTitle": {
-        "description": "Action card title for opening the DM / friend-request privacy settings."
-    },
-    "iarActionDmSettingsDescription": "あなたに連絡できるユーザーを変更します。",
-    "@iarActionDmSettingsDescription": {
-        "description": "Action card description for DM / friend-request privacy settings."
-    },
-    "iarActionCallSettingsTitle": "通話とグループチャットの設定",
-    "@iarActionCallSettingsTitle": {
-        "description": "Action card title for opening the call / group-chat privacy settings."
-    },
-    "iarActionCallSettingsDescription": "あなたに通話または追加できるユーザーを変更します。",
-    "@iarActionCallSettingsDescription": {
-        "description": "Action card description for call / group-chat privacy settings."
-    },
-    "iarActionOpenButton": "開く",
-    "@iarActionOpenButton": {
-        "description": "Trailing button label for action cards that navigate the user into a settings section."
-    },
-    "iarActionDeleteMessageTitle": "このメッセージを削除",
-    "@iarActionDeleteMessageTitle": {
-        "description": "Action card title (moderator-only) for deleting the reported message."
-    },
-    "iarActionDeleteMessageDescription": "全員のためにチャンネルから削除します。",
-    "@iarActionDeleteMessageDescription": {
-        "description": "Action card description (moderator-only) for deleting the reported message."
-    },
-    "iarActionDeleteMessageButton": "削除",
-    "@iarActionDeleteMessageButton": {
-        "description": "Trailing button label on the delete-message action card."
-    },
-    "iarActionDeleteMessageDeletedButton": "削除済み",
-    "@iarActionDeleteMessageDeletedButton": {
-        "description": "Disabled-state trailing button label on the delete-message action card after the message is already gone."
-    },
-    "iarActionDeleteMessageDeletedTooltip": "このメッセージはすでに削除されています。",
-    "@iarActionDeleteMessageDeletedTooltip": {
-        "description": "Tooltip on the disabled delete-message action card."
-    },
-    "iarActionBanUserTitle": "このユーザーをBAN",
-    "@iarActionBanUserTitle": {
-        "description": "Action card title (moderator-only) for opening the ban dialog against the reported user."
-    },
-    "iarActionBanUserDescription": "このコミュニティのBANダイアログを開きます。",
-    "@iarActionBanUserDescription": {
-        "description": "Action card description (moderator-only) for banning the reported user."
-    },
-    "iarActionBanUserButton": "BAN",
-    "@iarActionBanUserButton": {
-        "description": "Trailing button label on the ban-user action card."
-    },
-    "iarActionBanUserBannedButton": "BAN済み",
-    "@iarActionBanUserBannedButton": {
-        "description": "Disabled-state trailing button label on the ban-user action card after the target is already banned."
-    },
-    "iarActionBanUserBannedTooltip": "このユーザーはすでにコミュニティからBANされています。",
-    "@iarActionBanUserBannedTooltip": {
-        "description": "Tooltip on the disabled ban-user action card."
-    },
-    "iarCloseDmConfirmTitle": "DMを閉じる",
-    "@iarCloseDmConfirmTitle": {
-        "description": "Title of the confirm-close-DM bottom sheet shown after the user taps Close DM on the action card."
-    },
-    "iarCloseDmConfirmDescription": "{name}との現在のDMを閉じます。ブロックされるわけではありません。後で再開できます。",
-    "@iarCloseDmConfirmDescription": {
-        "description": "Body of the confirm-close-DM bottom sheet.",
+    "reportFlowBlockName": "{name}をブロック",
+    "@reportFlowBlockName": {
+        "description": "Report flow: title of the row on the thank-you screen that blocks the reported user. {name} is the display name of that user.",
         "placeholders": {
             "name": {
                 "type": "String",
-                "example": "ada"
+                "example": "Alice"
             }
         }
     },
-    "iarSuccessTitle": "レポートを送信しました",
-    "@iarSuccessTitle": {
-        "description": "Title shown on the success step after a platform report is submitted."
+    "reportFlowBlockDescription": "相手のメッセージを非表示にし、相手があなたにダイレクトメッセージを送れないようにします",
+    "@reportFlowBlockDescription": {
+        "description": "Report flow: description under reportFlowBlockName on the thank-you screen."
     },
-    "iarSuccessBody": "安全チームが確認中です。判定に達したらDMとメールでお知らせします。",
-    "@iarSuccessBody": {
-        "description": "Body shown on the success step after a platform report is submitted."
+    "reportFlowBlockButton": "ブロック",
+    "@reportFlowBlockButton": {
+        "description": "Report flow: button on the thank-you screen that blocks the reported user."
     },
-    "iarAlreadyReportedTitle": "すでに報告済み",
-    "@iarAlreadyReportedTitle": {
-        "description": "Title shown on the IAR success step when the message had already been reported by this user (HTTP 409); the existing report is under review."
+    "reportFlowBlockedButton": "ブロック中",
+    "@reportFlowBlockedButton": {
+        "description": "Report flow: disabled button on the thank-you screen after the reported user was blocked."
     },
-    "iarAlreadyReportedBody": "このメッセージはすでに報告されています。安全チームが確認中です。",
-    "@iarAlreadyReportedBody": {
-        "description": "Body shown on the IAR success step when the message had already been reported by this user (HTTP 409)."
+    "reportFlowUrgentBanner": "誰かに差し迫った危険がある場合は、まず現地の警察や救急などの緊急通報先に連絡してください。",
+    "@reportFlowUrgentBanner": {
+        "description": "Report flow: banner on screens about urgent harm, such as threats, self-harm or the safety of minors."
     },
-    "iarBackButton": "戻る",
-    "@iarBackButton": {
-        "description": "Footer button label that returns the user to the previous IAR step."
+    "reportFlowLoadFailed": "報告フォームを読み込めませんでした。",
+    "@reportFlowLoadFailed": {
+        "description": "Report flow: error shown when the report form could not be loaded."
     },
-    "iarContinueButton": "続行",
-    "@iarContinueButton": {
-        "description": "Footer button label that advances the user to the next IAR step."
+    "reportFlowTryAgain": "再試行",
+    "@reportFlowTryAgain": {
+        "description": "Report flow: button that loads the report form again after an error."
     },
-    "iarSendReportButton": "レポートを送信",
-    "@iarSendReportButton": {
-        "description": "Footer button label that submits the IAR report."
+    "reportFlowOutdated": "報告フォームが変更されました。最初からやり直してください。",
+    "@reportFlowOutdated": {
+        "description": "Report flow: toast shown when the report form changed on the server while the reporter was filling it in. The form restarts from the first screen."
     },
-    "iarDoneButton": "完了",
-    "@iarDoneButton": {
-        "description": "Footer button label that closes the IAR sheet from the success or guidance step."
+    "reportFlowAlreadyReported": "このメッセージはすでに報告済みです。",
+    "@reportFlowAlreadyReported": {
+        "description": "Report flow: note on the report summary screen when the reporter already reported this message."
     },
-    "iarCouldntSendToast": "レポートを送信できませんでした。もう一度お試しください。",
-    "@iarCouldntSendToast": {
-        "description": "Toast shown when the IAR report submission fails."
+    "reportFlowAlreadyReportedProfile": "このプロフィールは本日すでに報告済みです。",
+    "@reportFlowAlreadyReportedProfile": {
+        "description": "Report flow: note on the report summary screen when the reporter already reported this user profile in the last 24 hours."
     },
-    "iarRateLimitedToast": "報告が速すぎます。しばらく待ってからもう一度お試しください。",
-    "@iarRateLimitedToast": {
-        "description": "Toast shown when an IAR report submission is rejected for rate limiting (HTTP 429)."
+    "reportFlowRateLimited": "報告の送信間隔が短すぎます。しばらくしてからもう一度お試しください。",
+    "@reportFlowRateLimited": {
+        "description": "Report flow: note on the report summary screen when the reporter sent too many reports."
     },
-    "iarReportSentToast": "レポートを送信しました。安全チームが確認します。",
-    "@iarReportSentToast": {
-        "description": "Toast shown after a message report is submitted successfully from the simple mobile report sheet."
+    "reportFlowSubmitFailed": "報告を送信できませんでした。もう一度お試しください。",
+    "@reportFlowSubmitFailed": {
+        "description": "Report flow: note on the report summary screen when the report could not be sent."
     },
-    "iarBlockUserConfirmDescription": "{name}をブロックしますか？相手はあなたにメッセージを送ったり、フレンドリクエストを送ったりできなくなります。後でブロック解除できます。",
-    "@iarBlockUserConfirmDescription": {
-        "description": "Body of the confirm-block-user bottom sheet shown after the user taps Block on the IAR action card.",
-        "placeholders": {
-            "name": {
-                "type": "String",
-                "example": "ada"
-            }
-        }
-    },
-    "iarBlockUserFailedToast": "このユーザーをブロックできませんでした。もう一度お試しください。",
-    "@iarBlockUserFailedToast": {
-        "description": "Toast shown when blocking the reported user from the IAR action card fails."
-    },
-    "iarCloseDmSuccessToast": "DMを閉じました。",
-    "@iarCloseDmSuccessToast": {
-        "description": "Toast shown after the DM with the reported user is closed from the IAR action card."
-    },
-    "iarCloseDmFailedToast": "このDMを閉じることができませんでした。もう一度お試しください。",
-    "@iarCloseDmFailedToast": {
-        "description": "Toast shown when closing the DM from the IAR action card fails."
-    },
-    "iarLeaveCommunityFailedToast": "このコミュニティを退出できませんでした。もう一度お試しください。",
-    "@iarLeaveCommunityFailedToast": {
-        "description": "Toast shown when leaving the community from the IAR action card fails."
+    "reportFlowAccountSetupRequired": "報告を送信するには、アカウントを登録してメールアドレスを確認してください。",
+    "@reportFlowAccountSetupRequired": {
+        "description": "Report flow: notice on the report summary screen when the account must be claimed and its email verified before it can send reports."
     },
     "chatMessageSuppressEmbeds": "埋め込みを抑制",
     "@chatMessageSuppressEmbeds": {
@@ -6563,6 +5945,10 @@
     "@chatVideoPlaybackFailed": {
         "description": "Shown when embedded or attachment video playback fails in the chat player."
     },
+    "chatImageCouldNotLoad": "画像を読み込めませんでした。",
+    "@chatImageCouldNotLoad": {
+        "description": "Shown when an attached, embedded, or viewed image fails to download or decode."
+    },
     "composerAutocompleteRoleMentionDescription": "このロールを持ち、このチャンネルを表示する権限を持つユーザーに通知します。",
     "@composerAutocompleteRoleMentionDescription": {
         "description": "Secondary line in the @ mention autocomplete when the row is a mentionable guild role."
@@ -6610,10 +5996,6 @@
     "addGuildJoinFailed": "コミュニティに参加できませんでした。もう一度お試しください。",
     "@addGuildJoinFailed": {
         "description": "Generic error when joining a community via invite fails."
-    },
-    "addGuildPackInstalled": "パックが正常にインストールされました。",
-    "@addGuildPackInstalled": {
-        "description": "Toast shown after accepting an emoji or sticker pack invite."
     },
     "chatMessageRemoveAllReactionsConfirmTitle": "すべてのリアクションを削除",
     "@chatMessageRemoveAllReactionsConfirmTitle": {
@@ -6701,7 +6083,7 @@
             }
         }
     },
-    "dmComposerHint": "Message @{recipientName}",
+    "dmComposerHint": "@{recipientName}にメッセージを送信",
     "@dmComposerHint": {
         "description": "Placeholder in the message composer for a one-to-one DM.",
         "placeholders": {
@@ -7103,6 +6485,10 @@
     "instanceUrlPlaceholder": "インスタンスURLを入力 (例: echowire.org)",
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
+    },
+    "instanceUrlHelper": "公式インスタンスにはfluxer.appを、セルフホスト型インスタンスには正確なURLを使用してください。",
+    "@instanceUrlHelper": {
+        "description": "Helper text explaining official vs self-hosted instance URLs."
     },
     "resetToDefaultInstance": "echowireにリセット",
     "@resetToDefaultInstance": {
@@ -7644,10 +7030,6 @@
     "@guildMenuHideMutedChannels": {
         "description": "Guild menu checkbox to hide muted channels."
     },
-    "guildMenuReportCommunity": "コミュニティを報告",
-    "@guildMenuReportCommunity": {
-        "description": "Guild menu action to report the community."
-    },
     "guildMenuDebugCommunity": "コミュニティのデバッグ",
     "@guildMenuDebugCommunity": {
         "description": "Guild menu action to open community debug info."
@@ -7693,10 +7075,6 @@
     "@guildMenuSettingsWebhooks": {
         "description": "Community settings tab for webhooks."
     },
-    "guildMenuSettingsCustomInviteUrl": "カスタム招待URL",
-    "@guildMenuSettingsCustomInviteUrl": {
-        "description": "Community settings tab for custom invite URLs."
-    },
     "guildMenuSettingsDiscovery": "ディスカバリー",
     "@guildMenuSettingsDiscovery": {
         "description": "Community settings tab for discovery settings."
@@ -7721,17 +7099,9 @@
     "@guildSettingsOverviewIconTitle": {
         "description": "Title for the guild icon section in overview settings."
     },
-    "guildSettingsUploadImage": "画像をアップロード",
-    "@guildSettingsUploadImage": {
-        "description": "Button label to upload an image in guild settings."
-    },
     "guildSettingsOverviewBannerTitle": "バナー",
     "@guildSettingsOverviewBannerTitle": {
         "description": "Title for the guild banner section."
-    },
-    "guildSettingsOverviewBannerHint": "サーバーのバナーをアップロードしてください。",
-    "@guildSettingsOverviewBannerHint": {
-        "description": "Hint text for guild banner upload."
     },
     "guildSettingsOverviewNameTitle": "名前",
     "@guildSettingsOverviewNameTitle": {
@@ -7741,22 +7111,6 @@
     "@guildSettingsOverviewNameHint": {
         "description": "Hint for the guild name field."
     },
-    "guildSettingsOverviewStatsTitle": "統計",
-    "@guildSettingsOverviewStatsTitle": {
-        "description": "Title for guild statistics section."
-    },
-    "guildSettingsOverviewMembers": "メンバー",
-    "@guildSettingsOverviewMembers": {
-        "description": "Label for member count in overview."
-    },
-    "guildSettingsOverviewOnline": "オンライン",
-    "@guildSettingsOverviewOnline": {
-        "description": "Label for online count in overview."
-    },
-    "guildSettingsRolesDescription": "ロールを使用してメンバーをグループ化し、権限を割り当てます。",
-    "@guildSettingsRolesDescription": {
-        "description": "Description for the roles settings tab."
-    },
     "guildSettingsCreateRole": "ロールを作成",
     "@guildSettingsCreateRole": {
         "description": "Button to create a new role."
@@ -7765,30 +7119,9 @@
     "@guildSettingsRolesListTitle": {
         "description": "Title for the roles list section."
     },
-    "guildSettingsEmojiSlotInfo": "{staticCount}個の静的絵文字、{animatedCount}個のアニメーション絵文字を使用中",
-    "@guildSettingsEmojiSlotInfo": {
-        "description": "Emoji slot usage summary.",
-        "placeholders": {
-            "staticCount": {
-                "type": "int"
-            },
-            "animatedCount": {
-                "type": "int"
-            }
-        }
-    },
     "guildSettingsEmojiEmpty": "カスタム絵文字はまだありません。",
     "@guildSettingsEmojiEmpty": {
         "description": "Empty state for emoji settings."
-    },
-    "guildSettingsStickersSlotInfo": "{count}個のステッカーをアップロード済み",
-    "@guildSettingsStickersSlotInfo": {
-        "description": "Sticker slot usage summary.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
     },
     "guildSettingsStickersEmpty": "カスタムステッカーはまだありません。",
     "@guildSettingsStickersEmpty": {
@@ -7834,8 +7167,6 @@
     "guildSettingsVerificationMediumDescription": "認証済みメールアドレスと、5分以上経過したアカウントが必要です。",
     "guildSettingsVerificationHigh": "高",
     "guildSettingsVerificationHighDescription": "中レベルのすべての条件に加え、コミュニティに10分以上参加している必要があります。",
-    "guildSettingsVerificationHighest": "最高",
-    "guildSettingsVerificationHighestDescription": "認証済み電話番号が必要です。",
     "guildSettingsAuditLogDescription": "コミュニティ全体でのモデレーターのアクションを追跡します。",
     "@guildSettingsAuditLogDescription": {
         "description": "Subtitle under the activity-log page title."
@@ -7863,14 +7194,6 @@
     "guildSettingsAuditLogUnknownUser": "不明なユーザー",
     "@guildSettingsAuditLogUnknownUser": {
         "description": "Fallback avatar label when the acting user is unavailable."
-    },
-    "guildSettingsAuditLogLoadError": "アクティビティログの読み込み中に問題が発生しました。",
-    "@guildSettingsAuditLogLoadError": {
-        "description": "Generic error shown when fetching log entries fails."
-    },
-    "guildSettingsAuditLogLoadErrorTitle": "アクティビティログを読み込めませんでした",
-    "@guildSettingsAuditLogLoadErrorTitle": {
-        "description": "Error-state title when fetching log entries failed."
     },
     "guildSettingsAuditLogReason": "理由",
     "@guildSettingsAuditLogReason": {
@@ -8842,14 +8165,6 @@
     "@auditLogOptionPermanentMembership": {
         "description": "Audit log option detail sentence."
     },
-    "guildSettingsLoadMore": "さらに読み込む",
-    "@guildSettingsLoadMore": {
-        "description": "Button to load more audit log entries."
-    },
-    "guildSettingsLoadingMore": "Loading...",
-    "@guildSettingsLoadingMore": {
-        "description": "Loading state for pagination."
-    },
     "guildSettingsWebhooksDescription": "コミュニティに設定されているすべてのウェブフックを表示・管理できます。",
     "@guildSettingsWebhooksDescription": {
         "description": "Description for webhooks tab."
@@ -8858,42 +8173,9 @@
     "@guildSettingsWebhooksEmpty": {
         "description": "Empty state for webhooks."
     },
-    "guildSettingsCopyUrl": "URLをコピー",
-    "@guildSettingsCopyUrl": {
-        "description": "Tooltip to copy a URL."
-    },
     "guildSettingsCopiedUrl": "URLをクリップボードにコピーしました",
     "@guildSettingsCopiedUrl": {
         "description": "Snackbar after copying a URL."
-    },
-    "guildSettingsDeleteWebhook": "Webhookを削除",
-    "@guildSettingsDeleteWebhook": {
-        "description": "Tooltip to delete a webhook."
-    },
-    "guildSettingsVanityUrlDescription": "サーバーのカスタム招待リンクを設定します。",
-    "@guildSettingsVanityUrlDescription": {
-        "description": "Description for vanity URL tab."
-    },
-    "guildSettingsVanityUrlHint": "my-server",
-    "@guildSettingsVanityUrlHint": {
-        "description": "Hint for vanity URL input."
-    },
-    "guildSettingsSave": "保存",
-    "@guildSettingsSave": {
-        "description": "Generic save button label."
-    },
-    "guildSettingsVanityUrlUsageTitle": "使用状況",
-    "@guildSettingsVanityUrlUsageTitle": {
-        "description": "Title for vanity URL usage section."
-    },
-    "guildSettingsVanityUrlUses": "{count} 回使用",
-    "@guildSettingsVanityUrlUses": {
-        "description": "Vanity URL usage count.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
     },
     "guildSettingsDiscoveryDescription": "コミュニティを「見つける」に掲載して、他のユーザーに見つけてもらい、参加してもらいましょう。",
     "@guildSettingsDiscoveryDescription": {
@@ -8932,10 +8214,6 @@
     "@guildSettingsDiscoveryWithdraw": {
         "description": "Button to withdraw discovery application."
     },
-    "guildSettingsMembersDescription": "サーバーメンバーを検索して管理します。",
-    "@guildSettingsMembersDescription": {
-        "description": "Description for members tab."
-    },
     "guildSettingsMembersSearchHint": "ユーザー名またはIDで検索",
     "@guildSettingsMembersSearchHint": {
         "description": "Hint for member search field."
@@ -8957,27 +8235,6 @@
     "@guildSettingsInvitesEmpty": {
         "description": "Empty state for invites."
     },
-    "guildSettingsInviteUses": "{uses} / {maxUses} 回使用",
-    "@guildSettingsInviteUses": {
-        "description": "Invite usage count.",
-        "placeholders": {
-            "uses": {
-                "type": "int"
-            },
-            "maxUses": {
-                "type": "int"
-            }
-        }
-    },
-    "guildSettingsInviteExpires": "{date} に期限切れ",
-    "@guildSettingsInviteExpires": {
-        "description": "Invite expiration date.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
     "guildSettingsBansDescription": "禁止されているユーザーを表示および管理します。",
     "@guildSettingsBansDescription": {
         "description": "Description for bans tab."
@@ -8990,30 +8247,9 @@
     "@guildSettingsBansEmpty": {
         "description": "Empty state for bans."
     },
-    "guildSettingsBanPermanent": "無期限禁止",
-    "@guildSettingsBanPermanent": {
-        "description": "Label for permanent ban."
-    },
-    "guildSettingsBanExpires": "{date} に期限切れ",
-    "@guildSettingsBanExpires": {
-        "description": "Ban expiration date.",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
     "guildSettingsBanExpiresLabel": "期限切れ",
     "@guildSettingsBanExpiresLabel": {
         "description": "Label for ban expiration row."
-    },
-    "guildSettingsUnban": "禁止解除",
-    "@guildSettingsUnban": {
-        "description": "Button to unban a user."
-    },
-    "guildSettingsBansLoading": "禁止ユーザーを読み込み中",
-    "@guildSettingsBansLoading": {
-        "description": "Loading state for the guild bans list."
     },
     "guildSettingsBansNoSearchResults": "検索条件に一致する禁止ユーザーは見つかりませんでした。",
     "@guildSettingsBansNoSearchResults": {
@@ -9057,10 +8293,6 @@
             }
         }
     },
-    "guildSettingsBansLoadError": "禁止ユーザーを読み込めませんでした。 再試行してください。",
-    "@guildSettingsBansLoadError": {
-        "description": "Error when loading the guild bans list fails."
-    },
     "guildSettingsRevokeBanError": "禁止を解除できませんでした。 再試行してください。",
     "@guildSettingsRevokeBanError": {
         "description": "Error when revoking a ban fails."
@@ -9085,7 +8317,6 @@
     "@guildSettingsCategoryPeople": {
         "description": "Sidebar category for members, invites, and bans."
     },
-    "guildSettingsOverviewDescription": "コミュニティのプロフィール、チャンネル、デフォルト設定を管理します。",
     "guildSettingsOverviewBrandingTitle": "ブランディング",
     "guildSettingsOverviewBrandingDescription": "アイコン、名前、バナー、招待背景を更新します",
     "@guildSettingsOverviewBrandingDescription": {
@@ -9104,7 +8335,6 @@
     },
     "guildSettingsOverviewNotificationsTitle": "デフォルトの通知",
     "guildSettingsOverviewNotificationsLargeGuild": "250人を超えるコミュニティでは、「メンションのみ」設定が強制されます。 元の設定は保持され、コミュニティのメンバー数が250人未満になった場合に復元されます。",
-    "guildSettingsOverviewAdvancedTitle": "高度な設定",
     "guildSettingsOverviewFlexibleNames": "テキストチャンネル名の自由な設定を許可",
     "guildSettingsOverviewHideOwnerCrown": "コミュニティオーナーの王冠を非表示",
     "guildSettingsOverviewDetachedBanner": "分離型バナー",
@@ -9130,10 +8360,6 @@
     "guildSettingsOverviewEmbedSplashTitle": "チャット埋め込み背景",
     "@guildSettingsOverviewEmbedSplashTitle": {
         "description": "Title for embed splash upload section."
-    },
-    "guildSettingsOverviewEmbedSplashHint": "チャットの招待埋め込みに表示されます。",
-    "@guildSettingsOverviewEmbedSplashHint": {
-        "description": "Note shown when uploading chat embed background."
     },
     "guildSettingsOverviewUploadBackground": "背景をアップロード",
     "@guildSettingsOverviewUploadBackground": {
@@ -9300,8 +8526,6 @@
     "@guildSettingsOverviewEmbedSplashUploadHint": {
         "description": "Upload requirements for chat embed background images."
     },
-    "guildSettingsModerationDescription": "認証、コンテンツフィルタリング、不適切コンテンツの設定を行います。",
-    "guildSettingsModerationDiscoveryNotice": "Discoveryに掲載されているコミュニティは、モデレーションオプションが制限されています。",
     "guildSettingsModerationContentFilterTitle": "コンテンツフィルタリング",
     "guildSettingsModerationContentFilterDescription": "不適切コンテンツとしてマークされていないチャンネルのメッセージを自動的にスクリーニングします。",
     "guildSettingsModerationContentFilterDiscoveryNote": "Discoveryに掲載されているコミュニティは、すべてのメンバーをスキャンする必要があります。Discoveryが有効な間はこの設定を変更できません。",
@@ -9311,8 +8535,6 @@
     "guildSettingsContentFilterNoRoleDescription": "ほとんどのコミュニティに推奨",
     "guildSettingsContentFilterAll": "全員をフィルタリング",
     "guildSettingsContentFilterAllDescription": "ファミリーフレンドリーなスペースに最大限の保護",
-    "guildSettingsModerationMatureOff": "オフ",
-    "guildSettingsModerationMatureOn": "オン",
     "guildSettingsContentWarningToggle": "コンテンツ警告を表示",
     "@guildSettingsContentWarningToggle": {
         "description": "Switch label for the community content warning setting."
@@ -9332,7 +8554,6 @@
     "guildSettingsModeration2faTitle": "2段階認証の要件",
     "guildSettingsModeration2faDescription": "モデレーターが禁止、キック、タイムアウト、またはメッセージを削除する前に、2段階認証を要求します。",
     "guildSettingsModeration2faSwitchLabel": "モデレーションアクションに2段階認証を要求",
-    "guildSettingsModeration2faOwnerOnlyTooltip": "コミュニティオーナーのみがこの設定を変更できます",
     "guildSettingsModeration2faEnableFirstTooltip": "この設定を変更するには、アカウントで2段階認証を有効にしてください",
     "guildSettingsEmojiSearchHint": "絵文字を検索",
     "guildSettingsEmojiUploadTitle": "絵文字をアップロード",
@@ -9354,8 +8575,6 @@
     },
     "guildSettingsStickersSearchHint": "ステッカーを検索",
     "guildSettingsWebhooksInfo": "Webhookを作成するには、{channelSettingsPath}を開いてください。既存のすべてのWebhookは、ここで編集および整理できます。",
-    "guildSettingsVanityUrlWarning": "少なくとも1つのチャンネルが全員に表示されていないと、カスタムURLは機能しません。",
-    "guildSettingsVanityUrlRemove": "削除",
     "guildSettingsBannedUsersTitle": "禁止ユーザー",
     "guildSettingsInvitesTableInviter": "招待者",
     "guildSettingsInvitesTableChannel": "チャンネル",
@@ -9378,6 +8597,80 @@
     "userProfileLocalTime": "現地時間",
     "@userProfileLocalTime": {
         "description": "Profile section title for a user's local time."
+    },
+    "profileLocalTimeSettingsTitle": "プロフィールの現地時間",
+    "@profileLocalTimeSettingsTitle": {
+        "description": "Profile settings row title for profile local time."
+    },
+    "profileLocalTimeSettingsSummary": "タイムゾーンを設定すると、{productName}は夏時間の変更時にUTCオフセットを最新の状態に保つことができます。他のユーザーが確認できるのはUTCオフセットのみで、正確なタイムゾーン識別子は表示されません。",
+    "@profileLocalTimeSettingsSummary": {
+        "description": "Description for the profile local time settings section.",
+        "placeholders": {
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "profileLocalTimeEditButton": "プロフィールの現地時間を編集",
+    "@profileLocalTimeEditButton": {
+        "description": "Opens the profile local time editor."
+    },
+    "profileLocalTimeTimezoneLabel": "タイムゾーン",
+    "@profileLocalTimeTimezoneLabel": {
+        "description": "Field label for the profile timezone picker."
+    },
+    "profileLocalTimeTimezoneHelp": "{productName}がプロフィールの現地時間のUTCオフセットを計算するために使用するタイムゾーンを選択してください。",
+    "@profileLocalTimeTimezoneHelp": {
+        "description": "Helper text under the profile timezone picker.",
+        "placeholders": {
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "profileLocalTimeSearchTimezones": "タイムゾーンを検索",
+    "@profileLocalTimeSearchTimezones": {
+        "description": "Placeholder in the profile timezone picker."
+    },
+    "profileLocalTimeNotSet": "未設定",
+    "@profileLocalTimeNotSet": {
+        "description": "Profile timezone picker option when no timezone is selected."
+    },
+    "profileLocalTimePrivacyNote": "プロフィールでローカル時間を共有することを選択した場合、他のユーザーは現在のUTCオフセットのみを確認できます。正確なタイムゾーン識別子（例：{timezoneIdentifierExample}）は表示されません。{productName}がこの識別子を保存するのは、夏時間の切り替え時にオフセットを自動で更新するためだけです。",
+    "@profileLocalTimePrivacyNote": {
+        "description": "Privacy note in profile timezone settings.",
+        "placeholders": {
+            "timezoneIdentifierExample": {
+                "type": "String"
+            },
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "profileLocalTimePrivacyEveryone": "全員",
+    "@profileLocalTimePrivacyEveryone": {
+        "description": "Profile timezone privacy option label."
+    },
+    "profileLocalTimePrivacyEveryoneDesc": "プロフィールを閲覧できるすべてのユーザーに、あなたの現地の時刻の表示を許可します",
+    "@profileLocalTimePrivacyEveryoneDesc": {
+        "description": "Profile timezone privacy option description for Everyone."
+    },
+    "profileLocalTimePrivacyFriends": "友達",
+    "@profileLocalTimePrivacyFriends": {
+        "description": "Profile timezone privacy option label."
+    },
+    "profileLocalTimePrivacyFriendsDesc": "友達に現地時間の表示を許可する",
+    "@profileLocalTimePrivacyFriendsDesc": {
+        "description": "Profile timezone privacy option description for Friends."
+    },
+    "profileLocalTimePrivacyCommunityMembers": "コミュニティメンバー",
+    "@profileLocalTimePrivacyCommunityMembers": {
+        "description": "Profile timezone privacy option label."
+    },
+    "profileLocalTimePrivacyCommunityMembersDesc": "参加しているコミュニティのメンバーに現地時間の表示を許可する",
+    "@profileLocalTimePrivacyCommunityMembersDesc": {
+        "description": "Profile timezone privacy option description for Community members."
     },
     "languageAndTimeTimeFormat12Hour": "12時間制",
     "@languageAndTimeTimeFormat12Hour": {
@@ -9419,10 +8712,6 @@
     "@languageAndTimeLanguageSectionDescription": {
         "description": "Settings section description for interface language preference."
     },
-    "languageAndTimeOpenLanguageSettings": "言語設定を開く",
-    "@languageAndTimeOpenLanguageSettings": {
-        "description": "Button that opens the system per-app language settings."
-    },
     "dmDebugCategory": "カテゴリーをデバッグ",
     "@dmDebugCategory": {
         "description": "Category context menu action to debug category data."
@@ -9450,6 +8739,10 @@
     "lookAndFeelChatWallpaperCustomLabel": "カスタム画像",
     "@lookAndFeelChatWallpaperCustomLabel": {
         "description": "Chat wallpaper option that picks an image from the gallery."
+    },
+    "lookAndFeelChatWallpaperStarfieldLabel": "スターフィールド",
+    "@lookAndFeelChatWallpaperStarfieldLabel": {
+        "description": "Chat wallpaper preset that uses the static starfield background."
     },
     "lookAndFeelChatWallpaperColorLabel": "カラー {id}",
     "@lookAndFeelChatWallpaperColorLabel": {
@@ -9541,10 +8834,6 @@
     "guildSettingsRolesTwoColumns": "2列",
     "@guildSettingsRolesTwoColumns": {
         "description": "Tooltip when permission list is in single-column layout."
-    },
-    "guildSettingsRolesSwitchToTwoColumns": "2列表示に切り替え",
-    "@guildSettingsRolesSwitchToTwoColumns": {
-        "description": "Aria label for switching to two columns."
     },
     "guildSettingsRolesCreateFailedTitle": "ロールを作成できませんでした",
     "@guildSettingsRolesCreateFailedTitle": {
@@ -9657,18 +8946,6 @@
     "@systemPermissionSettingsTitle": {
         "description": "Title for the system permission settings prompt modal."
     },
-    "phoneInboundExpensiveDescription": "この電話番号へのSMS送信は高額になるため、代わりに私たちにSMSを送信していただく必要があります。サポートに連絡して、この要件をアカウントから解除してもらうこともできます。",
-    "@phoneInboundExpensiveDescription": {
-        "description": "Inbound challenge reason for expensive destinations."
-    },
-    "phoneInboundStepOpenMessaging": "スマートフォンのメッセージアプリを開き、新しいメッセージを作成してください。",
-    "@phoneInboundStepOpenMessaging": {
-        "description": "Inbound verification step 1."
-    },
-    "requiredActionUseEmail": "メールアドレスを使う",
-    "@requiredActionUseEmail": {
-        "description": "Button to choose email verification."
-    },
     "userProfileTimezoneDurationHours": "{hours, plural, =1{1時間} other{{hours}時間}}",
     "@userProfileTimezoneDurationHours": {
         "description": "Hours-only duration phrase in the profile timezone section.",
@@ -9686,10 +8963,6 @@
                 "type": "int"
             }
         }
-    },
-    "iarReportGuildTitle": "コミュニティを報告",
-    "@iarReportGuildTitle": {
-        "description": "Title of the simple community-report sheet."
     },
     "systemCallDurationHours": "{count} 時間",
     "@systemCallDurationHours": {
@@ -9863,22 +9136,6 @@
     "@audioAndVideoSkipHideOwnCameraConfirmLabel": {
         "description": "Toggle to skip confirmation when hiding own camera during a call."
     },
-    "iarReportGuildPreconfirmBody": "このコミュニティ内の特定のメッセージに関する報告の場合は、そのメッセージを直接報告してください。メッセージを報告していただくと、安全チームが状況をより正確に把握できます。コメントで詳細を追加していただけると、より迅速に確認できます。メッセージの報告では問題の全体像を伝えきれない場合にのみ、コミュニティ全体の報告に進んでください。",
-    "@iarReportGuildPreconfirmBody": {
-        "description": "Body shown in the pre-confirm dialog before opening the community report sheet."
-    },
-    "iarReasonPrivacyGuildDescription": "個人情報共有、ストーカー行為、プライバシー侵害の共謀など.",
-    "@iarReasonPrivacyGuildDescription": {
-        "description": "Community-report reason description for privacy violation or doxxing."
-    },
-    "iarReasonSelfHarmGuildLabel": "自傷行為を助長するおそれ",
-    "@iarReasonSelfHarmGuildLabel": {
-        "description": "Community-report reason label for self-harm encouragement."
-    },
-    "iarReasonSelfHarmGuildDescription": "自殺、自傷行為、摂食障害を助長するコンテンツ.",
-    "@iarReasonSelfHarmGuildDescription": {
-        "description": "Community-report reason description for self-harm encouragement."
-    },
     "userSettingsNavNotifications": "通知",
     "@userSettingsNavNotifications": {
         "description": "User settings navigation item for notification settings."
@@ -9979,6 +9236,60 @@
     "@notificationsEnableNotificationsPermissionDenied": {
         "description": "Toast shown when enabling notifications fails because permission was denied."
     },
+    "notificationsPushRelaySectionTitle": "プッシュ通知リレー",
+    "@notificationsPushRelaySectionTitle": {
+        "description": "Notification settings section title for the Fluxer push relay."
+    },
+    "notificationsPushRelaySectionDescription": "{pushProvider} は自社のサービス経由でしかプッシュ通知を配信しないため、このデバイスへの通知は Fluxer のリレーを経由します。",
+    "@notificationsPushRelaySectionDescription": {
+        "description": "Notification settings section description explaining why the push relay exists.",
+        "placeholders": {
+            "pushProvider": {
+                "type": "String"
+            }
+        }
+    },
+    "notificationsPushRelayConsentLabel": "Fluxer のプッシュリレーを使う",
+    "@notificationsPushRelayConsentLabel": {
+        "description": "Toggle label for agreeing to the Fluxer push relay on this device."
+    },
+    "notificationsPushRelayConsentDescription": "これをオフにすると、このデバイスのプッシュ登録が削除され、プッシュ通知を受け取らなくなります。",
+    "@notificationsPushRelayConsentDescription": {
+        "description": "Toggle description explaining that revoking push relay consent unregisters the device."
+    },
+    "pushRelayConsentTitle": "プッシュ通知リレー",
+    "@pushRelayConsentTitle": {
+        "description": "Title of the one-time Fluxer push relay consent sheet."
+    },
+    "pushRelayConsentDescription": "{pushProvider} は自社のサービス経由でしかプッシュ通知を配信しないため、このデバイスへの通知は Fluxer のリレーを経由します。",
+    "@pushRelayConsentDescription": {
+        "description": "Subtitle of the push relay consent sheet explaining why the relay exists.",
+        "placeholders": {
+            "pushProvider": {
+                "type": "String"
+            }
+        }
+    },
+    "pushRelayConsentNoticePrefix": "このデバイスでプッシュ通知を有効にするには、",
+    "@pushRelayConsentNoticePrefix": {
+        "description": "Text before the push relay privacy notice link in the consent sheet."
+    },
+    "pushRelayConsentNoticeLink": "プッシュリレーのプライバシー通知",
+    "@pushRelayConsentNoticeLink": {
+        "description": "Link text for the supplemental push relay privacy notice."
+    },
+    "pushRelayConsentNoticeSuffix": "に同意してください。同意はデバイスごとに一度だけで済みます。",
+    "@pushRelayConsentNoticeSuffix": {
+        "description": "Text after the push relay privacy notice link in the consent sheet."
+    },
+    "pushRelayConsentAgree": "同意して続ける",
+    "@pushRelayConsentAgree": {
+        "description": "Button that records agreement to the push relay privacy notice."
+    },
+    "pushRelayConsentDecline": "今はしない",
+    "@pushRelayConsentDecline": {
+        "description": "Button that declines the push relay privacy notice and leaves push notifications off."
+    },
     "mentionConfirmRoleBody": "{count}人のメンバーに{roleName}ロールを通知します。続行しますか？",
     "@mentionConfirmRoleBody": {
         "description": "Body of the large role mention confirmation dialog.",
@@ -9990,42 +9301,6 @@
                 "type": "String"
             }
         }
-    },
-    "iarContinueToReportCommunity": "コミュニティの報告を続ける",
-    "@iarContinueToReportCommunity": {
-        "description": "Primary button in the community report pre-confirm dialog."
-    },
-    "iarReasonHarassmentGuildLabel": "ハラスメントまたは標的型嫌がらせ",
-    "@iarReasonHarassmentGuildLabel": {
-        "description": "Community-report reason label for harassment or targeted abuse."
-    },
-    "iarReasonChildSafetyGuildDescription": "未成年者を危険にさらしたり、児童搾取コンテンツをホストしたりする行為。",
-    "@iarReasonChildSafetyGuildDescription": {
-        "description": "Community-report reason description for child safety."
-    },
-    "iarReasonRaidLabel": "レイドの調整",
-    "@iarReasonRaidLabel": {
-        "description": "Community-report reason label for raid coordination."
-    },
-    "iarReasonRaidDescription": "個人またはコミュニティに対する襲撃、集団的嫌がらせ、またはハラスメントを調整する行為。",
-    "@iarReasonRaidDescription": {
-        "description": "Community-report reason description for raid coordination."
-    },
-    "iarReasonSpamGuildDescription": "コミュニティはスパム、詐欺、またはプラットフォームの悪用を目的として存在します。",
-    "@iarReasonSpamGuildDescription": {
-        "description": "Community-report reason description for spam, scams, or phishing."
-    },
-    "iarReasonMalwareGuildLabel": "マルウェア配布",
-    "@iarReasonMalwareGuildLabel": {
-        "description": "Community-report reason label for malware distribution."
-    },
-    "iarReasonMalwareGuildDescription": "マルウェア、認証情報、または有害なファイルを配布する。",
-    "@iarReasonMalwareGuildDescription": {
-        "description": "Community-report reason description for malware distribution."
-    },
-    "iarReasonPrivacyGuildLabel": "プライバシー侵害または個人情報漏洩",
-    "@iarReasonPrivacyGuildLabel": {
-        "description": "Community-report reason label for privacy violation or doxxing."
     },
     "channelSettingsTopicTooLongTitle": "チャンネルのトピックが長すぎます。",
     "@channelSettingsTopicTooLongTitle": {
@@ -10072,17 +9347,9 @@
             }
         }
     },
-    "guildSettingsRolesSwitchToComfyLayout": "快適なレイアウトに切り替える",
-    "@guildSettingsRolesSwitchToComfyLayout": {
-        "description": "Aria label for switching to comfy layout."
-    },
     "guildSettingsRolesNoHoistedRoles": "表示するロールがありません。「ロールを個別に表示」を有効にすると、ここに表示されます。",
     "@guildSettingsRolesNoHoistedRoles": {
         "description": "Empty state when no roles are hoisted."
-    },
-    "guildSettingsRolesLockedTooltip": "このロールは、あなたの最高ロールであるか、あなたより上位のロールであるため編集できません",
-    "@guildSettingsRolesLockedTooltip": {
-        "description": "Tooltip on locked role rows."
     },
     "guildSettingsRolesNeedManageRolesPermission": "これらの権限を編集するには、「{permission}」権限が必要です",
     "@guildSettingsRolesNeedManageRolesPermission": {
@@ -10116,10 +9383,6 @@
     "permissionCategoryAudioVideo": "オーディオとビデオ",
     "@permissionCategoryAudioVideo": {
         "description": "Permission category label."
-    },
-    "permissionUnknown": "不明な権限",
-    "@permissionUnknown": {
-        "description": "Fallback permission label."
     },
     "permissionAdministrator": "管理者",
     "@permissionAdministrator": {
@@ -10487,16 +9750,6 @@
     "@audioAndVideoCustomProfileDescription": {
         "description": "Description for the custom voice processing profile."
     },
-    "audioAndVideoMicrophonePermissionRequired": "{productName}がデバイスを一覧表示するには、マイクへのアクセスが必要です。",
-    "@audioAndVideoMicrophonePermissionRequired": {
-        "description": "Shown when microphone permission is required to enumerate audio input devices.",
-        "placeholders": {
-            "productName": {
-                "type": "String",
-                "example": "echowire"
-            }
-        }
-    },
     "audioAndVideoSkipHideOwnScreenshareConfirmLabel": "自分の画面共有を非表示にする際に確認しない",
     "@audioAndVideoSkipHideOwnScreenshareConfirmLabel": {
         "description": "Toggle to skip confirmation when hiding own screen share during a call."
@@ -10731,10 +9984,6 @@
     "@channelSettingsMatureContentOff": {
         "description": "Mature content option that leaves channel ungated."
     },
-    "channelSettingsMatureContentCommunitySource": "コミュニティ",
-    "@channelSettingsMatureContentCommunitySource": {
-        "description": "Lowercase source label for inherited mature content from community."
-    },
     "channelSettingsEveryoneRole": "@everyone",
     "@channelSettingsEveryoneRole": {
         "description": "Label for the default @everyone role overwrite in channel permissions."
@@ -10827,10 +10076,6 @@
     "@groupDmInviteExpires24Hours": {
         "description": "Note below the invite link field in add friends to group."
     },
-    "groupDmCreateInviteFailed": "招待リンクを作成できませんでした",
-    "@groupDmCreateInviteFailed": {
-        "description": "Title when invite link generation fails."
-    },
     "audioAndVideoFocusedVoiceLabel": "音声にフォーカス",
     "@audioAndVideoFocusedVoiceLabel": {
         "description": "Voice processing profile optimized for speech."
@@ -10855,29 +10100,9 @@
     "@audioAndVideoFrameRate60Label": {
         "description": "Screen share frame rate option for 60 FPS."
     },
-    "audioAndVideoHigherQualityRequiresPremium": "1080pと60FPSには{premiumProductName}が必要です。",
-    "@audioAndVideoHigherQualityRequiresPremium": {
-        "description": "Note shown when higher video quality options require premium.",
-        "placeholders": {
-            "premiumProductName": {
-                "type": "String",
-                "example": "Reverb"
-            }
-        }
-    },
     "audioAndVideoInstanceVideoQualityLimit": "このインスタンスでは現在、最大720p、30FPSで画面共有が可能です。",
     "@audioAndVideoInstanceVideoQualityLimit": {
         "description": "Note shown when instance limits block higher screen share quality."
-    },
-    "audioAndVideoCameraPermissionRequired": "{productName}がデバイスを一覧表示するには、カメラへのアクセスが必要です。",
-    "@audioAndVideoCameraPermissionRequired": {
-        "description": "Shown when camera permission is required to enumerate video devices.",
-        "placeholders": {
-            "productName": {
-                "type": "String",
-                "example": "echowire"
-            }
-        }
     },
     "notificationsGeneralSectionTitle": "一般",
     "@notificationsGeneralSectionTitle": {
@@ -11247,10 +10472,6 @@
     "@groupDmUnsupportedIconFormatBody": {
         "description": "Body when the selected group icon format is unsupported."
     },
-    "groupDmFailedToProcessCroppedImage": "トリミングした画像の処理に失敗しました。もう一度お試しください。",
-    "@groupDmFailedToProcessCroppedImage": {
-        "description": "Body when a cropped group icon cannot be processed."
-    },
     "groupDmInvalidImageBody": "この画像は無効です。別の画像を試してください。",
     "@groupDmInvalidImageBody": {
         "description": "Body when the selected group icon image cannot be used."
@@ -11324,10 +10545,6 @@
     "guildSettingsRolesSearchPermissions": "権限を検索",
     "@guildSettingsRolesSearchPermissions": {
         "description": "Placeholder for the permission search input."
-    },
-    "guildSettingsRolesSwitchToSingleColumn": "1列表示に切り替え",
-    "@guildSettingsRolesSwitchToSingleColumn": {
-        "description": "Aria label for switching to single column."
     },
     "guildSettingsRolesCreatedSuccess": "ロールを作成しました",
     "@guildSettingsRolesCreatedSuccess": {
@@ -11581,10 +10798,6 @@
     "@groupDmEditTitle": {
         "description": "Title for the edit group DM modal or sheet."
     },
-    "groupDmEditDetailsTooltip": "グループ情報を編集",
-    "@groupDmEditDetailsTooltip": {
-        "description": "Tooltip on the desktop group DM header edit action."
-    },
     "groupDmGroupName": "グループ名",
     "@groupDmGroupName": {
         "description": "Label for the group name field in edit group."
@@ -11609,10 +10822,6 @@
     "@groupDmIconFileTooLargeTitle": {
         "description": "Title when the selected group icon exceeds the size limit."
     },
-    "groupDmCouldntProcessImage": "画像を処理できませんでした",
-    "@groupDmCouldntProcessImage": {
-        "description": "Title when a cropped group icon cannot be processed."
-    },
     "groupDmInvalidImage": "無効な画像",
     "@groupDmInvalidImage": {
         "description": "Title when the selected group icon image cannot be used."
@@ -11624,10 +10833,6 @@
     "groupDmGroupFull": "このグループは満員です。メンバーを追加する前に、誰かを削除してください。",
     "@groupDmGroupFull": {
         "description": "Error when the group DM has no remaining member slots."
-    },
-    "groupDmAddFailed": "グループに追加できませんでした",
-    "@groupDmAddFailed": {
-        "description": "Title when adding friends to a group DM fails."
     },
     "groupDmRateLimited": "速すぎます。少し待ってからもう一度お試しください。",
     "@groupDmRateLimited": {
@@ -12135,10 +11340,6 @@
     "@accessibilitySaturationTitle": {
         "description": "Section title for the theme saturation slider on the accessibility settings page."
     },
-    "accessibilitySaturationDescription": "アプリ全体のテーマカラーの鮮やかさを調整します。",
-    "@accessibilitySaturationDescription": {
-        "description": "Section description for the theme saturation slider on the accessibility settings page."
-    },
     "nagbarUnclaimedAccountMessage": "{displayName}さん、アカウントを認証してアクセス権を失わないようにしましょう。",
     "@nagbarUnclaimedAccountMessage": {
         "description": "Unclaimed account nagbar body.",
@@ -12169,62 +11370,6 @@
                 "type": "String"
             }
         }
-    },
-    "phoneCountryLabel": "国",
-    "@phoneCountryLabel": {
-        "description": "Label for country selector in phone verification."
-    },
-    "phoneAlreadyUsed": "この電話番号はすでに使用されています。別の番号を試すか、サポートにお問い合わせください。",
-    "@phoneAlreadyUsed": {
-        "description": "API error when phone number was reused."
-    },
-    "phoneCodeDidNotWork": "コードが正しくありません。確認してもう一度お試しください。",
-    "@phoneCodeDidNotWork": {
-        "description": "API error for invalid verification code."
-    },
-    "phoneTooManyAttempts": "試行回数が多すぎます。しばらく待ってから、もう一度お試しください。",
-    "@phoneTooManyAttempts": {
-        "description": "Rate limit error for phone verification."
-    },
-    "requiredActionIntroPhone": "引き続きご利用いただくには、追加のスパム対策認証が必要です。",
-    "@requiredActionIntroPhone": {
-        "description": "Phone-only required action intro."
-    },
-    "requiredActionVerificationEmailSent": "確認メールを送信しました。受信トレイをご確認ください。",
-    "@requiredActionVerificationEmailSent": {
-        "description": "Toast after resending verification email."
-    },
-    "requiredActionSignOut": "ログアウト",
-    "@requiredActionSignOut": {
-        "description": "Sign out button in required action modal."
-    },
-    "iarPreviewCommunitySubtitle": "コミュニティ",
-    "@iarPreviewCommunitySubtitle": {
-        "description": "Subtitle shown under the community name in the IAR preview card."
-    },
-    "iarReasonHarassmentGuildDescription": "コミュニティは、集団攻撃や標的型嫌がらせを助長する可能性があります。",
-    "@iarReasonHarassmentGuildDescription": {
-        "description": "Community-report reason description for harassment or targeted abuse."
-    },
-    "iarReasonHateGuildDescription": "保護されたグループに対する憎悪を助長する.",
-    "@iarReasonHateGuildDescription": {
-        "description": "Community-report reason description for hate speech."
-    },
-    "iarReasonTerrorismLabel": "テロまたは暴力的過激主義",
-    "@iarReasonTerrorismLabel": {
-        "description": "Community-report reason label for terrorism or violent extremism."
-    },
-    "iarReasonTerrorismDescription": "暴力的過激派活動を助長、勧誘、または調整する行為.",
-    "@iarReasonTerrorismDescription": {
-        "description": "Community-report reason description for terrorism or violent extremism."
-    },
-    "iarReasonMatureContentGuildLabel": "成人向けコンテンツまたは不適切なコンテンツの制限",
-    "@iarReasonMatureContentGuildLabel": {
-        "description": "Community-report reason label for mature content or unsafe gating."
-    },
-    "iarReasonMatureContentGuildDescription": "適切な制限が設定されていない成人向けコンテンツ。",
-    "@iarReasonMatureContentGuildDescription": {
-        "description": "Community-report reason description for mature content or unsafe gating."
     },
     "addGuildCreateSubmit": "コミュニティを作成",
     "@addGuildCreateSubmit": {
@@ -12278,93 +11423,9 @@
     "@permissionViewChannel": {
         "description": "Permission name."
     },
-    "phoneCannotBeUsed": "この電話番号は使用できません。別の携帯電話番号を試すか、サポートにお問い合わせください。",
-    "@phoneCannotBeUsed": {
-        "description": "API error when phone number is rejected."
-    },
-    "phoneSmsUnavailable": "現在、SMS認証をご利用いただけません。しばらくしてからもう一度お試しいただくか、サポートにお問い合わせください。",
-    "@phoneSmsUnavailable": {
-        "description": "SMS provider unavailable error."
-    },
-    "phoneNotEligible": "このアカウントでは電話番号認証をご利用いただけません。別の方法を使用するか、サポートにお問い合わせください。",
-    "@phoneNotEligible": {
-        "description": "Account not eligible for phone verification."
-    },
     "phoneCaptchaRequired": "電話番号認証の前にブラウザチェックが必要です。サインインページからやり直すか、サポートにお問い合わせください。",
     "@phoneCaptchaRequired": {
         "description": "Captcha required for phone verification."
-    },
-    "phoneSomethingWentWrong": "問題が発生しました。もう一度お試しください。",
-    "@phoneSomethingWentWrong": {
-        "description": "Generic phone verification error."
-    },
-    "phoneInboundStepWait": "メッセージの受信をお待ちください。1分ほどかかる場合があります。",
-    "@phoneInboundStepWait": {
-        "description": "Inbound verification step 3."
-    },
-    "phoneInboundGetNewCode": "新しいコードを取得",
-    "@phoneInboundGetNewCode": {
-        "description": "Button to refresh inbound challenge."
-    },
-    "phoneInboundChallengeCodeLabel": "送信コード",
-    "@phoneInboundChallengeCodeLabel": {
-        "description": "Label for inbound challenge code."
-    },
-    "phoneInboundOurNumberLabel": "送信先",
-    "@phoneInboundOurNumberLabel": {
-        "description": "Label for inbound destination number."
-    },
-    "requiredActionTitle": "アカウント認証が必要です",
-    "@requiredActionTitle": {
-        "description": "Title for required action blocking modal."
-    },
-    "requiredActionCheckEmailTitle": "メールを確認してください",
-    "@requiredActionCheckEmailTitle": {
-        "description": "Title for email verification instructions."
-    },
-    "requiredActionCheckEmailDescription": "確認リンクをメールアドレスに送信しました。続行するには、メールを開いてください。",
-    "@requiredActionCheckEmailDescription": {
-        "description": "Description for email verification instructions."
-    },
-    "requiredActionResendVerificationEmail": "確認メールを再送信",
-    "@requiredActionResendVerificationEmail": {
-        "description": "Button to resend verification email."
-    },
-    "phoneNumberRequired": "電話番号は必須です",
-    "@phoneNumberRequired": {
-        "description": "Validation error when phone number is empty."
-    },
-    "phoneSearchCountries": "国を検索...",
-    "@phoneSearchCountries": {
-        "description": "Search hint for country selector."
-    },
-    "phoneEnterValidNumber": "有効な携帯電話番号を入力してください。",
-    "@phoneEnterValidNumber": {
-        "description": "Validation error for invalid phone format."
-    },
-    "phoneInboundDefaultDescription": "SMSを送信して、電話番号を確認してください。",
-    "@phoneInboundDefaultDescription": {
-        "description": "Default inbound challenge description."
-    },
-    "phoneInboundStepSendCode": "コード {code} を {number} に送信します。",
-    "@phoneInboundStepSendCode": {
-        "description": "Inbound verification step 2.",
-        "placeholders": {
-            "code": {
-                "type": "String"
-            },
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "requiredActionChooseMethodTitle": "確認方法を選択",
-    "@requiredActionChooseMethodTitle": {
-        "description": "Title when user can pick email or phone."
-    },
-    "requiredActionUsePhone": "電話番号を使用",
-    "@requiredActionUsePhone": {
-        "description": "Button to choose phone verification."
     },
     "channelSettingsTopicPlaceholder": "このチャンネルにトピックを追加",
     "@channelSettingsTopicPlaceholder": {
@@ -12394,27 +11455,9 @@
     "@audioAndVideoMicTestStopLabel": {
         "description": "Button label to stop the microphone test."
     },
-    "audioAndVideoMicTestPermissionRequired": "{productName} は、入力テストのためにマイクへのアクセスが必要です。",
-    "@audioAndVideoMicTestPermissionRequired": {
-        "description": "Shown when microphone permission is required for the mic test.",
-        "placeholders": {
-            "productName": {
-                "type": "String",
-                "example": "echowire"
-            }
-        }
-    },
     "languageAndTimeTimeFormatSectionDescription": "アプリ全体での時刻表示形式を選択",
     "@languageAndTimeTimeFormatSectionDescription": {
         "description": "Settings section description for time format preference."
-    },
-    "guildSettingsRolesSwitchToDenseLayout": "コンパクト表示に切り替える",
-    "@guildSettingsRolesSwitchToDenseLayout": {
-        "description": "Aria label for switching to dense layout."
-    },
-    "guildSettingsRolesCustomHoistOrder": "カスタム表示順",
-    "@guildSettingsRolesCustomHoistOrder": {
-        "description": "Button to enter custom hoist order mode."
     },
     "guildSettingsRolesHoistOrder": "表示順",
     "@guildSettingsRolesHoistOrder": {
@@ -12447,14 +11490,6 @@
     "notificationsEnableDesktopNotificationsLabel": "デスクトップ通知をオンにする",
     "@notificationsEnableDesktopNotificationsLabel": {
         "description": "Toggle label for enabling desktop notifications."
-    },
-    "notificationsEnableBrowserNotificationsLabel": "ブラウザ通知を有効にする",
-    "@notificationsEnableBrowserNotificationsLabel": {
-        "description": "Toggle label for enabling browser notifications."
-    },
-    "notificationsEnableBrowserNotificationsDescription": "メッセージ受信時に通知を受け取れます。ブラウザの設定で通知を許可する必要がある場合があります。チャンネルごと/コミュニティごとの設定は、コミュニティアイコンを右クリックして通知設定を開いてください。",
-    "@notificationsEnableBrowserNotificationsDescription": {
-        "description": "Description for the enable browser notifications toggle."
     },
     "notificationsPushInactiveTimeoutLabel": "プッシュ通知の無効化タイムアウト",
     "@notificationsPushInactiveTimeoutLabel": {
@@ -12561,10 +11596,6 @@
     "channelDetailsChannelSettingsTitle": "チャンネル設定",
     "@channelDetailsChannelSettingsTitle": {
         "description": "Title for the channel details overflow menu on guild channels."
-    },
-    "channelSettingsCategorySettingsTitle": "カテゴリー設定",
-    "@channelSettingsCategorySettingsTitle": {
-        "description": "Title for category settings modal."
     },
     "channelSettingsEditCategory": "カテゴリを編集",
     "@channelSettingsEditCategory": {
@@ -12691,18 +11722,6 @@
     "@channelSettingsVoiceRegionsLoadFailedDescription": {
         "description": "Error modal body when voice regions fail to load in channel settings."
     },
-    "channelSettingsResetSlider": "スライダーを初期値にリセット",
-    "@channelSettingsResetSlider": {
-        "description": "Tooltip for reset buttons on channel settings sliders."
-    },
-    "channelSettingsAdvanced": "詳細設定",
-    "@channelSettingsAdvanced": {
-        "description": "Collapsible advanced section title in channel overview."
-    },
-    "channelSettingsMatureContentOverride": "成人向けコンテンツのオーバーライド",
-    "@channelSettingsMatureContentOverride": {
-        "description": "Accessibility label for mature content override control."
-    },
     "channelSettingsMatureContentOnDescription": "このチャンネルを成人向けコンテンツとしてマークします。",
     "@channelSettingsMatureContentOnDescription": {
         "description": "Description for the mature content on override option."
@@ -12729,10 +11748,6 @@
             }
         }
     },
-    "channelSettingsMatureContentCategorySource": "カテゴリ",
-    "@channelSettingsMatureContentCategorySource": {
-        "description": "Lowercase source label for inherited mature content from category."
-    },
     "channelSettingsContentWarningText": "カスタム警告文",
     "@channelSettingsContentWarningText": {
         "description": "Label for custom content warning text field."
@@ -12740,24 +11755,6 @@
     "channelSettingsContentWarningDefault": "不適切な内容が含まれています.",
     "@channelSettingsContentWarningDefault": {
         "description": "Default content warning text placeholder."
-    },
-    "channelSettingsPermissionsNeedManageChannels": "これらの権限を編集するには、「{manageChannelsPermissionLabel}」の権限が必要です。",
-    "@channelSettingsPermissionsNeedManageChannels": {
-        "description": "Error when user lacks manage channels permission for channel permissions tab.",
-        "placeholders": {
-            "manageChannelsPermissionLabel": {
-                "type": "String"
-            }
-        }
-    },
-    "channelSettingsPermissionsNeedManageRoles": "これらの権限を編集するには、「{manageRolesPermissionLabel}」の権限が必要です。",
-    "@channelSettingsPermissionsNeedManageRoles": {
-        "description": "Error when user lacks manage roles permission for channel permissions tab.",
-        "placeholders": {
-            "manageRolesPermissionLabel": {
-                "type": "String"
-            }
-        }
     },
     "channelSettingsUnknownRole": "不明なロール",
     "@channelSettingsUnknownRole": {
@@ -12802,10 +11799,6 @@
     "channelSettingsPermissionsSearchRolesOrMembers": "ロールまたはメンバーを検索…",
     "@channelSettingsPermissionsSearchRolesOrMembers": {
         "description": "Placeholder for the add override search field."
-    },
-    "channelSettingsPermissionsRolesAndMembers": "ロールとメンバー",
-    "@channelSettingsPermissionsRolesAndMembers": {
-        "description": "Section title in the add override picker."
     },
     "channelSettingsDeleteInvite": "招待を削除",
     "@channelSettingsDeleteInvite": {
@@ -12854,10 +11847,6 @@
                 "type": "String"
             }
         }
-    },
-    "channelSettingsWebhooksUnknownUser": "不明なユーザー",
-    "@channelSettingsWebhooksUnknownUser": {
-        "description": "Fallback label when webhook creator is unavailable."
     },
     "channelSettingsWebhooksAvatar": "アバター",
     "@channelSettingsWebhooksAvatar": {
@@ -13254,42 +12243,6 @@
     "gifPickerFavoritesEmptyDescription": "GIFにスターを付けて、ここに表示しましょう。",
     "@gifPickerFavoritesEmptyDescription": {
         "description": "Empty state description for the GIF picker favorites view."
-    },
-    "requiredActionIntroGeneric": "{productName}を継続して利用するには、必要な認証を完了してください。",
-    "@requiredActionIntroGeneric": {
-        "description": "Generic required action intro.",
-        "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "requiredActionIntroEmailOrPhone": "{productName}を使い続けるには、メールアドレスまたは電話番号を確認してください。",
-    "@requiredActionIntroEmailOrPhone": {
-        "description": "Email or phone required action intro.",
-        "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "requiredActionIntroEmailAndPhone": "{productName}を継続して利用するには、以下のメールと電話番号の認証ステップを完了してください。",
-    "@requiredActionIntroEmailAndPhone": {
-        "description": "Email and phone required action intro.",
-        "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "requiredActionChooseMethodDescription": "{productName}を継続して利用するには、以下のいずれかの認証方法を完了してください。",
-    "@requiredActionChooseMethodDescription": {
-        "description": "Description when user can pick email or phone.",
-        "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
     },
     "networkErrorMessage": "エラーが発生しました。もう一度お試しください。",
     "@networkErrorMessage": {
@@ -13797,6 +12750,14 @@
     "@accessibilityAlwaysUnderlineLinksLabel": {
         "description": "Toggle label for always underlining links in messages."
     },
+    "accessibilityShowAltTextOnImagesLabel": "画像に代替テキストを表示",
+    "@accessibilityShowAltTextOnImagesLabel": {
+        "description": "Toggle label for showing image alternative text as a caption."
+    },
+    "accessibilityShowAltTextOnImagesDescription": "利用可能な場合、画像の代替テキストを画像の下に表示します。",
+    "@accessibilityShowAltTextOnImagesDescription": {
+        "description": "Description for the show alternative text on images toggle."
+    },
     "accessibilityDimStrikethroughTextLabel": "取り消し線のテキストを薄く表示する",
     "@accessibilityDimStrikethroughTextLabel": {
         "description": "Toggle label for dimming strikethrough text in messages."
@@ -13915,10 +12876,6 @@
     "accessibilityPausedGifByReducedMotion": "動作軽減機能により一時停止されています。オンにするとGIFが再生されます。",
     "@accessibilityPausedGifByReducedMotion": {
         "description": "Description for GIF toggle while reduced motion is active."
-    },
-    "accessibilityGifDefaultsOffOnMobile": "バッテリーとデータ使用量を節約するため、モバイルではデフォルトでオフになっています。",
-    "@accessibilityGifDefaultsOffOnMobile": {
-        "description": "Helper text for GIF autoplay default on mobile."
     },
     "accessibilityStickerAnimationsTitle": "スタンプアニメーション",
     "@accessibilityStickerAnimationsTitle": {
@@ -14375,25 +13332,13 @@
     "@privacyDashboardFriendRequestsEveryone": {
         "description": "Privacy dashboard friend request toggle label."
     },
-    "privacyDashboardFriendRequestsEveryoneDesc": "誰でもあなたに友達リクエストを送信できるようにする",
-    "@privacyDashboardFriendRequestsEveryoneDesc": {
-        "description": "Privacy dashboard friend request toggle description."
-    },
     "privacyDashboardFriendRequestsFriendsOfFriends": "友達の友達",
     "@privacyDashboardFriendRequestsFriendsOfFriends": {
         "description": "Privacy dashboard friend request toggle label."
     },
-    "privacyDashboardFriendRequestsFriendsOfFriendsDesc": "友達の友達からのリクエストを許可する",
-    "@privacyDashboardFriendRequestsFriendsOfFriendsDesc": {
-        "description": "Privacy dashboard friend request toggle description."
-    },
     "privacyDashboardFriendRequestsCommunityMembers": "コミュニティメンバー",
     "@privacyDashboardFriendRequestsCommunityMembers": {
         "description": "Privacy dashboard friend request toggle label."
-    },
-    "privacyDashboardFriendRequestsCommunityMembersDesc": "参加中のコミュニティのメンバーからのリクエストを許可する",
-    "@privacyDashboardFriendRequestsCommunityMembersDesc": {
-        "description": "Privacy dashboard friend request toggle description."
     },
     "privacyDashboardDirectMessagesTitle": "ダイレクトメッセージ",
     "@privacyDashboardDirectMessagesTitle": {
@@ -14403,65 +13348,29 @@
     "@privacyDashboardDirectMessagesMembers": {
         "description": "Privacy dashboard DM toggle label."
     },
-    "privacyDashboardDirectMessagesMembersDesc": "参加中のコミュニティのメンバーからのダイレクトメッセージを許可する",
-    "@privacyDashboardDirectMessagesMembersDesc": {
-        "description": "Privacy dashboard DM toggle description."
-    },
     "privacyDashboardDirectMessagesBots": "コミュニティボットからのダイレクトメッセージを許可",
     "@privacyDashboardDirectMessagesBots": {
         "description": "Privacy dashboard bot DM toggle label."
-    },
-    "privacyDashboardDirectMessagesBotsDesc": "参加中のコミュニティのボットからのダイレクトメッセージを許可する",
-    "@privacyDashboardDirectMessagesBotsDesc": {
-        "description": "Privacy dashboard bot DM toggle description."
-    },
-    "privacyDashboardConnectionsSectionDesc": "友達リクエストやダイレクトメッセージを送信できるユーザーを管理します",
-    "@privacyDashboardConnectionsSectionDesc": {
-        "description": "Privacy dashboard connections section description."
-    },
-    "privacyDashboardCommunicationSectionDesc": "通話やグループチャットへの追加を許可する相手を管理",
-    "@privacyDashboardCommunicationSectionDesc": {
-        "description": "Privacy dashboard communication section description."
     },
     "privacyDashboardIncomingCallsTitle": "着信",
     "@privacyDashboardIncomingCallsTitle": {
         "description": "Privacy dashboard incoming calls subsection title."
     },
-    "privacyDashboardIncomingCallsDesc": "誰があなたに電話できるかを管理する",
-    "@privacyDashboardIncomingCallsDesc": {
-        "description": "Privacy dashboard incoming calls subsection description."
-    },
     "privacyDashboardAllowedCallers": "許可された発信元",
     "@privacyDashboardAllowedCallers": {
         "description": "Privacy > Communication: select label."
-    },
-    "privacyDashboardIncomingCallNobody": "誰も",
-    "@privacyDashboardIncomingCallNobody": {
-        "description": "Privacy > Communication: radio option label."
     },
     "privacyDashboardIncomingCallNobodyDesc": "すべての着信をブロックする",
     "@privacyDashboardIncomingCallNobodyDesc": {
         "description": "Privacy > Communication: select option description."
     },
-    "privacyDashboardIncomingCallFriendsOnly": "友達のみ",
-    "@privacyDashboardIncomingCallFriendsOnly": {
-        "description": "Privacy > Communication: radio option label."
-    },
     "privacyDashboardIncomingCallFriendsOnlyDesc": "友達からの通話のみを許可する（推奨）",
     "@privacyDashboardIncomingCallFriendsOnlyDesc": {
         "description": "Privacy > Communication: select option description."
     },
-    "privacyDashboardIncomingCallCustom": "友達 + カスタム",
-    "@privacyDashboardIncomingCallCustom": {
-        "description": "Privacy > Communication: radio option label."
-    },
     "privacyDashboardIncomingCallCustomDesc": "友達と、追加で選択したグループからの通話を許可する",
     "@privacyDashboardIncomingCallCustomDesc": {
         "description": "Privacy > Communication: select option description."
-    },
-    "privacyDashboardIncomingCallEveryone": "全員",
-    "@privacyDashboardIncomingCallEveryone": {
-        "description": "Privacy > Communication: radio option label."
     },
     "privacyDashboardIncomingCallEveryoneDesc": "知らない人からの着信も許可する",
     "@privacyDashboardIncomingCallEveryoneDesc": {
@@ -14471,14 +13380,6 @@
     "@privacyDashboardAdditionalGroups": {
         "description": "Privacy dashboard label for custom permission groups."
     },
-    "privacyDashboardCallFriendsOfFriendsDesc": "友達の友達から電話がかかってくることがあります",
-    "@privacyDashboardCallFriendsOfFriendsDesc": {
-        "description": "Privacy dashboard incoming call custom toggle description."
-    },
-    "privacyDashboardCallGuildMembersDesc": "お互いが参加しているコミュニティのメンバーから電話がかかってきます",
-    "@privacyDashboardCallGuildMembersDesc": {
-        "description": "Privacy dashboard incoming call custom toggle description."
-    },
     "privacyDashboardRingBehavior": "リングの動作",
     "@privacyDashboardRingBehavior": {
         "description": "Privacy dashboard ring behavior subsection label."
@@ -14487,17 +13388,9 @@
     "@privacyDashboardSilentCalls": {
         "description": "Privacy dashboard silent calls toggle label."
     },
-    "privacyDashboardSilentCallsDesc": "すべての通話は、鳴る代わりにサイレントで通知されます。デフォルトでは、友達以外からの通話は常にサイレントになります。",
-    "@privacyDashboardSilentCallsDesc": {
-        "description": "Privacy dashboard silent calls toggle description."
-    },
     "privacyDashboardGroupDmTitle": "グループチャットに招待できるユーザー",
     "@privacyDashboardGroupDmTitle": {
         "description": "Privacy dashboard group DM subsection title."
-    },
-    "privacyDashboardGroupDmDesc": "誰があなたをグループチャットに追加できるかを管理します。招待リンクは引き続き送信できます。",
-    "@privacyDashboardGroupDmDesc": {
-        "description": "Privacy dashboard group DM subsection description."
     },
     "privacyDashboardAllowedInvites": "許可された招待",
     "@privacyDashboardAllowedInvites": {
@@ -14518,14 +13411,6 @@
     "privacyDashboardGroupDmEveryoneDesc": "誰でも確認なしでグループチャットに追加できるようにする",
     "@privacyDashboardGroupDmEveryoneDesc": {
         "description": "Privacy > Communication: select option description."
-    },
-    "privacyDashboardGroupDmFriendsOfFriendsDesc": "友達の友達があなたをグループチャットに追加できるようになります",
-    "@privacyDashboardGroupDmFriendsOfFriendsDesc": {
-        "description": "Privacy dashboard group DM custom toggle description."
-    },
-    "privacyDashboardGroupDmGuildMembersDesc": "お互いが参加しているコミュニティのメンバーが、あなたをグループチャットに追加できるようになります",
-    "@privacyDashboardGroupDmGuildMembersDesc": {
-        "description": "Privacy dashboard group DM custom toggle description."
     },
     "privacyDashboardVoiceActivityTitle": "オンライン状況での音声アクティビティ",
     "@privacyDashboardVoiceActivityTitle": {
@@ -15058,26 +13943,6 @@
     "@composerAutocompleteOptionalArgumentsHeading": {
         "description": "Section heading in composer autocomplete for adding optional slash-command arguments."
     },
-    "composerAutocompleteChannelsHeading": "チャンネル",
-    "@composerAutocompleteChannelsHeading": {
-        "description": "Section heading in composer autocomplete for channel suggestions."
-    },
-    "composerAutocompleteMembersHeading": "メンバー",
-    "@composerAutocompleteMembersHeading": {
-        "description": "Section heading in composer autocomplete for member suggestions."
-    },
-    "composerAutocompleteUsersHeading": "ユーザー",
-    "@composerAutocompleteUsersHeading": {
-        "description": "Section heading in composer autocomplete for user suggestions."
-    },
-    "composerAutocompleteMentionsHeading": "メンション",
-    "@composerAutocompleteMentionsHeading": {
-        "description": "Section heading in composer autocomplete for mixed mention suggestions."
-    },
-    "composerAutocompleteRolesHeading": "ロール",
-    "@composerAutocompleteRolesHeading": {
-        "description": "Section heading in composer autocomplete for role suggestions."
-    },
     "composerAutocompleteMediaHeading": "メディア",
     "@composerAutocompleteMediaHeading": {
         "description": "Section heading in composer autocomplete for saved media."
@@ -15294,10 +14159,6 @@
     "memberListUnavailableBody": "このコミュニティでは、メンバーリストを一時的に利用できません",
     "@memberListUnavailableBody": {
         "description": "Body when member list updates are disabled for the community."
-    },
-    "channelHeaderOpenDetails": "チャンネル詳細を開く",
-    "@channelHeaderOpenDetails": {
-        "description": "Accessibility label for the channel header title area."
     },
     "channelHeaderPinnedMessages": "ピン留め済みメッセージ",
     "@channelHeaderPinnedMessages": {
@@ -15660,10 +14521,6 @@
     "@userSettingsSearchPlaceholder": {
         "description": "Placeholder for the user settings search field."
     },
-    "userSettingsSearchFieldLabel": "設定を検索",
-    "@userSettingsSearchFieldLabel": {
-        "description": "Accessibility label for the user settings search field."
-    },
     "userSettingsSearchClear": "検索をクリア",
     "@userSettingsSearchClear": {
         "description": "Accessibility label for clearing the user settings search field."
@@ -15690,8 +14547,6 @@
     "giftSettingsGiftUrl": "ギフトURL",
     "giftSettingsCopy": "コピー",
     "giftSettingsCopied": "コピーしました",
-    "giftSettingsGiftUrlCopied": "ギフトURLをクリップボードにコピーしました！",
-    "giftSettingsGiftUrlCopyFailed": "ギフトURLをコピーできませんでした",
     "giftSettingsPurchasedDate": "{date}に購入",
     "@giftSettingsPurchasedDate": {
         "placeholders": {
@@ -15733,7 +14588,6 @@
     "premiumBuyGift": "ギフトを購入",
     "premiumOneYearGift": "1年ギフト",
     "premiumOneMonthGift": "1ヶ月ギフト",
-    "premiumMostPopular": "一番人気",
     "premiumScrollPrompt": "Reverbに含まれる特典をすべて表示するには、下にスクロールしてください",
     "premiumFreeVsPlutonium": "無料版とReverb版",
     "premiumFreeColumn": "無料",
@@ -15751,50 +14605,15 @@
     "premiumViewGifts": "ギフトを見る",
     "premiumReadyToUpgrade": "アップグレードしますか？",
     "premiumReadyToBuyGift": "ギフトを購入しますか？",
-    "premiumMonthlyPrice": "月額 {price}",
-    "@premiumMonthlyPrice": {
-        "placeholders": {
-            "price": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumYearlyPrice": "年間 {price}",
-    "@premiumYearlyPrice": {
-        "placeholders": {
-            "price": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumOneYearPrice": "1年 {price}",
-    "@premiumOneYearPrice": {
-        "placeholders": {
-            "price": {
-                "type": "String"
-            }
-        }
-    },
-    "premiumOneMonthPrice": "1か月 {price}",
-    "@premiumOneMonthPrice": {
-        "placeholders": {
-            "price": {
-                "type": "String"
-            }
-        }
-    },
     "premiumManageSubscription": "サブスクリプションを管理",
     "premiumRedeemGiftCode": "ギフトコードを使う",
     "premiumGiftBadge": "ギフト",
     "premiumCancelSubscriptionTitle": "サブスクリプションをキャンセルしますか？",
     "premiumCancelSubscriptionBody": "特典は次回の更新日まで保持され、その後3日間の猶予期間中に再登録すると、購読履歴を引き継ぐことができます。",
     "premiumCancelSubscriptionConfirm": "サブスクリプションをキャンセル",
-    "premiumKeepSubscription": "サブスクリプションを継続",
     "premiumPurchaseHistoryTitle": "購入履歴",
     "premiumPurchaseHistoryDescription": "サブスクリプションの支払い方法を変更するには、請求ポータルで支払い方法を追加または選択し、デフォルトに設定してください。",
     "premiumManagePaymentMethods": "支払い方法を管理",
-    "premiumBillingHistory": "請求履歴",
-    "premiumSelfServeRefundTitle": "セルフサービス返金",
     "premiumSelfServeRefundButton": "最新の購入を返金",
     "premiumDisclaimerAgreementPrefix": "購入することで、お客様は当社の ",
     "premiumDisclaimerAgreementPastPrefix": "購入することで、お客様は当社の ",
@@ -15825,25 +14644,25 @@
             }
         }
     },
-    "premiumComparisonFeatureColumn": "機能",
-    "premiumDisclaimerPurchased": "購入することで、{terms}および{privacy}に同意したことになります。",
-    "@premiumDisclaimerPurchased": {
-        "placeholders": {
-            "terms": {
-                "type": "String"
-            },
-            "privacy": {
-                "type": "String"
-            }
-        }
+    "premiumGiftGraceEnded": "ギフト期間が終了しました。Plutoniumを継続するには、サブスクライブしてください。",
+    "@premiumGiftGraceEnded": {
+        "description": "Plutonium settings summary line shown during the grace period after gifted Plutonium time runs out."
     },
+    "premiumGiftTimeAddedAfterSubscription": "今すぐ課金されます。ギフトの残り時間は有料期間の後に加算されるため、無駄になることはありません。",
+    "@premiumGiftTimeAddedAfterSubscription": {
+        "description": "Note next to the subscription plans when the user still has gifted Plutonium time left."
+    },
+    "premiumComparisonFeatureColumn": "機能",
     "premiumDisclaimerRefund": "お支払いから3日以内、かつ30日に1回まで、ご自身で返金手続きが可能です。サブスクリプションを返金すると、サブスクリプションはキャンセルされます。EU/EEA圏の購入者は、コンテンツにすぐにアクセスするため、チェックアウト時に14日間の撤回権を放棄します。チャージバックではなく、アプリ内の返金ボタンをご利用ください。チャージバックはアカウントの永久的な制限につながる可能性があります。Stripeが支払いを安全に処理します。お客様のカード番号全体が当社に表示されることはありません。",
     "premiumTermsOfService": "利用規約",
     "premiumPrivacyPolicy": "プライバシーポリシー",
     "premiumCheckoutStartFailedTitle": "チェックアウトを開始できませんでした",
     "premiumCheckoutStartFailedBody": "チェックアウトの開始中に問題が発生しました。しばらくしてからもう一度お試しください。",
-    "premiumGiftSubscriptionBlocksRecurring": "現在、ギフトサブスクリプションをご利用中です。自動更新はされません。ギフトコードを追加して期間を延長できます。ギフト期間終了後、定期購入を開始できます。",
     "premiumPlanUnavailable": "このプランはご利用いただけません。サポートにお問い合わせください。",
+    "premiumPlanUnavailableSelfHosted": "このプランはご利用いただけません。このインスタンスの管理者にお問い合わせください。",
+    "@premiumPlanUnavailableSelfHosted": {
+        "description": "Error shown on a self-hosted instance when the selected Plutonium plan is not available. Names no support mailbox."
+    },
     "premiumCompletePaymentTitle": "支払いを完了",
     "premiumCompletePaymentBody": "支払いを完了するためにStripeに移動します。完了したらechowireに戻ってください。",
     "premiumChoosePaymentMethodTitle": "支払い方法を選択",
@@ -15859,29 +14678,97 @@
     "premiumExistingSubscriptionTitle": "すでに登録済みです",
     "premiumExistingSubscriptionBody": "このアカウントには、既存のReverbサブスクリプションが見つかりました。支払い方法の更新や更新状況の確認は、安全な請求ポータルで管理してください。最近お支払いいただいた場合は、1分ほど待ってからこのページを再度開いてください。",
     "premiumPurchasesDisabledTitle": "購入できません",
-    "premiumPurchasesDisabledBody": "このアカウントでは購入が無効になっています。問題があると思われる場合は、support@echowire.org までお問い合わせください。",
+    "premiumPurchasesDisabledBody": "このアカウントでは購入が無効になっています。問題があると思われる場合は、{supportEmail} までお問い合わせください。",
+    "@premiumPurchasesDisabledBody": {
+        "description": "Shown on the official hosted instance when purchases are disabled for the account. supportEmail is the support mailbox.",
+        "placeholders": {
+            "supportEmail": {
+                "type": "String"
+            }
+        }
+    },
+    "premiumPurchasesDisabledBodySelfHosted": "このアカウントでは購入が無効になっています。問題があると思われる場合は、このインスタンスの管理者までお問い合わせください。",
+    "@premiumPurchasesDisabledBodySelfHosted": {
+        "description": "Shown on a self-hosted instance when purchases are disabled for the account. Names no email address."
+    },
     "premiumClaimAccountToPurchase": "Reverb を購入するためにアカウントを請求してください。",
     "premiumVerifyEmailToPurchase": "Reverb を購入するには、メールアドレスの認証が必要です。",
-    "premiumPerkCustomUsernameTag": "カスタムユーザー名タグ",
-    "premiumPerkPerCommunityProfiles": "コミュニティごとのプロフィール",
-    "premiumPerkMessageScheduling": "メッセージの予約送信",
-    "premiumPerkProfileBadge": "プロフィールバッジ",
-    "premiumPerkCustomVideoBackgrounds": "カスタムビデオ背景",
-    "premiumPerkEntranceSounds": "入室音",
     "premiumPerkCommunities": "コミュニティ",
     "premiumPerkMessageCharacterLimit": "メッセージの文字数制限",
     "premiumPerkBookmarkedMessages": "ブックマークしたメッセージ",
     "premiumPerkFileUploadSize": "ファイルアップロードサイズ",
-    "premiumPerkEmojiStickerPacks": "絵文字＆スタンプパック",
-    "premiumPerkSavedMedia": "保存したメディア",
     "premiumPerkUseAnimatedEmojis": "アニメーション絵文字を使う",
-    "premiumPerkGlobalEmojiStickerAccess": "グローバル絵文字・スタンプアクセス",
     "premiumPerkVideoQuality": "ビデオ品質",
     "premiumPerkAnimatedAvatarsBanners": "動くアバターとプロフィールバナー",
     "premiumPerkEarlyAccess": "新機能への早期アクセス",
-    "premiumPerkCustomThemes": "カスタムテーマ",
     "premiumPerkVideoQualityRestricted": "720p/30fps",
     "premiumPerkVideoQualityStock": "最大4K/60fps",
+    "storePlutoniumPriceLine": "{monthly}または{yearly}",
+    "@storePlutoniumPriceLine": {
+        "placeholders": {
+            "monthly": {
+                "type": "String"
+            },
+            "yearly": {
+                "type": "String"
+            }
+        }
+    },
+    "storePlutoniumMonthSuffix": "/月",
+    "storePlutoniumYearSuffix": "/年",
+    "storePlutoniumPriceOr": "または",
+    "storePlutoniumEmojiTitle": "あなたの絵文字を、どこでも",
+    "storePlutoniumEmojiBody": "コミュニティのカスタム絵文字やスタンプを、参加しているすべてのチャットやコミュニティに持ち込もう。",
+    "storePlutoniumProfileTitle": "個性を際立たせるプロフィール",
+    "storePlutoniumProfileBody": "アニメーションアバターとバナー、サブスクライバーバッジ、ユーザー名の後に好きな4桁のタグ*、コミュニティごとに個別のプロフィールを入手できます。",
+    "storePlutoniumFilesTitle": "最大500MBのファイルを送信",
+    "storePlutoniumFilesBody": "動画や大きなファイルを圧縮せずにそのまま共有できます。無料アカウントでは最大25MBまで送信できます。",
+    "storePlutoniumCompareTitle": "無料版とPlutoniumを比較",
+    "storePlutoniumCompareMobileNote": "これらの機能のすべてがモバイルアプリで利用できるわけではありません。一部はデスクトップ版でのみ利用可能です。",
+    "storePlutoniumNotAvailable": "なし",
+    "storePlutoniumAvailable": "利用可能",
+    "storePlutoniumCompareTag": "ユーザー名の後に4桁の数字を選択*",
+    "storePlutoniumCompareProfile": "コミュニティごとのプロフィール",
+    "storePlutoniumCompareBadge": "プロフィールに表示される購読者バッジ",
+    "storePlutoniumCompareBackgrounds": "保存できるビデオ通話の背景",
+    "storePlutoniumCompareCommunities": "参加できるコミュニティ",
+    "storePlutoniumCompareCharacters": "1回のメッセージの文字数",
+    "storePlutoniumCompareBookmarks": "ブックマークできるメッセージ",
+    "storePlutoniumCompareUpload": "アップロードできる最大のファイル",
+    "storePlutoniumCompareSavedMedia": "後で保存できるメディアアイテム",
+    "storePlutoniumCompareAnimatedEmoji": "メッセージでアニメーション絵文字を使用する",
+    "storePlutoniumCompareCustomEmoji": "どのコミュニティでもカスタム絵文字やスタンプを使用できます",
+    "storePlutoniumCompareVideo": "ビデオ通話と画面共有の品質",
+    "storePlutoniumCompareAvatar": "アニメーションアバターとプロフィールバナー",
+    "storePlutoniumCompareEarlyAccess": "新機能への早期アクセス",
+    "storePlutoniumCompareThemes": "アプリのカスタムテーマ",
+    "storePlutoniumVideoFree": "最大720p、30FPS",
+    "storePlutoniumVideoPlutonium": "最大4K、60FPS",
+    "storePlutoniumTagFootnote": "他のユーザーが同じユーザー名でまだ使用していないタグのみを選択できます。ユーザー名は大文字と小文字を区別しないため、Mina#4821とmina#4821は同じものとして扱われます。#0000タグはFluxer Visionaryメンバー専用です。",
+    "storePlutoniumLearnVisionary": "Visionaryについて詳しくはこちら。",
+    "storePlutoniumDonatePrompt": "Fluxerのオープンソース開発を支援したいだけですか？ ",
+    "storePlutoniumDonateLink": "寄付する",
+    "storePlutoniumHighlightsLead": "購読するとFluxerの活動を支援でき、以下の特典が利用可能になります",
+    "storePlutoniumHighlightEmoji": "どのチャットでもカスタム絵文字とスタンプ",
+    "storePlutoniumHighlightProfile": "アニメーションプロフィール、バッジ、カスタム4桁の番号",
+    "storePlutoniumHighlightFiles": "最大500MBのアップロード",
+    "storePlutoniumHighlightMessages": "最大4,000文字のメッセージを送信",
+    "storePlutoniumHighlightCommunityProfile": "コミュニティごとのプロフィール",
+    "storePlutoniumHighlightsMore": "その他多数",
+    "storePlutoniumRenewsThroughPlay": "キャンセルするまでGoogle Playを通じて自動更新されます。",
+    "storePlutoniumRenewsThroughAppStore": "キャンセルしない限り、App Storeを通じて自動的に更新されます。",
+    "storePlutoniumAlreadySubscribed": "すでにFluxer Plutoniumサブスクリプションをご利用中です。",
+    "storePlutoniumSavePercent": "{percent}% オフ",
+    "@storePlutoniumSavePercent": {
+        "placeholders": {
+            "percent": {
+                "type": "int"
+            }
+        }
+    },
+    "storePlutoniumWaiting": "購入を受け付けました。Plutoniumは有効化されるとここに表示されます。",
+    "storePlutoniumUnavailable": "このデバイスでは、アプリ内でのサブスクリプションはまだご利用いただけません。",
+    "storePlutoniumVisionaryStatus": "Visionaryには永続的なアクセス権が含まれているため、定期購入は不要です。",
     "userSettingsNavShortcuts": "ショートカット",
     "@userSettingsNavShortcuts": {
         "description": "User settings navigation item for keyboard shortcuts."
@@ -15970,6 +14857,18 @@
     "@defaultAppsWebBrowserExternal": {
         "description": "Default web browser option for the system default browser."
     },
+    "userSettingsNavAppIcon": "アプリアイコン",
+    "@userSettingsNavAppIcon": {
+        "description": "User settings navigation item for choosing the home screen app icon."
+    },
+    "appIconSectionTitle": "アプリアイコン",
+    "@appIconSectionTitle": {
+        "description": "Title for the app icon settings section."
+    },
+    "appIconSectionDescription": "ホーム画面に表示されるアイコンを選択します。",
+    "@appIconSectionDescription": {
+        "description": "Description for the app icon settings section."
+    },
     "advancedSettingsConfigure": "設定",
     "@advancedSettingsConfigure": {
         "description": "Button label that opens a dedicated advanced settings modal."
@@ -16019,7 +14918,6 @@
     "advancedSettingStripTrackingLabel": "URLからトラッキングパラメーターを削除",
     "advancedSettingStripTrackingDescription": "送信するメッセージ内のURLからトラッキングパラメータを自動的に削除",
     "advancedSettingTrustAllLinksLabel": "すべての外部リンクを信頼する",
-    "advancedSettingTrustAllLinksDescription": "すべてのドメインで外部リンクの警告をスキップ",
     "advancedSettingSearchEnginesLabel": "検索エンジン",
     "advancedSettingSearchEnginesDescription": "選択したテキストから使用する検索エンジンを設定します",
     "advancedSettingTranslatorsLabel": "翻訳者",
@@ -16075,13 +14973,6 @@
     "advancedSettingHideStreamPreviewLabel": "ストリームプレビューのサムネイルを非表示にする",
     "advancedSettingDeveloperModeLabel": "開発者モードを有効にする",
     "advancedSettingDeveloperModeDescription": "開発者モードを有効にする",
-    "advancedSettingSearchEngineGoogle": "Google",
-    "advancedSettingSearchEngineDuckDuckGo": "DuckDuckGo",
-    "advancedSettingSearchEngineBing": "Bing",
-    "advancedSettingSearchEngineGoogleLens": "Google レンズ",
-    "advancedSettingSearchEngineTinEye": "TinEye",
-    "advancedSettingTranslatorGoogle": "Google翻訳",
-    "advancedSettingTranslatorDeepL": "DeepL",
     "advancedSettingDefaultSearchEngineLabel": "デフォルト検索エンジン",
     "advancedSettingDefaultSearchEngineDescription": "選択したテキストを検索する際に、デフォルトで使用する検索エンジンを選択します。",
     "advancedSettingBuiltInSearchEnginesLabel": "内蔵検索エンジン",
@@ -16220,6 +15111,14 @@
     "authHidePassword": "パスワードを非表示",
     "@authHidePassword": {
         "description": "Screen reader label for the hide-password toggle on auth forms."
+    },
+    "authCheckStillWorking": "確認中です…",
+    "@authCheckStillWorking": {
+        "description": "Small toast shown only when the automatic anti-spam check behind sign-in, sign-up or a similar action takes more than a couple of seconds. No user action needed."
+    },
+    "authVerificationFailed": "認証を完了できませんでした。もう一度お試しください。",
+    "@authVerificationFailed": {
+        "description": "Shown when the automatic anti-spam check behind sign-in, sign-up, phone verification or a similar action could not be completed."
     },
     "chatLoadingMessages": "メッセージを読み込み中",
     "@chatLoadingMessages": {
@@ -16627,10 +15526,6 @@
     "@guildMembersColumnRoles": {
         "description": "Table column header on the community members page."
     },
-    "guildMembersColumnActions": "アクション",
-    "@guildMembersColumnActions": {
-        "description": "Table column header on the community members page."
-    },
     "guildMembersFilterMemberSince": "メンバー参加日で絞り込む",
     "@guildMembersFilterMemberSince": {
         "description": "Filter menu label on the community members page."
@@ -16715,23 +15610,6 @@
     "@guildMembersIndexing": {
         "description": "Banner shown while guild members are being indexed."
     },
-    "guildMembersGoToPage": "ページへ移動",
-    "@guildMembersGoToPage": {
-        "description": "Pagination jump label on the community members page."
-    },
-    "guildMembersGoToPageItem": "{page}ページへ",
-    "@guildMembersGoToPageItem": {
-        "description": "Accessibility label for a pagination page button.",
-        "placeholders": {
-            "page": {
-                "type": "int"
-            }
-        }
-    },
-    "guildMembersJumpToPage": "ページに移動",
-    "@guildMembersJumpToPage": {
-        "description": "Label for pagination jump input on the community members page."
-    },
     "guildMembersJoinSourceCreator": "コミュニティ作成者",
     "@guildMembersJoinSourceCreator": {
         "description": "Join method label on the community members page."
@@ -16808,28 +15686,14 @@
             }
         }
     },
-    "guildMembersJoinedDaysAgo": "{count, plural, one {1日前} other {{count}日前}}",
-    "@guildMembersJoinedDaysAgo": {
-        "description": "Relative join time on the community members page.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
     "guildMembersChannelListLabel": "メンバー",
     "@guildMembersChannelListLabel": {
         "description": "Label for the Members item at the top of the guild channel list."
-    },
-    "guildMembersChannelListSelected": "メンバー、選択済み",
-    "@guildMembersChannelListSelected": {
-        "description": "Accessibility label when the Members channel list item is selected."
     },
     "guildSettingsEmojiSlotsTitle": "絵文字スロット",
     "guildSettingsEmojiDropZone": "絵文字ファイルをここにドラッグ＆ドロップ",
     "guildSettingsEmojiLoadFailed": "絵文字の読み込みに失敗しました。後でもう一度お試しください。",
     "guildSettingsEmojiSearchEmpty": "検索条件に一致する絵文字は見つかりませんでした。",
-    "guildSettingsEmojiNoSlots": "利用可能な絵文字スロットがありません",
     "guildSettingsEmojiSlotsFull": "絵文字の最大数に達しました。既存の絵文字を削除して空き容量を確保してください。",
     "guildSettingsEmojiUploadRequirements": "絵文字の名前は、少なくとも 2 文字必要で、文字、数字、アンダースコアを使用できます。絵文字のサイズは {maxSize} 未満である必要があります。静止画像は自動的に 128x128 ピクセルにリサイズおよび圧縮されます。アニメーション化された絵文字と SVG は、すでに制限内に収まるようにする必要があります。",
     "@guildSettingsEmojiUploadRequirements": {
@@ -16839,24 +15703,11 @@
             }
         }
     },
-    "guildSettingsEmojiUploadingTitle": "絵文字をアップロード中",
-    "guildSettingsEmojiUploadingBody": "{count, plural, one {# 絵文字} other {# 絵文字}}をアップロードしています。少々お待ちください。",
-    "@guildSettingsEmojiUploadingBody": {
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "guildSettingsEmojiUploadFailed": "絵文字のアップロードに失敗しました。もう一度お試しください。",
     "guildSettingsEmojiSomeFailedTitle": "一部の絵文字を追加できませんでした",
-    "guildSettingsEmojiSomeFailedBody": "これらのファイルを確認し、より小さいかシンプルな画像で再試行してください。",
     "guildSettingsEmojiRenameTitle": "絵文字の名前を変更",
     "guildSettingsEmojiRenameHint": "2～32文字（半角英数字、アンダースコア）.",
-    "guildSettingsEmojiColumnEmoji": "絵文字",
     "guildSettingsEmojiColumnName": "名前",
     "guildSettingsEmojiColumnUploader": "アップロード元",
-    "guildSettingsEmojiUnknownUploader": "不明",
     "guildSettingsEmojiDeleteTitle": "絵文字を削除",
     "guildSettingsEmojiDeleteBody": "「{name}」を削除しますか？元に戻すことはできません。",
     "@guildSettingsEmojiDeleteBody": {
@@ -16871,15 +15722,7 @@
     "guildSettingsEmojiNameTooLong": "絵文字の名前は32文字以内にする必要があります",
     "guildSettingsEmojiInvalidNameTitle": "無効な絵文字名",
     "guildSettingsEmojiRenameFailedTitle": "この絵文字の名前を変更できませんでした",
-    "guildSettingsEmojiRenameFailedBody": "名前は以前のものに戻されました。しばらくしてからもう一度お試しください。",
-    "guildSettingsEmojiGoneTitle": "この絵文字はすでに削除されています",
-    "guildSettingsEmojiGoneBody": "削除された可能性があります。名前は以前のものに戻されました。",
-    "guildSettingsEmojiNoPermissionRenameTitle": "この絵文字の名前は変更できません",
-    "guildSettingsEmojiNoPermissionRenameBody": "この絵文字の名前を変更する権限がありません。名前は以前のものに戻されました。",
-    "guildSettingsEmojiRateLimitedTitle": "処理が速すぎます",
-    "guildSettingsEmojiRateLimitedBody": "しばらく待ってから、もう一度名前の変更をお試しください。",
     "guildSettingsEmojiDeleteFailedTitle": "この絵文字を削除できませんでした",
-    "guildSettingsEmojiDeleteNoPermissionTitle": "この絵文字は削除できません",
     "guildSettingsCloneEmojiTitle": "他のユーザーによる絵文字のクローン作成を許可する",
     "guildSettingsCloneEmojiDescription": "有効にすると、他のコミュニティのメンバーがアプリ内のワンクリック「クローン」ショートカットを使って、あなたのカスタム絵文字を利用できるようになります。これは、メンバーが画像を保存して自分でアップロードするのを防ぐものではありません。",
     "guildSettingsCloneStickerTitle": "他のユーザーによるスタンプのクローン作成を許可する",
@@ -16903,8 +15746,6 @@
     "guildSettingsStickersLoadFailedTitle": "スタンプの読み込みに失敗しました",
     "guildSettingsStickersLoadFailedBody": "スタンプの読み込み中にエラーが発生しました。もう一度お試しください。",
     "guildSettingsStickersSearchEmpty": "検索条件に一致するスタンプは見つかりませんでした。",
-    "guildSettingsStickersEmptySearch": "スタンプが見つかりませんでした",
-    "guildSettingsStickerNoSlots": "利用可能なスタンプスロットがありません",
     "guildSettingsStickerSlotsFull": "ステッカーの最大数に達しました。既存のステッカーを削除して空き容量を確保してください。",
     "guildSettingsStickerUploadRequirements": "ステッカーは 320x320 ピクセルで保存され、{maxSize} 未満である必要があります。静止画像は自動的にリサイズおよび圧縮されます。アニメーション化されたステッカーと SVG は、すでに制限内に収まるようにする必要があります。",
     "@guildSettingsStickerUploadRequirements": {
@@ -16914,7 +15755,6 @@
             }
         }
     },
-    "guildSettingsStickerUnsupportedTitle": "サポートされていないスタンプファイル",
     "guildSettingsStickerAddTitle": "スタンプを追加",
     "guildSettingsStickerEditTitle": "スタンプを編集",
     "guildSettingsStickerNameLabel": "名前",
@@ -16939,8 +15779,6 @@
     "guildSettingsStickerNameTooLong": "名前は30文字以内で入力してください",
     "guildSettingsStickerDescriptionTooLong": "説明は500文字以内で入力してください",
     "guildSettingsStickerCreateFailedTitle": "スタンプを作成できませんでした",
-    "guildSettingsStickerTooLargeTitle": "ステッカーが大きすぎます",
-    "guildSettingsStickerCompressFailedTitle": "スタンプを十分に圧縮できませんでした",
     "guildSettingsStickerDeleteTitle": "ステッカーを削除",
     "guildSettingsStickerDeleteBody": "「{name}」を削除しますか？元に戻すことはできません。",
     "@guildSettingsStickerDeleteBody": {
@@ -16952,7 +15790,6 @@
     },
     "guildSettingsStickerPurgeLabel": "このスタンプをストレージとCDNから消去",
     "guildSettingsStickerDeleteFailedTitle": "このスタンプを削除できませんでした",
-    "guildSettingsStickerDeleteNoPermissionTitle": "このスタンプは削除できません",
     "keybindsSearchShortcuts": "ショートカットを検索",
     "@keybindsSearchShortcuts": {
         "description": "Placeholder for the shortcuts settings search field."
@@ -17035,295 +15872,21 @@
     "@homeQuickActionDms": {
         "description": "Home screen quick action that opens Direct Messages."
     },
-    "threadsTitle": "スレッド",
-    "@threadsTitle": {
-        "description": "Title of the sheet and header button that list a channel's threads."
-    },
-    "threadsPostsTitle": "投稿",
-    "@threadsPostsTitle": {
-        "description": "Title of the threads sheet when opened on a forum channel."
-    },
-    "threadsFilterActive": "有効",
-    "@threadsFilterActive": {
-        "description": "Segmented filter option showing active threads or forum posts."
-    },
-    "threadsFilterArchived": "アーカイブ済み",
-    "@threadsFilterArchived": {
-        "description": "Segmented filter option showing archived threads or forum posts."
-    },
-    "threadsNewThread": "新しいスレッド",
-    "@threadsNewThread": {
-        "description": "Button that starts creating a new thread."
-    },
-    "threadsNewThreadTitle": "新しいスレッド",
-    "@threadsNewThreadTitle": {
-        "description": "Title of the modal for naming a new thread."
-    },
-    "threadsNameLabel": "スレッド名",
-    "@threadsNameLabel": {
-        "description": "Label of the thread name input."
-    },
-    "threadsNameHint": "スレッドの名前を入力",
-    "@threadsNameHint": {
-        "description": "Placeholder of the thread name input."
-    },
-    "threadsCreateThread": "スレッドを作成",
-    "@threadsCreateThread": {
-        "description": "Primary button that creates the thread."
-    },
-    "threadsCreateThreadAction": "スレッドを作成",
-    "@threadsCreateThreadAction": {
-        "description": "Message action that starts a thread from a message."
-    },
-    "threadsCreateFailed": "スレッドを作成できませんでした。もう一度お試しください。",
-    "@threadsCreateFailed": {
-        "description": "Toast shown when creating a thread fails."
-    },
-    "threadsLoadFailed": "スレッドを読み込めませんでした。",
-    "@threadsLoadFailed": {
-        "description": "Shown when the thread list fails to load."
-    },
-    "threadsNoActive": "アクティブなスレッドはまだありません",
-    "@threadsNoActive": {
-        "description": "Empty state of the active threads list."
-    },
-    "threadsNoArchived": "アーカイブされたスレッドはありません",
-    "@threadsNoArchived": {
-        "description": "Empty state of the archived threads list."
-    },
-    "threadsMessageCount": "{count, plural, =1{メッセージ1件} other{メッセージ{count}件}}",
-    "@threadsMessageCount": {
-        "description": "Number of messages in a thread or forum post.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "threadsMemberCount": "{count, plural, =1{メンバー1人} other{メンバー{count}人}}",
-    "@threadsMemberCount": {
-        "description": "Number of members in a thread or forum post.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "threadsStatusLocked": "ロック中",
-    "@threadsStatusLocked": {
-        "description": "Status shown on a locked thread."
-    },
-    "threadsStatusArchived": "アーカイブ済み",
-    "@threadsStatusArchived": {
-        "description": "Status shown on an archived thread or forum post."
-    },
-    "threadsManage": "管理",
-    "@threadsManage": {
-        "description": "Accessibility label of the button that opens a thread's moderation menu."
-    },
-    "threadsPin": "ピン留め",
-    "@threadsPin": {
-        "description": "Moderation action that pins a thread or forum post."
-    },
-    "threadsUnpin": "ピン留めを解除",
-    "@threadsUnpin": {
-        "description": "Moderation action that unpins a thread or forum post."
-    },
-    "threadsArchive": "アーカイブ",
-    "@threadsArchive": {
-        "description": "Moderation action that archives a thread or forum post."
-    },
-    "threadsUnarchive": "アーカイブを解除",
-    "@threadsUnarchive": {
-        "description": "Moderation action that unarchives a thread or forum post."
-    },
-    "threadsLock": "ロック",
-    "@threadsLock": {
-        "description": "Moderation action that locks a thread or forum post."
-    },
-    "threadsUnlock": "ロックを解除",
-    "@threadsUnlock": {
-        "description": "Moderation action that unlocks a thread or forum post."
-    },
-    "threadsDelete": "削除",
-    "@threadsDelete": {
-        "description": "Moderation action that deletes a thread or forum post."
-    },
-    "threadsActionFailed": "エラーが発生しました。もう一度お試しください。",
-    "@threadsActionFailed": {
-        "description": "Generic error toast for a failed thread or forum action."
-    },
-    "threadsCloseThread": "スレッドをクローズ",
-    "@threadsCloseThread": {
-        "description": "Channel details action that archives the current thread."
-    },
-    "threadsReopenThread": "スレッドを再オープン",
-    "@threadsReopenThread": {
-        "description": "Channel details action that unarchives the current thread."
-    },
-    "threadsLockThread": "スレッドをロック",
-    "@threadsLockThread": {
-        "description": "Channel details action that locks the current thread."
-    },
-    "threadsUnlockThread": "スレッドのロックを解除",
-    "@threadsUnlockThread": {
-        "description": "Channel details action that unlocks the current thread."
-    },
-    "threadsLeaveThread": "Leave thread",
-    "@threadsLeaveThread": {
-        "description": "Channel details action that leaves the current thread."
-    },
-    "threadsDeleteThread": "スレッドを削除",
-    "@threadsDeleteThread": {
-        "description": "Channel details action that deletes the current thread."
-    },
-    "threadsMembersTab": "スレッドのメンバー",
-    "@threadsMembersTab": {
-        "description": "Channel details tab listing the members of a thread."
-    },
-    "threadsMembersLoadFailed": "メンバーを読み込めませんでした",
-    "@threadsMembersLoadFailed": {
-        "description": "Title shown when a thread's member list fails to load."
-    },
     "threadsAddMember": "Add member",
     "threadsAddMemberSearchLabel": "Search members",
     "threadsAddMemberNoResults": "No members match that search.",
-    "threadsRemoveMember": "Remove from thread",
     "threadsMemberAddedToast": "Member added",
-    "threadsMemberRemovedToast": "Member removed",
-    "threadsLeftToast": "You left the thread",
-    "threadsMembersFullToast": "This thread has reached its member limit.",
-    "threadsMemberNotFoundToast": "That person cannot see this channel.",
-    "threadsMembersForbiddenToast": "You do not have permission to change this thread's members.",
-    "threadsInvitableLabel": "Anyone in the thread can add others",
-    "threadsInvitableDescription": "When this is on, every member of this private thread can add other people to it.",
-    "threadsNoMembersTitle": "スレッドのメンバーはまだいません",
-    "@threadsNoMembersTitle": {
-        "description": "Empty state title of a thread's member list."
-    },
-    "threadsNoMembersBody": "このスレッドに参加した人がここに表示されます。",
-    "@threadsNoMembersBody": {
-        "description": "Empty state body of a thread's member list."
-    },
-    "forumChannelTypeLabel": "フォーラム",
-    "@forumChannelTypeLabel": {
-        "description": "Channel type option for a forum channel in the create channel sheet."
-    },
-    "forumChannelTypeDescription": "整理されたスレッド形式の投稿のためのスペース",
-    "@forumChannelTypeDescription": {
-        "description": "Description of the forum channel type in the create channel sheet."
-    },
     "forumNewPost": "新しい投稿",
     "@forumNewPost": {
         "description": "Button that starts creating a new forum post."
-    },
-    "forumNewPostTitle": "新しい投稿",
-    "@forumNewPostTitle": {
-        "description": "Title of the modal for creating a forum post."
-    },
-    "forumCreatePost": "投稿を作成",
-    "@forumCreatePost": {
-        "description": "Primary button that creates the forum post."
-    },
-    "forumCreatePostFailed": "投稿を作成できませんでした。もう一度お試しください。",
-    "@forumCreatePostFailed": {
-        "description": "Toast shown when creating a forum post fails."
-    },
-    "forumPostMessageFailed": "投稿は作成されましたが、メッセージを送信できませんでした。",
-    "@forumPostMessageFailed": {
-        "description": "Toast shown when a forum post is created but its first message fails to send."
-    },
-    "forumPostTitleLabel": "タイトル",
-    "@forumPostTitleLabel": {
-        "description": "Label of the forum post title input."
-    },
-    "forumPostTitleHint": "投稿のタイトル",
-    "@forumPostTitleHint": {
-        "description": "Placeholder of the forum post title input."
-    },
-    "forumPostMessageLabel": "メッセージ",
-    "@forumPostMessageLabel": {
-        "description": "Label of the forum post first message input."
-    },
-    "forumPostMessageHint": "メッセージを入力",
-    "@forumPostMessageHint": {
-        "description": "Placeholder of the forum post first message input."
-    },
-    "forumPostTagsLabel": "タグ",
-    "@forumPostTagsLabel": {
-        "description": "Label above the tag picker when creating a forum post."
-    },
-    "forumPostTagsRequiredLabel": "タグ（1つ以上選択）",
-    "@forumPostTagsRequiredLabel": {
-        "description": "Label above the tag picker when the forum requires a tag on every post."
-    },
-    "forumPostTagsRequiredNoneHint": "このフォーラムはタグが必須ですが、まだ1つも作成されていません。",
-    "@forumPostTagsRequiredNoneHint": {
-        "description": "Shown when creating a post in a forum that requires a tag but has no tags."
-    },
-    "forumPostNoTagsHint": "このフォーラムにはまだタグがありません。「タグを管理」から追加してください。",
-    "@forumPostNoTagsHint": {
-        "description": "Hint for channel managers when creating a post in a forum without tags."
     },
     "forumSearchPosts": "投稿を検索",
     "@forumSearchPosts": {
         "description": "Placeholder of the forum post search input."
     },
-    "forumSortAndView": "並び順と表示",
-    "@forumSortAndView": {
-        "description": "Accessibility label of the button that opens forum sort options."
-    },
-    "forumSortRecentActivity": "最近のアクティビティ",
-    "@forumSortRecentActivity": {
-        "description": "Forum sort option ordering posts by recent activity."
-    },
-    "forumSortName": "名前（A-Z）",
-    "@forumSortName": {
-        "description": "Forum sort option ordering posts alphabetically."
-    },
-    "forumManageTags": "タグを管理",
-    "@forumManageTags": {
-        "description": "Button and modal title for editing a forum's available tags."
-    },
-    "forumNoTags": "タグはまだありません",
-    "@forumNoTags": {
-        "description": "Empty state in the forum tag editor."
-    },
-    "forumRemoveTag": "タグを削除",
-    "@forumRemoveTag": {
-        "description": "Accessibility label of the button that removes a tag in the tag editor."
-    },
-    "forumNewTagLabel": "新しいタグ",
-    "@forumNewTagLabel": {
-        "description": "Label of the new tag name input in the tag editor."
-    },
-    "forumNewTagHint": "タグの名前",
-    "@forumNewTagHint": {
-        "description": "Placeholder of the new tag name input in the tag editor."
-    },
-    "forumAddTag": "タグを追加",
-    "@forumAddTag": {
-        "description": "Accessibility label of the button that adds a tag in the tag editor."
-    },
-    "forumTagsUpdated": "タグを更新しました",
-    "@forumTagsUpdated": {
-        "description": "Toast shown after saving a forum's tags."
-    },
-    "forumTagsUpdateFailed": "タグを更新できませんでした。もう一度お試しください。",
-    "@forumTagsUpdateFailed": {
-        "description": "Toast shown when saving a forum's tags fails."
-    },
-    "forumLoadFailed": "投稿を読み込めませんでした。",
-    "@forumLoadFailed": {
-        "description": "Shown when the forum post list fails to load."
-    },
     "forumNoPosts": "投稿はまだありません",
     "@forumNoPosts": {
         "description": "Empty state of the active forum post list."
-    },
-    "forumNoArchivedPosts": "アーカイブされたスレッドはありません",
-    "@forumNoArchivedPosts": {
-        "description": "Empty state of the archived forum post list."
     },
     "systemThreadCreated": "{username}がスレッドを開始しました: {threadName}。",
     "@systemThreadCreated": {
@@ -17337,43 +15900,6 @@
             }
         }
     },
-    "systemPreviewStartedThread": "{username}がスレッドを開始しました。",
-    "@systemPreviewStartedThread": {
-        "description": "Plaintext preview of the system message posted when someone starts a thread.",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "systemThreadDeleted": "削除されたスレッド",
-    "@systemThreadDeleted": {
-        "description": "Stands in for a thread name in the thread started system message when the thread no longer exists."
-    },
-    "threadsComposerLockedHint": "このスレッドはロックされています。モデレーターのみがメッセージを送信できます。",
-    "@threadsComposerLockedHint": {
-        "description": "Composer placeholder in a locked thread for users who cannot moderate it."
-    },
-    "threadsComposerArchivedHint": "このスレッドはアーカイブ済みです。メッセージを送信すると再開されます。",
-    "@threadsComposerArchivedHint": {
-        "description": "Composer placeholder in an archived thread that is not locked."
-    },
-    "forumSearchOrCreatePost": "投稿を検索または作成...",
-    "@forumSearchOrCreatePost": {
-        "description": "Placeholder of the forum search field. What is typed also becomes the title of a new post."
-    },
-    "forumSortBy": "並び替え",
-    "@forumSortBy": {
-        "description": "Section label in the forum Sort & View sheet."
-    },
-    "forumSortDatePosted": "投稿日",
-    "@forumSortDatePosted": {
-        "description": "Forum sort option that orders posts by creation date."
-    },
-    "forumViewAs": "表示形式",
-    "@forumViewAs": {
-        "description": "Section label for the forum layout options in the Sort & View sheet."
-    },
     "forumLayoutList": "リスト",
     "@forumLayoutList": {
         "description": "Forum layout option showing posts as a list."
@@ -17382,228 +15908,40 @@
     "@forumLayoutGallery": {
         "description": "Forum layout option showing posts as a grid of image cards."
     },
-    "forumResetViewToDefault": "デフォルトにリセット",
-    "@forumResetViewToDefault": {
-        "description": "Returns the forum Sort & View choice to the channel defaults."
+    "assistantNeedsLogin": "まずFluxerを開いてサインインしてください。",
+    "@assistantNeedsLogin": {
+        "description": "Siri/Shortcuts result when the user is logged out."
     },
-    "forumAllTags": "すべて",
-    "@forumAllTags": {
-        "description": "Chip that opens the full list of forum tags to filter by."
+    "assistantNotInVoice": "通話に参加していません。",
+    "@assistantNotInVoice": {
+        "description": "Siri/Shortcuts result when mute or leave runs with no live call."
     },
-    "forumTagsSelectedCount": "{count, plural, =1{タグ1個} other{タグ{count}個}}",
-    "@forumTagsSelectedCount": {
-        "description": "Label of the tag filter chip when tags are selected.",
+    "assistantNotFound": "Fluxerでそれを見つけられませんでした。",
+    "@assistantNotFound": {
+        "description": "Siri/Shortcuts result when a friend, channel, or community cannot be resolved."
+    },
+    "assistantDmsDisabled": "このインスタンスではダイレクトメッセージが無効になっています。",
+    "@assistantDmsDisabled": {
+        "description": "Siri/Shortcuts result when DM actions are blocked by instance config."
+    },
+    "assistantFailed": "Fluxerがその操作を完了できませんでした。",
+    "@assistantFailed": {
+        "description": "Siri/Shortcuts fallback when an assistant command fails."
+    },
+    "assistantOkMuted": "マイクをミュートしました。",
+    "assistantOkUnmuted": "マイクのミュートを解除しました。",
+    "assistantOkLeftVoice": "ボイスチャンネルを退出しました。",
+    "assistantOkJoinedVoice": "ボイスチャンネルに参加しています。",
+    "assistantOkStartedCall": "通話を開始します。",
+    "assistantOkStatusSet": "ステータスを{status}に設定しました。",
+    "@assistantOkStatusSet": {
         "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "forumPostGuidelinesLabel": "投稿ガイドライン",
-    "@forumPostGuidelinesLabel": {
-        "description": "Heading above the forum's guidelines in the new post sheet."
-    },
-    "forumEditPost": "投稿を編集",
-    "@forumEditPost": {
-        "description": "Menu item and dialog title for editing a forum post's title and tags."
-    },
-    "forumPostTagRequiredToast": "このフォーラムではタグを1つ以上選んでください。",
-    "@forumPostTagRequiredToast": {
-        "description": "Shown when saving a post without a tag in a forum that requires one."
-    },
-    "threadsFollow": "フォロー",
-    "@threadsFollow": {
-        "description": "Menu item to follow a thread or forum post and get its notifications."
-    },
-    "threadsUnfollow": "フォロー解除",
-    "@threadsUnfollow": {
-        "description": "Menu item to stop following a thread or forum post."
-    },
-    "threadsFollowing": "フォロー中",
-    "@threadsFollowing": {
-        "description": "Header button state when the user follows the thread or post."
-    },
-    "threadsMute": "ミュート",
-    "@threadsMute": {
-        "description": "Menu item to mute a thread or forum post."
-    },
-    "threadsUnmute": "ミュート解除",
-    "@threadsUnmute": {
-        "description": "Menu item to unmute a thread or forum post."
-    },
-    "threadsEditThread": "スレッドを編集",
-    "@threadsEditThread": {
-        "description": "Menu item and dialog title for renaming a thread."
-    },
-    "forumNewPostsPill": "{count}件の新着",
-    "@forumNewPostsPill": {
-        "description": "Sidebar pill on a forum channel counting posts with activity since the user last opened it.",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "forumSettingsTitle": "フォーラム設定",
-    "@forumSettingsTitle": {
-        "description": "Heading of the forum-only section in channel settings."
-    },
-    "forumSettingsGuidelinesHint": "ここに何を投稿すればよいかメンバーに伝えましょう",
-    "@forumSettingsGuidelinesHint": {
-        "description": "Placeholder of the forum post guidelines field in channel settings."
-    },
-    "forumSettingsRequireTag": "投稿時にタグの選択を必須にする",
-    "@forumSettingsRequireTag": {
-        "description": "Switch that makes members pick at least one tag when creating a forum post."
-    },
-    "forumSettingsRequireTagDescription": "メンバーは投稿する前にタグを1つ以上選ぶ必要があります。",
-    "@forumSettingsRequireTagDescription": {
-        "description": "Explains the require tags switch in forum settings."
-    },
-    "forumSettingsDefaultSort": "デフォルトの並び順",
-    "@forumSettingsDefaultSort": {
-        "description": "Forum setting for how posts are ordered unless a member picks otherwise."
-    },
-    "forumSettingsDefaultLayout": "デフォルトのレイアウト",
-    "@forumSettingsDefaultLayout": {
-        "description": "Forum setting for list or gallery layout unless a member picks otherwise."
-    },
-    "forumSettingsDefaultReaction": "デフォルトのリアクション",
-    "@forumSettingsDefaultReaction": {
-        "description": "Forum setting for the emoji used by React to Post."
-    },
-    "forumSettingsDefaultReactionDescription": "すべての投稿でクイックリアクションとして表示されます。不要な場合は空欄にしてください。",
-    "@forumSettingsDefaultReactionDescription": {
-        "description": "Explains the forum default reaction setting."
-    },
-    "forumSettingsDefaultReactionHint": "絵文字1つ（例: 👍）",
-    "@forumSettingsDefaultReactionHint": {
-        "description": "Placeholder of the forum default reaction field."
-    },
-    "forumSettingsHideAfterInactivity": "一定期間活動がない場合に非表示",
-    "@forumSettingsHideAfterInactivity": {
-        "description": "Forum setting for how long a post stays active without new messages."
-    },
-    "forumSettingsHideAfterInactivityDescription": "動きのない投稿は「アーカイブ済み」に移動します。ロックされていない投稿は誰でも再開できます。",
-    "@forumSettingsHideAfterInactivityDescription": {
-        "description": "Explains the forum hide after inactivity setting."
-    },
-    "forumSettingsHideAfterOneHour": "1時間",
-    "@forumSettingsHideAfterOneHour": {
-        "description": "Hide after inactivity option."
-    },
-    "forumSettingsHideAfterOneDay": "24時間",
-    "@forumSettingsHideAfterOneDay": {
-        "description": "Hide after inactivity option."
-    },
-    "forumSettingsHideAfterThreeDays": "3日",
-    "@forumSettingsHideAfterThreeDays": {
-        "description": "Hide after inactivity option, the default."
-    },
-    "forumSettingsHideAfterOneWeek": "1週間",
-    "@forumSettingsHideAfterOneWeek": {
-        "description": "Hide after inactivity option."
-    },
-    "forumSettingsPostCreationSlowmode": "投稿作成のスローモード",
-    "@forumSettingsPostCreationSlowmode": {
-        "description": "Forum setting limiting how often a member can create a new post."
-    },
-    "forumSettingsPostCreationSlowmodeDescription": "メンバーが次の投稿を作成するまでの待ち時間です。",
-    "@forumSettingsPostCreationSlowmodeDescription": {
-        "description": "Explains the forum post creation slowmode setting."
-    },
-    "forumSettingsDefaultPostSlowmode": "新しい投稿のスローモード",
-    "@forumSettingsDefaultPostSlowmode": {
-        "description": "Forum setting for the slowmode applied to messages inside each new post."
-    },
-    "forumSettingsDefaultPostSlowmodeDescription": "投稿が作成されたときに適用されます。",
-    "@forumSettingsDefaultPostSlowmodeDescription": {
-        "description": "Explains the default slowmode for new forum posts."
-    },
-    "forumSettingsSave": "フォーラム設定を保存",
-    "@forumSettingsSave": {
-        "description": "Button that saves the forum settings section."
-    },
-    "forumSettingsSaved": "フォーラム設定を保存しました",
-    "@forumSettingsSaved": {
-        "description": "Toast after forum settings are saved."
-    },
-    "forumSettingsSaveFailed": "フォーラム設定を保存できませんでした",
-    "@forumSettingsSaveFailed": {
-        "description": "Toast when forum settings fail to save."
-    },
-    "threadsStarterMessage": "開始元",
-    "@threadsStarterMessage": {
-        "description": "Label above the message a thread was started from, shown at the top of the thread."
-    },
-    "threadsOriginalPosterTag": "OP",
-    "forumReactToPost": "投稿にリアクション",
-    "forumReactToPostOther": "別の絵文字でリアクション",
-    "forumEmptyHeading": "最初の会話を始めましょう！",
-    "forumEmptyBody": "{forumName}ではどんなことを投稿しますか？",
-    "forumSeeExamples": "例を見る",
-    "forumExampleQuestion": "質問を投稿し、後から見つけてもらえるようにタグを付けましょう。",
-    "forumExampleShow": "作ったものを共有して、みんなに返信してもらいましょう。",
-    "forumExampleDiscussion": "1つのトピックについて話し合いを始めて、この投稿の中で続けましょう。",
-    "forumTagModeratedOn": "モデレーターのみ。タップすると全員に許可します",
-    "forumTagModeratedOff": "誰でも使用できます。タップするとモデレーターのみに制限します",
-    "forumAddToPost": "投稿に追加",
-    "forumAddToPostDone": "投稿に追加しました。",
-    "forumAddToPostFailed": "投稿に追加できませんでした。もう一度お試しください。",
-    "notificationsPushRelaySectionTitle": "プッシュ通知リレー",
-    "@notificationsPushRelaySectionTitle": {
-        "description": "Notification settings section title for the Fluxer push relay."
-    },
-    "notificationsPushRelaySectionDescription": "{pushProvider} は自社のサービス経由でしかプッシュ通知を配信しないため、このデバイスへの通知は Fluxer のリレーを経由します。",
-    "@notificationsPushRelaySectionDescription": {
-        "description": "Notification settings section description explaining why the push relay exists.",
-        "placeholders": {
-            "pushProvider": {
+            "status": {
                 "type": "String"
             }
         }
     },
-    "notificationsPushRelayConsentLabel": "Fluxer のプッシュリレーを使う",
-    "@notificationsPushRelayConsentLabel": {
-        "description": "Toggle label for agreeing to the Fluxer push relay on this device."
-    },
-    "notificationsPushRelayConsentDescription": "これをオフにすると、このデバイスのプッシュ登録が削除され、プッシュ通知を受け取らなくなります。",
-    "@notificationsPushRelayConsentDescription": {
-        "description": "Toggle description explaining that revoking push relay consent unregisters the device."
-    },
-    "pushRelayConsentTitle": "プッシュ通知リレー",
-    "@pushRelayConsentTitle": {
-        "description": "Title of the one-time Fluxer push relay consent sheet."
-    },
-    "pushRelayConsentDescription": "{pushProvider} は自社のサービス経由でしかプッシュ通知を配信しないため、このデバイスへの通知は Fluxer のリレーを経由します。",
-    "@pushRelayConsentDescription": {
-        "description": "Subtitle of the push relay consent sheet explaining why the relay exists.",
-        "placeholders": {
-            "pushProvider": {
-                "type": "String"
-            }
-        }
-    },
-    "pushRelayConsentNoticePrefix": "このデバイスでプッシュ通知を有効にするには、",
-    "@pushRelayConsentNoticePrefix": {
-        "description": "Text before the push relay privacy notice link in the consent sheet."
-    },
-    "pushRelayConsentNoticeLink": "プッシュリレーのプライバシー通知",
-    "@pushRelayConsentNoticeLink": {
-        "description": "Link text for the supplemental push relay privacy notice."
-    },
-    "pushRelayConsentNoticeSuffix": "に同意してください。同意はデバイスごとに一度だけで済みます。",
-    "@pushRelayConsentNoticeSuffix": {
-        "description": "Text after the push relay privacy notice link in the consent sheet."
-    },
-    "pushRelayConsentAgree": "同意して続ける",
-    "@pushRelayConsentAgree": {
-        "description": "Button that records agreement to the push relay privacy notice."
-    },
-    "pushRelayConsentDecline": "今はしない",
-    "@pushRelayConsentDecline": {
-        "description": "Button that declines the push relay privacy notice and leaves push notifications off."
-    },
+    "assistantOkOpened": "Fluxerを開いています。",
     "applicationsTitle": "アプリ",
     "@applicationsTitle": {
         "description": "Title for the developer Applications settings tab."
@@ -17646,6 +15984,15 @@
         "description": "Empty-state body. apiName is the product API display name.",
         "placeholders": {
             "apiName": {
+                "type": "String"
+            }
+        }
+    },
+    "applicationsCreated": "作成日: {date}",
+    "@applicationsCreated": {
+        "description": "List row subtitle showing when an application was created.",
+        "placeholders": {
+            "date": {
                 "type": "String"
             }
         }
@@ -17830,6 +16177,10 @@
     "@applicationsOauthBuilderTitle": {
         "description": "Section title for the authorize URL builder."
     },
+    "applicationsOauthBuilderDescription": "スコープと権限を指定して、承認URLを作成します。",
+    "@applicationsOauthBuilderDescription": {
+        "description": "Section description for the authorize URL builder."
+    },
     "applicationsScopes": "スコープ",
     "@applicationsScopes": {
         "description": "Label for OAuth2 scope checkboxes."
@@ -17862,6 +16213,10 @@
     "@applicationsAuthorizeUrlPlaceholder": {
         "description": "Placeholder when the authorize URL cannot be built yet."
     },
+    "applicationsCopyAuthorizeUrl": "承認URLをコピー",
+    "@applicationsCopyAuthorizeUrl": {
+        "description": "Button that copies the generated authorize URL."
+    },
     "applicationsCopiedUrl": "URLをクリップボードにコピーしました",
     "@applicationsCopiedUrl": {
         "description": "Toast after copying the authorize URL."
@@ -17881,6 +16236,15 @@
     "applicationsDelete": "アプリケーションを削除",
     "@applicationsDelete": {
         "description": "Button that deletes the current application."
+    },
+    "applicationsDeleteConfirmDescription": "{name}を削除してもよろしいですか？この操作は元に戻せません。ボットユーザーを含むすべての関連データは完全に削除されます。",
+    "@applicationsDeleteConfirmDescription": {
+        "description": "Confirmation body when deleting an application.",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
     },
     "applicationsDeleteFailed": "アプリを削除できませんでした",
     "@applicationsDeleteFailed": {
@@ -17970,6 +16334,10 @@
     "@voiceOutputRouteSpeaker": {
         "description": "Voice output route that plays call audio through the phone speaker."
     },
+    "voiceOutputRouteEarpiece": "受話口",
+    "@voiceOutputRouteEarpiece": {
+        "description": "Voice output route that plays call audio through the phone earpiece."
+    },
     "voiceOutputRouteHeadset": "ヘッドホン",
     "@voiceOutputRouteHeadset": {
         "description": "Voice output route that plays call audio through a connected Bluetooth or wired headset."
@@ -17977,6 +16345,14 @@
     "doubleTapReactionEdit": "編集",
     "@doubleTapReactionEdit": {
         "description": "Button that opens the double-tap default emoji picker."
+    },
+    "doubleTapReactionEditTitle": "デフォルトを編集",
+    "@doubleTapReactionEditTitle": {
+        "description": "Title of the double-tap default emoji picker sheet."
+    },
+    "doubleTapReactionEditSubtitle": "ダブルタップの絵文字を選択",
+    "@doubleTapReactionEditSubtitle": {
+        "description": "Subtitle of the double-tap default emoji picker sheet."
     },
     "chatMessagePinConfirm": "ピン留め",
     "@chatMessagePinConfirm": {
@@ -17990,9 +16366,17 @@
     "@appIconOptionDefault": {
         "description": "App icon option for the build default icon (release or canary)."
     },
+    "appIconOptionStarfield": "スターフィールド",
+    "@appIconOptionStarfield": {
+        "description": "App icon option for the starfield alternate icon."
+    },
     "appIconOptionSweden": "スウェーデン",
     "@appIconOptionSweden": {
         "description": "App icon option for the Sweden flag alternate icon."
+    },
+    "appIconUnsupported": "このデバイスではアプリアイコンの変更はできません。",
+    "@appIconUnsupported": {
+        "description": "Shown when alternate app icons cannot be used on the current platform."
     },
     "userSettingsLogOutConfirmTitle": "サインアウトしますか？",
     "@userSettingsLogOutConfirmTitle": {
@@ -18022,5 +16406,178 @@
     "@guildSettingsCommunityDeleted": {
         "description": "Success toast after a community is deleted."
     },
-    "assistantOkMessageSent": "メッセージを送信しました。"
+    "guildSettingsDeleteCommunityFailed": "このコミュニティを削除できませんでした",
+    "@guildSettingsDeleteCommunityFailed": {
+        "description": "Error toast when deleting a community fails."
+    },
+    "assistantOkMessageSent": "メッセージを送信しました。",
+    "assistantOkCustomStatusSet": "カスタムステータスを更新しました。",
+    "assistantOkCustomStatusCleared": "カスタムステータスをクリアしました。",
+    "guildNavbarAnnouncementChannel": "お知らせチャンネル",
+    "guildNavbarAnnouncementChannelDescription": "他のコミュニティが自分のチャンネルでフォローできる更新を投稿します",
+    "channelDetailsAnnouncementChannel": "お知らせチャンネル",
+    "channelSettingsAnnouncementChannel": "お知らせチャンネル",
+    "channelSettingsAnnouncementChannelDescription": "他のコミュニティがこのチャンネルをフォローし、あなたが公開したメッセージのコピーを受け取れるようにします。",
+    "channelSettingsStopAnnouncementTitle": "お知らせチャンネルを停止しますか？",
+    "channelSettingsStopAnnouncementBody": "{count, plural, =1{1つのチャンネルがこのチャンネルをフォローしています。テキストチャンネルに変換すると、そのフォローは解除されます。} other{{count}個のチャンネルがこのチャンネルをフォローしています。テキストチャンネルに変換すると、それらのフォローは解除されます。}}",
+    "@channelSettingsStopAnnouncementBody": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "channelSettingsStopAnnouncementUnknown": "このチャンネルをテキストチャンネルに変換すると、フォローしているすべてのチャンネルのフォローが解除されます。",
+    "channelSettingsConvertChannel": "変換",
+    "channelSettingsConvertFailed": "このチャンネルを変換できませんでした",
+    "channelSettingsChannelHasFollowers": "このチャンネルはまだ他のチャンネルにフォローされています。変換する前にそれらのフォローを解除してください。",
+    "channelMenuFollow": "チャンネルをフォロー",
+    "channelFollowTitle": "このチャンネルをフォローする",
+    "channelFollowBody": "公開されたメッセージの送信先を選択してください。コミュニティ設定 → ウェブフックでいつでもフォローをやめることができます。",
+    "channelFollowCommunity": "コミュニティ",
+    "channelFollowChannel": "チャンネル",
+    "channelFollowAgeWarning": "このチャンネルは年齢制限付きです。年齢制限付きチャンネルにのみアップデートを送信できます。",
+    "channelFollowContentWarning": "このチャンネルにはコンテンツ警告があります。コンテンツ警告または年齢制限のあるチャンネルにのみ、アップデートを送信できます。",
+    "channelFollowHiddenHint": "ウェブフックを管理できないコミュニティとチャンネルは非表示になります。",
+    "channelFollowEmpty": "いずれのコミュニティでもウェブフックを管理できません。管理者にこのチャンネルをフォローするよう依頼してください。",
+    "channelFollowSubmit": "フォロー",
+    "channelFollowFailed": "このチャンネルをフォローできませんでした。",
+    "channelFollowSuccessTitle": "更新情報が届いています！",
+    "channelFollowSuccessBody": "{sourceName}で公開されたメッセージは#{targetName}に表示されます。",
+    "@channelFollowSuccessBody": {
+        "placeholders": {
+            "sourceName": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "channelFollowSuccessDismiss": "了解しました！",
+    "channelFollowBarrier": "このチャンネルをフォローすると、選択したチャンネルでこれらのお知らせを受け取れます。",
+    "channelHeaderFollow": "チャンネルをフォロー",
+    "chatMessagePublish": "公開",
+    "chatMessagePublished": "公開済み",
+    "chatMessagePublishConfirmTitle": "メッセージを公開しますか？",
+    "chatMessagePublishConfirmBody": "これは、このチャンネルをフォローしているすべてのチャンネルにコピーを送信します。",
+    "chatMessagePublishedToast": "メッセージを公開しました",
+    "chatMessageAlreadyPublished": "このメッセージはすでに公開されています。",
+    "chatMessagePublishFailedTitle": "このメッセージを公開できませんでした",
+    "chatMessagePublishFailedBody": "問題が発生しました。しばらくしてからもう一度お試しください。",
+    "chatMessagePublishLimitTitle": "ペースが速すぎます",
+    "chatMessagePublishLimitBody": "{duration}後に再度公開できます。",
+    "@chatMessagePublishLimitBody": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "chatMessagePublishLimitUnknown": "投稿頻度が速すぎます。しばらくしてからもう一度お試しください。",
+    "chatMessageDeletePublished": "このチャンネルをフォローしているチャンネルに送信されたコピーも削除されます。",
+    "chatMessageEditPublishedTitle": "投稿メッセージを編集しますか？",
+    "chatMessageEditPublishedBody": "このチャンネルをフォローしているチャンネルに送信されたコピーも更新されます。",
+    "chatMessageEditPublishedSave": "保存",
+    "chatMessageEditLimitTitle": "ペースが速すぎます",
+    "chatMessageEditLimitBody": "この公開済みメッセージは、{duration}後に再度編集できます。",
+    "@chatMessageEditLimitBody": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "chatMessageEditLimitUnknown": "公開済みのメッセージを編集する頻度が高すぎます。しばらくしてからもう一度お試しください。",
+    "chatMessageOriginalDeleted": "[元のメッセージは削除されました]",
+    "userTagCommunity": "コミュニティ",
+    "systemFollowAdd": "{username}がこのチャンネルで{source}をフォローするよう設定しました。そちらで公開されたメッセージがここに表示されます。",
+    "@systemFollowAdd": {
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "source": {
+                "type": "String"
+            }
+        }
+    },
+    "systemPreviewFollowAdd": "{username}がこのチャンネルで{source}をフォローするよう設定しました。",
+    "@systemPreviewFollowAdd": {
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "source": {
+                "type": "String"
+            }
+        }
+    },
+    "publishNudgeNotSent": "まだフォロワーに送信されていません。",
+    "publishNudgeHideForever": "今後表示しない",
+    "publishNudgeDismiss": "閉じる",
+    "channelSettingsFollowedChannels": "フォロー中のチャンネル",
+    "channelSettingsFollowedChannelsDescription": "このチャンネルがフォローしているお知らせチャンネルです。コピーの受信を停止するには、フォローをやめてください。",
+    "guildSettingsFollowedChannelsDescription": "このコミュニティのチャンネルがフォローしているお知らせチャンネル。",
+    "channelSettingsFollowedFrom": "{guildName}の#{channelName}から",
+    "@channelSettingsFollowedFrom": {
+        "placeholders": {
+            "guildName": {
+                "type": "String"
+            },
+            "channelName": {
+                "type": "String"
+            }
+        }
+    },
+    "channelSettingsFollowedPaused": "ソースチャンネルが利用できなくなったため、更新は一時停止されています。",
+    "channelSettingsUnfollowTitle": "{name}のフォローをやめますか？",
+    "@channelSettingsUnfollowTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "channelSettingsUnfollowBody": "このチャンネルは、そのお知らせチャンネルからのコピーを受信しなくなります。",
+    "channelSettingsUnfollow": "フォローをやめる",
+    "crosspostCommunityTitle": "コミュニティ",
+    "crosspostGoToCommunity": "コミュニティへ",
+    "crosspostJoinCommunity": "コミュニティに参加",
+    "crosspostSourceFailed": "コミュニティを読み込めませんでした。しばらくしてからもう一度お試しください。",
+    "crosspostMembers": "{count}人のメンバー",
+    "@crosspostMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "crosspostOnline": "{count}人がオンライン",
+    "@crosspostOnline": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "durationMinutes": "{count, plural, =1{1分} other{{count}分}}",
+    "@durationMinutes": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSeconds": "{count, plural, =1{1秒} other{{count}秒}}",
+    "@durationSeconds": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "channelUnsupportedTitle": "サポートされていないチャンネルタイプ",
+    "channelUnsupportedBody": "このバージョンのアプリは、このチャンネルタイプに対応していません。",
+    "channelDetailsUnsupportedChannel": "サポートされていないチャンネル"
 }

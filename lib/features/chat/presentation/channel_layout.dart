@@ -3,7 +3,6 @@ import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/category_channel_route_handler.dart';
-import 'package:fluxer_app/features/channels/presentation/widgets/forum_channel_view.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/link_channel_route_handler.dart';
 import 'package:fluxer_app/features/channels/presentation/widgets/unrecognized_channel_view.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
@@ -16,6 +15,8 @@ import 'package:fluxer_app/features/chat/providers/channel/channel_details_provi
 import 'package:fluxer_app/features/chat/providers/channel/channel_header_search_provider.dart';
 import 'package:fluxer_app/features/chat/providers/pickers/bottom_input_slot_provider.dart';
 import 'package:fluxer_app/features/chat/utils/composer/bottom_input_slot_layout.dart';
+import 'package:fluxer_app/features/forum/presentation/forum_channel_view.dart';
+import 'package:fluxer_app/features/forum/providers/forum_header_search_provider.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/presentation/widgets/guild_unavailable_screen.dart';
 import 'package:fluxer_app/features/guilds/presentation/widgets/staff_only_guild_nagbar.dart';
@@ -29,6 +30,7 @@ import 'package:fluxer_app/features/mature_content/utils/channel_gate_navigator.
 import 'package:fluxer_app/features/members/presentation/widgets/channel_members.dart';
 import 'package:fluxer_app/features/shell/presentation/mobile_chat_back_scope.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
+import 'package:fluxer_app/features/threads/presentation/thread_members_sheet.dart';
 import 'package:fluxer_app/features/voice/presentation/voice_channel_page_view.dart';
 import 'package:fluxer_app/features/voice/providers/voice_call_overlay_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
@@ -79,6 +81,7 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
     ref
         .read(channelHeaderSearchProvider.notifier)
         .bindChannel(channelId: widget.channelId, guildId: widget.guildId);
+    ref.read(forumHeaderSearchProvider(widget.channelId).notifier).collapse();
   }
 
   @override
@@ -118,15 +121,9 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
     final ChannelListState channelList = ref.watch(
       channelListViewModelProvider,
     );
-    final Channel? knownChannel =
+    final Channel? channel =
         ref.watch(channelByIdProvider(widget.channelId)).value ??
         findChannelById(channelList, widget.channelId);
-    // Echowire: a routed channel this client has never seen is usually an
-    // archived thread, which a session payload leaves out. Ask the server for
-    // it rather than rendering a channel with no name, header or permissions.
-    final Channel? channel =
-        knownChannel ??
-        ref.watch(recoveredChannelProvider(widget.channelId)).value;
     final bool isMemberListVisible = channelList.isMemberListVisibleForChannel(
       channelId: widget.channelId,
       channelType: channel?.type,
@@ -134,7 +131,6 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
     final bool isLinkChannel = channel?.type == ChannelType.guildLink;
     final bool isCategoryChannel = channel?.type == ChannelType.guildCategory;
     final bool isVoiceChannel = channel?.type == ChannelType.guildVoice;
-    final bool isForumChannel = channel?.type == ChannelType.guildForum;
     final bool isUnrecognizedChannel = channel?.type == ChannelType.unknown;
     final bool isMobile = isMobileLayout(context);
     final AsyncValue<bool> showGateAsync = ref.watch(
@@ -189,7 +185,6 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
         : showMatureContentGate
         ? MatureContentChannelGate(
             channelId: widget.channelId,
-            guildId: widget.guildId,
             channelType: channel?.type,
           )
         : isLinkChannel && channel != null
@@ -204,14 +199,14 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
             channel: channel,
             child: const SizedBox.shrink(),
           )
+        : channel != null && channel.isThreadOnly
+        ? ForumChannelView(guildId: widget.guildId, channelId: widget.channelId)
         : isVoiceChannel
         ? VoiceChannelPageView(
             guildId: widget.guildId,
             channelId: widget.channelId,
             messageId: widget.messageId,
           )
-        : isForumChannel && channel != null
-        ? ForumChannelView(channel: channel, guildId: widget.guildId)
         : ChannelChatContent(
             channelId: widget.channelId,
             targetMessageId: widget.messageId,
@@ -287,7 +282,14 @@ class _ChannelLayoutState extends ConsumerState<ChannelLayout> {
                                         )
                                         .closeSearch(),
                                   ),
-                                if (showMemberList)
+                                if (showMemberList &&
+                                    channel != null &&
+                                    channel.isThread)
+                                  ThreadMembersPanel(
+                                    key: ValueKey<String>(widget.channelId),
+                                    thread: channel,
+                                  )
+                                else if (showMemberList)
                                   ChannelMembers(
                                     key: ValueKey<String>(widget.channelId),
                                     guildId: widget.guildId,

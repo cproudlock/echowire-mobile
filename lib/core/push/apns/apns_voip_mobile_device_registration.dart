@@ -91,7 +91,7 @@ class ApnsVoipMobileDeviceRegistration
   }
 
   bool get _shouldRunOnThisPlatform {
-    if (kIsWeb || !Platform.isIOS || !PushProviderGuard.isApple) {
+    if (!Platform.isIOS || !PushProviderGuard.isApple) {
       return false;
     }
     return true;

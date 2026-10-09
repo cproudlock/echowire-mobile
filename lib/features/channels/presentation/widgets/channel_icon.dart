@@ -20,7 +20,6 @@ const String _kAssetVoiceE2ee = 'assets/images/icons/channels/voice_e2ee.svg';
 const String _kAssetLink = 'assets/images/icons/channels/link.svg';
 const String _kAssetLinkLocked = 'assets/images/icons/channels/link_locked.svg';
 const String _kAssetLinkNsfw = 'assets/images/icons/channels/link_nsfw.svg';
-const String _kAssetThread = 'assets/images/icons/channels/thread.svg';
 const String _kAssetAnnouncement =
     'assets/images/icons/channels/announcement.svg';
 const String _kAssetAnnouncementLocked =
@@ -105,9 +104,6 @@ String? _svgAssetForChannelVisual({
       ChannelIconAccessOverlay.none => _kAssetLink,
     };
   }
-  if (type == ChannelType.publicThread || type == ChannelType.privateThread) {
-    return _kAssetThread;
-  }
   return null;
 }
 
@@ -180,13 +176,16 @@ class ChannelIcon extends StatelessWidget {
         return PhosphorIconsFill.folder;
       case ChannelType.guildLink:
         return PhosphorIconsBold.link;
-      case ChannelType.guildForum:
-        return PhosphorIconsFill.chatsCircle;
-      case ChannelType.publicThread:
-      case ChannelType.privateThread:
-        return PhosphorIconsBold.chatText;
       case ChannelType.unknown:
         return PhosphorIconsBold.question;
+      case ChannelType.announcementThread:
+      case ChannelType.publicThread:
+      case ChannelType.privateThread:
+        return PhosphorIconsFill.chats;
+      case ChannelType.guildForum:
+        return PhosphorIconsFill.chatsCircle;
+      case ChannelType.guildMedia:
+        return PhosphorIconsFill.images;
       case ChannelType.dm:
       case ChannelType.groupDm:
       case ChannelType.dmPersonalNotes:

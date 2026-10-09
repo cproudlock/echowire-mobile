@@ -194,73 +194,8 @@ Future<void> _showDetailsMoreSheet(
           ),
       ];
 
-      // Echowire: thread management actions (close/lock/leave/delete) shown when
-      // the details sheet is opened on a thread channel.
-      final Channel? threadChannel =
-          (channel != null && threadChannelTypes.contains(channel.type))
-          ? channel
-          : null;
-      final threadItems = <Widget>[
-        if (threadChannel != null) ...[
-          if (canManageChannel ||
-              (currentUserId != null && threadChannel.ownerId == currentUserId))
-            FluxerBottomSheetMenuItem(
-              label: threadChannel.isArchived
-                  ? l10n.threadsReopenThread
-                  : l10n.threadsCloseThread,
-              icon: PhosphorIconsBold.archive,
-              onTap: () => run(() async {
-                await ref
-                    .read(threadRepositoryProvider)
-                    .updateThread(
-                      threadChannel.id,
-                      archived: !threadChannel.isArchived,
-                    );
-              }),
-            ),
-          if (canManageChannel)
-            FluxerBottomSheetMenuItem(
-              label: threadChannel.isLocked
-                  ? l10n.threadsUnlockThread
-                  : l10n.threadsLockThread,
-              icon: threadChannel.isLocked
-                  ? PhosphorIconsBold.lockOpen
-                  : PhosphorIconsBold.lock,
-              onTap: () => run(() async {
-                await ref
-                    .read(threadRepositoryProvider)
-                    .updateThread(
-                      threadChannel.id,
-                      locked: !threadChannel.isLocked,
-                    );
-              }),
-            ),
-          FluxerBottomSheetMenuItem(
-            label: l10n.threadsLeaveThread,
-            icon: PhosphorIconsBold.signOut,
-            onTap: () => run(
-              () => ref
-                  .read(threadRepositoryProvider)
-                  .leaveThread(threadChannel.id),
-            ),
-          ),
-          if (canManageChannel)
-            FluxerBottomSheetMenuItem(
-              label: l10n.threadsDeleteThread,
-              icon: PhosphorIconsBold.trash,
-              isDanger: true,
-              onTap: () => run(() async {
-                await ref
-                    .read(threadRepositoryProvider)
-                    .deleteThread(threadChannel.id);
-              }),
-            ),
-        ],
-      ];
-
       final groups = <Widget>[
         if (commonItems.isNotEmpty) FluxerMenuGroup(children: commonItems),
-        if (threadItems.isNotEmpty) FluxerMenuGroup(children: threadItems),
         if (isGroupDM)
           FluxerMenuGroup(
             children: <Widget>[
@@ -582,12 +517,14 @@ String? _detailsSubtitle({
       ChannelType.guildCategory => l10n.channelDetailsCategory,
       ChannelType.guildLink => l10n.channelDetailsLinkChannel,
       ChannelType.unknown => l10n.channelDetailsUnsupportedChannel,
-      ChannelType.dm ||
-      ChannelType.groupDm ||
-      ChannelType.dmPersonalNotes ||
+      ChannelType.announcementThread ||
       ChannelType.publicThread ||
       ChannelType.privateThread ||
-      ChannelType.guildForum => l10n.channelDetailsGenericChannel,
+      ChannelType.guildForum ||
+      ChannelType.guildMedia ||
+      ChannelType.dm ||
+      ChannelType.groupDm ||
+      ChannelType.dmPersonalNotes => l10n.channelDetailsGenericChannel,
     };
   }
   return null;

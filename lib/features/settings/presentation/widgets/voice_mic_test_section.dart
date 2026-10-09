@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:fluxer_app/core/system_permissions/system_permission_kind.dart';
@@ -122,7 +121,7 @@ class _VoiceMicTestSectionState extends ConsumerState<VoiceMicTestSection> {
   }
 
   Future<void> _configureOutputDevice(String outputDeviceId) async {
-    if (kIsWeb || AudioManager.instance.canSwitchSpeakerphone) {
+    if (AudioManager.instance.canSwitchSpeakerphone) {
       return;
     }
     if (outputDeviceId == kDefaultVoiceDeviceId || outputDeviceId.isEmpty) {
@@ -147,15 +146,6 @@ class _VoiceMicTestSectionState extends ConsumerState<VoiceMicTestSection> {
     final String? outputDeviceId = _resolveOutputDeviceId(
       settings.outputDeviceId,
     );
-    if (kIsWeb) {
-      renderer.srcObject = track.mediaStream;
-      if (outputDeviceId != null) {
-        await renderer.audioOutput(outputDeviceId);
-      }
-      await renderer.setVolume(outputVolume);
-      _playbackRenderer = renderer;
-      return;
-    }
     final RTCPeerConnection localPeerConnection = await createPeerConnection(
       _loopbackConfiguration,
     );
@@ -246,12 +236,10 @@ class _VoiceMicTestSectionState extends ConsumerState<VoiceMicTestSection> {
     final l10n = FluxerLocalizations.of(context);
     final layout = context.layout;
     final colors = context.colors;
-    final bool voiceCallActive = ref.watch(
-      voiceSessionProvider.select(
-        (VoiceSessionState state) => state.isConnected,
-      ),
+    final bool voiceSessionActive = ref.watch(
+      voiceSessionProvider.select((VoiceSessionState state) => state.isInVoice),
     );
-    final bool canInteract = !voiceCallActive;
+    final bool canInteract = !voiceSessionActive;
     final String actionLabel = _isRunning
         ? l10n.audioAndVideoMicTestStopLabel
         : l10n.audioAndVideoMicTestStartLabel;

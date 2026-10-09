@@ -2,15 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
-import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
-import 'package:fluxer_app/features/channels/presentation/sheets/thread_name_prompt.dart';
-import 'package:fluxer_app/features/channels/presentation/widgets/thread_ui.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
-import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/chat/domain/chat_fullscreen_video_launch_context.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/chat/domain/message_translation.dart';
@@ -41,7 +36,6 @@ import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_m
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_reactions_bar.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_row_layout.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_sticker_image.dart';
-import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_thread_link.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_translation_indicator.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/expression_picker.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_view_model.dart';
@@ -62,9 +56,11 @@ import 'package:fluxer_app/features/profile/presentation/user_profile_sheet.dart
 import 'package:fluxer_app/features/settings/providers/advanced_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/chat_preferences_provider.dart';
+import 'package:fluxer_app/features/settings/providers/double_tap_action_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/use_12_hour_time_format_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
+import 'package:fluxer_app/features/threads/presentation/thread_messages.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
@@ -77,7 +73,6 @@ import 'package:fluxer_app/shared/utils/guild_user_display.dart';
 import 'package:fluxer_app/shared/utils/user_date_formatting.dart';
 import 'package:fluxer_dart/export.dart' hide ChannelType;
 import 'package:fluxer_markdown/fluxer_markdown.dart';
-import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 /// Mention highlight color matching web app's
@@ -129,7 +124,6 @@ class MessageRenderSettings {
     this.messageDisplayCompact = false,
     this.showUserAvatarsInCompactMode = false,
     this.markdown = MessageMarkdownSettings.defaults,
-    this.threadOwnerId,
   });
 
   final String? activeGuildId;
@@ -143,10 +137,6 @@ class MessageRenderSettings {
   final bool messageDisplayCompact;
   final bool showUserAvatarsInCompactMode;
   final MessageMarkdownSettings markdown;
-
-  /// Echowire: the id of the user who started this thread or forum post, so
-  /// their messages carry an OP badge. Null outside threads.
-  final String? threadOwnerId;
 
   @override
   bool operator ==(Object other) =>
@@ -163,8 +153,7 @@ class MessageRenderSettings {
           messageGroupSpacing == other.messageGroupSpacing &&
           messageDisplayCompact == other.messageDisplayCompact &&
           showUserAvatarsInCompactMode == other.showUserAvatarsInCompactMode &&
-          markdown == other.markdown &&
-          threadOwnerId == other.threadOwnerId;
+          markdown == other.markdown;
 
   @override
   int get hashCode => Object.hash(
@@ -179,7 +168,6 @@ class MessageRenderSettings {
     messageDisplayCompact,
     showUserAvatarsInCompactMode,
     markdown,
-    threadOwnerId,
   );
 }
 
@@ -214,6 +202,7 @@ class MessageItem extends ConsumerStatefulWidget {
   final ValueChanged<Attachment>? onDeleteAttachment;
   final ValueChanged<Attachment>? onEditAttachmentAltText;
   final bool inboxPreviewMode;
+  final bool allowAuthorProfileInPreview;
   final bool hideMentionHighlight;
   final bool isJumpHighlighted;
   final bool isSendDisabled;
@@ -255,6 +244,7 @@ class MessageItem extends ConsumerStatefulWidget {
     this.onDeleteAttachment,
     this.onEditAttachmentAltText,
     this.inboxPreviewMode = false,
+    this.allowAuthorProfileInPreview = false,
     this.hideMentionHighlight = false,
     this.isJumpHighlighted = false,
     this.swipeToReplyEnabled = true,
@@ -279,9 +269,8 @@ class _MessageItemState extends ConsumerState<MessageItem> {
   bool _semanticLabelFailed = false;
   String? _semanticLabel;
 
-  FluxerSpoilerSyncController get _spoilerSyncController => ref
-      .watch(channelSpoilerSyncProvider(widget.message.channelId).notifier)
-      .controller;
+  FluxerSpoilerSyncController get _spoilerSyncController =>
+      ref.watch(channelSpoilerSyncProvider(widget.message.channelId));
 
   late final Listenable _actionBarVisibility = Listenable.merge([
     _hovered,
@@ -359,7 +348,7 @@ class _MessageItemState extends ConsumerState<MessageItem> {
   }
 
   bool _canOpenAuthorProfile(Message msg) {
-    if (widget.inboxPreviewMode) {
+    if (widget.inboxPreviewMode && !widget.allowAuthorProfileInPreview) {
       return false;
     }
     if (msg.isCrosspostCopy) {
@@ -400,17 +389,6 @@ class _MessageItemState extends ConsumerState<MessageItem> {
 
   void _handleAction(MessageAction? action, {required bool isMobile}) {
     if (action == null) {
-      return;
-    }
-    // Echowire: thread creation is our own action and upstream's shared
-    // dispatchMessageAction() does not handle it (it needs this State's
-    // _createThreadFromMessage), so intercept it here before delegating.
-    if (action == MessageAction.createThread) {
-      unawaited(_createThreadFromMessage());
-      return;
-    }
-    if (action == MessageAction.addToPost) {
-      unawaited(_addReplyMediaToPost());
       return;
     }
     if (action == MessageAction.addReaction && !isMobile) {
@@ -495,16 +473,9 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     );
   }
 
-  bool get _canReportThisMessage {
-    if (widget.message.hasFailed) {
-      return false;
-    }
-    if (widget.message.authorId == widget.currentUserId) {
-      return false;
-    }
-    return widget.message.type == messageTypeDefault ||
-        widget.message.type == messageTypeReply;
-  }
+  bool get _canReportThisMessage =>
+      widget.message.isReportable &&
+      widget.message.authorId != widget.currentUserId;
 
   String? _guildIdForMessageActions() {
     return widget.previewRoleGuildId ??
@@ -550,9 +521,6 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         developerMode: ref.read(
           userSettingsViewModelProvider.select((s) => s.developerMode),
         ),
-        // Echowire: thread creation, and the forums phase 2 add-to-post action.
-        canCreateThread: !widget.isDmChannel && widget.canSendMessages,
-        canAddToPost: _canAddThisReplyToPost(),
         isSendDisabled: widget.isSendDisabled,
         canPublish: _canPublish(widget.message),
         quickReactionChannelId: widget.message.channelId,
@@ -566,103 +534,6 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       if (mounted) {
         _pressHighlight.value = false;
       }
-    }
-  }
-
-  /// Echowire: whether this message may be appended to the forum post it sits
-  /// in, per the forums phase 2 contract: an image on a message inside a post,
-  /// offered to the post owner and to anyone who can manage the thread.
-  bool _canAddThisReplyToPost() {
-    final Message msg = widget.message;
-    final String? ownerId = widget.renderSettings?.threadOwnerId;
-    if (ownerId == null || widget.isDmChannel) {
-      return false;
-    }
-    final bool isOwner = ownerId == widget.currentUserId;
-    if (!isOwner && !widget.canManageMessages) {
-      return false;
-    }
-    return msg.attachments.any(
-      (Attachment a) => a.contentType?.startsWith('image/') ?? false,
-    );
-  }
-
-  /// Appends this reply's first image to the forum post's starter message.
-  Future<void> _addReplyMediaToPost() async {
-    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
-    final Message msg = widget.message;
-    final Iterable<Attachment> images = msg.attachments.where(
-      (Attachment a) => a.contentType?.startsWith('image/') ?? false,
-    );
-    final Attachment? image = images.isEmpty ? null : images.first;
-    if (image == null) {
-      return;
-    }
-    try {
-      await ref
-          .read(threadRepositoryProvider)
-          .addMediaToPost(
-            threadId: msg.channelId,
-            messageId: msg.id,
-            attachmentId: image.id,
-          );
-      if (!mounted) {
-        return;
-      }
-      ref
-          .read(toastProvider.notifier)
-          .show(
-            FluxerToast(
-              message: l10n.forumAddToPostDone,
-              variant: FluxerToastVariant.success,
-            ),
-          );
-    } on Exception catch (e, st) {
-      talker.error('Could not add media to post ${msg.channelId}', e, st);
-      if (!mounted) {
-        return;
-      }
-      ref
-          .read(toastProvider.notifier)
-          .show(
-            FluxerToast(
-              message: l10n.forumAddToPostFailed,
-              variant: FluxerToastVariant.danger,
-            ),
-          );
-    }
-  }
-
-  Future<void> _createThreadFromMessage() async {
-    final String failedMessage = FluxerLocalizations.of(
-      context,
-    ).threadsCreateFailed;
-    final String? name = await showThreadNamePrompt(context);
-    if (name == null || name.isEmpty) {
-      return;
-    }
-    try {
-      final thread = await ref
-          .read(threadRepositoryProvider)
-          .createThread(
-            parentChannelId: widget.message.channelId,
-            name: name,
-            messageId: widget.message.id,
-          );
-      if (!mounted) {
-        return;
-      }
-      final String guildId =
-          widget.previewRoleGuildId ??
-          ref.read(activeGuildIdProvider) ??
-          thread.guildId;
-      context.go(RoutePaths.guildChannel(guildId, thread.id));
-    } on Exception catch (e, st) {
-      talker.error('Could not create thread from message', e, st);
-      if (!mounted) {
-        return;
-      }
-      showThreadToast(ref, failedMessage);
     }
   }
 
@@ -812,6 +683,25 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     final bool dimMessagePartsExceptAttachments =
         isSending && hasUploadingPlaceholderAttachments;
 
+    final bool canEditOwnMessage =
+        widget.onEdit != null &&
+        msg.authorId == widget.currentUserId &&
+        msg.isUserMessage &&
+        msg.messageSnapshots.isEmpty;
+    final doubleTapAction = ref
+        .watch(doubleTapActionPreferencesProvider)
+        .effectiveAction;
+    final bool doubleTapEnabled =
+        !widget.inboxPreviewMode &&
+        !isFailed &&
+        !isSending &&
+        messageDoubleTapEnabled(
+          action: doubleTapAction,
+          canAddReactions: widget.canAddReactions,
+          onReaction: widget.onReaction,
+          canEditOwnMessage: canEditOwnMessage,
+          onEdit: widget.onEdit,
+        );
     final body = FluxerGestureDetector(
       onLongPressStart: useTouchMessageActions && !widget.inboxPreviewMode
           ? (details) {
@@ -822,13 +712,13 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       onSecondaryTapUp: !useTouchMessageActions && !widget.inboxPreviewMode
           ? (details) => _showContextMenu(context, details.globalPosition)
           : null,
-      onDoubleTap:
-          !widget.inboxPreviewMode &&
-              widget.canAddReactions &&
-              widget.onReaction != null &&
-              !isFailed &&
-              !isSending
-          ? () => dispatchStoredDoubleTapReaction(ref, widget.onReaction)
+      onDoubleTap: doubleTapEnabled
+          ? () => dispatchDoubleTapMessageAction(
+              ref: ref,
+              action: doubleTapAction,
+              onReaction: widget.onReaction,
+              onEdit: canEditOwnMessage ? widget.onEdit : null,
+            )
           : null,
       child: MouseRegion(
         onEnter: (_) => _hovered.value = true,
@@ -1030,11 +920,6 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         ),
       );
     }
-    final bool canEditOwnMessage =
-        widget.onEdit != null &&
-        msg.authorId == widget.currentUserId &&
-        msg.isUserMessage &&
-        msg.messageSnapshots.isEmpty;
     return _wrapMessageSendingDim(
       dim: dimEntireMessage,
       child: _wrapKeyboardFocus(
@@ -1132,11 +1017,14 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         Padding(padding: padding, child: child),
       ],
     );
-    if (!_animateJumpHighlight && !widget.isJumpHighlighted) {
+    final Duration duration = context.motion.slow;
+    if (duration == Duration.zero ||
+        (!_animateJumpHighlight && !widget.isJumpHighlighted) ||
+        MediaQuery.disableAnimationsOf(context)) {
       return DecoratedBox(decoration: decoration, child: stacked);
     }
     return AnimatedContainer(
-      duration: context.motion.slow,
+      duration: duration,
       curve: _kJumpHighlightFadeCurve,
       decoration: decoration,
       onEnd: () {
@@ -1360,9 +1248,6 @@ class _MessageItemState extends ConsumerState<MessageItem> {
             ),
           ),
         ),
-      // Echowire: the thread started from this message, if any.
-      if (!widget.isDmChannel && !widget.inboxPreviewMode)
-        MessageThreadLink(messageId: msg.id, channelId: msg.channelId),
       if (renderReactions && msg.reactions.isNotEmpty)
         wrapPart(
           Padding(
@@ -1390,6 +1275,24 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                   !widget.inboxPreviewMode,
               isMobile: isMobile,
             ),
+          ),
+        ),
+      if (!widget.inboxPreviewMode && messageMayCarryThread(msg))
+        wrapPart(
+          MessageThreadChip(
+            message: msg,
+            guildId:
+                widget.previewRoleGuildId ??
+                widget.renderSettings?.activeGuildId,
+          ),
+        ),
+      if (msg.flags & messageFlagFailedToMentionSomeRolesInThread != 0)
+        wrapPart(
+          ThreadFailedToMentionRolesNote(
+            message: msg,
+            guildId:
+                widget.previewRoleGuildId ??
+                widget.renderSettings?.activeGuildId,
           ),
         ),
       if (msg.hasFailed) wrapPart(_buildDeliveryStatus(context, msg)),
@@ -1587,22 +1490,6 @@ class _MessageItemState extends ConsumerState<MessageItem> {
     );
   }
 
-  /// Echowire: whether [msg] was written by the thread or post owner.
-  ///
-  /// The owner comes only from the render settings the message list supplies.
-  /// There is deliberately no per-row lookup: reading the channel here opened
-  /// a drift query stream for every message row, and the badge is meaningless
-  /// outside a thread anyway, so a row without thread context simply has no
-  /// original poster. Guarding preview mode here rather than at each badge
-  /// keeps a later fourth badge site from reintroducing it.
-  bool _isOriginalPoster(Message msg) {
-    if (widget.inboxPreviewMode) {
-      return false;
-    }
-    final String? ownerId = widget.renderSettings?.threadOwnerId;
-    return ownerId != null && ownerId == msg.authorId;
-  }
-
   Widget _buildCompactAuthorPrefix(
     BuildContext context,
     Message msg,
@@ -1620,8 +1507,6 @@ class _MessageItemState extends ConsumerState<MessageItem> {
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         if (_authorTag(context, msg) case final Widget tag) tag,
-        // Echowire: the OP badge, shown only where thread context is on screen.
-        if (_isOriginalPoster(msg)) const FluxerOpTag(),
         if (showAvatar)
           FluxerGestureDetector(
             behavior: HitTestBehavior.opaque,
@@ -1966,10 +1851,6 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                           const SizedBox(width: 6),
                           tag,
                         ],
-                        if (_isOriginalPoster(msg)) ...[
-                          const SizedBox(width: 6),
-                          const FluxerOpTag(),
-                        ],
                       ],
                     ),
                   ),
@@ -2072,10 +1953,6 @@ class _MessageItemState extends ConsumerState<MessageItem> {
                         if (_authorTag(context, msg) case final Widget tag) ...[
                           const SizedBox(width: 6),
                           tag,
-                        ],
-                        if (_isOriginalPoster(msg)) ...[
-                          const SizedBox(width: 6),
-                          const FluxerOpTag(),
                         ],
                         const SizedBox(width: 8),
                         Text(
@@ -2184,7 +2061,6 @@ class _MessageItemState extends ConsumerState<MessageItem> {
         embed: embed,
         dimensionSize: dimensionSize,
         channelId: channelId,
-        messageId: messageId,
         embedIndex: embedIndex,
         videoActionScope: _videoActionScope,
       ),

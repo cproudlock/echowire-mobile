@@ -1,3 +1,4 @@
+import 'package:fluxer_app/features/channels/domain/channel.dart' show Channel;
 import 'package:fluxer_app/features/members/domain/member.dart';
 import 'package:fluxer_app/features/members/providers/member_providers.dart';
 import 'package:fluxer_app/features/settings/domain/guild/guild_audit_log_entry.dart';
@@ -36,11 +37,6 @@ class GuildAuditLog extends _$GuildAuditLog {
     state = AsyncData<GuildAuditLogState>(await _loadState());
   }
 
-  Future<void> reload() async {
-    state = const AsyncLoading<GuildAuditLogState>();
-    state = AsyncData<GuildAuditLogState>(await _loadState());
-  }
-
   Future<void> loadMore() async {
     final GuildAuditLogState? current = state.value;
     if (current == null || !current.hasMore || current.isLoadingMore) {
@@ -66,6 +62,7 @@ class GuildAuditLog extends _$GuildAuditLog {
       current.copyWith(
         entries: <GuildAuditLogEntry>[...current.entries, ...page.entries],
         users: <String, GuildAuditLogUser>{...current.users, ...page.users},
+        threads: <String, Channel>{...current.threads, ...page.threads},
         userDisplays: <String, GuildUserDisplay>{
           ...current.userDisplays,
           ...newDisplays,
@@ -97,6 +94,7 @@ class GuildAuditLog extends _$GuildAuditLog {
       userDisplays: userDisplays,
       filterMembers: filterMembers,
       hasMore: page.entries.length >= _kAuditLogPageSize,
+      threads: page.threads,
       selectedUserId: _selectedUserId,
       selectedActionType: _selectedActionType,
       hasSuccessfulEmptyLoad: page.entries.isEmpty,

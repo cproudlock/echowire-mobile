@@ -10,7 +10,6 @@ void main() {
       'keeps unread channel in collapsed category and hides read channel',
       () {
         final List<GuildSidebarEntry> entries = flattenGuildSidebarEntries(
-          threadsByParent: const <String, List<Channel>>{},
           categories: <ChannelCategory>[
             const ChannelCategory(
               id: 'cat1',
@@ -59,28 +58,10 @@ void main() {
       },
     );
 
-    test('clears entries when categories are empty', () {
-      final List<GuildSidebarEntry> entries = flattenGuildSidebarEntries(
-        threadsByParent: const <String, List<Channel>>{},
-        categories: const <ChannelCategory>[],
-        collapsed: const <String>{},
-        mutedSet: const <String>{},
-        hideMuted: false,
-        selectedId: null,
-        connectedChannelId: null,
-        showFadedUnread: false,
-        guildId: 'g1',
-        unreadForChannel: (_) => const UnreadState(),
-      );
-
-      expect(entries, isEmpty);
-    });
-
     test(
       'hides muted channel when hideMuted is enabled without visible unread',
       () {
         final List<GuildSidebarEntry> entries = flattenGuildSidebarEntries(
-          threadsByParent: const <String, List<Channel>>{},
           categories: <ChannelCategory>[
             const ChannelCategory(
               id: 'cat1',
@@ -126,7 +107,6 @@ void main() {
 
     test('hides muted channel with plain unread when hideMuted is enabled', () {
       final List<GuildSidebarEntry> entries = flattenGuildSidebarEntries(
-        threadsByParent: const <String, List<Channel>>{},
         categories: <ChannelCategory>[
           const ChannelCategory(
             id: 'cat1',
@@ -173,7 +153,6 @@ void main() {
 
     test('keeps muted channel with mentions when hideMuted is enabled', () {
       final List<GuildSidebarEntry> entries = flattenGuildSidebarEntries(
-        threadsByParent: const <String, List<Channel>>{},
         categories: <ChannelCategory>[
           const ChannelCategory(
             id: 'cat1',

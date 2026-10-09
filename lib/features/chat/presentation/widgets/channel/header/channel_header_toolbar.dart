@@ -8,7 +8,6 @@ import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/features/channels/domain/announcement_follow.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
 import 'package:fluxer_app/features/channels/presentation/sheets/channel_follow_sheet.dart';
-import 'package:fluxer_app/features/channels/presentation/sheets/thread_list_sheet.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/channel/header/channel_header_icon_button.dart';
@@ -28,6 +27,7 @@ import 'package:fluxer_app/features/guilds/providers/guild_permissions_provider.
 import 'package:fluxer_app/features/notifications/presentation/inbox_popout.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
+import 'package:fluxer_app/features/threads/presentation/thread_header_buttons.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/features/voice/utils/call_actions.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
@@ -87,8 +87,10 @@ class ChannelHeaderToolbar extends ConsumerWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (channel != null && !isPersonalNotes)
+        if (channel != null && !isPersonalNotes && !channel!.isThread)
           buildChannelNotificationButton(channel: channel!),
+        if (channel != null && showsThreadHeaderActions(ref, channel))
+          ThreadHeaderToolbarButtons(channel: channel!),
         ..._buildCallButtons(context, ref),
         if (canOfferAnnouncementFollow(
           channel,
@@ -99,14 +101,6 @@ class ChannelHeaderToolbar extends ConsumerWidget {
             label: l10n.channelHeaderFollow,
             onPressed: () =>
                 unawaited(ChannelFollowSheet.show(context, channel: channel!)),
-          ),
-        // Echowire: threads access on the wide/desktop header (mobile bar has
-        // its own threads button). Upstream's toolbar refactor dropped it.
-        if (channel != null && channel!.type == ChannelType.guildText)
-          ChannelHeaderIconButton(
-            icon: PhosphorIconsRegular.chatText,
-            label: l10n.threadsTitle,
-            onPressed: () => showThreadsSheet(context, parentChannel: channel!),
           ),
         if (showPins && targetId != null)
           buildChannelPinsButton(
@@ -143,11 +137,7 @@ class ChannelHeaderToolbar extends ConsumerWidget {
             ),
           ),
         if (_shouldShowFavorite(ref))
-          _FavoriteStarButton(
-            channel: channel,
-            dm: dm,
-            highContrast: highContrast,
-          ),
+          _FavoriteStarButton(channel: channel, dm: dm),
         if (showMembers)
           ChannelHeaderIconButton(
             icon: PhosphorIconsFill.users,
@@ -240,20 +230,20 @@ class ChannelHeaderToolbar extends ConsumerWidget {
     if (isPersonalNotes) {
       return false;
     }
+    final Channel? guildChannel = channel;
+    if (guildChannel != null &&
+        isThreadFeatureChannelType(guildChannel.type.wireValue)) {
+      return false;
+    }
     return channel != null || dm != null;
   }
 }
 
 class _FavoriteStarButton extends ConsumerWidget {
-  const _FavoriteStarButton({
-    required this.channel,
-    required this.dm,
-    required this.highContrast,
-  });
+  const _FavoriteStarButton({required this.channel, required this.dm});
 
   final Channel? channel;
   final DmConversation? dm;
-  final bool highContrast;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

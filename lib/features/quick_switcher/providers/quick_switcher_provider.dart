@@ -25,6 +25,7 @@ import 'package:fluxer_app/features/quick_switcher/domain/quick_switcher_types.d
 import 'package:fluxer_app/features/quick_switcher/domain/quick_switcher_unread_channel.dart';
 import 'package:fluxer_app/features/quick_switcher/providers/quick_switcher_providers.dart';
 import 'package:fluxer_app/features/quick_switcher/providers/recent_channel_visits_provider.dart';
+import 'package:fluxer_app/features/threads/providers/thread_guild_gate_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -58,9 +59,6 @@ class QuickSwitcherState {
   final String friendsSearchQuery;
   final FluxerLocalizations? l10n;
   final Map<String, QuickSwitcherUnreadChannel> unreadByChannelId;
-
-  int get executableResultCount =>
-      results.where(isQuickSwitcherExecutable).length;
 
   QuickSwitcherState copyWith({
     bool? isOpen,
@@ -154,30 +152,6 @@ class QuickSwitcher extends _$QuickSwitcher {
     _recomputeResults();
   }
 
-  void selectIndex(int index) {
-    if (index < 0) {
-      state = state.copyWith(selectedIndex: -1);
-      return;
-    }
-    if (index >= state.results.length) {
-      return;
-    }
-    if (!isQuickSwitcherExecutable(state.results[index])) {
-      state = state.copyWith(selectedIndex: -1);
-      return;
-    }
-    state = state.copyWith(selectedIndex: index);
-  }
-
-  void selectNext({required bool down}) {
-    final int nextIndex = findNextSelectableQuickSwitcherIndex(
-      results: state.results,
-      startIndex: state.selectedIndex,
-      down: down,
-    );
-    selectIndex(nextIndex);
-  }
-
   Future<void> _warmCandidatesAndRecompute() async {
     final QuickSwitcherCandidateSets sets = await _loadCandidateSets();
     if (!state.isOpen) {
@@ -223,7 +197,9 @@ class QuickSwitcher extends _$QuickSwitcher {
     final guilds = ref.read(guildListViewModelProvider).guilds;
     final List<Channel> channels = await ref
         .read(quickSwitcherRepositoryProvider)
-        .getGuildChannels();
+        .getGuildChannels(
+          threadGuildIds: ref.read(threadsGateProvider).activeGuildIds,
+        );
     final favorites = ref.read(favoriteChannelsProvider).value ?? const [];
     final String? selectedGuildId = ref.read(activeGuildIdProvider);
     List<Member> guildMembers = const <Member>[];

@@ -25,6 +25,7 @@ import 'package:fluxer_app/features/chat/utils/messages/message_action_permissio
 import 'package:fluxer_app/features/chat/utils/messages/message_link.dart';
 import 'package:fluxer_app/features/settings/providers/advanced_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
+import 'package:fluxer_app/features/threads/presentation/create_thread_sheet.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
 import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
@@ -46,11 +47,6 @@ enum MessageAction {
   edit,
   reply,
   forward,
-  // Echowire-only action (handled in message_item, not in dispatchMessageAction).
-  createThread,
-  // Echowire-only action: append this reply's image to the forum post it is in
-  // (handled in message_item, not in dispatchMessageAction).
-  addToPost,
   copyText,
   copyEmbedText,
   pin,
@@ -66,6 +62,7 @@ enum MessageAction {
   debugMessage,
   speak,
   translate,
+  createThread,
 }
 
 Future<MessageAction?> showMessageBottomSheet(
@@ -80,10 +77,6 @@ Future<MessageAction?> showMessageBottomSheet(
   required bool canManageMessages,
   required bool canSendMessages,
   required bool developerMode,
-  // Echowire: thread creation is an Echowire-only action (not in upstream's
-  // MessageActionPermissions), threaded through separately.
-  bool canCreateThread = false,
-  bool canAddToPost = false,
   bool canPublish = false,
   List<QuickReactionItem>? quickItems,
   String? quickReactionChannelId,
@@ -113,8 +106,6 @@ Future<MessageAction?> showMessageBottomSheet(
     builder: (sheetContext, scrollController, _) => _MessageBottomSheetBody(
       message: message,
       permissions: permissions,
-      canCreateThread: canCreateThread,
-      canAddToPost: canAddToPost,
       quickItems: quickItems,
       quickReactionChannelId: quickReactionChannelId,
       quickReactionGuildId: quickReactionGuildId,
@@ -145,10 +136,6 @@ Future<void> dispatchMessageAction({
   String? previewRoleGuildId,
 }) async {
   switch (action) {
-    case MessageAction.addToPost:
-    case MessageAction.createThread:
-      // Echowire-only: handled in message_item before delegating here; no-op.
-      break;
     case MessageAction.reply:
       callbacks.onReply?.call();
     case MessageAction.forward:
@@ -259,6 +246,13 @@ Future<void> dispatchMessageAction({
       unawaited(
         _translateMessage(ref: ref, context: context, message: message),
       );
+    case MessageAction.createThread:
+      _runAfterModalSettles(
+        context,
+        () => unawaited(
+          showCreateThreadSheetForMessage(context, ref, message: message),
+        ),
+      );
   }
 }
 
@@ -321,9 +315,6 @@ List<Widget> buildMessageActionMenuGroups({
   required Message message,
   required MessageActionPermissions permissions,
   required ValueChanged<MessageAction> onAction,
-  // Echowire-only: not part of upstream's MessageActionPermissions.
-  bool canCreateThread = false,
-  bool canAddToPost = false,
   MessageActionCallbacks? attachmentCallbacks,
   String? attachmentIdFilter,
   bool includeAttachmentFavoriteActions = true,
@@ -436,19 +427,12 @@ List<Widget> buildMessageActionMenuGroups({
         label: l10n.chatMessageForward,
         onTap: () => onAction(MessageAction.forward),
       ),
-    // Echowire: create-thread action (not in upstream).
-    if (canCreateThread)
+    if (supportsInteractiveActions &&
+        watchCanCreateThreadFromMessage(ref, message))
       FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsRegular.chatText,
-        label: l10n.threadsCreateThreadAction,
+        icon: PhosphorIconsFill.chatsCircle,
+        label: l10n.threadCreate,
         onTap: () => onAction(MessageAction.createThread),
-      ),
-    // Echowire: append this reply's media to the forum post above it.
-    if (canAddToPost)
-      FluxerBottomSheetMenuItem(
-        icon: PhosphorIconsRegular.imageSquare,
-        label: l10n.forumAddToPost,
-        onTap: () => onAction(MessageAction.addToPost),
       ),
     if (canShowEdit)
       FluxerBottomSheetMenuItem(
@@ -664,8 +648,6 @@ class _MessageBottomSheetBody extends ConsumerWidget {
   const _MessageBottomSheetBody({
     required this.message,
     required this.permissions,
-    required this.canCreateThread,
-    required this.canAddToPost,
     required this.scrollController,
     required this.hostContext,
     this.quickItems,
@@ -678,9 +660,6 @@ class _MessageBottomSheetBody extends ConsumerWidget {
 
   final Message message;
   final MessageActionPermissions permissions;
-  // Echowire-only: not part of upstream's MessageActionPermissions.
-  final bool canCreateThread;
-  final bool canAddToPost;
   final List<QuickReactionItem>? quickItems;
   final String? quickReactionChannelId;
   final String? quickReactionGuildId;
@@ -735,8 +714,6 @@ class _MessageBottomSheetBody extends ConsumerWidget {
       ref: ref,
       message: message,
       permissions: permissions,
-      canCreateThread: canCreateThread,
-      canAddToPost: canAddToPost,
       onAction: (MessageAction action) => _pop(context, action),
       attachmentCallbacks: attachmentCallbacks,
     );

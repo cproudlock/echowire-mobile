@@ -12,7 +12,7 @@ const String kSystemMessageNewNamePlaceholder = '{newName}';
 const String kSystemMessageSourcePlaceholder = '{source}';
 const String kSystemMessageMessageLinkPlaceholder = '{messageLink}';
 const String kSystemMessageAllPinsLinkPlaceholder = '{allPinsLink}';
-const String kSystemMessageDurationPlaceholder = '{duration}';
+
 const String kFluxerProductName = InstanceConstants.defaultProductName;
 
 typedef GuildJoinMessageBuilder = String Function(String username);
@@ -103,6 +103,8 @@ String? stringifySystemMessage({
       );
     case messageTypeChannelPinnedMessage:
       return l10n.systemPreviewPinnedMessage(authorName);
+    case messageTypeThreadCreated:
+      return l10n.systemPreviewThreadCreated(authorName);
     case messageTypeRecipientAdd:
       if (mentionedUserName != null && mentionedUserName.isNotEmpty) {
         return l10n.systemPreviewAddedToGroup(authorName, mentionedUserName);
@@ -136,8 +138,6 @@ String? stringifySystemMessage({
       return l10n.systemPreviewFollowAdd(authorName, message.content);
     case messageTypeCall:
       return l10n.systemPreviewStartedCall(authorName);
-    case messageTypeThreadCreated:
-      return l10n.systemPreviewStartedThread(authorName);
     default:
       if (message.isSystemMessage) {
         return l10n.systemUnknownMessage(kFluxerProductName);
@@ -196,21 +196,7 @@ List<InlineSpan> buildSystemMessageTextSpans({
   VoidCallback? onJoinCallTap,
   VoidCallback? onSourceTap,
   String? currentUserId,
-  String? threadName,
-  VoidCallback? onThreadTap,
 }) {
-  if (message.type == messageTypeThreadCreated) {
-    return _threadCreatedTextSpans(
-      l10n,
-      authorName: authorName,
-      threadName: threadName ?? l10n.systemThreadDeleted,
-      textStyle: textStyle,
-      usernameStyle: usernameStyle,
-      threadStyle: linkStyle ?? usernameStyle,
-      onAuthorTap: onAuthorTap,
-      onThreadTap: threadName == null ? null : onThreadTap,
-    );
-  }
   if (message.type == messageTypeUserJoin) {
     return _guildJoinTextSpans(
       l10n,
@@ -246,6 +232,26 @@ List<InlineSpan> buildSystemMessageTextSpans({
       sourceStyle: linkStyle ?? usernameStyle,
       onAuthorTap: onAuthorTap,
       onSourceTap: onSourceTap,
+    );
+  }
+  if (message.type == messageTypeThreadCreated) {
+    return _expandPinMessageTemplate(
+      l10n.systemThreadCreated(
+        kSystemMessageUsernamePlaceholder,
+        kSystemMessageMessageLinkPlaceholder,
+        kSystemMessageAllPinsLinkPlaceholder,
+      ),
+      authorName: authorName,
+      messageLinkLabel:
+          echowireThreadCreatedLabel(message.content) ??
+          l10n.systemThreadCreatedThreadFallback,
+      allPinsLinkLabel: l10n.systemThreadCreatedAllThreadsLink,
+      textStyle: textStyle,
+      usernameStyle: usernameStyle,
+      linkStyle: linkStyle ?? usernameStyle,
+      onAuthorTap: onAuthorTap,
+      onMessageLinkTap: onMessageLinkTap,
+      onAllPinsLinkTap: onAllPinsLinkTap,
     );
   }
   if (message.type == messageTypeCall) {
@@ -341,52 +347,6 @@ String? _systemMessageTemplate({
       }
       return null;
   }
-}
-
-/// Echowire: "{username} started a thread: {threadName}." with a tappable
-/// thread name. The name slot reuses the new-name placeholder.
-List<InlineSpan> _threadCreatedTextSpans(
-  FluxerLocalizations l10n, {
-  required String authorName,
-  required String threadName,
-  required TextStyle textStyle,
-  required TextStyle usernameStyle,
-  required TextStyle threadStyle,
-  VoidCallback? onAuthorTap,
-  VoidCallback? onThreadTap,
-}) {
-  final String template = l10n.systemThreadCreated(
-    kSystemMessageUsernamePlaceholder,
-    kSystemMessageNewNamePlaceholder,
-  );
-  final int index = template.indexOf(kSystemMessageNewNamePlaceholder);
-  if (index < 0) {
-    return expandSystemMessageTemplate(
-      template,
-      authorName: authorName,
-      textStyle: textStyle,
-      usernameStyle: usernameStyle,
-      onAuthorTap: onAuthorTap,
-    );
-  }
-  List<InlineSpan> expand(String part) => expandSystemMessageTemplate(
-    part,
-    authorName: authorName,
-    textStyle: textStyle,
-    usernameStyle: usernameStyle,
-    onAuthorTap: onAuthorTap,
-  );
-  return <InlineSpan>[
-    ...expand(template.substring(0, index)),
-    _systemMessageActionSpan(
-      label: threadName,
-      style: threadStyle,
-      onTap: onThreadTap,
-    ),
-    ...expand(
-      template.substring(index + kSystemMessageNewNamePlaceholder.length),
-    ),
-  ];
 }
 
 List<InlineSpan> _guildJoinTextSpans(
@@ -738,4 +698,22 @@ String _stripTrailingPeriod(String text) {
     return text.substring(0, text.length - 1);
   }
   return text;
+}
+
+final RegExp _legacyThreadIdContent = RegExp(r'^\d{15,}$');
+
+/// Echowire: the name to show in a "started a thread" message, or null when
+/// the message does not carry one.
+///
+/// Upstream's server writes the thread NAME into the message content. The
+/// fork's own server (live until it is switched over) wrote the thread's
+/// channel id there, so against it the message would read "started a thread
+/// 1234567890123456789". A bare snowflake is never a real name worth showing,
+/// so it falls back to the generic label instead.
+String? echowireThreadCreatedLabel(String content) {
+  final String trimmed = content.trim();
+  if (trimmed.isEmpty || _legacyThreadIdContent.hasMatch(trimmed)) {
+    return null;
+  }
+  return trimmed;
 }

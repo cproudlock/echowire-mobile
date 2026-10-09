@@ -34,9 +34,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get retry => 'Prøv igjen';
 
   @override
-  String get connectingCaps => 'CONNECTING';
-
-  @override
   String get splashConnectionLost => 'Tilkobling tapt';
 
   @override
@@ -209,9 +206,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   }
 
   @override
-  String get ssoRequired => 'SSO kreves for å få tilgang til denne instansen.';
-
-  @override
   String get organizationSsoProvider =>
       'Logg inn med organisasjonens leverandør for enkeltpålogging.';
 
@@ -225,9 +219,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String preferSso(String provider) {
     return 'Foretrekker du å bruke SSO? Fortsett med $provider.';
   }
-
-  @override
-  String get logInViaBrowser => 'Logg inn via nettleser';
 
   @override
   String get needAccountPrompt => 'Trenger du en konto? ';
@@ -331,20 +322,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get accountAdd => 'Legg til konto';
 
   @override
-  String get accountRemove => 'Fjern';
-
-  @override
-  String accountRemoveTitle(String username) {
-    return 'Fjern $username';
-  }
-
-  @override
   String get accountRemoveDescription =>
       'Dette fjerner den lagrede økten for denne kontoen.';
-
-  @override
-  String get accountRemoveOnlyDescription =>
-      'Dette fjerner den eneste lagrede kontoen på denne enheten.';
 
   @override
   String get accountExpired => 'Utløpt';
@@ -766,10 +745,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get registerYear => 'År';
 
   @override
-  String get registerConsent =>
-      'Jeg godtar vilkårene for bruk og personvernpolicyen';
-
-  @override
   String get registerConsentPrefix => 'Jeg godtar ';
 
   @override
@@ -813,10 +788,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get passkeyTimeout =>
       'Passnøkkelautentisering tok for lang tid. Prøv igjen.';
-
-  @override
-  String get passkeyNotAvailable =>
-      'Passnøkler er ikke tilgjengelige for denne appen. Logg inn med e-post og passord i stedet.';
 
   @override
   String get passkeyFailed =>
@@ -942,22 +913,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get inviteAcceptSomeone => 'noen';
 
   @override
-  String get inviteAcceptEmojiPack => 'Emotipakk';
-
-  @override
-  String get inviteAcceptStickerPack => 'Klistremerkepakk';
-
-  @override
-  String get inviteAcceptInstallEmojiPack => 'Installer emotipakk';
-
-  @override
-  String get inviteAcceptInstallStickerPack => 'Installer klistremerkepakk';
-
-  @override
-  String get inviteAcceptPackInstallNote =>
-      'Ved å godta denne invitasjonen installeres pakken automatisk.';
-
-  @override
   String get mentionUnknownChannel => 'unknown-channel';
 
   @override
@@ -977,11 +932,11 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get embedThemeTitle => 'Delt tema';
 
   @override
-  String get embedThemeSubtitle =>
-      'Denne klienten støtter ikke egendefinerte temaer.';
+  String get embedThemeWebOnly =>
+      'Du kan bare importere temaer på nett eller datamaskin.';
 
   @override
-  String get embedThemeUnavailableButton => 'Temaer utilgjengelig';
+  String get embedThemeImport => 'Importer tema';
 
   @override
   String embedGiftVisionaryLifetime(String productName) {
@@ -1307,7 +1262,12 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get dmLeaveGroup => 'Forlat gruppe';
 
   @override
-  String get dmNoCommunitiesAvailable => 'Ingen fellesskap tilgjengelig';
+  String dmInviteSentFor(String communityName) {
+    return 'Invitasjon til $communityName sendt';
+  }
+
+  @override
+  String get dmInviteSendFailed => 'Kunne ikke sende invitasjon. Prøv igjen.';
 
   @override
   String dmGroupMemberCount(int count) {
@@ -1698,9 +1658,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Skaff Reverb';
-
-  @override
   String get emojiPlutoniumUpsellDismiss => 'Ikke vis dette igjen';
 
   @override
@@ -1849,9 +1806,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get changeYourFluxerTag => 'Endre din Brukernavn';
 
   @override
-  String get fluxerTagInputLabel => 'Brukernavn';
-
-  @override
   String get fluxerTagDescriptionBase =>
       'Brukernavn kan kun inneholde bokstaver (a-z, A-Z), tall (0-9) og understreker. Brukernavn er ikke sensitiv for store/små bokstaver.';
 
@@ -1871,10 +1825,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get validationAllowedChars =>
       'Kun bokstaver (a-z, A-Z), tall (0-9) og understreker (_)';
-
-  @override
-  String get discriminatorPremiumTooltip =>
-      'Få Reverb for å tilpasse taggen din eller behold den når du endrer brukernavnet ditt';
 
   @override
   String get fluxerTagAlreadyTaken => 'Brukernavn er allerede tatt';
@@ -1911,15 +1861,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get premiumUpsellCustomizeTag =>
       'Tilpass din 4-sifrede tag eller behold den når du endrer brukernavnet ditt';
-
-  @override
-  String premiumTrialExpiresOn(String date) {
-    return 'Din Reverb-prøveperiode utløper $date. Oppgrader for å beholde din egendefinerte tag og tjene et merke på profilen din.';
-  }
-
-  @override
-  String get premiumTrialActive =>
-      'Du er på en Reverb-prøveperiode. Oppgrader for å beholde din egendefinerte tag og tjene et merke på profilen din.';
 
   @override
   String get fluxerTagUpdated => 'Brukernavn oppdatert';
@@ -2054,23 +1995,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get hideVisionaryIdDescription => 'Fjern Visionary ID-merket ditt';
 
   @override
-  String premiumTrialSubscriptionStarts(String date) {
-    return 'Du er på en Reverb-prøveperiode – abonnementet ditt starter $date';
-  }
-
-  @override
-  String get premiumTrialSubscriptionStartsDescription =>
-      'Abonnementet ditt starter automatisk når prøveperioden avsluttes. Ingen handling er nødvendig.';
-
-  @override
-  String premiumTrialExpiresOnProfile(String date) {
-    return 'Du er på en Reverb-prøveperiode som utløper $date';
-  }
-
-  @override
-  String get premiumTrialActiveProfile => 'Du er på en Reverb-prøveperiode';
-
-  @override
   String get avatarDescriptionNonPremium =>
       'JPEG, PNG, WebP. Maks 10 MB. Anbefalt: 512×512 piksler. Animerte avatarer (GIF) krever Reverb.';
 
@@ -2137,18 +2061,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get profileSavedToast => 'Profil oppdatert';
-
-  @override
-  String get profileEditButton => 'Rediger profil';
-
-  @override
-  String get profileNoteLabel => 'Notat';
-
-  @override
-  String get profileNoteVisibility => '(kun synlig for deg)';
-
-  @override
-  String get profileNoteEmpty => 'Ingen notat ennå.';
 
   @override
   String get sudoTitle => 'Bekreft identiteten din';
@@ -2440,35 +2352,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get securityPasskeyNameHint => 'f.eks. YubiKey, iPhone, Arbeids-PC';
 
   @override
-  String get securityPhoneSectionTitle => 'Telefonnummer';
-
-  @override
-  String get securityPhoneSectionDescription =>
-      'Administrer telefonnummeret ditt.';
-
-  @override
-  String get securityPhoneLabel => 'Telefonnummer';
-
-  @override
-  String get securityPhoneNone => 'Ingen telefonnummer lagt til.';
-
-  @override
-  String get securityPhoneAdd => 'Legg til telefon';
-
-  @override
-  String get securityPhoneRemove => 'Fjern';
-
-  @override
-  String get securityPhoneRemoveTitle => 'Fjern telefonnummer';
-
-  @override
-  String get securityPhoneRemoveDescription =>
-      'Er du sikker på at du vil fjerne telefonnummeret ditt?';
-
-  @override
-  String get securityPhoneRemoved => 'Telefonnummer fjernet';
-
-  @override
   String get securityClaimTitle => 'Sikkerhetsfunksjoner';
 
   @override
@@ -2477,7 +2360,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get securityVerifyEmailRequired =>
-      'Du må bekrefte e-postadressen din før du kan sette opp totrinnsbekreftelse, passnøkler eller SMS-bekreftelse.';
+      'Du må bekrefte e-postadressen din før du kan sette opp totrinnsbekreftelse eller passnøkler.';
 
   @override
   String get totpEnableTitle => 'Sett opp autentiseringsapp';
@@ -2514,9 +2397,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Hvis du mister tilgangen til autentiseringsappen din og ikke har disse kodene, vil du bli permanent utestengt fra kontoen din. Last ned eller kopier dem nå og lagre dem et trygt sted.';
 
   @override
-  String get backupCodesDownload => 'Last ned';
-
-  @override
   String get backupCodesCopy => 'Kopier';
 
   @override
@@ -2531,164 +2411,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get backupCodesDone => 'Ferdig';
 
   @override
-  String get backupCodesViewTitle => 'Vis sikkerhetskopikoder';
-
-  @override
-  String get backupCodesViewDescription =>
-      'Bekreftelse kan være nødvendig før visning av sikkerhetskopikodene dine.';
-
-  @override
-  String get phoneAddTitle => 'Legg til telefonnummer';
-
-  @override
-  String get phoneAddLabel => 'Telefonnummer';
-
-  @override
-  String get phoneAddHint => 'Skriv inn telefonnummeret ditt';
-
-  @override
-  String get phoneAddFooter =>
-      'Vi sender en SMS-kode når den er tilgjengelig. Nummeret ditt er ikke knyttet til kontoen din. Vi beholder kun en kryptert markør, uten bruker-ID, for å tillate maksimalt 2 bekreftelser på omtrent 30 dager.';
-
-  @override
-  String get phoneAddSendCode => 'Send kode';
-
-  @override
-  String get phoneVerifyTitle => 'Bekreft telefonnummer';
-
-  @override
-  String get phoneVerifyDescription =>
-      'Skriv inn bekreftelseskoden som ble sendt til telefonnummeret ditt.';
-
-  @override
-  String get phoneAddSuccess => 'Telefonnummer bekreftet';
-
-  @override
-  String get phoneCountryLabel => 'Land';
-
-  @override
-  String get phoneSearchCountries => 'Søk land ...';
-
-  @override
-  String get phoneNumberRequired => 'Telefonnummer er påkrevd';
-
-  @override
-  String get phoneEnterValidNumber => 'Skriv inn et gyldig mobilnummer.';
-
-  @override
-  String get phoneCannotBeUsed =>
-      'Dette telefonnummeret kan ikke brukes. Prøv et annet mobilnummer eller kontakt kundestøtte.';
-
-  @override
-  String get phoneAlreadyUsed =>
-      'Dette telefonnummeret er allerede i bruk. Prøv et annet nummer eller kontakt kundestøtte.';
-
-  @override
-  String get phoneCodeDidNotWork =>
-      'Koden fungerte ikke. Sjekk den og prøv igjen.';
-
-  @override
-  String get phoneTooManyAttempts =>
-      'For mange forsøk. Vent litt, og prøv igjen.';
-
-  @override
-  String get phoneSmsUnavailable =>
-      'SMS-verifisering er utilgjengelig akkurat nå. Prøv igjen senere, eller kontakt kundestøtte.';
-
-  @override
-  String get phoneNotEligible =>
-      'Telefonverifisering er ikke tilgjengelig for denne kontoen. Bruk en annen metode eller kontakt kundestøtte.';
-
-  @override
   String get phoneCaptchaRequired =>
       'En nettlesersjekk kreves før telefonverifisering. Prøv igjen fra påloggingssiden eller kontakt kundestøtte.';
-
-  @override
-  String get phoneSomethingWentWrong => 'Noe gikk galt. Prøv igjen.';
-
-  @override
-  String get phoneInboundExpensiveDescription =>
-      'Å sende en SMS til dette telefonnummeret er for dyrt, så vi trenger at du sender oss en SMS i stedet. Du kan også kontakte kundestøtte for å få oss til å fjerne dette kravet fra kontoen din.';
-
-  @override
-  String get phoneInboundDefaultDescription =>
-      'Vi trenger at du sender oss en SMS for å bekrefte telefonnummeret ditt.';
-
-  @override
-  String get phoneInboundStepOpenMessaging =>
-      'Åpne telefonens meldingsapp og opprett en ny tekstmelding.';
-
-  @override
-  String phoneInboundStepSendCode(String code, String number) {
-    return 'Send koden $code til $number.';
-  }
-
-  @override
-  String get phoneInboundStepWait =>
-      'Vent på at vi mottar meldingen din. Dette kan ta et minutt.';
-
-  @override
-  String get phoneInboundGetNewCode => 'Få ny kode';
-
-  @override
-  String get phoneInboundChallengeCodeLabel => 'Kode som skal sendes';
-
-  @override
-  String get phoneInboundOurNumberLabel => 'Send til';
-
-  @override
-  String get requiredActionTitle => 'Kontoverifisering kreves';
-
-  @override
-  String requiredActionIntroGeneric(String productName) {
-    return 'Fullfør den påkrevde bekreftelsen for å fortsette å bruke $productName.';
-  }
-
-  @override
-  String get requiredActionIntroPhone =>
-      'Registreringen din krever en ekstra antispam-sjekk før du kan fortsette.';
-
-  @override
-  String requiredActionIntroEmailOrPhone(String productName) {
-    return 'Bekreft e-posten eller telefonnummeret ditt for å fortsette å bruke $productName.';
-  }
-
-  @override
-  String requiredActionIntroEmailAndPhone(String productName) {
-    return 'Fullfør de obligatoriske trinnene for e-post- og telefonverifisering nedenfor for å fortsette å bruke $productName.';
-  }
-
-  @override
-  String get requiredActionChooseMethodTitle => 'Velg en bekreftelsesmetode';
-
-  @override
-  String requiredActionChooseMethodDescription(String productName) {
-    return 'Fullfør en av bekreftelsesmetodene nedenfor for å fortsette å bruke $productName.';
-  }
-
-  @override
-  String get requiredActionUseEmail => 'Bruk e-post';
-
-  @override
-  String get requiredActionUsePhone => 'Bruk telefon';
-
-  @override
-  String get requiredActionCheckEmailTitle => 'Sjekk e-posten din';
-
-  @override
-  String get requiredActionCheckEmailDescription =>
-      'Vi sendte en bekreftelseslenke til e-postadressen din. Åpne den for å fortsette.';
-
-  @override
-  String get requiredActionResendVerificationEmail =>
-      'Send verifiserings­e-post på nytt';
-
-  @override
-  String get requiredActionVerificationEmailSent =>
-      'E-post for bekreftelse er sendt. Sjekk innboksen din.';
-
-  @override
-  String get requiredActionSignOut => 'Logg ut';
 
   @override
   String get dangerZoneSectionTitle => 'Fare-sone';
@@ -2990,7 +2714,290 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Få tilgang til administrative endepunkter';
 
   @override
-  String get privacyPendingDeletionTitle => 'Venter på sletting';
+  String get applicationsTitle => 'Apper';
+
+  @override
+  String get applicationsCreate => 'Opprett app';
+
+  @override
+  String get applicationsCreateSubmit => 'Opprett';
+
+  @override
+  String get applicationsCreateClaimTooltip =>
+      'Fullfør registreringen av kontoen din for å opprette apper.';
+
+  @override
+  String applicationsDocsLink(String domain) {
+    return 'Les dokumentasjonen ($domain)';
+  }
+
+  @override
+  String get applicationsLoadError => 'Kunne ikke laste inn apper';
+
+  @override
+  String get applicationsLoadErrorDescription =>
+      'Sjekk tilkoblingen din og prøv igjen.';
+
+  @override
+  String get applicationsEmptyTitle => 'Ingen apper ennå';
+
+  @override
+  String applicationsEmptyDescription(String apiName) {
+    return 'Opprett din første app for å komme i gang med $apiName.';
+  }
+
+  @override
+  String applicationsCreated(String date) {
+    return 'Opprettet $date';
+  }
+
+  @override
+  String get applicationsName => 'Appnavn';
+
+  @override
+  String get applicationsNameHint => 'Min app';
+
+  @override
+  String get applicationsNameRequired => 'Appnavn er påkrevd';
+
+  @override
+  String get applicationsBackToList => 'Tilbake til listen';
+
+  @override
+  String get applicationsDetailLoadError => 'Kunne ikke laste inn denne appen';
+
+  @override
+  String get applicationsDetailLoadErrorDescription =>
+      'Prøv igjen, eller gå tilbake til listen over apper.';
+
+  @override
+  String get applicationsId => 'App-ID';
+
+  @override
+  String get applicationsCopyId => 'Kopier ID';
+
+  @override
+  String get applicationsSecretsTitle => 'Hemmeligheter og tokens';
+
+  @override
+  String get applicationsSecretsDescription =>
+      'Oppbevar disse trygt. Hvis du genererer dem på nytt, vil eksisterende integrasjoner slutte å fungere.';
+
+  @override
+  String get applicationsClientSecret => 'Klienthemmelighet';
+
+  @override
+  String get applicationsBotToken => 'Bot-token';
+
+  @override
+  String get applicationsRegenerate => 'Generer på nytt';
+
+  @override
+  String get applicationsRegenerateClientSecretTitle =>
+      'Vil du generere en ny klienthemmelighet?';
+
+  @override
+  String get applicationsRegenerateBotTokenTitle =>
+      'Generere et nytt bot-token?';
+
+  @override
+  String get applicationsRegenerateClientSecretDescription =>
+      'Hvis du genererer på nytt, blir den nåværende hemmeligheten ugyldig. Oppdater all kode som bruker den gamle verdien.';
+
+  @override
+  String get applicationsRegenerateBotTokenDescription =>
+      'Hvis du genererer på nytt, blir det nåværende tokenet ugyldig. Oppdater all kode som bruker den gamle verdien.';
+
+  @override
+  String get applicationsClientSecretRegenerated =>
+      'Klienthemmeligheten er fornyet. Oppdater all kode som bruker den gamle hemmeligheten.';
+
+  @override
+  String get applicationsBotTokenRegenerated =>
+      'Bot-tokenet er fornyet. Oppdater all kode som bruker det gamle tokenet.';
+
+  @override
+  String get applicationsRegenerateFailed => 'Kunne ikke fornye hemmeligheten';
+
+  @override
+  String get applicationsInfoTitle => 'Appinformasjon';
+
+  @override
+  String get applicationsInfoDescription =>
+      'Grunnleggende innstillinger og tillatte omdirigerings-URI-er.';
+
+  @override
+  String get applicationsPublicBot => 'Offentlig bot';
+
+  @override
+  String get applicationsPublicBotDescription =>
+      'Tillat alle å invitere denne boten til fellesskapene sine.';
+
+  @override
+  String get applicationsRequireCodeGrant =>
+      'Krev autorisasjonskodeflyten i OAuth2';
+
+  @override
+  String get applicationsRequireCodeGrantDescription =>
+      'Krever en omdirigerings-URI og en autorisasjonskode når denne boten inviteres.';
+
+  @override
+  String get applicationsRedirectUris => 'Omdirigerings-URI-er';
+
+  @override
+  String get applicationsAddRedirect => 'Legg til omdirigering';
+
+  @override
+  String get applicationsDeleteRedirect => 'Slett omdirigerings-URI';
+
+  @override
+  String get applicationsBotProfileTitle => 'Botprofil';
+
+  @override
+  String get applicationsBotProfileDescription =>
+      'Avatar, tagg og utfyllende profilinformasjon for boten din.';
+
+  @override
+  String get applicationsBotAvatar => 'Botavatar';
+
+  @override
+  String get applicationsUsernameRequired => 'Brukernavn er påkrevd';
+
+  @override
+  String get applicationsUsernameTooLong =>
+      'Brukernavnet kan ikke være lenger enn 32 tegn';
+
+  @override
+  String get applicationsUsernameInvalid =>
+      'Brukernavn kan bare inneholde bokstaver, tall og understreker';
+
+  @override
+  String get applicationsBotUsername => 'Botbrukernavn';
+
+  @override
+  String get applicationsDiscriminator => 'Diskriminator';
+
+  @override
+  String get applicationsBotBio => 'Botbio';
+
+  @override
+  String get applicationsBotBioHint =>
+      'En hjelpsom bot som gjør fantastiske ting!';
+
+  @override
+  String get applicationsNoBotBanner => 'Ingen botbanner';
+
+  @override
+  String get applicationsFriendlyBot => 'Vennlig bot';
+
+  @override
+  String get applicationsFriendlyBotDescription =>
+      'Tillat brukere å sende venneforespørsler til denne boten for manuell godkjenning.';
+
+  @override
+  String get applicationsManualFriendApproval =>
+      'Krev manuell godkjenning av venneforespørsler';
+
+  @override
+  String get applicationsManualFriendApprovalDescription =>
+      'Venneforespørsler til denne boten må godkjennes manuelt.';
+
+  @override
+  String get applicationsOauthBuilderTitle => 'URL-bygger for OAuth2';
+
+  @override
+  String get applicationsOauthBuilderDescription =>
+      'Lag en autoriserings-URL med scopes og tillatelser.';
+
+  @override
+  String get applicationsScopes => 'Omfang';
+
+  @override
+  String get applicationsRedirectUri => 'Omdirigerings-URI';
+
+  @override
+  String get applicationsSelectRedirectUri => 'Velg en omdirigerings-URI';
+
+  @override
+  String get applicationsRedirectRequiredCodeGrant =>
+      'Omdirigerings-URI er påkrevd fordi denne boten krever autorisasjonskodeflyten i OAuth2.';
+
+  @override
+  String get applicationsRedirectRequiredScopes =>
+      'Omdirigerings-URI er påkrevd når du ikke bare bruker bot-omfanget.';
+
+  @override
+  String get applicationsBotPermissions => 'Bottillatelser';
+
+  @override
+  String get applicationsAuthorizeUrl => 'Autorisasjons-URL';
+
+  @override
+  String get applicationsAuthorizeUrlPlaceholder =>
+      'Velg omfang (og omdirigerings-URI om nødvendig)';
+
+  @override
+  String get applicationsCopyAuthorizeUrl => 'Kopier autoriserings-URL';
+
+  @override
+  String get applicationsCopiedUrl => 'URL kopiert til utklippstavlen';
+
+  @override
+  String get applicationsDangerTitle => 'Faresone';
+
+  @override
+  String get applicationsDangerSubtitle =>
+      'Dette kan ikke angres. Hvis du fjerner appen, slettes også boten.';
+
+  @override
+  String get applicationsDangerHelper =>
+      'Når appen slettes, fjernes den og tilgangsopplysningene permanent.';
+
+  @override
+  String get applicationsDelete => 'Slett app';
+
+  @override
+  String applicationsDeleteConfirmDescription(String name) {
+    return 'Er du sikker på at du vil slette $name? Denne handlingen kan ikke angres. Alle tilknyttede data, inkludert botbrukeren, vil bli permanent slettet.';
+  }
+
+  @override
+  String get applicationsDeleteFailed => 'Kunne ikke slette appen';
+
+  @override
+  String get applicationsUpdated => 'Appen er oppdatert';
+
+  @override
+  String get applicationsNoChanges => 'Ingen endringer å lagre';
+
+  @override
+  String get applicationsSearchBots => 'Apper og boter';
+
+  @override
+  String get applicationsSearchBotsDescription =>
+      'Opprett og administrer apper og boter for kontoen din';
+
+  @override
+  String get applicationsSearchInfoDescription =>
+      'Rediger grunnleggende appinformasjon og omdirigerings-URI-er';
+
+  @override
+  String get applicationsSearchBotProfileDescription =>
+      'Rediger botens avatar, tagg, bio, banner og virkemåte for venneforespørsler';
+
+  @override
+  String get applicationsSearchOauthDescription =>
+      'Opprett en autorisasjons-URL med tilgangsomfang, omdirigeringer og bottillatelser';
+
+  @override
+  String get applicationsSearchSecretsDescription =>
+      'Vis og generer nye klienthemmeligheter og bot-tokener';
+
+  @override
+  String get applicationsSearchBotsKeyword => 'Boter';
+
+  @override
+  String get applicationsSearchDocumentation => 'Dokumentasjon';
 
   @override
   String get blockedUsersTitle => 'Blokkerte brukere';
@@ -3152,9 +3159,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get userProfileNoteDelete => 'Slett';
 
   @override
-  String get userProfileNoteEmpty => 'Klikk for å legge til et notat';
-
-  @override
   String get userProfileMemberSince => 'Medlem siden';
 
   @override
@@ -3199,6 +3203,60 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get userProfileLocalTime => 'Lokal tid';
+
+  @override
+  String get profileLocalTimeSettingsTitle => 'Lokal tid på profilen';
+
+  @override
+  String profileLocalTimeSettingsSummary(String productName) {
+    return 'Angi tidssonen din én gang slik at $productName kan holde UTC-forskyvningen oppdatert når sommertid endres. Andre brukere kan bare se UTC-forskyvningen din, ikke den nøyaktige tidssoneidentifikatoren.';
+  }
+
+  @override
+  String get profileLocalTimeEditButton => 'Rediger lokal tid på profilen';
+
+  @override
+  String get profileLocalTimeTimezoneLabel => 'Tidssone';
+
+  @override
+  String profileLocalTimeTimezoneHelp(String productName) {
+    return 'Velg tidssonen $productName bruker til å beregne din UTC-forskyvning for lokal tid i profilen din.';
+  }
+
+  @override
+  String get profileLocalTimeSearchTimezones => 'Søk etter tidssoner';
+
+  @override
+  String get profileLocalTimeNotSet => 'Ikke angitt';
+
+  @override
+  String profileLocalTimePrivacyNote(
+    String timezoneIdentifierExample,
+    String productName,
+  ) {
+    return 'Andre kan bare se din nåværende UTC-forskyvning når du velger å dele lokal tid i profilen din. De ser ikke den nøyaktige tidssoneidentifikatoren, for eksempel $timezoneIdentifierExample. $productName lagrer denne identifikatoren bare for at forskyvningen skal kunne oppdateres automatisk ved overgangen til eller fra sommertid.';
+  }
+
+  @override
+  String get profileLocalTimePrivacyEveryone => 'Alle';
+
+  @override
+  String get profileLocalTimePrivacyEveryoneDesc =>
+      'Tillat alle som kan se hele profilen din, å se din lokale tid';
+
+  @override
+  String get profileLocalTimePrivacyFriends => 'Venner';
+
+  @override
+  String get profileLocalTimePrivacyFriendsDesc =>
+      'La vennene dine se din lokale tid';
+
+  @override
+  String get profileLocalTimePrivacyCommunityMembers => 'Fellesskapsmedlemmer';
+
+  @override
+  String get profileLocalTimePrivacyCommunityMembersDesc =>
+      'La medlemmer fra fellesskapene du er med i, se din lokale tid';
 
   @override
   String get userProfileSameTimeAsYou => 'Samme tidssone som deg';
@@ -3325,10 +3383,10 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get userProfileTransferOwnership => 'Overfør eierskap';
 
   @override
-  String get userProfileReportUser => 'Rapporter bruker';
+  String get userProfileReportMessage => 'Rapporter melding';
 
   @override
-  String get userProfileReportMessage => 'Rapporter melding';
+  String get userProfileReportUserProfile => 'Rapporter profil';
 
   @override
   String userProfileKickConfirmTitle(String username) {
@@ -3478,93 +3536,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get durationCustom => 'Egendefinert…';
-
-  @override
-  String get iarReportUserTitle => 'Rapporter bruker';
-
-  @override
-  String get iarReportGuildTitle => 'Rapporter fellesskap';
-
-  @override
-  String get iarReportGuildPreconfirmBody =>
-      'Hvis denne rapporten gjelder en spesifikk melding i dette fellesskapet, rapporter heller den meldingen. Melderapporter gir sikkerhetsteamet vårt den tydeligste konteksten, og det å legge til detaljer i kommentarene kan hjelpe oss med å gjennomgå den raskere. Fortsett kun med å rapportere fellesskapet som helhet hvis rapportering av en melding ikke ville fange opp det bredere problemet.';
-
-  @override
-  String get iarContinueToReportCommunity => 'Fortsett å rapportere fellesskap';
-
-  @override
-  String get iarPreviewCommunitySubtitle => 'Fellesskap';
-
-  @override
-  String get iarReasonHarassmentGuildLabel =>
-      'Trakassering eller målrettet misbruk';
-
-  @override
-  String get iarReasonHarassmentGuildDescription =>
-      'Fellesskap legger til rette for hets eller målrettet misbruk.';
-
-  @override
-  String get iarReasonHateGuildDescription =>
-      'Fremmer hat mot beskyttede grupper.';
-
-  @override
-  String get iarReasonTerrorismLabel => 'Terrorisme eller voldelig ekstremisme';
-
-  @override
-  String get iarReasonTerrorismDescription =>
-      'Fremmer, rekrutterer til eller koordinerer voldelig ekstremistisk aktivitet.';
-
-  @override
-  String get iarReasonMatureContentGuildLabel =>
-      'Voksent innhold eller usikker portkontroll';
-
-  @override
-  String get iarReasonMatureContentGuildDescription =>
-      'Voksent innhold uten riktig aldersgrense.';
-
-  @override
-  String get iarReasonChildSafetyGuildDescription =>
-      'Setter mindreårige i fare eller inneholder innhold som utnytter barn.';
-
-  @override
-  String get iarReasonRaidLabel => 'Raidkoordinering';
-
-  @override
-  String get iarReasonRaidDescription =>
-      'Koordinerer raid, brigading eller trakassering mot personer eller grupper.';
-
-  @override
-  String get iarReasonSpamGuildDescription =>
-      'Fellesskapet eksisterer for å spamme, svindle eller misbruke plattformen.';
-
-  @override
-  String get iarReasonMalwareGuildLabel =>
-      'Distribusjon av skadelig programvare';
-
-  @override
-  String get iarReasonMalwareGuildDescription =>
-      'Distribuerer skadelig programvare, stjeler innloggingsinformasjon eller skadelige filer.';
-
-  @override
-  String get iarReasonPrivacyGuildLabel => 'Personvernbrudd eller doxxing';
-
-  @override
-  String get iarReasonPrivacyGuildDescription =>
-      'Deler personlig informasjon, forfølger brukere eller koordinerer misbruk av personvern.';
-
-  @override
-  String get iarReasonSelfHarmGuildLabel => 'Oppmuntring til selvskading';
-
-  @override
-  String get iarReasonSelfHarmGuildDescription =>
-      'Oppmuntring til selvmord, selvskading eller spiseforstyrrelser.';
-
-  @override
-  String get iarReasonInappropriateProfile => 'Upassende profil';
-
-  @override
-  String get iarReasonInappropriateProfileDescription =>
-      'Denne brukerens profil inneholder upassende innhold';
 
   @override
   String typingIndicatorOne(String name) {
@@ -3848,6 +3819,33 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get linkedDevicesUnknownPlatform => 'Ukjent plattform';
 
   @override
+  String get linkedDevicesViewDetails => 'Vis detaljer';
+
+  @override
+  String get linkedDevicesDetailsTitle => 'Enhetsdetaljer';
+
+  @override
+  String get linkedDevicesDetailsDevice => 'Enhet';
+
+  @override
+  String get linkedDevicesDetailsClient => 'Klient';
+
+  @override
+  String get linkedDevicesDetailsLocation => 'Sted';
+
+  @override
+  String get linkedDevicesDetailsIp => 'IP-adresse';
+
+  @override
+  String get linkedDevicesDetailsLastUsed => 'Sist brukt';
+
+  @override
+  String get linkedDevicesCurrentSession => 'Gjeldende økt';
+
+  @override
+  String get linkedDevicesUnknown => 'Ukjent';
+
+  @override
   String slowmodeLabel(String duration) {
     return '$duration sakte-modus';
   }
@@ -3917,14 +3915,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Du har ikke vært medlem av dette fellesskapet lenge nok til å sende meldinger.';
 
   @override
-  String get channelComposerBarrierNoPhoneNumber =>
-      'Du må bekrefte et telefonnummer for å sende meldinger i dette fellesskapet.';
-
-  @override
   String get channelComposerBarrierVerifyEmail => 'Bekreft e-post';
-
-  @override
-  String get channelComposerBarrierVerifyPhone => 'Bekreft telefon';
 
   @override
   String chatAttachmentTooMany(int max) {
@@ -3947,9 +3938,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get chatAttachmentDropToSend => 'Slipp filer for å sende nå';
 
   @override
-  String get chatAttachmentSendVoiceMessage => 'Send talemelding';
-
-  @override
   String get voiceMessageTitle => 'Talemelding';
 
   @override
@@ -3967,10 +3955,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Kan ikke starte opptak. Tillat tilgang til mikrofon.';
 
   @override
-  String get voiceMessageRecordingNotSupported =>
-      'Taleregistrering støttes ikke på denne enheten.';
-
-  @override
   String get voiceMessageMicInUse =>
       'Forlat anropet for å ta opp en talemelding.';
 
@@ -3980,23 +3964,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get voiceMessageSendFailed =>
       'Kan ikke sende talemelding. Prøv igjen.';
-
-  @override
-  String get voiceMessageRecordingHint =>
-      'Snakk nå. Trykk Stopp når du er ferdig – du kan trimme etterpå.';
-
-  @override
-  String get voiceMessageReviewHint =>
-      'Dra i håndtakene for å trimme, trykk deretter Send.';
-
-  @override
-  String get voiceMessageStop => 'Stopp';
-
-  @override
-  String get voiceMessageStartRecording => 'Start opptak';
-
-  @override
-  String get voiceMessageRerecord => 'Re-record';
 
   @override
   String get voiceMessagePlay => 'Spill av';
@@ -4009,16 +3976,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get voiceMessageSeekBackward => 'Spol tilbake';
-
-  @override
-  String voiceMessageSelectionTooShort(num seconds) {
-    final intl.NumberFormat secondsNumberFormat = intl.NumberFormat.compact(
-      locale: localeName,
-    );
-    final String secondsString = secondsNumberFormat.format(seconds);
-
-    return 'Valget må være minst ${secondsString}s.';
-  }
 
   @override
   String get chatAttachmentEditTitle => 'Rediger vedlegg';
@@ -4163,9 +4120,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get chatAttachmentSourceBrowse => 'Bla gjennom filer';
 
   @override
-  String get chatAttachmentPasteTooltip => 'Lim inn fil fra utklippstavlen';
-
-  @override
   String get chatAttachmentSpoiler => 'Spoiler';
 
   @override
@@ -4246,13 +4200,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get matureContentOpenLinkButton => 'Åpne lenke';
 
   @override
-  String get sensitiveContentSectionTitle => 'Sensitivt innhold';
-
-  @override
-  String get sensitiveContentSectionDescription =>
-      'Kontroller hvordan modne eller sensitive medier filtreres i forskjellige sammenhenger';
-
-  @override
   String get sensitiveContentFriendDmLabel => 'Direktemeldinger fra venner';
 
   @override
@@ -4271,18 +4218,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get sensitiveContentFilterBlock => 'Blokker';
 
   @override
-  String get sensitiveContentBlurUnscannedLabel =>
-      'Uskarphet medier til sikkerhetsskanning er fullført';
-
-  @override
-  String get sensitiveContentBlurUnscannedDescriptionAdult =>
-      'Når aktivert, blir bilder og videoer uskarpe til innholdssikkerhetsskanningen er ferdig.';
-
-  @override
-  String get sensitiveContentBlurUnscannedDescriptionMinor =>
-      'Denne innstillingen er alltid på for kontoen din.';
-
-  @override
   String get sensitiveContentResetButton => 'Tilbakestill';
 
   @override
@@ -4298,9 +4233,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     );
     return 'Laster opp $_temp0';
   }
-
-  @override
-  String get chatCancelUpload => 'Avbryt opplasting';
 
   @override
   String chatAttachmentExpiresOn(String date) {
@@ -4507,9 +4439,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get connectionEnterDomain => 'Skriv inn et domene.';
 
   @override
-  String get lookAndFeelTitle => 'Utseende';
-
-  @override
   String get lookAndFeelThemeSectionTitle => 'Tema';
 
   @override
@@ -4573,11 +4502,93 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Kunne ikke synkronisere tema til kontoen din. Prøv igjen.';
 
   @override
-  String get lookAndFeelChatFontScalingTitle => 'Skalering av skrift i chat';
+  String get lookAndFeelThemeColorsTitle => 'Theme colors';
+
+  @override
+  String get lookAndFeelThemeColorsConfigureDescription =>
+      'Customize individual theme colors for this device.';
+
+  @override
+  String lookAndFeelThemeColorsEditingMode(String mode) {
+    return 'Editing $mode';
+  }
+
+  @override
+  String get lookAndFeelThemeColorsSyncSectionTitle => 'Theme Studio sync';
+
+  @override
+  String get lookAndFeelThemeColorsSyncFromStudioLabel =>
+      'Use colors from Theme Studio';
+
+  @override
+  String get lookAndFeelThemeColorsSyncFromStudioDescription =>
+      'When enabled, color changes from Theme Studio on desktop apply on this device. When disabled, this device keeps its own colors.';
+
+  @override
+  String get lookAndFeelThemeColorsSyncToStudioLabel =>
+      'Send color changes to Theme Studio';
+
+  @override
+  String get lookAndFeelThemeColorsSyncToStudioDescription =>
+      'When enabled, colors you change here sync to Theme Studio on your other devices. When disabled, desktop Theme Studio keeps its own colors.';
+
+  @override
+  String get lookAndFeelThemeColorsSyncFromStudioOffBanner =>
+      'Desktop Theme Studio color changes will not apply on this device.';
+
+  @override
+  String get lookAndFeelThemeColorsEssentialSectionTitle => 'Essential colors';
+
+  @override
+  String get lookAndFeelThemeColorsChatBackgroundWallpaperNote =>
+      'If you have a chat wallpaper set, you won\'t see this color.';
+
+  @override
+  String lookAndFeelThemeColorsResetForMode(String mode) {
+    return 'Reset all colors for $mode';
+  }
+
+  @override
+  String get lookAndFeelThemeColorsResetConfirmTitle => 'Reset theme colors?';
+
+  @override
+  String lookAndFeelThemeColorsResetConfirmBody(String mode) {
+    return 'This removes your custom color overrides for $mode on this device.';
+  }
+
+  @override
+  String get lookAndFeelThemeColorsGroupBrandButtons => 'Brand & buttons';
+
+  @override
+  String get lookAndFeelThemeColorsGroupChatSurfaces => 'Chat & messages';
+
+  @override
+  String get lookAndFeelThemeColorsGroupSidebars => 'Sidebars & navigation';
+
+  @override
+  String get lookAndFeelThemeColorsGroupText => 'Text';
+
+  @override
+  String get lookAndFeelThemeColorsGroupHeaders => 'Headers';
+
+  @override
+  String get lookAndFeelThemeColorsGroupStatus => 'Status';
+
+  @override
+  String get lookAndFeelThemeColorsGroupEmbedsMarkup => 'Embeds & mentions';
+
+  @override
+  String get lookAndFeelThemeColorsGroupAccentsAlerts => 'Accents & alerts';
+
+  @override
+  String get lookAndFeelThemeColorsGroupControls => 'Surfaces & controls';
+
+  @override
+  String get lookAndFeelChatFontScalingTitle => 'Chat font scaling';
 
   @override
   String get lookAndFeelChatFontScalingDescription =>
-      'Juster skriftstørrelsen i chat-området.';
+      'Adjust the font size in the chat area.';
 
   @override
   String get lookAndFeelChatFontSizeLabel => 'Skriftstørrelse for chat';
@@ -4610,7 +4621,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get lookAndFeelChatWallpaperCustomLabel => 'Egendefinert bilde';
 
   @override
-  String get lookAndFeelChatWallpaperStarfieldLabel => 'Starfield';
+  String get lookAndFeelChatWallpaperStarfieldLabel => 'Stjernefelt';
 
   @override
   String lookAndFeelChatWallpaperColorLabel(String id) {
@@ -4727,39 +4738,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get lookAndFeelHideKeyboardHintsDescription =>
       'Når aktivert, skjules snarvei-ikoner i verktøytips.';
-
-  @override
-  String get lookAndFeelNekoTitle => 'Diverse';
-
-  @override
-  String get lookAndFeelNekoDescription => 'Diverse grensesnittvalg.';
-
-  @override
-  String get lookAndFeelShowNekoLabel => 'Vis Pickles';
-
-  @override
-  String get lookAndFeelShowNekoDescription =>
-      'Når aktivert, vises Pickles nær chat-inndatolinjen.';
-
-  @override
-  String get lookAndFeelVoiceChannelJoinTitle =>
-      'Oppførsel ved tilkobling til stemmekanal';
-
-  @override
-  String get lookAndFeelVoiceChannelJoinDescription =>
-      'Kontroller hvordan du kobler deg til stemmekanaler i fellesskap.';
-
-  @override
-  String get lookAndFeelRequireDoubleClickJoinLabel =>
-      'Krev dobbeltklikk for å bli med i stemmekanaler';
-
-  @override
-  String get lookAndFeelRequireDoubleClickJoinDescription =>
-      'Når aktivert, må du dobbeltklikke på stemmekanaler for å bli med. Når deaktivert (standard), vil et enkeltklikk bli med i kanalen umiddelbart.';
-
-  @override
-  String get lookAndFeelChatFontPreviewSample =>
-      'Den fort store reven hopper over den late hunden.';
 
   @override
   String get lookAndFeelGuildSidebarTitle => 'Serverliste';
@@ -5218,22 +5196,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Vis lagret media i autofullføring av uttrykk';
 
   @override
-  String get messagesMediaEditingSectionTitle => 'Meldingredigering';
-
-  @override
-  String get messagesMediaEditingSectionDescription =>
-      'Kontroller hva som skjer med utkastet ditt når du avbryter.';
-
-  @override
-  String get messagesMediaEditingPreserveDraftLabel =>
-      'Behold utkast til redigering ved avbrytelse';
-
-  @override
   String get accessibilitySaturationTitle => 'Metning';
-
-  @override
-  String get accessibilitySaturationDescription =>
-      'Juster hvor livlige temafarger vises i hele appen.';
 
   @override
   String get accessibilityVisualGroupTitle => 'Visuelt';
@@ -5244,11 +5207,11 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get accessibilityShowAltTextOnImagesLabel =>
-      'Show alternative text on images';
+      'Vis alternativ tekst på bilder';
 
   @override
   String get accessibilityShowAltTextOnImagesDescription =>
-      'Display alternative text below images when it is available.';
+      'Vis alternativ tekst under bilder når det er tilgjengelig.';
 
   @override
   String get accessibilityDimStrikethroughTextLabel =>
@@ -5257,10 +5220,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get accessibilityDmMessagePreviewGroupTitle =>
       'DM-meldingsforhåndsvisninger';
-
-  @override
-  String get accessibilityDmMessagePreviewGroupDescription =>
-      'Kontroller når meldingsforhåndsvisninger vises i DM-listen.';
 
   @override
   String get accessibilityDmMessagePreviewModeLabel =>
@@ -5381,10 +5340,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get accessibilityPausedGifByReducedMotion =>
       'Pauset på grunn av redusert bevegelse. Slå på for å fortsette å spille av GIF-er.';
-
-  @override
-  String get accessibilityGifDefaultsOffOnMobile =>
-      'Standard er av på mobil for å spare batteri og data.';
 
   @override
   String get accessibilityStickerAnimationsTitle => 'Klistremerkeanimasjoner';
@@ -5708,10 +5663,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Kunne ikke koble fra de andre enhetene dine. Prøv igjen om et øyeblikk.';
 
   @override
-  String get voiceChannelEmptyDescription =>
-      'Dette er en stemmekanal. Koble til for å begynne å snakke!';
-
-  @override
   String get voiceChannelJoin => 'Bli med i talekanal';
 
   @override
@@ -5750,12 +5701,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get voiceChannelStatusConnecting => 'Kobler til...';
-
-  @override
-  String get voiceChannelStatusConnected => 'Tilkoblet';
-
-  @override
-  String get voiceChannelStatusError => 'Feil';
 
   @override
   String get voiceParticipantTooltipMobileDevice => 'Mobil enhet';
@@ -5817,9 +5762,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get voiceScreenShareNotificationText => 'Deler skjermen din.';
-
-  @override
-  String get voiceControlMore => 'Mer';
 
   @override
   String get voiceControlDisconnect => 'Koble fra';
@@ -5973,7 +5915,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get voiceOutputRouteSpeaker => 'Høyttaler';
 
   @override
-  String get voiceOutputRouteEarpiece => 'Earpiece';
+  String get voiceOutputRouteEarpiece => 'Øreplugg';
 
   @override
   String get voiceOutputRouteHeadset => 'Hodetelefoner';
@@ -6187,6 +6129,10 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Meldingen din kunne ikke leveres fordi den ble flagget av våre sikkerhetssystemer. Hvis du mener dette er en feil, vennligst kontakt support.';
 
   @override
+  String get chatSendFailureContentBlockedSelfHosted =>
+      'Meldingen din kunne ikke leveres fordi den ble flagget av sikkerhetssystemene våre. Hvis du mener dette er en feil, kan du kontakte administratorene av denne instansen.';
+
+  @override
   String get chatSendFailureNsfwEmojiSticker =>
       'Meldingen din kunne ikke leveres fordi den inneholder modne emoji eller klistremerker som ikke er tillatt i denne konteksten.';
 
@@ -6252,24 +6198,12 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get privacyDashboardFriendRequestsEveryone => 'Alle';
 
   @override
-  String get privacyDashboardFriendRequestsEveryoneDesc =>
-      'Tillat at hvem som helst kan sende deg venneforespørsler';
-
-  @override
   String get privacyDashboardFriendRequestsFriendsOfFriends =>
       'Venner av venner';
 
   @override
-  String get privacyDashboardFriendRequestsFriendsOfFriendsDesc =>
-      'Tillat venner av vennene dine å sende deg forespørsler';
-
-  @override
   String get privacyDashboardFriendRequestsCommunityMembers =>
       'Medlemskap i fellesskapet';
-
-  @override
-  String get privacyDashboardFriendRequestsCommunityMembersDesc =>
-      'Tillat medlemmer fra fellesskapene du er med i å sende deg forespørsler';
 
   @override
   String get privacyDashboardDirectMessagesTitle => 'Direktemeldinger';
@@ -6279,58 +6213,26 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Tillat direktemeldinger fra fellesskapsmedlemmer';
 
   @override
-  String get privacyDashboardDirectMessagesMembersDesc =>
-      'Tillat medlemmer fra fellesskap du er med i å sende deg direktemeldinger';
-
-  @override
   String get privacyDashboardDirectMessagesBots =>
       'Tillat direktemeldinger fra fellesskapsroboter';
-
-  @override
-  String get privacyDashboardDirectMessagesBotsDesc =>
-      'Tillat boter fra fellesskapene du er med i å sende deg direktemeldinger';
-
-  @override
-  String get privacyDashboardConnectionsSectionDesc =>
-      'Kontroller hvem som kan sende deg venneforespørsler og direktemeldinger';
-
-  @override
-  String get privacyDashboardCommunicationSectionDesc =>
-      'Kontroller hvem som kan ringe deg og legge deg til i gruppechatter';
 
   @override
   String get privacyDashboardIncomingCallsTitle => 'Innkommende anrop';
 
   @override
-  String get privacyDashboardIncomingCallsDesc =>
-      'Kontroller hvem som kan ringe deg';
-
-  @override
   String get privacyDashboardAllowedCallers => 'Tillatte avsendere';
-
-  @override
-  String get privacyDashboardIncomingCallNobody => 'Ingen';
 
   @override
   String get privacyDashboardIncomingCallNobodyDesc =>
       'Blokker alle innkommende samtaler';
 
   @override
-  String get privacyDashboardIncomingCallFriendsOnly => 'Kun venner';
-
-  @override
   String get privacyDashboardIncomingCallFriendsOnlyDesc =>
       'Tillat kun venner å ringe deg (anbefalt)';
 
   @override
-  String get privacyDashboardIncomingCallCustom => 'Venner + Egendefinert';
-
-  @override
   String get privacyDashboardIncomingCallCustomDesc =>
       'Tillat venner pluss andre grupper du velger';
-
-  @override
-  String get privacyDashboardIncomingCallEveryone => 'Alle';
 
   @override
   String get privacyDashboardIncomingCallEveryoneDesc =>
@@ -6340,30 +6242,14 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get privacyDashboardAdditionalGroups => 'Ekstra grupper';
 
   @override
-  String get privacyDashboardCallFriendsOfFriendsDesc =>
-      'Personer som er venner med vennene dine kan ringe deg';
-
-  @override
-  String get privacyDashboardCallGuildMembersDesc =>
-      'Folk fra felleskap dere begge er i, kan ringe deg';
-
-  @override
   String get privacyDashboardRingBehavior => 'Ringatferd';
 
   @override
   String get privacyDashboardSilentCalls => 'Stille anrop fra alle';
 
   @override
-  String get privacyDashboardSilentCallsDesc =>
-      'Alle anrop vil varsle stille i stedet for å ringe. Som standard er anrop fra ikke-venner alltid stille.';
-
-  @override
   String get privacyDashboardGroupDmTitle =>
       'Hvem kan legge deg til i gruppechatter';
-
-  @override
-  String get privacyDashboardGroupDmDesc =>
-      'Kontroller hvem som kan legge deg til i gruppechatter uten å spørre. Alle kan fortsatt sende deg invitasjonslenker for å bli med.';
 
   @override
   String get privacyDashboardAllowedInvites => 'Tillatte invitasjoner';
@@ -6383,14 +6269,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get privacyDashboardGroupDmEveryoneDesc =>
       'Tillat at hvem som helst kan legge deg til i gruppechatter uten å spørre';
-
-  @override
-  String get privacyDashboardGroupDmFriendsOfFriendsDesc =>
-      'Folk som er venner med vennene dine kan legge deg til i gruppechatter';
-
-  @override
-  String get privacyDashboardGroupDmGuildMembersDesc =>
-      'Folk fra felles grupper kan legge deg til i gruppechatter';
 
   @override
   String get privacyDashboardVoiceActivityTitle => 'Stemmeaktivitet i aktiv nå';
@@ -6779,16 +6657,47 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get chatMessageAddReaction => 'Legg til reaksjon';
 
   @override
-  String get doubleTapReactionHint => 'Double tap a message to';
+  String get doubleTapReactionHint => 'Dobbelttrykk på en melding for å';
 
   @override
   String get doubleTapReactionEdit => 'Rediger';
 
   @override
-  String get doubleTapReactionEditTitle => 'Edit default';
+  String get doubleTapReactionEditTitle => 'Rediger standard';
 
   @override
-  String get doubleTapReactionEditSubtitle => 'Choose double tap emoji';
+  String get doubleTapReactionEditSubtitle => 'Velg emoji for dobbelttrykk';
+
+  @override
+  String get messagesMediaDoubleTapSectionTitle => 'Double tap';
+
+  @override
+  String get messagesMediaDoubleTapSectionDescription =>
+      'Choose what happens when you double tap a message.';
+
+  @override
+  String get messagesMediaDoubleTapActionLabel => 'Double tap action';
+
+  @override
+  String get messagesMediaDoubleTapActionReactName => 'Add reaction';
+
+  @override
+  String get messagesMediaDoubleTapActionReactDescription =>
+      'Adds your default double-tap emoji as a reaction.';
+
+  @override
+  String get messagesMediaDoubleTapActionEditName => 'Edit message';
+
+  @override
+  String get messagesMediaDoubleTapActionEditDescription =>
+      'Opens the editor on messages you sent. Other messages are unchanged.';
+
+  @override
+  String get messagesMediaDoubleTapActionNoneName => 'Nothing';
+
+  @override
+  String get messagesMediaDoubleTapActionNoneDescription =>
+      'Double tap is disabled.';
 
   @override
   String get chatMessageEdit => 'Rediger melding';
@@ -6797,10 +6706,10 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get chatMessageReply => 'Svar';
 
   @override
-  String get notificationReplyPlaceholder => 'Message';
+  String get notificationReplyPlaceholder => 'Melding';
 
   @override
-  String get notificationReplyFailed => 'Couldn\'t send reply';
+  String get notificationReplyFailed => 'Kunne ikke sende svar';
 
   @override
   String get chatMessageForward => 'Videresend';
@@ -6998,355 +6907,121 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get chatMessageReport => 'Rapporter melding';
 
   @override
-  String get iarReportMessageTitle => 'Rapporter melding';
+  String get reportFlowTitleMessage => 'Rapporter melding';
 
   @override
-  String get iarThisUserFallback => 'denne brukeren';
+  String get reportFlowTitleUserProfile => 'Rapporter profil';
 
   @override
-  String get iarModalDescription =>
-      'Rapporter et brudd på reglene, eller finn verktøy for å administrere kontakter og preferanser.';
+  String get reportFlowSummaryTitle => 'Se over rapporten din';
 
   @override
-  String get iarPathStepAriaLabel => 'Hva trenger du?';
+  String get reportFlowSummarySubtitle =>
+      'Sjekk at dette ser riktig ut før du sender det.';
 
   @override
-  String get iarCategoryStepTitle => 'Hvilken type regel ble brutt?';
-
-  @override
-  String get iarReasonStepTitle => 'Hvilken regel ble brutt?';
-
-  @override
-  String get iarReasonSelectHint => 'Velg en grunn';
-
-  @override
-  String get iarPickAnOptionToast => 'Velg et alternativ for å fortsette.';
-
-  @override
-  String get iarPickARuleToast => 'Velg regelen som ble brutt.';
-
-  @override
-  String get iarPathPlatform => 'Rapporter et brudd på plattformreglene';
-
-  @override
-  String get iarPathCommunity =>
-      'Rapporter til moderatorer i dette fellesskapet';
-
-  @override
-  String get iarPathPreferenceMessage => 'Jeg liker ikke dette innholdet';
-
-  @override
-  String get iarCategoryTargetedHarmLabel =>
-      'Trusler, trakassering eller skade';
-
-  @override
-  String get iarCategoryTargetedHarmDescription =>
-      'Mobbing, trusler, hat, vold, raid eller innhold som oppfordrer til selvskading.';
-
-  @override
-  String get iarCategorySafetyMinorsLabel =>
-      'Barnetrygghet eller voksent innhold';
-
-  @override
-  String get iarCategorySafetyMinorsDescription =>
-      'Mindreårige i fare, voksent innhold på feil sted, eller uønsket oppførsel.';
-
-  @override
-  String get iarCategoryPrivacyIdentityLabel =>
-      'Personvern eller utgi seg for å være noen andre';
-
-  @override
-  String get iarCategoryPrivacyIdentityDescription =>
-      'Doxing, stalking, utgi seg for å være noen, eller en upassende profil.';
-
-  @override
-  String get iarCategoryDeceptionLabel =>
-      'Svindel, skadevare eller feilinformasjon';
-
-  @override
-  String get iarCategoryDeceptionDescription =>
-      'Phishing, svindel, skadelige lenker eller falske påstander som sannsynligvis vil forårsake skade i den virkelige verden.';
-
-  @override
-  String get iarCategoryIllegalOtherLabel =>
-      'Ulovlig aktivitet eller noe annet';
-
-  @override
-  String get iarCategoryIllegalOtherDescription =>
-      'Ulovlig salg, tilrettelegging for kriminelle handlinger, eller et klart brudd på reglene som ikke passer inn ovenfor.';
-
-  @override
-  String get iarReasonHarassmentLabel => 'Trakassering eller trusler';
-
-  @override
-  String get iarReasonHarassmentMessageDescription =>
-      'Mobbing, gjentatt uønsket kontakt, stalking eller målrettet misbruk.';
-
-  @override
-  String get iarReasonHateLabel => 'Hatytringer';
-
-  @override
-  String get iarReasonHateMessageDescription =>
-      'Slur, dehumaniserende språk eller angrep på beskyttede grupper.';
-
-  @override
-  String get iarReasonViolenceLabel => 'Vold eller voldstrusler';
-
-  @override
-  String get iarReasonViolenceDescription =>
-      'Troverdige trusler, grafisk vold eller glorifisering av vold.';
-
-  @override
-  String get iarReasonMatureContentLabel =>
-      'Voksent innhold eller trakassering';
-
-  @override
-  String get iarReasonMatureContentMessageDescription =>
-      'Uønsket oppførsel eller voksent innhold på feil sted.';
-
-  @override
-  String get iarReasonChildSafetyLabel =>
-      'Barnetrygghet eller utnyttelse av mindreårige';
-
-  @override
-  String get iarReasonChildSafetyMessageDescription =>
-      'Innhold relatert til grooming eller utnyttelse av barn.';
-
-  @override
-  String get iarReasonHarmfulMisinfoLabel => 'Skadelig feilinformasjon';
-
-  @override
-  String get iarReasonHarmfulMisinfoDescription =>
-      'Falske påstander som sannsynligvis vil forårsake skade i den virkelige verden.';
-
-  @override
-  String get iarReasonSpamLabel => 'Spam, svindel eller phishing';
-
-  @override
-  String get iarReasonSpamMessageDescription =>
-      'Masse-spam, svindel, falske premier, eller misbruk av konto.';
-
-  @override
-  String get iarReasonMalwareLabel => 'Skadevare eller farlige lenker';
-
-  @override
-  String get iarReasonMalwareDescription =>
-      'Skadevare, tyveri av innloggingsinformasjon eller skadelige filer.';
-
-  @override
-  String get iarReasonPrivacyLabel => 'Personvernbrudd';
-
-  @override
-  String get iarReasonPrivacyDescription =>
-      'Doxing, eksponert privat informasjon eller stalking.';
-
-  @override
-  String get iarReasonImpersonationLabel =>
-      'Utgi seg for å være noen andre eller villedende media';
-
-  @override
-  String get iarReasonImpersonationMessageDescription =>
-      'Utgir seg for å være noen andre, inkludert villedende AI-generert innhold.';
-
-  @override
-  String get iarReasonIllegalLabel => 'Ulovlig aktivitet';
-
-  @override
-  String get iarReasonIllegalDescription =>
-      'Ulovlig salg, tilrettelegging for kriminelle handlinger eller ulovlig aktivitet.';
-
-  @override
-  String get iarReasonSelfHarmLabel => 'Selvskading eller selvmord';
-
-  @override
-  String get iarReasonSelfHarmMessageDescription =>
-      'Oppfordring til eller instruksjoner for selvskading eller spiseforstyrrelser.';
-
-  @override
-  String get iarReasonOtherLabel => 'Et annet klart brudd på reglene';
-
-  @override
-  String iarReasonOtherDescription(String productName) {
-    return 'Bruk kun hvis det tydelig bryter $productName regler og ikke passer inn ovenfor.';
+  String reportFlowDisclaimer(String guidelines) {
+    return 'Rapporter kun det du ærlig mener bryter reglene. Misbruk av rapporter går mot våre $guidelines.';
   }
 
   @override
-  String iarUseChildSafetyInstead(String childSafetyReason) {
-    return 'Hvis en mindreårig er involvert, bruk \"$childSafetyReason\" i stedet.';
+  String get reportFlowCommunityGuidelinesLink =>
+      'retningslinjer for fellesskapet';
+
+  @override
+  String get reportFlowDisclaimerNoLink =>
+      'Rapporter kun det du ærlig tror bryter reglene, og ikke send samme rapport to ganger.';
+
+  @override
+  String get reportFlowSelectedMessage => 'Meldingen du rapporterer';
+
+  @override
+  String get reportFlowSelectedUser => 'Profilen du rapporterer';
+
+  @override
+  String get reportFlowReportCategory => 'Dine svar';
+
+  @override
+  String get reportFlowSubmit => 'Send rapport';
+
+  @override
+  String get reportFlowBack => 'Tilbake';
+
+  @override
+  String get reportFlowNext => 'Neste';
+
+  @override
+  String get reportFlowDone => 'Ferdig';
+
+  @override
+  String get reportFlowThankYouTitle => 'Rapport sendt';
+
+  @override
+  String get reportFlowThankYouNoReportTitle => 'Takk for at du flagget dette';
+
+  @override
+  String reportFlowThankYouBody(String productName) {
+    return 'Sikkerhetsteamet hos $productName vil gjennomgå rapporten din. Vi vil ikke avsløre at den kom fra deg.';
   }
 
   @override
-  String get iarSafetyNoteChildSafety =>
-      'Hvis dette involverer CSAM eller utnyttelse av en mindreårig, send det nå og ikke del materialet på nytt.';
+  String get reportFlowThankYouNoReportBody =>
+      'Takk for at du ga oss beskjed. Dette bryter ikke reglene våre alene, så vi sendte ingen rapport. Hvis det retter seg mot noen eller bruker skjellsord, rapporter det igjen og velg «Støtende eller skadelig innhold».';
 
   @override
-  String get iarSafetyNoteSelfHarm =>
-      'Hvis noen kan være i umiddelbar fare, kontakt lokale nødetater hvis du trygt kan gjøre det.';
+  String get reportFlowThankYouNoReportBodyShort =>
+      'Takk for at du ga oss beskjed. Dette bryter ikke reglene våre alene, så vi sendte ingen rapport.';
 
   @override
-  String get iarSafetyNoteViolence =>
-      'Hvis dette er en troverdig umiddelbar trussel, kontakt også lokale nødetater.';
+  String get reportFlowMoreYouCanDo => 'Dine alternativer';
 
   @override
-  String get iarSafetyNoteTerrorism =>
-      'Hvis dette er en umiddelbar terrorhandling, kontakt også lokale nødetater.';
-
-  @override
-  String get iarActionBlockUserTitle => 'Blokker denne brukeren';
-
-  @override
-  String get iarActionBlockUserDescription =>
-      'Stopp meldinger og venneforespørsler.';
-
-  @override
-  String get iarActionBlockUserButton => 'Blokker';
-
-  @override
-  String get iarActionCopyMessageLinkTitle => 'Kopier meldingslenke';
-
-  @override
-  String get iarActionCopyMessageLinkDescription =>
-      'Del med fellesskapsmoderatorer.';
-
-  @override
-  String get iarActionCopyMessageLinkButton => 'Kopier';
-
-  @override
-  String get iarActionCloseDmTitle => 'Lukk denne direktemeldingen';
-
-  @override
-  String get iarActionCloseDmDescription =>
-      'Blokkerer ikke. Du kan åpne igjen senere.';
-
-  @override
-  String get iarActionCloseDmButton => 'Lukk DM';
-
-  @override
-  String get iarActionLeaveCommunityTitle => 'Forlat fellesskapet';
-
-  @override
-  String get iarActionLeaveCommunityDescription =>
-      'Slutt å se innhold og medlemmer.';
-
-  @override
-  String get iarActionLeaveCommunityButton => 'Forlat';
-
-  @override
-  String get iarActionDmSettingsTitle =>
-      'DM- og venneforespørselsinnstillinger';
-
-  @override
-  String get iarActionDmSettingsDescription =>
-      'Endre hvem som kan kontakte deg.';
-
-  @override
-  String get iarActionCallSettingsTitle => 'Anrops- og gruppechatinnstillinger';
-
-  @override
-  String get iarActionCallSettingsDescription =>
-      'Endre hvem som kan ringe deg eller legge deg til.';
-
-  @override
-  String get iarActionOpenButton => 'Åpne';
-
-  @override
-  String get iarActionDeleteMessageTitle => 'Slett denne meldingen';
-
-  @override
-  String get iarActionDeleteMessageDescription =>
-      'Fjern den fra kanalen for alle.';
-
-  @override
-  String get iarActionDeleteMessageButton => 'Slett';
-
-  @override
-  String get iarActionDeleteMessageDeletedButton => 'Slettet';
-
-  @override
-  String get iarActionDeleteMessageDeletedTooltip =>
-      'Denne meldingen er allerede slettet.';
-
-  @override
-  String get iarActionBanUserTitle => 'Bann denne brukeren';
-
-  @override
-  String get iarActionBanUserDescription =>
-      'Åpne bann-dialogen for dette fellesskapet.';
-
-  @override
-  String get iarActionBanUserButton => 'Bann';
-
-  @override
-  String get iarActionBanUserBannedButton => 'Bannlyst';
-
-  @override
-  String get iarActionBanUserBannedTooltip =>
-      'Denne brukeren er allerede bannlyst fra fellesskapet.';
-
-  @override
-  String get iarCloseDmConfirmTitle => 'Lukk DM';
-
-  @override
-  String iarCloseDmConfirmDescription(String name) {
-    return 'Lukk din nåværende DM med $name. Dette blokkerer dem ikke; du kan åpne den igjen senere.';
+  String reportFlowBlockName(String name) {
+    return 'Blokker $name';
   }
 
   @override
-  String get iarSuccessTitle => 'Rapport sendt';
+  String get reportFlowBlockDescription =>
+      'Skjuler meldingene deres og stopper dem fra å sende deg meldinger';
 
   @override
-  String get iarSuccessBody =>
-      'Vårt sikkerhetsteam gjennomgår den. Vi sender deg en DM og e-post når vi har kommet til en avgjørelse.';
+  String get reportFlowBlockButton => 'Blokker';
 
   @override
-  String get iarAlreadyReportedTitle => 'Allerede rapportert';
+  String get reportFlowBlockedButton => 'Blokkert';
 
   @override
-  String get iarAlreadyReportedBody =>
-      'Du har allerede rapportert denne meldingen. Vårt sikkerhetsteam gjennomgår den.';
+  String get reportFlowUrgentBanner =>
+      'Hvis noen er i umiddelbar fare, kontakt de lokale nødetatene først.';
 
   @override
-  String get iarBackButton => 'Tilbake';
+  String get reportFlowLoadFailed => 'Kunne ikke laste inn rapportskjemaet.';
 
   @override
-  String get iarContinueButton => 'Fortsett';
+  String get reportFlowTryAgain => 'Prøv igjen';
 
   @override
-  String get iarSendReportButton => 'Send rapport';
+  String get reportFlowOutdated => 'Rapportskjemaet er endret. Start på nytt.';
 
   @override
-  String get iarDoneButton => 'Ferdig';
+  String get reportFlowAlreadyReported =>
+      'Du har allerede rapportert denne meldingen.';
 
   @override
-  String get iarCouldntSendToast => 'Kunne ikke sende rapporten. Prøv igjen.';
+  String get reportFlowAlreadyReportedProfile =>
+      'Du har allerede rapportert denne profilen i dag.';
 
   @override
-  String get iarRateLimitedToast =>
-      'Du rapporterer for fort. Vent et øyeblikk og prøv igjen.';
+  String get reportFlowRateLimited =>
+      'Du sender rapporter for fort. Prøv igjen senere.';
 
   @override
-  String get iarReportSentToast =>
-      'Rapport sendt. Vårt sikkerhetsteam vil gjennomgå den.';
+  String get reportFlowSubmitFailed =>
+      'Rapporten din ble ikke sendt. Prøv igjen.';
 
   @override
-  String iarBlockUserConfirmDescription(String name) {
-    return 'Blokker $name? De vil ikke kunne sende deg meldinger eller venneforespørsler. Du kan fjerne blokkeringen senere.';
-  }
-
-  @override
-  String get iarBlockUserFailedToast =>
-      'Kunne ikke blokkere denne brukeren. Prøv igjen.';
-
-  @override
-  String get iarCloseDmSuccessToast => 'DM lukket.';
-
-  @override
-  String get iarCloseDmFailedToast =>
-      'Kunne ikke lukke denne DM-en. Prøv igjen.';
-
-  @override
-  String get iarLeaveCommunityFailedToast =>
-      'Kunne ikke forlate dette fellesskapet. Prøv igjen.';
+  String get reportFlowAccountSetupRequired =>
+      'Fullfør registreringen av kontoen din og bekreft e-postadressen din for å sende rapporter.';
 
   @override
   String get chatMessageSuppressEmbeds => 'Skjul forhåndsvisninger';
@@ -7556,7 +7231,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get chatVideoPlaybackFailed => 'Kunne ikke spille av denne videoen.';
 
   @override
-  String get chatImageCouldNotLoad => 'Could not load this image.';
+  String get chatImageCouldNotLoad => 'Kunne ikke laste inn dette bildet.';
 
   @override
   String get composerAutocompleteRoleMentionDescription =>
@@ -7574,21 +7249,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get composerAutocompleteOptionalArgumentsHeading =>
       'Valgfrie argumenter';
-
-  @override
-  String get composerAutocompleteChannelsHeading => 'Kanaler';
-
-  @override
-  String get composerAutocompleteMembersHeading => 'Medlemmer';
-
-  @override
-  String get composerAutocompleteUsersHeading => 'Brukere';
-
-  @override
-  String get composerAutocompleteMentionsHeading => 'Nevninger';
-
-  @override
-  String get composerAutocompleteRolesHeading => 'Roller';
 
   @override
   String get composerAutocompleteMediaHeading => 'Medier';
@@ -7844,15 +7504,19 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Fellesskapmal-dataene er ugyldige eller feilformaterte.';
 
   @override
-  String get addGuildPackInstalled => 'Pakke installert.';
-
-  @override
   String get chatMessageRemoveAllReactionsConfirmTitle =>
       'Fjern alle reaksjoner';
 
   @override
   String get chatMessageRemoveAllReactionsConfirmDescription =>
       'Er du sikker på at du vil fjerne alle reaksjoner fra denne meldingen?';
+
+  @override
+  String get chatMessagePinConfirm => 'Fest';
+
+  @override
+  String get chatMessagePinConfirmDescription =>
+      'Fest denne meldingen til kanalen så alle kan se den.';
 
   @override
   String get chatMessageUnpinConfirmTitle => 'Fjern festing av melding';
@@ -7932,9 +7596,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get channelDetailsDeleteChannel => 'Slett kanal';
-
-  @override
-  String get channelSettingsCategorySettingsTitle => 'Kategoriinnstillinger';
 
   @override
   String get channelSettingsEditCategory => 'Rediger kategori';
@@ -8135,17 +7796,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Prøv igjen om en liten stund.';
 
   @override
-  String get channelSettingsResetSlider =>
-      'Tilbakestill glidebryteren til standardverdi';
-
-  @override
-  String get channelSettingsAdvanced => 'Avansert';
-
-  @override
-  String get channelSettingsMatureContentOverride =>
-      'Tilsidesettelse av voksent innhold';
-
-  @override
   String channelSettingsMatureContentSectionDescription(String scopeLevel) {
     return 'Skriv over innstillingen for $scopeLevel-nivå for denne kanalen. Voksent innhold vises bak en port før inngang.';
   }
@@ -8178,12 +7828,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   }
 
   @override
-  String get channelSettingsMatureContentCategorySource => 'kategori';
-
-  @override
-  String get channelSettingsMatureContentCommunitySource => 'fellesskap';
-
-  @override
   String get channelSettingsMatureContentCategoryScope => 'Kategori';
 
   @override
@@ -8203,20 +7847,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get channelSettingsContentWarningDefault =>
       'Dette inneholder sensitivt innhold.';
-
-  @override
-  String channelSettingsPermissionsNeedManageChannels(
-    String manageChannelsPermissionLabel,
-  ) {
-    return 'Du trenger tillatelsen \"$manageChannelsPermissionLabel\" for å redigere disse tillatelsene.';
-  }
-
-  @override
-  String channelSettingsPermissionsNeedManageRoles(
-    String manageRolesPermissionLabel,
-  ) {
-    return 'Du trenger tillatelsen \"$manageRolesPermissionLabel\" for å redigere disse tillatelsene.';
-  }
 
   @override
   String get channelSettingsUnknownRole => 'Ukjent rolle';
@@ -8293,9 +7923,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Søk etter roller eller medlemmer …';
 
   @override
-  String get channelSettingsPermissionsRolesAndMembers => 'Roller og medlemmer';
-
-  @override
   String get channelSettingsDeleteInvite => 'Slett invitasjon';
 
   @override
@@ -8368,9 +7995,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String channelSettingsWebhooksCreatedBy(String creator, String date) {
     return 'Opprettet av $creator den $date';
   }
-
-  @override
-  String get channelSettingsWebhooksUnknownUser => 'Ukjent bruker';
 
   @override
   String get channelSettingsWebhooksAvatar => 'Profilbilde';
@@ -8526,9 +8150,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get channelDetailsPinsEndReached => 'Du har nådd slutten';
-
-  @override
-  String get channelHeaderOpenDetails => 'Åpne kanalinfo';
 
   @override
   String get channelHeaderPinnedMessages => 'Festede meldinger';
@@ -8994,9 +8615,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get groupDmEditTitle => 'Rediger gruppe';
 
   @override
-  String get groupDmEditDetailsTooltip => 'Rediger gruppeinformasjon';
-
-  @override
   String get groupDmGroupName => 'Gruppenavn';
 
   @override
@@ -9048,13 +8666,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get groupDmUnsupportedIconFormatBody => 'Ugyldig filtype.';
 
   @override
-  String get groupDmCouldntProcessImage => 'Kunne ikke behandle bildet';
-
-  @override
-  String get groupDmFailedToProcessCroppedImage =>
-      'Kunne ikke behandle det beskårede bildet. Prøv igjen.';
-
-  @override
   String get groupDmInvalidImage => 'Ugyldig bilde';
 
   @override
@@ -9081,19 +8692,12 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Kunne ikke legge til denne vennen i gruppen. Prøv igjen.';
 
   @override
-  String get groupDmAddFailed => 'Kunne ikke legge til i gruppe';
-
-  @override
   String get groupDmGroupFull =>
       'Denne gruppen er full. Fjern noen før du legger til flere.';
 
   @override
   String get groupDmRateLimited =>
       'Du går for fort frem. Vent litt og prøv igjen.';
-
-  @override
-  String get groupDmCreateInviteFailed =>
-      'Kunne ikke opprette invitasjonslenke';
 
   @override
   String get groupDmCreateInviteFailedBody =>
@@ -9164,7 +8768,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String dmComposerHint(String recipientName) {
-    return 'Message @$recipientName';
+    return 'Send melding til @$recipientName';
   }
 
   @override
@@ -9296,9 +8900,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get userSettingsSearchPlaceholder => 'Søk i innstillinger ...';
 
   @override
-  String get userSettingsSearchFieldLabel => 'Søk i innstillinger';
-
-  @override
   String get userSettingsSearchClear => 'Tøm søk';
 
   @override
@@ -9377,13 +8978,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get giftSettingsCopied => 'Kopiert';
 
   @override
-  String get giftSettingsGiftUrlCopied =>
-      'Gave-URL kopiert til utklippstavlen!';
-
-  @override
-  String get giftSettingsGiftUrlCopyFailed => 'Kunne ikke kopiere gave-URL';
-
-  @override
   String giftSettingsPurchasedDate(String date) {
     return 'Kjøpt $date';
   }
@@ -9451,9 +9045,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get premiumOneMonthGift => '1 måneds gave';
 
   @override
-  String get premiumMostPopular => 'Mest populær';
-
-  @override
   String get premiumScrollPrompt =>
       'Rull ned for å se alle fordelene som følger med Reverb';
 
@@ -9488,26 +9079,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get premiumReadyToBuyGift => 'Klar til å kjøpe en gave?';
 
   @override
-  String premiumMonthlyPrice(String price) {
-    return 'Månedlig $price';
-  }
-
-  @override
-  String premiumYearlyPrice(String price) {
-    return 'Årlig $price';
-  }
-
-  @override
-  String premiumOneYearPrice(String price) {
-    return '1 år $price';
-  }
-
-  @override
-  String premiumOneMonthPrice(String price) {
-    return '1 måned $price';
-  }
-
-  @override
   String get premiumManageSubscription => 'Administrer abonnement';
 
   @override
@@ -9527,9 +9098,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get premiumCancelSubscriptionConfirm => 'Avbryt abonnement';
 
   @override
-  String get premiumKeepSubscription => 'Behold abonnementet';
-
-  @override
   String get premiumPurchaseHistoryTitle => 'Kjøpshistorikk';
 
   @override
@@ -9538,12 +9106,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get premiumManagePaymentMethods => 'Administrer betalingsmåter';
-
-  @override
-  String get premiumBillingHistory => 'Fakturahistorikk';
-
-  @override
-  String get premiumSelfServeRefundTitle => 'Selvbetjent refusjon';
 
   @override
   String get premiumSelfServeRefundButton => 'Refunder siste kjøp';
@@ -9579,12 +9141,15 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   }
 
   @override
-  String get premiumComparisonFeatureColumn => 'Funksjon';
+  String get premiumGiftGraceEnded =>
+      'Gaven din er utløpt. Abonner for å beholde Plutonium.';
 
   @override
-  String premiumDisclaimerPurchased(String terms, String privacy) {
-    return 'Ved å kjøpe godtar du våre $terms og $privacy.';
-  }
+  String get premiumGiftTimeAddedAfterSubscription =>
+      'Du blir belastet nå. Din gjenværende gaveperiode legges til etter betalingsperioden din, slik at ingenting går tapt.';
+
+  @override
+  String get premiumComparisonFeatureColumn => 'Funksjon';
 
   @override
   String get premiumDisclaimerRefund =>
@@ -9604,12 +9169,12 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Noe gikk galt under betalingsprosessen. Prøv igjen om en liten stund.';
 
   @override
-  String get premiumGiftSubscriptionBlocksRecurring =>
-      'Du har et gaveabonnement. Det fornyes ikke. Du kan løse inn flere gavekoder for å forlenge det. Gjentakende abonnementer kan startes etter at gaveperioden din er over.';
-
-  @override
   String get premiumPlanUnavailable =>
       'Denne planen er ikke tilgjengelig. Kontakt kundestøtte.';
+
+  @override
+  String get premiumPlanUnavailableSelfHosted =>
+      'Dette abonnementet er ikke tilgjengelig. Kontakt administratorene av denne instansen.';
 
   @override
   String get premiumCompletePaymentTitle => 'Fullfør betaling';
@@ -9664,8 +9229,13 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get premiumPurchasesDisabledTitle => 'Kjøp er ikke tilgjengelig';
 
   @override
-  String get premiumPurchasesDisabledBody =>
-      'Kjøp er deaktivert for denne kontoen. Kontakt support@echowire.org hvis dette ser feil ut.';
+  String premiumPurchasesDisabledBody(String supportEmail) {
+    return 'Kjøp er deaktivert for denne kontoen. Kontakt $supportEmail hvis dette ser feil ut.';
+  }
+
+  @override
+  String get premiumPurchasesDisabledBodySelfHosted =>
+      'Kjøp er deaktivert for denne kontoen. Kontakt administratorene av denne instansen hvis dette ser feil ut.';
 
   @override
   String get premiumClaimAccountToPurchase =>
@@ -9674,25 +9244,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get premiumVerifyEmailToPurchase =>
       'Du må bekrefte e-posten din før du kan kjøpe Reverb.';
-
-  @override
-  String get premiumPerkCustomUsernameTag => 'Egendefinert brukernavn-tagg';
-
-  @override
-  String get premiumPerkPerCommunityProfiles => 'Profiler per fellesskap';
-
-  @override
-  String get premiumPerkMessageScheduling => 'Meldingstidsplanlegging';
-
-  @override
-  String get premiumPerkProfileBadge => 'Profilmerke';
-
-  @override
-  String get premiumPerkCustomVideoBackgrounds =>
-      'Egendefinerte videobakgrunner';
-
-  @override
-  String get premiumPerkEntranceSounds => 'Lyd ved inngang';
 
   @override
   String get premiumPerkCommunities => 'Fellesskap';
@@ -9707,17 +9258,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get premiumPerkFileUploadSize => 'Filopplastingsstørrelse';
 
   @override
-  String get premiumPerkEmojiStickerPacks => 'Emneknapper og klistremerker';
-
-  @override
-  String get premiumPerkSavedMedia => 'Lagrede medier';
-
-  @override
   String get premiumPerkUseAnimatedEmojis => 'Bruk animerte emojier';
-
-  @override
-  String get premiumPerkGlobalEmojiStickerAccess =>
-      'Global tilgang til emojier og klistremerker';
 
   @override
   String get premiumPerkVideoQuality => 'Videokvalitet';
@@ -9730,13 +9271,185 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get premiumPerkEarlyAccess => 'Tidlig tilgang til nye funksjoner';
 
   @override
-  String get premiumPerkCustomThemes => 'Egendefinerte temaer';
-
-  @override
   String get premiumPerkVideoQualityRestricted => '720p/30fps';
 
   @override
   String get premiumPerkVideoQualityStock => 'Opptil 4K/60 bps';
+
+  @override
+  String storePlutoniumPriceLine(String monthly, String yearly) {
+    return '$monthly eller $yearly';
+  }
+
+  @override
+  String get storePlutoniumMonthSuffix => '/mnd';
+
+  @override
+  String get storePlutoniumYearSuffix => '/år';
+
+  @override
+  String get storePlutoniumPriceOr => 'eller';
+
+  @override
+  String get storePlutoniumEmojiTitle => 'Dine emojier, overalt';
+
+  @override
+  String get storePlutoniumEmojiBody =>
+      'Bruk egendefinerte emojier og klistremerker fra alle fellesskapene dine i alle chatter og fellesskap du er med i.';
+
+  @override
+  String get storePlutoniumProfileTitle => 'En profil som skiller seg ut';
+
+  @override
+  String get storePlutoniumProfileBody =>
+      'Få en animert avatar og banner, et abonnentmerke, den firesifrede taggen du ønsker etter brukernavnet ditt*, og en separat profil for hvert fellesskap.';
+
+  @override
+  String get storePlutoniumFilesTitle => 'Send filer på opptil 500 MB';
+
+  @override
+  String get storePlutoniumFilesBody =>
+      'Del videoer i full lengde og store filer uten å krympe dem først. Gratis kontoer kan sende opptil 25 MB.';
+
+  @override
+  String get storePlutoniumCompareTitle => 'Sammenlign Gratis og Plutonium';
+
+  @override
+  String get storePlutoniumCompareMobileNote =>
+      'Ikke alle disse funksjonene er tilgjengelige i mobilappen. Noen er kun tilgjengelige på datamaskin.';
+
+  @override
+  String get storePlutoniumNotAvailable => 'Ikke tilgjengelig';
+
+  @override
+  String get storePlutoniumAvailable => 'Tilgjengelig';
+
+  @override
+  String get storePlutoniumCompareTag =>
+      'Velg det 4-sifrede nummeret etter brukernavnet ditt*';
+
+  @override
+  String get storePlutoniumCompareProfile =>
+      'En egen profil for hvert fellesskap';
+
+  @override
+  String get storePlutoniumCompareBadge => 'Abonnentmerke på profilen din';
+
+  @override
+  String get storePlutoniumCompareBackgrounds => 'Videobakgrunner du kan lagre';
+
+  @override
+  String get storePlutoniumCompareCommunities => 'Fellesskap du kan bli med i';
+
+  @override
+  String get storePlutoniumCompareCharacters => 'Tegn i én melding';
+
+  @override
+  String get storePlutoniumCompareBookmarks => 'Meldinger du kan lagre';
+
+  @override
+  String get storePlutoniumCompareUpload => 'Største fil du kan laste opp';
+
+  @override
+  String get storePlutoniumCompareSavedMedia =>
+      'Medieelementer du kan lagre til senere';
+
+  @override
+  String get storePlutoniumCompareAnimatedEmoji =>
+      'Bruk animerte emojier i meldinger';
+
+  @override
+  String get storePlutoniumCompareCustomEmoji =>
+      'Bruk egendefinerte emojier og klistremerker i ethvert fellesskap';
+
+  @override
+  String get storePlutoniumCompareVideo =>
+      'Videokvalitet for anrop og skjermdeling';
+
+  @override
+  String get storePlutoniumCompareAvatar => 'Animert avatar og profilbanner';
+
+  @override
+  String get storePlutoniumCompareEarlyAccess =>
+      'Tidlig tilgang til nye funksjoner';
+
+  @override
+  String get storePlutoniumCompareThemes => 'Egendefinerte temaer for appen';
+
+  @override
+  String get storePlutoniumVideoFree => 'Opptil 720p ved 30 FPS';
+
+  @override
+  String get storePlutoniumVideoPlutonium => 'Opptil 4K ved 60 FPS';
+
+  @override
+  String get storePlutoniumTagFootnote =>
+      'Du kan bare velge en tag som ingen andre med samme brukernavn allerede har. Brukernavn skiller ikke mellom store og små bokstaver, så Mina#4821 og mina#4821 regnes som det samme. Taggen #0000 er reservert for Fluxer Visionary-medlemmer.';
+
+  @override
+  String get storePlutoniumLearnVisionary => 'Lær mer om Visionary.';
+
+  @override
+  String get storePlutoniumDonatePrompt =>
+      'Vil du bare støtte Fluxers åpen kildekode-utvikling? ';
+
+  @override
+  String get storePlutoniumDonateLink => 'Doner i stedet.';
+
+  @override
+  String get storePlutoniumHighlightsLead =>
+      'Abonnementet finansierer Fluxer og låser opp';
+
+  @override
+  String get storePlutoniumHighlightEmoji =>
+      'Egendefinerte emojier og klistremerker i alle chatter';
+
+  @override
+  String get storePlutoniumHighlightProfile =>
+      'Animert profil, merke og valgfritt firesifret nummer';
+
+  @override
+  String get storePlutoniumHighlightFiles => 'Opplastinger på opptil 500 MB';
+
+  @override
+  String get storePlutoniumHighlightMessages =>
+      'Send meldinger på opptil 4000 tegn';
+
+  @override
+  String get storePlutoniumHighlightCommunityProfile =>
+      'En egen profil for hvert fellesskap';
+
+  @override
+  String get storePlutoniumHighlightsMore => 'Og mer';
+
+  @override
+  String get storePlutoniumRenewsThroughPlay =>
+      'Fornyes automatisk via Google Play til du sier opp.';
+
+  @override
+  String get storePlutoniumRenewsThroughAppStore =>
+      'Fornyes automatisk via App Store til du sier opp.';
+
+  @override
+  String get storePlutoniumAlreadySubscribed =>
+      'Du har allerede et Fluxer Plutonium-abonnement.';
+
+  @override
+  String storePlutoniumSavePercent(int percent) {
+    return 'Spar $percent %';
+  }
+
+  @override
+  String get storePlutoniumWaiting =>
+      'Kjøpet er mottatt. Plutonium vises her når det er aktivert.';
+
+  @override
+  String get storePlutoniumUnavailable =>
+      'Abonnementer i appen er ikke tilgjengelige på denne enheten ennå.';
+
+  @override
+  String get storePlutoniumVisionaryStatus =>
+      'Visionary inkluderer allerede permanent tilgang, så et gjentakende abonnement er ikke nødvendig.';
 
   @override
   String get userSettingsNavPrivacyDashboard => 'Personverndashbord';
@@ -9869,11 +9582,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get audioAndVideoMicTestStopLabel => 'Stopp mikrofontest';
 
   @override
-  String audioAndVideoMicTestPermissionRequired(String productName) {
-    return '$productName trenger tilgang til mikrofonen for å teste lyden din.';
-  }
-
-  @override
   String get audioAndVideoCameraLabel => 'Kamera';
 
   @override
@@ -9908,23 +9616,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get audioAndVideoFrameRate60Label => '60 bilder/sek';
 
   @override
-  String audioAndVideoHigherQualityRequiresPremium(String premiumProductName) {
-    return '1080p og 60 FPS krever $premiumProductName.';
-  }
-
-  @override
   String get audioAndVideoInstanceVideoQualityLimit =>
       'Denne instansen tillater for øyeblikket skjermdeling opptil 720p ved 30 FPS.';
-
-  @override
-  String audioAndVideoMicrophonePermissionRequired(String productName) {
-    return '$productName trenger mikrofontilgang for å vise enhetene dine.';
-  }
-
-  @override
-  String audioAndVideoCameraPermissionRequired(String productName) {
-    return '$productName trenger tilgang til kameraet for å vise enhetene dine.';
-  }
 
   @override
   String get audioAndVideoSkipHideOwnCameraConfirmLabel =>
@@ -9955,14 +9648,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get notificationsEnableDesktopNotificationsDescription =>
       'Bruker operativsystemets varslingssenter. For varslingsinnstillinger per kanal/fellesskap, høyreklikk på et fellesskapsikon og åpne varslingsinnstillinger.';
-
-  @override
-  String get notificationsEnableBrowserNotificationsLabel =>
-      'Aktiver nettleservarsler';
-
-  @override
-  String get notificationsEnableBrowserNotificationsDescription =>
-      'Få varsler når du mottar meldinger. Du må kanskje tillate varsler i nettleserinnstillingene dine. For varslingskontroller per kanal/fellesskap, høyreklikk på et fellesskapsikon og åpne varslingsinnstillingene.';
 
   @override
   String get notificationsPushInactiveTimeoutLabel =>
@@ -10203,6 +9888,46 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Kunne ikke aktivere varsler. Tillat varslingstillatelse for å fortsette.';
 
   @override
+  String get notificationsPushRelaySectionTitle => 'Relé for push-varsler';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider leverer bare push-varsler via sin egen tjeneste, så varsler til denne enheten går gjennom Fluxer-reléet.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel => 'Bruk Fluxers push-relé';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Hvis du slår av dette, fjernes enhetens push-registrering, og enheten slutter å motta push-varsler.';
+
+  @override
+  String get pushRelayConsentTitle => 'Relé for push-varsler';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider leverer bare push-varsler via sin egen tjeneste, så varsler til denne enheten går gjennom Fluxer-reléet.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Godta ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'personvernerklæringen for push-reléet';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' for å slå på push-varsler på denne enheten. Du trenger bare å godta én gang per enhet.';
+
+  @override
+  String get pushRelayConsentAgree => 'Godta og fortsett';
+
+  @override
+  String get pushRelayConsentDecline => 'Ikke nå';
+
+  @override
   String get userSettingsNavLanguageAndTime => 'Språk og tid';
 
   @override
@@ -10211,9 +9936,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get languageAndTimeLanguageSectionDescription =>
       'Velg språket som brukes i hele appen';
-
-  @override
-  String get languageAndTimeOpenLanguageSettings => 'Åpne språkinnstillinger';
 
   @override
   String get languageAndTimeTimeFormatSectionTitle => 'Tidsformat';
@@ -10271,6 +9993,47 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get defaultAppsWebBrowserExternal => 'Ekstern nettleser';
+
+  @override
+  String get userSettingsNavAppIcon => 'Appikon';
+
+  @override
+  String get appIconSectionTitle => 'Appikon';
+
+  @override
+  String get appIconSectionDescription =>
+      'Velg hvilket ikon som vises på startskjermen din.';
+
+  @override
+  String get appIconOptionDefault => 'Standard';
+
+  @override
+  String get appIconOptionStarfield => 'Stjernefelt';
+
+  @override
+  String get appIconOptionSweden => 'Sverige';
+
+  @override
+  String get appIconOptionGreyscale => 'Greyscale';
+
+  @override
+  String get appIconOptionRainbow => 'Rainbow';
+
+  @override
+  String get appIconOptionWaves => 'Waves';
+
+  @override
+  String get appIconOptionChromaticAberration => 'Chromatic aberration';
+
+  @override
+  String get appIconOptionDefaultBrutalist => 'Brutalist';
+
+  @override
+  String get appIconOptionGreyscaleBrutalist => 'Greyscale brutalist';
+
+  @override
+  String get appIconUnsupported =>
+      'Det er ikke mulig å endre appikonet på denne enheten.';
 
   @override
   String get userSettingsNavAdvanced => 'Avansert';
@@ -10435,10 +10198,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get advancedSettingTrustAllLinksLabel =>
       'Stol på alle eksterne lenker';
-
-  @override
-  String get advancedSettingTrustAllLinksDescription =>
-      'Hopp over advarsel om ekstern lenke for alle domener';
 
   @override
   String get advancedSettingSearchEnginesLabel => 'Søkemotorer';
@@ -10634,27 +10393,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get advancedSettingDeveloperModeDescription => 'Aktiver utviklermodus';
-
-  @override
-  String get advancedSettingSearchEngineGoogle => 'Google';
-
-  @override
-  String get advancedSettingSearchEngineDuckDuckGo => 'DuckDuckGo';
-
-  @override
-  String get advancedSettingSearchEngineBing => 'Bing';
-
-  @override
-  String get advancedSettingSearchEngineGoogleLens => 'Google Lens';
-
-  @override
-  String get advancedSettingSearchEngineTinEye => 'TinEye';
-
-  @override
-  String get advancedSettingTranslatorGoogle => 'Google Oversett';
-
-  @override
-  String get advancedSettingTranslatorDeepL => 'DeepL';
 
   @override
   String get advancedSettingDefaultSearchEngineLabel => 'Standard søkemotor';
@@ -10935,6 +10673,9 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get quickSwitcherSectionTextChannels => 'Tekstkanaler';
 
   @override
+  String get quickSwitcherSectionThreads => 'Threads';
+
+  @override
   String get quickSwitcherSectionVoiceChannels => 'Talekanaler';
 
   @override
@@ -10973,6 +10714,12 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get savedMessagesRemoveTooltip => 'Fjern bokmerke';
+
+  @override
+  String get savedMessagesAddedToast => 'Lagt til i lagrede meldinger';
+
+  @override
+  String get savedMessagesRemovedToast => 'Fjernet fra lagrede meldinger';
 
   @override
   String get quickSwitcherMentionsLabel => 'Nevnelser';
@@ -11107,7 +10854,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get instanceUrlHelper =>
-      'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
+      'Bruk fluxer.app for den offisielle instansen, eller den nøyaktige URL-en til en selvhostet instans.';
 
   @override
   String get resetToDefaultInstance => 'Tilbakestill til echowire';
@@ -11120,6 +10867,10 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get instanceConnectFailed => 'Kunne ikke koble til instans';
+
+  @override
+  String get instanceInvalidDiscoveryResponse =>
+      'This client cannot connect to this instance. The instance is likely out of date. If the instance is up to date, try updating this app.';
 
   @override
   String get recentInstances => 'Nylige instanser';
@@ -11325,6 +11076,13 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get authHidePassword => 'Skjul passord';
 
   @override
+  String get authCheckStillWorking => 'Fortsatt i gang…';
+
+  @override
+  String get authVerificationFailed =>
+      'Kunne ikke fullføre bekreftelsen. Prøv igjen.';
+
+  @override
   String get chatLoadingMessages => 'Laster meldinger';
 
   @override
@@ -11498,6 +11256,19 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get guildNavbarChannelTypeSelection => 'Velg kanastype';
+
+  @override
+  String get guildNavbarPrivateChannel => 'Private channel';
+
+  @override
+  String get guildNavbarPrivateChannelDescription =>
+      'Only selected members and roles will be able to view this channel.';
+
+  @override
+  String get guildNavbarAddMembersOrRoles => 'Add members or roles';
+
+  @override
+  String get guildNavbarAddMembersOrRolesHint => 'Search members or roles';
 
   @override
   String get guildNavbarCreateCategory => 'Opprett kategori';
@@ -11689,9 +11460,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get guildMenuHideMutedChannels => 'Skjul dempede kanaler';
 
   @override
-  String get guildMenuReportCommunity => 'Rapporter fellesskap';
-
-  @override
   String get guildMenuDebugCommunity => 'Feilsøk fellesskap';
 
   @override
@@ -11724,9 +11492,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get guildMenuSettingsWebhooks => 'Webhooks';
 
   @override
-  String get guildMenuSettingsCustomInviteUrl => 'Egendefinert invitasjons-URL';
-
-  @override
   String get guildMenuSettingsDiscovery => 'Oppdagelse';
 
   @override
@@ -11749,33 +11514,13 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get guildSettingsOverviewIconTitle => 'Ikon';
 
   @override
-  String get guildSettingsUploadImage => 'Last opp bilde';
-
-  @override
   String get guildSettingsOverviewBannerTitle => 'Banner';
-
-  @override
-  String get guildSettingsOverviewBannerHint =>
-      'Last opp et banner for serveren din.';
 
   @override
   String get guildSettingsOverviewNameTitle => 'Navn';
 
   @override
   String get guildSettingsOverviewNameHint => 'Mitt fantastiske fellesskap';
-
-  @override
-  String get guildSettingsOverviewStatsTitle => 'Statistikk';
-
-  @override
-  String get guildSettingsOverviewMembers => 'Medlemmer';
-
-  @override
-  String get guildSettingsOverviewOnline => 'Pålogget';
-
-  @override
-  String get guildSettingsRolesDescription =>
-      'Bruk roller til å gruppere medlemmer og tildele tillatelser.';
 
   @override
   String get guildSettingsCreateRole => 'Opprett rolle';
@@ -11853,31 +11598,13 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get guildSettingsRolesComfyLayout => 'Komfortabelt oppsett';
 
   @override
-  String get guildSettingsRolesSwitchToDenseLayout =>
-      'Bytt til kompakt visning';
-
-  @override
-  String get guildSettingsRolesSwitchToComfyLayout =>
-      'Bytt til komfortabelt oppsett';
-
-  @override
   String get guildSettingsRolesSingleColumn => 'Enkel kolonne';
 
   @override
   String get guildSettingsRolesTwoColumns => 'To kolonner';
 
   @override
-  String get guildSettingsRolesSwitchToSingleColumn => 'Bytt til én kolonne';
-
-  @override
-  String get guildSettingsRolesSwitchToTwoColumns => 'Bytt til to kolonner';
-
-  @override
   String get guildSettingsRolesNoPermissionsFound => 'Ingen tillatelser funnet';
-
-  @override
-  String get guildSettingsRolesCustomHoistOrder =>
-      'Egendefinert heiserekkefølge';
 
   @override
   String get guildSettingsRolesHoistOrder => 'Heve-rekkefølge';
@@ -11892,10 +11619,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get guildSettingsRolesNoHoistedRoles =>
       'Ingen fremhevede roller. Aktiver \"Vis denne rollen separat\" for en rolle for å se den her.';
-
-  @override
-  String get guildSettingsRolesLockedTooltip =>
-      'Du kan ikke redigere denne rollen fordi den er din høyeste rolle eller over deg';
 
   @override
   String guildSettingsRolesNeedManageRolesPermission(String permission) {
@@ -11979,9 +11702,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get permissionCategoryAudioVideo => 'Lyd og video';
-
-  @override
-  String get permissionUnknown => 'Ukjent tillatelse';
 
   @override
   String get permissionAdministrator => 'Administrator';
@@ -12104,34 +11824,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Opprett, rediger eller slett webhooks.';
 
   @override
-  String get permissionSendMessagesInThreads => 'Send messages in threads';
-
-  @override
-  String get permissionSendMessagesInThreadsDescription =>
-      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
-
-  @override
-  String get permissionCreatePublicThreads => 'Create public threads';
-
-  @override
-  String get permissionCreatePublicThreadsDescription =>
-      'Members can start threads that everyone in the channel can see, and create forum posts.';
-
-  @override
-  String get permissionCreatePrivateThreads => 'Create private threads';
-
-  @override
-  String get permissionCreatePrivateThreadsDescription =>
-      'Members can start threads that only invited people can see.';
-
-  @override
-  String get permissionManageThreads => 'Manage threads and posts';
-
-  @override
-  String get permissionManageThreadsDescription =>
-      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
-
-  @override
   String get permissionSendMessages => 'Send meldinger';
 
   @override
@@ -12241,17 +11933,356 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get permissionSetVoiceRegion => 'Angi stemmeregion';
 
   @override
-  String guildSettingsEmojiSlotInfo(int staticCount, int animatedCount) {
-    return '$staticCount statiske, $animatedCount animerte emojier brukt';
+  String get permissionManageThreads => 'Manage threads and posts';
+
+  @override
+  String get permissionManageThreadsDescription =>
+      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
+
+  @override
+  String get permissionCreatePublicThreads => 'Create public threads';
+
+  @override
+  String get permissionCreatePublicThreadsDescription =>
+      'Members can start threads that everyone in the channel can see, and create forum posts.';
+
+  @override
+  String get permissionCreatePrivateThreads => 'Create private threads';
+
+  @override
+  String get permissionCreatePrivateThreadsDescription =>
+      'Members can start threads that only invited people can see.';
+
+  @override
+  String get permissionSendMessagesInThreads => 'Send messages in threads';
+
+  @override
+  String get permissionSendMessagesInThreadsDescription =>
+      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
+
+  @override
+  String get threadErrorArchived => 'This thread is archived.';
+
+  @override
+  String get threadErrorLocked =>
+      'This thread is locked. Only moderators can post or reopen it.';
+
+  @override
+  String get threadErrorAlreadyCreated =>
+      'A thread already exists for this message.';
+
+  @override
+  String get threadErrorMaxActiveThreads =>
+      'This community has reached its limit of active threads.';
+
+  @override
+  String get threadErrorMaxMembers =>
+      'This thread has reached its member limit.';
+
+  @override
+  String get threadErrorMaxPinnedPosts =>
+      'Only one post can be pinned in this forum.';
+
+  @override
+  String get threadErrorMaxForumTags => 'A forum can have at most 20 tags.';
+
+  @override
+  String get threadErrorTagNamesUnique => 'Tag names must be unique.';
+
+  @override
+  String get threadErrorNoTagsForEveryone =>
+      'Add a tag everyone can use before requiring tags.';
+
+  @override
+  String get threadErrorTagRequired => 'Pick at least one tag for this post.';
+
+  @override
+  String get threadErrorUnknownTag =>
+      'One of the selected tags no longer exists.';
+
+  @override
+  String get threadErrorInvalidNotificationSettings =>
+      'Those notification settings are not valid for a thread.';
+
+  @override
+  String get threadErrorSearchIndexNotReady =>
+      'Posts are still being indexed. Try again in a moment.';
+
+  @override
+  String get threadErrorInvalidChannelType =>
+      'This action is not available in this channel.';
+
+  @override
+  String get threadCreate => 'Create thread';
+
+  @override
+  String get threadName => 'Thread name';
+
+  @override
+  String get threadNameRequired => 'Give the thread a name.';
+
+  @override
+  String get threadNewThreadPlaceholder => 'New thread';
+
+  @override
+  String get threadPrivate => 'Private thread';
+
+  @override
+  String get threadPrivateDescription =>
+      'Only people you invite and moderators can see this thread.';
+
+  @override
+  String get threadStarterMessage => 'Message';
+
+  @override
+  String get threadStarterMessagePlaceholder =>
+      'Enter a message to start the conversation!';
+
+  @override
+  String threadCreateCooldown(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'You can start another thread in $seconds seconds.',
+      one: 'You can start another thread in 1 second.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String threadCreateFailed(String detail) {
+    return 'Could not start the thread: $detail';
+  }
+
+  @override
+  String get threadBrowserTitle => 'Threads';
+
+  @override
+  String get threadBrowserActive => 'Active';
+
+  @override
+  String get threadBrowserArchived => 'Closed';
+
+  @override
+  String get threadBrowserJoined => 'Joined';
+
+  @override
+  String get threadBrowserOtherActive => 'Other active threads';
+
+  @override
+  String get threadBrowserPublic => 'Public threads';
+
+  @override
+  String get threadBrowserPrivate => 'Private threads';
+
+  @override
+  String get threadBrowserEmpty =>
+      'There are no threads. Stay focused on a conversation with a thread, a temporary text channel.';
+
+  @override
+  String get threadBrowserArchivedEmpty => 'There are no closed threads.';
+
+  @override
+  String get threadBrowserLoadMore => 'Load more';
+
+  @override
+  String get threadBrowserSearch => 'Search threads';
+
+  @override
+  String get threadBrowserSearchEmpty => 'No threads match';
+
+  @override
+  String get threadBrowserSearchEmptyHint =>
+      'Try a different name or check the other tab.';
+
+  @override
+  String get threadBrowserSearchFailed =>
+      'Couldn\'t search threads. Try again later.';
+
+  @override
+  String get threadBrowserSearchIndexing =>
+      'Search is getting ready for this community. Trying again shortly...';
+
+  @override
+  String threadMessageCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count messages',
+      one: '1 message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get threadFailedToMentionSomeRoles =>
+      'Some mentioned roles were not added to this thread.';
+
+  @override
+  String get threadMembers => 'Thread members';
+
+  @override
+  String threadMembersCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count members',
+      one: '1 member',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get threadMembersEmpty => 'Nobody has joined this thread yet.';
+
+  @override
+  String threadRemoveMember(String name) {
+    return 'Remove $name from thread';
+  }
+
+  @override
+  String get threadJoin => 'Join thread';
+
+  @override
+  String get threadLeave => 'Leave thread';
+
+  @override
+  String get threadJoinNotice =>
+      'Join this thread to follow it in your channel list and get notifications.';
+
+  @override
+  String get threadArchivedNotice =>
+      'This thread is closed. Sending a message will open it again.';
+
+  @override
+  String get threadLockedNotice =>
+      'This thread is locked. Only moderators can send messages.';
+
+  @override
+  String get threadArchive => 'Close thread';
+
+  @override
+  String get threadUnarchive => 'Open thread again';
+
+  @override
+  String get threadLock => 'Lock thread';
+
+  @override
+  String get threadUnlock => 'Unlock thread';
+
+  @override
+  String get threadDelete => 'Delete thread';
+
+  @override
+  String threadDeleteConfirm(String threadName) {
+    return 'Are you sure you want to delete $threadName? This cannot be undone.';
+  }
+
+  @override
+  String get threadDeleted => 'Thread deleted';
+
+  @override
+  String get threadMarkAsRead => 'Mark as read';
+
+  @override
+  String get threadMute => 'Mute thread';
+
+  @override
+  String get threadUnmute => 'Unmute thread';
+
+  @override
+  String get threadMuted => 'Thread muted';
+
+  @override
+  String get threadUnmuted => 'Thread unmuted';
+
+  @override
+  String get threadNotificationSettings => 'Notification settings';
+
+  @override
+  String get threadNotificationParentDefault => 'Use channel default';
+
+  @override
+  String get threadCopyLink => 'Copy link';
+
+  @override
+  String get threadCopyId => 'Copy thread ID';
+
+  @override
+  String get threadMoreOptions => 'More options';
+
+  @override
+  String get threadSettings => 'Thread settings';
+
+  @override
+  String get threadSettingsSaved => 'Thread settings saved';
+
+  @override
+  String get threadAutoArchive => 'Hide after inactivity';
+
+  @override
+  String get threadAutoArchiveDescription =>
+      'The thread stops showing in the channel list after this period of inactivity.';
+
+  @override
+  String get threadDefaultAutoArchive => 'Default hide after inactivity';
+
+  @override
+  String get threadDefaultAutoArchiveDescription =>
+      'New threads stop showing in the channel list after this period of inactivity.';
+
+  @override
+  String get threadDefaultSlowmode => 'Default thread slowmode';
+
+  @override
+  String get threadAutoArchiveOneHour => '1 Hour';
+
+  @override
+  String get threadAutoArchiveOneDay => '24 Hours';
+
+  @override
+  String get threadAutoArchiveThreeDays => '3 Days';
+
+  @override
+  String get threadAutoArchiveOneWeek => '1 Week';
+
+  @override
+  String get threadInvitable => 'Allow anyone to invite';
+
+  @override
+  String get threadInvitableDescription =>
+      'Members of this private thread can add other people.';
+
+  @override
+  String threadStartedBy(String name) {
+    return 'Started by $name';
+  }
+
+  @override
+  String get threadStarterDeleted => 'Original message was deleted.';
+
+  @override
+  String systemThreadCreated(
+    String username,
+    String threadLink,
+    String allThreadsLink,
+  ) {
+    return '$username startet en tråd: $threadName.';
+  }
+
+  @override
+  String get systemThreadCreatedAllThreadsLink => 'all threads';
+
+  @override
+  String get systemThreadCreatedThreadFallback => 'a thread';
+
+  @override
+  String systemPreviewThreadCreated(String username) {
+    return '$username started a thread.';
   }
 
   @override
   String get guildSettingsEmojiEmpty => 'Ingen egendefinerte emojier ennå.';
-
-  @override
-  String guildSettingsStickersSlotInfo(int count) {
-    return '$count klistremerker lastet opp';
-  }
 
   @override
   String get guildSettingsStickersEmpty =>
@@ -12316,13 +12347,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Krever alt i middels, pluss å ha vært medlem av fellesskapet i minst 10 minutter.';
 
   @override
-  String get guildSettingsVerificationHighest => 'Veldig høy';
-
-  @override
-  String get guildSettingsVerificationHighestDescription =>
-      'Krever et bekreftet telefonnummer.';
-
-  @override
   String get guildSettingsAuditLogDescription =>
       'Spor moderatorhandlinger på tvers av fellesskapet.';
 
@@ -12344,14 +12368,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get guildSettingsAuditLogUnknownUser => 'Ukjent bruker';
-
-  @override
-  String get guildSettingsAuditLogLoadError =>
-      'Noe gikk galt under lasting av aktivitetsloggen.';
-
-  @override
-  String get guildSettingsAuditLogLoadErrorTitle =>
-      'Kunne ikke laste aktivitetslogger';
 
   @override
   String get guildSettingsAuditLogReason => 'Årsak';
@@ -12382,6 +12398,15 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get auditLogActionChannelDelete => 'Kanal slettet';
+
+  @override
+  String get auditLogActionThreadCreate => 'Thread created';
+
+  @override
+  String get auditLogActionThreadUpdate => 'Thread updated';
+
+  @override
+  String get auditLogActionThreadDelete => 'Thread deleted';
 
   @override
   String get auditLogActionChannelOverwriteCreate =>
@@ -12496,6 +12521,21 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String auditLogSummaryChannelDelete(String actor, String target) {
     return '$actor slettet kanalen $target.';
+  }
+
+  @override
+  String auditLogSummaryThreadCreate(String actor, String target) {
+    return '$actor started the thread $target.';
+  }
+
+  @override
+  String auditLogSummaryThreadUpdate(String actor, String target) {
+    return '$actor updated the thread $target.';
+  }
+
+  @override
+  String auditLogSummaryThreadDelete(String actor, String target) {
+    return '$actor deleted the thread $target.';
   }
 
   @override
@@ -12896,12 +12936,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get auditLogOptionPermanentMembership => 'Gir permanent medlemskap.';
 
   @override
-  String get guildSettingsLoadMore => 'Last inn mer';
-
-  @override
-  String get guildSettingsLoadingMore => 'Loading...';
-
-  @override
   String get guildSettingsWebhooksDescription =>
       'Se og administrer alle webhooks som er konfigurert i fellesskapet ditt.';
 
@@ -12937,31 +12971,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get guildSettingsUnknownChannel => 'Ukjent kanal';
 
   @override
-  String get guildSettingsCopyUrl => 'Kopier URL';
-
-  @override
   String get guildSettingsCopiedUrl => 'URL kopiert til utklippstavlen';
-
-  @override
-  String get guildSettingsDeleteWebhook => 'Slett webhook';
-
-  @override
-  String get guildSettingsVanityUrlDescription =>
-      'Angi en egendefinert invitasjonslenke for serveren din.';
-
-  @override
-  String get guildSettingsVanityUrlHint => 'my-server';
-
-  @override
-  String get guildSettingsSave => 'Lagre';
-
-  @override
-  String get guildSettingsVanityUrlUsageTitle => 'Bruk';
-
-  @override
-  String guildSettingsVanityUrlUses(int count) {
-    return '$count bruksområder';
-  }
 
   @override
   String get guildSettingsDiscoveryDescription =>
@@ -13102,10 +13112,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Prøv igjen om en liten stund.';
 
   @override
-  String get guildSettingsMembersDescription =>
-      'Søk og administrer servermedlemmer.';
-
-  @override
   String get guildSettingsMembersSearchHint => 'Søk etter brukernavn eller ID';
 
   @override
@@ -13146,9 +13152,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get guildMembersColumnRoles => 'Roller';
-
-  @override
-  String get guildMembersColumnActions => 'Handlinger';
 
   @override
   String get guildMembersFilterMemberSince => 'Filtrer etter medlem siden';
@@ -13216,17 +13219,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get guildMembersIndexing => 'Indekserer medlemmer…';
 
   @override
-  String get guildMembersGoToPage => 'Gå til side';
-
-  @override
-  String guildMembersGoToPageItem(int page) {
-    return 'Gå til side $page';
-  }
-
-  @override
-  String get guildMembersJumpToPage => 'Gå til side';
-
-  @override
   String get guildMembersJoinSourceCreator => 'Fellesskapets skaper';
 
   @override
@@ -13289,21 +13281,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   }
 
   @override
-  String guildMembersJoinedDaysAgo(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count dager siden',
-      one: '1 dag siden',
-    );
-    return '$_temp0';
-  }
-
-  @override
   String get guildMembersChannelListLabel => 'Medlemmer';
-
-  @override
-  String get guildMembersChannelListSelected => 'Medlemmer, valgt';
 
   @override
   String get guildSettingsInvitesTitle => 'Invitasjoner';
@@ -13413,16 +13391,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Lenken kan fortsatt fungere. Prøv igjen om et øyeblikk.';
 
   @override
-  String guildSettingsInviteUses(int uses, int maxUses) {
-    return '$uses / $maxUses bruksområder';
-  }
-
-  @override
-  String guildSettingsInviteExpires(String date) {
-    return 'Utløper $date';
-  }
-
-  @override
   String get guildSettingsBansDescription =>
       'Se og administrer utestengte brukere.';
 
@@ -13433,21 +13401,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get guildSettingsBansEmpty => 'Ingen utestengte brukere.';
 
   @override
-  String get guildSettingsBanPermanent => 'Permanent utestengelse';
-
-  @override
-  String guildSettingsBanExpires(String date) {
-    return 'Utløper $date';
-  }
-
-  @override
   String get guildSettingsBanExpiresLabel => 'Utløper';
-
-  @override
-  String get guildSettingsUnban => 'Fjern utestengelse';
-
-  @override
-  String get guildSettingsBansLoading => 'Laster utestengte brukere';
 
   @override
   String get guildSettingsBansNoSearchResults =>
@@ -13479,15 +13433,25 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   }
 
   @override
-  String get guildSettingsBansLoadError =>
-      'Kunne ikke laste utestengelser. Prøv igjen.';
-
-  @override
   String get guildSettingsRevokeBanError =>
       'Kunne ikke fjerne utestengelse. Prøv igjen.';
 
   @override
   String get guildSettingsCommunitySettings => 'Fellesskapsinnstillinger';
+
+  @override
+  String get guildSettingsDeleteCommunity => 'Slett fellesskap';
+
+  @override
+  String get guildSettingsDeleteCommunityConfirm =>
+      'Er du sikker på at du vil slette dette fellesskapet? Denne handlingen kan ikke angres. Alle kanaler, meldinger og innstillinger blir slettet permanent.';
+
+  @override
+  String get guildSettingsCommunityDeleted => 'Fellesskap slettet';
+
+  @override
+  String get guildSettingsDeleteCommunityFailed =>
+      'Kunne ikke slette dette fellesskapet';
 
   @override
   String get guildSettingsCategoryExpressions => 'EXPRESSIONS';
@@ -13500,10 +13464,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get guildSettingsCategoryPeople => 'PEOPLE';
-
-  @override
-  String get guildSettingsOverviewDescription =>
-      'Administrer fellesskapets profil, kanaler og standardinnstillinger.';
 
   @override
   String get guildSettingsOverviewBrandingTitle => 'Merkevarebygging';
@@ -13537,9 +13497,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Fellesskap med over 250 personer tvinges til innstillingen \"kun varsler\". Din opprinnelige innstilling beholdes og vil bli gjenopprettet hvis fellesskapet faller under 250 medlemmer.';
 
   @override
-  String get guildSettingsOverviewAdvancedTitle => 'Avansert';
-
-  @override
   String get guildSettingsOverviewFlexibleNames =>
       'Tillat fleksible tekstkanalnavn';
 
@@ -13565,10 +13522,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get guildSettingsOverviewEmbedSplashTitle => 'Chat-innebygd bakgrunn';
-
-  @override
-  String get guildSettingsOverviewEmbedSplashHint =>
-      'Vises i invitasjonsinnebygginger i chat.';
 
   @override
   String get guildSettingsOverviewUploadBackground => 'Last opp bakgrunn';
@@ -13744,14 +13697,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'JPEG, PNG, WebP, AVIF. Maks 10 MB. Minimum: 960×540 piksler (16:9). Vises i invitasjons-embeds i chat.';
 
   @override
-  String get guildSettingsModerationDescription =>
-      'Konfigurer verifisering, innholdsfiltrering og innstillinger for modent innhold.';
-
-  @override
-  String get guildSettingsModerationDiscoveryNotice =>
-      'Fellesskap som er listet i Discovery har begrensede modereringsalternativer.';
-
-  @override
   String get guildSettingsModerationContentFilterTitle => 'Innholdsfiltrering';
 
   @override
@@ -13785,12 +13730,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Maksimal beskyttelse for familievennlige områder';
 
   @override
-  String get guildSettingsModerationMatureOff => 'Av';
-
-  @override
-  String get guildSettingsModerationMatureOn => 'På';
-
-  @override
   String get guildSettingsContentWarningToggle => 'Vis en innholdsadvarsel';
 
   @override
@@ -13814,10 +13753,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get guildSettingsModeration2faSwitchLabel =>
       'Krev 2FA for modereringshandlinger';
-
-  @override
-  String get guildSettingsModeration2faOwnerOnlyTooltip =>
-      'Kun fellesskapets eier kan endre denne innstillingen';
 
   @override
   String get guildSettingsModeration2faEnableFirstTooltip =>
@@ -13844,9 +13779,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Ingen emojier samsvarer med søket ditt.';
 
   @override
-  String get guildSettingsEmojiNoSlots => 'Ingen emojisporene er tilgjengelige';
-
-  @override
   String get guildSettingsEmojiSlotsFull =>
       'Du har nådd maksimalt antall emojier. Slett noen eksisterende emojier for å få plass.';
 
@@ -13856,30 +13788,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   }
 
   @override
-  String get guildSettingsEmojiUploadingTitle => 'Laster opp emojier';
-
-  @override
-  String guildSettingsEmojiUploadingBody(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '# emojier',
-      one: '# emoji',
-    );
-    return 'Laster opp $_temp0. Dette kan ta litt tid.';
-  }
-
-  @override
-  String get guildSettingsEmojiUploadFailed =>
-      'Kunne ikke laste opp emojier. Prøv igjen.';
-
-  @override
   String get guildSettingsEmojiSomeFailedTitle =>
       'Noen emojier kunne ikke legges til';
-
-  @override
-  String get guildSettingsEmojiSomeFailedBody =>
-      'Gå gjennom disse filene og prøv igjen med mindre eller enklere bilder.';
 
   @override
   String get guildSettingsEmojiRenameTitle => 'Gi nytt navn til emojien';
@@ -13889,16 +13799,10 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       '2–32 tegn, bokstaver, tall, understreker.';
 
   @override
-  String get guildSettingsEmojiColumnEmoji => 'Emoji';
-
-  @override
   String get guildSettingsEmojiColumnName => 'Navn';
 
   @override
   String get guildSettingsEmojiColumnUploader => 'Lastet opp av';
-
-  @override
-  String get guildSettingsEmojiUnknownUploader => 'Ukjent';
 
   @override
   String get guildSettingsEmojiDeleteTitle => 'Slett emoji';
@@ -13928,38 +13832,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Kunne ikke gi nytt navn til denne emojien';
 
   @override
-  String get guildSettingsEmojiRenameFailedBody =>
-      'Navnet ble tilbakestilt til det det var før. Prøv igjen om en liten stund.';
-
-  @override
-  String get guildSettingsEmojiGoneTitle => 'Denne emojien finnes ikke lenger';
-
-  @override
-  String get guildSettingsEmojiGoneBody =>
-      'Den kan ha blitt slettet. Navnet ble tilbakestilt til det det var før.';
-
-  @override
-  String get guildSettingsEmojiNoPermissionRenameTitle =>
-      'Du kan ikke gi denne emojien nytt navn';
-
-  @override
-  String get guildSettingsEmojiNoPermissionRenameBody =>
-      'Du har ikke tillatelse til å endre navn på denne emojien. Navnet ble tilbakestilt til det opprinnelige.';
-
-  @override
-  String get guildSettingsEmojiRateLimitedTitle => 'Du er for rask';
-
-  @override
-  String get guildSettingsEmojiRateLimitedBody =>
-      'Vent litt, og prøv å endre navn på nytt.';
-
-  @override
   String get guildSettingsEmojiDeleteFailedTitle =>
       'Kunne ikke slette denne emojien';
-
-  @override
-  String get guildSettingsEmojiDeleteNoPermissionTitle =>
-      'Du kan ikke slette denne emojien';
 
   @override
   String get guildSettingsCloneEmojiTitle => 'Tillat andre å klone emojier';
@@ -14034,13 +13908,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Ingen klistremerker samsvarer med søket ditt.';
 
   @override
-  String get guildSettingsStickersEmptySearch => 'Ingen klistremerker funnet';
-
-  @override
-  String get guildSettingsStickerNoSlots =>
-      'Ingen klistremerkeplasser tilgjengelig';
-
-  @override
   String get guildSettingsStickerSlotsFull =>
       'Du har nådd maksimalt antall klistremerker. Slett noen eksisterende klistremerker for å få plass.';
 
@@ -14048,10 +13915,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String guildSettingsStickerUploadRequirements(String maxSize) {
     return 'Klistremerker lagres i 320x320 piksler og må være under $maxSize. Statiske bilder endres størrelse og komprimeres automatisk. Animerte klistremerker og SVG-er må allerede passe inn i grensen.';
   }
-
-  @override
-  String get guildSettingsStickerUnsupportedTitle =>
-      'Filtypen for klistremerket støttes ikke';
 
   @override
   String get guildSettingsStickerAddTitle => 'Legg til klistremerke';
@@ -14102,13 +13965,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Kunne ikke opprette dette klistremerket';
 
   @override
-  String get guildSettingsStickerTooLargeTitle => 'Klistremerket er for stort';
-
-  @override
-  String get guildSettingsStickerCompressFailedTitle =>
-      'Klistremerket kunne ikke komprimeres nok';
-
-  @override
   String get guildSettingsStickerDeleteTitle => 'Slett klistremerke';
 
   @override
@@ -14125,20 +13981,9 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Kunne ikke slette dette klistremerket';
 
   @override
-  String get guildSettingsStickerDeleteNoPermissionTitle =>
-      'Du kan ikke slette dette klistremerket';
-
-  @override
   String guildSettingsWebhooksInfo(String channelSettingsPath) {
     return 'For å opprette en webhook, åpne $channelSettingsPath. Du kan fortsatt redigere og organisere alle eksisterende webhooks her.';
   }
-
-  @override
-  String get guildSettingsVanityUrlWarning =>
-      'Din egendefinerte URL vil ikke fungere med mindre minst én kanal er synlig for alle.';
-
-  @override
-  String get guildSettingsVanityUrlRemove => 'Fjern';
 
   @override
   String get guildSettingsBannedUsersTitle => 'Utestengte brukere';
@@ -14507,136 +14352,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get homeQuickActionDms => 'Direktemeldinger';
 
   @override
-  String get uiViewThreads => 'View threads';
-
-  @override
-  String get uiJoinThread => 'Join thread';
-
-  @override
-  String get uiLeaveThread => 'Leave thread';
-
-  @override
-  String get threadsTitle => 'Tråder';
-
-  @override
-  String get threadsPostsTitle => 'Innlegg';
-
-  @override
-  String get threadsFilterActive => 'Aktiv';
-
-  @override
-  String get threadsFilterArchived => 'Arkiverte';
-
-  @override
-  String get threadsNewThread => 'Ny tråd';
-
-  @override
-  String get threadsNewThreadTitle => 'Ny tråd';
-
-  @override
-  String get threadsNameLabel => 'Navn på tråden';
-
-  @override
-  String get threadsNameHint => 'Gi tråden et navn';
-
-  @override
-  String get threadsCreateThread => 'Opprett tråd';
-
-  @override
-  String get threadsCreateThreadAction => 'Opprett tråd';
-
-  @override
-  String get threadsCreateFailed => 'Kunne ikke opprette tråden. Prøv igjen.';
-
-  @override
-  String get threadsLoadFailed => 'Kunne ikke laste trådene.';
-
-  @override
-  String get threadsNoActive => 'Ingen aktive tråder ennå';
-
-  @override
-  String get threadsNoArchived => 'Ingen arkiverte tråder';
-
-  @override
-  String threadsMessageCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count meldinger',
-      one: '1 melding',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String threadsMemberCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count medlemmer',
-      one: '1 medlem',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get threadsStatusLocked => 'Låst';
-
-  @override
-  String get threadsStatusArchived => 'Arkiverte';
-
-  @override
-  String get threadsManage => 'Administrer';
-
-  @override
-  String get threadsPin => 'Fest';
-
-  @override
-  String get threadsUnpin => 'Løsne';
-
-  @override
-  String get threadsArchive => 'Arkiver';
-
-  @override
-  String get threadsUnarchive => 'Hent ut av arkivet';
-
-  @override
-  String get threadsLock => 'Lås';
-
-  @override
-  String get threadsUnlock => 'Lås opp';
-
-  @override
-  String get threadsDelete => 'Slett';
-
-  @override
-  String get threadsActionFailed => 'Noe gikk galt. Prøv igjen.';
-
-  @override
-  String get threadsCloseThread => 'Lukk tråd';
-
-  @override
-  String get threadsReopenThread => 'Gjenåpne tråd';
-
-  @override
-  String get threadsLockThread => 'Lås tråd';
-
-  @override
-  String get threadsUnlockThread => 'Lås opp tråd';
-
-  @override
-  String get threadsLeaveThread => 'Leave thread';
-
-  @override
-  String get threadsDeleteThread => 'Slett tråd';
-
-  @override
-  String get threadsMembersTab => 'Trådmedlemmer';
-
-  @override
-  String get threadsMembersLoadFailed => 'Kunne ikke laste medlemmene';
-
-  @override
   String get threadsAddMember => 'Add member';
 
   @override
@@ -14646,1064 +14361,77 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get threadsAddMemberNoResults => 'No members match that search.';
 
   @override
-  String get threadsRemoveMember => 'Remove from thread';
-
-  @override
   String get threadsMemberAddedToast => 'Member added';
 
   @override
-  String get threadsMemberRemovedToast => 'Member removed';
+  String get assistantNeedsLogin => 'Åpne Fluxer og logg på først.';
 
   @override
-  String get threadsLeftToast => 'You left the thread';
+  String get assistantNotInVoice => 'Du er ikke i en samtale.';
 
   @override
-  String get threadsMembersFullToast =>
-      'This thread has reached its member limit.';
-
-  @override
-  String get threadsMemberNotFoundToast =>
-      'That person cannot see this channel.';
-
-  @override
-  String get threadsMembersForbiddenToast =>
-      'You do not have permission to change this thread\'s members.';
-
-  @override
-  String get threadsInvitableLabel => 'Anyone in the thread can add others';
-
-  @override
-  String get threadsInvitableDescription =>
-      'When this is on, every member of this private thread can add other people to it.';
-
-  @override
-  String get threadsNoMembersTitle => 'Ingen trådmedlemmer ennå';
-
-  @override
-  String get threadsNoMembersBody =>
-      'Personer som blir med i denne tråden, vises her.';
-
-  @override
-  String get forumChannelTypeLabel => 'Forum';
-
-  @override
-  String get forumChannelTypeDescription =>
-      'Et rom for ryddige innlegg i tråder';
-
-  @override
-  String get forumNewPost => 'Nytt innlegg';
-
-  @override
-  String get forumNewPostTitle => 'Nytt innlegg';
-
-  @override
-  String get forumCreatePost => 'Opprett innlegg';
-
-  @override
-  String get forumCreatePostFailed =>
-      'Kunne ikke opprette innlegget. Prøv igjen.';
-
-  @override
-  String get forumPostMessageFailed =>
-      'Innlegget ble opprettet, men meldingen kunne ikke sendes.';
-
-  @override
-  String get forumPostTitleLabel => 'Tittel';
-
-  @override
-  String get forumPostTitleHint => 'Tittel på innlegget';
-
-  @override
-  String get forumPostMessageLabel => 'Melding';
-
-  @override
-  String get forumPostMessageHint => 'Skriv en melding';
-
-  @override
-  String get forumPostTagsLabel => 'Tagger';
-
-  @override
-  String get forumPostTagsRequiredLabel => 'Tagger (velg minst én)';
-
-  @override
-  String get forumPostTagsRequiredNoneHint =>
-      'Dette forumet krever en tagg, men ingen er opprettet ennå.';
-
-  @override
-  String get forumPostNoTagsHint =>
-      'Dette forumet har ingen tagger ennå. Legg til noen under Administrer tagger.';
-
-  @override
-  String get forumSearchPosts => 'Søk i innlegg';
-
-  @override
-  String get forumSortAndView => 'Sortering og visning';
-
-  @override
-  String get forumSortRecentActivity => 'Nylig aktive';
-
-  @override
-  String get forumSortName => 'Navn (A-Z)';
-
-  @override
-  String get forumManageTags => 'Administrer tagger';
-
-  @override
-  String get forumNoTags => 'Ingen tagger ennå';
-
-  @override
-  String get forumRemoveTag => 'Fjern tagg';
-
-  @override
-  String get forumNewTagLabel => 'Ny tagg';
-
-  @override
-  String get forumNewTagHint => 'Navn på taggen';
-
-  @override
-  String get forumAddTag => 'Legg til tagg';
-
-  @override
-  String get forumTagsUpdated => 'Taggene er oppdatert';
-
-  @override
-  String get forumTagsUpdateFailed =>
-      'Kunne ikke oppdatere taggene. Prøv igjen.';
-
-  @override
-  String get forumLoadFailed => 'Kunne ikke laste innleggene.';
-
-  @override
-  String get forumNoPosts => 'Ingen innlegg ennå';
-
-  @override
-  String get forumNoArchivedPosts => 'Ingen arkiverte tråder';
-
-  @override
-  String systemThreadCreated(String username, String threadName) {
-    return '$username startet en tråd: $threadName.';
-  }
-
-  @override
-  String systemPreviewStartedThread(String username) {
-    return '$username startet en tråd.';
-  }
-
-  @override
-  String get systemThreadDeleted => 'en slettet tråd';
-
-  @override
-  String get threadsComposerLockedHint =>
-      'Denne tråden er låst. Bare moderatorer kan sende meldinger.';
-
-  @override
-  String get threadsComposerArchivedHint =>
-      'Denne tråden er arkivert. Å sende en melding gjenåpner den.';
-
-  @override
-  String forumNewPostsPill(int count) {
-    return '$count nye';
-  }
-
-  @override
-  String get forumSearchOrCreatePost => 'Søk eller opprett et innlegg...';
-
-  @override
-  String get forumSortBy => 'Sorter etter';
-
-  @override
-  String get forumSortDatePosted => 'Publiseringsdato';
-
-  @override
-  String get forumViewAs => 'Vis som';
-
-  @override
-  String get forumLayoutList => 'Liste';
-
-  @override
-  String get forumLayoutGallery => 'Galleri';
-
-  @override
-  String get forumResetViewToDefault => 'Tilbakestill til standard';
-
-  @override
-  String get forumAllTags => 'Alle';
-
-  @override
-  String forumTagsSelectedCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count tagger',
-      one: '1 tagg',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get forumPostGuidelinesLabel => 'Retningslinjer for innlegg';
-
-  @override
-  String get forumEditPost => 'Rediger innlegg';
-
-  @override
-  String get forumPostTagRequiredToast =>
-      'Velg minst én tagg for dette forumet.';
-
-  @override
-  String get threadsFollow => 'Følg';
-
-  @override
-  String get threadsUnfollow => 'Slutt å følge';
-
-  @override
-  String get threadsFollowing => 'Følger';
-
-  @override
-  String get threadsMute => 'Dempe';
-
-  @override
-  String get threadsUnmute => 'Slå på lyden';
-
-  @override
-  String get threadsEditThread => 'Rediger tråd';
-
-  @override
-  String get forumSettingsTitle => 'Foruminnstillinger';
-
-  @override
-  String get forumSettingsGuidelinesHint =>
-      'Fortell medlemmene hva de kan skrive om her';
-
-  @override
-  String get forumSettingsRequireTag =>
-      'Krev at medlemmer velger en tagg når de poster';
-
-  @override
-  String get forumSettingsRequireTagDescription =>
-      'Medlemmer må velge minst én tagg før de kan publisere.';
-
-  @override
-  String get forumSettingsDefaultSort => 'Standardsortering';
-
-  @override
-  String get forumSettingsDefaultLayout => 'Standardoppsett';
-
-  @override
-  String get forumSettingsDefaultReaction => 'Standardreaksjon';
-
-  @override
-  String get forumSettingsDefaultReactionDescription =>
-      'Vises som hurtigreaksjon på alle innlegg. La feltet stå tomt for ingen.';
-
-  @override
-  String get forumSettingsDefaultReactionHint => 'En emoji, for eksempel 👍';
-
-  @override
-  String get forumSettingsHideAfterInactivity => 'Skjul etter inaktivitet';
-
-  @override
-  String get forumSettingsHideAfterInactivityDescription =>
-      'Inaktive innlegg flyttes til Arkiverte. Alle kan gjenåpne et innlegg som ikke er låst.';
-
-  @override
-  String get forumSettingsHideAfterOneHour => '1 time';
-
-  @override
-  String get forumSettingsHideAfterOneDay => '24 timer';
-
-  @override
-  String get forumSettingsHideAfterThreeDays => '3 dager';
-
-  @override
-  String get forumSettingsHideAfterOneWeek => '1 uke';
-
-  @override
-  String get forumSettingsPostCreationSlowmode =>
-      'Sakte modus for oppretting av innlegg';
-
-  @override
-  String get forumSettingsPostCreationSlowmodeDescription =>
-      'Hvor lenge medlemmer venter mellom nye innlegg.';
-
-  @override
-  String get forumSettingsDefaultPostSlowmode => 'Sakte modus i nye innlegg';
-
-  @override
-  String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Brukes på innlegg når de opprettes.';
-
-  @override
-  String get forumSettingsSave => 'Lagre foruminnstillinger';
-
-  @override
-  String get forumSettingsSaved => 'Foruminnstillingene er lagret';
-
-  @override
-  String get forumSettingsSaveFailed => 'Kunne ikke lagre foruminnstillingene';
-
-  @override
-  String get threadsStarterMessage => 'Startet fra';
-
-  @override
-  String get threadsOriginalPosterTag => 'OP';
-
-  @override
-  String get forumReactToPost => 'Reager på innlegget';
-
-  @override
-  String get forumReactToPostOther => 'Reager med en annen emoji';
-
-  @override
-  String get forumEmptyHeading => 'Start samtalen!';
-
-  @override
-  String forumEmptyBody(String forumName) {
-    return 'Hva vil du skrive om i $forumName?';
-  }
-
-  @override
-  String get forumSeeExamples => 'Se eksempler';
-
-  @override
-  String get forumExampleQuestion =>
-      'Still et spørsmål og gi det en tagg, så andre finner det senere.';
-
-  @override
-  String get forumExampleShow =>
-      'Del noe du har laget, og la andre svare på det.';
-
-  @override
-  String get forumExampleDiscussion =>
-      'Start en diskusjon om ett tema, og hold den i dette innlegget.';
-
-  @override
-  String get forumTagModeratedOn =>
-      'Bare moderatorer, trykk for å tillate alle';
-
-  @override
-  String get forumTagModeratedOff =>
-      'Alle kan bruke den, trykk for å forbeholde den moderatorer';
-
-  @override
-  String get forumAddToPost => 'Legg til i innlegget';
-
-  @override
-  String get forumAddToPostDone => 'Lagt til i innlegget.';
-
-  @override
-  String get forumAddToPostFailed =>
-      'Kunne ikke legge det til i innlegget. Prøv igjen.';
-
-  @override
-  String get applicationsTitle => 'Apper';
-
-  @override
-  String get applicationsCreate => 'Opprett app';
-
-  @override
-  String get applicationsCreateSubmit => 'Opprett';
-
-  @override
-  String get applicationsCreateClaimTooltip =>
-      'Fullfør registreringen av kontoen din for å opprette apper.';
-
-  @override
-  String applicationsDocsLink(String domain) {
-    return 'Les dokumentasjonen ($domain)';
-  }
-
-  @override
-  String get applicationsLoadError => 'Kunne ikke laste inn apper';
-
-  @override
-  String get applicationsLoadErrorDescription =>
-      'Sjekk tilkoblingen din og prøv igjen.';
-
-  @override
-  String get applicationsEmptyTitle => 'Ingen apper ennå';
-
-  @override
-  String applicationsEmptyDescription(String apiName) {
-    return 'Opprett din første app for å komme i gang med $apiName.';
-  }
-
-  @override
-  String applicationsCreated(String date) {
-    return 'Created $date';
-  }
-
-  @override
-  String get applicationsName => 'Appnavn';
-
-  @override
-  String get applicationsNameHint => 'Min app';
-
-  @override
-  String get applicationsNameRequired => 'Appnavn er påkrevd';
-
-  @override
-  String get applicationsBackToList => 'Tilbake til listen';
-
-  @override
-  String get applicationsDetailLoadError => 'Kunne ikke laste inn denne appen';
-
-  @override
-  String get applicationsDetailLoadErrorDescription =>
-      'Prøv igjen, eller gå tilbake til listen over apper.';
-
-  @override
-  String get applicationsId => 'App-ID';
-
-  @override
-  String get applicationsCopyId => 'Kopier ID';
-
-  @override
-  String get applicationsSecretsTitle => 'Hemmeligheter og tokens';
-
-  @override
-  String get applicationsSecretsDescription =>
-      'Oppbevar disse trygt. Hvis du genererer dem på nytt, vil eksisterende integrasjoner slutte å fungere.';
-
-  @override
-  String get applicationsClientSecret => 'Klienthemmelighet';
-
-  @override
-  String get applicationsBotToken => 'Bot-token';
-
-  @override
-  String get applicationsRegenerate => 'Generer på nytt';
-
-  @override
-  String get applicationsRegenerateClientSecretTitle =>
-      'Vil du generere en ny klienthemmelighet?';
-
-  @override
-  String get applicationsRegenerateBotTokenTitle =>
-      'Generere et nytt bot-token?';
-
-  @override
-  String get applicationsRegenerateClientSecretDescription =>
-      'Hvis du genererer på nytt, blir den nåværende hemmeligheten ugyldig. Oppdater all kode som bruker den gamle verdien.';
-
-  @override
-  String get applicationsRegenerateBotTokenDescription =>
-      'Hvis du genererer på nytt, blir det nåværende tokenet ugyldig. Oppdater all kode som bruker den gamle verdien.';
-
-  @override
-  String get applicationsClientSecretRegenerated =>
-      'Klienthemmeligheten er fornyet. Oppdater all kode som bruker den gamle hemmeligheten.';
-
-  @override
-  String get applicationsBotTokenRegenerated =>
-      'Bot-tokenet er fornyet. Oppdater all kode som bruker det gamle tokenet.';
-
-  @override
-  String get applicationsRegenerateFailed => 'Kunne ikke fornye hemmeligheten';
-
-  @override
-  String get applicationsInfoTitle => 'Appinformasjon';
-
-  @override
-  String get applicationsInfoDescription =>
-      'Grunnleggende innstillinger og tillatte omdirigerings-URI-er.';
-
-  @override
-  String get applicationsPublicBot => 'Offentlig bot';
-
-  @override
-  String get applicationsPublicBotDescription =>
-      'Tillat alle å invitere denne boten til fellesskapene sine.';
-
-  @override
-  String get applicationsRequireCodeGrant =>
-      'Krev autorisasjonskodeflyten i OAuth2';
-
-  @override
-  String get applicationsRequireCodeGrantDescription =>
-      'Krever en omdirigerings-URI og en autorisasjonskode når denne boten inviteres.';
-
-  @override
-  String get applicationsRedirectUris => 'Omdirigerings-URI-er';
-
-  @override
-  String get applicationsAddRedirect => 'Legg til omdirigering';
-
-  @override
-  String get applicationsDeleteRedirect => 'Slett omdirigerings-URI';
-
-  @override
-  String get applicationsBotProfileTitle => 'Botprofil';
-
-  @override
-  String get applicationsBotProfileDescription =>
-      'Avatar, tagg og utfyllende profilinformasjon for boten din.';
-
-  @override
-  String get applicationsBotAvatar => 'Botavatar';
-
-  @override
-  String get applicationsUsernameRequired => 'Brukernavn er påkrevd';
-
-  @override
-  String get applicationsUsernameTooLong =>
-      'Brukernavnet kan ikke være lenger enn 32 tegn';
-
-  @override
-  String get applicationsUsernameInvalid =>
-      'Brukernavn kan bare inneholde bokstaver, tall og understreker';
-
-  @override
-  String get applicationsBotUsername => 'Botbrukernavn';
-
-  @override
-  String get applicationsDiscriminator => 'Diskriminator';
-
-  @override
-  String get applicationsBotBio => 'Botbio';
-
-  @override
-  String get applicationsBotBioHint =>
-      'En hjelpsom bot som gjør fantastiske ting!';
-
-  @override
-  String get applicationsNoBotBanner => 'Ingen botbanner';
-
-  @override
-  String get applicationsFriendlyBot => 'Vennlig bot';
-
-  @override
-  String get applicationsFriendlyBotDescription =>
-      'Tillat brukere å sende venneforespørsler til denne boten for manuell godkjenning.';
-
-  @override
-  String get applicationsManualFriendApproval =>
-      'Krev manuell godkjenning av venneforespørsler';
-
-  @override
-  String get applicationsManualFriendApprovalDescription =>
-      'Venneforespørsler til denne boten må godkjennes manuelt.';
-
-  @override
-  String get applicationsOauthBuilderTitle => 'URL-bygger for OAuth2';
-
-  @override
-  String get applicationsOauthBuilderDescription =>
-      'Construct an authorize URL with scopes and permissions.';
-
-  @override
-  String get applicationsScopes => 'Omfang';
-
-  @override
-  String get applicationsRedirectUri => 'Omdirigerings-URI';
-
-  @override
-  String get applicationsSelectRedirectUri => 'Velg en omdirigerings-URI';
-
-  @override
-  String get applicationsRedirectRequiredCodeGrant =>
-      'Omdirigerings-URI er påkrevd fordi denne boten krever autorisasjonskodeflyten i OAuth2.';
-
-  @override
-  String get applicationsRedirectRequiredScopes =>
-      'Omdirigerings-URI er påkrevd når du ikke bare bruker bot-omfanget.';
-
-  @override
-  String get applicationsBotPermissions => 'Bottillatelser';
-
-  @override
-  String get applicationsAuthorizeUrl => 'Autorisasjons-URL';
-
-  @override
-  String get applicationsAuthorizeUrlPlaceholder =>
-      'Velg omfang (og omdirigerings-URI om nødvendig)';
-
-  @override
-  String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
-
-  @override
-  String get applicationsCopiedUrl => 'URL kopiert til utklippstavlen';
-
-  @override
-  String get applicationsDangerTitle => 'Faresone';
-
-  @override
-  String get applicationsDangerSubtitle =>
-      'Dette kan ikke angres. Hvis du fjerner appen, slettes også boten.';
-
-  @override
-  String get applicationsDangerHelper =>
-      'Når appen slettes, fjernes den og tilgangsopplysningene permanent.';
-
-  @override
-  String get applicationsDelete => 'Slett app';
-
-  @override
-  String applicationsDeleteConfirmDescription(String name) {
-    return 'Are you sure you want to delete $name? This action cannot be undone. All associated data, including the bot user, will be permanently deleted.';
-  }
-
-  @override
-  String get applicationsDeleteFailed => 'Kunne ikke slette appen';
-
-  @override
-  String get applicationsUpdated => 'Appen er oppdatert';
-
-  @override
-  String get applicationsNoChanges => 'Ingen endringer å lagre';
-
-  @override
-  String get applicationsSearchBots => 'Apper og boter';
-
-  @override
-  String get applicationsSearchBotsDescription =>
-      'Opprett og administrer apper og boter for kontoen din';
-
-  @override
-  String get applicationsSearchInfoDescription =>
-      'Rediger grunnleggende appinformasjon og omdirigerings-URI-er';
-
-  @override
-  String get applicationsSearchBotProfileDescription =>
-      'Rediger botens avatar, tagg, bio, banner og virkemåte for venneforespørsler';
-
-  @override
-  String get applicationsSearchOauthDescription =>
-      'Opprett en autorisasjons-URL med tilgangsomfang, omdirigeringer og bottillatelser';
-
-  @override
-  String get applicationsSearchSecretsDescription =>
-      'Vis og generer nye klienthemmeligheter og bot-tokener';
-
-  @override
-  String get applicationsSearchBotsKeyword => 'Boter';
-
-  @override
-  String get applicationsSearchDocumentation => 'Dokumentasjon';
-
-  @override
-  String get linkedDevicesViewDetails => 'Vis detaljer';
-
-  @override
-  String get linkedDevicesDetailsTitle => 'Enhetsdetaljer';
-
-  @override
-  String get linkedDevicesDetailsDevice => 'Enhet';
-
-  @override
-  String get linkedDevicesDetailsClient => 'Klient';
-
-  @override
-  String get linkedDevicesDetailsLocation => 'Sted';
-
-  @override
-  String get linkedDevicesDetailsIp => 'IP-adresse';
-
-  @override
-  String get linkedDevicesDetailsLastUsed => 'Sist brukt';
-
-  @override
-  String get linkedDevicesCurrentSession => 'Gjeldende økt';
-
-  @override
-  String get linkedDevicesUnknown => 'Ukjent';
-
-  @override
-  String get chatMessagePinConfirm => 'Fest';
-
-  @override
-  String get chatMessagePinConfirmDescription =>
-      'Fest denne meldingen til kanalen så alle kan se den.';
-
-  @override
-  String get savedMessagesAddedToast => 'Lagt til i lagrede meldinger';
-
-  @override
-  String get savedMessagesRemovedToast => 'Fjernet fra lagrede meldinger';
-
-  @override
-  String get guildSettingsDeleteCommunity => 'Slett fellesskap';
-
-  @override
-  String get guildSettingsDeleteCommunityConfirm =>
-      'Er du sikker på at du vil slette dette fellesskapet? Denne handlingen kan ikke angres. Alle kanaler, meldinger og innstillinger blir slettet permanent.';
-
-  @override
-  String get guildSettingsCommunityDeleted => 'Fellesskap slettet';
-
-  @override
-  String get guildSettingsDeleteCommunityFailed =>
-      'Couldn\'t delete this community';
-
-  @override
-  String get assistantNeedsLogin => 'Open echowire and sign in first.';
-
-  @override
-  String get assistantNotInVoice => 'You\'re not in a call.';
-
-  @override
-  String get assistantNotFound => 'echowire could not find that.';
+  String get assistantNotFound => 'Fluxer fant ikke det.';
 
   @override
   String get assistantDmsDisabled =>
-      'Direct messages are disabled on this instance.';
+      'Direktemeldinger er deaktivert på denne instansen.';
 
   @override
-  String get assistantFailed => 'echowire could not complete that.';
+  String get assistantFailed => 'Fluxer kunne ikke fullføre dette.';
 
   @override
-  String get assistantOkMuted => 'Muted.';
+  String get assistantOkMuted => 'Mikrofonen er dempet.';
 
   @override
-  String get assistantOkUnmuted => 'Unmuted.';
+  String get assistantOkUnmuted => 'Mikrofonen er på.';
 
   @override
-  String get assistantOkLeftVoice => 'Left voice.';
+  String get assistantOkLeftVoice => 'Forlot talekanalen.';
 
   @override
-  String get assistantOkJoinedVoice => 'Joining voice.';
+  String get assistantOkJoinedVoice => 'Kobler til talekanalen.';
 
   @override
-  String get assistantOkStartedCall => 'Starting the call.';
+  String get assistantOkStartedCall => 'Starter samtalen.';
 
   @override
   String assistantOkStatusSet(String status) {
-    return 'Status set to $status.';
+    return 'Status satt til $status.';
   }
 
   @override
-  String get assistantOkOpened => 'Opening echowire.';
+  String get assistantOkOpened => 'Åpner Fluxer.';
 
   @override
   String get assistantOkMessageSent => 'Melding sendt.';
 
   @override
-  String get assistantOkCustomStatusSet => 'Custom status updated.';
+  String get assistantOkCustomStatusSet => 'Egendefinert status oppdatert.';
 
   @override
-  String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+  String get assistantOkCustomStatusCleared =>
+      'Egendefinert status er fjernet.';
 
   @override
-  String get notificationsPushRelaySectionTitle => 'Relé for push-varsler';
-
-  @override
-  String notificationsPushRelaySectionDescription(String pushProvider) {
-    return '$pushProvider leverer bare push-varsler via sin egen tjeneste, så varsler til denne enheten går gjennom Fluxer-reléet.';
-  }
-
-  @override
-  String get notificationsPushRelayConsentLabel => 'Bruk Fluxers push-relé';
-
-  @override
-  String get notificationsPushRelayConsentDescription =>
-      'Hvis du slår av dette, fjernes enhetens push-registrering, og enheten slutter å motta push-varsler.';
-
-  @override
-  String get pushRelayConsentTitle => 'Relé for push-varsler';
-
-  @override
-  String pushRelayConsentDescription(String pushProvider) {
-    return '$pushProvider leverer bare push-varsler via sin egen tjeneste, så varsler til denne enheten går gjennom Fluxer-reléet.';
-  }
-
-  @override
-  String get pushRelayConsentNoticePrefix => 'Godta ';
-
-  @override
-  String get pushRelayConsentNoticeLink =>
-      'personvernerklæringen for push-reléet';
-
-  @override
-  String get pushRelayConsentNoticeSuffix =>
-      ' for å slå på push-varsler på denne enheten. Du trenger bare å godta én gang per enhet.';
-
-  @override
-  String get pushRelayConsentAgree => 'Godta og fortsett';
-
-  @override
-  String get pushRelayConsentDecline => 'Ikke nå';
-
-  @override
-  String get userSettingsNavAppIcon => 'App icon';
-
-  @override
-  String get appIconSectionTitle => 'App icon';
-
-  @override
-  String get appIconSectionDescription =>
-      'Choose which icon appears on your home screen.';
-
-  @override
-  String get appIconOptionDefault => 'Standard';
-
-  @override
-  String get appIconOptionStarfield => 'Starfield';
-
-  @override
-  String get appIconOptionSweden => 'Sverige';
-
-  @override
-  String get appIconUnsupported =>
-      'Changing the app icon is not available on this device.';
-
-  @override
-  String get authCheckStillWorking => 'Still working on it…';
-
-  @override
-  String get authVerificationFailed =>
-      'Couldn\'t complete verification. Try again.';
-
-  @override
-  String get profileLocalTimeSettingsTitle => 'Profile local time';
-
-  @override
-  String profileLocalTimeSettingsSummary(String productName) {
-    return 'Set your time zone once so $productName can keep your UTC offset current when daylight saving time changes. Other people can only see your UTC offset, not your exact time zone identifier.';
-  }
-
-  @override
-  String get profileLocalTimeEditButton => 'Edit profile local time';
-
-  @override
-  String get profileLocalTimeTimezoneLabel => 'Time zone';
-
-  @override
-  String profileLocalTimeTimezoneHelp(String productName) {
-    return 'Choose the time zone $productName uses to calculate your UTC offset for profile local time.';
-  }
-
-  @override
-  String get profileLocalTimeSearchTimezones => 'Search time zones';
-
-  @override
-  String get profileLocalTimeNotSet => 'Not set';
-
-  @override
-  String profileLocalTimePrivacyNote(
-    String timezoneIdentifierExample,
-    String productName,
-  ) {
-    return 'Other people can only see your current UTC offset when you choose to share profile local time. They do not see your exact time zone identifier, such as $timezoneIdentifierExample. $productName stores that identifier only so the offset can update automatically when daylight saving time changes.';
-  }
-
-  @override
-  String get profileLocalTimePrivacyEveryone => 'Everyone';
-
-  @override
-  String get profileLocalTimePrivacyEveryoneDesc =>
-      'Allow anyone who can view your full profile to see your local time';
-
-  @override
-  String get profileLocalTimePrivacyFriends => 'Friends';
-
-  @override
-  String get profileLocalTimePrivacyFriendsDesc =>
-      'Allow your friends to see your local time';
-
-  @override
-  String get profileLocalTimePrivacyCommunityMembers => 'Community members';
-
-  @override
-  String get profileLocalTimePrivacyCommunityMembersDesc =>
-      'Allow members from communities you\'re in to see your local time';
-
-  @override
-  String storePlutoniumPriceLine(String monthly, String yearly) {
-    return '$monthly or $yearly';
-  }
-
-  @override
-  String get storePlutoniumMonthSuffix => '/mo';
-
-  @override
-  String get storePlutoniumYearSuffix => '/yr';
-
-  @override
-  String get storePlutoniumPriceOr => 'or';
-
-  @override
-  String get storePlutoniumEmojiTitle => 'Your emojis, everywhere';
-
-  @override
-  String get storePlutoniumEmojiBody =>
-      'Bring custom emojis and stickers from any of your communities into every chat and community you\'re in.';
-
-  @override
-  String get storePlutoniumProfileTitle => 'A profile that stands out';
-
-  @override
-  String get storePlutoniumProfileBody =>
-      'Get an animated avatar and banner, a subscriber badge, the four-digit tag you want after your username*, and a separate profile for each community.';
-
-  @override
-  String get storePlutoniumFilesTitle => 'Send files up to 500 MB';
-
-  @override
-  String get storePlutoniumFilesBody =>
-      'Share full-length videos and big files without shrinking them first. Free accounts can send up to 25 MB.';
-
-  @override
-  String get storePlutoniumCompareTitle => 'Compare Free and Reverb';
-
-  @override
-  String get storePlutoniumCompareMobileNote =>
-      'Not all of these features are in the mobile app. Some are only available on desktop.';
-
-  @override
-  String get storePlutoniumNotAvailable => 'Not available';
-
-  @override
-  String get storePlutoniumAvailable => 'Available';
-
-  @override
-  String get storePlutoniumCompareTag =>
-      'Pick the 4-digit number after your username*';
-
-  @override
-  String get storePlutoniumCompareProfile =>
-      'A separate profile for each community';
-
-  @override
-  String get storePlutoniumCompareBadge => 'Subscriber badge on your profile';
-
-  @override
-  String get storePlutoniumCompareBackgrounds =>
-      'Video call backgrounds you can save';
-
-  @override
-  String get storePlutoniumCompareCommunities => 'Communities you can join';
-
-  @override
-  String get storePlutoniumCompareCharacters =>
-      'Characters in a single message';
-
-  @override
-  String get storePlutoniumCompareBookmarks => 'Messages you can bookmark';
-
-  @override
-  String get storePlutoniumCompareUpload => 'Largest file you can upload';
-
-  @override
-  String get storePlutoniumCompareSavedMedia =>
-      'Media items you can save for later';
-
-  @override
-  String get storePlutoniumCompareAnimatedEmoji =>
-      'Use animated emojis in messages';
-
-  @override
-  String get storePlutoniumCompareCustomEmoji =>
-      'Use custom emojis and stickers in any community';
-
-  @override
-  String get storePlutoniumCompareVideo =>
-      'Video call and screen share quality';
-
-  @override
-  String get storePlutoniumCompareAvatar =>
-      'Animated avatar and profile banner';
-
-  @override
-  String get storePlutoniumCompareEarlyAccess => 'Early access to new features';
-
-  @override
-  String get storePlutoniumCompareThemes => 'Custom themes for the app';
-
-  @override
-  String get storePlutoniumVideoFree => 'Up to 720p at 30 FPS';
-
-  @override
-  String get storePlutoniumVideoPlutonium => 'Up to 4K at 60 FPS';
-
-  @override
-  String get storePlutoniumTagFootnote =>
-      'You can only pick a tag that nobody else with the same username already has. Usernames aren\'t case sensitive, so Mina#4821 and mina#4821 count as the same. The #0000 tag is reserved for echowire Visionary members.';
-
-  @override
-  String get storePlutoniumLearnVisionary => 'Learn more about Visionary.';
-
-  @override
-  String get storePlutoniumDonatePrompt =>
-      'Just want to support echowire\'s open source development? ';
-
-  @override
-  String get storePlutoniumDonateLink => 'Donate instead.';
-
-  @override
-  String get storePlutoniumHighlightsLead =>
-      'Subscribing funds echowire and unlocks';
-
-  @override
-  String get storePlutoniumHighlightEmoji =>
-      'Custom emoji and stickers in any chat';
-
-  @override
-  String get storePlutoniumHighlightProfile =>
-      'Animated profile, badge, and custom 4-digit number';
-
-  @override
-  String get storePlutoniumHighlightFiles => 'Uploads up to 500 MB';
-
-  @override
-  String get storePlutoniumHighlightMessages =>
-      'Send messages up to 4,000 characters';
-
-  @override
-  String get storePlutoniumHighlightCommunityProfile =>
-      'A separate profile for each community';
-
-  @override
-  String get storePlutoniumHighlightsMore => 'And more';
-
-  @override
-  String get storePlutoniumRenewsThroughPlay =>
-      'Renews automatically through Google Play until you cancel.';
-
-  @override
-  String get storePlutoniumRenewsThroughAppStore =>
-      'Renews automatically through the App Store until you cancel.';
-
-  @override
-  String get storePlutoniumAlreadySubscribed =>
-      'You already have an echowire Reverb subscription.';
-
-  @override
-  String storePlutoniumSavePercent(int percent) {
-    return 'Save $percent%';
-  }
-
-  @override
-  String get storePlutoniumWaiting =>
-      'Purchase received. Reverb will show here once it activates.';
-
-  @override
-  String get storePlutoniumUnavailable =>
-      'Subscriptions in the app aren\'t available on this device yet.';
-
-  @override
-  String get storePlutoniumVisionaryStatus =>
-      'Visionary already includes permanent access, so a recurring subscription isn\'t needed.';
-
-  @override
-  String get guildNavbarAnnouncementChannel => 'Announcement Channel';
+  String get guildNavbarAnnouncementChannel => 'Kunngjøringskanal';
 
   @override
   String get guildNavbarAnnouncementChannelDescription =>
-      'Post updates that other communities can follow into their own channels';
+      'Publiser oppdateringer som andre fellesskap kan følge i sine egne kanaler';
 
   @override
-  String get channelDetailsAnnouncementChannel => 'Announcement Channel';
+  String get channelDetailsAnnouncementChannel => 'Kunngjøringskanal';
 
   @override
-  String get channelSettingsAnnouncementChannel => 'Announcement Channel';
+  String get channelSettingsAnnouncementChannel => 'Kunngjøringskanal';
 
   @override
   String get channelSettingsAnnouncementChannelDescription =>
-      'Lets other communities follow this channel and get copies of what you publish.';
+      'Lar andre fellesskap følge denne kanalen og få kopier av det du publiserer.';
 
   @override
   String get channelSettingsStopAnnouncementTitle =>
-      'Stop being an announcement channel?';
+      'Slutte å være en kunngjøringskanal?';
 
   @override
   String channelSettingsStopAnnouncementBody(int count) {
@@ -15711,245 +14439,228 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       count,
       locale: localeName,
       other:
-          '$count channels follow this channel. Converting it to a text channel removes those follows.',
+          '$count kanaler følger denne kanalen. Hvis du konverterer den til en tekstkanal, slutter de kanalene å følge den.',
       one:
-          '1 channel follows this channel. Converting it to a text channel removes that follow.',
+          '1 kanal følger denne kanalen. Hvis du konverterer den til en tekstkanal, slutter den kanalen å følge den.',
     );
     return '$_temp0';
   }
 
   @override
   String get channelSettingsStopAnnouncementUnknown =>
-      'Converting this channel to a text channel removes every channel that follows it.';
+      'Hvis du konverterer denne kanalen til en tekstkanal, slutter alle kanaler som følger den, å følge den.';
 
   @override
-  String get channelSettingsConvertChannel => 'Convert';
+  String get channelSettingsConvertChannel => 'Konverter';
 
   @override
-  String get channelSettingsConvertFailed => 'Couldn\'t convert this channel';
+  String get channelSettingsConvertFailed =>
+      'Kunne ikke konvertere denne kanalen';
 
   @override
   String get channelSettingsChannelHasFollowers =>
-      'This channel still has followers. Remove those follows before converting it.';
+      'Andre kanaler følger fortsatt denne kanalen. Fjern dem før du konverterer den.';
 
   @override
-  String get channelMenuFollow => 'Follow Channel';
+  String get channelMenuFollow => 'Følg kanal';
 
   @override
-  String get channelFollowTitle => 'Follow this channel';
+  String get channelFollowTitle => 'Følg denne kanalen';
 
   @override
   String get channelFollowBody =>
-      'Choose where its published messages should go. You can unfollow any time in Community settings → Webhooks.';
+      'Velg hvor publiserte meldinger skal sendes. Du kan når som helst slutte å følge i Fellesskapsinnstillinger → Webhooker.';
 
   @override
-  String get channelFollowCommunity => 'Community';
+  String get channelFollowCommunity => 'Fellesskap';
 
   @override
-  String get channelFollowChannel => 'Channel';
-
-  @override
-  String get channelFollowSelectCommunity => 'Select a community';
-
-  @override
-  String get channelFollowSelectChannel => 'Select a channel';
+  String get channelFollowChannel => 'Kanal';
 
   @override
   String get channelFollowAgeWarning =>
-      'This is an age-restricted channel. Updates can only go to age-restricted channels.';
+      'Dette er en aldersbegrenset kanal. Oppdateringer kan bare sendes til aldersbegrensede kanaler.';
 
   @override
   String get channelFollowContentWarning =>
-      'This channel has a content warning. Updates can only go to channels with a content warning or an age restriction.';
+      'Denne kanalen har en innholdsadvarsel. Oppdateringer kan bare sendes til kanaler med en innholdsadvarsel eller aldersbegrensning.';
 
   @override
   String get channelFollowHiddenHint =>
-      'Communities and channels where you can\'t manage webhooks are hidden.';
+      'Fellesskap og kanaler der du ikke kan administrere webhooks, er skjult.';
 
   @override
   String get channelFollowEmpty =>
-      'You can\'t manage webhooks in any community. Ask an admin to follow this channel.';
+      'Du kan ikke administrere webhooks i noe fellesskap. Be en administrator om å følge denne kanalen.';
 
   @override
-  String get channelFollowSubmit => 'Follow';
+  String get channelFollowSubmit => 'Følg';
 
   @override
-  String get channelFollowFailed => 'Couldn\'t follow this channel.';
+  String get channelFollowFailed => 'Kunne ikke følge denne kanalen.';
 
   @override
-  String get channelFollowSuccessTitle => 'Updates are on their way!';
+  String get channelFollowSuccessTitle => 'Oppdateringer er på vei!';
 
   @override
   String channelFollowSuccessBody(String sourceName, String targetName) {
-    return 'Messages published in $sourceName will show up in #$targetName.';
+    return 'Meldinger publisert i $sourceName vil vises i #$targetName.';
   }
 
   @override
-  String get channelFollowSuccessDismiss => 'Got it!';
+  String get channelFollowSuccessDismiss => 'Forstått!';
 
   @override
   String get channelFollowBarrier =>
-      'Follow to get these announcements in a channel you choose.';
+      'Følg denne kanalen for å få disse kunngjøringene i en kanal du velger.';
 
   @override
-  String get channelHeaderFollow => 'Follow channel';
+  String get channelHeaderFollow => 'Følg kanal';
 
   @override
-  String get chatMessagePublish => 'Publish';
+  String get chatMessagePublish => 'Publiser';
 
   @override
-  String get chatMessagePublished => 'Published';
+  String get chatMessagePublished => 'Publisert';
 
   @override
-  String get chatMessagePublishConfirmTitle => 'Publish message?';
+  String get chatMessagePublishConfirmTitle => 'Publiser melding?';
 
   @override
   String get chatMessagePublishConfirmBody =>
-      'This sends a copy to every channel that follows this one.';
+      'Dette sender en kopi til hver kanal som følger denne.';
 
   @override
-  String get chatMessagePublishedToast => 'Message published';
+  String get chatMessagePublishedToast => 'Melding publisert';
 
   @override
   String get chatMessageAlreadyPublished =>
-      'This message is already published.';
+      'Denne meldingen er allerede publisert.';
 
   @override
-  String get chatMessagePublishFailedTitle => 'Couldn\'t publish this message';
+  String get chatMessagePublishFailedTitle =>
+      'Kunne ikke publisere denne meldingen';
 
   @override
   String get chatMessagePublishFailedBody =>
-      'Something went wrong. Try again in a moment.';
+      'Noe gikk galt. Prøv igjen om et øyeblikk.';
 
   @override
-  String get chatMessagePublishLimitTitle => 'Slow down';
+  String get chatMessagePublishLimitTitle => 'Ta det litt roligere';
 
   @override
   String chatMessagePublishLimitBody(String duration) {
-    return 'You can publish again in $duration.';
+    return 'Du kan publisere igjen om $duration.';
   }
 
   @override
   String get chatMessagePublishLimitUnknown =>
-      'You are publishing too quickly. Try again in a moment.';
+      'Du publiserer for raskt. Prøv igjen om et øyeblikk.';
 
   @override
   String get chatMessageDeletePublished =>
-      'This also removes the copies that were sent to channels following this one.';
+      'Dette fjerner også kopiene som ble sendt til kanaler som følger denne.';
 
   @override
-  String get chatMessageEditPublishedTitle => 'Edit published message?';
+  String get chatMessageEditPublishedTitle => 'Rediger publisert melding?';
 
   @override
   String get chatMessageEditPublishedBody =>
-      'This updates the copies that were sent to channels following this one.';
+      'Dette oppdaterer kopiene som ble sendt til kanaler som følger denne.';
 
   @override
-  String get chatMessageEditPublishedSave => 'Save';
+  String get chatMessageEditPublishedSave => 'Lagre';
 
   @override
-  String get chatMessageEditLimitTitle => 'Slow down';
+  String get chatMessageEditLimitTitle => 'Ta det litt roligere';
 
   @override
   String chatMessageEditLimitBody(String duration) {
-    return 'You can edit this published message again in $duration.';
+    return 'Du kan redigere denne publiserte meldingen igjen om $duration.';
   }
 
   @override
   String get chatMessageEditLimitUnknown =>
-      'You are editing this published message too quickly. Try again in a moment.';
+      'Du redigerer denne publiserte meldingen for raskt. Prøv igjen om et øyeblikk.';
 
   @override
-  String get chatMessageOriginalDeleted => '[Original message deleted]';
+  String get chatMessageOriginalDeleted => '[Opprinnelig melding slettet]';
 
   @override
-  String get userTagCommunity => 'Community';
+  String get userTagCommunity => 'Fellesskap';
 
   @override
   String systemFollowAdd(String username, String source) {
-    return '$username followed $source into this channel. Messages published there will appear here.';
+    return '$username fikk denne kanalen til å følge $source. Meldinger som publiseres der, vises her.';
   }
 
   @override
   String systemPreviewFollowAdd(String username, String source) {
-    return '$username followed $source into this channel.';
+    return '$username fikk denne kanalen til å følge $source.';
   }
 
   @override
-  String get publishNudgeNotSent => 'Not sent to followers yet.';
+  String get publishNudgeNotSent => 'Ikke sendt til følgere ennå.';
 
   @override
-  String get publishNudgeHideForever => 'Don\'t show again';
+  String get publishNudgeHideForever => 'Ikke vis igjen';
 
   @override
-  String get publishNudgeDismiss => 'Dismiss';
+  String get publishNudgeDismiss => 'Lukk';
 
   @override
-  String get channelSettingsFollowedChannels => 'Followed channels';
+  String get channelSettingsFollowedChannels => 'Fulgte kanaler';
 
   @override
   String get channelSettingsFollowedChannelsDescription =>
-      'Announcement channels this channel follows. Unfollow to stop receiving copies.';
+      'Kunngjøringskanaler denne kanalen følger. Slutt å følge for å ikke lenger motta kopier.';
 
   @override
   String get guildSettingsFollowedChannelsDescription =>
-      'Announcement channels followed by channels in this community.';
+      'Kunngjøringskanaler som følges av kanaler i dette fellesskapet.';
 
   @override
   String channelSettingsFollowedFrom(String guildName, String channelName) {
-    return 'From $guildName #$channelName';
+    return 'Fra $guildName #$channelName';
   }
 
   @override
   String get channelSettingsFollowedPaused =>
-      'Updates are paused because the source channel is no longer available.';
+      'Oppdateringer er satt på pause fordi kildekanalen ikke lenger er tilgjengelig.';
 
   @override
   String channelSettingsUnfollowTitle(String name) {
-    return 'Unfollow $name?';
+    return 'Slutte å følge $name?';
   }
 
   @override
   String get channelSettingsUnfollowBody =>
-      'This channel will stop receiving copies from that announcement channel.';
+      'Denne kanalen vil slutte å motta kopier fra den kunngjøringskanalen.';
 
   @override
-  String get channelSettingsUnfollow => 'Unfollow';
+  String get channelSettingsUnfollow => 'Slutt å følge';
 
   @override
-  String get channelSettingsUnfollowFailed =>
-      'Couldn\'t unfollow this channel.';
+  String get crosspostCommunityTitle => 'Fellesskap';
 
   @override
-  String channelSettingsDeliveredTo(String channelName) {
-    return 'Delivered to #$channelName';
-  }
+  String get crosspostGoToCommunity => 'Gå til fellesskap';
 
   @override
-  String get crosspostCommunityTitle => 'Community';
-
-  @override
-  String get crosspostGoToCommunity => 'Go to community';
-
-  @override
-  String get crosspostJoinCommunity => 'Join Community';
+  String get crosspostJoinCommunity => 'Bli med i fellesskapet';
 
   @override
   String get crosspostSourceFailed =>
-      'Couldn\'t load this community. Try again in a moment.';
-
-  @override
-  String get crosspostSourceUnavailable =>
-      'This community is no longer available';
+      'Kunne ikke laste inn dette fellesskapet. Prøv igjen om et øyeblikk.';
 
   @override
   String crosspostMembers(int count) {
-    return '$count members';
+    return '$count medlemmer';
   }
 
   @override
   String crosspostOnline(int count) {
-    return '$count online';
+    return '$count pålogget';
   }
 
   @override
@@ -15957,8 +14668,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count minutes',
-      one: '1 minute',
+      other: '$count minutter',
+      one: '1 minutt',
     );
     return '$_temp0';
   }
@@ -15968,19 +14679,321 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count seconds',
-      one: '1 second',
+      other: '$count sekunder',
+      one: '1 sekund',
     );
     return '$_temp0';
   }
 
   @override
-  String get channelUnsupportedTitle => 'Unsupported channel type';
+  String get channelUnsupportedTitle => 'Kanaltypen støttes ikke';
 
   @override
   String get channelUnsupportedBody =>
-      'This version of the app doesn\'t support this channel type.';
+      'Denne versjonen av appen støtter ikke denne kanaltypen.';
 
   @override
-  String get channelDetailsUnsupportedChannel => 'Unsupported channel';
+  String get channelDetailsUnsupportedChannel => 'Kanalen støttes ikke';
+
+  @override
+  String get forumChannelTypeForum => 'Forum';
+
+  @override
+  String get forumChannelTypeForumDescription =>
+      'Posts organized by topic and tags';
+
+  @override
+  String get forumChannelTypeMedia => 'Media';
+
+  @override
+  String get forumChannelTypeMediaDescription =>
+      'Posts built around images and videos';
+
+  @override
+  String get forumNewPost => 'Nytt innlegg';
+
+  @override
+  String get forumNewMediaPost => 'New media post';
+
+  @override
+  String get forumSearchPosts => 'Søk i innlegg';
+
+  @override
+  String get forumViewOptions => 'Sort and view';
+
+  @override
+  String get forumSearchIndexing =>
+      'Search is still being prepared for this community. Posts appear here as soon as it is ready.';
+
+  @override
+  String get forumNoPosts => 'Ingen innlegg ennå';
+
+  @override
+  String get forumNoPostsHint => 'Be the first to start a conversation here.';
+
+  @override
+  String get forumNoSearchResults => 'No posts match your search';
+
+  @override
+  String get forumNoSearchResultsHint =>
+      'Try different words or clear the tag filter.';
+
+  @override
+  String get forumCreateFirstPost => 'Create the first post';
+
+  @override
+  String get forumOlderPosts => 'Older posts';
+
+  @override
+  String get forumPostsLoadFailed => 'Posts could not be loaded.';
+
+  @override
+  String get forumRetry => 'Try again';
+
+  @override
+  String get forumPostPinned => 'Pinned';
+
+  @override
+  String get forumPostLocked => 'Locked';
+
+  @override
+  String get forumPostArchived => 'Archived';
+
+  @override
+  String get forumPostNewBadge => 'NEW';
+
+  @override
+  String get forumPostStarterDeleted => 'The original message was deleted.';
+
+  @override
+  String forumPostSnippet(String author, String content) {
+    return '$author: $content';
+  }
+
+  @override
+  String forumPostNewMessages(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new messages',
+      one: '1 new message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostReact => 'Add the default reaction';
+
+  @override
+  String get forumOpenPost => 'Open post';
+
+  @override
+  String get forumEditTags => 'Edit tags';
+
+  @override
+  String get forumSaveTags => 'Save tags';
+
+  @override
+  String forumTagsLimitHint(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Pick up to $count tags.',
+      one: 'Pick up to 1 tag.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPinPost => 'Pin post';
+
+  @override
+  String get forumUnpinPost => 'Unpin post';
+
+  @override
+  String get forumMarkPostRead => 'Mark as read';
+
+  @override
+  String get forumCopyPostLink => 'Copy link';
+
+  @override
+  String get forumPostGuidelines => 'Post guidelines';
+
+  @override
+  String get forumGuidelinesPlaceholder =>
+      'Tell people what to post here and how to post it.';
+
+  @override
+  String get forumPostTitle => 'Title';
+
+  @override
+  String get forumPostMessage => 'Message';
+
+  @override
+  String get forumPostMessagePlaceholder =>
+      'Write the first message of your post';
+
+  @override
+  String get forumPostMediaPlaceholder => 'Add a caption';
+
+  @override
+  String get forumPostTags => 'Tags';
+
+  @override
+  String get forumPostTagsRequired => 'Tags (required)';
+
+  @override
+  String get forumPostAddMedia => 'Add media';
+
+  @override
+  String get forumPostAddFile => 'Add file';
+
+  @override
+  String get forumPostRemoveAttachment => 'Remove attachment';
+
+  @override
+  String get forumPostSubmit => 'Post';
+
+  @override
+  String get forumPostTitleRequired => 'Give your post a title.';
+
+  @override
+  String get forumPostMediaRequired =>
+      'Add at least one image or video to post here.';
+
+  @override
+  String get forumPostContentRequired => 'Write a message or add a file.';
+
+  @override
+  String get forumSortLatestActivity => 'Recently active';
+
+  @override
+  String get forumSortCreationTime => 'Date posted';
+
+  @override
+  String get forumLayoutList => 'Liste';
+
+  @override
+  String get forumLayoutGallery => 'Galleri';
+
+  @override
+  String get forumNewPostsUnread => 'Show unread for new posts';
+
+  @override
+  String get forumNewPostsUnreadDescription =>
+      'Mark this channel unread when someone creates a post.';
+
+  @override
+  String get forumPostSlowmode => 'Post slowmode';
+
+  @override
+  String forumPostSlowmodeDescription(String bypassSlowmodePermissionLabel) {
+    return 'Wait between creating posts. \"$bypassSlowmodePermissionLabel\" can bypass it.';
+  }
+
+  @override
+  String get forumMessageSlowmode => 'Message slowmode in posts';
+
+  @override
+  String get forumMessageSlowmodeDescription =>
+      'Slowmode applied to messages in new posts.';
+
+  @override
+  String get forumDefaultAutoArchive => 'Hide after inactivity';
+
+  @override
+  String get forumDefaultAutoArchiveDescription =>
+      'New posts are archived after this long without activity.';
+
+  @override
+  String get forumDefaultReaction => 'Default reaction';
+
+  @override
+  String get forumSetDefaultReaction => 'Pick an emoji';
+
+  @override
+  String get forumChangeDefaultReaction => 'Change';
+
+  @override
+  String get forumRemoveDefaultReaction => 'Remove';
+
+  @override
+  String get forumDefaultSortOrder => 'Default sort order';
+
+  @override
+  String get forumDefaultLayout => 'Default layout';
+
+  @override
+  String get forumTagMatchSetting => 'Tag filter';
+
+  @override
+  String get forumTagMatchSome => 'Match any selected tag';
+
+  @override
+  String get forumTagMatchAll => 'Match all selected tags';
+
+  @override
+  String get forumRequireTag => 'Require tags';
+
+  @override
+  String get forumRequireTagDescription =>
+      'People must pick at least one tag when they create a post.';
+
+  @override
+  String get forumHideMediaDownloads => 'Hide media download options';
+
+  @override
+  String get forumHideMediaDownloadsDescription =>
+      'Hide download, open in browser and copy link for images and videos in posts.';
+
+  @override
+  String forumTagsTitle(int count, int max) {
+    return 'Tags ($count/$max)';
+  }
+
+  @override
+  String get forumTagsDescription =>
+      'Tags help people find and filter posts. Only moderators can apply moderated tags.';
+
+  @override
+  String get forumCreateTag => 'Create tag';
+
+  @override
+  String get forumEditTag => 'Edit tag';
+
+  @override
+  String get forumSaveTag => 'Save tag';
+
+  @override
+  String get forumDeleteTag => 'Delete tag';
+
+  @override
+  String get forumTagName => 'Tag name';
+
+  @override
+  String get forumTagEmoji => 'Emoji';
+
+  @override
+  String get forumTagRemoveEmoji => 'Remove emoji';
+
+  @override
+  String get forumTagModerated => 'Only moderators can apply';
+
+  @override
+  String get forumTagModeratedDescription =>
+      'Only members who can manage threads can apply or remove this tag.';
+
+  @override
+  String get forumTagModeratedBadge => 'Moderated';
+
+  @override
+  String forumPostCooldown(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'You can post again in $seconds seconds.',
+      one: 'You can post again in 1 second.',
+    );
+    return '$_temp0';
+  }
 }

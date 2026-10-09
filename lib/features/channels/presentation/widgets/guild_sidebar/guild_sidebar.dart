@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:cached_network_image_ce/cached_network_image.dart';
+import 'package:flutter/rendering.dart' show ScrollCacheExtent;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/gateway/providers/gateway_event_providers.dart';
@@ -42,7 +43,6 @@ import 'package:fluxer_app/features/channels/providers/channel_sidebar_icon_conn
 import 'package:fluxer_app/features/channels/providers/guild_collapsed_categories_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_sidebar_entries_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_sidebar_scroll_store_provider.dart';
-import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
 import 'package:fluxer_app/features/channels/utils/channel_scroll_indicator_severity.dart';
 import 'package:fluxer_app/features/channels/utils/navigate_to_channel_content.dart';
@@ -66,6 +66,7 @@ import 'package:fluxer_app/features/settings/providers/advanced_preferences_prov
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
+import 'package:fluxer_app/features/threads/presentation/thread_sidebar_tile.dart';
 import 'package:fluxer_app/features/ui/action_menu/context_menu_widgets.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_confirm_sheet.dart';
 import 'package:fluxer_app/features/ui/ui.dart';

@@ -19,14 +19,8 @@ abstract final class Breakpoints {
   /// Channel sidebar width at the default layout scale.
   static const double channelSidebarWidth = 270;
 
-  /// Minimum chat column width before showing the member list.
-  static const double minChatWidth = 600;
-
   /// Minimum chat column width for the wide shell (member list gates itself).
   static const double minShellChatWidth = 800;
-
-  /// Search results panel width, wider than the member list panel.
-  static const double searchPanelWidth = 420;
 
   /// Minimum viewport width for guild list, channel list, and chat.
   static const double shellMinWidth =
@@ -82,6 +76,8 @@ bool isDesktopLayout(BuildContext context) =>
 
 /// Non-mobile layout (tablet + desktop). Matches web `!MobileLayout.enabled`.
 bool isWideLayout(BuildContext context) => !isMobileLayout(context);
+
+bool isForumHandheldLayout(BuildContext context) => !isDesktopLayout(context);
 
 /// Phone voice overlay (immersive hideable header/controls).
 bool isPhoneVoiceOverlay(BuildContext context) {

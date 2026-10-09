@@ -23,6 +23,7 @@ import 'package:fluxer_app/core/database/daos/relationship_dao.dart';
 import 'package:fluxer_app/core/database/daos/role_dao.dart';
 import 'package:fluxer_app/core/database/daos/rtc_regions_dao.dart';
 import 'package:fluxer_app/core/database/daos/saved_message_dao.dart';
+import 'package:fluxer_app/core/database/daos/thread_dao.dart';
 import 'package:fluxer_app/core/database/daos/user_dao.dart';
 import 'package:fluxer_app/core/database/daos/user_guild_settings_dao.dart';
 import 'package:fluxer_app/core/database/daos/user_notes_dao.dart';
@@ -58,6 +59,7 @@ import 'package:fluxer_app/core/database/tables/roles.dart';
 import 'package:fluxer_app/core/database/tables/rtc_regions.dart';
 import 'package:fluxer_app/core/database/tables/saved_messages.dart';
 import 'package:fluxer_app/core/database/tables/servers.dart';
+import 'package:fluxer_app/core/database/tables/thread_members.dart';
 import 'package:fluxer_app/core/database/tables/user_guild_settings.dart';
 import 'package:fluxer_app/core/database/tables/user_notes.dart';
 import 'package:fluxer_app/core/database/tables/user_preferences.dart';
@@ -102,6 +104,7 @@ part 'fluxer_database.g.dart';
     MobilePushRegistrations,
     ComposerDrafts,
     RecentInstances,
+    ThreadMembers,
   ],
   daos: [
     AuthSessionDao,
@@ -133,6 +136,7 @@ part 'fluxer_database.g.dart';
     FavoriteChannelsDao,
     LocalSpamOverridesDao,
     RecentInstancesDao,
+    ThreadDao,
   ],
 )
 class FluxerDatabase extends _$FluxerDatabase {
@@ -141,7 +145,7 @@ class FluxerDatabase extends _$FluxerDatabase {
   FluxerDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 90;
+  int get schemaVersion => 92;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -705,47 +709,6 @@ class FluxerDatabase extends _$FluxerDatabase {
         )) {
           await m.addColumn(roles, roles.hoistPosition);
         }
-      }
-      if (from < 70) {
-        // Echowire: thread + forum channel columns. IDEMPOTENT — a prior
-        // partial run may have added some of these already, and drift's
-        // addColumn is not transactional, so a plain re-run crashes with
-        // "duplicate column name" and the DB is stranded below v70 forever
-        // (which makes forum channels render as plain text). Only add the
-        // columns that are actually missing so the migration always completes.
-        final Set<String> existing = (await customSelect(
-          'PRAGMA table_info(channels)',
-        ).get()).map((QueryRow r) => r.read<String>('name')).toSet();
-        Future<void> ensure(GeneratedColumn<Object> column) async {
-          if (existing.contains(column.$name)) {
-            return;
-          }
-          try {
-            await m.addColumn(channels, column);
-          } on Object {
-            // Belt-and-suspenders: if the column slipped past the existence
-            // check (e.g. added by a concurrent partial run), swallow the
-            // duplicate-column error so the migration still completes and the
-            // DB advances to v70 instead of staying stuck.
-          }
-        }
-
-        await ensure(channels.ownerId);
-        await ensure(channels.threadArchived);
-        await ensure(channels.threadAutoArchiveDuration);
-        await ensure(channels.threadArchiveTimestamp);
-        await ensure(channels.threadLocked);
-        await ensure(channels.threadInvitable);
-        await ensure(channels.threadCreateTimestamp);
-        await ensure(channels.threadMemberCount);
-        await ensure(channels.threadMessageCount);
-        await ensure(channels.threadPinned);
-        await ensure(channels.appliedTagsJson);
-        await ensure(channels.availableTagsJson);
-        await ensure(channels.defaultSortOrder);
-        await ensure(channels.forumDefaultAutoArchiveDuration);
-        await ensure(channels.forumRequireTag);
-        await ensure(channels.defaultReactionEmojiJson);
       }
       if (from < 73) {
         // Echowire and upstream BOTH shipped a schemaVersion 70 migration:
@@ -1460,6 +1423,214 @@ class FluxerDatabase extends _$FluxerDatabase {
           );
         }
       }
+      if (from < 91) {
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'owner_id',
+        )) {
+          await m.addColumn(channels, channels.ownerId);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'flags',
+        )) {
+          await m.addColumn(channels, channels.flags);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'thread_archived',
+        )) {
+          await m.addColumn(channels, channels.threadArchived);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'thread_locked',
+        )) {
+          await m.addColumn(channels, channels.threadLocked);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'thread_invitable',
+        )) {
+          await m.addColumn(channels, channels.threadInvitable);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'thread_auto_archive_duration',
+        )) {
+          await m.addColumn(channels, channels.threadAutoArchiveDuration);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'thread_archive_timestamp',
+        )) {
+          await m.addColumn(channels, channels.threadArchiveTimestamp);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'thread_create_timestamp',
+        )) {
+          await m.addColumn(channels, channels.threadCreateTimestamp);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'message_count',
+        )) {
+          await m.addColumn(channels, channels.messageCount);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'total_message_sent',
+        )) {
+          await m.addColumn(channels, channels.totalMessageSent);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'member_count',
+        )) {
+          await m.addColumn(channels, channels.memberCount);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'applied_tags_json',
+        )) {
+          await m.addColumn(channels, channels.appliedTagsJson);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'default_auto_archive_duration',
+        )) {
+          await m.addColumn(channels, channels.defaultAutoArchiveDuration);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'default_thread_rate_limit_per_user',
+        )) {
+          await m.addColumn(channels, channels.defaultThreadRateLimitPerUser);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'available_tags_json',
+        )) {
+          await m.addColumn(channels, channels.availableTagsJson);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'default_reaction_emoji_json',
+        )) {
+          await m.addColumn(channels, channels.defaultReactionEmojiJson);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'default_sort_order',
+        )) {
+          await m.addColumn(channels, channels.defaultSortOrder);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'default_forum_layout',
+        )) {
+          await m.addColumn(channels, channels.defaultForumLayout);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'channels',
+          columnName: 'default_tag_setting',
+        )) {
+          await m.addColumn(channels, channels.defaultTagSetting);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'servers',
+          columnName: 'thread_channels_active',
+        )) {
+          await m.addColumn(servers, servers.threadChannelsActive);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'messages',
+          columnName: 'thread_json',
+        )) {
+          await m.addColumn(messages, messages.threadJson);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'read_states',
+          columnName: 'flags',
+        )) {
+          await m.addColumn(readStates, readStates.flags);
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'read_states',
+          columnName: 'missing_since',
+        )) {
+          await m.addColumn(readStates, readStates.missingSince);
+        }
+        await _createTableIfNotExists(m, threadMembers);
+        await customStatement(
+          'CREATE INDEX IF NOT EXISTS idx_thread_members_guild '
+          'ON thread_members (guild_id)',
+        );
+        await customStatement(
+          'CREATE INDEX IF NOT EXISTS idx_channels_guild_parent_type '
+          'ON channels (guild_id, parent_id, type)',
+        );
+        // Echowire: databases written by builds before the switch to upstream's
+        // thread implementation hold thread and forum rows in the fork's own
+        // representation (type 11/12/15 with fork-only columns). Rows of those
+        // types are rebuilt from the gateway payload when the server speaks
+        // upstream's thread protocol, and are meant to be absent when it does
+        // not, so drop the stale ones once, here. Their read states go first,
+        // while the channel ids can still be looked up.
+        await customStatement(
+          'DELETE FROM read_states WHERE channel_id IN '
+          '(SELECT id FROM channels WHERE type IN (10, 11, 12, 15, 16))',
+        );
+        await customStatement(
+          'DELETE FROM channels WHERE type IN (10, 11, 12, 15, 16)',
+        );
+      }
+      if (from < 92) {
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'user_preferences',
+          columnName: 'sync_theme_colors_from_theme_studio',
+        )) {
+          await m.addColumn(
+            userPreferencesTable,
+            userPreferencesTable.syncThemeColorsFromThemeStudio,
+          );
+        }
+        if (!await _tableHasColumn(
+          m.database,
+          tableName: 'user_preferences',
+          columnName: 'sync_theme_colors_to_theme_studio',
+        )) {
+          await m.addColumn(
+            userPreferencesTable,
+            userPreferencesTable.syncThemeColorsToThemeStudio,
+          );
+        }
+      }
     },
   );
 
@@ -1491,14 +1662,7 @@ class FluxerDatabase extends _$FluxerDatabase {
       await notificationDao.clearAllUserData();
       await favoriteChannelsDao.clearAll();
       await localSpamOverridesDao.clearAll();
-    });
-  }
-
-  /// Clears everything including auth sessions (full logout).
-  Future<void> clearAll() async {
-    await transaction(() async {
-      await authSessionDao.clearSession();
-      await clearUserData();
+      await threadDao.clearAll();
     });
   }
 }

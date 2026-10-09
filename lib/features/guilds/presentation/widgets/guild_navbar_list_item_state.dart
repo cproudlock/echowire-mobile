@@ -101,14 +101,7 @@ class _GuildListItemState extends State<_GuildListItem>
     final initials = abbreviateGuildName(widget.label);
     final initialsLength = guildNameInitialsLength(widget.label);
     return Center(
-      child: widget.svgAsset != null
-          ? SvgPicture.asset(
-              widget.svgAsset!,
-              width: GuildNavbarIconShape.size,
-              height: GuildNavbarIconShape.size,
-              colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-            )
-          : widget.icon != null
+      child: widget.icon != null
           ? PhosphorIcon(widget.icon!, color: iconColor, size: 32)
           : Text(
               initials,
@@ -340,6 +333,7 @@ class _GuildListItemState extends State<_GuildListItem>
   Future<void> _showCreateChannelModal(BuildContext context) async {
     final ChannelCreateRequest? request = await CreateChannelSheet.show(
       context,
+      guildId: widget.guild?.id,
     );
     if (request != null && context.mounted) {
       widget.onCreateChannel?.call(request);
@@ -1068,14 +1062,6 @@ class _GuildListItemState extends State<_GuildListItem>
             context,
             openProfileSection: true,
             guildId: guildId,
-          ),
-        );
-      case GuildAction.reportCommunity:
-        unawaited(
-          showReportGuildFlow(
-            context,
-            guildId: guildId,
-            guildName: widget.guild!.name,
           ),
         );
       case GuildAction.privacySettings:

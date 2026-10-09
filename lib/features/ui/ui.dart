@@ -11,7 +11,6 @@ export 'package:fluxer_app/features/ui/avatar/fluxer_guild_icon_avatar.dart';
 export 'package:fluxer_app/features/ui/background/starfield_background.dart';
 export 'package:fluxer_app/features/ui/badge/fluxer_badge.dart';
 export 'package:fluxer_app/features/ui/badge/fluxer_guild_badge.dart';
-export 'package:fluxer_app/features/ui/badge/fluxer_op_tag.dart';
 export 'package:fluxer_app/features/ui/badge/fluxer_user_tag.dart';
 export 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
 export 'package:fluxer_app/features/ui/bottom_sheet/fluxer_sheet_identity_header.dart';
@@ -20,6 +19,7 @@ export 'package:fluxer_app/features/ui/button/fluxer_action_button.dart';
 export 'package:fluxer_app/features/ui/button/fluxer_button.dart';
 export 'package:fluxer_app/features/ui/button/fluxer_button_size.dart';
 export 'package:fluxer_app/features/ui/button/fluxer_button_variant.dart';
+export 'package:fluxer_app/features/ui/button/fluxer_circle_fab.dart';
 export 'package:fluxer_app/features/ui/card_alignment_controls/fluxer_card_alignment_controls.dart';
 // Inputs
 export 'package:fluxer_app/features/ui/character_counter/fluxer_character_counter.dart';

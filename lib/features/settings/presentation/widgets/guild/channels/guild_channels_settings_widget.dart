@@ -574,7 +574,6 @@ class _GuildChannelsSettingsWidgetState
             return GuildChannelSettingsRow(
               key: ValueKey<String>('guild-channel-settings-${entry.id}'),
               entry: entry,
-              channels: channels,
               hoverNotifier: _hoverNotifier,
               activeDragItem: _activeDragItem,
               activeHoverEntryId: _activeHoverEntryId,
@@ -635,6 +634,7 @@ class _GuildChannelsSettingsWidgetState
         child: FloatingActionButton(
           onPressed: () => CreateChannelCategoryPickerSheet.show(
             context,
+            guildId: widget.guildId,
             onCreateChannel: (request) => ref
                 .read(
                   guildChannelSettingsActionsProvider(widget.guildId).notifier,

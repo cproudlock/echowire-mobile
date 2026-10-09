@@ -34,9 +34,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get retry => 'Reîncearcă';
 
   @override
-  String get connectingCaps => 'CONNECTING';
-
-  @override
   String get splashConnectionLost => 'Conexiune pierdută';
 
   @override
@@ -209,10 +206,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   }
 
   @override
-  String get ssoRequired =>
-      'Este necesar SSO pentru a accesa această instanță.';
-
-  @override
   String get organizationSsoProvider =>
       'Conectați-vă cu furnizorul de autentificare unică al organizației.';
 
@@ -226,9 +219,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String preferSso(String provider) {
     return 'Preferi să folosești SSO? Continuă cu $provider.';
   }
-
-  @override
-  String get logInViaBrowser => 'Autentificare prin browser';
 
   @override
   String get needAccountPrompt => 'Ai nevoie de un cont? ';
@@ -332,20 +322,8 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get accountAdd => 'Adaugă un cont';
 
   @override
-  String get accountRemove => 'Elimină';
-
-  @override
-  String accountRemoveTitle(String username) {
-    return 'Elimină $username';
-  }
-
-  @override
   String get accountRemoveDescription =>
       'Aceasta va elimina sesiunea salvată pentru acest cont.';
-
-  @override
-  String get accountRemoveOnlyDescription =>
-      'Aceasta va elimina singurul cont salvat pe acest dispozitiv.';
 
   @override
   String get accountExpired => 'Expirat';
@@ -771,10 +749,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get registerYear => 'An';
 
   @override
-  String get registerConsent =>
-      'Sunt de acord cu Termenii de Serviciu și Politica de Confidențialitate';
-
-  @override
   String get registerConsentPrefix => 'Sunt de acord cu ';
 
   @override
@@ -818,10 +792,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get passkeyTimeout =>
       'Autentificarea cu cheia de acces a expirat. Te rugăm să încerci din nou.';
-
-  @override
-  String get passkeyNotAvailable =>
-      'Passkey-urile nu sunt disponibile pentru această aplicație. Conectează-te în schimb cu e-mail și parolă.';
 
   @override
   String get passkeyFailed =>
@@ -947,23 +917,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get inviteAcceptSomeone => 'cineva';
 
   @override
-  String get inviteAcceptEmojiPack => 'Pachet de emojiuri';
-
-  @override
-  String get inviteAcceptStickerPack => 'Pachet de stickere';
-
-  @override
-  String get inviteAcceptInstallEmojiPack => 'Instalează pachetul de emoji';
-
-  @override
-  String get inviteAcceptInstallStickerPack =>
-      'Instalează pachetul de stickere';
-
-  @override
-  String get inviteAcceptPackInstallNote =>
-      'Acceptarea acestei invitații va instala pachetul automat.';
-
-  @override
   String get mentionUnknownChannel => 'unknown-channel';
 
   @override
@@ -983,11 +936,11 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get embedThemeTitle => 'Temă partajată';
 
   @override
-  String get embedThemeSubtitle =>
-      'Acest client nu acceptă teme personalizate.';
+  String get embedThemeWebOnly =>
+      'Poți importa teme doar pe web sau pe desktop.';
 
   @override
-  String get embedThemeUnavailableButton => 'Teme indisponibile';
+  String get embedThemeImport => 'Importă temă';
 
   @override
   String embedGiftVisionaryLifetime(String productName) {
@@ -1312,7 +1265,13 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get dmLeaveGroup => 'Părăsește grupul';
 
   @override
-  String get dmNoCommunitiesAvailable => 'Nicio comunitate disponibilă';
+  String dmInviteSentFor(String communityName) {
+    return 'Invitație trimisă pentru $communityName';
+  }
+
+  @override
+  String get dmInviteSendFailed =>
+      'Nu s-a putut trimite invitația. Încearcă din nou.';
 
   @override
   String dmGroupMemberCount(int count) {
@@ -1706,9 +1665,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'Obține Reverb';
-
-  @override
   String get emojiPlutoniumUpsellDismiss => 'Nu mai afișa asta';
 
   @override
@@ -1863,9 +1819,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get changeYourFluxerTag => 'Schimbă-ți numele de utilizator';
 
   @override
-  String get fluxerTagInputLabel => 'Nume de utilizator';
-
-  @override
   String get fluxerTagDescriptionBase =>
       'Numele de utilizator pot conține doar litere (a-z, A-Z), cifre (0-9) și cratime. Numele de utilizator nu țin cont de majuscule/minuscule.';
 
@@ -1885,10 +1838,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get validationAllowedChars =>
       'Doar litere (a-z, A-Z), cifre (0-9) și cratime de jos (_)';
-
-  @override
-  String get discriminatorPremiumTooltip =>
-      'Obține Reverb pentru a-ți personaliza eticheta sau păstreaz-o când schimbi numele de utilizator';
 
   @override
   String get fluxerTagAlreadyTaken => 'Numele de utilizator este deja ocupat';
@@ -1925,15 +1874,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get premiumUpsellCustomizeTag =>
       'Personalizează-ți eticheta de 4 cifre sau păstreaz-o când îți schimbi numele de utilizator';
-
-  @override
-  String premiumTrialExpiresOn(String date) {
-    return 'Încercarea ta Reverb expiră pe $date. Fă upgrade pentru a păstra eticheta personalizată și pentru a câștiga o insignă pe profilul tău.';
-  }
-
-  @override
-  String get premiumTrialActive =>
-      'Ești la un trial Reverb. Fă upgrade pentru a păstra eticheta personalizată și a câștiga o insignă pe profilul tău.';
 
   @override
   String get fluxerTagUpdated => 'Nume de utilizator actualizat';
@@ -2069,23 +2009,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get hideVisionaryIdDescription => 'Elimină-ți insigna de Visionar';
 
   @override
-  String premiumTrialSubscriptionStarts(String date) {
-    return 'Ești la un trial Reverb — abonamentul tău începe pe $date';
-  }
-
-  @override
-  String get premiumTrialSubscriptionStartsDescription =>
-      'Abonamentul tău va începe automat când se va termina perioada de probă. Nu este necesară nicio acțiune.';
-
-  @override
-  String premiumTrialExpiresOnProfile(String date) {
-    return 'Ești la un trial Reverb care expiră pe $date';
-  }
-
-  @override
-  String get premiumTrialActiveProfile => 'Ești în perioada de probă Reverb';
-
-  @override
   String get avatarDescriptionNonPremium =>
       'JPEG, PNG, WebP. Maxim 10 MB. Recomandat: 512×512 px. Avatarele animate (GIF) necesită Reverb.';
 
@@ -2152,18 +2075,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get profileSavedToast => 'Profil actualizat';
-
-  @override
-  String get profileEditButton => 'Editare profil';
-
-  @override
-  String get profileNoteLabel => 'Notă';
-
-  @override
-  String get profileNoteVisibility => '(vizibil doar pentru tine)';
-
-  @override
-  String get profileNoteEmpty => 'Nicio notă încă.';
 
   @override
   String get sudoTitle => 'Verifică-ți identitatea';
@@ -2457,35 +2368,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'de ex. YubiKey, iPhone, Computer de serviciu';
 
   @override
-  String get securityPhoneSectionTitle => 'Număr de telefon';
-
-  @override
-  String get securityPhoneSectionDescription =>
-      'Gestionează-ți numărul de telefon.';
-
-  @override
-  String get securityPhoneLabel => 'Număr de telefon';
-
-  @override
-  String get securityPhoneNone => 'Nu este adăugat niciun număr de telefon.';
-
-  @override
-  String get securityPhoneAdd => 'Adaugă număr de telefon';
-
-  @override
-  String get securityPhoneRemove => 'Elimină';
-
-  @override
-  String get securityPhoneRemoveTitle => 'Elimină numărul de telefon';
-
-  @override
-  String get securityPhoneRemoveDescription =>
-      'Ești sigur că vrei să-ți ștergi numărul de telefon?';
-
-  @override
-  String get securityPhoneRemoved => 'Număr de telefon eliminat';
-
-  @override
   String get securityClaimTitle => 'Funcționalități de securitate';
 
   @override
@@ -2494,7 +2376,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get securityVerifyEmailRequired =>
-      'Trebuie să îți verifici adresa de e-mail înainte de a putea configura autentificarea în doi pași, cheile de acces sau verificarea prin SMS.';
+      'Trebuie să îți verifici adresa de e-mail înainte de a putea configura autentificarea în doi pași sau cheile de acces.';
 
   @override
   String get totpEnableTitle => 'Configurare aplicație de autentificare';
@@ -2533,9 +2415,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Dacă pierzi accesul la aplicația de autentificare și nu ai aceste coduri, vei fi blocat permanent din contul tău. Descarcă-le sau copiază-le acum și păstrează-le într-un loc sigur.';
 
   @override
-  String get backupCodesDownload => 'Descarcă';
-
-  @override
   String get backupCodesCopy => 'Copiază';
 
   @override
@@ -2550,166 +2429,8 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get backupCodesDone => 'Gata';
 
   @override
-  String get backupCodesViewTitle => 'Vizualizați codurile de rezervă';
-
-  @override
-  String get backupCodesViewDescription =>
-      'Este posibil să fie necesară verificarea înainte de a vizualiza codurile de rezervă.';
-
-  @override
-  String get phoneAddTitle => 'Adaugă număr de telefon';
-
-  @override
-  String get phoneAddLabel => 'Număr de telefon';
-
-  @override
-  String get phoneAddHint => 'Introduceți numărul de telefon';
-
-  @override
-  String get phoneAddFooter =>
-      'Vom trimite un cod SMS când va fi disponibil. Numărul tău nu este legat de contul tău. Păstrăm doar un marcator criptat, fără ID de utilizator, pentru a permite maximum 2 verificări în aproximativ 30 de zile.';
-
-  @override
-  String get phoneAddSendCode => 'Trimite cod';
-
-  @override
-  String get phoneVerifyTitle => 'Verifică numărul de telefon';
-
-  @override
-  String get phoneVerifyDescription =>
-      'Introdu codul de verificare trimis la numărul tău de telefon.';
-
-  @override
-  String get phoneAddSuccess => 'Număr de telefon verificat';
-
-  @override
-  String get phoneCountryLabel => 'Țara';
-
-  @override
-  String get phoneSearchCountries => 'Căutați țări...';
-
-  @override
-  String get phoneNumberRequired => 'Numărul de telefon este obligatoriu';
-
-  @override
-  String get phoneEnterValidNumber =>
-      'Introduceți un număr de telefon mobil valid.';
-
-  @override
-  String get phoneCannotBeUsed =>
-      'Acest număr de telefon nu poate fi utilizat. Încearcă un alt număr de mobil sau contactează asistența.';
-
-  @override
-  String get phoneAlreadyUsed =>
-      'Acest număr de telefon a fost deja utilizat. Încearcă un alt număr sau contactează asistența.';
-
-  @override
-  String get phoneCodeDidNotWork =>
-      'Codul nu a funcționat. Verifică-l și încearcă din nou.';
-
-  @override
-  String get phoneTooManyAttempts =>
-      'Prea multe încercări. Așteaptă puțin, apoi încearcă din nou.';
-
-  @override
-  String get phoneSmsUnavailable =>
-      'Verificarea prin SMS nu este disponibilă momentan. Încearcă din nou mai târziu sau contactează asistența.';
-
-  @override
-  String get phoneNotEligible =>
-      'Verificarea telefonică nu este disponibilă pentru acest cont. Folosește o altă metodă sau contactează asistența.';
-
-  @override
   String get phoneCaptchaRequired =>
       'Este necesară o verificare în browser înainte de verificarea telefonică. Încearcă din nou de pe pagina de conectare sau contactează asistența.';
-
-  @override
-  String get phoneSomethingWentWrong =>
-      'Ceva nu a mers bine. Încearcă din nou.';
-
-  @override
-  String get phoneInboundExpensiveDescription =>
-      'Trimiterea unui SMS la acest număr de telefon este prea scumpă, așa că trebuie să ne trimiți un SMS în schimb. Poți contacta, de asemenea, suportul pentru a elimina această cerință din contul tău.';
-
-  @override
-  String get phoneInboundDefaultDescription =>
-      'Trebuie să ne trimiți un SMS pentru a-ți verifica numărul de telefon.';
-
-  @override
-  String get phoneInboundStepOpenMessaging =>
-      'Deschide aplicația de mesagerie a telefonului și creează un mesaj text nou.';
-
-  @override
-  String phoneInboundStepSendCode(String code, String number) {
-    return 'Trimite codul $code la $number.';
-  }
-
-  @override
-  String get phoneInboundStepWait =>
-      'Așteaptă să primim mesajul tău. Poate dura un minut.';
-
-  @override
-  String get phoneInboundGetNewCode => 'Trimite cod nou';
-
-  @override
-  String get phoneInboundChallengeCodeLabel => 'Cod de trimis';
-
-  @override
-  String get phoneInboundOurNumberLabel => 'Trimite la';
-
-  @override
-  String get requiredActionTitle => 'Verificarea contului este necesară';
-
-  @override
-  String requiredActionIntroGeneric(String productName) {
-    return 'Finalizează verificarea necesară pentru a continua să utilizezi $productName.';
-  }
-
-  @override
-  String get requiredActionIntroPhone =>
-      'Înregistrarea ta necesită o verificare anti-spam suplimentară înainte de a putea continua.';
-
-  @override
-  String requiredActionIntroEmailOrPhone(String productName) {
-    return 'Verifică-ți adresa de e-mail sau numărul de telefon pentru a continua să folosești $productName.';
-  }
-
-  @override
-  String requiredActionIntroEmailAndPhone(String productName) {
-    return 'Finalizați pașii de verificare a adresei de e-mail și a numărului de telefon de mai jos pentru a continua să utilizați $productName.';
-  }
-
-  @override
-  String get requiredActionChooseMethodTitle => 'Alege o metodă de verificare';
-
-  @override
-  String requiredActionChooseMethodDescription(String productName) {
-    return 'Finalizați una dintre căile de verificare de mai jos pentru a continua să utilizați $productName.';
-  }
-
-  @override
-  String get requiredActionUseEmail => 'Folosește e-mailul';
-
-  @override
-  String get requiredActionUsePhone => 'Folosește telefonul';
-
-  @override
-  String get requiredActionCheckEmailTitle => 'Verifică-ți emailul';
-
-  @override
-  String get requiredActionCheckEmailDescription =>
-      'Am trimis un link de verificare la adresa ta de e-mail. Deschide-l pentru a continua.';
-
-  @override
-  String get requiredActionResendVerificationEmail =>
-      'Retrimite emailul de verificare';
-
-  @override
-  String get requiredActionVerificationEmailSent =>
-      'E-mailul de verificare a fost trimis. Verifică-ți căsuța de e-mail.';
-
-  @override
-  String get requiredActionSignOut => 'Deconectare';
 
   @override
   String get dangerZoneSectionTitle => 'Zonă de pericol';
@@ -3013,7 +2734,293 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Accesează punctele finale administrative';
 
   @override
-  String get privacyPendingDeletionTitle => 'Ștergere în așteptare';
+  String get applicationsTitle => 'Aplicații';
+
+  @override
+  String get applicationsCreate => 'Creează aplicație';
+
+  @override
+  String get applicationsCreateSubmit => 'Creează';
+
+  @override
+  String get applicationsCreateClaimTooltip =>
+      'Revendică-ți contul pentru a crea aplicații.';
+
+  @override
+  String applicationsDocsLink(String domain) {
+    return 'Citește documentația ($domain)';
+  }
+
+  @override
+  String get applicationsLoadError => 'Nu se pot încărca aplicațiile';
+
+  @override
+  String get applicationsLoadErrorDescription =>
+      'Verifică-ți conexiunea și încearcă din nou.';
+
+  @override
+  String get applicationsEmptyTitle => 'Încă nicio aplicație';
+
+  @override
+  String applicationsEmptyDescription(String apiName) {
+    return 'Creează prima ta aplicație pentru a începe cu $apiName.';
+  }
+
+  @override
+  String applicationsCreated(String date) {
+    return 'Creat la $date';
+  }
+
+  @override
+  String get applicationsName => 'Numele aplicației';
+
+  @override
+  String get applicationsNameHint => 'Aplicația mea';
+
+  @override
+  String get applicationsNameRequired => 'Numele aplicației este obligatoriu';
+
+  @override
+  String get applicationsBackToList => 'Înapoi la listă';
+
+  @override
+  String get applicationsDetailLoadError =>
+      'Nu s-a putut încărca această aplicație';
+
+  @override
+  String get applicationsDetailLoadErrorDescription =>
+      'Încearcă din nou sau revino la lista de aplicații.';
+
+  @override
+  String get applicationsId => 'ID aplicație';
+
+  @override
+  String get applicationsCopyId => 'Copiază ID-ul';
+
+  @override
+  String get applicationsSecretsTitle => 'Secrete și tokenuri';
+
+  @override
+  String get applicationsSecretsDescription =>
+      'Păstrează-le în siguranță. Regenerarea va întrerupe integrările existente.';
+
+  @override
+  String get applicationsClientSecret => 'Secret client';
+
+  @override
+  String get applicationsBotToken => 'Token bot';
+
+  @override
+  String get applicationsRegenerate => 'Regenerează';
+
+  @override
+  String get applicationsRegenerateClientSecretTitle =>
+      'Regenerezi secretul clientului?';
+
+  @override
+  String get applicationsRegenerateBotTokenTitle =>
+      'Regenerezi tokenul botului?';
+
+  @override
+  String get applicationsRegenerateClientSecretDescription =>
+      'Regenerarea va invalida secretul curent. Actualizează orice cod care folosește valoarea veche.';
+
+  @override
+  String get applicationsRegenerateBotTokenDescription =>
+      'Regenerarea va invalida tokenul curent. Actualizează orice cod care folosește valoarea veche.';
+
+  @override
+  String get applicationsClientSecretRegenerated =>
+      'Secretul clientului a fost regenerat. Actualizează orice cod care folosește vechiul secret.';
+
+  @override
+  String get applicationsBotTokenRegenerated =>
+      'Tokenul botului a fost regenerat. Actualizează orice cod care folosește vechiul token.';
+
+  @override
+  String get applicationsRegenerateFailed => 'Nu s-a putut regenera secretul';
+
+  @override
+  String get applicationsInfoTitle => 'Informații despre aplicație';
+
+  @override
+  String get applicationsInfoDescription =>
+      'Setări de bază și URI-uri de redirecționare permise.';
+
+  @override
+  String get applicationsPublicBot => 'Bot public';
+
+  @override
+  String get applicationsPublicBotDescription =>
+      'Permite oricui să invite acest bot în comunitățile sale.';
+
+  @override
+  String get applicationsRequireCodeGrant =>
+      'Necesită acordarea codului OAuth2';
+
+  @override
+  String get applicationsRequireCodeGrantDescription =>
+      'Necesită un URI de redirecționare și un cod de autorizare la invitarea acestui bot.';
+
+  @override
+  String get applicationsRedirectUris => 'URI-uri de redirecționare';
+
+  @override
+  String get applicationsAddRedirect => 'Adaugă redirecționare';
+
+  @override
+  String get applicationsDeleteRedirect => 'Șterge URI-ul de redirecționare';
+
+  @override
+  String get applicationsBotProfileTitle => 'Profil bot';
+
+  @override
+  String get applicationsBotProfileDescription =>
+      'Avatar, tag și detalii complexe de profil pentru botul tău.';
+
+  @override
+  String get applicationsBotAvatar => 'Avatar bot';
+
+  @override
+  String get applicationsUsernameRequired =>
+      'Numele de utilizator este obligatoriu';
+
+  @override
+  String get applicationsUsernameTooLong =>
+      'Numele de utilizator trebuie să aibă maximum 32 de caractere';
+
+  @override
+  String get applicationsUsernameInvalid =>
+      'Numele de utilizator poate conține doar litere, cifre și liniuțe de subliniere';
+
+  @override
+  String get applicationsBotUsername => 'Nume de utilizator bot';
+
+  @override
+  String get applicationsDiscriminator => 'Discriminator';
+
+  @override
+  String get applicationsBotBio => 'Biografie bot';
+
+  @override
+  String get applicationsBotBioHint =>
+      'Un bot util care face lucruri uimitoare!';
+
+  @override
+  String get applicationsNoBotBanner => 'Fără banner de bot';
+
+  @override
+  String get applicationsFriendlyBot => 'Bot prietenos';
+
+  @override
+  String get applicationsFriendlyBotDescription =>
+      'Permite utilizatorilor să trimită cereri de prietenie acestui bot, pentru aprobare manuală.';
+
+  @override
+  String get applicationsManualFriendApproval =>
+      'Necesită aprobare manuală a cererii de prietenie';
+
+  @override
+  String get applicationsManualFriendApprovalDescription =>
+      'Cererile de prietenie către acest bot necesită aprobare manuală.';
+
+  @override
+  String get applicationsOauthBuilderTitle => 'Constructor de URL-uri OAuth2';
+
+  @override
+  String get applicationsOauthBuilderDescription =>
+      'Creează un URL de autorizare cu scopuri și permisiuni.';
+
+  @override
+  String get applicationsScopes => 'Domenii';
+
+  @override
+  String get applicationsRedirectUri => 'URI de redirecționare';
+
+  @override
+  String get applicationsSelectRedirectUri =>
+      'Selectează un URI de redirecționare';
+
+  @override
+  String get applicationsRedirectRequiredCodeGrant =>
+      'URI-ul de redirecționare este obligatoriu, deoarece acest bot necesită acordarea codului OAuth2.';
+
+  @override
+  String get applicationsRedirectRequiredScopes =>
+      'URI-ul de redirecționare este necesar atunci când nu se utilizează doar domeniul bot.';
+
+  @override
+  String get applicationsBotPermissions => 'Permisiuni bot';
+
+  @override
+  String get applicationsAuthorizeUrl => 'URL de autorizare';
+
+  @override
+  String get applicationsAuthorizeUrlPlaceholder =>
+      'Selectează domeniile (și URI-ul de redirecționare, dacă este necesar)';
+
+  @override
+  String get applicationsCopyAuthorizeUrl => 'Copiază URL-ul de autorizare';
+
+  @override
+  String get applicationsCopiedUrl => 'URL copiat în clipboard';
+
+  @override
+  String get applicationsDangerTitle => 'Zonă de risc';
+
+  @override
+  String get applicationsDangerSubtitle =>
+      'Această acțiune nu poate fi anulată. Eliminarea aplicației șterge și botul acesteia.';
+
+  @override
+  String get applicationsDangerHelper =>
+      'Odată ștearsă, aplicația și credențialele ei sunt eliminate definitiv.';
+
+  @override
+  String get applicationsDelete => 'Șterge aplicația';
+
+  @override
+  String applicationsDeleteConfirmDescription(String name) {
+    return 'Sigur vrei să ștergi $name? Această acțiune nu poate fi anulată. Toate datele asociate, inclusiv utilizatorul bot, vor fi șterse definitiv.';
+  }
+
+  @override
+  String get applicationsDeleteFailed => 'Nu s-a putut șterge aplicația';
+
+  @override
+  String get applicationsUpdated => 'Aplicație actualizată cu succes';
+
+  @override
+  String get applicationsNoChanges => 'Nicio modificare de salvat';
+
+  @override
+  String get applicationsSearchBots => 'Aplicații și boți';
+
+  @override
+  String get applicationsSearchBotsDescription =>
+      'Creează și gestionează aplicații și boți pentru contul tău';
+
+  @override
+  String get applicationsSearchInfoDescription =>
+      'Editează elementele de bază ale aplicației și URI-urile de redirecționare';
+
+  @override
+  String get applicationsSearchBotProfileDescription =>
+      'Editează avatarul, tagul, biografia, bannerul și comportamentul cererilor de prietenie ale botului';
+
+  @override
+  String get applicationsSearchOauthDescription =>
+      'Construiește un URL de autorizare cu domenii, redirecționări și permisiuni bot';
+
+  @override
+  String get applicationsSearchSecretsDescription =>
+      'Vezi și regenerează secretele clientului și tokenurile botului';
+
+  @override
+  String get applicationsSearchBotsKeyword => 'Boți';
+
+  @override
+  String get applicationsSearchDocumentation => 'Documentație';
 
   @override
   String get blockedUsersTitle => 'Utilizatori blocați';
@@ -3176,9 +3183,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get userProfileNoteDelete => 'Șterge';
 
   @override
-  String get userProfileNoteEmpty => 'Atinge pentru a adăuga o notă';
-
-  @override
   String get userProfileMemberSince => 'Membru din';
 
   @override
@@ -3223,6 +3227,60 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get userProfileLocalTime => 'Ora locală';
+
+  @override
+  String get profileLocalTimeSettingsTitle => 'Ora locală a profilului';
+
+  @override
+  String profileLocalTimeSettingsSummary(String productName) {
+    return 'Stabilește-ți fusul orar o singură dată, astfel încât $productName să poată menține actualizat decalajul UTC atunci când ora de vară se schimbă. Alți utilizatori pot vedea doar decalajul tău UTC, nu și identificatorul exact al fusului orar.';
+  }
+
+  @override
+  String get profileLocalTimeEditButton => 'Editează ora locală a profilului';
+
+  @override
+  String get profileLocalTimeTimezoneLabel => 'Fus orar';
+
+  @override
+  String profileLocalTimeTimezoneHelp(String productName) {
+    return 'Alege fusul orar pe care $productName îl folosește pentru a calcula decalajul tău UTC pentru ora locală din profil.';
+  }
+
+  @override
+  String get profileLocalTimeSearchTimezones => 'Caută fusuri orare';
+
+  @override
+  String get profileLocalTimeNotSet => 'Nesetat';
+
+  @override
+  String profileLocalTimePrivacyNote(
+    String timezoneIdentifierExample,
+    String productName,
+  ) {
+    return 'Când alegi să partajezi ora locală din profil, ceilalți utilizatori vor vedea doar decalajul tău UTC actual. Nu vor vedea identificatorul exact al fusului orar, cum ar fi $timezoneIdentifierExample. $productName stochează acest identificator doar pentru ca decalajul să se poată actualiza automat atunci când se schimbă ora de vară.';
+  }
+
+  @override
+  String get profileLocalTimePrivacyEveryone => 'Toată lumea';
+
+  @override
+  String get profileLocalTimePrivacyEveryoneDesc =>
+      'Permite oricui îți poate vedea profilul complet să-ți vadă ora locală';
+
+  @override
+  String get profileLocalTimePrivacyFriends => 'Prieteni';
+
+  @override
+  String get profileLocalTimePrivacyFriendsDesc =>
+      'Permite-le prietenilor să vadă ora ta locală';
+
+  @override
+  String get profileLocalTimePrivacyCommunityMembers => 'Membrii comunității';
+
+  @override
+  String get profileLocalTimePrivacyCommunityMembersDesc =>
+      'Permite membrilor din comunitățile în care te afli să vadă ora ta locală';
 
   @override
   String get userProfileSameTimeAsYou => 'Același fus orar ca al tău';
@@ -3351,10 +3409,10 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get userProfileTransferOwnership => 'Transferă proprietatea';
 
   @override
-  String get userProfileReportUser => 'Raportează utilizatorul';
+  String get userProfileReportMessage => 'Raportează mesajul';
 
   @override
-  String get userProfileReportMessage => 'Raportează mesajul';
+  String get userProfileReportUserProfile => 'Raportează profilul';
 
   @override
   String userProfileKickConfirmTitle(String username) {
@@ -3504,93 +3562,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get durationCustom => 'Personalizat…';
-
-  @override
-  String get iarReportUserTitle => 'Raportează utilizatorul';
-
-  @override
-  String get iarReportGuildTitle => 'Raportează comunitatea';
-
-  @override
-  String get iarReportGuildPreconfirmBody =>
-      'Dacă acest raport se referă la un anumit mesaj din această comunitate, raportează mai degrabă mesajul respectiv. Rapoartele de mesaje oferă echipei noastre de siguranță cel mai clar context, iar adăugarea detaliilor în comentarii ne poate ajuta să le examinăm mai rapid. Continuă să raportezi comunitatea în ansamblu doar dacă raportarea unui mesaj nu ar surprinde problema mai amplă.';
-
-  @override
-  String get iarContinueToReportCommunity =>
-      'Continuă să raportezi comunitatea';
-
-  @override
-  String get iarPreviewCommunitySubtitle => 'Comunitate';
-
-  @override
-  String get iarReasonHarassmentGuildLabel => 'Hărțuire sau abuz direcționat';
-
-  @override
-  String get iarReasonHarassmentGuildDescription =>
-      'Comunitatea facilitează atacurile în grup sau abuzurile direcționate.';
-
-  @override
-  String get iarReasonHateGuildDescription =>
-      'Promovează ura împotriva grupurilor protejate.';
-
-  @override
-  String get iarReasonTerrorismLabel => 'Terorism sau extremism violent';
-
-  @override
-  String get iarReasonTerrorismDescription =>
-      'Promovează, recrutează sau coordonează activități extremiste violente.';
-
-  @override
-  String get iarReasonMatureContentGuildLabel =>
-      'Conținut matur sau restricții de siguranță';
-
-  @override
-  String get iarReasonMatureContentGuildDescription =>
-      'Conținut matur fără restricții adecvate.';
-
-  @override
-  String get iarReasonChildSafetyGuildDescription =>
-      'Pune în pericol minori sau găzduiește conținut de exploatare a copiilor.';
-
-  @override
-  String get iarReasonRaidLabel => 'Coordonare raid';
-
-  @override
-  String get iarReasonRaidDescription =>
-      'Coordonează raiduri, acțiuni de brigadă sau hărțuire împotriva unor persoane sau comunități.';
-
-  @override
-  String get iarReasonSpamGuildDescription =>
-      'Comunitatea există pentru a trimite spam, a înșela sau a abuza de platformă.';
-
-  @override
-  String get iarReasonMalwareGuildLabel => 'Distribuire de malware';
-
-  @override
-  String get iarReasonMalwareGuildDescription =>
-      'Distribuie malware, fură date de conectare sau fișiere dăunătoare.';
-
-  @override
-  String get iarReasonPrivacyGuildLabel =>
-      'Încălcare a confidențialității sau doxxing';
-
-  @override
-  String get iarReasonPrivacyGuildDescription =>
-      'Partajează informații personale, urmărește utilizatori sau coordonează abuzuri de confidențialitate.';
-
-  @override
-  String get iarReasonSelfHarmGuildLabel => 'Încurajează auto-vătămarea';
-
-  @override
-  String get iarReasonSelfHarmGuildDescription =>
-      'Încurajează sinuciderea, auto-vătămarea sau tulburările de alimentație.';
-
-  @override
-  String get iarReasonInappropriateProfile => 'Profil neadecvat';
-
-  @override
-  String get iarReasonInappropriateProfileDescription =>
-      'Profilul acestui utilizator conține conținut necorespunzător';
 
   @override
   String typingIndicatorOne(String name) {
@@ -3877,6 +3848,33 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get linkedDevicesUnknownPlatform => 'Platform necunoscută';
 
   @override
+  String get linkedDevicesViewDetails => 'Vezi detalii';
+
+  @override
+  String get linkedDevicesDetailsTitle => 'Detalii dispozitiv';
+
+  @override
+  String get linkedDevicesDetailsDevice => 'Dispozitiv';
+
+  @override
+  String get linkedDevicesDetailsClient => 'Client';
+
+  @override
+  String get linkedDevicesDetailsLocation => 'Locație';
+
+  @override
+  String get linkedDevicesDetailsIp => 'Adresa IP';
+
+  @override
+  String get linkedDevicesDetailsLastUsed => 'Ultima utilizare';
+
+  @override
+  String get linkedDevicesCurrentSession => 'Sesiunea curentă';
+
+  @override
+  String get linkedDevicesUnknown => 'Necunoscut';
+
+  @override
   String slowmodeLabel(String duration) {
     return '$duration mod lent';
   }
@@ -3945,14 +3943,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu ești membru al acestei comunități de suficient timp pentru a trimite mesaje.';
 
   @override
-  String get channelComposerBarrierNoPhoneNumber =>
-      'Trebuie să-ți verifici numărul de telefon pentru a trimite mesaje în această comunitate.';
-
-  @override
   String get channelComposerBarrierVerifyEmail => 'Verifică adresa de e-mail';
-
-  @override
-  String get channelComposerBarrierVerifyPhone => 'Verifică numărul de telefon';
 
   @override
   String chatAttachmentTooMany(int max) {
@@ -3977,9 +3968,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Eliberează fișierele pentru a le trimite acum';
 
   @override
-  String get chatAttachmentSendVoiceMessage => 'Trimite mesaj vocal';
-
-  @override
   String get voiceMessageTitle => 'Mesaj vocal';
 
   @override
@@ -3997,10 +3985,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu se poate începe înregistrarea. Permite accesul la microfon.';
 
   @override
-  String get voiceMessageRecordingNotSupported =>
-      'Înregistrarea vocală nu este acceptată pe acest dispozitiv.';
-
-  @override
   String get voiceMessageMicInUse =>
       'Părăsește apelul vocal pentru a înregistra un mesaj vocal.';
 
@@ -4013,23 +3997,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu s-a putut trimite mesajul vocal. Încearcă din nou.';
 
   @override
-  String get voiceMessageRecordingHint =>
-      'Vorbește acum. Apasă Oprește când ai terminat — poți edita ulterior.';
-
-  @override
-  String get voiceMessageReviewHint =>
-      'Trageți de mânere pentru a decupa, apoi apăsați Trimiteți.';
-
-  @override
-  String get voiceMessageStop => 'Oprește';
-
-  @override
-  String get voiceMessageStartRecording => 'Începe înregistrarea';
-
-  @override
-  String get voiceMessageRerecord => 'Reînregistrează';
-
-  @override
   String get voiceMessagePlay => 'Redă';
 
   @override
@@ -4040,16 +4007,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get voiceMessageSeekBackward => 'Derulează înapoi';
-
-  @override
-  String voiceMessageSelectionTooShort(num seconds) {
-    final intl.NumberFormat secondsNumberFormat = intl.NumberFormat.compact(
-      locale: localeName,
-    );
-    final String secondsString = secondsNumberFormat.format(seconds);
-
-    return 'Selecția trebuie să aibă cel puțin ${secondsString}s.';
-  }
 
   @override
   String get chatAttachmentEditTitle => 'Editează atașamentul';
@@ -4194,9 +4151,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get chatAttachmentSourceBrowse => 'Răsfoiește fișiere';
 
   @override
-  String get chatAttachmentPasteTooltip => 'Lipește fișierul din clipboard';
-
-  @override
   String get chatAttachmentSpoiler => 'Ascuns';
 
   @override
@@ -4277,13 +4231,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get matureContentOpenLinkButton => 'Deschide linkul';
 
   @override
-  String get sensitiveContentSectionTitle => 'Conținut sensibil';
-
-  @override
-  String get sensitiveContentSectionDescription =>
-      'Controlează cum sunt filtrate mediile mature sau sensibile în diferite contexte';
-
-  @override
   String get sensitiveContentFriendDmLabel => 'Mesaje directe de la prieteni';
 
   @override
@@ -4302,18 +4249,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get sensitiveContentFilterBlock => 'Blochează';
 
   @override
-  String get sensitiveContentBlurUnscannedLabel =>
-      'Estompează media până la finalizarea scanării de siguranță';
-
-  @override
-  String get sensitiveContentBlurUnscannedDescriptionAdult =>
-      'Când este activată, imaginile și videoclipurile vor fi estompate până la finalizarea scanării de siguranță a conținutului.';
-
-  @override
-  String get sensitiveContentBlurUnscannedDescriptionMinor =>
-      'Această setare este mereu activată pentru contul tău.';
-
-  @override
   String get sensitiveContentResetButton => 'Resetare';
 
   @override
@@ -4329,9 +4264,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
     );
     return 'Se încarcă $_temp0';
   }
-
-  @override
-  String get chatCancelUpload => 'Anulează încărcarea';
 
   @override
   String chatAttachmentExpiresOn(String date) {
@@ -4538,9 +4470,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get connectionEnterDomain => 'Introdu un domeniu.';
 
   @override
-  String get lookAndFeelTitle => 'Aspect și aspect';
-
-  @override
   String get lookAndFeelThemeSectionTitle => 'Temă';
 
   @override
@@ -4603,11 +4532,93 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu am putut sincroniza tema în contul tău. Te rugăm să încerci din nou.';
 
   @override
-  String get lookAndFeelChatFontScalingTitle => 'Scalare font chat';
+  String get lookAndFeelThemeColorsTitle => 'Theme colors';
+
+  @override
+  String get lookAndFeelThemeColorsConfigureDescription =>
+      'Customize individual theme colors for this device.';
+
+  @override
+  String lookAndFeelThemeColorsEditingMode(String mode) {
+    return 'Editing $mode';
+  }
+
+  @override
+  String get lookAndFeelThemeColorsSyncSectionTitle => 'Theme Studio sync';
+
+  @override
+  String get lookAndFeelThemeColorsSyncFromStudioLabel =>
+      'Use colors from Theme Studio';
+
+  @override
+  String get lookAndFeelThemeColorsSyncFromStudioDescription =>
+      'When enabled, color changes from Theme Studio on desktop apply on this device. When disabled, this device keeps its own colors.';
+
+  @override
+  String get lookAndFeelThemeColorsSyncToStudioLabel =>
+      'Send color changes to Theme Studio';
+
+  @override
+  String get lookAndFeelThemeColorsSyncToStudioDescription =>
+      'When enabled, colors you change here sync to Theme Studio on your other devices. When disabled, desktop Theme Studio keeps its own colors.';
+
+  @override
+  String get lookAndFeelThemeColorsSyncFromStudioOffBanner =>
+      'Desktop Theme Studio color changes will not apply on this device.';
+
+  @override
+  String get lookAndFeelThemeColorsEssentialSectionTitle => 'Essential colors';
+
+  @override
+  String get lookAndFeelThemeColorsChatBackgroundWallpaperNote =>
+      'If you have a chat wallpaper set, you won\'t see this color.';
+
+  @override
+  String lookAndFeelThemeColorsResetForMode(String mode) {
+    return 'Reset all colors for $mode';
+  }
+
+  @override
+  String get lookAndFeelThemeColorsResetConfirmTitle => 'Reset theme colors?';
+
+  @override
+  String lookAndFeelThemeColorsResetConfirmBody(String mode) {
+    return 'This removes your custom color overrides for $mode on this device.';
+  }
+
+  @override
+  String get lookAndFeelThemeColorsGroupBrandButtons => 'Brand & buttons';
+
+  @override
+  String get lookAndFeelThemeColorsGroupChatSurfaces => 'Chat & messages';
+
+  @override
+  String get lookAndFeelThemeColorsGroupSidebars => 'Sidebars & navigation';
+
+  @override
+  String get lookAndFeelThemeColorsGroupText => 'Text';
+
+  @override
+  String get lookAndFeelThemeColorsGroupHeaders => 'Headers';
+
+  @override
+  String get lookAndFeelThemeColorsGroupStatus => 'Status';
+
+  @override
+  String get lookAndFeelThemeColorsGroupEmbedsMarkup => 'Embeds & mentions';
+
+  @override
+  String get lookAndFeelThemeColorsGroupAccentsAlerts => 'Accents & alerts';
+
+  @override
+  String get lookAndFeelThemeColorsGroupControls => 'Surfaces & controls';
+
+  @override
+  String get lookAndFeelChatFontScalingTitle => 'Chat font scaling';
 
   @override
   String get lookAndFeelChatFontScalingDescription =>
-      'Ajustează dimensiunea fontului în zona de chat.';
+      'Adjust the font size in the chat area.';
 
   @override
   String get lookAndFeelChatFontSizeLabel => 'Dimensiune font chat';
@@ -4641,7 +4652,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get lookAndFeelChatWallpaperCustomLabel => 'Imagine personalizată';
 
   @override
-  String get lookAndFeelChatWallpaperStarfieldLabel => 'Starfield';
+  String get lookAndFeelChatWallpaperStarfieldLabel => 'Câmp stelar';
 
   @override
   String lookAndFeelChatWallpaperColorLabel(String id) {
@@ -4760,39 +4771,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get lookAndFeelHideKeyboardHintsDescription =>
       'Când este activată, insignele de scurtătură sunt ascunse în ferestrele pop-up de ajutor.';
-
-  @override
-  String get lookAndFeelNekoTitle => 'Diverse';
-
-  @override
-  String get lookAndFeelNekoDescription => 'Opțiuni diverse de interfață.';
-
-  @override
-  String get lookAndFeelShowNekoLabel => 'Afișează Pickles';
-
-  @override
-  String get lookAndFeelShowNekoDescription =>
-      'Când este activat, Pickles apare lângă bara de introducere a mesajului.';
-
-  @override
-  String get lookAndFeelVoiceChannelJoinTitle =>
-      'Comportamentul la alăturarea la canalul vocal';
-
-  @override
-  String get lookAndFeelVoiceChannelJoinDescription =>
-      'Controlează cum te alături canalelor vocale în comunități.';
-
-  @override
-  String get lookAndFeelRequireDoubleClickJoinLabel =>
-      'Solicită dublu clic pentru a te alătura canalelor vocale';
-
-  @override
-  String get lookAndFeelRequireDoubleClickJoinDescription =>
-      'Când este activată, va trebui să dai dublu clic pe canalele vocale pentru a te alătura. Când este dezactivată (implicit), un singur clic te va alătura imediat canalului.';
-
-  @override
-  String get lookAndFeelChatFontPreviewSample =>
-      'Vulpea rapidă maro sare peste câinele leneș.';
 
   @override
   String get lookAndFeelGuildSidebarTitle => 'Bară laterală a comunității';
@@ -5255,22 +5233,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Afișează media salvată în completarea automată a expresiilor';
 
   @override
-  String get messagesMediaEditingSectionTitle => 'Editare mesaj';
-
-  @override
-  String get messagesMediaEditingSectionDescription =>
-      'Controlează ce se întâmplă cu schița ta de editare când anulezi.';
-
-  @override
-  String get messagesMediaEditingPreserveDraftLabel =>
-      'Păstrează schița modificărilor la anulare';
-
-  @override
   String get accessibilitySaturationTitle => 'Saturație';
-
-  @override
-  String get accessibilitySaturationDescription =>
-      'Ajustează cât de vii apar culorile temei în aplicație.';
 
   @override
   String get accessibilityVisualGroupTitle => 'Vizual';
@@ -5281,11 +5244,11 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get accessibilityShowAltTextOnImagesLabel =>
-      'Show alternative text on images';
+      'Afișează textul alternativ pe imagini';
 
   @override
   String get accessibilityShowAltTextOnImagesDescription =>
-      'Display alternative text below images when it is available.';
+      'Afișează textul alternativ sub imagini, atunci când este disponibil.';
 
   @override
   String get accessibilityDimStrikethroughTextLabel =>
@@ -5294,10 +5257,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get accessibilityDmMessagePreviewGroupTitle =>
       'Previzualizări mesaje DM';
-
-  @override
-  String get accessibilityDmMessagePreviewGroupDescription =>
-      'Controlează când sunt afișate previzualizări ale mesajelor în lista de mesaje directe.';
 
   @override
   String get accessibilityDmMessagePreviewModeLabel =>
@@ -5417,10 +5376,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get accessibilityPausedGifByReducedMotion =>
       'Pauzat din cauza mișcării reduse. Activează pentru a menține GIF-urile în redare.';
-
-  @override
-  String get accessibilityGifDefaultsOffOnMobile =>
-      'Dezactivat implicit pe mobil pentru a economisi bateria și datele mobile.';
 
   @override
   String get accessibilityStickerAnimationsTitle => 'Animații stickere';
@@ -5743,10 +5698,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu am putut deconecta celelalte dispozitive. Încearcă din nou peste o clipă.';
 
   @override
-  String get voiceChannelEmptyDescription =>
-      'Acesta este un canal vocal. Conectează-te pentru a începe să vorbești!';
-
-  @override
   String get voiceChannelJoin => 'Alătură-te canalului vocal';
 
   @override
@@ -5785,12 +5736,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get voiceChannelStatusConnecting => 'Se conectează…';
-
-  @override
-  String get voiceChannelStatusConnected => 'Conectat';
-
-  @override
-  String get voiceChannelStatusError => 'Eroare';
 
   @override
   String get voiceParticipantTooltipMobileDevice => 'Dispozitiv mobil';
@@ -5854,9 +5799,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get voiceScreenShareNotificationText => 'Se partajează ecranul.';
-
-  @override
-  String get voiceControlMore => 'Mai multe';
 
   @override
   String get voiceControlDisconnect => 'Deconectare';
@@ -6012,7 +5954,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get voiceOutputRouteSpeaker => 'Difuzor';
 
   @override
-  String get voiceOutputRouteEarpiece => 'Earpiece';
+  String get voiceOutputRouteEarpiece => 'Receptor';
 
   @override
   String get voiceOutputRouteHeadset => 'Căști';
@@ -6225,6 +6167,10 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Mesajul tău nu a putut fi livrat deoarece a fost semnalat de sistemele noastre de siguranță. Dacă crezi că este o greșeală, te rugăm să contactezi asistența.';
 
   @override
+  String get chatSendFailureContentBlockedSelfHosted =>
+      'Mesajul tău nu a putut fi livrat deoarece a fost semnalat de sistemele noastre de siguranță. Dacă crezi că este o greșeală, te rugăm să contactezi administratorii acestei instanțe.';
+
+  @override
   String get chatSendFailureNsfwEmojiSticker =>
       'Mesajul tău nu a putut fi livrat deoarece conține emoji sau stickere mature, care nu sunt permise în acest context.';
 
@@ -6291,24 +6237,12 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get privacyDashboardFriendRequestsEveryone => 'Toată lumea';
 
   @override
-  String get privacyDashboardFriendRequestsEveryoneDesc =>
-      'Permite oricui să-ți trimită cereri de prietenie';
-
-  @override
   String get privacyDashboardFriendRequestsFriendsOfFriends =>
       'Prietenii prietenilor';
 
   @override
-  String get privacyDashboardFriendRequestsFriendsOfFriendsDesc =>
-      'Permite prietenilor prietenilor tăi să-ți trimită cereri';
-
-  @override
   String get privacyDashboardFriendRequestsCommunityMembers =>
       'Membrii comunității';
-
-  @override
-  String get privacyDashboardFriendRequestsCommunityMembersDesc =>
-      'Permite membrilor din comunitățile tale să-ți trimită cereri';
 
   @override
   String get privacyDashboardDirectMessagesTitle => 'Mesaje directe';
@@ -6318,58 +6252,26 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Permite mesaje directe de la membrii comunității';
 
   @override
-  String get privacyDashboardDirectMessagesMembersDesc =>
-      'Permite membrilor din comunitățile tale să-ți trimită mesaje directe';
-
-  @override
   String get privacyDashboardDirectMessagesBots =>
       'Permite mesaje directe de la boții comunității';
-
-  @override
-  String get privacyDashboardDirectMessagesBotsDesc =>
-      'Permite roboților din comunitățile tale să-ți trimită mesaje directe';
-
-  @override
-  String get privacyDashboardConnectionsSectionDesc =>
-      'Controlează cine îți poate trimite cereri de prietenie și mesaje directe';
-
-  @override
-  String get privacyDashboardCommunicationSectionDesc =>
-      'Controlează cine te poate suna și cine te poate adăuga în conversații de grup';
 
   @override
   String get privacyDashboardIncomingCallsTitle => 'Apeluri primite';
 
   @override
-  String get privacyDashboardIncomingCallsDesc =>
-      'Controlează cine te poate suna';
-
-  @override
   String get privacyDashboardAllowedCallers => 'Apeluri permise';
-
-  @override
-  String get privacyDashboardIncomingCallNobody => 'Nimeni';
 
   @override
   String get privacyDashboardIncomingCallNobodyDesc =>
       'Blocați toate apelurile primite';
 
   @override
-  String get privacyDashboardIncomingCallFriendsOnly => 'Doar prietenii';
-
-  @override
   String get privacyDashboardIncomingCallFriendsOnlyDesc =>
       'Permite doar prietenilor să te sune (recomandat)';
 
   @override
-  String get privacyDashboardIncomingCallCustom => 'Prietenii + Personalizat';
-
-  @override
   String get privacyDashboardIncomingCallCustomDesc =>
       'Permite prietenilor plus grupuri suplimentare pe care le alegi';
-
-  @override
-  String get privacyDashboardIncomingCallEveryone => 'Toată lumea';
 
   @override
   String get privacyDashboardIncomingCallEveryoneDesc =>
@@ -6379,14 +6281,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get privacyDashboardAdditionalGroups => 'Grupuri suplimentare';
 
   @override
-  String get privacyDashboardCallFriendsOfFriendsDesc =>
-      'Persoanele care sunt prietene cu prietenii tăi te pot suna';
-
-  @override
-  String get privacyDashboardCallGuildMembersDesc =>
-      'Persoanele din comunitățile în care vă aflați amândoi vă pot suna';
-
-  @override
   String get privacyDashboardRingBehavior => 'Comportament inel';
 
   @override
@@ -6394,16 +6288,8 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Apeluri silențioase de la toată lumea';
 
   @override
-  String get privacyDashboardSilentCallsDesc =>
-      'Toate apelurile vor notifica silențios în loc să sune. Implicit, apelurile de la persoane necunoscute sunt întotdeauna silențioase.';
-
-  @override
   String get privacyDashboardGroupDmTitle =>
       'Cine te poate adăuga în conversații de grup';
-
-  @override
-  String get privacyDashboardGroupDmDesc =>
-      'Controlează cine te poate adăuga în conversații de grup fără să ceară permisiunea. Oricine îți poate trimite în continuare linkuri de invitație pentru a te alătura.';
 
   @override
   String get privacyDashboardAllowedInvites => 'Invitări permise';
@@ -6423,14 +6309,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get privacyDashboardGroupDmEveryoneDesc =>
       'Permite oricui să te adauge în conversații de grup fără să ceară permisiunea';
-
-  @override
-  String get privacyDashboardGroupDmFriendsOfFriendsDesc =>
-      'Persoanele care sunt prietene cu prietenii tăi te pot adăuga în conversații de grup';
-
-  @override
-  String get privacyDashboardGroupDmGuildMembersDesc =>
-      'Persoanele din comunitățile în care vă aflați amândoi vă pot adăuga în conversații de grup';
 
   @override
   String get privacyDashboardVoiceActivityTitle =>
@@ -6826,16 +6704,48 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get chatMessageAddReaction => 'Adaugă reacție';
 
   @override
-  String get doubleTapReactionHint => 'Double tap a message to';
+  String get doubleTapReactionHint => 'Atinge de două ori un mesaj pentru a';
 
   @override
   String get doubleTapReactionEdit => 'Editează';
 
   @override
-  String get doubleTapReactionEditTitle => 'Edit default';
+  String get doubleTapReactionEditTitle => 'Editează implicitul';
 
   @override
-  String get doubleTapReactionEditSubtitle => 'Choose double tap emoji';
+  String get doubleTapReactionEditSubtitle =>
+      'Alege emoji-ul pentru atingere dublă';
+
+  @override
+  String get messagesMediaDoubleTapSectionTitle => 'Double tap';
+
+  @override
+  String get messagesMediaDoubleTapSectionDescription =>
+      'Choose what happens when you double tap a message.';
+
+  @override
+  String get messagesMediaDoubleTapActionLabel => 'Double tap action';
+
+  @override
+  String get messagesMediaDoubleTapActionReactName => 'Add reaction';
+
+  @override
+  String get messagesMediaDoubleTapActionReactDescription =>
+      'Adds your default double-tap emoji as a reaction.';
+
+  @override
+  String get messagesMediaDoubleTapActionEditName => 'Edit message';
+
+  @override
+  String get messagesMediaDoubleTapActionEditDescription =>
+      'Opens the editor on messages you sent. Other messages are unchanged.';
+
+  @override
+  String get messagesMediaDoubleTapActionNoneName => 'Nothing';
+
+  @override
+  String get messagesMediaDoubleTapActionNoneDescription =>
+      'Double tap is disabled.';
 
   @override
   String get chatMessageEdit => 'Editează mesajul';
@@ -6844,10 +6754,10 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get chatMessageReply => 'Răspunde';
 
   @override
-  String get notificationReplyPlaceholder => 'Message';
+  String get notificationReplyPlaceholder => 'Mesaj';
 
   @override
-  String get notificationReplyFailed => 'Couldn\'t send reply';
+  String get notificationReplyFailed => 'Nu s-a putut trimite răspunsul';
 
   @override
   String get chatMessageForward => 'Redirecționează';
@@ -7044,353 +6954,122 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get chatMessageReport => 'Raportează mesajul';
 
   @override
-  String get iarReportMessageTitle => 'Raportează mesajul';
+  String get reportFlowTitleMessage => 'Raportează mesajul';
 
   @override
-  String get iarThisUserFallback => 'acest utilizator';
+  String get reportFlowTitleUserProfile => 'Raportează profilul';
 
   @override
-  String get iarModalDescription =>
-      'Raportează o încălcare a regulilor sau găsește instrumente pentru a-ți gestiona contactele și preferințele.';
+  String get reportFlowSummaryTitle => 'Verifică raportul tău';
 
   @override
-  String get iarPathStepAriaLabel => 'De ce ai nevoie?';
+  String get reportFlowSummarySubtitle =>
+      'Asigură-te că totul arată corect înainte de a trimite.';
 
   @override
-  String get iarCategoryStepTitle => 'Ce fel de regulă a fost încălcată?';
-
-  @override
-  String get iarReasonStepTitle => 'Ce regulă a fost încălcată?';
-
-  @override
-  String get iarReasonSelectHint => 'Selectează un motiv';
-
-  @override
-  String get iarPickAnOptionToast => 'Alege o opțiune pentru a continua.';
-
-  @override
-  String get iarPickARuleToast => 'Alege regula care a fost încălcată.';
-
-  @override
-  String get iarPathPlatform => 'Raportează o încălcare a regulilor platformei';
-
-  @override
-  String get iarPathCommunity => 'Raportează moderatorilor acestei comunități';
-
-  @override
-  String get iarPathPreferenceMessage => 'Nu-mi place acest conținut';
-
-  @override
-  String get iarCategoryTargetedHarmLabel =>
-      'Amenințări, hărțuire sau vătămare';
-
-  @override
-  String get iarCategoryTargetedHarmDescription =>
-      'Hărțuire, amenințări, ură, violență, raiduri sau conținut care încurajează autovătămarea.';
-
-  @override
-  String get iarCategorySafetyMinorsLabel =>
-      'Siguranța copiilor sau conținut matur';
-
-  @override
-  String get iarCategorySafetyMinorsDescription =>
-      'Minori în pericol, conținut matur în locuri nepotrivite sau comportament nedorit.';
-
-  @override
-  String get iarCategoryPrivacyIdentityLabel =>
-      'Confidențialitate sau uzurpare de identitate';
-
-  @override
-  String get iarCategoryPrivacyIdentityDescription =>
-      'Doxxing, hărțuire, uzurpare de identitate sau un profil neadecvat.';
-
-  @override
-  String get iarCategoryDeceptionLabel =>
-      'Înșelătorii, malware sau dezinformare';
-
-  @override
-  String get iarCategoryDeceptionDescription =>
-      'Phishing, fraudă, linkuri malițioase sau afirmații false care pot provoca daune în lumea reală.';
-
-  @override
-  String get iarCategoryIllegalOtherLabel => 'Activitate ilegală sau altceva';
-
-  @override
-  String get iarCategoryIllegalOtherDescription =>
-      'Vânzări ilegale, facilitarea infracțiunilor sau o încălcare clară a regulilor care nu se încadrează în categoriile de mai sus.';
-
-  @override
-  String get iarReasonHarassmentLabel => 'Hărțuire sau amenințări';
-
-  @override
-  String get iarReasonHarassmentMessageDescription =>
-      'Hărțuire, contact nedorit repetat, urmărire sau abuz țintit.';
-
-  @override
-  String get iarReasonHateLabel => 'Discurs instigator la ură';
-
-  @override
-  String get iarReasonHateMessageDescription =>
-      'Jigniri, limbaj dezumanizant sau atacuri la adresa grupurilor protejate.';
-
-  @override
-  String get iarReasonViolenceLabel => 'Violență sau amenințări violente';
-
-  @override
-  String get iarReasonViolenceDescription =>
-      'Amenințări credibile, violență explicită sau glorificarea violenței.';
-
-  @override
-  String get iarReasonMatureContentLabel => 'Conținut matur sau hărțuire';
-
-  @override
-  String get iarReasonMatureContentMessageDescription =>
-      'Comportament nedorit sau conținut matur într-un loc nepotrivit.';
-
-  @override
-  String get iarReasonChildSafetyLabel =>
-      'Siguranța copiilor sau exploatarea minorilor';
-
-  @override
-  String get iarReasonChildSafetyMessageDescription =>
-      'Conținut de grooming sau exploatare a copiilor.';
-
-  @override
-  String get iarReasonHarmfulMisinfoLabel => 'Dezinformare dăunătoare';
-
-  @override
-  String get iarReasonHarmfulMisinfoDescription =>
-      'Afirmații false care pot provoca daune în lumea reală.';
-
-  @override
-  String get iarReasonSpamLabel => 'Spam, înșelătorii sau phishing';
-
-  @override
-  String get iarReasonSpamMessageDescription =>
-      'Spam în masă, fraudă, concursuri false sau abuz de cont.';
-
-  @override
-  String get iarReasonMalwareLabel =>
-      'Software rău intenționat sau linkuri periculoase';
-
-  @override
-  String get iarReasonMalwareDescription =>
-      'Programe malware, furt de date de conectare sau fișiere dăunătoare.';
-
-  @override
-  String get iarReasonPrivacyLabel => 'Încălcare a confidențialității';
-
-  @override
-  String get iarReasonPrivacyDescription =>
-      'Doxxing, expunerea de informații private sau hărțuirea.';
-
-  @override
-  String get iarReasonImpersonationLabel =>
-      'Impersonare sau conținut media înșelător';
-
-  @override
-  String get iarReasonImpersonationMessageDescription =>
-      'Se dă drept altcineva, inclusiv conținut înșelător generat de AI.';
-
-  @override
-  String get iarReasonIllegalLabel => 'Activitate ilegală';
-
-  @override
-  String get iarReasonIllegalDescription =>
-      'Vânzări ilegale, facilitarea infracțiunilor sau activități ilicite.';
-
-  @override
-  String get iarReasonSelfHarmLabel => 'Auto-vătămare sau sinucidere';
-
-  @override
-  String get iarReasonSelfHarmMessageDescription =>
-      'Promovarea sau instrucțiunile care încurajează autovătămarea sau tulburările de alimentație.';
-
-  @override
-  String get iarReasonOtherLabel => 'Încălcare clară a regulilor';
-
-  @override
-  String iarReasonOtherDescription(String productName) {
-    return 'Folosește doar dacă încalcă în mod clar regulile $productName și nu se încadrează în categoriile de mai sus.';
+  String reportFlowDisclaimer(String guidelines) {
+    return 'Raportează doar ce crezi sincer că încalcă regulile. Utilizarea greșită a rapoartelor contravine $guidelines.';
   }
 
   @override
-  String iarUseChildSafetyInstead(String childSafetyReason) {
-    return 'Dacă este implicat un minor, folosește în schimb \"$childSafetyReason\".';
+  String get reportFlowCommunityGuidelinesLink => 'regulile comunității';
+
+  @override
+  String get reportFlowDisclaimerNoLink =>
+      'Raportează doar ce crezi sincer că încalcă regulile și, te rog, nu trimite același raport de două ori.';
+
+  @override
+  String get reportFlowSelectedMessage => 'Mesajul pe care îl raportezi';
+
+  @override
+  String get reportFlowSelectedUser => 'Profilul pe care îl raportezi';
+
+  @override
+  String get reportFlowReportCategory => 'Răspunsurile tale';
+
+  @override
+  String get reportFlowSubmit => 'Trimite raportul';
+
+  @override
+  String get reportFlowBack => 'Înapoi';
+
+  @override
+  String get reportFlowNext => 'Înainte';
+
+  @override
+  String get reportFlowDone => 'Gata';
+
+  @override
+  String get reportFlowThankYouTitle => 'Raport trimis';
+
+  @override
+  String get reportFlowThankYouNoReportTitle =>
+      'Mulțumim că ai semnalat acest lucru';
+
+  @override
+  String reportFlowThankYouBody(String productName) {
+    return 'Echipa de siguranță $productName va analiza raportul tău. Nu vom dezvălui că a venit de la tine.';
   }
 
   @override
-  String get iarSafetyNoteChildSafety =>
-      'Dacă implică CSAM sau exploatarea unui minor, trimite acum și nu redistribui materialul.';
+  String get reportFlowThankYouNoReportBody =>
+      'Mulțumim că ne-ai spus. Acest lucru nu încalcă regulile noastre de la sine, așa că nu am trimis un raport. Dacă vizează pe cineva sau folosește insulte, raportează din nou și alege „Conținut abuziv sau dăunător”.';
 
   @override
-  String get iarSafetyNoteSelfHarm =>
-      'Dacă cineva este în pericol imediat, contactează serviciile de urgență locale, dacă o poți face în siguranță.';
+  String get reportFlowThankYouNoReportBodyShort =>
+      'Mulțumim că ne-ai spus. Acest lucru nu încalcă regulile noastre de la sine, așa că nu am trimis un raport.';
 
   @override
-  String get iarSafetyNoteViolence =>
-      'Dacă aceasta este o amenințare credibilă și iminentă, contactează și serviciile locale de urgență.';
+  String get reportFlowMoreYouCanDo => 'Opțiunile tale';
 
   @override
-  String get iarSafetyNoteTerrorism =>
-      'Dacă aceasta este o amenințare teroristă iminentă, contactează și serviciile locale de urgență.';
-
-  @override
-  String get iarActionBlockUserTitle => 'Blochează acest utilizator';
-
-  @override
-  String get iarActionBlockUserDescription =>
-      'Oprește mesajele și cererile de prietenie.';
-
-  @override
-  String get iarActionBlockUserButton => 'Blochează';
-
-  @override
-  String get iarActionCopyMessageLinkTitle => 'Copiază linkul mesajului';
-
-  @override
-  String get iarActionCopyMessageLinkDescription =>
-      'Trimite moderatorilor comunității.';
-
-  @override
-  String get iarActionCopyMessageLinkButton => 'Copiază';
-
-  @override
-  String get iarActionCloseDmTitle => 'Închide acest mesaj direct';
-
-  @override
-  String get iarActionCloseDmDescription =>
-      'Nu blochează. Poți redeschide mai târziu.';
-
-  @override
-  String get iarActionCloseDmButton => 'Închide conversația';
-
-  @override
-  String get iarActionLeaveCommunityTitle => 'Părăsește comunitatea';
-
-  @override
-  String get iarActionLeaveCommunityDescription =>
-      'Nu vei mai vedea conținutul și membrii săi.';
-
-  @override
-  String get iarActionLeaveCommunityButton => 'Părăsește';
-
-  @override
-  String get iarActionDmSettingsTitle => 'Setări DM și cereri de prietenie';
-
-  @override
-  String get iarActionDmSettingsDescription =>
-      'Schimbă cine te poate contacta.';
-
-  @override
-  String get iarActionCallSettingsTitle => 'Setări apeluri și chat de grup';
-
-  @override
-  String get iarActionCallSettingsDescription =>
-      'Schimbă cine te poate apela sau adăuga.';
-
-  @override
-  String get iarActionOpenButton => 'Deschideți';
-
-  @override
-  String get iarActionDeleteMessageTitle => 'Șterge acest mesaj';
-
-  @override
-  String get iarActionDeleteMessageDescription =>
-      'Elimină-l de pe canal pentru toată lumea.';
-
-  @override
-  String get iarActionDeleteMessageButton => 'Șterge';
-
-  @override
-  String get iarActionDeleteMessageDeletedButton => 'Șters';
-
-  @override
-  String get iarActionDeleteMessageDeletedTooltip =>
-      'Acest mesaj a fost deja șters.';
-
-  @override
-  String get iarActionBanUserTitle => 'Banează acest utilizator';
-
-  @override
-  String get iarActionBanUserDescription =>
-      'Deschide dialogul de interzicere pentru această comunitate.';
-
-  @override
-  String get iarActionBanUserButton => 'Interzice';
-
-  @override
-  String get iarActionBanUserBannedButton => 'Interzis';
-
-  @override
-  String get iarActionBanUserBannedTooltip =>
-      'Acest utilizator este deja interzis din comunitate.';
-
-  @override
-  String get iarCloseDmConfirmTitle => 'Închide conversația';
-
-  @override
-  String iarCloseDmConfirmDescription(String name) {
-    return 'Închide conversația ta curentă cu $name. Acest lucru nu îi va bloca; o poți redeschide mai târziu.';
+  String reportFlowBlockName(String name) {
+    return 'Blochează $name';
   }
 
   @override
-  String get iarSuccessTitle => 'Raport trimis';
+  String get reportFlowBlockDescription =>
+      'Ascunde mesajele acestei persoane și o împiedică să-ți trimită mesaje';
 
   @override
-  String get iarSuccessBody =>
-      'Echipa noastră de siguranță examinează raportul. Îți vom trimite un mesaj direct și un e-mail după ce vom ajunge la un verdict.';
+  String get reportFlowBlockButton => 'Blochează';
 
   @override
-  String get iarAlreadyReportedTitle => 'Raportat deja';
+  String get reportFlowBlockedButton => 'Blocat';
 
   @override
-  String get iarAlreadyReportedBody =>
-      'Ai raportat deja acest mesaj. Echipa noastră de siguranță îl analizează.';
+  String get reportFlowUrgentBanner =>
+      'Dacă cineva este în pericol imediat, contactează mai întâi serviciile de urgență locale.';
 
   @override
-  String get iarBackButton => 'Înapoi';
+  String get reportFlowLoadFailed =>
+      'Nu am putut încărca formularul de raportare.';
 
   @override
-  String get iarContinueButton => 'Continuă';
+  String get reportFlowTryAgain => 'Încearcă din nou';
 
   @override
-  String get iarSendReportButton => 'Trimite raportul';
+  String get reportFlowOutdated =>
+      'Formularul de raportare s-a modificat. Te rugăm să începi din nou.';
 
   @override
-  String get iarDoneButton => 'Gata';
+  String get reportFlowAlreadyReported => 'Ai raportat deja acest mesaj.';
 
   @override
-  String get iarCouldntSendToast =>
-      'Nu am putut trimite raportul. Te rugăm să încerci din nou.';
+  String get reportFlowAlreadyReportedProfile =>
+      'Ai raportat deja acest profil astăzi.';
 
   @override
-  String get iarRateLimitedToast =>
-      'Raportezi prea repede. Te rugăm să aștepți o clipă și să încerci din nou.';
+  String get reportFlowRateLimited =>
+      'Trimiți rapoarte prea repede. Încearcă din nou mai târziu.';
 
   @override
-  String get iarReportSentToast =>
-      'Raport trimis. Echipa noastră de siguranță îl va analiza.';
+  String get reportFlowSubmitFailed =>
+      'Raportul tău nu a fost trimis. Încearcă din nou.';
 
   @override
-  String iarBlockUserConfirmDescription(String name) {
-    return 'Blochezi pe $name? Nu te vor putea contacta sau trimite cereri de prietenie. Îi poți debloca mai târziu.';
-  }
-
-  @override
-  String get iarBlockUserFailedToast =>
-      'Nu am putut bloca acest utilizator. Te rugăm să încerci din nou.';
-
-  @override
-  String get iarCloseDmSuccessToast => 'Mesaj privat închis.';
-
-  @override
-  String get iarCloseDmFailedToast =>
-      'Nu am putut închide acest mesaj direct. Te rugăm să încerci din nou.';
-
-  @override
-  String get iarLeaveCommunityFailedToast =>
-      'Nu am putut părăsi acest grup. Te rugăm să încerci din nou.';
+  String get reportFlowAccountSetupRequired =>
+      'Revendică-ți contul și verifică-ți e-mailul pentru a trimite rapoarte.';
 
   @override
   String get chatMessageSuppressEmbeds => 'Suprimă previzualizările';
@@ -7603,7 +7282,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get chatVideoPlaybackFailed => 'Nu s-a putut reda acest videoclip.';
 
   @override
-  String get chatImageCouldNotLoad => 'Could not load this image.';
+  String get chatImageCouldNotLoad => 'Nu s-a putut încărca această imagine.';
 
   @override
   String get composerAutocompleteRoleMentionDescription =>
@@ -7621,21 +7300,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get composerAutocompleteOptionalArgumentsHeading =>
       'Argumente opționale';
-
-  @override
-  String get composerAutocompleteChannelsHeading => 'Canale';
-
-  @override
-  String get composerAutocompleteMembersHeading => 'Membri';
-
-  @override
-  String get composerAutocompleteUsersHeading => 'Utilizatori';
-
-  @override
-  String get composerAutocompleteMentionsHeading => 'Mențiuni';
-
-  @override
-  String get composerAutocompleteRolesHeading => 'Roluri';
 
   @override
   String get composerAutocompleteMediaHeading => 'Media';
@@ -7893,15 +7557,19 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Datele șablonului comunității sunt invalide sau incorecte.';
 
   @override
-  String get addGuildPackInstalled => 'Pachetul a fost instalat cu succes.';
-
-  @override
   String get chatMessageRemoveAllReactionsConfirmTitle =>
       'Elimină toate reacțiile';
 
   @override
   String get chatMessageRemoveAllReactionsConfirmDescription =>
       'Ești sigur că vrei să elimini toate reacțiile de la acest mesaj?';
+
+  @override
+  String get chatMessagePinConfirm => 'Fixare';
+
+  @override
+  String get chatMessagePinConfirmDescription =>
+      'Fixează acest mesaj pe canal pentru ca toată lumea să-l vadă.';
 
   @override
   String get chatMessageUnpinConfirmTitle => 'Anulează fixarea mesajului';
@@ -7981,9 +7649,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get channelDetailsDeleteChannel => 'Șterge canalul';
-
-  @override
-  String get channelSettingsCategorySettingsTitle => 'Setări categorie';
 
   @override
   String get channelSettingsEditCategory => 'Editează categoria';
@@ -8185,17 +7850,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Încearcă din nou mai târziu.';
 
   @override
-  String get channelSettingsResetSlider =>
-      'Resetați glisorul la valoarea implicită';
-
-  @override
-  String get channelSettingsAdvanced => 'Avansat';
-
-  @override
-  String get channelSettingsMatureContentOverride =>
-      'Suprascriere conținut matur';
-
-  @override
   String channelSettingsMatureContentSectionDescription(String scopeLevel) {
     return 'Înlocuiește setarea de nivel $scopeLevel pentru acest canal. Conținutul matur este afișat în spatele unui filtru înainte de intrare.';
   }
@@ -8228,12 +7882,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   }
 
   @override
-  String get channelSettingsMatureContentCategorySource => 'categorie';
-
-  @override
-  String get channelSettingsMatureContentCommunitySource => 'comunitate';
-
-  @override
   String get channelSettingsMatureContentCategoryScope => 'Categorie';
 
   @override
@@ -8254,20 +7902,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get channelSettingsContentWarningDefault =>
       'Acest conținut este sensibil.';
-
-  @override
-  String channelSettingsPermissionsNeedManageChannels(
-    String manageChannelsPermissionLabel,
-  ) {
-    return 'Ai nevoie de permisiunea \"$manageChannelsPermissionLabel\" pentru a edita aceste permisiuni.';
-  }
-
-  @override
-  String channelSettingsPermissionsNeedManageRoles(
-    String manageRolesPermissionLabel,
-  ) {
-    return 'Ai nevoie de permisiunea \"$manageRolesPermissionLabel\" pentru a edita aceste permisiuni.';
-  }
 
   @override
   String get channelSettingsUnknownRole => 'Rol necunoscut';
@@ -8344,9 +7978,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Căutați roluri sau membri…';
 
   @override
-  String get channelSettingsPermissionsRolesAndMembers => 'Roluri și membri';
-
-  @override
   String get channelSettingsDeleteInvite => 'Șterge invitația';
 
   @override
@@ -8419,9 +8050,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String channelSettingsWebhooksCreatedBy(String creator, String date) {
     return 'Creat de $creator pe $date';
   }
-
-  @override
-  String get channelSettingsWebhooksUnknownUser => 'Utilizator necunoscut';
 
   @override
   String get channelSettingsWebhooksAvatar => 'Avatar';
@@ -8578,9 +8206,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get channelDetailsPinsEndReached => 'Ați ajuns la final';
-
-  @override
-  String get channelHeaderOpenDetails => 'Deschide detaliile canalului';
 
   @override
   String get channelHeaderPinnedMessages => 'Mesaje fixate';
@@ -9048,9 +8673,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get groupDmEditTitle => 'Editează grupul';
 
   @override
-  String get groupDmEditDetailsTooltip => 'Editează detaliile grupului';
-
-  @override
   String get groupDmGroupName => 'Numele grupului';
 
   @override
@@ -9103,13 +8725,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get groupDmUnsupportedIconFormatBody => 'Tip de fișier neacceptat.';
 
   @override
-  String get groupDmCouldntProcessImage => 'Nu s-a putut procesa imaginea';
-
-  @override
-  String get groupDmFailedToProcessCroppedImage =>
-      'Procesarea imaginii decupate a eșuat. Încearcă din nou.';
-
-  @override
   String get groupDmInvalidImage => 'Imagine nevalidă';
 
   @override
@@ -9136,19 +8751,12 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu s-a putut adăuga acest prieten în grup. Te rugăm să încerci din nou.';
 
   @override
-  String get groupDmAddFailed => 'Nu s-a putut adăuga în grup';
-
-  @override
   String get groupDmGroupFull =>
       'Acest grup este plin. Elimină pe cineva înainte de a adăuga mai multe persoane.';
 
   @override
   String get groupDmRateLimited =>
       'Mergi prea repede. Așteaptă un moment și încearcă din nou.';
-
-  @override
-  String get groupDmCreateInviteFailed =>
-      'Nu s-a putut crea linkul de invitație';
 
   @override
   String get groupDmCreateInviteFailedBody =>
@@ -9353,9 +8961,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get userSettingsSearchPlaceholder => 'Caută setări...';
 
   @override
-  String get userSettingsSearchFieldLabel => 'Caută în setări';
-
-  @override
   String get userSettingsSearchClear => 'Șterge căutarea';
 
   @override
@@ -9435,14 +9040,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get giftSettingsCopied => 'Copiat';
 
   @override
-  String get giftSettingsGiftUrlCopied =>
-      'Adresa URL a cadoului a fost copiată în clipboard!';
-
-  @override
-  String get giftSettingsGiftUrlCopyFailed =>
-      'Nu s-a putut copia URL-ul cadoului';
-
-  @override
   String giftSettingsPurchasedDate(String date) {
     return 'Cumpărat $date';
   }
@@ -9510,9 +9107,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get premiumOneMonthGift => 'Cadou 1 lună';
 
   @override
-  String get premiumMostPopular => 'Cel mai popular';
-
-  @override
   String get premiumScrollPrompt =>
       'Derulează în jos pentru a vedea toate beneficiile incluse cu Reverb';
 
@@ -9547,26 +9141,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get premiumReadyToBuyGift => 'Ești gata să cumperi un cadou?';
 
   @override
-  String premiumMonthlyPrice(String price) {
-    return 'Lunar $price';
-  }
-
-  @override
-  String premiumYearlyPrice(String price) {
-    return 'Anual $price';
-  }
-
-  @override
-  String premiumOneYearPrice(String price) {
-    return '1 an $price';
-  }
-
-  @override
-  String premiumOneMonthPrice(String price) {
-    return '1 lună $price';
-  }
-
-  @override
   String get premiumManageSubscription => 'Gestionează abonamentul';
 
   @override
@@ -9586,9 +9160,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get premiumCancelSubscriptionConfirm => 'Anulează abonamentul';
 
   @override
-  String get premiumKeepSubscription => 'Păstrează abonamentul';
-
-  @override
   String get premiumPurchaseHistoryTitle => 'Istoric achiziții';
 
   @override
@@ -9597,12 +9168,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get premiumManagePaymentMethods => 'Gestionează metodele de plată';
-
-  @override
-  String get premiumBillingHistory => 'Istoricul plăților';
-
-  @override
-  String get premiumSelfServeRefundTitle => 'Rambursare automată';
 
   @override
   String get premiumSelfServeRefundButton => 'Restituie ultima achiziție';
@@ -9640,12 +9205,15 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   }
 
   @override
-  String get premiumComparisonFeatureColumn => 'Funcționalitate';
+  String get premiumGiftGraceEnded =>
+      'Timpul tău cadou s-a încheiat. Abonează-te pentru a păstra Plutonium.';
 
   @override
-  String premiumDisclaimerPurchased(String terms, String privacy) {
-    return 'Prin achiziție, ai acceptat $terms și $privacy.';
-  }
+  String get premiumGiftTimeAddedAfterSubscription =>
+      'Vei fi taxat acum. Timpul tău cadou rămas se adaugă după perioada plătită, astfel încât nimic din el să nu se piardă.';
+
+  @override
+  String get premiumComparisonFeatureColumn => 'Funcționalitate';
 
   @override
   String get premiumDisclaimerRefund =>
@@ -9665,12 +9233,12 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'A apărut o eroare la inițierea plății. Te rugăm să încerci din nou mai târziu.';
 
   @override
-  String get premiumGiftSubscriptionBlocksRecurring =>
-      'Ești în prezent la un abonament cadou. Acesta nu se va reînnoi. Poți valorifica mai multe coduri cadou pentru a-l prelungi. Abonamentele recurente pot fi începute după ce se termină perioada cadou.';
-
-  @override
   String get premiumPlanUnavailable =>
       'Acest plan nu este disponibil. Contactează asistența.';
+
+  @override
+  String get premiumPlanUnavailableSelfHosted =>
+      'Acest plan nu este disponibil. Contactează administratorii acestei instanțe.';
 
   @override
   String get premiumCompletePaymentTitle => 'Finalizează plata';
@@ -9725,8 +9293,13 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get premiumPurchasesDisabledTitle => 'Achizițiile nu sunt disponibile';
 
   @override
-  String get premiumPurchasesDisabledBody =>
-      'Achizițiile sunt dezactivate pentru acest cont. Contactați support@echowire.org dacă credeți că este o greșeală.';
+  String premiumPurchasesDisabledBody(String supportEmail) {
+    return 'Achizițiile sunt dezactivate pentru acest cont. Contactați $supportEmail dacă credeți că este o greșeală.';
+  }
+
+  @override
+  String get premiumPurchasesDisabledBodySelfHosted =>
+      'Achizițiile sunt dezactivate pentru acest cont. Contactați administratorii acestei instanțe dacă credeți că este o greșeală.';
 
   @override
   String get premiumClaimAccountToPurchase =>
@@ -9735,27 +9308,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get premiumVerifyEmailToPurchase =>
       'Trebuie să îți verifici emailul înainte de a putea achiziționa Reverb.';
-
-  @override
-  String get premiumPerkCustomUsernameTag =>
-      'Etichetă de utilizator personalizată';
-
-  @override
-  String get premiumPerkPerCommunityProfiles =>
-      'Profiluri pentru fiecare comunitate';
-
-  @override
-  String get premiumPerkMessageScheduling => 'Programare mesaje';
-
-  @override
-  String get premiumPerkProfileBadge => 'Insignă de profil';
-
-  @override
-  String get premiumPerkCustomVideoBackgrounds =>
-      'Fundaluri video personalizate';
-
-  @override
-  String get premiumPerkEntranceSounds => 'Sunete de intrare';
 
   @override
   String get premiumPerkCommunities => 'Comunități';
@@ -9770,17 +9322,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get premiumPerkFileUploadSize => 'Dimensiune fișier încărcat';
 
   @override
-  String get premiumPerkEmojiStickerPacks => 'Pachete de emoji și stickere';
-
-  @override
-  String get premiumPerkSavedMedia => 'Elemente media salvate';
-
-  @override
   String get premiumPerkUseAnimatedEmojis => 'Folosește emoji animate';
-
-  @override
-  String get premiumPerkGlobalEmojiStickerAccess =>
-      'Acces global la emoji și stickere';
 
   @override
   String get premiumPerkVideoQuality => 'Calitatea video';
@@ -9793,13 +9335,191 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get premiumPerkEarlyAccess => 'Acces timpuriu la funcții noi';
 
   @override
-  String get premiumPerkCustomThemes => 'Teme personalizate';
-
-  @override
   String get premiumPerkVideoQualityRestricted => '720p/30fps';
 
   @override
   String get premiumPerkVideoQualityStock => 'Până la 4K/60fps';
+
+  @override
+  String storePlutoniumPriceLine(String monthly, String yearly) {
+    return '$monthly sau $yearly';
+  }
+
+  @override
+  String get storePlutoniumMonthSuffix => '/lună';
+
+  @override
+  String get storePlutoniumYearSuffix => '/an';
+
+  @override
+  String get storePlutoniumPriceOr => 'sau';
+
+  @override
+  String get storePlutoniumEmojiTitle => 'Emoji-urile tale, peste tot';
+
+  @override
+  String get storePlutoniumEmojiBody =>
+      'Adu emojiuri și stickere personalizate din oricare dintre comunitățile tale în fiecare conversație și comunitate în care te afli.';
+
+  @override
+  String get storePlutoniumProfileTitle => 'Un profil care iese în evidență';
+
+  @override
+  String get storePlutoniumProfileBody =>
+      'Obține un avatar și un banner animate, o insignă de abonat, eticheta din patru cifre pe care o vrei după numele de utilizator* și un profil separat pentru fiecare comunitate.';
+
+  @override
+  String get storePlutoniumFilesTitle => 'Trimite fișiere de până la 500 MB';
+
+  @override
+  String get storePlutoniumFilesBody =>
+      'Distribuie videoclipuri integrale și fișiere mari fără să le micșorezi mai întâi. Conturile gratuite pot trimite până la 25 MB.';
+
+  @override
+  String get storePlutoniumCompareTitle =>
+      'Compară planul gratuit cu Plutonium';
+
+  @override
+  String get storePlutoniumCompareMobileNote =>
+      'Nu toate aceste funcții sunt disponibile în aplicația mobilă. Unele sunt disponibile doar pe desktop.';
+
+  @override
+  String get storePlutoniumNotAvailable => 'Indisponibil';
+
+  @override
+  String get storePlutoniumAvailable => 'Disponibil';
+
+  @override
+  String get storePlutoniumCompareTag =>
+      'Alege numărul din 4 cifre de după numele tău de utilizator*';
+
+  @override
+  String get storePlutoniumCompareProfile =>
+      'Un profil separat pentru fiecare comunitate';
+
+  @override
+  String get storePlutoniumCompareBadge => 'Insigna de abonat din profilul tău';
+
+  @override
+  String get storePlutoniumCompareBackgrounds =>
+      'Fundaluri pentru apeluri video pe care le poți salva';
+
+  @override
+  String get storePlutoniumCompareCommunities =>
+      'Comunități la care te poți alătura';
+
+  @override
+  String get storePlutoniumCompareCharacters =>
+      'Caractere într-un singur mesaj';
+
+  @override
+  String get storePlutoniumCompareBookmarks => 'Mesaje pe care le poți salva';
+
+  @override
+  String get storePlutoniumCompareUpload =>
+      'Cel mai mare fișier pe care îl poți încărca';
+
+  @override
+  String get storePlutoniumCompareSavedMedia =>
+      'Elemente media pe care le poți salva pentru mai târziu';
+
+  @override
+  String get storePlutoniumCompareAnimatedEmoji =>
+      'Folosește emoji animate în mesaje';
+
+  @override
+  String get storePlutoniumCompareCustomEmoji =>
+      'Folosește emojiuri și stickere personalizate în orice comunitate';
+
+  @override
+  String get storePlutoniumCompareVideo =>
+      'Calitatea apelurilor video și a partajării ecranului';
+
+  @override
+  String get storePlutoniumCompareAvatar => 'Avatar animat și banner de profil';
+
+  @override
+  String get storePlutoniumCompareEarlyAccess =>
+      'Acces timpuriu la funcții noi';
+
+  @override
+  String get storePlutoniumCompareThemes =>
+      'Teme personalizate pentru aplicație';
+
+  @override
+  String get storePlutoniumVideoFree => 'Până la 720p la 30 FPS';
+
+  @override
+  String get storePlutoniumVideoPlutonium => 'Până la 4K la 60 FPS';
+
+  @override
+  String get storePlutoniumTagFootnote =>
+      'Poți alege doar un tag pe care nimeni altcineva cu același nume de utilizator nu-l are deja. Numele de utilizator nu sunt sensibile la majuscule, așa că Mina#4821 și mina#4821 sunt considerate la fel. Tagul #0000 este rezervat membrilor Fluxer Visionary.';
+
+  @override
+  String get storePlutoniumLearnVisionary => 'Află mai multe despre Visionary.';
+
+  @override
+  String get storePlutoniumDonatePrompt =>
+      'Vrei doar să susții dezvoltarea open source a Fluxer? ';
+
+  @override
+  String get storePlutoniumDonateLink => 'Donează în schimb.';
+
+  @override
+  String get storePlutoniumHighlightsLead =>
+      'Abonarea finanțează Fluxer și deblochează';
+
+  @override
+  String get storePlutoniumHighlightEmoji =>
+      'Emoji și stickere personalizate în orice chat';
+
+  @override
+  String get storePlutoniumHighlightProfile =>
+      'Profil animat, insignă și număr personalizat din 4 cifre';
+
+  @override
+  String get storePlutoniumHighlightFiles => 'Încărcări de până la 500 MB';
+
+  @override
+  String get storePlutoniumHighlightMessages =>
+      'Trimite mesaje de până la 4.000 de caractere';
+
+  @override
+  String get storePlutoniumHighlightCommunityProfile =>
+      'Un profil separat pentru fiecare comunitate';
+
+  @override
+  String get storePlutoniumHighlightsMore => 'Și multe altele';
+
+  @override
+  String get storePlutoniumRenewsThroughPlay =>
+      'Se reînnoiește automat prin Google Play până la anulare.';
+
+  @override
+  String get storePlutoniumRenewsThroughAppStore =>
+      'Se reînnoiește automat prin App Store până la anulare.';
+
+  @override
+  String get storePlutoniumAlreadySubscribed =>
+      'Ai deja un abonament Fluxer Plutonium.';
+
+  @override
+  String storePlutoniumSavePercent(int percent) {
+    return 'Economisește $percent%';
+  }
+
+  @override
+  String get storePlutoniumWaiting =>
+      'Achiziție primită. Plutonium va apărea aici odată ce se activează.';
+
+  @override
+  String get storePlutoniumUnavailable =>
+      'Abonamentele din aplicație nu sunt încă disponibile pe acest dispozitiv.';
+
+  @override
+  String get storePlutoniumVisionaryStatus =>
+      'Visionary include deja acces permanent, așa că nu este necesar un abonament recurent.';
 
   @override
   String get userSettingsNavPrivacyDashboard => 'Panou de confidențialitate';
@@ -9931,11 +9651,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get audioAndVideoMicTestStopLabel => 'Oprește testul microfonului';
 
   @override
-  String audioAndVideoMicTestPermissionRequired(String productName) {
-    return '$productName are nevoie de acces la microfon pentru a testa intrarea audio.';
-  }
-
-  @override
   String get audioAndVideoCameraLabel => 'Cameră';
 
   @override
@@ -9970,23 +9685,8 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get audioAndVideoFrameRate60Label => '60 FPS';
 
   @override
-  String audioAndVideoHigherQualityRequiresPremium(String premiumProductName) {
-    return '1080p și 60 FPS necesită $premiumProductName.';
-  }
-
-  @override
   String get audioAndVideoInstanceVideoQualityLimit =>
       'Instanța curentă permite partajarea ecranului până la 720p la 30 FPS.';
-
-  @override
-  String audioAndVideoMicrophonePermissionRequired(String productName) {
-    return '$productName are nevoie de acces la microfon pentru a-ți afișa dispozitivele.';
-  }
-
-  @override
-  String audioAndVideoCameraPermissionRequired(String productName) {
-    return '$productName are nevoie de acces la cameră pentru a-ți afișa dispozitivele.';
-  }
 
   @override
   String get audioAndVideoSkipHideOwnCameraConfirmLabel =>
@@ -10017,14 +9717,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get notificationsEnableDesktopNotificationsDescription =>
       'Folosește centrul de notificări al sistemului de operare. Pentru control la nivel de canal/comunitate, dă clic dreapta pe o pictogramă de comunitate și deschide setările de notificare.';
-
-  @override
-  String get notificationsEnableBrowserNotificationsLabel =>
-      'Activează notificările în browser';
-
-  @override
-  String get notificationsEnableBrowserNotificationsDescription =>
-      'Primești notificări când primești mesaje. S-ar putea să fie nevoie să activezi notificările din setările browserului. Pentru control per canal/comunitate, dă clic dreapta pe o pictogramă de comunitate și deschide setările de notificare.';
 
   @override
   String get notificationsPushInactiveTimeoutLabel =>
@@ -10271,6 +9963,47 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu am putut activa notificările. Permite permisiunea de notificare pentru a continua.';
 
   @override
+  String get notificationsPushRelaySectionTitle => 'Releu de notificări push';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider livrează notificări push doar prin propriul serviciu, așa că notificările pentru acest dispozitiv trec prin releul Fluxer.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'Folosește releul push Fluxer';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'Dacă dezactivezi asta, înregistrarea push a acestui dispozitiv este eliminată, iar dispozitivul nu mai primește notificări push.';
+
+  @override
+  String get pushRelayConsentTitle => 'Releu de notificări push';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider livrează notificări push doar prin propriul serviciu, așa că notificările pentru acest dispozitiv trec prin releul Fluxer.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'Acceptă ';
+
+  @override
+  String get pushRelayConsentNoticeLink =>
+      'nota de confidențialitate a releului push';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' pentru a activa notificările push pe acest dispozitiv. Trebuie să accepți o singură dată per dispozitiv.';
+
+  @override
+  String get pushRelayConsentAgree => 'Acceptă și continuă';
+
+  @override
+  String get pushRelayConsentDecline => 'Nu acum';
+
+  @override
   String get userSettingsNavLanguageAndTime => 'Limbă și timp';
 
   @override
@@ -10279,10 +10012,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get languageAndTimeLanguageSectionDescription =>
       'Alege limba folosită în aplicație';
-
-  @override
-  String get languageAndTimeOpenLanguageSettings =>
-      'Deschide setările de limbă';
 
   @override
   String get languageAndTimeTimeFormatSectionTitle => 'Format oră';
@@ -10340,6 +10069,47 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get defaultAppsWebBrowserExternal => 'Browser extern';
+
+  @override
+  String get userSettingsNavAppIcon => 'Pictograma aplicației';
+
+  @override
+  String get appIconSectionTitle => 'Pictograma aplicației';
+
+  @override
+  String get appIconSectionDescription =>
+      'Alege ce pictogramă apare pe ecranul tău principal.';
+
+  @override
+  String get appIconOptionDefault => 'Implicit';
+
+  @override
+  String get appIconOptionStarfield => 'Câmp stelar';
+
+  @override
+  String get appIconOptionSweden => 'Suedia';
+
+  @override
+  String get appIconOptionGreyscale => 'Greyscale';
+
+  @override
+  String get appIconOptionRainbow => 'Rainbow';
+
+  @override
+  String get appIconOptionWaves => 'Waves';
+
+  @override
+  String get appIconOptionChromaticAberration => 'Chromatic aberration';
+
+  @override
+  String get appIconOptionDefaultBrutalist => 'Brutalist';
+
+  @override
+  String get appIconOptionGreyscaleBrutalist => 'Greyscale brutalist';
+
+  @override
+  String get appIconUnsupported =>
+      'Schimbarea pictogramei aplicației nu este disponibilă pe acest dispozitiv.';
 
   @override
   String get userSettingsNavAdvanced => 'Avansat';
@@ -10505,10 +10275,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get advancedSettingTrustAllLinksLabel =>
       'Am încredere în toate linkurile externe';
-
-  @override
-  String get advancedSettingTrustAllLinksDescription =>
-      'Omitere avertisment link extern pentru toate domeniile';
 
   @override
   String get advancedSettingSearchEnginesLabel => 'Motoare de căutare';
@@ -10714,27 +10480,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get advancedSettingDeveloperModeDescription =>
       'Activează modul dezvoltator';
-
-  @override
-  String get advancedSettingSearchEngineGoogle => 'Google';
-
-  @override
-  String get advancedSettingSearchEngineDuckDuckGo => 'DuckDuckGo';
-
-  @override
-  String get advancedSettingSearchEngineBing => 'Bing';
-
-  @override
-  String get advancedSettingSearchEngineGoogleLens => 'Google Lens';
-
-  @override
-  String get advancedSettingSearchEngineTinEye => 'TinEye';
-
-  @override
-  String get advancedSettingTranslatorGoogle => 'Traducere Google';
-
-  @override
-  String get advancedSettingTranslatorDeepL => 'DeepL';
 
   @override
   String get advancedSettingDefaultSearchEngineLabel =>
@@ -11020,6 +10765,9 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get quickSwitcherSectionTextChannels => 'Canale de chat';
 
   @override
+  String get quickSwitcherSectionThreads => 'Threads';
+
+  @override
   String get quickSwitcherSectionVoiceChannels => 'Canale vocale';
 
   @override
@@ -11058,6 +10806,12 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get savedMessagesRemoveTooltip => 'Elimină din mesaje salvate';
+
+  @override
+  String get savedMessagesAddedToast => 'Adăugat la mesaje salvate';
+
+  @override
+  String get savedMessagesRemovedToast => 'Eliminat din mesaje salvate';
 
   @override
   String get quickSwitcherMentionsLabel => 'Mențiuni';
@@ -11193,7 +10947,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get instanceUrlHelper =>
-      'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
+      'Folosește fluxer.app pentru instanța oficială sau URL-ul exact al unei instanțe auto-găzduite.';
 
   @override
   String get resetToDefaultInstance => 'Resetează la echowire';
@@ -11206,6 +10960,10 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get instanceConnectFailed => 'Nu s-a putut conecta la instanță';
+
+  @override
+  String get instanceInvalidDiscoveryResponse =>
+      'This client cannot connect to this instance. The instance is likely out of date. If the instance is up to date, try updating this app.';
 
   @override
   String get recentInstances => 'Instanțe recente';
@@ -11413,6 +11171,13 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get authHidePassword => 'Ascunde parola';
 
   @override
+  String get authCheckStillWorking => 'Încă procesăm…';
+
+  @override
+  String get authVerificationFailed =>
+      'Verificarea nu a putut fi finalizată. Încearcă din nou.';
+
+  @override
   String get chatLoadingMessages => 'Se încarcă mesajele';
 
   @override
@@ -11590,6 +11355,19 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get guildNavbarChannelTypeSelection => 'Selectare tip canal';
+
+  @override
+  String get guildNavbarPrivateChannel => 'Private channel';
+
+  @override
+  String get guildNavbarPrivateChannelDescription =>
+      'Only selected members and roles will be able to view this channel.';
+
+  @override
+  String get guildNavbarAddMembersOrRoles => 'Add members or roles';
+
+  @override
+  String get guildNavbarAddMembersOrRolesHint => 'Search members or roles';
 
   @override
   String get guildNavbarCreateCategory => 'Creează categorie';
@@ -11781,9 +11559,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get guildMenuHideMutedChannels => 'Ascunde canalele dezactivate';
 
   @override
-  String get guildMenuReportCommunity => 'Raportează comunitatea';
-
-  @override
   String get guildMenuDebugCommunity => 'Depanează comunitatea';
 
   @override
@@ -11816,10 +11591,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get guildMenuSettingsWebhooks => 'Webhook-uri';
 
   @override
-  String get guildMenuSettingsCustomInviteUrl =>
-      'URL de invitație personalizată';
-
-  @override
   String get guildMenuSettingsDiscovery => 'Descoperire';
 
   @override
@@ -11842,33 +11613,13 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get guildSettingsOverviewIconTitle => 'Pictogramă';
 
   @override
-  String get guildSettingsUploadImage => 'Încarcă imagine';
-
-  @override
   String get guildSettingsOverviewBannerTitle => 'Banner';
-
-  @override
-  String get guildSettingsOverviewBannerHint =>
-      'Încarcă un banner pentru serverul tău.';
 
   @override
   String get guildSettingsOverviewNameTitle => 'Nume';
 
   @override
   String get guildSettingsOverviewNameHint => 'Comunitatea mea minunată';
-
-  @override
-  String get guildSettingsOverviewStatsTitle => 'Statistici';
-
-  @override
-  String get guildSettingsOverviewMembers => 'Membri';
-
-  @override
-  String get guildSettingsOverviewOnline => 'Conectat';
-
-  @override
-  String get guildSettingsRolesDescription =>
-      'Folosește roluri pentru a grupa membrii și a le atribui permisiuni.';
 
   @override
   String get guildSettingsCreateRole => 'Creează rol';
@@ -11946,32 +11697,13 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get guildSettingsRolesComfyLayout => 'Aspect confortabil';
 
   @override
-  String get guildSettingsRolesSwitchToDenseLayout =>
-      'Comută la aspectul compact';
-
-  @override
-  String get guildSettingsRolesSwitchToComfyLayout =>
-      'Treci la aspectul confortabil';
-
-  @override
   String get guildSettingsRolesSingleColumn => 'O singură coloană';
 
   @override
   String get guildSettingsRolesTwoColumns => 'Două coloane';
 
   @override
-  String get guildSettingsRolesSwitchToSingleColumn =>
-      'Treci la o singură coloană';
-
-  @override
-  String get guildSettingsRolesSwitchToTwoColumns => 'Treci la două coloane';
-
-  @override
   String get guildSettingsRolesNoPermissionsFound => 'Nu s-au găsit permisiuni';
-
-  @override
-  String get guildSettingsRolesCustomHoistOrder =>
-      'Ordine personalizată de afișare';
 
   @override
   String get guildSettingsRolesHoistOrder => 'Ordine de afișare';
@@ -11987,10 +11719,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get guildSettingsRolesNoHoistedRoles =>
       'Nu există roluri afișate separat. Activează \"Afișează acest rol separat\" pentru un rol ca să-l vezi aici.';
-
-  @override
-  String get guildSettingsRolesLockedTooltip =>
-      'Nu poți edita acest rol, deoarece este rolul tău cel mai înalt sau este deasupra ta';
 
   @override
   String guildSettingsRolesNeedManageRolesPermission(String permission) {
@@ -12075,9 +11803,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get permissionCategoryAudioVideo => 'Audio și video';
-
-  @override
-  String get permissionUnknown => 'Permisiune necunoscută';
 
   @override
   String get permissionAdministrator => 'Administrator';
@@ -12198,34 +11923,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Creați, editați sau ștergeți webhook-uri.';
 
   @override
-  String get permissionSendMessagesInThreads => 'Send messages in threads';
-
-  @override
-  String get permissionSendMessagesInThreadsDescription =>
-      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
-
-  @override
-  String get permissionCreatePublicThreads => 'Create public threads';
-
-  @override
-  String get permissionCreatePublicThreadsDescription =>
-      'Members can start threads that everyone in the channel can see, and create forum posts.';
-
-  @override
-  String get permissionCreatePrivateThreads => 'Create private threads';
-
-  @override
-  String get permissionCreatePrivateThreadsDescription =>
-      'Members can start threads that only invited people can see.';
-
-  @override
-  String get permissionManageThreads => 'Manage threads and posts';
-
-  @override
-  String get permissionManageThreadsDescription =>
-      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
-
-  @override
   String get permissionSendMessages => 'Trimite mesaje';
 
   @override
@@ -12335,17 +12032,356 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get permissionSetVoiceRegion => 'Setează regiunea vocală';
 
   @override
-  String guildSettingsEmojiSlotInfo(int staticCount, int animatedCount) {
-    return '$staticCount emoji statice, $animatedCount emoji animate folosite';
+  String get permissionManageThreads => 'Manage threads and posts';
+
+  @override
+  String get permissionManageThreadsDescription =>
+      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
+
+  @override
+  String get permissionCreatePublicThreads => 'Create public threads';
+
+  @override
+  String get permissionCreatePublicThreadsDescription =>
+      'Members can start threads that everyone in the channel can see, and create forum posts.';
+
+  @override
+  String get permissionCreatePrivateThreads => 'Create private threads';
+
+  @override
+  String get permissionCreatePrivateThreadsDescription =>
+      'Members can start threads that only invited people can see.';
+
+  @override
+  String get permissionSendMessagesInThreads => 'Send messages in threads';
+
+  @override
+  String get permissionSendMessagesInThreadsDescription =>
+      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
+
+  @override
+  String get threadErrorArchived => 'This thread is archived.';
+
+  @override
+  String get threadErrorLocked =>
+      'This thread is locked. Only moderators can post or reopen it.';
+
+  @override
+  String get threadErrorAlreadyCreated =>
+      'A thread already exists for this message.';
+
+  @override
+  String get threadErrorMaxActiveThreads =>
+      'This community has reached its limit of active threads.';
+
+  @override
+  String get threadErrorMaxMembers =>
+      'This thread has reached its member limit.';
+
+  @override
+  String get threadErrorMaxPinnedPosts =>
+      'Only one post can be pinned in this forum.';
+
+  @override
+  String get threadErrorMaxForumTags => 'A forum can have at most 20 tags.';
+
+  @override
+  String get threadErrorTagNamesUnique => 'Tag names must be unique.';
+
+  @override
+  String get threadErrorNoTagsForEveryone =>
+      'Add a tag everyone can use before requiring tags.';
+
+  @override
+  String get threadErrorTagRequired => 'Pick at least one tag for this post.';
+
+  @override
+  String get threadErrorUnknownTag =>
+      'One of the selected tags no longer exists.';
+
+  @override
+  String get threadErrorInvalidNotificationSettings =>
+      'Those notification settings are not valid for a thread.';
+
+  @override
+  String get threadErrorSearchIndexNotReady =>
+      'Posts are still being indexed. Try again in a moment.';
+
+  @override
+  String get threadErrorInvalidChannelType =>
+      'This action is not available in this channel.';
+
+  @override
+  String get threadCreate => 'Create thread';
+
+  @override
+  String get threadName => 'Thread name';
+
+  @override
+  String get threadNameRequired => 'Give the thread a name.';
+
+  @override
+  String get threadNewThreadPlaceholder => 'New thread';
+
+  @override
+  String get threadPrivate => 'Private thread';
+
+  @override
+  String get threadPrivateDescription =>
+      'Only people you invite and moderators can see this thread.';
+
+  @override
+  String get threadStarterMessage => 'Message';
+
+  @override
+  String get threadStarterMessagePlaceholder =>
+      'Enter a message to start the conversation!';
+
+  @override
+  String threadCreateCooldown(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'You can start another thread in $seconds seconds.',
+      one: 'You can start another thread in 1 second.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String threadCreateFailed(String detail) {
+    return 'Could not start the thread: $detail';
+  }
+
+  @override
+  String get threadBrowserTitle => 'Threads';
+
+  @override
+  String get threadBrowserActive => 'Active';
+
+  @override
+  String get threadBrowserArchived => 'Closed';
+
+  @override
+  String get threadBrowserJoined => 'Joined';
+
+  @override
+  String get threadBrowserOtherActive => 'Other active threads';
+
+  @override
+  String get threadBrowserPublic => 'Public threads';
+
+  @override
+  String get threadBrowserPrivate => 'Private threads';
+
+  @override
+  String get threadBrowserEmpty =>
+      'There are no threads. Stay focused on a conversation with a thread, a temporary text channel.';
+
+  @override
+  String get threadBrowserArchivedEmpty => 'There are no closed threads.';
+
+  @override
+  String get threadBrowserLoadMore => 'Load more';
+
+  @override
+  String get threadBrowserSearch => 'Search threads';
+
+  @override
+  String get threadBrowserSearchEmpty => 'No threads match';
+
+  @override
+  String get threadBrowserSearchEmptyHint =>
+      'Try a different name or check the other tab.';
+
+  @override
+  String get threadBrowserSearchFailed =>
+      'Couldn\'t search threads. Try again later.';
+
+  @override
+  String get threadBrowserSearchIndexing =>
+      'Search is getting ready for this community. Trying again shortly...';
+
+  @override
+  String threadMessageCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count messages',
+      one: '1 message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get threadFailedToMentionSomeRoles =>
+      'Some mentioned roles were not added to this thread.';
+
+  @override
+  String get threadMembers => 'Thread members';
+
+  @override
+  String threadMembersCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count members',
+      one: '1 member',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get threadMembersEmpty => 'Nobody has joined this thread yet.';
+
+  @override
+  String threadRemoveMember(String name) {
+    return 'Remove $name from thread';
+  }
+
+  @override
+  String get threadJoin => 'Join thread';
+
+  @override
+  String get threadLeave => 'Leave thread';
+
+  @override
+  String get threadJoinNotice =>
+      'Join this thread to follow it in your channel list and get notifications.';
+
+  @override
+  String get threadArchivedNotice =>
+      'This thread is closed. Sending a message will open it again.';
+
+  @override
+  String get threadLockedNotice =>
+      'This thread is locked. Only moderators can send messages.';
+
+  @override
+  String get threadArchive => 'Close thread';
+
+  @override
+  String get threadUnarchive => 'Open thread again';
+
+  @override
+  String get threadLock => 'Lock thread';
+
+  @override
+  String get threadUnlock => 'Unlock thread';
+
+  @override
+  String get threadDelete => 'Delete thread';
+
+  @override
+  String threadDeleteConfirm(String threadName) {
+    return 'Are you sure you want to delete $threadName? This cannot be undone.';
+  }
+
+  @override
+  String get threadDeleted => 'Thread deleted';
+
+  @override
+  String get threadMarkAsRead => 'Mark as read';
+
+  @override
+  String get threadMute => 'Mute thread';
+
+  @override
+  String get threadUnmute => 'Unmute thread';
+
+  @override
+  String get threadMuted => 'Thread muted';
+
+  @override
+  String get threadUnmuted => 'Thread unmuted';
+
+  @override
+  String get threadNotificationSettings => 'Notification settings';
+
+  @override
+  String get threadNotificationParentDefault => 'Use channel default';
+
+  @override
+  String get threadCopyLink => 'Copy link';
+
+  @override
+  String get threadCopyId => 'Copy thread ID';
+
+  @override
+  String get threadMoreOptions => 'More options';
+
+  @override
+  String get threadSettings => 'Thread settings';
+
+  @override
+  String get threadSettingsSaved => 'Thread settings saved';
+
+  @override
+  String get threadAutoArchive => 'Hide after inactivity';
+
+  @override
+  String get threadAutoArchiveDescription =>
+      'The thread stops showing in the channel list after this period of inactivity.';
+
+  @override
+  String get threadDefaultAutoArchive => 'Default hide after inactivity';
+
+  @override
+  String get threadDefaultAutoArchiveDescription =>
+      'New threads stop showing in the channel list after this period of inactivity.';
+
+  @override
+  String get threadDefaultSlowmode => 'Default thread slowmode';
+
+  @override
+  String get threadAutoArchiveOneHour => '1 Hour';
+
+  @override
+  String get threadAutoArchiveOneDay => '24 Hours';
+
+  @override
+  String get threadAutoArchiveThreeDays => '3 Days';
+
+  @override
+  String get threadAutoArchiveOneWeek => '1 Week';
+
+  @override
+  String get threadInvitable => 'Allow anyone to invite';
+
+  @override
+  String get threadInvitableDescription =>
+      'Members of this private thread can add other people.';
+
+  @override
+  String threadStartedBy(String name) {
+    return 'Started by $name';
+  }
+
+  @override
+  String get threadStarterDeleted => 'Original message was deleted.';
+
+  @override
+  String systemThreadCreated(
+    String username,
+    String threadLink,
+    String allThreadsLink,
+  ) {
+    return '$username a început o discuție: $threadName.';
+  }
+
+  @override
+  String get systemThreadCreatedAllThreadsLink => 'all threads';
+
+  @override
+  String get systemThreadCreatedThreadFallback => 'a thread';
+
+  @override
+  String systemPreviewThreadCreated(String username) {
+    return '$username started a thread.';
   }
 
   @override
   String get guildSettingsEmojiEmpty => 'Încă nu există emoji personalizate.';
-
-  @override
-  String guildSettingsStickersSlotInfo(int count) {
-    return '$count stickere încărcate';
-  }
 
   @override
   String get guildSettingsStickersEmpty =>
@@ -12411,13 +12447,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Necesită totul la nivel mediu, plus să fii membru al comunității de cel puțin 10 minute.';
 
   @override
-  String get guildSettingsVerificationHighest => 'Foarte ridicat';
-
-  @override
-  String get guildSettingsVerificationHighestDescription =>
-      'Necesită un număr de telefon verificat.';
-
-  @override
   String get guildSettingsAuditLogDescription =>
       'Urmărește acțiunile moderatorilor în comunitate.';
 
@@ -12440,14 +12469,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get guildSettingsAuditLogUnknownUser => 'Utilizator necunoscut';
-
-  @override
-  String get guildSettingsAuditLogLoadError =>
-      'A apărut o eroare la încărcarea jurnalului de activitate.';
-
-  @override
-  String get guildSettingsAuditLogLoadErrorTitle =>
-      'Nu se pot încărca jurnalele de activitate';
 
   @override
   String get guildSettingsAuditLogReason => 'Motiv';
@@ -12478,6 +12499,15 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get auditLogActionChannelDelete => 'Canal șters';
+
+  @override
+  String get auditLogActionThreadCreate => 'Thread created';
+
+  @override
+  String get auditLogActionThreadUpdate => 'Thread updated';
+
+  @override
+  String get auditLogActionThreadDelete => 'Thread deleted';
 
   @override
   String get auditLogActionChannelOverwriteCreate =>
@@ -12594,6 +12624,21 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String auditLogSummaryChannelDelete(String actor, String target) {
     return '$actor a șters canalul $target.';
+  }
+
+  @override
+  String auditLogSummaryThreadCreate(String actor, String target) {
+    return '$actor started the thread $target.';
+  }
+
+  @override
+  String auditLogSummaryThreadUpdate(String actor, String target) {
+    return '$actor updated the thread $target.';
+  }
+
+  @override
+  String auditLogSummaryThreadDelete(String actor, String target) {
+    return '$actor deleted the thread $target.';
   }
 
   @override
@@ -12998,12 +13043,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Acordă calitatea de membru permanent.';
 
   @override
-  String get guildSettingsLoadMore => 'Încarcă mai multe';
-
-  @override
-  String get guildSettingsLoadingMore => 'Se încarcă...';
-
-  @override
   String get guildSettingsWebhooksDescription =>
       'Vezi și gestionează fiecare webhook configurat în comunitatea ta.';
 
@@ -13039,31 +13078,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get guildSettingsUnknownChannel => 'Canal necunoscut';
 
   @override
-  String get guildSettingsCopyUrl => 'Copiază URL';
-
-  @override
   String get guildSettingsCopiedUrl => 'URL copiat în clipboard';
-
-  @override
-  String get guildSettingsDeleteWebhook => 'Șterge webhook-ul';
-
-  @override
-  String get guildSettingsVanityUrlDescription =>
-      'Setează un link de invitație personalizat pentru serverul tău.';
-
-  @override
-  String get guildSettingsVanityUrlHint => 'my-server';
-
-  @override
-  String get guildSettingsSave => 'Salvează';
-
-  @override
-  String get guildSettingsVanityUrlUsageTitle => 'Utilizare';
-
-  @override
-  String guildSettingsVanityUrlUses(int count) {
-    return '$count utilizări';
-  }
 
   @override
   String get guildSettingsDiscoveryDescription =>
@@ -13205,10 +13220,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Încearcă din nou mai târziu.';
 
   @override
-  String get guildSettingsMembersDescription =>
-      'Caută și gestionează membrii serverului.';
-
-  @override
   String get guildSettingsMembersSearchHint =>
       'Căutați după nume de utilizator sau ID';
 
@@ -13250,9 +13261,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get guildMembersColumnRoles => 'Roluri';
-
-  @override
-  String get guildMembersColumnActions => 'Acțiuni';
 
   @override
   String get guildMembersFilterMemberSince => 'Filtrează după membru din';
@@ -13321,17 +13329,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get guildMembersIndexing => 'Se indexează membrii…';
 
   @override
-  String get guildMembersGoToPage => 'Mergi la pagină';
-
-  @override
-  String guildMembersGoToPageItem(int page) {
-    return 'Mergi la pagina $page';
-  }
-
-  @override
-  String get guildMembersJumpToPage => 'Salt la pagină';
-
-  @override
   String get guildMembersJoinSourceCreator => 'Creatorul comunității';
 
   @override
@@ -13394,21 +13391,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   }
 
   @override
-  String guildMembersJoinedDaysAgo(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'acum # zile',
-      one: 'acum 1 zi',
-    );
-    return '$_temp0';
-  }
-
-  @override
   String get guildMembersChannelListLabel => 'Membri';
-
-  @override
-  String get guildMembersChannelListSelected => 'Membri, selectați';
 
   @override
   String get guildSettingsInvitesTitle => 'Invitații';
@@ -13518,16 +13501,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Linkul ar putea fi încă activ. Încearcă din nou mai târziu.';
 
   @override
-  String guildSettingsInviteUses(int uses, int maxUses) {
-    return '$uses / $maxUses utilizări';
-  }
-
-  @override
-  String guildSettingsInviteExpires(String date) {
-    return 'Expiră $date';
-  }
-
-  @override
   String get guildSettingsBansDescription =>
       'Vizualizează și gestionează utilizatorii blocați.';
 
@@ -13538,21 +13511,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get guildSettingsBansEmpty => 'Niciun utilizator blocat.';
 
   @override
-  String get guildSettingsBanPermanent => 'Interdicție permanentă';
-
-  @override
-  String guildSettingsBanExpires(String date) {
-    return 'Expiră la $date';
-  }
-
-  @override
   String get guildSettingsBanExpiresLabel => 'Expiră';
-
-  @override
-  String get guildSettingsUnban => 'Eliminare interdicție';
-
-  @override
-  String get guildSettingsBansLoading => 'Se încarcă utilizatorii blocați';
 
   @override
   String get guildSettingsBansNoSearchResults =>
@@ -13584,15 +13543,25 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   }
 
   @override
-  String get guildSettingsBansLoadError =>
-      'Nu am putut încărca interdicțiile. Încearcă din nou.';
-
-  @override
   String get guildSettingsRevokeBanError =>
       'Nu am putut revoca interdicția. Încearcă din nou.';
 
   @override
   String get guildSettingsCommunitySettings => 'Setări comunitate';
+
+  @override
+  String get guildSettingsDeleteCommunity => 'Șterge comunitatea';
+
+  @override
+  String get guildSettingsDeleteCommunityConfirm =>
+      'Sigur dorești să ștergi această comunitate? Această acțiune nu poate fi anulată. Toate canalele, mesajele și setările vor fi șterse definitiv.';
+
+  @override
+  String get guildSettingsCommunityDeleted => 'Comunitate ștearsă';
+
+  @override
+  String get guildSettingsDeleteCommunityFailed =>
+      'Nu s-a putut șterge această comunitate';
 
   @override
   String get guildSettingsCategoryExpressions => 'EXPRESSIONS';
@@ -13605,10 +13574,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get guildSettingsCategoryPeople => 'PEOPLE';
-
-  @override
-  String get guildSettingsOverviewDescription =>
-      'Gestionează profilul, canalele și setările implicite ale comunității tale.';
 
   @override
   String get guildSettingsOverviewBrandingTitle => 'Brand';
@@ -13642,9 +13607,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Comunitățile cu peste 250 de persoane sunt forțate să utilizeze setarea \"doar mențiuni\". Setarea ta inițială este păstrată și va fi restabilită dacă numărul membrilor comunității scade sub 250.';
 
   @override
-  String get guildSettingsOverviewAdvancedTitle => 'Avansat';
-
-  @override
   String get guildSettingsOverviewFlexibleNames =>
       'Permite nume flexibile pentru canalele de chat';
 
@@ -13671,10 +13633,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get guildSettingsOverviewEmbedSplashTitle =>
       'Fundal încorporat pentru chat';
-
-  @override
-  String get guildSettingsOverviewEmbedSplashHint =>
-      'Afișat în invitatiile trimise în chat.';
 
   @override
   String get guildSettingsOverviewUploadBackground =>
@@ -13850,14 +13808,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'JPEG, PNG, WebP, AVIF. Max. 10 MB. Minim: 960×540px (16:9). Afișat în previzualizările invitațiilor în chat.';
 
   @override
-  String get guildSettingsModerationDescription =>
-      'Configure verificarea, filtrarea conținutului și setările pentru conținut explicit.';
-
-  @override
-  String get guildSettingsModerationDiscoveryNotice =>
-      'Comunitățile listate la Descoperire au opțiuni de moderare restricționate.';
-
-  @override
   String get guildSettingsModerationContentFilterTitle =>
       'Filtrarea conținutului';
 
@@ -13892,12 +13842,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Protecție maximă pentru spațiile de familie';
 
   @override
-  String get guildSettingsModerationMatureOff => 'Dezactivat';
-
-  @override
-  String get guildSettingsModerationMatureOn => 'Activat';
-
-  @override
   String get guildSettingsContentWarningToggle =>
       'Afișează un avertisment de conținut';
 
@@ -13925,10 +13869,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Solicită 2FA pentru acțiunile de moderare';
 
   @override
-  String get guildSettingsModeration2faOwnerOnlyTooltip =>
-      'Doar proprietarul comunității poate schimba această setare';
-
-  @override
   String get guildSettingsModeration2faEnableFirstTooltip =>
       'Activează autentificarea în 2 pași pentru a schimba această setare';
 
@@ -13954,10 +13894,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu s-au găsit emojiuri care să corespundă căutării tale.';
 
   @override
-  String get guildSettingsEmojiNoSlots =>
-      'Nu sunt sloturi disponibile pentru emojiuri';
-
-  @override
   String get guildSettingsEmojiSlotsFull =>
       'Ați atins numărul maxim de emojiuri. Ștergeți câteva emojiuri existente pentru a face loc.';
 
@@ -13967,30 +13903,8 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   }
 
   @override
-  String get guildSettingsEmojiUploadingTitle => 'Se încarcă emojiuri';
-
-  @override
-  String guildSettingsEmojiUploadingBody(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '# emojiuri',
-      one: '# emoji',
-    );
-    return 'Se încarcă $_temp0. Acest proces poate dura puțin.';
-  }
-
-  @override
-  String get guildSettingsEmojiUploadFailed =>
-      'Nu s-au putut încărca emoji-urile. Încearcă din nou.';
-
-  @override
   String get guildSettingsEmojiSomeFailedTitle =>
       'Unele emojiuri nu au putut fi adăugate';
-
-  @override
-  String get guildSettingsEmojiSomeFailedBody =>
-      'Revizuiește aceste fișiere și încearcă din nou cu imagini mai mici sau mai simple.';
 
   @override
   String get guildSettingsEmojiRenameTitle => 'Redenumește emoji-ul';
@@ -14000,16 +13914,10 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       '2-32 caractere, litere, cifre, cratime de subliniere.';
 
   @override
-  String get guildSettingsEmojiColumnEmoji => 'Emoji';
-
-  @override
   String get guildSettingsEmojiColumnName => 'Nume';
 
   @override
   String get guildSettingsEmojiColumnUploader => 'Încărcat de';
-
-  @override
-  String get guildSettingsEmojiUnknownUploader => 'Necunoscut';
 
   @override
   String get guildSettingsEmojiDeleteTitle => 'Șterge emoji';
@@ -14039,38 +13947,8 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu s-a putut redenumi acest emoji';
 
   @override
-  String get guildSettingsEmojiRenameFailedBody =>
-      'Numele a revenit la cel anterior. Te rugăm să încerci din nou mai târziu.';
-
-  @override
-  String get guildSettingsEmojiGoneTitle => 'Acest emoji nu mai există';
-
-  @override
-  String get guildSettingsEmojiGoneBody =>
-      'Este posibil să fi fost șters. Numele a revenit la cel inițial.';
-
-  @override
-  String get guildSettingsEmojiNoPermissionRenameTitle =>
-      'Nu poți redenumi acest emoji';
-
-  @override
-  String get guildSettingsEmojiNoPermissionRenameBody =>
-      'Nu ai permisiunea de a redenumi acest emoji. Numele a revenit la cel anterior.';
-
-  @override
-  String get guildSettingsEmojiRateLimitedTitle => 'Te miști prea repede';
-
-  @override
-  String get guildSettingsEmojiRateLimitedBody =>
-      'Te rugăm să aștepți un moment și să încerci să redenumești din nou.';
-
-  @override
   String get guildSettingsEmojiDeleteFailedTitle =>
       'Nu s-a putut șterge acest emoji';
-
-  @override
-  String get guildSettingsEmojiDeleteNoPermissionTitle =>
-      'Nu poți șterge acest emoji';
 
   @override
   String get guildSettingsCloneEmojiTitle =>
@@ -14146,13 +14024,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu s-au găsit stickere care să se potrivească căutării tale.';
 
   @override
-  String get guildSettingsStickersEmptySearch => 'Nu s-au găsit stickere';
-
-  @override
-  String get guildSettingsStickerNoSlots =>
-      'Nu sunt sloturi disponibile pentru stickere';
-
-  @override
   String get guildSettingsStickerSlotsFull =>
       'Ați atins numărul maxim de stickere. Ștergeți stickere existente pentru a face loc altora.';
 
@@ -14160,10 +14031,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String guildSettingsStickerUploadRequirements(String maxSize) {
     return 'Autocolantele sunt salvate la 320x320 pixeli și trebuie să aibă mai puțin de $maxSize. Imaginile statice sunt redimensionate și comprimate automat. Autocolantele animate și SVG-urile trebuie să respecte deja limita.';
   }
-
-  @override
-  String get guildSettingsStickerUnsupportedTitle =>
-      'Fișier autocolant neacceptat';
 
   @override
   String get guildSettingsStickerAddTitle => 'Adaugă sticker';
@@ -14214,13 +14081,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu s-a putut crea acest autocolant';
 
   @override
-  String get guildSettingsStickerTooLargeTitle => 'Autocolantul este prea mare';
-
-  @override
-  String get guildSettingsStickerCompressFailedTitle =>
-      'Stickerul nu a putut fi comprimat suficient';
-
-  @override
   String get guildSettingsStickerDeleteTitle => 'Șterge stickerul';
 
   @override
@@ -14237,20 +14097,9 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Nu s-a putut șterge acest sticker';
 
   @override
-  String get guildSettingsStickerDeleteNoPermissionTitle =>
-      'Nu poți șterge acest sticker';
-
-  @override
   String guildSettingsWebhooksInfo(String channelSettingsPath) {
     return 'Pentru a crea un webhook, deschide $channelSettingsPath. Poți edita și organiza în continuare toți webhook-urile existente aici.';
   }
-
-  @override
-  String get guildSettingsVanityUrlWarning =>
-      'URL-ul tău personalizat nu va funcționa decât dacă cel puțin un canal este vizibil pentru toată lumea.';
-
-  @override
-  String get guildSettingsVanityUrlRemove => 'Elimină';
 
   @override
   String get guildSettingsBannedUsersTitle => 'Utilizatori blocați';
@@ -14626,140 +14475,6 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get homeQuickActionDms => 'Mesaje directe';
 
   @override
-  String get uiViewThreads => 'View threads';
-
-  @override
-  String get uiJoinThread => 'Join thread';
-
-  @override
-  String get uiLeaveThread => 'Leave thread';
-
-  @override
-  String get threadsTitle => 'Discuții';
-
-  @override
-  String get threadsPostsTitle => 'Postări';
-
-  @override
-  String get threadsFilterActive => 'Activ';
-
-  @override
-  String get threadsFilterArchived => 'Arhivate';
-
-  @override
-  String get threadsNewThread => 'Discuție nouă';
-
-  @override
-  String get threadsNewThreadTitle => 'Discuție nouă';
-
-  @override
-  String get threadsNameLabel => 'Numele discuției';
-
-  @override
-  String get threadsNameHint => 'Denumește discuția';
-
-  @override
-  String get threadsCreateThread => 'Creează discuție';
-
-  @override
-  String get threadsCreateThreadAction => 'Creează discuție';
-
-  @override
-  String get threadsCreateFailed =>
-      'Nu am putut crea discuția. Te rugăm să încerci din nou.';
-
-  @override
-  String get threadsLoadFailed => 'Nu am putut încărca discuțiile.';
-
-  @override
-  String get threadsNoActive => 'Nicio discuție activă încă';
-
-  @override
-  String get threadsNoArchived => 'Nicio discuție arhivată';
-
-  @override
-  String threadsMessageCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count de mesaje',
-      few: '$count mesaje',
-      one: '1 mesaj',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String threadsMemberCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count de membri',
-      few: '$count membri',
-      one: '1 membru',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get threadsStatusLocked => 'Blocată';
-
-  @override
-  String get threadsStatusArchived => 'Arhivate';
-
-  @override
-  String get threadsManage => 'Gestionează';
-
-  @override
-  String get threadsPin => 'Fixează';
-
-  @override
-  String get threadsUnpin => 'Anulează fixarea';
-
-  @override
-  String get threadsArchive => 'Arhivează';
-
-  @override
-  String get threadsUnarchive => 'Scoate din arhivă';
-
-  @override
-  String get threadsLock => 'Blochează';
-
-  @override
-  String get threadsUnlock => 'Deblochează';
-
-  @override
-  String get threadsDelete => 'Șterge';
-
-  @override
-  String get threadsActionFailed =>
-      'A apărut o eroare. Te rugăm să încerci din nou.';
-
-  @override
-  String get threadsCloseThread => 'Închide discuția';
-
-  @override
-  String get threadsReopenThread => 'Redeschide discuția';
-
-  @override
-  String get threadsLockThread => 'Blochează discuția';
-
-  @override
-  String get threadsUnlockThread => 'Deblochează discuția';
-
-  @override
-  String get threadsLeaveThread => 'Leave thread';
-
-  @override
-  String get threadsDeleteThread => 'Șterge discuția';
-
-  @override
-  String get threadsMembersTab => 'Membrii discuției';
-
-  @override
-  String get threadsMembersLoadFailed => 'Nu am putut încărca membrii';
-
-  @override
   String get threadsAddMember => 'Add member';
 
   @override
@@ -14769,1069 +14484,77 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   String get threadsAddMemberNoResults => 'No members match that search.';
 
   @override
-  String get threadsRemoveMember => 'Remove from thread';
-
-  @override
   String get threadsMemberAddedToast => 'Member added';
 
   @override
-  String get threadsMemberRemovedToast => 'Member removed';
+  String get assistantNeedsLogin =>
+      'Deschide Fluxer și conectează-te mai întâi.';
 
   @override
-  String get threadsLeftToast => 'You left the thread';
+  String get assistantNotInVoice => 'Nu ești într-un apel.';
 
   @override
-  String get threadsMembersFullToast =>
-      'This thread has reached its member limit.';
-
-  @override
-  String get threadsMemberNotFoundToast =>
-      'That person cannot see this channel.';
-
-  @override
-  String get threadsMembersForbiddenToast =>
-      'You do not have permission to change this thread\'s members.';
-
-  @override
-  String get threadsInvitableLabel => 'Anyone in the thread can add others';
-
-  @override
-  String get threadsInvitableDescription =>
-      'When this is on, every member of this private thread can add other people to it.';
-
-  @override
-  String get threadsNoMembersTitle => 'Niciun membru în discuție încă';
-
-  @override
-  String get threadsNoMembersBody =>
-      'Persoanele care se alătură acestei discuții vor apărea aici.';
-
-  @override
-  String get forumChannelTypeLabel => 'Forum';
-
-  @override
-  String get forumChannelTypeDescription =>
-      'Un spațiu pentru postări organizate, pe discuții';
-
-  @override
-  String get forumNewPost => 'Postare nouă';
-
-  @override
-  String get forumNewPostTitle => 'Postare nouă';
-
-  @override
-  String get forumCreatePost => 'Creează postare';
-
-  @override
-  String get forumCreatePostFailed =>
-      'Nu am putut crea postarea. Te rugăm să încerci din nou.';
-
-  @override
-  String get forumPostMessageFailed =>
-      'Postarea a fost creată, dar mesajul ei nu a putut fi trimis.';
-
-  @override
-  String get forumPostTitleLabel => 'Titlu';
-
-  @override
-  String get forumPostTitleHint => 'Titlul postării';
-
-  @override
-  String get forumPostMessageLabel => 'Trimite mesaj';
-
-  @override
-  String get forumPostMessageHint => 'Scrie un mesaj';
-
-  @override
-  String get forumPostTagsLabel => 'Etichete';
-
-  @override
-  String get forumPostTagsRequiredLabel => 'Etichete (alege cel puțin una)';
-
-  @override
-  String get forumPostTagsRequiredNoneHint =>
-      'Acest forum cere o etichetă, dar încă nu a fost creată niciuna.';
-
-  @override
-  String get forumPostNoTagsHint =>
-      'Acest forum nu are încă etichete. Adaugă câteva din Gestionează etichetele.';
-
-  @override
-  String get forumSearchPosts => 'Caută postări';
-
-  @override
-  String get forumSortAndView => 'Sortare și vizualizare';
-
-  @override
-  String get forumSortRecentActivity => 'Activitate recentă';
-
-  @override
-  String get forumSortName => 'Nume (A-Z)';
-
-  @override
-  String get forumManageTags => 'Gestionează etichetele';
-
-  @override
-  String get forumNoTags => 'Nicio etichetă încă';
-
-  @override
-  String get forumRemoveTag => 'Elimină eticheta';
-
-  @override
-  String get forumNewTagLabel => 'Etichetă nouă';
-
-  @override
-  String get forumNewTagHint => 'Numele etichetei';
-
-  @override
-  String get forumAddTag => 'Adaugă etichetă';
-
-  @override
-  String get forumTagsUpdated => 'Etichete actualizate';
-
-  @override
-  String get forumTagsUpdateFailed =>
-      'Nu am putut actualiza etichetele. Te rugăm să încerci din nou.';
-
-  @override
-  String get forumLoadFailed => 'Nu am putut încărca postările.';
-
-  @override
-  String get forumNoPosts => 'Nicio postare încă';
-
-  @override
-  String get forumNoArchivedPosts => 'Nicio discuție arhivată';
-
-  @override
-  String systemThreadCreated(String username, String threadName) {
-    return '$username a început o discuție: $threadName.';
-  }
-
-  @override
-  String systemPreviewStartedThread(String username) {
-    return '$username a început o discuție.';
-  }
-
-  @override
-  String get systemThreadDeleted => 'o discuție ștearsă';
-
-  @override
-  String get threadsComposerLockedHint =>
-      'Această discuție este blocată. Doar moderatorii pot trimite mesaje.';
-
-  @override
-  String get threadsComposerArchivedHint =>
-      'Această discuție este arhivată. Trimiterea unui mesaj o redeschide.';
-
-  @override
-  String forumNewPostsPill(int count) {
-    return '$count noi';
-  }
-
-  @override
-  String get forumSearchOrCreatePost => 'Caută sau creează o postare...';
-
-  @override
-  String get forumSortBy => 'Sortează după';
-
-  @override
-  String get forumSortDatePosted => 'Data publicării';
-
-  @override
-  String get forumViewAs => 'Vizualizează ca';
-
-  @override
-  String get forumLayoutList => 'Listă';
-
-  @override
-  String get forumLayoutGallery => 'Galerie';
-
-  @override
-  String get forumResetViewToDefault => 'Resetare la valorile implicite';
-
-  @override
-  String get forumAllTags => 'Toate';
-
-  @override
-  String forumTagsSelectedCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count de etichete',
-      few: '$count etichete',
-      one: '1 etichetă',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get forumPostGuidelinesLabel => 'Reguli de postare';
-
-  @override
-  String get forumEditPost => 'Editează postarea';
-
-  @override
-  String get forumPostTagRequiredToast =>
-      'Alege cel puțin o etichetă pentru acest forum.';
-
-  @override
-  String get threadsFollow => 'Urmărește';
-
-  @override
-  String get threadsUnfollow => 'Nu mai urmări';
-
-  @override
-  String get threadsFollowing => 'Urmărești';
-
-  @override
-  String get threadsMute => 'Dezactivează sunetul';
-
-  @override
-  String get threadsUnmute => 'Anulează mutarea';
-
-  @override
-  String get threadsEditThread => 'Editează discuția';
-
-  @override
-  String get forumSettingsTitle => 'Setări forum';
-
-  @override
-  String get forumSettingsGuidelinesHint =>
-      'Spune-le membrilor ce să posteze aici';
-
-  @override
-  String get forumSettingsRequireTag =>
-      'Cere membrilor să aleagă o etichetă când publică';
-
-  @override
-  String get forumSettingsRequireTagDescription =>
-      'Membrii trebuie să aleagă cel puțin o etichetă înainte de a putea posta.';
-
-  @override
-  String get forumSettingsDefaultSort => 'Ordine de sortare implicită';
-
-  @override
-  String get forumSettingsDefaultLayout => 'Aspect implicit';
-
-  @override
-  String get forumSettingsDefaultReaction => 'Reacție implicită';
-
-  @override
-  String get forumSettingsDefaultReactionDescription =>
-      'Apare ca reacție rapidă la fiecare postare. Lasă gol pentru niciuna.';
-
-  @override
-  String get forumSettingsDefaultReactionHint => 'Un emoji, de ex. 👍';
-
-  @override
-  String get forumSettingsHideAfterInactivity => 'Ascunde după inactivitate';
-
-  @override
-  String get forumSettingsHideAfterInactivityDescription =>
-      'Postările inactive trec în Arhivate. Oricine poate redeschide o postare care nu este blocată.';
-
-  @override
-  String get forumSettingsHideAfterOneHour => '1 oră';
-
-  @override
-  String get forumSettingsHideAfterOneDay => '24 de ore';
-
-  @override
-  String get forumSettingsHideAfterThreeDays => '3 zile';
-
-  @override
-  String get forumSettingsHideAfterOneWeek => '1 săptămână';
-
-  @override
-  String get forumSettingsPostCreationSlowmode =>
-      'Mod lent la crearea postărilor';
-
-  @override
-  String get forumSettingsPostCreationSlowmodeDescription =>
-      'Cât așteaptă membrii între crearea postărilor.';
-
-  @override
-  String get forumSettingsDefaultPostSlowmode => 'Mod lent în postările noi';
-
-  @override
-  String get forumSettingsDefaultPostSlowmodeDescription =>
-      'Se aplică postărilor la crearea lor.';
-
-  @override
-  String get forumSettingsSave => 'Salvează setările forumului';
-
-  @override
-  String get forumSettingsSaved => 'Setările forumului au fost salvate';
-
-  @override
-  String get forumSettingsSaveFailed => 'Nu am putut salva setările forumului';
-
-  @override
-  String get threadsStarterMessage => 'Pornită de la';
-
-  @override
-  String get threadsOriginalPosterTag => 'OP';
-
-  @override
-  String get forumReactToPost => 'Reacționează la postare';
-
-  @override
-  String get forumReactToPostOther => 'Reacționează cu alt emoji';
-
-  @override
-  String get forumEmptyHeading => 'Începe conversația!';
-
-  @override
-  String forumEmptyBody(String forumName) {
-    return 'Despre ce vrei să postezi în $forumName?';
-  }
-
-  @override
-  String get forumSeeExamples => 'Vezi exemple';
-
-  @override
-  String get forumExampleQuestion =>
-      'Pune o întrebare și etichetează-o ca să poată fi găsită mai târziu.';
-
-  @override
-  String get forumExampleShow =>
-      'Împărtășește ceva ce ai creat și lasă-i pe ceilalți să îți răspundă.';
-
-  @override
-  String get forumExampleDiscussion =>
-      'Începe o discuție pe un singur subiect și ține-o în această postare.';
-
-  @override
-  String get forumTagModeratedOn =>
-      'Doar moderatorii, atinge pentru a permite tuturor';
-
-  @override
-  String get forumTagModeratedOff =>
-      'Oricine o poate aplica, atinge pentru a o limita la moderatori';
-
-  @override
-  String get forumAddToPost => 'Adaugă la postare';
-
-  @override
-  String get forumAddToPostDone => 'Adăugat la postare.';
-
-  @override
-  String get forumAddToPostFailed =>
-      'Nu am putut adăuga asta la postare. Te rugăm să încerci din nou.';
-
-  @override
-  String get applicationsTitle => 'Aplicații';
-
-  @override
-  String get applicationsCreate => 'Creează aplicație';
-
-  @override
-  String get applicationsCreateSubmit => 'Creează';
-
-  @override
-  String get applicationsCreateClaimTooltip =>
-      'Revendică-ți contul pentru a crea aplicații.';
-
-  @override
-  String applicationsDocsLink(String domain) {
-    return 'Citește documentația ($domain)';
-  }
-
-  @override
-  String get applicationsLoadError => 'Nu se pot încărca aplicațiile';
-
-  @override
-  String get applicationsLoadErrorDescription =>
-      'Verifică-ți conexiunea și încearcă din nou.';
-
-  @override
-  String get applicationsEmptyTitle => 'Încă nicio aplicație';
-
-  @override
-  String applicationsEmptyDescription(String apiName) {
-    return 'Creează prima ta aplicație pentru a începe cu $apiName.';
-  }
-
-  @override
-  String applicationsCreated(String date) {
-    return 'Created $date';
-  }
-
-  @override
-  String get applicationsName => 'Numele aplicației';
-
-  @override
-  String get applicationsNameHint => 'Aplicația mea';
-
-  @override
-  String get applicationsNameRequired => 'Numele aplicației este obligatoriu';
-
-  @override
-  String get applicationsBackToList => 'Înapoi la listă';
-
-  @override
-  String get applicationsDetailLoadError =>
-      'Nu s-a putut încărca această aplicație';
-
-  @override
-  String get applicationsDetailLoadErrorDescription =>
-      'Încearcă din nou sau revino la lista de aplicații.';
-
-  @override
-  String get applicationsId => 'ID aplicație';
-
-  @override
-  String get applicationsCopyId => 'Copiază ID-ul';
-
-  @override
-  String get applicationsSecretsTitle => 'Secrete și tokenuri';
-
-  @override
-  String get applicationsSecretsDescription =>
-      'Păstrează-le în siguranță. Regenerarea va întrerupe integrările existente.';
-
-  @override
-  String get applicationsClientSecret => 'Secret client';
-
-  @override
-  String get applicationsBotToken => 'Token bot';
-
-  @override
-  String get applicationsRegenerate => 'Regenerează';
-
-  @override
-  String get applicationsRegenerateClientSecretTitle =>
-      'Regenerezi secretul clientului?';
-
-  @override
-  String get applicationsRegenerateBotTokenTitle =>
-      'Regenerezi tokenul botului?';
-
-  @override
-  String get applicationsRegenerateClientSecretDescription =>
-      'Regenerarea va invalida secretul curent. Actualizează orice cod care folosește valoarea veche.';
-
-  @override
-  String get applicationsRegenerateBotTokenDescription =>
-      'Regenerarea va invalida tokenul curent. Actualizează orice cod care folosește valoarea veche.';
-
-  @override
-  String get applicationsClientSecretRegenerated =>
-      'Secretul clientului a fost regenerat. Actualizează orice cod care folosește vechiul secret.';
-
-  @override
-  String get applicationsBotTokenRegenerated =>
-      'Tokenul botului a fost regenerat. Actualizează orice cod care folosește vechiul token.';
-
-  @override
-  String get applicationsRegenerateFailed => 'Nu s-a putut regenera secretul';
-
-  @override
-  String get applicationsInfoTitle => 'Informații despre aplicație';
-
-  @override
-  String get applicationsInfoDescription =>
-      'Setări de bază și URI-uri de redirecționare permise.';
-
-  @override
-  String get applicationsPublicBot => 'Bot public';
-
-  @override
-  String get applicationsPublicBotDescription =>
-      'Permite oricui să invite acest bot în comunitățile sale.';
-
-  @override
-  String get applicationsRequireCodeGrant =>
-      'Necesită acordarea codului OAuth2';
-
-  @override
-  String get applicationsRequireCodeGrantDescription =>
-      'Necesită un URI de redirecționare și un cod de autorizare la invitarea acestui bot.';
-
-  @override
-  String get applicationsRedirectUris => 'URI-uri de redirecționare';
-
-  @override
-  String get applicationsAddRedirect => 'Adaugă redirecționare';
-
-  @override
-  String get applicationsDeleteRedirect => 'Șterge URI-ul de redirecționare';
-
-  @override
-  String get applicationsBotProfileTitle => 'Profil bot';
-
-  @override
-  String get applicationsBotProfileDescription =>
-      'Avatar, tag și detalii complexe de profil pentru botul tău.';
-
-  @override
-  String get applicationsBotAvatar => 'Avatar bot';
-
-  @override
-  String get applicationsUsernameRequired =>
-      'Numele de utilizator este obligatoriu';
-
-  @override
-  String get applicationsUsernameTooLong =>
-      'Numele de utilizator trebuie să aibă maximum 32 de caractere';
-
-  @override
-  String get applicationsUsernameInvalid =>
-      'Numele de utilizator poate conține doar litere, cifre și liniuțe de subliniere';
-
-  @override
-  String get applicationsBotUsername => 'Nume de utilizator bot';
-
-  @override
-  String get applicationsDiscriminator => 'Discriminator';
-
-  @override
-  String get applicationsBotBio => 'Biografie bot';
-
-  @override
-  String get applicationsBotBioHint =>
-      'Un bot util care face lucruri uimitoare!';
-
-  @override
-  String get applicationsNoBotBanner => 'Fără banner de bot';
-
-  @override
-  String get applicationsFriendlyBot => 'Bot prietenos';
-
-  @override
-  String get applicationsFriendlyBotDescription =>
-      'Permite utilizatorilor să trimită cereri de prietenie acestui bot, pentru aprobare manuală.';
-
-  @override
-  String get applicationsManualFriendApproval =>
-      'Necesită aprobare manuală a cererii de prietenie';
-
-  @override
-  String get applicationsManualFriendApprovalDescription =>
-      'Cererile de prietenie către acest bot necesită aprobare manuală.';
-
-  @override
-  String get applicationsOauthBuilderTitle => 'Constructor de URL-uri OAuth2';
-
-  @override
-  String get applicationsOauthBuilderDescription =>
-      'Construct an authorize URL with scopes and permissions.';
-
-  @override
-  String get applicationsScopes => 'Domenii';
-
-  @override
-  String get applicationsRedirectUri => 'URI de redirecționare';
-
-  @override
-  String get applicationsSelectRedirectUri =>
-      'Selectează un URI de redirecționare';
-
-  @override
-  String get applicationsRedirectRequiredCodeGrant =>
-      'URI-ul de redirecționare este obligatoriu, deoarece acest bot necesită acordarea codului OAuth2.';
-
-  @override
-  String get applicationsRedirectRequiredScopes =>
-      'URI-ul de redirecționare este necesar atunci când nu se utilizează doar domeniul bot.';
-
-  @override
-  String get applicationsBotPermissions => 'Permisiuni bot';
-
-  @override
-  String get applicationsAuthorizeUrl => 'URL de autorizare';
-
-  @override
-  String get applicationsAuthorizeUrlPlaceholder =>
-      'Selectează domeniile (și URI-ul de redirecționare, dacă este necesar)';
-
-  @override
-  String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
-
-  @override
-  String get applicationsCopiedUrl => 'URL copiat în clipboard';
-
-  @override
-  String get applicationsDangerTitle => 'Zonă de risc';
-
-  @override
-  String get applicationsDangerSubtitle =>
-      'Această acțiune nu poate fi anulată. Eliminarea aplicației șterge și botul acesteia.';
-
-  @override
-  String get applicationsDangerHelper =>
-      'Odată ștearsă, aplicația și credențialele ei sunt eliminate definitiv.';
-
-  @override
-  String get applicationsDelete => 'Șterge aplicația';
-
-  @override
-  String applicationsDeleteConfirmDescription(String name) {
-    return 'Are you sure you want to delete $name? This action cannot be undone. All associated data, including the bot user, will be permanently deleted.';
-  }
-
-  @override
-  String get applicationsDeleteFailed => 'Nu s-a putut șterge aplicația';
-
-  @override
-  String get applicationsUpdated => 'Aplicație actualizată cu succes';
-
-  @override
-  String get applicationsNoChanges => 'Nicio modificare de salvat';
-
-  @override
-  String get applicationsSearchBots => 'Aplicații și boți';
-
-  @override
-  String get applicationsSearchBotsDescription =>
-      'Creează și gestionează aplicații și boți pentru contul tău';
-
-  @override
-  String get applicationsSearchInfoDescription =>
-      'Editează elementele de bază ale aplicației și URI-urile de redirecționare';
-
-  @override
-  String get applicationsSearchBotProfileDescription =>
-      'Editează avatarul, tagul, biografia, bannerul și comportamentul cererilor de prietenie ale botului';
-
-  @override
-  String get applicationsSearchOauthDescription =>
-      'Construiește un URL de autorizare cu domenii, redirecționări și permisiuni bot';
-
-  @override
-  String get applicationsSearchSecretsDescription =>
-      'Vezi și regenerează secretele clientului și tokenurile botului';
-
-  @override
-  String get applicationsSearchBotsKeyword => 'Boți';
-
-  @override
-  String get applicationsSearchDocumentation => 'Documentație';
-
-  @override
-  String get linkedDevicesViewDetails => 'Vezi detalii';
-
-  @override
-  String get linkedDevicesDetailsTitle => 'Detalii dispozitiv';
-
-  @override
-  String get linkedDevicesDetailsDevice => 'Dispozitiv';
-
-  @override
-  String get linkedDevicesDetailsClient => 'Client';
-
-  @override
-  String get linkedDevicesDetailsLocation => 'Locație';
-
-  @override
-  String get linkedDevicesDetailsIp => 'Adresa IP';
-
-  @override
-  String get linkedDevicesDetailsLastUsed => 'Ultima utilizare';
-
-  @override
-  String get linkedDevicesCurrentSession => 'Sesiunea curentă';
-
-  @override
-  String get linkedDevicesUnknown => 'Necunoscut';
-
-  @override
-  String get chatMessagePinConfirm => 'Fixare';
-
-  @override
-  String get chatMessagePinConfirmDescription =>
-      'Fixează acest mesaj pe canal pentru ca toată lumea să-l vadă.';
-
-  @override
-  String get savedMessagesAddedToast => 'Adăugat la mesaje salvate';
-
-  @override
-  String get savedMessagesRemovedToast => 'Eliminat din mesaje salvate';
-
-  @override
-  String get guildSettingsDeleteCommunity => 'Șterge comunitatea';
-
-  @override
-  String get guildSettingsDeleteCommunityConfirm =>
-      'Sigur dorești să ștergi această comunitate? Această acțiune nu poate fi anulată. Toate canalele, mesajele și setările vor fi șterse definitiv.';
-
-  @override
-  String get guildSettingsCommunityDeleted => 'Comunitate ștearsă';
-
-  @override
-  String get guildSettingsDeleteCommunityFailed =>
-      'Couldn\'t delete this community';
-
-  @override
-  String get assistantNeedsLogin => 'Open echowire and sign in first.';
-
-  @override
-  String get assistantNotInVoice => 'You\'re not in a call.';
-
-  @override
-  String get assistantNotFound => 'echowire could not find that.';
+  String get assistantNotFound => 'Fluxer nu a putut găsi asta.';
 
   @override
   String get assistantDmsDisabled =>
-      'Direct messages are disabled on this instance.';
+      'Mesajele directe sunt dezactivate pe această instanță.';
 
   @override
-  String get assistantFailed => 'echowire could not complete that.';
+  String get assistantFailed => 'Fluxer nu a putut finaliza asta.';
 
   @override
-  String get assistantOkMuted => 'Muted.';
+  String get assistantOkMuted => 'Microfon dezactivat.';
 
   @override
-  String get assistantOkUnmuted => 'Unmuted.';
+  String get assistantOkUnmuted => 'Microfon activat.';
 
   @override
-  String get assistantOkLeftVoice => 'Left voice.';
+  String get assistantOkLeftVoice => 'Ai părăsit canalul vocal.';
 
   @override
-  String get assistantOkJoinedVoice => 'Joining voice.';
+  String get assistantOkJoinedVoice => 'Mă alătur canalului vocal.';
 
   @override
-  String get assistantOkStartedCall => 'Starting the call.';
+  String get assistantOkStartedCall => 'Pornesc apelul.';
 
   @override
   String assistantOkStatusSet(String status) {
-    return 'Status set to $status.';
+    return 'Status setat la $status.';
   }
 
   @override
-  String get assistantOkOpened => 'Opening echowire.';
+  String get assistantOkOpened => 'Deschid Fluxer.';
 
   @override
   String get assistantOkMessageSent => 'Mesaj trimis.';
 
   @override
-  String get assistantOkCustomStatusSet => 'Custom status updated.';
+  String get assistantOkCustomStatusSet => 'Stare personalizată actualizată.';
 
   @override
-  String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+  String get assistantOkCustomStatusCleared => 'Stare personalizată ștearsă.';
 
   @override
-  String get notificationsPushRelaySectionTitle => 'Releu de notificări push';
-
-  @override
-  String notificationsPushRelaySectionDescription(String pushProvider) {
-    return '$pushProvider livrează notificări push doar prin propriul serviciu, așa că notificările pentru acest dispozitiv trec prin releul Fluxer.';
-  }
-
-  @override
-  String get notificationsPushRelayConsentLabel =>
-      'Folosește releul push Fluxer';
-
-  @override
-  String get notificationsPushRelayConsentDescription =>
-      'Dacă dezactivezi asta, înregistrarea push a acestui dispozitiv este eliminată, iar dispozitivul nu mai primește notificări push.';
-
-  @override
-  String get pushRelayConsentTitle => 'Releu de notificări push';
-
-  @override
-  String pushRelayConsentDescription(String pushProvider) {
-    return '$pushProvider livrează notificări push doar prin propriul serviciu, așa că notificările pentru acest dispozitiv trec prin releul Fluxer.';
-  }
-
-  @override
-  String get pushRelayConsentNoticePrefix => 'Acceptă ';
-
-  @override
-  String get pushRelayConsentNoticeLink =>
-      'nota de confidențialitate a releului push';
-
-  @override
-  String get pushRelayConsentNoticeSuffix =>
-      ' pentru a activa notificările push pe acest dispozitiv. Trebuie să accepți o singură dată per dispozitiv.';
-
-  @override
-  String get pushRelayConsentAgree => 'Acceptă și continuă';
-
-  @override
-  String get pushRelayConsentDecline => 'Nu acum';
-
-  @override
-  String get userSettingsNavAppIcon => 'App icon';
-
-  @override
-  String get appIconSectionTitle => 'App icon';
-
-  @override
-  String get appIconSectionDescription =>
-      'Choose which icon appears on your home screen.';
-
-  @override
-  String get appIconOptionDefault => 'Implicit';
-
-  @override
-  String get appIconOptionStarfield => 'Starfield';
-
-  @override
-  String get appIconOptionSweden => 'Suedia';
-
-  @override
-  String get appIconUnsupported =>
-      'Changing the app icon is not available on this device.';
-
-  @override
-  String get authCheckStillWorking => 'Still working on it…';
-
-  @override
-  String get authVerificationFailed =>
-      'Couldn\'t complete verification. Try again.';
-
-  @override
-  String get profileLocalTimeSettingsTitle => 'Profile local time';
-
-  @override
-  String profileLocalTimeSettingsSummary(String productName) {
-    return 'Set your time zone once so $productName can keep your UTC offset current when daylight saving time changes. Other people can only see your UTC offset, not your exact time zone identifier.';
-  }
-
-  @override
-  String get profileLocalTimeEditButton => 'Edit profile local time';
-
-  @override
-  String get profileLocalTimeTimezoneLabel => 'Time zone';
-
-  @override
-  String profileLocalTimeTimezoneHelp(String productName) {
-    return 'Choose the time zone $productName uses to calculate your UTC offset for profile local time.';
-  }
-
-  @override
-  String get profileLocalTimeSearchTimezones => 'Search time zones';
-
-  @override
-  String get profileLocalTimeNotSet => 'Not set';
-
-  @override
-  String profileLocalTimePrivacyNote(
-    String timezoneIdentifierExample,
-    String productName,
-  ) {
-    return 'Other people can only see your current UTC offset when you choose to share profile local time. They do not see your exact time zone identifier, such as $timezoneIdentifierExample. $productName stores that identifier only so the offset can update automatically when daylight saving time changes.';
-  }
-
-  @override
-  String get profileLocalTimePrivacyEveryone => 'Everyone';
-
-  @override
-  String get profileLocalTimePrivacyEveryoneDesc =>
-      'Allow anyone who can view your full profile to see your local time';
-
-  @override
-  String get profileLocalTimePrivacyFriends => 'Friends';
-
-  @override
-  String get profileLocalTimePrivacyFriendsDesc =>
-      'Allow your friends to see your local time';
-
-  @override
-  String get profileLocalTimePrivacyCommunityMembers => 'Community members';
-
-  @override
-  String get profileLocalTimePrivacyCommunityMembersDesc =>
-      'Allow members from communities you\'re in to see your local time';
-
-  @override
-  String storePlutoniumPriceLine(String monthly, String yearly) {
-    return '$monthly or $yearly';
-  }
-
-  @override
-  String get storePlutoniumMonthSuffix => '/mo';
-
-  @override
-  String get storePlutoniumYearSuffix => '/yr';
-
-  @override
-  String get storePlutoniumPriceOr => 'or';
-
-  @override
-  String get storePlutoniumEmojiTitle => 'Your emojis, everywhere';
-
-  @override
-  String get storePlutoniumEmojiBody =>
-      'Bring custom emojis and stickers from any of your communities into every chat and community you\'re in.';
-
-  @override
-  String get storePlutoniumProfileTitle => 'A profile that stands out';
-
-  @override
-  String get storePlutoniumProfileBody =>
-      'Get an animated avatar and banner, a subscriber badge, the four-digit tag you want after your username*, and a separate profile for each community.';
-
-  @override
-  String get storePlutoniumFilesTitle => 'Send files up to 500 MB';
-
-  @override
-  String get storePlutoniumFilesBody =>
-      'Share full-length videos and big files without shrinking them first. Free accounts can send up to 25 MB.';
-
-  @override
-  String get storePlutoniumCompareTitle => 'Compare Free and Reverb';
-
-  @override
-  String get storePlutoniumCompareMobileNote =>
-      'Not all of these features are in the mobile app. Some are only available on desktop.';
-
-  @override
-  String get storePlutoniumNotAvailable => 'Not available';
-
-  @override
-  String get storePlutoniumAvailable => 'Available';
-
-  @override
-  String get storePlutoniumCompareTag =>
-      'Pick the 4-digit number after your username*';
-
-  @override
-  String get storePlutoniumCompareProfile =>
-      'A separate profile for each community';
-
-  @override
-  String get storePlutoniumCompareBadge => 'Subscriber badge on your profile';
-
-  @override
-  String get storePlutoniumCompareBackgrounds =>
-      'Video call backgrounds you can save';
-
-  @override
-  String get storePlutoniumCompareCommunities => 'Communities you can join';
-
-  @override
-  String get storePlutoniumCompareCharacters =>
-      'Characters in a single message';
-
-  @override
-  String get storePlutoniumCompareBookmarks => 'Messages you can bookmark';
-
-  @override
-  String get storePlutoniumCompareUpload => 'Largest file you can upload';
-
-  @override
-  String get storePlutoniumCompareSavedMedia =>
-      'Media items you can save for later';
-
-  @override
-  String get storePlutoniumCompareAnimatedEmoji =>
-      'Use animated emojis in messages';
-
-  @override
-  String get storePlutoniumCompareCustomEmoji =>
-      'Use custom emojis and stickers in any community';
-
-  @override
-  String get storePlutoniumCompareVideo =>
-      'Video call and screen share quality';
-
-  @override
-  String get storePlutoniumCompareAvatar =>
-      'Animated avatar and profile banner';
-
-  @override
-  String get storePlutoniumCompareEarlyAccess => 'Early access to new features';
-
-  @override
-  String get storePlutoniumCompareThemes => 'Custom themes for the app';
-
-  @override
-  String get storePlutoniumVideoFree => 'Up to 720p at 30 FPS';
-
-  @override
-  String get storePlutoniumVideoPlutonium => 'Up to 4K at 60 FPS';
-
-  @override
-  String get storePlutoniumTagFootnote =>
-      'You can only pick a tag that nobody else with the same username already has. Usernames aren\'t case sensitive, so Mina#4821 and mina#4821 count as the same. The #0000 tag is reserved for echowire Visionary members.';
-
-  @override
-  String get storePlutoniumLearnVisionary => 'Learn more about Visionary.';
-
-  @override
-  String get storePlutoniumDonatePrompt =>
-      'Just want to support echowire\'s open source development? ';
-
-  @override
-  String get storePlutoniumDonateLink => 'Donate instead.';
-
-  @override
-  String get storePlutoniumHighlightsLead =>
-      'Subscribing funds echowire and unlocks';
-
-  @override
-  String get storePlutoniumHighlightEmoji =>
-      'Custom emoji and stickers in any chat';
-
-  @override
-  String get storePlutoniumHighlightProfile =>
-      'Animated profile, badge, and custom 4-digit number';
-
-  @override
-  String get storePlutoniumHighlightFiles => 'Uploads up to 500 MB';
-
-  @override
-  String get storePlutoniumHighlightMessages =>
-      'Send messages up to 4,000 characters';
-
-  @override
-  String get storePlutoniumHighlightCommunityProfile =>
-      'A separate profile for each community';
-
-  @override
-  String get storePlutoniumHighlightsMore => 'And more';
-
-  @override
-  String get storePlutoniumRenewsThroughPlay =>
-      'Renews automatically through Google Play until you cancel.';
-
-  @override
-  String get storePlutoniumRenewsThroughAppStore =>
-      'Renews automatically through the App Store until you cancel.';
-
-  @override
-  String get storePlutoniumAlreadySubscribed =>
-      'You already have an echowire Reverb subscription.';
-
-  @override
-  String storePlutoniumSavePercent(int percent) {
-    return 'Save $percent%';
-  }
-
-  @override
-  String get storePlutoniumWaiting =>
-      'Purchase received. Reverb will show here once it activates.';
-
-  @override
-  String get storePlutoniumUnavailable =>
-      'Subscriptions in the app aren\'t available on this device yet.';
-
-  @override
-  String get storePlutoniumVisionaryStatus =>
-      'Visionary already includes permanent access, so a recurring subscription isn\'t needed.';
-
-  @override
-  String get guildNavbarAnnouncementChannel => 'Announcement Channel';
+  String get guildNavbarAnnouncementChannel => 'Canal de anunțuri';
 
   @override
   String get guildNavbarAnnouncementChannelDescription =>
-      'Post updates that other communities can follow into their own channels';
+      'Postează actualizări pe care alte comunități le pot urmări în propriile lor canale';
 
   @override
-  String get channelDetailsAnnouncementChannel => 'Announcement Channel';
+  String get channelDetailsAnnouncementChannel => 'Canal de anunțuri';
 
   @override
-  String get channelSettingsAnnouncementChannel => 'Announcement Channel';
+  String get channelSettingsAnnouncementChannel => 'Canal de anunțuri';
 
   @override
   String get channelSettingsAnnouncementChannelDescription =>
-      'Lets other communities follow this channel and get copies of what you publish.';
+      'Permite altor comunități să urmărească acest canal și să primească copii ale celor publicate.';
 
   @override
   String get channelSettingsStopAnnouncementTitle =>
-      'Stop being an announcement channel?';
+      'Renunți la canalul de anunțuri?';
 
   @override
   String channelSettingsStopAnnouncementBody(int count) {
@@ -15839,240 +14562,222 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       count,
       locale: localeName,
       other:
-          '$count channels follow this channel. Converting it to a text channel removes those follows.',
+          '$count de canale urmăresc acest canal. Dacă îl convertești în canal text, aceste urmăriri vor fi eliminate.',
+      few:
+          '$count canale urmăresc acest canal. Dacă îl convertești în canal text, aceste urmăriri vor fi eliminate.',
       one:
-          '1 channel follows this channel. Converting it to a text channel removes that follow.',
+          '$count canal urmărește acest canal. Dacă îl convertești în canal text, această urmărire va fi eliminată.',
     );
     return '$_temp0';
   }
 
   @override
   String get channelSettingsStopAnnouncementUnknown =>
-      'Converting this channel to a text channel removes every channel that follows it.';
+      'Dacă convertești acest canal în canal text, niciun canal nu îl va mai urmări.';
 
   @override
-  String get channelSettingsConvertChannel => 'Convert';
+  String get channelSettingsConvertChannel => 'Convertește';
 
   @override
-  String get channelSettingsConvertFailed => 'Couldn\'t convert this channel';
+  String get channelSettingsConvertFailed => 'Nu am putut converti acest canal';
 
   @override
   String get channelSettingsChannelHasFollowers =>
-      'This channel still has followers. Remove those follows before converting it.';
+      'Alte canale încă urmăresc acest canal. Elimină aceste urmăriri înainte de a-l converti.';
 
   @override
-  String get channelMenuFollow => 'Follow Channel';
+  String get channelMenuFollow => 'Urmărește canalul';
 
   @override
-  String get channelFollowTitle => 'Follow this channel';
+  String get channelFollowTitle => 'Urmărește acest canal';
 
   @override
   String get channelFollowBody =>
-      'Choose where its published messages should go. You can unfollow any time in Community settings → Webhooks.';
+      'Alege unde să apară mesajele publicate. Poți renunța oricând la urmărire din Setări comunitate → Webhook-uri.';
 
   @override
-  String get channelFollowCommunity => 'Community';
+  String get channelFollowCommunity => 'Comunitate';
 
   @override
-  String get channelFollowChannel => 'Channel';
-
-  @override
-  String get channelFollowSelectCommunity => 'Select a community';
-
-  @override
-  String get channelFollowSelectChannel => 'Select a channel';
+  String get channelFollowChannel => 'Canal';
 
   @override
   String get channelFollowAgeWarning =>
-      'This is an age-restricted channel. Updates can only go to age-restricted channels.';
+      'Acesta este un canal cu restricție de vârstă. Actualizările pot merge doar către canale cu restricție de vârstă.';
 
   @override
   String get channelFollowContentWarning =>
-      'This channel has a content warning. Updates can only go to channels with a content warning or an age restriction.';
+      'Acest canal are un avertisment de conținut. Actualizările pot fi trimise doar către canale cu un avertisment de conținut sau o restricție de vârstă.';
 
   @override
   String get channelFollowHiddenHint =>
-      'Communities and channels where you can\'t manage webhooks are hidden.';
+      'Comunitățile și canalele unde nu poți gestiona webhook-uri sunt ascunse.';
 
   @override
   String get channelFollowEmpty =>
-      'You can\'t manage webhooks in any community. Ask an admin to follow this channel.';
+      'Nu poți gestiona webhook-uri în nicio comunitate. Cere unui administrator să urmărească acest canal.';
 
   @override
-  String get channelFollowSubmit => 'Follow';
+  String get channelFollowSubmit => 'Urmărește';
 
   @override
-  String get channelFollowFailed => 'Couldn\'t follow this channel.';
+  String get channelFollowFailed => 'Nu s-a putut urmări acest canal.';
 
   @override
-  String get channelFollowSuccessTitle => 'Updates are on their way!';
+  String get channelFollowSuccessTitle => 'Actualizări pe drum!';
 
   @override
   String channelFollowSuccessBody(String sourceName, String targetName) {
-    return 'Messages published in $sourceName will show up in #$targetName.';
+    return 'Mesajele publicate în $sourceName vor apărea în #$targetName.';
   }
 
   @override
-  String get channelFollowSuccessDismiss => 'Got it!';
+  String get channelFollowSuccessDismiss => 'Am înțeles!';
 
   @override
   String get channelFollowBarrier =>
-      'Follow to get these announcements in a channel you choose.';
+      'Urmărește acest canal pentru a primi aceste anunțuri într-un canal ales de tine.';
 
   @override
-  String get channelHeaderFollow => 'Follow channel';
+  String get channelHeaderFollow => 'Urmărește canalul';
 
   @override
-  String get chatMessagePublish => 'Publish';
+  String get chatMessagePublish => 'Publică';
 
   @override
-  String get chatMessagePublished => 'Published';
+  String get chatMessagePublished => 'Publicat';
 
   @override
-  String get chatMessagePublishConfirmTitle => 'Publish message?';
+  String get chatMessagePublishConfirmTitle => 'Publici mesajul?';
 
   @override
   String get chatMessagePublishConfirmBody =>
-      'This sends a copy to every channel that follows this one.';
+      'Aceasta trimite o copie către fiecare canal care îl urmărește pe acesta.';
 
   @override
-  String get chatMessagePublishedToast => 'Message published';
+  String get chatMessagePublishedToast => 'Mesaj publicat';
 
   @override
-  String get chatMessageAlreadyPublished =>
-      'This message is already published.';
+  String get chatMessageAlreadyPublished => 'Acest mesaj este deja publicat.';
 
   @override
-  String get chatMessagePublishFailedTitle => 'Couldn\'t publish this message';
+  String get chatMessagePublishFailedTitle => 'Nu am putut publica acest mesaj';
 
   @override
   String get chatMessagePublishFailedBody =>
-      'Something went wrong. Try again in a moment.';
+      'Ceva nu a mers bine. Încearcă din nou într-un moment.';
 
   @override
-  String get chatMessagePublishLimitTitle => 'Slow down';
+  String get chatMessagePublishLimitTitle => 'Mai încet';
 
   @override
   String chatMessagePublishLimitBody(String duration) {
-    return 'You can publish again in $duration.';
+    return 'Poți publica din nou în $duration.';
   }
 
   @override
   String get chatMessagePublishLimitUnknown =>
-      'You are publishing too quickly. Try again in a moment.';
+      'Publici prea repede. Încearcă din nou într-un moment.';
 
   @override
   String get chatMessageDeletePublished =>
-      'This also removes the copies that were sent to channels following this one.';
+      'Aceasta elimină și copiile trimise către canalele care urmăresc acest canal.';
 
   @override
-  String get chatMessageEditPublishedTitle => 'Edit published message?';
+  String get chatMessageEditPublishedTitle => 'Editezi mesajul publicat?';
 
   @override
   String get chatMessageEditPublishedBody =>
-      'This updates the copies that were sent to channels following this one.';
+      'Aceasta actualizează copiile trimise către canalele care urmăresc acest canal.';
 
   @override
-  String get chatMessageEditPublishedSave => 'Save';
+  String get chatMessageEditPublishedSave => 'Salvează';
 
   @override
-  String get chatMessageEditLimitTitle => 'Slow down';
+  String get chatMessageEditLimitTitle => 'Mai încet';
 
   @override
   String chatMessageEditLimitBody(String duration) {
-    return 'You can edit this published message again in $duration.';
+    return 'Poți edita din nou acest mesaj publicat în $duration.';
   }
 
   @override
   String get chatMessageEditLimitUnknown =>
-      'You are editing this published message too quickly. Try again in a moment.';
+      'Editezi acest mesaj publicat prea repede. Încearcă din nou într-o clipă.';
 
   @override
-  String get chatMessageOriginalDeleted => '[Original message deleted]';
+  String get chatMessageOriginalDeleted => '[Mesajul original a fost șters]';
 
   @override
-  String get userTagCommunity => 'Community';
+  String get userTagCommunity => 'Comunitate';
 
   @override
   String systemFollowAdd(String username, String source) {
-    return '$username followed $source into this channel. Messages published there will appear here.';
+    return '$username a setat acest canal să urmărească $source. Mesajele publicate acolo vor apărea aici.';
   }
 
   @override
   String systemPreviewFollowAdd(String username, String source) {
-    return '$username followed $source into this channel.';
+    return '$username a setat acest canal să urmărească $source.';
   }
 
   @override
-  String get publishNudgeNotSent => 'Not sent to followers yet.';
+  String get publishNudgeNotSent => 'Încă nu a fost trimis urmăritorilor.';
 
   @override
-  String get publishNudgeHideForever => 'Don\'t show again';
+  String get publishNudgeHideForever => 'Nu mai afișa';
 
   @override
-  String get publishNudgeDismiss => 'Dismiss';
+  String get publishNudgeDismiss => 'Închide';
 
   @override
-  String get channelSettingsFollowedChannels => 'Followed channels';
+  String get channelSettingsFollowedChannels => 'Canale urmărite';
 
   @override
   String get channelSettingsFollowedChannelsDescription =>
-      'Announcement channels this channel follows. Unfollow to stop receiving copies.';
+      'Canale de anunțuri pe care le urmărește acest canal. Nu mai urmări pentru a nu mai primi copii.';
 
   @override
   String get guildSettingsFollowedChannelsDescription =>
-      'Announcement channels followed by channels in this community.';
+      'Canale de anunțuri urmărite de canalele din această comunitate.';
 
   @override
   String channelSettingsFollowedFrom(String guildName, String channelName) {
-    return 'From $guildName #$channelName';
+    return 'De la $guildName #$channelName';
   }
 
   @override
   String get channelSettingsFollowedPaused =>
-      'Updates are paused because the source channel is no longer available.';
+      'Actualizările sunt întrerupte deoarece canalul sursă nu mai este disponibil.';
 
   @override
   String channelSettingsUnfollowTitle(String name) {
-    return 'Unfollow $name?';
+    return 'Nu mai urmări $name?';
   }
 
   @override
   String get channelSettingsUnfollowBody =>
-      'This channel will stop receiving copies from that announcement channel.';
+      'Acest canal nu va mai primi copii de la acel canal de anunțuri.';
 
   @override
-  String get channelSettingsUnfollow => 'Unfollow';
+  String get channelSettingsUnfollow => 'Nu mai urmări';
 
   @override
-  String get channelSettingsUnfollowFailed =>
-      'Couldn\'t unfollow this channel.';
+  String get crosspostCommunityTitle => 'Comunitate';
 
   @override
-  String channelSettingsDeliveredTo(String channelName) {
-    return 'Delivered to #$channelName';
-  }
+  String get crosspostGoToCommunity => 'Mergi la comunitate';
 
   @override
-  String get crosspostCommunityTitle => 'Community';
-
-  @override
-  String get crosspostGoToCommunity => 'Go to community';
-
-  @override
-  String get crosspostJoinCommunity => 'Join Community';
+  String get crosspostJoinCommunity => 'Alătură-te comunității';
 
   @override
   String get crosspostSourceFailed =>
-      'Couldn\'t load this community. Try again in a moment.';
-
-  @override
-  String get crosspostSourceUnavailable =>
-      'This community is no longer available';
+      'Nu am putut încărca această comunitate. Încearcă din nou peste o clipă.';
 
   @override
   String crosspostMembers(int count) {
-    return '$count members';
+    return '$count membri';
   }
 
   @override
@@ -16085,8 +14790,9 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count minutes',
-      one: '1 minute',
+      other: '$count de minute',
+      few: '$count minute',
+      one: '$count minut',
     );
     return '$_temp0';
   }
@@ -16096,19 +14802,322 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count seconds',
-      one: '1 second',
+      other: '$count de secunde',
+      few: '$count secunde',
+      one: '$count secundă',
     );
     return '$_temp0';
   }
 
   @override
-  String get channelUnsupportedTitle => 'Unsupported channel type';
+  String get channelUnsupportedTitle => 'Tip de canal neacceptat';
 
   @override
   String get channelUnsupportedBody =>
-      'This version of the app doesn\'t support this channel type.';
+      'Această versiune a aplicației nu acceptă acest tip de canal.';
 
   @override
-  String get channelDetailsUnsupportedChannel => 'Unsupported channel';
+  String get channelDetailsUnsupportedChannel => 'Canal neacceptat';
+
+  @override
+  String get forumChannelTypeForum => 'Forum';
+
+  @override
+  String get forumChannelTypeForumDescription =>
+      'Posts organized by topic and tags';
+
+  @override
+  String get forumChannelTypeMedia => 'Media';
+
+  @override
+  String get forumChannelTypeMediaDescription =>
+      'Posts built around images and videos';
+
+  @override
+  String get forumNewPost => 'Postare nouă';
+
+  @override
+  String get forumNewMediaPost => 'New media post';
+
+  @override
+  String get forumSearchPosts => 'Caută postări';
+
+  @override
+  String get forumViewOptions => 'Sort and view';
+
+  @override
+  String get forumSearchIndexing =>
+      'Search is still being prepared for this community. Posts appear here as soon as it is ready.';
+
+  @override
+  String get forumNoPosts => 'Nicio postare încă';
+
+  @override
+  String get forumNoPostsHint => 'Be the first to start a conversation here.';
+
+  @override
+  String get forumNoSearchResults => 'No posts match your search';
+
+  @override
+  String get forumNoSearchResultsHint =>
+      'Try different words or clear the tag filter.';
+
+  @override
+  String get forumCreateFirstPost => 'Create the first post';
+
+  @override
+  String get forumOlderPosts => 'Older posts';
+
+  @override
+  String get forumPostsLoadFailed => 'Posts could not be loaded.';
+
+  @override
+  String get forumRetry => 'Try again';
+
+  @override
+  String get forumPostPinned => 'Pinned';
+
+  @override
+  String get forumPostLocked => 'Locked';
+
+  @override
+  String get forumPostArchived => 'Archived';
+
+  @override
+  String get forumPostNewBadge => 'NEW';
+
+  @override
+  String get forumPostStarterDeleted => 'The original message was deleted.';
+
+  @override
+  String forumPostSnippet(String author, String content) {
+    return '$author: $content';
+  }
+
+  @override
+  String forumPostNewMessages(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new messages',
+      one: '1 new message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostReact => 'Add the default reaction';
+
+  @override
+  String get forumOpenPost => 'Open post';
+
+  @override
+  String get forumEditTags => 'Edit tags';
+
+  @override
+  String get forumSaveTags => 'Save tags';
+
+  @override
+  String forumTagsLimitHint(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Pick up to $count tags.',
+      one: 'Pick up to 1 tag.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPinPost => 'Pin post';
+
+  @override
+  String get forumUnpinPost => 'Unpin post';
+
+  @override
+  String get forumMarkPostRead => 'Mark as read';
+
+  @override
+  String get forumCopyPostLink => 'Copy link';
+
+  @override
+  String get forumPostGuidelines => 'Post guidelines';
+
+  @override
+  String get forumGuidelinesPlaceholder =>
+      'Tell people what to post here and how to post it.';
+
+  @override
+  String get forumPostTitle => 'Title';
+
+  @override
+  String get forumPostMessage => 'Message';
+
+  @override
+  String get forumPostMessagePlaceholder =>
+      'Write the first message of your post';
+
+  @override
+  String get forumPostMediaPlaceholder => 'Add a caption';
+
+  @override
+  String get forumPostTags => 'Tags';
+
+  @override
+  String get forumPostTagsRequired => 'Tags (required)';
+
+  @override
+  String get forumPostAddMedia => 'Add media';
+
+  @override
+  String get forumPostAddFile => 'Add file';
+
+  @override
+  String get forumPostRemoveAttachment => 'Remove attachment';
+
+  @override
+  String get forumPostSubmit => 'Post';
+
+  @override
+  String get forumPostTitleRequired => 'Give your post a title.';
+
+  @override
+  String get forumPostMediaRequired =>
+      'Add at least one image or video to post here.';
+
+  @override
+  String get forumPostContentRequired => 'Write a message or add a file.';
+
+  @override
+  String get forumSortLatestActivity => 'Recently active';
+
+  @override
+  String get forumSortCreationTime => 'Date posted';
+
+  @override
+  String get forumLayoutList => 'Listă';
+
+  @override
+  String get forumLayoutGallery => 'Galerie';
+
+  @override
+  String get forumNewPostsUnread => 'Show unread for new posts';
+
+  @override
+  String get forumNewPostsUnreadDescription =>
+      'Mark this channel unread when someone creates a post.';
+
+  @override
+  String get forumPostSlowmode => 'Post slowmode';
+
+  @override
+  String forumPostSlowmodeDescription(String bypassSlowmodePermissionLabel) {
+    return 'Wait between creating posts. \"$bypassSlowmodePermissionLabel\" can bypass it.';
+  }
+
+  @override
+  String get forumMessageSlowmode => 'Message slowmode in posts';
+
+  @override
+  String get forumMessageSlowmodeDescription =>
+      'Slowmode applied to messages in new posts.';
+
+  @override
+  String get forumDefaultAutoArchive => 'Hide after inactivity';
+
+  @override
+  String get forumDefaultAutoArchiveDescription =>
+      'New posts are archived after this long without activity.';
+
+  @override
+  String get forumDefaultReaction => 'Default reaction';
+
+  @override
+  String get forumSetDefaultReaction => 'Pick an emoji';
+
+  @override
+  String get forumChangeDefaultReaction => 'Change';
+
+  @override
+  String get forumRemoveDefaultReaction => 'Remove';
+
+  @override
+  String get forumDefaultSortOrder => 'Default sort order';
+
+  @override
+  String get forumDefaultLayout => 'Default layout';
+
+  @override
+  String get forumTagMatchSetting => 'Tag filter';
+
+  @override
+  String get forumTagMatchSome => 'Match any selected tag';
+
+  @override
+  String get forumTagMatchAll => 'Match all selected tags';
+
+  @override
+  String get forumRequireTag => 'Require tags';
+
+  @override
+  String get forumRequireTagDescription =>
+      'People must pick at least one tag when they create a post.';
+
+  @override
+  String get forumHideMediaDownloads => 'Hide media download options';
+
+  @override
+  String get forumHideMediaDownloadsDescription =>
+      'Hide download, open in browser and copy link for images and videos in posts.';
+
+  @override
+  String forumTagsTitle(int count, int max) {
+    return 'Tags ($count/$max)';
+  }
+
+  @override
+  String get forumTagsDescription =>
+      'Tags help people find and filter posts. Only moderators can apply moderated tags.';
+
+  @override
+  String get forumCreateTag => 'Create tag';
+
+  @override
+  String get forumEditTag => 'Edit tag';
+
+  @override
+  String get forumSaveTag => 'Save tag';
+
+  @override
+  String get forumDeleteTag => 'Delete tag';
+
+  @override
+  String get forumTagName => 'Tag name';
+
+  @override
+  String get forumTagEmoji => 'Emoji';
+
+  @override
+  String get forumTagRemoveEmoji => 'Remove emoji';
+
+  @override
+  String get forumTagModerated => 'Only moderators can apply';
+
+  @override
+  String get forumTagModeratedDescription =>
+      'Only members who can manage threads can apply or remove this tag.';
+
+  @override
+  String get forumTagModeratedBadge => 'Moderated';
+
+  @override
+  String forumPostCooldown(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'You can post again in $seconds seconds.',
+      one: 'You can post again in 1 second.',
+    );
+    return '$_temp0';
+  }
 }

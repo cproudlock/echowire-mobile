@@ -7,20 +7,30 @@ import 'package:fluxer_app/features/channels/data/read_state_utils.dart';
 
 part 'channel_dao.g.dart';
 
+const List<int> _threadTypes = <int>[10, 11, 12];
+
 @DriftAccessor(tables: [Channels])
 class ChannelDao extends DatabaseAccessor<FluxerDatabase>
     with _$ChannelDaoMixin {
   ChannelDao(super.attachedDatabase);
 
-  Stream<List<Channel>> watchChannels(String guildId) =>
+  Stream<List<Channel>> watchChannels(
+    String guildId, {
+    bool includeThreads = false,
+  }) =>
       (select(channels)
-            ..where((c) => c.guildId.equals(guildId))
+            ..where(
+              (c) =>
+                  c.guildId.equals(guildId) & _threadFilter(c, includeThreads),
+            )
             ..orderBy([(c) => OrderingTerm.asc(c.position)]))
           .watch()
           .suppressDriftCancellation;
 
-  Stream<List<Channel>> watchAllChannels() =>
-      select(channels).watch().suppressDriftCancellation;
+  Stream<List<Channel>> watchAllChannels({bool includeThreads = false}) =>
+      (select(channels)..where((c) => _threadFilter(c, includeThreads)))
+          .watch()
+          .suppressDriftCancellation;
 
   Stream<List<Channel>> watchChannelsByIds(Iterable<String> ids) =>
       (select(channels)
@@ -29,13 +39,23 @@ class ChannelDao extends DatabaseAccessor<FluxerDatabase>
           .watch()
           .suppressDriftCancellation;
 
-  Future<List<Channel>> getAllChannels() => select(channels).get();
+  Future<List<Channel>> getAllChannels({bool includeThreads = false}) =>
+      (select(channels)..where((c) => _threadFilter(c, includeThreads))).get();
 
-  Future<List<Channel>> getChannels(String guildId) =>
+  Future<List<Channel>> getChannels(
+    String guildId, {
+    bool includeThreads = false,
+  }) =>
       (select(channels)
-            ..where((c) => c.guildId.equals(guildId))
+            ..where(
+              (c) =>
+                  c.guildId.equals(guildId) & _threadFilter(c, includeThreads),
+            )
             ..orderBy([(c) => OrderingTerm.asc(c.position)]))
           .get();
+
+  Expression<bool> _threadFilter($ChannelsTable c, bool includeThreads) =>
+      includeThreads ? const Constant(true) : c.type.isNotIn(_threadTypes);
 
   Future<Channel?> getChannelById(String id) =>
       (select(channels)..where((c) => c.id.equals(id))).getSingleOrNull();
@@ -204,50 +224,6 @@ class ChannelDao extends DatabaseAccessor<FluxerDatabase>
       (update(channels)..where((c) => c.id.equals(channelId))).write(
         ChannelsCompanion(lastPinTimestamp: Value(timestamp)),
       );
-
-  /// Echowire: watch the thread/forum-post channels under a parent channel
-  /// (public + private threads), reacting to gateway inserts/updates.
-  Stream<List<Channel>> watchThreadsForParent(String parentId) =>
-      (select(channels)..where(
-            (c) =>
-                c.parentId.equals(parentId) &
-                (c.type.equals(11) | c.type.equals(12)),
-          ))
-          .watch();
-
-  /// Echowire: active (non-archived) thread channels across a guild, for
-  /// nesting under their parent channel in the sidebar.
-  Stream<List<Channel>> watchActiveThreadsForGuild(String guildId) =>
-      (select(channels)..where(
-            (c) =>
-                c.guildId.equals(guildId) &
-                (c.type.equals(11) | c.type.equals(12)) &
-                (c.threadArchived.isNull() | c.threadArchived.equals(false)),
-          ))
-          .watch();
-
-  /// Echowire: update a thread's cached member count from THREAD_MEMBERS_UPDATE.
-  Future<void> updateThreadMemberCount(String channelId, int? memberCount) =>
-      (update(channels)..where((c) => c.id.equals(channelId))).write(
-        ChannelsCompanion(threadMemberCount: Value(memberCount)),
-      );
-
-  /// Echowire: nudge a thread's cached message count by [delta] when a message
-  /// is created or deleted in it. The server does not send THREAD_UPDATE per
-  /// message. Non-thread channels and unknown counts are left alone.
-  Future<void> bumpThreadMessageCount(
-    String channelId,
-    int delta,
-  ) => customUpdate(
-    'UPDATE channels SET thread_message_count = '
-    'MAX(0, thread_message_count + ?) '
-    'WHERE id = ? AND type IN (11, 12) AND thread_message_count IS NOT NULL',
-    variables: <Variable<Object>>[
-      Variable<int>(delta),
-      Variable<String>(channelId),
-    ],
-    updates: <TableInfo<Table, Object?>>{channels},
-  );
 
   Future<void> deleteChannel(String id) =>
       (delete(channels)..where((c) => c.id.equals(id))).go();

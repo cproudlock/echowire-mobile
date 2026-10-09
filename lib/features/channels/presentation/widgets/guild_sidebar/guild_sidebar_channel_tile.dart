@@ -20,11 +20,7 @@ class _ChannelTile extends ConsumerWidget {
       activeChannelIdProvider.select((String? id) => id == channel.id),
     );
     final unread = ref.watch(channelUnreadProvider(channel.id)).value;
-    // Echowire: forums count new posts instead of unread messages.
-    final int forumNewCount = channel.isForum
-        ? ref.watch(forumNewPostCountProvider(channel.id)).value ?? 0
-        : 0;
-    final bool hasUnread = (unread?.hasUnread ?? false) || forumNewCount > 0;
+    final bool hasUnread = unread?.hasUnread ?? false;
     final int mentionCount = unread?.mentionCount ?? 0;
     final bool hasUnreadMessages = unread?.hasUnreadMessages ?? false;
     final bool isChannelDirectlyMuted = ref.watch(
@@ -188,17 +184,6 @@ class _ChannelTile extends ConsumerWidget {
               if (showMentionBadge) ...[
                 const SizedBox(width: 4),
                 FluxerBadge.count(count: mentionCount),
-              ] else if (forumNewCount > 0 && !isSelected) ...[
-                const SizedBox(width: 4),
-                Text(
-                  FluxerLocalizations.of(
-                    context,
-                  ).forumNewPostsPill(forumNewCount),
-                  style: context.textStyles.label.copyWith(
-                    color: context.colors.brandPrimary,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
               ],
               if (showVoiceUserCount) ...[
                 const SizedBox(width: 4),
@@ -355,11 +340,7 @@ class _ChannelTile extends ConsumerWidget {
         unawaited(_openVoiceChannelChat(menuContext, ref));
       case ChannelMenuAction.markAsRead:
         close();
-        unawaited(
-          channel.isForum
-              ? _readStateRepository(ref).markForumRead(channel.id)
-              : _readStateRepository(ref).ackLatest(channel.id),
-        );
+        unawaited(_readStateRepository(ref).ackLatest(channel.id));
       case ChannelMenuAction.toggleFavorite:
         close();
         unawaited(

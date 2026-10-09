@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:fluxer_app/core/api/accept_language_interceptor.dart';
 import 'package:fluxer_app/core/api/captcha_dialog.dart';
 import 'package:fluxer_app/core/api/captcha_interceptor.dart';
 import 'package:fluxer_app/core/api/fluxer_api_features.dart';
@@ -16,6 +17,7 @@ import 'package:fluxer_app/core/providers/active_instance_provider.dart';
 import 'package:fluxer_app/core/providers/app_runtime_info_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/features/auth/providers/auth_instance_snapshot_provider.dart';
+import 'package:fluxer_app/l10n/app_locale_provider.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
@@ -63,6 +65,12 @@ Dio _buildFluxerDio({required Ref ref, required String baseUrl}) {
       },
     ),
   );
+  final ProviderContainer container = ref.container;
+  dio.interceptors.add(
+    AcceptLanguageInterceptor(
+      readLocale: () => container.read(effectiveAppLocaleProvider),
+    ),
+  );
   dio.interceptors.add(
     SessionAuthInterceptor(readToken: () => ref.read(fluxerAuthTokenProvider)),
   );
@@ -102,6 +110,9 @@ Dio _buildFluxerDio({required Ref ref, required String baseUrl}) {
         settings: const TalkerDioLoggerSettings(
           printResponseTime: true,
           printResponseData: false,
+          printRequestData: false,
+          printErrorData: false,
+          printErrorHeaders: false,
         ),
       ),
     );
@@ -150,6 +161,9 @@ class FluxerAuthToken extends _$FluxerAuthToken {
   // Auth state is updated from repository flows; Riverpod state remains the
   // source of truth for consumers.
   void setToken(String? token) {
+    if (state == token) {
+      return;
+    }
     state = token;
   }
 }

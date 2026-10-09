@@ -95,10 +95,6 @@ class MatureContentAgreements extends _$MatureContentAgreements {
     await _persist();
   }
 
-  bool hasAgreedToChannel(String channelId) {
-    return state.agreedChannelIds.contains(channelId);
-  }
-
   Future<void> agreeToCategory(String categoryId) async {
     if (state.agreedCategoryIds.contains(categoryId)) {
       return;
@@ -143,10 +139,6 @@ class MatureContentAgreements extends _$MatureContentAgreements {
       case MatureContentAgreementScope.channel:
         await agreeToChannel(scopeId);
     }
-  }
-
-  bool hasEffectiveAgreement(ResolvedMatureGateContext context) {
-    return hasMatureContentAgreement(agreements: state, context: context);
   }
 }
 
@@ -198,7 +190,16 @@ Future<ResolvedMatureGateContext?> _resolveGateContextForChannel(
   Ref ref,
   String channelId,
 ) async {
-  final Channel? channel = await _resolveChannel(ref, channelId);
+  Channel? channel = await _resolveChannel(ref, channelId);
+  final String? threadParentId = channel != null && channel.isThread
+      ? channel.parentId
+      : null;
+  if (threadParentId != null) {
+    channel = await _resolveChannel(ref, threadParentId);
+    if (!ref.mounted) {
+      return null;
+    }
+  }
   if (channel == null) {
     return null;
   }
@@ -304,7 +305,6 @@ Future<MatureMediaPolicy> matureMediaPolicy(
       shouldBlur: true,
       shouldBlock: false,
       canReveal: false,
-      gateReason: MatureContentGateReason.none,
     );
   }
   final ResolvedMatureGateContext? context = await ref.watch(
@@ -315,7 +315,6 @@ Future<MatureMediaPolicy> matureMediaPolicy(
       shouldBlur: true,
       shouldBlock: false,
       canReveal: false,
-      gateReason: MatureContentGateReason.none,
     );
   }
   final MatureContentGateReason mediaGateReason = resolveMediaGateReason(

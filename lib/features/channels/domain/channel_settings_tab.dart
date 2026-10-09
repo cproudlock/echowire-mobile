@@ -36,7 +36,7 @@ List<ChannelSettingsTab> visibleChannelSettingsTabs({
   if (canManageRoles) {
     tabs.add(ChannelSettingsTab.permissions);
   }
-  if (canManageChannels) {
+  if (canManageChannels && !channel.isThreadOnly) {
     tabs.add(ChannelSettingsTab.invites);
   }
   if (canManageWebhooks && channel.type != ChannelType.guildLink) {
@@ -174,16 +174,6 @@ ChannelSettingsTab channelSettingsTabFromQuery(String? tabQuery) {
     'webhooks' => ChannelSettingsTab.webhooks,
     _ => ChannelSettingsTab.overview,
   };
-}
-
-String channelSettingsModalTitle(
-  FluxerLocalizations l10n, {
-  required Channel channel,
-}) {
-  if (channel.isCategory) {
-    return l10n.channelSettingsCategorySettingsTitle;
-  }
-  return l10n.channelDetailsChannelSettingsTitle;
 }
 
 String channelSettingsDeleteLabel(

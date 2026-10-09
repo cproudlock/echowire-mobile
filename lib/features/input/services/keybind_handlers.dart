@@ -40,6 +40,7 @@ import 'package:fluxer_app/features/quick_switcher/providers/quick_switcher_prov
 import 'package:fluxer_app/features/quick_switcher/providers/quick_switcher_providers.dart';
 import 'package:fluxer_app/features/settings/presentation/user_settings_modal.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
+import 'package:fluxer_app/features/threads/providers/thread_guild_gate_provider.dart';
 import 'package:fluxer_app/features/voice/providers/local_voice_state_provider.dart';
 import 'package:fluxer_app/features/voice/providers/pending_incoming_voice_calls_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_priority_speaker_provider.dart';
@@ -220,20 +221,23 @@ void registerKeybindHandlers({
       return true;
     })
     ..register(KeybindAction.chatToggleEmoji, () async {
-      ref.read(expressionPanelTabProvider.notifier).tab =
-          ExpressionPickerTab.emojis;
+      ref
+          .read(expressionPanelTabProvider.notifier)
+          .setTab(ExpressionPickerTab.emojis);
       ref.read(expressionPanelProvider.notifier).open();
       return true;
     })
     ..register(KeybindAction.chatToggleGif, () async {
-      ref.read(expressionPanelTabProvider.notifier).tab =
-          ExpressionPickerTab.gifs;
+      ref
+          .read(expressionPanelTabProvider.notifier)
+          .setTab(ExpressionPickerTab.gifs);
       ref.read(expressionPanelProvider.notifier).open();
       return true;
     })
     ..register(KeybindAction.chatToggleSticker, () async {
-      ref.read(expressionPanelTabProvider.notifier).tab =
-          ExpressionPickerTab.stickers;
+      ref
+          .read(expressionPanelTabProvider.notifier)
+          .setTab(ExpressionPickerTab.stickers);
       ref.read(expressionPanelProvider.notifier).open();
       return true;
     })
@@ -293,6 +297,7 @@ void registerKeybindHandlers({
         guildId,
         ref.read(fluxerDatabaseProvider),
         ref.read(fluxerClientProvider),
+        threadsActive: ref.read(threadsGateProvider).isActive(guildId),
       );
       return true;
     })

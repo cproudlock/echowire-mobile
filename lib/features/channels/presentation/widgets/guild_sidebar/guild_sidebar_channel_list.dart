@@ -279,7 +279,7 @@ class _GuildSidebarChannelListState
       builder: (BuildContext context, BoxConstraints constraints) {
         return CustomScrollView(
           controller: _scrollController,
-          cacheExtent: 600,
+          scrollCacheExtent: const ScrollCacheExtent.pixels(600),
           slivers: <Widget>[
             SliverPersistentHeader(
               pinned: true,
@@ -341,42 +341,25 @@ class _GuildSidebarChannelListState
                           guild: widget.guild,
                         ),
                       );
+                    case GuildSidebarEntryKind.thread:
+                      final String threadId = entry.channel!.id;
+                      return RepaintBoundary(
+                        child: ThreadSidebarTile(
+                          key: ValueKey<String>('thread:$threadId'),
+                          tileKey: _channelKeys.putIfAbsent(
+                            threadId,
+                            GlobalKey.new,
+                          ),
+                          thread: entry.channel!,
+                          guildId: widget.guildId,
+                          isLast: entry.isLastThread,
+                        ),
+                      );
                     case GuildSidebarEntryKind.voiceParticipants:
                       return VoiceChannelParticipantsList(
                         key: ValueKey<String>('vp:${entry.channel!.id}'),
                         guildId: entry.guildId!,
                         channelId: entry.channel!.id,
-                      );
-                    case GuildSidebarEntryKind.thread:
-                      final String threadId = entry.channel!.id;
-                      return Stack(
-                        children: <Widget>[
-                          Positioned(
-                            left: 18,
-                            top: 0,
-                            bottom: 0,
-                            width: 12,
-                            child: CustomPaint(
-                              painter: _ThreadConnectorPainter(
-                                color: context.colors.borderColor,
-                                isLast: entry.isLastInGroup,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 26),
-                            child: _ChannelTile(
-                              key: ValueKey<String>('thread:$threadId'),
-                              tileKey: _channelKeys.putIfAbsent(
-                                threadId,
-                                GlobalKey.new,
-                              ),
-                              channel: entry.channel!,
-                              guildId: widget.guildId,
-                              guild: widget.guild,
-                            ),
-                          ),
-                        ],
                       );
                   }
                 }, childCount: membersOffset + sidebarEntries.length),
@@ -401,36 +384,4 @@ class _GuildSidebarChannelListState
     _inactiveList = child;
     return child;
   }
-}
-
-/// Echowire: the tree line joining a nested thread to its parent channel. A
-/// vertical spine that curves into the row, stopping at the last thread.
-class _ThreadConnectorPainter extends CustomPainter {
-  const _ThreadConnectorPainter({required this.color, required this.isLast});
-
-  final Color color;
-  final bool isLast;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()
-      ..color = color
-      ..strokeWidth = 1.5
-      ..style = PaintingStyle.stroke;
-    final double mid = size.height / 2;
-    const double radius = 6;
-    final Path path = Path()
-      ..moveTo(0, 0)
-      ..lineTo(0, mid - radius)
-      ..quadraticBezierTo(0, mid, radius, mid)
-      ..lineTo(size.width, mid);
-    canvas.drawPath(path, paint);
-    if (!isLast) {
-      canvas.drawLine(Offset(0, mid - radius), Offset(0, size.height), paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(_ThreadConnectorPainter oldDelegate) =>
-      oldDelegate.color != color || oldDelegate.isLast != isLast;
 }

@@ -12,10 +12,17 @@ import 'package:fluxer_app/features/channels/data/read_state_utils.dart';
 import 'package:fluxer_app/features/channels/data/unread_permission_utils.dart';
 import 'package:fluxer_app/features/channels/data/unread_settings_resolver.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart'
-    show isGuildTextBasedChannel;
+    show
+        isGuildTextBasedChannel,
+        isThreadChannelType,
+        isThreadFeatureChannelType,
+        isThreadOnlyChannelType;
+import 'package:fluxer_app/features/forum/domain/forum_channel.dart'
+    show forumNewPostsUnreadEnabled;
 import 'package:fluxer_app/features/guilds/domain/guild_read_state_contribution.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_read_state_ready_provider.dart';
 import 'package:fluxer_app/features/guilds/utils/guild_notification_resolution.dart';
+import 'package:fluxer_app/features/threads/providers/thread_guild_gate_provider.dart';
 import 'package:fluxer_dart/export.dart' hide ChannelType;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -31,15 +38,6 @@ class GuildReadStateEntry {
     required this.unreadChannelId,
     required this.sentinel,
   });
-
-  static const GuildReadStateEntry empty = GuildReadStateEntry(
-    hasUnread: false,
-    hasPlainUnread: false,
-    mentionCount: 0,
-    mentionChannels: <String>{},
-    unreadChannelId: null,
-    sentinel: 0,
-  );
 
   final bool hasUnread;
   final bool hasPlainUnread;
@@ -114,6 +112,7 @@ class GuildReadState extends _$GuildReadState {
       <String, GuildNotificationContext>{};
   final Set<String> _pendingTrustIndex = <String>{};
   StreamSubscription<Map<String, String>>? _lastMessageIndexSub;
+  Map<String, ThreadMember> _joinedThreadMembers = <String, ThreadMember>{};
 
   @override
   Map<String, GuildReadStateEntry> build() {
@@ -133,20 +132,48 @@ class GuildReadState extends _$GuildReadState {
       }
     });
 
-    final channelSub = db.channelDao.watchAllChannels().listen((channels) {
-      final next = <String, Channel>{for (final c in channels) c.id: c};
-      final touched = _diffChannels(
-        _channelSnapshot,
-        next,
-        ignoreLastMessageOnly: true,
-      );
-      final staleLastMessageIds = _diffLastMessageIds(_channelSnapshot, next);
-      _channelSnapshot = next;
-      final allTouched = <String>{...touched, ...staleLastMessageIds};
-      if (allTouched.isNotEmpty) {
-        _enqueueChannels(allTouched, db, currentUserId, refreshLatest: true);
+    final joinedThreadSub = db.threadDao.watchJoinedMembers().listen((
+      List<ThreadMember> rows,
+    ) {
+      final Map<String, ThreadMember> joined = <String, ThreadMember>{
+        for (final ThreadMember row in rows) row.threadId: row,
+      };
+      final Set<String> touched = <String>{
+        for (final MapEntry<String, ThreadMember> entry in joined.entries)
+          if (_joinedThreadMembers[entry.key] != entry.value) entry.key,
+        for (final String id in _joinedThreadMembers.keys)
+          if (!joined.containsKey(id)) id,
+      };
+      _joinedThreadMembers = joined;
+      if (touched.isNotEmpty) {
+        _enqueueChannels(touched, db, currentUserId, refreshLatest: false);
       }
     });
+
+    final channelSub = db.channelDao
+        .watchAllChannels(includeThreads: true)
+        .listen((channels) {
+          final next = <String, Channel>{for (final c in channels) c.id: c};
+          final touched = _diffChannels(
+            _channelSnapshot,
+            next,
+            ignoreLastMessageOnly: true,
+          );
+          final staleLastMessageIds = _diffLastMessageIds(
+            _channelSnapshot,
+            next,
+          );
+          _channelSnapshot = next;
+          final allTouched = <String>{...touched, ...staleLastMessageIds};
+          if (allTouched.isNotEmpty) {
+            _enqueueChannels(
+              allTouched,
+              db,
+              currentUserId,
+              refreshLatest: true,
+            );
+          }
+        });
 
     _lastMessageIndexSub = lastMessageIndex.flushStream.listen((
       Map<String, String> updates,
@@ -180,7 +207,7 @@ class GuildReadState extends _$GuildReadState {
       final channelIds = <String>{
         for (final channel in _channelSnapshot.values)
           if (changedGuilds.contains(channel.guildId) &&
-              isGuildTextBasedChannel(channel.type))
+              _tracksUnread(channel.type))
             channel.id,
       };
       if (channelIds.isNotEmpty) {
@@ -208,6 +235,17 @@ class GuildReadState extends _$GuildReadState {
       }
     });
 
+    ref.listen<Set<String>>(threadGuildGateProvider, (
+      Set<String>? prev,
+      Set<String> next,
+    ) {
+      final Set<String> previous = prev ?? const <String>{};
+      _emitForGuilds(<String>{
+        ...next.difference(previous),
+        ...previous.difference(next),
+      });
+    });
+
     if (ref.read(gatewayReadyProvider)) {
       _requestSeed(db, currentUserId);
     }
@@ -215,6 +253,7 @@ class GuildReadState extends _$GuildReadState {
     ref.onDispose(() {
       unawaited(readStateSub.cancel());
       unawaited(channelSub.cancel());
+      unawaited(joinedThreadSub.cancel());
       unawaited(_lastMessageIndexSub?.cancel());
       unawaited(settingsSub.cancel());
       unawaited(guildSub.cancel());
@@ -224,9 +263,6 @@ class GuildReadState extends _$GuildReadState {
 
     return <String, GuildReadStateEntry>{};
   }
-
-  GuildReadStateEntry entryFor(String guildId) =>
-      state[guildId] ?? GuildReadStateEntry.empty;
 
   void _requestSeed(FluxerDatabase db, String? currentUserId) {
     if (_seedInFlight != null) {
@@ -247,7 +283,13 @@ class GuildReadState extends _$GuildReadState {
     _recomputeGeneration++;
     _clearCaches();
     final guilds = await db.guildDao.getServers();
-    final allChannels = await db.channelDao.getAllChannels();
+    final allChannels = await db.channelDao.getAllChannels(
+      includeThreads: true,
+    );
+    _joinedThreadMembers = <String, ThreadMember>{
+      for (final ThreadMember row in await db.threadDao.getJoinedMembers())
+        row.threadId: row,
+    };
     final allReadStates = await db.readStateDao.getReadStates();
     final allSettings = await db.userGuildSettingsDao.getAll();
     _channelSnapshot = {for (final c in allChannels) c.id: c};
@@ -268,7 +310,7 @@ class GuildReadState extends _$GuildReadState {
       );
     final now = DateTime.now();
     for (final channel in _channelSnapshot.values) {
-      if (!isGuildTextBasedChannel(channel.type)) {
+      if (!_tracksUnread(channel.type)) {
         continue;
       }
       // Definitive VIEW_CHANNEL deny contributes nothing (parity with
@@ -365,7 +407,7 @@ class GuildReadState extends _$GuildReadState {
       final trustedFromRefresh = <String>[];
       for (final id in latestIds) {
         final channel = _channelSnapshot[id];
-        if (channel != null && isGuildTextBasedChannel(channel.type)) {
+        if (channel != null && _tracksUnread(channel.type)) {
           if (_pendingTrustIndex.remove(id)) {
             trustedFromRefresh.add(id);
           } else {
@@ -410,7 +452,7 @@ class GuildReadState extends _$GuildReadState {
       if (guildId != null) {
         affectedGuilds.add(guildId);
       }
-      if (channel == null || !isGuildTextBasedChannel(channel.type)) {
+      if (channel == null || !_tracksUnread(channel.type)) {
         _channelContributions.remove(id);
         _contributionGuild.remove(id);
         continue;
@@ -477,7 +519,7 @@ class GuildReadState extends _$GuildReadState {
   ) {
     for (final id in channelIds) {
       final channel = _channelSnapshot[id];
-      if (channel == null || !isGuildTextBasedChannel(channel.type)) {
+      if (channel == null || !_tracksUnread(channel.type)) {
         continue;
       }
       final indexId =
@@ -502,9 +544,11 @@ class GuildReadState extends _$GuildReadState {
     String? firstUnreadChannelId;
     var firstUnreadPosition = 0;
     final mentionChannels = <String>{};
+    final bool threadsActive = ref.read(threadsGateProvider).isActive(guildId);
     for (final channel in _channelSnapshot.values) {
       if (channel.guildId != guildId ||
-          !isGuildTextBasedChannel(channel.type)) {
+          !_tracksUnread(channel.type) ||
+          (!threadsActive && isThreadFeatureChannelType(channel.type))) {
         continue;
       }
       final contribution = _channelContributions[channel.id];
@@ -517,8 +561,9 @@ class GuildReadState extends _$GuildReadState {
       }
       if (contribution.unreadEligible) {
         anyUnread = true;
-        if (firstUnreadChannelId == null ||
-            channel.position < firstUnreadPosition) {
+        if (!isThreadChannelType(channel.type) &&
+            (firstUnreadChannelId == null ||
+                channel.position < firstUnreadPosition)) {
           firstUnreadChannelId = channel.id;
           firstUnreadPosition = channel.position;
         }
@@ -646,20 +691,33 @@ class GuildReadState extends _$GuildReadState {
       mentionCount: rawMentions,
       channelLastMessageExistsInCache: channelLastMessageExistsInCache,
     );
-    final hasUnreadMessage = hasUnreadByReadState(
-      channelLastMessageId: latestMessageId,
-      ackLastMessageId: readState?.lastMessageId,
-      fallbackAckMs: fallbackAckMs,
-      mentionCount: 0,
-      isGuildChannel: true,
-    );
-    final isMutedForUnread = isGuildOrCategoryOrChannelMuted(
-      channel: channel,
-      guildSettings: guildSettings,
-      now: now,
-    );
+    final bool isThread = isThreadChannelType(channel.type);
+    final bool isMutedForUnread =
+        isGuildOrCategoryOrChannelMuted(
+          channel: channel,
+          guildSettings: guildSettings,
+          now: now,
+        ) ||
+        (isThread && _isThreadMuted(channel, guildSettings, now));
+    final bool unreadTracked =
+        (!isThread ||
+            (_joinedThreadMembers.containsKey(channel.id) &&
+                !isMutedForUnread)) &&
+        (!isThreadOnlyChannelType(channel.type) ||
+            forumNewPostsUnreadEnabled(
+              guildSettings?.channelOverrides?[channel.id]?.flags,
+            ));
+    final hasUnreadMessage =
+        unreadTracked &&
+        hasUnreadByReadState(
+          channelLastMessageId: latestMessageId,
+          ackLastMessageId: readState?.lastMessageId,
+          fallbackAckMs: fallbackAckMs,
+          mentionCount: 0,
+          isGuildChannel: true,
+        );
     final contribution = resolveGuildReadStateContribution(
-      isEligibleTextChannel: isGuildTextBasedChannel(channel.type),
+      isEligibleTextChannel: _tracksUnread(channel.type),
       isPrivate: false,
       unreadBadgesLevel: isMutedForUnread
           ? UserNotificationSettings.noMessages
@@ -679,7 +737,31 @@ class GuildReadState extends _$GuildReadState {
       mentions: contribution.mentionAllowed ? rawMentions : 0,
     );
   }
+
+  bool _isThreadMuted(
+    Channel thread,
+    UserGuildSettingsResponse? guildSettings,
+    DateTime now,
+  ) {
+    if (isThreadMemberMuted(_joinedThreadMembers[thread.id], now)) {
+      return true;
+    }
+    final Channel? parent = thread.parentId == null
+        ? null
+        : _channelSnapshot[thread.parentId!];
+    return parent != null &&
+        isGuildOrCategoryOrChannelMuted(
+          channel: parent,
+          guildSettings: guildSettings,
+          now: now,
+        );
+  }
 }
+
+bool _tracksUnread(int type) =>
+    isGuildTextBasedChannel(type) ||
+    isThreadChannelType(type) ||
+    isThreadOnlyChannelType(type);
 
 Set<String> _diffReadStates(
   Map<String, ReadState> previous,

@@ -1,29 +1,6 @@
-import 'dart:convert';
-
 import 'package:drift/drift.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
-
-/// Echowire: a selectable tag on a forum channel (and applied to forum posts).
-class ForumTag {
-  final String id;
-  final String name;
-  final String? emojiName;
-
-  const ForumTag({required this.id, required this.name, this.emojiName});
-
-  factory ForumTag.fromJson(Map<String, dynamic> json) => ForumTag(
-    id: json['id'] as String,
-    name: json['name'] as String? ?? '',
-    emojiName: json['emoji_name'] as String?,
-  );
-
-  Map<String, dynamic> toJson() => <String, dynamic>{
-    'id': id,
-    'name': name,
-    'emoji_name': emojiName,
-  };
-}
 
 enum ChannelType {
   guildText(0),
@@ -32,11 +9,11 @@ enum ChannelType {
   groupDm(3),
   guildCategory(4),
   guildAnnouncement(5),
-  // Echowire: threads + forum channels (absent upstream). A thread IS a channel
-  // with a thread type and a parent_id; a forum is a container of thread posts.
+  announcementThread(10),
   publicThread(11),
   privateThread(12),
   guildForum(15),
+  guildMedia(16),
   guildLink(998),
   dmPersonalNotes(999),
   unknown(-1);
@@ -58,50 +35,51 @@ enum ChannelType {
   }
 }
 
-/// Echowire: channel types that are threads (public + private).
-const Set<ChannelType> threadChannelTypes = <ChannelType>{
-  ChannelType.publicThread,
-  ChannelType.privateThread,
-};
-
-bool isThreadChannelType(int type) =>
-    type == ChannelType.publicThread.wireValue ||
-    type == ChannelType.privateThread.wireValue;
-
-bool isForumChannelType(int type) => type == ChannelType.guildForum.wireValue;
-
 int persistedChannelTypeWire(int? json) =>
     json ?? ChannelType.unknown.wireValue;
 
-/// Guild channels that support text based unread tracking
-/// (text + voice + announcement + threads).
+/// Guild channels that support text based unread tracking (text + voice).
 const Set<ChannelType> guildTextBasedChannelTypes = <ChannelType>{
   ChannelType.guildText,
   ChannelType.guildVoice,
   ChannelType.guildAnnouncement,
-  ChannelType.publicThread,
-  ChannelType.privateThread,
 };
+
+const Set<int> threadChannelTypeValues = <int>{10, 11, 12};
+
+const Set<int> threadOnlyChannelTypeValues = <int>{15, 16};
+
+const Set<int> threadFeatureChannelTypeValues = <int>{10, 11, 12, 15, 16};
+
+bool isThreadChannelType(int type) => threadChannelTypeValues.contains(type);
+
+bool isPublicThreadChannelType(ChannelType type) =>
+    type == ChannelType.publicThread || type == ChannelType.announcementThread;
+
+bool isTextThreadParentType(ChannelType type) =>
+    type == ChannelType.guildText || type == ChannelType.guildAnnouncement;
+
+ChannelType publicThreadTypeFor(ChannelType parentType) =>
+    parentType == ChannelType.guildAnnouncement
+    ? ChannelType.announcementThread
+    : ChannelType.publicThread;
+
+bool isThreadOnlyChannelType(int type) =>
+    threadOnlyChannelTypeValues.contains(type);
+
+bool isThreadFeatureChannelType(int type) =>
+    threadFeatureChannelTypeValues.contains(type);
 
 bool isGuildTextBasedChannel(int type) =>
     type == ChannelType.guildText.wireValue ||
     type == ChannelType.guildVoice.wireValue ||
-    type == ChannelType.guildAnnouncement.wireValue ||
-    isThreadChannelType(type);
+    type == ChannelType.guildAnnouncement.wireValue;
 
 bool isGuildTextBasedChannelType(ChannelType type) =>
     guildTextBasedChannelTypes.contains(type);
 
 bool isGuildVoiceChannelType(int type) =>
     type == ChannelType.guildVoice.wireValue;
-
-/// Echowire: compares two snowflake strings numerically (longer is newer).
-int compareSnowflakeStrings(String a, String b) {
-  if (a.length != b.length) {
-    return a.length.compareTo(b.length);
-  }
-  return a.compareTo(b);
-}
 
 bool isGuildCategoryChannelType(int type) =>
     type == ChannelType.guildCategory.wireValue;
@@ -128,9 +106,6 @@ class Channel {
   final String? topic;
   final String? parentId;
   final int position;
-
-  /// Newest message id in this channel, when known.
-  final String? lastMessageId;
   final int rateLimitPerUser;
   final bool nsfw;
   final bool? nsfwOverride;
@@ -142,24 +117,25 @@ class Channel {
   final String? rtcRegion;
   final int? voiceConnectionLimit;
   final int? storedTypeWire;
-
-  // Echowire: thread + forum fields (populated only on thread/forum channels).
   final String? ownerId;
+  final int? flags;
   final bool? threadArchived;
-  final int? threadAutoArchiveDuration;
-  final String? threadArchiveTimestamp;
   final bool? threadLocked;
   final bool? threadInvitable;
+  final int? threadAutoArchiveDuration;
+  final String? threadArchiveTimestamp;
   final String? threadCreateTimestamp;
-  final int? threadMemberCount;
-  final int? threadMessageCount;
-  final bool? threadPinned;
-  final List<String>? appliedTags;
-  final List<ForumTag>? availableTags;
-  final int? defaultSortOrder;
-  final int? forumDefaultAutoArchiveDuration;
-  final bool? forumRequireTag;
+  final int? messageCount;
+  final int? totalMessageSent;
+  final int? memberCount;
+  final String? appliedTagsJson;
+  final int? defaultAutoArchiveDuration;
+  final int? defaultThreadRateLimitPerUser;
+  final String? availableTagsJson;
   final String? defaultReactionEmojiJson;
+  final int? defaultSortOrder;
+  final int? defaultForumLayout;
+  final String? defaultTagSetting;
 
   const Channel({
     required this.id,
@@ -170,7 +146,6 @@ class Channel {
     this.topic,
     this.parentId,
     this.position = 0,
-    this.lastMessageId,
     this.rateLimitPerUser = 0,
     this.nsfw = false,
     this.nsfwOverride,
@@ -178,26 +153,29 @@ class Channel {
     this.contentWarningText,
     this.permissionOverwritesJson,
     this.userLimit,
-    this.ownerId,
-    this.threadArchived,
-    this.threadAutoArchiveDuration,
-    this.threadArchiveTimestamp,
-    this.threadLocked,
-    this.threadInvitable,
-    this.threadCreateTimestamp,
-    this.threadMemberCount,
-    this.threadMessageCount,
-    this.threadPinned,
-    this.appliedTags,
-    this.availableTags,
-    this.defaultSortOrder,
-    this.forumDefaultAutoArchiveDuration,
-    this.forumRequireTag,
-    this.defaultReactionEmojiJson,
     this.bitrate,
     this.rtcRegion,
     this.voiceConnectionLimit,
     this.storedTypeWire,
+    this.ownerId,
+    this.flags,
+    this.threadArchived,
+    this.threadLocked,
+    this.threadInvitable,
+    this.threadAutoArchiveDuration,
+    this.threadArchiveTimestamp,
+    this.threadCreateTimestamp,
+    this.messageCount,
+    this.totalMessageSent,
+    this.memberCount,
+    this.appliedTagsJson,
+    this.defaultAutoArchiveDuration,
+    this.defaultThreadRateLimitPerUser,
+    this.availableTagsJson,
+    this.defaultReactionEmojiJson,
+    this.defaultSortOrder,
+    this.defaultForumLayout,
+    this.defaultTagSetting,
   });
 
   int get typeWire => storedTypeWire ?? type.wireValue;
@@ -221,27 +199,26 @@ class Channel {
     int? bitrate,
     String? rtcRegion,
     int? voiceConnectionLimit,
-    // Echowire: the tail pointer and the thread/forum fields. Without these a
-    // copyWith silently erased thread state, so an edited channel came back
-    // looking like a plain text channel.
-    String? lastMessageId,
+    int? typeWire,
     String? ownerId,
+    int? flags,
     bool? threadArchived,
-    int? threadAutoArchiveDuration,
-    String? threadArchiveTimestamp,
     bool? threadLocked,
     bool? threadInvitable,
+    int? threadAutoArchiveDuration,
+    String? threadArchiveTimestamp,
     String? threadCreateTimestamp,
-    int? threadMemberCount,
-    int? threadMessageCount,
-    bool? threadPinned,
-    List<String>? appliedTags,
-    List<ForumTag>? availableTags,
-    int? defaultSortOrder,
-    int? forumDefaultAutoArchiveDuration,
-    bool? forumRequireTag,
+    int? messageCount,
+    int? totalMessageSent,
+    int? memberCount,
+    String? appliedTagsJson,
+    int? defaultAutoArchiveDuration,
+    int? defaultThreadRateLimitPerUser,
+    String? availableTagsJson,
     String? defaultReactionEmojiJson,
-    int? typeWire,
+    int? defaultSortOrder,
+    int? defaultForumLayout,
+    String? defaultTagSetting,
   }) {
     final ChannelType nextType = type ?? this.type;
     final int nextWire =
@@ -270,29 +247,31 @@ class Channel {
       bitrate: bitrate ?? this.bitrate,
       rtcRegion: rtcRegion ?? this.rtcRegion,
       voiceConnectionLimit: voiceConnectionLimit ?? this.voiceConnectionLimit,
-      lastMessageId: lastMessageId ?? this.lastMessageId,
       ownerId: ownerId ?? this.ownerId,
+      flags: flags ?? this.flags,
       threadArchived: threadArchived ?? this.threadArchived,
+      threadLocked: threadLocked ?? this.threadLocked,
+      threadInvitable: threadInvitable ?? this.threadInvitable,
       threadAutoArchiveDuration:
           threadAutoArchiveDuration ?? this.threadAutoArchiveDuration,
       threadArchiveTimestamp:
           threadArchiveTimestamp ?? this.threadArchiveTimestamp,
-      threadLocked: threadLocked ?? this.threadLocked,
-      threadInvitable: threadInvitable ?? this.threadInvitable,
       threadCreateTimestamp:
           threadCreateTimestamp ?? this.threadCreateTimestamp,
-      threadMemberCount: threadMemberCount ?? this.threadMemberCount,
-      threadMessageCount: threadMessageCount ?? this.threadMessageCount,
-      threadPinned: threadPinned ?? this.threadPinned,
-      appliedTags: appliedTags ?? this.appliedTags,
-      availableTags: availableTags ?? this.availableTags,
-      defaultSortOrder: defaultSortOrder ?? this.defaultSortOrder,
-      forumDefaultAutoArchiveDuration:
-          forumDefaultAutoArchiveDuration ??
-          this.forumDefaultAutoArchiveDuration,
-      forumRequireTag: forumRequireTag ?? this.forumRequireTag,
+      messageCount: messageCount ?? this.messageCount,
+      totalMessageSent: totalMessageSent ?? this.totalMessageSent,
+      memberCount: memberCount ?? this.memberCount,
+      appliedTagsJson: appliedTagsJson ?? this.appliedTagsJson,
+      defaultAutoArchiveDuration:
+          defaultAutoArchiveDuration ?? this.defaultAutoArchiveDuration,
+      defaultThreadRateLimitPerUser:
+          defaultThreadRateLimitPerUser ?? this.defaultThreadRateLimitPerUser,
+      availableTagsJson: availableTagsJson ?? this.availableTagsJson,
       defaultReactionEmojiJson:
           defaultReactionEmojiJson ?? this.defaultReactionEmojiJson,
+      defaultSortOrder: defaultSortOrder ?? this.defaultSortOrder,
+      defaultForumLayout: defaultForumLayout ?? this.defaultForumLayout,
+      defaultTagSetting: defaultTagSetting ?? this.defaultTagSetting,
     );
   }
 
@@ -307,7 +286,6 @@ class Channel {
       topic: row.topic,
       parentId: row.parentId,
       position: row.position,
-      lastMessageId: row.lastMessageId,
       rateLimitPerUser: row.rateLimitPerUser,
       nsfw: row.nsfw,
       nsfwOverride: row.nsfwOverride,
@@ -315,51 +293,29 @@ class Channel {
       contentWarningText: row.contentWarningText,
       permissionOverwritesJson: row.permissionOverwritesJson,
       userLimit: row.userLimit,
-      ownerId: row.ownerId,
-      threadArchived: row.threadArchived,
-      threadAutoArchiveDuration: row.threadAutoArchiveDuration,
-      threadArchiveTimestamp: row.threadArchiveTimestamp,
-      threadLocked: row.threadLocked,
-      threadInvitable: row.threadInvitable,
-      threadCreateTimestamp: row.threadCreateTimestamp,
-      threadMemberCount: row.threadMemberCount,
-      threadMessageCount: row.threadMessageCount,
-      threadPinned: row.threadPinned,
-      appliedTags: _decodeStringList(row.appliedTagsJson),
-      availableTags: _decodeForumTags(row.availableTagsJson),
-      defaultSortOrder: row.defaultSortOrder,
-      forumDefaultAutoArchiveDuration: row.forumDefaultAutoArchiveDuration,
-      forumRequireTag: row.forumRequireTag,
-      defaultReactionEmojiJson: row.defaultReactionEmojiJson,
       bitrate: row.bitrate,
       rtcRegion: row.rtcRegion,
       voiceConnectionLimit: row.voiceConnectionLimit,
+      ownerId: row.ownerId,
+      flags: row.flags,
+      threadArchived: row.threadArchived,
+      threadLocked: row.threadLocked,
+      threadInvitable: row.threadInvitable,
+      threadAutoArchiveDuration: row.threadAutoArchiveDuration,
+      threadArchiveTimestamp: row.threadArchiveTimestamp,
+      threadCreateTimestamp: row.threadCreateTimestamp,
+      messageCount: row.messageCount,
+      totalMessageSent: row.totalMessageSent,
+      memberCount: row.memberCount,
+      appliedTagsJson: row.appliedTagsJson,
+      defaultAutoArchiveDuration: row.defaultAutoArchiveDuration,
+      defaultThreadRateLimitPerUser: row.defaultThreadRateLimitPerUser,
+      availableTagsJson: row.availableTagsJson,
+      defaultReactionEmojiJson: row.defaultReactionEmojiJson,
+      defaultSortOrder: row.defaultSortOrder,
+      defaultForumLayout: row.defaultForumLayout,
+      defaultTagSetting: row.defaultTagSetting,
     );
-  }
-
-  static List<String>? _decodeStringList(String? json) {
-    if (json == null || json.isEmpty) {
-      return null;
-    }
-    final Object? decoded = jsonDecode(json);
-    if (decoded is! List) {
-      return null;
-    }
-    return decoded.map((Object? e) => e.toString()).toList();
-  }
-
-  static List<ForumTag>? _decodeForumTags(String? json) {
-    if (json == null || json.isEmpty) {
-      return null;
-    }
-    final Object? decoded = jsonDecode(json);
-    if (decoded is! List) {
-      return null;
-    }
-    return decoded
-        .whereType<Map<String, dynamic>>()
-        .map(ForumTag.fromJson)
-        .toList();
   }
 
   db.ChannelsCompanion toCompanion() {
@@ -372,7 +328,6 @@ class Channel {
       topic: Value(topic),
       parentId: Value(parentId),
       position: Value(position),
-      lastMessageId: Value(lastMessageId),
       rateLimitPerUser: Value(rateLimitPerUser),
       nsfw: Value(nsfw),
       nsfwOverride: Value(nsfwOverride),
@@ -380,72 +335,40 @@ class Channel {
       contentWarningText: Value(contentWarningText),
       permissionOverwritesJson: Value(permissionOverwritesJson),
       userLimit: Value(userLimit),
-      ownerId: Value(ownerId),
-      threadArchived: Value(threadArchived),
-      threadAutoArchiveDuration: Value(threadAutoArchiveDuration),
-      threadArchiveTimestamp: Value(threadArchiveTimestamp),
-      threadLocked: Value(threadLocked),
-      threadInvitable: Value(threadInvitable),
-      threadCreateTimestamp: Value(threadCreateTimestamp),
-      threadMemberCount: Value(threadMemberCount),
-      threadMessageCount: Value(threadMessageCount),
-      threadPinned: Value(threadPinned),
-      appliedTagsJson: Value(
-        appliedTags == null ? null : jsonEncode(appliedTags),
-      ),
-      availableTagsJson: Value(
-        availableTags == null
-            ? null
-            : jsonEncode(
-                availableTags!.map((ForumTag t) => t.toJson()).toList(),
-              ),
-      ),
-      defaultSortOrder: Value(defaultSortOrder),
-      forumDefaultAutoArchiveDuration: Value(forumDefaultAutoArchiveDuration),
-      forumRequireTag: Value(forumRequireTag),
-      defaultReactionEmojiJson: Value(defaultReactionEmojiJson),
       bitrate: Value(bitrate),
       rtcRegion: Value(rtcRegion),
       voiceConnectionLimit: Value(voiceConnectionLimit),
+      ownerId: Value(ownerId),
+      flags: Value(flags),
+      threadArchived: Value(threadArchived),
+      threadLocked: Value(threadLocked),
+      threadInvitable: Value(threadInvitable),
+      threadAutoArchiveDuration: Value(threadAutoArchiveDuration),
+      threadArchiveTimestamp: Value(threadArchiveTimestamp),
+      threadCreateTimestamp: Value(threadCreateTimestamp),
+      messageCount: Value(messageCount),
+      totalMessageSent: Value(totalMessageSent),
+      memberCount: Value(memberCount),
+      appliedTagsJson: Value(appliedTagsJson),
+      defaultAutoArchiveDuration: Value(defaultAutoArchiveDuration),
+      defaultThreadRateLimitPerUser: Value(defaultThreadRateLimitPerUser),
+      availableTagsJson: Value(availableTagsJson),
+      defaultReactionEmojiJson: Value(defaultReactionEmojiJson),
+      defaultSortOrder: Value(defaultSortOrder),
+      defaultForumLayout: Value(defaultForumLayout),
+      defaultTagSetting: Value(defaultTagSetting),
     );
   }
 
   bool get isCategory => type == ChannelType.guildCategory;
 
-  /// Echowire: this channel is a thread (public or private).
-  bool get isThread => threadChannelTypes.contains(type);
+  bool get isThread =>
+      type == ChannelType.announcementThread ||
+      type == ChannelType.publicThread ||
+      type == ChannelType.privateThread;
 
-  /// Echowire: this channel is a forum container.
-  bool get isForum => type == ChannelType.guildForum;
-
-  /// Echowire: an archived thread (composer should be disabled).
-  bool get isArchived => threadArchived ?? false;
-
-  /// Echowire: a locked thread (only moderators can send).
-  bool get isLocked => threadLocked ?? false;
-
-  /// Echowire: the snowflake that orders threads by recent activity, the newer
-  /// of the thread id (creation) and its last message id.
-  String get activityId {
-    final String? last = lastMessageId;
-    if (last == null || last.isEmpty) {
-      return id;
-    }
-    return compareSnowflakeStrings(last, id) > 0 ? last : id;
-  }
-
-  /// Echowire: equality that ignores [lastMessageId], for watchers that must
-  /// not churn on every incoming message. The tail pointer feeds [activityId]
-  /// only, and forum and thread lists read that from the thread repository
-  /// rather than from a channel watch. This delegates to [==] after
-  /// neutralising the pointer on both sides, so a field added later cannot be
-  /// forgotten here the way it was in [copyWith].
-  bool sameExceptLastMessage(Channel other) =>
-      copyWith(lastMessageId: _tailPlaceholder) ==
-      other.copyWith(lastMessageId: _tailPlaceholder);
-
-  /// Not a valid snowflake, so it cannot collide with a real pointer.
-  static const String _tailPlaceholder = '-';
+  bool get isThreadOnly =>
+      type == ChannelType.guildForum || type == ChannelType.guildMedia;
 
   @override
   bool operator ==(Object other) {
@@ -469,29 +392,25 @@ class Channel {
         other.bitrate == bitrate &&
         other.rtcRegion == rtcRegion &&
         other.voiceConnectionLimit == voiceConnectionLimit &&
-        // Echowire: thread and forum state, so watchers see archive/lock/tag
-        // changes instead of having them collapsed by `distinct()`.
-        other.lastMessageId == lastMessageId &&
         other.ownerId == ownerId &&
+        other.flags == flags &&
         other.threadArchived == threadArchived &&
-        other.threadAutoArchiveDuration == threadAutoArchiveDuration &&
         other.threadLocked == threadLocked &&
         other.threadInvitable == threadInvitable &&
-        other.threadMemberCount == threadMemberCount &&
-        other.threadMessageCount == threadMessageCount &&
-        other.threadPinned == threadPinned &&
-        listEquals(other.appliedTags, appliedTags) &&
-        listEquals(
-          other.availableTags
-              ?.map((ForumTag t) => t.toJson().toString())
-              .toList(),
-          availableTags?.map((ForumTag t) => t.toJson().toString()).toList(),
-        ) &&
+        other.threadAutoArchiveDuration == threadAutoArchiveDuration &&
+        other.threadArchiveTimestamp == threadArchiveTimestamp &&
+        other.threadCreateTimestamp == threadCreateTimestamp &&
+        other.messageCount == messageCount &&
+        other.totalMessageSent == totalMessageSent &&
+        other.memberCount == memberCount &&
+        other.appliedTagsJson == appliedTagsJson &&
+        other.defaultAutoArchiveDuration == defaultAutoArchiveDuration &&
+        other.defaultThreadRateLimitPerUser == defaultThreadRateLimitPerUser &&
+        other.availableTagsJson == availableTagsJson &&
+        other.defaultReactionEmojiJson == defaultReactionEmojiJson &&
         other.defaultSortOrder == defaultSortOrder &&
-        other.forumDefaultAutoArchiveDuration ==
-            forumDefaultAutoArchiveDuration &&
-        other.forumRequireTag == forumRequireTag &&
-        other.defaultReactionEmojiJson == defaultReactionEmojiJson;
+        other.defaultForumLayout == defaultForumLayout &&
+        other.defaultTagSetting == defaultTagSetting;
   }
 
   @override
@@ -515,11 +434,25 @@ class Channel {
     bitrate,
     rtcRegion,
     voiceConnectionLimit,
-    lastMessageId,
+    ownerId,
+    flags,
     threadArchived,
     threadLocked,
-    threadPinned,
-    threadMessageCount,
+    threadInvitable,
+    threadAutoArchiveDuration,
+    threadArchiveTimestamp,
+    threadCreateTimestamp,
+    messageCount,
+    totalMessageSent,
+    memberCount,
+    appliedTagsJson,
+    defaultAutoArchiveDuration,
+    defaultThreadRateLimitPerUser,
+    availableTagsJson,
+    defaultReactionEmojiJson,
+    defaultSortOrder,
+    defaultForumLayout,
+    defaultTagSetting,
   ]);
 }
 
@@ -618,10 +551,12 @@ int _channelDisplayBucket(Channel channel) {
     case ChannelType.guildAnnouncement:
     case ChannelType.guildLink:
     case ChannelType.guildCategory:
-    case ChannelType.guildForum:
+    case ChannelType.unknown:
+    case ChannelType.announcementThread:
     case ChannelType.publicThread:
     case ChannelType.privateThread:
-    case ChannelType.unknown:
+    case ChannelType.guildForum:
+    case ChannelType.guildMedia:
     case ChannelType.dm:
     case ChannelType.groupDm:
     case ChannelType.dmPersonalNotes:

@@ -21,10 +21,6 @@ bool isPersonalNotesHeader({
   );
 }
 
-bool isSystemDm(DmConversation? dm) {
-  return dm != null && dm.isSystem;
-}
-
 bool shouldShowPinsForContext({
   required Channel? channel,
   required DmConversation? dm,
@@ -36,7 +32,8 @@ bool shouldShowPinsForContext({
   if (dm != null && dm.isSystem) {
     return false;
   }
-  if (channel?.type == ChannelType.unknown) {
+  if (channel != null &&
+      (channel.type == ChannelType.unknown || channel.isThreadOnly)) {
     return false;
   }
   return channel != null || dm != null;
@@ -50,7 +47,8 @@ bool shouldShowSearchForContext({
   if (isPersonalNotes) {
     return false;
   }
-  if (channel?.type == ChannelType.unknown) {
+  if (channel != null &&
+      (channel.type == ChannelType.unknown || channel.isThreadOnly)) {
     return false;
   }
   return channel != null || dm != null;

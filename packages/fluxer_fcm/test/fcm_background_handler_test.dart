@@ -14,5 +14,6 @@ void main() {
       },
     );
     expect(extractFcmCiphertext(input.data), 'ciphertext');
+    expect(mapRemoteMessage(input).payload.keys, <String>['p']);
   });
 }

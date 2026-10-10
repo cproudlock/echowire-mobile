@@ -88,9 +88,6 @@ class ApnsMobileDeviceRegistration extends _$ApnsMobileDeviceRegistration {
   }
 
   bool get _shouldRunOnThisPlatform {
-    if (kIsWeb) {
-      return false;
-    }
     if (defaultTargetPlatform != TargetPlatform.iOS) {
       return false;
     }

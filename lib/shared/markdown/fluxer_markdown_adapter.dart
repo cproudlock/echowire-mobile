@@ -117,11 +117,7 @@ Widget _fluxerCommandMentionBuilder(
   String applicationId,
   TextStyle style,
 ) {
-  return CommandMention(
-    command: command,
-    applicationId: applicationId,
-    baseStyle: style,
-  );
+  return CommandMention(command: command, baseStyle: style);
 }
 
 Widget _fluxerGuildNavigationMentionBuilder(
@@ -155,7 +151,7 @@ Widget? _fluxerLinkWidgetBuilder(
   if (link == null) {
     return null;
   }
-  return ChannelJumpLinkMention(link: link, url: href, baseStyle: style);
+  return ChannelJumpLinkMention(link: link, baseStyle: style);
 }
 
 Future<void> _fluxerOnTapLink(BuildContext context, String href) async {
@@ -165,7 +161,9 @@ Future<void> _fluxerOnTapLink(BuildContext context, String href) async {
       return;
     }
     final String path = normalizeDeepLinkPath(fluxerPath.path);
-    if (path.startsWith('/invite/') || path.startsWith('/gift/')) {
+    if (path.startsWith('/invite/') ||
+        path.startsWith('/gift/') ||
+        path.startsWith('/theme/')) {
       GoRouter.of(context).go(path);
       return;
     }
@@ -242,7 +240,6 @@ FluxerMarkdownConfig createFluxerMarkdownConfig({
   bool animateCustomEmoji = true,
 }) {
   return FluxerMarkdownConfig(
-    resolveEmojiShortcode: EmojiRegistry.resolveSync,
     unicodeEmojiUrlBuilder: getTwemojiUrl,
     customEmojiUrlBuilder: FluxerMediaUrl.customEmoji,
     unicodeEmojiPattern: EmojiRegistry.unicodeEmojiRegexSync,

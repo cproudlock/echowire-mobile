@@ -12,15 +12,11 @@ class ChannelReorderDragItem {
     required this.id,
     required this.kind,
     required this.channelType,
-    required this.parentId,
-    required this.guildId,
   });
 
   final String id;
   final ChannelReorderDragKind kind;
   final int channelType;
-  final String? parentId;
-  final String guildId;
 
   factory ChannelReorderDragItem.fromChannel(Channel channel) {
     return ChannelReorderDragItem(
@@ -29,8 +25,6 @@ class ChannelReorderDragItem {
           ? ChannelReorderDragKind.category
           : ChannelReorderDragKind.channel,
       channelType: channel.typeWire,
-      parentId: channel.parentId,
-      guildId: channel.guildId,
     );
   }
 }
@@ -54,22 +48,11 @@ class ChannelReorderTarget {
     required this.id,
     required this.channelType,
     required this.parentId,
-    required this.guildId,
   });
 
   final String id;
   final int channelType;
   final String? parentId;
-  final String guildId;
-
-  factory ChannelReorderTarget.fromChannel(Channel channel) {
-    return ChannelReorderTarget(
-      id: channel.id,
-      channelType: channel.typeWire,
-      parentId: channel.parentId,
-      guildId: channel.guildId,
-    );
-  }
 }
 
 enum ChannelReorderIndicatorPosition { top, bottom }
@@ -102,7 +85,9 @@ bool _isVoiceType(int channelType) {
 bool _isTextType(int channelType) {
   return channelType == ChannelType.guildText.wireValue ||
       channelType == ChannelType.guildAnnouncement.wireValue ||
-      channelType == ChannelType.guildLink.wireValue;
+      channelType == ChannelType.guildLink.wireValue ||
+      channelType == ChannelType.guildForum.wireValue ||
+      channelType == ChannelType.guildMedia.wireValue;
 }
 
 ChannelReorderIndicatorPosition resolveChannelReorderIndicatorPosition({

@@ -6,9 +6,9 @@ import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/features/chat/domain/message_translation.dart';
 import 'package:fluxer_app/features/chat/utils/attachments/attachment_display_utils.dart';
-import 'package:fluxer_app/features/chat/utils/attachments/voice_message_constants.dart';
 import 'package:fluxer_app/features/chat/utils/messages/url_sanitization_utils.dart';
 import 'package:fluxer_app/features/gifts/utils/gift_code_utils.dart';
+import 'package:fluxer_app/features/themes/utils/shared_theme_links.dart';
 import 'package:fluxer_app/shared/utils/guild_user_display.dart';
 import 'package:fluxer_app/shared/utils/sdk_converters.dart';
 import 'package:fluxer_dart/export.dart';
@@ -22,6 +22,8 @@ const int messageFlagIsCrosspost = 1 << 1;
 const int messageFlagSuppressEmbeds = 1 << 2;
 const int messageFlagSourceMessageDeleted = 1 << 3;
 const int messageFlagSuppressNotifications = 1 << 12;
+const int messageFlagHasThread = 1 << 5;
+const int messageFlagFailedToMentionSomeRolesInThread = 1 << 8;
 const int messageFlagCompactAttachments = 1 << 17;
 const int attachmentFlagIsSpoiler = 1 << 3;
 const int attachmentFlagContainsExplicitMedia = 1 << 4;
@@ -37,10 +39,10 @@ const int messageTypeChannelNameChange = 4;
 const int messageTypeChannelIconChange = 5;
 const int messageTypeChannelPinnedMessage = 6;
 const int messageTypeUserJoin = 7;
-// Echowire: posted in the parent channel when a thread is started (Discord type 18).
-const int messageTypeThreadCreated = 18;
 const int messageTypeChannelFollowAdd = 12;
+const int messageTypeThreadCreated = 18;
 const int messageTypeReply = 19;
+const int messageTypeThreadStarterMessage = 21;
 const int messageTypeClientSystem = 99;
 
 class EmbedAuthor {
@@ -539,8 +541,6 @@ class MessageSticker {
   final String name;
   final bool animated;
 
-  String get url => urlForSize(320);
-
   String urlForSize(int size) =>
       FluxerMediaUrl.sticker(id: id, animated: animated, size: size);
 
@@ -601,9 +601,6 @@ class Reaction {
 
   /// Encoded emoji param for the reaction API.
   String get apiParam => isCustom ? '$emoji:$emojiId' : emoji;
-
-  /// Key for frecency tracking.
-  String get frecencyKey => isCustom ? 'custom:$emojiId' : 'unicode:$emoji';
 }
 
 class MessageReference {
@@ -625,7 +622,7 @@ class MessageReference {
   factory MessageReference.fromSdk(MessageResponseSchemaMessageReference sdk) {
     return MessageReference(
       channelId: sdk.channelId,
-      messageId: sdk.messageId,
+      messageId: sdk.messageId ?? '',
       guildId: sdk.guildId,
       type: sdk.type,
     );
@@ -636,7 +633,7 @@ class MessageReference {
   ) {
     return MessageReference(
       channelId: sdk.channelId,
-      messageId: sdk.messageId,
+      messageId: sdk.messageId ?? '',
       guildId: sdk.guildId,
       type: sdk.type,
     );
@@ -647,7 +644,7 @@ class MessageReference {
   ) {
     return MessageReference(
       channelId: sdk.channelId,
-      messageId: sdk.messageId,
+      messageId: sdk.messageId ?? '',
       guildId: sdk.guildId,
       type: sdk.type,
     );
@@ -914,6 +911,9 @@ MessageCall? messageCallFromSearchSdk(
   );
 }
 
+String? _encodeThread(ThreadChannelResponse? thread) =>
+    thread == null ? null : jsonEncode(thread.toJson());
+
 bool isKnownSystemMessageType(int type) {
   return switch (type) {
     messageTypeRecipientAdd ||
@@ -922,7 +922,6 @@ bool isKnownSystemMessageType(int type) {
     messageTypeChannelNameChange ||
     messageTypeChannelIconChange ||
     messageTypeChannelPinnedMessage ||
-    messageTypeThreadCreated ||
     messageTypeUserJoin ||
     messageTypeChannelFollowAdd => true,
     _ => false,
@@ -964,6 +963,7 @@ class Message {
   final String? clientNonce;
   final String? sendError;
   final MessageCall? call;
+  final String? threadJson;
   final bool tts;
   final MessageTranslation? translation;
 
@@ -1002,6 +1002,7 @@ class Message {
     this.clientNonce,
     this.sendError,
     this.call,
+    this.threadJson,
     this.tts = false,
     this.translation,
   });
@@ -1059,6 +1060,7 @@ class Message {
       flags: sdk.flags,
       clientNonce: sdk.nonce,
       call: messageCallFromSdk(sdk.call),
+      threadJson: _encodeThread(sdk.thread),
       tts: sdk.tts,
     );
   }
@@ -1111,6 +1113,7 @@ class Message {
       type: sdk.type.json ?? 0,
       flags: sdk.flags,
       call: messageCallFromReferencedSdk(sdk.call),
+      threadJson: _encodeThread(sdk.thread),
     );
   }
 
@@ -1169,6 +1172,7 @@ class Message {
       flags: sdk.flags,
       clientNonce: sdk.nonce,
       call: messageCallFromPinSdk(sdk.call),
+      threadJson: _encodeThread(sdk.thread),
     );
   }
 
@@ -1228,6 +1232,7 @@ class Message {
       flags: sdk.flags,
       clientNonce: sdk.nonce,
       call: messageCallFromSearchSdk(sdk.call),
+      threadJson: _encodeThread(sdk.thread),
     );
   }
 
@@ -1278,6 +1283,7 @@ class Message {
           : MessageCall.fromJson(
               jsonDecode(row.callJson!) as Map<String, dynamic>,
             ),
+      threadJson: row.threadJson,
       translation: translationFromRow(row),
     );
   }
@@ -1342,6 +1348,7 @@ class Message {
         clientNonce == other.clientNonce &&
         sendError == other.sendError &&
         _callEquals(call, other.call) &&
+        threadJson == other.threadJson &&
         _encodedListEquals<Embed>(embeds, other.embeds, (e) => e.toJson()) &&
         _encodedListEquals<Attachment>(
           attachments,
@@ -1486,6 +1493,7 @@ class Message {
       clientNonce: Value(clientNonce),
       sendError: Value(sendError),
       callJson: Value(call == null ? null : jsonEncode(call!.toJson())),
+      threadJson: Value(threadJson),
     );
   }
 
@@ -1524,6 +1532,7 @@ class Message {
     Object? clientNonce = _unset,
     Object? sendError = _unset,
     Object? call = _unset,
+    Object? threadJson = _unset,
     bool? tts,
     Object? translation = _unset,
   }) {
@@ -1564,6 +1573,9 @@ class Message {
           : clientNonce as String?,
       sendError: sendError == _unset ? this.sendError : sendError as String?,
       call: call == _unset ? this.call : call as MessageCall?,
+      threadJson: threadJson == _unset
+          ? this.threadJson
+          : threadJson as String?,
       tts: tts ?? this.tts,
       translation: translation == _unset
           ? this.translation
@@ -1614,12 +1626,11 @@ class Message {
       type: incoming.type,
       flags: incoming.flags,
       call: incoming.call ?? call,
+      threadJson: incoming.threadJson ?? threadJson,
       translation: contentChanged ? null : _unset,
     );
   }
 
-  bool get hasEmbeds => embeds.isNotEmpty;
-  bool get hasAttachments => attachments.isNotEmpty;
   bool get hasStickers => stickers.isNotEmpty;
   bool get isReply =>
       replyToId != null && !(messageReference?.isForward ?? false);
@@ -1673,7 +1684,6 @@ class Message {
 
   bool get hasCompactAttachments =>
       (flags & messageFlagCompactAttachments) != 0;
-  bool get isVoiceMessage => (flags & kMessageFlagVoiceMessage) != 0;
 
   bool shouldHideContent({required bool renderEmbeds}) {
     if (!renderEmbeds || suppressEmbeds || embeds.isEmpty) {
@@ -1711,27 +1721,7 @@ class Message {
     return result;
   }
 
-  static final RegExp _themesRegExp = RegExp(
-    r'https?://web\.fluxer\.app/theme/([a-zA-Z0-9\-]{2,32})(?![a-zA-Z0-9\-])',
-  );
-
-  List<String> get themes {
-    final seen = <String>{};
-    final result = <String>[];
-    for (final m in _themesRegExp.allMatches(content)) {
-      if (matchOverlapsMarkdownCodeSpan(content, m)) {
-        continue;
-      }
-      final id = m.group(1);
-      if (id != null && seen.add(id)) {
-        result.add(id);
-        if (result.length == 10) {
-          break;
-        }
-      }
-    }
-    return result;
-  }
+  List<String> get themes => findSharedThemeIds(content);
 
   List<String> get gifts => findGiftCodes(content);
 
@@ -1758,10 +1748,14 @@ class Message {
   /// bookmark, suppress embeds) should be offered for this message.
   bool get supportsInteractiveActions => !isClientSystemMessage;
 
-  bool get isMemberJoin => type == messageTypeUserJoin;
-  bool get isPin => type == messageTypeChannelPinnedMessage;
   bool get isSending => deliveryState == MessageDeliveryState.sending;
   bool get hasFailed => deliveryState == MessageDeliveryState.failed;
+  bool get isReportable =>
+      !isSending &&
+      !hasFailed &&
+      !authorIsSystem &&
+      !isCrosspostSourceDeleted &&
+      (type == messageTypeDefault || type == messageTypeReply);
 
   String get speakableContent {
     if (content.trim().isNotEmpty) {
@@ -1772,8 +1766,6 @@ class Message {
     }
     return content;
   }
-
-  bool get shouldCacheAuthorUser => webhookId == null || webhookId!.isEmpty;
 
   bool get isWebhookMessage => webhookId != null && webhookId!.isNotEmpty;
 

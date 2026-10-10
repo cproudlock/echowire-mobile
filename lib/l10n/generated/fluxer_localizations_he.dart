@@ -33,9 +33,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get retry => 'נסה שוב';
 
   @override
-  String get connectingCaps => 'CONNECTING';
-
-  @override
   String get splashConnectionLost => 'החיבור אבד';
 
   @override
@@ -208,9 +205,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   }
 
   @override
-  String get ssoRequired => 'נדרש SSO כדי לגשת למופע זה.';
-
-  @override
   String get organizationSsoProvider =>
       'התחבר באמצעות ספק ה-SSO של הארגון שלך.';
 
@@ -224,9 +218,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String preferSso(String provider) {
     return 'להעדיף שימוש ב-SSO? המשך עם $provider.';
   }
-
-  @override
-  String get logInViaBrowser => 'התחבר דרך הדפדפן';
 
   @override
   String get needAccountPrompt => 'צריכים חשבון? ';
@@ -329,20 +320,8 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get accountAdd => 'הוספת חשבון';
 
   @override
-  String get accountRemove => 'הסר';
-
-  @override
-  String accountRemoveTitle(String username) {
-    return 'הסר את $username';
-  }
-
-  @override
   String get accountRemoveDescription =>
       'פעולה זו תסיר את הסשן השמור עבור חשבון זה.';
-
-  @override
-  String get accountRemoveOnlyDescription =>
-      'פעולה זו תסיר את החשבון היחיד השמור במכשיר זה.';
 
   @override
   String get accountExpired => 'פג תוקף';
@@ -761,9 +740,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get registerYear => 'שנה';
 
   @override
-  String get registerConsent => 'אני מסכים/ה לתנאי השירות ולהצהרת הפרטיות';
-
-  @override
   String get registerConsentPrefix => 'אני מסכים/ה ל- ';
 
   @override
@@ -805,10 +781,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get passkeyTimeout => 'אימות מפתח הכניסה פג. נסה שוב.';
-
-  @override
-  String get passkeyNotAvailable =>
-      'סיסמאות גישה אינן זמינות עבור אפליקציה זו. התחבר באמצעות דוא\"ל וסיסמה במקום זאת.';
 
   @override
   String get passkeyFailed => 'אימות מפתח כניסה נכשל. אנא נסה שוב.';
@@ -929,22 +901,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get inviteAcceptSomeone => 'מישהו';
 
   @override
-  String get inviteAcceptEmojiPack => 'חבילת אימוג\'י';
-
-  @override
-  String get inviteAcceptStickerPack => 'חבילת מדבקות';
-
-  @override
-  String get inviteAcceptInstallEmojiPack => 'התקן חבילת אימוג\'י';
-
-  @override
-  String get inviteAcceptInstallStickerPack => 'התקן חבילת מדבקות';
-
-  @override
-  String get inviteAcceptPackInstallNote =>
-      'קבלת הזמנה זו תתקין את החבילה באופן אוטומטי.';
-
-  @override
   String get mentionUnknownChannel => 'unknown-channel';
 
   @override
@@ -964,11 +920,10 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get embedThemeTitle => 'עיצוב משותף';
 
   @override
-  String get embedThemeSubtitle =>
-      'לקוח זה אינו תומך ערכות נושא מותאמות אישית.';
+  String get embedThemeWebOnly => 'אפשר לייבא ערכות נושא רק באינטרנט או במחשב.';
 
   @override
-  String get embedThemeUnavailableButton => 'ערכות נושא אינן זמינות';
+  String get embedThemeImport => 'ייבוא ערכת נושא';
 
   @override
   String embedGiftVisionaryLifetime(String productName) {
@@ -1292,7 +1247,12 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get dmLeaveGroup => 'עזוב קבוצה';
 
   @override
-  String get dmNoCommunitiesAvailable => 'לא נמצאו קהילות זמינות';
+  String dmInviteSentFor(String communityName) {
+    return 'נשלחה הזמנה להצטרף אל $communityName';
+  }
+
+  @override
+  String get dmInviteSendFailed => 'לא ניתן לשלוח הזמנה. יש לנסות שוב.';
 
   @override
   String dmGroupMemberCount(int count) {
@@ -1677,9 +1637,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   }
 
   @override
-  String get emojiPlutoniumUpsellButton => 'קבל Reverb';
-
-  @override
   String get emojiPlutoniumUpsellDismiss => 'אל תציג זאת שוב';
 
   @override
@@ -1826,9 +1783,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get changeYourFluxerTag => 'שינוי שם המשתמש שלך';
 
   @override
-  String get fluxerTagInputLabel => 'שם משתמש';
-
-  @override
   String get fluxerTagDescriptionBase =>
       'שמות משתמש יכולים להכיל רק אותיות (a-z, A-Z), מספרים (0-9) וקווים תחתונים. שמות משתמש אינם תלויי רישיות.';
 
@@ -1848,10 +1802,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get validationAllowedChars =>
       'אותיות (a-z, A-Z), מספרים (0-9) וקווים תחתונים (_) בלבד';
-
-  @override
-  String get discriminatorPremiumTooltip =>
-      'קבלו Reverb כדי להתאים אישית את התג שלכם או שמרו אותו בעת שינוי שם המשתמש שלכם';
 
   @override
   String get fluxerTagAlreadyTaken => 'השם כבר תפוס';
@@ -1888,15 +1838,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get premiumUpsellCustomizeTag =>
       'התאם אישית את התג שלך בן 4 ספרות או שמור אותו בעת שינוי שם המשתמש שלך';
-
-  @override
-  String premiumTrialExpiresOn(String date) {
-    return 'תקופת הניסיון שלך ב-Reverb תפוג בתאריך $date. שדרג כדי לשמור על התג המותאם אישית שלך ולהרוויח תג בפרופיל שלך.';
-  }
-
-  @override
-  String get premiumTrialActive =>
-      'אתה משתמש בניסיון Reverb. שדרג כדי לשמור על התג המותאם אישית שלך ולהרוויח תג בפרופיל שלך.';
 
   @override
   String get fluxerTagUpdated => 'שם המשתמש עודכן';
@@ -2031,23 +1972,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get hideVisionaryIdDescription => 'הסר את תג ה-Visionary ID שלך';
 
   @override
-  String premiumTrialSubscriptionStarts(String date) {
-    return 'אתם במנוי ניסיון של Reverb — המנוי שלכם יתחיל בתאריך $date';
-  }
-
-  @override
-  String get premiumTrialSubscriptionStartsDescription =>
-      'המנוי שלך יתחיל אוטומטית כשתסתיים תקופת הניסיון. אין צורך בפעולה כלשהי.';
-
-  @override
-  String premiumTrialExpiresOnProfile(String date) {
-    return 'אתם משתמשים בגרסת ניסיון של Reverb שתפוג בתאריך $date';
-  }
-
-  @override
-  String get premiumTrialActiveProfile => 'אתה בשירות Reverb ללא תשלום';
-
-  @override
   String get avatarDescriptionNonPremium =>
       'JPEG, PNG, WebP. מקסימום 10MB. מומלץ: 512×512px. אווטארים מונפשים (GIF) דורשים Reverb.';
 
@@ -2114,18 +2038,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get profileSavedToast => 'הפרופיל עודכן';
-
-  @override
-  String get profileEditButton => 'ערוך פרופיל';
-
-  @override
-  String get profileNoteLabel => 'הערה';
-
-  @override
-  String get profileNoteVisibility => '(גלוי לך בלבד)';
-
-  @override
-  String get profileNoteEmpty => 'עדיין אין הערה.';
 
   @override
   String get sudoTitle => 'אמת את זהותך';
@@ -2413,34 +2325,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get securityPasskeyNameHint => 'לדוגמה, YubiKey, iPhone, מחשב עבודה';
 
   @override
-  String get securityPhoneSectionTitle => 'מספר טלפון';
-
-  @override
-  String get securityPhoneSectionDescription => 'נהל את מספר הטלפון שלך.';
-
-  @override
-  String get securityPhoneLabel => 'מספר טלפון';
-
-  @override
-  String get securityPhoneNone => 'לא הוספת מספר טלפון.';
-
-  @override
-  String get securityPhoneAdd => 'הוסף טלפון';
-
-  @override
-  String get securityPhoneRemove => 'הסר';
-
-  @override
-  String get securityPhoneRemoveTitle => 'הסרת מספר טלפון';
-
-  @override
-  String get securityPhoneRemoveDescription =>
-      'האם אתה בטוח שברצונך להסיר את מספר הטלפון שלך?';
-
-  @override
-  String get securityPhoneRemoved => 'מספר הטלפון הוסר';
-
-  @override
   String get securityClaimTitle => 'תכונות אבטחה';
 
   @override
@@ -2449,7 +2333,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get securityVerifyEmailRequired =>
-      'עליך לאמת את כתובת הדוא\"ל שלך לפני שתוכל להגדיר אימות דו-שלבי, מפתחות גישה או אימות SMS.';
+      'עליך לאמת את כתובת הדוא\"ל שלך לפני שתוכל להגדיר אימות דו-שלבי או מפתחות גישה.';
 
   @override
   String get totpEnableTitle => 'הגדרת אפליקציית אימות';
@@ -2486,9 +2370,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'אם תאבד גישה לאפליקציית האימות שלך ולא יהיו לך הקודים האלה, תינעל לצמיתות מחוץ לחשבונך. הורד או העתק אותם כעת ואחסן אותם במקום בטוח.';
 
   @override
-  String get backupCodesDownload => 'הורדה';
-
-  @override
   String get backupCodesCopy => 'העתקה';
 
   @override
@@ -2502,162 +2383,8 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get backupCodesDone => 'בוצע';
 
   @override
-  String get backupCodesViewTitle => 'הצג קודי גיבוי';
-
-  @override
-  String get backupCodesViewDescription =>
-      'ייתכן שתידרש אימות לפני הצגת קודי הגיבוי שלך.';
-
-  @override
-  String get phoneAddTitle => 'הוספת מספר טלפון';
-
-  @override
-  String get phoneAddLabel => 'מספר טלפון';
-
-  @override
-  String get phoneAddHint => 'הזן את מספר הטלפון שלך';
-
-  @override
-  String get phoneAddFooter =>
-      'נשלח קוד SMS כשיגיע. המספר שלך לא מקושר לחשבון שלך. אנו שומרים רק סימון מוצפן, ללא מזהה משתמש, כדי לאפשר לכל היותר 2 אימותים בתוך כ-30 יום.';
-
-  @override
-  String get phoneAddSendCode => 'שלח קוד';
-
-  @override
-  String get phoneVerifyTitle => 'אמת את מספר הטלפון';
-
-  @override
-  String get phoneVerifyDescription =>
-      'הזן את קוד האימות שנשלח למספר הטלפון שלך.';
-
-  @override
-  String get phoneAddSuccess => 'מספר הטלפון אומת';
-
-  @override
-  String get phoneCountryLabel => 'מדינה';
-
-  @override
-  String get phoneSearchCountries => 'חיפוש מדינות...';
-
-  @override
-  String get phoneNumberRequired => 'נדרש מספר טלפון';
-
-  @override
-  String get phoneEnterValidNumber => 'יש להזין מספר טלפון נייד חוקי.';
-
-  @override
-  String get phoneCannotBeUsed =>
-      'אי אפשר להשתמש במספר הטלפון הזה. יש לנסות מספר נייד אחר או ליצור קשר עם התמיכה.';
-
-  @override
-  String get phoneAlreadyUsed =>
-      'מספר הטלפון הזה כבר נמצא בשימוש. נסה מספר אחר או צור קשר עם התמיכה.';
-
-  @override
-  String get phoneCodeDidNotWork =>
-      'הקוד הזה לא עבד. יש לבדוק אותו ולנסות שוב.';
-
-  @override
-  String get phoneTooManyAttempts => 'ניסית יותר מדי פעמים. המתן מעט ונסה שוב.';
-
-  @override
-  String get phoneSmsUnavailable =>
-      'אימות ה-SMS אינו זמין כרגע. נסה שוב מאוחר יותר או צור קשר עם התמיכה.';
-
-  @override
-  String get phoneNotEligible =>
-      'אימות טלפוני אינו זמין עבור חשבון זה. השתמש/י בשיטה אחרת או צור/צרי קשר עם התמיכה.';
-
-  @override
   String get phoneCaptchaRequired =>
       'נדרשת בדיקת דפדפן לפני אימות הטלפון. יש לנסות שוב מדף ההתחברות או ליצור קשר עם התמיכה.';
-
-  @override
-  String get phoneSomethingWentWrong => 'משהו השתבש. יש לנסות שוב.';
-
-  @override
-  String get phoneInboundExpensiveDescription =>
-      'שליחת SMS למספר טלפון זה יקרה מדי, לכן אנו מבקשים שתשלח לנו SMS במקום. ניתן גם ליצור קשר עם התמיכה כדי שנבטל דרישה זו מחשבונך.';
-
-  @override
-  String get phoneInboundDefaultDescription =>
-      'עלינו לשלוח לך SMS כדי לאמת את מספר הטלפון שלך.';
-
-  @override
-  String get phoneInboundStepOpenMessaging =>
-      'פתחו את אפליקציית ההודעות בטלפון וצרו הודעת טקסט חדשה.';
-
-  @override
-  String phoneInboundStepSendCode(String code, String number) {
-    return 'שלח את הקוד $code אל $number.';
-  }
-
-  @override
-  String get phoneInboundStepWait => 'המתן לקבלת ההודעה שלך. זה עשוי לקחת דקה.';
-
-  @override
-  String get phoneInboundGetNewCode => 'קבל קוד חדש';
-
-  @override
-  String get phoneInboundChallengeCodeLabel => 'קוד לשליחה';
-
-  @override
-  String get phoneInboundOurNumberLabel => 'שלח אל';
-
-  @override
-  String get requiredActionTitle => 'נדרש אימות חשבון';
-
-  @override
-  String requiredActionIntroGeneric(String productName) {
-    return 'יש להשלים את האימות הנדרש כדי להמשיך להשתמש ב- $productName.';
-  }
-
-  @override
-  String get requiredActionIntroPhone =>
-      'ההרשמה שלך דורשת בדיקה נוספת למניעת ספאם לפני שתוכל להמשיך.';
-
-  @override
-  String requiredActionIntroEmailOrPhone(String productName) {
-    return 'יש לאמת את כתובת האימייל או מספר הטלפון שלך כדי להמשיך להשתמש ב- $productName.';
-  }
-
-  @override
-  String requiredActionIntroEmailAndPhone(String productName) {
-    return 'כדי להמשיך להשתמש ב- $productName, יש להשלים את שלבי אימות האימייל והטלפון הנדרשים.';
-  }
-
-  @override
-  String get requiredActionChooseMethodTitle => 'בחר שיטת אימות';
-
-  @override
-  String requiredActionChooseMethodDescription(String productName) {
-    return 'יש להשלים אחד מנתיבי האימות הבאים כדי להמשיך להשתמש ב- $productName.';
-  }
-
-  @override
-  String get requiredActionUseEmail => 'שימוש באימייל';
-
-  @override
-  String get requiredActionUsePhone => 'שימוש בטלפון';
-
-  @override
-  String get requiredActionCheckEmailTitle => 'בדוק את האימייל שלך';
-
-  @override
-  String get requiredActionCheckEmailDescription =>
-      'שלחנו קישור לאימות לכתובת הדוא\"ל שלך. פתח אותו כדי להמשיך.';
-
-  @override
-  String get requiredActionResendVerificationEmail =>
-      'שלח שוב את אימייל האימות';
-
-  @override
-  String get requiredActionVerificationEmailSent =>
-      'נשלחה הודעת אימות. יש לבדוק את תיבת הדואר הנכנס.';
-
-  @override
-  String get requiredActionSignOut => 'התנתקות';
 
   @override
   String get dangerZoneSectionTitle => 'אזור הסכנה';
@@ -2954,7 +2681,286 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get authorizedAppsScopeAdmin => 'גישה לנקודות קצה ניהוליות';
 
   @override
-  String get privacyPendingDeletionTitle => 'ממתין למחיקה';
+  String get applicationsTitle => 'אפליקציות';
+
+  @override
+  String get applicationsCreate => 'יצירת אפליקציה';
+
+  @override
+  String get applicationsCreateSubmit => 'יצירה';
+
+  @override
+  String get applicationsCreateClaimTooltip =>
+      'תבע את החשבון שלך כדי ליצור אפליקציות.';
+
+  @override
+  String applicationsDocsLink(String domain) {
+    return 'קרא את התיעוד ($domain)';
+  }
+
+  @override
+  String get applicationsLoadError => 'לא ניתן לטעון אפליקציות';
+
+  @override
+  String get applicationsLoadErrorDescription => 'בדוק את החיבור ונסה שוב.';
+
+  @override
+  String get applicationsEmptyTitle => 'אין עדיין אפליקציות';
+
+  @override
+  String applicationsEmptyDescription(String apiName) {
+    return 'כדי להתחיל, צור את האפליקציה הראשונה שלך ב-$apiName.';
+  }
+
+  @override
+  String applicationsCreated(String date) {
+    return 'נוצר ב-$date';
+  }
+
+  @override
+  String get applicationsName => 'שם האפליקציה';
+
+  @override
+  String get applicationsNameHint => 'האפליקציה שלי';
+
+  @override
+  String get applicationsNameRequired => 'שם האפליקציה נדרש';
+
+  @override
+  String get applicationsBackToList => 'חזרה לרשימה';
+
+  @override
+  String get applicationsDetailLoadError => 'לא ניתן לטעון את האפליקציה הזו';
+
+  @override
+  String get applicationsDetailLoadErrorDescription =>
+      'נסה שוב או חזור לרשימת האפליקציות.';
+
+  @override
+  String get applicationsId => 'מזהה אפליקציה';
+
+  @override
+  String get applicationsCopyId => 'העתקת מזהה';
+
+  @override
+  String get applicationsSecretsTitle => 'סודות ואסימונים';
+
+  @override
+  String get applicationsSecretsDescription =>
+      'שמור עליהם במקום בטוח. יצירה מחדש תשבור אינטגרציות קיימות.';
+
+  @override
+  String get applicationsClientSecret => 'סוד לקוח';
+
+  @override
+  String get applicationsBotToken => 'אסימון בוט';
+
+  @override
+  String get applicationsRegenerate => 'יצירה מחדש';
+
+  @override
+  String get applicationsRegenerateClientSecretTitle =>
+      'ליצור מחדש את סוד הלקוח?';
+
+  @override
+  String get applicationsRegenerateBotTokenTitle =>
+      'ליצור מחדש את אסימון הבוט?';
+
+  @override
+  String get applicationsRegenerateClientSecretDescription =>
+      'יצירה מחדש תבטל את התוקף של הסוד הנוכחי. יש לעדכן כל קוד שמשתמש בערך הישן.';
+
+  @override
+  String get applicationsRegenerateBotTokenDescription =>
+      'יצירה מחדש תבטל את התוקף של האסימון הנוכחי. יש לעדכן כל קוד שמשתמש בערך הישן.';
+
+  @override
+  String get applicationsClientSecretRegenerated =>
+      'סוד הלקוח נוצר מחדש. עדכן כל קוד שמשתמש בסוד הישן.';
+
+  @override
+  String get applicationsBotTokenRegenerated =>
+      'אסימון הבוט נוצר מחדש. יש לעדכן כל קוד שמשתמש באסימון הישן.';
+
+  @override
+  String get applicationsRegenerateFailed => 'לא ניתן היה ליצור מחדש את הסוד';
+
+  @override
+  String get applicationsInfoTitle => 'פרטי אפליקציה';
+
+  @override
+  String get applicationsInfoDescription =>
+      'הגדרות בסיסיות וכתובות URL מותרות להפניה מחדש.';
+
+  @override
+  String get applicationsPublicBot => 'בוט ציבורי';
+
+  @override
+  String get applicationsPublicBotDescription =>
+      'אפשר לכל אחד להזמין את הבוט הזה לקהילות שלו.';
+
+  @override
+  String get applicationsRequireCodeGrant => 'דרושה הענקת קוד OAuth2';
+
+  @override
+  String get applicationsRequireCodeGrantDescription =>
+      'דורש URI להפניה מחדש וקוד הרשאה בעת הזמנת בוט זה.';
+
+  @override
+  String get applicationsRedirectUris => 'כתובות URI להפניה מחדש';
+
+  @override
+  String get applicationsAddRedirect => 'הוספת הפניה מחדש';
+
+  @override
+  String get applicationsDeleteRedirect => 'מחיקת כתובת URI להפניה מחדש';
+
+  @override
+  String get applicationsBotProfileTitle => 'פרופיל בוט';
+
+  @override
+  String get applicationsBotProfileDescription =>
+      'תמונת פרופיל, תגית ופרטי פרופיל מורחבים עבור הבוט שלך.';
+
+  @override
+  String get applicationsBotAvatar => 'תמונת פרופיל של בוט';
+
+  @override
+  String get applicationsUsernameRequired => 'שם משתמש נדרש';
+
+  @override
+  String get applicationsUsernameTooLong =>
+      'שם המשתמש יכול להכיל 32 תווים לכל היותר';
+
+  @override
+  String get applicationsUsernameInvalid =>
+      'שם המשתמש יכול להכיל אותיות, מספרים וקו תחתון בלבד';
+
+  @override
+  String get applicationsBotUsername => 'שם משתמש של בוט';
+
+  @override
+  String get applicationsDiscriminator => 'מזהה';
+
+  @override
+  String get applicationsBotBio => 'אודות הבוט';
+
+  @override
+  String get applicationsBotBioHint => 'בוט מועיל שעושה דברים מדהימים!';
+
+  @override
+  String get applicationsNoBotBanner => 'אין באנר לבוט';
+
+  @override
+  String get applicationsFriendlyBot => 'בוט ידידותי';
+
+  @override
+  String get applicationsFriendlyBotDescription =>
+      'אפשר למשתמשים לשלוח לבוט הזה בקשות חברות לאישור ידני.';
+
+  @override
+  String get applicationsManualFriendApproval => 'דרוש אישור ידני לבקשות חברות';
+
+  @override
+  String get applicationsManualFriendApprovalDescription =>
+      'בקשות חברות לבוט זה דורשות אישור ידני.';
+
+  @override
+  String get applicationsOauthBuilderTitle => 'כלי ליצירת כתובות OAuth2';
+
+  @override
+  String get applicationsOauthBuilderDescription =>
+      'בנה כתובת URL לאישור עם הרשאות והיקפים.';
+
+  @override
+  String get applicationsScopes => 'הרשאות';
+
+  @override
+  String get applicationsRedirectUri => 'כתובת URI להפניה מחדש';
+
+  @override
+  String get applicationsSelectRedirectUri => 'בחר כתובת URI להפניה מחדש';
+
+  @override
+  String get applicationsRedirectRequiredCodeGrant =>
+      'כתובת ה-URI להפניה מחדש נחוצה כי בוט זה דורש הרשאת קוד OAuth2.';
+
+  @override
+  String get applicationsRedirectRequiredScopes =>
+      'כתובת ה-URI להפניה מחדש נדרשת כשלא משתמשים רק בהיקף הבוט.';
+
+  @override
+  String get applicationsBotPermissions => 'הרשאות בוט';
+
+  @override
+  String get applicationsAuthorizeUrl => 'כתובת URL לאישור';
+
+  @override
+  String get applicationsAuthorizeUrlPlaceholder =>
+      'בחירת הרשאות (וכתובת URI להפניה מחדש אם נדרש)';
+
+  @override
+  String get applicationsCopyAuthorizeUrl => 'העתק כתובת אתר לאישור';
+
+  @override
+  String get applicationsCopiedUrl => 'כתובת ה-URL הועתקה ללוח הגזירים';
+
+  @override
+  String get applicationsDangerTitle => 'אזור מסוכן';
+
+  @override
+  String get applicationsDangerSubtitle =>
+      'לא ניתן לבטל פעולה זו. הסרת האפליקציה תמחק גם את הבוט שלה.';
+
+  @override
+  String get applicationsDangerHelper =>
+      'לאחר המחיקה, האפליקציה ופרטי הגישה שלה יוסרו לצמיתות.';
+
+  @override
+  String get applicationsDelete => 'מחיקת אפליקציה';
+
+  @override
+  String applicationsDeleteConfirmDescription(String name) {
+    return 'האם אתה בטוח שברצונך למחוק את $name? לא ניתן לבטל פעולה זו. כל הנתונים המשויכים, כולל משתמש הבוט, יימחקו לצמיתות.';
+  }
+
+  @override
+  String get applicationsDeleteFailed => 'לא ניתן היה למחוק את האפליקציה';
+
+  @override
+  String get applicationsUpdated => 'האפליקציה עודכנה בהצלחה';
+
+  @override
+  String get applicationsNoChanges => 'אין שינויים לשמירה';
+
+  @override
+  String get applicationsSearchBots => 'אפליקציות ובוטים';
+
+  @override
+  String get applicationsSearchBotsDescription =>
+      'יצירה וניהול של אפליקציות ובוטים עבור החשבון שלך';
+
+  @override
+  String get applicationsSearchInfoDescription =>
+      'עריכת פרטי האפליקציה הבסיסיים וכתובות ה-URI להפניה מחדש';
+
+  @override
+  String get applicationsSearchBotProfileDescription =>
+      'עריכת אווטאר הבוט, התגית, הביוגרפיה, הבאנר והתנהגות בקשות החברות';
+
+  @override
+  String get applicationsSearchOauthDescription =>
+      'בניית כתובת URL לאישור עם היקפים, הפניות מחדש והרשאות בוט';
+
+  @override
+  String get applicationsSearchSecretsDescription =>
+      'הצגה ויצירה מחדש של סודות לקוח ואסימוני בוט';
+
+  @override
+  String get applicationsSearchBotsKeyword => 'בוטים';
+
+  @override
+  String get applicationsSearchDocumentation => 'תיעוד';
 
   @override
   String get blockedUsersTitle => 'משתמשים חסומים';
@@ -3115,9 +3121,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get userProfileNoteDelete => 'מחק';
 
   @override
-  String get userProfileNoteEmpty => 'הקש כדי להוסיף הערה';
-
-  @override
   String get userProfileMemberSince => 'חבר מאז';
 
   @override
@@ -3162,6 +3165,60 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get userProfileLocalTime => 'שעה מקומית';
+
+  @override
+  String get profileLocalTimeSettingsTitle => 'שעה מקומית בפרופיל';
+
+  @override
+  String profileLocalTimeSettingsSummary(String productName) {
+    return 'הגדר את אזור הזמן שלך פעם אחת כדי ש-$productName יוכל לעדכן את ההפרש שלך מ-UTC כששעון הקיץ משתנה. אנשים אחרים יכולים לראות רק את ההפרש שלך מ-UTC, ולא את מזהה אזור הזמן המדויק שלך.';
+  }
+
+  @override
+  String get profileLocalTimeEditButton => 'עריכת השעה המקומית בפרופיל';
+
+  @override
+  String get profileLocalTimeTimezoneLabel => 'אזור זמן';
+
+  @override
+  String profileLocalTimeTimezoneHelp(String productName) {
+    return 'בחר את אזור הזמן שבו משתמש $productName כדי לחשב את ההפרש שלך מ-UTC עבור השעה המקומית בפרופיל שלך.';
+  }
+
+  @override
+  String get profileLocalTimeSearchTimezones => 'חיפוש אזורי זמן';
+
+  @override
+  String get profileLocalTimeNotSet => 'לא מוגדר';
+
+  @override
+  String profileLocalTimePrivacyNote(
+    String timezoneIdentifierExample,
+    String productName,
+  ) {
+    return 'אנשים אחרים יכולים לראות רק את ההפרש הנוכחי שלך מ-UTC כאשר תבחר לשתף את השעה המקומית בפרופיל שלך. הם לא יראו את מזהה אזור הזמן המדויק שלך, כגון $timezoneIdentifierExample. $productName שומר את המזהה הזה רק כדי שההפרש יוכל להתעדכן באופן אוטומטי כאשר שעון הקיץ משתנה.';
+  }
+
+  @override
+  String get profileLocalTimePrivacyEveryone => 'כולם';
+
+  @override
+  String get profileLocalTimePrivacyEveryoneDesc =>
+      'אפשר לכל מי שיכול לצפות בפרופיל המלא שלך לראות את השעה המקומית שלך';
+
+  @override
+  String get profileLocalTimePrivacyFriends => 'חברים';
+
+  @override
+  String get profileLocalTimePrivacyFriendsDesc =>
+      'אפשר לחברים שלך לראות את השעה המקומית בפרופיל שלך';
+
+  @override
+  String get profileLocalTimePrivacyCommunityMembers => 'חברי קהילה';
+
+  @override
+  String get profileLocalTimePrivacyCommunityMembersDesc =>
+      'אפשר לחברים מקהילות שבהן אתה חבר לראות את השעה המקומית בפרופיל שלך';
 
   @override
   String get userProfileSameTimeAsYou => 'אותה שעה כמו שלך';
@@ -3288,10 +3345,10 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get userProfileTransferOwnership => 'העברת בעלות';
 
   @override
-  String get userProfileReportUser => 'דיווח על משתמש';
+  String get userProfileReportMessage => 'דיווח על הודעה';
 
   @override
-  String get userProfileReportMessage => 'דיווח על הודעה';
+  String get userProfileReportUserProfile => 'דיווח על פרופיל';
 
   @override
   String userProfileKickConfirmTitle(String username) {
@@ -3440,90 +3497,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get durationCustom => 'מותאם אישית…';
-
-  @override
-  String get iarReportUserTitle => 'דיווח על משתמש';
-
-  @override
-  String get iarReportGuildTitle => 'דיווח על קהילה';
-
-  @override
-  String get iarReportGuildPreconfirmBody =>
-      'אם הדיווח הזה נוגע להודעה ספציפית בקהילה הזו, דווחו על ההודעה הזו במקום. דיווחי הודעות מספקים לצוות הבטיחות שלנו את ההקשר הברור ביותר, והוספת פרטים בתגובות יכולה לעזור לנו לבדוק את הדיווח מהר יותר. המשיכו לדווח על הקהילה כולה רק אם דיווח על הודעה לא יתאר את הבעיה הרחבה יותר.';
-
-  @override
-  String get iarContinueToReportCommunity => 'המשך לדווח על הקהילה';
-
-  @override
-  String get iarPreviewCommunitySubtitle => 'קהילה';
-
-  @override
-  String get iarReasonHarassmentGuildLabel => 'הטרדה או התעללות ממוקדת';
-
-  @override
-  String get iarReasonHarassmentGuildDescription =>
-      'קהילה מאפשרת הצקות המוניות או התעללות ממוקדת.';
-
-  @override
-  String get iarReasonHateGuildDescription => 'מקדם שנאה כלפי קבוצות מוגנות.';
-
-  @override
-  String get iarReasonTerrorismLabel => 'טרור או קיצוניות אלימה';
-
-  @override
-  String get iarReasonTerrorismDescription =>
-      'מקדם, מגייס או מתאם פעילות אלימה קיצונית.';
-
-  @override
-  String get iarReasonMatureContentGuildLabel =>
-      'תוכן למבוגרים או חסימה לא בטוחה';
-
-  @override
-  String get iarReasonMatureContentGuildDescription =>
-      'תוכן למבוגרים ללא חסימה מתאימה.';
-
-  @override
-  String get iarReasonChildSafetyGuildDescription =>
-      'מסכן קטינים או מכיל תוכן של ניצול ילדים.';
-
-  @override
-  String get iarReasonRaidLabel => 'תיאום פשיטה';
-
-  @override
-  String get iarReasonRaidDescription =>
-      'מתאם פשיטות, התארגנויות או הטרדות נגד אנשים או קהילות.';
-
-  @override
-  String get iarReasonSpamGuildDescription =>
-      'הקהילה קיימת כדי לשלוח ספאם, להונות או לנצל לרעה את הפלטפורמה.';
-
-  @override
-  String get iarReasonMalwareGuildLabel => 'הפצת תוכנות זדוניות';
-
-  @override
-  String get iarReasonMalwareGuildDescription =>
-      'מפיץ תוכנות זדוניות, גניבת פרטי התחברות או קבצים מזיקים.';
-
-  @override
-  String get iarReasonPrivacyGuildLabel => 'הפרת פרטיות או דוקסינג';
-
-  @override
-  String get iarReasonPrivacyGuildDescription =>
-      'משתף מידע אישי, עוקב אחרי משתמשים או מתאם פגיעה בפרטיות.';
-
-  @override
-  String get iarReasonSelfHarmGuildLabel => 'מעודד פגיעה עצמית';
-
-  @override
-  String get iarReasonSelfHarmGuildDescription =>
-      'מעודד התאבדות, פגיעה עצמית או הפרעות אכילה.';
-
-  @override
-  String get iarReasonInappropriateProfile => 'פרופיל לא הולם';
-
-  @override
-  String get iarReasonInappropriateProfileDescription =>
-      'הפרופיל של המשתמש הזה מכיל תוכן לא הולם';
 
   @override
   String typingIndicatorOne(String name) {
@@ -3806,6 +3779,33 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get linkedDevicesUnknownPlatform => 'פלטפורמה לא ידועה';
 
   @override
+  String get linkedDevicesViewDetails => 'הצגת פרטים';
+
+  @override
+  String get linkedDevicesDetailsTitle => 'פרטי מכשיר';
+
+  @override
+  String get linkedDevicesDetailsDevice => 'מכשיר';
+
+  @override
+  String get linkedDevicesDetailsClient => 'לקוח';
+
+  @override
+  String get linkedDevicesDetailsLocation => 'מיקום';
+
+  @override
+  String get linkedDevicesDetailsIp => 'כתובת IP';
+
+  @override
+  String get linkedDevicesDetailsLastUsed => 'שימוש אחרון';
+
+  @override
+  String get linkedDevicesCurrentSession => 'הסשן הנוכחי';
+
+  @override
+  String get linkedDevicesUnknown => 'לא ידוע';
+
+  @override
   String slowmodeLabel(String duration) {
     return 'מצב איטי למשך $duration';
   }
@@ -3874,14 +3874,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'אינך חבר בקהילה זו מספיק זמן כדי לשלוח הודעות.';
 
   @override
-  String get channelComposerBarrierNoPhoneNumber =>
-      'עליך לאמת מספר טלפון כדי לשלוח הודעות בקהילה זו.';
-
-  @override
   String get channelComposerBarrierVerifyEmail => 'אימות אימייל';
-
-  @override
-  String get channelComposerBarrierVerifyPhone => 'אימות מספר טלפון';
 
   @override
   String chatAttachmentTooMany(int max) {
@@ -3904,9 +3897,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get chatAttachmentDropToSend => 'גרור קבצים לשליחה עכשיו';
 
   @override
-  String get chatAttachmentSendVoiceMessage => 'שלח הודעה קולית';
-
-  @override
   String get voiceMessageTitle => 'הודעה קולית';
 
   @override
@@ -3924,10 +3914,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'לא ניתן להתחיל הקלטה. אשר גישה למיקרופון.';
 
   @override
-  String get voiceMessageRecordingNotSupported =>
-      'הקלטת הודעות קול אינה נתמכת במכשיר זה.';
-
-  @override
   String get voiceMessageMicInUse =>
       'עזוב את שיחת הווידאו כדי להקליט הודעת קול.';
 
@@ -3937,22 +3923,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get voiceMessageSendFailed =>
       'לא ניתן לשלוח הודעה קולית. יש לנסות שוב.';
-
-  @override
-  String get voiceMessageRecordingHint =>
-      'דברו עכשיו. לחצו על ״עצור״ כשתסיימו — תוכלו לחתוך אחר כך.';
-
-  @override
-  String get voiceMessageReviewHint => 'גרור את הידיות כדי לחתוך, ואז הקש שלח.';
-
-  @override
-  String get voiceMessageStop => 'עצור';
-
-  @override
-  String get voiceMessageStartRecording => 'התחל להקליט';
-
-  @override
-  String get voiceMessageRerecord => 'הקלטה מחדש';
 
   @override
   String get voiceMessagePlay => 'הפעל';
@@ -3965,16 +3935,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get voiceMessageSeekBackward => 'חזור אחורה';
-
-  @override
-  String voiceMessageSelectionTooShort(num seconds) {
-    final intl.NumberFormat secondsNumberFormat = intl.NumberFormat.compact(
-      locale: localeName,
-    );
-    final String secondsString = secondsNumberFormat.format(seconds);
-
-    return 'הבחירה חייבת להיות לפחות $secondsString שניות.';
-  }
 
   @override
   String get chatAttachmentEditTitle => 'עריכת קובץ מצורף';
@@ -4118,9 +4078,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get chatAttachmentSourceBrowse => 'דפדוף בקבצים';
 
   @override
-  String get chatAttachmentPasteTooltip => 'הדבק קובץ מהלוח';
-
-  @override
   String get chatAttachmentSpoiler => 'ספוילר';
 
   @override
@@ -4201,13 +4158,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get matureContentOpenLinkButton => 'פתח קישור';
 
   @override
-  String get sensitiveContentSectionTitle => 'תוכן רגיש';
-
-  @override
-  String get sensitiveContentSectionDescription =>
-      'נהל סינון של מדיה בוגרת או רגישה בהקשרים שונים';
-
-  @override
   String get sensitiveContentFriendDmLabel => 'הודעות ישירות מחברים';
 
   @override
@@ -4226,18 +4176,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get sensitiveContentFilterBlock => 'חסימה';
 
   @override
-  String get sensitiveContentBlurUnscannedLabel =>
-      'טשטש מדיה עד לסיום סריקת הבטיחות';
-
-  @override
-  String get sensitiveContentBlurUnscannedDescriptionAdult =>
-      'כשתפעיל/י אפשרות זו, תמונות וסרטונים יטושטשו עד שתסתיים סריקת בטיחות התוכן.';
-
-  @override
-  String get sensitiveContentBlurUnscannedDescriptionMinor =>
-      'הגדרה זו מופעלת תמיד עבור החשבון שלך.';
-
-  @override
   String get sensitiveContentResetButton => 'איפוס';
 
   @override
@@ -4253,9 +4191,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
     );
     return 'מעלה $_temp0';
   }
-
-  @override
-  String get chatCancelUpload => 'ביטול העלאה';
 
   @override
   String chatAttachmentExpiresOn(String date) {
@@ -4461,9 +4396,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get connectionEnterDomain => 'הזן דומיין.';
 
   @override
-  String get lookAndFeelTitle => 'מראה ותחושה';
-
-  @override
   String get lookAndFeelThemeSectionTitle => 'עיצוב';
 
   @override
@@ -4527,11 +4459,93 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'לא הצלחנו לסנכרן את הערכה לחשבונך. נסה שוב.';
 
   @override
-  String get lookAndFeelChatFontScalingTitle => 'קנה מידה של גופן הצ׳אט';
+  String get lookAndFeelThemeColorsTitle => 'Theme colors';
+
+  @override
+  String get lookAndFeelThemeColorsConfigureDescription =>
+      'Customize individual theme colors for this device.';
+
+  @override
+  String lookAndFeelThemeColorsEditingMode(String mode) {
+    return 'Editing $mode';
+  }
+
+  @override
+  String get lookAndFeelThemeColorsSyncSectionTitle => 'Theme Studio sync';
+
+  @override
+  String get lookAndFeelThemeColorsSyncFromStudioLabel =>
+      'Use colors from Theme Studio';
+
+  @override
+  String get lookAndFeelThemeColorsSyncFromStudioDescription =>
+      'When enabled, color changes from Theme Studio on desktop apply on this device. When disabled, this device keeps its own colors.';
+
+  @override
+  String get lookAndFeelThemeColorsSyncToStudioLabel =>
+      'Send color changes to Theme Studio';
+
+  @override
+  String get lookAndFeelThemeColorsSyncToStudioDescription =>
+      'When enabled, colors you change here sync to Theme Studio on your other devices. When disabled, desktop Theme Studio keeps its own colors.';
+
+  @override
+  String get lookAndFeelThemeColorsSyncFromStudioOffBanner =>
+      'Desktop Theme Studio color changes will not apply on this device.';
+
+  @override
+  String get lookAndFeelThemeColorsEssentialSectionTitle => 'Essential colors';
+
+  @override
+  String get lookAndFeelThemeColorsChatBackgroundWallpaperNote =>
+      'If you have a chat wallpaper set, you won\'t see this color.';
+
+  @override
+  String lookAndFeelThemeColorsResetForMode(String mode) {
+    return 'Reset all colors for $mode';
+  }
+
+  @override
+  String get lookAndFeelThemeColorsResetConfirmTitle => 'Reset theme colors?';
+
+  @override
+  String lookAndFeelThemeColorsResetConfirmBody(String mode) {
+    return 'This removes your custom color overrides for $mode on this device.';
+  }
+
+  @override
+  String get lookAndFeelThemeColorsGroupBrandButtons => 'Brand & buttons';
+
+  @override
+  String get lookAndFeelThemeColorsGroupChatSurfaces => 'Chat & messages';
+
+  @override
+  String get lookAndFeelThemeColorsGroupSidebars => 'Sidebars & navigation';
+
+  @override
+  String get lookAndFeelThemeColorsGroupText => 'Text';
+
+  @override
+  String get lookAndFeelThemeColorsGroupHeaders => 'Headers';
+
+  @override
+  String get lookAndFeelThemeColorsGroupStatus => 'Status';
+
+  @override
+  String get lookAndFeelThemeColorsGroupEmbedsMarkup => 'Embeds & mentions';
+
+  @override
+  String get lookAndFeelThemeColorsGroupAccentsAlerts => 'Accents & alerts';
+
+  @override
+  String get lookAndFeelThemeColorsGroupControls => 'Surfaces & controls';
+
+  @override
+  String get lookAndFeelChatFontScalingTitle => 'Chat font scaling';
 
   @override
   String get lookAndFeelChatFontScalingDescription =>
-      'התאם את גודל הגופן באזור הצ\'אט.';
+      'Adjust the font size in the chat area.';
 
   @override
   String get lookAndFeelChatFontSizeLabel => 'גודל גופן בצ\'אט';
@@ -4564,7 +4578,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get lookAndFeelChatWallpaperCustomLabel => 'תמונה מותאמת אישית';
 
   @override
-  String get lookAndFeelChatWallpaperStarfieldLabel => 'Starfield';
+  String get lookAndFeelChatWallpaperStarfieldLabel => 'שדה כוכבים';
 
   @override
   String lookAndFeelChatWallpaperColorLabel(String id) {
@@ -4679,38 +4693,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get lookAndFeelHideKeyboardHintsDescription =>
       'כאשר מופעל, תגי קיצורי דרך מוסתרים בחלונות קופצים של טיפים.';
-
-  @override
-  String get lookAndFeelNekoTitle => 'שונות';
-
-  @override
-  String get lookAndFeelNekoDescription => 'אפשרויות ממשק שונות.';
-
-  @override
-  String get lookAndFeelShowNekoLabel => 'הצג Pickles';
-
-  @override
-  String get lookAndFeelShowNekoDescription =>
-      'כאשר מופעל, Pickles יופיע ליד שורת הקלט של הצ\'אט.';
-
-  @override
-  String get lookAndFeelVoiceChannelJoinTitle => 'התנהגות הצטרפות לערוץ קולי';
-
-  @override
-  String get lookAndFeelVoiceChannelJoinDescription =>
-      'קבע כיצד אתה מצטרף לערוצי קול בקהילות.';
-
-  @override
-  String get lookAndFeelRequireDoubleClickJoinLabel =>
-      'דרושה לחיצה כפולה כדי להצטרף לערוצי קוליים';
-
-  @override
-  String get lookAndFeelRequireDoubleClickJoinDescription =>
-      'כשתפעיל את האפשרות, תצטרך ללחוץ פעמיים על ערוצי קול כדי להצטרף אליהם. כשהיא כבויה (ברירת מחדל), לחיצה אחת תצטרף לערוץ מיד.';
-
-  @override
-  String get lookAndFeelChatFontPreviewSample =>
-      'השועל החום המהיר קפץ מעל הכלב העצלן.';
 
   @override
   String get lookAndFeelGuildSidebarTitle => 'סרגל צד של קהילה';
@@ -5162,22 +5144,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'הצגת מדיה שמורה בהשלמה אוטומטית של ביטויים';
 
   @override
-  String get messagesMediaEditingSectionTitle => 'עריכת הודעות';
-
-  @override
-  String get messagesMediaEditingSectionDescription =>
-      'קבע מה יקרה לטיוטת העריכה שלך כשתבטל.';
-
-  @override
-  String get messagesMediaEditingPreserveDraftLabel =>
-      'שמור טיוטת עריכה בביטול';
-
-  @override
   String get accessibilitySaturationTitle => 'רוויה';
-
-  @override
-  String get accessibilitySaturationDescription =>
-      'שנה את מידת הרוויה של צבעי ערכת הנושא בכל האפליקציה.';
 
   @override
   String get accessibilityVisualGroupTitle => 'תצוגה';
@@ -5188,11 +5155,11 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get accessibilityShowAltTextOnImagesLabel =>
-      'Show alternative text on images';
+      'הצג טקסט אלטרנטיבי בתמונות';
 
   @override
   String get accessibilityShowAltTextOnImagesDescription =>
-      'Display alternative text below images when it is available.';
+      'הצג טקסט חלופי מתחת לתמונות כאשר הוא זמין.';
 
   @override
   String get accessibilityDimStrikethroughTextLabel => 'עמעום טקסט עם קו חוצה';
@@ -5200,10 +5167,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get accessibilityDmMessagePreviewGroupTitle =>
       'תצוגה מקדימה של הודעות בצ\'אט פרטי';
-
-  @override
-  String get accessibilityDmMessagePreviewGroupDescription =>
-      'קבע מתי תצוגות מקדימות של הודעות יוצגו ברשימת ההודעות הישירות.';
 
   @override
   String get accessibilityDmMessagePreviewModeLabel =>
@@ -5321,10 +5284,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get accessibilityPausedGifByReducedMotion =>
       'מושהה עקב תנועה מופחתת. הפעל כדי להמשיך להציג קובצי GIF.';
-
-  @override
-  String get accessibilityGifDefaultsOffOnMobile =>
-      'ברירת המחדל היא כבוי בנייד כדי לשמור על חיי סוללה ושימוש בנתונים.';
 
   @override
   String get accessibilityStickerAnimationsTitle => 'אנימציות של מדבקות';
@@ -5646,10 +5605,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'לא הצלחנו לנתק את המכשירים האחרים שלך. נסה שוב בעוד רגע.';
 
   @override
-  String get voiceChannelEmptyDescription =>
-      'זהו ערוץ קולי. התחבר כדי להתחיל לדבר!';
-
-  @override
   String get voiceChannelJoin => 'הצטרף/הצטרפי לערוץ הקולי';
 
   @override
@@ -5688,12 +5643,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get voiceChannelStatusConnecting => 'מתחבר…';
-
-  @override
-  String get voiceChannelStatusConnected => 'מחובר';
-
-  @override
-  String get voiceChannelStatusError => 'שגיאה';
 
   @override
   String get voiceParticipantTooltipMobileDevice => 'מכשיר נייד';
@@ -5755,9 +5704,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get voiceScreenShareNotificationText => 'משתף את המסך שלך.';
-
-  @override
-  String get voiceControlMore => 'עוד';
 
   @override
   String get voiceControlDisconnect => 'התנתק';
@@ -5911,7 +5857,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get voiceOutputRouteSpeaker => 'רמקול';
 
   @override
-  String get voiceOutputRouteEarpiece => 'Earpiece';
+  String get voiceOutputRouteEarpiece => 'שפופרת';
 
   @override
   String get voiceOutputRouteHeadset => 'אוזניות';
@@ -6119,6 +6065,10 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'ההודעה שלך לא נמסרה כי היא סומנה על ידי מערכות הבטיחות שלנו. אם לדעתך זו טעות, אנא פנה/י לתמיכה.';
 
   @override
+  String get chatSendFailureContentBlockedSelfHosted =>
+      'ההודעה שלך לא נמסרה כי היא סומנה על ידי מערכות הבטיחות שלנו. אם לדעתך זו טעות, אנא פנה למנהלי המערכת של המופע הזה.';
+
+  @override
   String get chatSendFailureNsfwEmojiSticker =>
       'ההודעה שלך לא נמסרה מכיוון שהיא מכילה אימוג\'י או מדבקות בוגרים שאסורים בהקשר זה.';
 
@@ -6185,22 +6135,10 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get privacyDashboardFriendRequestsEveryone => 'כולם';
 
   @override
-  String get privacyDashboardFriendRequestsEveryoneDesc =>
-      'אפשר לכל אחד לשלוח לך בקשות חברות';
-
-  @override
   String get privacyDashboardFriendRequestsFriendsOfFriends => 'חברים של חברים';
 
   @override
-  String get privacyDashboardFriendRequestsFriendsOfFriendsDesc =>
-      'אפשר לחברים של החברים שלך לשלוח לך בקשות';
-
-  @override
   String get privacyDashboardFriendRequestsCommunityMembers => 'חברי קהילה';
-
-  @override
-  String get privacyDashboardFriendRequestsCommunityMembersDesc =>
-      'אפשר לחברים מקהילות שאתה חבר בהן לשלוח לך בקשות';
 
   @override
   String get privacyDashboardDirectMessagesTitle => 'הודעות ישירות';
@@ -6210,57 +6148,26 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'אפשר הודעות ישירות מחברי קהילה';
 
   @override
-  String get privacyDashboardDirectMessagesMembersDesc =>
-      'אפשר לחברי קהילות שאתה חבר בהן לשלוח לך הודעות ישירות';
-
-  @override
   String get privacyDashboardDirectMessagesBots =>
       'אפשר הודעות ישירות מבוטים קהילתיים';
-
-  @override
-  String get privacyDashboardDirectMessagesBotsDesc =>
-      'אפשר לבוטים מקהילות שאתה חבר בהן לשלוח לך הודעות ישירות';
-
-  @override
-  String get privacyDashboardConnectionsSectionDesc =>
-      'קבע מי יכול לשלוח לך בקשות חבר והודעות ישירות';
-
-  @override
-  String get privacyDashboardCommunicationSectionDesc =>
-      'קבע מי יכול להתקשר אליך ולהוסיף אותך לקבוצות';
 
   @override
   String get privacyDashboardIncomingCallsTitle => 'שיחות נכנסות';
 
   @override
-  String get privacyDashboardIncomingCallsDesc => 'קבע מי יכול להתקשר אליך';
-
-  @override
   String get privacyDashboardAllowedCallers => 'מתקשרים מורשים';
-
-  @override
-  String get privacyDashboardIncomingCallNobody => 'אף אחד';
 
   @override
   String get privacyDashboardIncomingCallNobodyDesc =>
       'חסום את כל השיחות הנכנסות';
 
   @override
-  String get privacyDashboardIncomingCallFriendsOnly => 'רק חברים';
-
-  @override
   String get privacyDashboardIncomingCallFriendsOnlyDesc =>
       'אפשר לחברים בלבד להתקשר אליך (מומלץ)';
 
   @override
-  String get privacyDashboardIncomingCallCustom => 'חברים + מותאם אישית';
-
-  @override
   String get privacyDashboardIncomingCallCustomDesc =>
       'אפשר לחברים ולקבוצות נוספות שתבחרו';
-
-  @override
-  String get privacyDashboardIncomingCallEveryone => 'כולם';
 
   @override
   String get privacyDashboardIncomingCallEveryoneDesc =>
@@ -6270,29 +6177,13 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get privacyDashboardAdditionalGroups => 'קבוצות נוספות';
 
   @override
-  String get privacyDashboardCallFriendsOfFriendsDesc =>
-      'אנשים שחברים של החברים שלך יכולים להתקשר אליך';
-
-  @override
-  String get privacyDashboardCallGuildMembersDesc =>
-      'אנשים מקהילות שאתם חברים בהן יכולים להתקשר אליך';
-
-  @override
   String get privacyDashboardRingBehavior => 'התנהגות טבעת';
 
   @override
   String get privacyDashboardSilentCalls => 'שיחות שקטות מכולם';
 
   @override
-  String get privacyDashboardSilentCallsDesc =>
-      'כל השיחות יתקשרו בשקט במקום לצלצל. כברירת מחדל, שיחות מאנשים שאינם חברים תמיד שקטות.';
-
-  @override
   String get privacyDashboardGroupDmTitle => 'מי יכול להוסיף אותך לקבוצות';
-
-  @override
-  String get privacyDashboardGroupDmDesc =>
-      'קבע מי יכול להוסיף אותך לקבוצות ללא אישור. כל אחד עדיין יכול לשלוח לך קישורי הזמנה להצטרפות.';
 
   @override
   String get privacyDashboardAllowedInvites => 'הזמנות מותרות';
@@ -6312,14 +6203,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get privacyDashboardGroupDmEveryoneDesc =>
       'אפשר לכל אחד להוסיף אותך לקבוצות צ\'אט בלי לבקש';
-
-  @override
-  String get privacyDashboardGroupDmFriendsOfFriendsDesc =>
-      'אנשים שהם חברים של החברים שלך יכולים להוסיף אותך לצ\'אטים קבוצתיים';
-
-  @override
-  String get privacyDashboardGroupDmGuildMembersDesc =>
-      'אנשים מקהילות שאתם חברים בהן יכולים להוסיף אתכם לצ\'אטים קבוצתיים';
 
   @override
   String get privacyDashboardVoiceActivityTitle =>
@@ -6704,16 +6587,47 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get chatMessageAddReaction => 'הוסף תגובה';
 
   @override
-  String get doubleTapReactionHint => 'Double tap a message to';
+  String get doubleTapReactionHint => 'הקש פעמיים על הודעה כדי';
 
   @override
   String get doubleTapReactionEdit => 'עריכה';
 
   @override
-  String get doubleTapReactionEditTitle => 'Edit default';
+  String get doubleTapReactionEditTitle => 'עריכת ברירת מחדל';
 
   @override
-  String get doubleTapReactionEditSubtitle => 'Choose double tap emoji';
+  String get doubleTapReactionEditSubtitle => 'בחר אימוג\'י להקשה כפולה';
+
+  @override
+  String get messagesMediaDoubleTapSectionTitle => 'Double tap';
+
+  @override
+  String get messagesMediaDoubleTapSectionDescription =>
+      'Choose what happens when you double tap a message.';
+
+  @override
+  String get messagesMediaDoubleTapActionLabel => 'Double tap action';
+
+  @override
+  String get messagesMediaDoubleTapActionReactName => 'Add reaction';
+
+  @override
+  String get messagesMediaDoubleTapActionReactDescription =>
+      'Adds your default double-tap emoji as a reaction.';
+
+  @override
+  String get messagesMediaDoubleTapActionEditName => 'Edit message';
+
+  @override
+  String get messagesMediaDoubleTapActionEditDescription =>
+      'Opens the editor on messages you sent. Other messages are unchanged.';
+
+  @override
+  String get messagesMediaDoubleTapActionNoneName => 'Nothing';
+
+  @override
+  String get messagesMediaDoubleTapActionNoneDescription =>
+      'Double tap is disabled.';
 
   @override
   String get chatMessageEdit => 'עריכת הודעה';
@@ -6722,10 +6636,10 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get chatMessageReply => 'השב/השיבי';
 
   @override
-  String get notificationReplyPlaceholder => 'Message';
+  String get notificationReplyPlaceholder => 'הודעה';
 
   @override
-  String get notificationReplyFailed => 'Couldn\'t send reply';
+  String get notificationReplyFailed => 'לא ניתן היה לשלוח את התשובה';
 
   @override
   String get chatMessageForward => 'העברה';
@@ -6918,336 +6832,117 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get chatMessageReport => 'דווח על הודעה';
 
   @override
-  String get iarReportMessageTitle => 'דיווח על הודעה';
+  String get reportFlowTitleMessage => 'דיווח על הודעה';
 
   @override
-  String get iarThisUserFallback => 'המשתמש הזה';
+  String get reportFlowTitleUserProfile => 'דיווח על פרופיל';
 
   @override
-  String get iarModalDescription =>
-      'דווח על הפרת כלל, או מצא כלים לניהול אנשי קשר והעדפות.';
+  String get reportFlowSummaryTitle => 'בדוק את הדיווח שלך';
 
   @override
-  String get iarPathStepAriaLabel => 'במה תרצו לעזור?';
+  String get reportFlowSummarySubtitle => 'ודא שהכול נראה תקין לפני השליחה.';
 
   @override
-  String get iarCategoryStepTitle => 'איזה כלל הופר?';
-
-  @override
-  String get iarReasonStepTitle => 'איזה כלל הופר?';
-
-  @override
-  String get iarReasonSelectHint => 'בחר סיבה';
-
-  @override
-  String get iarPickAnOptionToast => 'בחר אפשרות כדי להמשיך.';
-
-  @override
-  String get iarPickARuleToast => 'בחר את הכלל שהופר.';
-
-  @override
-  String get iarPathPlatform => 'דווח על הפרת כלל הפלטפורמה';
-
-  @override
-  String get iarPathCommunity => 'דווח למנהלי הקהילה הזו';
-
-  @override
-  String get iarPathPreferenceMessage => 'אני לא אוהב את התוכן הזה';
-
-  @override
-  String get iarCategoryTargetedHarmLabel => 'איומים, הטרדה או פגיעה';
-
-  @override
-  String get iarCategoryTargetedHarmDescription =>
-      'בריונות, איומים, שנאה, אלימות, פשיטות או תוכן שדוחף לפגיעה עצמית.';
-
-  @override
-  String get iarCategorySafetyMinorsLabel => 'בטיחות ילדים או תוכן למבוגרים';
-
-  @override
-  String get iarCategorySafetyMinorsDescription =>
-      'קטינים בסיכון, תוכן למבוגרים במקום הלא נכון או התנהגות לא רצויה.';
-
-  @override
-  String get iarCategoryPrivacyIdentityLabel => 'פרטיות או התחזות';
-
-  @override
-  String get iarCategoryPrivacyIdentityDescription =>
-      'דוקסינג, מעקב, התחזות או פרופיל לא הולם.';
-
-  @override
-  String get iarCategoryDeceptionLabel => 'הונאות, תוכנות זדוניות או מידע שגוי';
-
-  @override
-  String get iarCategoryDeceptionDescription =>
-      'דיוג, הונאה, קישורים זדוניים או טענות שקריות שעלולות לגרום נזק בעולם האמיתי.';
-
-  @override
-  String get iarCategoryIllegalOtherLabel => 'פעילות בלתי חוקית או משהו אחר';
-
-  @override
-  String get iarCategoryIllegalOtherDescription =>
-      'מכירות לא חוקיות, סיוע לפעילות פלילית או הפרת כלל ברורה שאינה מתאימה לקטגוריות שלעיל.';
-
-  @override
-  String get iarReasonHarassmentLabel => 'הטרדה או איומים';
-
-  @override
-  String get iarReasonHarassmentMessageDescription =>
-      'בריונות, יצירת קשר חוזרת ובלתי רצויה, מעקב או התעללות ממוקדת.';
-
-  @override
-  String get iarReasonHateLabel => 'דברי שטנה';
-
-  @override
-  String get iarReasonHateMessageDescription =>
-      'השמצות, שפה מבזה או תקיפות נגד קבוצות מוגנות.';
-
-  @override
-  String get iarReasonViolenceLabel => 'אלימות או איומים באלימות';
-
-  @override
-  String get iarReasonViolenceDescription =>
-      'איומים אמינים, אלימות גרפית או האדרת אלימות.';
-
-  @override
-  String get iarReasonMatureContentLabel => 'תוכן למבוגרים או הטרדה';
-
-  @override
-  String get iarReasonMatureContentMessageDescription =>
-      'התנהגות לא רצויה או תוכן למבוגרים במקום הלא נכון.';
-
-  @override
-  String get iarReasonChildSafetyLabel => 'בטיחות ילדים או ניצול קטינים';
-
-  @override
-  String get iarReasonChildSafetyMessageDescription =>
-      'תוכן של פיתוי קטינים או ניצול ילדים.';
-
-  @override
-  String get iarReasonHarmfulMisinfoLabel => 'מידע שגוי מזיק';
-
-  @override
-  String get iarReasonHarmfulMisinfoDescription =>
-      'טענות שקריות שעלולות לגרום נזק בעולם האמיתי.';
-
-  @override
-  String get iarReasonSpamLabel => 'ספאם, הונאות או פישינג';
-
-  @override
-  String get iarReasonSpamMessageDescription =>
-      'ספאם המוני, הונאה, הגרלות מזויפות או שימוש לרעה בחשבון.';
-
-  @override
-  String get iarReasonMalwareLabel => 'תוכנה זדונית או קישורים מסוכנים';
-
-  @override
-  String get iarReasonMalwareDescription =>
-      'תוכנות זדוניות, גניבת פרטי כניסה או קבצים מזיקים.';
-
-  @override
-  String get iarReasonPrivacyLabel => 'הפרת פרטיות';
-
-  @override
-  String get iarReasonPrivacyDescription =>
-      'חשיפת מידע אישי (Doxxing), חשיפת מידע פרטי או מעקב אובססיבי (סטוקינג).';
-
-  @override
-  String get iarReasonImpersonationLabel => 'התחזות או מדיה מטעה';
-
-  @override
-  String get iarReasonImpersonationMessageDescription =>
-      'התחזות לאדם אחר, כולל תוכן מטעה שנוצר על ידי AI.';
-
-  @override
-  String get iarReasonIllegalLabel => 'פעילות בלתי חוקית';
-
-  @override
-  String get iarReasonIllegalDescription =>
-      'מכירות לא חוקיות, סיוע לפשיעה או פעילות בלתי חוקית.';
-
-  @override
-  String get iarReasonSelfHarmLabel => 'פגיעה עצמית או התאבדות';
-
-  @override
-  String get iarReasonSelfHarmMessageDescription =>
-      'קידום או הנחיות המעודדים פגיעה עצמית או הפרעות אכילה.';
-
-  @override
-  String get iarReasonOtherLabel => 'הפרה ברורה נוספת של הכללים';
-
-  @override
-  String iarReasonOtherDescription(String productName) {
-    return 'יש להשתמש רק אם זה מפר באופן ברור את הכללים של $productName ולא מתאים לאף אחת מהאפשרויות שלעיל.';
+  String reportFlowDisclaimer(String guidelines) {
+    return 'דווח רק על מה שאתה מאמין בכנות שמפר את הכללים. שימוש לרעה בדיווחים נוגד את $guidelines שלנו.';
   }
 
   @override
-  String iarUseChildSafetyInstead(String childSafetyReason) {
-    return 'אם מעורב קטין, השתמש ב-\"$childSafetyReason\" במקום זאת.';
+  String get reportFlowCommunityGuidelinesLink => 'הנחיות הקהילה';
+
+  @override
+  String get reportFlowDisclaimerNoLink =>
+      'דווח רק על מה שאתה מאמין בכנות שמפר את הכללים, ובבקשה אל תשלח את אותו הדיווח פעמיים.';
+
+  @override
+  String get reportFlowSelectedMessage => 'ההודעה שאתה מדווח עליה';
+
+  @override
+  String get reportFlowSelectedUser => 'הפרופיל שאתה מדווח עליו';
+
+  @override
+  String get reportFlowReportCategory => 'התשובות שלך';
+
+  @override
+  String get reportFlowSubmit => 'שליחת דיווח';
+
+  @override
+  String get reportFlowBack => 'חזרה';
+
+  @override
+  String get reportFlowNext => 'הבא';
+
+  @override
+  String get reportFlowDone => 'בוצע';
+
+  @override
+  String get reportFlowThankYouTitle => 'הדיווח נשלח';
+
+  @override
+  String get reportFlowThankYouNoReportTitle => 'תודה שהעלית את זה';
+
+  @override
+  String reportFlowThankYouBody(String productName) {
+    return 'צוות הבטיחות של $productName יבדוק את הדיווח שלך. לא נחשוף שהדיווח הגיע ממך.';
   }
 
   @override
-  String get iarSafetyNoteChildSafety =>
-      'אם זה כולל חומר פגיעה מינית בילדים (CSAM) או ניצול קטינים, שלח זאת עכשיו ואל תשתף את החומר מחדש.';
+  String get reportFlowThankYouNoReportBody =>
+      'תודה שסיפרת לנו. זה לא מפר את הכללים שלנו כשלעצמו, ולכן לא שלחנו דיווח. אם זה מכוון כלפי מישהו או כולל כינויי גנאי, דווח על כך שוב ובחר \"תוכן פוגעני או מזיק\".';
 
   @override
-  String get iarSafetyNoteSelfHarm =>
-      'אם מישהו נמצא בסכנה מיידית, צור קשר עם שירותי החירום המקומיים אם אתה יכול לעשות זאת בבטחה.';
+  String get reportFlowThankYouNoReportBodyShort =>
+      'תודה שסיפרת לנו. זה לא מפר את הכללים שלנו כשלעצמו, ולכן לא שלחנו דיווח.';
 
   @override
-  String get iarSafetyNoteViolence =>
-      'אם זהו איום ממשי ואמין, צור קשר גם עם שירותי החירום המקומיים.';
+  String get reportFlowMoreYouCanDo => 'האפשרויות שלך';
 
   @override
-  String get iarSafetyNoteTerrorism =>
-      'אם זהו איום טרור מיידי, צור קשר גם עם שירותי החירום המקומיים.';
-
-  @override
-  String get iarActionBlockUserTitle => 'לחסום משתמש זה';
-
-  @override
-  String get iarActionBlockUserDescription => 'הפסקת הודעות ובקשות חברות.';
-
-  @override
-  String get iarActionBlockUserButton => 'חסימה';
-
-  @override
-  String get iarActionCopyMessageLinkTitle => 'העתקת קישור להודעה';
-
-  @override
-  String get iarActionCopyMessageLinkDescription => 'שתף עם מנהלי קהילה.';
-
-  @override
-  String get iarActionCopyMessageLinkButton => 'העתקה';
-
-  @override
-  String get iarActionCloseDmTitle => 'סגור את ההתכתבות הזו';
-
-  @override
-  String get iarActionCloseDmDescription =>
-      'לא חוסם. אפשר לפתוח שוב מאוחר יותר.';
-
-  @override
-  String get iarActionCloseDmButton => 'סגירת צ\'אט';
-
-  @override
-  String get iarActionLeaveCommunityTitle => 'יציאה מהקהילה';
-
-  @override
-  String get iarActionLeaveCommunityDescription =>
-      'להפסיק לראות את התוכן והחברים שלה.';
-
-  @override
-  String get iarActionLeaveCommunityButton => 'יציאה';
-
-  @override
-  String get iarActionDmSettingsTitle => 'הגדרות הודעות פרטיות ובקשות חברות';
-
-  @override
-  String get iarActionDmSettingsDescription => 'שנה מי יכול להגיע אליך.';
-
-  @override
-  String get iarActionCallSettingsTitle => 'הגדרות שיחות וצ׳אטים קבוצתיים';
-
-  @override
-  String get iarActionCallSettingsDescription =>
-      'שנה מי יכול להתקשר אליך או להוסיף אותך.';
-
-  @override
-  String get iarActionOpenButton => 'פתח';
-
-  @override
-  String get iarActionDeleteMessageTitle => 'מחיקת ההודעה הזו';
-
-  @override
-  String get iarActionDeleteMessageDescription => 'הסר אותה מהערוץ עבור כולם.';
-
-  @override
-  String get iarActionDeleteMessageButton => 'מחק';
-
-  @override
-  String get iarActionDeleteMessageDeletedButton => 'נמחק';
-
-  @override
-  String get iarActionDeleteMessageDeletedTooltip => 'ההודעה הזו כבר נמחקה.';
-
-  @override
-  String get iarActionBanUserTitle => 'חסום משתמש זה';
-
-  @override
-  String get iarActionBanUserDescription => 'פתיחת דו־שיח חסימה עבור קהילה זו.';
-
-  @override
-  String get iarActionBanUserButton => 'חסימה';
-
-  @override
-  String get iarActionBanUserBannedButton => 'נחסם';
-
-  @override
-  String get iarActionBanUserBannedTooltip => 'משתמש זה כבר נחסם מהקהילה.';
-
-  @override
-  String get iarCloseDmConfirmTitle => 'סגירת צ\'אט';
-
-  @override
-  String iarCloseDmConfirmDescription(String name) {
-    return 'סגור את ההודעה הישירה הנוכחית שלך עם $name. פעולה זו לא תחסום אותם; תוכל לפתוח אותה מחדש מאוחר יותר.';
+  String reportFlowBlockName(String name) {
+    return 'חסימת $name';
   }
 
   @override
-  String get iarSuccessTitle => 'הדיווח נשלח';
+  String get reportFlowBlockDescription =>
+      'מסתיר את ההודעות שלהם ומונע מהם לשלוח לך הודעות';
 
   @override
-  String get iarSuccessBody =>
-      'צוות הבטיחות שלנו בודק את הדיווח. נשלח לך הודעה פרטית ואימייל ברגע שנגיע להחלטה.';
+  String get reportFlowBlockButton => 'חסימה';
 
   @override
-  String get iarAlreadyReportedTitle => 'דווח כבר';
+  String get reportFlowBlockedButton => 'חסום';
 
   @override
-  String get iarAlreadyReportedBody =>
-      'כבר דיווחת על ההודעה הזו. צוות הבטיחות שלנו בוחן אותה.';
+  String get reportFlowUrgentBanner =>
+      'אם מישהו נמצא בסכנה מיידית, פנה תחילה לשירותי החירום המקומיים.';
 
   @override
-  String get iarBackButton => 'חזרה';
+  String get reportFlowLoadFailed => 'לא ניתן היה לטעון את טופס הדיווח.';
 
   @override
-  String get iarContinueButton => 'המשך';
+  String get reportFlowTryAgain => 'נסה שוב';
 
   @override
-  String get iarSendReportButton => 'שליחת דיווח';
+  String get reportFlowOutdated => 'טופס הדיווח השתנה. אנא התחל מחדש.';
 
   @override
-  String get iarDoneButton => 'בוצע';
+  String get reportFlowAlreadyReported => 'כבר דיווחת על ההודעה הזו.';
 
   @override
-  String get iarCouldntSendToast => 'לא ניתן היה לשלוח את הדיווח. נסה שוב.';
+  String get reportFlowAlreadyReportedProfile =>
+      'כבר דיווחת על הפרופיל הזה היום.';
 
   @override
-  String get iarRateLimitedToast =>
-      'אתה שולח דיווחים מהר מדי. אנא המתן רגע ונסה שוב.';
+  String get reportFlowRateLimited =>
+      'אתה שולח דיווחים מהר מדי. נסה שוב מאוחר יותר.';
 
   @override
-  String get iarReportSentToast => 'הדיווח נשלח. צוות הבטיחות שלנו יבדוק אותו.';
+  String get reportFlowSubmitFailed => 'הדיווח שלך לא נשלח. נסה שוב.';
 
   @override
-  String iarBlockUserConfirmDescription(String name) {
-    return 'לחסום את $name? הם לא יוכלו לשלוח לך הודעות או בקשות חברות. תוכל לבטל את החסימה שלהם מאוחר יותר.';
-  }
-
-  @override
-  String get iarBlockUserFailedToast => 'לא ניתן לחסום משתמש זה. נסה שוב.';
-
-  @override
-  String get iarCloseDmSuccessToast => 'ההודעה הישירה נסגרה.';
-
-  @override
-  String get iarCloseDmFailedToast =>
-      'לא ניתן היה לסגור את ההודעה הישירה הזו. אנא נסה שוב.';
-
-  @override
-  String get iarLeaveCommunityFailedToast =>
-      'לא ניתן היה לעזוב קהילה זו. אנא נסה שוב.';
+  String get reportFlowAccountSetupRequired =>
+      'כדי לשלוח דיווחים, תבע את החשבון שלך ואמת את כתובת האימייל שלך.';
 
   @override
   String get chatMessageSuppressEmbeds => 'הסתר הטמעות';
@@ -7456,7 +7151,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get chatVideoPlaybackFailed => 'לא ניתן להפעיל את הסרטון הזה.';
 
   @override
-  String get chatImageCouldNotLoad => 'Could not load this image.';
+  String get chatImageCouldNotLoad => 'לא ניתן לטעון תמונה זו.';
 
   @override
   String get composerAutocompleteRoleMentionDescription =>
@@ -7474,21 +7169,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get composerAutocompleteOptionalArgumentsHeading =>
       'ארגומנטים אופציונליים';
-
-  @override
-  String get composerAutocompleteChannelsHeading => 'ערוצים';
-
-  @override
-  String get composerAutocompleteMembersHeading => 'חברים';
-
-  @override
-  String get composerAutocompleteUsersHeading => 'משתמשים';
-
-  @override
-  String get composerAutocompleteMentionsHeading => 'אזכורים';
-
-  @override
-  String get composerAutocompleteRolesHeading => 'תפקידים';
 
   @override
   String get composerAutocompleteMediaHeading => 'מדיה';
@@ -7735,14 +7415,18 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'נתוני תבנית הקהילה אינם חוקיים או פגומים.';
 
   @override
-  String get addGuildPackInstalled => 'החבילה הותקנה בהצלחה.';
-
-  @override
   String get chatMessageRemoveAllReactionsConfirmTitle => 'הסר את כל התגובות';
 
   @override
   String get chatMessageRemoveAllReactionsConfirmDescription =>
       'האם אתה בטוח שברצונך להסיר את כל התגובות מההודעה הזו?';
+
+  @override
+  String get chatMessagePinConfirm => 'הצמדה';
+
+  @override
+  String get chatMessagePinConfirmDescription =>
+      'הצמד את ההודעה הזו לערוץ כדי שכולם יוכלו לראות אותה.';
 
   @override
   String get chatMessageUnpinConfirmTitle => 'בטל הצמדת הודעה';
@@ -7822,9 +7506,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get channelDetailsDeleteChannel => 'מחיקת ערוץ';
-
-  @override
-  String get channelSettingsCategorySettingsTitle => 'הגדרות קטגוריה';
 
   @override
   String get channelSettingsEditCategory => 'עריכת קטגוריה';
@@ -8023,15 +7704,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'נסו שוב בעוד רגע.';
 
   @override
-  String get channelSettingsResetSlider => 'איפוס המחוון לערך ברירת המחדל';
-
-  @override
-  String get channelSettingsAdvanced => 'מתקדם';
-
-  @override
-  String get channelSettingsMatureContentOverride => 'עקיפת תוכן בוגר';
-
-  @override
   String channelSettingsMatureContentSectionDescription(String scopeLevel) {
     return 'שנה את ההגדרה ברמת $scopeLevel עבור ערוץ זה. תוכן למבוגרים מוצג מאחורי שער לפני הכניסה.';
   }
@@ -8064,12 +7736,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   }
 
   @override
-  String get channelSettingsMatureContentCategorySource => 'קטגוריה';
-
-  @override
-  String get channelSettingsMatureContentCommunitySource => 'קהילה';
-
-  @override
   String get channelSettingsMatureContentCategoryScope => 'קטגוריה';
 
   @override
@@ -8088,20 +7754,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get channelSettingsContentWarningDefault =>
       'הודעה זו מכילה תוכן רגיש.';
-
-  @override
-  String channelSettingsPermissionsNeedManageChannels(
-    String manageChannelsPermissionLabel,
-  ) {
-    return 'עליך להחזיק בהרשאת \"$manageChannelsPermissionLabel\" כדי לערוך הרשאות אלה.';
-  }
-
-  @override
-  String channelSettingsPermissionsNeedManageRoles(
-    String manageRolesPermissionLabel,
-  ) {
-    return 'אתה צריך את ההרשאה \"$manageRolesPermissionLabel\" כדי לערוך הרשאות אלה.';
-  }
 
   @override
   String get channelSettingsUnknownRole => 'תפקיד לא ידוע';
@@ -8174,9 +7826,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'חיפוש תפקידים או חברים…';
 
   @override
-  String get channelSettingsPermissionsRolesAndMembers => 'תפקידים וחברים';
-
-  @override
   String get channelSettingsDeleteInvite => 'מחיקת הזמנה';
 
   @override
@@ -8247,9 +7896,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String channelSettingsWebhooksCreatedBy(String creator, String date) {
     return 'נוצר על ידי $creator בתאריך $date';
   }
-
-  @override
-  String get channelSettingsWebhooksUnknownUser => 'משתמש לא ידוע';
 
   @override
   String get channelSettingsWebhooksAvatar => 'תמונת פרופיל';
@@ -8403,9 +8049,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get channelDetailsPinsEndReached => 'הגעת לקצה';
-
-  @override
-  String get channelHeaderOpenDetails => 'פתח פרטי ערוץ';
 
   @override
   String get channelHeaderPinnedMessages => 'הודעות מוצמדות';
@@ -8858,9 +8501,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get groupDmEditTitle => 'עריכת קבוצה';
 
   @override
-  String get groupDmEditDetailsTooltip => 'עריכת פרטי קבוצה';
-
-  @override
   String get groupDmGroupName => 'שם הקבוצה';
 
   @override
@@ -8911,13 +8551,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get groupDmUnsupportedIconFormatBody => 'סוג קובץ לא נתמך.';
 
   @override
-  String get groupDmCouldntProcessImage => 'לא ניתן לעבד את התמונה';
-
-  @override
-  String get groupDmFailedToProcessCroppedImage =>
-      'עיבוד התמונה החתוכה נכשל. יש לנסות שוב.';
-
-  @override
   String get groupDmInvalidImage => 'תמונה לא חוקית';
 
   @override
@@ -8944,17 +8577,11 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'לא ניתן היה להוסיף את החבר הזה לקבוצה. יש לנסות שוב.';
 
   @override
-  String get groupDmAddFailed => 'לא ניתן להוסיף לקבוצה';
-
-  @override
   String get groupDmGroupFull =>
       'הקבוצה הזו מלאה. הסר מישהו לפני הוספת אנשים נוספים.';
 
   @override
   String get groupDmRateLimited => 'אתה מהיר מדי. המתן רגע ונסה שוב.';
-
-  @override
-  String get groupDmCreateInviteFailed => 'לא ניתן ליצור קישור הזמנה';
 
   @override
   String get groupDmCreateInviteFailedBody =>
@@ -9153,9 +8780,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get userSettingsSearchPlaceholder => 'חפש הגדרות...';
 
   @override
-  String get userSettingsSearchFieldLabel => 'חיפוש הגדרות';
-
-  @override
   String get userSettingsSearchClear => 'נקה חיפוש';
 
   @override
@@ -9233,14 +8857,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get giftSettingsCopied => 'הועתק';
 
   @override
-  String get giftSettingsGiftUrlCopied =>
-      'כתובת ה-URL של המתנה הועתקה ללוח הגזירים!';
-
-  @override
-  String get giftSettingsGiftUrlCopyFailed =>
-      'לא ניתן היה להעתיק את כתובת ה-URL של המתנה';
-
-  @override
   String giftSettingsPurchasedDate(String date) {
     return 'נרכש ב-$date';
   }
@@ -9308,9 +8924,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get premiumOneMonthGift => 'מתנה לחודש אחד';
 
   @override
-  String get premiumMostPopular => 'הפופולרי ביותר';
-
-  @override
   String get premiumScrollPrompt =>
       'גלול למטה כדי לראות את כל ההטבות הכלולות ב-Reverb';
 
@@ -9345,26 +8958,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get premiumReadyToBuyGift => 'מוכנים לקנות מתנה?';
 
   @override
-  String premiumMonthlyPrice(String price) {
-    return 'חודשי $price';
-  }
-
-  @override
-  String premiumYearlyPrice(String price) {
-    return 'שנתי $price';
-  }
-
-  @override
-  String premiumOneYearPrice(String price) {
-    return 'שנה אחת ב- $price';
-  }
-
-  @override
-  String premiumOneMonthPrice(String price) {
-    return 'חודש 1 $price';
-  }
-
-  @override
   String get premiumManageSubscription => 'ניהול מינוי';
 
   @override
@@ -9384,9 +8977,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get premiumCancelSubscriptionConfirm => 'ביטול מינוי';
 
   @override
-  String get premiumKeepSubscription => 'השארת המנוי';
-
-  @override
   String get premiumPurchaseHistoryTitle => 'היסטוריית רכישות';
 
   @override
@@ -9395,12 +8985,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get premiumManagePaymentMethods => 'ניהול אמצעי תשלום';
-
-  @override
-  String get premiumBillingHistory => 'היסטוריית חיובים';
-
-  @override
-  String get premiumSelfServeRefundTitle => 'החזר כספי בשירות עצמי';
 
   @override
   String get premiumSelfServeRefundButton => 'החזר רכישה אחרונה';
@@ -9436,12 +9020,15 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   }
 
   @override
-  String get premiumComparisonFeatureColumn => 'תכונה';
+  String get premiumGiftGraceEnded =>
+      'זמן המתנה שלך הסתיים. הירשם כדי להמשיך לקבל את Plutonium.';
 
   @override
-  String premiumDisclaimerPurchased(String terms, String privacy) {
-    return 'ברכישה, אישרת את ה$terms ואת ה$privacy שלנו.';
-  }
+  String get premiumGiftTimeAddedAfterSubscription =>
+      'החיוב יתבצע כעת. יתרת זמן המתנה שלך תתווסף לאחר תקופת התשלום, כך שלא תאבד דבר.';
+
+  @override
+  String get premiumComparisonFeatureColumn => 'תכונה';
 
   @override
   String get premiumDisclaimerRefund =>
@@ -9461,12 +9048,12 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'משהו השתבש במהלך התחלת התשלום. יש לנסות שוב בעוד רגע.';
 
   @override
-  String get premiumGiftSubscriptionBlocksRecurring =>
-      'כרגע יש לך מנוי מתנה. הוא לא יתחדש. באפשרותך לממש קודי מתנה נוספים כדי להאריך אותו. ניתן להתחיל מנויים חוזרים לאחר שתקופת המתנה שלך תסתיים.';
-
-  @override
   String get premiumPlanUnavailable =>
       'התוכנית הזו אינה זמינה. יש ליצור קשר עם התמיכה.';
+
+  @override
+  String get premiumPlanUnavailableSelfHosted =>
+      'התוכנית הזו אינה זמינה. יש ליצור קשר עם מנהלי המערכת של המופע הזה.';
 
   @override
   String get premiumCompletePaymentTitle => 'השלם תשלום';
@@ -9521,8 +9108,13 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get premiumPurchasesDisabledTitle => 'רכישות אינן זמינות';
 
   @override
-  String get premiumPurchasesDisabledBody =>
-      'הרכישות מושבתות עבור חשבון זה. צור קשר עם support@echowire.org אם זה נראה שגוי.';
+  String premiumPurchasesDisabledBody(String supportEmail) {
+    return 'הרכישות מושבתות עבור חשבון זה. צור קשר עם $supportEmail אם זה נראה שגוי.';
+  }
+
+  @override
+  String get premiumPurchasesDisabledBodySelfHosted =>
+      'הרכישות מושבתות עבור חשבון זה. צור קשר עם מנהלי המערכת של המופע הזה אם זה נראה שגוי.';
 
   @override
   String get premiumClaimAccountToPurchase => 'אמת את חשבונך כדי לרכוש Reverb.';
@@ -9530,24 +9122,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get premiumVerifyEmailToPurchase =>
       'עליך לאמת את כתובת הדוא\"ל שלך לפני שתוכל לרכוש Reverb.';
-
-  @override
-  String get premiumPerkCustomUsernameTag => 'תגית שם משתמש מותאמת אישית';
-
-  @override
-  String get premiumPerkPerCommunityProfiles => 'פרופילים לכל קהילה';
-
-  @override
-  String get premiumPerkMessageScheduling => 'תזמון הודעות';
-
-  @override
-  String get premiumPerkProfileBadge => 'תג פרופיל';
-
-  @override
-  String get premiumPerkCustomVideoBackgrounds => 'רקעים מותאמים אישית לווידאו';
-
-  @override
-  String get premiumPerkEntranceSounds => 'צלילי כניסה';
 
   @override
   String get premiumPerkCommunities => 'קהילות';
@@ -9562,17 +9136,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get premiumPerkFileUploadSize => 'גודל קובץ להעלאה';
 
   @override
-  String get premiumPerkEmojiStickerPacks => 'חבילות אימוג\'י ומדבקות';
-
-  @override
-  String get premiumPerkSavedMedia => 'מדיה שמורה';
-
-  @override
   String get premiumPerkUseAnimatedEmojis => 'שימוש באימוג\'י מונפשים';
-
-  @override
-  String get premiumPerkGlobalEmojiStickerAccess =>
-      'גישה גלובלית לאמוג\'י ומדבקות';
 
   @override
   String get premiumPerkVideoQuality => 'איכות וידאו';
@@ -9585,13 +9149,182 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get premiumPerkEarlyAccess => 'גישה מוקדמת לתכונות חדשות';
 
   @override
-  String get premiumPerkCustomThemes => 'עיצובים מותאמים אישית';
-
-  @override
   String get premiumPerkVideoQualityRestricted => '720p/30fps';
 
   @override
   String get premiumPerkVideoQualityStock => 'עד 4K/60fps';
+
+  @override
+  String storePlutoniumPriceLine(String monthly, String yearly) {
+    return '$monthly או $yearly';
+  }
+
+  @override
+  String get storePlutoniumMonthSuffix => '/חודש';
+
+  @override
+  String get storePlutoniumYearSuffix => '/שנה';
+
+  @override
+  String get storePlutoniumPriceOr => 'או';
+
+  @override
+  String get storePlutoniumEmojiTitle => 'האימוג\'ים שלך, בכל מקום';
+
+  @override
+  String get storePlutoniumEmojiBody =>
+      'הבא אמוג\'יז ומדבקות מותאמים אישית מכל אחת מהקהילות שלך לכל צ\'אט וקהילה שבהם אתה נמצא.';
+
+  @override
+  String get storePlutoniumProfileTitle => 'פרופיל שיבלוט';
+
+  @override
+  String get storePlutoniumProfileBody =>
+      'קבל תמונת פרופיל ובאנר מונפשים, תג מנוי, תגית בת ארבע ספרות לבחירתך אחרי שם המשתמש שלך*, ופרופיל נפרד לכל קהילה.';
+
+  @override
+  String get storePlutoniumFilesTitle => 'שלח קבצים עד 500 מ״ב';
+
+  @override
+  String get storePlutoniumFilesBody =>
+      'שתף סרטונים באורך מלא וקבצים גדולים מבלי לכווץ אותם קודם. חשבונות חינמיים יכולים לשלוח עד 25 מגה-בייט.';
+
+  @override
+  String get storePlutoniumCompareTitle => 'השווה בין חינם ל-Plutonium';
+
+  @override
+  String get storePlutoniumCompareMobileNote =>
+      'לא כל התכונות האלה זמינות באפליקציה לנייד. חלקן זמינות רק במחשב שולחני.';
+
+  @override
+  String get storePlutoniumNotAvailable => 'לא זמין';
+
+  @override
+  String get storePlutoniumAvailable => 'זמינה';
+
+  @override
+  String get storePlutoniumCompareTag =>
+      'בחר את המספר בן 4 הספרות אחרי שם המשתמש שלך*';
+
+  @override
+  String get storePlutoniumCompareProfile => 'פרופיל נפרד לכל קהילה';
+
+  @override
+  String get storePlutoniumCompareBadge => 'תג מנוי בפרופיל שלך';
+
+  @override
+  String get storePlutoniumCompareBackgrounds =>
+      'רקעים לשיחות וידאו שתוכל לשמור';
+
+  @override
+  String get storePlutoniumCompareCommunities => 'קהילות שתוכל להצטרף אליהן';
+
+  @override
+  String get storePlutoniumCompareCharacters => 'תווים בהודעה בודדת';
+
+  @override
+  String get storePlutoniumCompareBookmarks => 'הודעות שניתן לשמור בסימניות';
+
+  @override
+  String get storePlutoniumCompareUpload => 'הקובץ הגדול ביותר שניתן להעלות';
+
+  @override
+  String get storePlutoniumCompareSavedMedia =>
+      'פריטי מדיה שתוכל לשמור למועד מאוחר יותר';
+
+  @override
+  String get storePlutoniumCompareAnimatedEmoji =>
+      'השתמש באימוג\'י מונפשים בהודעות';
+
+  @override
+  String get storePlutoniumCompareCustomEmoji =>
+      'השתמש באימוג\'י ומדבקות מותאמים אישית בכל קהילה';
+
+  @override
+  String get storePlutoniumCompareVideo => 'איכות שיחות וידאו ושיתוף מסך';
+
+  @override
+  String get storePlutoniumCompareAvatar => 'תמונת פרופיל וכרזת פרופיל מונפשות';
+
+  @override
+  String get storePlutoniumCompareEarlyAccess => 'גישה מוקדמת לתכונות חדשות';
+
+  @override
+  String get storePlutoniumCompareThemes =>
+      'ערכות נושא מותאמות אישית לאפליקציה';
+
+  @override
+  String get storePlutoniumVideoFree => 'עד 720p ב-30 FPS';
+
+  @override
+  String get storePlutoniumVideoPlutonium => 'עד 4K ב-60 FPS';
+
+  @override
+  String get storePlutoniumTagFootnote =>
+      'ניתן לבחור תגית שאין לאף אחד אחר עם אותו שם משתמש. שמות משתמש אינם תלויי רישיות, כך ש-Mina#4821 ו-mina#4821 נחשבים זהים. התגית #0000 שמורה לחברי Fluxer Visionary.';
+
+  @override
+  String get storePlutoniumLearnVisionary => 'למידע נוסף על Visionary.';
+
+  @override
+  String get storePlutoniumDonatePrompt =>
+      'רק רוצה לתמוך בפיתוח הקוד הפתוח של Fluxer? ';
+
+  @override
+  String get storePlutoniumDonateLink => 'לתרום במקום זאת.';
+
+  @override
+  String get storePlutoniumHighlightsLead => 'המינוי מממן את Fluxer ופותח';
+
+  @override
+  String get storePlutoniumHighlightEmoji =>
+      'אימוג\'י ומדבקות מותאמים אישית בכל צ\'אט';
+
+  @override
+  String get storePlutoniumHighlightProfile =>
+      'פרופיל מונפש, תג ומספר 4-ספרתי מותאם אישית';
+
+  @override
+  String get storePlutoniumHighlightFiles => 'העלאות עד 500 מגה-בייט';
+
+  @override
+  String get storePlutoniumHighlightMessages =>
+      'שליחת הודעות באורך של עד 4,000 תווים';
+
+  @override
+  String get storePlutoniumHighlightCommunityProfile => 'פרופיל נפרד לכל קהילה';
+
+  @override
+  String get storePlutoniumHighlightsMore => 'ועוד';
+
+  @override
+  String get storePlutoniumRenewsThroughPlay =>
+      'מתחדש אוטומטית דרך Google Play עד שתבטל.';
+
+  @override
+  String get storePlutoniumRenewsThroughAppStore =>
+      'מתחדש אוטומטית דרך App Store עד לביטול.';
+
+  @override
+  String get storePlutoniumAlreadySubscribed =>
+      'כבר יש לך מנוי ל-Fluxer Plutonium.';
+
+  @override
+  String storePlutoniumSavePercent(int percent) {
+    return 'חסוך $percent%';
+  }
+
+  @override
+  String get storePlutoniumWaiting =>
+      'הרכישה התקבלה. Plutonium יופיע כאן לאחר הפעלתו.';
+
+  @override
+  String get storePlutoniumUnavailable =>
+      'מינויים בתוך האפליקציה עדיין אינם זמינים במכשיר זה.';
+
+  @override
+  String get storePlutoniumVisionaryStatus =>
+      'Visionary כבר כולל גישה קבועה, כך שאין צורך במנוי חוזר.';
 
   @override
   String get userSettingsNavPrivacyDashboard => 'לוח הבקרה של פרטיות';
@@ -9722,11 +9455,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get audioAndVideoMicTestStopLabel => 'עצור בדיקת מיקרופון';
 
   @override
-  String audioAndVideoMicTestPermissionRequired(String productName) {
-    return '$productName דורש גישת מיקרופון כדי לבדוק את הקלט שלך.';
-  }
-
-  @override
   String get audioAndVideoCameraLabel => 'מצלמה';
 
   @override
@@ -9760,23 +9488,8 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get audioAndVideoFrameRate60Label => '60 פריימים לשנייה';
 
   @override
-  String audioAndVideoHigherQualityRequiresPremium(String premiumProductName) {
-    return '1080p ו-60 FPS דורשים את $premiumProductName.';
-  }
-
-  @override
   String get audioAndVideoInstanceVideoQualityLimit =>
       'השרת הנוכחי מאפשר שיתוף מסך עד 720p ב-30 FPS.';
-
-  @override
-  String audioAndVideoMicrophonePermissionRequired(String productName) {
-    return '$productName זקוק לגישה למיקרופון כדי להציג את המכשירים שלך.';
-  }
-
-  @override
-  String audioAndVideoCameraPermissionRequired(String productName) {
-    return 'ל־$productName דרושה גישה למצלמה כדי להציג את המכשירים שלך.';
-  }
 
   @override
   String get audioAndVideoSkipHideOwnCameraConfirmLabel =>
@@ -9807,14 +9520,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get notificationsEnableDesktopNotificationsDescription =>
       'משתמש במרכז ההתראות של מערכת ההפעלה. לבקרת התראות לפי ערוץ/קהילה, לחצו לחיצה ימנית על סמל קהילה ופתחו את הגדרות ההתראות.';
-
-  @override
-  String get notificationsEnableBrowserNotificationsLabel =>
-      'הפעלת התראות בדפדפן';
-
-  @override
-  String get notificationsEnableBrowserNotificationsDescription =>
-      'קבלו התראות כשאתם מקבלים הודעות. ייתכן שתצטרכו לאפשר התראות בהגדרות הדפדפן שלכם. כדי לשלוט בהתראות עבור ערוץ/קהילה ספציפיים, לחצו לחיצה ימנית על סמל קהילה ופתחו את הגדרות ההתראות.';
 
   @override
   String get notificationsPushInactiveTimeoutLabel =>
@@ -10050,6 +9755,46 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'לא ניתן היה להפעיל התראות. אפשר הרשאת התראות כדי להמשיך.';
 
   @override
+  String get notificationsPushRelaySectionTitle => 'ממסר התראות דחיפה';
+
+  @override
+  String notificationsPushRelaySectionDescription(String pushProvider) {
+    return '$pushProvider מספקת התראות דחיפה רק דרך השירות שלה, ולכן ההתראות למכשיר הזה עוברות דרך הממסר של Fluxer.';
+  }
+
+  @override
+  String get notificationsPushRelayConsentLabel =>
+      'שימוש בממסר הדחיפה של Fluxer';
+
+  @override
+  String get notificationsPushRelayConsentDescription =>
+      'כיבוי האפשרות הזו מסיר את רישום הדחיפה של המכשיר, והוא יפסיק לקבל התראות דחיפה.';
+
+  @override
+  String get pushRelayConsentTitle => 'ממסר התראות דחיפה';
+
+  @override
+  String pushRelayConsentDescription(String pushProvider) {
+    return '$pushProvider מספקת התראות דחיפה רק דרך השירות שלה, ולכן ההתראות למכשיר הזה עוברות דרך הממסר של Fluxer.';
+  }
+
+  @override
+  String get pushRelayConsentNoticePrefix => 'יש לאשר את ';
+
+  @override
+  String get pushRelayConsentNoticeLink => 'הודעת הפרטיות של ממסר הדחיפה';
+
+  @override
+  String get pushRelayConsentNoticeSuffix =>
+      ' כדי להפעיל התראות דחיפה במכשיר הזה. צריך לאשר פעם אחת בלבד לכל מכשיר.';
+
+  @override
+  String get pushRelayConsentAgree => 'אישור והמשך';
+
+  @override
+  String get pushRelayConsentDecline => 'לא עכשיו';
+
+  @override
   String get userSettingsNavLanguageAndTime => 'שפה ושעה';
 
   @override
@@ -10058,9 +9803,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get languageAndTimeLanguageSectionDescription =>
       'בחר את השפה שתשמש בכל האפליקציה';
-
-  @override
-  String get languageAndTimeOpenLanguageSettings => 'פתח הגדרות שפה';
 
   @override
   String get languageAndTimeTimeFormatSectionTitle => 'פורמט שעה';
@@ -10117,6 +9859,46 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get defaultAppsWebBrowserExternal => 'דפדפן חיצוני';
+
+  @override
+  String get userSettingsNavAppIcon => 'סמל האפליקציה';
+
+  @override
+  String get appIconSectionTitle => 'סמל האפליקציה';
+
+  @override
+  String get appIconSectionDescription =>
+      'בחר איזה אייקון יופיע במסך הבית שלך.';
+
+  @override
+  String get appIconOptionDefault => 'ברירת מחדל';
+
+  @override
+  String get appIconOptionStarfield => 'שדה כוכבים';
+
+  @override
+  String get appIconOptionSweden => 'שוודיה';
+
+  @override
+  String get appIconOptionGreyscale => 'Greyscale';
+
+  @override
+  String get appIconOptionRainbow => 'Rainbow';
+
+  @override
+  String get appIconOptionWaves => 'Waves';
+
+  @override
+  String get appIconOptionChromaticAberration => 'Chromatic aberration';
+
+  @override
+  String get appIconOptionDefaultBrutalist => 'Brutalist';
+
+  @override
+  String get appIconOptionGreyscaleBrutalist => 'Greyscale brutalist';
+
+  @override
+  String get appIconUnsupported => 'שינוי סמל האפליקציה אינו זמין במכשיר זה.';
 
   @override
   String get userSettingsNavAdvanced => 'מתקדם';
@@ -10280,10 +10062,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get advancedSettingTrustAllLinksLabel =>
       'אפשר את כל הקישורים החיצוניים';
-
-  @override
-  String get advancedSettingTrustAllLinksDescription =>
-      'דלג על אזהרת הקישור החיצוני עבור כל הדומיינים';
 
   @override
   String get advancedSettingSearchEnginesLabel => 'מנועי חיפוש';
@@ -10479,27 +10257,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get advancedSettingDeveloperModeDescription => 'הפעל מצב מפתחים';
-
-  @override
-  String get advancedSettingSearchEngineGoogle => 'גוגל';
-
-  @override
-  String get advancedSettingSearchEngineDuckDuckGo => 'DuckDuckGo';
-
-  @override
-  String get advancedSettingSearchEngineBing => 'בינג';
-
-  @override
-  String get advancedSettingSearchEngineGoogleLens => 'Google Lens';
-
-  @override
-  String get advancedSettingSearchEngineTinEye => 'TinEye';
-
-  @override
-  String get advancedSettingTranslatorGoogle => 'תרגום Google';
-
-  @override
-  String get advancedSettingTranslatorDeepL => 'DeepL';
 
   @override
   String get advancedSettingDefaultSearchEngineLabel => 'מנוע חיפוש ברירת מחדל';
@@ -10774,6 +10531,9 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get quickSwitcherSectionTextChannels => 'ערוצי טקסט';
 
   @override
+  String get quickSwitcherSectionThreads => 'Threads';
+
+  @override
   String get quickSwitcherSectionVoiceChannels => 'ערוצי קול';
 
   @override
@@ -10812,6 +10572,12 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get savedMessagesRemoveTooltip => 'הסר סימנייה';
+
+  @override
+  String get savedMessagesAddedToast => 'נוסף לסימניות';
+
+  @override
+  String get savedMessagesRemovedToast => 'הוסר מהסימניות';
 
   @override
   String get quickSwitcherMentionsLabel => 'אזכורים';
@@ -10945,7 +10711,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get instanceUrlHelper =>
-      'Use echowire.org for the official instance, or the exact URL of a self-hosted instance.';
+      'השתמש ב-fluxer.app עבור המופע הרשמי, או בכתובת ה-URL המדויקת של מופע באירוח עצמי.';
 
   @override
   String get resetToDefaultInstance => 'אפס ל-echowire';
@@ -10958,6 +10724,10 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get instanceConnectFailed => 'נכשל החיבור למופע';
+
+  @override
+  String get instanceInvalidDiscoveryResponse =>
+      'This client cannot connect to this instance. The instance is likely out of date. If the instance is up to date, try updating this app.';
 
   @override
   String get recentInstances => 'מופעים אחרונים';
@@ -11157,6 +10927,12 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get authHidePassword => 'הסתר סיסמה';
 
   @override
+  String get authCheckStillWorking => 'עדיין עובדים על זה…';
+
+  @override
+  String get authVerificationFailed => 'לא ניתן להשלים את האימות. נסה שוב.';
+
+  @override
   String get chatLoadingMessages => 'טוען הודעות';
 
   @override
@@ -11326,6 +11102,19 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get guildNavbarChannelTypeSelection => 'בחירת סוג ערוץ';
+
+  @override
+  String get guildNavbarPrivateChannel => 'Private channel';
+
+  @override
+  String get guildNavbarPrivateChannelDescription =>
+      'Only selected members and roles will be able to view this channel.';
+
+  @override
+  String get guildNavbarAddMembersOrRoles => 'Add members or roles';
+
+  @override
+  String get guildNavbarAddMembersOrRolesHint => 'Search members or roles';
 
   @override
   String get guildNavbarCreateCategory => 'יצירת קטגוריה';
@@ -11513,9 +11302,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get guildMenuHideMutedChannels => 'הסתר ערוצים מושתקים';
 
   @override
-  String get guildMenuReportCommunity => 'דווח על הקהילה';
-
-  @override
   String get guildMenuDebugCommunity => 'מידע על קהילה לניפוי שגיאות';
 
   @override
@@ -11548,9 +11334,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get guildMenuSettingsWebhooks => 'ווב-הוקס';
 
   @override
-  String get guildMenuSettingsCustomInviteUrl => 'כתובת הזמנה מותאמת אישית';
-
-  @override
   String get guildMenuSettingsDiscovery => 'גילוי';
 
   @override
@@ -11573,32 +11356,13 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get guildSettingsOverviewIconTitle => 'אייקון';
 
   @override
-  String get guildSettingsUploadImage => 'העלה תמונה';
-
-  @override
   String get guildSettingsOverviewBannerTitle => 'באנר';
-
-  @override
-  String get guildSettingsOverviewBannerHint => 'העלה באנר לשרת שלך.';
 
   @override
   String get guildSettingsOverviewNameTitle => 'שם';
 
   @override
   String get guildSettingsOverviewNameHint => 'הקהילה המדהימה שלי';
-
-  @override
-  String get guildSettingsOverviewStatsTitle => 'סטטיסטיקה';
-
-  @override
-  String get guildSettingsOverviewMembers => 'חברים';
-
-  @override
-  String get guildSettingsOverviewOnline => 'מחובר';
-
-  @override
-  String get guildSettingsRolesDescription =>
-      'השתמש בתפקידים כדי לקבץ חברים ולהקצות הרשאות.';
 
   @override
   String get guildSettingsCreateRole => 'יצירת תפקיד';
@@ -11674,28 +11438,13 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get guildSettingsRolesComfyLayout => 'פריסה נוחה';
 
   @override
-  String get guildSettingsRolesSwitchToDenseLayout => 'החלף לתצוגה דחוסה';
-
-  @override
-  String get guildSettingsRolesSwitchToComfyLayout => 'החלף לתצוגה נוחה';
-
-  @override
   String get guildSettingsRolesSingleColumn => 'עמודה בודדת';
 
   @override
   String get guildSettingsRolesTwoColumns => 'שתי עמודות';
 
   @override
-  String get guildSettingsRolesSwitchToSingleColumn => 'החלף לתצוגה בטור יחיד';
-
-  @override
-  String get guildSettingsRolesSwitchToTwoColumns => 'הצג בשתי עמודות';
-
-  @override
   String get guildSettingsRolesNoPermissionsFound => 'לא נמצאו הרשאות';
-
-  @override
-  String get guildSettingsRolesCustomHoistOrder => 'סדר הצגה מותאם אישית';
 
   @override
   String get guildSettingsRolesHoistOrder => 'סדר הצגה';
@@ -11710,10 +11459,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get guildSettingsRolesNoHoistedRoles =>
       'אין תפקידים מועדפים. הפעל/י את האפשרות \"הצג תפקיד זה בנפרד\" בתפקיד כדי לראות אותו כאן.';
-
-  @override
-  String get guildSettingsRolesLockedTooltip =>
-      'אינך יכול/ה לערוך תפקיד זה מכיוון שהוא התפקיד הגבוה ביותר שלך או מעליך';
 
   @override
   String guildSettingsRolesNeedManageRolesPermission(String permission) {
@@ -11796,9 +11541,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get permissionCategoryAudioVideo => 'שמע ווידאו';
-
-  @override
-  String get permissionUnknown => 'הרשאה לא ידועה';
 
   @override
   String get permissionAdministrator => 'מנהל מערכת';
@@ -11918,34 +11660,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'יצירה, עריכה או מחיקה של Webhooks.';
 
   @override
-  String get permissionSendMessagesInThreads => 'Send messages in threads';
-
-  @override
-  String get permissionSendMessagesInThreadsDescription =>
-      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
-
-  @override
-  String get permissionCreatePublicThreads => 'Create public threads';
-
-  @override
-  String get permissionCreatePublicThreadsDescription =>
-      'Members can start threads that everyone in the channel can see, and create forum posts.';
-
-  @override
-  String get permissionCreatePrivateThreads => 'Create private threads';
-
-  @override
-  String get permissionCreatePrivateThreadsDescription =>
-      'Members can start threads that only invited people can see.';
-
-  @override
-  String get permissionManageThreads => 'Manage threads and posts';
-
-  @override
-  String get permissionManageThreadsDescription =>
-      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
-
-  @override
   String get permissionSendMessages => 'שליחת הודעות';
 
   @override
@@ -12054,17 +11768,356 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get permissionSetVoiceRegion => 'הגדר אזור קולי';
 
   @override
-  String guildSettingsEmojiSlotInfo(int staticCount, int animatedCount) {
-    return '$staticCount אימוג\'י סטטיים, $animatedCount אימוג\'י מונפשים בשימוש';
+  String get permissionManageThreads => 'Manage threads and posts';
+
+  @override
+  String get permissionManageThreadsDescription =>
+      'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.';
+
+  @override
+  String get permissionCreatePublicThreads => 'Create public threads';
+
+  @override
+  String get permissionCreatePublicThreadsDescription =>
+      'Members can start threads that everyone in the channel can see, and create forum posts.';
+
+  @override
+  String get permissionCreatePrivateThreads => 'Create private threads';
+
+  @override
+  String get permissionCreatePrivateThreadsDescription =>
+      'Members can start threads that only invited people can see.';
+
+  @override
+  String get permissionSendMessagesInThreads => 'Send messages in threads';
+
+  @override
+  String get permissionSendMessagesInThreadsDescription =>
+      'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.';
+
+  @override
+  String get threadErrorArchived => 'This thread is archived.';
+
+  @override
+  String get threadErrorLocked =>
+      'This thread is locked. Only moderators can post or reopen it.';
+
+  @override
+  String get threadErrorAlreadyCreated =>
+      'A thread already exists for this message.';
+
+  @override
+  String get threadErrorMaxActiveThreads =>
+      'This community has reached its limit of active threads.';
+
+  @override
+  String get threadErrorMaxMembers =>
+      'This thread has reached its member limit.';
+
+  @override
+  String get threadErrorMaxPinnedPosts =>
+      'Only one post can be pinned in this forum.';
+
+  @override
+  String get threadErrorMaxForumTags => 'A forum can have at most 20 tags.';
+
+  @override
+  String get threadErrorTagNamesUnique => 'Tag names must be unique.';
+
+  @override
+  String get threadErrorNoTagsForEveryone =>
+      'Add a tag everyone can use before requiring tags.';
+
+  @override
+  String get threadErrorTagRequired => 'Pick at least one tag for this post.';
+
+  @override
+  String get threadErrorUnknownTag =>
+      'One of the selected tags no longer exists.';
+
+  @override
+  String get threadErrorInvalidNotificationSettings =>
+      'Those notification settings are not valid for a thread.';
+
+  @override
+  String get threadErrorSearchIndexNotReady =>
+      'Posts are still being indexed. Try again in a moment.';
+
+  @override
+  String get threadErrorInvalidChannelType =>
+      'This action is not available in this channel.';
+
+  @override
+  String get threadCreate => 'Create thread';
+
+  @override
+  String get threadName => 'Thread name';
+
+  @override
+  String get threadNameRequired => 'Give the thread a name.';
+
+  @override
+  String get threadNewThreadPlaceholder => 'New thread';
+
+  @override
+  String get threadPrivate => 'Private thread';
+
+  @override
+  String get threadPrivateDescription =>
+      'Only people you invite and moderators can see this thread.';
+
+  @override
+  String get threadStarterMessage => 'Message';
+
+  @override
+  String get threadStarterMessagePlaceholder =>
+      'Enter a message to start the conversation!';
+
+  @override
+  String threadCreateCooldown(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'You can start another thread in $seconds seconds.',
+      one: 'You can start another thread in 1 second.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String threadCreateFailed(String detail) {
+    return 'Could not start the thread: $detail';
+  }
+
+  @override
+  String get threadBrowserTitle => 'Threads';
+
+  @override
+  String get threadBrowserActive => 'Active';
+
+  @override
+  String get threadBrowserArchived => 'Closed';
+
+  @override
+  String get threadBrowserJoined => 'Joined';
+
+  @override
+  String get threadBrowserOtherActive => 'Other active threads';
+
+  @override
+  String get threadBrowserPublic => 'Public threads';
+
+  @override
+  String get threadBrowserPrivate => 'Private threads';
+
+  @override
+  String get threadBrowserEmpty =>
+      'There are no threads. Stay focused on a conversation with a thread, a temporary text channel.';
+
+  @override
+  String get threadBrowserArchivedEmpty => 'There are no closed threads.';
+
+  @override
+  String get threadBrowserLoadMore => 'Load more';
+
+  @override
+  String get threadBrowserSearch => 'Search threads';
+
+  @override
+  String get threadBrowserSearchEmpty => 'No threads match';
+
+  @override
+  String get threadBrowserSearchEmptyHint =>
+      'Try a different name or check the other tab.';
+
+  @override
+  String get threadBrowserSearchFailed =>
+      'Couldn\'t search threads. Try again later.';
+
+  @override
+  String get threadBrowserSearchIndexing =>
+      'Search is getting ready for this community. Trying again shortly...';
+
+  @override
+  String threadMessageCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count messages',
+      one: '1 message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get threadFailedToMentionSomeRoles =>
+      'Some mentioned roles were not added to this thread.';
+
+  @override
+  String get threadMembers => 'Thread members';
+
+  @override
+  String threadMembersCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count members',
+      one: '1 member',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get threadMembersEmpty => 'Nobody has joined this thread yet.';
+
+  @override
+  String threadRemoveMember(String name) {
+    return 'Remove $name from thread';
+  }
+
+  @override
+  String get threadJoin => 'Join thread';
+
+  @override
+  String get threadLeave => 'Leave thread';
+
+  @override
+  String get threadJoinNotice =>
+      'Join this thread to follow it in your channel list and get notifications.';
+
+  @override
+  String get threadArchivedNotice =>
+      'This thread is closed. Sending a message will open it again.';
+
+  @override
+  String get threadLockedNotice =>
+      'This thread is locked. Only moderators can send messages.';
+
+  @override
+  String get threadArchive => 'Close thread';
+
+  @override
+  String get threadUnarchive => 'Open thread again';
+
+  @override
+  String get threadLock => 'Lock thread';
+
+  @override
+  String get threadUnlock => 'Unlock thread';
+
+  @override
+  String get threadDelete => 'Delete thread';
+
+  @override
+  String threadDeleteConfirm(String threadName) {
+    return 'Are you sure you want to delete $threadName? This cannot be undone.';
+  }
+
+  @override
+  String get threadDeleted => 'Thread deleted';
+
+  @override
+  String get threadMarkAsRead => 'Mark as read';
+
+  @override
+  String get threadMute => 'Mute thread';
+
+  @override
+  String get threadUnmute => 'Unmute thread';
+
+  @override
+  String get threadMuted => 'Thread muted';
+
+  @override
+  String get threadUnmuted => 'Thread unmuted';
+
+  @override
+  String get threadNotificationSettings => 'Notification settings';
+
+  @override
+  String get threadNotificationParentDefault => 'Use channel default';
+
+  @override
+  String get threadCopyLink => 'Copy link';
+
+  @override
+  String get threadCopyId => 'Copy thread ID';
+
+  @override
+  String get threadMoreOptions => 'More options';
+
+  @override
+  String get threadSettings => 'Thread settings';
+
+  @override
+  String get threadSettingsSaved => 'Thread settings saved';
+
+  @override
+  String get threadAutoArchive => 'Hide after inactivity';
+
+  @override
+  String get threadAutoArchiveDescription =>
+      'The thread stops showing in the channel list after this period of inactivity.';
+
+  @override
+  String get threadDefaultAutoArchive => 'Default hide after inactivity';
+
+  @override
+  String get threadDefaultAutoArchiveDescription =>
+      'New threads stop showing in the channel list after this period of inactivity.';
+
+  @override
+  String get threadDefaultSlowmode => 'Default thread slowmode';
+
+  @override
+  String get threadAutoArchiveOneHour => '1 Hour';
+
+  @override
+  String get threadAutoArchiveOneDay => '24 Hours';
+
+  @override
+  String get threadAutoArchiveThreeDays => '3 Days';
+
+  @override
+  String get threadAutoArchiveOneWeek => '1 Week';
+
+  @override
+  String get threadInvitable => 'Allow anyone to invite';
+
+  @override
+  String get threadInvitableDescription =>
+      'Members of this private thread can add other people.';
+
+  @override
+  String threadStartedBy(String name) {
+    return 'Started by $name';
+  }
+
+  @override
+  String get threadStarterDeleted => 'Original message was deleted.';
+
+  @override
+  String systemThreadCreated(
+    String username,
+    String threadLink,
+    String allThreadsLink,
+  ) {
+    return '$username התחיל/ה שרשור: $threadName.';
+  }
+
+  @override
+  String get systemThreadCreatedAllThreadsLink => 'all threads';
+
+  @override
+  String get systemThreadCreatedThreadFallback => 'a thread';
+
+  @override
+  String systemPreviewThreadCreated(String username) {
+    return '$username started a thread.';
   }
 
   @override
   String get guildSettingsEmojiEmpty => 'עדיין אין אימוג\'י מותאם אישית.';
-
-  @override
-  String guildSettingsStickersSlotInfo(int count) {
-    return '$count מדבקות שהועלו';
-  }
 
   @override
   String get guildSettingsStickersEmpty => 'עדיין אין מדבקות מותאמות אישית.';
@@ -12126,13 +12179,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'דורש את כל מה שקיים בבינוני, בתוספת חברות בקהילה למשך 10 דקות לפחות.';
 
   @override
-  String get guildSettingsVerificationHighest => 'גבוה מאוד';
-
-  @override
-  String get guildSettingsVerificationHighestDescription =>
-      'דורש מספר טלפון מאומת.';
-
-  @override
   String get guildSettingsAuditLogDescription =>
       'מעקב אחר פעולות מנהלים ברחבי הקהילה.';
 
@@ -12154,14 +12200,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get guildSettingsAuditLogUnknownUser => 'משתמש לא ידוע';
-
-  @override
-  String get guildSettingsAuditLogLoadError =>
-      'משהו השתבש בזמן טעינת יומן הפעילות.';
-
-  @override
-  String get guildSettingsAuditLogLoadErrorTitle =>
-      'לא ניתן לטעון את יומני הפעילות';
 
   @override
   String get guildSettingsAuditLogReason => 'סיבה';
@@ -12192,6 +12230,15 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get auditLogActionChannelDelete => 'הערוץ נמחק';
+
+  @override
+  String get auditLogActionThreadCreate => 'Thread created';
+
+  @override
+  String get auditLogActionThreadUpdate => 'Thread updated';
+
+  @override
+  String get auditLogActionThreadDelete => 'Thread deleted';
 
   @override
   String get auditLogActionChannelOverwriteCreate => 'הרשאת ערוץ נוספה';
@@ -12304,6 +12351,21 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String auditLogSummaryChannelDelete(String actor, String target) {
     return '$actor מחק את הערוץ $target.';
+  }
+
+  @override
+  String auditLogSummaryThreadCreate(String actor, String target) {
+    return '$actor started the thread $target.';
+  }
+
+  @override
+  String auditLogSummaryThreadUpdate(String actor, String target) {
+    return '$actor updated the thread $target.';
+  }
+
+  @override
+  String auditLogSummaryThreadDelete(String actor, String target) {
+    return '$actor deleted the thread $target.';
   }
 
   @override
@@ -12702,12 +12764,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get auditLogOptionPermanentMembership => 'מעניק חברות קבועה.';
 
   @override
-  String get guildSettingsLoadMore => 'טען עוד';
-
-  @override
-  String get guildSettingsLoadingMore => 'טוען...';
-
-  @override
   String get guildSettingsWebhooksDescription =>
       'הצגה וניהול של כל ה־Webhooks שהוגדרו בקהילה שלך.';
 
@@ -12741,31 +12797,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get guildSettingsUnknownChannel => 'ערוץ לא ידוע';
 
   @override
-  String get guildSettingsCopyUrl => 'העתק כתובת URL';
-
-  @override
   String get guildSettingsCopiedUrl => 'הקישור הועתק ללוח הגזירים';
-
-  @override
-  String get guildSettingsDeleteWebhook => 'מחיקת ווב-הוק';
-
-  @override
-  String get guildSettingsVanityUrlDescription =>
-      'הגדר קישור הזמנה מותאם אישית לשרת שלך.';
-
-  @override
-  String get guildSettingsVanityUrlHint => 'my-server';
-
-  @override
-  String get guildSettingsSave => 'שמירה';
-
-  @override
-  String get guildSettingsVanityUrlUsageTitle => 'שימוש';
-
-  @override
-  String guildSettingsVanityUrlUses(int count) {
-    return '$count שימושים';
-  }
 
   @override
   String get guildSettingsDiscoveryDescription =>
@@ -12900,9 +12932,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'נסו שוב בעוד רגע.';
 
   @override
-  String get guildSettingsMembersDescription => 'חפש ונהל חברי שרת.';
-
-  @override
   String get guildSettingsMembersSearchHint => 'חיפוש לפי שם משתמש או מזהה';
 
   @override
@@ -12943,9 +12972,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get guildMembersColumnRoles => 'תפקידים';
-
-  @override
-  String get guildMembersColumnActions => 'פעולות';
 
   @override
   String get guildMembersFilterMemberSince => 'סינון לפי תאריך הצטרפות';
@@ -13012,17 +13038,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get guildMembersIndexing => 'מאנדקס חברים…';
 
   @override
-  String get guildMembersGoToPage => 'עבור לדף';
-
-  @override
-  String guildMembersGoToPageItem(int page) {
-    return 'עבור לדף $page';
-  }
-
-  @override
-  String get guildMembersJumpToPage => 'קפיצה לעמוד';
-
-  @override
   String get guildMembersJoinSourceCreator => 'יוצר הקהילה';
 
   @override
@@ -13085,21 +13100,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   }
 
   @override
-  String guildMembersJoinedDaysAgo(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'לפני $count ימים',
-      one: 'לפני יום אחד',
-    );
-    return '$_temp0';
-  }
-
-  @override
   String get guildMembersChannelListLabel => 'חברים';
-
-  @override
-  String get guildMembersChannelListSelected => 'חברים, נבחרו';
 
   @override
   String get guildSettingsInvitesTitle => 'הזמנות';
@@ -13207,16 +13208,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'הקישור עדיין עשוי לפעול. נסה שוב בעוד רגע.';
 
   @override
-  String guildSettingsInviteUses(int uses, int maxUses) {
-    return '$uses / $maxUses שימושים';
-  }
-
-  @override
-  String guildSettingsInviteExpires(String date) {
-    return 'פג תוקף ב-$date';
-  }
-
-  @override
   String get guildSettingsBansDescription => 'הצגה וניהול של משתמשים חסומים.';
 
   @override
@@ -13226,21 +13217,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get guildSettingsBansEmpty => 'אין משתמשים חסומים.';
 
   @override
-  String get guildSettingsBanPermanent => 'חסימה לצמיתות';
-
-  @override
-  String guildSettingsBanExpires(String date) {
-    return 'פג תוקף ב- $date';
-  }
-
-  @override
   String get guildSettingsBanExpiresLabel => 'תפוגה';
-
-  @override
-  String get guildSettingsUnban => 'בטל חסימה';
-
-  @override
-  String get guildSettingsBansLoading => 'טוען משתמשים חסומים';
 
   @override
   String get guildSettingsBansNoSearchResults =>
@@ -13272,15 +13249,24 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   }
 
   @override
-  String get guildSettingsBansLoadError =>
-      'לא ניתן היה לטעון את ההרחקות. נסה שוב.';
-
-  @override
   String get guildSettingsRevokeBanError =>
       'לא ניתן היה לבטל את החסימה. נסה שוב.';
 
   @override
   String get guildSettingsCommunitySettings => 'הגדרות קהילה';
+
+  @override
+  String get guildSettingsDeleteCommunity => 'מחיקת קהילה';
+
+  @override
+  String get guildSettingsDeleteCommunityConfirm =>
+      'האם למחוק את הקהילה הזו? לא ניתן לבטל פעולה זו. כל הערוצים, ההודעות וההגדרות יימחקו לצמיתות.';
+
+  @override
+  String get guildSettingsCommunityDeleted => 'הקהילה נמחקה';
+
+  @override
+  String get guildSettingsDeleteCommunityFailed => 'לא ניתן היה למחוק קהילה זו';
 
   @override
   String get guildSettingsCategoryExpressions => 'EXPRESSIONS';
@@ -13293,10 +13279,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get guildSettingsCategoryPeople => 'PEOPLE';
-
-  @override
-  String get guildSettingsOverviewDescription =>
-      'נהל את הפרופיל, הערוצים וההגדרות המוגדרות כברירת מחדל של הקהילה שלך.';
 
   @override
   String get guildSettingsOverviewBrandingTitle => 'מיתוג';
@@ -13329,9 +13311,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'קהילות עם יותר מ-250 אנשים מוגדרות אוטומטית למצב \"רק אזכורים\". ההגדרה המקורית שלך נשמרת ותשוחזר אם הקהילה תרד מתחת ל-250 חברים.';
 
   @override
-  String get guildSettingsOverviewAdvancedTitle => 'מתקדם';
-
-  @override
   String get guildSettingsOverviewFlexibleNames =>
       'אפשר שמות גמישים לערוצי טקסט';
 
@@ -13356,10 +13335,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get guildSettingsOverviewEmbedSplashTitle => 'רקע הטמעת צ\'אט';
-
-  @override
-  String get guildSettingsOverviewEmbedSplashHint =>
-      'מוצג בהטמעות הזמנה בצ\'אט.';
 
   @override
   String get guildSettingsOverviewUploadBackground => 'העלאת תמונת רקע';
@@ -13529,14 +13504,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'JPEG, PNG, WebP, AVIF. מקסימום 10MB. מינימום: 960×540px (יחס 16:9). מוצג בהזמנות בצ\'אט.';
 
   @override
-  String get guildSettingsModerationDescription =>
-      'הגדר אימות, סינון תוכן והגדרות תוכן למבוגרים.';
-
-  @override
-  String get guildSettingsModerationDiscoveryNotice =>
-      'לקהילות שמופיעות ברשימת הגילוי יש אפשרויות ניהול מוגבלות.';
-
-  @override
   String get guildSettingsModerationContentFilterTitle => 'סינון תוכן';
 
   @override
@@ -13569,12 +13536,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'הגנה מרבית למרחבים ידידותיים למשפחה';
 
   @override
-  String get guildSettingsModerationMatureOff => 'כבוי';
-
-  @override
-  String get guildSettingsModerationMatureOn => 'מופעל';
-
-  @override
   String get guildSettingsContentWarningToggle => 'הצגת אזהרת תוכן';
 
   @override
@@ -13598,10 +13559,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get guildSettingsModeration2faSwitchLabel =>
       'דרוש אימות דו-שלבי לפעולות ניהול';
-
-  @override
-  String get guildSettingsModeration2faOwnerOnlyTooltip =>
-      'רק בעל הקהילה יכול לשנות הגדרה זו';
 
   @override
   String get guildSettingsModeration2faEnableFirstTooltip =>
@@ -13628,9 +13585,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'לא נמצאו אימוג\'ים התואמים לחיפוש שלך.';
 
   @override
-  String get guildSettingsEmojiNoSlots => 'אין מקום לאמוג\'י';
-
-  @override
   String get guildSettingsEmojiSlotsFull =>
       'הגעת למספר המרבי של אימוג\'י. מחק אימוג\'י קיימים כדי לפנות מקום.';
 
@@ -13640,30 +13594,8 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   }
 
   @override
-  String get guildSettingsEmojiUploadingTitle => 'מעלה אימוג\'יז';
-
-  @override
-  String guildSettingsEmojiUploadingBody(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '# אימוג\'ים',
-      one: '# אימוג\'י',
-    );
-    return 'מעלה $_temp0. זה עשוי לקחת קצת זמן.';
-  }
-
-  @override
-  String get guildSettingsEmojiUploadFailed =>
-      'העלאת האימוג\'י נכשלה. יש לנסות שוב.';
-
-  @override
   String get guildSettingsEmojiSomeFailedTitle =>
       'לא ניתן היה להוסיף חלק מהאימוג\'י';
-
-  @override
-  String get guildSettingsEmojiSomeFailedBody =>
-      'יש לבדוק את הקבצים האלה ולנסות שוב עם תמונות קטנות או פשוטות יותר.';
 
   @override
   String get guildSettingsEmojiRenameTitle => 'שנה שם אימוג\'י';
@@ -13673,16 +13605,10 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       '2–32 תווים, אותיות, מספרים, קווים תחתונים.';
 
   @override
-  String get guildSettingsEmojiColumnEmoji => 'אימוג\'י';
-
-  @override
   String get guildSettingsEmojiColumnName => 'שם';
 
   @override
   String get guildSettingsEmojiColumnUploader => 'הועלה על ידי';
-
-  @override
-  String get guildSettingsEmojiUnknownUploader => 'לא ידוע';
 
   @override
   String get guildSettingsEmojiDeleteTitle => 'מחיקת אימוג\'י';
@@ -13711,38 +13637,8 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'לא ניתן היה לשנות את שם האימוג\'י הזה';
 
   @override
-  String get guildSettingsEmojiRenameFailedBody =>
-      'השם שוחזר למה שהיה קודם. יש לנסות שוב בעוד רגע.';
-
-  @override
-  String get guildSettingsEmojiGoneTitle => 'האימוג\'י הזה כבר לא קיים';
-
-  @override
-  String get guildSettingsEmojiGoneBody =>
-      'ייתכן שהוא נמחק. השם שוחזר למצבו הקודם.';
-
-  @override
-  String get guildSettingsEmojiNoPermissionRenameTitle =>
-      'אינך יכול/ה לשנות את שם האימוג\'י הזה';
-
-  @override
-  String get guildSettingsEmojiNoPermissionRenameBody =>
-      'אין לך הרשאה לשנות את שם האימוג\'י הזה. השם שוחזר לשם הקודם.';
-
-  @override
-  String get guildSettingsEmojiRateLimitedTitle => 'אתה מהיר מדי';
-
-  @override
-  String get guildSettingsEmojiRateLimitedBody =>
-      'יש להמתין רגע ולנסות לשנות את השם שוב.';
-
-  @override
   String get guildSettingsEmojiDeleteFailedTitle =>
       'לא ניתן למחוק את האימוג\'י הזה';
-
-  @override
-  String get guildSettingsEmojiDeleteNoPermissionTitle =>
-      'אינך יכול/ה למחוק את האימוג\'י הזה';
 
   @override
   String get guildSettingsCloneEmojiTitle =>
@@ -13817,12 +13713,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'לא נמצאו מדבקות התואמות לחיפוש שלך.';
 
   @override
-  String get guildSettingsStickersEmptySearch => 'לא נמצאו מדבקות';
-
-  @override
-  String get guildSettingsStickerNoSlots => 'אין מקומות פנויים למדבקות';
-
-  @override
   String get guildSettingsStickerSlotsFull =>
       'הגעת למספר המרבי של מדבקות. מחק מדבקות קיימות כדי לפנות מקום.';
 
@@ -13830,9 +13720,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String guildSettingsStickerUploadRequirements(String maxSize) {
     return 'מדבקות נשמרות ברזולוציה של 320x320 פיקסלים וצריכות להיות קטנות מ-$maxSize. תמונות סטטיות יוקטנו ויידחסו באופן אוטומטי. מדבקות מונפשות וקבצי SVG צריכים להתאים כבר למגבלה.';
   }
-
-  @override
-  String get guildSettingsStickerUnsupportedTitle => 'קובץ מדבקה לא נתמך';
 
   @override
   String get guildSettingsStickerAddTitle => 'הוספת מדבקה';
@@ -13882,12 +13769,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'לא ניתן ליצור את המדבקה הזו';
 
   @override
-  String get guildSettingsStickerTooLargeTitle => 'המדבקה גדולה מדי';
-
-  @override
-  String get guildSettingsStickerCompressFailedTitle => 'המדבקה לא נדחסה מספיק';
-
-  @override
   String get guildSettingsStickerDeleteTitle => 'מחיקת מדבקה';
 
   @override
@@ -13903,20 +13784,9 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'לא ניתן היה למחוק את המדבקה הזו';
 
   @override
-  String get guildSettingsStickerDeleteNoPermissionTitle =>
-      'אינך יכול למחוק את המדבקה הזו';
-
-  @override
   String guildSettingsWebhooksInfo(String channelSettingsPath) {
     return 'כדי ליצור webhook, פתח את $channelSettingsPath. עדיין ניתן לערוך ולארגן את כל ה-webhooks הקיימים כאן.';
   }
-
-  @override
-  String get guildSettingsVanityUrlWarning =>
-      'כתובת ה-URL המותאמת אישית שלך לא תעבוד אלא אם כן ערוץ אחד לפחות גלוי לכולם.';
-
-  @override
-  String get guildSettingsVanityUrlRemove => 'הסר';
 
   @override
   String get guildSettingsBannedUsersTitle => 'משתמשים חסומים';
@@ -14279,136 +14149,6 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get homeQuickActionDms => 'הודעות ישירות';
 
   @override
-  String get uiViewThreads => 'View threads';
-
-  @override
-  String get uiJoinThread => 'Join thread';
-
-  @override
-  String get uiLeaveThread => 'Leave thread';
-
-  @override
-  String get threadsTitle => 'שרשורים';
-
-  @override
-  String get threadsPostsTitle => 'פוסטים';
-
-  @override
-  String get threadsFilterActive => 'פעיל';
-
-  @override
-  String get threadsFilterArchived => 'בארכיון';
-
-  @override
-  String get threadsNewThread => 'שרשור חדש';
-
-  @override
-  String get threadsNewThreadTitle => 'שרשור חדש';
-
-  @override
-  String get threadsNameLabel => 'שם השרשור';
-
-  @override
-  String get threadsNameHint => 'תן שם לשרשור שלך';
-
-  @override
-  String get threadsCreateThread => 'יצירת שרשור';
-
-  @override
-  String get threadsCreateThreadAction => 'יצירת שרשור';
-
-  @override
-  String get threadsCreateFailed => 'לא ניתן ליצור את השרשור. אנא נסה שוב.';
-
-  @override
-  String get threadsLoadFailed => 'לא ניתן לטעון את השרשורים.';
-
-  @override
-  String get threadsNoActive => 'אין שרשורים פעילים עדיין';
-
-  @override
-  String get threadsNoArchived => 'אין שרשורים בארכיון';
-
-  @override
-  String threadsMessageCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count הודעות',
-      one: 'הודעה אחת',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String threadsMemberCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count חברים',
-      one: 'חבר אחד',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get threadsStatusLocked => 'נעול';
-
-  @override
-  String get threadsStatusArchived => 'בארכיון';
-
-  @override
-  String get threadsManage => 'ניהול';
-
-  @override
-  String get threadsPin => 'הצמד';
-
-  @override
-  String get threadsUnpin => 'בטל הצמדה';
-
-  @override
-  String get threadsArchive => 'העבר לארכיון';
-
-  @override
-  String get threadsUnarchive => 'הוצאה מהארכיון';
-
-  @override
-  String get threadsLock => 'נעילה';
-
-  @override
-  String get threadsUnlock => 'ביטול נעילה';
-
-  @override
-  String get threadsDelete => 'מחק';
-
-  @override
-  String get threadsActionFailed => 'אירעה שגיאה. אנא נסה שוב.';
-
-  @override
-  String get threadsCloseThread => 'סגירת השרשור';
-
-  @override
-  String get threadsReopenThread => 'פתיחת השרשור מחדש';
-
-  @override
-  String get threadsLockThread => 'נעילת שרשור';
-
-  @override
-  String get threadsUnlockThread => 'שחרור נעילת שרשור';
-
-  @override
-  String get threadsLeaveThread => 'Leave thread';
-
-  @override
-  String get threadsDeleteThread => 'מחיקת השרשור';
-
-  @override
-  String get threadsMembersTab => 'חברי השרשור';
-
-  @override
-  String get threadsMembersLoadFailed => 'לא ניתן לטעון את החברים';
-
-  @override
   String get threadsAddMember => 'Add member';
 
   @override
@@ -14418,1049 +14158,75 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   String get threadsAddMemberNoResults => 'No members match that search.';
 
   @override
-  String get threadsRemoveMember => 'Remove from thread';
-
-  @override
   String get threadsMemberAddedToast => 'Member added';
 
   @override
-  String get threadsMemberRemovedToast => 'Member removed';
+  String get assistantNeedsLogin => 'פתח את Fluxer והיכנס קודם.';
 
   @override
-  String get threadsLeftToast => 'You left the thread';
+  String get assistantNotInVoice => 'אינך בשיחה.';
 
   @override
-  String get threadsMembersFullToast =>
-      'This thread has reached its member limit.';
+  String get assistantNotFound => 'Fluxer לא מצא את זה.';
 
   @override
-  String get threadsMemberNotFoundToast =>
-      'That person cannot see this channel.';
+  String get assistantDmsDisabled => 'הודעות פרטיות מושבתות במופע זה.';
 
   @override
-  String get threadsMembersForbiddenToast =>
-      'You do not have permission to change this thread\'s members.';
+  String get assistantFailed => 'Fluxer לא הצליח להשלים זאת.';
 
   @override
-  String get threadsInvitableLabel => 'Anyone in the thread can add others';
+  String get assistantOkMuted => 'המיקרופון מושתק.';
 
   @override
-  String get threadsInvitableDescription =>
-      'When this is on, every member of this private thread can add other people to it.';
+  String get assistantOkUnmuted => 'השתקת המיקרופון בוטלה.';
 
   @override
-  String get threadsNoMembersTitle => 'אין עדיין חברים בשרשור';
+  String get assistantOkLeftVoice => 'יצאת מהערוץ הקולי.';
 
   @override
-  String get threadsNoMembersBody => 'אנשים שיצטרפו לשרשור הזה יופיעו כאן.';
+  String get assistantOkJoinedVoice => 'מצטרף לערוץ הקולי.';
 
   @override
-  String get forumChannelTypeLabel => 'פורום';
-
-  @override
-  String get forumChannelTypeDescription => 'מקום לפוסטים מסודרים בשרשורים';
-
-  @override
-  String get forumNewPost => 'פוסט חדש';
-
-  @override
-  String get forumNewPostTitle => 'פוסט חדש';
-
-  @override
-  String get forumCreatePost => 'יצירת פוסט';
-
-  @override
-  String get forumCreatePostFailed => 'לא ניתן ליצור את הפוסט. אנא נסה שוב.';
-
-  @override
-  String get forumPostMessageFailed =>
-      'הפוסט נוצר, אך לא ניתן היה לשלוח את ההודעה שלו.';
-
-  @override
-  String get forumPostTitleLabel => 'כותרת';
-
-  @override
-  String get forumPostTitleHint => 'כותרת הפוסט';
-
-  @override
-  String get forumPostMessageLabel => 'הודעה';
-
-  @override
-  String get forumPostMessageHint => 'הזן הודעה';
-
-  @override
-  String get forumPostTagsLabel => 'תגיות';
-
-  @override
-  String get forumPostTagsRequiredLabel => 'תגיות (בחרו אחת לפחות)';
-
-  @override
-  String get forumPostTagsRequiredNoneHint =>
-      'הפורום הזה דורש תגית, אך עדיין לא נוצרה אף אחת.';
-
-  @override
-  String get forumPostNoTagsHint =>
-      'לפורום הזה אין עדיין תגיות. הוסף כמה דרך ניהול תגיות.';
-
-  @override
-  String get forumSearchPosts => 'חיפוש פוסטים';
-
-  @override
-  String get forumSortAndView => 'מיון ותצוגה';
-
-  @override
-  String get forumSortRecentActivity => 'פעילות אחרונה';
-
-  @override
-  String get forumSortName => 'שם (א-ת)';
-
-  @override
-  String get forumManageTags => 'ניהול תגיות';
-
-  @override
-  String get forumNoTags => 'אין תגיות עדיין';
-
-  @override
-  String get forumRemoveTag => 'הסר תגית';
-
-  @override
-  String get forumNewTagLabel => 'תגית חדשה';
-
-  @override
-  String get forumNewTagHint => 'שם התגית';
-
-  @override
-  String get forumAddTag => 'הוספת תגית';
-
-  @override
-  String get forumTagsUpdated => 'התגיות עודכנו';
-
-  @override
-  String get forumTagsUpdateFailed => 'לא ניתן לעדכן את התגיות. אנא נסה שוב.';
-
-  @override
-  String get forumLoadFailed => 'לא ניתן לטעון את הפוסטים.';
-
-  @override
-  String get forumNoPosts => 'אין פוסטים עדיין';
-
-  @override
-  String get forumNoArchivedPosts => 'אין שרשורים בארכיון';
-
-  @override
-  String systemThreadCreated(String username, String threadName) {
-    return '$username התחיל/ה שרשור: $threadName.';
-  }
-
-  @override
-  String systemPreviewStartedThread(String username) {
-    return '$username התחיל/ה שרשור.';
-  }
-
-  @override
-  String get systemThreadDeleted => 'שרשור שנמחק';
-
-  @override
-  String get threadsComposerLockedHint =>
-      'השרשור הזה נעול. רק מנהלים יכולים לשלוח הודעות.';
-
-  @override
-  String get threadsComposerArchivedHint =>
-      'השרשור הזה בארכיון. שליחת הודעה תפתח אותו מחדש.';
-
-  @override
-  String forumNewPostsPill(int count) {
-    return '$count חדשים';
-  }
-
-  @override
-  String get forumSearchOrCreatePost => 'חיפוש או יצירת פוסט...';
-
-  @override
-  String get forumSortBy => 'מיון לפי';
-
-  @override
-  String get forumSortDatePosted => 'תאריך הפרסום';
-
-  @override
-  String get forumViewAs => 'תצוגה';
-
-  @override
-  String get forumLayoutList => 'רשימה';
-
-  @override
-  String get forumLayoutGallery => 'גלריה';
-
-  @override
-  String get forumResetViewToDefault => 'איפוס לברירת מחדל';
-
-  @override
-  String get forumAllTags => 'הכל';
-
-  @override
-  String forumTagsSelectedCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count תגיות',
-      one: 'תגית אחת',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get forumPostGuidelinesLabel => 'הנחיות לפרסום';
-
-  @override
-  String get forumEditPost => 'עריכת הפוסט';
-
-  @override
-  String get forumPostTagRequiredToast => 'בחר לפחות תגית אחת לפורום הזה.';
-
-  @override
-  String get threadsFollow => 'מעקב';
-
-  @override
-  String get threadsUnfollow => 'הפסק לעקוב';
-
-  @override
-  String get threadsFollowing => 'עוקבים';
-
-  @override
-  String get threadsMute => 'השתק';
-
-  @override
-  String get threadsUnmute => 'בטל השתקה';
-
-  @override
-  String get threadsEditThread => 'עריכת שרשור';
-
-  @override
-  String get forumSettingsTitle => 'הגדרות פורום';
-
-  @override
-  String get forumSettingsGuidelinesHint => 'ספר לחברים מה לפרסם כאן';
-
-  @override
-  String get forumSettingsRequireTag => 'לחייב חברים לבחור תגית בעת הפרסום';
-
-  @override
-  String get forumSettingsRequireTagDescription =>
-      'חברים חייבים לבחור לפחות תגית אחת לפני שהם יכולים לפרסם.';
-
-  @override
-  String get forumSettingsDefaultSort => 'סדר מיון ברירת מחדל';
-
-  @override
-  String get forumSettingsDefaultLayout => 'פריסת ברירת מחדל';
-
-  @override
-  String get forumSettingsDefaultReaction => 'תגובה כברירת מחדל';
-
-  @override
-  String get forumSettingsDefaultReactionDescription =>
-      'מוצג כתגובה מהירה בכל פוסט. השאר ריק כדי לא להציג כלום.';
-
-  @override
-  String get forumSettingsDefaultReactionHint => 'אימוג\'י, למשל 👍';
-
-  @override
-  String get forumSettingsHideAfterInactivity => 'הסתרה לאחר חוסר פעילות';
-
-  @override
-  String get forumSettingsHideAfterInactivityDescription =>
-      'פוסטים ללא פעילות עוברים לארכיון. כל אחד יכול לפתוח מחדש פוסט שאינו נעול.';
-
-  @override
-  String get forumSettingsHideAfterOneHour => 'שעה אחת';
-
-  @override
-  String get forumSettingsHideAfterOneDay => '24 שעות';
-
-  @override
-  String get forumSettingsHideAfterThreeDays => '3 ימים';
-
-  @override
-  String get forumSettingsHideAfterOneWeek => 'שבוע אחד';
-
-  @override
-  String get forumSettingsPostCreationSlowmode => 'מצב איטי ליצירת פוסטים';
-
-  @override
-  String get forumSettingsPostCreationSlowmodeDescription =>
-      'כמה זמן חברים מחכים בין יצירת פוסטים.';
-
-  @override
-  String get forumSettingsDefaultPostSlowmode => 'מצב איטי בפוסטים חדשים';
-
-  @override
-  String get forumSettingsDefaultPostSlowmodeDescription =>
-      'מוחל על פוסטים בזמן יצירתם.';
-
-  @override
-  String get forumSettingsSave => 'שמירת הגדרות הפורום';
-
-  @override
-  String get forumSettingsSaved => 'הגדרות הפורום נשמרו';
-
-  @override
-  String get forumSettingsSaveFailed => 'לא ניתן לשמור את הגדרות הפורום';
-
-  @override
-  String get threadsStarterMessage => 'התחיל מתוך';
-
-  @override
-  String get threadsOriginalPosterTag => 'OP';
-
-  @override
-  String get forumReactToPost => 'תגובה לפוסט';
-
-  @override
-  String get forumReactToPostOther => 'הגב עם אימוג\'י אחר';
-
-  @override
-  String get forumEmptyHeading => 'התחילו את השיחה!';
-
-  @override
-  String forumEmptyBody(String forumName) {
-    return 'על מה תרצה לפרסם ב-$forumName?';
-  }
-
-  @override
-  String get forumSeeExamples => 'לצפייה בדוגמאות';
-
-  @override
-  String get forumExampleQuestion =>
-      'שאל שאלה והוסף תגית כדי שאפשר יהיה למצוא אותה מאוחר יותר.';
-
-  @override
-  String get forumExampleShow => 'שתף משהו שיצרת ותן לאחרים להגיב.';
-
-  @override
-  String get forumExampleDiscussion =>
-      'התחל דיון בנושא אחד ושמור אותו בפוסט הזה.';
-
-  @override
-  String get forumTagModeratedOn => 'למנהלים בלבד, הקש כדי לאפשר לכולם';
-
-  @override
-  String get forumTagModeratedOff =>
-      'כל אחד יכול להחיל אותה, הקש כדי להגביל למנהלים';
-
-  @override
-  String get forumAddToPost => 'הוספה לפוסט';
-
-  @override
-  String get forumAddToPostDone => 'נוסף לפוסט.';
-
-  @override
-  String get forumAddToPostFailed => 'לא ניתן להוסיף את זה לפוסט. אנא נסה שוב.';
-
-  @override
-  String get applicationsTitle => 'אפליקציות';
-
-  @override
-  String get applicationsCreate => 'יצירת אפליקציה';
-
-  @override
-  String get applicationsCreateSubmit => 'יצירה';
-
-  @override
-  String get applicationsCreateClaimTooltip =>
-      'תבע את החשבון שלך כדי ליצור אפליקציות.';
-
-  @override
-  String applicationsDocsLink(String domain) {
-    return 'קרא את התיעוד ($domain)';
-  }
-
-  @override
-  String get applicationsLoadError => 'לא ניתן לטעון אפליקציות';
-
-  @override
-  String get applicationsLoadErrorDescription => 'בדוק את החיבור ונסה שוב.';
-
-  @override
-  String get applicationsEmptyTitle => 'אין עדיין אפליקציות';
-
-  @override
-  String applicationsEmptyDescription(String apiName) {
-    return 'כדי להתחיל, צור את האפליקציה הראשונה שלך ב-$apiName.';
-  }
-
-  @override
-  String applicationsCreated(String date) {
-    return 'Created $date';
-  }
-
-  @override
-  String get applicationsName => 'שם האפליקציה';
-
-  @override
-  String get applicationsNameHint => 'האפליקציה שלי';
-
-  @override
-  String get applicationsNameRequired => 'שם האפליקציה נדרש';
-
-  @override
-  String get applicationsBackToList => 'חזרה לרשימה';
-
-  @override
-  String get applicationsDetailLoadError => 'לא ניתן לטעון את האפליקציה הזו';
-
-  @override
-  String get applicationsDetailLoadErrorDescription =>
-      'נסה שוב או חזור לרשימת האפליקציות.';
-
-  @override
-  String get applicationsId => 'מזהה אפליקציה';
-
-  @override
-  String get applicationsCopyId => 'העתקת מזהה';
-
-  @override
-  String get applicationsSecretsTitle => 'סודות ואסימונים';
-
-  @override
-  String get applicationsSecretsDescription =>
-      'שמור עליהם במקום בטוח. יצירה מחדש תשבור אינטגרציות קיימות.';
-
-  @override
-  String get applicationsClientSecret => 'סוד לקוח';
-
-  @override
-  String get applicationsBotToken => 'אסימון בוט';
-
-  @override
-  String get applicationsRegenerate => 'יצירה מחדש';
-
-  @override
-  String get applicationsRegenerateClientSecretTitle =>
-      'ליצור מחדש את סוד הלקוח?';
-
-  @override
-  String get applicationsRegenerateBotTokenTitle =>
-      'ליצור מחדש את אסימון הבוט?';
-
-  @override
-  String get applicationsRegenerateClientSecretDescription =>
-      'יצירה מחדש תבטל את התוקף של הסוד הנוכחי. יש לעדכן כל קוד שמשתמש בערך הישן.';
-
-  @override
-  String get applicationsRegenerateBotTokenDescription =>
-      'יצירה מחדש תבטל את התוקף של האסימון הנוכחי. יש לעדכן כל קוד שמשתמש בערך הישן.';
-
-  @override
-  String get applicationsClientSecretRegenerated =>
-      'סוד הלקוח נוצר מחדש. עדכן כל קוד שמשתמש בסוד הישן.';
-
-  @override
-  String get applicationsBotTokenRegenerated =>
-      'אסימון הבוט נוצר מחדש. יש לעדכן כל קוד שמשתמש באסימון הישן.';
-
-  @override
-  String get applicationsRegenerateFailed => 'לא ניתן היה ליצור מחדש את הסוד';
-
-  @override
-  String get applicationsInfoTitle => 'פרטי אפליקציה';
-
-  @override
-  String get applicationsInfoDescription =>
-      'הגדרות בסיסיות וכתובות URL מותרות להפניה מחדש.';
-
-  @override
-  String get applicationsPublicBot => 'בוט ציבורי';
-
-  @override
-  String get applicationsPublicBotDescription =>
-      'אפשר לכל אחד להזמין את הבוט הזה לקהילות שלו.';
-
-  @override
-  String get applicationsRequireCodeGrant => 'דרושה הענקת קוד OAuth2';
-
-  @override
-  String get applicationsRequireCodeGrantDescription =>
-      'דורש URI להפניה מחדש וקוד הרשאה בעת הזמנת בוט זה.';
-
-  @override
-  String get applicationsRedirectUris => 'כתובות URI להפניה מחדש';
-
-  @override
-  String get applicationsAddRedirect => 'הוספת הפניה מחדש';
-
-  @override
-  String get applicationsDeleteRedirect => 'מחיקת כתובת URI להפניה מחדש';
-
-  @override
-  String get applicationsBotProfileTitle => 'פרופיל בוט';
-
-  @override
-  String get applicationsBotProfileDescription =>
-      'תמונת פרופיל, תגית ופרטי פרופיל מורחבים עבור הבוט שלך.';
-
-  @override
-  String get applicationsBotAvatar => 'תמונת פרופיל של בוט';
-
-  @override
-  String get applicationsUsernameRequired => 'שם משתמש נדרש';
-
-  @override
-  String get applicationsUsernameTooLong =>
-      'שם המשתמש יכול להכיל 32 תווים לכל היותר';
-
-  @override
-  String get applicationsUsernameInvalid =>
-      'שם המשתמש יכול להכיל אותיות, מספרים וקו תחתון בלבד';
-
-  @override
-  String get applicationsBotUsername => 'שם משתמש של בוט';
-
-  @override
-  String get applicationsDiscriminator => 'מזהה';
-
-  @override
-  String get applicationsBotBio => 'אודות הבוט';
-
-  @override
-  String get applicationsBotBioHint => 'בוט מועיל שעושה דברים מדהימים!';
-
-  @override
-  String get applicationsNoBotBanner => 'אין באנר לבוט';
-
-  @override
-  String get applicationsFriendlyBot => 'בוט ידידותי';
-
-  @override
-  String get applicationsFriendlyBotDescription =>
-      'אפשר למשתמשים לשלוח לבוט הזה בקשות חברות לאישור ידני.';
-
-  @override
-  String get applicationsManualFriendApproval => 'דרוש אישור ידני לבקשות חברות';
-
-  @override
-  String get applicationsManualFriendApprovalDescription =>
-      'בקשות חברות לבוט זה דורשות אישור ידני.';
-
-  @override
-  String get applicationsOauthBuilderTitle => 'כלי ליצירת כתובות OAuth2';
-
-  @override
-  String get applicationsOauthBuilderDescription =>
-      'Construct an authorize URL with scopes and permissions.';
-
-  @override
-  String get applicationsScopes => 'הרשאות';
-
-  @override
-  String get applicationsRedirectUri => 'כתובת URI להפניה מחדש';
-
-  @override
-  String get applicationsSelectRedirectUri => 'בחר כתובת URI להפניה מחדש';
-
-  @override
-  String get applicationsRedirectRequiredCodeGrant =>
-      'כתובת ה-URI להפניה מחדש נחוצה כי בוט זה דורש הרשאת קוד OAuth2.';
-
-  @override
-  String get applicationsRedirectRequiredScopes =>
-      'כתובת ה-URI להפניה מחדש נדרשת כשלא משתמשים רק בהיקף הבוט.';
-
-  @override
-  String get applicationsBotPermissions => 'הרשאות בוט';
-
-  @override
-  String get applicationsAuthorizeUrl => 'כתובת URL לאישור';
-
-  @override
-  String get applicationsAuthorizeUrlPlaceholder =>
-      'בחירת הרשאות (וכתובת URI להפניה מחדש אם נדרש)';
-
-  @override
-  String get applicationsCopyAuthorizeUrl => 'Copy authorize URL';
-
-  @override
-  String get applicationsCopiedUrl => 'כתובת ה-URL הועתקה ללוח הגזירים';
-
-  @override
-  String get applicationsDangerTitle => 'אזור מסוכן';
-
-  @override
-  String get applicationsDangerSubtitle =>
-      'לא ניתן לבטל פעולה זו. הסרת האפליקציה תמחק גם את הבוט שלה.';
-
-  @override
-  String get applicationsDangerHelper =>
-      'לאחר המחיקה, האפליקציה ופרטי הגישה שלה יוסרו לצמיתות.';
-
-  @override
-  String get applicationsDelete => 'מחיקת אפליקציה';
-
-  @override
-  String applicationsDeleteConfirmDescription(String name) {
-    return 'Are you sure you want to delete $name? This action cannot be undone. All associated data, including the bot user, will be permanently deleted.';
-  }
-
-  @override
-  String get applicationsDeleteFailed => 'לא ניתן היה למחוק את האפליקציה';
-
-  @override
-  String get applicationsUpdated => 'האפליקציה עודכנה בהצלחה';
-
-  @override
-  String get applicationsNoChanges => 'אין שינויים לשמירה';
-
-  @override
-  String get applicationsSearchBots => 'אפליקציות ובוטים';
-
-  @override
-  String get applicationsSearchBotsDescription =>
-      'יצירה וניהול של אפליקציות ובוטים עבור החשבון שלך';
-
-  @override
-  String get applicationsSearchInfoDescription =>
-      'עריכת פרטי האפליקציה הבסיסיים וכתובות ה-URI להפניה מחדש';
-
-  @override
-  String get applicationsSearchBotProfileDescription =>
-      'עריכת אווטאר הבוט, התגית, הביוגרפיה, הבאנר והתנהגות בקשות החברות';
-
-  @override
-  String get applicationsSearchOauthDescription =>
-      'בניית כתובת URL לאישור עם היקפים, הפניות מחדש והרשאות בוט';
-
-  @override
-  String get applicationsSearchSecretsDescription =>
-      'הצגה ויצירה מחדש של סודות לקוח ואסימוני בוט';
-
-  @override
-  String get applicationsSearchBotsKeyword => 'בוטים';
-
-  @override
-  String get applicationsSearchDocumentation => 'תיעוד';
-
-  @override
-  String get linkedDevicesViewDetails => 'הצגת פרטים';
-
-  @override
-  String get linkedDevicesDetailsTitle => 'פרטי מכשיר';
-
-  @override
-  String get linkedDevicesDetailsDevice => 'מכשיר';
-
-  @override
-  String get linkedDevicesDetailsClient => 'לקוח';
-
-  @override
-  String get linkedDevicesDetailsLocation => 'מיקום';
-
-  @override
-  String get linkedDevicesDetailsIp => 'כתובת IP';
-
-  @override
-  String get linkedDevicesDetailsLastUsed => 'שימוש אחרון';
-
-  @override
-  String get linkedDevicesCurrentSession => 'הסשן הנוכחי';
-
-  @override
-  String get linkedDevicesUnknown => 'לא ידוע';
-
-  @override
-  String get chatMessagePinConfirm => 'הצמדה';
-
-  @override
-  String get chatMessagePinConfirmDescription =>
-      'הצמד את ההודעה הזו לערוץ כדי שכולם יוכלו לראות אותה.';
-
-  @override
-  String get savedMessagesAddedToast => 'נוסף לסימניות';
-
-  @override
-  String get savedMessagesRemovedToast => 'הוסר מהסימניות';
-
-  @override
-  String get guildSettingsDeleteCommunity => 'מחיקת קהילה';
-
-  @override
-  String get guildSettingsDeleteCommunityConfirm =>
-      'האם למחוק את הקהילה הזו? לא ניתן לבטל פעולה זו. כל הערוצים, ההודעות וההגדרות יימחקו לצמיתות.';
-
-  @override
-  String get guildSettingsCommunityDeleted => 'הקהילה נמחקה';
-
-  @override
-  String get guildSettingsDeleteCommunityFailed =>
-      'Couldn\'t delete this community';
-
-  @override
-  String get assistantNeedsLogin => 'Open echowire and sign in first.';
-
-  @override
-  String get assistantNotInVoice => 'You\'re not in a call.';
-
-  @override
-  String get assistantNotFound => 'echowire could not find that.';
-
-  @override
-  String get assistantDmsDisabled =>
-      'Direct messages are disabled on this instance.';
-
-  @override
-  String get assistantFailed => 'echowire could not complete that.';
-
-  @override
-  String get assistantOkMuted => 'Muted.';
-
-  @override
-  String get assistantOkUnmuted => 'Unmuted.';
-
-  @override
-  String get assistantOkLeftVoice => 'Left voice.';
-
-  @override
-  String get assistantOkJoinedVoice => 'Joining voice.';
-
-  @override
-  String get assistantOkStartedCall => 'Starting the call.';
+  String get assistantOkStartedCall => 'מתחיל את השיחה.';
 
   @override
   String assistantOkStatusSet(String status) {
-    return 'Status set to $status.';
+    return 'הסטטוס הוגדר ל-$status.';
   }
 
   @override
-  String get assistantOkOpened => 'Opening echowire.';
+  String get assistantOkOpened => 'פותח את Fluxer.';
 
   @override
   String get assistantOkMessageSent => 'ההודעה נשלחה.';
 
   @override
-  String get assistantOkCustomStatusSet => 'Custom status updated.';
+  String get assistantOkCustomStatusSet => 'הסטטוס המותאם אישית עודכן.';
 
   @override
-  String get assistantOkCustomStatusCleared => 'Custom status cleared.';
+  String get assistantOkCustomStatusCleared => 'הסטטוס המותאם אישית נוקה.';
 
   @override
-  String get notificationsPushRelaySectionTitle => 'ממסר התראות דחיפה';
-
-  @override
-  String notificationsPushRelaySectionDescription(String pushProvider) {
-    return '$pushProvider מספקת התראות דחיפה רק דרך השירות שלה, ולכן ההתראות למכשיר הזה עוברות דרך הממסר של Fluxer.';
-  }
-
-  @override
-  String get notificationsPushRelayConsentLabel =>
-      'שימוש בממסר הדחיפה של Fluxer';
-
-  @override
-  String get notificationsPushRelayConsentDescription =>
-      'כיבוי האפשרות הזו מסיר את רישום הדחיפה של המכשיר, והוא יפסיק לקבל התראות דחיפה.';
-
-  @override
-  String get pushRelayConsentTitle => 'ממסר התראות דחיפה';
-
-  @override
-  String pushRelayConsentDescription(String pushProvider) {
-    return '$pushProvider מספקת התראות דחיפה רק דרך השירות שלה, ולכן ההתראות למכשיר הזה עוברות דרך הממסר של Fluxer.';
-  }
-
-  @override
-  String get pushRelayConsentNoticePrefix => 'יש לאשר את ';
-
-  @override
-  String get pushRelayConsentNoticeLink => 'הודעת הפרטיות של ממסר הדחיפה';
-
-  @override
-  String get pushRelayConsentNoticeSuffix =>
-      ' כדי להפעיל התראות דחיפה במכשיר הזה. צריך לאשר פעם אחת בלבד לכל מכשיר.';
-
-  @override
-  String get pushRelayConsentAgree => 'אישור והמשך';
-
-  @override
-  String get pushRelayConsentDecline => 'לא עכשיו';
-
-  @override
-  String get userSettingsNavAppIcon => 'App icon';
-
-  @override
-  String get appIconSectionTitle => 'App icon';
-
-  @override
-  String get appIconSectionDescription =>
-      'Choose which icon appears on your home screen.';
-
-  @override
-  String get appIconOptionDefault => 'ברירת מחדל';
-
-  @override
-  String get appIconOptionStarfield => 'Starfield';
-
-  @override
-  String get appIconOptionSweden => 'שוודיה';
-
-  @override
-  String get appIconUnsupported =>
-      'Changing the app icon is not available on this device.';
-
-  @override
-  String get authCheckStillWorking => 'Still working on it…';
-
-  @override
-  String get authVerificationFailed =>
-      'Couldn\'t complete verification. Try again.';
-
-  @override
-  String get profileLocalTimeSettingsTitle => 'Profile local time';
-
-  @override
-  String profileLocalTimeSettingsSummary(String productName) {
-    return 'Set your time zone once so $productName can keep your UTC offset current when daylight saving time changes. Other people can only see your UTC offset, not your exact time zone identifier.';
-  }
-
-  @override
-  String get profileLocalTimeEditButton => 'Edit profile local time';
-
-  @override
-  String get profileLocalTimeTimezoneLabel => 'Time zone';
-
-  @override
-  String profileLocalTimeTimezoneHelp(String productName) {
-    return 'Choose the time zone $productName uses to calculate your UTC offset for profile local time.';
-  }
-
-  @override
-  String get profileLocalTimeSearchTimezones => 'Search time zones';
-
-  @override
-  String get profileLocalTimeNotSet => 'Not set';
-
-  @override
-  String profileLocalTimePrivacyNote(
-    String timezoneIdentifierExample,
-    String productName,
-  ) {
-    return 'Other people can only see your current UTC offset when you choose to share profile local time. They do not see your exact time zone identifier, such as $timezoneIdentifierExample. $productName stores that identifier only so the offset can update automatically when daylight saving time changes.';
-  }
-
-  @override
-  String get profileLocalTimePrivacyEveryone => 'Everyone';
-
-  @override
-  String get profileLocalTimePrivacyEveryoneDesc =>
-      'Allow anyone who can view your full profile to see your local time';
-
-  @override
-  String get profileLocalTimePrivacyFriends => 'Friends';
-
-  @override
-  String get profileLocalTimePrivacyFriendsDesc =>
-      'Allow your friends to see your local time';
-
-  @override
-  String get profileLocalTimePrivacyCommunityMembers => 'Community members';
-
-  @override
-  String get profileLocalTimePrivacyCommunityMembersDesc =>
-      'Allow members from communities you\'re in to see your local time';
-
-  @override
-  String storePlutoniumPriceLine(String monthly, String yearly) {
-    return '$monthly or $yearly';
-  }
-
-  @override
-  String get storePlutoniumMonthSuffix => '/mo';
-
-  @override
-  String get storePlutoniumYearSuffix => '/yr';
-
-  @override
-  String get storePlutoniumPriceOr => 'or';
-
-  @override
-  String get storePlutoniumEmojiTitle => 'Your emojis, everywhere';
-
-  @override
-  String get storePlutoniumEmojiBody =>
-      'Bring custom emojis and stickers from any of your communities into every chat and community you\'re in.';
-
-  @override
-  String get storePlutoniumProfileTitle => 'A profile that stands out';
-
-  @override
-  String get storePlutoniumProfileBody =>
-      'Get an animated avatar and banner, a subscriber badge, the four-digit tag you want after your username*, and a separate profile for each community.';
-
-  @override
-  String get storePlutoniumFilesTitle => 'Send files up to 500 MB';
-
-  @override
-  String get storePlutoniumFilesBody =>
-      'Share full-length videos and big files without shrinking them first. Free accounts can send up to 25 MB.';
-
-  @override
-  String get storePlutoniumCompareTitle => 'Compare Free and Reverb';
-
-  @override
-  String get storePlutoniumCompareMobileNote =>
-      'Not all of these features are in the mobile app. Some are only available on desktop.';
-
-  @override
-  String get storePlutoniumNotAvailable => 'Not available';
-
-  @override
-  String get storePlutoniumAvailable => 'Available';
-
-  @override
-  String get storePlutoniumCompareTag =>
-      'Pick the 4-digit number after your username*';
-
-  @override
-  String get storePlutoniumCompareProfile =>
-      'A separate profile for each community';
-
-  @override
-  String get storePlutoniumCompareBadge => 'Subscriber badge on your profile';
-
-  @override
-  String get storePlutoniumCompareBackgrounds =>
-      'Video call backgrounds you can save';
-
-  @override
-  String get storePlutoniumCompareCommunities => 'Communities you can join';
-
-  @override
-  String get storePlutoniumCompareCharacters =>
-      'Characters in a single message';
-
-  @override
-  String get storePlutoniumCompareBookmarks => 'Messages you can bookmark';
-
-  @override
-  String get storePlutoniumCompareUpload => 'Largest file you can upload';
-
-  @override
-  String get storePlutoniumCompareSavedMedia =>
-      'Media items you can save for later';
-
-  @override
-  String get storePlutoniumCompareAnimatedEmoji =>
-      'Use animated emojis in messages';
-
-  @override
-  String get storePlutoniumCompareCustomEmoji =>
-      'Use custom emojis and stickers in any community';
-
-  @override
-  String get storePlutoniumCompareVideo =>
-      'Video call and screen share quality';
-
-  @override
-  String get storePlutoniumCompareAvatar =>
-      'Animated avatar and profile banner';
-
-  @override
-  String get storePlutoniumCompareEarlyAccess => 'Early access to new features';
-
-  @override
-  String get storePlutoniumCompareThemes => 'Custom themes for the app';
-
-  @override
-  String get storePlutoniumVideoFree => 'Up to 720p at 30 FPS';
-
-  @override
-  String get storePlutoniumVideoPlutonium => 'Up to 4K at 60 FPS';
-
-  @override
-  String get storePlutoniumTagFootnote =>
-      'You can only pick a tag that nobody else with the same username already has. Usernames aren\'t case sensitive, so Mina#4821 and mina#4821 count as the same. The #0000 tag is reserved for echowire Visionary members.';
-
-  @override
-  String get storePlutoniumLearnVisionary => 'Learn more about Visionary.';
-
-  @override
-  String get storePlutoniumDonatePrompt =>
-      'Just want to support echowire\'s open source development? ';
-
-  @override
-  String get storePlutoniumDonateLink => 'Donate instead.';
-
-  @override
-  String get storePlutoniumHighlightsLead =>
-      'Subscribing funds echowire and unlocks';
-
-  @override
-  String get storePlutoniumHighlightEmoji =>
-      'Custom emoji and stickers in any chat';
-
-  @override
-  String get storePlutoniumHighlightProfile =>
-      'Animated profile, badge, and custom 4-digit number';
-
-  @override
-  String get storePlutoniumHighlightFiles => 'Uploads up to 500 MB';
-
-  @override
-  String get storePlutoniumHighlightMessages =>
-      'Send messages up to 4,000 characters';
-
-  @override
-  String get storePlutoniumHighlightCommunityProfile =>
-      'A separate profile for each community';
-
-  @override
-  String get storePlutoniumHighlightsMore => 'And more';
-
-  @override
-  String get storePlutoniumRenewsThroughPlay =>
-      'Renews automatically through Google Play until you cancel.';
-
-  @override
-  String get storePlutoniumRenewsThroughAppStore =>
-      'Renews automatically through the App Store until you cancel.';
-
-  @override
-  String get storePlutoniumAlreadySubscribed =>
-      'You already have an echowire Reverb subscription.';
-
-  @override
-  String storePlutoniumSavePercent(int percent) {
-    return 'Save $percent%';
-  }
-
-  @override
-  String get storePlutoniumWaiting =>
-      'Purchase received. Reverb will show here once it activates.';
-
-  @override
-  String get storePlutoniumUnavailable =>
-      'Subscriptions in the app aren\'t available on this device yet.';
-
-  @override
-  String get storePlutoniumVisionaryStatus =>
-      'Visionary already includes permanent access, so a recurring subscription isn\'t needed.';
-
-  @override
-  String get guildNavbarAnnouncementChannel => 'Announcement Channel';
+  String get guildNavbarAnnouncementChannel => 'ערוץ הכרזות';
 
   @override
   String get guildNavbarAnnouncementChannelDescription =>
-      'Post updates that other communities can follow into their own channels';
+      'פרסם עדכונים שקהילות אחרות יכולות לעקוב אחריהם לערוצים שלהן';
 
   @override
-  String get channelDetailsAnnouncementChannel => 'Announcement Channel';
+  String get channelDetailsAnnouncementChannel => 'ערוץ הכרזות';
 
   @override
-  String get channelSettingsAnnouncementChannel => 'Announcement Channel';
+  String get channelSettingsAnnouncementChannel => 'ערוץ הכרזות';
 
   @override
   String get channelSettingsAnnouncementChannelDescription =>
-      'Lets other communities follow this channel and get copies of what you publish.';
+      'מאפשר לקהילות אחרות לעקוב אחר הערוץ הזה ולקבל עותקים של מה שאתה מפרסם.';
 
   @override
   String get channelSettingsStopAnnouncementTitle =>
-      'Stop being an announcement channel?';
+      'להפסיק להיות ערוץ הכרזות?';
 
   @override
   String channelSettingsStopAnnouncementBody(int count) {
@@ -15468,245 +14234,225 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       count,
       locale: localeName,
       other:
-          '$count channels follow this channel. Converting it to a text channel removes those follows.',
-      one:
-          '1 channel follows this channel. Converting it to a text channel removes that follow.',
+          '$count ערוצים עוקבים אחר ערוץ זה. המרתו לערוץ טקסט תסיר את המעקבים האלה.',
+      two:
+          'שני ערוצים עוקבים אחר ערוץ זה. המרתו לערוץ טקסט תסיר את המעקבים האלה.',
+      one: 'ערוץ אחד עוקב אחר ערוץ זה. המרתו לערוץ טקסט תסיר את המעקב הזה.',
     );
     return '$_temp0';
   }
 
   @override
   String get channelSettingsStopAnnouncementUnknown =>
-      'Converting this channel to a text channel removes every channel that follows it.';
+      'המרת ערוץ זה לערוץ טקסט תבטל את המעקב של כל הערוצים שעוקבים אחריו.';
 
   @override
-  String get channelSettingsConvertChannel => 'Convert';
+  String get channelSettingsConvertChannel => 'המר';
 
   @override
-  String get channelSettingsConvertFailed => 'Couldn\'t convert this channel';
+  String get channelSettingsConvertFailed => 'לא ניתן היה להמיר את הערוץ הזה';
 
   @override
   String get channelSettingsChannelHasFollowers =>
-      'This channel still has followers. Remove those follows before converting it.';
+      'ערוצים אחרים עדיין עוקבים אחר ערוץ זה. הסר את המעקבים האלה לפני ההמרה.';
 
   @override
-  String get channelMenuFollow => 'Follow Channel';
+  String get channelMenuFollow => 'עקוב אחר ערוץ';
 
   @override
-  String get channelFollowTitle => 'Follow this channel';
+  String get channelFollowTitle => 'עקוב אחר הערוץ הזה';
 
   @override
   String get channelFollowBody =>
-      'Choose where its published messages should go. You can unfollow any time in Community settings → Webhooks.';
+      'בחר לאן יישלחו ההודעות שפורסמו בו. ניתן לבטל את המעקב בכל עת בהגדרות קהילה ← Webhooks.';
 
   @override
-  String get channelFollowCommunity => 'Community';
+  String get channelFollowCommunity => 'קהילה';
 
   @override
-  String get channelFollowChannel => 'Channel';
-
-  @override
-  String get channelFollowSelectCommunity => 'Select a community';
-
-  @override
-  String get channelFollowSelectChannel => 'Select a channel';
+  String get channelFollowChannel => 'ערוץ';
 
   @override
   String get channelFollowAgeWarning =>
-      'This is an age-restricted channel. Updates can only go to age-restricted channels.';
+      'זה ערוץ עם הגבלת גיל. עדכונים יכולים להישלח רק לערוצים עם הגבלת גיל.';
 
   @override
   String get channelFollowContentWarning =>
-      'This channel has a content warning. Updates can only go to channels with a content warning or an age restriction.';
+      'הערוץ הזה מכיל אזהרת תוכן. עדכונים יכולים להישלח רק לערוצים עם אזהרת תוכן או הגבלת גיל.';
 
   @override
   String get channelFollowHiddenHint =>
-      'Communities and channels where you can\'t manage webhooks are hidden.';
+      'קהילות וערוצים שבהם אינך יכול לנהל Webhooks מוסתרים.';
 
   @override
   String get channelFollowEmpty =>
-      'You can\'t manage webhooks in any community. Ask an admin to follow this channel.';
+      'אינך יכול לנהל Webhooks באף קהילה. בקש ממנהל לעקוב אחר הערוץ הזה.';
 
   @override
-  String get channelFollowSubmit => 'Follow';
+  String get channelFollowSubmit => 'עקוב';
 
   @override
-  String get channelFollowFailed => 'Couldn\'t follow this channel.';
+  String get channelFollowFailed => 'לא ניתן היה לעקוב אחר הערוץ הזה.';
 
   @override
-  String get channelFollowSuccessTitle => 'Updates are on their way!';
+  String get channelFollowSuccessTitle => 'עדכונים בדרך!';
 
   @override
   String channelFollowSuccessBody(String sourceName, String targetName) {
-    return 'Messages published in $sourceName will show up in #$targetName.';
+    return 'הודעות שפורסמו ב-$sourceName יופיעו ב-#$targetName.';
   }
 
   @override
-  String get channelFollowSuccessDismiss => 'Got it!';
+  String get channelFollowSuccessDismiss => 'הבנתי!';
 
   @override
   String get channelFollowBarrier =>
-      'Follow to get these announcements in a channel you choose.';
+      'עקוב אחר הערוץ הזה כדי לקבל את ההכרזות האלה בערוץ שתבחר.';
 
   @override
-  String get channelHeaderFollow => 'Follow channel';
+  String get channelHeaderFollow => 'עקוב אחר ערוץ';
 
   @override
-  String get chatMessagePublish => 'Publish';
+  String get chatMessagePublish => 'פרסם';
 
   @override
-  String get chatMessagePublished => 'Published';
+  String get chatMessagePublished => 'פורסם';
 
   @override
-  String get chatMessagePublishConfirmTitle => 'Publish message?';
+  String get chatMessagePublishConfirmTitle => 'לפרסם הודעה?';
 
   @override
   String get chatMessagePublishConfirmBody =>
-      'This sends a copy to every channel that follows this one.';
+      'פעולה זו שולחת עותק לכל ערוץ שעוקב אחרי ערוץ זה.';
 
   @override
-  String get chatMessagePublishedToast => 'Message published';
+  String get chatMessagePublishedToast => 'ההודעה פורסמה';
 
   @override
-  String get chatMessageAlreadyPublished =>
-      'This message is already published.';
+  String get chatMessageAlreadyPublished => 'ההודעה הזו כבר פורסמה.';
 
   @override
-  String get chatMessagePublishFailedTitle => 'Couldn\'t publish this message';
+  String get chatMessagePublishFailedTitle => 'לא ניתן לפרסם הודעה זו';
 
   @override
-  String get chatMessagePublishFailedBody =>
-      'Something went wrong. Try again in a moment.';
+  String get chatMessagePublishFailedBody => 'משהו השתבש. נסה שוב בעוד רגע.';
 
   @override
-  String get chatMessagePublishLimitTitle => 'Slow down';
+  String get chatMessagePublishLimitTitle => 'לאט לאט';
 
   @override
   String chatMessagePublishLimitBody(String duration) {
-    return 'You can publish again in $duration.';
+    return 'תוכל לפרסם שוב בעוד $duration.';
   }
 
   @override
   String get chatMessagePublishLimitUnknown =>
-      'You are publishing too quickly. Try again in a moment.';
+      'אתה מפרסם מהר מדי. נסה שוב בעוד רגע.';
 
   @override
   String get chatMessageDeletePublished =>
-      'This also removes the copies that were sent to channels following this one.';
+      'פעולה זו תסיר גם את העותקים שנשלחו לערוצים העוקבים אחרי ערוץ זה.';
 
   @override
-  String get chatMessageEditPublishedTitle => 'Edit published message?';
+  String get chatMessageEditPublishedTitle => 'עריכת הודעה שפורסמה?';
 
   @override
   String get chatMessageEditPublishedBody =>
-      'This updates the copies that were sent to channels following this one.';
+      'זה מעדכן את העותקים שנשלחו לערוצים שעוקבים אחרי ערוץ זה.';
 
   @override
-  String get chatMessageEditPublishedSave => 'Save';
+  String get chatMessageEditPublishedSave => 'שמירה';
 
   @override
-  String get chatMessageEditLimitTitle => 'Slow down';
+  String get chatMessageEditLimitTitle => 'לאט לאט';
 
   @override
   String chatMessageEditLimitBody(String duration) {
-    return 'You can edit this published message again in $duration.';
+    return 'תוכל לערוך את ההודעה שפורסמה שוב בעוד $duration.';
   }
 
   @override
   String get chatMessageEditLimitUnknown =>
-      'You are editing this published message too quickly. Try again in a moment.';
+      'אתה עורך את ההודעה שפורסמה מהר מדי. נסה שוב בעוד רגע.';
 
   @override
-  String get chatMessageOriginalDeleted => '[Original message deleted]';
+  String get chatMessageOriginalDeleted => '[ההודעה המקורית נמחקה]';
 
   @override
-  String get userTagCommunity => 'Community';
+  String get userTagCommunity => 'קהילה';
 
   @override
   String systemFollowAdd(String username, String source) {
-    return '$username followed $source into this channel. Messages published there will appear here.';
+    return '$username הגדיר/ה את הערוץ הזה לעקוב אחר $source. הודעות שפורסמו שם יופיעו כאן.';
   }
 
   @override
   String systemPreviewFollowAdd(String username, String source) {
-    return '$username followed $source into this channel.';
+    return '$username הגדיר/ה את הערוץ הזה לעקוב אחר $source.';
   }
 
   @override
-  String get publishNudgeNotSent => 'Not sent to followers yet.';
+  String get publishNudgeNotSent => 'עדיין לא נשלח לעוקבים.';
 
   @override
-  String get publishNudgeHideForever => 'Don\'t show again';
+  String get publishNudgeHideForever => 'אל תציג שוב';
 
   @override
-  String get publishNudgeDismiss => 'Dismiss';
+  String get publishNudgeDismiss => 'סגירה';
 
   @override
-  String get channelSettingsFollowedChannels => 'Followed channels';
+  String get channelSettingsFollowedChannels => 'ערוצים במעקב';
 
   @override
   String get channelSettingsFollowedChannelsDescription =>
-      'Announcement channels this channel follows. Unfollow to stop receiving copies.';
+      'ערוצי הכרזות שערוץ זה עוקב אחריהם. בטל מעקב כדי להפסיק לקבל עותקים.';
 
   @override
   String get guildSettingsFollowedChannelsDescription =>
-      'Announcement channels followed by channels in this community.';
+      'ערוצי הכרזות שאחריהם עוקבים ערוצים בקהילה זו.';
 
   @override
   String channelSettingsFollowedFrom(String guildName, String channelName) {
-    return 'From $guildName #$channelName';
+    return 'מאת $guildName #$channelName';
   }
 
   @override
   String get channelSettingsFollowedPaused =>
-      'Updates are paused because the source channel is no longer available.';
+      'העדכונים מושהים מכיוון שערוץ המקור אינו זמין עוד.';
 
   @override
   String channelSettingsUnfollowTitle(String name) {
-    return 'Unfollow $name?';
+    return 'להפסיק לעקוב אחר $name?';
   }
 
   @override
   String get channelSettingsUnfollowBody =>
-      'This channel will stop receiving copies from that announcement channel.';
+      'ערוץ זה יפסיק לקבל עותקים מערוץ ההכרזות ההוא.';
 
   @override
-  String get channelSettingsUnfollow => 'Unfollow';
+  String get channelSettingsUnfollow => 'בטל מעקב';
 
   @override
-  String get channelSettingsUnfollowFailed =>
-      'Couldn\'t unfollow this channel.';
+  String get crosspostCommunityTitle => 'קהילה';
 
   @override
-  String channelSettingsDeliveredTo(String channelName) {
-    return 'Delivered to #$channelName';
-  }
+  String get crosspostGoToCommunity => 'מעבר לקהילה';
 
   @override
-  String get crosspostCommunityTitle => 'Community';
-
-  @override
-  String get crosspostGoToCommunity => 'Go to community';
-
-  @override
-  String get crosspostJoinCommunity => 'Join Community';
+  String get crosspostJoinCommunity => 'הצטרף לקהילה';
 
   @override
   String get crosspostSourceFailed =>
-      'Couldn\'t load this community. Try again in a moment.';
-
-  @override
-  String get crosspostSourceUnavailable =>
-      'This community is no longer available';
+      'לא ניתן היה לטעון את הקהילה הזו. נסה שוב בעוד רגע.';
 
   @override
   String crosspostMembers(int count) {
-    return '$count members';
+    return '$count חברים';
   }
 
   @override
   String crosspostOnline(int count) {
-    return '$count online';
+    return '$count מחוברים';
   }
 
   @override
@@ -15714,8 +14460,9 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count minutes',
-      one: '1 minute',
+      other: '$count דקות',
+      two: 'שתי דקות',
+      one: 'דקה אחת',
     );
     return '$_temp0';
   }
@@ -15725,19 +14472,322 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count seconds',
-      one: '1 second',
+      other: '$count שניות',
+      two: 'שתי שניות',
+      one: 'שנייה אחת',
     );
     return '$_temp0';
   }
 
   @override
-  String get channelUnsupportedTitle => 'Unsupported channel type';
+  String get channelUnsupportedTitle => 'סוג ערוץ לא נתמך';
 
   @override
   String get channelUnsupportedBody =>
-      'This version of the app doesn\'t support this channel type.';
+      'גרסה זו של האפליקציה אינה תומכת בסוג ערוץ זה.';
 
   @override
-  String get channelDetailsUnsupportedChannel => 'Unsupported channel';
+  String get channelDetailsUnsupportedChannel => 'ערוץ לא נתמך';
+
+  @override
+  String get forumChannelTypeForum => 'Forum';
+
+  @override
+  String get forumChannelTypeForumDescription =>
+      'Posts organized by topic and tags';
+
+  @override
+  String get forumChannelTypeMedia => 'Media';
+
+  @override
+  String get forumChannelTypeMediaDescription =>
+      'Posts built around images and videos';
+
+  @override
+  String get forumNewPost => 'פוסט חדש';
+
+  @override
+  String get forumNewMediaPost => 'New media post';
+
+  @override
+  String get forumSearchPosts => 'חיפוש פוסטים';
+
+  @override
+  String get forumViewOptions => 'Sort and view';
+
+  @override
+  String get forumSearchIndexing =>
+      'Search is still being prepared for this community. Posts appear here as soon as it is ready.';
+
+  @override
+  String get forumNoPosts => 'אין פוסטים עדיין';
+
+  @override
+  String get forumNoPostsHint => 'Be the first to start a conversation here.';
+
+  @override
+  String get forumNoSearchResults => 'No posts match your search';
+
+  @override
+  String get forumNoSearchResultsHint =>
+      'Try different words or clear the tag filter.';
+
+  @override
+  String get forumCreateFirstPost => 'Create the first post';
+
+  @override
+  String get forumOlderPosts => 'Older posts';
+
+  @override
+  String get forumPostsLoadFailed => 'Posts could not be loaded.';
+
+  @override
+  String get forumRetry => 'Try again';
+
+  @override
+  String get forumPostPinned => 'Pinned';
+
+  @override
+  String get forumPostLocked => 'Locked';
+
+  @override
+  String get forumPostArchived => 'Archived';
+
+  @override
+  String get forumPostNewBadge => 'NEW';
+
+  @override
+  String get forumPostStarterDeleted => 'The original message was deleted.';
+
+  @override
+  String forumPostSnippet(String author, String content) {
+    return '$author: $content';
+  }
+
+  @override
+  String forumPostNewMessages(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new messages',
+      one: '1 new message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostReact => 'Add the default reaction';
+
+  @override
+  String get forumOpenPost => 'Open post';
+
+  @override
+  String get forumEditTags => 'Edit tags';
+
+  @override
+  String get forumSaveTags => 'Save tags';
+
+  @override
+  String forumTagsLimitHint(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Pick up to $count tags.',
+      one: 'Pick up to 1 tag.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPinPost => 'Pin post';
+
+  @override
+  String get forumUnpinPost => 'Unpin post';
+
+  @override
+  String get forumMarkPostRead => 'Mark as read';
+
+  @override
+  String get forumCopyPostLink => 'Copy link';
+
+  @override
+  String get forumPostGuidelines => 'Post guidelines';
+
+  @override
+  String get forumGuidelinesPlaceholder =>
+      'Tell people what to post here and how to post it.';
+
+  @override
+  String get forumPostTitle => 'Title';
+
+  @override
+  String get forumPostMessage => 'Message';
+
+  @override
+  String get forumPostMessagePlaceholder =>
+      'Write the first message of your post';
+
+  @override
+  String get forumPostMediaPlaceholder => 'Add a caption';
+
+  @override
+  String get forumPostTags => 'Tags';
+
+  @override
+  String get forumPostTagsRequired => 'Tags (required)';
+
+  @override
+  String get forumPostAddMedia => 'Add media';
+
+  @override
+  String get forumPostAddFile => 'Add file';
+
+  @override
+  String get forumPostRemoveAttachment => 'Remove attachment';
+
+  @override
+  String get forumPostSubmit => 'Post';
+
+  @override
+  String get forumPostTitleRequired => 'Give your post a title.';
+
+  @override
+  String get forumPostMediaRequired =>
+      'Add at least one image or video to post here.';
+
+  @override
+  String get forumPostContentRequired => 'Write a message or add a file.';
+
+  @override
+  String get forumSortLatestActivity => 'Recently active';
+
+  @override
+  String get forumSortCreationTime => 'Date posted';
+
+  @override
+  String get forumLayoutList => 'רשימה';
+
+  @override
+  String get forumLayoutGallery => 'גלריה';
+
+  @override
+  String get forumNewPostsUnread => 'Show unread for new posts';
+
+  @override
+  String get forumNewPostsUnreadDescription =>
+      'Mark this channel unread when someone creates a post.';
+
+  @override
+  String get forumPostSlowmode => 'Post slowmode';
+
+  @override
+  String forumPostSlowmodeDescription(String bypassSlowmodePermissionLabel) {
+    return 'Wait between creating posts. \"$bypassSlowmodePermissionLabel\" can bypass it.';
+  }
+
+  @override
+  String get forumMessageSlowmode => 'Message slowmode in posts';
+
+  @override
+  String get forumMessageSlowmodeDescription =>
+      'Slowmode applied to messages in new posts.';
+
+  @override
+  String get forumDefaultAutoArchive => 'Hide after inactivity';
+
+  @override
+  String get forumDefaultAutoArchiveDescription =>
+      'New posts are archived after this long without activity.';
+
+  @override
+  String get forumDefaultReaction => 'Default reaction';
+
+  @override
+  String get forumSetDefaultReaction => 'Pick an emoji';
+
+  @override
+  String get forumChangeDefaultReaction => 'Change';
+
+  @override
+  String get forumRemoveDefaultReaction => 'Remove';
+
+  @override
+  String get forumDefaultSortOrder => 'Default sort order';
+
+  @override
+  String get forumDefaultLayout => 'Default layout';
+
+  @override
+  String get forumTagMatchSetting => 'Tag filter';
+
+  @override
+  String get forumTagMatchSome => 'Match any selected tag';
+
+  @override
+  String get forumTagMatchAll => 'Match all selected tags';
+
+  @override
+  String get forumRequireTag => 'Require tags';
+
+  @override
+  String get forumRequireTagDescription =>
+      'People must pick at least one tag when they create a post.';
+
+  @override
+  String get forumHideMediaDownloads => 'Hide media download options';
+
+  @override
+  String get forumHideMediaDownloadsDescription =>
+      'Hide download, open in browser and copy link for images and videos in posts.';
+
+  @override
+  String forumTagsTitle(int count, int max) {
+    return 'Tags ($count/$max)';
+  }
+
+  @override
+  String get forumTagsDescription =>
+      'Tags help people find and filter posts. Only moderators can apply moderated tags.';
+
+  @override
+  String get forumCreateTag => 'Create tag';
+
+  @override
+  String get forumEditTag => 'Edit tag';
+
+  @override
+  String get forumSaveTag => 'Save tag';
+
+  @override
+  String get forumDeleteTag => 'Delete tag';
+
+  @override
+  String get forumTagName => 'Tag name';
+
+  @override
+  String get forumTagEmoji => 'Emoji';
+
+  @override
+  String get forumTagRemoveEmoji => 'Remove emoji';
+
+  @override
+  String get forumTagModerated => 'Only moderators can apply';
+
+  @override
+  String get forumTagModeratedDescription =>
+      'Only members who can manage threads can apply or remove this tag.';
+
+  @override
+  String get forumTagModeratedBadge => 'Moderated';
+
+  @override
+  String forumPostCooldown(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'You can post again in $seconds seconds.',
+      one: 'You can post again in 1 second.',
+    );
+    return '$_temp0';
+  }
 }

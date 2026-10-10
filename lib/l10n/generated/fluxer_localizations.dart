@@ -203,12 +203,6 @@ abstract class FluxerLocalizations {
   /// **'Retry'**
   String get retry;
 
-  /// Connecting text on the splash screen
-  ///
-  /// In en, this message translates to:
-  /// **'CONNECTING'**
-  String get connectingCaps;
-
   /// Fallback headline on splash when gateway is unavailable (web parity).
   ///
   /// In en, this message translates to:
@@ -476,12 +470,6 @@ abstract class FluxerLocalizations {
   /// **'Continue with {provider}'**
   String continueWithSso(String provider);
 
-  /// Short sign-in note shown when the instance requires single sign-on.
-  ///
-  /// In en, this message translates to:
-  /// **'SSO is required to access this instance.'**
-  String get ssoRequired;
-
   /// Description shown when sign-in is restricted to the configured SSO provider.
   ///
   /// In en, this message translates to:
@@ -505,12 +493,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Prefer using SSO? Continue with {provider}.'**
   String preferSso(String provider);
-
-  /// Secondary login that opens or uses the system browser.
-  ///
-  /// In en, this message translates to:
-  /// **'Log in via browser'**
-  String get logInViaBrowser;
 
   /// Lead text before a register link; trailing space keeps spacing before the link.
   ///
@@ -641,7 +623,7 @@ abstract class FluxerLocalizations {
   /// Label for the TOTP authenticator method.
   ///
   /// In en, this message translates to:
-  /// **'Authenticator App'**
+  /// **'Authenticator app'**
   String get mfaMethodTotp;
 
   /// Label for the WebAuthn security key method.
@@ -692,29 +674,11 @@ abstract class FluxerLocalizations {
   /// **'Add an account'**
   String get accountAdd;
 
-  /// Context menu option to remove a stored account.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove'**
-  String get accountRemove;
-
-  /// Title for the remove account confirmation modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove {username}'**
-  String accountRemoveTitle(String username);
-
   /// Description for the remove account confirmation modal.
   ///
   /// In en, this message translates to:
   /// **'This will remove the saved session for this account.'**
   String get accountRemoveDescription;
-
-  /// Description when removing the last stored account.
-  ///
-  /// In en, this message translates to:
-  /// **'This will remove the only saved account on this device.'**
-  String get accountRemoveOnlyDescription;
 
   /// Label shown on accounts with expired sessions.
   ///
@@ -1250,7 +1214,7 @@ abstract class FluxerLocalizations {
   /// **'Each code works once in place of your authenticator app.'**
   String get recoveryKitBackupCodesNote;
 
-  /// Toast shown when the two-factor backup codes for the recovery kit cannot be loaded.
+  /// Toast shown when the two-factor backup codes cannot be loaded, in the recovery kit sheet or from View codes in security settings.
   ///
   /// In en, this message translates to:
   /// **'Couldn\'t load your backup codes.'**
@@ -1466,12 +1430,6 @@ abstract class FluxerLocalizations {
   /// **'Year'**
   String get registerYear;
 
-  /// Consent checkbox label for registration (plain text fallback).
-  ///
-  /// In en, this message translates to:
-  /// **'I agree to the terms of service and privacy policy'**
-  String get registerConsent;
-
   /// Text before the Terms of Service link in the consent checkbox.
   ///
   /// In en, this message translates to:
@@ -1549,12 +1507,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Passkey authentication timed out. Please try again.'**
   String get passkeyTimeout;
-
-  /// Error for unknown passkey provider errors (e.g. TYPE_UNKNOWN).
-  ///
-  /// In en, this message translates to:
-  /// **'Passkeys are not available for this app. Log in with email and password instead.'**
-  String get passkeyNotAvailable;
 
   /// Generic fallback error for passkey authentication.
   ///
@@ -1760,36 +1712,6 @@ abstract class FluxerLocalizations {
   /// **'someone'**
   String get inviteAcceptSomeone;
 
-  /// Label for an emoji pack invite.
-  ///
-  /// In en, this message translates to:
-  /// **'Emoji pack'**
-  String get inviteAcceptEmojiPack;
-
-  /// Label for a sticker pack invite.
-  ///
-  /// In en, this message translates to:
-  /// **'Sticker pack'**
-  String get inviteAcceptStickerPack;
-
-  /// Primary action to install an emoji pack from an invite.
-  ///
-  /// In en, this message translates to:
-  /// **'Install emoji pack'**
-  String get inviteAcceptInstallEmojiPack;
-
-  /// Primary action to install a sticker pack from an invite.
-  ///
-  /// In en, this message translates to:
-  /// **'Install sticker pack'**
-  String get inviteAcceptInstallStickerPack;
-
-  /// Note shown on expression pack invites before accepting.
-  ///
-  /// In en, this message translates to:
-  /// **'Accepting this invite installs the pack automatically.'**
-  String get inviteAcceptPackInstallNote;
-
   /// Fallback name shown in a channel mention pill when the channel is not found.
   ///
   /// In en, this message translates to:
@@ -1826,17 +1748,17 @@ abstract class FluxerLocalizations {
   /// **'Shared theme'**
   String get embedThemeTitle;
 
-  /// Subtitle on the theme embed card.
+  /// Subtitle on a shared theme link embed in chat. Themes cannot be imported in this client.
   ///
   /// In en, this message translates to:
-  /// **'This client doesn\'t support custom themes.'**
-  String get embedThemeSubtitle;
+  /// **'You can only import themes on web or desktop.'**
+  String get embedThemeWebOnly;
 
-  /// Button on the theme embed card - themes aren't supported in the client.
+  /// Disabled button on a shared theme link embed. Themes can only be imported on web or desktop.
   ///
   /// In en, this message translates to:
-  /// **'Themes unavailable'**
-  String get embedThemeUnavailableButton;
+  /// **'Import theme'**
+  String get embedThemeImport;
 
   /// Gift duration title for a lifetime Visionary entitlement.
   ///
@@ -2366,11 +2288,17 @@ abstract class FluxerLocalizations {
   /// **'Leave group'**
   String get dmLeaveGroup;
 
-  /// Shown when no communities are available to invite to.
+  /// Toast confirming a community invite was sent to a DM recipient.
   ///
   /// In en, this message translates to:
-  /// **'No communities available'**
-  String get dmNoCommunitiesAvailable;
+  /// **'Invite sent for {communityName}'**
+  String dmInviteSentFor(String communityName);
+
+  /// Toast shown when sending a community invite from the DM menu fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t send invite. Try again.'**
+  String get dmInviteSendFailed;
 
   /// Member count label for group DMs.
   ///
@@ -3074,12 +3002,6 @@ abstract class FluxerLocalizations {
   /// **'Unlock {emojiCount} from {communityCount} with Reverb.'**
   String emojiPlutoniumUpsellText(String emojiCount, String communityCount);
 
-  /// Button label on the Reverb upsell banner.
-  ///
-  /// In en, this message translates to:
-  /// **'Get Reverb'**
-  String get emojiPlutoniumUpsellButton;
-
   /// Dismiss link on the Reverb upsell banner.
   ///
   /// In en, this message translates to:
@@ -3308,12 +3230,6 @@ abstract class FluxerLocalizations {
   /// **'Change your username'**
   String get changeYourFluxerTag;
 
-  /// Label above the username and discriminator input fields.
-  ///
-  /// In en, this message translates to:
-  /// **'Username'**
-  String get fluxerTagInputLabel;
-
   /// Base description text on the username change sheet.
   ///
   /// In en, this message translates to:
@@ -3343,12 +3259,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Letters (a-z, A-Z), numbers (0-9), and underscores (_) only'**
   String get validationAllowedChars;
-
-  /// Tooltip on disabled discriminator field for non-premium users.
-  ///
-  /// In en, this message translates to:
-  /// **'Get Reverb to customize your tag or keep it when changing your username'**
-  String get discriminatorPremiumTooltip;
 
   /// Title for the tag-taken confirmation sheet.
   ///
@@ -3403,18 +3313,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Customize your 4-digit tag or keep it when changing your username'**
   String get premiumUpsellCustomizeTag;
-
-  /// Trial upsell with expiry date.
-  ///
-  /// In en, this message translates to:
-  /// **'Your Reverb trial expires on {date}. Upgrade to keep your custom tag and earn a badge on your profile.'**
-  String premiumTrialExpiresOn(String date);
-
-  /// Trial upsell without specific expiry date.
-  ///
-  /// In en, this message translates to:
-  /// **'You\'re on a Reverb trial. Upgrade to keep your custom tag and earn a badge on your profile.'**
-  String get premiumTrialActive;
 
   /// Success toast after username change.
   ///
@@ -3644,30 +3542,6 @@ abstract class FluxerLocalizations {
   /// **'Remove your Visionary ID badge'**
   String get hideVisionaryIdDescription;
 
-  /// Trial banner title when user has an active subscription pending after trial.
-  ///
-  /// In en, this message translates to:
-  /// **'You\'re on a Reverb trial — your subscription starts on {date}'**
-  String premiumTrialSubscriptionStarts(String date);
-
-  /// Trial banner description when user has an active subscription pending after trial.
-  ///
-  /// In en, this message translates to:
-  /// **'Your subscription will automatically begin when your trial ends. No action needed.'**
-  String get premiumTrialSubscriptionStartsDescription;
-
-  /// Trial banner title with expiry date.
-  ///
-  /// In en, this message translates to:
-  /// **'You\'re on a Reverb trial that expires on {date}'**
-  String premiumTrialExpiresOnProfile(String date);
-
-  /// Trial banner title without specific expiry date.
-  ///
-  /// In en, this message translates to:
-  /// **'You\'re on a Reverb trial'**
-  String get premiumTrialActiveProfile;
-
   /// Avatar helper text for non-premium users, mentioning Reverb requirement for animated avatars.
   ///
   /// In en, this message translates to:
@@ -3787,30 +3661,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Profile updated'**
   String get profileSavedToast;
-
-  /// Button label to open profile editing from the profile content card.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit profile'**
-  String get profileEditButton;
-
-  /// Label for the personal note section on a user profile.
-  ///
-  /// In en, this message translates to:
-  /// **'Note'**
-  String get profileNoteLabel;
-
-  /// Hint that the note is private and only visible to the current user.
-  ///
-  /// In en, this message translates to:
-  /// **'(only visible to you)'**
-  String get profileNoteVisibility;
-
-  /// Placeholder shown when no personal note has been set for a user.
-  ///
-  /// In en, this message translates to:
-  /// **'No note yet.'**
-  String get profileNoteEmpty;
 
   /// Title for the sudo verification bottom sheet shown for sensitive operations.
   ///
@@ -3947,7 +3797,7 @@ abstract class FluxerLocalizations {
   /// Shown when the password has never been changed.
   ///
   /// In en, this message translates to:
-  /// **'Last changed: Never'**
+  /// **'Last changed: never'**
   String get securityLoginPasswordNeverChanged;
 
   /// Shown when the user has no password set.
@@ -4199,7 +4049,7 @@ abstract class FluxerLocalizations {
   /// Label for authenticator app row.
   ///
   /// In en, this message translates to:
-  /// **'Authenticator App'**
+  /// **'Authenticator app'**
   String get securityTfaAuthenticatorApp;
 
   /// Status when TOTP is enabled.
@@ -4316,60 +4166,6 @@ abstract class FluxerLocalizations {
   /// **'e.g., YubiKey, iPhone, work computer'**
   String get securityPasskeyNameHint;
 
-  /// Title for phone number section.
-  ///
-  /// In en, this message translates to:
-  /// **'Phone number'**
-  String get securityPhoneSectionTitle;
-
-  /// Description for phone number section.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage your phone number.'**
-  String get securityPhoneSectionDescription;
-
-  /// Label for phone number row.
-  ///
-  /// In en, this message translates to:
-  /// **'Phone number'**
-  String get securityPhoneLabel;
-
-  /// Shown when no phone number is set.
-  ///
-  /// In en, this message translates to:
-  /// **'No phone number added.'**
-  String get securityPhoneNone;
-
-  /// Button to add phone number.
-  ///
-  /// In en, this message translates to:
-  /// **'Add phone'**
-  String get securityPhoneAdd;
-
-  /// Button to remove phone number.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove'**
-  String get securityPhoneRemove;
-
-  /// Title for phone remove confirmation.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove phone number'**
-  String get securityPhoneRemoveTitle;
-
-  /// Description for phone remove confirmation.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to remove your phone number?'**
-  String get securityPhoneRemoveDescription;
-
-  /// Toast after phone removed.
-  ///
-  /// In en, this message translates to:
-  /// **'Phone number removed'**
-  String get securityPhoneRemoved;
-
   /// Title when user needs to claim account for security.
   ///
   /// In en, this message translates to:
@@ -4385,7 +4181,7 @@ abstract class FluxerLocalizations {
   /// Warning when email is not verified.
   ///
   /// In en, this message translates to:
-  /// **'You must verify your email address before you can set up two-factor authentication, passkeys, or SMS verification.'**
+  /// **'You must verify your email address before you can set up two-factor authentication or passkeys.'**
   String get securityVerifyEmailRequired;
 
   /// Title for TOTP enable sheet.
@@ -4448,12 +4244,6 @@ abstract class FluxerLocalizations {
   /// **'If you lose access to your authenticator app and don\'t have these codes, you will be permanently locked out of your account. Download or copy them now and store them somewhere safe.'**
   String get backupCodesWarning;
 
-  /// Button to download backup codes.
-  ///
-  /// In en, this message translates to:
-  /// **'Download'**
-  String get backupCodesDownload;
-
   /// Button to copy backup codes.
   ///
   /// In en, this message translates to:
@@ -4478,269 +4268,11 @@ abstract class FluxerLocalizations {
   /// **'Done'**
   String get backupCodesDone;
 
-  /// Title for viewing existing backup codes.
-  ///
-  /// In en, this message translates to:
-  /// **'View backup codes'**
-  String get backupCodesViewTitle;
-
-  /// Description for view backup codes.
-  ///
-  /// In en, this message translates to:
-  /// **'Verification may be required before viewing your backup codes.'**
-  String get backupCodesViewDescription;
-
-  /// Title for phone add sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'Add phone number'**
-  String get phoneAddTitle;
-
-  /// Label for phone input.
-  ///
-  /// In en, this message translates to:
-  /// **'Phone number'**
-  String get phoneAddLabel;
-
-  /// Hint for phone input.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your phone number'**
-  String get phoneAddHint;
-
-  /// Footer text for phone input.
-  ///
-  /// In en, this message translates to:
-  /// **'We\'ll send an SMS code when available. Your number is not linked to your account. We keep only an encrypted marker, with no user ID, to allow at most 2 verifications in about 30 days.'**
-  String get phoneAddFooter;
-
-  /// Button to send phone verification code.
-  ///
-  /// In en, this message translates to:
-  /// **'Send code'**
-  String get phoneAddSendCode;
-
-  /// Title for phone verify step.
-  ///
-  /// In en, this message translates to:
-  /// **'Verify phone number'**
-  String get phoneVerifyTitle;
-
-  /// Description for phone verify step.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter the verification code sent to your phone number.'**
-  String get phoneVerifyDescription;
-
-  /// Toast after phone verified.
-  ///
-  /// In en, this message translates to:
-  /// **'Phone number verified'**
-  String get phoneAddSuccess;
-
-  /// Label for country selector in phone verification.
-  ///
-  /// In en, this message translates to:
-  /// **'Country'**
-  String get phoneCountryLabel;
-
-  /// Search hint for country selector.
-  ///
-  /// In en, this message translates to:
-  /// **'Search countries...'**
-  String get phoneSearchCountries;
-
-  /// Validation error when phone number is empty.
-  ///
-  /// In en, this message translates to:
-  /// **'Phone number is required'**
-  String get phoneNumberRequired;
-
-  /// Validation error for invalid phone format.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter a valid mobile phone number.'**
-  String get phoneEnterValidNumber;
-
-  /// API error when phone number is rejected.
-  ///
-  /// In en, this message translates to:
-  /// **'This phone number cannot be used. Try another mobile number or contact support.'**
-  String get phoneCannotBeUsed;
-
-  /// API error when phone number was reused.
-  ///
-  /// In en, this message translates to:
-  /// **'This phone number has already been used. Try another number or contact support.'**
-  String get phoneAlreadyUsed;
-
-  /// API error for invalid verification code.
-  ///
-  /// In en, this message translates to:
-  /// **'That code didn\'t work. Check it and try again.'**
-  String get phoneCodeDidNotWork;
-
-  /// Rate limit error for phone verification.
-  ///
-  /// In en, this message translates to:
-  /// **'Too many attempts. Wait a bit, then try again.'**
-  String get phoneTooManyAttempts;
-
-  /// SMS provider unavailable error.
-  ///
-  /// In en, this message translates to:
-  /// **'SMS verification is unavailable right now. Try again later or contact support.'**
-  String get phoneSmsUnavailable;
-
-  /// Account not eligible for phone verification.
-  ///
-  /// In en, this message translates to:
-  /// **'Phone verification is not available for this account. Use another method or contact support.'**
-  String get phoneNotEligible;
-
   /// Captcha required for phone verification.
   ///
   /// In en, this message translates to:
   /// **'A browser check is required before phone verification. Try again from the sign-in page or contact support.'**
   String get phoneCaptchaRequired;
-
-  /// Generic phone verification error.
-  ///
-  /// In en, this message translates to:
-  /// **'Something went wrong. Try again.'**
-  String get phoneSomethingWentWrong;
-
-  /// Inbound challenge reason for expensive destinations.
-  ///
-  /// In en, this message translates to:
-  /// **'Sending an SMS to this phone number is too expensive, so we need you to send us an SMS instead. You can also contact support to have us lift this requirement from your account.'**
-  String get phoneInboundExpensiveDescription;
-
-  /// Default inbound challenge description.
-  ///
-  /// In en, this message translates to:
-  /// **'We need you to send us an SMS to verify your phone number.'**
-  String get phoneInboundDefaultDescription;
-
-  /// Inbound verification step 1.
-  ///
-  /// In en, this message translates to:
-  /// **'Open your phone\'s messaging app and create a new text message.'**
-  String get phoneInboundStepOpenMessaging;
-
-  /// Inbound verification step 2.
-  ///
-  /// In en, this message translates to:
-  /// **'Send the code {code} to {number}.'**
-  String phoneInboundStepSendCode(String code, String number);
-
-  /// Inbound verification step 3.
-  ///
-  /// In en, this message translates to:
-  /// **'Wait for us to receive your message. This can take a minute.'**
-  String get phoneInboundStepWait;
-
-  /// Button to refresh inbound challenge.
-  ///
-  /// In en, this message translates to:
-  /// **'Get new code'**
-  String get phoneInboundGetNewCode;
-
-  /// Label for inbound challenge code.
-  ///
-  /// In en, this message translates to:
-  /// **'Code to send'**
-  String get phoneInboundChallengeCodeLabel;
-
-  /// Label for inbound destination number.
-  ///
-  /// In en, this message translates to:
-  /// **'Send to'**
-  String get phoneInboundOurNumberLabel;
-
-  /// Title for required action blocking modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Account verification required'**
-  String get requiredActionTitle;
-
-  /// Generic required action intro.
-  ///
-  /// In en, this message translates to:
-  /// **'Complete the required verification to continue using {productName}.'**
-  String requiredActionIntroGeneric(String productName);
-
-  /// Phone-only required action intro.
-  ///
-  /// In en, this message translates to:
-  /// **'Your registration needs an extra anti-spam check before you can continue.'**
-  String get requiredActionIntroPhone;
-
-  /// Email or phone required action intro.
-  ///
-  /// In en, this message translates to:
-  /// **'Verify your email or phone to continue using {productName}.'**
-  String requiredActionIntroEmailOrPhone(String productName);
-
-  /// Email and phone required action intro.
-  ///
-  /// In en, this message translates to:
-  /// **'Complete the required email and phone verification steps below to continue using {productName}.'**
-  String requiredActionIntroEmailAndPhone(String productName);
-
-  /// Title when user can pick email or phone.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose a verification method'**
-  String get requiredActionChooseMethodTitle;
-
-  /// Description when user can pick email or phone.
-  ///
-  /// In en, this message translates to:
-  /// **'Complete one of the verification paths below to continue using {productName}.'**
-  String requiredActionChooseMethodDescription(String productName);
-
-  /// Button to choose email verification.
-  ///
-  /// In en, this message translates to:
-  /// **'Use email'**
-  String get requiredActionUseEmail;
-
-  /// Button to choose phone verification.
-  ///
-  /// In en, this message translates to:
-  /// **'Use phone'**
-  String get requiredActionUsePhone;
-
-  /// Title for email verification instructions.
-  ///
-  /// In en, this message translates to:
-  /// **'Check your email'**
-  String get requiredActionCheckEmailTitle;
-
-  /// Description for email verification instructions.
-  ///
-  /// In en, this message translates to:
-  /// **'We sent a verification link to your email address. Open it to continue.'**
-  String get requiredActionCheckEmailDescription;
-
-  /// Button to resend verification email.
-  ///
-  /// In en, this message translates to:
-  /// **'Resend verification email'**
-  String get requiredActionResendVerificationEmail;
-
-  /// Toast after resending verification email.
-  ///
-  /// In en, this message translates to:
-  /// **'Verification email sent. Check your inbox.'**
-  String get requiredActionVerificationEmailSent;
-
-  /// Sign out button in required action modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign out'**
-  String get requiredActionSignOut;
 
   /// Title for danger zone section.
   ///
@@ -5090,11 +4622,497 @@ abstract class FluxerLocalizations {
   /// **'Access administrative endpoints'**
   String get authorizedAppsScopeAdmin;
 
-  /// Title of the warning alert shown when a bulk message deletion is pending.
+  /// Title for the developer Applications settings tab.
   ///
   /// In en, this message translates to:
-  /// **'Pending deletion'**
-  String get privacyPendingDeletionTitle;
+  /// **'Applications'**
+  String get applicationsTitle;
+
+  /// Button that opens the create-application sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Create application'**
+  String get applicationsCreate;
+
+  /// Primary submit label in the create-application sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get applicationsCreateSubmit;
+
+  /// Tooltip on the disabled create button for unclaimed accounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim your account to create applications.'**
+  String get applicationsCreateClaimTooltip;
+
+  /// Link to developer documentation. domain is the docs host.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the documentation ({domain})'**
+  String applicationsDocsLink(String domain);
+
+  /// Error title when the applications list fails to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load applications'**
+  String get applicationsLoadError;
+
+  /// Error body when the applications list fails to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your connection and try again.'**
+  String get applicationsLoadErrorDescription;
+
+  /// Empty-state title when the user has no developer applications.
+  ///
+  /// In en, this message translates to:
+  /// **'No applications yet'**
+  String get applicationsEmptyTitle;
+
+  /// Empty-state body. apiName is the product API display name.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your first application to get started with the {apiName}.'**
+  String applicationsEmptyDescription(String apiName);
+
+  /// List row subtitle showing when an application was created.
+  ///
+  /// In en, this message translates to:
+  /// **'Created {date}'**
+  String applicationsCreated(String date);
+
+  /// Label for the application name field.
+  ///
+  /// In en, this message translates to:
+  /// **'Application name'**
+  String get applicationsName;
+
+  /// Placeholder for the application name field.
+  ///
+  /// In en, this message translates to:
+  /// **'My application'**
+  String get applicationsNameHint;
+
+  /// Validation error when the application name is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Application name is required'**
+  String get applicationsNameRequired;
+
+  /// Button that returns from application details to the list.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to list'**
+  String get applicationsBackToList;
+
+  /// Error title when a single application fails to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load this application'**
+  String get applicationsDetailLoadError;
+
+  /// Error body when a single application fails to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again or go back to the applications list.'**
+  String get applicationsDetailLoadErrorDescription;
+
+  /// Label for the read-only application ID field.
+  ///
+  /// In en, this message translates to:
+  /// **'Application ID'**
+  String get applicationsId;
+
+  /// Button that copies the application ID.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy ID'**
+  String get applicationsCopyId;
+
+  /// Section title for client secret and bot token.
+  ///
+  /// In en, this message translates to:
+  /// **'Secrets & tokens'**
+  String get applicationsSecretsTitle;
+
+  /// Section description for secrets and tokens.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep these safe. Regenerating will break existing integrations.'**
+  String get applicationsSecretsDescription;
+
+  /// Label for the OAuth2 client secret field.
+  ///
+  /// In en, this message translates to:
+  /// **'Client secret'**
+  String get applicationsClientSecret;
+
+  /// Label for the bot token field.
+  ///
+  /// In en, this message translates to:
+  /// **'Bot token'**
+  String get applicationsBotToken;
+
+  /// Button that rotates a secret or token.
+  ///
+  /// In en, this message translates to:
+  /// **'Regenerate'**
+  String get applicationsRegenerate;
+
+  /// Confirmation title when regenerating the client secret.
+  ///
+  /// In en, this message translates to:
+  /// **'Regenerate client secret?'**
+  String get applicationsRegenerateClientSecretTitle;
+
+  /// Confirmation title when regenerating the bot token.
+  ///
+  /// In en, this message translates to:
+  /// **'Regenerate bot token?'**
+  String get applicationsRegenerateBotTokenTitle;
+
+  /// Confirmation body when regenerating the client secret.
+  ///
+  /// In en, this message translates to:
+  /// **'Regenerating will invalidate the current secret. Update any code that uses the old value.'**
+  String get applicationsRegenerateClientSecretDescription;
+
+  /// Confirmation body when regenerating the bot token.
+  ///
+  /// In en, this message translates to:
+  /// **'Regenerating will invalidate the current token. Update any code that uses the old value.'**
+  String get applicationsRegenerateBotTokenDescription;
+
+  /// Toast after a client secret is rotated.
+  ///
+  /// In en, this message translates to:
+  /// **'Client secret regenerated. Update any code that uses the old secret.'**
+  String get applicationsClientSecretRegenerated;
+
+  /// Toast after a bot token is rotated.
+  ///
+  /// In en, this message translates to:
+  /// **'Bot token regenerated. Update any code that uses the old token.'**
+  String get applicationsBotTokenRegenerated;
+
+  /// Error toast when rotating a secret or token fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t regenerate secret'**
+  String get applicationsRegenerateFailed;
+
+  /// Section title for basic application settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Application information'**
+  String get applicationsInfoTitle;
+
+  /// Section description for basic application settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic settings and allowed redirect URIs.'**
+  String get applicationsInfoDescription;
+
+  /// Switch label for allowing anyone to invite the bot.
+  ///
+  /// In en, this message translates to:
+  /// **'Public bot'**
+  String get applicationsPublicBot;
+
+  /// Switch description for public bot.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow anyone to invite this bot to their communities.'**
+  String get applicationsPublicBotDescription;
+
+  /// Switch label for requiring an OAuth2 code grant on invite.
+  ///
+  /// In en, this message translates to:
+  /// **'Require OAuth2 code grant'**
+  String get applicationsRequireCodeGrant;
+
+  /// Switch description for OAuth2 code grant.
+  ///
+  /// In en, this message translates to:
+  /// **'Requires a redirect URI and an authorization code when inviting this bot.'**
+  String get applicationsRequireCodeGrantDescription;
+
+  /// Label for the redirect URI list.
+  ///
+  /// In en, this message translates to:
+  /// **'Redirect URIs'**
+  String get applicationsRedirectUris;
+
+  /// Button that adds another redirect URI row.
+  ///
+  /// In en, this message translates to:
+  /// **'Add redirect'**
+  String get applicationsAddRedirect;
+
+  /// Accessibility label for removing a redirect URI row.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete redirect URI'**
+  String get applicationsDeleteRedirect;
+
+  /// Section title for bot profile settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Bot profile'**
+  String get applicationsBotProfileTitle;
+
+  /// Section description for bot profile settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Avatar, tag, and rich profile details for your bot.'**
+  String get applicationsBotProfileDescription;
+
+  /// Label for the bot avatar preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Bot avatar'**
+  String get applicationsBotAvatar;
+
+  /// Validation error when the bot username is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Username is required'**
+  String get applicationsUsernameRequired;
+
+  /// Validation error when the bot username is too long.
+  ///
+  /// In en, this message translates to:
+  /// **'Username must be at most 32 characters'**
+  String get applicationsUsernameTooLong;
+
+  /// Validation error when the bot username has invalid characters.
+  ///
+  /// In en, this message translates to:
+  /// **'Username can only contain letters, numbers, and underscores'**
+  String get applicationsUsernameInvalid;
+
+  /// Label for the bot username field.
+  ///
+  /// In en, this message translates to:
+  /// **'Bot username'**
+  String get applicationsBotUsername;
+
+  /// Label for the read-only bot discriminator.
+  ///
+  /// In en, this message translates to:
+  /// **'Discriminator'**
+  String get applicationsDiscriminator;
+
+  /// Label for the bot biography field.
+  ///
+  /// In en, this message translates to:
+  /// **'Bot bio'**
+  String get applicationsBotBio;
+
+  /// Placeholder for the bot biography field.
+  ///
+  /// In en, this message translates to:
+  /// **'A helpful bot that does amazing things!'**
+  String get applicationsBotBioHint;
+
+  /// Placeholder shown when the bot has no banner.
+  ///
+  /// In en, this message translates to:
+  /// **'No bot banner'**
+  String get applicationsNoBotBanner;
+
+  /// Switch label for allowing friend requests to the bot.
+  ///
+  /// In en, this message translates to:
+  /// **'Friendly bot'**
+  String get applicationsFriendlyBot;
+
+  /// Switch description for friendly bot.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow users to send this bot friend requests for manual approval.'**
+  String get applicationsFriendlyBotDescription;
+
+  /// Switch label for requiring manual friend-request approval.
+  ///
+  /// In en, this message translates to:
+  /// **'Require manual friend approval'**
+  String get applicationsManualFriendApproval;
+
+  /// Switch description for manual friend approval.
+  ///
+  /// In en, this message translates to:
+  /// **'Friend requests to this bot need manual approval.'**
+  String get applicationsManualFriendApprovalDescription;
+
+  /// Section title for the authorize URL builder.
+  ///
+  /// In en, this message translates to:
+  /// **'OAuth2 URL builder'**
+  String get applicationsOauthBuilderTitle;
+
+  /// Section description for the authorize URL builder.
+  ///
+  /// In en, this message translates to:
+  /// **'Construct an authorize URL with scopes and permissions.'**
+  String get applicationsOauthBuilderDescription;
+
+  /// Label for OAuth2 scope checkboxes.
+  ///
+  /// In en, this message translates to:
+  /// **'Scopes'**
+  String get applicationsScopes;
+
+  /// Label for the authorize URL redirect selector.
+  ///
+  /// In en, this message translates to:
+  /// **'Redirect URI'**
+  String get applicationsRedirectUri;
+
+  /// Placeholder for the authorize URL redirect selector.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a redirect URI'**
+  String get applicationsSelectRedirectUri;
+
+  /// Validation shown when a redirect is required by code grant.
+  ///
+  /// In en, this message translates to:
+  /// **'Redirect URI is required because this bot requires OAuth2 code grant.'**
+  String get applicationsRedirectRequiredCodeGrant;
+
+  /// Validation shown when a redirect is required by selected scopes.
+  ///
+  /// In en, this message translates to:
+  /// **'Redirect URI is required when not using only the bot scope.'**
+  String get applicationsRedirectRequiredScopes;
+
+  /// Label for bot permission checkboxes in the URL builder.
+  ///
+  /// In en, this message translates to:
+  /// **'Bot permissions'**
+  String get applicationsBotPermissions;
+
+  /// Label for the generated authorize URL field.
+  ///
+  /// In en, this message translates to:
+  /// **'Authorize URL'**
+  String get applicationsAuthorizeUrl;
+
+  /// Placeholder when the authorize URL cannot be built yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Select scopes (and redirect URI if required)'**
+  String get applicationsAuthorizeUrlPlaceholder;
+
+  /// Button that copies the generated authorize URL.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy authorize URL'**
+  String get applicationsCopyAuthorizeUrl;
+
+  /// Toast after copying the authorize URL.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied URL to clipboard'**
+  String get applicationsCopiedUrl;
+
+  /// Section title for deleting an application.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger zone'**
+  String get applicationsDangerTitle;
+
+  /// Section subtitle for deleting an application.
+  ///
+  /// In en, this message translates to:
+  /// **'This cannot be undone. Removing the application also deletes its bot.'**
+  String get applicationsDangerSubtitle;
+
+  /// Helper text in the application danger zone.
+  ///
+  /// In en, this message translates to:
+  /// **'Once deleted, the application and its credentials are permanently removed.'**
+  String get applicationsDangerHelper;
+
+  /// Button that deletes the current application.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete application'**
+  String get applicationsDelete;
+
+  /// Confirmation body when deleting an application.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete {name}? This action cannot be undone. All associated data, including the bot user, will be permanently deleted.'**
+  String applicationsDeleteConfirmDescription(String name);
+
+  /// Error toast when deleting an application fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t delete application'**
+  String get applicationsDeleteFailed;
+
+  /// Toast after saving application changes.
+  ///
+  /// In en, this message translates to:
+  /// **'Application updated successfully'**
+  String get applicationsUpdated;
+
+  /// Toast when save is pressed with no dirty fields.
+  ///
+  /// In en, this message translates to:
+  /// **'No changes to save'**
+  String get applicationsNoChanges;
+
+  /// Settings search entry for the Applications tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Applications & bots'**
+  String get applicationsSearchBots;
+
+  /// Settings search description for the Applications tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Create and manage applications and bots for your account'**
+  String get applicationsSearchBotsDescription;
+
+  /// Settings search description for application information.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit application basics and redirect URIs'**
+  String get applicationsSearchInfoDescription;
+
+  /// Settings search description for bot profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit the bot avatar, tag, bio, banner, and friend request behavior'**
+  String get applicationsSearchBotProfileDescription;
+
+  /// Settings search description for the OAuth2 URL builder.
+  ///
+  /// In en, this message translates to:
+  /// **'Build an authorization URL with scopes, redirects, and bot permissions'**
+  String get applicationsSearchOauthDescription;
+
+  /// Settings search description for secrets and tokens.
+  ///
+  /// In en, this message translates to:
+  /// **'View and regenerate client secrets and bot tokens'**
+  String get applicationsSearchSecretsDescription;
+
+  /// Settings search synonym for applications.
+  ///
+  /// In en, this message translates to:
+  /// **'Bots'**
+  String get applicationsSearchBotsKeyword;
+
+  /// Settings search synonym for the applications docs link.
+  ///
+  /// In en, this message translates to:
+  /// **'Documentation'**
+  String get applicationsSearchDocumentation;
 
   /// Header title of the Blocked Users settings page.
   ///
@@ -5345,12 +5363,6 @@ abstract class FluxerLocalizations {
   /// **'Delete'**
   String get userProfileNoteDelete;
 
-  /// Hint text when no note has been written yet.
-  ///
-  /// In en, this message translates to:
-  /// **'Click to add a note'**
-  String get userProfileNoteEmpty;
-
   /// Header of the member-since section in the bio card.
   ///
   /// In en, this message translates to:
@@ -5428,6 +5440,93 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Local time'**
   String get userProfileLocalTime;
+
+  /// Profile settings row title for profile local time.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile local time'**
+  String get profileLocalTimeSettingsTitle;
+
+  /// Description for the profile local time settings section.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your time zone once so {productName} can keep your UTC offset current when daylight saving time changes. Other people can only see your UTC offset, not your exact time zone identifier.'**
+  String profileLocalTimeSettingsSummary(String productName);
+
+  /// Opens the profile local time editor.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile local time'**
+  String get profileLocalTimeEditButton;
+
+  /// Field label for the profile timezone picker.
+  ///
+  /// In en, this message translates to:
+  /// **'Time zone'**
+  String get profileLocalTimeTimezoneLabel;
+
+  /// Helper text under the profile timezone picker.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the time zone {productName} uses to calculate your UTC offset for profile local time.'**
+  String profileLocalTimeTimezoneHelp(String productName);
+
+  /// Placeholder in the profile timezone picker.
+  ///
+  /// In en, this message translates to:
+  /// **'Search time zones'**
+  String get profileLocalTimeSearchTimezones;
+
+  /// Profile timezone picker option when no timezone is selected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get profileLocalTimeNotSet;
+
+  /// Privacy note in profile timezone settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Other people can only see your current UTC offset when you choose to share profile local time. They do not see your exact time zone identifier, such as {timezoneIdentifierExample}. {productName} stores that identifier only so the offset can update automatically when daylight saving time changes.'**
+  String profileLocalTimePrivacyNote(
+    String timezoneIdentifierExample,
+    String productName,
+  );
+
+  /// Profile timezone privacy option label.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone'**
+  String get profileLocalTimePrivacyEveryone;
+
+  /// Profile timezone privacy option description for Everyone.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow anyone who can view your full profile to see your local time'**
+  String get profileLocalTimePrivacyEveryoneDesc;
+
+  /// Profile timezone privacy option label.
+  ///
+  /// In en, this message translates to:
+  /// **'Friends'**
+  String get profileLocalTimePrivacyFriends;
+
+  /// Profile timezone privacy option description for Friends.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow your friends to see your local time'**
+  String get profileLocalTimePrivacyFriendsDesc;
+
+  /// Profile timezone privacy option label.
+  ///
+  /// In en, this message translates to:
+  /// **'Community members'**
+  String get profileLocalTimePrivacyCommunityMembers;
+
+  /// Profile timezone privacy option description for Community members.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow members from communities you\'re in to see your local time'**
+  String get profileLocalTimePrivacyCommunityMembersDesc;
 
   /// Profile timezone difference when the target matches the viewer.
   ///
@@ -5597,17 +5696,17 @@ abstract class FluxerLocalizations {
   /// **'Transfer ownership'**
   String get userProfileTransferOwnership;
 
-  /// Three-dot menu item to report the user.
-  ///
-  /// In en, this message translates to:
-  /// **'Report user'**
-  String get userProfileReportUser;
-
   /// Three-dot menu item to report the message that opened this profile.
   ///
   /// In en, this message translates to:
   /// **'Report message'**
   String get userProfileReportMessage;
+
+  /// Three-dot menu item on the full profile to report this user's profile (avatar, banner, name, bio and other profile parts). Message behavior is reported from the message instead.
+  ///
+  /// In en, this message translates to:
+  /// **'Report profile'**
+  String get userProfileReportUserProfile;
 
   /// Confirmation sheet title before kicking a member.
   ///
@@ -5860,150 +5959,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Custom…'**
   String get durationCustom;
-
-  /// Title of the simple user-report sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'Report user'**
-  String get iarReportUserTitle;
-
-  /// Title of the simple community-report sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'Report community'**
-  String get iarReportGuildTitle;
-
-  /// Body shown in the pre-confirm dialog before opening the community report sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'If this report is about a specific message in this community, report that message instead. Message reports give our safety team the clearest context, and adding details in the comments can help us review it faster. Only continue with reporting the community as a whole if reporting a message would not capture the broader issue.'**
-  String get iarReportGuildPreconfirmBody;
-
-  /// Primary button in the community report pre-confirm dialog.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue to report community'**
-  String get iarContinueToReportCommunity;
-
-  /// Subtitle shown under the community name in the IAR preview card.
-  ///
-  /// In en, this message translates to:
-  /// **'Community'**
-  String get iarPreviewCommunitySubtitle;
-
-  /// Community-report reason label for harassment or targeted abuse.
-  ///
-  /// In en, this message translates to:
-  /// **'Harassment or targeted abuse'**
-  String get iarReasonHarassmentGuildLabel;
-
-  /// Community-report reason description for harassment or targeted abuse.
-  ///
-  /// In en, this message translates to:
-  /// **'Community facilitates pile-ons or targeted abuse.'**
-  String get iarReasonHarassmentGuildDescription;
-
-  /// Community-report reason description for hate speech.
-  ///
-  /// In en, this message translates to:
-  /// **'Promotes hatred against protected groups.'**
-  String get iarReasonHateGuildDescription;
-
-  /// Community-report reason label for terrorism or violent extremism.
-  ///
-  /// In en, this message translates to:
-  /// **'Terrorism or violent extremism'**
-  String get iarReasonTerrorismLabel;
-
-  /// Community-report reason description for terrorism or violent extremism.
-  ///
-  /// In en, this message translates to:
-  /// **'Promotes, recruits for, or coordinates violent extremist activity.'**
-  String get iarReasonTerrorismDescription;
-
-  /// Community-report reason label for mature content or unsafe gating.
-  ///
-  /// In en, this message translates to:
-  /// **'Mature content or unsafe gating'**
-  String get iarReasonMatureContentGuildLabel;
-
-  /// Community-report reason description for mature content or unsafe gating.
-  ///
-  /// In en, this message translates to:
-  /// **'Mature content without proper gating.'**
-  String get iarReasonMatureContentGuildDescription;
-
-  /// Community-report reason description for child safety.
-  ///
-  /// In en, this message translates to:
-  /// **'Endangers minors or hosts child-exploitation content.'**
-  String get iarReasonChildSafetyGuildDescription;
-
-  /// Community-report reason label for raid coordination.
-  ///
-  /// In en, this message translates to:
-  /// **'Raid coordination'**
-  String get iarReasonRaidLabel;
-
-  /// Community-report reason description for raid coordination.
-  ///
-  /// In en, this message translates to:
-  /// **'Coordinates raids, brigading, or harassment against people or communities.'**
-  String get iarReasonRaidDescription;
-
-  /// Community-report reason description for spam, scams, or phishing.
-  ///
-  /// In en, this message translates to:
-  /// **'Community exists to spam, scam, or abuse the platform.'**
-  String get iarReasonSpamGuildDescription;
-
-  /// Community-report reason label for malware distribution.
-  ///
-  /// In en, this message translates to:
-  /// **'Malware distribution'**
-  String get iarReasonMalwareGuildLabel;
-
-  /// Community-report reason description for malware distribution.
-  ///
-  /// In en, this message translates to:
-  /// **'Distributes malware, credential theft, or harmful files.'**
-  String get iarReasonMalwareGuildDescription;
-
-  /// Community-report reason label for privacy violation or doxxing.
-  ///
-  /// In en, this message translates to:
-  /// **'Privacy violation or doxxing'**
-  String get iarReasonPrivacyGuildLabel;
-
-  /// Community-report reason description for privacy violation or doxxing.
-  ///
-  /// In en, this message translates to:
-  /// **'Shares personal info, stalks users, or coordinates privacy abuse.'**
-  String get iarReasonPrivacyGuildDescription;
-
-  /// Community-report reason label for self-harm encouragement.
-  ///
-  /// In en, this message translates to:
-  /// **'Encourages self-harm'**
-  String get iarReasonSelfHarmGuildLabel;
-
-  /// Community-report reason description for self-harm encouragement.
-  ///
-  /// In en, this message translates to:
-  /// **'Encourages suicide, self-harm, or eating disorders.'**
-  String get iarReasonSelfHarmGuildDescription;
-
-  /// User-report reason: the user's profile contains inappropriate content.
-  ///
-  /// In en, this message translates to:
-  /// **'Inappropriate profile'**
-  String get iarReasonInappropriateProfile;
-
-  /// Description for the inappropriate-profile user-report reason.
-  ///
-  /// In en, this message translates to:
-  /// **'This user\'s profile contains inappropriate content'**
-  String get iarReasonInappropriateProfileDescription;
 
   /// Typing indicator shown above the chat input when exactly one other user is typing.
   ///
@@ -6329,6 +6284,60 @@ abstract class FluxerLocalizations {
   /// **'Unknown platform'**
   String get linkedDevicesUnknownPlatform;
 
+  /// Tooltip and accessibility label for opening a linked device details modal.
+  ///
+  /// In en, this message translates to:
+  /// **'View details'**
+  String get linkedDevicesViewDetails;
+
+  /// Title of the linked device details modal.
+  ///
+  /// In en, this message translates to:
+  /// **'Device details'**
+  String get linkedDevicesDetailsTitle;
+
+  /// Label for the operating system in the linked device details modal.
+  ///
+  /// In en, this message translates to:
+  /// **'Device'**
+  String get linkedDevicesDetailsDevice;
+
+  /// Label for the client/platform in the linked device details modal.
+  ///
+  /// In en, this message translates to:
+  /// **'Client'**
+  String get linkedDevicesDetailsClient;
+
+  /// Label for the approximate location in the linked device details modal.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get linkedDevicesDetailsLocation;
+
+  /// Label for the masked IP address in the linked device details modal.
+  ///
+  /// In en, this message translates to:
+  /// **'IP address'**
+  String get linkedDevicesDetailsIp;
+
+  /// Label for last activity time in the linked device details modal.
+  ///
+  /// In en, this message translates to:
+  /// **'Last used'**
+  String get linkedDevicesDetailsLastUsed;
+
+  /// Last-used value shown for the session currently making the request.
+  ///
+  /// In en, this message translates to:
+  /// **'Current session'**
+  String get linkedDevicesCurrentSession;
+
+  /// Fallback when a linked device detail such as last used time is missing.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get linkedDevicesUnknown;
+
   /// Label shown in the slowmode indicator pill when slowmode is enabled for the channel but no cooldown is actively counting down.
   ///
   /// In en, this message translates to:
@@ -6425,23 +6434,11 @@ abstract class FluxerLocalizations {
   /// **'You haven\'t been a member of this community long enough to send messages.'**
   String get channelComposerBarrierNotMemberLongEnough;
 
-  /// Composer barrier when the user must verify a phone number before messaging.
-  ///
-  /// In en, this message translates to:
-  /// **'You need to verify a phone number to send messages in this community.'**
-  String get channelComposerBarrierNoPhoneNumber;
-
   /// Action button on the composer barrier for unverified email.
   ///
   /// In en, this message translates to:
   /// **'Verify email'**
   String get channelComposerBarrierVerifyEmail;
-
-  /// Action button on the composer barrier for missing phone verification.
-  ///
-  /// In en, this message translates to:
-  /// **'Verify phone'**
-  String get channelComposerBarrierVerifyPhone;
 
   /// Shown when adding files would exceed the per-message attachment limit.
   ///
@@ -6473,12 +6470,6 @@ abstract class FluxerLocalizations {
   /// **'Drop files to send now'**
   String get chatAttachmentDropToSend;
 
-  /// Menu item to open the voice message recorder.
-  ///
-  /// In en, this message translates to:
-  /// **'Send voice message'**
-  String get chatAttachmentSendVoiceMessage;
-
   /// Title for voice message recording UI.
   ///
   /// In en, this message translates to:
@@ -6509,12 +6500,6 @@ abstract class FluxerLocalizations {
   /// **'Unable to start recording. Allow microphone access.'**
   String get voiceMessageMicPermissionDenied;
 
-  /// Shown when the device cannot record voice messages.
-  ///
-  /// In en, this message translates to:
-  /// **'Voice recording is not supported on this device.'**
-  String get voiceMessageRecordingNotSupported;
-
   /// Shown when the microphone is already used by an active voice call.
   ///
   /// In en, this message translates to:
@@ -6532,36 +6517,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Unable to send voice message. Try again.'**
   String get voiceMessageSendFailed;
-
-  /// Help text while recording a voice message on desktop.
-  ///
-  /// In en, this message translates to:
-  /// **'Speak now. Press Stop when you are done — you can trim afterwards.'**
-  String get voiceMessageRecordingHint;
-
-  /// Help text while reviewing a voice message before send.
-  ///
-  /// In en, this message translates to:
-  /// **'Drag the handles to trim, then press Send.'**
-  String get voiceMessageReviewHint;
-
-  /// Stop recording button in voice message composer.
-  ///
-  /// In en, this message translates to:
-  /// **'Stop'**
-  String get voiceMessageStop;
-
-  /// Button to retry voice recording after permission error.
-  ///
-  /// In en, this message translates to:
-  /// **'Start recording'**
-  String get voiceMessageStartRecording;
-
-  /// Button to discard review and record again.
-  ///
-  /// In en, this message translates to:
-  /// **'Re-record'**
-  String get voiceMessageRerecord;
 
   /// Play voice message preview.
   ///
@@ -6586,12 +6541,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Seek backward'**
   String get voiceMessageSeekBackward;
-
-  /// Error when trimmed voice message is too short.
-  ///
-  /// In en, this message translates to:
-  /// **'Selection must be at least {seconds}s.'**
-  String voiceMessageSelectionTooShort(num seconds);
 
   /// Title for the attachment edit sheet.
   ///
@@ -6773,12 +6722,6 @@ abstract class FluxerLocalizations {
   /// **'Browse files'**
   String get chatAttachmentSourceBrowse;
 
-  /// Tooltip for pasting a file attachment from the clipboard.
-  ///
-  /// In en, this message translates to:
-  /// **'Paste file from clipboard'**
-  String get chatAttachmentPasteTooltip;
-
   /// Badge text for spoiler attachments.
   ///
   /// In en, this message translates to:
@@ -6923,18 +6866,6 @@ abstract class FluxerLocalizations {
   /// **'Open link'**
   String get matureContentOpenLinkButton;
 
-  /// Privacy settings section title for sensitive content filters.
-  ///
-  /// In en, this message translates to:
-  /// **'Sensitive content'**
-  String get sensitiveContentSectionTitle;
-
-  /// Privacy settings section description for sensitive content filters.
-  ///
-  /// In en, this message translates to:
-  /// **'Control how mature or sensitive media is filtered in different contexts'**
-  String get sensitiveContentSectionDescription;
-
   /// Label for friend DM sensitive content filter.
   ///
   /// In en, this message translates to:
@@ -6971,24 +6902,6 @@ abstract class FluxerLocalizations {
   /// **'Block'**
   String get sensitiveContentFilterBlock;
 
-  /// Toggle label for blurring unscanned media.
-  ///
-  /// In en, this message translates to:
-  /// **'Blur media until safety scan completes'**
-  String get sensitiveContentBlurUnscannedLabel;
-
-  /// Description for blur-unscanned toggle for adult accounts.
-  ///
-  /// In en, this message translates to:
-  /// **'When enabled, images and videos are blurred until the content safety scan finishes.'**
-  String get sensitiveContentBlurUnscannedDescriptionAdult;
-
-  /// Description for blur-unscanned toggle for minor accounts.
-  ///
-  /// In en, this message translates to:
-  /// **'This setting is always on for your account.'**
-  String get sensitiveContentBlurUnscannedDescriptionMinor;
-
   /// Reset button for sensitive content settings.
   ///
   /// In en, this message translates to:
@@ -7006,12 +6919,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Uploading {count, plural, =1{1 file} other{{count} files}}'**
   String chatUploadingAttachmentsSummary(int count);
-
-  /// Button or menu action label for canceling an in-flight message attachment upload.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel upload'**
-  String get chatCancelUpload;
 
   /// Footnote when attachment(s) share one expiry date. {date} is already formatted for the locale.
   ///
@@ -7379,12 +7286,6 @@ abstract class FluxerLocalizations {
   /// **'Enter a domain.'**
   String get connectionEnterDomain;
 
-  /// Title of the Look & Feel (Appearance) settings page.
-  ///
-  /// In en, this message translates to:
-  /// **'Look & feel'**
-  String get lookAndFeelTitle;
-
   /// Section title for theme selection.
   ///
   /// In en, this message translates to:
@@ -7492,6 +7393,144 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t sync theme to your account. Please try again.'**
   String get lookAndFeelThemeSyncFailed;
+
+  /// Title for the theme color token editor page.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme colors'**
+  String get lookAndFeelThemeColorsTitle;
+
+  /// Description on the configure row that opens theme colors.
+  ///
+  /// In en, this message translates to:
+  /// **'Customize individual theme colors for this device.'**
+  String get lookAndFeelThemeColorsConfigureDescription;
+
+  /// Subtitle showing which theme mode color overrides apply to.
+  ///
+  /// In en, this message translates to:
+  /// **'Editing {mode}'**
+  String lookAndFeelThemeColorsEditingMode(String mode);
+
+  /// No description provided for @lookAndFeelThemeColorsSyncSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme Studio sync'**
+  String get lookAndFeelThemeColorsSyncSectionTitle;
+
+  /// Toggle to apply custom CSS colors synced from desktop Theme Studio.
+  ///
+  /// In en, this message translates to:
+  /// **'Use colors from Theme Studio'**
+  String get lookAndFeelThemeColorsSyncFromStudioLabel;
+
+  /// Description for pulling theme colors from Theme Studio.
+  ///
+  /// In en, this message translates to:
+  /// **'When enabled, color changes from Theme Studio on desktop apply on this device. When disabled, this device keeps its own colors.'**
+  String get lookAndFeelThemeColorsSyncFromStudioDescription;
+
+  /// Toggle to push mobile theme color edits to synced preferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Send color changes to Theme Studio'**
+  String get lookAndFeelThemeColorsSyncToStudioLabel;
+
+  /// Description for pushing theme colors to Theme Studio.
+  ///
+  /// In en, this message translates to:
+  /// **'When enabled, colors you change here sync to Theme Studio on your other devices. When disabled, desktop Theme Studio keeps its own colors.'**
+  String get lookAndFeelThemeColorsSyncToStudioDescription;
+
+  /// Banner when pull from Theme Studio is disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Desktop Theme Studio color changes will not apply on this device.'**
+  String get lookAndFeelThemeColorsSyncFromStudioOffBanner;
+
+  /// Section for the most impactful theme color tokens.
+  ///
+  /// In en, this message translates to:
+  /// **'Essential colors'**
+  String get lookAndFeelThemeColorsEssentialSectionTitle;
+
+  /// Note under the chat background color picker when wallpaper may hide it.
+  ///
+  /// In en, this message translates to:
+  /// **'If you have a chat wallpaper set, you won\'t see this color.'**
+  String get lookAndFeelThemeColorsChatBackgroundWallpaperNote;
+
+  /// Button to clear all scoped color overrides for a theme mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset all colors for {mode}'**
+  String lookAndFeelThemeColorsResetForMode(String mode);
+
+  /// Title for reset-all theme colors confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset theme colors?'**
+  String get lookAndFeelThemeColorsResetConfirmTitle;
+
+  /// Body for reset-all theme colors confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'This removes your custom color overrides for {mode} on this device.'**
+  String lookAndFeelThemeColorsResetConfirmBody(String mode);
+
+  /// No description provided for @lookAndFeelThemeColorsGroupBrandButtons.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand & buttons'**
+  String get lookAndFeelThemeColorsGroupBrandButtons;
+
+  /// No description provided for @lookAndFeelThemeColorsGroupChatSurfaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat & messages'**
+  String get lookAndFeelThemeColorsGroupChatSurfaces;
+
+  /// No description provided for @lookAndFeelThemeColorsGroupSidebars.
+  ///
+  /// In en, this message translates to:
+  /// **'Sidebars & navigation'**
+  String get lookAndFeelThemeColorsGroupSidebars;
+
+  /// No description provided for @lookAndFeelThemeColorsGroupText.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get lookAndFeelThemeColorsGroupText;
+
+  /// No description provided for @lookAndFeelThemeColorsGroupHeaders.
+  ///
+  /// In en, this message translates to:
+  /// **'Headers'**
+  String get lookAndFeelThemeColorsGroupHeaders;
+
+  /// No description provided for @lookAndFeelThemeColorsGroupStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get lookAndFeelThemeColorsGroupStatus;
+
+  /// No description provided for @lookAndFeelThemeColorsGroupEmbedsMarkup.
+  ///
+  /// In en, this message translates to:
+  /// **'Embeds & mentions'**
+  String get lookAndFeelThemeColorsGroupEmbedsMarkup;
+
+  /// No description provided for @lookAndFeelThemeColorsGroupAccentsAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Accents & alerts'**
+  String get lookAndFeelThemeColorsGroupAccentsAlerts;
+
+  /// No description provided for @lookAndFeelThemeColorsGroupControls.
+  ///
+  /// In en, this message translates to:
+  /// **'Surfaces & controls'**
+  String get lookAndFeelThemeColorsGroupControls;
 
   /// Search label for chat font size within the Messages section.
   ///
@@ -7750,60 +7789,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'When enabled, shortcut badges are hidden in tooltip popups.'**
   String get lookAndFeelHideKeyboardHintsDescription;
-
-  /// Subsection title under Interface for Pickles appearance settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Miscellaneous'**
-  String get lookAndFeelNekoTitle;
-
-  /// Subsection description for Pickles appearance settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Miscellaneous interface options.'**
-  String get lookAndFeelNekoDescription;
-
-  /// Toggle label for showing Pickles in the chat footer.
-  ///
-  /// In en, this message translates to:
-  /// **'Show Pickles'**
-  String get lookAndFeelShowNekoLabel;
-
-  /// Toggle description for showing Pickles in chat.
-  ///
-  /// In en, this message translates to:
-  /// **'When enabled, Pickles appears near the chat input bar.'**
-  String get lookAndFeelShowNekoDescription;
-
-  /// Subsection title under Interface — voice channel join behavior.
-  ///
-  /// In en, this message translates to:
-  /// **'Voice channel join behavior'**
-  String get lookAndFeelVoiceChannelJoinTitle;
-
-  /// Subsection description for voice channel join behavior.
-  ///
-  /// In en, this message translates to:
-  /// **'Control how you join voice channels in communities.'**
-  String get lookAndFeelVoiceChannelJoinDescription;
-
-  /// Toggle label — require double-click to join voice channels.
-  ///
-  /// In en, this message translates to:
-  /// **'Require double-click to join voice channels'**
-  String get lookAndFeelRequireDoubleClickJoinLabel;
-
-  /// Toggle description for the require-double-click voice channel join switch.
-  ///
-  /// In en, this message translates to:
-  /// **'When enabled, you\'ll need to double-click on voice channels to join them. When disabled (default), single-clicking will join the channel immediately.'**
-  String get lookAndFeelRequireDoubleClickJoinDescription;
-
-  /// Sample text rendered at the selected chat font size to preview scaling.
-  ///
-  /// In en, this message translates to:
-  /// **'The quick brown fox jumps over the lazy dog.'**
-  String get lookAndFeelChatFontPreviewSample;
 
   /// Subsection title under Interface — guild sidebar config.
   ///
@@ -8570,35 +8555,11 @@ abstract class FluxerLocalizations {
   /// **'Show saved media in expression autocomplete'**
   String get messagesMediaAutocompleteSavedMediaLabel;
 
-  /// Section title for message editing settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Message editing'**
-  String get messagesMediaEditingSectionTitle;
-
-  /// Section description for message editing settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Control what happens to your edit draft when you cancel.'**
-  String get messagesMediaEditingSectionDescription;
-
-  /// Toggle label for preserving edit drafts on cancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Preserve edit draft on cancel'**
-  String get messagesMediaEditingPreserveDraftLabel;
-
   /// Section title for the theme saturation slider on the accessibility settings page.
   ///
   /// In en, this message translates to:
   /// **'Saturation'**
   String get accessibilitySaturationTitle;
-
-  /// Section description for the theme saturation slider on the accessibility settings page.
-  ///
-  /// In en, this message translates to:
-  /// **'Adjust how vivid theme colors appear across the app.'**
-  String get accessibilitySaturationDescription;
 
   /// Section title for visual accessibility settings.
   ///
@@ -8635,12 +8596,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'DM message previews'**
   String get accessibilityDmMessagePreviewGroupTitle;
-
-  /// Section description for DM message preview accessibility settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Control when message previews are shown in the DM list.'**
-  String get accessibilityDmMessagePreviewGroupDescription;
 
   /// Accessibility label for the DM message preview mode radio group.
   ///
@@ -8833,12 +8788,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Paused by reduced motion. Turn on to keep GIFs playing.'**
   String get accessibilityPausedGifByReducedMotion;
-
-  /// Helper text for GIF autoplay default on mobile.
-  ///
-  /// In en, this message translates to:
-  /// **'Defaults to off on mobile to preserve battery life and data usage.'**
-  String get accessibilityGifDefaultsOffOnMobile;
 
   /// Subsection title for sticker animation preference.
   ///
@@ -9306,12 +9255,6 @@ abstract class FluxerLocalizations {
   /// **'Couldn\'t disconnect your other devices. Try again in a moment.'**
   String get voiceMultiDeviceDisconnectFailed;
 
-  /// Empty state body when viewing a guild voice channel while not in the call.
-  ///
-  /// In en, this message translates to:
-  /// **'This is a voice channel. Connect to start talking!'**
-  String get voiceChannelEmptyDescription;
-
   /// Primary action to connect to a voice channel from the empty state.
   ///
   /// In en, this message translates to:
@@ -9377,18 +9320,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Connecting…'**
   String get voiceChannelStatusConnecting;
-
-  /// Status in the in-page voice view when the voice session is active.
-  ///
-  /// In en, this message translates to:
-  /// **'Connected'**
-  String get voiceChannelStatusConnected;
-
-  /// Short label in the channel header when the voice session reports an error.
-  ///
-  /// In en, this message translates to:
-  /// **'Error'**
-  String get voiceChannelStatusError;
 
   /// Tooltip on the device icon in the voice participant nameplate when the connection is mobile.
   ///
@@ -9491,12 +9422,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Sharing your screen.'**
   String get voiceScreenShareNotificationText;
-
-  /// Tooltip: more voice actions in the voice call control bar.
-  ///
-  /// In en, this message translates to:
-  /// **'More'**
-  String get voiceControlMore;
 
   /// Tooltip: leave the voice call in the voice call control bar.
   ///
@@ -10138,6 +10063,12 @@ abstract class FluxerLocalizations {
   /// **'Your message could not be delivered because it was flagged by our safety systems. If you believe this is a mistake, please contact support.'**
   String get chatSendFailureContentBlocked;
 
+  /// Fluxerbot system message on a self-hosted instance when message content is blocked by safety systems. Names no support mailbox.
+  ///
+  /// In en, this message translates to:
+  /// **'Your message could not be delivered because it was flagged by our safety systems. If you believe this is a mistake, please contact the administrators of this instance.'**
+  String get chatSendFailureContentBlockedSelfHosted;
+
   /// echowirebot system message when mature emoji or stickers are blocked.
   ///
   /// In en, this message translates to:
@@ -10252,35 +10183,17 @@ abstract class FluxerLocalizations {
   /// **'Everyone'**
   String get privacyDashboardFriendRequestsEveryone;
 
-  /// Privacy dashboard friend request toggle description.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow anyone to send you friend requests'**
-  String get privacyDashboardFriendRequestsEveryoneDesc;
-
   /// Privacy dashboard friend request toggle label.
   ///
   /// In en, this message translates to:
   /// **'Friends of friends'**
   String get privacyDashboardFriendRequestsFriendsOfFriends;
 
-  /// Privacy dashboard friend request toggle description.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow friends of your friends to send you requests'**
-  String get privacyDashboardFriendRequestsFriendsOfFriendsDesc;
-
   /// Privacy dashboard friend request toggle label.
   ///
   /// In en, this message translates to:
   /// **'Community members'**
   String get privacyDashboardFriendRequestsCommunityMembers;
-
-  /// Privacy dashboard friend request toggle description.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow members from communities you\'re in to send you requests'**
-  String get privacyDashboardFriendRequestsCommunityMembersDesc;
 
   /// Privacy dashboard direct messages subsection title.
   ///
@@ -10294,35 +10207,11 @@ abstract class FluxerLocalizations {
   /// **'Allow direct messages from community members'**
   String get privacyDashboardDirectMessagesMembers;
 
-  /// Privacy dashboard DM toggle description.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow members from communities you\'re in to send you direct messages'**
-  String get privacyDashboardDirectMessagesMembersDesc;
-
   /// Privacy dashboard bot DM toggle label.
   ///
   /// In en, this message translates to:
   /// **'Allow direct messages from community bots'**
   String get privacyDashboardDirectMessagesBots;
-
-  /// Privacy dashboard bot DM toggle description.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow bots from communities you\'re in to send you direct messages'**
-  String get privacyDashboardDirectMessagesBotsDesc;
-
-  /// Privacy dashboard connections section description.
-  ///
-  /// In en, this message translates to:
-  /// **'Control who can send you friend requests and direct messages'**
-  String get privacyDashboardConnectionsSectionDesc;
-
-  /// Privacy dashboard communication section description.
-  ///
-  /// In en, this message translates to:
-  /// **'Control who can call you and add you to group chats'**
-  String get privacyDashboardCommunicationSectionDesc;
 
   /// Privacy dashboard incoming calls subsection title.
   ///
@@ -10330,23 +10219,11 @@ abstract class FluxerLocalizations {
   /// **'Incoming calls'**
   String get privacyDashboardIncomingCallsTitle;
 
-  /// Privacy dashboard incoming calls subsection description.
-  ///
-  /// In en, this message translates to:
-  /// **'Control who can call you'**
-  String get privacyDashboardIncomingCallsDesc;
-
   /// Privacy > Communication: select label.
   ///
   /// In en, this message translates to:
   /// **'Allowed callers'**
   String get privacyDashboardAllowedCallers;
-
-  /// Privacy > Communication: radio option label.
-  ///
-  /// In en, this message translates to:
-  /// **'Nobody'**
-  String get privacyDashboardIncomingCallNobody;
 
   /// Privacy > Communication: select option description.
   ///
@@ -10354,35 +10231,17 @@ abstract class FluxerLocalizations {
   /// **'Block all incoming calls'**
   String get privacyDashboardIncomingCallNobodyDesc;
 
-  /// Privacy > Communication: radio option label.
-  ///
-  /// In en, this message translates to:
-  /// **'Friends only'**
-  String get privacyDashboardIncomingCallFriendsOnly;
-
   /// Privacy > Communication: select option description.
   ///
   /// In en, this message translates to:
   /// **'Only allow friends to call you (recommended)'**
   String get privacyDashboardIncomingCallFriendsOnlyDesc;
 
-  /// Privacy > Communication: radio option label.
-  ///
-  /// In en, this message translates to:
-  /// **'Friends + custom'**
-  String get privacyDashboardIncomingCallCustom;
-
   /// Privacy > Communication: select option description.
   ///
   /// In en, this message translates to:
   /// **'Allow friends plus additional groups you choose'**
   String get privacyDashboardIncomingCallCustomDesc;
-
-  /// Privacy > Communication: radio option label.
-  ///
-  /// In en, this message translates to:
-  /// **'Everyone'**
-  String get privacyDashboardIncomingCallEveryone;
 
   /// Privacy > Communication: select option description.
   ///
@@ -10396,18 +10255,6 @@ abstract class FluxerLocalizations {
   /// **'Additional groups'**
   String get privacyDashboardAdditionalGroups;
 
-  /// Privacy dashboard incoming call custom toggle description.
-  ///
-  /// In en, this message translates to:
-  /// **'People who are friends with your friends can call you'**
-  String get privacyDashboardCallFriendsOfFriendsDesc;
-
-  /// Privacy dashboard incoming call custom toggle description.
-  ///
-  /// In en, this message translates to:
-  /// **'People from communities you\'re both in can call you'**
-  String get privacyDashboardCallGuildMembersDesc;
-
   /// Privacy dashboard ring behavior subsection label.
   ///
   /// In en, this message translates to:
@@ -10420,23 +10267,11 @@ abstract class FluxerLocalizations {
   /// **'Silent calls from everyone'**
   String get privacyDashboardSilentCalls;
 
-  /// Privacy dashboard silent calls toggle description.
-  ///
-  /// In en, this message translates to:
-  /// **'All calls will notify silently instead of ringing. By default, calls from non-friends are always silent.'**
-  String get privacyDashboardSilentCallsDesc;
-
   /// Privacy dashboard group DM subsection title.
   ///
   /// In en, this message translates to:
   /// **'Who can add you to group chats'**
   String get privacyDashboardGroupDmTitle;
-
-  /// Privacy dashboard group DM subsection description.
-  ///
-  /// In en, this message translates to:
-  /// **'Control who can add you to group chats without asking. Anyone can still send you invite links to join.'**
-  String get privacyDashboardGroupDmDesc;
 
   /// Privacy > Communication: select label.
   ///
@@ -10467,18 +10302,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Allow anyone to add you to group chats without asking'**
   String get privacyDashboardGroupDmEveryoneDesc;
-
-  /// Privacy dashboard group DM custom toggle description.
-  ///
-  /// In en, this message translates to:
-  /// **'People who are friends with your friends can add you to group chats'**
-  String get privacyDashboardGroupDmFriendsOfFriendsDesc;
-
-  /// Privacy dashboard group DM custom toggle description.
-  ///
-  /// In en, this message translates to:
-  /// **'People from communities you\'re both in can add you to group chats'**
-  String get privacyDashboardGroupDmGuildMembersDesc;
 
   /// Privacy > Active now: settings subsection title.
   ///
@@ -11062,6 +10885,60 @@ abstract class FluxerLocalizations {
   /// **'Choose double tap emoji'**
   String get doubleTapReactionEditSubtitle;
 
+  /// Title for double-tap message action settings on mobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap'**
+  String get messagesMediaDoubleTapSectionTitle;
+
+  /// Description for double-tap message action settings on mobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose what happens when you double tap a message.'**
+  String get messagesMediaDoubleTapSectionDescription;
+
+  /// Label for the double-tap action radio group.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap action'**
+  String get messagesMediaDoubleTapActionLabel;
+
+  /// Double tap adds the default reaction emoji.
+  ///
+  /// In en, this message translates to:
+  /// **'Add reaction'**
+  String get messagesMediaDoubleTapActionReactName;
+
+  /// Help text for the react double-tap action.
+  ///
+  /// In en, this message translates to:
+  /// **'Adds your default double-tap emoji as a reaction.'**
+  String get messagesMediaDoubleTapActionReactDescription;
+
+  /// Double tap edits your own message.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit message'**
+  String get messagesMediaDoubleTapActionEditName;
+
+  /// Help text for the edit double-tap action.
+  ///
+  /// In en, this message translates to:
+  /// **'Opens the editor on messages you sent. Other messages are unchanged.'**
+  String get messagesMediaDoubleTapActionEditDescription;
+
+  /// Double tap does nothing.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing'**
+  String get messagesMediaDoubleTapActionNoneName;
+
+  /// Help text for the none double-tap action.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap is disabled.'**
+  String get messagesMediaDoubleTapActionNoneDescription;
+
   /// Action label for editing a sent message.
   ///
   /// In en, this message translates to:
@@ -11434,593 +11311,203 @@ abstract class FluxerLocalizations {
   /// **'Report message'**
   String get chatMessageReport;
 
-  /// Title shown at the top of the In-App Reporting (IAR) sheet when the user is reporting a specific message.
+  /// Report flow: sheet title while the message report form loads or fails to load.
   ///
   /// In en, this message translates to:
   /// **'Report message'**
-  String get iarReportMessageTitle;
+  String get reportFlowTitleMessage;
 
-  /// Lowercase phrase used mid-sentence in IAR copy when referring to the reported user without a name (e.g. inside the close-DM confirmation).
+  /// Report flow: sheet title while the user profile report form loads or fails to load.
   ///
   /// In en, this message translates to:
-  /// **'this user'**
-  String get iarThisUserFallback;
+  /// **'Report profile'**
+  String get reportFlowTitleUserProfile;
 
-  /// Screen-reader description for the IAR sheet announcing what the flow is for.
+  /// Report flow: title of the last screen, where the reporter reviews the report before sending it.
   ///
   /// In en, this message translates to:
-  /// **'Report a rule violation, or find tools to manage contact and preferences.'**
-  String get iarModalDescription;
+  /// **'Check your report'**
+  String get reportFlowSummaryTitle;
 
-  /// Accessible label for the primary-path radio group on the first step of the IAR sheet. Not shown visually; the radios are labelled inline.
+  /// Report flow: subtitle of the report summary screen.
   ///
   /// In en, this message translates to:
-  /// **'What do you need?'**
-  String get iarPathStepAriaLabel;
+  /// **'Make sure this looks right before you send it.'**
+  String get reportFlowSummarySubtitle;
 
-  /// Title shown on the category step of the IAR sheet (platform-report path).
+  /// Report flow: disclaimer on the report summary screen. {guidelines} is a link whose text is reportFlowCommunityGuidelinesLink.
   ///
   /// In en, this message translates to:
-  /// **'What kind of rule was broken?'**
-  String get iarCategoryStepTitle;
+  /// **'Only report what you honestly believe breaks the rules. Misusing reports goes against our {guidelines}.'**
+  String reportFlowDisclaimer(String guidelines);
 
-  /// Title shown on the reason step of the IAR sheet after the user has picked a rule category.
+  /// Report flow: link text inside reportFlowDisclaimer. Opens the community guidelines page.
   ///
   /// In en, this message translates to:
-  /// **'Which rule was broken?'**
-  String get iarReasonStepTitle;
+  /// **'Community Guidelines'**
+  String get reportFlowCommunityGuidelinesLink;
 
-  /// Placeholder shown in the message-report reason dropdown before the user picks a rule.
+  /// Report flow: disclaimer on the report summary screen when the instance has no community guidelines page.
   ///
   /// In en, this message translates to:
-  /// **'Select a reason'**
-  String get iarReasonSelectHint;
+  /// **'Only report what you honestly believe breaks the rules, and please don\'t send the same report twice.'**
+  String get reportFlowDisclaimerNoLink;
 
-  /// Toast shown when the user taps Continue on a step without selecting any radio option.
+  /// Report flow: heading above the preview of the reported message on the report summary screen.
   ///
   /// In en, this message translates to:
-  /// **'Pick an option to continue.'**
-  String get iarPickAnOptionToast;
+  /// **'Message you\'re reporting'**
+  String get reportFlowSelectedMessage;
 
-  /// Toast shown when the user taps Send report without selecting a rule reason.
+  /// Report flow: heading above the card of the reported user on the first screen and the report summary screen.
   ///
   /// In en, this message translates to:
-  /// **'Pick the rule that was broken.'**
-  String get iarPickARuleToast;
+  /// **'Profile you\'re reporting'**
+  String get reportFlowSelectedUser;
 
-  /// Primary-path radio label: file a real DSA / platform-level report.
+  /// Report flow: heading above the list of answers the reporter picked, on the report summary screen.
   ///
   /// In en, this message translates to:
-  /// **'Report a platform rule violation'**
-  String get iarPathPlatform;
+  /// **'Your answers'**
+  String get reportFlowReportCategory;
 
-  /// Primary-path radio label: surface this to community moderators rather than platform safety.
-  ///
-  /// In en, this message translates to:
-  /// **'Report to the moderators of this community'**
-  String get iarPathCommunity;
-
-  /// Primary-path radio label: the user doesn't want platform action, they want self-service tools (block, leave, settings).
-  ///
-  /// In en, this message translates to:
-  /// **'I don\'t like this content'**
-  String get iarPathPreferenceMessage;
-
-  /// Rule-category label grouping harassment, hate, violence, terrorism, raids, and self-harm content.
-  ///
-  /// In en, this message translates to:
-  /// **'Threats, harassment, or harm'**
-  String get iarCategoryTargetedHarmLabel;
-
-  /// One-line description for the targeted-harm rule category.
-  ///
-  /// In en, this message translates to:
-  /// **'Bullying, threats, hate, violence, raids, or content that pushes self-harm.'**
-  String get iarCategoryTargetedHarmDescription;
-
-  /// Rule-category label grouping child-safety and mature-content reports.
-  ///
-  /// In en, this message translates to:
-  /// **'Child safety or mature content'**
-  String get iarCategorySafetyMinorsLabel;
-
-  /// One-line description for the child-safety / mature-content rule category.
-  ///
-  /// In en, this message translates to:
-  /// **'Minors at risk, mature content in the wrong place, or unwanted conduct.'**
-  String get iarCategorySafetyMinorsDescription;
-
-  /// Rule-category label grouping privacy violations and impersonation.
-  ///
-  /// In en, this message translates to:
-  /// **'Privacy or impersonation'**
-  String get iarCategoryPrivacyIdentityLabel;
-
-  /// One-line description for the privacy / impersonation rule category.
-  ///
-  /// In en, this message translates to:
-  /// **'Doxxing, stalking, pretending to be someone, or an inappropriate profile.'**
-  String get iarCategoryPrivacyIdentityDescription;
-
-  /// Rule-category label grouping spam/scams, malware, and harmful misinformation.
-  ///
-  /// In en, this message translates to:
-  /// **'Scams, malware, or misinformation'**
-  String get iarCategoryDeceptionLabel;
-
-  /// One-line description for the scams / malware / misinformation rule category.
-  ///
-  /// In en, this message translates to:
-  /// **'Phishing, fraud, malicious links, or false claims likely to cause real-world harm.'**
-  String get iarCategoryDeceptionDescription;
-
-  /// Rule-category label grouping illegal activity and the catch-all Other reason.
-  ///
-  /// In en, this message translates to:
-  /// **'Illegal activity or something else'**
-  String get iarCategoryIllegalOtherLabel;
-
-  /// One-line description for the illegal / other rule category.
-  ///
-  /// In en, this message translates to:
-  /// **'Illegal sales, criminal facilitation, or a clear rule violation that doesn\'t fit above.'**
-  String get iarCategoryIllegalOtherDescription;
-
-  /// Rule-reason label for harassment in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Harassment or threats'**
-  String get iarReasonHarassmentLabel;
-
-  /// Rule-reason description for harassment in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Bullying, repeated unwanted contact, stalking, or targeted abuse.'**
-  String get iarReasonHarassmentMessageDescription;
-
-  /// Rule-reason label for hate speech in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Hate speech'**
-  String get iarReasonHateLabel;
-
-  /// Rule-reason description for hate speech in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Slurs, dehumanizing language, or attacks on protected groups.'**
-  String get iarReasonHateMessageDescription;
-
-  /// Rule-reason label for violence in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Violence or violent threats'**
-  String get iarReasonViolenceLabel;
-
-  /// Rule-reason description for violence in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Credible threats, graphic violence, or glorification of violence.'**
-  String get iarReasonViolenceDescription;
-
-  /// Rule-reason label for mature content / unwanted conduct in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Mature content or harassment'**
-  String get iarReasonMatureContentLabel;
-
-  /// Rule-reason description for mature content in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Unwanted conduct or mature content in the wrong place.'**
-  String get iarReasonMatureContentMessageDescription;
-
-  /// Rule-reason label for child-safety reports in the IAR message flow. Also used as the {childSafetyReason} placeholder in iarUseChildSafetyInstead.
-  ///
-  /// In en, this message translates to:
-  /// **'Child safety or exploitation of minors'**
-  String get iarReasonChildSafetyLabel;
-
-  /// Rule-reason description for child-safety reports in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Grooming or child-exploitation content.'**
-  String get iarReasonChildSafetyMessageDescription;
-
-  /// Rule-reason label for harmful misinformation in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Harmful misinformation'**
-  String get iarReasonHarmfulMisinfoLabel;
-
-  /// Rule-reason description for harmful misinformation.
-  ///
-  /// In en, this message translates to:
-  /// **'False claims likely to cause real-world harm.'**
-  String get iarReasonHarmfulMisinfoDescription;
-
-  /// Rule-reason label for spam/scams/phishing in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Spam, scams, or phishing'**
-  String get iarReasonSpamLabel;
-
-  /// Rule-reason description for spam/scams in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Mass spam, fraud, fake giveaways, or account abuse.'**
-  String get iarReasonSpamMessageDescription;
-
-  /// Rule-reason label for malware / dangerous links in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Malware or dangerous links'**
-  String get iarReasonMalwareLabel;
-
-  /// Rule-reason description for malware.
-  ///
-  /// In en, this message translates to:
-  /// **'Malware, credential theft, or harmful files.'**
-  String get iarReasonMalwareDescription;
-
-  /// Rule-reason label for privacy violations in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Privacy violation'**
-  String get iarReasonPrivacyLabel;
-
-  /// Rule-reason description for privacy violations.
-  ///
-  /// In en, this message translates to:
-  /// **'Doxxing, exposed private info, or stalking.'**
-  String get iarReasonPrivacyDescription;
-
-  /// Rule-reason label for impersonation in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Impersonation or deceptive media'**
-  String get iarReasonImpersonationLabel;
-
-  /// Rule-reason description for impersonation in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Pretending to be someone else, including deceptive AI-generated content.'**
-  String get iarReasonImpersonationMessageDescription;
-
-  /// Rule-reason label for illegal activity in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Illegal activity'**
-  String get iarReasonIllegalLabel;
-
-  /// Rule-reason description for illegal activity.
-  ///
-  /// In en, this message translates to:
-  /// **'Illegal sales, criminal facilitation, or unlawful activity.'**
-  String get iarReasonIllegalDescription;
-
-  /// Rule-reason label for self-harm content in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Self-harm or suicide'**
-  String get iarReasonSelfHarmLabel;
-
-  /// Rule-reason description for self-harm content in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Promotion or instructions encouraging self-harm or eating disorders.'**
-  String get iarReasonSelfHarmMessageDescription;
-
-  /// Rule-reason label for the catch-all option in the IAR message flow.
-  ///
-  /// In en, this message translates to:
-  /// **'Another clear rule violation'**
-  String get iarReasonOtherLabel;
-
-  /// Rule-reason description for the catch-all option.
-  ///
-  /// In en, this message translates to:
-  /// **'Use only if it clearly breaks echowire\'s rules and doesn\'t fit above.'**
-  String iarReasonOtherDescription(String productName);
-
-  /// Inline routing nudge shown under reasons (e.g. mature content) that overlap with child safety.
-  ///
-  /// In en, this message translates to:
-  /// **'If a minor is involved, use \"{childSafetyReason}\" instead.'**
-  String iarUseChildSafetyInstead(String childSafetyReason);
-
-  /// Inline safety note shown for child-safety reports on the reason step.
-  ///
-  /// In en, this message translates to:
-  /// **'If this involves CSAM or exploitation of a minor, send it now and don\'t reshare the material.'**
-  String get iarSafetyNoteChildSafety;
-
-  /// Inline safety note shown for self-harm reports on the reason step.
-  ///
-  /// In en, this message translates to:
-  /// **'If someone may be in immediate danger, contact local emergency services if you can do so safely.'**
-  String get iarSafetyNoteSelfHarm;
-
-  /// Inline safety note shown for violence reports on the reason step.
-  ///
-  /// In en, this message translates to:
-  /// **'If this is a credible imminent threat, contact local emergency services too.'**
-  String get iarSafetyNoteViolence;
-
-  /// Inline safety note shown for terrorism reports on the reason step.
-  ///
-  /// In en, this message translates to:
-  /// **'If this is an imminent terrorist threat, contact local emergency services too.'**
-  String get iarSafetyNoteTerrorism;
-
-  /// Action card title for blocking the reported user.
-  ///
-  /// In en, this message translates to:
-  /// **'Block this user'**
-  String get iarActionBlockUserTitle;
-
-  /// Action card description for blocking the reported user.
-  ///
-  /// In en, this message translates to:
-  /// **'Stop messages and friend requests.'**
-  String get iarActionBlockUserDescription;
-
-  /// Trailing button label on the block-user action card.
-  ///
-  /// In en, this message translates to:
-  /// **'Block'**
-  String get iarActionBlockUserButton;
-
-  /// Action card title for copying a link to the reported message so the user can share it with community moderators.
-  ///
-  /// In en, this message translates to:
-  /// **'Copy message link'**
-  String get iarActionCopyMessageLinkTitle;
-
-  /// Action card description for copying a message link.
-  ///
-  /// In en, this message translates to:
-  /// **'Share with community mods.'**
-  String get iarActionCopyMessageLinkDescription;
-
-  /// Trailing button label on the copy-message-link action card.
-  ///
-  /// In en, this message translates to:
-  /// **'Copy'**
-  String get iarActionCopyMessageLinkButton;
-
-  /// Action card title for closing the DM with the reported user.
-  ///
-  /// In en, this message translates to:
-  /// **'Close this DM'**
-  String get iarActionCloseDmTitle;
-
-  /// Action card description for closing the DM.
-  ///
-  /// In en, this message translates to:
-  /// **'Doesn\'t block. You can reopen later.'**
-  String get iarActionCloseDmDescription;
-
-  /// Trailing button label on the close-DM action card.
-  ///
-  /// In en, this message translates to:
-  /// **'Close DM'**
-  String get iarActionCloseDmButton;
-
-  /// Action card title for leaving the guild the reported message was sent in.
-  ///
-  /// In en, this message translates to:
-  /// **'Leave the community'**
-  String get iarActionLeaveCommunityTitle;
-
-  /// Action card description for leaving the community.
-  ///
-  /// In en, this message translates to:
-  /// **'Stop seeing its content and members.'**
-  String get iarActionLeaveCommunityDescription;
-
-  /// Trailing button label on the leave-community action card.
-  ///
-  /// In en, this message translates to:
-  /// **'Leave'**
-  String get iarActionLeaveCommunityButton;
-
-  /// Action card title for opening the DM / friend-request privacy settings.
-  ///
-  /// In en, this message translates to:
-  /// **'DM & friend request settings'**
-  String get iarActionDmSettingsTitle;
-
-  /// Action card description for DM / friend-request privacy settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Change who can reach you.'**
-  String get iarActionDmSettingsDescription;
-
-  /// Action card title for opening the call / group-chat privacy settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Call & group chat settings'**
-  String get iarActionCallSettingsTitle;
-
-  /// Action card description for call / group-chat privacy settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Change who can call or add you.'**
-  String get iarActionCallSettingsDescription;
-
-  /// Trailing button label for action cards that navigate the user into a settings section.
-  ///
-  /// In en, this message translates to:
-  /// **'Open'**
-  String get iarActionOpenButton;
-
-  /// Action card title (moderator-only) for deleting the reported message.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete this message'**
-  String get iarActionDeleteMessageTitle;
-
-  /// Action card description (moderator-only) for deleting the reported message.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove it from the channel for everyone.'**
-  String get iarActionDeleteMessageDescription;
-
-  /// Trailing button label on the delete-message action card.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get iarActionDeleteMessageButton;
-
-  /// Disabled-state trailing button label on the delete-message action card after the message is already gone.
-  ///
-  /// In en, this message translates to:
-  /// **'Deleted'**
-  String get iarActionDeleteMessageDeletedButton;
-
-  /// Tooltip on the disabled delete-message action card.
-  ///
-  /// In en, this message translates to:
-  /// **'This message has already been deleted.'**
-  String get iarActionDeleteMessageDeletedTooltip;
-
-  /// Action card title (moderator-only) for opening the ban dialog against the reported user.
-  ///
-  /// In en, this message translates to:
-  /// **'Ban this user'**
-  String get iarActionBanUserTitle;
-
-  /// Action card description (moderator-only) for banning the reported user.
-  ///
-  /// In en, this message translates to:
-  /// **'Open the ban dialog for this community.'**
-  String get iarActionBanUserDescription;
-
-  /// Trailing button label on the ban-user action card.
-  ///
-  /// In en, this message translates to:
-  /// **'Ban'**
-  String get iarActionBanUserButton;
-
-  /// Disabled-state trailing button label on the ban-user action card after the target is already banned.
-  ///
-  /// In en, this message translates to:
-  /// **'Banned'**
-  String get iarActionBanUserBannedButton;
-
-  /// Tooltip on the disabled ban-user action card.
-  ///
-  /// In en, this message translates to:
-  /// **'This user is already banned from the community.'**
-  String get iarActionBanUserBannedTooltip;
-
-  /// Title of the confirm-close-DM bottom sheet shown after the user taps Close DM on the action card.
-  ///
-  /// In en, this message translates to:
-  /// **'Close DM'**
-  String get iarCloseDmConfirmTitle;
-
-  /// Body of the confirm-close-DM bottom sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'Close your current DM with {name}. This doesn\'t block them; you can reopen later.'**
-  String iarCloseDmConfirmDescription(String name);
-
-  /// Title shown on the success step after a platform report is submitted.
-  ///
-  /// In en, this message translates to:
-  /// **'Report sent'**
-  String get iarSuccessTitle;
-
-  /// Body shown on the success step after a platform report is submitted.
-  ///
-  /// In en, this message translates to:
-  /// **'Our safety team is reviewing it. We\'ll send you a DM and email once we\'ve reached a verdict.'**
-  String get iarSuccessBody;
-
-  /// Title shown on the IAR success step when the message had already been reported by this user (HTTP 409); the existing report is under review.
-  ///
-  /// In en, this message translates to:
-  /// **'Already reported'**
-  String get iarAlreadyReportedTitle;
-
-  /// Body shown on the IAR success step when the message had already been reported by this user (HTTP 409).
-  ///
-  /// In en, this message translates to:
-  /// **'You\'ve already reported this message. Our safety team is reviewing it.'**
-  String get iarAlreadyReportedBody;
-
-  /// Footer button label that returns the user to the previous IAR step.
-  ///
-  /// In en, this message translates to:
-  /// **'Back'**
-  String get iarBackButton;
-
-  /// Footer button label that advances the user to the next IAR step.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue'**
-  String get iarContinueButton;
-
-  /// Footer button label that submits the IAR report.
+  /// Report flow: button on the report summary screen that sends the report.
   ///
   /// In en, this message translates to:
   /// **'Send report'**
-  String get iarSendReportButton;
+  String get reportFlowSubmit;
 
-  /// Footer button label that closes the IAR sheet from the success or guidance step.
+  /// Report flow: button that returns to the previous screen of the report form.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get reportFlowBack;
+
+  /// Report flow: button that goes to the next screen of the report form.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get reportFlowNext;
+
+  /// Report flow: button that closes the report form when it is finished.
   ///
   /// In en, this message translates to:
   /// **'Done'**
-  String get iarDoneButton;
+  String get reportFlowDone;
 
-  /// Toast shown when the IAR report submission fails.
+  /// Report flow: title of the screen shown after a report was sent.
   ///
   /// In en, this message translates to:
-  /// **'Couldn\'t send the report. Please try again.'**
-  String get iarCouldntSendToast;
+  /// **'Report sent'**
+  String get reportFlowThankYouTitle;
 
-  /// Toast shown when an IAR report submission is rejected for rate limiting (HTTP 429).
+  /// Report flow: title of the screen shown when the chosen answer does not send a report.
   ///
   /// In en, this message translates to:
-  /// **'You\'re reporting too quickly. Please wait a moment and try again.'**
-  String get iarRateLimitedToast;
+  /// **'Thanks for flagging this'**
+  String get reportFlowThankYouNoReportTitle;
 
-  /// Toast shown after a message report is submitted successfully from the simple mobile report sheet.
+  /// Report flow: body of the thank-you screen after a report was sent. {productName} is the name of the app.
   ///
   /// In en, this message translates to:
-  /// **'Report sent. Our safety team will review it.'**
-  String get iarReportSentToast;
+  /// **'The {productName} safety team will review your report. We won\'t reveal that it came from you.'**
+  String reportFlowThankYouBody(String productName);
 
-  /// Body of the confirm-block-user bottom sheet shown after the user taps Block on the IAR action card.
+  /// Report flow: body of the thank-you screen when the chosen answer does not send a report. "Abusive or harmful content" is the name of an option on the first screen of the message report form.
   ///
   /// In en, this message translates to:
-  /// **'Block {name}? They won\'t be able to message you or send you friend requests. You can unblock them later.'**
-  String iarBlockUserConfirmDescription(String name);
+  /// **'Thanks for telling us. This doesn\'t break our rules on its own, so we didn\'t send a report. If it targets someone or uses slurs, report it again and choose Abusive or harmful content.'**
+  String get reportFlowThankYouNoReportBody;
 
-  /// Toast shown when blocking the reported user from the IAR action card fails.
+  /// Report flow: body of the thank-you screen when the chosen answer does not send a report and the reporter is already past the first screen of the form.
   ///
   /// In en, this message translates to:
-  /// **'Couldn\'t block this user. Please try again.'**
-  String get iarBlockUserFailedToast;
+  /// **'Thanks for telling us. This doesn\'t break our rules on its own, so we didn\'t send a report.'**
+  String get reportFlowThankYouNoReportBodyShort;
 
-  /// Toast shown after the DM with the reported user is closed from the IAR action card.
+  /// Report flow: heading above the extra actions (such as blocking the user) on the thank-you screen.
   ///
   /// In en, this message translates to:
-  /// **'DM closed.'**
-  String get iarCloseDmSuccessToast;
+  /// **'Your options'**
+  String get reportFlowMoreYouCanDo;
 
-  /// Toast shown when closing the DM from the IAR action card fails.
+  /// Report flow: title of the row on the thank-you screen that blocks the reported user. {name} is the display name of that user.
   ///
   /// In en, this message translates to:
-  /// **'Couldn\'t close this DM. Please try again.'**
-  String get iarCloseDmFailedToast;
+  /// **'Block {name}'**
+  String reportFlowBlockName(String name);
 
-  /// Toast shown when leaving the community from the IAR action card fails.
+  /// Report flow: description under reportFlowBlockName on the thank-you screen.
   ///
   /// In en, this message translates to:
-  /// **'Couldn\'t leave this community. Please try again.'**
-  String get iarLeaveCommunityFailedToast;
+  /// **'Hides their messages and stops them messaging you'**
+  String get reportFlowBlockDescription;
+
+  /// Report flow: button on the thank-you screen that blocks the reported user.
+  ///
+  /// In en, this message translates to:
+  /// **'Block'**
+  String get reportFlowBlockButton;
+
+  /// Report flow: disabled button on the thank-you screen after the reported user was blocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked'**
+  String get reportFlowBlockedButton;
+
+  /// Report flow: banner on screens about urgent harm, such as threats, self-harm or the safety of minors.
+  ///
+  /// In en, this message translates to:
+  /// **'If someone is in immediate danger, contact local emergency services first.'**
+  String get reportFlowUrgentBanner;
+
+  /// Report flow: error shown when the report form could not be loaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the report form.'**
+  String get reportFlowLoadFailed;
+
+  /// Report flow: button that loads the report form again after an error.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get reportFlowTryAgain;
+
+  /// Report flow: toast shown when the report form changed on the server while the reporter was filling it in. The form restarts from the first screen.
+  ///
+  /// In en, this message translates to:
+  /// **'The report form changed. Please start again.'**
+  String get reportFlowOutdated;
+
+  /// Report flow: note on the report summary screen when the reporter already reported this message.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve already reported this message.'**
+  String get reportFlowAlreadyReported;
+
+  /// Report flow: note on the report summary screen when the reporter already reported this user profile in the last 24 hours.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve already reported this profile today.'**
+  String get reportFlowAlreadyReportedProfile;
+
+  /// Report flow: note on the report summary screen when the reporter sent too many reports.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re sending reports too quickly. Try again later.'**
+  String get reportFlowRateLimited;
+
+  /// Report flow: note on the report summary screen when the report could not be sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Your report didn\'t go through. Try again.'**
+  String get reportFlowSubmitFailed;
+
+  /// Report flow: notice on the report summary screen when the account must be claimed and its email verified before it can send reports.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim your account and verify your email to send reports.'**
+  String get reportFlowAccountSetupRequired;
 
   /// Action label that hides link previews / embeds on the message.
   ///
@@ -12399,36 +11886,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Optional arguments'**
   String get composerAutocompleteOptionalArgumentsHeading;
-
-  /// Section heading in composer autocomplete for channel suggestions.
-  ///
-  /// In en, this message translates to:
-  /// **'Channels'**
-  String get composerAutocompleteChannelsHeading;
-
-  /// Section heading in composer autocomplete for member suggestions.
-  ///
-  /// In en, this message translates to:
-  /// **'Members'**
-  String get composerAutocompleteMembersHeading;
-
-  /// Section heading in composer autocomplete for user suggestions.
-  ///
-  /// In en, this message translates to:
-  /// **'Users'**
-  String get composerAutocompleteUsersHeading;
-
-  /// Section heading in composer autocomplete for mixed mention suggestions.
-  ///
-  /// In en, this message translates to:
-  /// **'Mentions'**
-  String get composerAutocompleteMentionsHeading;
-
-  /// Section heading in composer autocomplete for role suggestions.
-  ///
-  /// In en, this message translates to:
-  /// **'Roles'**
-  String get composerAutocompleteRolesHeading;
 
   /// Section heading in composer autocomplete for saved media.
   ///
@@ -12846,12 +12303,6 @@ abstract class FluxerLocalizations {
   /// **'The community template data is invalid or malformed.'**
   String get addGuildImportTemplateInvalid;
 
-  /// Toast shown after accepting an emoji or sticker pack invite.
-  ///
-  /// In en, this message translates to:
-  /// **'Pack installed successfully.'**
-  String get addGuildPackInstalled;
-
   /// Title for the remove-all-reactions confirmation sheet.
   ///
   /// In en, this message translates to:
@@ -12863,6 +12314,18 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Are you sure you want to remove all reactions from this message?'**
   String get chatMessageRemoveAllReactionsConfirmDescription;
+
+  /// Confirm button label on the pin message confirmation modal.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin'**
+  String get chatMessagePinConfirm;
+
+  /// Body text for the pin message confirmation modal.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin this message to the channel for everyone to see.'**
+  String get chatMessagePinConfirmDescription;
 
   /// Title for the unpin message confirmation sheet.
   ///
@@ -12999,12 +12462,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Delete channel'**
   String get channelDetailsDeleteChannel;
-
-  /// Title for category settings modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Category settings'**
-  String get channelSettingsCategorySettingsTitle;
 
   /// Context menu action to edit a category.
   ///
@@ -13314,24 +12771,6 @@ abstract class FluxerLocalizations {
   /// **'Try again in a moment.'**
   String get channelSettingsVoiceRegionsLoadFailedDescription;
 
-  /// Tooltip for reset buttons on channel settings sliders.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset slider to default value'**
-  String get channelSettingsResetSlider;
-
-  /// Collapsible advanced section title in channel overview.
-  ///
-  /// In en, this message translates to:
-  /// **'Advanced'**
-  String get channelSettingsAdvanced;
-
-  /// Accessibility label for mature content override control.
-  ///
-  /// In en, this message translates to:
-  /// **'Mature content override'**
-  String get channelSettingsMatureContentOverride;
-
   /// Section description for mature content settings in channel overview.
   ///
   /// In en, this message translates to:
@@ -13380,18 +12819,6 @@ abstract class FluxerLocalizations {
   /// **'Inherited from {inheritedSourceLabel}: off'**
   String channelSettingsMatureContentInheritsOff(String inheritedSourceLabel);
 
-  /// Lowercase source label for inherited mature content from category.
-  ///
-  /// In en, this message translates to:
-  /// **'category'**
-  String get channelSettingsMatureContentCategorySource;
-
-  /// Lowercase source label for inherited mature content from community.
-  ///
-  /// In en, this message translates to:
-  /// **'community'**
-  String get channelSettingsMatureContentCommunitySource;
-
   /// Capitalized scope label when mature content inherits from a category.
   ///
   /// In en, this message translates to:
@@ -13427,22 +12854,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'This contains sensitive content.'**
   String get channelSettingsContentWarningDefault;
-
-  /// Error when user lacks manage channels permission for channel permissions tab.
-  ///
-  /// In en, this message translates to:
-  /// **'You need the \"{manageChannelsPermissionLabel}\" permission to edit these permissions.'**
-  String channelSettingsPermissionsNeedManageChannels(
-    String manageChannelsPermissionLabel,
-  );
-
-  /// Error when user lacks manage roles permission for channel permissions tab.
-  ///
-  /// In en, this message translates to:
-  /// **'You need the \"{manageRolesPermissionLabel}\" permission to edit these permissions.'**
-  String channelSettingsPermissionsNeedManageRoles(
-    String manageRolesPermissionLabel,
-  );
 
   /// Fallback label for unknown role in permission overwrites.
   ///
@@ -13564,12 +12975,6 @@ abstract class FluxerLocalizations {
   /// **'Search roles or members…'**
   String get channelSettingsPermissionsSearchRolesOrMembers;
 
-  /// Section title in the add override picker.
-  ///
-  /// In en, this message translates to:
-  /// **'Roles and members'**
-  String get channelSettingsPermissionsRolesAndMembers;
-
   /// Action to delete a channel invite.
   ///
   /// In en, this message translates to:
@@ -13689,12 +13094,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Created by {creator} on {date}'**
   String channelSettingsWebhooksCreatedBy(String creator, String date);
-
-  /// Fallback label when webhook creator is unavailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Unknown user'**
-  String get channelSettingsWebhooksUnknownUser;
 
   /// Label for webhook avatar field.
   ///
@@ -13977,12 +13376,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'You\'ve reached the end'**
   String get channelDetailsPinsEndReached;
-
-  /// Accessibility label for the channel header title area.
-  ///
-  /// In en, this message translates to:
-  /// **'Open channel details'**
-  String get channelHeaderOpenDetails;
 
   /// Toolbar button label for pinned messages.
   ///
@@ -14788,12 +14181,6 @@ abstract class FluxerLocalizations {
   /// **'Edit group'**
   String get groupDmEditTitle;
 
-  /// Tooltip on the desktop group DM header edit action.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit group details'**
-  String get groupDmEditDetailsTooltip;
-
   /// Label for the group name field in edit group.
   ///
   /// In en, this message translates to:
@@ -14884,18 +14271,6 @@ abstract class FluxerLocalizations {
   /// **'Unsupported file type.'**
   String get groupDmUnsupportedIconFormatBody;
 
-  /// Title when a cropped group icon cannot be processed.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t process image'**
-  String get groupDmCouldntProcessImage;
-
-  /// Body when a cropped group icon cannot be processed.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to process the cropped image. Try again.'**
-  String get groupDmFailedToProcessCroppedImage;
-
   /// Title when the selected group icon image cannot be used.
   ///
   /// In en, this message translates to:
@@ -14944,12 +14319,6 @@ abstract class FluxerLocalizations {
   /// **'Couldn\'t add this friend to the group. Please try again.'**
   String get groupDmAddFriendFailed;
 
-  /// Title when adding friends to a group DM fails.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t add to group'**
-  String get groupDmAddFailed;
-
   /// Error when the group DM has no remaining member slots.
   ///
   /// In en, this message translates to:
@@ -14961,12 +14330,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'You\'re going too fast. Wait a moment and try again.'**
   String get groupDmRateLimited;
-
-  /// Title when invite link generation fails.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t create invite link'**
-  String get groupDmCreateInviteFailed;
 
   /// Body when invite link generation fails.
   ///
@@ -15298,12 +14661,6 @@ abstract class FluxerLocalizations {
   /// **'Search settings...'**
   String get userSettingsSearchPlaceholder;
 
-  /// Accessibility label for the user settings search field.
-  ///
-  /// In en, this message translates to:
-  /// **'Search settings'**
-  String get userSettingsSearchFieldLabel;
-
   /// Accessibility label for clearing the user settings search field.
   ///
   /// In en, this message translates to:
@@ -15448,18 +14805,6 @@ abstract class FluxerLocalizations {
   /// **'Copied'**
   String get giftSettingsCopied;
 
-  /// No description provided for @giftSettingsGiftUrlCopied.
-  ///
-  /// In en, this message translates to:
-  /// **'Gift URL copied to clipboard!'**
-  String get giftSettingsGiftUrlCopied;
-
-  /// No description provided for @giftSettingsGiftUrlCopyFailed.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t copy gift URL'**
-  String get giftSettingsGiftUrlCopyFailed;
-
   /// No description provided for @giftSettingsPurchasedDate.
   ///
   /// In en, this message translates to:
@@ -15580,12 +14925,6 @@ abstract class FluxerLocalizations {
   /// **'1 month gift'**
   String get premiumOneMonthGift;
 
-  /// No description provided for @premiumMostPopular.
-  ///
-  /// In en, this message translates to:
-  /// **'Most popular'**
-  String get premiumMostPopular;
-
   /// No description provided for @premiumScrollPrompt.
   ///
   /// In en, this message translates to:
@@ -15646,30 +14985,6 @@ abstract class FluxerLocalizations {
   /// **'Ready to buy a gift?'**
   String get premiumReadyToBuyGift;
 
-  /// No description provided for @premiumMonthlyPrice.
-  ///
-  /// In en, this message translates to:
-  /// **'Monthly {price}'**
-  String premiumMonthlyPrice(String price);
-
-  /// No description provided for @premiumYearlyPrice.
-  ///
-  /// In en, this message translates to:
-  /// **'Yearly {price}'**
-  String premiumYearlyPrice(String price);
-
-  /// No description provided for @premiumOneYearPrice.
-  ///
-  /// In en, this message translates to:
-  /// **'1 year {price}'**
-  String premiumOneYearPrice(String price);
-
-  /// No description provided for @premiumOneMonthPrice.
-  ///
-  /// In en, this message translates to:
-  /// **'1 month {price}'**
-  String premiumOneMonthPrice(String price);
-
   /// No description provided for @premiumManageSubscription.
   ///
   /// In en, this message translates to:
@@ -15706,12 +15021,6 @@ abstract class FluxerLocalizations {
   /// **'Cancel subscription'**
   String get premiumCancelSubscriptionConfirm;
 
-  /// No description provided for @premiumKeepSubscription.
-  ///
-  /// In en, this message translates to:
-  /// **'Keep subscription'**
-  String get premiumKeepSubscription;
-
   /// No description provided for @premiumPurchaseHistoryTitle.
   ///
   /// In en, this message translates to:
@@ -15729,18 +15038,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Manage payment methods'**
   String get premiumManagePaymentMethods;
-
-  /// No description provided for @premiumBillingHistory.
-  ///
-  /// In en, this message translates to:
-  /// **'Billing history'**
-  String get premiumBillingHistory;
-
-  /// No description provided for @premiumSelfServeRefundTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Self-serve refund'**
-  String get premiumSelfServeRefundTitle;
 
   /// No description provided for @premiumSelfServeRefundButton.
   ///
@@ -15796,17 +15093,23 @@ abstract class FluxerLocalizations {
   /// **'Gifted until {date}. Does not renew automatically.'**
   String premiumGiftedUntil(String date);
 
+  /// Plutonium settings summary line shown during the grace period after gifted Plutonium time runs out.
+  ///
+  /// In en, this message translates to:
+  /// **'Your gift time has ended. Subscribe to keep Plutonium.'**
+  String get premiumGiftGraceEnded;
+
+  /// Note next to the subscription plans when the user still has gifted Plutonium time left.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribing charges you now. Your remaining gift time is added after your paid period.'**
+  String get premiumGiftTimeAddedAfterSubscription;
+
   /// No description provided for @premiumComparisonFeatureColumn.
   ///
   /// In en, this message translates to:
   /// **'Feature'**
   String get premiumComparisonFeatureColumn;
-
-  /// No description provided for @premiumDisclaimerPurchased.
-  ///
-  /// In en, this message translates to:
-  /// **'By purchasing, you agreed to our {terms} and {privacy}.'**
-  String premiumDisclaimerPurchased(String terms, String privacy);
 
   /// No description provided for @premiumDisclaimerRefund.
   ///
@@ -15838,17 +15141,17 @@ abstract class FluxerLocalizations {
   /// **'Something went wrong while starting checkout. Please try again in a moment.'**
   String get premiumCheckoutStartFailedBody;
 
-  /// No description provided for @premiumGiftSubscriptionBlocksRecurring.
-  ///
-  /// In en, this message translates to:
-  /// **'You\'re currently on a gift subscription. It won\'t renew. You can redeem more gift codes to extend it. Recurring subscriptions can be started after your gift time ends.'**
-  String get premiumGiftSubscriptionBlocksRecurring;
-
   /// No description provided for @premiumPlanUnavailable.
   ///
   /// In en, this message translates to:
   /// **'This plan isn\'t available. Contact support.'**
   String get premiumPlanUnavailable;
+
+  /// Error shown on a self-hosted instance when the selected Plutonium plan is not available. Names no support mailbox.
+  ///
+  /// In en, this message translates to:
+  /// **'This plan isn\'t available. Contact the administrators of this instance.'**
+  String get premiumPlanUnavailableSelfHosted;
 
   /// No description provided for @premiumCompletePaymentTitle.
   ///
@@ -15940,11 +15243,17 @@ abstract class FluxerLocalizations {
   /// **'Purchases unavailable'**
   String get premiumPurchasesDisabledTitle;
 
-  /// No description provided for @premiumPurchasesDisabledBody.
+  /// Shown on the official hosted instance when purchases are disabled for the account. supportEmail is the support mailbox.
   ///
   /// In en, this message translates to:
-  /// **'Purchases are disabled for this account. Contact support@echowire.org if this looks wrong.'**
-  String get premiumPurchasesDisabledBody;
+  /// **'Purchases are disabled for this account. Contact {supportEmail} if this looks wrong.'**
+  String premiumPurchasesDisabledBody(String supportEmail);
+
+  /// Shown on a self-hosted instance when purchases are disabled for the account. Names no email address.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases are disabled for this account. Contact this instance\'s administrators if this looks wrong.'**
+  String get premiumPurchasesDisabledBodySelfHosted;
 
   /// No description provided for @premiumClaimAccountToPurchase.
   ///
@@ -15957,42 +15266,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'You need to verify your email before you can purchase Reverb.'**
   String get premiumVerifyEmailToPurchase;
-
-  /// No description provided for @premiumPerkCustomUsernameTag.
-  ///
-  /// In en, this message translates to:
-  /// **'Custom username tag'**
-  String get premiumPerkCustomUsernameTag;
-
-  /// No description provided for @premiumPerkPerCommunityProfiles.
-  ///
-  /// In en, this message translates to:
-  /// **'Per-community profiles'**
-  String get premiumPerkPerCommunityProfiles;
-
-  /// No description provided for @premiumPerkMessageScheduling.
-  ///
-  /// In en, this message translates to:
-  /// **'Message scheduling'**
-  String get premiumPerkMessageScheduling;
-
-  /// No description provided for @premiumPerkProfileBadge.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile badge'**
-  String get premiumPerkProfileBadge;
-
-  /// No description provided for @premiumPerkCustomVideoBackgrounds.
-  ///
-  /// In en, this message translates to:
-  /// **'Custom video backgrounds'**
-  String get premiumPerkCustomVideoBackgrounds;
-
-  /// No description provided for @premiumPerkEntranceSounds.
-  ///
-  /// In en, this message translates to:
-  /// **'Entrance sounds'**
-  String get premiumPerkEntranceSounds;
 
   /// No description provided for @premiumPerkCommunities.
   ///
@@ -16018,29 +15291,11 @@ abstract class FluxerLocalizations {
   /// **'File upload size'**
   String get premiumPerkFileUploadSize;
 
-  /// No description provided for @premiumPerkEmojiStickerPacks.
-  ///
-  /// In en, this message translates to:
-  /// **'Emoji & sticker packs'**
-  String get premiumPerkEmojiStickerPacks;
-
-  /// No description provided for @premiumPerkSavedMedia.
-  ///
-  /// In en, this message translates to:
-  /// **'Saved media'**
-  String get premiumPerkSavedMedia;
-
   /// No description provided for @premiumPerkUseAnimatedEmojis.
   ///
   /// In en, this message translates to:
   /// **'Use animated emojis'**
   String get premiumPerkUseAnimatedEmojis;
-
-  /// No description provided for @premiumPerkGlobalEmojiStickerAccess.
-  ///
-  /// In en, this message translates to:
-  /// **'Global emoji & sticker access'**
-  String get premiumPerkGlobalEmojiStickerAccess;
 
   /// No description provided for @premiumPerkVideoQuality.
   ///
@@ -16060,12 +15315,6 @@ abstract class FluxerLocalizations {
   /// **'Early access to new features'**
   String get premiumPerkEarlyAccess;
 
-  /// No description provided for @premiumPerkCustomThemes.
-  ///
-  /// In en, this message translates to:
-  /// **'Custom themes'**
-  String get premiumPerkCustomThemes;
-
   /// No description provided for @premiumPerkVideoQualityRestricted.
   ///
   /// In en, this message translates to:
@@ -16077,6 +15326,300 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Up to 4K/60fps'**
   String get premiumPerkVideoQualityStock;
+
+  /// No description provided for @storePlutoniumPriceLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{monthly} or {yearly}'**
+  String storePlutoniumPriceLine(String monthly, String yearly);
+
+  /// No description provided for @storePlutoniumMonthSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'/mo'**
+  String get storePlutoniumMonthSuffix;
+
+  /// No description provided for @storePlutoniumYearSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'/yr'**
+  String get storePlutoniumYearSuffix;
+
+  /// No description provided for @storePlutoniumPriceOr.
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get storePlutoniumPriceOr;
+
+  /// No description provided for @storePlutoniumEmojiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your emojis, everywhere'**
+  String get storePlutoniumEmojiTitle;
+
+  /// No description provided for @storePlutoniumEmojiBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring custom emojis and stickers from any of your communities into every chat and community you\'re in.'**
+  String get storePlutoniumEmojiBody;
+
+  /// No description provided for @storePlutoniumProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A profile that stands out'**
+  String get storePlutoniumProfileTitle;
+
+  /// No description provided for @storePlutoniumProfileBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Get an animated avatar and banner, a subscriber badge, the four-digit tag you want after your username*, and a separate profile for each community.'**
+  String get storePlutoniumProfileBody;
+
+  /// No description provided for @storePlutoniumFilesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Send files up to 500 MB'**
+  String get storePlutoniumFilesTitle;
+
+  /// No description provided for @storePlutoniumFilesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Share full-length videos and big files without shrinking them first. Free accounts can send up to 25 MB.'**
+  String get storePlutoniumFilesBody;
+
+  /// No description provided for @storePlutoniumCompareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare Free and Reverb'**
+  String get storePlutoniumCompareTitle;
+
+  /// No description provided for @storePlutoniumCompareMobileNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Not all of these features are in the mobile app. Some are only available on desktop.'**
+  String get storePlutoniumCompareMobileNote;
+
+  /// No description provided for @storePlutoniumNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not available'**
+  String get storePlutoniumNotAvailable;
+
+  /// No description provided for @storePlutoniumAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get storePlutoniumAvailable;
+
+  /// No description provided for @storePlutoniumCompareTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the 4-digit number after your username*'**
+  String get storePlutoniumCompareTag;
+
+  /// No description provided for @storePlutoniumCompareProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'A separate profile for each community'**
+  String get storePlutoniumCompareProfile;
+
+  /// No description provided for @storePlutoniumCompareBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscriber badge on your profile'**
+  String get storePlutoniumCompareBadge;
+
+  /// No description provided for @storePlutoniumCompareBackgrounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Video call backgrounds you can save'**
+  String get storePlutoniumCompareBackgrounds;
+
+  /// No description provided for @storePlutoniumCompareCommunities.
+  ///
+  /// In en, this message translates to:
+  /// **'Communities you can join'**
+  String get storePlutoniumCompareCommunities;
+
+  /// No description provided for @storePlutoniumCompareCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Characters in a single message'**
+  String get storePlutoniumCompareCharacters;
+
+  /// No description provided for @storePlutoniumCompareBookmarks.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages you can bookmark'**
+  String get storePlutoniumCompareBookmarks;
+
+  /// No description provided for @storePlutoniumCompareUpload.
+  ///
+  /// In en, this message translates to:
+  /// **'Largest file you can upload'**
+  String get storePlutoniumCompareUpload;
+
+  /// No description provided for @storePlutoniumCompareSavedMedia.
+  ///
+  /// In en, this message translates to:
+  /// **'Media items you can save for later'**
+  String get storePlutoniumCompareSavedMedia;
+
+  /// No description provided for @storePlutoniumCompareAnimatedEmoji.
+  ///
+  /// In en, this message translates to:
+  /// **'Use animated emojis in messages'**
+  String get storePlutoniumCompareAnimatedEmoji;
+
+  /// No description provided for @storePlutoniumCompareCustomEmoji.
+  ///
+  /// In en, this message translates to:
+  /// **'Use custom emojis and stickers in any community'**
+  String get storePlutoniumCompareCustomEmoji;
+
+  /// No description provided for @storePlutoniumCompareVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video call and screen share quality'**
+  String get storePlutoniumCompareVideo;
+
+  /// No description provided for @storePlutoniumCompareAvatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Animated avatar and profile banner'**
+  String get storePlutoniumCompareAvatar;
+
+  /// No description provided for @storePlutoniumCompareEarlyAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Early access to new features'**
+  String get storePlutoniumCompareEarlyAccess;
+
+  /// No description provided for @storePlutoniumCompareThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom themes for the app'**
+  String get storePlutoniumCompareThemes;
+
+  /// No description provided for @storePlutoniumVideoFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to 720p at 30 FPS'**
+  String get storePlutoniumVideoFree;
+
+  /// No description provided for @storePlutoniumVideoPlutonium.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to 4K at 60 FPS'**
+  String get storePlutoniumVideoPlutonium;
+
+  /// No description provided for @storePlutoniumTagFootnote.
+  ///
+  /// In en, this message translates to:
+  /// **'You can only pick a tag that nobody else with the same username already has. Usernames aren\'t case sensitive, so Mina#4821 and mina#4821 count as the same. The #0000 tag is reserved for echowire Visionary members.'**
+  String get storePlutoniumTagFootnote;
+
+  /// No description provided for @storePlutoniumLearnVisionary.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn more about Visionary.'**
+  String get storePlutoniumLearnVisionary;
+
+  /// No description provided for @storePlutoniumDonatePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Just want to support echowire\'s open source development? '**
+  String get storePlutoniumDonatePrompt;
+
+  /// No description provided for @storePlutoniumDonateLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Donate instead.'**
+  String get storePlutoniumDonateLink;
+
+  /// No description provided for @storePlutoniumHighlightsLead.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribing funds echowire and unlocks'**
+  String get storePlutoniumHighlightsLead;
+
+  /// No description provided for @storePlutoniumHighlightEmoji.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom emoji and stickers in any chat'**
+  String get storePlutoniumHighlightEmoji;
+
+  /// No description provided for @storePlutoniumHighlightProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Animated profile, badge, and custom 4-digit number'**
+  String get storePlutoniumHighlightProfile;
+
+  /// No description provided for @storePlutoniumHighlightFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploads up to 500 MB'**
+  String get storePlutoniumHighlightFiles;
+
+  /// No description provided for @storePlutoniumHighlightMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Send messages up to 4,000 characters'**
+  String get storePlutoniumHighlightMessages;
+
+  /// No description provided for @storePlutoniumHighlightCommunityProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'A separate profile for each community'**
+  String get storePlutoniumHighlightCommunityProfile;
+
+  /// No description provided for @storePlutoniumHighlightsMore.
+  ///
+  /// In en, this message translates to:
+  /// **'And more'**
+  String get storePlutoniumHighlightsMore;
+
+  /// No description provided for @storePlutoniumRenewsThroughPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Renews automatically through Google Play until you cancel.'**
+  String get storePlutoniumRenewsThroughPlay;
+
+  /// No description provided for @storePlutoniumRenewsThroughAppStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Renews automatically through the App Store until you cancel.'**
+  String get storePlutoniumRenewsThroughAppStore;
+
+  /// No description provided for @storePlutoniumAlreadySubscribed.
+  ///
+  /// In en, this message translates to:
+  /// **'You already have an echowire Reverb subscription.'**
+  String get storePlutoniumAlreadySubscribed;
+
+  /// No description provided for @storePlutoniumSavePercent.
+  ///
+  /// In en, this message translates to:
+  /// **'Save {percent}%'**
+  String storePlutoniumSavePercent(int percent);
+
+  /// No description provided for @storePlutoniumWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase received. Reverb will show here once it activates.'**
+  String get storePlutoniumWaiting;
+
+  /// No description provided for @storePlutoniumUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscriptions in the app aren\'t available on this device yet.'**
+  String get storePlutoniumUnavailable;
+
+  /// No description provided for @storePlutoniumVisionaryStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Visionary already includes permanent access, so a recurring subscription isn\'t needed.'**
+  String get storePlutoniumVisionaryStatus;
 
   /// User settings navigation item for the privacy dashboard.
   ///
@@ -16318,12 +15861,6 @@ abstract class FluxerLocalizations {
   /// **'Stop mic test'**
   String get audioAndVideoMicTestStopLabel;
 
-  /// Shown when microphone permission is required for the mic test.
-  ///
-  /// In en, this message translates to:
-  /// **'{productName} needs microphone access to test your input.'**
-  String audioAndVideoMicTestPermissionRequired(String productName);
-
   /// Label for camera device selection.
   ///
   /// In en, this message translates to:
@@ -16390,29 +15927,11 @@ abstract class FluxerLocalizations {
   /// **'60 FPS'**
   String get audioAndVideoFrameRate60Label;
 
-  /// Note shown when higher video quality options require premium.
-  ///
-  /// In en, this message translates to:
-  /// **'1080p and 60 FPS require {premiumProductName}.'**
-  String audioAndVideoHigherQualityRequiresPremium(String premiumProductName);
-
   /// Note shown when instance limits block higher screen share quality.
   ///
   /// In en, this message translates to:
   /// **'This instance currently allows screen share up to 720p at 30 FPS.'**
   String get audioAndVideoInstanceVideoQualityLimit;
-
-  /// Shown when microphone permission is required to enumerate audio input devices.
-  ///
-  /// In en, this message translates to:
-  /// **'{productName} needs microphone access to list your devices.'**
-  String audioAndVideoMicrophonePermissionRequired(String productName);
-
-  /// Shown when camera permission is required to enumerate video devices.
-  ///
-  /// In en, this message translates to:
-  /// **'{productName} needs camera access to list your devices.'**
-  String audioAndVideoCameraPermissionRequired(String productName);
 
   /// Toggle to skip confirmation when hiding own camera during a call.
   ///
@@ -16461,18 +15980,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Uses the OS notification center. For per-channel/per-community controls, right-click a community icon and open notification settings.'**
   String get notificationsEnableDesktopNotificationsDescription;
-
-  /// Toggle label for enabling browser notifications.
-  ///
-  /// In en, this message translates to:
-  /// **'Enable browser notifications'**
-  String get notificationsEnableBrowserNotificationsLabel;
-
-  /// Description for the enable browser notifications toggle.
-  ///
-  /// In en, this message translates to:
-  /// **'Get notified when you receive messages. You may need to allow notifications in your browser settings. For per-channel/per-community controls, right-click a community icon and open notification settings.'**
-  String get notificationsEnableBrowserNotificationsDescription;
 
   /// Label for push notification inactive timeout setting.
   ///
@@ -16870,6 +16377,72 @@ abstract class FluxerLocalizations {
   /// **'Couldn\'t enable notifications. Allow notification permission to continue.'**
   String get notificationsEnableNotificationsPermissionDenied;
 
+  /// Notification settings section title for the Fluxer push relay.
+  ///
+  /// In en, this message translates to:
+  /// **'Push notification relay'**
+  String get notificationsPushRelaySectionTitle;
+
+  /// Notification settings section description explaining why the push relay exists.
+  ///
+  /// In en, this message translates to:
+  /// **'{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.'**
+  String notificationsPushRelaySectionDescription(String pushProvider);
+
+  /// Toggle label for agreeing to the Fluxer push relay on this device.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the Fluxer push relay'**
+  String get notificationsPushRelayConsentLabel;
+
+  /// Toggle description explaining that revoking push relay consent unregisters the device.
+  ///
+  /// In en, this message translates to:
+  /// **'Turning this off removes this device\'s push registration, so this device stops receiving push notifications.'**
+  String get notificationsPushRelayConsentDescription;
+
+  /// Title of the one-time Fluxer push relay consent sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Push notification relay'**
+  String get pushRelayConsentTitle;
+
+  /// Subtitle of the push relay consent sheet explaining why the relay exists.
+  ///
+  /// In en, this message translates to:
+  /// **'{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.'**
+  String pushRelayConsentDescription(String pushProvider);
+
+  /// Text before the push relay privacy notice link in the consent sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Agree to the '**
+  String get pushRelayConsentNoticePrefix;
+
+  /// Link text for the supplemental push relay privacy notice.
+  ///
+  /// In en, this message translates to:
+  /// **'Push relay privacy notice'**
+  String get pushRelayConsentNoticeLink;
+
+  /// Text after the push relay privacy notice link in the consent sheet.
+  ///
+  /// In en, this message translates to:
+  /// **' to turn on push notifications on this device. You only need to agree once per device.'**
+  String get pushRelayConsentNoticeSuffix;
+
+  /// Button that records agreement to the push relay privacy notice.
+  ///
+  /// In en, this message translates to:
+  /// **'Agree and continue'**
+  String get pushRelayConsentAgree;
+
+  /// Button that declines the push relay privacy notice and leaves push notifications off.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get pushRelayConsentDecline;
+
   /// User settings navigation item for language and time settings.
   ///
   /// In en, this message translates to:
@@ -16887,12 +16460,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Choose the language used throughout the app'**
   String get languageAndTimeLanguageSectionDescription;
-
-  /// Button that opens the system per-app language settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Open language settings'**
-  String get languageAndTimeOpenLanguageSettings;
 
   /// Settings section title for time format preference.
   ///
@@ -16989,6 +16556,84 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'External browser'**
   String get defaultAppsWebBrowserExternal;
+
+  /// User settings navigation item for choosing the home screen app icon.
+  ///
+  /// In en, this message translates to:
+  /// **'App icon'**
+  String get userSettingsNavAppIcon;
+
+  /// Title for the app icon settings section.
+  ///
+  /// In en, this message translates to:
+  /// **'App icon'**
+  String get appIconSectionTitle;
+
+  /// Description for the app icon settings section.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose which icon appears on your home screen.'**
+  String get appIconSectionDescription;
+
+  /// App icon option for the build default icon (release or canary).
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get appIconOptionDefault;
+
+  /// App icon option for the starfield alternate icon.
+  ///
+  /// In en, this message translates to:
+  /// **'Starfield'**
+  String get appIconOptionStarfield;
+
+  /// App icon option for the Sweden flag alternate icon.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweden'**
+  String get appIconOptionSweden;
+
+  /// App icon option for the greyscale alternate icon.
+  ///
+  /// In en, this message translates to:
+  /// **'Greyscale'**
+  String get appIconOptionGreyscale;
+
+  /// App icon option for the rainbow alternate icon.
+  ///
+  /// In en, this message translates to:
+  /// **'Rainbow'**
+  String get appIconOptionRainbow;
+
+  /// App icon option for the waves alternate icon.
+  ///
+  /// In en, this message translates to:
+  /// **'Waves'**
+  String get appIconOptionWaves;
+
+  /// App icon option for the chromatic aberration alternate icon.
+  ///
+  /// In en, this message translates to:
+  /// **'Chromatic aberration'**
+  String get appIconOptionChromaticAberration;
+
+  /// App icon option for the default brutalist alternate icon.
+  ///
+  /// In en, this message translates to:
+  /// **'Brutalist'**
+  String get appIconOptionDefaultBrutalist;
+
+  /// App icon option for the greyscale brutalist alternate icon.
+  ///
+  /// In en, this message translates to:
+  /// **'Greyscale brutalist'**
+  String get appIconOptionGreyscaleBrutalist;
+
+  /// Shown when alternate app icons cannot be used on the current platform.
+  ///
+  /// In en, this message translates to:
+  /// **'Changing the app icon is not available on this device.'**
+  String get appIconUnsupported;
 
   /// User settings navigation item for advanced settings.
   ///
@@ -17259,12 +16904,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Trust all external links'**
   String get advancedSettingTrustAllLinksLabel;
-
-  /// No description provided for @advancedSettingTrustAllLinksDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Skip the external link warning for all domains'**
-  String get advancedSettingTrustAllLinksDescription;
 
   /// No description provided for @advancedSettingSearchEnginesLabel.
   ///
@@ -17595,48 +17234,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Enable developer mode'**
   String get advancedSettingDeveloperModeDescription;
-
-  /// No description provided for @advancedSettingSearchEngineGoogle.
-  ///
-  /// In en, this message translates to:
-  /// **'Google'**
-  String get advancedSettingSearchEngineGoogle;
-
-  /// No description provided for @advancedSettingSearchEngineDuckDuckGo.
-  ///
-  /// In en, this message translates to:
-  /// **'DuckDuckGo'**
-  String get advancedSettingSearchEngineDuckDuckGo;
-
-  /// No description provided for @advancedSettingSearchEngineBing.
-  ///
-  /// In en, this message translates to:
-  /// **'Bing'**
-  String get advancedSettingSearchEngineBing;
-
-  /// No description provided for @advancedSettingSearchEngineGoogleLens.
-  ///
-  /// In en, this message translates to:
-  /// **'Google Lens'**
-  String get advancedSettingSearchEngineGoogleLens;
-
-  /// No description provided for @advancedSettingSearchEngineTinEye.
-  ///
-  /// In en, this message translates to:
-  /// **'TinEye'**
-  String get advancedSettingSearchEngineTinEye;
-
-  /// No description provided for @advancedSettingTranslatorGoogle.
-  ///
-  /// In en, this message translates to:
-  /// **'Google Translate'**
-  String get advancedSettingTranslatorGoogle;
-
-  /// No description provided for @advancedSettingTranslatorDeepL.
-  ///
-  /// In en, this message translates to:
-  /// **'DeepL'**
-  String get advancedSettingTranslatorDeepL;
 
   /// No description provided for @advancedSettingDefaultSearchEngineLabel.
   ///
@@ -18078,6 +17675,12 @@ abstract class FluxerLocalizations {
   /// **'Text channels'**
   String get quickSwitcherSectionTextChannels;
 
+  /// Quick switcher section header for thread and forum post results.
+  ///
+  /// In en, this message translates to:
+  /// **'Threads'**
+  String get quickSwitcherSectionThreads;
+
   /// Quick switcher section header for voice channel results.
   ///
   /// In en, this message translates to:
@@ -18155,6 +17758,18 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Remove bookmark'**
   String get savedMessagesRemoveTooltip;
+
+  /// Toast confirming a message was bookmarked.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to bookmarks'**
+  String get savedMessagesAddedToast;
+
+  /// Toast confirming a message bookmark was removed.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from bookmarks'**
+  String get savedMessagesRemovedToast;
 
   /// Quick switcher settings entry for mentions.
   ///
@@ -18431,6 +18046,12 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Failed to connect to instance'**
   String get instanceConnectFailed;
+
+  /// Error when the instance discovery document cannot be read, usually because the instance is behind this client.
+  ///
+  /// In en, this message translates to:
+  /// **'This client cannot connect to this instance. The instance is likely out of date. If the instance is up to date, try updating this app.'**
+  String get instanceInvalidDiscoveryResponse;
 
   /// Label for the recent self-hosted instances list.
   ///
@@ -18762,6 +18383,18 @@ abstract class FluxerLocalizations {
   /// **'Hide password'**
   String get authHidePassword;
 
+  /// Small toast shown only when the automatic anti-spam check behind sign-in, sign-up or a similar action takes more than a couple of seconds. No user action needed.
+  ///
+  /// In en, this message translates to:
+  /// **'Still working on it…'**
+  String get authCheckStillWorking;
+
+  /// Shown when the automatic anti-spam check behind sign-in, sign-up, phone verification or a similar action could not be completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t complete verification. Try again.'**
+  String get authVerificationFailed;
+
   /// Screen reader label for the chat message list loading skeleton.
   ///
   /// In en, this message translates to:
@@ -19035,37 +18668,37 @@ abstract class FluxerLocalizations {
   /// Label for the text channel type option.
   ///
   /// In en, this message translates to:
-  /// **'Text channel'**
+  /// **'Text'**
   String get guildNavbarTextChannel;
 
   /// Description for the text channel type option.
   ///
   /// In en, this message translates to:
-  /// **'Send messages, images, GIFs, and emoji'**
+  /// **'Send messages, images, GIFs and emoji'**
   String get guildNavbarTextChannelDescription;
 
   /// Label for the voice channel type option.
   ///
   /// In en, this message translates to:
-  /// **'Voice channel'**
+  /// **'Voice'**
   String get guildNavbarVoiceChannel;
 
   /// Description for the voice channel type option.
   ///
   /// In en, this message translates to:
-  /// **'Hang out together with voice, video, and screen share'**
+  /// **'Hang out with voice, video and screen share'**
   String get guildNavbarVoiceChannelDescription;
 
   /// Label for the link channel type option.
   ///
   /// In en, this message translates to:
-  /// **'Link channel'**
+  /// **'Link'**
   String get guildNavbarLinkChannel;
 
   /// Description for the link channel type option.
   ///
   /// In en, this message translates to:
-  /// **'Quick access to an external website or resource'**
+  /// **'Shortcut to an external website'**
   String get guildNavbarLinkChannelDescription;
 
   /// Label for name input fields in guild navbar modals.
@@ -19097,6 +18730,30 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Channel type selection'**
   String get guildNavbarChannelTypeSelection;
+
+  /// Label for the private channel toggle in the create channel modal.
+  ///
+  /// In en, this message translates to:
+  /// **'Private channel'**
+  String get guildNavbarPrivateChannel;
+
+  /// Description for the private channel toggle in the create channel modal.
+  ///
+  /// In en, this message translates to:
+  /// **'Only selected members and roles will be able to view this channel.'**
+  String get guildNavbarPrivateChannelDescription;
+
+  /// Title of the create channel step that picks who can view a private channel.
+  ///
+  /// In en, this message translates to:
+  /// **'Add members or roles'**
+  String get guildNavbarAddMembersOrRoles;
+
+  /// Search hint in the create channel step that picks who can view a private channel.
+  ///
+  /// In en, this message translates to:
+  /// **'Search members or roles'**
+  String get guildNavbarAddMembersOrRolesHint;
 
   /// Title and confirm label for the create category modal.
   ///
@@ -19428,12 +19085,6 @@ abstract class FluxerLocalizations {
   /// **'Hide muted channels'**
   String get guildMenuHideMutedChannels;
 
-  /// Guild menu action to report the community.
-  ///
-  /// In en, this message translates to:
-  /// **'Report community'**
-  String get guildMenuReportCommunity;
-
   /// Guild menu action to open community debug info.
   ///
   /// In en, this message translates to:
@@ -19494,12 +19145,6 @@ abstract class FluxerLocalizations {
   /// **'Webhooks'**
   String get guildMenuSettingsWebhooks;
 
-  /// Community settings tab for custom invite URLs.
-  ///
-  /// In en, this message translates to:
-  /// **'Custom invite URL'**
-  String get guildMenuSettingsCustomInviteUrl;
-
   /// Community settings tab for discovery settings.
   ///
   /// In en, this message translates to:
@@ -19542,23 +19187,11 @@ abstract class FluxerLocalizations {
   /// **'Icon'**
   String get guildSettingsOverviewIconTitle;
 
-  /// Button label to upload an image in guild settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Upload image'**
-  String get guildSettingsUploadImage;
-
   /// Title for the guild banner section.
   ///
   /// In en, this message translates to:
   /// **'Banner'**
   String get guildSettingsOverviewBannerTitle;
-
-  /// Hint text for guild banner upload.
-  ///
-  /// In en, this message translates to:
-  /// **'Upload a banner for your server.'**
-  String get guildSettingsOverviewBannerHint;
 
   /// Title for the guild name field.
   ///
@@ -19571,30 +19204,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'My awesome community'**
   String get guildSettingsOverviewNameHint;
-
-  /// Title for guild statistics section.
-  ///
-  /// In en, this message translates to:
-  /// **'Statistics'**
-  String get guildSettingsOverviewStatsTitle;
-
-  /// Label for member count in overview.
-  ///
-  /// In en, this message translates to:
-  /// **'Members'**
-  String get guildSettingsOverviewMembers;
-
-  /// Label for online count in overview.
-  ///
-  /// In en, this message translates to:
-  /// **'Online'**
-  String get guildSettingsOverviewOnline;
-
-  /// Description for the roles settings tab.
-  ///
-  /// In en, this message translates to:
-  /// **'Use roles to group members and assign permissions.'**
-  String get guildSettingsRolesDescription;
 
   /// Button to create a new role.
   ///
@@ -19728,18 +19337,6 @@ abstract class FluxerLocalizations {
   /// **'Comfy layout'**
   String get guildSettingsRolesComfyLayout;
 
-  /// Aria label for switching to dense layout.
-  ///
-  /// In en, this message translates to:
-  /// **'Switch to dense layout'**
-  String get guildSettingsRolesSwitchToDenseLayout;
-
-  /// Aria label for switching to comfy layout.
-  ///
-  /// In en, this message translates to:
-  /// **'Switch to comfy layout'**
-  String get guildSettingsRolesSwitchToComfyLayout;
-
   /// Tooltip when permission list is in two-column layout.
   ///
   /// In en, this message translates to:
@@ -19752,29 +19349,11 @@ abstract class FluxerLocalizations {
   /// **'Two columns'**
   String get guildSettingsRolesTwoColumns;
 
-  /// Aria label for switching to single column.
-  ///
-  /// In en, this message translates to:
-  /// **'Switch to single column'**
-  String get guildSettingsRolesSwitchToSingleColumn;
-
-  /// Aria label for switching to two columns.
-  ///
-  /// In en, this message translates to:
-  /// **'Switch to two columns'**
-  String get guildSettingsRolesSwitchToTwoColumns;
-
   /// Empty state when permission search has no matches.
   ///
   /// In en, this message translates to:
   /// **'No permissions found'**
   String get guildSettingsRolesNoPermissionsFound;
-
-  /// Button to enter custom hoist order mode.
-  ///
-  /// In en, this message translates to:
-  /// **'Custom hoist order'**
-  String get guildSettingsRolesCustomHoistOrder;
 
   /// Header for hoist order sub-mode.
   ///
@@ -19799,12 +19378,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'No hoisted roles. Enable \"Show this role separately\" on a role to see it here.'**
   String get guildSettingsRolesNoHoistedRoles;
-
-  /// Tooltip on locked role rows.
-  ///
-  /// In en, this message translates to:
-  /// **'You cannot edit this role because it is your highest role or above you'**
-  String get guildSettingsRolesLockedTooltip;
 
   /// Tooltip when user lacks manage roles permission.
   ///
@@ -19943,12 +19516,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Audio & video'**
   String get permissionCategoryAudioVideo;
-
-  /// Fallback permission label.
-  ///
-  /// In en, this message translates to:
-  /// **'Unknown permission'**
-  String get permissionUnknown;
 
   /// Permission name.
   ///
@@ -20154,54 +19721,6 @@ abstract class FluxerLocalizations {
   /// **'Create, edit, or delete webhooks.'**
   String get permissionManageWebhooksDescription;
 
-  /// Role permission title: post inside threads and forum posts.
-  ///
-  /// In en, this message translates to:
-  /// **'Send messages in threads'**
-  String get permissionSendMessagesInThreads;
-
-  /// Role permission description for sending messages in threads.
-  ///
-  /// In en, this message translates to:
-  /// **'Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.'**
-  String get permissionSendMessagesInThreadsDescription;
-
-  /// Role permission title: start public threads and forum posts.
-  ///
-  /// In en, this message translates to:
-  /// **'Create public threads'**
-  String get permissionCreatePublicThreads;
-
-  /// Role permission description for creating public threads.
-  ///
-  /// In en, this message translates to:
-  /// **'Members can start threads that everyone in the channel can see, and create forum posts.'**
-  String get permissionCreatePublicThreadsDescription;
-
-  /// Role permission title: start invite-only threads.
-  ///
-  /// In en, this message translates to:
-  /// **'Create private threads'**
-  String get permissionCreatePrivateThreads;
-
-  /// Role permission description for creating private threads.
-  ///
-  /// In en, this message translates to:
-  /// **'Members can start threads that only invited people can see.'**
-  String get permissionCreatePrivateThreadsDescription;
-
-  /// Role permission title: moderate threads and forum posts.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage threads and posts'**
-  String get permissionManageThreads;
-
-  /// Role permission description for managing threads.
-  ///
-  /// In en, this message translates to:
-  /// **'Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.'**
-  String get permissionManageThreadsDescription;
-
   /// Permission name.
   ///
   /// In en, this message translates to:
@@ -20400,23 +19919,579 @@ abstract class FluxerLocalizations {
   /// **'Set voice region'**
   String get permissionSetVoiceRegion;
 
-  /// Emoji slot usage summary.
+  /// Permission name.
   ///
   /// In en, this message translates to:
-  /// **'{staticCount} static, {animatedCount} animated emoji slots used'**
-  String guildSettingsEmojiSlotInfo(int staticCount, int animatedCount);
+  /// **'Manage threads'**
+  String get permissionManageThreads;
+
+  /// Permission description.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename, archive, lock and delete threads, set their slowmode, and view private threads.'**
+  String get permissionManageThreadsDescription;
+
+  /// Permission name.
+  ///
+  /// In en, this message translates to:
+  /// **'Create public threads'**
+  String get permissionCreatePublicThreads;
+
+  /// Permission description.
+  ///
+  /// In en, this message translates to:
+  /// **'Start threads that everyone who can view the channel can see.'**
+  String get permissionCreatePublicThreadsDescription;
+
+  /// Permission name.
+  ///
+  /// In en, this message translates to:
+  /// **'Create private threads'**
+  String get permissionCreatePrivateThreads;
+
+  /// Permission description.
+  ///
+  /// In en, this message translates to:
+  /// **'Start invite-only threads.'**
+  String get permissionCreatePrivateThreadsDescription;
+
+  /// Permission name.
+  ///
+  /// In en, this message translates to:
+  /// **'Send messages in threads'**
+  String get permissionSendMessagesInThreads;
+
+  /// Permission description.
+  ///
+  /// In en, this message translates to:
+  /// **'Send messages in threads and forum posts.'**
+  String get permissionSendMessagesInThreadsDescription;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'This thread is archived.'**
+  String get threadErrorArchived;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'This thread is locked. Only moderators can post or reopen it.'**
+  String get threadErrorLocked;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'A thread already exists for this message.'**
+  String get threadErrorAlreadyCreated;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'This community has reached its limit of active threads.'**
+  String get threadErrorMaxActiveThreads;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'This thread has reached its member limit.'**
+  String get threadErrorMaxMembers;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'Only one post can be pinned in this forum.'**
+  String get threadErrorMaxPinnedPosts;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'A forum can have at most 20 tags.'**
+  String get threadErrorMaxForumTags;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag names must be unique.'**
+  String get threadErrorTagNamesUnique;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a tag everyone can use before requiring tags.'**
+  String get threadErrorNoTagsForEveryone;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick at least one tag for this post.'**
+  String get threadErrorTagRequired;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'One of the selected tags no longer exists.'**
+  String get threadErrorUnknownTag;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'Those notification settings are not valid for a thread.'**
+  String get threadErrorInvalidNotificationSettings;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'Posts are still being indexed. Try again in a moment.'**
+  String get threadErrorSearchIndexNotReady;
+
+  /// Error shown when a thread or forum request is refused.
+  ///
+  /// In en, this message translates to:
+  /// **'This action is not available in this channel.'**
+  String get threadErrorInvalidChannelType;
+
+  /// Action that opens the new thread form for a channel or a message.
+  ///
+  /// In en, this message translates to:
+  /// **'Create thread'**
+  String get threadCreate;
+
+  /// Label of the thread name input.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread name'**
+  String get threadName;
+
+  /// Error shown when a thread is created or renamed without a name.
+  ///
+  /// In en, this message translates to:
+  /// **'Give the thread a name.'**
+  String get threadNameRequired;
+
+  /// Placeholder of the thread name input when there is no source message.
+  ///
+  /// In en, this message translates to:
+  /// **'New thread'**
+  String get threadNewThreadPlaceholder;
+
+  /// Label of the toggle that makes a new thread private.
+  ///
+  /// In en, this message translates to:
+  /// **'Private thread'**
+  String get threadPrivate;
+
+  /// Help text under the private thread toggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Only people you invite and moderators can see this thread.'**
+  String get threadPrivateDescription;
+
+  /// Label of the optional first message input in the new thread form.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get threadStarterMessage;
+
+  /// Placeholder of the first message input in the new thread form.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a message to start the conversation!'**
+  String get threadStarterMessagePlaceholder;
+
+  /// Cooldown notice in the new thread form when the parent channel has slowmode.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds, plural, =1{You can start another thread in 1 second.} other{You can start another thread in {seconds} seconds.}}'**
+  String threadCreateCooldown(int seconds);
+
+  /// Toast when creating a thread failed. {detail} is the server error message.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not start the thread: {detail}'**
+  String threadCreateFailed(String detail);
+
+  /// Title of the thread browser and label of the threads header button.
+  ///
+  /// In en, this message translates to:
+  /// **'Threads'**
+  String get threadBrowserTitle;
+
+  /// Tab in the thread browser that lists active threads.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get threadBrowserActive;
+
+  /// Tab in the thread browser that lists archived threads.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get threadBrowserArchived;
+
+  /// Section header in the thread browser for threads the user joined.
+  ///
+  /// In en, this message translates to:
+  /// **'Joined'**
+  String get threadBrowserJoined;
+
+  /// Section header in the thread browser for active threads the user did not join.
+  ///
+  /// In en, this message translates to:
+  /// **'Other active threads'**
+  String get threadBrowserOtherActive;
+
+  /// Option in the closed thread list that shows public threads.
+  ///
+  /// In en, this message translates to:
+  /// **'Public threads'**
+  String get threadBrowserPublic;
+
+  /// Option in the closed thread list that shows private threads.
+  ///
+  /// In en, this message translates to:
+  /// **'Private threads'**
+  String get threadBrowserPrivate;
+
+  /// Empty state of the active threads list.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no threads. Stay focused on a conversation with a thread, a temporary text channel.'**
+  String get threadBrowserEmpty;
+
+  /// Empty state of the closed threads list.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no closed threads.'**
+  String get threadBrowserArchivedEmpty;
+
+  /// Button that loads the next page of closed threads.
+  ///
+  /// In en, this message translates to:
+  /// **'Load more'**
+  String get threadBrowserLoadMore;
+
+  /// Placeholder of the search field at the top of the thread browser.
+  ///
+  /// In en, this message translates to:
+  /// **'Search threads'**
+  String get threadBrowserSearch;
+
+  /// Empty state of the thread browser while searching.
+  ///
+  /// In en, this message translates to:
+  /// **'No threads match'**
+  String get threadBrowserSearchEmpty;
+
+  /// Hint under the empty search state in the thread browser.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a different name or check the other tab.'**
+  String get threadBrowserSearchEmptyHint;
+
+  /// Error state of the thread browser search.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t search threads. Try again later.'**
+  String get threadBrowserSearchFailed;
+
+  /// Shown in the thread browser while the search index is being built.
+  ///
+  /// In en, this message translates to:
+  /// **'Search is getting ready for this community. Trying again shortly...'**
+  String get threadBrowserSearchIndexing;
+
+  /// Message count on a thread chip and in the thread browser.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 message} other{{count} messages}}'**
+  String threadMessageCount(int count);
+
+  /// Note under a thread message when some mentioned roles had too many members to add to the thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Some mentioned roles were not added to this thread.'**
+  String get threadFailedToMentionSomeRoles;
+
+  /// Title of the thread member list.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread members'**
+  String get threadMembers;
+
+  /// Header above the thread member list.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 member} other{{count} members}}'**
+  String threadMembersCount(int count);
+
+  /// Empty state of the thread member list.
+  ///
+  /// In en, this message translates to:
+  /// **'Nobody has joined this thread yet.'**
+  String get threadMembersEmpty;
+
+  /// Accessible label of the button that removes a member from a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name} from thread'**
+  String threadRemoveMember(String name);
+
+  /// Action that adds the current user to a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Join thread'**
+  String get threadJoin;
+
+  /// Action that removes the current user from a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave thread'**
+  String get threadLeave;
+
+  /// Notice above the composer when the user is not a member of the thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Join this thread to follow it in your channel list and get notifications.'**
+  String get threadJoinNotice;
+
+  /// Notice above the composer of an archived thread.
+  ///
+  /// In en, this message translates to:
+  /// **'This thread is closed. Sending a message will open it again.'**
+  String get threadArchivedNotice;
+
+  /// Barrier shown instead of the composer in a locked thread.
+  ///
+  /// In en, this message translates to:
+  /// **'This thread is locked. Only moderators can send messages.'**
+  String get threadLockedNotice;
+
+  /// Action that archives a thread so it leaves the channel list.
+  ///
+  /// In en, this message translates to:
+  /// **'Close thread'**
+  String get threadArchive;
+
+  /// Action that unarchives an archived thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Open thread again'**
+  String get threadUnarchive;
+
+  /// Moderator action that stops non-moderators from sending messages in a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock thread'**
+  String get threadLock;
+
+  /// Moderator action that lets everyone send messages in a locked thread again.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock thread'**
+  String get threadUnlock;
+
+  /// Destructive moderator action that deletes a thread and all its messages.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete thread'**
+  String get threadDelete;
+
+  /// Confirmation text before deleting a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete {threadName}? This cannot be undone.'**
+  String threadDeleteConfirm(String threadName);
+
+  /// Toast after a thread was deleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread deleted'**
+  String get threadDeleted;
+
+  /// Action that marks a thread as read.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as read'**
+  String get threadMarkAsRead;
+
+  /// Action that mutes notifications and unread badges for a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute thread'**
+  String get threadMute;
+
+  /// Action that unmutes a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute thread'**
+  String get threadUnmute;
+
+  /// Toast after a thread was muted.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread muted'**
+  String get threadMuted;
+
+  /// Toast after a thread was unmuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread unmuted'**
+  String get threadUnmuted;
+
+  /// Title of the thread notification settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification settings'**
+  String get threadNotificationSettings;
+
+  /// Thread notification option that follows the parent channel setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Use channel default'**
+  String get threadNotificationParentDefault;
+
+  /// Action that copies a link to the thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy link'**
+  String get threadCopyLink;
+
+  /// Developer mode action that copies the thread ID.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy thread ID'**
+  String get threadCopyId;
+
+  /// Header button that opens the thread actions.
+  ///
+  /// In en, this message translates to:
+  /// **'More options'**
+  String get threadMoreOptions;
+
+  /// Title of the thread settings form.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread settings'**
+  String get threadSettings;
+
+  /// Toast after thread settings were saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread settings saved'**
+  String get threadSettingsSaved;
+
+  /// Label of the thread auto archive duration setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide after inactivity'**
+  String get threadAutoArchive;
+
+  /// Help text of the thread auto archive duration setting.
+  ///
+  /// In en, this message translates to:
+  /// **'The thread stops showing in the channel list after this period of inactivity.'**
+  String get threadAutoArchiveDescription;
+
+  /// Label of the default auto archive duration for new threads in a text channel.
+  ///
+  /// In en, this message translates to:
+  /// **'Default hide after inactivity'**
+  String get threadDefaultAutoArchive;
+
+  /// Help text of the default thread auto archive duration setting.
+  ///
+  /// In en, this message translates to:
+  /// **'New threads stop showing in the channel list after this period of inactivity.'**
+  String get threadDefaultAutoArchiveDescription;
+
+  /// Label of the slowmode copied onto new threads in a text channel.
+  ///
+  /// In en, this message translates to:
+  /// **'Default thread slowmode'**
+  String get threadDefaultSlowmode;
+
+  /// Thread auto archive duration option.
+  ///
+  /// In en, this message translates to:
+  /// **'1 Hour'**
+  String get threadAutoArchiveOneHour;
+
+  /// Thread auto archive duration option.
+  ///
+  /// In en, this message translates to:
+  /// **'24 Hours'**
+  String get threadAutoArchiveOneDay;
+
+  /// Thread auto archive duration option.
+  ///
+  /// In en, this message translates to:
+  /// **'3 Days'**
+  String get threadAutoArchiveThreeDays;
+
+  /// Thread auto archive duration option.
+  ///
+  /// In en, this message translates to:
+  /// **'1 Week'**
+  String get threadAutoArchiveOneWeek;
+
+  /// Private thread setting that lets non-moderators add other members.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow anyone to invite'**
+  String get threadInvitable;
+
+  /// Help text of the private thread invite setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Members of this private thread can add other people.'**
+  String get threadInvitableDescription;
+
+  /// Subtitle at the start of a thread naming its creator.
+  ///
+  /// In en, this message translates to:
+  /// **'Started by {name}'**
+  String threadStartedBy(String name);
+
+  /// Shown at the top of a thread when the message it was started from was deleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Original message was deleted.'**
+  String get threadStarterDeleted;
+
+  /// System message when a user starts a thread. Keep {username}, {threadLink}, and {allThreadsLink} in place and translate the surrounding sentence.
+  ///
+  /// In en, this message translates to:
+  /// **'{username} started a thread: {threadLink}. See {allThreadsLink}.'**
+  String systemThreadCreated(
+    String username,
+    String threadLink,
+    String allThreadsLink,
+  );
+
+  /// Link text in the thread started system message that opens the thread browser.
+  ///
+  /// In en, this message translates to:
+  /// **'all threads'**
+  String get systemThreadCreatedAllThreadsLink;
+
+  /// Link text in the thread started system message when the thread name is unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'a thread'**
+  String get systemThreadCreatedThreadFallback;
+
+  /// Plaintext preview for a thread started system message.
+  ///
+  /// In en, this message translates to:
+  /// **'{username} started a thread.'**
+  String systemPreviewThreadCreated(String username);
 
   /// Empty state for emoji settings.
   ///
   /// In en, this message translates to:
   /// **'No custom emoji yet.'**
   String get guildSettingsEmojiEmpty;
-
-  /// Sticker slot usage summary.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} stickers uploaded'**
-  String guildSettingsStickersSlotInfo(int count);
 
   /// Empty state for sticker settings.
   ///
@@ -20520,18 +20595,6 @@ abstract class FluxerLocalizations {
   /// **'Requires everything in medium, plus being a member of the community for at least 10 minutes.'**
   String get guildSettingsVerificationHighDescription;
 
-  /// No description provided for @guildSettingsVerificationHighest.
-  ///
-  /// In en, this message translates to:
-  /// **'Very high'**
-  String get guildSettingsVerificationHighest;
-
-  /// No description provided for @guildSettingsVerificationHighestDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Requires a verified phone number.'**
-  String get guildSettingsVerificationHighestDescription;
-
   /// Subtitle under the activity-log page title.
   ///
   /// In en, this message translates to:
@@ -20573,18 +20636,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Unknown user'**
   String get guildSettingsAuditLogUnknownUser;
-
-  /// Generic error shown when fetching log entries fails.
-  ///
-  /// In en, this message translates to:
-  /// **'Something went wrong while loading the activity log.'**
-  String get guildSettingsAuditLogLoadError;
-
-  /// Error-state title when fetching log entries failed.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to load activity logs'**
-  String get guildSettingsAuditLogLoadErrorTitle;
 
   /// Label for the reason field in an expanded activity log entry.
   ///
@@ -20645,6 +20696,24 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Channel deleted'**
   String get auditLogActionChannelDelete;
+
+  /// Audit log action filter label.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread created'**
+  String get auditLogActionThreadCreate;
+
+  /// Audit log action filter label.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread updated'**
+  String get auditLogActionThreadUpdate;
+
+  /// Audit log action filter label.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread deleted'**
+  String get auditLogActionThreadDelete;
 
   /// Audit log action filter label.
   ///
@@ -20855,6 +20924,24 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'{actor} deleted the channel {target}.'**
   String auditLogSummaryChannelDelete(String actor, String target);
+
+  /// Activity log entry summary.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} started the thread {target}.'**
+  String auditLogSummaryThreadCreate(String actor, String target);
+
+  /// Activity log entry summary.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} updated the thread {target}.'**
+  String auditLogSummaryThreadUpdate(String actor, String target);
+
+  /// Activity log entry summary.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} deleted the thread {target}.'**
+  String auditLogSummaryThreadDelete(String actor, String target);
 
   /// Activity log entry summary.
   ///
@@ -21333,18 +21420,6 @@ abstract class FluxerLocalizations {
   /// **'Grants permanent membership.'**
   String get auditLogOptionPermanentMembership;
 
-  /// Button to load more audit log entries.
-  ///
-  /// In en, this message translates to:
-  /// **'Load more'**
-  String get guildSettingsLoadMore;
-
-  /// Loading state for pagination.
-  ///
-  /// In en, this message translates to:
-  /// **'Loading...'**
-  String get guildSettingsLoadingMore;
-
   /// Description for webhooks tab.
   ///
   /// In en, this message translates to:
@@ -21399,53 +21474,11 @@ abstract class FluxerLocalizations {
   /// **'Unknown channel'**
   String get guildSettingsUnknownChannel;
 
-  /// Tooltip to copy a URL.
-  ///
-  /// In en, this message translates to:
-  /// **'Copy URL'**
-  String get guildSettingsCopyUrl;
-
   /// Snackbar after copying a URL.
   ///
   /// In en, this message translates to:
   /// **'URL copied to clipboard'**
   String get guildSettingsCopiedUrl;
-
-  /// Tooltip to delete a webhook.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete webhook'**
-  String get guildSettingsDeleteWebhook;
-
-  /// Description for vanity URL tab.
-  ///
-  /// In en, this message translates to:
-  /// **'Set a custom invite link for your server.'**
-  String get guildSettingsVanityUrlDescription;
-
-  /// Hint for vanity URL input.
-  ///
-  /// In en, this message translates to:
-  /// **'my-server'**
-  String get guildSettingsVanityUrlHint;
-
-  /// Generic save button label.
-  ///
-  /// In en, this message translates to:
-  /// **'Save'**
-  String get guildSettingsSave;
-
-  /// Title for vanity URL usage section.
-  ///
-  /// In en, this message translates to:
-  /// **'Usage'**
-  String get guildSettingsVanityUrlUsageTitle;
-
-  /// Vanity URL usage count.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} uses'**
-  String guildSettingsVanityUrlUses(int count);
 
   /// Subtitle for the community Discovery settings tab.
   ///
@@ -21663,12 +21696,6 @@ abstract class FluxerLocalizations {
   /// **'Try again in a moment.'**
   String get guildSettingsDiscoveryWithdrawErrorDescription;
 
-  /// Description for members tab.
-  ///
-  /// In en, this message translates to:
-  /// **'Search and manage server members.'**
-  String get guildSettingsMembersDescription;
-
   /// Hint for member search field on the community members page.
   ///
   /// In en, this message translates to:
@@ -21740,12 +21767,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Roles'**
   String get guildMembersColumnRoles;
-
-  /// Table column header on the community members page.
-  ///
-  /// In en, this message translates to:
-  /// **'Actions'**
-  String get guildMembersColumnActions;
 
   /// Filter menu label on the community members page.
   ///
@@ -21873,24 +21894,6 @@ abstract class FluxerLocalizations {
   /// **'Indexing members…'**
   String get guildMembersIndexing;
 
-  /// Pagination jump label on the community members page.
-  ///
-  /// In en, this message translates to:
-  /// **'Go to page'**
-  String get guildMembersGoToPage;
-
-  /// Accessibility label for a pagination page button.
-  ///
-  /// In en, this message translates to:
-  /// **'Go to page {page}'**
-  String guildMembersGoToPageItem(int page);
-
-  /// Label for pagination jump input on the community members page.
-  ///
-  /// In en, this message translates to:
-  /// **'Jump to page'**
-  String get guildMembersJumpToPage;
-
   /// Join method label on the community members page.
   ///
   /// In en, this message translates to:
@@ -21975,23 +21978,11 @@ abstract class FluxerLocalizations {
   /// **'{count, plural, one {1 hour ago} other {{count} hours ago}}'**
   String guildMembersJoinedHoursAgo(int count);
 
-  /// Relative join time on the community members page.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, one {1 day ago} other {{count} days ago}}'**
-  String guildMembersJoinedDaysAgo(int count);
-
   /// Label for the Members item at the top of the guild channel list.
   ///
   /// In en, this message translates to:
   /// **'Members'**
   String get guildMembersChannelListLabel;
-
-  /// Accessibility label when the Members channel list item is selected.
-  ///
-  /// In en, this message translates to:
-  /// **'Members, selected'**
-  String get guildMembersChannelListSelected;
 
   /// Title for the invites settings tab.
   ///
@@ -22179,18 +22170,6 @@ abstract class FluxerLocalizations {
   /// **'The link may still work. Try again in a moment.'**
   String get guildSettingsInvitesRevokeFailedDescription;
 
-  /// Invite usage count.
-  ///
-  /// In en, this message translates to:
-  /// **'{uses} / {maxUses} uses'**
-  String guildSettingsInviteUses(int uses, int maxUses);
-
-  /// Invite expiration date.
-  ///
-  /// In en, this message translates to:
-  /// **'Expires {date}'**
-  String guildSettingsInviteExpires(String date);
-
   /// Description for bans tab.
   ///
   /// In en, this message translates to:
@@ -22209,35 +22188,11 @@ abstract class FluxerLocalizations {
   /// **'No banned users.'**
   String get guildSettingsBansEmpty;
 
-  /// Label for permanent ban.
-  ///
-  /// In en, this message translates to:
-  /// **'Permanent ban'**
-  String get guildSettingsBanPermanent;
-
-  /// Ban expiration date.
-  ///
-  /// In en, this message translates to:
-  /// **'Expires {date}'**
-  String guildSettingsBanExpires(String date);
-
   /// Label for ban expiration row.
   ///
   /// In en, this message translates to:
   /// **'Expires'**
   String get guildSettingsBanExpiresLabel;
-
-  /// Button to unban a user.
-  ///
-  /// In en, this message translates to:
-  /// **'Unban'**
-  String get guildSettingsUnban;
-
-  /// Loading state for the guild bans list.
-  ///
-  /// In en, this message translates to:
-  /// **'Loading banned users'**
-  String get guildSettingsBansLoading;
 
   /// Empty state when ban search has no matches.
   ///
@@ -22287,12 +22242,6 @@ abstract class FluxerLocalizations {
   /// **'Revoked ban for {displayName}'**
   String guildSettingsRevokeBanSuccess(String displayName);
 
-  /// Error when loading the guild bans list fails.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t load bans. Try again.'**
-  String get guildSettingsBansLoadError;
-
   /// Error when revoking a ban fails.
   ///
   /// In en, this message translates to:
@@ -22304,6 +22253,30 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Community settings'**
   String get guildSettingsCommunitySettings;
+
+  /// Destructive footer button in community settings. Opens the delete-community confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete community'**
+  String get guildSettingsDeleteCommunity;
+
+  /// Confirmation copy for deleting a community.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.'**
+  String get guildSettingsDeleteCommunityConfirm;
+
+  /// Success toast after a community is deleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Community deleted'**
+  String get guildSettingsCommunityDeleted;
+
+  /// Error toast when deleting a community fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t delete this community'**
+  String get guildSettingsDeleteCommunityFailed;
 
   /// Sidebar category for emoji and stickers.
   ///
@@ -22328,12 +22301,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'PEOPLE'**
   String get guildSettingsCategoryPeople;
-
-  /// No description provided for @guildSettingsOverviewDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage your community\'s profile, channels, and default settings.'**
-  String get guildSettingsOverviewDescription;
 
   /// No description provided for @guildSettingsOverviewBrandingTitle.
   ///
@@ -22389,12 +22356,6 @@ abstract class FluxerLocalizations {
   /// **'Communities with over 250 people are forced onto the \"mentions only\" setting. Your original setting is preserved and will be restored if the community drops below 250 members.'**
   String get guildSettingsOverviewNotificationsLargeGuild;
 
-  /// No description provided for @guildSettingsOverviewAdvancedTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Advanced'**
-  String get guildSettingsOverviewAdvancedTitle;
-
   /// No description provided for @guildSettingsOverviewFlexibleNames.
   ///
   /// In en, this message translates to:
@@ -22442,12 +22403,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Chat embed background'**
   String get guildSettingsOverviewEmbedSplashTitle;
-
-  /// Note shown when uploading chat embed background.
-  ///
-  /// In en, this message translates to:
-  /// **'Shown in invite embeds in chat.'**
-  String get guildSettingsOverviewEmbedSplashHint;
 
   /// Button to upload invite or embed background image.
   ///
@@ -22737,18 +22692,6 @@ abstract class FluxerLocalizations {
   /// **'JPEG, PNG, WebP, AVIF. Max 10MB. Minimum: 960×540px (16:9). Shown in invite embeds in chat.'**
   String get guildSettingsOverviewEmbedSplashUploadHint;
 
-  /// No description provided for @guildSettingsModerationDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Configure verification, content filtering, and mature content settings.'**
-  String get guildSettingsModerationDescription;
-
-  /// No description provided for @guildSettingsModerationDiscoveryNotice.
-  ///
-  /// In en, this message translates to:
-  /// **'Discovery-listed communities have restricted moderation options.'**
-  String get guildSettingsModerationDiscoveryNotice;
-
   /// No description provided for @guildSettingsModerationContentFilterTitle.
   ///
   /// In en, this message translates to:
@@ -22803,18 +22746,6 @@ abstract class FluxerLocalizations {
   /// **'Maximum protection for family-friendly spaces'**
   String get guildSettingsContentFilterAllDescription;
 
-  /// No description provided for @guildSettingsModerationMatureOff.
-  ///
-  /// In en, this message translates to:
-  /// **'Off'**
-  String get guildSettingsModerationMatureOff;
-
-  /// No description provided for @guildSettingsModerationMatureOn.
-  ///
-  /// In en, this message translates to:
-  /// **'On'**
-  String get guildSettingsModerationMatureOn;
-
   /// Switch label for the community content warning setting.
   ///
   /// In en, this message translates to:
@@ -22856,12 +22787,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Require 2FA for moderation actions'**
   String get guildSettingsModeration2faSwitchLabel;
-
-  /// No description provided for @guildSettingsModeration2faOwnerOnlyTooltip.
-  ///
-  /// In en, this message translates to:
-  /// **'Only the community owner can change this setting'**
-  String get guildSettingsModeration2faOwnerOnlyTooltip;
 
   /// No description provided for @guildSettingsModeration2faEnableFirstTooltip.
   ///
@@ -22905,12 +22830,6 @@ abstract class FluxerLocalizations {
   /// **'No emojis found matching your search.'**
   String get guildSettingsEmojiSearchEmpty;
 
-  /// No description provided for @guildSettingsEmojiNoSlots.
-  ///
-  /// In en, this message translates to:
-  /// **'No emoji slots available'**
-  String get guildSettingsEmojiNoSlots;
-
   /// No description provided for @guildSettingsEmojiSlotsFull.
   ///
   /// In en, this message translates to:
@@ -22923,35 +22842,11 @@ abstract class FluxerLocalizations {
   /// **'Emoji names need at least 2 characters and can use letters, numbers, and underscores. Emojis must be under {maxSize}. Static images are resized to 128x128 pixels and compressed automatically. Animated emojis and SVGs must already fit the limit.'**
   String guildSettingsEmojiUploadRequirements(String maxSize);
 
-  /// No description provided for @guildSettingsEmojiUploadingTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Uploading emojis'**
-  String get guildSettingsEmojiUploadingTitle;
-
-  /// No description provided for @guildSettingsEmojiUploadingBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Uploading {count, plural, one {# emoji} other {# emojis}}. This may take a little while.'**
-  String guildSettingsEmojiUploadingBody(int count);
-
-  /// No description provided for @guildSettingsEmojiUploadFailed.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to upload emojis. Try again.'**
-  String get guildSettingsEmojiUploadFailed;
-
   /// No description provided for @guildSettingsEmojiSomeFailedTitle.
   ///
   /// In en, this message translates to:
   /// **'Some emojis couldn\'t be added'**
   String get guildSettingsEmojiSomeFailedTitle;
-
-  /// No description provided for @guildSettingsEmojiSomeFailedBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Review these files and try again with smaller or simpler images.'**
-  String get guildSettingsEmojiSomeFailedBody;
 
   /// No description provided for @guildSettingsEmojiRenameTitle.
   ///
@@ -22965,12 +22860,6 @@ abstract class FluxerLocalizations {
   /// **'2-32 characters, letters, numbers, underscores.'**
   String get guildSettingsEmojiRenameHint;
 
-  /// No description provided for @guildSettingsEmojiColumnEmoji.
-  ///
-  /// In en, this message translates to:
-  /// **'Emoji'**
-  String get guildSettingsEmojiColumnEmoji;
-
   /// No description provided for @guildSettingsEmojiColumnName.
   ///
   /// In en, this message translates to:
@@ -22982,12 +22871,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Uploaded by'**
   String get guildSettingsEmojiColumnUploader;
-
-  /// No description provided for @guildSettingsEmojiUnknownUploader.
-  ///
-  /// In en, this message translates to:
-  /// **'Unknown'**
-  String get guildSettingsEmojiUnknownUploader;
 
   /// No description provided for @guildSettingsEmojiDeleteTitle.
   ///
@@ -23031,59 +22914,11 @@ abstract class FluxerLocalizations {
   /// **'Couldn\'t rename this emoji'**
   String get guildSettingsEmojiRenameFailedTitle;
 
-  /// No description provided for @guildSettingsEmojiRenameFailedBody.
-  ///
-  /// In en, this message translates to:
-  /// **'The name was reverted to what it was before. Please try again in a moment.'**
-  String get guildSettingsEmojiRenameFailedBody;
-
-  /// No description provided for @guildSettingsEmojiGoneTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'This emoji no longer exists'**
-  String get guildSettingsEmojiGoneTitle;
-
-  /// No description provided for @guildSettingsEmojiGoneBody.
-  ///
-  /// In en, this message translates to:
-  /// **'It may have been deleted. The name was reverted to what it was before.'**
-  String get guildSettingsEmojiGoneBody;
-
-  /// No description provided for @guildSettingsEmojiNoPermissionRenameTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'You can\'t rename this emoji'**
-  String get guildSettingsEmojiNoPermissionRenameTitle;
-
-  /// No description provided for @guildSettingsEmojiNoPermissionRenameBody.
-  ///
-  /// In en, this message translates to:
-  /// **'You don\'t have permission to rename this emoji. The name was reverted to what it was before.'**
-  String get guildSettingsEmojiNoPermissionRenameBody;
-
-  /// No description provided for @guildSettingsEmojiRateLimitedTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'You\'re going too fast'**
-  String get guildSettingsEmojiRateLimitedTitle;
-
-  /// No description provided for @guildSettingsEmojiRateLimitedBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Please wait a moment and try renaming again.'**
-  String get guildSettingsEmojiRateLimitedBody;
-
   /// No description provided for @guildSettingsEmojiDeleteFailedTitle.
   ///
   /// In en, this message translates to:
   /// **'Couldn\'t delete this emoji'**
   String get guildSettingsEmojiDeleteFailedTitle;
-
-  /// No description provided for @guildSettingsEmojiDeleteNoPermissionTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'You can\'t delete this emoji'**
-  String get guildSettingsEmojiDeleteNoPermissionTitle;
 
   /// No description provided for @guildSettingsCloneEmojiTitle.
   ///
@@ -23199,18 +23034,6 @@ abstract class FluxerLocalizations {
   /// **'No stickers found matching your search.'**
   String get guildSettingsStickersSearchEmpty;
 
-  /// No description provided for @guildSettingsStickersEmptySearch.
-  ///
-  /// In en, this message translates to:
-  /// **'No stickers found'**
-  String get guildSettingsStickersEmptySearch;
-
-  /// No description provided for @guildSettingsStickerNoSlots.
-  ///
-  /// In en, this message translates to:
-  /// **'No sticker slots available'**
-  String get guildSettingsStickerNoSlots;
-
   /// No description provided for @guildSettingsStickerSlotsFull.
   ///
   /// In en, this message translates to:
@@ -23222,12 +23045,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Stickers are saved at 320x320 pixels and must be under {maxSize}. Static images are resized and compressed automatically. Animated stickers and SVGs must already fit the limit.'**
   String guildSettingsStickerUploadRequirements(String maxSize);
-
-  /// No description provided for @guildSettingsStickerUnsupportedTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Unsupported sticker file'**
-  String get guildSettingsStickerUnsupportedTitle;
 
   /// No description provided for @guildSettingsStickerAddTitle.
   ///
@@ -23313,18 +23130,6 @@ abstract class FluxerLocalizations {
   /// **'Couldn\'t create this sticker'**
   String get guildSettingsStickerCreateFailedTitle;
 
-  /// No description provided for @guildSettingsStickerTooLargeTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Sticker is too large'**
-  String get guildSettingsStickerTooLargeTitle;
-
-  /// No description provided for @guildSettingsStickerCompressFailedTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Sticker couldn\'t be compressed enough'**
-  String get guildSettingsStickerCompressFailedTitle;
-
   /// No description provided for @guildSettingsStickerDeleteTitle.
   ///
   /// In en, this message translates to:
@@ -23349,29 +23154,11 @@ abstract class FluxerLocalizations {
   /// **'Couldn\'t delete this sticker'**
   String get guildSettingsStickerDeleteFailedTitle;
 
-  /// No description provided for @guildSettingsStickerDeleteNoPermissionTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'You can\'t delete this sticker'**
-  String get guildSettingsStickerDeleteNoPermissionTitle;
-
   /// Info box on the guild webhooks tab.
   ///
   /// In en, this message translates to:
   /// **'To create a webhook, open {channelSettingsPath}. You can still edit and organize all existing webhooks here.'**
   String guildSettingsWebhooksInfo(String channelSettingsPath);
-
-  /// No description provided for @guildSettingsVanityUrlWarning.
-  ///
-  /// In en, this message translates to:
-  /// **'Your vanity URL won\'t work unless at least one channel is visible to everyone.'**
-  String get guildSettingsVanityUrlWarning;
-
-  /// No description provided for @guildSettingsVanityUrlRemove.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove'**
-  String get guildSettingsVanityUrlRemove;
 
   /// No description provided for @guildSettingsBannedUsersTitle.
   ///
@@ -24045,234 +23832,6 @@ abstract class FluxerLocalizations {
   /// **'DMs'**
   String get homeQuickActionDms;
 
-  /// No description provided for @uiViewThreads.
-  ///
-  /// In en, this message translates to:
-  /// **'View threads'**
-  String get uiViewThreads;
-
-  /// No description provided for @uiJoinThread.
-  ///
-  /// In en, this message translates to:
-  /// **'Join thread'**
-  String get uiJoinThread;
-
-  /// No description provided for @uiLeaveThread.
-  ///
-  /// In en, this message translates to:
-  /// **'Leave thread'**
-  String get uiLeaveThread;
-
-  /// Title of the sheet and header button that list a channel's threads.
-  ///
-  /// In en, this message translates to:
-  /// **'Threads'**
-  String get threadsTitle;
-
-  /// Title of the threads sheet when opened on a forum channel.
-  ///
-  /// In en, this message translates to:
-  /// **'Posts'**
-  String get threadsPostsTitle;
-
-  /// Segmented filter option showing active threads or forum posts.
-  ///
-  /// In en, this message translates to:
-  /// **'Active'**
-  String get threadsFilterActive;
-
-  /// Segmented filter option showing archived threads or forum posts.
-  ///
-  /// In en, this message translates to:
-  /// **'Archived'**
-  String get threadsFilterArchived;
-
-  /// Button that starts creating a new thread.
-  ///
-  /// In en, this message translates to:
-  /// **'New thread'**
-  String get threadsNewThread;
-
-  /// Title of the modal for naming a new thread.
-  ///
-  /// In en, this message translates to:
-  /// **'New thread'**
-  String get threadsNewThreadTitle;
-
-  /// Label of the thread name input.
-  ///
-  /// In en, this message translates to:
-  /// **'Thread name'**
-  String get threadsNameLabel;
-
-  /// Placeholder of the thread name input.
-  ///
-  /// In en, this message translates to:
-  /// **'Name your thread'**
-  String get threadsNameHint;
-
-  /// Primary button that creates the thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Create thread'**
-  String get threadsCreateThread;
-
-  /// Message action that starts a thread from a message.
-  ///
-  /// In en, this message translates to:
-  /// **'Create Thread'**
-  String get threadsCreateThreadAction;
-
-  /// Toast shown when creating a thread fails.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not create the thread. Please try again.'**
-  String get threadsCreateFailed;
-
-  /// Shown when the thread list fails to load.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not load threads.'**
-  String get threadsLoadFailed;
-
-  /// Empty state of the active threads list.
-  ///
-  /// In en, this message translates to:
-  /// **'No active threads yet'**
-  String get threadsNoActive;
-
-  /// Empty state of the archived threads list.
-  ///
-  /// In en, this message translates to:
-  /// **'No archived threads'**
-  String get threadsNoArchived;
-
-  /// Number of messages in a thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{1 message} other{{count} messages}}'**
-  String threadsMessageCount(int count);
-
-  /// Number of members in a thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{1 member} other{{count} members}}'**
-  String threadsMemberCount(int count);
-
-  /// Status shown on a locked thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Locked'**
-  String get threadsStatusLocked;
-
-  /// Status shown on an archived thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Archived'**
-  String get threadsStatusArchived;
-
-  /// Accessibility label of the button that opens a thread's moderation menu.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage'**
-  String get threadsManage;
-
-  /// Moderation action that pins a thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Pin'**
-  String get threadsPin;
-
-  /// Moderation action that unpins a thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Unpin'**
-  String get threadsUnpin;
-
-  /// Moderation action that archives a thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Archive'**
-  String get threadsArchive;
-
-  /// Moderation action that unarchives a thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Unarchive'**
-  String get threadsUnarchive;
-
-  /// Moderation action that locks a thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Lock'**
-  String get threadsLock;
-
-  /// Moderation action that unlocks a thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Unlock'**
-  String get threadsUnlock;
-
-  /// Moderation action that deletes a thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get threadsDelete;
-
-  /// Generic error toast for a failed thread or forum action.
-  ///
-  /// In en, this message translates to:
-  /// **'Something went wrong. Please try again.'**
-  String get threadsActionFailed;
-
-  /// Channel details action that archives the current thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Close Thread'**
-  String get threadsCloseThread;
-
-  /// Channel details action that unarchives the current thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Reopen Thread'**
-  String get threadsReopenThread;
-
-  /// Channel details action that locks the current thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Lock Thread'**
-  String get threadsLockThread;
-
-  /// Channel details action that unlocks the current thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Unlock Thread'**
-  String get threadsUnlockThread;
-
-  /// Accessible label of the button that removes yourself from a thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Leave thread'**
-  String get threadsLeaveThread;
-
-  /// Channel details action that deletes the current thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete Thread'**
-  String get threadsDeleteThread;
-
-  /// Channel details tab listing the members of a thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Thread Members'**
-  String get threadsMembersTab;
-
-  /// Title shown when a thread's member list fails to load.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not load members'**
-  String get threadsMembersLoadFailed;
-
   /// Button that opens the picker for adding someone to a thread.
   ///
   /// In en, this message translates to:
@@ -24291,1211 +23850,11 @@ abstract class FluxerLocalizations {
   /// **'No members match that search.'**
   String get threadsAddMemberNoResults;
 
-  /// Accessible label of the button removing another person from a thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove from thread'**
-  String get threadsRemoveMember;
-
   /// Toast confirming someone was added to a thread.
   ///
   /// In en, this message translates to:
   /// **'Member added'**
   String get threadsMemberAddedToast;
-
-  /// Toast confirming someone was removed from a thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Member removed'**
-  String get threadsMemberRemovedToast;
-
-  /// Toast confirming you removed yourself from a thread.
-  ///
-  /// In en, this message translates to:
-  /// **'You left the thread'**
-  String get threadsLeftToast;
-
-  /// Toast shown when adding a thread member hits the server's member cap.
-  ///
-  /// In en, this message translates to:
-  /// **'This thread has reached its member limit.'**
-  String get threadsMembersFullToast;
-
-  /// Toast shown when a thread member cannot be added because they cannot view the parent channel.
-  ///
-  /// In en, this message translates to:
-  /// **'That person cannot see this channel.'**
-  String get threadsMemberNotFoundToast;
-
-  /// Toast shown when the server refuses a thread membership change.
-  ///
-  /// In en, this message translates to:
-  /// **'You do not have permission to change this thread\'s members.'**
-  String get threadsMembersForbiddenToast;
-
-  /// Label of the toggle controlling whether thread members may invite more people.
-  ///
-  /// In en, this message translates to:
-  /// **'Anyone in the thread can add others'**
-  String get threadsInvitableLabel;
-
-  /// Description of the thread invitable toggle.
-  ///
-  /// In en, this message translates to:
-  /// **'When this is on, every member of this private thread can add other people to it.'**
-  String get threadsInvitableDescription;
-
-  /// Empty state title of a thread's member list.
-  ///
-  /// In en, this message translates to:
-  /// **'No thread members yet'**
-  String get threadsNoMembersTitle;
-
-  /// Empty state body of a thread's member list.
-  ///
-  /// In en, this message translates to:
-  /// **'People who join this thread will appear here.'**
-  String get threadsNoMembersBody;
-
-  /// Channel type option for a forum channel in the create channel sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'Forum'**
-  String get forumChannelTypeLabel;
-
-  /// Description of the forum channel type in the create channel sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'A space for organized, threaded posts'**
-  String get forumChannelTypeDescription;
-
-  /// Button that starts creating a new forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'New Post'**
-  String get forumNewPost;
-
-  /// Title of the modal for creating a forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'New post'**
-  String get forumNewPostTitle;
-
-  /// Primary button that creates the forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Create post'**
-  String get forumCreatePost;
-
-  /// Toast shown when creating a forum post fails.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not create the post. Please try again.'**
-  String get forumCreatePostFailed;
-
-  /// Toast shown when a forum post is created but its first message fails to send.
-  ///
-  /// In en, this message translates to:
-  /// **'The post was created, but its message could not be sent.'**
-  String get forumPostMessageFailed;
-
-  /// Label of the forum post title input.
-  ///
-  /// In en, this message translates to:
-  /// **'Title'**
-  String get forumPostTitleLabel;
-
-  /// Placeholder of the forum post title input.
-  ///
-  /// In en, this message translates to:
-  /// **'Post title'**
-  String get forumPostTitleHint;
-
-  /// Label of the forum post first message input.
-  ///
-  /// In en, this message translates to:
-  /// **'Message'**
-  String get forumPostMessageLabel;
-
-  /// Placeholder of the forum post first message input.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter a message'**
-  String get forumPostMessageHint;
-
-  /// Label above the tag picker when creating a forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Tags'**
-  String get forumPostTagsLabel;
-
-  /// Label above the tag picker when the forum requires a tag on every post.
-  ///
-  /// In en, this message translates to:
-  /// **'Tags (pick at least one)'**
-  String get forumPostTagsRequiredLabel;
-
-  /// Shown when creating a post in a forum that requires a tag but has no tags.
-  ///
-  /// In en, this message translates to:
-  /// **'This forum requires a tag, but none have been set up yet.'**
-  String get forumPostTagsRequiredNoneHint;
-
-  /// Hint for channel managers when creating a post in a forum without tags.
-  ///
-  /// In en, this message translates to:
-  /// **'This forum has no tags yet. Add some with Manage tags.'**
-  String get forumPostNoTagsHint;
-
-  /// Placeholder of the forum post search input.
-  ///
-  /// In en, this message translates to:
-  /// **'Search posts'**
-  String get forumSearchPosts;
-
-  /// Accessibility label of the button that opens forum sort options.
-  ///
-  /// In en, this message translates to:
-  /// **'Sort & View'**
-  String get forumSortAndView;
-
-  /// Forum sort option ordering posts by recent activity.
-  ///
-  /// In en, this message translates to:
-  /// **'Recent activity'**
-  String get forumSortRecentActivity;
-
-  /// Forum sort option ordering posts alphabetically.
-  ///
-  /// In en, this message translates to:
-  /// **'Name (A-Z)'**
-  String get forumSortName;
-
-  /// Button and modal title for editing a forum's available tags.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage tags'**
-  String get forumManageTags;
-
-  /// Empty state in the forum tag editor.
-  ///
-  /// In en, this message translates to:
-  /// **'No tags yet'**
-  String get forumNoTags;
-
-  /// Accessibility label of the button that removes a tag in the tag editor.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove tag'**
-  String get forumRemoveTag;
-
-  /// Label of the new tag name input in the tag editor.
-  ///
-  /// In en, this message translates to:
-  /// **'New tag'**
-  String get forumNewTagLabel;
-
-  /// Placeholder of the new tag name input in the tag editor.
-  ///
-  /// In en, this message translates to:
-  /// **'Tag name'**
-  String get forumNewTagHint;
-
-  /// Accessibility label of the button that adds a tag in the tag editor.
-  ///
-  /// In en, this message translates to:
-  /// **'Add tag'**
-  String get forumAddTag;
-
-  /// Toast shown after saving a forum's tags.
-  ///
-  /// In en, this message translates to:
-  /// **'Tags updated'**
-  String get forumTagsUpdated;
-
-  /// Toast shown when saving a forum's tags fails.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not update tags. Please try again.'**
-  String get forumTagsUpdateFailed;
-
-  /// Shown when the forum post list fails to load.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not load posts.'**
-  String get forumLoadFailed;
-
-  /// Empty state of the active forum post list.
-  ///
-  /// In en, this message translates to:
-  /// **'No posts yet'**
-  String get forumNoPosts;
-
-  /// Empty state of the archived forum post list.
-  ///
-  /// In en, this message translates to:
-  /// **'No archived posts'**
-  String get forumNoArchivedPosts;
-
-  /// System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.
-  ///
-  /// In en, this message translates to:
-  /// **'{username} started a thread: {threadName}.'**
-  String systemThreadCreated(String username, String threadName);
-
-  /// Plaintext preview of the system message posted when someone starts a thread.
-  ///
-  /// In en, this message translates to:
-  /// **'{username} started a thread.'**
-  String systemPreviewStartedThread(String username);
-
-  /// Stands in for a thread name in the thread started system message when the thread no longer exists.
-  ///
-  /// In en, this message translates to:
-  /// **'a thread that was deleted'**
-  String get systemThreadDeleted;
-
-  /// Composer placeholder in a locked thread for users who cannot moderate it.
-  ///
-  /// In en, this message translates to:
-  /// **'This thread is locked. Only moderators can send messages.'**
-  String get threadsComposerLockedHint;
-
-  /// Composer placeholder in an archived thread that is not locked.
-  ///
-  /// In en, this message translates to:
-  /// **'This thread is archived. Sending a message reopens it.'**
-  String get threadsComposerArchivedHint;
-
-  /// Sidebar pill on a forum channel counting posts with activity since the user last opened it.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} New'**
-  String forumNewPostsPill(int count);
-
-  /// Placeholder of the forum search field. What is typed also becomes the title of a new post.
-  ///
-  /// In en, this message translates to:
-  /// **'Search or create a post...'**
-  String get forumSearchOrCreatePost;
-
-  /// Section label in the forum Sort & View sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'Sort by'**
-  String get forumSortBy;
-
-  /// Forum sort option that orders posts by creation date.
-  ///
-  /// In en, this message translates to:
-  /// **'Date posted'**
-  String get forumSortDatePosted;
-
-  /// Section label for the forum layout options in the Sort & View sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'View as'**
-  String get forumViewAs;
-
-  /// Forum layout option showing posts as a list.
-  ///
-  /// In en, this message translates to:
-  /// **'List'**
-  String get forumLayoutList;
-
-  /// Forum layout option showing posts as a grid of image cards.
-  ///
-  /// In en, this message translates to:
-  /// **'Gallery'**
-  String get forumLayoutGallery;
-
-  /// Returns the forum Sort & View choice to the channel defaults.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset to default'**
-  String get forumResetViewToDefault;
-
-  /// Chip that opens the full list of forum tags to filter by.
-  ///
-  /// In en, this message translates to:
-  /// **'All'**
-  String get forumAllTags;
-
-  /// Label of the tag filter chip when tags are selected.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{1 tag} other{{count} tags}}'**
-  String forumTagsSelectedCount(int count);
-
-  /// Heading above the forum's guidelines in the new post sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'Post guidelines'**
-  String get forumPostGuidelinesLabel;
-
-  /// Menu item and dialog title for editing a forum post's title and tags.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit post'**
-  String get forumEditPost;
-
-  /// Shown when saving a post without a tag in a forum that requires one.
-  ///
-  /// In en, this message translates to:
-  /// **'Pick at least one tag for this forum.'**
-  String get forumPostTagRequiredToast;
-
-  /// Menu item to follow a thread or forum post and get its notifications.
-  ///
-  /// In en, this message translates to:
-  /// **'Follow'**
-  String get threadsFollow;
-
-  /// Menu item to stop following a thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Unfollow'**
-  String get threadsUnfollow;
-
-  /// Header button state when the user follows the thread or post.
-  ///
-  /// In en, this message translates to:
-  /// **'Following'**
-  String get threadsFollowing;
-
-  /// Menu item to mute a thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Mute'**
-  String get threadsMute;
-
-  /// Menu item to unmute a thread or forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Unmute'**
-  String get threadsUnmute;
-
-  /// Menu item and dialog title for renaming a thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit thread'**
-  String get threadsEditThread;
-
-  /// Heading of the forum-only section in channel settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Forum settings'**
-  String get forumSettingsTitle;
-
-  /// Placeholder of the forum post guidelines field in channel settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Tell members what to post here'**
-  String get forumSettingsGuidelinesHint;
-
-  /// Switch that makes members pick at least one tag when creating a forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Require tags on new posts'**
-  String get forumSettingsRequireTag;
-
-  /// Explains the require tags switch in forum settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Members must pick at least one tag before they can post.'**
-  String get forumSettingsRequireTagDescription;
-
-  /// Forum setting for how posts are ordered unless a member picks otherwise.
-  ///
-  /// In en, this message translates to:
-  /// **'Default sort order'**
-  String get forumSettingsDefaultSort;
-
-  /// Forum setting for list or gallery layout unless a member picks otherwise.
-  ///
-  /// In en, this message translates to:
-  /// **'Default layout'**
-  String get forumSettingsDefaultLayout;
-
-  /// Forum setting for the emoji used by React to Post.
-  ///
-  /// In en, this message translates to:
-  /// **'Default reaction'**
-  String get forumSettingsDefaultReaction;
-
-  /// Explains the forum default reaction setting.
-  ///
-  /// In en, this message translates to:
-  /// **'Shown as the quick reaction on every post. Leave empty for none.'**
-  String get forumSettingsDefaultReactionDescription;
-
-  /// Placeholder of the forum default reaction field.
-  ///
-  /// In en, this message translates to:
-  /// **'An emoji, e.g. 👍'**
-  String get forumSettingsDefaultReactionHint;
-
-  /// Forum setting for how long a post stays active without new messages.
-  ///
-  /// In en, this message translates to:
-  /// **'Hide after inactivity'**
-  String get forumSettingsHideAfterInactivity;
-
-  /// Explains the forum hide after inactivity setting.
-  ///
-  /// In en, this message translates to:
-  /// **'Inactive posts move to Archived. Anyone can reopen a post that is not locked.'**
-  String get forumSettingsHideAfterInactivityDescription;
-
-  /// Hide after inactivity option.
-  ///
-  /// In en, this message translates to:
-  /// **'1 hour'**
-  String get forumSettingsHideAfterOneHour;
-
-  /// Hide after inactivity option.
-  ///
-  /// In en, this message translates to:
-  /// **'24 hours'**
-  String get forumSettingsHideAfterOneDay;
-
-  /// Hide after inactivity option, the default.
-  ///
-  /// In en, this message translates to:
-  /// **'3 days'**
-  String get forumSettingsHideAfterThreeDays;
-
-  /// Hide after inactivity option.
-  ///
-  /// In en, this message translates to:
-  /// **'1 week'**
-  String get forumSettingsHideAfterOneWeek;
-
-  /// Forum setting limiting how often a member can create a new post.
-  ///
-  /// In en, this message translates to:
-  /// **'Post creation slowmode'**
-  String get forumSettingsPostCreationSlowmode;
-
-  /// Explains the forum post creation slowmode setting.
-  ///
-  /// In en, this message translates to:
-  /// **'How long members wait between creating posts.'**
-  String get forumSettingsPostCreationSlowmodeDescription;
-
-  /// Forum setting for the slowmode applied to messages inside each new post.
-  ///
-  /// In en, this message translates to:
-  /// **'Slowmode inside new posts'**
-  String get forumSettingsDefaultPostSlowmode;
-
-  /// Explains the default slowmode for new forum posts.
-  ///
-  /// In en, this message translates to:
-  /// **'Applied to posts when they are created.'**
-  String get forumSettingsDefaultPostSlowmodeDescription;
-
-  /// Button that saves the forum settings section.
-  ///
-  /// In en, this message translates to:
-  /// **'Save forum settings'**
-  String get forumSettingsSave;
-
-  /// Toast after forum settings are saved.
-  ///
-  /// In en, this message translates to:
-  /// **'Forum settings saved'**
-  String get forumSettingsSaved;
-
-  /// Toast when forum settings fail to save.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not save forum settings'**
-  String get forumSettingsSaveFailed;
-
-  /// Label above the message a thread was started from, shown at the top of the thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Started from'**
-  String get threadsStarterMessage;
-
-  /// Badge marking the author who started a thread or forum post, shown beside their name. Keep it short, two or three characters.
-  ///
-  /// In en, this message translates to:
-  /// **'OP'**
-  String get threadsOriginalPosterTag;
-
-  /// Button under a forum post that reacts to the post itself.
-  ///
-  /// In en, this message translates to:
-  /// **'React to Post'**
-  String get forumReactToPost;
-
-  /// Accessibility label for the button that opens the emoji picker for a forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'React with another emoji'**
-  String get forumReactToPostOther;
-
-  /// Heading shown in a forum channel that has no posts yet.
-  ///
-  /// In en, this message translates to:
-  /// **'Be the first to start the conversation!'**
-  String get forumEmptyHeading;
-
-  /// Body text shown in a forum channel with no posts. {forumName} is the forum channel name.
-  ///
-  /// In en, this message translates to:
-  /// **'What do you want to post about in {forumName}?'**
-  String forumEmptyBody(String forumName);
-
-  /// Button that shows example forum post ideas.
-  ///
-  /// In en, this message translates to:
-  /// **'See Examples'**
-  String get forumSeeExamples;
-
-  /// First example forum post idea.
-  ///
-  /// In en, this message translates to:
-  /// **'Ask a question and tag it so people can find it later.'**
-  String get forumExampleQuestion;
-
-  /// Second example forum post idea.
-  ///
-  /// In en, this message translates to:
-  /// **'Share something you made and let people reply to it.'**
-  String get forumExampleShow;
-
-  /// Third example forum post idea.
-  ///
-  /// In en, this message translates to:
-  /// **'Start a discussion on one topic and keep it in this post.'**
-  String get forumExampleDiscussion;
-
-  /// Accessibility label for the toggle on a tag only moderators may apply.
-  ///
-  /// In en, this message translates to:
-  /// **'Moderator only, tap to allow everyone'**
-  String get forumTagModeratedOn;
-
-  /// Accessibility label for the toggle on a tag anyone may apply.
-  ///
-  /// In en, this message translates to:
-  /// **'Anyone may apply, tap to restrict to moderators'**
-  String get forumTagModeratedOff;
-
-  /// Message action that appends this reply image to the forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Add to Post'**
-  String get forumAddToPost;
-
-  /// Toast confirming the image was appended to the forum post.
-  ///
-  /// In en, this message translates to:
-  /// **'Added to the post.'**
-  String get forumAddToPostDone;
-
-  /// Toast shown when appending an image to a forum post fails.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not add that to the post. Please try again.'**
-  String get forumAddToPostFailed;
-
-  /// Title for the developer Applications settings tab.
-  ///
-  /// In en, this message translates to:
-  /// **'Applications'**
-  String get applicationsTitle;
-
-  /// Button that opens the create-application sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'Create application'**
-  String get applicationsCreate;
-
-  /// Primary submit label in the create-application sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'Create'**
-  String get applicationsCreateSubmit;
-
-  /// Tooltip on the disabled create button for unclaimed accounts.
-  ///
-  /// In en, this message translates to:
-  /// **'Claim your account to create applications.'**
-  String get applicationsCreateClaimTooltip;
-
-  /// Link to developer documentation. domain is the docs host.
-  ///
-  /// In en, this message translates to:
-  /// **'Read the documentation ({domain})'**
-  String applicationsDocsLink(String domain);
-
-  /// Error title when the applications list fails to load.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to load applications'**
-  String get applicationsLoadError;
-
-  /// Error body when the applications list fails to load.
-  ///
-  /// In en, this message translates to:
-  /// **'Check your connection and try again.'**
-  String get applicationsLoadErrorDescription;
-
-  /// Empty-state title when the user has no developer applications.
-  ///
-  /// In en, this message translates to:
-  /// **'No applications yet'**
-  String get applicationsEmptyTitle;
-
-  /// Empty-state body. apiName is the product API display name.
-  ///
-  /// In en, this message translates to:
-  /// **'Create your first application to get started with the {apiName}.'**
-  String applicationsEmptyDescription(String apiName);
-
-  /// List row subtitle showing when an application was created.
-  ///
-  /// In en, this message translates to:
-  /// **'Created {date}'**
-  String applicationsCreated(String date);
-
-  /// Label for the application name field.
-  ///
-  /// In en, this message translates to:
-  /// **'Application name'**
-  String get applicationsName;
-
-  /// Placeholder for the application name field.
-  ///
-  /// In en, this message translates to:
-  /// **'My application'**
-  String get applicationsNameHint;
-
-  /// Validation error when the application name is empty.
-  ///
-  /// In en, this message translates to:
-  /// **'Application name is required'**
-  String get applicationsNameRequired;
-
-  /// Button that returns from application details to the list.
-  ///
-  /// In en, this message translates to:
-  /// **'Back to list'**
-  String get applicationsBackToList;
-
-  /// Error title when a single application fails to load.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t load this application'**
-  String get applicationsDetailLoadError;
-
-  /// Error body when a single application fails to load.
-  ///
-  /// In en, this message translates to:
-  /// **'Try again or go back to the applications list.'**
-  String get applicationsDetailLoadErrorDescription;
-
-  /// Label for the read-only application ID field.
-  ///
-  /// In en, this message translates to:
-  /// **'Application ID'**
-  String get applicationsId;
-
-  /// Button that copies the application ID.
-  ///
-  /// In en, this message translates to:
-  /// **'Copy ID'**
-  String get applicationsCopyId;
-
-  /// Section title for client secret and bot token.
-  ///
-  /// In en, this message translates to:
-  /// **'Secrets & tokens'**
-  String get applicationsSecretsTitle;
-
-  /// Section description for secrets and tokens.
-  ///
-  /// In en, this message translates to:
-  /// **'Keep these safe. Regenerating will break existing integrations.'**
-  String get applicationsSecretsDescription;
-
-  /// Label for the OAuth2 client secret field.
-  ///
-  /// In en, this message translates to:
-  /// **'Client secret'**
-  String get applicationsClientSecret;
-
-  /// Label for the bot token field.
-  ///
-  /// In en, this message translates to:
-  /// **'Bot token'**
-  String get applicationsBotToken;
-
-  /// Button that rotates a secret or token.
-  ///
-  /// In en, this message translates to:
-  /// **'Regenerate'**
-  String get applicationsRegenerate;
-
-  /// Confirmation title when regenerating the client secret.
-  ///
-  /// In en, this message translates to:
-  /// **'Regenerate client secret?'**
-  String get applicationsRegenerateClientSecretTitle;
-
-  /// Confirmation title when regenerating the bot token.
-  ///
-  /// In en, this message translates to:
-  /// **'Regenerate bot token?'**
-  String get applicationsRegenerateBotTokenTitle;
-
-  /// Confirmation body when regenerating the client secret.
-  ///
-  /// In en, this message translates to:
-  /// **'Regenerating will invalidate the current secret. Update any code that uses the old value.'**
-  String get applicationsRegenerateClientSecretDescription;
-
-  /// Confirmation body when regenerating the bot token.
-  ///
-  /// In en, this message translates to:
-  /// **'Regenerating will invalidate the current token. Update any code that uses the old value.'**
-  String get applicationsRegenerateBotTokenDescription;
-
-  /// Toast after a client secret is rotated.
-  ///
-  /// In en, this message translates to:
-  /// **'Client secret regenerated. Update any code that uses the old secret.'**
-  String get applicationsClientSecretRegenerated;
-
-  /// Toast after a bot token is rotated.
-  ///
-  /// In en, this message translates to:
-  /// **'Bot token regenerated. Update any code that uses the old token.'**
-  String get applicationsBotTokenRegenerated;
-
-  /// Error toast when rotating a secret or token fails.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t regenerate secret'**
-  String get applicationsRegenerateFailed;
-
-  /// Section title for basic application settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Application information'**
-  String get applicationsInfoTitle;
-
-  /// Section description for basic application settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Basic settings and allowed redirect URIs.'**
-  String get applicationsInfoDescription;
-
-  /// Switch label for allowing anyone to invite the bot.
-  ///
-  /// In en, this message translates to:
-  /// **'Public bot'**
-  String get applicationsPublicBot;
-
-  /// Switch description for public bot.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow anyone to invite this bot to their communities.'**
-  String get applicationsPublicBotDescription;
-
-  /// Switch label for requiring an OAuth2 code grant on invite.
-  ///
-  /// In en, this message translates to:
-  /// **'Require OAuth2 code grant'**
-  String get applicationsRequireCodeGrant;
-
-  /// Switch description for OAuth2 code grant.
-  ///
-  /// In en, this message translates to:
-  /// **'Requires a redirect URI and an authorization code when inviting this bot.'**
-  String get applicationsRequireCodeGrantDescription;
-
-  /// Label for the redirect URI list.
-  ///
-  /// In en, this message translates to:
-  /// **'Redirect URIs'**
-  String get applicationsRedirectUris;
-
-  /// Button that adds another redirect URI row.
-  ///
-  /// In en, this message translates to:
-  /// **'Add redirect'**
-  String get applicationsAddRedirect;
-
-  /// Accessibility label for removing a redirect URI row.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete redirect URI'**
-  String get applicationsDeleteRedirect;
-
-  /// Section title for bot profile settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Bot profile'**
-  String get applicationsBotProfileTitle;
-
-  /// Section description for bot profile settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Avatar, tag, and rich profile details for your bot.'**
-  String get applicationsBotProfileDescription;
-
-  /// Label for the bot avatar preview.
-  ///
-  /// In en, this message translates to:
-  /// **'Bot avatar'**
-  String get applicationsBotAvatar;
-
-  /// Validation error when the bot username is empty.
-  ///
-  /// In en, this message translates to:
-  /// **'Username is required'**
-  String get applicationsUsernameRequired;
-
-  /// Validation error when the bot username is too long.
-  ///
-  /// In en, this message translates to:
-  /// **'Username must be at most 32 characters'**
-  String get applicationsUsernameTooLong;
-
-  /// Validation error when the bot username has invalid characters.
-  ///
-  /// In en, this message translates to:
-  /// **'Username can only contain letters, numbers, and underscores'**
-  String get applicationsUsernameInvalid;
-
-  /// Label for the bot username field.
-  ///
-  /// In en, this message translates to:
-  /// **'Bot username'**
-  String get applicationsBotUsername;
-
-  /// Label for the read-only bot discriminator.
-  ///
-  /// In en, this message translates to:
-  /// **'Discriminator'**
-  String get applicationsDiscriminator;
-
-  /// Label for the bot biography field.
-  ///
-  /// In en, this message translates to:
-  /// **'Bot bio'**
-  String get applicationsBotBio;
-
-  /// Placeholder for the bot biography field.
-  ///
-  /// In en, this message translates to:
-  /// **'A helpful bot that does amazing things!'**
-  String get applicationsBotBioHint;
-
-  /// Placeholder shown when the bot has no banner.
-  ///
-  /// In en, this message translates to:
-  /// **'No bot banner'**
-  String get applicationsNoBotBanner;
-
-  /// Switch label for allowing friend requests to the bot.
-  ///
-  /// In en, this message translates to:
-  /// **'Friendly bot'**
-  String get applicationsFriendlyBot;
-
-  /// Switch description for friendly bot.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow users to send this bot friend requests for manual approval.'**
-  String get applicationsFriendlyBotDescription;
-
-  /// Switch label for requiring manual friend-request approval.
-  ///
-  /// In en, this message translates to:
-  /// **'Require manual friend approval'**
-  String get applicationsManualFriendApproval;
-
-  /// Switch description for manual friend approval.
-  ///
-  /// In en, this message translates to:
-  /// **'Friend requests to this bot need manual approval.'**
-  String get applicationsManualFriendApprovalDescription;
-
-  /// Section title for the authorize URL builder.
-  ///
-  /// In en, this message translates to:
-  /// **'OAuth2 URL builder'**
-  String get applicationsOauthBuilderTitle;
-
-  /// Section description for the authorize URL builder.
-  ///
-  /// In en, this message translates to:
-  /// **'Construct an authorize URL with scopes and permissions.'**
-  String get applicationsOauthBuilderDescription;
-
-  /// Label for OAuth2 scope checkboxes.
-  ///
-  /// In en, this message translates to:
-  /// **'Scopes'**
-  String get applicationsScopes;
-
-  /// Label for the authorize URL redirect selector.
-  ///
-  /// In en, this message translates to:
-  /// **'Redirect URI'**
-  String get applicationsRedirectUri;
-
-  /// Placeholder for the authorize URL redirect selector.
-  ///
-  /// In en, this message translates to:
-  /// **'Select a redirect URI'**
-  String get applicationsSelectRedirectUri;
-
-  /// Validation shown when a redirect is required by code grant.
-  ///
-  /// In en, this message translates to:
-  /// **'Redirect URI is required because this bot requires OAuth2 code grant.'**
-  String get applicationsRedirectRequiredCodeGrant;
-
-  /// Validation shown when a redirect is required by selected scopes.
-  ///
-  /// In en, this message translates to:
-  /// **'Redirect URI is required when not using only the bot scope.'**
-  String get applicationsRedirectRequiredScopes;
-
-  /// Label for bot permission checkboxes in the URL builder.
-  ///
-  /// In en, this message translates to:
-  /// **'Bot permissions'**
-  String get applicationsBotPermissions;
-
-  /// Label for the generated authorize URL field.
-  ///
-  /// In en, this message translates to:
-  /// **'Authorize URL'**
-  String get applicationsAuthorizeUrl;
-
-  /// Placeholder when the authorize URL cannot be built yet.
-  ///
-  /// In en, this message translates to:
-  /// **'Select scopes (and redirect URI if required)'**
-  String get applicationsAuthorizeUrlPlaceholder;
-
-  /// Button that copies the generated authorize URL.
-  ///
-  /// In en, this message translates to:
-  /// **'Copy authorize URL'**
-  String get applicationsCopyAuthorizeUrl;
-
-  /// Toast after copying the authorize URL.
-  ///
-  /// In en, this message translates to:
-  /// **'Copied URL to clipboard'**
-  String get applicationsCopiedUrl;
-
-  /// Section title for deleting an application.
-  ///
-  /// In en, this message translates to:
-  /// **'Danger zone'**
-  String get applicationsDangerTitle;
-
-  /// Section subtitle for deleting an application.
-  ///
-  /// In en, this message translates to:
-  /// **'This cannot be undone. Removing the application also deletes its bot.'**
-  String get applicationsDangerSubtitle;
-
-  /// Helper text in the application danger zone.
-  ///
-  /// In en, this message translates to:
-  /// **'Once deleted, the application and its credentials are permanently removed.'**
-  String get applicationsDangerHelper;
-
-  /// Button that deletes the current application.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete application'**
-  String get applicationsDelete;
-
-  /// Confirmation body when deleting an application.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to delete {name}? This action cannot be undone. All associated data, including the bot user, will be permanently deleted.'**
-  String applicationsDeleteConfirmDescription(String name);
-
-  /// Error toast when deleting an application fails.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t delete application'**
-  String get applicationsDeleteFailed;
-
-  /// Toast after saving application changes.
-  ///
-  /// In en, this message translates to:
-  /// **'Application updated successfully'**
-  String get applicationsUpdated;
-
-  /// Toast when save is pressed with no dirty fields.
-  ///
-  /// In en, this message translates to:
-  /// **'No changes to save'**
-  String get applicationsNoChanges;
-
-  /// Settings search entry for the Applications tab.
-  ///
-  /// In en, this message translates to:
-  /// **'Applications & bots'**
-  String get applicationsSearchBots;
-
-  /// Settings search description for the Applications tab.
-  ///
-  /// In en, this message translates to:
-  /// **'Create and manage applications and bots for your account'**
-  String get applicationsSearchBotsDescription;
-
-  /// Settings search description for application information.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit application basics and redirect URIs'**
-  String get applicationsSearchInfoDescription;
-
-  /// Settings search description for bot profile.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit the bot avatar, tag, bio, banner, and friend request behavior'**
-  String get applicationsSearchBotProfileDescription;
-
-  /// Settings search description for the OAuth2 URL builder.
-  ///
-  /// In en, this message translates to:
-  /// **'Build an authorization URL with scopes, redirects, and bot permissions'**
-  String get applicationsSearchOauthDescription;
-
-  /// Settings search description for secrets and tokens.
-  ///
-  /// In en, this message translates to:
-  /// **'View and regenerate client secrets and bot tokens'**
-  String get applicationsSearchSecretsDescription;
-
-  /// Settings search synonym for applications.
-  ///
-  /// In en, this message translates to:
-  /// **'Bots'**
-  String get applicationsSearchBotsKeyword;
-
-  /// Settings search synonym for the applications docs link.
-  ///
-  /// In en, this message translates to:
-  /// **'Documentation'**
-  String get applicationsSearchDocumentation;
-
-  /// Tooltip and accessibility label for opening a linked device details modal.
-  ///
-  /// In en, this message translates to:
-  /// **'View details'**
-  String get linkedDevicesViewDetails;
-
-  /// Title of the linked device details modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Device details'**
-  String get linkedDevicesDetailsTitle;
-
-  /// Label for the operating system in the linked device details modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Device'**
-  String get linkedDevicesDetailsDevice;
-
-  /// Label for the client/platform in the linked device details modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Client'**
-  String get linkedDevicesDetailsClient;
-
-  /// Label for the approximate location in the linked device details modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Location'**
-  String get linkedDevicesDetailsLocation;
-
-  /// Label for the masked IP address in the linked device details modal.
-  ///
-  /// In en, this message translates to:
-  /// **'IP address'**
-  String get linkedDevicesDetailsIp;
-
-  /// Label for last activity time in the linked device details modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Last used'**
-  String get linkedDevicesDetailsLastUsed;
-
-  /// Last-used value shown for the session currently making the request.
-  ///
-  /// In en, this message translates to:
-  /// **'Current session'**
-  String get linkedDevicesCurrentSession;
-
-  /// Fallback when a linked device detail such as last used time is missing.
-  ///
-  /// In en, this message translates to:
-  /// **'Unknown'**
-  String get linkedDevicesUnknown;
-
-  /// Confirm button label on the pin message confirmation modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Pin'**
-  String get chatMessagePinConfirm;
-
-  /// Body text for the pin message confirmation modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Pin this message to the channel for everyone to see.'**
-  String get chatMessagePinConfirmDescription;
-
-  /// Toast confirming a message was bookmarked.
-  ///
-  /// In en, this message translates to:
-  /// **'Added to bookmarks'**
-  String get savedMessagesAddedToast;
-
-  /// Toast confirming a message bookmark was removed.
-  ///
-  /// In en, this message translates to:
-  /// **'Removed from bookmarks'**
-  String get savedMessagesRemovedToast;
-
-  /// Destructive footer button in community settings. Opens the delete-community confirmation.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete community'**
-  String get guildSettingsDeleteCommunity;
-
-  /// Confirmation copy for deleting a community.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to delete this community? This action cannot be undone. All channels, messages, and settings will be permanently deleted.'**
-  String get guildSettingsDeleteCommunityConfirm;
-
-  /// Success toast after a community is deleted.
-  ///
-  /// In en, this message translates to:
-  /// **'Community deleted'**
-  String get guildSettingsCommunityDeleted;
-
-  /// Error toast when deleting a community fails.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t delete this community'**
-  String get guildSettingsDeleteCommunityFailed;
 
   /// Siri/Shortcuts result when the user is logged out.
   ///
@@ -25587,529 +23946,28 @@ abstract class FluxerLocalizations {
   /// **'Custom status cleared.'**
   String get assistantOkCustomStatusCleared;
 
-  /// Notification settings section title for the Fluxer push relay.
-  ///
-  /// In en, this message translates to:
-  /// **'Push notification relay'**
-  String get notificationsPushRelaySectionTitle;
-
-  /// Notification settings section description explaining why the push relay exists.
-  ///
-  /// In en, this message translates to:
-  /// **'{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.'**
-  String notificationsPushRelaySectionDescription(String pushProvider);
-
-  /// Toggle label for agreeing to the Fluxer push relay on this device.
-  ///
-  /// In en, this message translates to:
-  /// **'Use the Fluxer push relay'**
-  String get notificationsPushRelayConsentLabel;
-
-  /// Toggle description explaining that revoking push relay consent unregisters the device.
-  ///
-  /// In en, this message translates to:
-  /// **'Turning this off removes this device\'s push registration, so this device stops receiving push notifications.'**
-  String get notificationsPushRelayConsentDescription;
-
-  /// Title of the one-time Fluxer push relay consent sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'Push notification relay'**
-  String get pushRelayConsentTitle;
-
-  /// Subtitle of the push relay consent sheet explaining why the relay exists.
-  ///
-  /// In en, this message translates to:
-  /// **'{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.'**
-  String pushRelayConsentDescription(String pushProvider);
-
-  /// Text before the push relay privacy notice link in the consent sheet.
-  ///
-  /// In en, this message translates to:
-  /// **'Agree to the '**
-  String get pushRelayConsentNoticePrefix;
-
-  /// Link text for the supplemental push relay privacy notice.
-  ///
-  /// In en, this message translates to:
-  /// **'Push relay privacy notice'**
-  String get pushRelayConsentNoticeLink;
-
-  /// Text after the push relay privacy notice link in the consent sheet.
-  ///
-  /// In en, this message translates to:
-  /// **' to turn on push notifications on this device. You only need to agree once per device.'**
-  String get pushRelayConsentNoticeSuffix;
-
-  /// Button that records agreement to the push relay privacy notice.
-  ///
-  /// In en, this message translates to:
-  /// **'Agree and continue'**
-  String get pushRelayConsentAgree;
-
-  /// Button that declines the push relay privacy notice and leaves push notifications off.
-  ///
-  /// In en, this message translates to:
-  /// **'Not now'**
-  String get pushRelayConsentDecline;
-
-  /// User settings navigation item for choosing the home screen app icon.
-  ///
-  /// In en, this message translates to:
-  /// **'App icon'**
-  String get userSettingsNavAppIcon;
-
-  /// Title for the app icon settings section.
-  ///
-  /// In en, this message translates to:
-  /// **'App icon'**
-  String get appIconSectionTitle;
-
-  /// Description for the app icon settings section.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose which icon appears on your home screen.'**
-  String get appIconSectionDescription;
-
-  /// App icon option for the build default icon (release or canary).
-  ///
-  /// In en, this message translates to:
-  /// **'Default'**
-  String get appIconOptionDefault;
-
-  /// App icon option for the starfield alternate icon.
-  ///
-  /// In en, this message translates to:
-  /// **'Starfield'**
-  String get appIconOptionStarfield;
-
-  /// App icon option for the Sweden flag alternate icon.
-  ///
-  /// In en, this message translates to:
-  /// **'Sweden'**
-  String get appIconOptionSweden;
-
-  /// Shown when alternate app icons cannot be used on the current platform.
-  ///
-  /// In en, this message translates to:
-  /// **'Changing the app icon is not available on this device.'**
-  String get appIconUnsupported;
-
-  /// Small toast shown only when the automatic anti-spam check behind sign-in, sign-up or a similar action takes more than a couple of seconds. No user action needed.
-  ///
-  /// In en, this message translates to:
-  /// **'Still working on it…'**
-  String get authCheckStillWorking;
-
-  /// Shown when the automatic anti-spam check behind sign-in, sign-up, phone verification or a similar action could not be completed.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t complete verification. Try again.'**
-  String get authVerificationFailed;
-
-  /// Profile settings row title for profile local time.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile local time'**
-  String get profileLocalTimeSettingsTitle;
-
-  /// Description for the profile local time settings section.
-  ///
-  /// In en, this message translates to:
-  /// **'Set your time zone once so {productName} can keep your UTC offset current when daylight saving time changes. Other people can only see your UTC offset, not your exact time zone identifier.'**
-  String profileLocalTimeSettingsSummary(String productName);
-
-  /// Opens the profile local time editor.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit profile local time'**
-  String get profileLocalTimeEditButton;
-
-  /// Field label for the profile timezone picker.
-  ///
-  /// In en, this message translates to:
-  /// **'Time zone'**
-  String get profileLocalTimeTimezoneLabel;
-
-  /// Helper text under the profile timezone picker.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose the time zone {productName} uses to calculate your UTC offset for profile local time.'**
-  String profileLocalTimeTimezoneHelp(String productName);
-
-  /// Placeholder in the profile timezone picker.
-  ///
-  /// In en, this message translates to:
-  /// **'Search time zones'**
-  String get profileLocalTimeSearchTimezones;
-
-  /// Profile timezone picker option when no timezone is selected.
-  ///
-  /// In en, this message translates to:
-  /// **'Not set'**
-  String get profileLocalTimeNotSet;
-
-  /// Privacy note in profile timezone settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Other people can only see your current UTC offset when you choose to share profile local time. They do not see your exact time zone identifier, such as {timezoneIdentifierExample}. {productName} stores that identifier only so the offset can update automatically when daylight saving time changes.'**
-  String profileLocalTimePrivacyNote(
-    String timezoneIdentifierExample,
-    String productName,
-  );
-
-  /// Profile timezone privacy option label.
-  ///
-  /// In en, this message translates to:
-  /// **'Everyone'**
-  String get profileLocalTimePrivacyEveryone;
-
-  /// Profile timezone privacy option description for Everyone.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow anyone who can view your full profile to see your local time'**
-  String get profileLocalTimePrivacyEveryoneDesc;
-
-  /// Profile timezone privacy option label.
-  ///
-  /// In en, this message translates to:
-  /// **'Friends'**
-  String get profileLocalTimePrivacyFriends;
-
-  /// Profile timezone privacy option description for Friends.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow your friends to see your local time'**
-  String get profileLocalTimePrivacyFriendsDesc;
-
-  /// Profile timezone privacy option label.
-  ///
-  /// In en, this message translates to:
-  /// **'Community members'**
-  String get profileLocalTimePrivacyCommunityMembers;
-
-  /// Profile timezone privacy option description for Community members.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow members from communities you\'re in to see your local time'**
-  String get profileLocalTimePrivacyCommunityMembersDesc;
-
-  /// No description provided for @storePlutoniumPriceLine.
-  ///
-  /// In en, this message translates to:
-  /// **'{monthly} or {yearly}'**
-  String storePlutoniumPriceLine(String monthly, String yearly);
-
-  /// No description provided for @storePlutoniumMonthSuffix.
-  ///
-  /// In en, this message translates to:
-  /// **'/mo'**
-  String get storePlutoniumMonthSuffix;
-
-  /// No description provided for @storePlutoniumYearSuffix.
-  ///
-  /// In en, this message translates to:
-  /// **'/yr'**
-  String get storePlutoniumYearSuffix;
-
-  /// No description provided for @storePlutoniumPriceOr.
-  ///
-  /// In en, this message translates to:
-  /// **'or'**
-  String get storePlutoniumPriceOr;
-
-  /// No description provided for @storePlutoniumEmojiTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Your emojis, everywhere'**
-  String get storePlutoniumEmojiTitle;
-
-  /// No description provided for @storePlutoniumEmojiBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Bring custom emojis and stickers from any of your communities into every chat and community you\'re in.'**
-  String get storePlutoniumEmojiBody;
-
-  /// No description provided for @storePlutoniumProfileTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'A profile that stands out'**
-  String get storePlutoniumProfileTitle;
-
-  /// No description provided for @storePlutoniumProfileBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Get an animated avatar and banner, a subscriber badge, the four-digit tag you want after your username*, and a separate profile for each community.'**
-  String get storePlutoniumProfileBody;
-
-  /// No description provided for @storePlutoniumFilesTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Send files up to 500 MB'**
-  String get storePlutoniumFilesTitle;
-
-  /// No description provided for @storePlutoniumFilesBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Share full-length videos and big files without shrinking them first. Free accounts can send up to 25 MB.'**
-  String get storePlutoniumFilesBody;
-
-  /// No description provided for @storePlutoniumCompareTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Compare Free and Reverb'**
-  String get storePlutoniumCompareTitle;
-
-  /// No description provided for @storePlutoniumCompareMobileNote.
-  ///
-  /// In en, this message translates to:
-  /// **'Not all of these features are in the mobile app. Some are only available on desktop.'**
-  String get storePlutoniumCompareMobileNote;
-
-  /// No description provided for @storePlutoniumNotAvailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Not available'**
-  String get storePlutoniumNotAvailable;
-
-  /// No description provided for @storePlutoniumAvailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Available'**
-  String get storePlutoniumAvailable;
-
-  /// No description provided for @storePlutoniumCompareTag.
-  ///
-  /// In en, this message translates to:
-  /// **'Pick the 4-digit number after your username*'**
-  String get storePlutoniumCompareTag;
-
-  /// No description provided for @storePlutoniumCompareProfile.
-  ///
-  /// In en, this message translates to:
-  /// **'A separate profile for each community'**
-  String get storePlutoniumCompareProfile;
-
-  /// No description provided for @storePlutoniumCompareBadge.
-  ///
-  /// In en, this message translates to:
-  /// **'Subscriber badge on your profile'**
-  String get storePlutoniumCompareBadge;
-
-  /// No description provided for @storePlutoniumCompareBackgrounds.
-  ///
-  /// In en, this message translates to:
-  /// **'Video call backgrounds you can save'**
-  String get storePlutoniumCompareBackgrounds;
-
-  /// No description provided for @storePlutoniumCompareCommunities.
-  ///
-  /// In en, this message translates to:
-  /// **'Communities you can join'**
-  String get storePlutoniumCompareCommunities;
-
-  /// No description provided for @storePlutoniumCompareCharacters.
-  ///
-  /// In en, this message translates to:
-  /// **'Characters in a single message'**
-  String get storePlutoniumCompareCharacters;
-
-  /// No description provided for @storePlutoniumCompareBookmarks.
-  ///
-  /// In en, this message translates to:
-  /// **'Messages you can bookmark'**
-  String get storePlutoniumCompareBookmarks;
-
-  /// No description provided for @storePlutoniumCompareUpload.
-  ///
-  /// In en, this message translates to:
-  /// **'Largest file you can upload'**
-  String get storePlutoniumCompareUpload;
-
-  /// No description provided for @storePlutoniumCompareSavedMedia.
-  ///
-  /// In en, this message translates to:
-  /// **'Media items you can save for later'**
-  String get storePlutoniumCompareSavedMedia;
-
-  /// No description provided for @storePlutoniumCompareAnimatedEmoji.
-  ///
-  /// In en, this message translates to:
-  /// **'Use animated emojis in messages'**
-  String get storePlutoniumCompareAnimatedEmoji;
-
-  /// No description provided for @storePlutoniumCompareCustomEmoji.
-  ///
-  /// In en, this message translates to:
-  /// **'Use custom emojis and stickers in any community'**
-  String get storePlutoniumCompareCustomEmoji;
-
-  /// No description provided for @storePlutoniumCompareVideo.
-  ///
-  /// In en, this message translates to:
-  /// **'Video call and screen share quality'**
-  String get storePlutoniumCompareVideo;
-
-  /// No description provided for @storePlutoniumCompareAvatar.
-  ///
-  /// In en, this message translates to:
-  /// **'Animated avatar and profile banner'**
-  String get storePlutoniumCompareAvatar;
-
-  /// No description provided for @storePlutoniumCompareEarlyAccess.
-  ///
-  /// In en, this message translates to:
-  /// **'Early access to new features'**
-  String get storePlutoniumCompareEarlyAccess;
-
-  /// No description provided for @storePlutoniumCompareThemes.
-  ///
-  /// In en, this message translates to:
-  /// **'Custom themes for the app'**
-  String get storePlutoniumCompareThemes;
-
-  /// No description provided for @storePlutoniumVideoFree.
-  ///
-  /// In en, this message translates to:
-  /// **'Up to 720p at 30 FPS'**
-  String get storePlutoniumVideoFree;
-
-  /// No description provided for @storePlutoniumVideoPlutonium.
-  ///
-  /// In en, this message translates to:
-  /// **'Up to 4K at 60 FPS'**
-  String get storePlutoniumVideoPlutonium;
-
-  /// No description provided for @storePlutoniumTagFootnote.
-  ///
-  /// In en, this message translates to:
-  /// **'You can only pick a tag that nobody else with the same username already has. Usernames aren\'t case sensitive, so Mina#4821 and mina#4821 count as the same. The #0000 tag is reserved for echowire Visionary members.'**
-  String get storePlutoniumTagFootnote;
-
-  /// No description provided for @storePlutoniumLearnVisionary.
-  ///
-  /// In en, this message translates to:
-  /// **'Learn more about Visionary.'**
-  String get storePlutoniumLearnVisionary;
-
-  /// No description provided for @storePlutoniumDonatePrompt.
-  ///
-  /// In en, this message translates to:
-  /// **'Just want to support echowire\'s open source development? '**
-  String get storePlutoniumDonatePrompt;
-
-  /// No description provided for @storePlutoniumDonateLink.
-  ///
-  /// In en, this message translates to:
-  /// **'Donate instead.'**
-  String get storePlutoniumDonateLink;
-
-  /// No description provided for @storePlutoniumHighlightsLead.
-  ///
-  /// In en, this message translates to:
-  /// **'Subscribing funds echowire and unlocks'**
-  String get storePlutoniumHighlightsLead;
-
-  /// No description provided for @storePlutoniumHighlightEmoji.
-  ///
-  /// In en, this message translates to:
-  /// **'Custom emoji and stickers in any chat'**
-  String get storePlutoniumHighlightEmoji;
-
-  /// No description provided for @storePlutoniumHighlightProfile.
-  ///
-  /// In en, this message translates to:
-  /// **'Animated profile, badge, and custom 4-digit number'**
-  String get storePlutoniumHighlightProfile;
-
-  /// No description provided for @storePlutoniumHighlightFiles.
-  ///
-  /// In en, this message translates to:
-  /// **'Uploads up to 500 MB'**
-  String get storePlutoniumHighlightFiles;
-
-  /// No description provided for @storePlutoniumHighlightMessages.
-  ///
-  /// In en, this message translates to:
-  /// **'Send messages up to 4,000 characters'**
-  String get storePlutoniumHighlightMessages;
-
-  /// No description provided for @storePlutoniumHighlightCommunityProfile.
-  ///
-  /// In en, this message translates to:
-  /// **'A separate profile for each community'**
-  String get storePlutoniumHighlightCommunityProfile;
-
-  /// No description provided for @storePlutoniumHighlightsMore.
-  ///
-  /// In en, this message translates to:
-  /// **'And more'**
-  String get storePlutoniumHighlightsMore;
-
-  /// No description provided for @storePlutoniumRenewsThroughPlay.
-  ///
-  /// In en, this message translates to:
-  /// **'Renews automatically through Google Play until you cancel.'**
-  String get storePlutoniumRenewsThroughPlay;
-
-  /// No description provided for @storePlutoniumRenewsThroughAppStore.
-  ///
-  /// In en, this message translates to:
-  /// **'Renews automatically through the App Store until you cancel.'**
-  String get storePlutoniumRenewsThroughAppStore;
-
-  /// No description provided for @storePlutoniumAlreadySubscribed.
-  ///
-  /// In en, this message translates to:
-  /// **'You already have an echowire Reverb subscription.'**
-  String get storePlutoniumAlreadySubscribed;
-
-  /// No description provided for @storePlutoniumSavePercent.
-  ///
-  /// In en, this message translates to:
-  /// **'Save {percent}%'**
-  String storePlutoniumSavePercent(int percent);
-
-  /// No description provided for @storePlutoniumWaiting.
-  ///
-  /// In en, this message translates to:
-  /// **'Purchase received. Reverb will show here once it activates.'**
-  String get storePlutoniumWaiting;
-
-  /// No description provided for @storePlutoniumUnavailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Subscriptions in the app aren\'t available on this device yet.'**
-  String get storePlutoniumUnavailable;
-
-  /// No description provided for @storePlutoniumVisionaryStatus.
-  ///
-  /// In en, this message translates to:
-  /// **'Visionary already includes permanent access, so a recurring subscription isn\'t needed.'**
-  String get storePlutoniumVisionaryStatus;
-
   /// No description provided for @guildNavbarAnnouncementChannel.
   ///
   /// In en, this message translates to:
-  /// **'Announcement Channel'**
+  /// **'Announcement'**
   String get guildNavbarAnnouncementChannel;
 
   /// No description provided for @guildNavbarAnnouncementChannelDescription.
   ///
   /// In en, this message translates to:
-  /// **'Post updates that other communities can follow into their own channels'**
+  /// **'Post updates other communities can follow'**
   String get guildNavbarAnnouncementChannelDescription;
 
   /// No description provided for @channelDetailsAnnouncementChannel.
   ///
   /// In en, this message translates to:
-  /// **'Announcement Channel'**
+  /// **'Announcement channel'**
   String get channelDetailsAnnouncementChannel;
 
   /// No description provided for @channelSettingsAnnouncementChannel.
   ///
   /// In en, this message translates to:
-  /// **'Announcement Channel'**
+  /// **'Announcement channel'**
   String get channelSettingsAnnouncementChannel;
 
   /// No description provided for @channelSettingsAnnouncementChannelDescription.
@@ -26157,7 +24015,7 @@ abstract class FluxerLocalizations {
   /// No description provided for @channelMenuFollow.
   ///
   /// In en, this message translates to:
-  /// **'Follow Channel'**
+  /// **'Follow channel'**
   String get channelMenuFollow;
 
   /// No description provided for @channelFollowTitle.
@@ -26183,18 +24041,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Channel'**
   String get channelFollowChannel;
-
-  /// No description provided for @channelFollowSelectCommunity.
-  ///
-  /// In en, this message translates to:
-  /// **'Select a community'**
-  String get channelFollowSelectCommunity;
-
-  /// No description provided for @channelFollowSelectChannel.
-  ///
-  /// In en, this message translates to:
-  /// **'Select a channel'**
-  String get channelFollowSelectChannel;
 
   /// No description provided for @channelFollowAgeWarning.
   ///
@@ -26460,18 +24306,6 @@ abstract class FluxerLocalizations {
   /// **'Unfollow'**
   String get channelSettingsUnfollow;
 
-  /// No description provided for @channelSettingsUnfollowFailed.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t unfollow this channel.'**
-  String get channelSettingsUnfollowFailed;
-
-  /// No description provided for @channelSettingsDeliveredTo.
-  ///
-  /// In en, this message translates to:
-  /// **'Delivered to #{channelName}'**
-  String channelSettingsDeliveredTo(String channelName);
-
   /// No description provided for @crosspostCommunityTitle.
   ///
   /// In en, this message translates to:
@@ -26487,7 +24321,7 @@ abstract class FluxerLocalizations {
   /// No description provided for @crosspostJoinCommunity.
   ///
   /// In en, this message translates to:
-  /// **'Join Community'**
+  /// **'Join community'**
   String get crosspostJoinCommunity;
 
   /// No description provided for @crosspostSourceFailed.
@@ -26495,12 +24329,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t load this community. Try again in a moment.'**
   String get crosspostSourceFailed;
-
-  /// No description provided for @crosspostSourceUnavailable.
-  ///
-  /// In en, this message translates to:
-  /// **'This community is no longer available'**
-  String get crosspostSourceUnavailable;
 
   /// No description provided for @crosspostMembers.
   ///
@@ -26543,6 +24371,522 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Unsupported channel'**
   String get channelDetailsUnsupportedChannel;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Forum'**
+  String get forumChannelTypeForum;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Posts organized by topic and tags'**
+  String get forumChannelTypeForumDescription;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Media'**
+  String get forumChannelTypeMedia;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Posts built around images and videos'**
+  String get forumChannelTypeMediaDescription;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'New post'**
+  String get forumNewPost;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'New media post'**
+  String get forumNewMediaPost;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Search posts'**
+  String get forumSearchPosts;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort and view'**
+  String get forumViewOptions;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Search is still being prepared for this community. Posts appear here as soon as it is ready.'**
+  String get forumSearchIndexing;
+
+  /// Title of the empty state in a forum channel without posts.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no posts yet'**
+  String get forumNoPosts;
+
+  /// Body of the empty state in a forum channel without posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Be the first to start a conversation here.'**
+  String get forumNoPostsHint;
+
+  /// Title of the empty state in a forum channel when the search or tag filter finds nothing.
+  ///
+  /// In en, this message translates to:
+  /// **'No posts match your search'**
+  String get forumNoSearchResults;
+
+  /// Body of the empty state in a forum channel when the search or tag filter finds nothing.
+  ///
+  /// In en, this message translates to:
+  /// **'Try different words or clear the tag filter.'**
+  String get forumNoSearchResultsHint;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Create the first post'**
+  String get forumCreateFirstPost;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Older posts'**
+  String get forumOlderPosts;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Posts could not be loaded.'**
+  String get forumPostsLoadFailed;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get forumRetry;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinned'**
+  String get forumPostPinned;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get forumPostLocked;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Archived'**
+  String get forumPostArchived;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'NEW'**
+  String get forumPostNewBadge;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'The original message was deleted.'**
+  String get forumPostStarterDeleted;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'{author}: {content}'**
+  String forumPostSnippet(String author, String content);
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 new message} other{{count} new messages}}'**
+  String forumPostNewMessages(int count);
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the default reaction'**
+  String get forumPostReact;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Open post'**
+  String get forumOpenPost;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit tags'**
+  String get forumEditTags;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Save tags'**
+  String get forumSaveTags;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Pick up to 1 tag.} other{Pick up to {count} tags.}}'**
+  String forumTagsLimitHint(int count);
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin post'**
+  String get forumPinPost;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Unpin post'**
+  String get forumUnpinPost;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as read'**
+  String get forumMarkPostRead;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy link'**
+  String get forumCopyPostLink;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Post guidelines'**
+  String get forumPostGuidelines;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell people what to post here and how to post it.'**
+  String get forumGuidelinesPlaceholder;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get forumPostTitle;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get forumPostMessage;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Write the first message of your post'**
+  String get forumPostMessagePlaceholder;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a caption'**
+  String get forumPostMediaPlaceholder;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get forumPostTags;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags (required)'**
+  String get forumPostTagsRequired;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Add media'**
+  String get forumPostAddMedia;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Add file'**
+  String get forumPostAddFile;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove attachment'**
+  String get forumPostRemoveAttachment;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Post'**
+  String get forumPostSubmit;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Give your post a title.'**
+  String get forumPostTitleRequired;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one image or video to post here.'**
+  String get forumPostMediaRequired;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a message or add a file.'**
+  String get forumPostContentRequired;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently active'**
+  String get forumSortLatestActivity;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Date posted'**
+  String get forumSortCreationTime;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'List view'**
+  String get forumLayoutList;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery view'**
+  String get forumLayoutGallery;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Show unread for new posts'**
+  String get forumNewPostsUnread;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark this channel unread when someone creates a post.'**
+  String get forumNewPostsUnreadDescription;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Post slowmode'**
+  String get forumPostSlowmode;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Wait between creating posts. \"{bypassSlowmodePermissionLabel}\" can bypass it.'**
+  String forumPostSlowmodeDescription(String bypassSlowmodePermissionLabel);
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Message slowmode in posts'**
+  String get forumMessageSlowmode;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Slowmode applied to messages in new posts.'**
+  String get forumMessageSlowmodeDescription;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide after inactivity'**
+  String get forumDefaultAutoArchive;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'New posts are archived after this long without activity.'**
+  String get forumDefaultAutoArchiveDescription;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Default reaction'**
+  String get forumDefaultReaction;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick an emoji'**
+  String get forumSetDefaultReaction;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get forumChangeDefaultReaction;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get forumRemoveDefaultReaction;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Default sort order'**
+  String get forumDefaultSortOrder;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Default layout'**
+  String get forumDefaultLayout;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag filter'**
+  String get forumTagMatchSetting;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Match any selected tag'**
+  String get forumTagMatchSome;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Match all selected tags'**
+  String get forumTagMatchAll;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Require tags'**
+  String get forumRequireTag;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'People must pick at least one tag when they create a post.'**
+  String get forumRequireTagDescription;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide media download options'**
+  String get forumHideMediaDownloads;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide download, open in browser and copy link for images and videos in posts.'**
+  String get forumHideMediaDownloadsDescription;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags ({count}/{max})'**
+  String forumTagsTitle(int count, int max);
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags help people find and filter posts. Only moderators can apply moderated tags.'**
+  String get forumTagsDescription;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Create tag'**
+  String get forumCreateTag;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit tag'**
+  String get forumEditTag;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Save tag'**
+  String get forumSaveTag;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete tag'**
+  String get forumDeleteTag;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag name'**
+  String get forumTagName;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Emoji'**
+  String get forumTagEmoji;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove emoji'**
+  String get forumTagRemoveEmoji;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Only moderators can apply'**
+  String get forumTagModerated;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Only members who can manage threads can apply or remove this tag.'**
+  String get forumTagModeratedDescription;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Moderated'**
+  String get forumTagModeratedBadge;
+
+  /// Forum and media channel UI.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds, plural, =1{You can post again in 1 second.} other{You can post again in {seconds} seconds.}}'**
+  String forumPostCooldown(int seconds);
 }
 
 class _FluxerLocalizationsDelegate

@@ -17,8 +17,6 @@ class ChannelPermissionCaches {
 
   bool get isEmpty => effective.isEmpty && local.isEmpty;
 
-  int get length => effective.length;
-
   bool hasEffectiveBits(String channelId) => effective.containsKey(channelId);
 }
 
@@ -61,18 +59,15 @@ class ChannelPermissionCache extends _$ChannelPermissionCache {
     _setEffectiveBits(channelId: channelId, outcome: outcome);
   }
 
-  /// Rebuild cached bits using channel-local computation (ignores category
-  /// overwrites).
-  Future<void> rebuildChannelLocal(String channelId) async {
-    await rebuildChannel(channelId, localOnly: true);
-  }
-
   Future<void> rebuildGuild(String guildId) async {
     if (guildId.isEmpty) {
       return;
     }
     final db = ref.read(fluxerDatabaseProvider);
-    final channels = await db.channelDao.getChannels(guildId);
+    final channels = await db.channelDao.getChannels(
+      guildId,
+      includeThreads: true,
+    );
     if (!ref.mounted) {
       return;
     }
@@ -81,13 +76,9 @@ class ChannelPermissionCache extends _$ChannelPermissionCache {
     }
   }
 
-  Future<void> rebuildAll() async {
-    await rebuildAfterReady();
-  }
-
   Future<void> rebuildAfterReady({String? priorityGuildId}) async {
     final db = ref.read(fluxerDatabaseProvider);
-    final channels = await db.channelDao.getAllChannels();
+    final channels = await db.channelDao.getAllChannels(includeThreads: true);
     if (!ref.mounted) {
       return;
     }
@@ -132,26 +123,15 @@ class ChannelPermissionCache extends _$ChannelPermissionCache {
     }
   }
 
-  void evictChannel(String channelId) {
-    final bool hadEffective = state.effective.containsKey(channelId);
-    final bool hadLocal = state.local.containsKey(channelId);
-    if (!hadEffective && !hadLocal) {
-      return;
-    }
-    final Map<String, int> nextEffective = Map<String, int>.from(
-      state.effective,
-    )..remove(channelId);
-    final Map<String, int> nextLocal = Map<String, int>.from(state.local)
-      ..remove(channelId);
-    state = ChannelPermissionCaches(effective: nextEffective, local: nextLocal);
-  }
-
   Future<void> evictGuild(String guildId) async {
     if (guildId.isEmpty || state.isEmpty) {
       return;
     }
     final db = ref.read(fluxerDatabaseProvider);
-    final channels = await db.channelDao.getChannels(guildId);
+    final channels = await db.channelDao.getChannels(
+      guildId,
+      includeThreads: true,
+    );
     if (!ref.mounted) {
       return;
     }

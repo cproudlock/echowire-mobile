@@ -11,6 +11,7 @@ import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/permissions/channel_effective_permissions.dart';
 import 'package:fluxer_app/core/permissions/channel_permission_cache_provider.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
+import 'package:fluxer_app/core/permissions/thread_permissions.dart';
 import 'package:fluxer_app/core/providers/app_ui_lifecycle_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/providers/gateway_connection_provider.dart';
@@ -24,6 +25,8 @@ import 'package:fluxer_app/features/channels/data/read_state_repository.dart';
 import 'package:fluxer_app/features/channels/data/read_state_utils.dart';
 import 'package:fluxer_app/features/channels/data/unread_settings_resolver.dart';
 import 'package:fluxer_app/features/channels/domain/announcement_follow.dart';
+import 'package:fluxer_app/features/channels/domain/channel.dart'
+    show isThreadChannelType;
 import 'package:fluxer_app/features/channels/providers/ack_batcher_provider.dart';
 import 'package:fluxer_app/features/channels/providers/read_state_repository_provider.dart';
 import 'package:fluxer_app/features/chat/data/message_repository.dart';
@@ -290,8 +293,6 @@ class ChatViewState {
     }
     return auth.origin;
   }
-
-  bool get canSend => hasVisibleContent(messageText);
 
   /// The `write` parameter is the ONLY way to change [messages], and it is
   /// indivisible from its [MessagesOrigin]: an untagged messages write is
@@ -3296,7 +3297,6 @@ class ChatViewModel extends _$ChatViewModel {
       String? requestCursor,
       String? installedBoundary,
     }) => PageLoadResult(
-      edge: PaginationEdge.older,
       channelId: channelId,
       windowEpoch: entryEpoch,
       requestCursor: requestCursor,
@@ -3517,7 +3517,6 @@ class ChatViewModel extends _$ChatViewModel {
       String? requestCursor,
       String? installedBoundary,
     }) => PageLoadResult(
-      edge: PaginationEdge.newer,
       channelId: channelId,
       windowEpoch: entryEpoch,
       requestCursor: requestCursor,
@@ -5039,7 +5038,16 @@ class ChatViewModel extends _$ChatViewModel {
         permissionOutcome.value,
         Permission.sendMessages,
       );
-      if (!canSendMessages) {
+      final bool lockedThread =
+          channelRow != null &&
+          isThreadChannelType(channelRow.type) &&
+          (channelRow.threadLocked ?? false) &&
+          !isThreadModerator(
+            withImplicitThreadBits(permissionOutcome.value),
+            isOwner: false,
+            timedOut: false,
+          );
+      if (!canSendMessages || lockedThread) {
         talker.debug(
           '[ChatViewModel] send blocked: no_permission channelId=$channelId',
         );
@@ -5292,9 +5300,9 @@ class ChatViewModel extends _$ChatViewModel {
     }
     final int? retryAfterMs = slowmodeRetryAfterMsFromError(error);
     if (retryAfterMs != null) {
-      ref.read(slowmodeRateLimitedAlertProvider.notifier).remaining = Duration(
-        milliseconds: retryAfterMs,
-      );
+      ref
+          .read(slowmodeRateLimitedAlertProvider.notifier)
+          .show(Duration(milliseconds: retryAfterMs));
     }
     ref.read(slowmodeIndicatorShakeProvider.notifier).requestShake();
   }
@@ -5356,8 +5364,7 @@ class ChatViewModel extends _$ChatViewModel {
             );
       case _SendBlockReason.slowmode:
         if (remaining != null && remaining > Duration.zero) {
-          ref.read(slowmodeRateLimitedAlertProvider.notifier).remaining =
-              remaining;
+          ref.read(slowmodeRateLimitedAlertProvider.notifier).show(remaining);
         }
         ref.read(slowmodeIndicatorShakeProvider.notifier).requestShake();
       case _SendBlockReason.channelNotReady:
@@ -5410,6 +5417,7 @@ class ChatViewModel extends _$ChatViewModel {
     final String? systemMessageContent = clientSystemMessageForSendError(
       apiErrorCode: apiErrorCode,
       l10n: l10n,
+      selfHosted: ref.read(instanceRuntimeConfigProvider).selfHosted,
     );
     if (systemMessageContent != null) {
       nextMessages.add(
@@ -5575,6 +5583,7 @@ class ChatViewModel extends _$ChatViewModel {
       final String? systemMessageContent = clientSystemMessageForSendError(
         apiErrorCode: apiErrorCode,
         l10n: l10n,
+        selfHosted: ref.read(instanceRuntimeConfigProvider).selfHosted,
       );
       if (systemMessageContent != null) {
         nextMessages.add(

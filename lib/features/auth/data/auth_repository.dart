@@ -73,7 +73,6 @@ class AuthRepository {
           MfaChallenge(
             ticket: mfaResponse.ticket,
             totp: mfaResponse.totp,
-            sms: false,
             webauthn: mfaResponse.webauthn,
           ),
         );
@@ -146,7 +145,6 @@ class AuthRepository {
         MfaChallenge(
           ticket: mfaResponse.ticket,
           totp: mfaResponse.totp,
-          sms: false,
           webauthn: mfaResponse.webauthn,
         ),
       );
@@ -175,7 +173,6 @@ class AuthRepository {
             MfaChallenge(
               ticket: mfaResponse.ticket,
               totp: mfaResponse.totp,
-              sms: false,
               webauthn: mfaResponse.webauthn,
             ),
           ),
@@ -264,10 +261,6 @@ class AuthRepository {
     } on DioException catch (error) {
       throw _failureFromDio(error);
     }
-  }
-
-  Future<AuthSession?> restoreSession() {
-    return getActiveSession();
   }
 
   Future<AuthSession?> getActiveSession() async {
@@ -682,20 +675,6 @@ class AuthRepository {
     }
   }
 
-  Future<void> updateStoredUserData({
-    required String userId,
-    required String? username,
-    required String? discriminator,
-    required String? avatar,
-  }) async {
-    await _db.authSessionDao.updateUserData(
-      userId: userId,
-      username: username,
-      discriminator: discriminator,
-      avatar: avatar,
-    );
-  }
-
   Future<List<StoredAccount>> getStoredAccounts() async {
     final sessions = await _db.authSessionDao.getAllSessions();
     final List<StoredAccount> accounts = <StoredAccount>[];
@@ -708,7 +687,6 @@ class AuthRepository {
         StoredAccount(
           userId: s.userId,
           isValid: s.isValid,
-          lastActive: s.lastActive,
           username: s.username,
           discriminator: s.discriminator,
           avatar: s.avatar,
@@ -722,11 +700,6 @@ class AuthRepository {
   Future<void> removeStoredAccount(String userId) async {
     await _db.authSessionDao.removeSession(userId);
     await _tokenStorage.deleteToken(userId);
-  }
-
-  Future<void> clearAllSessions() async {
-    await _db.authSessionDao.clearSession();
-    await _tokenStorage.deleteAllTokens();
   }
 
   Future<AuthSession?> _resolveSessionForUserId(String userId) async {

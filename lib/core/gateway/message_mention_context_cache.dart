@@ -69,6 +69,10 @@ class MessageMentionContextCache {
         suppressEveryone: entry.suppressEveryone,
         suppressRoles: entry.suppressRoles,
         currentUserRoleIds: entry.roleIds,
+        threadNonMember: await isThreadNonMember(
+          _database,
+          resolution.guildChannel!,
+        ),
       );
     }
     return MessageMentionContext(
@@ -81,16 +85,21 @@ class MessageMentionContextCache {
     );
   }
 
-  Future<ChannelResolution> resolveChannel(String channelId) {
-    return _resolveChannel(channelId);
+  Future<ChannelResolution> resolveChannel(
+    String channelId, {
+    String? unknownGuildId,
+  }) {
+    return _resolveChannel(channelId, unknownGuildId: unknownGuildId);
   }
 
-  Future<ChannelResolution> _resolveChannel(String channelId) async {
+  Future<ChannelResolution> _resolveChannel(
+    String channelId, {
+    String? unknownGuildId,
+  }) async {
     if (_guildChannels.containsKey(channelId)) {
       final Channel? channel = _guildChannels[channelId];
       if (channel != null) {
         return ChannelResolution.guild(
-          channelId: channelId,
           guildStorageId: channel.guildId,
           guildChannel: channel,
         );
@@ -99,10 +108,7 @@ class MessageMentionContextCache {
     if (_dmChannels.containsKey(channelId)) {
       final DmChannel? dm = _dmChannels[channelId];
       if (dm != null) {
-        return ChannelResolution.private(
-          channelId: channelId,
-          guildStorageId: '@me',
-        );
+        return ChannelResolution.private(guildStorageId: '@me');
       }
     }
     final Channel? guildChannel = await _database.channelDao.getChannelById(
@@ -112,7 +118,6 @@ class MessageMentionContextCache {
       _guildChannels[channelId] = guildChannel;
       _channelGuildIds[channelId] = guildChannel.guildId;
       return ChannelResolution.guild(
-        channelId: channelId,
         guildStorageId: guildChannel.guildId,
         guildChannel: guildChannel,
       );
@@ -122,16 +127,15 @@ class MessageMentionContextCache {
     );
     _dmChannels[channelId] = dm;
     if (dm != null) {
-      return ChannelResolution.private(
-        channelId: channelId,
-        guildStorageId: '@me',
-      );
+      return ChannelResolution.private(guildStorageId: '@me');
     }
     _guildChannels[channelId] = null;
-    return ChannelResolution.private(
-      channelId: channelId,
-      guildStorageId: '@me',
-    );
+    if (unknownGuildId != null) {
+      return ChannelResolution.unknownGuildChannel(
+        guildStorageId: unknownGuildId,
+      );
+    }
+    return ChannelResolution.private(guildStorageId: '@me');
   }
 
   Future<_GuildMentionCacheEntry> _guildEntry({
@@ -183,7 +187,6 @@ class _GuildMentionCacheEntry {
 
 class ChannelResolution {
   const ChannelResolution._({
-    required this.channelId,
     required this.guildStorageId,
     required this.isGuild,
     required this.guildChannel,
@@ -191,12 +194,10 @@ class ChannelResolution {
   });
 
   factory ChannelResolution.guild({
-    required String channelId,
     required String guildStorageId,
     required Channel guildChannel,
   }) {
     return ChannelResolution._(
-      channelId: channelId,
       guildStorageId: guildStorageId,
       isGuild: true,
       guildChannel: guildChannel,
@@ -204,13 +205,22 @@ class ChannelResolution {
     );
   }
 
+  factory ChannelResolution.unknownGuildChannel({
+    required String guildStorageId,
+  }) {
+    return ChannelResolution._(
+      guildStorageId: guildStorageId,
+      isGuild: true,
+      guildChannel: null,
+      dmChannel: null,
+    );
+  }
+
   factory ChannelResolution.private({
-    required String channelId,
     required String guildStorageId,
     DmChannel? dmChannel,
   }) {
     return ChannelResolution._(
-      channelId: channelId,
       guildStorageId: guildStorageId,
       isGuild: false,
       guildChannel: null,
@@ -218,7 +228,6 @@ class ChannelResolution {
     );
   }
 
-  final String channelId;
   final String guildStorageId;
   final bool isGuild;
   final Channel? guildChannel;

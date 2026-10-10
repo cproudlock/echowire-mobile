@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 /// paused or hidden. inactive is system UI over the app, like paste.
@@ -12,16 +9,6 @@ bool _canSafelyRequestFocus([AppLifecycleState? state]) {
   final AppLifecycleState? current =
       state ?? WidgetsBinding.instance.lifecycleState;
   return current == null || current == AppLifecycleState.resumed;
-}
-
-bool _useReadOnlyImeReconnect(
-  void Function({required bool readOnly})? toggleReadOnly,
-) {
-  if (toggleReadOnly == null || kIsWeb) {
-    return false;
-  }
-  return defaultTargetPlatform == TargetPlatform.iOS ||
-      defaultTargetPlatform == TargetPlatform.android;
 }
 
 void _showKeyboard(FocusNode node) {
@@ -44,12 +31,14 @@ void _showKeyboard(FocusNode node) {
   node.requestFocus();
 }
 
-/// Reopens the IME for [node]. On mobile, a brief read-only toggle recreates the
-/// TextInputConnection without dismissing the keyboard. Elsewhere, focus cycles.
-void reconnectComposerKeyboard(
-  FocusNode node, {
-  void Function({required bool readOnly})? toggleReadOnly,
-}) {
+void nudgeComposerKeyboardOpen(FocusNode node) {
+  if (!node.canRequestFocus || !node.hasFocus) {
+    return;
+  }
+  _showKeyboard(node);
+}
+
+void reconnectComposerKeyboard(FocusNode node) {
   if (!node.canRequestFocus) {
     return;
   }
@@ -57,10 +46,7 @@ void reconnectComposerKeyboard(
     node.requestFocus();
     return;
   }
-  if (_useReadOnlyImeReconnect(toggleReadOnly)) {
-    _readOnlyToggle(node, toggleReadOnly!);
-    return;
-  }
+  nudgeComposerKeyboardOpen(node);
   node.unfocus();
   WidgetsBinding.instance.addPostFrameCallback((_) {
     if (node.canRequestFocus && !node.hasFocus) {
@@ -69,56 +55,17 @@ void reconnectComposerKeyboard(
   });
 }
 
-/// read-only flash with abort and fallback safety nets.
-void _readOnlyToggle(
-  FocusNode node,
-  void Function({required bool readOnly}) toggleReadOnly,
-) {
-  final int id = _nextReconnectId++;
-
-  bool isAborted() => _activeReconnectId != id || !node.hasFocus;
-
-  _activeReconnectId = id;
-  toggleReadOnly(readOnly: true);
-
-  Future.delayed(const Duration(milliseconds: 50), () {
-    if (!isAborted()) {
-      toggleReadOnly(readOnly: false);
-    }
-  });
-
-  Future.delayed(const Duration(milliseconds: 100), () {
-    if (!isAborted()) {
-      _showKeyboard(node);
-      _activeReconnectId = null;
-    }
-  });
-
-  Timer(const Duration(milliseconds: 400), () {
-    if (_activeReconnectId == id && node.hasFocus) {
-      toggleReadOnly(readOnly: false);
-      _showKeyboard(node);
-      _activeReconnectId = null;
-    }
-  });
-}
-
-int _nextReconnectId = 0;
-int? _activeReconnectId;
-
 /// Re-requests [focusNode] on resume when the keyboard was open before backgrounding.
 class KeyboardFocusRestoreHandle {
   KeyboardFocusRestoreHandle({
     required this.focusNode,
     required this.shouldTrackOnBackground,
     required this.canRestoreFocus,
-    this.toggleReadOnly,
   });
 
   final FocusNode focusNode;
   final bool Function() shouldTrackOnBackground;
   final bool Function() canRestoreFocus;
-  final void Function({required bool readOnly})? toggleReadOnly;
 
   bool _pendingRestore = false;
   int _restoreGeneration = 0;
@@ -129,12 +76,17 @@ class KeyboardFocusRestoreHandle {
     _restoreGeneration++;
   }
 
+  void cancelImeReconnect() {
+    _restoreGeneration++;
+    _pendingRestore = false;
+  }
+
   void reconnectOpenField() {
     _pendingRestore = false;
     if (!_canAttemptRestore() || _anotherEditableHasFocus()) {
       return;
     }
-    reconnectComposerKeyboard(focusNode, toggleReadOnly: toggleReadOnly);
+    reconnectComposerKeyboard(focusNode);
   }
 
   void handleLifecycleState(AppLifecycleState state) {
@@ -177,7 +129,7 @@ class KeyboardFocusRestoreHandle {
       focusNode.requestFocus();
       return;
     }
-    reconnectComposerKeyboard(focusNode, toggleReadOnly: toggleReadOnly);
+    reconnectComposerKeyboard(focusNode);
   }
 
   bool _canAttemptRestore() {

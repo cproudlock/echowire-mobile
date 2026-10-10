@@ -2,6 +2,7 @@ import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/features/channels/data/channel_repository.dart';
 import 'package:fluxer_app/features/channels/domain/channel.dart';
+import 'package:fluxer_app/features/threads/providers/thread_guild_gate_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'channel_providers.g.dart';
@@ -18,7 +19,12 @@ ChannelRepository channelRepository(Ref ref) {
   final client = ref.watch(fluxerClientProvider);
   final dio = ref.watch(fluxerDioProvider);
   final db = ref.watch(fluxerDatabaseProvider);
-  return ChannelRepository(client, dio, db);
+  return ChannelRepository(
+    client,
+    dio,
+    db,
+    threadsGate: ref.watch(threadsGateProvider),
+  );
 }
 
 @riverpod
@@ -27,33 +33,7 @@ Stream<Channel?> channelById(Ref ref, String id) {
   return db.channelDao
       .watchChannelById(id)
       .map((row) => row == null ? null : Channel.fromRow(row))
-      // Echowire: a lastMessageId-only write must not re-emit. The tail
-      // pointer moves on every message, and this provider is watched from
-      // composer permissions and from per-message widgets, so including it
-      // rebuilt those on every message in the channel.
-      .distinct(
-        (Channel? previous, Channel? next) => previous == null || next == null
-            ? previous == next
-            : previous.sameExceptLastMessage(next),
-      );
-}
-
-/// Echowire: resolve a channel the local database does not hold, by asking the
-/// server for it once. A routed id that is missing locally is usually an
-/// archived thread, because a session payload carries open channels and open
-/// threads only. Null means gone or not visible, so a caller can fall back to
-/// whatever it did before.
-@riverpod
-Future<Channel?> recoveredChannel(Ref ref, String id) async {
-  if (id.isEmpty) {
-    return null;
-  }
-  final db = ref.watch(fluxerDatabaseProvider);
-  final existing = await db.channelDao.getChannelById(id);
-  if (existing != null) {
-    return Channel.fromRow(existing);
-  }
-  return ref.watch(channelRepositoryProvider).fetchChannelById(id);
+      .distinct();
 }
 
 @riverpod

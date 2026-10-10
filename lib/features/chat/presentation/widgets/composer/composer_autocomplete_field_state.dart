@@ -582,15 +582,39 @@ class ComposerAutocompleteFieldState
       if (generation != _syncGeneration || !mounted) {
         return;
       }
+      final bool threads = ref.read(threadsGateProvider).isActive(guildId);
       fallback = <Channel>[
-        for (final db.Channel row in rows) Channel.fromRow(row),
+        for (final db.Channel row in rows)
+          if (threads || !isThreadOnlyChannelType(row.type))
+            Channel.fromRow(row),
       ];
     }
-    final List<Channel> mentionable = mentionableChannelsForGuild(
+    List<Channel> mentionable = mentionableChannelsForGuild(
       guildId: guildId,
       currentList: list,
       fallbackChannels: fallback,
     );
+    if (ref.read(threadsGateProvider).isActive(guildId)) {
+      final Set<String> joined = await ref
+          .read(fluxerDatabaseProvider)
+          .threadDao
+          .getJoinedThreadIds();
+      final List<db.Channel> threadRows = await ref
+          .read(fluxerDatabaseProvider)
+          .threadDao
+          .getThreadsForGuild(guildId);
+      if (generation != _syncGeneration || !mounted) {
+        return;
+      }
+      mentionable = <Channel>[
+        ...mentionable,
+        for (final db.Channel row in threadRows)
+          if (row.threadArchived != true &&
+              (joined.contains(row.id) ||
+                  row.type != ChannelType.privateThread.wireValue))
+            Channel.fromRow(row),
+      ];
+    }
     final String q = trigger.matchedText.toLowerCase();
     List<Channel> filtered = mentionable;
     if (q.isNotEmpty) {
@@ -1154,7 +1178,7 @@ class ComposerAutocompleteFieldState
       _setRows(const <_ComposerRow>[], gifEmpty: true);
       return;
     }
-    final locale = gifLocaleFromFlutterLocale(Localizations.localeOf(context));
+    final locale = apiLocaleFromFlutterLocale(Localizations.localeOf(context));
     final List<GifPickerGif> results = await ref.read(
       gifSearchProvider((query: query, locale: locale)).future,
     );
@@ -1534,7 +1558,6 @@ class ComposerAutocompleteFieldState
         .where((_ComposerRow r) => r.gif != null)
         .map(
           (_ComposerRow r) => ComposerAutocompleteGifTile(
-            id: r.gif!.id,
             title: r.title,
             imageUrl: r.gif!.proxySrc.isNotEmpty ? r.gif!.proxySrc : r.gif!.src,
             onTap: r.onApply,
@@ -1544,9 +1567,6 @@ class ComposerAutocompleteFieldState
     return ComposerAutocompletePanelSnapshot(
       rows: _rows.map((_ComposerRow r) {
         final Member? m = r.mentionMember;
-        final String? status = m == null
-            ? null
-            : ref.read(userPresenceProvider(m.id)).value?.status ?? m.status;
         return ComposerAutocompletePanelRow(
           title: r.title,
           subtitle: r.subtitle,
@@ -1560,7 +1580,6 @@ class ComposerAutocompleteFieldState
                     FluxerMediaUrl.userAvatar(userId: m.id, hash: m.avatar),
           userAvatarFallbackText: m != null ? r.title : null,
           userAvatarColor: m?.avatarColor,
-          userAvatarStatus: status,
           emojiSurrogates: r.emojiSurrogates,
           emojiImageUrl: r.emojiImageUrl,
           emojiCacheKey: r.emojiCacheKey,

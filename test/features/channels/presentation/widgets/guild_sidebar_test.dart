@@ -23,7 +23,6 @@ import 'package:fluxer_app/features/channels/providers/channel_settings_provider
 import 'package:fluxer_app/features/channels/providers/channel_sidebar_icon_connect_bits_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_collapsed_categories_provider.dart';
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
-import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/favorites/providers/favorite_channels_provider.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/presentation/widgets/guild_scroll_indicator.dart';
@@ -53,6 +52,14 @@ Future<void> _pumpSidebar(WidgetTester tester) async {
 
 const String _guildId = 'g1';
 const String _otherGuildId = 'g2';
+const GuildReadStateEntry _unreadGuildReadState = GuildReadStateEntry(
+  hasUnread: true,
+  hasPlainUnread: false,
+  mentionCount: 0,
+  mentionChannels: <String>{},
+  unreadChannelId: null,
+  sentinel: 0,
+);
 
 class _GuildSwitchTestHarness {
   String activeGuildId = _guildId;
@@ -765,9 +772,7 @@ void main() {
             ),
             selectedChannelId: 'c1',
             unread: unread,
-            guildReadState: {
-              _guildId: GuildReadStateEntry.empty.copyWith(hasUnread: true),
-            },
+            guildReadState: {_guildId: _unreadGuildReadState},
           ),
         ),
       );
@@ -822,9 +827,7 @@ void main() {
               ),
               selectedChannelId: 'c10',
               unread: unread,
-              guildReadState: {
-                _guildId: GuildReadStateEntry.empty.copyWith(hasUnread: true),
-              },
+              guildReadState: {_guildId: _unreadGuildReadState},
             ),
           ),
         );
@@ -899,8 +902,7 @@ void main() {
             container: container,
             child: MaterialApp(
               locale: kTestLocale,
-              localizationsDelegates:
-                  FluxerLocalizations.localizationsDelegates,
+              localizationsDelegates: fluxerLocalizationsDelegates,
               supportedLocales: FluxerLocalizations.supportedLocales,
               theme: buildFluxerTheme(
                 colorTheme: colorTheme,
@@ -1022,8 +1024,7 @@ void main() {
             container: container,
             child: MaterialApp(
               locale: kTestLocale,
-              localizationsDelegates:
-                  FluxerLocalizations.localizationsDelegates,
+              localizationsDelegates: fluxerLocalizationsDelegates,
               supportedLocales: FluxerLocalizations.supportedLocales,
               theme: buildFluxerTheme(
                 colorTheme: colorTheme,
@@ -1210,14 +1211,6 @@ List<Override> _buildOverrides({
     const Guild(id: _otherGuildId, name: 'Other Guild'),
   ];
   return [
-    // echowire: the sidebar nests joined threads under their channel, which
-    // makes guildActiveThreadsProvider fetch the guild thread list. Left live
-    // it reaches the network, fails, and leaves a pending timer that fails the
-    // test at teardown. Tests that care about nesting override it themselves.
-    guildActiveThreadsProvider.overrideWith(
-      (Ref ref, String guildId) =>
-          Stream<List<Channel>>.value(const <Channel>[]),
-    ),
     fluxerDatabaseProvider.overrideWithValue(db),
     currentUserIdProvider.overrideWithValue('me'),
     routeStateProvider.overrideWithValue(
@@ -1289,7 +1282,7 @@ Widget _buildTestApp({required List<Override> overrides}) {
   return ProviderScope(
     overrides: overrides,
     child: MaterialApp.router(
-      localizationsDelegates: FluxerLocalizations.localizationsDelegates,
+      localizationsDelegates: fluxerLocalizationsDelegates,
       supportedLocales: FluxerLocalizations.supportedLocales,
       theme: buildFluxerTheme(
         colorTheme: colorTheme,

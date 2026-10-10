@@ -74,6 +74,13 @@
 		FBBF3E5F2FB7A6FD0080FF5E /* NotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FBBF3E582FB7A6FD0080FF5E /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FBF7EE55306987EF00160D72 /* AppIconStarfield.icon in Resources */ = {isa = PBXBuildFile; fileRef = FBF7EE54306987EF00160D72 /* AppIconStarfield.icon */; };
 		FBF7EE57306989E000160D72 /* AppIconSweden.icon in Resources */ = {isa = PBXBuildFile; fileRef = FBF7EE56306989E000160D72 /* AppIconSweden.icon */; };
+		FBF9A1112F9E120000EA2D01 /* AppIconGreyscale.icon in Resources */ = {isa = PBXBuildFile; fileRef = FBF9A1012F9E120000EA2D01 /* AppIconGreyscale.icon */; };
+		FBF9A1122F9E120100EA2D02 /* AppIconRainbow.icon in Resources */ = {isa = PBXBuildFile; fileRef = FBF9A1022F9E120100EA2D02 /* AppIconRainbow.icon */; };
+		FBF9A1132F9E120200EA2D03 /* AppIconWaves.icon in Resources */ = {isa = PBXBuildFile; fileRef = FBF9A1032F9E120200EA2D03 /* AppIconWaves.icon */; };
+		FBF9A1142F9E120300EA2D04 /* AppIconChromaticAberration.icon in Resources */ = {isa = PBXBuildFile; fileRef = FBF9A1042F9E120300EA2D04 /* AppIconChromaticAberration.icon */; };
+		FBF9A1152F9E120400EA2D05 /* AppIconDefaultBrutalist.icon in Resources */ = {isa = PBXBuildFile; fileRef = FBF9A1052F9E120400EA2D05 /* AppIconDefaultBrutalist.icon */; };
+		FBF9A1162F9E120500EA2D06 /* AppIconGreyscaleBrutalist.icon in Resources */ = {isa = PBXBuildFile; fileRef = FBF9A1062F9E120500EA2D06 /* AppIconGreyscaleBrutalist.icon */; };
+		FBF9A1172F9E120600EA2D07 /* AppIconCanaryBrutalist.icon in Resources */ = {isa = PBXBuildFile; fileRef = FBF9A1072F9E120600EA2D07 /* AppIconCanaryBrutalist.icon */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -268,6 +275,13 @@
 		FD58880BB4495395298E1AE8 /* Pods-RunnerTests.release-stable.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release-stable.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release-stable.xcconfig"; sourceTree = "<group>"; };
 		FBF7EE54306987EF00160D72 /* AppIconStarfield.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconStarfield.icon; sourceTree = "<group>"; };
 		FBF7EE56306989E000160D72 /* AppIconSweden.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconSweden.icon; sourceTree = "<group>"; };
+		FBF9A1012F9E120000EA2D01 /* AppIconGreyscale.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconGreyscale.icon; sourceTree = "<group>"; };
+		FBF9A1022F9E120100EA2D02 /* AppIconRainbow.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconRainbow.icon; sourceTree = "<group>"; };
+		FBF9A1032F9E120200EA2D03 /* AppIconWaves.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconWaves.icon; sourceTree = "<group>"; };
+		FBF9A1042F9E120300EA2D04 /* AppIconChromaticAberration.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconChromaticAberration.icon; sourceTree = "<group>"; };
+		FBF9A1052F9E120400EA2D05 /* AppIconDefaultBrutalist.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconDefaultBrutalist.icon; sourceTree = "<group>"; };
+		FBF9A1062F9E120500EA2D06 /* AppIconGreyscaleBrutalist.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconGreyscaleBrutalist.icon; sourceTree = "<group>"; };
+		FBF9A1072F9E120600EA2D07 /* AppIconCanaryBrutalist.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconCanaryBrutalist.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -526,6 +540,13 @@
 			isa = PBXGroup;
 			children = (
 				FBF7EE56306989E000160D72 /* AppIconSweden.icon */,
+				FBF9A1012F9E120000EA2D01 /* AppIconGreyscale.icon */,
+				FBF9A1022F9E120100EA2D02 /* AppIconRainbow.icon */,
+				FBF9A1032F9E120200EA2D03 /* AppIconWaves.icon */,
+				FBF9A1042F9E120300EA2D04 /* AppIconChromaticAberration.icon */,
+				FBF9A1052F9E120400EA2D05 /* AppIconDefaultBrutalist.icon */,
+				FBF9A1062F9E120500EA2D06 /* AppIconGreyscaleBrutalist.icon */,
+				FBF9A1072F9E120600EA2D07 /* AppIconCanaryBrutalist.icon */,
 				FBF7EE54306987EF00160D72 /* AppIconStarfield.icon */,
 			);
 			path = AppIcons;
@@ -735,6 +756,13 @@
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 				FBF7EE55306987EF00160D72 /* AppIconStarfield.icon in Resources */,
 				FBF7EE57306989E000160D72 /* AppIconSweden.icon in Resources */,
+				FBF9A1112F9E120000EA2D01 /* AppIconGreyscale.icon in Resources */,
+				FBF9A1122F9E120100EA2D02 /* AppIconRainbow.icon in Resources */,
+				FBF9A1132F9E120200EA2D03 /* AppIconWaves.icon in Resources */,
+				FBF9A1142F9E120300EA2D04 /* AppIconChromaticAberration.icon in Resources */,
+				FBF9A1152F9E120400EA2D05 /* AppIconDefaultBrutalist.icon in Resources */,
+				FBF9A1162F9E120500EA2D06 /* AppIconGreyscaleBrutalist.icon in Resources */,
+				FBF9A1172F9E120600EA2D07 /* AppIconCanaryBrutalist.icon in Resources */,
 				FB0ADBE12F5C93000078A4F1 /* message.caf in Resources */,
 				FB0ADBE22F5C93000078A4F2 /* direct_message.caf in Resources */,
 				FB0AF0092F5C97000078A538 /* incoming_ring.caf in Resources */,
@@ -1106,7 +1134,7 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconStarfield AppIconSweden";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconCanaryBrutalist AppIconChromaticAberration AppIconDefaultBrutalist AppIconGreyscale AppIconGreyscaleBrutalist AppIconRainbow AppIconStarfield AppIconSweden AppIconWaves";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -1626,7 +1654,7 @@
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconStarfield AppIconSweden";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconCanaryBrutalist AppIconChromaticAberration AppIconDefaultBrutalist AppIconGreyscale AppIconGreyscaleBrutalist AppIconRainbow AppIconStarfield AppIconSweden AppIconWaves";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -1660,7 +1688,7 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconStarfield AppIconSweden";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconCanaryBrutalist AppIconChromaticAberration AppIconDefaultBrutalist AppIconGreyscale AppIconGreyscaleBrutalist AppIconRainbow AppIconStarfield AppIconSweden AppIconWaves";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -1786,7 +1814,7 @@
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconStarfield AppIconSweden";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconCanaryBrutalist AppIconChromaticAberration AppIconDefaultBrutalist AppIconGreyscale AppIconGreyscaleBrutalist AppIconRainbow AppIconStarfield AppIconSweden AppIconWaves";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -1835,7 +1863,7 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconStarfield AppIconSweden";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconCanaryBrutalist AppIconChromaticAberration AppIconDefaultBrutalist AppIconGreyscale AppIconGreyscaleBrutalist AppIconRainbow AppIconStarfield AppIconSweden AppIconWaves";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -1928,7 +1956,7 @@
 			baseConfigurationReference = 4F9A2B16A1C34D3E9B5A8D21 /* Profile.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconStarfield AppIconSweden";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconCanaryBrutalist AppIconChromaticAberration AppIconDefaultBrutalist AppIconGreyscale AppIconGreyscaleBrutalist AppIconRainbow AppIconStarfield AppIconSweden AppIconWaves";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -2069,7 +2097,7 @@
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconStarfield AppIconSweden";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconCanaryBrutalist AppIconChromaticAberration AppIconDefaultBrutalist AppIconGreyscale AppIconGreyscaleBrutalist AppIconRainbow AppIconStarfield AppIconSweden AppIconWaves";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -2118,7 +2146,7 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconStarfield AppIconSweden";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconCanaryBrutalist AppIconChromaticAberration AppIconDefaultBrutalist AppIconGreyscale AppIconGreyscaleBrutalist AppIconRainbow AppIconStarfield AppIconSweden AppIconWaves";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -2166,7 +2194,7 @@
 			baseConfigurationReference = 4F9A2B16A1C34D3E9B5A8D21 /* Profile.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconStarfield AppIconSweden";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconCanaryBrutalist AppIconChromaticAberration AppIconDefaultBrutalist AppIconGreyscale AppIconGreyscaleBrutalist AppIconRainbow AppIconStarfield AppIconSweden AppIconWaves";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -3375,7 +3403,7 @@
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconStarfield AppIconSweden";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconCanaryBrutalist AppIconChromaticAberration AppIconDefaultBrutalist AppIconGreyscale AppIconGreyscaleBrutalist AppIconRainbow AppIconStarfield AppIconSweden AppIconWaves";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -3424,7 +3452,7 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconStarfield AppIconSweden";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconCanaryBrutalist AppIconChromaticAberration AppIconDefaultBrutalist AppIconGreyscale AppIconGreyscaleBrutalist AppIconRainbow AppIconStarfield AppIconSweden AppIconWaves";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -3472,7 +3500,7 @@
 			baseConfigurationReference = 4F9A2B16A1C34D3E9B5A8D21 /* Profile.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconStarfield AppIconSweden";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconCanaryBrutalist AppIconChromaticAberration AppIconDefaultBrutalist AppIconGreyscale AppIconGreyscaleBrutalist AppIconRainbow AppIconStarfield AppIconSweden AppIconWaves";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";

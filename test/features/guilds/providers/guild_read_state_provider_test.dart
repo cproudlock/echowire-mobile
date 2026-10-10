@@ -17,6 +17,7 @@ import 'package:fluxer_app/features/channels/data/read_state_utils.dart';
 import 'package:fluxer_app/features/chat/data/message_write_batcher.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_read_state_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_read_state_ready_provider.dart';
+import 'package:fluxer_app/features/threads/providers/thread_guild_gate_provider.dart';
 import 'package:fluxer_app/shared/utils/snowflake_time.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:fluxer_dart/gateway.dart' show MessageDeleteEvent;
@@ -245,7 +246,7 @@ void main() {
     final beforeA = container.read(guildReadStateProvider)['guild-A']!;
     final beforeB = container.read(guildReadStateProvider)['guild-B']!;
 
-    await db.readStateDao.incrementMentionCount('c-A1');
+    await _bumpMentionCount(db, 'c-A1');
     await _waitFor(
       () =>
           (container.read(guildReadStateProvider)['guild-A']?.mentionCount ??
@@ -704,7 +705,7 @@ void main() {
       await _waitForGuildState(container1, 'g');
       final before = container1.read(guildReadStateProvider)['g']!;
 
-      await db1.readStateDao.incrementMentionCount('c2');
+      await _bumpMentionCount(db1, 'c2');
       await _waitFor(
         () =>
             (container1.read(guildReadStateProvider)['g']?.mentionCount ?? 0) ==
@@ -1319,4 +1320,160 @@ void main() {
       },
     );
   });
+
+  group('joined thread contribution', () {
+    Future<ProviderContainer> seedThread(
+      FluxerDatabase db, {
+      bool memberMuted = false,
+      bool threadsActive = true,
+      List<String> mutedOverrides = const <String>[],
+    }) async {
+      final lastMessageId = _recentSnowflake();
+      await _seedGuild(
+        db,
+        'guild-1',
+        channels: [
+          (id: 'category-1', name: 'cat', type: 4, lastMessageId: null),
+        ],
+      );
+      await db.channelDao.upsertChannel(
+        ChannelsCompanion.insert(
+          id: 'parent-1',
+          guildId: 'guild-1',
+          name: 'general',
+          parentId: const Value('category-1'),
+        ),
+      );
+      await db.channelDao.upsertChannel(
+        ChannelsCompanion.insert(
+          id: 'thread-1',
+          guildId: 'guild-1',
+          name: 'thread',
+          type: const Value(11),
+          parentId: const Value('parent-1'),
+          lastMessageId: Value(lastMessageId),
+        ),
+      );
+      await db.messageDao.upsertMessage(
+        _cachedMessage(id: lastMessageId, channelId: 'thread-1'),
+      );
+      await db.threadDao.upsertMember(
+        ThreadMembersCompanion.insert(
+          threadId: 'thread-1',
+          guildId: 'guild-1',
+          muted: Value(memberMuted),
+        ),
+      );
+      await db.readStateDao.upsertReadState(
+        ReadStatesCompanion(
+          channelId: const Value('thread-1'),
+          lastMessageId: Value(snowflakeAtPreviousMillisecond(lastMessageId)),
+        ),
+      );
+      if (mutedOverrides.isNotEmpty) {
+        await _seedMutedChannelOverrides(db, 'guild-1', mutedOverrides);
+      }
+      final container = _container(db);
+      addTearDown(container.dispose);
+      container
+          .read(threadsGateProvider)
+          .apply('guild-1', active: threadsActive);
+      container.read(gatewayReadyProvider.notifier).setReady();
+      final sub = container.listen(
+        guildReadStateProvider,
+        (_, _) {},
+        fireImmediately: true,
+      );
+      addTearDown(sub.close);
+      await _waitUntilReady(container);
+      return container;
+    }
+
+    test('an unmuted joined thread lights the guild', () async {
+      final db = openTestDatabase();
+      final container = await seedThread(db);
+      await _waitForGuildState(container, 'guild-1');
+      expect(
+        container.read(guildReadStateProvider)['guild-1']?.hasUnread,
+        isTrue,
+      );
+    });
+
+    test(
+      'a joined thread lights the guild only while the gate is on',
+      () async {
+        final db = openTestDatabase();
+        final container = await seedThread(db, threadsActive: false);
+        expect(
+          container.read(guildReadStateProvider)['guild-1']?.hasUnread ?? false,
+          isFalse,
+        );
+        container.read(threadsGateProvider).apply('guild-1', active: true);
+        await _waitFor(
+          () =>
+              container.read(guildReadStateProvider)['guild-1']?.hasUnread ??
+              false,
+        );
+        container.read(threadsGateProvider).resetConnection();
+        await _waitFor(
+          () =>
+              container.read(guildReadStateProvider)['guild-1']?.hasUnread ==
+              false,
+        );
+      },
+    );
+
+    test('a muted joined thread does not light the guild', () async {
+      final db = openTestDatabase();
+      final container = await seedThread(db, memberMuted: true);
+      expect(
+        container.read(guildReadStateProvider)['guild-1']?.hasUnread ?? false,
+        isFalse,
+      );
+    });
+
+    test('muting the thread member row clears the guild unread', () async {
+      final db = openTestDatabase();
+      final container = await seedThread(db);
+      await _waitForGuildState(container, 'guild-1');
+      await db.threadDao.upsertMember(
+        ThreadMembersCompanion.insert(
+          threadId: 'thread-1',
+          guildId: 'guild-1',
+          muted: const Value(true),
+        ),
+      );
+      await _waitFor(
+        () =>
+            container.read(guildReadStateProvider)['guild-1']?.hasUnread ==
+            false,
+      );
+    });
+
+    test('a muted parent category suppresses the thread', () async {
+      final db = openTestDatabase();
+      final container = await seedThread(
+        db,
+        mutedOverrides: const <String>['category-1'],
+      );
+      expect(
+        container.read(guildReadStateProvider)['guild-1']?.hasUnread ?? false,
+        isFalse,
+      );
+    });
+  });
+}
+
+Future<void> _bumpMentionCount(FluxerDatabase db, String channelId) async {
+  final ReadState? existing = await db.readStateDao.getReadState(channelId);
+  await db.readStateDao.upsertReadState(
+    ReadStatesCompanion(
+      channelId: Value(channelId),
+      lastMessageId: Value(existing?.lastMessageId),
+      mentionCount: Value((existing?.mentionCount ?? 0) + 1),
+      lastPinTimestamp: Value(existing?.lastPinTimestamp),
+      manual: Value(existing?.manual ?? false),
+      stickyUnreadMessageId: Value(existing?.stickyUnreadMessageId),
+    ),
+  );
 }

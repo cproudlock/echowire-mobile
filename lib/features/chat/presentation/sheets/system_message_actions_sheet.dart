@@ -141,8 +141,6 @@ Future<void> showSystemMessageActionsSheet(
       break;
     case MessageAction.reply:
     case MessageAction.forward:
-    case MessageAction.addToPost:
-    case MessageAction.createThread:
     case MessageAction.edit:
     case MessageAction.pin:
     case MessageAction.publish:
@@ -152,6 +150,7 @@ Future<void> showSystemMessageActionsSheet(
     case MessageAction.report:
     case MessageAction.retry:
     case MessageAction.deleteFailed:
+    case MessageAction.createThread:
       break;
   }
 }

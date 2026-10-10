@@ -1,7 +1,9 @@
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
+import 'package:fluxer_app/features/channels/domain/channel.dart' show Channel;
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/settings/domain/guild/guild_audit_log_entry.dart';
 import 'package:fluxer_app/features/settings/domain/guild/guild_settings_details.dart';
+import 'package:fluxer_app/features/threads/domain/thread_channel.dart';
 import 'package:fluxer_app/shared/utils/snowflake_time.dart';
 import 'package:fluxer_dart/export.dart';
 
@@ -28,7 +30,10 @@ GuildSettingsDetails guildSettingsDetailsFromSdk(
   );
 }
 
-GuildAuditLogPage guildAuditLogPageFromSdk(GuildAuditLogListResponse sdk) {
+GuildAuditLogPage guildAuditLogPageFromSdk(
+  GuildAuditLogListResponse sdk, {
+  required String guildId,
+}) {
   final Map<String, GuildAuditLogUser> users = <String, GuildAuditLogUser>{
     for (final UserPartialResponse user in sdk.users)
       user.id: GuildAuditLogUser(
@@ -38,26 +43,23 @@ GuildAuditLogPage guildAuditLogPageFromSdk(GuildAuditLogListResponse sdk) {
         avatarHash: user.avatar,
         avatarColor: user.avatarColor,
         isBot: user.bot ?? false,
-        displayName: user.globalName ?? user.username,
         avatarUrl: FluxerMediaUrl.userAvatar(
           userId: user.id,
           hash: user.avatar,
         ),
       ),
   };
-  final Map<String, String> userNames = <String, String>{
-    for (final MapEntry<String, GuildAuditLogUser> entry in users.entries)
-      entry.key: entry.value.displayName,
-  };
   final List<GuildAuditLogEntry> entries = sdk.auditLogEntries
       .map(guildAuditLogEntryFromSdk)
       .toList();
-  final String? nextBefore = entries.isNotEmpty ? entries.last.id : null;
   return GuildAuditLogPage(
     entries: entries,
-    userNames: userNames,
     users: users,
-    nextBefore: nextBefore,
+    threads: <String, Channel>{
+      for (final ThreadChannelResponse thread
+          in sdk.threads ?? const <ThreadChannelResponse>[])
+        thread.id: threadFromResponse(thread, guildId),
+    },
   );
 }
 
@@ -70,16 +72,11 @@ GuildAuditLogEntryOptions? guildAuditLogEntryOptionsFromSdk(
   return GuildAuditLogEntryOptions(
     channelId: sdk.channelId,
     count: sdk.count,
-    deleteMemberDays: sdk.deleteMemberDays,
-    id: sdk.id,
-    integrationType: sdk.integrationType,
     messageId: sdk.messageId,
     membersRemoved: sdk.membersRemoved,
     roleName: sdk.roleName,
-    type: sdk.type,
     inviterId: sdk.inviterId,
     maxAge: sdk.maxAge,
-    maxUses: sdk.maxUses,
     temporary: sdk.temporary,
     uses: sdk.uses,
   );

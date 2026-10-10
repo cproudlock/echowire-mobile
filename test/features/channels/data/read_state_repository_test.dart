@@ -280,7 +280,7 @@ void main() {
     expect(readState?.lastPinTimestamp, latestPin);
   });
 
-  test('cleanupStaleReadStates deletes remote and local stale rows', () async {
+  test('cleanupStaleReadStates deletes stale rows locally only', () async {
     final dio = Dio(BaseOptions(baseUrl: 'https://api.fluxer.app/v1'))
       ..httpClientAdapter = _RecordingAdapter();
     final db = openTestDatabase();
@@ -307,13 +307,109 @@ void main() {
     await ReadStateRepository(FluxerClient(dio), db).cleanupStaleReadStates();
 
     final adapter = dio.httpClientAdapter as _RecordingAdapter;
-    expect(adapter.requests, [
-      ('DELETE', '/v1/channels/missing-1/messages/ack'),
-    ]);
+    expect(adapter.requests, isEmpty);
     expect(await db.readStateDao.getReadState('missing-1'), null);
     expect(await db.readStateDao.getReadState('channel-1'), isA<ReadState>());
     expect(await db.readStateDao.getReadState('dm-1'), isA<ReadState>());
   });
+
+  test(
+    'cleanupStaleReadStates keeps unknown thread rows without a server delete',
+    () async {
+      final dio = Dio(BaseOptions(baseUrl: 'https://api.fluxer.app/v1'))
+        ..httpClientAdapter = _RecordingAdapter();
+      final db = openTestDatabase();
+      final DateTime now = DateTime.utc(2026, 9, 28);
+      await db.channelDao.upsertChannel(
+        ChannelsCompanion.insert(
+          id: 'thread-known',
+          guildId: 'guild-1',
+          name: 'known',
+          type: const Value(11),
+        ),
+      );
+      await db.readStateDao.upsertReadStates(<ReadStatesCompanion>[
+        const ReadStatesCompanion(
+          channelId: Value('thread-new'),
+          flags: Value(3),
+        ),
+        ReadStatesCompanion(
+          channelId: const Value('thread-old'),
+          flags: const Value(3),
+          missingSince: Value(now.subtract(const Duration(days: 31))),
+        ),
+        ReadStatesCompanion(
+          channelId: const Value('thread-known'),
+          flags: const Value(3),
+          missingSince: Value(now.subtract(const Duration(days: 2))),
+        ),
+        const ReadStatesCompanion(channelId: Value('missing-1')),
+      ]);
+
+      await ReadStateRepository(
+        FluxerClient(dio),
+        db,
+      ).cleanupStaleReadStates(now: now);
+
+      final adapter = dio.httpClientAdapter as _RecordingAdapter;
+      expect(adapter.requests, isEmpty);
+      expect(
+        (await db.readStateDao.getReadState(
+          'thread-new',
+        ))?.missingSince?.isAtSameMomentAs(now),
+        isTrue,
+      );
+      expect(await db.readStateDao.getReadState('thread-old'), null);
+      final ReadState? known = await db.readStateDao.getReadState(
+        'thread-known',
+      );
+      expect(known, isA<ReadState>());
+      expect(known?.missingSince, null);
+    },
+  );
+
+  test(
+    'cleanupStaleReadStates keeps a locally acked thread row after its thread is pruned',
+    () async {
+      final dio = Dio(BaseOptions(baseUrl: 'https://api.fluxer.app/v1'))
+        ..httpClientAdapter = _RecordingAdapter();
+      final db = openTestDatabase();
+      final DateTime now = DateTime.utc(2026, 9, 28);
+      final String messageId = _snowflakeForUtc(DateTime.utc(2026, 9, 27));
+      await db.channelDao.upsertChannel(
+        ChannelsCompanion.insert(
+          id: 'thread-1',
+          guildId: 'guild-1',
+          name: 'thread',
+          type: const Value(11),
+          parentId: const Value('parent-1'),
+        ),
+      );
+      final ReadStateRepository repository = ReadStateRepository(
+        FluxerClient(dio),
+        db,
+      );
+      await repository.applyLocalAck(
+        channelId: 'thread-1',
+        messageId: messageId,
+        mentionCount: 0,
+      );
+      expect((await db.readStateDao.getReadState('thread-1'))?.flags, null);
+
+      await db.threadDao.pruneActiveThreads(
+        guildId: 'guild-1',
+        parentIds: null,
+        keepIds: const <String>{},
+      );
+      await repository.cleanupStaleReadStates(now: now);
+
+      final adapter = dio.httpClientAdapter as _RecordingAdapter;
+      expect(adapter.requests, isEmpty);
+      final ReadState? row = await db.readStateDao.getReadState('thread-1');
+      expect(isThreadReadState(row?.flags), isTrue);
+      expect(row?.missingSince?.isAtSameMomentAs(now), isTrue);
+    },
+  );
 
   test('markMessageUnread manually acks the previous message', () async {
     final firstId = _snowflakeForUtc(DateTime.utc(2026, 5, 6, 12));

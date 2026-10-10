@@ -9,6 +9,12 @@ import 'package:fluxer_app/features/channels/data/read_state_utils.dart';
 import 'package:fluxer_app/features/channels/data/unread_settings_resolver.dart';
 import 'package:fluxer_dart/export.dart';
 
+const int readStateFlagIsThread = 1 << 1;
+const Duration threadReadStateRetention = Duration(days: 30);
+
+bool isThreadReadState(int? flags) =>
+    flags != null && (flags & readStateFlagIsThread) != 0;
+
 class ReadStateRepository {
   const ReadStateRepository(
     this._client,
@@ -42,42 +48,6 @@ class ReadStateRepository {
     await sendAckHttp(channelId, messageId);
   }
 
-  /// Echowire: marks a forum as visited up to [activityId], the newest post
-  /// activity (post id or last message id). The forum's read state is the
-  /// "last visit" marker its sidebar "N New" count compares against. Never
-  /// regresses an existing ack.
-  Future<void> ackForumActivity(String forumId, String activityId) async {
-    final String? acked = await applyLocalAckUpTo(forumId, activityId);
-    if (acked == null) {
-      return;
-    }
-    await sendAckHttp(forumId, acked);
-  }
-
-  /// Echowire: "Mark As Read" for a forum: acks the forum up to its newest
-  /// post activity and bulk-acks every open post.
-  Future<void> markForumRead(String forumId) async {
-    final List<Channel> posts = await _db.channelDao
-        .watchThreadsForParent(forumId)
-        .first;
-    final List<Channel> open = posts
-        .where((Channel p) => !(p.threadArchived ?? false))
-        .toList();
-    String? newest;
-    for (final Channel p in open) {
-      final String activity = compareSnowflakeIds(p.lastMessageId, p.id) > 0
-          ? p.lastMessageId!
-          : p.id;
-      if (newest == null || compareSnowflakeIds(activity, newest) > 0) {
-        newest = activity;
-      }
-    }
-    if (newest != null) {
-      await ackForumActivity(forumId, newest);
-    }
-    await ackLatestBulk(open.map((Channel p) => p.id));
-  }
-
   Future<void> clearSticky(String channelId) =>
       _db.readStateDao.clearStickyUnread(channelId);
 
@@ -99,6 +69,7 @@ class ReadStateRepository {
           lastMessageId: Value(rs.lastMessageId),
           mentionCount: Value(rs.mentionCount),
           version: Value(rs.version),
+          flags: rs.flags == null ? const Value.absent() : Value(rs.flags),
         ),
       );
       final dm = await _db.dmChannelDao.getDmChannelById(rs.id);
@@ -259,59 +230,61 @@ class ReadStateRepository {
     );
   }
 
-  Future<void> cleanupStaleReadStates({
-    int maxConcurrentHttp = 3,
-    int maxConsecutiveFailures = 5,
-  }) async {
+  Future<void> cleanupStaleReadStates({DateTime? now}) async {
     final readStates = await _db.readStateDao.getReadStates();
     if (readStates.isEmpty) {
       return;
     }
     // Per-row point reads here starve the first channel switch after READY.
     final knownChannelIds = <String>{
-      for (final channel in await _db.channelDao.getAllChannels()) channel.id,
+      for (final channel in await _db.channelDao.getAllChannels(
+        includeThreads: true,
+      ))
+        channel.id,
       for (final dm in await _db.dmChannelDao.getDmChannels()) dm.id,
     };
-    final staleChannelIds = <String>[
-      for (final readState in readStates)
-        if (!knownChannelIds.contains(readState.channelId)) readState.channelId,
-    ];
+    final DateTime clock = now ?? DateTime.now();
+    final staleChannelIds = <String>[];
+    final missingThreadIds = <String>[];
+    final expiredThreadIds = <String>[];
+    final foundThreadIds = <String>[];
+    for (final readState in readStates) {
+      final bool known = knownChannelIds.contains(readState.channelId);
+      if (!isThreadReadState(readState.flags)) {
+        if (!known) {
+          staleChannelIds.add(readState.channelId);
+        }
+        continue;
+      }
+      final DateTime? missingSince = readState.missingSince;
+      if (known) {
+        if (missingSince != null) {
+          foundThreadIds.add(readState.channelId);
+        }
+      } else if (missingSince == null) {
+        missingThreadIds.add(readState.channelId);
+      } else if (clock.difference(missingSince) >= threadReadStateRetention) {
+        expiredThreadIds.add(readState.channelId);
+      }
+    }
+    if (missingThreadIds.isNotEmpty ||
+        expiredThreadIds.isNotEmpty ||
+        foundThreadIds.isNotEmpty) {
+      await _db.transaction(() async {
+        await _db.readStateDao.setMissingSince(missingThreadIds, clock);
+        await _db.readStateDao.setMissingSince(foundThreadIds, null);
+        await _db.readStateDao.deleteReadStatesForChannels(expiredThreadIds);
+      });
+    }
     if (staleChannelIds.isEmpty) {
       return;
     }
-    staleChannelIds.sort();
 
     await _db.transaction(() async {
       for (final channelId in staleChannelIds) {
         await _db.readStateDao.deleteReadState(channelId);
       }
     });
-
-    var consecutiveFailures = 0;
-    for (var i = 0; i < staleChannelIds.length; i += maxConcurrentHttp) {
-      final end = (i + maxConcurrentHttp).clamp(0, staleChannelIds.length);
-      final chunk = staleChannelIds.sublist(i, end);
-      final results = await Future.wait(
-        chunk.map((channelId) async {
-          try {
-            await _client.channels.clearChannelReadState(channelId: channelId);
-            return true;
-          } on Exception {
-            return false;
-          }
-        }),
-      );
-      for (final ok in results) {
-        if (ok) {
-          consecutiveFailures = 0;
-        } else {
-          consecutiveFailures++;
-          if (consecutiveFailures >= maxConsecutiveFailures) {
-            return;
-          }
-        }
-      }
-    }
   }
 
   Future<void> ackPins(String channelId) async {

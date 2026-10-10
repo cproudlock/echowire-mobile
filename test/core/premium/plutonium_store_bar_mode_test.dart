@@ -14,7 +14,6 @@ PremiumSubscriptionStatus _status({
 }) {
   return PremiumSubscriptionStatus(
     isPremium: isPremium,
-    perksDisabled: false,
     isVisionary: isVisionary,
     hasEverPurchased: shouldShowPremiumCard,
     premiumWillCancel: false,
@@ -24,13 +23,11 @@ PremiumSubscriptionStatus _status({
     gracePeriodInfo: PremiumGracePeriodInfo(
       isInGracePeriod: inGrace,
       isExpired: expired,
-      graceEndDate: null,
       showExpiredState: showExpired,
     ),
     shouldShowPremiumCard: shouldShowPremiumCard,
     shouldUseCancelQuickAction: false,
     shouldUseReactivateQuickAction: false,
-    shouldUseChangePlanQuickAction: false,
   );
 }
 
@@ -81,7 +78,7 @@ void main() {
       );
     });
 
-    test('blocks recurring purchase while a gift is active', () {
+    test('offers the gift buy bar while a gift is active', () {
       expect(
         premiumStoreBarMode(
           status: _status(

@@ -10,11 +10,11 @@ import 'package:fluxer_app/features/channels/providers/channel_list_view_model.d
 import 'package:fluxer_app/features/channels/providers/channel_mute_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_channel_unread_snapshot_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_collapsed_categories_provider.dart';
-import 'package:fluxer_app/features/channels/providers/thread_providers.dart';
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_mute_provider.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
+import 'package:fluxer_app/features/threads/providers/thread_ui_providers.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -36,17 +36,15 @@ class GuildSidebarEntry {
     this.isCategoryCollapsed = false,
     this.channel,
     this.guildId,
-    this.isLastInGroup = false,
+    this.isLastThread = false,
   });
 
   final GuildSidebarEntryKind kind;
-
-  /// Echowire: the last nested thread under its parent (ends the tree line).
-  final bool isLastInGroup;
   final ChannelCategory? category;
   final bool isCategoryCollapsed;
   final Channel? channel;
   final String? guildId;
+  final bool isLastThread;
 
   @override
   bool operator ==(Object other) {
@@ -56,7 +54,7 @@ class GuildSidebarEntry {
         category == other.category &&
         channel == other.channel &&
         guildId == other.guildId &&
-        isLastInGroup == other.isLastInGroup;
+        isLastThread == other.isLastThread;
   }
 
   @override
@@ -66,7 +64,7 @@ class GuildSidebarEntry {
     category,
     channel,
     guildId,
-    isLastInGroup,
+    isLastThread,
   );
 }
 
@@ -129,9 +127,32 @@ List<GuildSidebarEntry> flattenGuildSidebarEntries({
   required bool showFadedUnread,
   required String guildId,
   required UnreadState? Function(String channelId) unreadForChannel,
-  required Map<String, List<Channel>> threadsByParent,
+  Map<String, List<Channel>> threadsByParent = const <String, List<Channel>>{},
 }) {
   final List<GuildSidebarEntry> entries = <GuildSidebarEntry>[];
+  void addThreads(Channel parent, {required bool onlySelected}) {
+    final List<Channel>? threads = threadsByParent[parent.id];
+    if (threads == null) {
+      return;
+    }
+    final List<Channel> shown = onlySelected
+        ? <Channel>[
+            for (final Channel thread in threads)
+              if (thread.id == selectedId) thread,
+          ]
+        : threads;
+    for (int i = 0; i < shown.length; i++) {
+      entries.add(
+        GuildSidebarEntry(
+          kind: GuildSidebarEntryKind.thread,
+          channel: shown[i],
+          guildId: guildId,
+          isLastThread: i == shown.length - 1,
+        ),
+      );
+    }
+  }
+
   for (final ChannelCategory category in categories) {
     final bool isCollapsed = collapsed.contains(category.id);
     final bool isCategoryMuted = mutedSet.contains(category.id);
@@ -175,9 +196,14 @@ List<GuildSidebarEntry> flattenGuildSidebarEntries({
 
     if (!category.isUncategorized && isCollapsed) {
       for (final Channel channel in base) {
+        final bool hasSelectedThread =
+            threadsByParent[channel.id]?.any(
+              (Channel thread) => thread.id == selectedId,
+            ) ??
+            false;
         if (shouldShowChannelInCollapsedCategory(
           isCategoryMuted: isCategoryMuted,
-          isSelected: channel.id == selectedId,
+          isSelected: channel.id == selectedId || hasSelectedThread,
           isConnected: channel.id == connectedChannelId,
           hasVisibleUnread: _hasVisibleUnreadForChannel(
             unread: unreadForChannel(channel.id),
@@ -193,6 +219,7 @@ List<GuildSidebarEntry> flattenGuildSidebarEntries({
             ),
           );
         }
+        addThreads(channel, onlySelected: true);
       }
       continue;
     }
@@ -204,25 +231,13 @@ List<GuildSidebarEntry> flattenGuildSidebarEntries({
           channel: channel,
         ),
       );
+      addThreads(channel, onlySelected: false);
       if (channel.type == ChannelType.guildVoice) {
         entries.add(
           GuildSidebarEntry(
             kind: GuildSidebarEntryKind.voiceParticipants,
             channel: channel,
             guildId: guildId,
-          ),
-        );
-      }
-      // Echowire: nest the user's active threads under their parent channel.
-      final List<Channel> nested =
-          threadsByParent[channel.id] ?? const <Channel>[];
-      for (int i = 0; i < nested.length; i++) {
-        entries.add(
-          GuildSidebarEntry(
-            kind: GuildSidebarEntryKind.thread,
-            channel: nested[i],
-            guildId: guildId,
-            isLastInGroup: i == nested.length - 1,
           ),
         );
       }
@@ -250,6 +265,9 @@ List<GuildSidebarEntry> guildSidebarEntries(Ref ref) {
   final Set<String> collapsed =
       ref.watch(guildCollapsedCategoriesProvider(guild.id)).value ??
       const <String>{};
+  final Map<String, List<Channel>> threadsByParent = ref.watch(
+    sidebarThreadsByParentProvider(guildId),
+  );
   final bool selectionChangesMembership =
       hideMutedChannels || collapsed.isNotEmpty;
   final Map<String, UnreadState> unreadSnapshot = selectionChangesMembership
@@ -266,34 +284,6 @@ List<GuildSidebarEntry> guildSidebarEntries(Ref ref) {
       (AppearancePreferencesState s) => s.showFadedUnreadOnMutedChannels,
     ),
   );
-  final List<Channel> guildThreads =
-      ref.watch(guildActiveThreadsProvider(guildId)).value ?? const <Channel>[];
-  // Like Discord, only threads and posts the user has joined are nested, plus
-  // the one being viewed. Servers without the guild threads endpoint cannot
-  // report membership, so unknown threads stay visible there.
-  final Map<String, bool> memberships = ref.watch(threadMembershipsProvider);
-  final String? viewingId = ref.watch(activeChannelIdProvider);
-  final bool membershipKnown = ref
-      .read(threadRepositoryProvider)
-      .guildActiveThreadsSupported;
-  final Map<String, List<Channel>> threadsByParent = <String, List<Channel>>{};
-  for (final Channel t in guildThreads) {
-    final String? pid = t.parentId;
-    final bool? joined = memberships[t.id];
-    final bool show =
-        (joined ?? false) ||
-        t.id == viewingId ||
-        (joined == null && !membershipKnown);
-    if (pid != null && show) {
-      (threadsByParent[pid] ??= <Channel>[]).add(t);
-    }
-  }
-  for (final List<Channel> group in threadsByParent.values) {
-    group.sort(
-      (Channel a, Channel b) =>
-          compareSnowflakeStrings(b.activityId, a.activityId),
-    );
-  }
   return _GuildSidebarEntries(
     flattenGuildSidebarEntries(
       categories: categories,

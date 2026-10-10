@@ -122,15 +122,7 @@ ChannelMenuState resolveChannelMenuState({
   final bool isTextChannel = isAnnouncementConvertibleChannel(channel.type);
   final bool isVoiceChannel = channel.type == ChannelType.guildVoice;
   final bool isLinkChannel = channel.type == ChannelType.guildLink;
-  // Echowire: forums and threads get the channel menu too.
-  final bool isForumChannel = channel.isForum;
-  final bool isThreadChannel = channel.isThread;
-  final bool isGuildChannel =
-      isTextChannel ||
-      isVoiceChannel ||
-      isLinkChannel ||
-      isForumChannel ||
-      isThreadChannel;
+  final bool isGuildChannel = isTextChannel || isVoiceChannel || isLinkChannel;
   final int bits = permissionBits ?? 0;
   final bool canManageChannels = hasPermission(bits, Permission.manageChannels);
   final bool canUpdateRtcRegion =
@@ -154,18 +146,16 @@ ChannelMenuState resolveChannelMenuState({
   final bool showOpenChat =
       isVoiceChannel && !voiceChannelJoinRequiresDoubleClick;
   final bool canOpenLink = isLinkChannel && (channel.url?.isNotEmpty ?? false);
-  final bool showMute =
-      isTextChannel || isVoiceChannel || isForumChannel || isThreadChannel;
+  final bool showMute = isTextChannel || isVoiceChannel;
   return ChannelMenuState(
-    // Forums and threads use the text channel layout of the menu.
-    isTextChannel: isTextChannel || isForumChannel || isThreadChannel,
+    isTextChannel: isTextChannel,
     isVoiceChannel: isVoiceChannel,
     isLinkChannel: isLinkChannel,
     showOpenChat: showOpenChat,
     showMarkAsRead: isGuildChannel && hasUnread,
     showFavorites: showFavorites,
     isFavorite: isFavorite,
-    canInvite: inviteCapability.canInvite && !isThreadChannel,
+    canInvite: inviteCapability.canInvite,
     useVanityInvite: inviteCapability.useVanityUrl,
     vanityUrlCode: inviteCapability.vanityUrlCode,
     canOpenLink: canOpenLink,
@@ -174,12 +164,11 @@ ChannelMenuState resolveChannelMenuState({
     isMuted: isMuted,
     mutedHint: mutedHint,
     showNotificationSettings: isGuildChannel,
-    showEditChannel: canEditChannel && !nsfwBlockedForMinor && !isThreadChannel,
-    showDuplicateChannel:
-        canManageChannels && !nsfwBlockedForMinor && !isThreadChannel,
+    showEditChannel: canEditChannel && !nsfwBlockedForMinor,
+    showDuplicateChannel: canManageChannels && !nsfwBlockedForMinor,
     showDebugChannel: developerMode,
     showResetMatureContent: developerMode && hasAgreedToMatureContent,
-    showDeleteChannel: canManageChannels && !isThreadChannel,
+    showDeleteChannel: canManageChannels,
     showDeleteMyMessages: isTextChannel || isVoiceChannel,
     showFollow: canFollow && isGuildAnnouncementChannelType(channel.type),
   );
@@ -462,34 +451,4 @@ List<Widget> channelMenuGroupsToWidgets({
     }
   }
   return widgets;
-}
-
-List<ChannelMenuAction> flattenChannelMenuActions(
-  List<ChannelMenuGroup> groups,
-) {
-  return <ChannelMenuAction>[
-    for (final ChannelMenuGroup group in groups)
-      for (final ChannelMenuEntry entry in group) entry.action,
-  ];
-}
-
-List<String> flattenChannelMenuLabels(List<ChannelMenuGroup> groups) {
-  return <String>[
-    for (final ChannelMenuGroup group in groups)
-      for (final ChannelMenuEntry entry in group) entry.label,
-  ];
-}
-
-bool channelMenuEntryIsDanger(
-  List<ChannelMenuGroup> groups,
-  ChannelMenuAction action,
-) {
-  for (final ChannelMenuGroup group in groups) {
-    for (final ChannelMenuEntry entry in group) {
-      if (entry.action == action) {
-        return entry.isDanger;
-      }
-    }
-  }
-  return false;
 }

@@ -1,3 +1,4 @@
+import 'package:fluxer_app/features/threads/data/thread_api_errors.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 
 const String apiErrorCodeCannotSendMessagesToUser =
@@ -18,6 +19,7 @@ String formatPrivacyCommunicationSettingsPath(FluxerLocalizations l10n) {
 String? clientSystemMessageForSendError({
   required String? apiErrorCode,
   required FluxerLocalizations l10n,
+  required bool selfHosted,
 }) {
   switch (apiErrorCode) {
     case apiErrorCodeCannotSendMessagesToUser:
@@ -29,9 +31,15 @@ String? clientSystemMessageForSendError({
     case apiErrorCodeUnclaimedAccountCannotSendMessages:
       return l10n.chatSendFailureUnclaimedGeneral;
     case apiErrorCodeContentBlocked:
-      return l10n.chatSendFailureContentBlocked;
+      return selfHosted
+          ? l10n.chatSendFailureContentBlockedSelfHosted
+          : l10n.chatSendFailureContentBlocked;
     case apiErrorCodeNsfwEmojiStickerBlocked:
       return l10n.chatSendFailureNsfwEmojiSticker;
+    case 'THREAD_LOCKED':
+    case 'THREAD_ARCHIVED':
+    case 'MAX_ACTIVE_THREADS':
+      return threadApiErrorMessage(apiErrorCode: apiErrorCode, l10n: l10n);
     default:
       return null;
   }

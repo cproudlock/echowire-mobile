@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' hide Channel;
 import 'package:fluxer_app/core/permissions/channel_effective_permissions.dart';
@@ -77,7 +76,6 @@ import 'package:fluxer_app/features/guilds/utils/guild_settings_actions.dart';
 import 'package:fluxer_app/features/guilds/utils/invite_people_actions.dart';
 import 'package:fluxer_app/features/guilds/utils/invite_people_recipients.dart';
 import 'package:fluxer_app/features/guilds/utils/leave_guild_action.dart';
-import 'package:fluxer_app/features/moderation/presentation/iar_report_guild.dart';
 import 'package:fluxer_app/features/settings/domain/guild/guild_settings_tab.dart';
 import 'package:fluxer_app/features/settings/presentation/user_settings_modal.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
@@ -85,6 +83,7 @@ import 'package:fluxer_app/features/settings/providers/user_settings_view_model.
 import 'package:fluxer_app/features/shell/navigation/drawer_navigation_coordinator.dart';
 import 'package:fluxer_app/features/shell/navigation/root_overlay_navigation.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
+import 'package:fluxer_app/features/threads/providers/thread_guild_gate_provider.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/features/ui/warning_alert/fluxer_warning_alert.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
@@ -781,6 +780,7 @@ class _GuildNavbarState extends ConsumerState<GuildNavbar> {
                 guild.id,
                 ref.read(fluxerDatabaseProvider),
                 ref.read(fluxerClientProvider),
+                threadsActive: ref.read(threadsGateProvider).isActive(guild.id),
               ),
             );
           },
@@ -915,6 +915,7 @@ class _GuildNavbarState extends ConsumerState<GuildNavbar> {
           onGetGuildChannels: () => getGuildChannelsForSettings(
             db: ref.read(fluxerDatabaseProvider),
             guildId: guild.id,
+            threadsActive: ref.read(threadsGateProvider).isActive(guild.id),
           ),
           onUpdateChannelOverride:
               (channelId, messageNotifications, {required muted}) {

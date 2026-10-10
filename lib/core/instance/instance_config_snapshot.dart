@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:fluxer_app/core/instance/instance_constants.dart';
 import 'package:fluxer_app/core/instance/instance_endpoint_normalizer.dart';
 import 'package:fluxer_app/core/instance/instance_endpoints.dart';
-import 'package:fluxer_app/core/instance/instance_runtime_config.dart';
 import 'package:fluxer_app/core/instance/well_known_compat.dart';
 import 'package:fluxer_dart/export.dart';
 
@@ -68,10 +67,34 @@ class InstanceConfigSnapshot {
       return null;
     }
     try {
-      return parseWellKnownFluxer(Map<String, dynamic>.from(value));
+      return parseWellKnown(Map<String, dynamic>.from(value));
     } on Object {
       return null;
     }
+  }
+
+  static WellKnownFluxerResponse parseWellKnown(Map<String, dynamic> json) {
+    final Object? features = json['features'];
+    final Object? appPublic = json['app_public'];
+    final Object? branding = appPublic is Map ? appPublic['branding'] : null;
+    return parseWellKnownFluxer(<String, dynamic>{
+      ...json,
+      if (features is Map)
+        'features': <String, dynamic>{
+          'premium_enabled': false,
+          'stripe_serviceable': false,
+          'phone_verification_enabled': false,
+          ...Map<String, dynamic>.from(features),
+        },
+      if (appPublic is Map && branding is Map)
+        'app_public': <String, dynamic>{
+          ...Map<String, dynamic>.from(appPublic),
+          'branding': <String, dynamic>{
+            'premium_product_name': 'Plutonium',
+            ...Map<String, dynamic>.from(branding),
+          },
+        },
+    });
   }
 
   String toJson() {
@@ -100,14 +123,6 @@ class InstanceConfigSnapshot {
     final InstanceSsoSchema? config = ssoConfig;
     return config != null && config.enabled && config.enforced;
   }
-
-  bool get isSsoOptional {
-    final InstanceSsoSchema? config = ssoConfig;
-    return config != null && config.enabled && !config.enforced;
-  }
-
-  bool get isRegistrationClosed =>
-      wellKnown?.registration.mode == InstanceRegistrationModeSchema.closed;
 
   /// Terms of service URL to show during registration, null when this instance
   /// has none to offer.
@@ -151,17 +166,6 @@ class InstanceConfigSnapshot {
       return null;
     }
     return name;
-  }
-
-  bool get emailsEnabled => wellKnown?.features.emailsEnabled ?? true;
-
-  bool get collectDateOfBirth =>
-      wellKnown?.appPublic.registration.collectDateOfBirth ?? true;
-
-  bool canPublicRegister({String? registrationUrlCode}) {
-    return InstanceRuntimeConfig.fromWellKnown(
-      wellKnown,
-    ).canPublicRegister(registrationUrlCode: registrationUrlCode);
   }
 
   static String _resolveApiBaseUrl(InstanceEndpointsSchema endpoints) {

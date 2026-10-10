@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/channel_textarea.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/composer_autocomplete_field.dart';
@@ -8,6 +7,7 @@ import 'package:fluxer_app/features/chat/presentation/widgets/pickers/chat_botto
 import 'package:fluxer_app/features/chat/providers/pickers/mobile_keyboard_metrics_provider.dart';
 import 'package:fluxer_app/features/chat/utils/composer/bottom_input_slot_layout.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
+import 'package:fluxer_app/features/threads/presentation/thread_composer_gate.dart';
 import 'package:fluxer_app/material_ui.dart';
 
 const int _kResumeInsetSyncFrames = 4;
@@ -16,13 +16,11 @@ class ChatComposerColumn extends ConsumerStatefulWidget {
   const ChatComposerColumn({
     required this.autocompletePanelHost,
     required this.autocompletePanelScrollController,
-    required this.showInlineEmojiPicker,
     super.key,
   });
 
   final ComposerAutocompletePanelHost autocompletePanelHost;
   final ScrollController autocompletePanelScrollController;
-  final bool showInlineEmojiPicker;
 
   @override
   ConsumerState<ChatComposerColumn> createState() => _ChatComposerColumnState();
@@ -124,7 +122,7 @@ class _ChatComposerColumnState extends ConsumerState<ChatComposerColumn>
       ..updateLayout(
         screenHeight: mediaQuery.size.height,
         isPortrait: mediaQuery.size.height >= mediaQuery.size.width,
-        isIos: !kIsWeb && Platform.isIOS,
+        isIos: Platform.isIOS,
       )
       ..syncViewInsets(
         resolvedKeyboardInsetBottomFrom(
@@ -151,10 +149,12 @@ class _ChatComposerColumnState extends ConsumerState<ChatComposerColumn>
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         RepaintBoundary(
-          child: ChannelTextarea(
-            autocompletePanelHost: widget.autocompletePanelHost,
-            autocompletePanelScrollController:
-                widget.autocompletePanelScrollController,
+          child: ThreadComposerGate(
+            child: ChannelTextarea(
+              autocompletePanelHost: widget.autocompletePanelHost,
+              autocompletePanelScrollController:
+                  widget.autocompletePanelScrollController,
+            ),
           ),
         ),
         if (isMobileLayout(context)) const BottomInputSpacer(),

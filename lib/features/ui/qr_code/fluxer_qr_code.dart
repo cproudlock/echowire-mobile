@@ -119,7 +119,7 @@ Widget fluxerQrCodePreview() {
           padding: EdgeInsets.all(16),
           child: FluxerQrCode(
             data:
-                'otpauth://totp/Fluxer:user@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Fluxer',
+                'otpauth://totp/echowire:user@example.com?secret=JBSWY3DPEHPK3PXP&issuer=echowire',
             size: 160,
           ),
         ),

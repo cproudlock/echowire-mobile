@@ -6,7 +6,6 @@ import 'package:fluxer_app/features/shell/domain/nagbar_conditions.dart';
 import 'package:fluxer_app/features/shell/domain/nagbar_dismissals_state.dart';
 import 'package:fluxer_app/features/shell/domain/service_status_maintenance.dart';
 import 'package:fluxer_app/features/shell/providers/current_user_private_provider.dart';
-import 'package:fluxer_app/features/shell/providers/guild_membership_cta_visibility_provider.dart';
 import 'package:fluxer_app/features/shell/providers/nagbar_dismissals_provider.dart';
 import 'package:fluxer_app/features/shell/providers/push_notification_permission_status_provider.dart';
 import 'package:fluxer_app/features/shell/providers/scheduled_maintenance_dismissal_provider.dart';
@@ -84,10 +83,10 @@ Future<NagbarConditions> nagbarConditions(Ref ref) async {
     showPremiumCommerce: showPremiumCommerce,
     isSelfHosted: isSelfHosted,
   );
-  final bool canShowGuildMembershipCta =
-      !isSelfHosted &&
-      !dismissals.guildMembershipCtaDismissed &&
-      await ref.watch(guildMembershipCtaVisibleProvider.future);
+  // Echowire: the nag bar asks users to join upstream's Fluxer HQ community
+  // (invite code `fluxer-hq`). This fork has no such community, so it is
+  // never shown and the invite lookup is never made.
+  const bool canShowGuildMembershipCta = false;
   final AsyncValue<bool> pushPermission = ref.watch(
     pushNotificationPermissionGrantedProvider,
   );

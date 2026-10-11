@@ -18,11 +18,6 @@ const List<SplashQuote> _baseSplashQuotes = <SplashQuote>[
     source: 'Siliconic',
   ),
   SplashQuote(
-    text:
-        'Did you know that Fluxer spelled backwards makes no sense? Why would you do that?',
-    source: 'jackzie',
-  ),
-  SplashQuote(
     text: 'Have you considered touching grass while you wait?',
     source: 'Lilith',
   ),
@@ -31,7 +26,6 @@ const List<SplashQuote> _baseSplashQuotes = <SplashQuote>[
         "Unfortunately, it doesn't run on regular unleaded gasoline. It requires something with a little more kick. Plutonium.",
     source: 'Cookie',
   ),
-  SplashQuote(text: '9/10 dentists recommend Fluxer.', source: 'Hugopuntocom'),
   SplashQuote(text: 'Is this thing on?', source: 'Pufty'),
   SplashQuote(
     text: 'Now supports sending messages over the Internet!',
@@ -85,17 +79,12 @@ const List<SplashQuote> _baseSplashQuotes = <SplashQuote>[
     source: 'Comfy_Deer',
   ),
   SplashQuote(text: "Hi! I'm a loading screen!", source: 'jackzie'),
-  SplashQuote(text: '3 Billion Devices Run Fluxer.', source: 'jackzie'),
   SplashQuote(
     text: 'To connect or not to connect, that is the question.',
     source: 'Tea',
   ),
   SplashQuote(text: 'Please do not the fluxer.', source: 'Chris'),
   SplashQuote(text: 'I am the one who fluxes.', source: 'Anonymous'),
-  SplashQuote(
-    text: 'Installing Fluxer on the nearest smart fridge...',
-    source: 'TyphonBagrid',
-  ),
   SplashQuote(text: 'Ya like Jazz?', source: 'catnaros'),
   SplashQuote(
     text: "If it smells like chicken, you're holding the soldering iron wrong.",

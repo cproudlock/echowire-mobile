@@ -96,6 +96,20 @@ These are not about threads; the full rules are in the maintainer notes
   (`userSettingsShowJoinFluxerLabsNav`) and Give feedback (`userSettingsShowGiveFeedbackNav`) in
   `lib/features/settings/presentation/user_settings_nav.dart`. This fork has no equivalent
   community or feedback portal. If upstream renames either helper the settings modal fails to compile.
+- Brand sweep (user-visible upstream text): the splash quotes that named Fluxer
+  (`lib/features/shell/utils/splash_quotes.dart`, four entries each credited to a named
+  person) are removed, not reworded; the second `appName` in `voice_callkit_params.dart`,
+  the sign-in error in `auth_repository.dart`, the theme-colour preview samples, the GIF
+  player title and four `fluxer_en.arb` strings (push relay, app icon restart) say
+  `echowire`. The guild membership nag bar (it invites users to upstream's Fluxer HQ
+  community) is forced off in `lib/features/shell/providers/nagbar_conditions_provider.dart`
+  (`canShowGuildMembershipCta` is a `false` constant); its file keeps upstream's
+  `'Fluxer HQ'` and is on the allow list of `test/build/brand_guard_test.dart`. That test
+  fails on any string literal under `lib/` or any English ARB value that says "Fluxer" as a
+  word, so a sync that brings new upstream text fails here first: reword it, or extend the
+  allow list only if it is not display text. Still upstream by design: `userSettingsJoinFluxerLabs`
+  (hidden nav item), translated locales that name Fluxer, identifiers, `X-Fluxer-*` headers,
+  URLs and package paths.
 - Push is registered through the fork's own FCM path, not upstream's push relay. Upstream's
   `test/core/push/push_relay_consent_unregister_test.dart` expects no direct registration for a
   self-hosted device without relay consent and fails here (checked 2026-10-11); do not "fix" the

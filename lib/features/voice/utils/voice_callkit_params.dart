@@ -96,7 +96,7 @@ CallKitParams buildIncomingCallRingParams({
   return CallKitParams(
     id: callKitId,
     nameCaller: display.nameCaller,
-    appName: 'Fluxer',
+    appName: 'echowire',
     avatar: display.avatar,
     handle: display.handle,
     type: kVoiceCallKitAudioType,

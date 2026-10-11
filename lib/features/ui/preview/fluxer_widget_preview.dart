@@ -43,7 +43,7 @@ class _PreviewAppWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fluxer',
+      title: 'echowire',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: fluxerLocalizationsDelegates,
       supportedLocales: FluxerLocalizations.supportedLocales,

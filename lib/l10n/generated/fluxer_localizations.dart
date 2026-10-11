@@ -16410,13 +16410,13 @@ abstract class FluxerLocalizations {
   /// Notification settings section description explaining why the push relay exists.
   ///
   /// In en, this message translates to:
-  /// **'{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.'**
+  /// **'{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the echowire relay.'**
   String notificationsPushRelaySectionDescription(String pushProvider);
 
   /// Toggle label for agreeing to the Fluxer push relay on this device.
   ///
   /// In en, this message translates to:
-  /// **'Use the Fluxer push relay'**
+  /// **'Use the echowire push relay'**
   String get notificationsPushRelayConsentLabel;
 
   /// Toggle description explaining that revoking push relay consent unregisters the device.
@@ -16434,7 +16434,7 @@ abstract class FluxerLocalizations {
   /// Subtitle of the push relay consent sheet explaining why the relay exists.
   ///
   /// In en, this message translates to:
-  /// **'{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.'**
+  /// **'{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the echowire relay.'**
   String pushRelayConsentDescription(String pushProvider);
 
   /// Text before the push relay privacy notice link in the consent sheet.
@@ -16614,7 +16614,7 @@ abstract class FluxerLocalizations {
   /// Body for the confirmation sheet before changing the app icon on Android.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer will restart to apply the new home screen icon.'**
+  /// **'echowire will restart to apply the new home screen icon.'**
   String get appIconAndroidChangeDescription;
 
   /// Confirm button for changing the app icon on Android.

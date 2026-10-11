@@ -93,7 +93,9 @@ class AuthRepository {
         );
       }
 
-      throw const AuthFailure('Unexpected login response from Fluxer API.');
+      throw const AuthFailure(
+        'Unexpected response from the server while signing in.',
+      );
     } on AuthFailure {
       rethrow;
     } on DioException catch (error) {

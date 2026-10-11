@@ -9863,11 +9863,12 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
 
   @override
   String notificationsPushRelaySectionDescription(String pushProvider) {
-    return '$pushProvider only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.';
+    return '$pushProvider only delivers push notifications through their own service, so pushes for this device pass through the echowire relay.';
   }
 
   @override
-  String get notificationsPushRelayConsentLabel => 'Use the Fluxer push relay';
+  String get notificationsPushRelayConsentLabel =>
+      'Use the echowire push relay';
 
   @override
   String get notificationsPushRelayConsentDescription =>
@@ -9878,7 +9879,7 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
 
   @override
   String pushRelayConsentDescription(String pushProvider) {
-    return '$pushProvider only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.';
+    return '$pushProvider only delivers push notifications through their own service, so pushes for this device pass through the echowire relay.';
   }
 
   @override
@@ -9983,7 +9984,7 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
 
   @override
   String get appIconAndroidChangeDescription =>
-      'Fluxer will restart to apply the new home screen icon.';
+      'echowire will restart to apply the new home screen icon.';
 
   @override
   String get appIconAndroidChangeConfirm => 'Change icon';

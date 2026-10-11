@@ -180,9 +180,16 @@ class InstanceConfigSnapshot {
     return _stripTrailingSlashes(endpoints.api.trim());
   }
 
+  // Echowire: Fluxer's hosted service now advertises api_public as
+  // https://api.fluxer.app. Its browser endpoint (web.fluxer.app/api, the
+  // api_client fallback) only accepts non-GET requests that carry a matching
+  // browser Origin header, which a native app never sends, so sign-in failed
+  // with "invalid API origin". api.fluxer.app is the endpoint built for native
+  // clients.
   static const Set<String> _officialApiPublicHosts = <String>{
     'fluxer.com',
     'canary.fluxer.com',
+    'api.fluxer.app',
   };
 
   static bool _isOfficialApiPublicUrl(String apiPublic) {

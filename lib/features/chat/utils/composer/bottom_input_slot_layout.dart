@@ -80,7 +80,7 @@ double resolveBottomInputSlotHeight({
   double? heldSlotHeightOverride,
   bool unmeasuredKeyboardReserved = false,
 }) {
-  if (heldSlotHeightOverride != null) {
+  if (heldSlotHeightOverride != null && heldSlotHeightOverride > 0) {
     return heldSlotHeightOverride;
   }
   if (transition != BottomInputTransition.idle) {
@@ -110,6 +110,7 @@ bool shouldClearUnmeasuredKeyboardReservation({
   required double mergedHeight,
   required bool hadKeyboardInsetWhileReserved,
   bool composerEntryFocused = false,
+  bool nativeKeyboardVisible = false,
 }) {
   if (!unmeasuredKeyboardReserved) {
     return false;
@@ -118,6 +119,9 @@ bool shouldClearUnmeasuredKeyboardReservation({
     return true;
   }
   if (previousLiveHeight > 0 && mergedHeight <= 0) {
+    if (!nativeKeyboardVisible) {
+      return true;
+    }
     return !composerEntryFocused;
   }
   if (composerEntryFocused) {
@@ -242,6 +246,21 @@ double resolveTransitionLockHeight({
   return math.max(liveKeyboardHeight, anchorHeight);
 }
 
+double resolveKeyboardSpacerRawHeight({
+  required double viewInsetBottom,
+  required double slotHeight,
+  required bool keyboardLayoutActive,
+}) {
+  if (!keyboardLayoutActive) {
+    if (viewInsetBottom <= 0) {
+      return 0;
+    }
+    return viewInsetBottom;
+  }
+  final double resolved = math.max(viewInsetBottom, slotHeight);
+  return resolved > 0 ? resolved : 0;
+}
+
 bool hasKeyboardFullyDismissed({
   required double liveKeyboardHeight,
   required bool isKeyboardVisible,
@@ -273,7 +292,10 @@ double resolvePanelReservedLayoutHeight({
   required double grossAnchorHeight,
   bool useExactSlotHeight = false,
 }) {
-  if (useExactSlotHeight || slotHeight > 0) {
+  if (useExactSlotHeight && slotHeight > 0) {
+    return slotHeight;
+  }
+  if (slotHeight > 0) {
     return slotHeight;
   }
   if (netAnchorHeight > 0) {

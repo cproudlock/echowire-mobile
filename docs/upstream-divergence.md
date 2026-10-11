@@ -92,3 +92,18 @@ These are not about threads; the full rules are in the maintainer notes
   intent filter, `ios/Runner/Info.plist`).
 - Version: `pubspec.yaml` `version:` is hand-managed; a Play version code burns on upload.
 - `sentry_flutter` is pinned to 9.26.0 (see the comment in `pubspec.yaml`).
+- Upstream nav entries that point at upstream's own properties are hidden: Fluxer Labs
+  (`userSettingsShowJoinFluxerLabsNav`) and Give feedback (`userSettingsShowGiveFeedbackNav`) in
+  `lib/features/settings/presentation/user_settings_nav.dart`. This fork has no equivalent
+  community or feedback portal. If upstream renames either helper the settings modal fails to compile.
+- Push is registered through the fork's own FCM path, not upstream's push relay. Upstream's
+  `test/core/push/push_relay_consent_unregister_test.dart` expects no direct registration for a
+  self-hosted device without relay consent and fails here (checked 2026-10-11); do not "fix" the
+  fork to satisfy it.
+- Known failing tests after the 2026-10-11 sync (28, all brand or URL assertions that still say
+  Fluxer or use fluxer.app hosts, plus the push relay test above): `user_profile_badges_test`,
+  `user_profile_view_test`, `message_item_avatar_unset_test`, `fluxer_media_url_test`,
+  `deep_link_path_policy_test`, `assistant_entities_test`, `emoji_utils_test`,
+  `system_permission_settings_prompt_test`, `splash_screen_test`, `emoji_info_bottom_sheet_test`,
+  `fluxer_platform_test`, `instance_discovery_service_test`, `instance_config_snapshot_test`.
+  Run the suite one directory at a time; the whole suite in one process hangs in a teardown.

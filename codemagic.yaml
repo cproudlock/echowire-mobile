@@ -108,6 +108,9 @@ workflows:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
+        # An older build still waiting in Beta App Review blocks the next submission with
+        # "Another build in the same train is already in beta review". Expire it first.
+        expire_build_submitted_for_review: true
         # Only EXTERNAL groups go here (internal groups auto-receive builds and
         # the API rejects assigning to them). "Public Beta" is an external group;
         # its first build per version goes through Apple Beta App Review before

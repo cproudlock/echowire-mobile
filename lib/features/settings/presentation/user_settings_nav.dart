@@ -18,14 +18,9 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 const String kFluxerLabsInviteUrl = 'https://fluxer.gg/fluxer-labs';
 const String kFluxerFeedbackUrl = 'https://feedback.fluxer.com';
 
-bool userSettingsIsMainFluxerInstance(WidgetRef ref) {
-  return ref.watch(fluxerBaseUrlProvider) ==
-      InstanceConstants.defaultApiBaseUrl;
-}
-
-bool userSettingsShowGiveFeedbackNav(WidgetRef ref) {
-  return userSettingsIsMainFluxerInstance(ref);
-}
+// Echowire: the feedback portal is upstream's and this fork has none, so the
+// Give feedback nav item is never shown (same reasoning as Fluxer Labs below).
+bool userSettingsShowGiveFeedbackNav(WidgetRef ref) => false;
 
 // Echowire: Fluxer Labs is upstream's community and this fork has no
 // equivalent (the web client has no Labs entry either), so the nav item is

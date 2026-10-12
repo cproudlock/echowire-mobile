@@ -127,7 +127,7 @@ These are not about threads; the full rules are in the maintainer notes
   app" button opens `https://echowire.org/download` (`ExternalUrls.fluxerDownload`), not
   `fluxer.com/download`. The login refactor in `auth_repository.dart`
   (`_loginResultFromAuthLoginResponse`) keeps the neutral sign-in error text. `pubspec.lock` keeps
-  `jni` 0.14.2 (the fork has no `sentry_flutter` 9.27+ or `altcha_lib`); never take upstream's lock
+  `jni` 0.14.2 (what `flutter pub get` resolves for the fork pubspec; upstream has 1.1.0); never take upstream's lock
   wholesale, resolve the conflict hunk and run `flutter pub get`. `dart_sdk` merged upstream's
   `8995c90` ("parse responses that omit required fields") into the `echowire` branch, pointer
   `51ba6f4`; the fork's forum-field and channel-type guard tests still pass there.

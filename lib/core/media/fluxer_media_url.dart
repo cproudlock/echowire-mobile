@@ -16,18 +16,23 @@ abstract final class FluxerMediaUrl {
 
   static const int defaultAvatarCount = 6;
 
+  // The default avatars were redrawn as the echowire mark under the same file
+  // names. The image cache keys on the URL and keeps entries for 30 days, so
+  // the version query makes phones fetch the new files instead of the old ones.
+  static const int defaultAvatarVersion = 2;
+
   static String? defaultAvatar({required String userId}) {
     if (userId.isEmpty) {
       return null;
     }
     final int? index = _decimalMod(userId, defaultAvatarCount);
     if (index != null) {
-      return '$fluxerStaticCdn/avatars/$index.png';
+      return '$fluxerStaticCdn/avatars/$index.png?v=$defaultAvatarVersion';
     }
     try {
       final BigInt bigIndex =
           BigInt.parse(userId) % BigInt.from(defaultAvatarCount);
-      return '$fluxerStaticCdn/avatars/$bigIndex.png';
+      return '$fluxerStaticCdn/avatars/$bigIndex.png?v=$defaultAvatarVersion';
     } on FormatException {
       return null;
     }

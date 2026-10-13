@@ -2768,6 +2768,12 @@ abstract class FluxerLocalizations {
   /// **'System'**
   String get userTagSystem;
 
+  /// Tag next to the author of a forum post on their own messages in that post. Short for original poster, keep it to two or three letters.
+  ///
+  /// In en, this message translates to:
+  /// **'OP'**
+  String get userTagOp;
+
   /// Emoji picker search bar placeholder.
   ///
   /// In en, this message translates to:
@@ -10894,7 +10900,7 @@ abstract class FluxerLocalizations {
   /// Description for message gesture settings on mobile.
   ///
   /// In en, this message translates to:
-  /// **'Configure double tap on messages.'**
+  /// **'Configure double tap and swipe on messages.'**
   String get messagesMediaGesturesSectionDescription;
 
   /// Label for choosing the default double-tap reaction emoji.
@@ -10950,6 +10956,36 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Double tap is disabled.'**
   String get messagesMediaGesturesDoubleTapActionNoneDescription;
+
+  /// Label for the swipe right to left action radio group.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe right to left'**
+  String get messagesMediaGesturesSwipeRightToLeftLabel;
+
+  /// Swipe opens reply on the message.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe-to-reply'**
+  String get messagesMediaGesturesSwipeRightToLeftReplyName;
+
+  /// Help text for swipe to reply.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe a message to reply, with hold to edit your own messages.'**
+  String get messagesMediaGesturesSwipeRightToLeftReplyDescription;
+
+  /// Swipe opens channel details in a side panel.
+  ///
+  /// In en, this message translates to:
+  /// **'Show channel details'**
+  String get messagesMediaGesturesSwipeRightToLeftChannelDetailsName;
+
+  /// Help text for swipe to channel details.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe a message or tap the channel header to open channel details in a side panel.'**
+  String get messagesMediaGesturesSwipeRightToLeftChannelDetailsDescription;
 
   /// Action label for editing a sent message.
   ///
@@ -11640,6 +11676,12 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t load messages.'**
   String get chatMessagesLoadError;
+
+  /// Shown in a bottom bar when message history fails to load while scrolling in a channel.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages failed to load'**
+  String get chatMessagesFailedToLoad;
 
   /// Title of the confirmation alert shown when toggling reply mention against the recipient preference.
   ///

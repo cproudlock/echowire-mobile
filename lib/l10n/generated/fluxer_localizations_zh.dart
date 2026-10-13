@@ -1445,6 +1445,9 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get userTagSystem => '系统';
 
   @override
+  String get userTagOp => 'OP';
+
+  @override
   String get emojiSearchPlaceholder => '查找您想要的表情符号';
 
   @override
@@ -6287,7 +6290,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get messagesMediaGesturesSectionDescription =>
-      'Configure double tap on messages.';
+      'Configure double tap and swipe on messages.';
 
   @override
   String get messagesMediaGesturesReactionLabel => 'Reaction emoji';
@@ -6319,6 +6322,25 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   @override
   String get messagesMediaGesturesDoubleTapActionNoneDescription =>
       'Double tap is disabled.';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftLabel =>
+      'Swipe right to left';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftReplyName => 'Swipe-to-reply';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftReplyDescription =>
+      'Swipe a message to reply, with hold to edit your own messages.';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftChannelDetailsName =>
+      'Show channel details';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftChannelDetailsDescription =>
+      'Swipe a message or tap the channel header to open channel details in a side panel.';
 
   @override
   String get chatMessageEdit => '编辑消息';
@@ -6699,6 +6721,9 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get chatMessagesLoadError => '无法加载消息。';
+
+  @override
+  String get chatMessagesFailedToLoad => 'Messages failed to load';
 
   @override
   String get chatReplyMentionOverrideTitle => '覆盖提及偏好设置？';

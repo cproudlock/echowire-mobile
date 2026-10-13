@@ -1470,6 +1470,9 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get userTagSystem => '시스템';
 
   @override
+  String get userTagOp => 'OP';
+
+  @override
   String get emojiSearchPlaceholder => '꿈에 그리던 이모티콘 찾기';
 
   @override
@@ -6424,7 +6427,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get messagesMediaGesturesSectionDescription =>
-      'Configure double tap on messages.';
+      'Configure double tap and swipe on messages.';
 
   @override
   String get messagesMediaGesturesReactionLabel => 'Reaction emoji';
@@ -6456,6 +6459,25 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   @override
   String get messagesMediaGesturesDoubleTapActionNoneDescription =>
       'Double tap is disabled.';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftLabel =>
+      'Swipe right to left';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftReplyName => 'Swipe-to-reply';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftReplyDescription =>
+      'Swipe a message to reply, with hold to edit your own messages.';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftChannelDetailsName =>
+      'Show channel details';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftChannelDetailsDescription =>
+      'Swipe a message or tap the channel header to open channel details in a side panel.';
 
   @override
   String get chatMessageEdit => '메시지 수정';
@@ -6844,6 +6866,9 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get chatMessagesLoadError => '메시지를 불러올 수 없습니다.';
+
+  @override
+  String get chatMessagesFailedToLoad => 'Messages failed to load';
 
   @override
   String get chatReplyMentionOverrideTitle => '멘션 기본 설정 재정의?';

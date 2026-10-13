@@ -17,11 +17,11 @@ void main() {
     test('falls back to the default avatar', () {
       expect(
         assistantFriendAvatarUrl(userId: '7', hash: null),
-        'https://fluxerstatic.com/avatars/1.png',
+        'https://fluxerstatic.com/avatars/1.png?v=2',
       );
       expect(
         assistantFriendAvatarUrl(userId: '7', hash: ''),
-        'https://fluxerstatic.com/avatars/1.png',
+        'https://fluxerstatic.com/avatars/1.png?v=2',
       );
     });
 

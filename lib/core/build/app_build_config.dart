@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:fluxer_app/core/build/app_build_environment.dart';
 import 'package:fluxer_app/core/build/push_provider_kind.dart';
 
@@ -24,12 +25,11 @@ class AppBuildConfig {
   );
   // ignore: do_not_use_environment -- compile-time build flavor config
   static const String _betaNumberValue = String.fromEnvironment('BETA_NUMBER');
-  // Echowire: default OFF. Upstream shipped 'https://sgnz-otlp.fluxer.tools/v1/traces',
-  // which sent our users' OpenTelemetry traces to Fluxer's SigNoz. Empty disables tracing
-  // (see hasObservabilityConfig guard); set SIGNOZ_OTLP_TRACES_ENDPOINT to opt in to our own.
+  // Echowire: upstream telemetry (Measure) reaches a server only when MEASURE_API_KEY and
+  // MEASURE_API_URL are supplied at build time. This fork supplies neither, so it sends nothing.
   // ignore: do_not_use_environment -- compile-time build flavor config
-  static const String _signozOtlpTracesEndpointValue = String.fromEnvironment(
-    'SIGNOZ_OTLP_TRACES_ENDPOINT',
+  static const String _canaryNumberValue = String.fromEnvironment(
+    'CANARY_NUMBER',
   );
   static AppBuildEnvironment get environment {
     switch (_environmentValue) {
@@ -90,9 +90,26 @@ class AppBuildConfig {
     return int.tryParse(trimmed);
   }
 
-  static String get signozOtlpTracesEndpoint =>
-      _signozOtlpTracesEndpointValue.trim();
-  static bool get hasObservabilityConfig => signozOtlpTracesEndpoint.isNotEmpty;
+  static int? get canaryNumber {
+    final String trimmed = _canaryNumberValue.trim();
+    if (trimmed.isEmpty) {
+      return null;
+    }
+    return int.tryParse(trimmed);
+  }
+
+  static bool get hasObservabilityConfig {
+    if (kIsWeb) {
+      return false;
+    }
+    return switch (defaultTargetPlatform) {
+      TargetPlatform.iOS || TargetPlatform.android => true,
+      TargetPlatform.fuchsia ||
+      TargetPlatform.linux ||
+      TargetPlatform.macOS ||
+      TargetPlatform.windows => false,
+    };
+  }
 
   // ignore: do_not_use_environment -- compile-time build flavor config
   static const String _sentryDsnValue = String.fromEnvironment('SENTRY_DSN');

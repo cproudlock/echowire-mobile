@@ -12,11 +12,83 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get reconnectingTitle => 'Vi har klønet det til!';
 
   @override
+  String get chatJumpToPresent => 'Gå til de nyeste meldingene';
+
+  @override
+  String get chatViewingOlderMessages => 'Du ser på eldre meldinger';
+
+  @override
+  String get chatNewMessagesBarJumpToFirstUnread =>
+      'Gå til første uleste melding';
+
+  @override
+  String get chatNewMessagesBarMarkAsRead => 'Merk som lest';
+
+  @override
+  String get chatNewMessagesBarMarkRead => 'Merk som lest';
+
+  @override
+  String chatNewMessagesBarNewMessagesSinceEstimated(
+    int unreadCount,
+    String compactTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '$unreadCountString+ nye meldinger siden $compactTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewMessagesSince(
+    int unreadCount,
+    String compactTime,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount nye meldinger',
+      one: '$unreadCount ny melding',
+    );
+    return '$_temp0 siden $compactTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewSinceEstimated(
+    int unreadCount,
+    String shortTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '$unreadCountString+ nye siden $shortTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewSince(int unreadCount, String shortTime) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount nye',
+      one: '$unreadCount ny',
+    );
+    return '$_temp0 siden $shortTime';
+  }
+
+  @override
   String get reconnectingBody =>
       'Noe er galt med instansen.\nSkal fikses om et øyeblikk!';
 
   @override
   String get gatewayReconnectingToast => 'Kobler til på nytt…';
+
+  @override
+  String get gatewayReconnectTryAgain => 'Prøv igjen';
 
   @override
   String get gatewayConnectedToast => 'Tilkoblet';
@@ -230,20 +302,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get orDivider => 'OR';
 
   @override
-  String get captchaTitle => 'Bekreft at du er et menneske';
-
-  @override
-  String get captchaDescription =>
-      'Vi må forsikre oss om at du ikke er en bot. Vennligst fullfør bekreftelsen nedenfor.';
-
-  @override
-  String get captchaSwitchToHcaptcha =>
-      'Har du problemer? Prøv hCaptcha i stedet';
-
-  @override
-  String get captchaSwitchToTurnstile => 'Prøv Turnstile i stedet';
-
-  @override
   String get cancel => 'Avbryt';
 
   @override
@@ -286,6 +344,9 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get next => 'Neste';
 
   @override
+  String get create => 'Create';
+
+  @override
   String get mfaTitle => 'Tofaktorautentisering';
 
   @override
@@ -324,6 +385,11 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get accountRemoveDescription =>
       'Dette fjerner den lagrede økten for denne kontoen.';
+
+  @override
+  String accountSignOutTitle(String identifier) {
+    return 'Sign out of $identifier?';
+  }
 
   @override
   String get accountExpired => 'Utløpt';
@@ -1389,9 +1455,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get dmFriendRequestSentToast => 'Venneforespørsel sendt';
 
   @override
-  String get dmFriendRequestFailed => 'Kunne ikke sende venneforespørsel';
-
-  @override
   String get dmAcceptFriendRequestFailed => 'Kunne ikke godta venneforespørsel';
 
   @override
@@ -1527,6 +1590,13 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Vennelisten din er full, eller så er deres. Fjern noen og prøv igjen.';
 
   @override
+  String get addFriendSendFailedTitle => 'Couldn\'t send friend request';
+
+  @override
+  String get addFriendSendFailedMessage =>
+      'Couldn\'t send the friend request. Try again.';
+
+  @override
   String get userTagBot => 'BOT';
 
   @override
@@ -1598,13 +1668,10 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get gifPickerSearch => 'Søk etter GIF-er';
 
   @override
-  String get gifPickerSearchKlipy => 'Søk i KLIPY';
+  String get gifPickerSearchKlipy => 'Søk i Klipy';
 
   @override
   String get gifPickerSearchTenor => 'Søk i Tenor';
-
-  @override
-  String get gifPickerPoweredByKlipy => 'KLIPY';
 
   @override
   String get gifPickerFavorites => 'Favoritter';
@@ -2414,10 +2481,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get backupCodesDone => 'Ferdig';
 
   @override
-  String get phoneCaptchaRequired =>
-      'En nettlesersjekk kreves før telefonverifisering. Prøv igjen fra påloggingssiden eller kontakt kundestøtte.';
-
-  @override
   String get dangerZoneSectionTitle => 'Fare-sone';
 
   @override
@@ -2441,10 +2504,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get dangerZoneDeleteDescription =>
       'Slett kontoen din og alle tilhørende data permanent. Denne handlingen kan ikke angres.';
-
-  @override
-  String get dangerZoneDeleteCancelSubscription =>
-      'Avbryt ditt aktive Reverb-abonnement i Reverb-innstillingene før du sletter kontoen din.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => 'Kan ikke slette konto';
@@ -3077,16 +3136,11 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   }
 
   @override
-  String userProfilePlutoniumBadgeTooltip(String productName) {
-    return '$productName Reverb';
-  }
-
-  @override
-  String userProfilePlutoniumSubscriberSinceTooltip(
-    String productName,
+  String userProfilePremiumSubscriberSinceTooltip(
+    String premiumProductFullName,
     String date,
   ) {
-    return '$productName Reverb-abonnent siden $date';
+    return '$premiumProductFullName-abonnent siden $date';
   }
 
   @override
@@ -3919,6 +3973,47 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get channelComposerBarrierVerifyEmail => 'Bekreft e-post';
+
+  @override
+  String get accountLimitedNotice =>
+      'Meldinger er satt på pause for kontoen din. Sjekk e-posten din for et raskt steg så du kan fortsette.';
+
+  @override
+  String get messagingPausedTextDidNotGoThrough => 'SMS-en min kom ikke frem';
+
+  @override
+  String messagingPausedHelpBody(String supportEmail) {
+    return 'Send e-post til $supportEmail, så ser en person på kontoen din. Du kan også svare på e-posten vi sendte deg.';
+  }
+
+  @override
+  String get messagingPausedHelpCountryLabel => 'Landet du er i';
+
+  @override
+  String get messagingPausedHelpCopyDetails => 'Kopier detaljer';
+
+  @override
+  String get messagingPausedHelpEmailSupport => 'Send e-post til kundestøtte';
+
+  @override
+  String messagingPausedHelpAccountIdLine(String accountId) {
+    return 'Konto-ID: $accountId';
+  }
+
+  @override
+  String messagingPausedHelpUsernameLine(String username) {
+    return 'Brukernavn: $username';
+  }
+
+  @override
+  String messagingPausedHelpAccountCreatedLine(String createdAt) {
+    return 'Konto opprettet: $createdAt';
+  }
+
+  @override
+  String messagingPausedHelpCountryLine(String country) {
+    return 'Land: $country';
+  }
 
   @override
   String chatAttachmentTooMany(int max) {
@@ -5944,7 +6039,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# uleste meldinger',
+      other: '$count uleste meldinger',
       one: 'én ulest melding',
     );
     return 'Vis chat med $_temp0';
@@ -6095,6 +6190,40 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Denne meldingen kunne ikke lastes inn.';
 
   @override
+  String notificationsMentionedYouIn(String author, String place) {
+    return '$author mentioned you in $place:';
+  }
+
+  @override
+  String notificationsRepliedToYouIn(String author, String place) {
+    return '$author replied to you in $place:';
+  }
+
+  @override
+  String notificationsMentionedYou(String author) {
+    return '$author mentioned you:';
+  }
+
+  @override
+  String notificationsRepliedToYou(String author) {
+    return '$author replied to you:';
+  }
+
+  @override
+  String notificationsMentionPlace(String server, String channel) {
+    return '$server – $channel';
+  }
+
+  @override
+  String get notificationsSendReply => 'Send a reply';
+
+  @override
+  String get notificationsRecentActivity => 'Recent activity';
+
+  @override
+  String get notificationsRemoveNotification => 'Remove notification';
+
+  @override
   String characterCounterRemaining(int remaining) {
     return '$remaining tegn igjen';
   }
@@ -6113,6 +6242,10 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get chatMessageFailedToSend => 'Kunne ikke sende melding';
+
+  @override
+  String get chatMessageFailedToSendTapForOptions =>
+      'Kunne ikke sende melding. Trykk for alternativer.';
 
   @override
   String chatSendFailureDmRestricted(String settingsPath) {
@@ -6552,8 +6685,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# fellesskap',
-      one: '# fellesskap',
+      other: '$count fellesskap',
+      one: '$count fellesskap',
     );
     return 'Alle unntatt $_temp0';
   }
@@ -6563,8 +6696,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# fellesskap',
-      one: '# fellesskap',
+      other: '$count fellesskap',
+      one: '$count fellesskap',
     );
     return 'Kun $_temp0';
   }
@@ -6593,14 +6726,14 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# timer',
-      one: '# time',
+      other: '$hours timer',
+      one: '$hours time',
     );
     String _temp1 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# minutter',
-      one: '# minutt',
+      other: '$minutes minutter',
+      one: '$minutes minutt',
     );
     return '$_temp0 og $_temp1';
   }
@@ -6610,8 +6743,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# timer',
-      one: '# time',
+      other: '$hours timer',
+      one: '$hours time',
     );
     return '$_temp0';
   }
@@ -6621,8 +6754,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# minutter',
-      one: '# minutt',
+      other: '$minutes minutter',
+      one: '$minutes minutt',
     );
     return '$_temp0';
   }
@@ -6632,8 +6765,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       seconds,
       locale: localeName,
-      other: '# sekunder',
-      one: '# sekund',
+      other: '$seconds sekunder',
+      one: '$seconds sekund',
     );
     return '$_temp0';
   }
@@ -6661,6 +6794,9 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get doubleTapReactionHint => 'Dobbelttrykk på en melding for å';
+
+  @override
+  String get doubleTapEditHint => 'Double tap your own message to edit it';
 
   @override
   String get doubleTapReactionEdit => 'Rediger';
@@ -6765,9 +6901,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get forwardSuccessToast => 'Melding videresendt';
-
-  @override
-  String get forwardFailed => 'Kunne ikke videresende melding';
 
   @override
   String get forwardCommentSlowmodeDisabled =>
@@ -7179,6 +7312,12 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get chatEditNoChanges => 'Ingen endringer å lagre';
 
   @override
+  String get chatEditFailed => 'Your message didn\'t update';
+
+  @override
+  String get chatEditFailedEditAgain => 'Edit again';
+
+  @override
   String get chatChannelNotReady =>
       'Denne kanalen er ikke klar ennå. Prøv igjen om et øyeblikk.';
 
@@ -7287,6 +7426,9 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get composerAutocompleteStickersHeading => 'Klistremerker';
+
+  @override
+  String get composerAutocompleteEmojisHeading => 'Emojis';
 
   @override
   String get composerAutocompleteGifsHeading => 'GIF-er';
@@ -8326,6 +8468,72 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get channelHeaderSearchClearHistory => 'Tøm';
 
   @override
+  String get channelSearchRemoveRecent => 'Remove from recent searches';
+
+  @override
+  String get channelSearchFiltersButton => 'Filters';
+
+  @override
+  String get channelSearchFilterMenuTitle => 'Filter results';
+
+  @override
+  String get channelSearchFilterFromLabel => 'From a specific person';
+
+  @override
+  String get channelSearchFilterMentionsLabel => 'Mentions a specific person';
+
+  @override
+  String get channelSearchFilterHasLabel => 'Has a link, file or embed';
+
+  @override
+  String get channelSearchFilterInLabel => 'In a specific channel';
+
+  @override
+  String get channelSearchFilterDuringLabel => 'Sent on a date';
+
+  @override
+  String get channelSearchFilterBeforeLabel => 'Sent before a date';
+
+  @override
+  String get channelSearchFilterAfterLabel => 'Sent after a date';
+
+  @override
+  String get channelSearchFilterPinnedLabel => 'Pinned or not pinned';
+
+  @override
+  String get channelSearchFilterAuthorTypeLabel => 'By author type';
+
+  @override
+  String get channelSearchDateToday => 'Today';
+
+  @override
+  String get channelSearchDateYesterday => 'Yesterday';
+
+  @override
+  String get channelSearchTabMessages => 'Messages';
+
+  @override
+  String get channelSearchTabImages => 'Images';
+
+  @override
+  String get channelSearchTabPins => 'Pins';
+
+  @override
+  String get channelSearchTabLinks => 'Links';
+
+  @override
+  String get channelSearchTabFiles => 'Files';
+
+  @override
+  String channelSearchTabCount(String label, int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$label ($countString)';
+  }
+
+  @override
   String get channelHeaderSearchFilterDescFrom => 'en bruker';
 
   @override
@@ -8914,19 +9122,19 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get purgePersonalNotesFailed => 'Kunne ikke tømme personlige notater';
 
   @override
-  String get userSettingsGroupYourAccount => 'DIN KONTO';
+  String get userSettingsGroupYourAccount => 'Din konto';
 
   @override
-  String get userSettingsGroupBilling => 'BILLING';
+  String get userSettingsGroupBilling => 'Billing';
 
   @override
-  String get userSettingsGroupApplication => 'APPLICATION';
+  String get userSettingsGroupApplication => 'Application';
 
   @override
-  String get userSettingsGroupDeveloper => 'DEVELOPER';
+  String get userSettingsGroupDeveloper => 'Developer';
 
   @override
-  String get userSettingsGroupStaffOnly => 'STAFF-ONLY';
+  String get userSettingsGroupStaffOnly => 'Staff-only';
 
   @override
   String get userSettingsSearchPlaceholder => 'Søk i innstillinger ...';
@@ -8942,6 +9150,11 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get userSettingsCopyLinkToPage => 'Copy link to page';
+
+  @override
+  String userSettingsJumpLinkPremiumPage(String productName) {
+    return '$productName page';
+  }
 
   @override
   String get userSettingsNavProfile => 'Profil';
@@ -9467,6 +9680,9 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   @override
   String get storePlutoniumRenewsThroughAppStore =>
       'Fornyes automatisk via App Store til du sier opp.';
+
+  @override
+  String get storePlutoniumRestorePurchases => 'Restore purchases';
 
   @override
   String get storePlutoniumAlreadySubscribed =>
@@ -10165,12 +10381,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Vis Pickles på chatteinndataen din';
 
   @override
-  String get advancedSettingShowNekoKeywordCat => 'Katt';
-
-  @override
-  String get advancedSettingShowNekoKeywordNeko => 'Neko';
-
-  @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>
       'Zoom-animasjon ved oppstart';
 
@@ -10826,7 +11036,13 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get chatJumpToBottom => 'Hopp til bunnen';
 
   @override
+  String get chatUnreadDividerNew => 'Ny';
+
+  @override
   String get uiConfirm => 'Bekreft';
+
+  @override
+  String get uiUnderstood => 'Understood';
 
   @override
   String get uiLoading => 'Laster inn';
@@ -10909,7 +11125,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get instanceUrlHelper =>
-      'Bruk fluxer.app for den offisielle instansen, eller den nøyaktige URL-en til en selvhostet instans.';
+      'Bruk echowire.org for den offisielle instansen, eller den nøyaktige URL-en til en selvhostet instans.';
 
   @override
   String get resetToDefaultInstance => 'Tilbakestill til echowire';
@@ -11125,10 +11341,10 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get guildNavbarHelp => 'Hjelp';
 
   @override
-  String get scrollIndicatorNew => 'NEW';
+  String get scrollIndicatorNew => 'Ny';
 
   @override
-  String get scrollIndicatorNewMessage => 'NY MELDING';
+  String get scrollIndicatorNewMessages => 'Nye meldinger';
 
   @override
   String guildNavbarCollapseFolder(String folderName) {
@@ -11523,9 +11739,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get guildMenuMarkAsRead => 'Merk som lest';
-
-  @override
-  String get guildPeekMoreOptions => 'Flere alternativer';
 
   @override
   String get guildMenuInviteMembers => 'Inviter medlemmer';
@@ -12923,6 +13136,51 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Oppdaterte fellesskapsikonet.';
 
   @override
+  String get auditLogChangePausedInvites => 'Paused invites.';
+
+  @override
+  String get auditLogChangeResumedInvites => 'Resumed invites.';
+
+  @override
+  String get auditLogChangeTurnedOnDetachedBanner =>
+      'Turned on the detached banner.';
+
+  @override
+  String get auditLogChangeTurnedOffDetachedBanner =>
+      'Turned off the detached banner.';
+
+  @override
+  String get auditLogChangeAllowedFlexibleChannelNames =>
+      'Allowed flexible text channel names.';
+
+  @override
+  String get auditLogChangeDisallowedFlexibleChannelNames =>
+      'Stopped allowing flexible text channel names.';
+
+  @override
+  String get auditLogChangeHidOwnerCrown => 'Hid the community owner crown.';
+
+  @override
+  String get auditLogChangeShowedOwnerCrown =>
+      'Stopped hiding the community owner crown.';
+
+  @override
+  String get auditLogChangeAllowedEmojiCloning =>
+      'Allowed others to clone this community\'s emojis.';
+
+  @override
+  String get auditLogChangeStoppedEmojiCloning =>
+      'Stopped allowing others to clone this community\'s emojis.';
+
+  @override
+  String get auditLogChangeAllowedStickerCloning =>
+      'Allowed others to clone this community\'s stickers.';
+
+  @override
+  String get auditLogChangeStoppedStickerCloning =>
+      'Stopped allowing others to clone this community\'s stickers.';
+
+  @override
   String auditLogChangeRenamedChannel(String name) {
     return 'Endret navnet på kanalen til $name.';
   }
@@ -12994,8 +13252,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Slettet # meldinger.',
-      one: 'Slettet # melding.',
+      other: 'Slettet $count meldinger.',
+      one: 'Slettet $count melding.',
     );
     return '$_temp0';
   }
@@ -13005,8 +13263,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Fjernet # medlemmer.',
-      one: 'Fjernet # medlem.',
+      other: 'Fjernet $count medlemmer.',
+      one: 'Fjernet $count medlem.',
     );
     return '$_temp0';
   }
@@ -13540,16 +13798,16 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
       'Kunne ikke slette dette fellesskapet';
 
   @override
-  String get guildSettingsCategoryExpressions => 'EXPRESSIONS';
+  String get guildSettingsCategoryExpressions => 'Expressions';
 
   @override
-  String get guildSettingsCategoryCommunity => 'COMMUNITY';
+  String get guildSettingsCategoryCommunity => 'Community';
 
   @override
-  String get guildSettingsCategoryIntegrations => 'INTEGRATIONS';
+  String get guildSettingsCategoryIntegrations => 'Integrations';
 
   @override
-  String get guildSettingsCategoryPeople => 'PEOPLE';
+  String get guildSettingsCategoryPeople => 'People';
 
   @override
   String get guildSettingsOverviewBrandingTitle => 'Merkevarebygging';
@@ -14438,18 +14696,6 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get homeQuickActionDms => 'Direktemeldinger';
 
   @override
-  String get threadsAddMember => 'Add member';
-
-  @override
-  String get threadsAddMemberSearchLabel => 'Search members';
-
-  @override
-  String get threadsAddMemberNoResults => 'No members match that search.';
-
-  @override
-  String get threadsMemberAddedToast => 'Member added';
-
-  @override
   String get assistantNeedsLogin => 'Åpne Fluxer og logg på først.';
 
   @override
@@ -14846,7 +15092,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get forumPostArchived => 'Archived';
 
   @override
-  String get forumPostNewBadge => 'NEW';
+  String get forumPostNewBadge => 'Ny';
 
   @override
   String get forumPostStarterDeleted => 'The original message was deleted.';
@@ -14861,8 +15107,8 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count new messages',
-      one: '1 new message',
+      other: '$count nye meldinger',
+      one: '$count ny melding',
     );
     return '$_temp0';
   }
@@ -15171,4 +15417,43 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String voiceP2pPeerFailedTitle(String name) {
     return 'Cannot connect directly to $name';
   }
+
+  @override
+  String get favoritesRenameCategory => 'Gi kategori nytt navn';
+
+  @override
+  String get captchaTitle => 'Bekreft at du er et menneske';
+
+  @override
+  String get captchaDescription =>
+      'Vi må forsikre oss om at du ikke er en bot. Vennligst fullfør bekreftelsen nedenfor.';
+
+  @override
+  String get captchaSwitchToHcaptcha =>
+      'Har du problemer? Prøv hCaptcha i stedet';
+
+  @override
+  String get captchaSwitchToTurnstile => 'Prøv Turnstile i stedet';
+
+  @override
+  String get phoneCaptchaRequired =>
+      'En nettlesersjekk kreves før telefonverifisering. Prøv igjen fra påloggingssiden eller kontakt kundestøtte.';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Katt';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
 }

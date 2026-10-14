@@ -12,10 +12,79 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get reconnectingTitle => '我们出错了！';
 
   @override
+  String get chatJumpToPresent => '跳转到最新消息';
+
+  @override
+  String get chatViewingOlderMessages => '你正在查看较早的消息';
+
+  @override
+  String get chatNewMessagesBarJumpToFirstUnread => '跳转到第一条未读消息';
+
+  @override
+  String get chatNewMessagesBarMarkAsRead => '标为已读';
+
+  @override
+  String get chatNewMessagesBarMarkRead => '标为已读';
+
+  @override
+  String chatNewMessagesBarNewMessagesSinceEstimated(
+    int unreadCount,
+    String compactTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '$compactTime 以来有 $unreadCountString+ 条新消息';
+  }
+
+  @override
+  String chatNewMessagesBarNewMessagesSince(
+    int unreadCount,
+    String compactTime,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount 条新消息',
+    );
+    return '$compactTime 以来有 $_temp0';
+  }
+
+  @override
+  String chatNewMessagesBarNewSinceEstimated(
+    int unreadCount,
+    String shortTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '$shortTime 以来有 $unreadCountString+ 条新消息';
+  }
+
+  @override
+  String chatNewMessagesBarNewSince(int unreadCount, String shortTime) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount 条新消息',
+    );
+    return '$shortTime 以来有 $_temp0';
+  }
+
+  @override
   String get reconnectingBody => '实例出现问题。\n很快就会修复！';
 
   @override
   String get gatewayReconnectingToast => '正在重新连接…';
+
+  @override
+  String get gatewayReconnectTryAgain => '重试';
 
   @override
   String get gatewayConnectedToast => '已连接';
@@ -222,18 +291,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get orDivider => 'OR';
 
   @override
-  String get captchaTitle => '验证您是人类';
-
-  @override
-  String get captchaDescription => '我们需要确保您不是机器人。请完成以下验证。';
-
-  @override
-  String get captchaSwitchToHcaptcha => '有问题？尝试 hCaptcha';
-
-  @override
-  String get captchaSwitchToTurnstile => '尝试 Turnstile';
-
-  @override
   String get cancel => '取消';
 
   @override
@@ -274,6 +331,9 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get next => '下一步';
 
   @override
+  String get create => 'Create';
+
+  @override
   String get mfaTitle => '两步验证';
 
   @override
@@ -308,6 +368,11 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get accountRemoveDescription => '这将移除此账户的已保存会话。';
+
+  @override
+  String accountSignOutTitle(String identifier) {
+    return 'Sign out of $identifier?';
+  }
 
   @override
   String get accountExpired => '已过期';
@@ -1314,9 +1379,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get dmFriendRequestSentToast => '好友请求已发送';
 
   @override
-  String get dmFriendRequestFailed => '发送好友请求失败';
-
-  @override
   String get dmAcceptFriendRequestFailed => '接受好友请求失败';
 
   @override
@@ -1439,6 +1501,13 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get addFriendFriendsListFull => '您的好友列表已满，或对方的好友列表已满。请移除一些好友后再试。';
 
   @override
+  String get addFriendSendFailedTitle => 'Couldn\'t send friend request';
+
+  @override
+  String get addFriendSendFailedMessage =>
+      'Couldn\'t send the friend request. Try again.';
+
+  @override
   String get userTagBot => 'BOT';
 
   @override
@@ -1508,13 +1577,10 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get gifPickerSearch => '搜索 GIF';
 
   @override
-  String get gifPickerSearchKlipy => '搜索 KLIPY';
+  String get gifPickerSearchKlipy => '搜索 Klipy';
 
   @override
   String get gifPickerSearchTenor => '搜索 Tenor';
-
-  @override
-  String get gifPickerPoweredByKlipy => 'KLIPY';
 
   @override
   String get gifPickerFavorites => '收藏';
@@ -2278,9 +2344,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get backupCodesDone => '完成';
 
   @override
-  String get phoneCaptchaRequired => '电话验证前需要进行浏览器检查。请从登录页面重试，或联系客服。';
-
-  @override
   String get dangerZoneSectionTitle => '危险区域';
 
   @override
@@ -2301,10 +2364,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get dangerZoneDeleteDescription => '永久删除您的账号及所有相关数据。此操作无法撤销。';
-
-  @override
-  String get dangerZoneDeleteCancelSubscription =>
-      '在删除账号前，请在 Reverb 设置中取消您的有效 Reverb 订阅。';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => '无法删除账号';
@@ -2901,16 +2960,11 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   }
 
   @override
-  String userProfilePlutoniumBadgeTooltip(String productName) {
-    return '$productName Reverb';
-  }
-
-  @override
-  String userProfilePlutoniumSubscriberSinceTooltip(
-    String productName,
+  String userProfilePremiumSubscriberSinceTooltip(
+    String premiumProductFullName,
     String date,
   ) {
-    return '$productName Reverb 订阅者，始于 $date';
+    return '$premiumProductFullName 订阅者，自 $date 起';
   }
 
   @override
@@ -3724,6 +3778,46 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get channelComposerBarrierVerifyEmail => '验证邮箱';
+
+  @override
+  String get accountLimitedNotice => '你账号的消息功能已暂停。请查看邮箱，完成一个简单步骤即可继续使用。';
+
+  @override
+  String get messagingPausedTextDidNotGoThrough => '我的短信没有送达';
+
+  @override
+  String messagingPausedHelpBody(String supportEmail) {
+    return '发送邮件至 $supportEmail，会有工作人员查看你的账号。你也可以直接回复我们发给你的邮件。';
+  }
+
+  @override
+  String get messagingPausedHelpCountryLabel => '你所在的国家/地区';
+
+  @override
+  String get messagingPausedHelpCopyDetails => '复制详情';
+
+  @override
+  String get messagingPausedHelpEmailSupport => '发邮件给客服';
+
+  @override
+  String messagingPausedHelpAccountIdLine(String accountId) {
+    return '账号 ID：$accountId';
+  }
+
+  @override
+  String messagingPausedHelpUsernameLine(String username) {
+    return '用户名：$username';
+  }
+
+  @override
+  String messagingPausedHelpAccountCreatedLine(String createdAt) {
+    return '账号创建时间：$createdAt';
+  }
+
+  @override
+  String messagingPausedHelpCountryLine(String country) {
+    return '国家/地区：$country';
+  }
 
   @override
   String chatAttachmentTooMany(int max) {
@@ -5622,8 +5716,8 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# 条未读消息',
-      one: '# 条未读消息',
+      other: '$count 条未读消息',
+      one: '$count 条未读消息',
     );
     return '显示聊天（$_temp0）';
   }
@@ -5761,6 +5855,40 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get notificationsMessageUnavailable => '无法加载此消息。';
 
   @override
+  String notificationsMentionedYouIn(String author, String place) {
+    return '$author mentioned you in $place:';
+  }
+
+  @override
+  String notificationsRepliedToYouIn(String author, String place) {
+    return '$author replied to you in $place:';
+  }
+
+  @override
+  String notificationsMentionedYou(String author) {
+    return '$author mentioned you:';
+  }
+
+  @override
+  String notificationsRepliedToYou(String author) {
+    return '$author replied to you:';
+  }
+
+  @override
+  String notificationsMentionPlace(String server, String channel) {
+    return '$server – $channel';
+  }
+
+  @override
+  String get notificationsSendReply => 'Send a reply';
+
+  @override
+  String get notificationsRecentActivity => 'Recent activity';
+
+  @override
+  String get notificationsRemoveNotification => 'Remove notification';
+
+  @override
   String characterCounterRemaining(int remaining) {
     return '$remaining 个字符剩余';
   }
@@ -5779,6 +5907,9 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get chatMessageFailedToSend => '消息发送失败';
+
+  @override
+  String get chatMessageFailedToSendTapForOptions => '发送消息失败。轻触以查看选项。';
 
   @override
   String chatSendFailureDmRestricted(String settingsPath) {
@@ -6173,8 +6304,8 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# 个社群',
-      one: '# 个社群',
+      other: '$count 个社群',
+      one: '$count 个社群',
     );
     return '除 $_temp0 外的所有社群';
   }
@@ -6184,8 +6315,8 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# 个社群',
-      one: '# 个社群',
+      other: '$count 个社群',
+      one: '$count 个社群',
     );
     return '仅限 $_temp0';
   }
@@ -6210,14 +6341,14 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# 小时',
-      one: '# 小时',
+      other: '$hours 小时',
+      one: '$hours 小时',
     );
     String _temp1 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# 分钟',
-      one: '# 分钟',
+      other: '$minutes 分钟',
+      one: '$minutes 分钟',
     );
     return '$_temp0又$_temp1';
   }
@@ -6227,8 +6358,8 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# 小时',
-      one: '# 小时',
+      other: '$hours 小时',
+      one: '$hours 小时',
     );
     return '$_temp0';
   }
@@ -6238,8 +6369,8 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# 分钟',
-      one: '# 分钟',
+      other: '$minutes 分钟',
+      one: '$minutes 分钟',
     );
     return '$_temp0';
   }
@@ -6249,8 +6380,8 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       seconds,
       locale: localeName,
-      other: '# 秒',
-      one: '# 秒',
+      other: '$seconds 秒',
+      one: '$seconds 秒',
     );
     return '$_temp0';
   }
@@ -6275,6 +6406,9 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get doubleTapReactionHint => '双击消息即可回应';
+
+  @override
+  String get doubleTapEditHint => 'Double tap your own message to edit it';
 
   @override
   String get doubleTapReactionEdit => '编辑';
@@ -6379,9 +6513,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get forwardSuccessToast => '消息已转发';
-
-  @override
-  String get forwardFailed => '转发消息失败';
 
   @override
   String get forwardCommentSlowmodeDisabled => '由于所选频道启用了慢速模式，评论不可用。';
@@ -6766,6 +6897,12 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get chatEditNoChanges => '未保存任何更改';
 
   @override
+  String get chatEditFailed => 'Your message didn\'t update';
+
+  @override
+  String get chatEditFailedEditAgain => 'Edit again';
+
+  @override
   String get chatChannelNotReady => '此频道尚未准备就绪。请稍后再试。';
 
   @override
@@ -6872,6 +7009,9 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get composerAutocompleteStickersHeading => '贴纸';
+
+  @override
+  String get composerAutocompleteEmojisHeading => 'Emojis';
 
   @override
   String get composerAutocompleteGifsHeading => 'GIF';
@@ -7840,6 +7980,72 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get channelHeaderSearchClearHistory => '清空';
 
   @override
+  String get channelSearchRemoveRecent => 'Remove from recent searches';
+
+  @override
+  String get channelSearchFiltersButton => 'Filters';
+
+  @override
+  String get channelSearchFilterMenuTitle => 'Filter results';
+
+  @override
+  String get channelSearchFilterFromLabel => 'From a specific person';
+
+  @override
+  String get channelSearchFilterMentionsLabel => 'Mentions a specific person';
+
+  @override
+  String get channelSearchFilterHasLabel => 'Has a link, file or embed';
+
+  @override
+  String get channelSearchFilterInLabel => 'In a specific channel';
+
+  @override
+  String get channelSearchFilterDuringLabel => 'Sent on a date';
+
+  @override
+  String get channelSearchFilterBeforeLabel => 'Sent before a date';
+
+  @override
+  String get channelSearchFilterAfterLabel => 'Sent after a date';
+
+  @override
+  String get channelSearchFilterPinnedLabel => 'Pinned or not pinned';
+
+  @override
+  String get channelSearchFilterAuthorTypeLabel => 'By author type';
+
+  @override
+  String get channelSearchDateToday => 'Today';
+
+  @override
+  String get channelSearchDateYesterday => 'Yesterday';
+
+  @override
+  String get channelSearchTabMessages => 'Messages';
+
+  @override
+  String get channelSearchTabImages => 'Images';
+
+  @override
+  String get channelSearchTabPins => 'Pins';
+
+  @override
+  String get channelSearchTabLinks => 'Links';
+
+  @override
+  String get channelSearchTabFiles => 'Files';
+
+  @override
+  String channelSearchTabCount(String label, int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$label ($countString)';
+  }
+
+  @override
   String get channelHeaderSearchFilterDescFrom => '某个用户';
 
   @override
@@ -8379,16 +8585,16 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get userSettingsGroupYourAccount => '你的账户';
 
   @override
-  String get userSettingsGroupBilling => 'BILLING';
+  String get userSettingsGroupBilling => 'Billing';
 
   @override
-  String get userSettingsGroupApplication => 'APPLICATION';
+  String get userSettingsGroupApplication => 'Application';
 
   @override
-  String get userSettingsGroupDeveloper => 'DEVELOPER';
+  String get userSettingsGroupDeveloper => 'Developer';
 
   @override
-  String get userSettingsGroupStaffOnly => 'STAFF-ONLY';
+  String get userSettingsGroupStaffOnly => 'Staff-only';
 
   @override
   String get userSettingsSearchPlaceholder => '搜索设置…';
@@ -8404,6 +8610,11 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get userSettingsCopyLinkToPage => 'Copy link to page';
+
+  @override
+  String userSettingsJumpLinkPremiumPage(String productName) {
+    return '$productName page';
+  }
 
   @override
   String get userSettingsNavProfile => '个人资料';
@@ -8894,6 +9105,9 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get storePlutoniumRenewsThroughAppStore => '通过 App Store 自动续订，直到你取消。';
+
+  @override
+  String get storePlutoniumRestorePurchases => 'Restore purchases';
 
   @override
   String get storePlutoniumAlreadySubscribed => '你已拥有 Fluxer Plutonium 订阅。';
@@ -9545,12 +9759,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get advancedSettingShowNekoDescriptionTouch => '在聊天输入框中显示 Pickles';
 
   @override
-  String get advancedSettingShowNekoKeywordCat => '猫';
-
-  @override
-  String get advancedSettingShowNekoKeywordNeko => 'Neko';
-
-  @override
   String get advancedSettingMobileSplashZoomAnimationLabel => '启动缩放动画';
 
   @override
@@ -10145,7 +10353,13 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get chatJumpToBottom => '跳至底部';
 
   @override
+  String get chatUnreadDividerNew => '新消息';
+
+  @override
   String get uiConfirm => '确认';
+
+  @override
+  String get uiUnderstood => 'Understood';
 
   @override
   String get uiLoading => '正在加载';
@@ -10226,7 +10440,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get instanceUrlPlaceholder => '输入实例 URL（例如 echowire.org）';
 
   @override
-  String get instanceUrlHelper => '官方实例请使用 fluxer.app，自托管实例请使用确切的 URL。';
+  String get instanceUrlHelper => '官方实例请使用 echowire.org，自托管实例请使用确切的 URL。';
 
   @override
   String get resetToDefaultInstance => '重置为 echowire';
@@ -10434,7 +10648,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get scrollIndicatorNew => 'NEW';
 
   @override
-  String get scrollIndicatorNewMessage => '新消息';
+  String get scrollIndicatorNewMessages => '新消息';
 
   @override
   String guildNavbarCollapseFolder(String folderName) {
@@ -10812,9 +11026,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get guildMenuMarkAsRead => '标记为已读';
-
-  @override
-  String get guildPeekMoreOptions => '更多选项';
 
   @override
   String get guildMenuInviteMembers => '邀请成员';
@@ -12166,6 +12377,51 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get auditLogChangeUpdatedCommunityIcon => '已更新社区图标。';
 
   @override
+  String get auditLogChangePausedInvites => 'Paused invites.';
+
+  @override
+  String get auditLogChangeResumedInvites => 'Resumed invites.';
+
+  @override
+  String get auditLogChangeTurnedOnDetachedBanner =>
+      'Turned on the detached banner.';
+
+  @override
+  String get auditLogChangeTurnedOffDetachedBanner =>
+      'Turned off the detached banner.';
+
+  @override
+  String get auditLogChangeAllowedFlexibleChannelNames =>
+      'Allowed flexible text channel names.';
+
+  @override
+  String get auditLogChangeDisallowedFlexibleChannelNames =>
+      'Stopped allowing flexible text channel names.';
+
+  @override
+  String get auditLogChangeHidOwnerCrown => 'Hid the community owner crown.';
+
+  @override
+  String get auditLogChangeShowedOwnerCrown =>
+      'Stopped hiding the community owner crown.';
+
+  @override
+  String get auditLogChangeAllowedEmojiCloning =>
+      'Allowed others to clone this community\'s emojis.';
+
+  @override
+  String get auditLogChangeStoppedEmojiCloning =>
+      'Stopped allowing others to clone this community\'s emojis.';
+
+  @override
+  String get auditLogChangeAllowedStickerCloning =>
+      'Allowed others to clone this community\'s stickers.';
+
+  @override
+  String get auditLogChangeStoppedStickerCloning =>
+      'Stopped allowing others to clone this community\'s stickers.';
+
+  @override
   String auditLogChangeRenamedChannel(String name) {
     return '将频道重命名为 $name。';
   }
@@ -12236,8 +12492,8 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '删除了 # 条消息。',
-      one: '删除了 # 条消息。',
+      other: '删除了 $count 条消息。',
+      one: '删除了 $count 条消息。',
     );
     return '$_temp0';
   }
@@ -12247,8 +12503,8 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '移除了 # 名成员。',
-      one: '移除了 # 名成员。',
+      other: '移除了 $count 名成员。',
+      one: '移除了 $count 名成员。',
     );
     return '$_temp0';
   }
@@ -12752,16 +13008,16 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get guildSettingsDeleteCommunityFailed => '无法删除此社区';
 
   @override
-  String get guildSettingsCategoryExpressions => 'EXPRESSIONS';
+  String get guildSettingsCategoryExpressions => 'Expressions';
 
   @override
-  String get guildSettingsCategoryCommunity => 'COMMUNITY';
+  String get guildSettingsCategoryCommunity => 'Community';
 
   @override
-  String get guildSettingsCategoryIntegrations => 'INTEGRATIONS';
+  String get guildSettingsCategoryIntegrations => 'Integrations';
 
   @override
-  String get guildSettingsCategoryPeople => 'PEOPLE';
+  String get guildSettingsCategoryPeople => 'People';
 
   @override
   String get guildSettingsOverviewBrandingTitle => '品牌';
@@ -13571,18 +13827,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get homeQuickActionDms => '私信';
 
   @override
-  String get threadsAddMember => 'Add member';
-
-  @override
-  String get threadsAddMemberSearchLabel => 'Search members';
-
-  @override
-  String get threadsAddMemberNoResults => 'No members match that search.';
-
-  @override
-  String get threadsMemberAddedToast => 'Member added';
-
-  @override
   String get assistantNeedsLogin => '请先打开 Fluxer 并登录。';
 
   @override
@@ -13953,7 +14197,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get forumPostArchived => 'Archived';
 
   @override
-  String get forumPostNewBadge => 'NEW';
+  String get forumPostNewBadge => '新消息';
 
   @override
   String get forumPostStarterDeleted => 'The original message was deleted.';
@@ -13968,8 +14212,8 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count new messages',
-      one: '1 new message',
+      other: '$count 条新消息',
+      one: '$count 条新消息',
     );
     return '$_temp0';
   }
@@ -14278,6 +14522,42 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String voiceP2pPeerFailedTitle(String name) {
     return 'Cannot connect directly to $name';
   }
+
+  @override
+  String get favoritesRenameCategory => '重命名类别';
+
+  @override
+  String get captchaTitle => '验证您是人类';
+
+  @override
+  String get captchaDescription => '我们需要确保您不是机器人。请完成以下验证。';
+
+  @override
+  String get captchaSwitchToHcaptcha => '有问题？尝试 hCaptcha';
+
+  @override
+  String get captchaSwitchToTurnstile => '尝试 Turnstile';
+
+  @override
+  String get phoneCaptchaRequired => '电话验证前需要进行浏览器检查。请从登录页面重试，或联系客服。';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => '猫';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -14288,10 +14568,80 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get reconnectingTitle => '我們出錯了！';
 
   @override
+  String get chatJumpToPresent => '跳到最新訊息';
+
+  @override
+  String get chatViewingOlderMessages => '您正在檢視較舊的訊息';
+
+  @override
+  String get chatNewMessagesBarJumpToFirstUnread => '跳到第一則未讀訊息';
+
+  @override
+  String get chatNewMessagesBarMarkAsRead => '標示為已讀';
+
+  @override
+  String get chatNewMessagesBarMarkRead => '標示為已讀';
+
+  @override
+  String chatNewMessagesBarNewMessagesSinceEstimated(
+    int unreadCount,
+    String compactTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '自 $compactTime 起有超過 $unreadCountString 則新訊息';
+  }
+
+  @override
+  String chatNewMessagesBarNewMessagesSince(
+    int unreadCount,
+    String compactTime,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount 則新訊息',
+      one: '$unreadCount 則新訊息',
+    );
+    return '自 $compactTime 起有 $_temp0';
+  }
+
+  @override
+  String chatNewMessagesBarNewSinceEstimated(
+    int unreadCount,
+    String shortTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '自 $shortTime 起有超過 $unreadCountString 則新訊息';
+  }
+
+  @override
+  String chatNewMessagesBarNewSince(int unreadCount, String shortTime) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount 則新訊息',
+    );
+    return '自 $shortTime 起有 $_temp0';
+  }
+
+  @override
   String get reconnectingBody => '連線發生問題。\n幾秒鐘內就會修復！';
 
   @override
   String get gatewayReconnectingToast => '正在重新連線…';
+
+  @override
+  String get gatewayReconnectTryAgain => '再試一次';
 
   @override
   String get gatewayConnectedToast => '已連線';
@@ -14496,18 +14846,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get orDivider => 'OR';
-
-  @override
-  String get captchaTitle => '請驗證您是人類';
-
-  @override
-  String get captchaDescription => '我們需要確認您不是機器人。請完成下方的驗證。';
-
-  @override
-  String get captchaSwitchToHcaptcha => '有問題嗎？試試 hCaptcha';
-
-  @override
-  String get captchaSwitchToTurnstile => '試試 Turnstile';
 
   @override
   String get cancel => '取消';
@@ -15590,9 +15928,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get dmFriendRequestSentToast => '朋友要求已送出';
 
   @override
-  String get dmFriendRequestFailed => '傳送朋友要求失敗';
-
-  @override
   String get dmAcceptFriendRequestFailed => '接受朋友要求失敗';
 
   @override
@@ -15781,13 +16116,10 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get gifPickerSearch => '搜尋 GIF';
 
   @override
-  String get gifPickerSearchKlipy => '搜尋 KLIPY';
+  String get gifPickerSearchKlipy => '搜尋 Klipy';
 
   @override
   String get gifPickerSearchTenor => '搜尋 Tenor';
-
-  @override
-  String get gifPickerPoweredByKlipy => 'KLIPY';
 
   @override
   String get gifPickerFavorites => '我的最愛';
@@ -16459,7 +16791,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '已註冊 # 個通行金鑰',
+      other: '已註冊 $count 個通行金鑰',
       one: '已註冊 1 個通行金鑰',
     );
     return '$_temp0 (最多 10 個)';
@@ -16551,9 +16883,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get backupCodesDone => '完成';
 
   @override
-  String get phoneCaptchaRequired => '電話驗證前需要進行瀏覽器檢查。請從登入頁面重試，或聯絡客服。';
-
-  @override
   String get dangerZoneSectionTitle => '危險區域';
 
   @override
@@ -16574,10 +16903,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get dangerZoneDeleteDescription => '永久刪除您的帳號及所有相關資料。此動作無法復原。';
-
-  @override
-  String get dangerZoneDeleteCancelSubscription =>
-      '刪除帳號前，請先在 Reverb 設定中取消您的 Reverb 付費方案。';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => '無法刪除帳號';
@@ -17176,16 +17501,11 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   }
 
   @override
-  String userProfilePlutoniumBadgeTooltip(String productName) {
-    return '$productName Reverb';
-  }
-
-  @override
-  String userProfilePlutoniumSubscriberSinceTooltip(
-    String productName,
+  String userProfilePremiumSubscriberSinceTooltip(
+    String premiumProductFullName,
     String date,
   ) {
-    return '$productName Reverb 訂閱者自 $date 起';
+    return '自 $date 起訂閱 $premiumProductFullName';
   }
 
   @override
@@ -18001,6 +18321,46 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get channelComposerBarrierVerifyEmail => '驗證電子郵件';
+
+  @override
+  String get accountLimitedNotice => '您帳號的訊息功能已暫停。請查看電子郵件，完成一個簡單步驟即可繼續使用。';
+
+  @override
+  String get messagingPausedTextDidNotGoThrough => '我的簡訊沒有送達';
+
+  @override
+  String messagingPausedHelpBody(String supportEmail) {
+    return '請寄信至 $supportEmail，會有專人查看您的帳號。您也可以直接回覆我們寄給您的信件。';
+  }
+
+  @override
+  String get messagingPausedHelpCountryLabel => '您所在的國家/地區';
+
+  @override
+  String get messagingPausedHelpCopyDetails => '複製詳細資訊';
+
+  @override
+  String get messagingPausedHelpEmailSupport => '寄信給客服';
+
+  @override
+  String messagingPausedHelpAccountIdLine(String accountId) {
+    return '帳號 ID：$accountId';
+  }
+
+  @override
+  String messagingPausedHelpUsernameLine(String username) {
+    return '使用者名稱：$username';
+  }
+
+  @override
+  String messagingPausedHelpAccountCreatedLine(String createdAt) {
+    return '帳號建立時間：$createdAt';
+  }
+
+  @override
+  String messagingPausedHelpCountryLine(String country) {
+    return '國家/地區：$country';
+  }
 
   @override
   String chatAttachmentTooMany(int max) {
@@ -19812,8 +20172,8 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# 則未讀訊息',
-      one: '# 則未讀訊息',
+      other: '$count 則未讀訊息',
+      one: '$count 則未讀訊息',
     );
     return '顯示聊天（有 $_temp0）';
   }
@@ -19969,6 +20329,9 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get chatMessageFailedToSend => '訊息傳送失敗';
+
+  @override
+  String get chatMessageFailedToSendTapForOptions => '無法傳送訊息。輕觸以選擇選項。';
 
   @override
   String chatSendFailureDmRestricted(String settingsPath) {
@@ -20366,8 +20729,8 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# 個社群',
-      one: '# 個社群',
+      other: '$count 個社群',
+      one: '$count 個社群',
     );
     return '所有社群，除了 $_temp0';
   }
@@ -20377,8 +20740,8 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# 個社群',
-      one: '# 個社群',
+      other: '$count 個社群',
+      one: '$count 個社群',
     );
     return '僅限 $_temp0';
   }
@@ -20403,14 +20766,14 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# 小時',
-      one: '# 小時',
+      other: '$hours 小時',
+      one: '$hours 小時',
     );
     String _temp1 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# 分鐘',
-      one: '# 分鐘',
+      other: '$minutes 分鐘',
+      one: '$minutes 分鐘',
     );
     return '$_temp0又$_temp1';
   }
@@ -20420,8 +20783,8 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# 小時',
-      one: '# 小時',
+      other: '$hours 小時',
+      one: '$hours 小時',
     );
     return '$_temp0';
   }
@@ -20431,8 +20794,8 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
     String _temp0 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# 分鐘',
-      one: '# 分鐘',
+      other: '$minutes 分鐘',
+      one: '$minutes 分鐘',
     );
     return '$_temp0';
   }
@@ -20442,8 +20805,8 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
     String _temp0 = intl.Intl.pluralLogic(
       seconds,
       locale: localeName,
-      other: '# 秒',
-      one: '# 秒',
+      other: '$seconds 秒',
+      one: '$seconds 秒',
     );
     return '$_temp0';
   }
@@ -20515,9 +20878,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get forwardSuccessToast => '訊息已轉寄';
-
-  @override
-  String get forwardFailed => '無法轉寄訊息';
 
   @override
   String get forwardCommentSlowmodeDisabled => '由於選取的頻道已啟用慢速模式，備註功能無法使用。';
@@ -22507,16 +22867,16 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get userSettingsGroupYourAccount => '你的帳戶';
 
   @override
-  String get userSettingsGroupBilling => 'BILLING';
+  String get userSettingsGroupBilling => 'Billing';
 
   @override
-  String get userSettingsGroupApplication => 'APPLICATION';
+  String get userSettingsGroupApplication => 'Application';
 
   @override
-  String get userSettingsGroupDeveloper => 'DEVELOPER';
+  String get userSettingsGroupDeveloper => 'Developer';
 
   @override
-  String get userSettingsGroupStaffOnly => 'STAFF-ONLY';
+  String get userSettingsGroupStaffOnly => 'Staff-only';
 
   @override
   String get userSettingsSearchPlaceholder => '搜尋設定...';
@@ -23638,12 +23998,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get advancedSettingShowNekoDescriptionTouch => '在聊天輸入框顯示 Pickles';
 
   @override
-  String get advancedSettingShowNekoKeywordCat => '貓';
-
-  @override
-  String get advancedSettingShowNekoKeywordNeko => 'Neko';
-
-  @override
   String get advancedSettingMobileSplashZoomAnimationLabel => '啟動縮放動畫';
 
   @override
@@ -24233,6 +24587,9 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get chatJumpToBottom => '跳至底部';
 
   @override
+  String get chatUnreadDividerNew => '新訊息';
+
+  @override
   String get uiConfirm => '確認';
 
   @override
@@ -24314,7 +24671,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get instanceUrlPlaceholder => '輸入伺服器網址 (例如 echowire.org)';
 
   @override
-  String get instanceUrlHelper => '官方伺服器請使用 fluxer.app，自架伺服器請使用確切的網址。';
+  String get instanceUrlHelper => '官方伺服器請使用 echowire.org，自架伺服器請使用確切的網址。';
 
   @override
   String get resetToDefaultInstance => '重設為 echowire';
@@ -24488,7 +24845,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get scrollIndicatorNew => 'NEW';
 
   @override
-  String get scrollIndicatorNewMessage => '新訊息';
+  String get scrollIndicatorNewMessages => '新訊息';
 
   @override
   String guildNavbarCollapseFolder(String folderName) {
@@ -24853,9 +25210,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get guildMenuMarkAsRead => '標示為已讀';
-
-  @override
-  String get guildPeekMoreOptions => '更多選項';
 
   @override
   String get guildMenuInviteMembers => '邀請成員';
@@ -25942,8 +26296,8 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '刪除 # 則訊息。',
-      one: '刪除 # 則訊息。',
+      other: '刪除 $count 則訊息。',
+      one: '刪除 $count 則訊息。',
     );
     return '$_temp0';
   }
@@ -25953,8 +26307,8 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '移除 # 位成員。',
-      one: '移除 # 位成員。',
+      other: '移除 $count 位成員。',
+      one: '移除 $count 位成員。',
     );
     return '$_temp0';
   }
@@ -26458,16 +26812,16 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get guildSettingsDeleteCommunityFailed => '無法刪除此社群';
 
   @override
-  String get guildSettingsCategoryExpressions => 'EXPRESSIONS';
+  String get guildSettingsCategoryExpressions => 'Expressions';
 
   @override
-  String get guildSettingsCategoryCommunity => 'COMMUNITY';
+  String get guildSettingsCategoryCommunity => 'Community';
 
   @override
-  String get guildSettingsCategoryIntegrations => 'INTEGRATIONS';
+  String get guildSettingsCategoryIntegrations => 'Integrations';
 
   @override
-  String get guildSettingsCategoryPeople => 'PEOPLE';
+  String get guildSettingsCategoryPeople => 'People';
 
   @override
   String get guildSettingsOverviewBrandingTitle => '品牌';
@@ -27277,18 +27631,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get homeQuickActionDms => '私訊';
 
   @override
-  String get threadsAddMember => 'Add member';
-
-  @override
-  String get threadsAddMemberSearchLabel => 'Search members';
-
-  @override
-  String get threadsAddMemberNoResults => 'No members match that search.';
-
-  @override
-  String get threadsMemberAddedToast => 'Member added';
-
-  @override
   String get assistantNeedsLogin => '請先開啟 Fluxer 並登入。';
 
   @override
@@ -27605,8 +27947,58 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get forumNoPosts => '還沒有貼文';
 
   @override
+  String get forumPostNewBadge => '新訊息';
+
+  @override
+  String forumPostNewMessages(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 則新訊息',
+      one: '$count 則新訊息',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get forumLayoutList => '清單';
 
   @override
   String get forumLayoutGallery => '圖庫';
+
+  @override
+  String get favoritesRenameCategory => '重新命名類別';
+
+  @override
+  String get captchaTitle => '請驗證您是人類';
+
+  @override
+  String get captchaDescription => '我們需要確認您不是機器人。請完成下方的驗證。';
+
+  @override
+  String get captchaSwitchToHcaptcha => '有問題嗎？試試 hCaptcha';
+
+  @override
+  String get captchaSwitchToTurnstile => '試試 Turnstile';
+
+  @override
+  String get phoneCaptchaRequired => '電話驗證前需要進行瀏覽器檢查。請從登入頁面重試，或聯絡客服。';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => '貓';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
 }

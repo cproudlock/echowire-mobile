@@ -12,11 +12,87 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get reconnectingTitle => 'Что-то пошло не так!';
 
   @override
+  String get chatJumpToPresent => 'Перейти к новым сообщениям';
+
+  @override
+  String get chatViewingOlderMessages => 'Вы просматриваете старые сообщения';
+
+  @override
+  String get chatNewMessagesBarJumpToFirstUnread =>
+      'Перейти к первому непрочитанному сообщению';
+
+  @override
+  String get chatNewMessagesBarMarkAsRead => 'Отметить как прочитанное';
+
+  @override
+  String get chatNewMessagesBarMarkRead => 'Отметить прочитанным';
+
+  @override
+  String chatNewMessagesBarNewMessagesSinceEstimated(
+    int unreadCount,
+    String compactTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '$unreadCountString+ новых сообщений с $compactTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewMessagesSince(
+    int unreadCount,
+    String compactTime,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount нового сообщения',
+      many: '$unreadCount новых сообщений',
+      few: '$unreadCount новых сообщения',
+      one: '$unreadCount новое сообщение',
+    );
+    return '$_temp0 с $compactTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewSinceEstimated(
+    int unreadCount,
+    String shortTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '$unreadCountString+ новых с $shortTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewSince(int unreadCount, String shortTime) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount нового',
+      many: '$unreadCount новых',
+      few: '$unreadCount новых',
+      one: '$unreadCount новое',
+    );
+    return '$_temp0 с $shortTime';
+  }
+
+  @override
   String get reconnectingBody =>
       'Что-то не так с сервером.\nПостараемся исправить в ближайшее время!';
 
   @override
   String get gatewayReconnectingToast => 'Переподключение…';
+
+  @override
+  String get gatewayReconnectTryAgain => 'Повторить';
 
   @override
   String get gatewayConnectedToast => 'Подключено';
@@ -231,20 +307,6 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get orDivider => 'OR';
 
   @override
-  String get captchaTitle => 'Подтвердите, что вы человек';
-
-  @override
-  String get captchaDescription =>
-      'Нам нужно убедиться, что вы не бот. Пожалуйста, пройдите проверку ниже.';
-
-  @override
-  String get captchaSwitchToHcaptcha =>
-      'Проблемы? Попробуйте hCaptcha вместо этого';
-
-  @override
-  String get captchaSwitchToTurnstile => 'Попробуйте Turnstile вместо этого';
-
-  @override
   String get cancel => 'Отмена';
 
   @override
@@ -287,6 +349,9 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get next => 'Далее';
 
   @override
+  String get create => 'Create';
+
+  @override
   String get mfaTitle => 'Двухфакторная аутентификация';
 
   @override
@@ -324,6 +389,11 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   @override
   String get accountRemoveDescription =>
       'Это удалит сохраненный сеанс для этого аккаунта.';
+
+  @override
+  String accountSignOutTitle(String identifier) {
+    return 'Sign out of $identifier?';
+  }
 
   @override
   String get accountExpired => 'Истек срок действия';
@@ -1398,9 +1468,6 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get dmFriendRequestSentToast => 'Запрос в друзья отправлен';
 
   @override
-  String get dmFriendRequestFailed => 'Не удалось отправить запрос в друзья';
-
-  @override
   String get dmAcceptFriendRequestFailed =>
       'Не удалось принять запрос в друзья';
 
@@ -1535,6 +1602,13 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
       'Ваш список друзей полон, или полон список друга. Удалите кого-нибудь и попробуйте снова.';
 
   @override
+  String get addFriendSendFailedTitle => 'Couldn\'t send friend request';
+
+  @override
+  String get addFriendSendFailedMessage =>
+      'Couldn\'t send the friend request. Try again.';
+
+  @override
   String get userTagBot => 'BOT';
 
   @override
@@ -1605,13 +1679,10 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get gifPickerSearch => 'Поиск GIF';
 
   @override
-  String get gifPickerSearchKlipy => 'Поиск KLIPY';
+  String get gifPickerSearchKlipy => 'Поиск Klipy';
 
   @override
   String get gifPickerSearchTenor => 'Поиск Tenor';
-
-  @override
-  String get gifPickerPoweredByKlipy => 'KLIPY';
 
   @override
   String get gifPickerFavorites => 'Избранное';
@@ -2432,10 +2503,6 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get backupCodesDone => 'Готово';
 
   @override
-  String get phoneCaptchaRequired =>
-      'Перед подтверждением номера телефона требуется проверка в браузере. Повторите попытку со страницы входа или обратитесь в службу поддержки.';
-
-  @override
   String get dangerZoneSectionTitle => 'Опасная зона';
 
   @override
@@ -2459,10 +2526,6 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   @override
   String get dangerZoneDeleteDescription =>
       'Полностью удалите свою учетную запись и все связанные с ней данные. Это действие необратимо.';
-
-  @override
-  String get dangerZoneDeleteCancelSubscription =>
-      'Отмените вашу активную подписку Reverb в настройках Reverb перед удалением учетной записи.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount =>
@@ -3100,16 +3163,11 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   }
 
   @override
-  String userProfilePlutoniumBadgeTooltip(String productName) {
-    return 'Reverb $productName';
-  }
-
-  @override
-  String userProfilePlutoniumSubscriberSinceTooltip(
-    String productName,
+  String userProfilePremiumSubscriberSinceTooltip(
+    String premiumProductFullName,
     String date,
   ) {
-    return 'Подписчик Reverb $productName с $date';
+    return 'Подписчик $premiumProductFullName с $date';
   }
 
   @override
@@ -3943,6 +4001,48 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get channelComposerBarrierVerifyEmail => 'Подтвердить почту';
+
+  @override
+  String get accountLimitedNotice =>
+      'Отправка сообщений в вашем аккаунте на паузе. Загляните в почту: чтобы продолжить, нужен всего один быстрый шаг.';
+
+  @override
+  String get messagingPausedTextDidNotGoThrough => 'Моё SMS не дошло';
+
+  @override
+  String messagingPausedHelpBody(String supportEmail) {
+    return 'Напишите на $supportEmail, и сотрудник проверит ваш аккаунт. Также можно ответить на письмо, которое мы вам отправили.';
+  }
+
+  @override
+  String get messagingPausedHelpCountryLabel =>
+      'Страна, в которой вы находитесь';
+
+  @override
+  String get messagingPausedHelpCopyDetails => 'Скопировать данные';
+
+  @override
+  String get messagingPausedHelpEmailSupport => 'Написать в поддержку';
+
+  @override
+  String messagingPausedHelpAccountIdLine(String accountId) {
+    return 'ID аккаунта: $accountId';
+  }
+
+  @override
+  String messagingPausedHelpUsernameLine(String username) {
+    return 'Имя пользователя: $username';
+  }
+
+  @override
+  String messagingPausedHelpAccountCreatedLine(String createdAt) {
+    return 'Аккаунт создан: $createdAt';
+  }
+
+  @override
+  String messagingPausedHelpCountryLine(String country) {
+    return 'Страна: $country';
+  }
 
   @override
   String chatAttachmentTooMany(int max) {
@@ -5987,8 +6087,8 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# непрочитанными сообщениями',
-      one: '# непрочитанным сообщением',
+      other: '$count непрочитанными сообщениями',
+      one: '$count непрочитанным сообщением',
     );
     return 'Показать чат с $_temp0';
   }
@@ -6136,6 +6236,40 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
       'Это сообщение не удалось загрузить.';
 
   @override
+  String notificationsMentionedYouIn(String author, String place) {
+    return '$author mentioned you in $place:';
+  }
+
+  @override
+  String notificationsRepliedToYouIn(String author, String place) {
+    return '$author replied to you in $place:';
+  }
+
+  @override
+  String notificationsMentionedYou(String author) {
+    return '$author mentioned you:';
+  }
+
+  @override
+  String notificationsRepliedToYou(String author) {
+    return '$author replied to you:';
+  }
+
+  @override
+  String notificationsMentionPlace(String server, String channel) {
+    return '$server – $channel';
+  }
+
+  @override
+  String get notificationsSendReply => 'Send a reply';
+
+  @override
+  String get notificationsRecentActivity => 'Recent activity';
+
+  @override
+  String get notificationsRemoveNotification => 'Remove notification';
+
+  @override
   String characterCounterRemaining(int remaining) {
     return '$remaining символов осталось';
   }
@@ -6154,6 +6288,10 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get chatMessageFailedToSend => 'Не удалось отправить сообщение';
+
+  @override
+  String get chatMessageFailedToSendTapForOptions =>
+      'Не удалось отправить сообщение. Нажмите, чтобы выбрать действие.';
 
   @override
   String chatSendFailureDmRestricted(String settingsPath) {
@@ -6602,8 +6740,8 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# сообществ',
-      one: '# сообщества',
+      other: '$count сообществ',
+      one: '$count сообщества',
     );
     return 'Все, кроме $_temp0';
   }
@@ -6613,10 +6751,10 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# сообщества',
-      many: '# сообществ',
-      few: '# сообщества',
-      one: '# сообщество',
+      other: '$count сообщества',
+      many: '$count сообществ',
+      few: '$count сообщества',
+      one: '$count сообщество',
     );
     return 'Только $_temp0';
   }
@@ -6645,18 +6783,18 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# часа',
-      many: '# часов',
-      few: '# часа',
-      one: '# час',
+      other: '$hours часа',
+      many: '$hours часов',
+      few: '$hours часа',
+      one: '$hours час',
     );
     String _temp1 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# минуты',
-      many: '# минут',
-      few: '# минуты',
-      one: '# минута',
+      other: '$minutes минуты',
+      many: '$minutes минут',
+      few: '$minutes минуты',
+      one: '$minutes минута',
     );
     return '$_temp0 и $_temp1';
   }
@@ -6666,10 +6804,10 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# часа',
-      many: '# часов',
-      few: '# часа',
-      one: '# час',
+      other: '$hours часа',
+      many: '$hours часов',
+      few: '$hours часа',
+      one: '$hours час',
     );
     return '$_temp0';
   }
@@ -6679,10 +6817,10 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# минуты',
-      many: '# минут',
-      few: '# минуты',
-      one: '# минута',
+      other: '$minutes минуты',
+      many: '$minutes минут',
+      few: '$minutes минуты',
+      one: '$minutes минута',
     );
     return '$_temp0';
   }
@@ -6692,10 +6830,10 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       seconds,
       locale: localeName,
-      other: '# секунд',
-      many: '# секунд',
-      few: '# секунды',
-      one: '# секунда',
+      other: '$seconds секунд',
+      many: '$seconds секунд',
+      few: '$seconds секунды',
+      one: '$seconds секунда',
     );
     return '$_temp0';
   }
@@ -6723,6 +6861,9 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get doubleTapReactionHint => 'Дважды нажмите на сообщение, чтобы';
+
+  @override
+  String get doubleTapEditHint => 'Double tap your own message to edit it';
 
   @override
   String get doubleTapReactionEdit => 'Изменить';
@@ -6828,9 +6969,6 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get forwardSuccessToast => 'Сообщение переслано';
-
-  @override
-  String get forwardFailed => 'Не удалось переслать сообщение';
 
   @override
   String get forwardCommentSlowmodeDisabled =>
@@ -7246,6 +7384,12 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get chatEditNoChanges => 'Нет изменений для сохранения';
 
   @override
+  String get chatEditFailed => 'Your message didn\'t update';
+
+  @override
+  String get chatEditFailedEditAgain => 'Edit again';
+
+  @override
   String get chatChannelNotReady =>
       'Этот канал еще не готов. Попробуйте через мгновение.';
 
@@ -7355,6 +7499,9 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get composerAutocompleteStickersHeading => 'Стикеры';
+
+  @override
+  String get composerAutocompleteEmojisHeading => 'Emojis';
 
   @override
   String get composerAutocompleteGifsHeading => 'GIF-файлы';
@@ -8397,6 +8544,72 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get channelHeaderSearchClearHistory => 'Очистить';
 
   @override
+  String get channelSearchRemoveRecent => 'Remove from recent searches';
+
+  @override
+  String get channelSearchFiltersButton => 'Filters';
+
+  @override
+  String get channelSearchFilterMenuTitle => 'Filter results';
+
+  @override
+  String get channelSearchFilterFromLabel => 'From a specific person';
+
+  @override
+  String get channelSearchFilterMentionsLabel => 'Mentions a specific person';
+
+  @override
+  String get channelSearchFilterHasLabel => 'Has a link, file or embed';
+
+  @override
+  String get channelSearchFilterInLabel => 'In a specific channel';
+
+  @override
+  String get channelSearchFilterDuringLabel => 'Sent on a date';
+
+  @override
+  String get channelSearchFilterBeforeLabel => 'Sent before a date';
+
+  @override
+  String get channelSearchFilterAfterLabel => 'Sent after a date';
+
+  @override
+  String get channelSearchFilterPinnedLabel => 'Pinned or not pinned';
+
+  @override
+  String get channelSearchFilterAuthorTypeLabel => 'By author type';
+
+  @override
+  String get channelSearchDateToday => 'Today';
+
+  @override
+  String get channelSearchDateYesterday => 'Yesterday';
+
+  @override
+  String get channelSearchTabMessages => 'Messages';
+
+  @override
+  String get channelSearchTabImages => 'Images';
+
+  @override
+  String get channelSearchTabPins => 'Pins';
+
+  @override
+  String get channelSearchTabLinks => 'Links';
+
+  @override
+  String get channelSearchTabFiles => 'Files';
+
+  @override
+  String channelSearchTabCount(String label, int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$label ($countString)';
+  }
+
+  @override
   String get channelHeaderSearchFilterDescFrom => 'пользователь';
 
   @override
@@ -8982,19 +9195,19 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get purgePersonalNotesFailed => 'Не удалось очистить личные заметки';
 
   @override
-  String get userSettingsGroupYourAccount => 'ВАША УЧЕТНАЯ ЗАПИСЬ';
+  String get userSettingsGroupYourAccount => 'Ваша учетная запись';
 
   @override
-  String get userSettingsGroupBilling => 'BILLING';
+  String get userSettingsGroupBilling => 'Billing';
 
   @override
-  String get userSettingsGroupApplication => 'APPLICATION';
+  String get userSettingsGroupApplication => 'Application';
 
   @override
-  String get userSettingsGroupDeveloper => 'DEVELOPER';
+  String get userSettingsGroupDeveloper => 'Developer';
 
   @override
-  String get userSettingsGroupStaffOnly => 'STAFF-ONLY';
+  String get userSettingsGroupStaffOnly => 'Staff-only';
 
   @override
   String get userSettingsSearchPlaceholder => 'Поиск настроек…';
@@ -9010,6 +9223,11 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get userSettingsCopyLinkToPage => 'Copy link to page';
+
+  @override
+  String userSettingsJumpLinkPremiumPage(String productName) {
+    return '$productName page';
+  }
 
   @override
   String get userSettingsNavProfile => 'Профиль';
@@ -9546,6 +9764,9 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   @override
   String get storePlutoniumRenewsThroughAppStore =>
       'Автоматически продлевается через App Store, пока вы не отмените подписку.';
+
+  @override
+  String get storePlutoniumRestorePurchases => 'Restore purchases';
 
   @override
   String get storePlutoniumAlreadySubscribed =>
@@ -10251,12 +10472,6 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
       'Показывать Pickles во вводе чата';
 
   @override
-  String get advancedSettingShowNekoKeywordCat => 'Кот';
-
-  @override
-  String get advancedSettingShowNekoKeywordNeko => 'Neko';
-
-  @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>
       'Анимация масштабирования при запуске';
 
@@ -10924,7 +11139,13 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get chatJumpToBottom => 'Перейти к последнему сообщению';
 
   @override
+  String get chatUnreadDividerNew => 'Новое';
+
+  @override
   String get uiConfirm => 'Подтвердить';
+
+  @override
+  String get uiUnderstood => 'Understood';
 
   @override
   String get uiLoading => 'Загрузка';
@@ -11008,7 +11229,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get instanceUrlHelper =>
-      'Используйте fluxer.app для официального экземпляра или точный URL самостоятельно размещённого экземпляра.';
+      'Используйте echowire.org для официального экземпляра или точный URL самостоятельно размещённого экземпляра.';
 
   @override
   String get resetToDefaultInstance => 'Сбросить до echowire';
@@ -11224,10 +11445,10 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get guildNavbarHelp => 'Помощь';
 
   @override
-  String get scrollIndicatorNew => 'NEW';
+  String get scrollIndicatorNew => 'Новое';
 
   @override
-  String get scrollIndicatorNewMessage => 'НОВОЕ СООБЩЕНИЕ';
+  String get scrollIndicatorNewMessages => 'Новые сообщения';
 
   @override
   String guildNavbarCollapseFolder(String folderName) {
@@ -11624,9 +11845,6 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
 
   @override
   String get guildMenuMarkAsRead => 'Отметить как прочитанное';
-
-  @override
-  String get guildPeekMoreOptions => 'Другие параметры';
 
   @override
   String get guildMenuInviteMembers => 'Пригласить участников';
@@ -13020,6 +13238,51 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
       'Значок сообщества обновлен.';
 
   @override
+  String get auditLogChangePausedInvites => 'Paused invites.';
+
+  @override
+  String get auditLogChangeResumedInvites => 'Resumed invites.';
+
+  @override
+  String get auditLogChangeTurnedOnDetachedBanner =>
+      'Turned on the detached banner.';
+
+  @override
+  String get auditLogChangeTurnedOffDetachedBanner =>
+      'Turned off the detached banner.';
+
+  @override
+  String get auditLogChangeAllowedFlexibleChannelNames =>
+      'Allowed flexible text channel names.';
+
+  @override
+  String get auditLogChangeDisallowedFlexibleChannelNames =>
+      'Stopped allowing flexible text channel names.';
+
+  @override
+  String get auditLogChangeHidOwnerCrown => 'Hid the community owner crown.';
+
+  @override
+  String get auditLogChangeShowedOwnerCrown =>
+      'Stopped hiding the community owner crown.';
+
+  @override
+  String get auditLogChangeAllowedEmojiCloning =>
+      'Allowed others to clone this community\'s emojis.';
+
+  @override
+  String get auditLogChangeStoppedEmojiCloning =>
+      'Stopped allowing others to clone this community\'s emojis.';
+
+  @override
+  String get auditLogChangeAllowedStickerCloning =>
+      'Allowed others to clone this community\'s stickers.';
+
+  @override
+  String get auditLogChangeStoppedStickerCloning =>
+      'Stopped allowing others to clone this community\'s stickers.';
+
+  @override
   String auditLogChangeRenamedChannel(String name) {
     return 'Канал переименован в $name.';
   }
@@ -13092,8 +13355,8 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Удалено # сообщений.',
-      one: 'Удалено # сообщение.',
+      other: 'Удалено $count сообщений.',
+      one: 'Удалено $count сообщение.',
     );
     return '$_temp0';
   }
@@ -13103,8 +13366,8 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Удалено # участников.',
-      one: 'Удален # участник.',
+      other: 'Удалено $count участников.',
+      one: 'Удален $count участник.',
     );
     return '$_temp0';
   }
@@ -13639,16 +13902,16 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
       'Не удалось удалить это сообщество';
 
   @override
-  String get guildSettingsCategoryExpressions => 'EXPRESSIONS';
+  String get guildSettingsCategoryExpressions => 'Expressions';
 
   @override
-  String get guildSettingsCategoryCommunity => 'COMMUNITY';
+  String get guildSettingsCategoryCommunity => 'Community';
 
   @override
-  String get guildSettingsCategoryIntegrations => 'INTEGRATIONS';
+  String get guildSettingsCategoryIntegrations => 'Integrations';
 
   @override
-  String get guildSettingsCategoryPeople => 'PEOPLE';
+  String get guildSettingsCategoryPeople => 'People';
 
   @override
   String get guildSettingsOverviewBrandingTitle => 'Брендинг';
@@ -14548,18 +14811,6 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get homeQuickActionDms => 'Личные сообщения';
 
   @override
-  String get threadsAddMember => 'Add member';
-
-  @override
-  String get threadsAddMemberSearchLabel => 'Search members';
-
-  @override
-  String get threadsAddMemberNoResults => 'No members match that search.';
-
-  @override
-  String get threadsMemberAddedToast => 'Member added';
-
-  @override
   String get assistantNeedsLogin =>
       'Сначала откройте Fluxer и войдите в систему.';
 
@@ -14964,7 +15215,7 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String get forumPostArchived => 'Archived';
 
   @override
-  String get forumPostNewBadge => 'NEW';
+  String get forumPostNewBadge => 'Новое';
 
   @override
   String get forumPostStarterDeleted => 'The original message was deleted.';
@@ -14979,8 +15230,8 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count new messages',
-      one: '1 new message',
+      other: '$count новых сообщений',
+      one: '$count новое сообщение',
     );
     return '$_temp0';
   }
@@ -15289,4 +15540,43 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   String voiceP2pPeerFailedTitle(String name) {
     return 'Cannot connect directly to $name';
   }
+
+  @override
+  String get favoritesRenameCategory => 'Переименовать категорию';
+
+  @override
+  String get captchaTitle => 'Подтвердите, что вы человек';
+
+  @override
+  String get captchaDescription =>
+      'Нам нужно убедиться, что вы не бот. Пожалуйста, пройдите проверку ниже.';
+
+  @override
+  String get captchaSwitchToHcaptcha =>
+      'Проблемы? Попробуйте hCaptcha вместо этого';
+
+  @override
+  String get captchaSwitchToTurnstile => 'Попробуйте Turnstile вместо этого';
+
+  @override
+  String get phoneCaptchaRequired =>
+      'Перед подтверждением номера телефона требуется проверка в браузере. Повторите попытку со страницы входа или обратитесь в службу поддержки.';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Кот';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
 }

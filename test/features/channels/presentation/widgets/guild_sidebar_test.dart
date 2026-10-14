@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flutter/widgets.dart' as widgets;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -26,9 +29,12 @@ import 'package:fluxer_app/features/channels/providers/guild_collapsed_categorie
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
 import 'package:fluxer_app/features/favorites/providers/favorite_channels_provider.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
+import 'package:fluxer_app/features/guilds/presentation/widgets/guild_bottom_sheet_avatar.dart';
+import 'package:fluxer_app/features/guilds/presentation/widgets/guild_bottom_sheet_stats.dart';
 import 'package:fluxer_app/features/guilds/presentation/widgets/guild_scroll_indicator.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_view_model.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_mute_provider.dart';
+import 'package:fluxer_app/features/guilds/providers/guild_permissions_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_read_state_provider.dart';
 import 'package:fluxer_app/features/mature_content/domain/mature_content_types.dart';
 import 'package:fluxer_app/features/mature_content/providers/mature_content_agreements_provider.dart';
@@ -44,6 +50,7 @@ import 'package:riverpod/src/framework.dart' show Override;
 
 import '../../../../helpers/open_test_database.dart';
 import '../../../../helpers/pump_fluxer_app.dart';
+import '../../../../helpers/rendered_text_test_helpers.dart';
 import '../../../../helpers/test_l10n.dart';
 import '../../../../helpers/wide_layout_test_sizes.dart';
 
@@ -57,7 +64,7 @@ const GuildReadStateEntry _unreadGuildReadState = GuildReadStateEntry(
   hasUnread: true,
   hasPlainUnread: false,
   mentionCount: 0,
-  mentionChannels: <String>{},
+  mentionCountByChannel: <String, int>{},
   unreadChannelId: null,
   sentinel: 0,
 );
@@ -88,6 +95,7 @@ void main() {
 
       expect(find.byType(GuildSidebarSkeleton), findsOneWidget);
       expect(find.text('general'), findsNothing);
+      await releaseTestWidgetTree(tester);
     });
   });
 
@@ -113,6 +121,7 @@ void main() {
       expect(find.text('My Category'), findsOneWidget);
       expect(find.text('general'), findsOneWidget);
       expect(find.text('random'), findsNothing);
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('keeps the selected channel even when it is read', (
@@ -133,6 +142,7 @@ void main() {
 
       expect(find.text('random'), findsOneWidget);
       expect(find.text('general'), findsNothing);
+      await releaseTestWidgetTree(tester);
     });
   });
 
@@ -161,6 +171,48 @@ void main() {
 
       expect(find.byType(ChannelUnreadIndicator), findsOneWidget);
       expect(find.byType(FluxerBadge), findsOneWidget);
+      await releaseTestWidgetTree(tester);
+    });
+
+    testWidgets('selected row is a 38pt box inset 8pt with an 8pt radius', (
+      tester,
+    ) async {
+      _setMobileSurface(tester);
+      await tester.pumpWidget(
+        _buildTestApp(
+          overrides: _buildOverrides(
+            channelListState: _state(selectedChannelId: 'c1'),
+            selectedChannelId: 'c1',
+            unread: const {
+              'c1': UnreadState(),
+              'c2': UnreadState(hasUnread: true, hasUnreadMessages: true),
+            },
+          ),
+        ),
+      );
+      await _pumpSidebar(tester);
+      FontWeight? weightOf(String name) =>
+          tester.widget<Text>(findAppText(name)).style?.fontWeight;
+
+      final Finder selected = find.ancestor(
+        of: find.text('general'),
+        matching: find.byType(FluxerSelectableRow),
+      );
+      final FluxerSelectableRow row = tester.widget<FluxerSelectableRow>(
+        selected,
+      );
+      expect(row.borderRadius, BorderRadius.circular(8));
+      expect(
+        row.selectedColor,
+        buildDarkColorTheme().backgroundModifierSelected,
+      );
+      final Rect box = tester.getRect(
+        find.descendant(of: selected, matching: find.byType(Container)).first,
+      );
+      expect(box.height, 38);
+      expect(weightOf('random'), FontWeight.w600);
+      expect(weightOf('general'), FontWeight.w500);
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('hides unread and mention indicators on wide layout', (
@@ -187,6 +239,53 @@ void main() {
 
       expect(find.byType(ChannelUnreadIndicator), findsNothing);
       expect(find.byType(FluxerBadge), findsNothing);
+      await releaseTestWidgetTree(tester);
+    });
+  });
+
+  group('GuildSidebar unread channel rows', () {
+    testWidgets('unread names are bold primary text with a ringless badge', (
+      tester,
+    ) async {
+      _setMobileSurface(tester);
+      await tester.pumpWidget(
+        _buildTestApp(
+          overrides: _buildOverrides(
+            channelListState: _state(),
+            unread: const {
+              'c1': UnreadState(
+                hasUnread: true,
+                hasUnreadMessages: true,
+                mentionCount: 3,
+              ),
+              'c2': UnreadState(),
+            },
+          ),
+        ),
+      );
+      await _pumpSidebar(tester);
+
+      final colors = buildDarkColorTheme();
+      final TextStyle unread = tester
+          .widget<widgets.Text>(find.text('general'))
+          .style!;
+      final TextStyle read = tester
+          .widget<widgets.Text>(find.text('random'))
+          .style!;
+      expect(unread.fontWeight, FontWeight.w600);
+      expect(unread.color, colors.textPrimary);
+      expect(read.fontWeight, FontWeight.w500);
+      expect(read.color, colors.textTertiaryMuted);
+
+      final Container pill = tester.widget<Container>(
+        find.descendant(
+          of: find.byType(FluxerBadge),
+          matching: find.byType(Container),
+        ),
+      );
+      expect((pill.decoration! as BoxDecoration).border, isNull);
+      expect(find.byType(FluxerBadgeEntrance), findsOneWidget);
+      await releaseTestWidgetTree(tester);
     });
   });
 
@@ -216,6 +315,7 @@ void main() {
 
       expect(find.text('general'), findsOneWidget);
       expect(find.text('random'), findsNothing);
+      await releaseTestWidgetTree(tester);
     });
   });
 
@@ -254,6 +354,113 @@ void main() {
 
       expect(find.text('uncategorized'), findsOneWidget);
       expect(find.text('Channels'), findsNothing);
+      await releaseTestWidgetTree(tester);
+    });
+  });
+
+  group('GuildSidebar community header sheet', () {
+    ChannelListState stateFor({String? ownerId}) => ChannelListState(
+      guild: Guild(id: _guildId, name: 'Test Guild', ownerId: ownerId),
+      categories: _state().categories,
+      selectedChannelId: null,
+      hasReceivedInitialChannelList: true,
+    );
+
+    Future<void> openHeaderSheet(
+      WidgetTester tester, {
+      required ChannelListState state,
+      required int guildPermissions,
+    }) async {
+      _setMobileSurface(tester);
+      await tester.pumpWidget(
+        _buildTestApp(
+          overrides: _buildOverrides(
+            channelListState: state,
+            guildPermissions: guildPermissions,
+          ),
+        ),
+      );
+      await _pumpSidebar(tester);
+      await tester.tap(find.text('Test Guild'));
+      await _pumpSidebar(tester);
+    }
+
+    void expectInOrder(WidgetTester tester, List<String> labels) {
+      for (final String label in labels) {
+        expect(find.text(label), findsOneWidget, reason: label);
+      }
+      for (var i = 1; i < labels.length; i++) {
+        expect(
+          tester.getTopLeft(find.text(labels[i - 1])).dy,
+          lessThan(tester.getTopLeft(find.text(labels[i])).dy),
+          reason: '${labels[i - 1]} before ${labels[i]}',
+        );
+      }
+    }
+
+    testWidgets('owner gets the desktop dropdown items in a bottom sheet', (
+      tester,
+    ) async {
+      await openHeaderSheet(
+        tester,
+        state: stateFor(ownerId: 'me'),
+        guildPermissions: allPermissions,
+      );
+
+      expect(find.byType(GuildBottomSheetStats), findsOneWidget);
+      expect(find.byType(GuildBottomSheetAvatar), findsOneWidget);
+      expect(find.text('More options'), findsNothing);
+      expectInOrder(tester, <String>[
+        'Community settings',
+        'Create channel',
+        'Create category',
+        'Notification settings',
+        'Privacy settings',
+        'Edit community profile',
+        'Mute community',
+        'Hide muted channels',
+      ]);
+      expect(find.text('Delete my messages'), findsNothing);
+      expect(find.text('Leave community'), findsNothing);
+      await releaseTestWidgetTree(tester);
+    });
+
+    testWidgets('a plain member only gets the items they can use', (
+      tester,
+    ) async {
+      await openHeaderSheet(tester, state: stateFor(), guildPermissions: 0);
+
+      expect(find.text('More options'), findsNothing);
+      expect(find.text('Community settings'), findsNothing);
+      expect(find.text('Create channel'), findsNothing);
+      expect(find.text('Create category'), findsNothing);
+      expect(find.text('Invite members'), findsNothing);
+      expectInOrder(tester, <String>[
+        'Notification settings',
+        'Privacy settings',
+        'Edit community profile',
+        'Mute community',
+        'Hide muted channels',
+        'Delete my messages',
+        'Leave community',
+      ]);
+      await releaseTestWidgetTree(tester);
+    });
+
+    testWidgets('a channel manager also gets the create items', (tester) async {
+      await openHeaderSheet(
+        tester,
+        state: stateFor(),
+        guildPermissions: Permission.manageChannels.value,
+      );
+
+      expectInOrder(tester, <String>[
+        'Create channel',
+        'Create category',
+        'Notification settings',
+        'Leave community',
+      ]);
+      await releaseTestWidgetTree(tester);
     });
   });
 
@@ -289,6 +496,7 @@ void main() {
       expect(dy('Mute channel'), lessThan(dy('Notification settings')));
       expect(dy('Notification settings'), lessThan(dy('Copy channel ID')));
       expect(dy('Copy channel ID'), lessThan(dy('Delete my messages')));
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('tablet channel menu opens near the pressed row', (
@@ -322,6 +530,7 @@ void main() {
       expect(menuTopLeft.dx, greaterThan(channelCenter.dx - 40));
       expect(menuTopLeft.dy, greaterThan(channelCenter.dy - 40));
       expect((menuTopLeft - channelCenter).distance, lessThan(280));
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('channel menu shows mark as read when channel is unread', (
@@ -347,6 +556,7 @@ void main() {
       expect(find.text('Mark as read'), findsOneWidget);
       double dy(String label) => tester.getTopLeft(find.text(label)).dy;
       expect(dy('Mark as read'), lessThan(dy('Copy link')));
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('channel menu shows invite people when permitted', (
@@ -373,6 +583,7 @@ void main() {
       expect(find.text('Invite people'), findsOneWidget);
       double dy(String label) => tester.getTopLeft(find.text(label)).dy;
       expect(dy('Invite people'), lessThan(dy('Copy link')));
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('voice channel menu shows open chat and delete my messages', (
@@ -394,6 +605,7 @@ void main() {
 
       expect(find.text('Open chat'), findsOneWidget);
       expect(find.text('Delete my messages'), findsOneWidget);
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('category menu shows mute, copy id, and mark read actions', (
@@ -418,10 +630,10 @@ void main() {
       expect(find.text('Mark as read'), findsOneWidget);
       expect(find.text('Debug category'), findsNothing);
 
-      // Order must mirror the web category menu: Mark as Read -> Mute -> Copy ID.
       double dy(String label) => tester.getTopLeft(find.text(label)).dy;
       expect(dy('Mark as read'), lessThan(dy('Mute category')));
       expect(dy('Mute category'), lessThan(dy('Copy category ID')));
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('channel menu shows "Delete channel" for managers', (
@@ -450,6 +662,7 @@ void main() {
       expect(dy('Duplicate channel'), lessThan(dy('Copy channel ID')));
       expect(dy('Copy channel ID'), lessThan(dy('Delete channel')));
       expect(dy('Delete channel'), lessThan(dy('Delete my messages')));
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('edit channel opens channel settings', (tester) async {
@@ -472,8 +685,6 @@ void main() {
       await _pumpSidebar(tester);
 
       await tester.longPress(find.text('general'));
-      // Tapping a menu entry before it settles misses the hit test and leaves
-      // the menu's centred channel-name header duplicating the sidebar row.
       await _pumpSidebar(tester);
       for (int i = 0; i < 4; i += 1) {
         await tester.pump(const Duration(milliseconds: 100));
@@ -487,6 +698,7 @@ void main() {
       expect(find.text('general'), findsOneWidget);
       expect(find.text('Overview'), findsOneWidget);
       expect(find.text('Coming soon'), findsNothing);
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('channel menu shows Debug Channel in developer mode', (
@@ -508,6 +720,7 @@ void main() {
       await _pumpSidebar(tester);
 
       expect(find.text('Debug channel'), findsOneWidget);
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('category menu shows Debug Category in developer mode', (
@@ -529,6 +742,7 @@ void main() {
       await _pumpSidebar(tester);
 
       expect(find.text('Debug category'), findsOneWidget);
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('link channel menu shows Open Link', (tester) async {
@@ -570,6 +784,7 @@ void main() {
       double dy(String label) => tester.getTopLeft(find.text(label)).dy;
       expect(dy('Open link'), lessThan(dy('Copy redirect link')));
       expect(dy('Copy redirect link'), lessThan(dy('Copy channel link')));
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('adding a favorite from the channel menu shows a toast', (
@@ -606,6 +821,7 @@ void main() {
       expect(toasts.single.toast.variant, FluxerToastVariant.success);
 
       await tester.pump(const Duration(seconds: 5));
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('removing a favorite from the channel menu shows a toast', (
@@ -646,6 +862,7 @@ void main() {
       expect(toasts.single.toast.variant, FluxerToastVariant.success);
 
       await tester.pump(const Duration(seconds: 5));
+      await releaseTestWidgetTree(tester);
     });
   });
 
@@ -675,6 +892,7 @@ void main() {
       );
       final String asset = (svg.bytesLoader as SvgAssetLoader).assetName;
       expect(asset, contains('voice_no_connect'));
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('shows default voice icon while connect bits are unresolved', (
@@ -703,6 +921,7 @@ void main() {
       final String asset = (svg.bytesLoader as SvgAssetLoader).assetName;
       expect(asset, contains('voice.svg'));
       expect(asset, isNot(contains('voice_no_connect')));
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('shows default voice icon when connect is allowed', (
@@ -734,11 +953,12 @@ void main() {
       final String asset = (svg.bytesLoader as SvgAssetLoader).assetName;
       expect(asset, contains('voice.svg'));
       expect(asset, isNot(contains('voice_no_connect')));
+      await releaseTestWidgetTree(tester);
     });
   });
 
   group('GuildSidebar scroll indicator', () {
-    testWidgets('shows NEW MESSAGE when unread channel is off-screen below', (
+    testWidgets('shows NEW MESSAGES when unread channel is off-screen below', (
       tester,
     ) async {
       tester.view.physicalSize = const Size(390, 220);
@@ -778,12 +998,11 @@ void main() {
         ),
       );
       await _pumpSidebar(tester);
-      // The unread pill's scroll target only resolves once the list lays out.
       for (int i = 0; i < 4; i += 1) {
         await tester.pump(const Duration(milliseconds: 100));
       }
 
-      final Finder indicator = find.text('NEW MESSAGE');
+      final Finder indicator = find.text('NEW MESSAGES');
       expect(indicator, findsNWidgets(2));
 
       await tester.tap(indicator.last);
@@ -791,10 +1010,11 @@ void main() {
       await tester.pump(const Duration(milliseconds: 250));
 
       expect(find.text('channel-20'), findsOneWidget);
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets(
-      'shows only one NEW MESSAGE pill when unread channels exist above and below',
+      'shows a NEW MESSAGES pill at each edge when unread channels exist above and below',
       (tester) async {
         tester.view.physicalSize = const Size(390, 220);
         tester.view.devicePixelRatio = 1;
@@ -852,7 +1072,100 @@ void main() {
         final int visibleCount = opacities
             .where((AnimatedOpacity opacity) => opacity.opacity == 1.0)
             .length;
-        expect(visibleCount, 1);
+        expect(visibleCount, 2);
+        await releaseTestWidgetTree(tester);
+      },
+    );
+
+    testWidgets(
+      'shows the off-screen mention pill once a remounted list settles',
+      (tester) async {
+        tester.view.physicalSize = const Size(390, 220);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+
+        final ProviderContainer container = ProviderContainer(
+          overrides: _buildOverrides(
+            channelListState: ChannelListState(
+              guild: const Guild(id: _guildId, name: 'Test Guild'),
+              categories: [
+                ChannelCategory(
+                  id: 'cat1',
+                  name: 'My Category',
+                  channels: List<Channel>.generate(
+                    40,
+                    (int index) =>
+                        _channel('c${index + 1}', 'channel-${index + 1}'),
+                  ),
+                ),
+              ],
+              selectedChannelId: 'c1',
+              hasReceivedInitialChannelList: true,
+            ),
+            selectedChannelId: 'c1',
+            unread: <String, UnreadState>{
+              for (int index = 1; index <= 40; index++)
+                'c$index': index == 40
+                    ? const UnreadState(
+                        hasUnread: true,
+                        hasUnreadMessages: true,
+                        mentionCount: 1,
+                      )
+                    : const UnreadState(),
+            },
+          ),
+        );
+        addTearDown(container.dispose);
+        final colorTheme = buildDarkColorTheme();
+        Future<void> mountSidebar() async {
+          await tester.pumpWidget(
+            UncontrolledProviderScope(
+              container: container,
+              child: MaterialApp(
+                locale: kTestLocale,
+                localizationsDelegates: fluxerLocalizationsDelegates,
+                supportedLocales: FluxerLocalizations.supportedLocales,
+                theme: buildFluxerTheme(
+                  colorTheme: colorTheme,
+                  textTheme: FluxerTextTheme.fromColors(colorTheme),
+                  layoutTheme: FluxerLayoutTheme.scaled(),
+                ),
+                home: const Scaffold(body: GuildSidebar()),
+              ),
+            ),
+          );
+          await _pumpSidebar(tester);
+        }
+
+        Future<void> showDirectMessages() async {
+          await tester.pumpWidget(const SizedBox.shrink());
+          await _pumpSidebar(tester);
+        }
+
+        await mountSidebar();
+        expect(_visibleScrollIndicatorCount(tester), 1);
+
+        await showDirectMessages();
+        await mountSidebar();
+        expect(_visibleScrollIndicatorCount(tester), 1);
+
+        final ScrollableState scrollable = tester.state<ScrollableState>(
+          find.byType(Scrollable).first,
+        );
+        scrollable.position.jumpTo(40);
+        await _pumpSidebar(tester);
+        await showDirectMessages();
+        await mountSidebar();
+        expect(
+          tester
+              .state<ScrollableState>(find.byType(Scrollable).first)
+              .position
+              .pixels,
+          40,
+        );
+        expect(_visibleScrollIndicatorCount(tester), 1);
+        await releaseTestWidgetTree(tester);
       },
     );
   });
@@ -915,8 +1228,6 @@ void main() {
           ),
         );
         await _pumpSidebar(tester);
-        // Scroll restore only runs once the controller has attached and the
-        // extent is known.
         for (int i = 0; i < 4; i += 1) {
           await tester.pump(const Duration(milliseconds: 100));
         }
@@ -936,6 +1247,114 @@ void main() {
       await pumpSidebar();
 
       expect(find.text('channel-20'), findsOneWidget);
+      await releaseTestWidgetTree(tester);
+    });
+
+    testWidgets('a restored channel list is never blank or hidden', (
+      tester,
+    ) async {
+      tester.view.physicalSize = const Size(390, 220);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+
+      final List<Channel> channels = List<Channel>.generate(
+        20,
+        (int index) => _channel('c${index + 1}', 'channel-${index + 1}'),
+      );
+      final Map<String, UnreadState> unread = <String, UnreadState>{
+        for (int index = 1; index <= 20; index++)
+          'c$index': index == 20
+              ? const UnreadState(hasUnread: true, hasUnreadMessages: true)
+              : const UnreadState(),
+      };
+      final List<Override> overrides = _buildOverrides(
+        channelListState: ChannelListState(
+          guild: const Guild(id: _guildId, name: 'Test Guild'),
+          categories: [
+            ChannelCategory(
+              id: 'cat1',
+              name: 'My Category',
+              channels: channels,
+            ),
+          ],
+          selectedChannelId: 'c1',
+          hasReceivedInitialChannelList: true,
+        ),
+        selectedChannelId: 'c1',
+        unread: unread,
+      );
+      final ProviderContainer container = ProviderContainer(
+        overrides: overrides,
+      );
+      addTearDown(container.dispose);
+      final colorTheme = buildDarkColorTheme();
+      Future<void> pumpSidebar() async {
+        await tester.pumpWidget(
+          UncontrolledProviderScope(
+            container: container,
+            child: MaterialApp(
+              locale: kTestLocale,
+              localizationsDelegates: fluxerLocalizationsDelegates,
+              supportedLocales: FluxerLocalizations.supportedLocales,
+              theme: buildFluxerTheme(
+                colorTheme: colorTheme,
+                textTheme: FluxerTextTheme.fromColors(colorTheme),
+                layoutTheme: FluxerLayoutTheme.scaled(),
+              ),
+              home: const Scaffold(body: GuildSidebar()),
+            ),
+          ),
+        );
+        await _pumpSidebar(tester);
+        for (int i = 0; i < 4; i += 1) {
+          await tester.pump(const Duration(milliseconds: 100));
+        }
+      }
+
+      await pumpSidebar();
+      await tester.scrollUntilVisible(
+        find.text('channel-20'),
+        100,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await _pumpSidebar(tester);
+      expect(find.text('channel-20'), findsOneWidget);
+
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump();
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: MaterialApp(
+            locale: kTestLocale,
+            localizationsDelegates: fluxerLocalizationsDelegates,
+            supportedLocales: FluxerLocalizations.supportedLocales,
+            theme: buildFluxerTheme(
+              colorTheme: colorTheme,
+              textTheme: FluxerTextTheme.fromColors(colorTheme),
+              layoutTheme: FluxerLayoutTheme.scaled(),
+            ),
+            home: const Scaffold(body: GuildSidebar()),
+          ),
+        ),
+      );
+      for (int frame = 0; frame < 20; frame += 1) {
+        if (find.byType(GuildSidebarSkeleton).evaluate().isEmpty) {
+          final Finder channel = find.text('channel-20');
+          expect(channel, findsOneWidget, reason: 'frame $frame');
+          final Iterable<Opacity> opacities = tester.widgetList<Opacity>(
+            find.ancestor(of: channel, matching: find.byType(Opacity)),
+          );
+          expect(
+            opacities.every((Opacity o) => o.opacity == 1),
+            isTrue,
+            reason: 'frame $frame',
+          );
+        }
+        await tester.pump(const Duration(milliseconds: 16));
+      }
+      await releaseTestWidgetTree(tester);
     });
 
     testWidgets('restores channel list scroll after switching guilds', (
@@ -1000,15 +1419,15 @@ void main() {
           channelListViewModelFactory: () =>
               _HarnessChannelListViewModel(harness),
         ),
-        guildMuteProvider(_otherGuildId).overrideWith(
-          (Ref ref) => Stream<GuildMuteState>.value(const GuildMuteState()),
-        ),
-        mutedChannelIdsProvider(_otherGuildId).overrideWith(
-          (Ref ref) => Stream<Set<String>>.value(const <String>{}),
-        ),
-        guildCollapsedCategoriesProvider(_otherGuildId).overrideWith(
-          (Ref ref) => Stream<Set<String>>.value(const <String>{}),
-        ),
+        guildMuteProvider(
+          _otherGuildId,
+        ).overrideWithValue(const AsyncData<GuildMuteState>(GuildMuteState())),
+        mutedChannelIdsProvider(
+          _otherGuildId,
+        ).overrideWithValue(const AsyncData<Set<String>>(<String>{})),
+        guildCollapsedCategoriesProvider(
+          _otherGuildId,
+        ).overrideWithValue(const AsyncData<Set<String>>(<String>{})),
         for (final Channel channel in guildBChannels)
           channelUnreadProvider(channel.id).overrideWith(
             (Ref ref) => Stream<UnreadState>.value(const UnreadState()),
@@ -1068,6 +1487,116 @@ void main() {
         ..invalidate(channelListViewModelProvider);
       await pumpSidebar();
       expect(find.text('channel-20'), findsOneWidget);
+      await releaseTestWidgetTree(tester);
+    });
+  });
+
+  group('GuildSidebar selected channel anchoring', () {
+    testWidgets('opens centered on the selected channel without a saved '
+        'scroll position', (tester) async {
+      tester.view.physicalSize = const Size(390, 400);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+
+      final List<Channel> channels = List<Channel>.generate(
+        40,
+        (int index) => _channel('c${index + 1}', 'channel-${index + 1}'),
+      );
+      await tester.pumpWidget(
+        _buildTestApp(
+          overrides: _buildOverrides(
+            channelListState: ChannelListState(
+              guild: const Guild(id: _guildId, name: 'Test Guild'),
+              categories: <ChannelCategory>[
+                ChannelCategory(
+                  id: 'cat1',
+                  name: 'My Category',
+                  channels: channels,
+                ),
+              ],
+              selectedChannelId: 'c30',
+              hasReceivedInitialChannelList: true,
+            ),
+            selectedChannelId: 'c30',
+            unread: <String, UnreadState>{
+              for (final Channel channel in channels)
+                channel.id: const UnreadState(),
+            },
+          ),
+        ),
+      );
+      await _pumpSidebar(tester);
+      for (int i = 0; i < 4; i += 1) {
+        await tester.pump(const Duration(milliseconds: 100));
+      }
+
+      final Finder selected = find.text('channel-30');
+      expect(selected, findsOneWidget);
+      final Rect list = tester.getRect(find.byType(Scrollable).first);
+      final double visibleCenter = (list.top + 56 + list.bottom) / 2;
+      expect(tester.getCenter(selected).dy, closeTo(visibleCenter, 24));
+      await releaseTestWidgetTree(tester);
+    });
+  });
+
+  group('GuildSidebar unread gate fallback', () {
+    Future<void> expectChannelsAfterWait(WidgetTester tester) async {
+      await tester.pump();
+      expect(find.text('general'), findsNothing);
+      await tester.pump(kGuildUnreadPrimeLimit);
+      await tester.pump();
+      expect(find.text('general'), findsOneWidget);
+      expect(find.text('random'), findsOneWidget);
+      await releaseTestWidgetTree(tester);
+    }
+
+    testWidgets('shows channels when an unread state never resolves', (
+      tester,
+    ) async {
+      final StreamController<UnreadState> never =
+          StreamController<UnreadState>();
+      addTearDown(() => unawaited(never.close()));
+      await tester.pumpWidget(
+        _buildTestApp(
+          overrides: _buildOverrides(
+            channelListState: _state(),
+            unread: const {'c1': UnreadState()},
+            unreadStreams: {'c2': never.stream},
+          ),
+        ),
+      );
+      await expectChannelsAfterWait(tester);
+    });
+
+    testWidgets('shows channels when an unread state fails', (tester) async {
+      await tester.pumpWidget(
+        _buildTestApp(
+          overrides: _buildOverrides(
+            channelListState: _state(),
+            unread: const {'c1': UnreadState()},
+            unreadStreams: {
+              'c2': Stream<UnreadState>.error(StateError('unread failed')),
+            },
+          ),
+        ),
+      );
+      await expectChannelsAfterWait(tester);
+    });
+
+    testWidgets('shows channels when guild settings never load', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        _buildTestApp(
+          overrides: _buildOverrides(
+            channelListState: _state(),
+            unread: const {'c1': UnreadState(), 'c2': UnreadState()},
+            mutedValue: const AsyncLoading<Set<String>>(),
+          ),
+        ),
+      );
+      await expectChannelsAfterWait(tester);
     });
   });
 
@@ -1100,9 +1629,22 @@ void main() {
         await tester.pump();
 
         expect(find.text('general'), findsOneWidget);
+        await releaseTestWidgetTree(tester);
       },
     );
   });
+}
+
+int _visibleScrollIndicatorCount(WidgetTester tester) {
+  return tester
+      .widgetList<AnimatedOpacity>(
+        find.descendant(
+          of: find.byType(GuildScrollIndicatorLayer),
+          matching: find.byType(AnimatedOpacity),
+        ),
+      )
+      .where((AnimatedOpacity opacity) => opacity.opacity == 1.0)
+      .length;
 }
 
 void _setMobileSurface(WidgetTester tester) {
@@ -1194,6 +1736,8 @@ List<Override> _buildOverrides({
   Set<String> muted = const {},
   bool hideMuted = false,
   Map<String, UnreadState> unread = const {},
+  Map<String, Stream<UnreadState>> unreadStreams = const {},
+  AsyncValue<Set<String>>? mutedValue,
   Map<String, GuildReadStateEntry> guildReadState = const {},
   Map<String, int> permissionBits = const {},
   Map<String, int?> sidebarConnectBits = const {},
@@ -1202,6 +1746,7 @@ List<Override> _buildOverrides({
   VoiceSession Function()? voiceSessionFactory,
   String? Function(Ref ref)? activeGuildIdReader,
   ChannelListViewModel Function()? channelListViewModelFactory,
+  int guildPermissions = 0,
 }) {
   final db = openTestDatabase();
   final String routeLocation = selectedChannelId != null
@@ -1248,15 +1793,15 @@ List<Override> _buildOverrides({
     ),
     sensitiveContentProvider.overrideWith(_FakeSensitiveContent.new),
     matureContentAgreementsProvider.overrideWith(_FakeMatureAgreements.new),
-    guildMuteProvider(_guildId).overrideWith(
-      (ref) => Stream.value(GuildMuteState(hideMutedChannels: hideMuted)),
+    guildMuteProvider(_guildId).overrideWithValue(
+      AsyncData<GuildMuteState>(GuildMuteState(hideMutedChannels: hideMuted)),
     ),
     mutedChannelIdsProvider(
       _guildId,
-    ).overrideWith((ref) => Stream.value(muted)),
+    ).overrideWithValue(mutedValue ?? AsyncData<Set<String>>(muted)),
     guildCollapsedCategoriesProvider(
       _guildId,
-    ).overrideWith((ref) => Stream.value(collapsed)),
+    ).overrideWithValue(AsyncData<Set<String>>(collapsed)),
     for (final Channel channel in channelListState.categories.expand<Channel>(
       (ChannelCategory category) => category.channels,
     )) ...[
@@ -1275,8 +1820,25 @@ List<Override> _buildOverrides({
       channelUnreadProvider(
         entry.key,
       ).overrideWith((ref) => Stream.value(entry.value)),
+    for (final entry in unreadStreams.entries)
+      channelUnreadProvider(entry.key).overrideWith((ref) => entry.value),
     guildReadStateProvider.overrideWithValue(guildReadState),
+    guildPermissionsProvider.overrideWith(
+      () => _FakeGuildPermissions(<String, int>{_guildId: guildPermissions}),
+    ),
   ];
+}
+
+class _FakeGuildPermissions extends GuildPermissions {
+  _FakeGuildPermissions(this._initial);
+
+  final Map<String, int> _initial;
+
+  @override
+  Map<String, int> build() => _initial;
+
+  @override
+  Future<void> refreshPermissions(String guildId) async {}
 }
 
 Widget _buildTestApp({required List<Override> overrides}) {

@@ -12,11 +12,82 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get reconnectingTitle => 'Chúng tôi đã gặp trục trặc!';
 
   @override
+  String get chatJumpToPresent => 'Đến tin nhắn mới nhất';
+
+  @override
+  String get chatViewingOlderMessages => 'Bạn đang xem tin nhắn cũ hơn';
+
+  @override
+  String get chatNewMessagesBarJumpToFirstUnread =>
+      'Chuyển đến tin nhắn chưa đọc đầu tiên';
+
+  @override
+  String get chatNewMessagesBarMarkAsRead => 'Đánh dấu đã đọc';
+
+  @override
+  String get chatNewMessagesBarMarkRead => 'Đánh dấu đã đọc';
+
+  @override
+  String chatNewMessagesBarNewMessagesSinceEstimated(
+    int unreadCount,
+    String compactTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '$unreadCountString+ tin nhắn mới kể từ $compactTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewMessagesSince(
+    int unreadCount,
+    String compactTime,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount tin nhắn mới',
+      one: '$unreadCount tin nhắn mới',
+    );
+    return '$_temp0 kể từ $compactTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewSinceEstimated(
+    int unreadCount,
+    String shortTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '$unreadCountString+ tin nhắn mới kể từ $shortTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewSince(int unreadCount, String shortTime) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount tin nhắn mới',
+    );
+    return '$_temp0 từ $shortTime';
+  }
+
+  @override
   String get reconnectingBody =>
       'Có lỗi xảy ra với máy chủ này.\nSẽ được khắc phục trong giây lát!';
 
   @override
   String get gatewayReconnectingToast => 'Đang kết nối lại…';
+
+  @override
+  String get gatewayReconnectTryAgain => 'Thử lại';
 
   @override
   String get gatewayConnectedToast => 'Đã kết nối';
@@ -230,19 +301,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get orDivider => 'OR';
 
   @override
-  String get captchaTitle => 'Xác minh bạn không phải robot';
-
-  @override
-  String get captchaDescription =>
-      'Chúng tôi cần đảm bảo bạn không phải là bot. Vui lòng hoàn tất xác minh bên dưới.';
-
-  @override
-  String get captchaSwitchToHcaptcha => 'Gặp sự cố? Thử dùng hCaptcha';
-
-  @override
-  String get captchaSwitchToTurnstile => 'Thử dùng Turnstile';
-
-  @override
   String get cancel => 'Hủy';
 
   @override
@@ -285,6 +343,9 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get next => 'Tiếp';
 
   @override
+  String get create => 'Create';
+
+  @override
   String get mfaTitle => 'Xác thực 2 yếu tố';
 
   @override
@@ -322,6 +383,11 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get accountRemoveDescription =>
       'Thao tác này sẽ xoá phiên đã lưu cho tài khoản này.';
+
+  @override
+  String accountSignOutTitle(String identifier) {
+    return 'Sign out of $identifier?';
+  }
 
   @override
   String get accountExpired => 'Đã hết hạn';
@@ -1385,9 +1451,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get dmFriendRequestSentToast => 'Đã gửi lời mời kết bạn';
 
   @override
-  String get dmFriendRequestFailed => 'Không gửi được lời mời kết bạn';
-
-  @override
   String get dmAcceptFriendRequestFailed =>
       'Không thể chấp nhận lời mời kết bạn';
 
@@ -1522,6 +1585,13 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Danh sách bạn bè của bạn hoặc của họ đã đầy. Hãy xóa bớt một người và thử lại.';
 
   @override
+  String get addFriendSendFailedTitle => 'Couldn\'t send friend request';
+
+  @override
+  String get addFriendSendFailedMessage =>
+      'Couldn\'t send the friend request. Try again.';
+
+  @override
   String get userTagBot => 'BOT';
 
   @override
@@ -1594,13 +1664,10 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get gifPickerSearch => 'Tìm ảnh GIF';
 
   @override
-  String get gifPickerSearchKlipy => 'Tìm kiếm KLIPY';
+  String get gifPickerSearchKlipy => 'Tìm kiếm Klipy';
 
   @override
   String get gifPickerSearchTenor => 'Tìm kiếm trên Tenor';
-
-  @override
-  String get gifPickerPoweredByKlipy => 'KLIPY';
 
   @override
   String get gifPickerFavorites => 'Mục ưa thích';
@@ -2410,10 +2477,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get backupCodesDone => 'Xong';
 
   @override
-  String get phoneCaptchaRequired =>
-      'Cần xác minh trình duyệt trước khi xác minh số điện thoại. Vui lòng thử lại từ trang đăng nhập hoặc liên hệ bộ phận hỗ trợ.';
-
-  @override
   String get dangerZoneSectionTitle => 'Khu vực nguy hiểm';
 
   @override
@@ -2437,10 +2500,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get dangerZoneDeleteDescription =>
       'Xóa vĩnh viễn tài khoản và tất cả dữ liệu liên quan. Thao tác này không thể hoàn tác.';
-
-  @override
-  String get dangerZoneDeleteCancelSubscription =>
-      'Hủy gói đăng ký Reverb đang hoạt động của bạn trong cài đặt Reverb trước khi xóa tài khoản.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => 'Không thể xóa tài khoản';
@@ -3069,16 +3128,11 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   }
 
   @override
-  String userProfilePlutoniumBadgeTooltip(String productName) {
-    return 'Reverb $productName';
-  }
-
-  @override
-  String userProfilePlutoniumSubscriberSinceTooltip(
-    String productName,
+  String userProfilePremiumSubscriberSinceTooltip(
+    String premiumProductFullName,
     String date,
   ) {
-    return '$productName Reverb thành viên từ $date';
+    return 'Người đăng ký $premiumProductFullName từ $date';
   }
 
   @override
@@ -3915,6 +3969,48 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get channelComposerBarrierVerifyEmail => 'Xác minh email';
+
+  @override
+  String get accountLimitedNotice =>
+      'Tính năng nhắn tin trên tài khoản của bạn đang tạm dừng. Hãy kiểm tra email và làm một bước đơn giản để tiếp tục.';
+
+  @override
+  String get messagingPausedTextDidNotGoThrough =>
+      'Tin nhắn SMS của tôi không đến nơi';
+
+  @override
+  String messagingPausedHelpBody(String supportEmail) {
+    return 'Gửi email đến $supportEmail và một nhân viên sẽ kiểm tra tài khoản của bạn. Bạn cũng có thể trả lời email chúng tôi đã gửi cho bạn.';
+  }
+
+  @override
+  String get messagingPausedHelpCountryLabel => 'Quốc gia bạn đang ở';
+
+  @override
+  String get messagingPausedHelpCopyDetails => 'Sao chép chi tiết';
+
+  @override
+  String get messagingPausedHelpEmailSupport => 'Gửi email cho bộ phận hỗ trợ';
+
+  @override
+  String messagingPausedHelpAccountIdLine(String accountId) {
+    return 'ID tài khoản: $accountId';
+  }
+
+  @override
+  String messagingPausedHelpUsernameLine(String username) {
+    return 'Tên người dùng: $username';
+  }
+
+  @override
+  String messagingPausedHelpAccountCreatedLine(String createdAt) {
+    return 'Tài khoản được tạo: $createdAt';
+  }
+
+  @override
+  String messagingPausedHelpCountryLine(String country) {
+    return 'Quốc gia: $country';
+  }
 
   @override
   String chatAttachmentTooMany(int max) {
@@ -5945,8 +6041,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# tin nhắn chưa đọc',
-      one: '# tin nhắn chưa đọc',
+      other: '$count tin nhắn chưa đọc',
+      one: '$count tin nhắn chưa đọc',
     );
     return 'Hiện trò chuyện có $_temp0';
   }
@@ -6096,6 +6192,40 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Tin nhắn này không thể tải được.';
 
   @override
+  String notificationsMentionedYouIn(String author, String place) {
+    return '$author mentioned you in $place:';
+  }
+
+  @override
+  String notificationsRepliedToYouIn(String author, String place) {
+    return '$author replied to you in $place:';
+  }
+
+  @override
+  String notificationsMentionedYou(String author) {
+    return '$author mentioned you:';
+  }
+
+  @override
+  String notificationsRepliedToYou(String author) {
+    return '$author replied to you:';
+  }
+
+  @override
+  String notificationsMentionPlace(String server, String channel) {
+    return '$server – $channel';
+  }
+
+  @override
+  String get notificationsSendReply => 'Send a reply';
+
+  @override
+  String get notificationsRecentActivity => 'Recent activity';
+
+  @override
+  String get notificationsRemoveNotification => 'Remove notification';
+
+  @override
   String characterCounterRemaining(int remaining) {
     return 'Còn lại $remaining ký tự';
   }
@@ -6114,6 +6244,10 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get chatMessageFailedToSend => 'Không gửi được tin nhắn';
+
+  @override
+  String get chatMessageFailedToSendTapForOptions =>
+      'Không gửi được tin nhắn. Nhấn để xem tùy chọn.';
 
   @override
   String chatSendFailureDmRestricted(String settingsPath) {
@@ -6559,8 +6693,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# cộng đồng',
-      one: '# cộng đồng',
+      other: '$count cộng đồng',
+      one: '$count cộng đồng',
     );
     return 'Tất cả trừ $_temp0';
   }
@@ -6570,8 +6704,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# cộng đồng',
-      one: '# cộng đồng',
+      other: '$count cộng đồng',
+      one: '$count cộng đồng',
     );
     return 'Chỉ $_temp0';
   }
@@ -6600,14 +6734,14 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# giờ',
-      one: '# giờ',
+      other: '$hours giờ',
+      one: '$hours giờ',
     );
     String _temp1 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# phút',
-      one: '# phút',
+      other: '$minutes phút',
+      one: '$minutes phút',
     );
     return '$_temp0 và $_temp1';
   }
@@ -6617,8 +6751,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# giờ',
-      one: '# giờ',
+      other: '$hours giờ',
+      one: '$hours giờ',
     );
     return '$_temp0';
   }
@@ -6628,8 +6762,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# phút',
-      one: '# phút',
+      other: '$minutes phút',
+      one: '$minutes phút',
     );
     return '$_temp0';
   }
@@ -6639,8 +6773,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       seconds,
       locale: localeName,
-      other: '# giây',
-      one: '# giây',
+      other: '$seconds giây',
+      one: '$seconds giây',
     );
     return '$_temp0';
   }
@@ -6669,6 +6803,9 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get doubleTapReactionHint =>
       'Chạm hai lần vào tin nhắn để bày tỏ cảm xúc';
+
+  @override
+  String get doubleTapEditHint => 'Double tap your own message to edit it';
 
   @override
   String get doubleTapReactionEdit => 'Chỉnh sửa';
@@ -6774,9 +6911,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get forwardSuccessToast => 'Đã chuyển tiếp tin nhắn';
-
-  @override
-  String get forwardFailed => 'Không thể chuyển tiếp tin nhắn';
 
   @override
   String get forwardCommentSlowmodeDisabled =>
@@ -7187,6 +7321,12 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get chatEditNoChanges => 'Không có thay đổi nào để lưu';
 
   @override
+  String get chatEditFailed => 'Your message didn\'t update';
+
+  @override
+  String get chatEditFailedEditAgain => 'Edit again';
+
+  @override
   String get chatChannelNotReady =>
       'Kênh này chưa sẵn sàng. Vui lòng thử lại sau.';
 
@@ -7296,6 +7436,9 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get composerAutocompleteStickersHeading => 'Nhãn dán';
+
+  @override
+  String get composerAutocompleteEmojisHeading => 'Emojis';
 
   @override
   String get composerAutocompleteGifsHeading => 'Ảnh GIF';
@@ -8332,6 +8475,72 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get channelHeaderSearchClearHistory => 'Xóa';
 
   @override
+  String get channelSearchRemoveRecent => 'Remove from recent searches';
+
+  @override
+  String get channelSearchFiltersButton => 'Filters';
+
+  @override
+  String get channelSearchFilterMenuTitle => 'Filter results';
+
+  @override
+  String get channelSearchFilterFromLabel => 'From a specific person';
+
+  @override
+  String get channelSearchFilterMentionsLabel => 'Mentions a specific person';
+
+  @override
+  String get channelSearchFilterHasLabel => 'Has a link, file or embed';
+
+  @override
+  String get channelSearchFilterInLabel => 'In a specific channel';
+
+  @override
+  String get channelSearchFilterDuringLabel => 'Sent on a date';
+
+  @override
+  String get channelSearchFilterBeforeLabel => 'Sent before a date';
+
+  @override
+  String get channelSearchFilterAfterLabel => 'Sent after a date';
+
+  @override
+  String get channelSearchFilterPinnedLabel => 'Pinned or not pinned';
+
+  @override
+  String get channelSearchFilterAuthorTypeLabel => 'By author type';
+
+  @override
+  String get channelSearchDateToday => 'Today';
+
+  @override
+  String get channelSearchDateYesterday => 'Yesterday';
+
+  @override
+  String get channelSearchTabMessages => 'Messages';
+
+  @override
+  String get channelSearchTabImages => 'Images';
+
+  @override
+  String get channelSearchTabPins => 'Pins';
+
+  @override
+  String get channelSearchTabLinks => 'Links';
+
+  @override
+  String get channelSearchTabFiles => 'Files';
+
+  @override
+  String channelSearchTabCount(String label, int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$label ($countString)';
+  }
+
+  @override
   String get channelHeaderSearchFilterDescFrom => 'một người dùng';
 
   @override
@@ -8918,19 +9127,19 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get purgePersonalNotesFailed => 'Không thể xóa ghi chú cá nhân';
 
   @override
-  String get userSettingsGroupYourAccount => 'TÀI KHOẢN CỦA BẠN';
+  String get userSettingsGroupYourAccount => 'Tài khoản của bạn';
 
   @override
-  String get userSettingsGroupBilling => 'BILLING';
+  String get userSettingsGroupBilling => 'Billing';
 
   @override
-  String get userSettingsGroupApplication => 'APPLICATION';
+  String get userSettingsGroupApplication => 'Application';
 
   @override
-  String get userSettingsGroupDeveloper => 'DEVELOPER';
+  String get userSettingsGroupDeveloper => 'Developer';
 
   @override
-  String get userSettingsGroupStaffOnly => 'STAFF-ONLY';
+  String get userSettingsGroupStaffOnly => 'Staff-only';
 
   @override
   String get userSettingsSearchPlaceholder => 'Tìm kiếm cài đặt...';
@@ -8946,6 +9155,11 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get userSettingsCopyLinkToPage => 'Copy link to page';
+
+  @override
+  String userSettingsJumpLinkPremiumPage(String productName) {
+    return '$productName page';
+  }
 
   @override
   String get userSettingsNavProfile => 'Hồ sơ';
@@ -9476,6 +9690,9 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get storePlutoniumRenewsThroughAppStore =>
       'Tự động gia hạn qua App Store cho đến khi bạn hủy.';
+
+  @override
+  String get storePlutoniumRestorePurchases => 'Restore purchases';
 
   @override
   String get storePlutoniumAlreadySubscribed =>
@@ -10180,12 +10397,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Hiển thị Pickles trên ô nhập tin nhắn của bạn';
 
   @override
-  String get advancedSettingShowNekoKeywordCat => 'Mèo';
-
-  @override
-  String get advancedSettingShowNekoKeywordNeko => 'Neko';
-
-  @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>
       'Hoạt ảnh thu phóng khi khởi động';
 
@@ -10842,7 +11053,13 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get chatJumpToBottom => 'Nhảy đến cuối';
 
   @override
+  String get chatUnreadDividerNew => 'Mới';
+
+  @override
   String get uiConfirm => 'Xác nhận';
+
+  @override
+  String get uiUnderstood => 'Understood';
 
   @override
   String get uiLoading => 'Đang tải';
@@ -10926,7 +11143,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get instanceUrlHelper =>
-      'Sử dụng fluxer.app cho máy chủ chính thức hoặc URL chính xác của máy chủ tự lưu trữ.';
+      'Sử dụng echowire.org cho máy chủ chính thức hoặc URL chính xác của máy chủ tự lưu trữ.';
 
   @override
   String get resetToDefaultInstance => 'Đặt lại về echowire';
@@ -11143,10 +11360,10 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get guildNavbarHelp => 'Trợ giúp';
 
   @override
-  String get scrollIndicatorNew => 'MỚI';
+  String get scrollIndicatorNew => 'Mới';
 
   @override
-  String get scrollIndicatorNewMessage => 'Tin nhắn mới';
+  String get scrollIndicatorNewMessages => 'Tin nhắn mới';
 
   @override
   String guildNavbarCollapseFolder(String folderName) {
@@ -11541,9 +11758,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get guildMenuMarkAsRead => 'Đánh dấu là đã đọc';
-
-  @override
-  String get guildPeekMoreOptions => 'Thêm tùy chọn';
 
   @override
   String get guildMenuInviteMembers => 'Mời thành viên';
@@ -12943,6 +13157,51 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Đã cập nhật biểu tượng cộng đồng.';
 
   @override
+  String get auditLogChangePausedInvites => 'Paused invites.';
+
+  @override
+  String get auditLogChangeResumedInvites => 'Resumed invites.';
+
+  @override
+  String get auditLogChangeTurnedOnDetachedBanner =>
+      'Turned on the detached banner.';
+
+  @override
+  String get auditLogChangeTurnedOffDetachedBanner =>
+      'Turned off the detached banner.';
+
+  @override
+  String get auditLogChangeAllowedFlexibleChannelNames =>
+      'Allowed flexible text channel names.';
+
+  @override
+  String get auditLogChangeDisallowedFlexibleChannelNames =>
+      'Stopped allowing flexible text channel names.';
+
+  @override
+  String get auditLogChangeHidOwnerCrown => 'Hid the community owner crown.';
+
+  @override
+  String get auditLogChangeShowedOwnerCrown =>
+      'Stopped hiding the community owner crown.';
+
+  @override
+  String get auditLogChangeAllowedEmojiCloning =>
+      'Allowed others to clone this community\'s emojis.';
+
+  @override
+  String get auditLogChangeStoppedEmojiCloning =>
+      'Stopped allowing others to clone this community\'s emojis.';
+
+  @override
+  String get auditLogChangeAllowedStickerCloning =>
+      'Allowed others to clone this community\'s stickers.';
+
+  @override
+  String get auditLogChangeStoppedStickerCloning =>
+      'Stopped allowing others to clone this community\'s stickers.';
+
+  @override
   String auditLogChangeRenamedChannel(String name) {
     return 'Đã đổi tên kênh thành $name.';
   }
@@ -13013,8 +13272,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# tin nhắn.',
-      one: '# tin nhắn.',
+      other: '$count tin nhắn.',
+      one: '$count tin nhắn.',
     );
     return 'Đã xóa $_temp0';
   }
@@ -13024,8 +13283,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Đã xóa # thành viên.',
-      one: 'Đã xóa # thành viên.',
+      other: 'Đã xóa $count thành viên.',
+      one: 'Đã xóa $count thành viên.',
     );
     return '$_temp0';
   }
@@ -13557,16 +13816,16 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Không thể xóa cộng đồng này';
 
   @override
-  String get guildSettingsCategoryExpressions => 'EXPRESSIONS';
+  String get guildSettingsCategoryExpressions => 'Expressions';
 
   @override
-  String get guildSettingsCategoryCommunity => 'COMMUNITY';
+  String get guildSettingsCategoryCommunity => 'Community';
 
   @override
-  String get guildSettingsCategoryIntegrations => 'INTEGRATIONS';
+  String get guildSettingsCategoryIntegrations => 'Integrations';
 
   @override
-  String get guildSettingsCategoryPeople => 'PEOPLE';
+  String get guildSettingsCategoryPeople => 'People';
 
   @override
   String get guildSettingsOverviewBrandingTitle => 'Thương hiệu';
@@ -14454,18 +14713,6 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get homeQuickActionDms => 'Tin nhắn trực tiếp';
 
   @override
-  String get threadsAddMember => 'Add member';
-
-  @override
-  String get threadsAddMemberSearchLabel => 'Search members';
-
-  @override
-  String get threadsAddMemberNoResults => 'No members match that search.';
-
-  @override
-  String get threadsMemberAddedToast => 'Member added';
-
-  @override
   String get assistantNeedsLogin => 'Mở Fluxer và đăng nhập trước.';
 
   @override
@@ -14857,7 +15104,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String get forumPostArchived => 'Archived';
 
   @override
-  String get forumPostNewBadge => 'NEW';
+  String get forumPostNewBadge => 'Mới';
 
   @override
   String get forumPostStarterDeleted => 'The original message was deleted.';
@@ -14872,8 +15119,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count new messages',
-      one: '1 new message',
+      other: '$count tin nhắn mới',
+      one: '$count tin nhắn mới',
     );
     return '$_temp0';
   }
@@ -15182,4 +15429,42 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   String voiceP2pPeerFailedTitle(String name) {
     return 'Cannot connect directly to $name';
   }
+
+  @override
+  String get favoritesRenameCategory => 'Đổi tên danh mục';
+
+  @override
+  String get captchaTitle => 'Xác minh bạn không phải robot';
+
+  @override
+  String get captchaDescription =>
+      'Chúng tôi cần đảm bảo bạn không phải là bot. Vui lòng hoàn tất xác minh bên dưới.';
+
+  @override
+  String get captchaSwitchToHcaptcha => 'Gặp sự cố? Thử dùng hCaptcha';
+
+  @override
+  String get captchaSwitchToTurnstile => 'Thử dùng Turnstile';
+
+  @override
+  String get phoneCaptchaRequired =>
+      'Cần xác minh trình duyệt trước khi xác minh số điện thoại. Vui lòng thử lại từ trang đăng nhập hoặc liên hệ bộ phận hỗ trợ.';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Mèo';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
 }

@@ -12,11 +12,87 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get reconnectingTitle => 'Něco jsme pokazili!';
 
   @override
+  String get chatJumpToPresent => 'Přejít na aktuální zprávy';
+
+  @override
+  String get chatViewingOlderMessages => 'Zobrazujete starší zprávy';
+
+  @override
+  String get chatNewMessagesBarJumpToFirstUnread =>
+      'Přejít na první nepřečtenou zprávu';
+
+  @override
+  String get chatNewMessagesBarMarkAsRead => 'Označit jako přečtené';
+
+  @override
+  String get chatNewMessagesBarMarkRead => 'Označit jako přečtené';
+
+  @override
+  String chatNewMessagesBarNewMessagesSinceEstimated(
+    int unreadCount,
+    String compactTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '$unreadCountString+ nových zpráv od $compactTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewMessagesSince(
+    int unreadCount,
+    String compactTime,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount nových zpráv',
+      many: '$unreadCount nové zprávy',
+      few: '$unreadCount nové zprávy',
+      one: '$unreadCount nová zpráva',
+    );
+    return '$_temp0 od $compactTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewSinceEstimated(
+    int unreadCount,
+    String shortTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '$unreadCountString+ nových od $shortTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewSince(int unreadCount, String shortTime) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount nových',
+      many: '$unreadCount nové',
+      few: '$unreadCount nové',
+      one: '$unreadCount nová',
+    );
+    return '$_temp0 od $shortTime';
+  }
+
+  @override
   String get reconnectingBody =>
       'S instancí je něco v nepořádku.\nMělo by se to za chvilku opravit!';
 
   @override
   String get gatewayReconnectingToast => 'Připojování…';
+
+  @override
+  String get gatewayReconnectTryAgain => 'Zkusit znovu';
 
   @override
   String get gatewayConnectedToast => 'Připojeno';
@@ -230,20 +306,6 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get orDivider => 'OR';
 
   @override
-  String get captchaTitle => 'Ověřte, že jste člověk';
-
-  @override
-  String get captchaDescription =>
-      'Musíme se ujistit, že nejste robot. Dokončete prosím ověření níže.';
-
-  @override
-  String get captchaSwitchToHcaptcha =>
-      'Máte problémy? Zkuste místo toho hCaptcha';
-
-  @override
-  String get captchaSwitchToTurnstile => 'Zkuste místo toho Turnstile';
-
-  @override
   String get cancel => 'Zrušit';
 
   @override
@@ -286,6 +348,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get next => 'Další';
 
   @override
+  String get create => 'Create';
+
+  @override
   String get mfaTitle => 'Dvoufaktorové ověření';
 
   @override
@@ -324,6 +389,11 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String get accountRemoveDescription =>
       'Tímto odeberete uloženou relaci pro tento účet.';
+
+  @override
+  String accountSignOutTitle(String identifier) {
+    return 'Sign out of $identifier?';
+  }
 
   @override
   String get accountExpired => 'Platnost vypršela';
@@ -1390,9 +1460,6 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get dmFriendRequestSentToast => 'Žádost o přátelství odeslána';
 
   @override
-  String get dmFriendRequestFailed => 'Odeslání žádosti o přátelství selhalo';
-
-  @override
   String get dmAcceptFriendRequestFailed =>
       'Přijetí žádosti o přátelství selhalo';
 
@@ -1528,6 +1595,13 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       'Váš seznam přátel je plný, nebo je plný ten jejich. Někoho odeberte a zkuste to znovu.';
 
   @override
+  String get addFriendSendFailedTitle => 'Couldn\'t send friend request';
+
+  @override
+  String get addFriendSendFailedMessage =>
+      'Couldn\'t send the friend request. Try again.';
+
+  @override
   String get userTagBot => 'BOT';
 
   @override
@@ -1600,13 +1674,10 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get gifPickerSearch => 'Hledat GIFy';
 
   @override
-  String get gifPickerSearchKlipy => 'Hledat KLIPY';
+  String get gifPickerSearchKlipy => 'Hledat Klipy';
 
   @override
   String get gifPickerSearchTenor => 'Hledat Tenor';
-
-  @override
-  String get gifPickerPoweredByKlipy => 'KLIPY';
 
   @override
   String get gifPickerFavorites => 'Oblíbené';
@@ -2418,10 +2489,6 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get backupCodesDone => 'Hotovo';
 
   @override
-  String get phoneCaptchaRequired =>
-      'Před ověřením telefonu je vyžadována kontrola prohlížeče. Zkuste to znovu z přihlašovací stránky nebo kontaktujte podporu.';
-
-  @override
   String get dangerZoneSectionTitle => 'Nebezpečná zóna';
 
   @override
@@ -2444,10 +2511,6 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String get dangerZoneDeleteDescription =>
       'Trvale smažte svůj účet a všechna přidružená data. Tuto akci nelze vrátit zpět.';
-
-  @override
-  String get dangerZoneDeleteCancelSubscription =>
-      'Před smazáním účtu zrušte svou aktivní předplatné Reverb v nastavení Reverb.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount => 'Nelze smazat účet';
@@ -2530,7 +2593,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'před # lety',
+      other: 'před $count lety',
       one: 'před 1 rokem',
     );
     return '$_temp0';
@@ -2541,7 +2604,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'před # měsíci',
+      other: 'před $count měsíci',
       one: 'před 1 měsícem',
     );
     return '$_temp0';
@@ -2552,7 +2615,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'před # dny',
+      other: 'před $count dny',
       one: 'před 1 dnem',
     );
     return '$_temp0';
@@ -2563,7 +2626,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'před # hodinami',
+      other: 'před $count hodinami',
       one: 'před 1 hodinou',
     );
     return '$_temp0';
@@ -2574,7 +2637,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'před # minutami',
+      other: 'před $count minutami',
       one: 'před 1 minutou',
     );
     return '$_temp0';
@@ -2585,7 +2648,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'před # týdny',
+      other: 'před $count týdny',
       one: 'před týdnem',
     );
     return '$_temp0';
@@ -3083,16 +3146,11 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   }
 
   @override
-  String userProfilePlutoniumBadgeTooltip(String productName) {
-    return '$productName Reverb';
-  }
-
-  @override
-  String userProfilePlutoniumSubscriberSinceTooltip(
-    String productName,
+  String userProfilePremiumSubscriberSinceTooltip(
+    String premiumProductFullName,
     String date,
   ) {
-    return 'Předplatitel $productName Reverb od $date';
+    return 'Předplatitel $premiumProductFullName od $date';
   }
 
   @override
@@ -3930,6 +3988,47 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get channelComposerBarrierVerifyEmail => 'Ověřit e-mail';
+
+  @override
+  String get accountLimitedNotice =>
+      'U vašeho účtu je posílání zpráv na pauze. Podívejte se do e-mailu: stačí jeden rychlý krok a můžete pokračovat.';
+
+  @override
+  String get messagingPausedTextDidNotGoThrough => 'Moje SMS neprošla';
+
+  @override
+  String messagingPausedHelpBody(String supportEmail) {
+    return 'Napište na $supportEmail a někdo z týmu zkontroluje váš účet. Můžete také odpovědět na e-mail, který jsme vám poslali.';
+  }
+
+  @override
+  String get messagingPausedHelpCountryLabel => 'Země, ve které se nacházíte';
+
+  @override
+  String get messagingPausedHelpCopyDetails => 'Kopírovat údaje';
+
+  @override
+  String get messagingPausedHelpEmailSupport => 'Napsat podpoře';
+
+  @override
+  String messagingPausedHelpAccountIdLine(String accountId) {
+    return 'ID účtu: $accountId';
+  }
+
+  @override
+  String messagingPausedHelpUsernameLine(String username) {
+    return 'Uživatelské jméno: $username';
+  }
+
+  @override
+  String messagingPausedHelpAccountCreatedLine(String createdAt) {
+    return 'Účet vytvořen: $createdAt';
+  }
+
+  @override
+  String messagingPausedHelpCountryLine(String country) {
+    return 'Země: $country';
+  }
 
   @override
   String chatAttachmentTooMany(int max) {
@@ -5962,8 +6061,8 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# nepřečtenými zprávami',
-      one: '# nepřečtenou zprávou',
+      other: '$count nepřečtenými zprávami',
+      one: '$count nepřečtenou zprávou',
     );
     return 'Zobrazit chat s $_temp0';
   }
@@ -6111,6 +6210,40 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       'Tuto zprávu se nepodařilo načíst.';
 
   @override
+  String notificationsMentionedYouIn(String author, String place) {
+    return '$author mentioned you in $place:';
+  }
+
+  @override
+  String notificationsRepliedToYouIn(String author, String place) {
+    return '$author replied to you in $place:';
+  }
+
+  @override
+  String notificationsMentionedYou(String author) {
+    return '$author mentioned you:';
+  }
+
+  @override
+  String notificationsRepliedToYou(String author) {
+    return '$author replied to you:';
+  }
+
+  @override
+  String notificationsMentionPlace(String server, String channel) {
+    return '$server – $channel';
+  }
+
+  @override
+  String get notificationsSendReply => 'Send a reply';
+
+  @override
+  String get notificationsRecentActivity => 'Recent activity';
+
+  @override
+  String get notificationsRemoveNotification => 'Remove notification';
+
+  @override
   String characterCounterRemaining(int remaining) {
     return '$remaining znaků zbývá';
   }
@@ -6129,6 +6262,10 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get chatMessageFailedToSend => 'Zprávu se nepodařilo odeslat';
+
+  @override
+  String get chatMessageFailedToSendTapForOptions =>
+      'Nepodařilo se odeslat zprávu. Klepnutím zobrazíte možnosti.';
 
   @override
   String chatSendFailureDmRestricted(String settingsPath) {
@@ -6572,8 +6709,8 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# komunit',
-      one: '# komunity',
+      other: '$count komunit',
+      one: '$count komunity',
     );
     return 'Vše kromě $_temp0';
   }
@@ -6583,8 +6720,8 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# komunity',
-      one: '# komunita',
+      other: '$count komunity',
+      one: '$count komunita',
     );
     return 'Pouze $_temp0';
   }
@@ -6613,18 +6750,18 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# hodin',
-      many: '# hodiny',
-      few: '# hodiny',
-      one: '# hodina',
+      other: '$hours hodin',
+      many: '$hours hodiny',
+      few: '$hours hodiny',
+      one: '$hours hodina',
     );
     String _temp1 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# minut',
-      many: '# minuty',
-      few: '# minuty',
-      one: '# minuta',
+      other: '$minutes minut',
+      many: '$minutes minuty',
+      few: '$minutes minuty',
+      one: '$minutes minuta',
     );
     return '$_temp0 a $_temp1';
   }
@@ -6634,10 +6771,10 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# hodin',
-      many: '# hodiny',
-      few: '# hodiny',
-      one: '# hodina',
+      other: '$hours hodin',
+      many: '$hours hodiny',
+      few: '$hours hodiny',
+      one: '$hours hodina',
     );
     return '$_temp0';
   }
@@ -6647,10 +6784,10 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# minuty',
-      many: '# minut',
-      few: '# minuty',
-      one: '# minuta',
+      other: '$minutes minuty',
+      many: '$minutes minut',
+      few: '$minutes minuty',
+      one: '$minutes minuta',
     );
     return '$_temp0';
   }
@@ -6660,10 +6797,10 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       seconds,
       locale: localeName,
-      other: '# sekundy',
-      many: '# sekund',
-      few: '# sekundy',
-      one: '# sekunda',
+      other: '$seconds sekundy',
+      many: '$seconds sekund',
+      few: '$seconds sekundy',
+      one: '$seconds sekunda',
     );
     return '$_temp0';
   }
@@ -6691,6 +6828,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get doubleTapReactionHint => 'Dvojitým klepnutím na zprávu reagujete';
+
+  @override
+  String get doubleTapEditHint => 'Double tap your own message to edit it';
 
   @override
   String get doubleTapReactionEdit => 'Upravit';
@@ -6796,9 +6936,6 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get forwardSuccessToast => 'Zpráva byla přeposlána';
-
-  @override
-  String get forwardFailed => 'Nepodařilo se přeposlat zprávu';
 
   @override
   String get forwardCommentSlowmodeDisabled =>
@@ -7211,6 +7348,12 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get chatEditNoChanges => 'Žádné změny k uložení';
 
   @override
+  String get chatEditFailed => 'Your message didn\'t update';
+
+  @override
+  String get chatEditFailedEditAgain => 'Edit again';
+
+  @override
   String get chatChannelNotReady =>
       'Tento kanál ještě není připraven. Zkuste to za chvíli znovu.';
 
@@ -7320,6 +7463,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get composerAutocompleteStickersHeading => 'Nálepky';
+
+  @override
+  String get composerAutocompleteEmojisHeading => 'Emojis';
 
   @override
   String get composerAutocompleteGifsHeading => 'GIFy';
@@ -8356,6 +8502,72 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get channelHeaderSearchClearHistory => 'Vymazat';
 
   @override
+  String get channelSearchRemoveRecent => 'Remove from recent searches';
+
+  @override
+  String get channelSearchFiltersButton => 'Filters';
+
+  @override
+  String get channelSearchFilterMenuTitle => 'Filter results';
+
+  @override
+  String get channelSearchFilterFromLabel => 'From a specific person';
+
+  @override
+  String get channelSearchFilterMentionsLabel => 'Mentions a specific person';
+
+  @override
+  String get channelSearchFilterHasLabel => 'Has a link, file or embed';
+
+  @override
+  String get channelSearchFilterInLabel => 'In a specific channel';
+
+  @override
+  String get channelSearchFilterDuringLabel => 'Sent on a date';
+
+  @override
+  String get channelSearchFilterBeforeLabel => 'Sent before a date';
+
+  @override
+  String get channelSearchFilterAfterLabel => 'Sent after a date';
+
+  @override
+  String get channelSearchFilterPinnedLabel => 'Pinned or not pinned';
+
+  @override
+  String get channelSearchFilterAuthorTypeLabel => 'By author type';
+
+  @override
+  String get channelSearchDateToday => 'Today';
+
+  @override
+  String get channelSearchDateYesterday => 'Yesterday';
+
+  @override
+  String get channelSearchTabMessages => 'Messages';
+
+  @override
+  String get channelSearchTabImages => 'Images';
+
+  @override
+  String get channelSearchTabPins => 'Pins';
+
+  @override
+  String get channelSearchTabLinks => 'Links';
+
+  @override
+  String get channelSearchTabFiles => 'Files';
+
+  @override
+  String channelSearchTabCount(String label, int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$label ($countString)';
+  }
+
+  @override
   String get channelHeaderSearchFilterDescFrom => 'uživatel';
 
   @override
@@ -8942,19 +9154,19 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       'Osobní poznámky se nepodařilo vymazat';
 
   @override
-  String get userSettingsGroupYourAccount => 'VÁŠ ÚČET';
+  String get userSettingsGroupYourAccount => 'Váš účet';
 
   @override
-  String get userSettingsGroupBilling => 'BILLING';
+  String get userSettingsGroupBilling => 'Billing';
 
   @override
-  String get userSettingsGroupApplication => 'APPLICATION';
+  String get userSettingsGroupApplication => 'Application';
 
   @override
-  String get userSettingsGroupDeveloper => 'DEVELOPER';
+  String get userSettingsGroupDeveloper => 'Developer';
 
   @override
-  String get userSettingsGroupStaffOnly => 'STAFF-ONLY';
+  String get userSettingsGroupStaffOnly => 'Staff-only';
 
   @override
   String get userSettingsSearchPlaceholder => 'Hledat nastavení...';
@@ -8970,6 +9182,11 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get userSettingsCopyLinkToPage => 'Copy link to page';
+
+  @override
+  String userSettingsJumpLinkPremiumPage(String productName) {
+    return '$productName page';
+  }
 
   @override
   String get userSettingsNavProfile => 'Profil';
@@ -9503,6 +9720,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String get storePlutoniumRenewsThroughAppStore =>
       'Automaticky se obnovuje přes App Store, dokud předplatné nezrušíte.';
+
+  @override
+  String get storePlutoniumRestorePurchases => 'Restore purchases';
 
   @override
   String get storePlutoniumAlreadySubscribed =>
@@ -10199,12 +10419,6 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       'Zobrazit Pickles na vašem chatu';
 
   @override
-  String get advancedSettingShowNekoKeywordCat => 'kočka';
-
-  @override
-  String get advancedSettingShowNekoKeywordNeko => 'Neko';
-
-  @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>
       'Animace přiblížení při spuštění';
 
@@ -10864,7 +11078,13 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get chatJumpToBottom => 'Přejít dolů';
 
   @override
+  String get chatUnreadDividerNew => 'Nové';
+
+  @override
   String get uiConfirm => 'Potvrdit';
+
+  @override
+  String get uiUnderstood => 'Understood';
 
   @override
   String get uiLoading => 'Načítání';
@@ -10947,7 +11167,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get instanceUrlHelper =>
-      'Použijte fluxer.app pro oficiální instanci nebo přesnou URL instance hostované na vlastním serveru.';
+      'Použijte echowire.org pro oficiální instanci nebo přesnou URL instance hostované na vlastním serveru.';
 
   @override
   String get resetToDefaultInstance => 'Obnovit na echowire';
@@ -11163,10 +11383,10 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get guildNavbarHelp => 'Nápověda';
 
   @override
-  String get scrollIndicatorNew => 'NEW';
+  String get scrollIndicatorNew => 'Nové';
 
   @override
-  String get scrollIndicatorNewMessage => 'NOVÁ ZPRÁVA';
+  String get scrollIndicatorNewMessages => 'Nové zprávy';
 
   @override
   String guildNavbarCollapseFolder(String folderName) {
@@ -11557,9 +11777,6 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get guildMenuMarkAsRead => 'Označit jako přečtené';
-
-  @override
-  String get guildPeekMoreOptions => 'Další možnosti';
 
   @override
   String get guildMenuInviteMembers => 'Pozvat členy';
@@ -12956,6 +13173,51 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       'Aktualizována ikona společenství.';
 
   @override
+  String get auditLogChangePausedInvites => 'Paused invites.';
+
+  @override
+  String get auditLogChangeResumedInvites => 'Resumed invites.';
+
+  @override
+  String get auditLogChangeTurnedOnDetachedBanner =>
+      'Turned on the detached banner.';
+
+  @override
+  String get auditLogChangeTurnedOffDetachedBanner =>
+      'Turned off the detached banner.';
+
+  @override
+  String get auditLogChangeAllowedFlexibleChannelNames =>
+      'Allowed flexible text channel names.';
+
+  @override
+  String get auditLogChangeDisallowedFlexibleChannelNames =>
+      'Stopped allowing flexible text channel names.';
+
+  @override
+  String get auditLogChangeHidOwnerCrown => 'Hid the community owner crown.';
+
+  @override
+  String get auditLogChangeShowedOwnerCrown =>
+      'Stopped hiding the community owner crown.';
+
+  @override
+  String get auditLogChangeAllowedEmojiCloning =>
+      'Allowed others to clone this community\'s emojis.';
+
+  @override
+  String get auditLogChangeStoppedEmojiCloning =>
+      'Stopped allowing others to clone this community\'s emojis.';
+
+  @override
+  String get auditLogChangeAllowedStickerCloning =>
+      'Allowed others to clone this community\'s stickers.';
+
+  @override
+  String get auditLogChangeStoppedStickerCloning =>
+      'Stopped allowing others to clone this community\'s stickers.';
+
+  @override
   String auditLogChangeRenamedChannel(String name) {
     return 'Přejmenován kanál na $name.';
   }
@@ -13026,8 +13288,8 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Smazány # zprávy.',
-      one: 'Smazána # zpráva.',
+      other: 'Smazány $count zprávy.',
+      one: 'Smazána $count zpráva.',
     );
     return '$_temp0';
   }
@@ -13037,8 +13299,8 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Odstraněni # členové.',
-      one: 'Odstraněn # člen.',
+      other: 'Odstraněni $count členové.',
+      one: 'Odstraněn $count člen.',
     );
     return '$_temp0';
   }
@@ -13392,7 +13654,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'před # hodinami',
+      other: 'před $count hodinami',
       one: 'před hodinou',
     );
     return '$_temp0';
@@ -13572,16 +13834,16 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       'Nepodařilo se smazat tuto komunitu';
 
   @override
-  String get guildSettingsCategoryExpressions => 'EXPRESSIONS';
+  String get guildSettingsCategoryExpressions => 'Expressions';
 
   @override
-  String get guildSettingsCategoryCommunity => 'COMMUNITY';
+  String get guildSettingsCategoryCommunity => 'Community';
 
   @override
-  String get guildSettingsCategoryIntegrations => 'INTEGRATIONS';
+  String get guildSettingsCategoryIntegrations => 'Integrations';
 
   @override
-  String get guildSettingsCategoryPeople => 'PEOPLE';
+  String get guildSettingsCategoryPeople => 'People';
 
   @override
   String get guildSettingsOverviewBrandingTitle => 'Značka';
@@ -14469,18 +14731,6 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get homeQuickActionDms => 'Zprávy';
 
   @override
-  String get threadsAddMember => 'Add member';
-
-  @override
-  String get threadsAddMemberSearchLabel => 'Search members';
-
-  @override
-  String get threadsAddMemberNoResults => 'No members match that search.';
-
-  @override
-  String get threadsMemberAddedToast => 'Member added';
-
-  @override
   String get assistantNeedsLogin => 'Nejprve otevřete Fluxer a přihlaste se.';
 
   @override
@@ -14883,7 +15133,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get forumPostArchived => 'Archived';
 
   @override
-  String get forumPostNewBadge => 'NEW';
+  String get forumPostNewBadge => 'Nové';
 
   @override
   String get forumPostStarterDeleted => 'The original message was deleted.';
@@ -14898,8 +15148,8 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count new messages',
-      one: '1 new message',
+      other: '$count nových zpráv',
+      one: '$count nová zpráva',
     );
     return '$_temp0';
   }
@@ -15208,4 +15458,43 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String voiceP2pPeerFailedTitle(String name) {
     return 'Cannot connect directly to $name';
   }
+
+  @override
+  String get favoritesRenameCategory => 'Přejmenovat kategorii';
+
+  @override
+  String get captchaTitle => 'Ověřte, že jste člověk';
+
+  @override
+  String get captchaDescription =>
+      'Musíme se ujistit, že nejste robot. Dokončete prosím ověření níže.';
+
+  @override
+  String get captchaSwitchToHcaptcha =>
+      'Máte problémy? Zkuste místo toho hCaptcha';
+
+  @override
+  String get captchaSwitchToTurnstile => 'Zkuste místo toho Turnstile';
+
+  @override
+  String get phoneCaptchaRequired =>
+      'Před ověřením telefonu je vyžadována kontrola prohlížeče. Zkuste to znovu z přihlašovací stránky nebo kontaktujte podporu.';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'kočka';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
 }

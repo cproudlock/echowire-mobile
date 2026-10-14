@@ -11,6 +11,10 @@
     "@gatewayReconnectingToast": {
         "description": "Toast shown when the gateway connection is lost and reconnecting."
     },
+    "gatewayReconnectTryAgain": "Повторить",
+    "@gatewayReconnectTryAgain": {
+        "description": "Screen reader hint on the reconnecting banner. Tapping the banner retries the connection right away."
+    },
     "gatewayConnectedToast": "Подключено",
     "@gatewayConnectedToast": {
         "description": "Toast shown when the gateway connection is restored."
@@ -121,22 +125,6 @@
     "orDivider": "OR",
     "@orDivider": {
         "description": "Divider between alternative actions (e.g. email login vs SSO)."
-    },
-    "captchaTitle": "Подтвердите, что вы человек",
-    "@captchaTitle": {
-        "description": "Title for the captcha verification modal."
-    },
-    "captchaDescription": "Нам нужно убедиться, что вы не бот. Пожалуйста, пройдите проверку ниже.",
-    "@captchaDescription": {
-        "description": "Explanatory text in the captcha modal body."
-    },
-    "captchaSwitchToHcaptcha": "Проблемы? Попробуйте hCaptcha вместо этого",
-    "@captchaSwitchToHcaptcha": {
-        "description": "Link to switch from Turnstile to hCaptcha provider."
-    },
-    "captchaSwitchToTurnstile": "Попробуйте Turnstile вместо этого",
-    "@captchaSwitchToTurnstile": {
-        "description": "Link to switch from hCaptcha to Turnstile provider."
     },
     "cancel": "Отмена",
     "@cancel": {
@@ -1555,17 +1543,13 @@
     "@gifPickerSearch": {
         "description": "Generic GIF picker search placeholder while provider configuration loads."
     },
-    "gifPickerSearchKlipy": "Поиск KLIPY",
+    "gifPickerSearchKlipy": "Поиск Klipy",
     "@gifPickerSearchKlipy": {
-        "description": "GIF picker search placeholder for KLIPY."
+        "description": "GIF picker search placeholder for Klipy."
     },
     "gifPickerSearchTenor": "Поиск Tenor",
     "@gifPickerSearchTenor": {
         "description": "GIF picker search placeholder for Tenor."
-    },
-    "gifPickerPoweredByKlipy": "KLIPY",
-    "@gifPickerPoweredByKlipy": {
-        "description": "Short powered-by KLIPY label in the GIF picker search field."
     },
     "gifPickerFavorites": "Избранное",
     "@gifPickerFavorites": {
@@ -2607,10 +2591,6 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Отмените вашу активную подписку Reverb в настройках Reverb перед удалением учетной записи.",
-    "@dangerZoneDeleteCancelSubscription": {
-        "description": "Warning about active subscription before deletion."
-    },
     "dangerZoneDeleteCannotDeleteAccount": "Невозможно удалить учетную запись",
     "@dangerZoneDeleteCannotDeleteAccount": {
         "description": "Title for the guild ownership warning modal when trying to delete account."
@@ -2934,20 +2914,11 @@
             }
         }
     },
-    "userProfilePlutoniumBadgeTooltip": "Reverb {productName}",
-    "@userProfilePlutoniumBadgeTooltip": {
-        "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
+    "userProfilePremiumSubscriberSinceTooltip": "Подписчик {premiumProductFullName} с {date}",
+    "@userProfilePremiumSubscriberSinceTooltip": {
+        "description": "Badge label with a date in the user profile badges popout. Preserve {premiumProductFullName} and {date}; they are inserted by code. premiumProductFullName is the instance product name followed by its premium product name, for example Fluxer Plutonium. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "userProfilePlutoniumSubscriberSinceTooltip": "Подписчик Reverb {productName} с {date}",
-    "@userProfilePlutoniumSubscriberSinceTooltip": {
-        "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
-        "placeholders": {
-            "productName": {
+            "premiumProductFullName": {
                 "type": "String"
             },
             "date": {
@@ -3838,6 +3809,71 @@
     "channelComposerBarrierVerifyEmail": "Подтвердить почту",
     "@channelComposerBarrierVerifyEmail": {
         "description": "Action button on the composer barrier for unverified email."
+    },
+    "accountLimitedNotice": "Отправка сообщений в вашем аккаунте на паузе. Загляните в почту: чтобы продолжить, нужен всего один быстрый шаг.",
+    "@accountLimitedNotice": {
+        "description": "Notice shown in place of the message composer and as a banner at the top of the app when messaging is paused on the current account until the user completes one quick step described in an email. Keep the tone calm and friendly."
+    },
+    "messagingPausedTextDidNotGoThrough": "Моё SMS не дошло",
+    "@messagingPausedTextDidNotGoThrough": {
+        "description": "Button shown while messaging is paused on the current account, and the title of the help sheet it opens. The email describing the quick step asks the user to send a text message from their phone. This is for users who could not send that text, and also for users who sent it and nothing happened. The translation should cover both. Also used as the subject of the support email."
+    },
+    "messagingPausedHelpBody": "Напишите на {supportEmail}, и сотрудник проверит ваш аккаунт. Также можно ответить на письмо, которое мы вам отправили.",
+    "@messagingPausedHelpBody": {
+        "description": "Body of the help sheet opened from \"My text didn't go through\" while messaging is paused on the account. supportEmail is the support email address. Keep it short, calm and neutral.",
+        "placeholders": {
+            "supportEmail": {
+                "type": "String"
+            }
+        }
+    },
+    "messagingPausedHelpCountryLabel": "Страна, в которой вы находитесь",
+    "@messagingPausedHelpCountryLabel": {
+        "description": "Field label in the help sheet opened from \"My text didn't go through\". The user types the country they are in so support can help."
+    },
+    "messagingPausedHelpCopyDetails": "Скопировать данные",
+    "@messagingPausedHelpCopyDetails": {
+        "description": "Button in the help sheet opened from \"My text didn't go through\". Copies the account details for a support email to the clipboard."
+    },
+    "messagingPausedHelpEmailSupport": "Написать в поддержку",
+    "@messagingPausedHelpEmailSupport": {
+        "description": "Primary button in the help sheet opened from \"My text didn't go through\". Opens a new email to support with the account details filled in."
+    },
+    "messagingPausedHelpAccountIdLine": "ID аккаунта: {accountId}",
+    "@messagingPausedHelpAccountIdLine": {
+        "description": "One line of the support email written for the user. accountId is the numeric account ID.",
+        "placeholders": {
+            "accountId": {
+                "type": "String"
+            }
+        }
+    },
+    "messagingPausedHelpUsernameLine": "Имя пользователя: {username}",
+    "@messagingPausedHelpUsernameLine": {
+        "description": "One line of the support email written for the user. username is the account username with its tag.",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "messagingPausedHelpAccountCreatedLine": "Аккаунт создан: {createdAt}",
+    "@messagingPausedHelpAccountCreatedLine": {
+        "description": "One line of the support email written for the user. createdAt is the account creation time as an ISO 8601 UTC timestamp.",
+        "placeholders": {
+            "createdAt": {
+                "type": "String"
+            }
+        }
+    },
+    "messagingPausedHelpCountryLine": "Страна: {country}",
+    "@messagingPausedHelpCountryLine": {
+        "description": "One line of the support email written for the user. country is the country the user typed.",
+        "placeholders": {
+            "country": {
+                "type": "String"
+            }
+        }
     },
     "chatAttachmentTooMany": "Слишком много вложений (макс. {max})",
     "@chatAttachmentTooMany": {
@@ -5154,7 +5190,7 @@
     "@voiceTextChatShow": {
         "description": "Accessibility label for opening voice channel text chat."
     },
-    "voiceTextChatShowUnread": "Показать чат с {count, plural, one {# непрочитанным сообщением} other{# непрочитанными сообщениями}}",
+    "voiceTextChatShowUnread": "Показать чат с {count, plural, one {{count} непрочитанным сообщением} other{{count} непрочитанными сообщениями}}",
     "@voiceTextChatShowUnread": {
         "description": "Accessibility label when voice channel text chat has unread messages.",
         "placeholders": {
@@ -5371,6 +5407,10 @@
     "@chatMessageFailedToSend": {
         "description": "Status label shown under a failed outgoing chat message."
     },
+    "chatMessageFailedToSendTapForOptions": "Не удалось отправить сообщение. Нажмите, чтобы выбрать действие.",
+    "@chatMessageFailedToSendTapForOptions": {
+        "description": "Status label shown under a failed outgoing chat message on touch layouts, where tapping the message opens Retry and Delete."
+    },
     "chatSendFailureDmRestricted": "Ваше сообщение не может быть доставлено. Обычно это происходит потому, что вы не состоите в одном сообществе с получателем или получатель принимает личные сообщения только от друзей. Возможно, вам также потребуется изменить собственные настройки конфиденциальности личных сообщений в разделе {settingsPath}.",
     "@chatSendFailureDmRestricted": {
         "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
@@ -5479,10 +5519,6 @@
     "forwardSuccessToast": "Сообщение переслано",
     "@forwardSuccessToast": {
         "description": "Toast shown after a message is successfully forwarded."
-    },
-    "forwardFailed": "Не удалось переслать сообщение",
-    "@forwardFailed": {
-        "description": "Toast shown when forwarding a message fails."
     },
     "forwardCommentSlowmodeDisabled": "Комментарии недоступны, так как в выбранном канале включен медленный режим.",
     "@forwardCommentSlowmodeDisabled": {
@@ -6142,19 +6178,19 @@
     "@purgePersonalNotesFailed": {
         "description": "Toast or error title when the purge personal notes API call fails."
     },
-    "userSettingsGroupYourAccount": "ВАША УЧЕТНАЯ ЗАПИСЬ",
+    "userSettingsGroupYourAccount": "Ваша учетная запись",
     "@userSettingsGroupYourAccount": {
         "description": "Section heading for account-related items in user settings navigation."
     },
-    "userSettingsGroupApplication": "APPLICATION",
+    "userSettingsGroupApplication": "Application",
     "@userSettingsGroupApplication": {
         "description": "Section heading for app preference items in user settings navigation."
     },
-    "userSettingsGroupDeveloper": "DEVELOPER",
+    "userSettingsGroupDeveloper": "Developer",
     "@userSettingsGroupDeveloper": {
         "description": "Section heading for developer items in user settings navigation."
     },
-    "userSettingsGroupStaffOnly": "STAFF-ONLY",
+    "userSettingsGroupStaffOnly": "Staff-only",
     "@userSettingsGroupStaffOnly": {
         "description": "Section heading for staff-only items in user settings navigation."
     },
@@ -6486,7 +6522,7 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "instanceUrlHelper": "Используйте fluxer.app для официального экземпляра или точный URL самостоятельно размещённого экземпляра.",
+    "instanceUrlHelper": "Используйте echowire.org для официального экземпляра или точный URL самостоятельно размещённого экземпляра.",
     "@instanceUrlHelper": {
         "description": "Helper text explaining official vs self-hosted instance URLs."
     },
@@ -6706,13 +6742,13 @@
     "@guildNavbarHelp": {
         "description": "Label for the help button in the guild navbar."
     },
-    "scrollIndicatorNew": "NEW",
+    "scrollIndicatorNew": "Новое",
     "@scrollIndicatorNew": {
-        "description": "Scroll pill shown when unread guilds are off-screen in the guild navbar."
+        "description": "Scroll pill shown when unread guilds are off-screen in the guild navbar. Rendered in uppercase."
     },
-    "scrollIndicatorNewMessage": "НОВОЕ СООБЩЕНИЕ",
-    "@scrollIndicatorNewMessage": {
-        "description": "Scroll pill shown when unread channels are off-screen in the channel sidebar."
+    "scrollIndicatorNewMessages": "Новые сообщения",
+    "@scrollIndicatorNewMessages": {
+        "description": "Scroll pill shown when unread channels are off-screen in the channel sidebar. Rendered in uppercase."
     },
     "guildNavbarCollapseFolder": "Свернуть папку {folderName}",
     "@guildNavbarCollapseFolder": {
@@ -7001,10 +7037,6 @@
     "guildMenuMarkAsRead": "Отметить как прочитанное",
     "@guildMenuMarkAsRead": {
         "description": "Guild menu action to mark all channels as read."
-    },
-    "guildPeekMoreOptions": "Другие параметры",
-    "@guildPeekMoreOptions": {
-        "description": "Guild peek menu action to open the full guild options sheet."
     },
     "guildMenuInviteMembers": "Пригласить участников",
     "@guildMenuInviteMembers": {
@@ -8135,7 +8167,7 @@
             }
         }
     },
-    "auditLogOptionDeletedMessages": "{count, plural, =1{Удалено # сообщение.} other{Удалено # сообщений.}}",
+    "auditLogOptionDeletedMessages": "{count, plural, =1{Удалено {count} сообщение.} other{Удалено {count} сообщений.}}",
     "@auditLogOptionDeletedMessages": {
         "description": "Audit log option detail sentence.",
         "placeholders": {
@@ -8144,7 +8176,7 @@
             }
         }
     },
-    "auditLogOptionRemovedMembers": "{count, plural, =1{Удален # участник.} other{Удалено # участников.}}",
+    "auditLogOptionRemovedMembers": "{count, plural, =1{Удален {count} участник.} other{Удалено {count} участников.}}",
     "@auditLogOptionRemovedMembers": {
         "description": "Audit log option detail sentence.",
         "placeholders": {
@@ -8301,19 +8333,19 @@
     "@guildSettingsCommunitySettings": {
         "description": "Title for guild settings modal."
     },
-    "guildSettingsCategoryExpressions": "EXPRESSIONS",
+    "guildSettingsCategoryExpressions": "Expressions",
     "@guildSettingsCategoryExpressions": {
         "description": "Sidebar category for emoji and stickers."
     },
-    "guildSettingsCategoryCommunity": "COMMUNITY",
+    "guildSettingsCategoryCommunity": "Community",
     "@guildSettingsCategoryCommunity": {
         "description": "Sidebar category for discovery and vanity URL."
     },
-    "guildSettingsCategoryIntegrations": "INTEGRATIONS",
+    "guildSettingsCategoryIntegrations": "Integrations",
     "@guildSettingsCategoryIntegrations": {
         "description": "Sidebar category for webhooks."
     },
-    "guildSettingsCategoryPeople": "PEOPLE",
+    "guildSettingsCategoryPeople": "People",
     "@guildSettingsCategoryPeople": {
         "description": "Sidebar category for members, invites, and bans."
     },
@@ -8940,10 +8972,6 @@
                 "type": "String"
             }
         }
-    },
-    "phoneCaptchaRequired": "Перед подтверждением номера телефона требуется проверка в браузере. Повторите попытку со страницы входа или обратитесь в службу поддержки.",
-    "@phoneCaptchaRequired": {
-        "description": "Captcha required for phone verification."
     },
     "systemCallMissed": "Вы пропустили звонок от {username}.",
     "@systemCallMissed": {
@@ -9577,14 +9605,6 @@
     "@permissionManageWebhooksDescription": {
         "description": "Permission description."
     },
-    "permissionSendMessagesInThreads": "Send messages in threads",
-    "permissionSendMessagesInThreadsDescription": "Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.",
-    "permissionCreatePublicThreads": "Create public threads",
-    "permissionCreatePublicThreadsDescription": "Members can start threads that everyone in the channel can see, and create forum posts.",
-    "permissionCreatePrivateThreads": "Create private threads",
-    "permissionCreatePrivateThreadsDescription": "Members can start threads that only invited people can see.",
-    "permissionManageThreads": "Manage threads and posts",
-    "permissionManageThreadsDescription": "Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.",
     "permissionSendMessages": "Отправлять сообщения",
     "@permissionSendMessages": {
         "description": "Permission name."
@@ -13739,7 +13759,7 @@
             }
         }
     },
-    "privacyDashboardDataRequestSummaryGuildExclude": "Все, кроме {count, plural, one {# сообщества} other {# сообществ}}",
+    "privacyDashboardDataRequestSummaryGuildExclude": "Все, кроме {count, plural, one {{count} сообщества} other {{count} сообществ}}",
     "@privacyDashboardDataRequestSummaryGuildExclude": {
         "description": "Summary value when community filter is in exclude mode.",
         "placeholders": {
@@ -13748,7 +13768,7 @@
             }
         }
     },
-    "privacyDashboardDataRequestSummaryGuildInclude": "Только {count, plural, one {# сообщество} few {# сообщества} many {# сообществ} other {# сообщества}}",
+    "privacyDashboardDataRequestSummaryGuildInclude": "Только {count, plural, one {{count} сообщество} few {{count} сообщества} many {{count} сообществ} other {{count} сообщества}}",
     "@privacyDashboardDataRequestSummaryGuildInclude": {
         "description": "Summary value when community filter is in include-only mode.",
         "placeholders": {
@@ -13777,7 +13797,7 @@
     "@privacyDashboardDataRequestSummaryCommunitiesIncluded": {
         "description": "Summary chip for communities."
     },
-    "privacyDashboardDurationHoursMinutes": "{hours, plural, one {# час} few {# часа} many {# часов} other {# часа}} и {minutes, plural, one {# минута} few {# минуты} many {# минут} other {# минуты}}",
+    "privacyDashboardDurationHoursMinutes": "{hours, plural, one {{hours} час} few {{hours} часа} many {{hours} часов} other {{hours} часа}} и {minutes, plural, one {{minutes} минута} few {{minutes} минуты} many {{minutes} минут} other {{minutes} минуты}}",
     "@privacyDashboardDurationHoursMinutes": {
         "description": "Duration label with hours and minutes.",
         "placeholders": {
@@ -13789,7 +13809,7 @@
             }
         }
     },
-    "privacyDashboardDurationHours": "{hours, plural, one {# час} few {# часа} many {# часов} other {# часа}}",
+    "privacyDashboardDurationHours": "{hours, plural, one {{hours} час} few {{hours} часа} many {{hours} часов} other {{hours} часа}}",
     "@privacyDashboardDurationHours": {
         "description": "Duration label with hours only.",
         "placeholders": {
@@ -13798,7 +13818,7 @@
             }
         }
     },
-    "privacyDashboardDurationMinutes": "{minutes, plural, one {# минута} few {# минуты} many {# минут} other {# минуты}}",
+    "privacyDashboardDurationMinutes": "{minutes, plural, one {{minutes} минута} few {{minutes} минуты} many {{minutes} минут} other {{minutes} минуты}}",
     "@privacyDashboardDurationMinutes": {
         "description": "Duration label with minutes only.",
         "placeholders": {
@@ -13807,7 +13827,7 @@
             }
         }
     },
-    "privacyDashboardDurationSeconds": "{seconds, plural, one {# секунда} few {# секунды} many {# секунд} other {# секунд}}",
+    "privacyDashboardDurationSeconds": "{seconds, plural, one {{seconds} секунда} few {{seconds} секунды} many {{seconds} секунд} other {{seconds} секунд}}",
     "@privacyDashboardDurationSeconds": {
         "description": "Duration label with seconds only.",
         "placeholders": {
@@ -14513,7 +14533,7 @@
     "@messageAccessibilityEmptySummary": {
         "description": "Screen reader summary fallback for a message without visible text."
     },
-    "userSettingsGroupBilling": "BILLING",
+    "userSettingsGroupBilling": "Billing",
     "@userSettingsGroupBilling": {
         "description": "Section heading for billing items in user settings navigation."
     },
@@ -14895,8 +14915,6 @@
     "advancedSettingShowNekoLabel": "Показывать Pickles",
     "advancedSettingShowNekoDescription": "Кот Pickles, который гоняется за вашим курсором",
     "advancedSettingShowNekoDescriptionTouch": "Показывать Pickles во вводе чата",
-    "advancedSettingShowNekoKeywordCat": "Кот",
-    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Анимация масштабирования при запуске",
     "advancedSettingMobileSplashZoomAnimationDescription": "Уменьшать логотип при выходе из заставки",
     "advancedSettingKeyboardHintsLabel": "Подсказки клавиатуры",
@@ -15872,42 +15890,6 @@
     "@homeQuickActionDms": {
         "description": "Home screen quick action that opens Direct Messages."
     },
-    "threadsAddMember": "Add member",
-    "threadsAddMemberSearchLabel": "Search members",
-    "threadsAddMemberNoResults": "No members match that search.",
-    "threadsMemberAddedToast": "Member added",
-    "forumNewPost": "Новый пост",
-    "@forumNewPost": {
-        "description": "Button that starts creating a new forum post."
-    },
-    "forumSearchPosts": "Поиск постов",
-    "@forumSearchPosts": {
-        "description": "Placeholder of the forum post search input."
-    },
-    "forumNoPosts": "Постов пока нет",
-    "@forumNoPosts": {
-        "description": "Empty state of the active forum post list."
-    },
-    "systemThreadCreated": "{username} создал ветку: {threadName}.",
-    "@systemThreadCreated": {
-        "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "threadName": {
-                "type": "String"
-            }
-        }
-    },
-    "forumLayoutList": "Список",
-    "@forumLayoutList": {
-        "description": "Forum layout option showing posts as a list."
-    },
-    "forumLayoutGallery": "Галерея",
-    "@forumLayoutGallery": {
-        "description": "Forum layout option showing posts as a grid of image cards."
-    },
     "assistantNeedsLogin": "Сначала откройте Fluxer и войдите в систему.",
     "@assistantNeedsLogin": {
         "description": "Siri/Shortcuts result when the user is logged out."
@@ -16579,5 +16561,162 @@
     },
     "channelUnsupportedTitle": "Неподдерживаемый тип канала",
     "channelUnsupportedBody": "Эта версия приложения не поддерживает данный тип канала.",
-    "channelDetailsUnsupportedChannel": "Неподдерживаемый канал"
+    "channelDetailsUnsupportedChannel": "Неподдерживаемый канал",
+    "forumPostNewBadge": "Новое",
+    "@forumPostNewBadge": {
+        "description": "Forum and media channel UI."
+    },
+    "forumPostNewMessages": "{count, plural, one {{count} новое сообщение} other {{count} новых сообщений}}",
+    "@forumPostNewMessages": {
+        "description": "Forum and media channel UI.",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "chatUnreadDividerNew": "Новое",
+    "@chatUnreadDividerNew": {
+        "description": "Badge on the unread divider line in the message list. Rendered in uppercase."
+    },
+    "chatNewMessagesBarNewSince": "{unreadCount, plural, one {{unreadCount} новое} few {{unreadCount} новых} many {{unreadCount} новых} other {{unreadCount} нового}} с {shortTime}",
+    "@chatNewMessagesBarNewSince": {
+        "description": "Compact new messages bar label. shortTime is the time of the oldest unread message.",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int"
+            },
+            "shortTime": {
+                "type": "String"
+            }
+        }
+    },
+    "chatNewMessagesBarNewSinceEstimated": "{unreadCount}+ новых с {shortTime}",
+    "@chatNewMessagesBarNewSinceEstimated": {
+        "description": "Compact new messages bar label when the unread count is a lower bound.",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int",
+                "format": "decimalPattern"
+            },
+            "shortTime": {
+                "type": "String"
+            }
+        }
+    },
+    "chatNewMessagesBarNewMessagesSince": "{unreadCount, plural, one {{unreadCount} новое сообщение} few {{unreadCount} новых сообщения} many {{unreadCount} новых сообщений} other {{unreadCount} нового сообщения}} с {compactTime}",
+    "@chatNewMessagesBarNewMessagesSince": {
+        "description": "Wide new messages bar label. compactTime is the date and time of the oldest unread message.",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int"
+            },
+            "compactTime": {
+                "type": "String"
+            }
+        }
+    },
+    "chatNewMessagesBarNewMessagesSinceEstimated": "{unreadCount}+ новых сообщений с {compactTime}",
+    "@chatNewMessagesBarNewMessagesSinceEstimated": {
+        "description": "Wide new messages bar label when the unread count is a lower bound.",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int",
+                "format": "decimalPattern"
+            },
+            "compactTime": {
+                "type": "String"
+            }
+        }
+    },
+    "chatNewMessagesBarMarkRead": "Отметить прочитанным",
+    "@chatNewMessagesBarMarkRead": {
+        "description": "Compact new messages bar action."
+    },
+    "chatNewMessagesBarMarkAsRead": "Отметить как прочитанное",
+    "@chatNewMessagesBarMarkAsRead": {
+        "description": "Wide new messages bar action."
+    },
+    "chatNewMessagesBarJumpToFirstUnread": "Перейти к первому непрочитанному сообщению",
+    "@chatNewMessagesBarJumpToFirstUnread": {
+        "description": "Accessible label for the new messages bar text button."
+    },
+    "chatViewingOlderMessages": "Вы просматриваете старые сообщения",
+    "@chatViewingOlderMessages": {
+        "description": "Bottom bar text shown while the message list is detached from the present."
+    },
+    "chatJumpToPresent": "Перейти к новым сообщениям",
+    "@chatJumpToPresent": {
+        "description": "Bottom bar action that returns the message list to the newest messages."
+    },
+    "favoritesRenameCategory": "Переименовать категорию",
+    "@favoritesRenameCategory": {
+        "description": "Favorites category context menu action and sheet title for renaming a favorites category."
+    },
+    "captchaTitle": "Подтвердите, что вы человек",
+    "@captchaTitle": {
+        "description": "Title for the captcha verification modal."
+    },
+    "captchaDescription": "Нам нужно убедиться, что вы не бот. Пожалуйста, пройдите проверку ниже.",
+    "@captchaDescription": {
+        "description": "Explanatory text in the captcha modal body."
+    },
+    "captchaSwitchToHcaptcha": "Проблемы? Попробуйте hCaptcha вместо этого",
+    "@captchaSwitchToHcaptcha": {
+        "description": "Link to switch from Turnstile to hCaptcha provider."
+    },
+    "captchaSwitchToTurnstile": "Попробуйте Turnstile вместо этого",
+    "@captchaSwitchToTurnstile": {
+        "description": "Link to switch from hCaptcha to Turnstile provider."
+    },
+    "phoneCaptchaRequired": "Перед подтверждением номера телефона требуется проверка в браузере. Повторите попытку со страницы входа или обратитесь в службу поддержки.",
+    "@phoneCaptchaRequired": {
+        "description": "Captcha required for phone verification."
+    },
+    "permissionSendMessagesInThreads": "Send messages in threads",
+    "permissionSendMessagesInThreadsDescription": "Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.",
+    "permissionCreatePublicThreads": "Create public threads",
+    "permissionCreatePublicThreadsDescription": "Members can start threads that everyone in the channel can see, and create forum posts.",
+    "permissionCreatePrivateThreads": "Create private threads",
+    "permissionCreatePrivateThreadsDescription": "Members can start threads that only invited people can see.",
+    "permissionManageThreads": "Manage threads and posts",
+    "permissionManageThreadsDescription": "Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.",
+    "advancedSettingShowNekoKeywordCat": "Кот",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
+    "threadsAddMember": "Add member",
+    "threadsAddMemberSearchLabel": "Search members",
+    "threadsAddMemberNoResults": "No members match that search.",
+    "threadsMemberAddedToast": "Member added",
+    "forumNewPost": "Новый пост",
+    "@forumNewPost": {
+        "description": "Button that starts creating a new forum post."
+    },
+    "forumSearchPosts": "Поиск постов",
+    "@forumSearchPosts": {
+        "description": "Placeholder of the forum post search input."
+    },
+    "forumNoPosts": "Постов пока нет",
+    "@forumNoPosts": {
+        "description": "Empty state of the active forum post list."
+    },
+    "systemThreadCreated": "{username} создал ветку: {threadName}.",
+    "@systemThreadCreated": {
+        "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "threadName": {
+                "type": "String"
+            }
+        }
+    },
+    "forumLayoutList": "Список",
+    "@forumLayoutList": {
+        "description": "Forum layout option showing posts as a list."
+    },
+    "forumLayoutGallery": "Галерея",
+    "@forumLayoutGallery": {
+        "description": "Forum layout option showing posts as a grid of image cards."
+    }
 }

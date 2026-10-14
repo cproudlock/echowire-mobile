@@ -426,6 +426,11 @@ class _UserProfileState extends ConsumerState<UserProfile> {
     final bool shouldShowPremiumCommerce = ref.watch(
       shouldShowPremiumCommerceProvider,
     );
+    final bool showsPremiumFeatures = ref.watch(
+      instanceRuntimeConfigProvider.select(
+        (config) => config.showsPremiumFeatures,
+      ),
+    );
     _syncControllers(state);
 
     ref
@@ -645,7 +650,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                           behavior: HitTestBehavior.opaque,
                           child: ProfilePreviewCard(state: state),
                         ),
-                        if (shouldShowPremiumCommerce &&
+                        if (showsPremiumFeatures &&
                             state.isPremium &&
                             !state.isPerGuildProfile) ...[
                           SizedBox(height: layout.s8),
@@ -690,9 +695,9 @@ class _UserProfileState extends ConsumerState<UserProfile> {
         FluxerSelectItem(
           value: guild.id,
           label: guild.name,
-          leading: FluxerAvatar.guild(
+          leading: FluxerGuildIconAvatar(
+            name: guild.name,
             imageUrl: guild.iconUrl,
-            fallbackText: guild.name,
             size: 20,
           ),
         ),

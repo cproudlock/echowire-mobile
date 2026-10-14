@@ -15,6 +15,9 @@ abstract final class InstanceConstants {
   static const String canaryInstanceInputUrl = 'echowire.org';
   static const String defaultMarketingBaseUrl = 'https://echowire.org';
   static const String defaultProductName = 'echowire';
+  // Echowire: upstream defaults this to its own premium name; the fallback shown before an
+  // instance reports its branding is ours.
+  static const String defaultPremiumProductName = 'Reverb';
   static const int maxRecentInstances = 5;
 
   static const Set<String> officialInstanceHosts = <String>{

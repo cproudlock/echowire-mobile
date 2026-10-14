@@ -1542,6 +1542,9 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   String get userTagSystem => 'Σύστημα';
 
   @override
+  String get userTagOp => 'OP';
+
+  @override
   String get emojiSearchPlaceholder => 'Βρες το emoji των ονείρων σου';
 
   @override
@@ -6746,7 +6749,7 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
 
   @override
   String get messagesMediaGesturesSectionDescription =>
-      'Configure double tap on messages.';
+      'Configure double tap and swipe on messages.';
 
   @override
   String get messagesMediaGesturesReactionLabel => 'Reaction emoji';
@@ -6778,6 +6781,25 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   @override
   String get messagesMediaGesturesDoubleTapActionNoneDescription =>
       'Double tap is disabled.';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftLabel =>
+      'Swipe right to left';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftReplyName => 'Swipe-to-reply';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftReplyDescription =>
+      'Swipe a message to reply, with hold to edit your own messages.';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftChannelDetailsName =>
+      'Show channel details';
+
+  @override
+  String get messagesMediaGesturesSwipeRightToLeftChannelDetailsDescription =>
+      'Swipe a message or tap the channel header to open channel details in a side panel.';
 
   @override
   String get chatMessageEdit => 'Επεξεργασία μηνύματος';
@@ -7186,6 +7208,9 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
 
   @override
   String get chatMessagesLoadError => 'Δεν ήταν δυνατή η φόρτωση μηνυμάτων.';
+
+  @override
+  String get chatMessagesFailedToLoad => 'Messages failed to load';
 
   @override
   String get chatReplyMentionOverrideTitle => 'Παράκαμψη προτίμησης αναφοράς;';

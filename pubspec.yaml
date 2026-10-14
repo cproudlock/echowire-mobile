@@ -5,7 +5,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # versionName + versionCode. Play floor is 56 (old TWA), so build number must stay > 56.
 # Echowire: upstream allocates CalVer from a build service this fork cannot
 # reach, and a Play version code burns on upload, so ours stays hand-managed.
-version: 1.7.38+20261012
+version: 1.7.39+20261013
 
 environment:
   sdk: ^3.12.0

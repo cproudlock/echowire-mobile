@@ -336,7 +336,7 @@ void main() {
 
       expect(avatarUrls, <String, String?>{
         'official-user':
-            'https://fluxerusercontent.com/avatars/official-user/abc.webp?size=80',
+            'https://echowire.org/media/avatars/official-user/abc.webp?size=80',
         'self-hosted-user':
             'https://media.chat.example/avatars/self-hosted-user/def.webp?size=80',
       });

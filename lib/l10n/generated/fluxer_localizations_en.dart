@@ -29600,7 +29600,7 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
   String get channelDetailsUnsupportedChannel => 'Unsupported channel';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'New post';
 
   @override
   String get forumSearchPosts => 'Search posts';
@@ -43020,7 +43020,7 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
   String get homeQuickActionDms => 'DMs';
 
   @override
-  String get forumNewPost => 'New Post';
+  String get forumNewPost => 'New post';
 
   @override
   String get forumSearchPosts => 'Search posts';

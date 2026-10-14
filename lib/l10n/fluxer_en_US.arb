@@ -16021,7 +16021,7 @@
     "threadsAddMemberSearchLabel": "Search members",
     "threadsAddMemberNoResults": "No members match that search.",
     "threadsMemberAddedToast": "Member added",
-    "forumNewPost": "New Post",
+    "forumNewPost": "New post",
     "@forumNewPost": {
         "description": "Button that starts creating a new forum post."
     },

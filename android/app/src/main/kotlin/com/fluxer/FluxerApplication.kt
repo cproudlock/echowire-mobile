@@ -5,7 +5,10 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.media.AudioAttributes
 import android.net.Uri
+import android.content.pm.PackageManager
 import android.os.Build
+import sh.measure.android.Measure
+import sh.measure.android.config.MeasureConfig
 
 /**
  * Creates every push notification channel on each process start, before any FCM
@@ -39,6 +42,25 @@ import android.os.Build
 class FluxerApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        createNotificationChannels()
+        // Echowire: upstream telemetry starts only when a build supplies the Measure key and
+        // url. This fork supplies neither, so nothing is initialised or sent.
+        if (measureConfigured()) {
+            Measure.init(this, MeasureConfig())
+        }
+    }
+
+    private fun measureConfigured(): Boolean {
+        val meta =
+            packageManager
+                .getApplicationInfo(packageName, PackageManager.GET_META_DATA)
+                .metaData
+        val apiKey = meta?.getString("sh.measure.android.API_KEY")?.trim() ?: ""
+        val apiUrl = meta?.getString("sh.measure.android.API_URL")?.trim() ?: ""
+        return apiKey.isNotEmpty() && apiUrl.isNotEmpty()
+    }
+
+    private fun createNotificationChannels() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return
         }

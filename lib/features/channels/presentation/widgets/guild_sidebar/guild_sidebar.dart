@@ -6,7 +6,9 @@ import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:flutter/rendering.dart' show ScrollCacheExtent;
+import 'package:flutter/foundation.dart';
+import 'package:flutter/rendering.dart'
+    show RenderAbstractViewport, ScrollCacheExtent;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/experiments/experiments_provider.dart';
@@ -41,6 +43,7 @@ import 'package:fluxer_app/features/channels/presentation/widgets/voice_channel_
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/channel_mute_provider.dart';
 import 'package:fluxer_app/features/channels/providers/channel_sidebar_icon_connect_bits_provider.dart';
+import 'package:fluxer_app/features/channels/providers/guild_channel_unread_snapshot_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_collapsed_categories_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_sidebar_entries_provider.dart';
 import 'package:fluxer_app/features/channels/providers/guild_sidebar_scroll_store_provider.dart';
@@ -58,6 +61,7 @@ import 'package:fluxer_app/features/guilds/presentation/widgets/guild_scroll_ind
 import 'package:fluxer_app/features/guilds/providers/guild_availability_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_permissions_provider.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_read_state_provider.dart';
+import 'package:fluxer_app/features/guilds/providers/route_guild_provider.dart';
 import 'package:fluxer_app/features/guilds/utils/guild_outage_availability.dart';
 import 'package:fluxer_app/features/mature_content/providers/mature_content_agreements_provider.dart';
 import 'package:fluxer_app/features/mature_content/providers/sensitive_content_provider.dart';
@@ -140,9 +144,15 @@ class _GuildSidebarState extends ConsumerState<GuildSidebar> {
     final Set<String> trackedUnavailableGuildIds = ref.watch(
       guildAvailabilityProvider,
     );
-    final Guild? guild = ref.watch(
-      channelListViewModelProvider.select((s) => s.guild),
+    final ChannelListState channelListState = ref.watch(
+      channelListViewModelProvider,
     );
+    final Guild? routeGuild = guildId == null
+        ? null
+        : ref.watch(routeGuildProvider(guildId)).value;
+    final Guild? guild = channelListState.guild?.id == guildId
+        ? channelListState.guild
+        : routeGuild;
     final bool guildOutageUnavailable =
         guildId != null &&
         isGuildOutageUnavailable(
@@ -150,11 +160,9 @@ class _GuildSidebarState extends ConsumerState<GuildSidebar> {
           trackedUnavailableGuildIds: trackedUnavailableGuildIds,
           guild: guild,
         );
-    final bool hasReceivedInitialChannelList = ref.watch(
-      channelListViewModelProvider.select(
-        (s) => s.hasReceivedInitialChannelList,
-      ),
-    );
+    final bool hasReceivedInitialChannelList =
+        channelListState.guild?.id == guildId &&
+        channelListState.hasReceivedInitialChannelList;
     final bool guildReady =
         guild != null && guildId != null && guild.id == guildId;
 

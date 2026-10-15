@@ -11,6 +11,10 @@
     "@gatewayReconnectingToast": {
         "description": "Banner shown when the gateway connection is lost and reconnecting."
     },
+    "gatewayReconnectTryAgain": "Thử lại",
+    "@gatewayReconnectTryAgain": {
+        "description": "Screen reader hint on the reconnecting banner. Tapping the banner retries the connection right away."
+    },
     "gatewayConnectedToast": "Đã kết nối",
     "@gatewayConnectedToast": {
         "description": "Banner shown when the gateway connection is restored."
@@ -329,22 +333,6 @@
     "orDivider": "OR",
     "@orDivider": {
         "description": "Divider between alternative actions (e.g. email login vs SSO)."
-    },
-    "captchaTitle": "Xác minh bạn không phải robot",
-    "@captchaTitle": {
-        "description": "Title for the captcha verification modal."
-    },
-    "captchaDescription": "Chúng tôi cần đảm bảo bạn không phải là bot. Vui lòng hoàn tất xác minh bên dưới.",
-    "@captchaDescription": {
-        "description": "Explanatory text in the captcha modal body."
-    },
-    "captchaSwitchToHcaptcha": "Gặp sự cố? Thử dùng hCaptcha",
-    "@captchaSwitchToHcaptcha": {
-        "description": "Link to switch from Turnstile to hCaptcha provider."
-    },
-    "captchaSwitchToTurnstile": "Thử dùng Turnstile",
-    "@captchaSwitchToTurnstile": {
-        "description": "Link to switch from hCaptcha to Turnstile provider."
     },
     "cancel": "Hủy",
     "@cancel": {
@@ -2089,17 +2077,13 @@
     "@gifPickerSearch": {
         "description": "Generic GIF picker search placeholder while provider configuration loads."
     },
-    "gifPickerSearchKlipy": "Tìm kiếm KLIPY",
+    "gifPickerSearchKlipy": "Tìm kiếm Klipy",
     "@gifPickerSearchKlipy": {
-        "description": "GIF picker search placeholder for KLIPY."
+        "description": "GIF picker search placeholder for Klipy."
     },
     "gifPickerSearchTenor": "Tìm kiếm trên Tenor",
     "@gifPickerSearchTenor": {
         "description": "GIF picker search placeholder for Tenor."
-    },
-    "gifPickerPoweredByKlipy": "KLIPY",
-    "@gifPickerPoweredByKlipy": {
-        "description": "Short powered-by KLIPY label in the GIF picker search field."
     },
     "gifPickerFavorites": "Mục ưa thích",
     "@gifPickerFavorites": {
@@ -3127,10 +3111,6 @@
     "@backupCodesDone": {
         "description": "Button to close backup codes sheet."
     },
-    "phoneCaptchaRequired": "Cần xác minh trình duyệt trước khi xác minh số điện thoại. Vui lòng thử lại từ trang đăng nhập hoặc liên hệ bộ phận hỗ trợ.",
-    "@phoneCaptchaRequired": {
-        "description": "Captcha required for phone verification."
-    },
     "dangerZoneSectionTitle": "Khu vực nguy hiểm",
     "@dangerZoneSectionTitle": {
         "description": "Title for danger zone section."
@@ -3158,10 +3138,6 @@
     "dangerZoneDeleteDescription": "Xóa vĩnh viễn tài khoản và tất cả dữ liệu liên quan. Thao tác này không thể hoàn tác.",
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
-    },
-    "dangerZoneDeleteCancelSubscription": "Hủy gói đăng ký Reverb đang hoạt động của bạn trong cài đặt Reverb trước khi xóa tài khoản.",
-    "@dangerZoneDeleteCancelSubscription": {
-        "description": "Warning about active subscription before deletion."
     },
     "dangerZoneDeleteCannotDeleteAccount": "Không thể xóa tài khoản",
     "@dangerZoneDeleteCannotDeleteAccount": {
@@ -3557,20 +3533,11 @@
             }
         }
     },
-    "userProfilePlutoniumBadgeTooltip": "Reverb {productName}",
-    "@userProfilePlutoniumBadgeTooltip": {
-        "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
+    "userProfilePremiumSubscriberSinceTooltip": "Người đăng ký {premiumProductFullName} từ {date}",
+    "@userProfilePremiumSubscriberSinceTooltip": {
+        "description": "Badge label with a date in the user profile badges popout. Preserve {premiumProductFullName} and {date}; they are inserted by code. premiumProductFullName is the instance product name followed by its premium product name, for example Fluxer Plutonium. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "userProfilePlutoniumSubscriberSinceTooltip": "{productName} Reverb thành viên từ {date}",
-    "@userProfilePlutoniumSubscriberSinceTooltip": {
-        "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
-        "placeholders": {
-            "productName": {
+            "premiumProductFullName": {
                 "type": "String"
             },
             "date": {
@@ -4690,6 +4657,71 @@
     "channelComposerBarrierVerifyEmail": "Xác minh email",
     "@channelComposerBarrierVerifyEmail": {
         "description": "Action button on the composer barrier for unverified email."
+    },
+    "accountLimitedNotice": "Tính năng nhắn tin trên tài khoản của bạn đang tạm dừng. Hãy kiểm tra email và làm một bước đơn giản để tiếp tục.",
+    "@accountLimitedNotice": {
+        "description": "Notice shown in place of the message composer and as a banner at the top of the app when messaging is paused on the current account until the user completes one quick step described in an email. Keep the tone calm and friendly."
+    },
+    "messagingPausedTextDidNotGoThrough": "Tin nhắn SMS của tôi không đến nơi",
+    "@messagingPausedTextDidNotGoThrough": {
+        "description": "Button shown while messaging is paused on the current account, and the title of the help sheet it opens. The email describing the quick step asks the user to send a text message from their phone. This is for users who could not send that text, and also for users who sent it and nothing happened. The translation should cover both. Also used as the subject of the support email."
+    },
+    "messagingPausedHelpBody": "Gửi email đến {supportEmail} và một nhân viên sẽ kiểm tra tài khoản của bạn. Bạn cũng có thể trả lời email chúng tôi đã gửi cho bạn.",
+    "@messagingPausedHelpBody": {
+        "description": "Body of the help sheet opened from \"My text didn't go through\" while messaging is paused on the account. supportEmail is the support email address. Keep it short, calm and neutral.",
+        "placeholders": {
+            "supportEmail": {
+                "type": "String"
+            }
+        }
+    },
+    "messagingPausedHelpCountryLabel": "Quốc gia bạn đang ở",
+    "@messagingPausedHelpCountryLabel": {
+        "description": "Field label in the help sheet opened from \"My text didn't go through\". The user types the country they are in so support can help."
+    },
+    "messagingPausedHelpCopyDetails": "Sao chép chi tiết",
+    "@messagingPausedHelpCopyDetails": {
+        "description": "Button in the help sheet opened from \"My text didn't go through\". Copies the account details for a support email to the clipboard."
+    },
+    "messagingPausedHelpEmailSupport": "Gửi email cho bộ phận hỗ trợ",
+    "@messagingPausedHelpEmailSupport": {
+        "description": "Primary button in the help sheet opened from \"My text didn't go through\". Opens a new email to support with the account details filled in."
+    },
+    "messagingPausedHelpAccountIdLine": "ID tài khoản: {accountId}",
+    "@messagingPausedHelpAccountIdLine": {
+        "description": "One line of the support email written for the user. accountId is the numeric account ID.",
+        "placeholders": {
+            "accountId": {
+                "type": "String"
+            }
+        }
+    },
+    "messagingPausedHelpUsernameLine": "Tên người dùng: {username}",
+    "@messagingPausedHelpUsernameLine": {
+        "description": "One line of the support email written for the user. username is the account username with its tag.",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "messagingPausedHelpAccountCreatedLine": "Tài khoản được tạo: {createdAt}",
+    "@messagingPausedHelpAccountCreatedLine": {
+        "description": "One line of the support email written for the user. createdAt is the account creation time as an ISO 8601 UTC timestamp.",
+        "placeholders": {
+            "createdAt": {
+                "type": "String"
+            }
+        }
+    },
+    "messagingPausedHelpCountryLine": "Quốc gia: {country}",
+    "@messagingPausedHelpCountryLine": {
+        "description": "One line of the support email written for the user. country is the country the user typed.",
+        "placeholders": {
+            "country": {
+                "type": "String"
+            }
+        }
     },
     "chatAttachmentTooMany": "Quá nhiều tệp đính kèm (tối đa {max})",
     "@chatAttachmentTooMany": {
@@ -7060,7 +7092,7 @@
     "@voiceTextChatShow": {
         "description": "Accessibility label for opening voice channel text chat."
     },
-    "voiceTextChatShowUnread": "Hiện trò chuyện có {count, plural, one {# tin nhắn chưa đọc} other {# tin nhắn chưa đọc}}",
+    "voiceTextChatShowUnread": "Hiện trò chuyện có {count, plural, one {{count} tin nhắn chưa đọc} other {{count} tin nhắn chưa đọc}}",
     "@voiceTextChatShowUnread": {
         "description": "Accessibility label when voice channel text chat has unread messages.",
         "placeholders": {
@@ -7276,6 +7308,10 @@
     "chatMessageFailedToSend": "Không gửi được tin nhắn",
     "@chatMessageFailedToSend": {
         "description": "Status label shown under a failed outgoing chat message."
+    },
+    "chatMessageFailedToSendTapForOptions": "Không gửi được tin nhắn. Nhấn để xem tùy chọn.",
+    "@chatMessageFailedToSendTapForOptions": {
+        "description": "Status label shown under a failed outgoing chat message on touch layouts, where tapping the message opens Retry and Delete."
     },
     "chatSendFailureDmRestricted": "Tin nhắn của bạn không thể được gửi. Điều này thường xảy ra vì bạn không chung cộng đồng với người nhận hoặc người nhận chỉ chấp nhận tin nhắn trực tiếp từ bạn bè. Bạn cũng có thể cần điều chỉnh cài đặt quyền riêng tư tin nhắn trực tiếp của mình trong {settingsPath}.",
     "@chatSendFailureDmRestricted": {
@@ -7785,7 +7821,7 @@
             }
         }
     },
-    "privacyDashboardDataRequestSummaryGuildExclude": "Tất cả trừ {count, plural, one {# cộng đồng} other {# cộng đồng}}",
+    "privacyDashboardDataRequestSummaryGuildExclude": "Tất cả trừ {count, plural, one {{count} cộng đồng} other {{count} cộng đồng}}",
     "@privacyDashboardDataRequestSummaryGuildExclude": {
         "description": "Summary value when community filter is in exclude mode.",
         "placeholders": {
@@ -7794,7 +7830,7 @@
             }
         }
     },
-    "privacyDashboardDataRequestSummaryGuildInclude": "Chỉ {count, plural, one {# cộng đồng} other {# cộng đồng}}",
+    "privacyDashboardDataRequestSummaryGuildInclude": "Chỉ {count, plural, one {{count} cộng đồng} other {{count} cộng đồng}}",
     "@privacyDashboardDataRequestSummaryGuildInclude": {
         "description": "Summary value when community filter is in include-only mode.",
         "placeholders": {
@@ -7823,7 +7859,7 @@
     "@privacyDashboardDataRequestSummaryCommunitiesIncluded": {
         "description": "Summary chip for communities."
     },
-    "privacyDashboardDurationHoursMinutes": "{hours, plural, one {# giờ} other {# giờ}} và {minutes, plural, one {# phút} other {# phút}}",
+    "privacyDashboardDurationHoursMinutes": "{hours, plural, one {{hours} giờ} other {{hours} giờ}} và {minutes, plural, one {{minutes} phút} other {{minutes} phút}}",
     "@privacyDashboardDurationHoursMinutes": {
         "description": "Duration label with hours and minutes.",
         "placeholders": {
@@ -7835,7 +7871,7 @@
             }
         }
     },
-    "privacyDashboardDurationHours": "{hours, plural, one {# giờ} other {# giờ}}",
+    "privacyDashboardDurationHours": "{hours, plural, one {{hours} giờ} other {{hours} giờ}}",
     "@privacyDashboardDurationHours": {
         "description": "Duration label with hours only.",
         "placeholders": {
@@ -7844,7 +7880,7 @@
             }
         }
     },
-    "privacyDashboardDurationMinutes": "{minutes, plural, one {# phút} other {# phút}}",
+    "privacyDashboardDurationMinutes": "{minutes, plural, one {{minutes} phút} other {{minutes} phút}}",
     "@privacyDashboardDurationMinutes": {
         "description": "Duration label with minutes only.",
         "placeholders": {
@@ -7853,7 +7889,7 @@
             }
         }
     },
-    "privacyDashboardDurationSeconds": "{seconds, plural, one {# giây} other {# giây}}",
+    "privacyDashboardDurationSeconds": "{seconds, plural, one {{seconds} giây} other {{seconds} giây}}",
     "@privacyDashboardDurationSeconds": {
         "description": "Duration label with seconds only.",
         "placeholders": {
@@ -7945,10 +7981,6 @@
     "forwardSuccessToast": "Đã chuyển tiếp tin nhắn",
     "@forwardSuccessToast": {
         "description": "Toast shown after a message is successfully forwarded."
-    },
-    "forwardFailed": "Không thể chuyển tiếp tin nhắn",
-    "@forwardFailed": {
-        "description": "Toast shown when forwarding a message fails."
     },
     "forwardCommentSlowmodeDisabled": "Không thể gửi bình luận vì kênh đã chọn đã bật chế độ chậm.",
     "@forwardCommentSlowmodeDisabled": {
@@ -10665,23 +10697,23 @@
     "@purgePersonalNotesFailed": {
         "description": "Toast or error title when the purge personal notes API call fails."
     },
-    "userSettingsGroupYourAccount": "TÀI KHOẢN CỦA BẠN",
+    "userSettingsGroupYourAccount": "Tài khoản của bạn",
     "@userSettingsGroupYourAccount": {
         "description": "Section heading for account-related items in user settings navigation."
     },
-    "userSettingsGroupBilling": "BILLING",
+    "userSettingsGroupBilling": "Billing",
     "@userSettingsGroupBilling": {
         "description": "Section heading for billing items in user settings navigation."
     },
-    "userSettingsGroupApplication": "APPLICATION",
+    "userSettingsGroupApplication": "Application",
     "@userSettingsGroupApplication": {
         "description": "Section heading for app preference items in user settings navigation."
     },
-    "userSettingsGroupDeveloper": "DEVELOPER",
+    "userSettingsGroupDeveloper": "Developer",
     "@userSettingsGroupDeveloper": {
         "description": "Section heading for developer items in user settings navigation."
     },
-    "userSettingsGroupStaffOnly": "STAFF-ONLY",
+    "userSettingsGroupStaffOnly": "Staff-only",
     "@userSettingsGroupStaffOnly": {
         "description": "Section heading for staff-only items in user settings navigation."
     },
@@ -11719,8 +11751,6 @@
     "advancedSettingShowNekoLabel": "Hiện Pickles",
     "advancedSettingShowNekoDescription": "Mèo Pickles đuổi theo con trỏ chuột của bạn",
     "advancedSettingShowNekoDescriptionTouch": "Hiển thị Pickles trên ô nhập tin nhắn của bạn",
-    "advancedSettingShowNekoKeywordCat": "Mèo",
-    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Hoạt ảnh thu phóng khi khởi động",
     "advancedSettingMobileSplashZoomAnimationDescription": "Thu nhỏ logo khi rời khỏi màn hình chờ",
     "advancedSettingKeyboardHintsLabel": "Gợi ý bàn phím",
@@ -12177,7 +12207,7 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "instanceUrlHelper": "Sử dụng fluxer.app cho máy chủ chính thức hoặc URL chính xác của máy chủ tự lưu trữ.",
+    "instanceUrlHelper": "Sử dụng echowire.org cho máy chủ chính thức hoặc URL chính xác của máy chủ tự lưu trữ.",
     "@instanceUrlHelper": {
         "description": "Helper text explaining official vs self-hosted instance URLs."
     },
@@ -12397,13 +12427,13 @@
     "@guildNavbarHelp": {
         "description": "Label for the help button in the guild navbar."
     },
-    "scrollIndicatorNew": "MỚI",
+    "scrollIndicatorNew": "Mới",
     "@scrollIndicatorNew": {
-        "description": "Scroll pill shown when unread guilds are off-screen in the guild navbar."
+        "description": "Scroll pill shown when unread guilds are off-screen in the guild navbar. Rendered in uppercase."
     },
-    "scrollIndicatorNewMessage": "Tin nhắn mới",
-    "@scrollIndicatorNewMessage": {
-        "description": "Scroll pill shown when unread channels are off-screen in the channel sidebar."
+    "scrollIndicatorNewMessages": "Tin nhắn mới",
+    "@scrollIndicatorNewMessages": {
+        "description": "Scroll pill shown when unread channels are off-screen in the channel sidebar. Rendered in uppercase."
     },
     "guildNavbarCollapseFolder": "Thu gọn {folderName}",
     "@guildNavbarCollapseFolder": {
@@ -12902,10 +12932,6 @@
     "@guildMenuMarkAsRead": {
         "description": "Guild menu action to mark all channels as read."
     },
-    "guildPeekMoreOptions": "Thêm tùy chọn",
-    "@guildPeekMoreOptions": {
-        "description": "Guild peek menu action to open the full guild options sheet."
-    },
     "guildMenuInviteMembers": "Mời thành viên",
     "@guildMenuInviteMembers": {
         "description": "Guild menu action to open the invite members flow."
@@ -13384,14 +13410,6 @@
     "@permissionManageWebhooksDescription": {
         "description": "Permission description."
     },
-    "permissionSendMessagesInThreads": "Send messages in threads",
-    "permissionSendMessagesInThreadsDescription": "Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.",
-    "permissionCreatePublicThreads": "Create public threads",
-    "permissionCreatePublicThreadsDescription": "Members can start threads that everyone in the channel can see, and create forum posts.",
-    "permissionCreatePrivateThreads": "Create private threads",
-    "permissionCreatePrivateThreadsDescription": "Members can start threads that only invited people can see.",
-    "permissionManageThreads": "Manage threads and posts",
-    "permissionManageThreadsDescription": "Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.",
     "permissionSendMessages": "Gửi tin nhắn",
     "@permissionSendMessages": {
         "description": "Permission name."
@@ -14540,7 +14558,7 @@
             }
         }
     },
-    "auditLogOptionDeletedMessages": "Đã xóa {count, plural, =1{# tin nhắn.} other{# tin nhắn.}}",
+    "auditLogOptionDeletedMessages": "Đã xóa {count, plural, =1{{count} tin nhắn.} other{{count} tin nhắn.}}",
     "@auditLogOptionDeletedMessages": {
         "description": "Audit log option detail sentence.",
         "placeholders": {
@@ -14549,7 +14567,7 @@
             }
         }
     },
-    "auditLogOptionRemovedMembers": "{count, plural, =1{Đã xóa # thành viên.} other{Đã xóa # thành viên.}}",
+    "auditLogOptionRemovedMembers": "{count, plural, =1{Đã xóa {count} thành viên.} other{Đã xóa {count} thành viên.}}",
     "@auditLogOptionRemovedMembers": {
         "description": "Audit log option detail sentence.",
         "placeholders": {
@@ -15229,19 +15247,19 @@
     "@guildSettingsCommunitySettings": {
         "description": "Title for guild settings modal."
     },
-    "guildSettingsCategoryExpressions": "EXPRESSIONS",
+    "guildSettingsCategoryExpressions": "Expressions",
     "@guildSettingsCategoryExpressions": {
         "description": "Sidebar category for emoji and stickers."
     },
-    "guildSettingsCategoryCommunity": "COMMUNITY",
+    "guildSettingsCategoryCommunity": "Community",
     "@guildSettingsCategoryCommunity": {
         "description": "Sidebar category for discovery and vanity URL."
     },
-    "guildSettingsCategoryIntegrations": "INTEGRATIONS",
+    "guildSettingsCategoryIntegrations": "Integrations",
     "@guildSettingsCategoryIntegrations": {
         "description": "Sidebar category for webhooks."
     },
-    "guildSettingsCategoryPeople": "PEOPLE",
+    "guildSettingsCategoryPeople": "People",
     "@guildSettingsCategoryPeople": {
         "description": "Sidebar category for members, invites, and bans."
     },
@@ -15931,42 +15949,6 @@
     "@lookAndFeelChatWallpaperPickFailed": {
         "description": "Toast shown when a custom wallpaper image cannot be decoded or saved."
     },
-    "threadsAddMember": "Add member",
-    "threadsAddMemberSearchLabel": "Search members",
-    "threadsAddMemberNoResults": "No members match that search.",
-    "threadsMemberAddedToast": "Member added",
-    "forumNewPost": "Bài đăng mới",
-    "@forumNewPost": {
-        "description": "Button that starts creating a new forum post."
-    },
-    "forumSearchPosts": "Tìm bài đăng",
-    "@forumSearchPosts": {
-        "description": "Placeholder of the forum post search input."
-    },
-    "forumNoPosts": "Chưa có bài đăng nào",
-    "@forumNoPosts": {
-        "description": "Empty state of the active forum post list."
-    },
-    "systemThreadCreated": "{username} đã bắt đầu một chủ đề: {threadName}.",
-    "@systemThreadCreated": {
-        "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "threadName": {
-                "type": "String"
-            }
-        }
-    },
-    "forumLayoutList": "Danh sách",
-    "@forumLayoutList": {
-        "description": "Forum layout option showing posts as a list."
-    },
-    "forumLayoutGallery": "Thư viện",
-    "@forumLayoutGallery": {
-        "description": "Forum layout option showing posts as a grid of image cards."
-    },
     "applicationsTitle": "Ứng dụng",
     "@applicationsTitle": {
         "description": "Title for the developer Applications settings tab."
@@ -16604,5 +16586,162 @@
     },
     "channelUnsupportedTitle": "Loại kênh không được hỗ trợ",
     "channelUnsupportedBody": "Phiên bản ứng dụng này không hỗ trợ loại kênh này.",
-    "channelDetailsUnsupportedChannel": "Kênh không được hỗ trợ"
+    "channelDetailsUnsupportedChannel": "Kênh không được hỗ trợ",
+    "forumPostNewBadge": "Mới",
+    "@forumPostNewBadge": {
+        "description": "Forum and media channel UI."
+    },
+    "forumPostNewMessages": "{count, plural, one {{count} tin nhắn mới} other {{count} tin nhắn mới}}",
+    "@forumPostNewMessages": {
+        "description": "Forum and media channel UI.",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "chatUnreadDividerNew": "Mới",
+    "@chatUnreadDividerNew": {
+        "description": "Badge on the unread divider line in the message list. Rendered in uppercase."
+    },
+    "chatNewMessagesBarNewSince": "{unreadCount, plural, other {{unreadCount} tin nhắn mới}} từ {shortTime}",
+    "@chatNewMessagesBarNewSince": {
+        "description": "Compact new messages bar label. shortTime is the time of the oldest unread message.",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int"
+            },
+            "shortTime": {
+                "type": "String"
+            }
+        }
+    },
+    "chatNewMessagesBarNewSinceEstimated": "{unreadCount}+ tin nhắn mới kể từ {shortTime}",
+    "@chatNewMessagesBarNewSinceEstimated": {
+        "description": "Compact new messages bar label when the unread count is a lower bound.",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int",
+                "format": "decimalPattern"
+            },
+            "shortTime": {
+                "type": "String"
+            }
+        }
+    },
+    "chatNewMessagesBarNewMessagesSince": "{unreadCount, plural, one {{unreadCount} tin nhắn mới} other {{unreadCount} tin nhắn mới}} kể từ {compactTime}",
+    "@chatNewMessagesBarNewMessagesSince": {
+        "description": "Wide new messages bar label. compactTime is the date and time of the oldest unread message.",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int"
+            },
+            "compactTime": {
+                "type": "String"
+            }
+        }
+    },
+    "chatNewMessagesBarNewMessagesSinceEstimated": "{unreadCount}+ tin nhắn mới kể từ {compactTime}",
+    "@chatNewMessagesBarNewMessagesSinceEstimated": {
+        "description": "Wide new messages bar label when the unread count is a lower bound.",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int",
+                "format": "decimalPattern"
+            },
+            "compactTime": {
+                "type": "String"
+            }
+        }
+    },
+    "chatNewMessagesBarMarkRead": "Đánh dấu đã đọc",
+    "@chatNewMessagesBarMarkRead": {
+        "description": "Compact new messages bar action."
+    },
+    "chatNewMessagesBarMarkAsRead": "Đánh dấu đã đọc",
+    "@chatNewMessagesBarMarkAsRead": {
+        "description": "Wide new messages bar action."
+    },
+    "chatNewMessagesBarJumpToFirstUnread": "Chuyển đến tin nhắn chưa đọc đầu tiên",
+    "@chatNewMessagesBarJumpToFirstUnread": {
+        "description": "Accessible label for the new messages bar text button."
+    },
+    "chatViewingOlderMessages": "Bạn đang xem tin nhắn cũ hơn",
+    "@chatViewingOlderMessages": {
+        "description": "Bottom bar text shown while the message list is detached from the present."
+    },
+    "chatJumpToPresent": "Đến tin nhắn mới nhất",
+    "@chatJumpToPresent": {
+        "description": "Bottom bar action that returns the message list to the newest messages."
+    },
+    "favoritesRenameCategory": "Đổi tên danh mục",
+    "@favoritesRenameCategory": {
+        "description": "Favorites category context menu action and sheet title for renaming a favorites category."
+    },
+    "captchaTitle": "Xác minh bạn không phải robot",
+    "@captchaTitle": {
+        "description": "Title for the captcha verification modal."
+    },
+    "captchaDescription": "Chúng tôi cần đảm bảo bạn không phải là bot. Vui lòng hoàn tất xác minh bên dưới.",
+    "@captchaDescription": {
+        "description": "Explanatory text in the captcha modal body."
+    },
+    "captchaSwitchToHcaptcha": "Gặp sự cố? Thử dùng hCaptcha",
+    "@captchaSwitchToHcaptcha": {
+        "description": "Link to switch from Turnstile to hCaptcha provider."
+    },
+    "captchaSwitchToTurnstile": "Thử dùng Turnstile",
+    "@captchaSwitchToTurnstile": {
+        "description": "Link to switch from hCaptcha to Turnstile provider."
+    },
+    "phoneCaptchaRequired": "Cần xác minh trình duyệt trước khi xác minh số điện thoại. Vui lòng thử lại từ trang đăng nhập hoặc liên hệ bộ phận hỗ trợ.",
+    "@phoneCaptchaRequired": {
+        "description": "Captcha required for phone verification."
+    },
+    "advancedSettingShowNekoKeywordCat": "Mèo",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
+    "permissionSendMessagesInThreads": "Send messages in threads",
+    "permissionSendMessagesInThreadsDescription": "Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.",
+    "permissionCreatePublicThreads": "Create public threads",
+    "permissionCreatePublicThreadsDescription": "Members can start threads that everyone in the channel can see, and create forum posts.",
+    "permissionCreatePrivateThreads": "Create private threads",
+    "permissionCreatePrivateThreadsDescription": "Members can start threads that only invited people can see.",
+    "permissionManageThreads": "Manage threads and posts",
+    "permissionManageThreadsDescription": "Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.",
+    "threadsAddMember": "Add member",
+    "threadsAddMemberSearchLabel": "Search members",
+    "threadsAddMemberNoResults": "No members match that search.",
+    "threadsMemberAddedToast": "Member added",
+    "forumNewPost": "Bài đăng mới",
+    "@forumNewPost": {
+        "description": "Button that starts creating a new forum post."
+    },
+    "forumSearchPosts": "Tìm bài đăng",
+    "@forumSearchPosts": {
+        "description": "Placeholder of the forum post search input."
+    },
+    "forumNoPosts": "Chưa có bài đăng nào",
+    "@forumNoPosts": {
+        "description": "Empty state of the active forum post list."
+    },
+    "systemThreadCreated": "{username} đã bắt đầu một chủ đề: {threadName}.",
+    "@systemThreadCreated": {
+        "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "threadName": {
+                "type": "String"
+            }
+        }
+    },
+    "forumLayoutList": "Danh sách",
+    "@forumLayoutList": {
+        "description": "Forum layout option showing posts as a list."
+    },
+    "forumLayoutGallery": "Thư viện",
+    "@forumLayoutGallery": {
+        "description": "Forum layout option showing posts as a grid of image cards."
+    }
 }

@@ -11,6 +11,10 @@
     "@gatewayReconnectingToast": {
         "description": "Toast shown when the gateway connection is lost and reconnecting."
     },
+    "gatewayReconnectTryAgain": "Réessayer",
+    "@gatewayReconnectTryAgain": {
+        "description": "Screen reader hint on the reconnecting banner. Tapping the banner retries the connection right away."
+    },
     "gatewayConnectedToast": "Connecté",
     "@gatewayConnectedToast": {
         "description": "Toast shown when the gateway connection is restored."
@@ -121,22 +125,6 @@
     "orDivider": "OR",
     "@orDivider": {
         "description": "Divider between alternative actions (e.g. email login vs SSO)."
-    },
-    "captchaTitle": "Vérifiez que vous êtes humain",
-    "@captchaTitle": {
-        "description": "Title for the captcha verification modal."
-    },
-    "captchaDescription": "Nous devons nous assurer que vous n'êtes pas un robot. Veuillez compléter la vérification ci-dessous.",
-    "@captchaDescription": {
-        "description": "Explanatory text in the captcha modal body."
-    },
-    "captchaSwitchToHcaptcha": "Problèmes ? Essayez hCaptcha à la place",
-    "@captchaSwitchToHcaptcha": {
-        "description": "Link to switch from Turnstile to hCaptcha provider."
-    },
-    "captchaSwitchToTurnstile": "Essayez Turnstile à la place",
-    "@captchaSwitchToTurnstile": {
-        "description": "Link to switch from hCaptcha to Turnstile provider."
     },
     "cancel": "Annuler",
     "@cancel": {
@@ -1555,17 +1543,13 @@
     "@gifPickerSearch": {
         "description": "Generic GIF picker search placeholder while provider configuration loads."
     },
-    "gifPickerSearchKlipy": "Rechercher sur KLIPY",
+    "gifPickerSearchKlipy": "Rechercher sur Klipy",
     "@gifPickerSearchKlipy": {
-        "description": "GIF picker search placeholder for KLIPY."
+        "description": "GIF picker search placeholder for Klipy."
     },
     "gifPickerSearchTenor": "Rechercher sur Tenor",
     "@gifPickerSearchTenor": {
         "description": "GIF picker search placeholder for Tenor."
-    },
-    "gifPickerPoweredByKlipy": "KLIPY",
-    "@gifPickerPoweredByKlipy": {
-        "description": "Short powered-by KLIPY label in the GIF picker search field."
     },
     "gifPickerFavorites": "Favoris",
     "@gifPickerFavorites": {
@@ -2607,10 +2591,6 @@
     "@dangerZoneDeleteDescription": {
         "description": "Description for account delete."
     },
-    "dangerZoneDeleteCancelSubscription": "Annulez votre abonnement Reverb actif dans les paramètres Reverb avant de supprimer votre compte.",
-    "@dangerZoneDeleteCancelSubscription": {
-        "description": "Warning about active subscription before deletion."
-    },
     "dangerZoneDeleteCannotDeleteAccount": "Impossible de supprimer le compte",
     "@dangerZoneDeleteCannotDeleteAccount": {
         "description": "Title for the guild ownership warning modal when trying to delete account."
@@ -2701,7 +2681,7 @@
     "@invalidCode": {
         "description": "Error message when a verification code is invalid."
     },
-    "relativeTimeYears": "{count, plural, =1{il y a 1 an} other{il y a # ans}}",
+    "relativeTimeYears": "{count, plural, =1{il y a 1 an} other{il y a {count} ans}}",
     "@relativeTimeYears": {
         "description": "Relative time in years.",
         "placeholders": {
@@ -2710,7 +2690,7 @@
             }
         }
     },
-    "relativeTimeMonths": "{count, plural, =1{il y a 1 mois} other{il y a # mois}}",
+    "relativeTimeMonths": "{count, plural, =1{il y a 1 mois} other{il y a {count} mois}}",
     "@relativeTimeMonths": {
         "description": "Relative time in months.",
         "placeholders": {
@@ -2719,7 +2699,7 @@
             }
         }
     },
-    "relativeTimeDays": "{count, plural, =1{il y a 1 jour} other{il y a # jours}}",
+    "relativeTimeDays": "{count, plural, =1{il y a 1 jour} other{il y a {count} jours}}",
     "@relativeTimeDays": {
         "description": "Relative time in days.",
         "placeholders": {
@@ -2728,7 +2708,7 @@
             }
         }
     },
-    "relativeTimeHours": "{count, plural, =1{il y a 1 heure} other{il y a # heures}}",
+    "relativeTimeHours": "{count, plural, =1{il y a 1 heure} other{il y a {count} heures}}",
     "@relativeTimeHours": {
         "description": "Relative time in hours.",
         "placeholders": {
@@ -2737,7 +2717,7 @@
             }
         }
     },
-    "relativeTimeMinutes": "{count, plural, =1{il y a 1 minute} other{il y a # minutes}}",
+    "relativeTimeMinutes": "{count, plural, =1{il y a 1 minute} other{il y a {count} minutes}}",
     "@relativeTimeMinutes": {
         "description": "Relative time in minutes.",
         "placeholders": {
@@ -2934,20 +2914,11 @@
             }
         }
     },
-    "userProfilePlutoniumBadgeTooltip": "{productName} Reverb",
-    "@userProfilePlutoniumBadgeTooltip": {
-        "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.",
+    "userProfilePremiumSubscriberSinceTooltip": "Abonné à {premiumProductFullName} depuis le {date}",
+    "@userProfilePremiumSubscriberSinceTooltip": {
+        "description": "Badge label with a date in the user profile badges popout. Preserve {premiumProductFullName} and {date}; they are inserted by code. premiumProductFullName is the instance product name followed by its premium product name, for example Fluxer Plutonium. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
-            "productName": {
-                "type": "String"
-            }
-        }
-    },
-    "userProfilePlutoniumSubscriberSinceTooltip": "Abonné {productName} Reverb depuis le {date}",
-    "@userProfilePlutoniumSubscriberSinceTooltip": {
-        "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
-        "placeholders": {
-            "productName": {
+            "premiumProductFullName": {
                 "type": "String"
             },
             "date": {
@@ -3838,6 +3809,71 @@
     "channelComposerBarrierVerifyEmail": "Vérifier l'e-mail",
     "@channelComposerBarrierVerifyEmail": {
         "description": "Action button on the composer barrier for unverified email."
+    },
+    "accountLimitedNotice": "L'envoi de messages a été mis en pause sur votre compte. Consultez vos e-mails pour savoir comment y remédier en une étape rapide.",
+    "@accountLimitedNotice": {
+        "description": "Notice shown in place of the message composer and as a banner at the top of the app when messaging is paused on the current account until the user completes one quick step described in an email. Keep the tone calm and friendly."
+    },
+    "messagingPausedTextDidNotGoThrough": "Mon SMS n'est pas passé",
+    "@messagingPausedTextDidNotGoThrough": {
+        "description": "Button shown while messaging is paused on the current account, and the title of the help sheet it opens. The email describing the quick step asks the user to send a text message from their phone. This is for users who could not send that text, and also for users who sent it and nothing happened. The translation should cover both. Also used as the subject of the support email."
+    },
+    "messagingPausedHelpBody": "Écrivez à {supportEmail} et une personne vérifiera votre compte. Vous pouvez aussi répondre à l'e-mail que nous vous avons envoyé.",
+    "@messagingPausedHelpBody": {
+        "description": "Body of the help sheet opened from \"My text didn't go through\" while messaging is paused on the account. supportEmail is the support email address. Keep it short, calm and neutral.",
+        "placeholders": {
+            "supportEmail": {
+                "type": "String"
+            }
+        }
+    },
+    "messagingPausedHelpCountryLabel": "Pays où vous vous trouvez",
+    "@messagingPausedHelpCountryLabel": {
+        "description": "Field label in the help sheet opened from \"My text didn't go through\". The user types the country they are in so support can help."
+    },
+    "messagingPausedHelpCopyDetails": "Copier les détails",
+    "@messagingPausedHelpCopyDetails": {
+        "description": "Button in the help sheet opened from \"My text didn't go through\". Copies the account details for a support email to the clipboard."
+    },
+    "messagingPausedHelpEmailSupport": "Écrire au support",
+    "@messagingPausedHelpEmailSupport": {
+        "description": "Primary button in the help sheet opened from \"My text didn't go through\". Opens a new email to support with the account details filled in."
+    },
+    "messagingPausedHelpAccountIdLine": "ID du compte : {accountId}",
+    "@messagingPausedHelpAccountIdLine": {
+        "description": "One line of the support email written for the user. accountId is the numeric account ID.",
+        "placeholders": {
+            "accountId": {
+                "type": "String"
+            }
+        }
+    },
+    "messagingPausedHelpUsernameLine": "Nom d'utilisateur : {username}",
+    "@messagingPausedHelpUsernameLine": {
+        "description": "One line of the support email written for the user. username is the account username with its tag.",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "messagingPausedHelpAccountCreatedLine": "Compte créé : {createdAt}",
+    "@messagingPausedHelpAccountCreatedLine": {
+        "description": "One line of the support email written for the user. createdAt is the account creation time as an ISO 8601 UTC timestamp.",
+        "placeholders": {
+            "createdAt": {
+                "type": "String"
+            }
+        }
+    },
+    "messagingPausedHelpCountryLine": "Pays : {country}",
+    "@messagingPausedHelpCountryLine": {
+        "description": "One line of the support email written for the user. country is the country the user typed.",
+        "placeholders": {
+            "country": {
+                "type": "String"
+            }
+        }
     },
     "chatAttachmentTooMany": "Trop de pièces jointes (max {max})",
     "@chatAttachmentTooMany": {
@@ -5154,7 +5190,7 @@
     "@voiceTextChatShow": {
         "description": "Accessibility label for opening voice channel text chat."
     },
-    "voiceTextChatShowUnread": "Afficher le chat avec {count, plural, one {# message non lu} other {# messages non lus}}",
+    "voiceTextChatShowUnread": "Afficher le chat avec {count, plural, one {{count} message non lu} other {{count} messages non lus}}",
     "@voiceTextChatShowUnread": {
         "description": "Accessibility label when voice channel text chat has unread messages.",
         "placeholders": {
@@ -5371,6 +5407,10 @@
     "@chatMessageFailedToSend": {
         "description": "Status label shown under a failed outgoing chat message."
     },
+    "chatMessageFailedToSendTapForOptions": "Échec de l'envoi du message. Appuyez pour voir les options.",
+    "@chatMessageFailedToSendTapForOptions": {
+        "description": "Status label shown under a failed outgoing chat message on touch layouts, where tapping the message opens Retry and Delete."
+    },
     "chatSendFailureDmRestricted": "Votre message n'a pas pu être délivré. C'est généralement parce que vous ne partagez pas de communauté avec le destinataire ou que le destinataire n'accepte les messages directs que de ses amis. Vous devrez peut-être également ajuster vos propres paramètres de confidentialité des messages directs dans {settingsPath}.",
     "@chatSendFailureDmRestricted": {
         "description": "echowirebot system message when a DM cannot be delivered due to privacy restrictions.",
@@ -5479,10 +5519,6 @@
     "forwardSuccessToast": "Message transféré",
     "@forwardSuccessToast": {
         "description": "Toast shown after a message is successfully forwarded."
-    },
-    "forwardFailed": "Échec du transfert du message",
-    "@forwardFailed": {
-        "description": "Toast shown when forwarding a message fails."
     },
     "forwardCommentSlowmodeDisabled": "Les commentaires sont indisponibles car un salon sélectionné a le mode lent activé.",
     "@forwardCommentSlowmodeDisabled": {
@@ -6142,19 +6178,19 @@
     "@purgePersonalNotesFailed": {
         "description": "Toast or error title when the purge personal notes API call fails."
     },
-    "userSettingsGroupYourAccount": "VOTRE COMPTE",
+    "userSettingsGroupYourAccount": "Votre compte",
     "@userSettingsGroupYourAccount": {
         "description": "Section heading for account-related items in user settings navigation."
     },
-    "userSettingsGroupApplication": "APPLICATION",
+    "userSettingsGroupApplication": "Application",
     "@userSettingsGroupApplication": {
         "description": "Section heading for app preference items in user settings navigation."
     },
-    "userSettingsGroupDeveloper": "DEVELOPER",
+    "userSettingsGroupDeveloper": "Developer",
     "@userSettingsGroupDeveloper": {
         "description": "Section heading for developer items in user settings navigation."
     },
-    "userSettingsGroupStaffOnly": "STAFF-ONLY",
+    "userSettingsGroupStaffOnly": "Staff-only",
     "@userSettingsGroupStaffOnly": {
         "description": "Section heading for staff-only items in user settings navigation."
     },
@@ -6486,7 +6522,7 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "instanceUrlHelper": "Utilisez fluxer.app pour l'instance officielle, ou l'URL exacte d'une instance auto-hébergée.",
+    "instanceUrlHelper": "Utilisez echowire.org pour l'instance officielle, ou l'URL exacte d'une instance auto-hébergée.",
     "@instanceUrlHelper": {
         "description": "Helper text explaining official vs self-hosted instance URLs."
     },
@@ -6706,13 +6742,13 @@
     "@guildNavbarHelp": {
         "description": "Label for the help button in the guild navbar."
     },
-    "scrollIndicatorNew": "NEW",
+    "scrollIndicatorNew": "Nouveau",
     "@scrollIndicatorNew": {
-        "description": "Scroll pill shown when unread guilds are off-screen in the guild navbar."
+        "description": "Scroll pill shown when unread guilds are off-screen in the guild navbar. Rendered in uppercase."
     },
-    "scrollIndicatorNewMessage": "NOUVEAU MESSAGE",
-    "@scrollIndicatorNewMessage": {
-        "description": "Scroll pill shown when unread channels are off-screen in the channel sidebar."
+    "scrollIndicatorNewMessages": "Nouveaux messages",
+    "@scrollIndicatorNewMessages": {
+        "description": "Scroll pill shown when unread channels are off-screen in the channel sidebar. Rendered in uppercase."
     },
     "guildNavbarCollapseFolder": "Réduire {folderName}",
     "@guildNavbarCollapseFolder": {
@@ -7001,10 +7037,6 @@
     "guildMenuMarkAsRead": "Marquer comme lu",
     "@guildMenuMarkAsRead": {
         "description": "Guild menu action to mark all channels as read."
-    },
-    "guildPeekMoreOptions": "Plus d'options",
-    "@guildPeekMoreOptions": {
-        "description": "Guild peek menu action to open the full guild options sheet."
     },
     "guildMenuInviteMembers": "Inviter des membres",
     "@guildMenuInviteMembers": {
@@ -8135,7 +8167,7 @@
             }
         }
     },
-    "auditLogOptionDeletedMessages": "{count, plural, =1{A supprimé # message.} other{A supprimé # messages.}}",
+    "auditLogOptionDeletedMessages": "{count, plural, =1{A supprimé {count} message.} other{A supprimé {count} messages.}}",
     "@auditLogOptionDeletedMessages": {
         "description": "Audit log option detail sentence.",
         "placeholders": {
@@ -8144,7 +8176,7 @@
             }
         }
     },
-    "auditLogOptionRemovedMembers": "{count, plural, =1{A supprimé # membre.} other{A supprimé # membres.}}",
+    "auditLogOptionRemovedMembers": "{count, plural, =1{A supprimé {count} membre.} other{A supprimé {count} membres.}}",
     "@auditLogOptionRemovedMembers": {
         "description": "Audit log option detail sentence.",
         "placeholders": {
@@ -8301,19 +8333,19 @@
     "@guildSettingsCommunitySettings": {
         "description": "Title for guild settings modal."
     },
-    "guildSettingsCategoryExpressions": "EXPRESSIONS",
+    "guildSettingsCategoryExpressions": "Expressions",
     "@guildSettingsCategoryExpressions": {
         "description": "Sidebar category for emoji and stickers."
     },
-    "guildSettingsCategoryCommunity": "COMMUNITY",
+    "guildSettingsCategoryCommunity": "Community",
     "@guildSettingsCategoryCommunity": {
         "description": "Sidebar category for discovery and vanity URL."
     },
-    "guildSettingsCategoryIntegrations": "INTEGRATIONS",
+    "guildSettingsCategoryIntegrations": "Integrations",
     "@guildSettingsCategoryIntegrations": {
         "description": "Sidebar category for webhooks."
     },
-    "guildSettingsCategoryPeople": "PEOPLE",
+    "guildSettingsCategoryPeople": "People",
     "@guildSettingsCategoryPeople": {
         "description": "Sidebar category for members, invites, and bans."
     },
@@ -9826,14 +9858,6 @@
     "@permissionManageWebhooksDescription": {
         "description": "Permission description."
     },
-    "permissionSendMessagesInThreads": "Send messages in threads",
-    "permissionSendMessagesInThreadsDescription": "Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.",
-    "permissionCreatePublicThreads": "Create public threads",
-    "permissionCreatePublicThreadsDescription": "Members can start threads that everyone in the channel can see, and create forum posts.",
-    "permissionCreatePrivateThreads": "Create private threads",
-    "permissionCreatePrivateThreadsDescription": "Members can start threads that only invited people can see.",
-    "permissionManageThreads": "Manage threads and posts",
-    "permissionManageThreadsDescription": "Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.",
     "permissionSendMessages": "Envoyer des messages",
     "@permissionSendMessages": {
         "description": "Permission name."
@@ -11494,10 +11518,6 @@
     "guildMenuSettingsChannels": "Chaînes",
     "@guildMenuSettingsChannels": {
         "description": "Guild settings menu item for channel management."
-    },
-    "phoneCaptchaRequired": "Une vérification du navigateur est requise avant la vérification du téléphone. Réessayez depuis la page de connexion ou contactez l'assistance.",
-    "@phoneCaptchaRequired": {
-        "description": "Captcha required for phone verification."
     },
     "channelSettingsInvitesEmpty": "Aucun lien d'invitation",
     "@channelSettingsInvitesEmpty": {
@@ -13739,7 +13759,7 @@
             }
         }
     },
-    "privacyDashboardDataRequestSummaryGuildExclude": "Toutes sauf {count, plural, one {# communauté} other {# communautés}}",
+    "privacyDashboardDataRequestSummaryGuildExclude": "Toutes sauf {count, plural, one {{count} communauté} other {{count} communautés}}",
     "@privacyDashboardDataRequestSummaryGuildExclude": {
         "description": "Summary value when community filter is in exclude mode.",
         "placeholders": {
@@ -13748,7 +13768,7 @@
             }
         }
     },
-    "privacyDashboardDataRequestSummaryGuildInclude": "Seulement {count, plural, one {# communauté} other {# communautés}}",
+    "privacyDashboardDataRequestSummaryGuildInclude": "Seulement {count, plural, one {{count} communauté} other {{count} communautés}}",
     "@privacyDashboardDataRequestSummaryGuildInclude": {
         "description": "Summary value when community filter is in include-only mode.",
         "placeholders": {
@@ -13777,7 +13797,7 @@
     "@privacyDashboardDataRequestSummaryCommunitiesIncluded": {
         "description": "Summary chip for communities."
     },
-    "privacyDashboardDurationHoursMinutes": "{hours, plural, one {# heure} other {# heures}} et {minutes, plural, one {# minute} other {# minutes}}",
+    "privacyDashboardDurationHoursMinutes": "{hours, plural, one {{hours} heure} other {{hours} heures}} et {minutes, plural, one {{minutes} minute} other {{minutes} minutes}}",
     "@privacyDashboardDurationHoursMinutes": {
         "description": "Duration label with hours and minutes.",
         "placeholders": {
@@ -13789,7 +13809,7 @@
             }
         }
     },
-    "privacyDashboardDurationHours": "{hours, plural, one {# heure} other {# heures}}",
+    "privacyDashboardDurationHours": "{hours, plural, one {{hours} heure} other {{hours} heures}}",
     "@privacyDashboardDurationHours": {
         "description": "Duration label with hours only.",
         "placeholders": {
@@ -13798,7 +13818,7 @@
             }
         }
     },
-    "privacyDashboardDurationMinutes": "{minutes, plural, one {# minute} other {# minutes}}",
+    "privacyDashboardDurationMinutes": "{minutes, plural, one {{minutes} minute} other {{minutes} minutes}}",
     "@privacyDashboardDurationMinutes": {
         "description": "Duration label with minutes only.",
         "placeholders": {
@@ -13807,7 +13827,7 @@
             }
         }
     },
-    "privacyDashboardDurationSeconds": "{seconds, plural, one {# seconde} other {# secondes}}",
+    "privacyDashboardDurationSeconds": "{seconds, plural, one {{seconds} seconde} other {{seconds} secondes}}",
     "@privacyDashboardDurationSeconds": {
         "description": "Duration label with seconds only.",
         "placeholders": {
@@ -14513,7 +14533,7 @@
     "@messageAccessibilityEmptySummary": {
         "description": "Screen reader summary fallback for a message without visible text."
     },
-    "userSettingsGroupBilling": "BILLING",
+    "userSettingsGroupBilling": "Billing",
     "@userSettingsGroupBilling": {
         "description": "Section heading for billing items in user settings navigation."
     },
@@ -14895,8 +14915,6 @@
     "advancedSettingShowNekoLabel": "Afficher Pickles",
     "advancedSettingShowNekoDescription": "Chat qui suit votre curseur",
     "advancedSettingShowNekoDescriptionTouch": "Afficher Pickles sur votre zone de saisie de discussion",
-    "advancedSettingShowNekoKeywordCat": "Chat",
-    "advancedSettingShowNekoKeywordNeko": "Neko",
     "advancedSettingMobileSplashZoomAnimationLabel": "Animation de zoom de démarrage",
     "advancedSettingMobileSplashZoomAnimationDescription": "Réduire le logo en quittant l’écran de démarrage",
     "advancedSettingKeyboardHintsLabel": "Suggestions du clavier",
@@ -15668,7 +15686,7 @@
     "@guildMembersJoinedJustNow": {
         "description": "Relative join time on the community members page."
     },
-    "guildMembersJoinedMinutesAgo": "{count, plural, one {Il y a 1 minute} other {Il y a # minute(s)}}",
+    "guildMembersJoinedMinutesAgo": "{count, plural, one {Il y a 1 minute} other {Il y a {count} minute(s)}}",
     "@guildMembersJoinedMinutesAgo": {
         "description": "Relative join time on the community members page.",
         "placeholders": {
@@ -15871,42 +15889,6 @@
     "homeQuickActionDms": "MP",
     "@homeQuickActionDms": {
         "description": "Home screen quick action that opens Direct Messages."
-    },
-    "threadsAddMember": "Add member",
-    "threadsAddMemberSearchLabel": "Search members",
-    "threadsAddMemberNoResults": "No members match that search.",
-    "threadsMemberAddedToast": "Member added",
-    "forumNewPost": "Nouvelle publication",
-    "@forumNewPost": {
-        "description": "Button that starts creating a new forum post."
-    },
-    "forumSearchPosts": "Rechercher des publications",
-    "@forumSearchPosts": {
-        "description": "Placeholder of the forum post search input."
-    },
-    "forumNoPosts": "Aucune publication pour le moment",
-    "@forumNoPosts": {
-        "description": "Empty state of the active forum post list."
-    },
-    "systemThreadCreated": "{username} a créé un fil : {threadName}.",
-    "@systemThreadCreated": {
-        "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "threadName": {
-                "type": "String"
-            }
-        }
-    },
-    "forumLayoutList": "Liste",
-    "@forumLayoutList": {
-        "description": "Forum layout option showing posts as a list."
-    },
-    "forumLayoutGallery": "Galerie",
-    "@forumLayoutGallery": {
-        "description": "Forum layout option showing posts as a grid of image cards."
     },
     "assistantNeedsLogin": "Ouvrez Fluxer et connectez-vous d’abord.",
     "@assistantNeedsLogin": {
@@ -16579,5 +16561,162 @@
     },
     "channelUnsupportedTitle": "Type de salon non pris en charge",
     "channelUnsupportedBody": "Cette version de l'application ne prend pas en charge ce type de salon.",
-    "channelDetailsUnsupportedChannel": "Salon non pris en charge"
+    "channelDetailsUnsupportedChannel": "Salon non pris en charge",
+    "forumPostNewBadge": "Nouveau",
+    "@forumPostNewBadge": {
+        "description": "Forum and media channel UI."
+    },
+    "forumPostNewMessages": "{count, plural, one {{count} nouveau message} other {{count} nouveaux messages}}",
+    "@forumPostNewMessages": {
+        "description": "Forum and media channel UI.",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "chatUnreadDividerNew": "Nouveau",
+    "@chatUnreadDividerNew": {
+        "description": "Badge on the unread divider line in the message list. Rendered in uppercase."
+    },
+    "chatNewMessagesBarNewSince": "{unreadCount, plural, one {{unreadCount} nouveau} many {{unreadCount} nouveaux} other {{unreadCount} nouveaux}} depuis {shortTime}",
+    "@chatNewMessagesBarNewSince": {
+        "description": "Compact new messages bar label. shortTime is the time of the oldest unread message.",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int"
+            },
+            "shortTime": {
+                "type": "String"
+            }
+        }
+    },
+    "chatNewMessagesBarNewSinceEstimated": "{unreadCount}+ nouveaux depuis {shortTime}",
+    "@chatNewMessagesBarNewSinceEstimated": {
+        "description": "Compact new messages bar label when the unread count is a lower bound.",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int",
+                "format": "decimalPattern"
+            },
+            "shortTime": {
+                "type": "String"
+            }
+        }
+    },
+    "chatNewMessagesBarNewMessagesSince": "{unreadCount, plural, one {{unreadCount} nouveau message} other {{unreadCount} nouveaux messages}} depuis {compactTime}",
+    "@chatNewMessagesBarNewMessagesSince": {
+        "description": "Wide new messages bar label. compactTime is the date and time of the oldest unread message.",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int"
+            },
+            "compactTime": {
+                "type": "String"
+            }
+        }
+    },
+    "chatNewMessagesBarNewMessagesSinceEstimated": "{unreadCount}+ nouveaux messages depuis {compactTime}",
+    "@chatNewMessagesBarNewMessagesSinceEstimated": {
+        "description": "Wide new messages bar label when the unread count is a lower bound.",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int",
+                "format": "decimalPattern"
+            },
+            "compactTime": {
+                "type": "String"
+            }
+        }
+    },
+    "chatNewMessagesBarMarkRead": "Marquer comme lu",
+    "@chatNewMessagesBarMarkRead": {
+        "description": "Compact new messages bar action."
+    },
+    "chatNewMessagesBarMarkAsRead": "Marquer comme lu",
+    "@chatNewMessagesBarMarkAsRead": {
+        "description": "Wide new messages bar action."
+    },
+    "chatNewMessagesBarJumpToFirstUnread": "Aller au premier message non lu",
+    "@chatNewMessagesBarJumpToFirstUnread": {
+        "description": "Accessible label for the new messages bar text button."
+    },
+    "chatViewingOlderMessages": "Vous consultez des messages plus anciens",
+    "@chatViewingOlderMessages": {
+        "description": "Bottom bar text shown while the message list is detached from the present."
+    },
+    "chatJumpToPresent": "Aller aux messages récents",
+    "@chatJumpToPresent": {
+        "description": "Bottom bar action that returns the message list to the newest messages."
+    },
+    "favoritesRenameCategory": "Renommer la catégorie",
+    "@favoritesRenameCategory": {
+        "description": "Favorites category context menu action and sheet title for renaming a favorites category."
+    },
+    "captchaTitle": "Vérifiez que vous êtes humain",
+    "@captchaTitle": {
+        "description": "Title for the captcha verification modal."
+    },
+    "captchaDescription": "Nous devons nous assurer que vous n'êtes pas un robot. Veuillez compléter la vérification ci-dessous.",
+    "@captchaDescription": {
+        "description": "Explanatory text in the captcha modal body."
+    },
+    "captchaSwitchToHcaptcha": "Problèmes ? Essayez hCaptcha à la place",
+    "@captchaSwitchToHcaptcha": {
+        "description": "Link to switch from Turnstile to hCaptcha provider."
+    },
+    "captchaSwitchToTurnstile": "Essayez Turnstile à la place",
+    "@captchaSwitchToTurnstile": {
+        "description": "Link to switch from hCaptcha to Turnstile provider."
+    },
+    "permissionSendMessagesInThreads": "Send messages in threads",
+    "permissionSendMessagesInThreadsDescription": "Members can send messages in threads and forum posts, even when they cannot send messages in the parent channel.",
+    "permissionCreatePublicThreads": "Create public threads",
+    "permissionCreatePublicThreadsDescription": "Members can start threads that everyone in the channel can see, and create forum posts.",
+    "permissionCreatePrivateThreads": "Create private threads",
+    "permissionCreatePrivateThreadsDescription": "Members can start threads that only invited people can see.",
+    "permissionManageThreads": "Manage threads and posts",
+    "permissionManageThreadsDescription": "Members can rename, close, lock, pin and delete threads and forum posts, and see private threads.",
+    "phoneCaptchaRequired": "Une vérification du navigateur est requise avant la vérification du téléphone. Réessayez depuis la page de connexion ou contactez l'assistance.",
+    "@phoneCaptchaRequired": {
+        "description": "Captcha required for phone verification."
+    },
+    "advancedSettingShowNekoKeywordCat": "Chat",
+    "advancedSettingShowNekoKeywordNeko": "Neko",
+    "threadsAddMember": "Add member",
+    "threadsAddMemberSearchLabel": "Search members",
+    "threadsAddMemberNoResults": "No members match that search.",
+    "threadsMemberAddedToast": "Member added",
+    "forumNewPost": "Nouvelle publication",
+    "@forumNewPost": {
+        "description": "Button that starts creating a new forum post."
+    },
+    "forumSearchPosts": "Rechercher des publications",
+    "@forumSearchPosts": {
+        "description": "Placeholder of the forum post search input."
+    },
+    "forumNoPosts": "Aucune publication pour le moment",
+    "@forumNoPosts": {
+        "description": "Empty state of the active forum post list."
+    },
+    "systemThreadCreated": "{username} a créé un fil : {threadName}.",
+    "@systemThreadCreated": {
+        "description": "System message in a channel when someone starts a thread. {threadName} is tappable and opens the thread.",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "threadName": {
+                "type": "String"
+            }
+        }
+    },
+    "forumLayoutList": "Liste",
+    "@forumLayoutList": {
+        "description": "Forum layout option showing posts as a list."
+    },
+    "forumLayoutGallery": "Galerie",
+    "@forumLayoutGallery": {
+        "description": "Forum layout option showing posts as a grid of image cards."
+    }
 }

@@ -12,11 +12,85 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get reconnectingTitle => 'Došlo je do greške!';
 
   @override
+  String get chatJumpToPresent => 'Skoči na najnovije';
+
+  @override
+  String get chatViewingOlderMessages => 'Pregledavate starije poruke';
+
+  @override
+  String get chatNewMessagesBarJumpToFirstUnread =>
+      'Skoči na prvu nepročitanu poruku';
+
+  @override
+  String get chatNewMessagesBarMarkAsRead => 'Označi kao pročitano';
+
+  @override
+  String get chatNewMessagesBarMarkRead => 'Označi kao pročitano';
+
+  @override
+  String chatNewMessagesBarNewMessagesSinceEstimated(
+    int unreadCount,
+    String compactTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '$unreadCountString+ novih poruka od $compactTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewMessagesSince(
+    int unreadCount,
+    String compactTime,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount novih poruka',
+      few: '$unreadCount nove poruke',
+      one: '$unreadCount nova poruka',
+    );
+    return '$_temp0 od $compactTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewSinceEstimated(
+    int unreadCount,
+    String shortTime,
+  ) {
+    final intl.NumberFormat unreadCountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String unreadCountString = unreadCountNumberFormat.format(
+      unreadCount,
+    );
+
+    return '$unreadCountString+ novih od $shortTime';
+  }
+
+  @override
+  String chatNewMessagesBarNewSince(int unreadCount, String shortTime) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unreadCount,
+      locale: localeName,
+      other: '$unreadCount novih',
+      few: '$unreadCount nove',
+      one: '$unreadCount nova',
+    );
+    return '$_temp0 od $shortTime';
+  }
+
+  @override
   String get reconnectingBody =>
       'Nešto nije u redu s instancom.\nPopravit će se za sekundu!';
 
   @override
   String get gatewayReconnectingToast => 'Ponovno povezivanje…';
+
+  @override
+  String get gatewayReconnectTryAgain => 'Pokušaj ponovno';
 
   @override
   String get gatewayConnectedToast => 'Povezano';
@@ -230,20 +304,6 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get orDivider => 'OR';
 
   @override
-  String get captchaTitle => 'Potvrdite da ste čovjek';
-
-  @override
-  String get captchaDescription =>
-      'Moramo provjeriti niste li bot. Molimo dovršite provjeru u nastavku.';
-
-  @override
-  String get captchaSwitchToHcaptcha =>
-      'Imate poteškoća? Pokušajte s hCaptchom';
-
-  @override
-  String get captchaSwitchToTurnstile => 'Pokušajte s Turnstileom';
-
-  @override
   String get cancel => 'Odustani';
 
   @override
@@ -286,6 +346,9 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get next => 'Dalje';
 
   @override
+  String get create => 'Create';
+
+  @override
   String get mfaTitle => 'Autentifikacija u dva koraka';
 
   @override
@@ -324,6 +387,11 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   @override
   String get accountRemoveDescription =>
       'Ovo će ukloniti spremljenu sesiju za ovaj račun.';
+
+  @override
+  String accountSignOutTitle(String identifier) {
+    return 'Sign out of $identifier?';
+  }
 
   @override
   String get accountExpired => 'Isteklo';
@@ -1393,10 +1461,6 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get dmFriendRequestSentToast => 'Zahtjev za prijateljstvo poslan';
 
   @override
-  String get dmFriendRequestFailed =>
-      'Neuspješno slanje zahtjeva za prijateljstvo';
-
-  @override
   String get dmAcceptFriendRequestFailed =>
       'Neuspješno prihvaćanje zahtjeva za prijateljstvo';
 
@@ -1532,6 +1596,13 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
       'Vaš popis prijatelja je pun, ili je njihov. Uklonite nekoga i pokušajte ponovno.';
 
   @override
+  String get addFriendSendFailedTitle => 'Couldn\'t send friend request';
+
+  @override
+  String get addFriendSendFailedMessage =>
+      'Couldn\'t send the friend request. Try again.';
+
+  @override
   String get userTagBot => 'BOT';
 
   @override
@@ -1603,13 +1674,10 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get gifPickerSearch => 'Pretraži GIF-ove';
 
   @override
-  String get gifPickerSearchKlipy => 'Pretraži KLIPY';
+  String get gifPickerSearchKlipy => 'Pretraži Klipy';
 
   @override
   String get gifPickerSearchTenor => 'Pretraži Tenor';
-
-  @override
-  String get gifPickerPoweredByKlipy => 'KLIPY';
 
   @override
   String get gifPickerFavorites => 'Favoriti';
@@ -2428,10 +2496,6 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get backupCodesDone => 'Gotovo';
 
   @override
-  String get phoneCaptchaRequired =>
-      'Potrebna je provjera preglednika prije provjere telefona. Pokušajte ponovno sa stranice za prijavu ili se obratite podršci.';
-
-  @override
   String get dangerZoneSectionTitle => 'Opasna zona';
 
   @override
@@ -2454,10 +2518,6 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   @override
   String get dangerZoneDeleteDescription =>
       'Trajno izbrišite svoj račun i sve povezane podatke. Ova se radnja ne može poništiti.';
-
-  @override
-  String get dangerZoneDeleteCancelSubscription =>
-      'Otkažite svoju aktivnu Reverb pretplatu u postavkama Reverba prije brisanja računa.';
 
   @override
   String get dangerZoneDeleteCannotDeleteAccount =>
@@ -2553,7 +2613,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'prije # mjeseci',
+      other: 'prije $count mjeseci',
       one: 'prije 1 mjeseca',
     );
     return '$_temp0';
@@ -3094,16 +3154,11 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   }
 
   @override
-  String userProfilePlutoniumBadgeTooltip(String productName) {
-    return 'Reverb od $productName';
-  }
-
-  @override
-  String userProfilePlutoniumSubscriberSinceTooltip(
-    String productName,
+  String userProfilePremiumSubscriberSinceTooltip(
+    String premiumProductFullName,
     String date,
   ) {
-    return '$productName Reverb pretplatnik od $date';
+    return 'Pretplatnik na $premiumProductFullName od $date';
   }
 
   @override
@@ -3767,7 +3822,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Odjavi # uređaja',
+      other: 'Odjavi $count uređaja',
       one: 'Odjavi 1 uređaj',
     );
     return '$_temp0';
@@ -3938,6 +3993,47 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get channelComposerBarrierVerifyEmail => 'Potvrdite e-poštu';
+
+  @override
+  String get accountLimitedNotice =>
+      'Slanje poruka na vašem računu je pauzirano. Pogledajte e-poštu: dovoljan je jedan brzi korak za nastavak.';
+
+  @override
+  String get messagingPausedTextDidNotGoThrough => 'Moj SMS nije prošao';
+
+  @override
+  String messagingPausedHelpBody(String supportEmail) {
+    return 'Pošaljite e-poruku na $supportEmail i netko iz tima pregledat će vaš račun. Možete i odgovoriti na e-poruku koju smo vam poslali.';
+  }
+
+  @override
+  String get messagingPausedHelpCountryLabel => 'Država u kojoj se nalazite';
+
+  @override
+  String get messagingPausedHelpCopyDetails => 'Kopiraj podatke';
+
+  @override
+  String get messagingPausedHelpEmailSupport => 'Pišite podršci';
+
+  @override
+  String messagingPausedHelpAccountIdLine(String accountId) {
+    return 'ID računa: $accountId';
+  }
+
+  @override
+  String messagingPausedHelpUsernameLine(String username) {
+    return 'Korisničko ime: $username';
+  }
+
+  @override
+  String messagingPausedHelpAccountCreatedLine(String createdAt) {
+    return 'Račun stvoren: $createdAt';
+  }
+
+  @override
+  String messagingPausedHelpCountryLine(String country) {
+    return 'Država: $country';
+  }
 
   @override
   String chatAttachmentTooMany(int max) {
@@ -5967,8 +6063,8 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# nepročitanih poruka',
-      one: '# nepročitanom porukom',
+      other: '$count nepročitanih poruka',
+      one: '$count nepročitanom porukom',
     );
     return 'Prikaži chat s $_temp0';
   }
@@ -6117,6 +6213,40 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
       'Ovu poruku nije moguće učitati.';
 
   @override
+  String notificationsMentionedYouIn(String author, String place) {
+    return '$author mentioned you in $place:';
+  }
+
+  @override
+  String notificationsRepliedToYouIn(String author, String place) {
+    return '$author replied to you in $place:';
+  }
+
+  @override
+  String notificationsMentionedYou(String author) {
+    return '$author mentioned you:';
+  }
+
+  @override
+  String notificationsRepliedToYou(String author) {
+    return '$author replied to you:';
+  }
+
+  @override
+  String notificationsMentionPlace(String server, String channel) {
+    return '$server – $channel';
+  }
+
+  @override
+  String get notificationsSendReply => 'Send a reply';
+
+  @override
+  String get notificationsRecentActivity => 'Recent activity';
+
+  @override
+  String get notificationsRemoveNotification => 'Remove notification';
+
+  @override
   String characterCounterRemaining(int remaining) {
     return 'Preostalo još $remaining znakova';
   }
@@ -6135,6 +6265,10 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get chatMessageFailedToSend => 'Poruka nije poslana';
+
+  @override
+  String get chatMessageFailedToSendTapForOptions =>
+      'Poruka nije poslana. Dodirnite za opcije.';
 
   @override
   String chatSendFailureDmRestricted(String settingsPath) {
@@ -6578,8 +6712,8 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# zajednica',
-      one: '# zajednice',
+      other: '$count zajednica',
+      one: '$count zajednice',
     );
     return 'Sve osim $_temp0';
   }
@@ -6589,8 +6723,8 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# zajednice',
-      one: '# zajednica',
+      other: '$count zajednice',
+      one: '$count zajednica',
     );
     return 'Samo $_temp0';
   }
@@ -6620,14 +6754,14 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# sati',
-      one: '# sat',
+      other: '$hours sati',
+      one: '$hours sat',
     );
     String _temp1 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# minute',
-      one: '# minuta',
+      other: '$minutes minute',
+      one: '$minutes minuta',
     );
     return '$_temp0 i $_temp1';
   }
@@ -6637,8 +6771,8 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# sati',
-      one: '# sat',
+      other: '$hours sati',
+      one: '$hours sat',
     );
     return '$_temp0';
   }
@@ -6648,9 +6782,9 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       minutes,
       locale: localeName,
-      other: '# minuta',
-      few: '# minute',
-      one: '# minuta',
+      other: '$minutes minuta',
+      few: '$minutes minute',
+      one: '$minutes minuta',
     );
     return '$_temp0';
   }
@@ -6660,9 +6794,9 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       seconds,
       locale: localeName,
-      few: '# sekunde',
-      other: '# sekunde',
-      one: '# sekunda',
+      few: '$seconds sekunde',
+      other: '$seconds sekunde',
+      one: '$seconds sekunda',
     );
     return '$_temp0';
   }
@@ -6689,6 +6823,9 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get doubleTapReactionHint => 'Dvaput dodirnite poruku za reakciju';
+
+  @override
+  String get doubleTapEditHint => 'Double tap your own message to edit it';
 
   @override
   String get doubleTapReactionEdit => 'Uredi';
@@ -6794,9 +6931,6 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get forwardSuccessToast => 'Poruka proslijeđena';
-
-  @override
-  String get forwardFailed => 'Slanje poruke nije uspjelo';
 
   @override
   String get forwardCommentSlowmodeDisabled =>
@@ -7208,6 +7342,12 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get chatEditNoChanges => 'Nema promjena za spremanje';
 
   @override
+  String get chatEditFailed => 'Your message didn\'t update';
+
+  @override
+  String get chatEditFailedEditAgain => 'Edit again';
+
+  @override
   String get chatChannelNotReady =>
       'Ovaj kanal još nije spreman. Pokušajte ponovno za trenutak.';
 
@@ -7318,6 +7458,9 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get composerAutocompleteStickersHeading => 'Naljepnice';
+
+  @override
+  String get composerAutocompleteEmojisHeading => 'Emojis';
 
   @override
   String get composerAutocompleteGifsHeading => 'GIF-ovi';
@@ -8358,6 +8501,72 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get channelHeaderSearchClearHistory => 'Očisti';
 
   @override
+  String get channelSearchRemoveRecent => 'Remove from recent searches';
+
+  @override
+  String get channelSearchFiltersButton => 'Filters';
+
+  @override
+  String get channelSearchFilterMenuTitle => 'Filter results';
+
+  @override
+  String get channelSearchFilterFromLabel => 'From a specific person';
+
+  @override
+  String get channelSearchFilterMentionsLabel => 'Mentions a specific person';
+
+  @override
+  String get channelSearchFilterHasLabel => 'Has a link, file or embed';
+
+  @override
+  String get channelSearchFilterInLabel => 'In a specific channel';
+
+  @override
+  String get channelSearchFilterDuringLabel => 'Sent on a date';
+
+  @override
+  String get channelSearchFilterBeforeLabel => 'Sent before a date';
+
+  @override
+  String get channelSearchFilterAfterLabel => 'Sent after a date';
+
+  @override
+  String get channelSearchFilterPinnedLabel => 'Pinned or not pinned';
+
+  @override
+  String get channelSearchFilterAuthorTypeLabel => 'By author type';
+
+  @override
+  String get channelSearchDateToday => 'Today';
+
+  @override
+  String get channelSearchDateYesterday => 'Yesterday';
+
+  @override
+  String get channelSearchTabMessages => 'Messages';
+
+  @override
+  String get channelSearchTabImages => 'Images';
+
+  @override
+  String get channelSearchTabPins => 'Pins';
+
+  @override
+  String get channelSearchTabLinks => 'Links';
+
+  @override
+  String get channelSearchTabFiles => 'Files';
+
+  @override
+  String channelSearchTabCount(String label, int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$label ($countString)';
+  }
+
+  @override
   String get channelHeaderSearchFilterDescFrom => 'korisnik';
 
   @override
@@ -8941,19 +9150,19 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get purgePersonalNotesFailed => 'Nije moguće obrisati osobne bilješke';
 
   @override
-  String get userSettingsGroupYourAccount => 'VAŠ RAČUN';
+  String get userSettingsGroupYourAccount => 'Vaš račun';
 
   @override
-  String get userSettingsGroupBilling => 'BILLING';
+  String get userSettingsGroupBilling => 'Billing';
 
   @override
-  String get userSettingsGroupApplication => 'APPLICATION';
+  String get userSettingsGroupApplication => 'Application';
 
   @override
-  String get userSettingsGroupDeveloper => 'DEVELOPER';
+  String get userSettingsGroupDeveloper => 'Developer';
 
   @override
-  String get userSettingsGroupStaffOnly => 'STAFF-ONLY';
+  String get userSettingsGroupStaffOnly => 'Staff-only';
 
   @override
   String get userSettingsSearchPlaceholder => 'Pretraži postavke...';
@@ -8969,6 +9178,11 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get userSettingsCopyLinkToPage => 'Copy link to page';
+
+  @override
+  String userSettingsJumpLinkPremiumPage(String productName) {
+    return '$productName page';
+  }
 
   @override
   String get userSettingsNavProfile => 'Profil';
@@ -9503,6 +9717,9 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   @override
   String get storePlutoniumRenewsThroughAppStore =>
       'Automatski se obnavlja putem App Storea dok ne otkažete.';
+
+  @override
+  String get storePlutoniumRestorePurchases => 'Restore purchases';
 
   @override
   String get storePlutoniumAlreadySubscribed =>
@@ -10204,12 +10421,6 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
       'Prikaži Pickles u polju za unos chata';
 
   @override
-  String get advancedSettingShowNekoKeywordCat => 'Mačka';
-
-  @override
-  String get advancedSettingShowNekoKeywordNeko => 'Neko';
-
-  @override
   String get advancedSettingMobileSplashZoomAnimationLabel =>
       'Animacija zumiranja pri pokretanju';
 
@@ -10868,7 +11079,13 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get chatJumpToBottom => 'Skoči na dno';
 
   @override
+  String get chatUnreadDividerNew => 'Novo';
+
+  @override
   String get uiConfirm => 'Potvrdi';
+
+  @override
+  String get uiUnderstood => 'Understood';
 
   @override
   String get uiLoading => 'Učitavanje';
@@ -10951,7 +11168,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get instanceUrlHelper =>
-      'Koristite fluxer.app za službenu instancu ili točan URL samostalno hostirane instance.';
+      'Koristite echowire.org za službenu instancu ili točan URL samostalno hostirane instance.';
 
   @override
   String get resetToDefaultInstance => 'Vrati na echowire';
@@ -11167,10 +11384,10 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get guildNavbarHelp => 'Pomoć';
 
   @override
-  String get scrollIndicatorNew => 'NOVO';
+  String get scrollIndicatorNew => 'Novo';
 
   @override
-  String get scrollIndicatorNewMessage => 'NOVA PORUKA';
+  String get scrollIndicatorNewMessages => 'Nove poruke';
 
   @override
   String guildNavbarCollapseFolder(String folderName) {
@@ -11563,9 +11780,6 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get guildMenuMarkAsRead => 'Označi kao pročitano';
-
-  @override
-  String get guildPeekMoreOptions => 'Više opcija';
 
   @override
   String get guildMenuInviteMembers => 'Pozovi članove';
@@ -12964,6 +13178,51 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
       'Ažurirana je ikona zajednice.';
 
   @override
+  String get auditLogChangePausedInvites => 'Paused invites.';
+
+  @override
+  String get auditLogChangeResumedInvites => 'Resumed invites.';
+
+  @override
+  String get auditLogChangeTurnedOnDetachedBanner =>
+      'Turned on the detached banner.';
+
+  @override
+  String get auditLogChangeTurnedOffDetachedBanner =>
+      'Turned off the detached banner.';
+
+  @override
+  String get auditLogChangeAllowedFlexibleChannelNames =>
+      'Allowed flexible text channel names.';
+
+  @override
+  String get auditLogChangeDisallowedFlexibleChannelNames =>
+      'Stopped allowing flexible text channel names.';
+
+  @override
+  String get auditLogChangeHidOwnerCrown => 'Hid the community owner crown.';
+
+  @override
+  String get auditLogChangeShowedOwnerCrown =>
+      'Stopped hiding the community owner crown.';
+
+  @override
+  String get auditLogChangeAllowedEmojiCloning =>
+      'Allowed others to clone this community\'s emojis.';
+
+  @override
+  String get auditLogChangeStoppedEmojiCloning =>
+      'Stopped allowing others to clone this community\'s emojis.';
+
+  @override
+  String get auditLogChangeAllowedStickerCloning =>
+      'Allowed others to clone this community\'s stickers.';
+
+  @override
+  String get auditLogChangeStoppedStickerCloning =>
+      'Stopped allowing others to clone this community\'s stickers.';
+
+  @override
   String auditLogChangeRenamedChannel(String name) {
     return 'Preimenovali smo kanal u $name.';
   }
@@ -13036,8 +13295,8 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Izbrisano # poruka.',
-      one: 'Izbrisana # poruka.',
+      other: 'Izbrisano $count poruka.',
+      one: 'Izbrisana $count poruka.',
     );
     return '$_temp0';
   }
@@ -13047,8 +13306,8 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Uklonjeno # članova.',
-      one: 'Uklonjen # član.',
+      other: 'Uklonjeno $count članova.',
+      one: 'Uklonjen $count član.',
     );
     return '$_temp0';
   }
@@ -13584,16 +13843,16 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
       'Nije bilo moguće izbrisati ovu zajednicu';
 
   @override
-  String get guildSettingsCategoryExpressions => 'EXPRESSIONS';
+  String get guildSettingsCategoryExpressions => 'Expressions';
 
   @override
-  String get guildSettingsCategoryCommunity => 'COMMUNITY';
+  String get guildSettingsCategoryCommunity => 'Community';
 
   @override
-  String get guildSettingsCategoryIntegrations => 'INTEGRATIONS';
+  String get guildSettingsCategoryIntegrations => 'Integrations';
 
   @override
-  String get guildSettingsCategoryPeople => 'PEOPLE';
+  String get guildSettingsCategoryPeople => 'People';
 
   @override
   String get guildSettingsOverviewBrandingTitle => 'Brendiranje';
@@ -14492,18 +14751,6 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get homeQuickActionDms => 'Privatne poruke';
 
   @override
-  String get threadsAddMember => 'Add member';
-
-  @override
-  String get threadsAddMemberSearchLabel => 'Search members';
-
-  @override
-  String get threadsAddMemberNoResults => 'No members match that search.';
-
-  @override
-  String get threadsMemberAddedToast => 'Member added';
-
-  @override
   String get assistantNeedsLogin => 'Prvo otvorite Fluxer i prijavite se.';
 
   @override
@@ -14901,7 +15148,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String get forumPostArchived => 'Archived';
 
   @override
-  String get forumPostNewBadge => 'NEW';
+  String get forumPostNewBadge => 'Novo';
 
   @override
   String get forumPostStarterDeleted => 'The original message was deleted.';
@@ -14916,8 +15163,8 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count new messages',
-      one: '1 new message',
+      other: '$count nove poruke',
+      one: '$count nova poruka',
     );
     return '$_temp0';
   }
@@ -15226,4 +15473,43 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   String voiceP2pPeerFailedTitle(String name) {
     return 'Cannot connect directly to $name';
   }
+
+  @override
+  String get favoritesRenameCategory => 'Preimenuj kategoriju';
+
+  @override
+  String get captchaTitle => 'Potvrdite da ste čovjek';
+
+  @override
+  String get captchaDescription =>
+      'Moramo provjeriti niste li bot. Molimo dovršite provjeru u nastavku.';
+
+  @override
+  String get captchaSwitchToHcaptcha =>
+      'Imate poteškoća? Pokušajte s hCaptchom';
+
+  @override
+  String get captchaSwitchToTurnstile => 'Pokušajte s Turnstileom';
+
+  @override
+  String get phoneCaptchaRequired =>
+      'Potrebna je provjera preglednika prije provjere telefona. Pokušajte ponovno sa stranice za prijavu ili se obratite podršci.';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Mačka';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
 }

@@ -44,6 +44,24 @@ String normalizeDeepLinkPath(String path) {
   return trimmed.isEmpty ? '/' : trimmed;
 }
 
+/// Echowire: reads an `echowire:` or `fluxer:` app link into path only form, or null when href is
+/// not an app link.
+Uri? parseFluxerAppLinkUri(String href) {
+  final String? scheme = appProtocolSchemeOf(href);
+  if (scheme == null) {
+    return null;
+  }
+  if (href.startsWith('$scheme://') || href.startsWith('$scheme:/')) {
+    final String normalized =
+        href.startsWith('$scheme:/') && !href.startsWith('$scheme://')
+        ? '$scheme://${href.substring(scheme.length + 2)}'
+        : href;
+    return normalizeAppProtocolDeepLinkUri(Uri.parse(normalized));
+  }
+  final String path = href.substring(scheme.length + 1);
+  return Uri(path: path.startsWith('/') ? path : '/$path');
+}
+
 /// Converts `echowire://` and `fluxer://` URIs into path only form matching https deep links.
 ///
 /// Examples:
@@ -66,7 +84,6 @@ Uri normalizeAppProtocolDeepLinkUri(Uri uri) {
   );
 }
 
-/// Normalizes invite URLs (fluxer.gg short links, /invite paths) to `/invite/:code`.
 Uri normalizeInviteDeepLinkUri(Uri uri) {
   final Uri protocolNormalized = normalizeAppProtocolDeepLinkUri(uri);
   if (isAppProtocolScheme(protocolNormalized.scheme)) {
@@ -92,7 +109,6 @@ Uri normalizeInviteDeepLinkUri(Uri uri) {
   return protocolNormalized;
 }
 
-/// Applies app protocol and invite URL normalization for incoming deep links.
 Uri normalizeIncomingDeepLinkUri(Uri uri) {
   return normalizeInviteDeepLinkUri(normalizeAppProtocolDeepLinkUri(uri));
 }

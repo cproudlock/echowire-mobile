@@ -312,11 +312,6 @@ Future<void> _showDebugUserSheet(
       context,
       title: FluxerLocalizations.of(context).dmDebugUser,
       data: user.toJson(),
-      onCopied: (message) => ref
-          .read(toastProvider.notifier)
-          .show(
-            FluxerToast(message: message, variant: FluxerToastVariant.success),
-          ),
     );
   } on Exception catch (_) {
     // Ignore — failed to fetch user.
@@ -530,11 +525,6 @@ String? _detailsSubtitle({
   return null;
 }
 
-/// Pops the current route, handing the picked message back to its opener.
-///
-/// The sheet must not navigate itself: it is about to be dismissed, so any
-/// context or ref it holds dies mid flight, and `close()` only starts the
-/// dismissal so navigating here would race the animation.
 void _popWithJumpRequest(
   BuildContext context, {
   required Message message,
@@ -544,52 +534,3 @@ void _popWithJumpRequest(
     context,
   ).pop(ChannelDetailsJumpRequest(message: message, guildId: guildId));
 }
-
-String _formatDate(DateTime dateTime) {
-  final local = dateTime.toLocal();
-  final h = local.hour.toString().padLeft(2, '0');
-  final m = local.minute.toString().padLeft(2, '0');
-  return '${local.month}/${local.day}/${local.year} $h:$m';
-}
-
-String _contentLabel(
-  FluxerLocalizations l10n,
-  MessageSearchContentFilter value,
-) => switch (value) {
-  MessageSearchContentFilter.image => l10n.channelDetailsSearchContentImage,
-  MessageSearchContentFilter.video => l10n.channelDetailsSearchContentVideo,
-  MessageSearchContentFilter.audio => l10n.channelDetailsSearchContentAudio,
-  MessageSearchContentFilter.file => l10n.channelDetailsSearchContentFile,
-  MessageSearchContentFilter.link => l10n.channelDetailsSearchContentLink,
-  MessageSearchContentFilter.embed => l10n.channelDetailsSearchContentEmbed,
-  MessageSearchContentFilter.sticker => l10n.channelDetailsSearchContentSticker,
-  MessageSearchContentFilter.poll => l10n.channelDetailsSearchContentPoll,
-  MessageSearchContentFilter.forward => l10n.channelDetailsSearchContentForward,
-};
-
-String _contentDescription(
-  FluxerLocalizations l10n,
-  MessageSearchContentFilter value,
-) => switch (value) {
-  MessageSearchContentFilter.image =>
-    l10n.channelDetailsSearchContentImageDescription,
-  MessageSearchContentFilter.video =>
-    l10n.channelDetailsSearchContentVideoDescription,
-  MessageSearchContentFilter.audio =>
-    l10n.channelDetailsSearchContentAudioDescription,
-  MessageSearchContentFilter.file =>
-    l10n.channelDetailsSearchContentFileDescription,
-  MessageSearchContentFilter.link =>
-    l10n.channelDetailsSearchContentLinkDescription,
-  MessageSearchContentFilter.embed =>
-    l10n.channelDetailsSearchContentEmbedDescription,
-  MessageSearchContentFilter.sticker =>
-    l10n.channelDetailsSearchContentStickerDescription,
-  MessageSearchContentFilter.poll =>
-    l10n.channelDetailsSearchContentPollDescription,
-  MessageSearchContentFilter.forward =>
-    l10n.channelDetailsSearchContentForwardDescription,
-};
-
-IconData _contentIcon(MessageSearchContentFilter value) =>
-    channelSearchContentIcon(value);

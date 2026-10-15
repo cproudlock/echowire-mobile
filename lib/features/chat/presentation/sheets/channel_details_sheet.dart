@@ -35,19 +35,19 @@ import 'package:fluxer_app/features/chat/data/channel_pins_repository.dart';
 import 'package:fluxer_app/features/chat/data/channel_search_history_repository.dart';
 import 'package:fluxer_app/features/chat/data/channel_search_query_parser.dart';
 import 'package:fluxer_app/features/chat/data/message_search_repository.dart';
-import 'package:fluxer_app/features/chat/domain/channel_search_mobile_state.dart';
+import 'package:fluxer_app/features/chat/domain/channel_search_token.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
-import 'package:fluxer_app/features/chat/presentation/sheets/channel_search_mobile_sheets.dart';
-import 'package:fluxer_app/features/chat/presentation/widgets/channel/search/channel_search_option_card.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/channel/search/channel_search_field.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/channel/search/channel_search_recent_row.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/channel/search/channel_search_suggestions.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_item.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_markdown.dart';
 import 'package:fluxer_app/features/chat/providers/channel/channel_details_providers.dart';
 import 'package:fluxer_app/features/chat/utils/channel_jump_navigator.dart';
-import 'package:fluxer_app/features/chat/utils/composer/composer_mention_query.dart';
 import 'package:fluxer_app/features/chat/utils/messages/delete_my_messages_in_channel_action.dart';
 import 'package:fluxer_app/features/chat/utils/messages/message_link.dart';
+import 'package:fluxer_app/features/chat/utils/search/channel_search_autocomplete.dart';
 import 'package:fluxer_app/features/chat/utils/search/channel_search_utils.dart';
-import 'package:fluxer_app/features/dm/data/dm_conversation_mapper.dart';
 import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
 import 'package:fluxer_app/features/dm/domain/dm_conversation.dart';
 import 'package:fluxer_app/features/dm/domain/group_dm_utils.dart';
@@ -68,13 +68,10 @@ import 'package:fluxer_app/features/friends/providers/friend_providers.dart';
 import 'package:fluxer_app/features/guilds/data/guild_user_settings_repository.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_view_model.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_permissions_provider.dart';
-import 'package:fluxer_app/features/members/data/guild_mention_member_search.dart';
 import 'package:fluxer_app/features/members/domain/group_dm_member_groups.dart';
-import 'package:fluxer_app/features/members/domain/member.dart';
 import 'package:fluxer_app/features/members/presentation/widgets/guild_members_tab_content.dart';
 import 'package:fluxer_app/features/members/providers/member_list_desired_ranges_provider.dart';
 import 'package:fluxer_app/features/members/providers/member_list_viewport_provider.dart';
-import 'package:fluxer_app/features/members/providers/member_providers.dart';
 import 'package:fluxer_app/features/profile/domain/custom_status_utils.dart';
 import 'package:fluxer_app/features/profile/presentation/user_profile_sheet.dart';
 import 'package:fluxer_app/features/profile/providers/user_presence_provider.dart';
@@ -92,7 +89,6 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 part '../pages/channel_search_page.dart';
 part 'channel_details_dm_members.dart';
-part 'channel_details_filters.dart';
 part 'channel_details_identity.dart';
 part 'channel_details_more_sheet.dart';
 part 'channel_details_sheet_states.dart';
@@ -100,42 +96,8 @@ part 'channel_details_tabs.dart';
 
 const _kSheetLoadMoreThreshold = 160.0;
 
-Widget _scrollableSheetPlaceholder(
-  BuildContext context,
-  ScrollController scrollController,
-  Widget child,
-) {
-  return ListView(
-    controller: scrollController,
-    physics: const AlwaysScrollableScrollPhysics(),
-    padding: FluxerBottomSheet.scrollViewPadding(context),
-    children: [
-      ConstrainedBox(
-        // A floor, not a fixed height: placeholder content taller than a
-        // quarter screen (small viewports, long localizations) grows the item
-        // and scrolls instead of overflowing the flex.
-        constraints: BoxConstraints(
-          minHeight: MediaQuery.sizeOf(context).height * 0.25,
-        ),
-        child: child,
-      ),
-    ],
-  );
-}
-
 enum ChannelDetailsInitialTab { members, pins }
 
-/// Opens the details sheet and performs any jump it returns.
-///
-/// The jump runs only after this future completes, so both the details sheet
-/// and the search sheet nested inside it are off the navigator stack before
-/// any gate UI or route change appears.
-///
-/// Precisely: the sheet futures resolve on `Route.popped`, which fires when a
-/// route leaves the stack, not when its reverse animation finishes. That is
-/// enough to guarantee ordering between the routes, so a pop always targets
-/// the intended route, but it does not guarantee the previous sheet has
-/// finished animating out.
 Future<void> showChannelDetailsSheetAndJump(
   BuildContext context, {
   required ProviderContainer container,
@@ -164,10 +126,6 @@ Future<void> executeChannelDetailsJumpRequest({
   required ProviderContainer container,
   required ChannelDetailsJumpRequest request,
 }) async {
-  // Resolved here rather than in the sheet: doing it before the sheet pops
-  // would leave two awaits between the picked message and the pop, and a
-  // dismissal in that window would lose the jump with no route left to
-  // carry it out.
   final db.FluxerDatabase database = container.read(fluxerDatabaseProvider);
   await database.messageDao.upsertMessage(request.message.toCompanion());
   final String? resolvedGuildId =
@@ -185,8 +143,6 @@ Future<void> executeChannelDetailsJumpRequest({
   );
 }
 
-/// Returns the message the user picked, if any. Callers must not navigate
-/// before this future completes; prefer [showChannelDetailsSheetAndJump].
 Future<ChannelDetailsJumpRequest?> showChannelDetailsSheet(
   BuildContext context, {
   required Channel? channel,
@@ -207,11 +163,6 @@ Future<ChannelDetailsJumpRequest?> showChannelDetailsSheet(
   );
 }
 
-/// A message the user picked inside the details sheet, from search or pins.
-///
-/// The sheet returns this instead of navigating itself: each route pops
-/// itself, and the opener sequences the dismissal and the jump off the awaited
-/// result rather than off assumptions about pop ordering.
 class ChannelDetailsJumpRequest {
   const ChannelDetailsJumpRequest({
     required this.message,
@@ -290,7 +241,6 @@ class _ChannelDetailsSheetState extends ConsumerState<ChannelDetailsSheet> {
         desiredRanges != null &&
         guildId != null &&
         channelId != null) {
-      // Provider mutations are illegal in dispose; defer to a microtask.
       scheduleMicrotask(() {
         viewport.clearChannel(guildId: guildId, channelId: channelId);
         desiredRanges.clearChannel(guildId: guildId, channelId: channelId);
@@ -336,12 +286,6 @@ class _ChannelDetailsSheetState extends ConsumerState<ChannelDetailsSheet> {
     unawaited(_runSearch(channelId: channelId));
   }
 
-  /// Owns the search page's lifetime and bubbles its result outward.
-  ///
-  /// Each route pops itself: the search page pops with the picked message,
-  /// and this sheet immediately pops that message onward. A sheet's `close`
-  /// pops whatever is topmost rather than the route that handed it out, so
-  /// chained pops would be timing dependent.
   Future<void> _runSearch({required String channelId}) async {
     final ChannelDetailsJumpRequest? request = await showChannelSearchPage(
       context,
@@ -351,9 +295,6 @@ class _ChannelDetailsSheetState extends ConsumerState<ChannelDetailsSheet> {
     if (request == null || !mounted) {
       return;
     }
-    // Pop immediately, with no await between the inner result and this pop:
-    // a dismissal in that window would leave no route to carry the jump out.
-    // Resolving the message is the helper's job, after both routes are gone.
     if (widget.completeWithResult != null) {
       widget.completeWithResult!(request);
     } else {

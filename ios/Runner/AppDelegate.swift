@@ -1,6 +1,7 @@
 import AVFAudio
 import CallKit
 import Flutter
+import Measure
 import UIKit
 import UserNotifications
 import flutter_callkit_incoming
@@ -18,7 +19,18 @@ import flutter_callkit_incoming
     // echowire: AssistantAppShortcuts is not in our Xcode target, so upstream's
     // call to it is omitted. See feat/ios-assistant. VoipPushHandler was
     // replaced upstream by VoipRegistry, started above.
+    configureMeasureIfNeeded()
     return result
+  }
+
+  private func configureMeasureIfNeeded() {
+    let measureInfo = Bundle.main.infoDictionary
+    let measureApiKey = measureInfo?["MeasureApiKey"] as? String ?? ""
+    let measureApiUrl = measureInfo?["MeasureApiUrl"] as? String ?? ""
+    if !measureApiKey.isEmpty, !measureApiUrl.isEmpty {
+      let clientInfo = ClientInfo(apiKey: measureApiKey, apiUrl: measureApiUrl)
+      Measure.initialize(with: clientInfo, config: BaseMeasureConfig())
+    }
   }
 
   override func application(
@@ -114,6 +126,15 @@ import flutter_callkit_incoming
     VoiceSpeakerRouteBridge.shared.register(
       messenger: engineBridge.applicationRegistrar.messenger()
     )
+    UploadKeepAliveBridge.shared.register(
+      messenger: engineBridge.applicationRegistrar.messenger()
+    )
+    AttachmentMediaBridge.shared.register(
+      messenger: engineBridge.applicationRegistrar.messenger()
+    )
+    AppStoreDistributionBridge.shared.register(
+      messenger: engineBridge.applicationRegistrar.messenger()
+    )
   }
 
   func onAccept(_ call: Call, _ action: CXAnswerCallAction) {
@@ -139,4 +160,52 @@ import flutter_callkit_incoming
   }
 
   func providerDidReset() {}
+}
+
+final class UploadKeepAliveBridge {
+  static let shared = UploadKeepAliveBridge()
+
+  private var channel: FlutterMethodChannel?
+  private var task: UIBackgroundTaskIdentifier = .invalid
+
+  func register(messenger: FlutterBinaryMessenger) {
+    if channel != nil {
+      return
+    }
+    let channel = FlutterMethodChannel(
+      name: "fluxer_app/upload_keep_alive",
+      binaryMessenger: messenger
+    )
+    channel.setMethodCallHandler { [weak self] call, result in
+      switch call.method {
+      case "start":
+        self?.begin()
+        result(nil)
+      case "stop":
+        self?.end()
+        result(nil)
+      default:
+        result(FlutterMethodNotImplemented)
+      }
+    }
+    self.channel = channel
+  }
+
+  private func begin() {
+    if task != .invalid {
+      return
+    }
+    task = UIApplication.shared.beginBackgroundTask(withName: "fluxer.upload") {
+      [weak self] in
+      self?.end()
+    }
+  }
+
+  private func end() {
+    if task == .invalid {
+      return
+    }
+    UIApplication.shared.endBackgroundTask(task)
+    task = .invalid
+  }
 }

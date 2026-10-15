@@ -3,7 +3,6 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
@@ -30,6 +29,47 @@ if (hasKeystoreProperties) {
         keystoreProperties.load(inputStream)
     }
 }
+
+fun readMeasureConfigValue(
+    propertyKey: String,
+    envVar: String,
+    measureProperties: Properties,
+    localProperties: Properties,
+): String {
+    measureProperties.getProperty(propertyKey)?.trim()?.takeIf { it.isNotEmpty() }?.let { return it }
+    localProperties.getProperty(propertyKey)?.trim()?.takeIf { it.isNotEmpty() }?.let { return it }
+    System.getenv(envVar)?.trim()?.takeIf { it.isNotEmpty() }?.let { return it }
+    return ""
+}
+
+val measureProperties = Properties()
+val measurePropertiesFile = rootProject.file("measure.properties")
+if (measurePropertiesFile.exists()) {
+    measurePropertiesFile.inputStream().use { inputStream ->
+        measureProperties.load(inputStream)
+    }
+}
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.inputStream().use { inputStream ->
+        localProperties.load(inputStream)
+    }
+}
+
+val measureApiKey = readMeasureConfigValue(
+    propertyKey = "measure.apiKey",
+    envVar = "MEASURE_ANDROID_API_KEY",
+    measureProperties = measureProperties,
+    localProperties = localProperties,
+)
+val measureApiUrl = readMeasureConfigValue(
+    propertyKey = "measure.apiUrl",
+    envVar = "MEASURE_API_URL",
+    measureProperties = measureProperties,
+    localProperties = localProperties,
+)
 
 android {
     namespace = "com.fluxer"
@@ -67,6 +107,8 @@ android {
         manifestPlaceholders["buildEnvironment"] = "stable"
         manifestPlaceholders["pushProvider"] = "fcm"
         manifestPlaceholders["appIconAliasPrefix"] = "com.fluxer.MainActivity"
+        manifestPlaceholders["measureApiKey"] = measureApiKey
+        manifestPlaceholders["measureApiUrl"] = measureApiUrl
     }
 
     productFlavors {

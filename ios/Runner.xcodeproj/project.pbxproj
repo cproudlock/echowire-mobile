@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		MEA5E0A12F90ABCD00E5F601 /* Measure in Frameworks */ = {isa = PBXBuildFile; productRef = MEA5E0A12F90ABCD00E5F600 /* Measure */; };
+		FBC1A0082F9E220100EA2F07 /* AttachmentMediaBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC1A0072F9E220100EA2F06 /* AttachmentMediaBridge.swift */; };
+		FBC1A00A2F9E220100EA2F09 /* AppStoreDistributionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC1A0092F9E220100EA2F08 /* AppStoreDistributionBridge.swift */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		184F5695ED620BCDD58A52CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 024922573B84CD76C860AAD9 /* Foundation.framework */; };
 		184F59D3C4E13DFAB2C06DE7 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E234D355EEB026D81BF5DA2E /* Pods_RunnerTests.framework */; };
@@ -141,6 +144,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FBC1A0072F9E220100EA2F06 /* AttachmentMediaBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentMediaBridge.swift; sourceTree = "<group>"; };
+		FBC1A0092F9E220100EA2F08 /* AppStoreDistributionBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreDistributionBridge.swift; sourceTree = "<group>"; };
 		024922573B84CD76C860AAD9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		0C35AB7B31433FBA527EF547 /* Pods-RunnerTests.release-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release-beta.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release-beta.xcconfig"; sourceTree = "<group>"; };
 		1199A5651FCB690EBDBC61D1 /* Pods-Runner.debug-stable.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-stable.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-stable.xcconfig"; sourceTree = "<group>"; };
@@ -334,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78A318202AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage in Frameworks */,
+				MEA5E0A12F90ABCD00E5F601 /* Measure in Frameworks */,
 				81DF0AE8A8831D55E1700713 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +451,8 @@
 				FB0AF1002F5C98000078A540 /* CallKit */,
 				FB0AE0182F5C95000078A518 /* Localizable.strings */,
 				FBC1A0012F9E220100EA2F01 /* PhysicalKeyboardBridge.swift */,
+				FBC1A0072F9E220100EA2F06 /* AttachmentMediaBridge.swift */,
+				FBC1A0092F9E220100EA2F08 /* AppStoreDistributionBridge.swift */,
 				FBC1A0032F9E220100EA2F02 /* VoiceSpeakerRoute.swift */,
 				7884E8672EC3CC0400C636F2 /* SceneDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
@@ -618,6 +626,7 @@
 			name = Runner;
 			packageProductDependencies = (
 				78A3181F2AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage */,
+				MEA5E0A12F90ABCD00E5F600 /* Measure */,
 			);
 			productName = Runner;
 			productReference = 97C146EE1CF9000F007C117D /* Runner.app */;
@@ -723,6 +732,7 @@
 			mainGroup = 97C146E51CF9000F007C117D;
 			packageReferences = (
 				781AD8BC2B33823900A9FFBB /* XCLocalSwiftPackageReference "FlutterGeneratedPluginSwiftPackage" */,
+				MEA5E0A12F90ABCD00E5F602 /* XCRemoteSwiftPackageReference "measure" */,
 			);
 			productRefGroup = 97C146EF1CF9000F007C117D /* Products */;
 			projectDirPath = "";
@@ -921,6 +931,8 @@
 				FB0AF1022F5C98000078A542 /* CallRingUuid.swift in Sources */,
 				FBC1A0022F9E220100EA2F01 /* PhysicalKeyboardBridge.swift in Sources */,
 				FBC1A0042F9E220100EA2F03 /* VoiceSpeakerRoute.swift in Sources */,
+				FBC1A0082F9E220100EA2F07 /* AttachmentMediaBridge.swift in Sources */,
+				FBC1A00A2F9E220100EA2F09 /* AppStoreDistributionBridge.swift in Sources */,
 				FB0ADAC62F5C91D80078A4D4 /* PushNotificationPayload.swift in Sources */,
 				FB0AE0222F5C96000078A522 /* SnowflakeTime.swift in Sources */,
 				FB0AE0122F5C95000078A512 /* WebPushKeychain.swift in Sources */,
@@ -3669,7 +3681,23 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		MEA5E0A12F90ABCD00E5F602 /* XCRemoteSwiftPackageReference "measure" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/measure-sh/measure.git";
+			requirement = {
+				kind = branch;
+				branch = ios-v0.14.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		MEA5E0A12F90ABCD00E5F600 /* Measure */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = MEA5E0A12F90ABCD00E5F602 /* XCRemoteSwiftPackageReference "measure" */;
+			productName = Measure;
+		};
 		78A3181F2AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FlutterGeneratedPluginSwiftPackage;

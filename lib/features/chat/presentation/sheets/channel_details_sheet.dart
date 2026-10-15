@@ -55,6 +55,7 @@ import 'package:fluxer_app/features/dm/presentation/add_friends_to_group_flow.da
 import 'package:fluxer_app/features/dm/presentation/create_dm_flow.dart';
 import 'package:fluxer_app/features/dm/presentation/edit_group_dm_flow.dart';
 import 'package:fluxer_app/features/dm/presentation/group_dm_invites_flow.dart';
+import 'package:fluxer_app/features/dm/presentation/menus/group_dm_member_context_menu.dart';
 import 'package:fluxer_app/features/dm/presentation/widgets/group_dm_avatar.dart';
 import 'package:fluxer_app/features/dm/providers/create_dm_view_model.dart';
 import 'package:fluxer_app/features/dm/providers/dm_mute_provider.dart';
@@ -77,9 +78,12 @@ import 'package:fluxer_app/features/profile/presentation/user_profile_sheet.dart
 import 'package:fluxer_app/features/profile/providers/user_presence_provider.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
+import 'package:fluxer_app/features/ui/action_menu/context_menu_widgets.dart';
+import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_confirm_sheet.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
+import 'package:fluxer_app/shared/utils/api_error_presentation.dart';
 import 'package:fluxer_app/shared/utils/clipboard_utils.dart';
 import 'package:fluxer_app/shared/widgets/custom_status_display.dart';
 import 'package:fluxer_app/shared/widgets/debug_bottom_sheet.dart';
@@ -397,7 +401,11 @@ class _ChannelDetailsSheetState extends ConsumerState<ChannelDetailsSheet> {
       confirmLabel: dm.isGroup ? l10n.dmLeaveGroup : l10n.dmCloseDm,
       isDanger: true,
       onConfirm: () {
-        unawaited(ref.read(dmViewModelProvider.notifier).closeDmChannel(dm.id));
+        unawaited(
+          ref
+              .read(dmViewModelProvider.notifier)
+              .closeDmChannel(dm.id, isGroup: dm.isGroup),
+        );
         widget.close();
       },
     );

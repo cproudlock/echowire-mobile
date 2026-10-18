@@ -12,7 +12,6 @@ import 'package:fluxer_app/features/chat/presentation/widgets/composer/typing_in
 import 'package:fluxer_app/features/chat/presentation/widgets/composer/wide_composer_layout.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/chat_list_keyboard_dismiss.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_list.dart';
-import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_list_pin.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_list_unread_review.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/neko_sprite.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/pickers/attachment_panel_content.dart';
@@ -31,6 +30,7 @@ import 'package:fluxer_app/features/chat/utils/composer/composer_panel.dart';
 import 'package:fluxer_app/features/chat/utils/composer/inline_expression_panel_layout.dart';
 import 'package:fluxer_app/features/chat/utils/composer/inline_expression_panel_scroll_physics.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
+import 'package:fluxer_app/features/shell/foldable/tabletop_hinge_column.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/shell/utils/mobile_scaffold_resize_policy.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
@@ -249,88 +249,92 @@ class _ChannelChatPanelState extends ConsumerState<ChannelChatPanel> {
                 dragHandleHeight: dragHandleHeight,
               );
             }
+            final Widget messageColumn = Stack(
+              clipBehavior: Clip.none,
+              children: <Widget>[
+                Positioned.fill(
+                  child: _maybeWallpaperText(
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: <Widget>[
+                        Positioned.fill(
+                          child: ChatListKeyboardDismiss(
+                            onDismissPanels: () {
+                              if (!isPanelOpen) {
+                                return;
+                              }
+                              ref
+                                  .read(
+                                    composerPanelDismissRequestProvider
+                                        .notifier,
+                                  )
+                                  .requestAnimatedClose();
+                            },
+                            child: stripKeyboardInsets
+                                ? MediaQuery.removeViewInsets(
+                                    context: context,
+                                    removeBottom: true,
+                                    child: messageList,
+                                  )
+                                : messageList,
+                          ),
+                        ),
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          height: WideComposerLayout.statusOverlayHeight,
+                          child: _buildStatusOverlay(
+                            showNeko: showNeko,
+                            showSlowmode: showSlowmode,
+                            channelId: listChannelId,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                _ChannelChatScrollOverlay(
+                  channelId: listChannelId,
+                  loadMessages: widget.loadMessages,
+                  showNeko: showNeko,
+                  showSlowmode: showSlowmode,
+                  onClose: onClose,
+                ),
+                ComposerAutocompletePanelLayer(
+                  host: _composerAutocompletePanelHost,
+                  scrollController: _composerAutocompletePanelScroll,
+                ),
+              ],
+            );
+            final Widget composerSection = ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: math.max(
+                  0,
+                  constraints.maxHeight - WideComposerLayout.statusRowHeight,
+                ),
+              ),
+              child: ChatComposerColumn(
+                autocompletePanelHost: _composerAutocompletePanelHost,
+                autocompletePanelScrollController:
+                    _composerAutocompletePanelScroll,
+              ),
+            );
+            final Widget chatColumn = isMobileLayout(context)
+                ? TabletopHingeColumn(
+                    upper: messageColumn,
+                    lower: composerSection,
+                  )
+                : Column(
+                    children: <Widget>[
+                      Expanded(child: messageColumn),
+                      composerSection,
+                    ],
+                  );
             return Stack(
               clipBehavior: Clip.none,
               children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        children: <Widget>[
-                          Positioned.fill(
-                            child: _maybeWallpaperText(
-                              Stack(
-                                clipBehavior: Clip.none,
-                                children: <Widget>[
-                                  Positioned.fill(
-                                    child: ChatListKeyboardDismiss(
-                                      onDismissPanels: () {
-                                        if (!isPanelOpen) {
-                                          return;
-                                        }
-                                        ref
-                                            .read(
-                                              composerPanelDismissRequestProvider
-                                                  .notifier,
-                                            )
-                                            .requestAnimatedClose();
-                                      },
-                                      child: stripKeyboardInsets
-                                          ? MediaQuery.removeViewInsets(
-                                              context: context,
-                                              removeBottom: true,
-                                              child: messageList,
-                                            )
-                                          : messageList,
-                                    ),
-                                  ),
-                                  Positioned(
-                                    left: 0,
-                                    right: 0,
-                                    bottom: 0,
-                                    height: WideComposerLayout
-                                        .statusFadeScrolledHeight,
-                                    child: _buildStatusOverlay(
-                                      showNeko: showNeko,
-                                      showSlowmode: showSlowmode,
-                                      channelId: listChannelId,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          _ChannelChatScrollOverlay(
-                            channelId: listChannelId,
-                            loadMessages: widget.loadMessages,
-                            showNeko: showNeko,
-                            showSlowmode: showSlowmode,
-                            onClose: onClose,
-                          ),
-                          ComposerAutocompletePanelLayer(
-                            host: _composerAutocompletePanelHost,
-                            scrollController: _composerAutocompletePanelScroll,
-                          ),
-                        ],
-                      ),
-                    ),
-                    ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxHeight: math.max(
-                          0,
-                          constraints.maxHeight -
-                              WideComposerLayout.statusRowHeight,
-                        ),
-                      ),
-                      child: ChatComposerColumn(
-                        autocompletePanelHost: _composerAutocompletePanelHost,
-                        autocompletePanelScrollController:
-                            _composerAutocompletePanelScroll,
-                      ),
-                    ),
-                  ],
-                ),
+                chatColumn,
                 if (dockedPanel != null)
                   Positioned(
                     left: 0,
@@ -566,17 +570,6 @@ class ChannelChatComposerBoundary extends ConsumerWidget {
             .watch(presentableTypingUsersInChannelProvider(channelId))
             .isNotEmpty ||
         composerSlowmodeIndicatorVisible(ref, channelId);
-    final bool atBottom = ref.watch(
-      chatReadViewportProvider.select(
-        (ChatReadViewportState state) =>
-            state.channelId != channelId ||
-            state.distanceFromBottom <= kMessageListPinEngageDistance,
-      ),
-    );
-    final double fadeHeight = atBottom
-        ? WideComposerLayout.statusFadeAtBottomHeight
-        : WideComposerLayout.statusFadeScrolledHeight;
-    final double solidFrom = fadeHeight - WideComposerLayout.statusSafeGap;
     return Stack(
       clipBehavior: Clip.none,
       children: <Widget>[
@@ -585,13 +578,10 @@ class ChannelChatComposerBoundary extends ConsumerWidget {
             left: 0,
             right: 0,
             bottom: 0,
-            height: fadeHeight,
+            height: WideComposerLayout.statusFadeHeight,
             child: applyWallpaper
-                ? ChatWallpaperComposerFade(solidFrom: solidFrom)
-                : WideComposerFade(
-                    surfaceColor: context.colors.chatBackground,
-                    solidFrom: solidFrom,
-                  ),
+                ? const ChatWallpaperComposerFade()
+                : WideComposerFade(surfaceColor: context.colors.chatBackground),
           ),
         Positioned(
           left: statusRailPaddingStart,

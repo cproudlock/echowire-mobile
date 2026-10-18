@@ -7,6 +7,7 @@ import 'package:fluxer_app/core/theme/fluxer_color_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_motion_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
+import 'package:fluxer_app/features/ui/action_menu/sidebar_peek_menu_constants.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet_drag.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_sheet_motion.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_sheet_scroll.dart';
@@ -461,7 +462,7 @@ class FluxerBottomSheet {
                 halfChildSize: halfChildSize,
                 initialChildSize: effectiveInitialChildSize,
                 maxHeight: availableHeight,
-                parallax: parallax,
+                fitContent: cardBackdrop,
                 showDragHandle: showDragHandle,
                 hasHeader: hasHeader,
                 onDismiss: close,
@@ -692,6 +693,7 @@ class _FluxerSheetPresentationState extends State<_FluxerSheetPresentation>
     with SingleTickerProviderStateMixin
     implements FluxerSheetDragTarget {
   final ValueNotifier<double> _dragOffset = ValueNotifier<double>(0);
+  final ValueNotifier<double> _recede = ValueNotifier<double>(0);
   late final FluxerSheetScrollController _scrollController =
       FluxerSheetScrollController(this);
   late final AnimationController _settle = AnimationController(
@@ -716,10 +718,12 @@ class _FluxerSheetPresentationState extends State<_FluxerSheetPresentation>
       _backdrop ??= FluxerSheetBackdropLink(
         widget.navigator,
         route: ModalRoute.of(context),
+        onCovered: _reportBackdrop,
       );
     } else {
       _backdrop?.dispose();
       _backdrop = null;
+      _recede.value = 0;
     }
     _route = ModalRoute.of(context);
     final Animation<double>? animation = _route?.animation;
@@ -743,6 +747,7 @@ class _FluxerSheetPresentationState extends State<_FluxerSheetPresentation>
     _settle.dispose();
     _scrollController.dispose();
     _dragOffset.dispose();
+    _recede.dispose();
     super.dispose();
   }
 
@@ -812,11 +817,17 @@ class _FluxerSheetPresentationState extends State<_FluxerSheetPresentation>
     if (backdrop == null) {
       return;
     }
+    if (!backdrop.covers(height)) {
+      _recede.value = 0;
+      backdrop.report(0);
+      return;
+    }
+    final double depth = backdrop.depth;
+    _recede.value = depth;
     backdrop.report(
-      backdrop.covers(height)
-          ? fluxerSheetBackdropProgress(animation, route.transitionDuration) *
-                travel
-          : 0,
+      fluxerSheetBackdropProgress(animation, route.transitionDuration) *
+          travel *
+          (1 + depth),
     );
   }
 
@@ -827,11 +838,19 @@ class _FluxerSheetPresentationState extends State<_FluxerSheetPresentation>
       child: PrimaryScrollController(
         controller: _scrollController,
         child: ValueListenableBuilder<double>(
-          valueListenable: _dragOffset,
-          child: widget.child,
-          builder: (BuildContext context, double offset, Widget? child) {
-            return Transform.translate(offset: Offset(0, offset), child: child);
-          },
+          valueListenable: _recede,
+          child: ValueListenableBuilder<double>(
+            valueListenable: _dragOffset,
+            child: widget.child,
+            builder: (BuildContext context, double offset, Widget? child) {
+              return Transform.translate(
+                offset: Offset(0, offset),
+                child: child,
+              );
+            },
+          ),
+          builder: (BuildContext context, double depth, Widget? child) =>
+              fluxerSheetRecede(depth: depth, child: child!),
         ),
       ),
     );
@@ -903,7 +922,7 @@ class FluxerDraggableScrollableSheet extends StatefulWidget {
     required this.halfChildSize,
     required this.initialChildSize,
     required this.maxHeight,
-    required this.parallax,
+    required this.fitContent,
     required this.showDragHandle,
     required this.hasHeader,
     required this.onDismiss,
@@ -925,7 +944,7 @@ class FluxerDraggableScrollableSheet extends StatefulWidget {
   final double halfChildSize;
   final double initialChildSize;
   final double maxHeight;
-  final bool parallax;
+  final bool fitContent;
   final bool showDragHandle;
   final bool hasHeader;
   final VoidCallback onDismiss;
@@ -953,28 +972,46 @@ class _FluxerDraggableScrollableSheetState
     vsync: this,
     value: widget.initialChildSize,
   )..addListener(_reportBackdrop);
+  final ValueNotifier<double> _recede = ValueNotifier<double>(0);
   late final FluxerSheetScrollController _scrollController =
-      FluxerSheetScrollController(this, dragsWhenShort: true);
+      FluxerSheetScrollController(
+        this,
+        dragsWhenShort: true,
+        onContentExtent: widget.fitContent ? _handleContentExtent : null,
+      );
 
   bool _dismissed = false;
   bool _routeDidEnter = false;
   bool _dragging = false;
+  bool _fitScheduled = false;
+  bool _shown = false;
   double _available = 0;
+  double _layoutHeight = 0;
+  double _contentHeight = 0;
+  late double _restingSize = widget.initialChildSize;
   Animation<double>? _routeAnimation;
   FluxerSheetBackdropLink? _backdrop;
   ModalRoute<dynamic>? _route;
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _shown = true);
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (widget.parallax && _fluxerSheetDrivesBackdrop(context)) {
+    if (_topSnapIsFull && _fluxerSheetDrivesBackdrop(context)) {
       _backdrop ??= FluxerSheetBackdropLink(
         widget.navigator,
         route: ModalRoute.of(context),
+        onCovered: _reportBackdrop,
       );
     } else {
       _backdrop?.dispose();
       _backdrop = null;
+      _recede.value = 0;
     }
     _route = ModalRoute.of(context);
     final Animation<double>? animation = _route?.animation;
@@ -997,9 +1034,63 @@ class _FluxerDraggableScrollableSheetState
   @override
   void didUpdateWidget(FluxerDraggableScrollableSheet oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.bottomInset <= 0 && widget.bottomInset > 0) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => _expandForKeyboard());
+    if (widget.bottomInset > oldWidget.bottomInset) {
+      final bool opening = oldWidget.bottomInset <= 0;
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => _expandForKeyboard(animate: opening),
+      );
+    } else if (widget.bottomInset < oldWidget.bottomInset) {
+      _scheduleFit();
     }
+  }
+
+  double get _maxSize {
+    if (_contentHeight <= 0 || _available <= 0) {
+      return widget.maxChildSize;
+    }
+    return math.min(
+      widget.maxChildSize,
+      (_contentHeight + widget.bottomInset) / _available,
+    );
+  }
+
+  double get _halfSize => math.min(widget.halfChildSize, _maxSize);
+
+  double get _restSize =>
+      math.min(_halfSize, math.min(widget.initialChildSize, _maxSize));
+
+  void _handleContentExtent(double viewportExtent, double contentExtent) {
+    if ((contentExtent - viewportExtent).abs() < 0.5) {
+      return;
+    }
+    final double height = _layoutHeight - viewportExtent + contentExtent;
+    if (height <= _contentHeight + 0.5) {
+      return;
+    }
+    _contentHeight = height;
+    _scheduleFit(jump: !_shown);
+  }
+
+  void _scheduleFit({bool jump = false}) {
+    if (_fitScheduled) {
+      return;
+    }
+    _fitScheduled = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _fitScheduled = false;
+      if (!mounted || _dismissed || _dragging) {
+        return;
+      }
+      final double target = math.min(_restingSize, _maxSize);
+      if ((_size.value - target).abs() >= _kSheetSizeEpsilon) {
+        if (jump) {
+          _size.value = target;
+        } else {
+          _moveTo(target);
+        }
+      }
+      setState(() {});
+    });
   }
 
   @override
@@ -1009,11 +1100,16 @@ class _FluxerDraggableScrollableSheetState
       ..removeListener(_reportBackdrop);
     _backdrop?.dispose();
     _size.dispose();
+    _recede.dispose();
     _scrollController.dispose();
     super.dispose();
   }
 
-  void _expandForKeyboard() {
+  bool get _topSnapIsFull =>
+      widget.maxChildSize >= kFluxerBottomSheetFullSize - _kSheetSizeEpsilon &&
+      widget.halfChildSize < widget.maxChildSize - _kSheetSizeEpsilon;
+
+  void _expandForKeyboard({required bool animate}) {
     if (!mounted || _dismissed || _dragging || !canExpand) {
       return;
     }
@@ -1026,7 +1122,12 @@ class _FluxerDraggableScrollableSheetState
             this) {
       return;
     }
-    _moveTo(widget.maxChildSize);
+    _restingSize = _maxSize;
+    if (animate) {
+      _moveTo(_restingSize);
+    } else {
+      _size.value = _restingSize;
+    }
   }
 
   void _moveTo(double target) {
@@ -1057,10 +1158,7 @@ class _FluxerDraggableScrollableSheetState
     if (route == null || animation == null) {
       return;
     }
-    final double restSize = math.min(
-      widget.halfChildSize,
-      widget.initialChildSize,
-    );
+    final double restSize = _restSize;
     final double travel = restSize > 0
         ? (_size.value / restSize).clamp(0, 1)
         : 1;
@@ -1071,14 +1169,16 @@ class _FluxerDraggableScrollableSheetState
     if (backdrop == null) {
       return;
     }
-    final double floor = widget.halfChildSize < widget.initialChildSize
-        ? widget.halfChildSize
-        : 0;
-    final double parallax =
-        ((_size.value - floor) / (widget.initialChildSize - floor)).clamp(0, 1);
+    final double fullness =
+        ((_size.value - widget.halfChildSize) /
+                (widget.maxChildSize - widget.halfChildSize))
+            .clamp(0, 1);
+    final double depth = backdrop.depth * fullness;
+    _recede.value = depth;
     backdrop.report(
       fluxerSheetBackdropProgress(animation, route.transitionDuration) *
-          parallax,
+          fullness *
+          (1 + depth),
     );
   }
 
@@ -1094,7 +1194,7 @@ class _FluxerDraggableScrollableSheetState
   }
 
   @override
-  bool get canExpand => _size.value < widget.maxChildSize - _kSheetSizeEpsilon;
+  bool get canExpand => _size.value < _maxSize - _kSheetSizeEpsilon;
 
   @override
   void dragBy(double deltaDy) {
@@ -1110,7 +1210,7 @@ class _FluxerDraggableScrollableSheetState
       deltaDy: deltaDy,
       availablePixels: _available,
       minChildSize: widget.minChildSize,
-      maxChildSize: widget.maxChildSize,
+      maxChildSize: _maxSize,
     );
   }
 
@@ -1123,8 +1223,8 @@ class _FluxerDraggableScrollableSheetState
     final double size = _size.value;
     final double? target = fluxerBottomSheetSnapTarget(
       size: size,
-      halfSize: widget.halfChildSize,
-      fullSize: widget.maxChildSize,
+      halfSize: _halfSize,
+      fullSize: _maxSize,
       velocity: velocityDy,
       availablePixels: _available,
     );
@@ -1132,6 +1232,7 @@ class _FluxerDraggableScrollableSheetState
       _dismiss();
       return;
     }
+    _restingSize = target;
     if ((size - target).abs() < _kSheetSizeEpsilon) {
       return;
     }
@@ -1148,13 +1249,15 @@ class _FluxerDraggableScrollableSheetState
         child: LayoutBuilder(
           builder: (context, constraints) {
             final double restHeight =
-                math.min(widget.halfChildSize, widget.initialChildSize) *
-                    _available -
-                widget.bottomInset;
+                _restSize * _available - widget.bottomInset;
             final double layoutHeight = math.max(
               constraints.maxHeight,
-              math.max(restHeight, 160),
+              math.max(
+                restHeight,
+                math.min(160, _maxSize * _available - widget.bottomInset),
+              ),
             );
+            _layoutHeight = layoutHeight;
             return OverflowBox(
               alignment: Alignment.topCenter,
               minHeight: layoutHeight,
@@ -1204,13 +1307,18 @@ class _FluxerDraggableScrollableSheetState
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           _available = math.min(widget.maxHeight, constraints.maxHeight);
-          return AnimatedBuilder(
-            animation: _size,
-            child: surface,
-            builder: (BuildContext context, Widget? child) => SizedBox(
-              height: math.max(0, _size.value * _available),
-              child: child,
+          return ValueListenableBuilder<double>(
+            valueListenable: _recede,
+            child: AnimatedBuilder(
+              animation: _size,
+              child: surface,
+              builder: (BuildContext context, Widget? child) => SizedBox(
+                height: math.max(0, _size.value * _available),
+                child: child,
+              ),
             ),
+            builder: (BuildContext context, double depth, Widget? child) =>
+                fluxerSheetRecede(depth: depth, child: child!),
           );
         },
       ),
@@ -1609,8 +1717,17 @@ class FluxerBottomSheetFooter extends StatelessWidget {
 
 class FluxerMenuGroup extends StatelessWidget {
   final List<Widget> children;
+  final Color? color;
+  final BorderRadius? borderRadius;
+  final bool roundedRows;
 
-  const FluxerMenuGroup({required this.children, super.key});
+  const FluxerMenuGroup({
+    required this.children,
+    this.color,
+    this.borderRadius,
+    this.roundedRows = false,
+    super.key,
+  });
 
   static bool isGrouped(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_FluxerMenuGroupScope>() !=
@@ -1627,10 +1744,16 @@ class FluxerMenuGroup extends StatelessWidget {
 
     final layout = context.layout;
 
+    if (roundedRows) {
+      return _FluxerMenuGroupScope(
+        child: Column(mainAxisSize: MainAxisSize.min, children: children),
+      );
+    }
+
     return Material(
-      color: FluxerBottomSheet.cardColorOf(context),
+      color: color ?? FluxerBottomSheet.cardColorOf(context),
       surfaceTintColor: Colors.transparent,
-      borderRadius: layout.radiusXxl,
+      borderRadius: borderRadius ?? layout.radiusXxl,
       clipBehavior: Clip.antiAlias,
       child: _FluxerMenuGroupScope(
         child: Column(
@@ -1686,6 +1809,7 @@ class FluxerBottomSheetMenuItem extends StatelessWidget {
   final Widget? trailing;
   final bool? toggled;
   final Color? labelColor;
+  final bool dense;
 
   const FluxerBottomSheetMenuItem({
     required this.label,
@@ -1701,6 +1825,7 @@ class FluxerBottomSheetMenuItem extends StatelessWidget {
     this.trailing,
     this.toggled,
     this.labelColor,
+    this.dense = false,
   });
 
   @override
@@ -1718,40 +1843,70 @@ class FluxerBottomSheetMenuItem extends StatelessWidget {
       excludeChildSemantics: true,
       builder: (context, states) {
         final isPressed = states.contains(WidgetState.pressed);
+        final isHovered = states.contains(WidgetState.hovered);
+
+        final layout = context.layout;
+        final double rowMinHeight = dense ? kSidebarPeekMenuRowHeight : 56;
+        final double rowVerticalPadding = dense
+            ? kSidebarPeekMenuItemVerticalPadding
+            : 14;
+        final double iconBoxSize = dense ? kSidebarPeekMenuItemIconSize : 20;
+        final double iconSize = dense ? kSidebarPeekMenuItemIconSize : 20;
+        final double rowGap = dense ? kSidebarPeekMenuItemRowGap : 12;
+
+        final BoxDecoration? rowDecoration = dense
+            ? BoxDecoration(
+                color: isPressed
+                    ? colors.listItemPressedBg
+                    : isHovered && enabled
+                    ? colors.backgroundModifierHover
+                    : Colors.transparent,
+                borderRadius: layout.radiusXl,
+              )
+            : null;
 
         return AnimatedContainer(
           duration: context.motion.fast,
           curve: context.motion.curve,
-          color: isPressed ? colors.listItemPressedBg : Colors.transparent,
+          margin: dense
+              ? EdgeInsets.symmetric(
+                  horizontal: layout.s2,
+                  vertical: kSidebarPeekMenuItemVerticalMargin,
+                )
+              : null,
+          decoration: rowDecoration,
+          color: dense
+              ? null
+              : (isPressed ? colors.listItemPressedBg : Colors.transparent),
           child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 56),
+            constraints: BoxConstraints(minHeight: rowMinHeight),
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: context.layout.groupRowInset,
-                vertical: 14,
+                horizontal: layout.groupRowInset,
+                vertical: rowVerticalPadding,
               ),
               child: Row(
                 children: [
                   if (leading case final leading?) ...[
                     SizedBox(
-                      width: 20,
-                      height: 20,
+                      width: iconBoxSize,
+                      height: iconBoxSize,
                       child: Center(child: leading),
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: rowGap),
                   ] else if (icon != null) ...[
                     SizedBox(
-                      width: 20,
-                      height: 20,
+                      width: iconBoxSize,
+                      height: iconBoxSize,
                       child: Center(
                         child: PhosphorIcon(
                           icon!,
                           color: iconColor ?? baseColor,
-                          size: 20,
+                          size: iconSize,
                         ),
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: rowGap),
                   ],
                   Expanded(
                     child: Column(
@@ -1763,6 +1918,8 @@ class FluxerBottomSheetMenuItem extends StatelessWidget {
                           style: context.textStyles.username.copyWith(
                             color: enabled ? baseColor : colors.textTertiary,
                           ),
+                          maxLines: dense ? 1 : null,
+                          overflow: dense ? TextOverflow.ellipsis : null,
                         ),
                         if (hint != null)
                           Text(
@@ -1770,15 +1927,17 @@ class FluxerBottomSheetMenuItem extends StatelessWidget {
                             style: context.textStyles.timestamp.copyWith(
                               color: colors.textTertiary,
                             ),
+                            maxLines: dense ? 1 : null,
+                            overflow: dense ? TextOverflow.ellipsis : null,
                           ),
                       ],
                     ),
                   ),
                   if (trailing != null) ...[
-                    const SizedBox(width: 12),
+                    SizedBox(width: rowGap),
                     trailing!,
                   ] else if (isSelected) ...[
-                    const SizedBox(width: 12),
+                    SizedBox(width: rowGap),
                     const FluxerSelectedCheck(),
                   ],
                 ],

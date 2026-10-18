@@ -4695,6 +4695,14 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   }
 
   @override
+  String get lookAndFeelOpenCommunitiesToLastChannelLabel =>
+      'Open communities to your last channel';
+
+  @override
+  String get lookAndFeelOpenCommunitiesToLastChannelDescription =>
+      'Tapping a community takes you straight to the last channel you viewed there. Swipe right to see its channel list.';
+
+  @override
   String get lookAndFeelChannelListSectionTitle => '채널 목록';
 
   @override
@@ -5815,6 +5823,12 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get voiceStopWatchingCurrentStreamTooltip => '현재 스트림 시청 중단';
+
+  @override
+  String get voiceScreenShareEnterFullscreenTooltip => 'Full screen';
+
+  @override
+  String get voiceScreenShareExitFullscreenTooltip => 'Exit full screen';
 
   @override
   String get voiceOwnScreenShareTitle => '방송 중입니다';
@@ -7868,6 +7882,30 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get channelMenuDuplicateChannel => '채널 복제';
 
   @override
+  String channelDuplicateHelper(String channelName) {
+    return 'The new channel will reuse the permissions from $channelName.';
+  }
+
+  @override
+  String channelDuplicateVoiceHelper(String channelName) {
+    return 'The new voice channel will reuse the permissions, user limit, and bitrate from $channelName.';
+  }
+
+  @override
+  String get channelMenuMoveToCategory => 'Move to category';
+
+  @override
+  String get channelMenuNoCategory => 'No category';
+
+  @override
+  String get channelMoveCategoryFullTitle => 'Category full';
+
+  @override
+  String channelMoveCategoryFullMessage(int maxChannelsPerCategory) {
+    return 'This category already contains the maximum of $maxChannelsPerCategory channels.';
+  }
+
+  @override
   String get channelMenuResetMatureContentAgreeState => '성인 콘텐츠 동의 상태 재설정';
 
   @override
@@ -8581,6 +8619,25 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get groupDmInviteRevoked => '초대 취소됨';
 
   @override
+  String get groupDmRemoveFromGroup => 'Remove from group';
+
+  @override
+  String groupDmRemoveFromGroupConfirm(String userName) {
+    return 'Remove $userName from the group?';
+  }
+
+  @override
+  String get groupDmRemoveFromGroupAction => 'Remove';
+
+  @override
+  String get groupDmRemovedFromGroup => 'Removed from group';
+
+  @override
+  String groupDmRemoveFromGroupFailed(String userName) {
+    return '$userName is still in the group. Try again in a moment.';
+  }
+
+  @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return '$name님이 만들었으며, $time 후에 만료됩니다.';
   }
@@ -8643,6 +8700,13 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get chatAttachmentLibraryPermissionSettings => '설정 열기';
+
+  @override
+  String get chatAttachmentLibraryLimitedBody =>
+      'Only photos and videos you chose to share are shown here.';
+
+  @override
+  String get chatAttachmentLibraryLimitedManage => 'Manage';
 
   @override
   String messageAccessibilityLabel(String author, String summary) {
@@ -9857,17 +9921,15 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get advancedPerformanceReportingTitle => '성능 보고';
 
   @override
-  String advancedPerformanceReportingSectionDescription(String productName) {
-    return '익명의 충돌 및 성능 데이터를 공유하여 $productName를 개선하세요.';
-  }
+  String get advancedCrashReportingSectionDescription =>
+      'Help Fluxer fix bugs in this app by sharing crash and performance data. This is off by default.';
 
   @override
   String get advancedPerformanceReportingLabel => '충돌 및 성능 보고서 보내기';
 
   @override
-  String advancedPerformanceReportingDescription(String productName) {
-    return '보고된 모든 데이터는 익명이며 $productName 자체 모니터링 서비스로만 전송됩니다. 제3자 제공업체는 사용되지 않습니다.';
-  }
+  String get advancedCrashReportingDescription =>
+      'Reports go to Fluxer\'s error tracker, whichever instance you\'re signed in to. They don\'t include instance names, IDs or message content.';
 
   @override
   String get advancedSettingsConfigure => '구성';
@@ -14753,59 +14815,6 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get favoritesRenameCategory => '카테고리 이름 변경';
 
   @override
-  String get captchaTitle => '인간임을 인증하세요';
-
-  @override
-  String get captchaDescription => '봇이 아님을 확인해야 합니다. 아래 인증을 완료해주세요.';
-
-  @override
-  String get captchaSwitchToHcaptcha => '문제가 있으신가요? 대신 hCaptcha를 사용해보세요';
-
-  @override
-  String get captchaSwitchToTurnstile => '대신 Turnstile을 사용해보세요';
-
-  @override
-  String get phoneCaptchaRequired =>
-      '전화번호 인증 전에 브라우저 확인이 필요합니다. 로그인 페이지에서 다시 시도하거나 고객 지원팀에 문의하세요.';
-
-  @override
-  String get advancedSettingShowNekoKeywordCat => '고양이';
-
-  @override
-  String get advancedSettingShowNekoKeywordNeko => 'Neko';
-
-  @override
-  String get threadsAddMember => 'Add member';
-
-  @override
-  String get threadsAddMemberSearchLabel => 'Search members';
-
-  @override
-  String get threadsAddMemberNoResults => 'No members match that search.';
-
-  @override
-  String get threadsMemberAddedToast => 'Member added';
-
-  @override
-  String get groupDmRemoveFromGroup => 'Remove from group';
-
-  @override
-  String groupDmRemoveFromGroupConfirm(String userName) {
-    return 'Remove $userName from the group?';
-  }
-
-  @override
-  String get groupDmRemoveFromGroupAction => 'Remove';
-
-  @override
-  String get groupDmRemovedFromGroup => 'Removed from group';
-
-  @override
-  String groupDmRemoveFromGroupFailed(String userName) {
-    return '$userName is still in the group. Try again in a moment.';
-  }
-
-  @override
   String get friendAcceptFailedTitle => 'Couldn\'t accept friend request';
 
   @override
@@ -15421,4 +15430,46 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   @override
   String get premiumCheckoutBlockedBodySelfHosted =>
       'Checkout is blocked for this account.';
+
+  @override
+  String get advancedPerformanceReportingSectionDescription =>
+      'Help improve echowire by sharing anonymous crash and performance data.';
+
+  @override
+  String get advancedPerformanceReportingDescription =>
+      'All reported data is anonymous and is sent only to echowire\'s own monitoring service — no third-party providers are used.';
+
+  @override
+  String get captchaTitle => '인간임을 인증하세요';
+
+  @override
+  String get captchaDescription => '봇이 아님을 확인해야 합니다. 아래 인증을 완료해주세요.';
+
+  @override
+  String get captchaSwitchToHcaptcha => '문제가 있으신가요? 대신 hCaptcha를 사용해보세요';
+
+  @override
+  String get captchaSwitchToTurnstile => '대신 Turnstile을 사용해보세요';
+
+  @override
+  String get phoneCaptchaRequired =>
+      '전화번호 인증 전에 브라우저 확인이 필요합니다. 로그인 페이지에서 다시 시도하거나 고객 지원팀에 문의하세요.';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => '고양이';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
 }

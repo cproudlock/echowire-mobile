@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/router/guild_root_redirect.dart';
 import 'package:fluxer_app/core/router/route_kind.dart';
@@ -7,8 +8,11 @@ import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/features/channels/providers/channel_list_view_model.dart';
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
+import 'package:fluxer_app/features/guilds/providers/guild_availability_provider.dart';
+import 'package:fluxer_app/features/settings/providers/open_communities_to_last_channel_provider.dart';
 import 'package:fluxer_app/features/shell/providers/drawer_reveal_sync_trigger_provider.dart';
 import 'package:fluxer_app/features/shell/providers/reveal_side_provider.dart';
+import 'package:fluxer_app/features/voice/providers/voice_pip_providers.dart';
 
 class DrawerNavigationCoordinator {
   const DrawerNavigationCoordinator._();
@@ -32,6 +36,9 @@ class DrawerNavigationCoordinator {
   }
 
   static void revealDrawer(ProviderContainer container) {
+    if (container.read(handheldVoiceImmersiveProvider)) {
+      return;
+    }
     container.read(currentRevealSideProvider.notifier).set(RevealSide.left);
     container.read(drawerRevealSyncTriggerProvider.notifier).nudge();
   }
@@ -59,6 +66,21 @@ class DrawerNavigationCoordinator {
   ) async {
     talker.debug('[DrawerNavigation] selectGuild guildId=$guildId');
     final int generation = ++_selectGuildGeneration;
+    final bool switchingGuild =
+        container.read(activeGuildIdProvider) != guildId;
+    final bool openLastChannel = container.read(
+      openCommunitiesToLastChannelProvider,
+    );
+    container
+        .read(channelListViewModelProvider.notifier)
+        .loadActiveGuild(guildId);
+    final Future<String?> lastChannelPath = switchingGuild && openLastChannel
+        ? _lastChannelPathToOpen(container, guildId)
+        : Future<String?>.value();
+    if (switchingGuild && !openLastChannel) {
+      revealDrawer(container);
+      container.read(fluxerRouterProvider).go(RoutePaths.guild(guildId));
+    }
     try {
       await primeGuildChannelUnreads(container, guildId);
     } on Object catch (error, stackTrace) {
@@ -67,11 +89,42 @@ class DrawerNavigationCoordinator {
     if (generation != _selectGuildGeneration) {
       return;
     }
-    container
-        .read(channelListViewModelProvider.notifier)
-        .loadActiveGuild(guildId);
+    final String? chatPath = await lastChannelPath;
+    if (generation != _selectGuildGeneration) {
+      return;
+    }
+    if (chatPath != null) {
+      navigateToContent(container, chatPath);
+      return;
+    }
+    if (switchingGuild) {
+      revealDrawer(container);
+      container.read(fluxerRouterProvider).go(RoutePaths.guild(guildId));
+      return;
+    }
     revealDrawer(container);
     container.read(fluxerRouterProvider).go(RoutePaths.guild(guildId));
+  }
+
+  static Future<String?> _lastChannelPathToOpen(
+    ProviderContainer container,
+    String guildId,
+  ) async {
+    if (!container.read(openCommunitiesToLastChannelProvider) ||
+        container.read(activeGuildIdProvider) == guildId) {
+      return null;
+    }
+    final String? path = await resolveGuildRootRedirect(
+      guildId: guildId,
+      fullPath: RoutePaths.guild(guildId),
+      db: container.read(fluxerDatabaseProvider),
+      currentUserId: container.read(currentUserIdProvider),
+      trackedUnavailableGuildIds: container.read(guildAvailabilityProvider),
+    );
+    if (path == null || classifyRoute(path) != RouteKind.chat) {
+      return null;
+    }
+    return path;
   }
 
   static void openGuildChannelList(
@@ -91,6 +144,32 @@ class DrawerNavigationCoordinator {
         );
   }
 
+  static void openImmersiveGuildVoiceCall(
+    ProviderContainer container, {
+    required String guildId,
+    required String channelId,
+  }) {
+    talker.debug(
+      '[DrawerNavigation] openImmersiveGuildVoiceCall guildId=$guildId channelId=$channelId',
+    );
+    container
+        .read(channelListViewModelProvider.notifier)
+        .loadActiveGuild(guildId);
+    closeDrawer(container);
+    navigateToContent(container, RoutePaths.guildChannel(guildId, channelId));
+  }
+
+  static void openImmersiveDmVoiceCall(
+    ProviderContainer container, {
+    required String channelId,
+  }) {
+    talker.debug(
+      '[DrawerNavigation] openImmersiveDmVoiceCall channelId=$channelId',
+    );
+    closeDrawer(container);
+    navigateToContent(container, RoutePaths.dmChannelCall(channelId));
+  }
+
   static void leaveDeletedChannel(
     ProviderContainer container,
     String channelId,
@@ -107,6 +186,19 @@ class DrawerNavigationCoordinator {
     );
     revealDrawer(container);
     container.read(fluxerRouterProvider).go(path);
+  }
+
+  static void leaveDeletedGuild(ProviderContainer container, String guildId) {
+    container.read(channelListViewModelProvider.notifier).forgetGuild(guildId);
+    final String location = container
+        .read(routeStateProvider)
+        .effectiveShellLocation;
+    if (extractGuildId(location) != guildId) {
+      return;
+    }
+    talker.debug('[DrawerNavigation] leaveDeletedGuild guildId=$guildId');
+    revealDrawer(container);
+    container.read(fluxerRouterProvider).go(RoutePaths.me);
   }
 
   static void selectFavorites(ProviderContainer container) {

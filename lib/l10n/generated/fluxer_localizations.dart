@@ -2051,7 +2051,7 @@ abstract class FluxerLocalizations {
   /// Description for the mute toggle in guild notification settings.
   ///
   /// In en, this message translates to:
-  /// **'Muting a community prevents unread indicators and notifications from appearing unless you are mentioned'**
+  /// **'Muting a community hides its unread badge and prevents notifications from appearing'**
   String get notificationMuteDescription;
 
   /// Section title for notification frequency options.
@@ -7841,7 +7841,7 @@ abstract class FluxerLocalizations {
   /// Subsection description for guild sidebar config.
   ///
   /// In en, this message translates to:
-  /// **'Configure how the guild sidebar displays direct messages.'**
+  /// **'Configure how direct messages and communities behave in the sidebar.'**
   String get lookAndFeelGuildSidebarDescription;
 
   /// Tooltip on the aggregate outage badge in the guild sidebar when one or more communities are unavailable.
@@ -7900,6 +7900,18 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'When enabled, unread DMs in the guild sidebar are collapsed into a folder on the echowire button. Click the echowire button while on the DMs page to expand or collapse the folder.'**
   String lookAndFeelCollapseDMsDescription(String productName);
+
+  /// Toggle label. When on, tapping a community in the community list opens the last channel the user viewed there instead of its channel list.
+  ///
+  /// In en, this message translates to:
+  /// **'Open communities to your last channel'**
+  String get lookAndFeelOpenCommunitiesToLastChannelLabel;
+
+  /// Toggle description for opening communities to the last viewed channel.
+  ///
+  /// In en, this message translates to:
+  /// **'Tapping a community takes you straight to the last channel you viewed there. Swipe right to see its channel list.'**
+  String get lookAndFeelOpenCommunitiesToLastChannelDescription;
 
   /// Section title for channel list options.
   ///
@@ -9824,6 +9836,18 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Stop watching the current stream'**
   String get voiceStopWatchingCurrentStreamTooltip;
+
+  /// Tooltip for expanding a watched screen share to full screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Full screen'**
+  String get voiceScreenShareEnterFullscreenTooltip;
+
+  /// Tooltip for leaving full screen while watching a screen share.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit full screen'**
+  String get voiceScreenShareExitFullscreenTooltip;
 
   /// Title on the participant's own screen-share tile when they are sharing their screen.
   ///
@@ -13329,6 +13353,42 @@ abstract class FluxerLocalizations {
   /// **'Duplicate channel'**
   String get channelMenuDuplicateChannel;
 
+  /// Helper text under the name field in the duplicate channel sheet. channelName is the source channel name with a leading #.
+  ///
+  /// In en, this message translates to:
+  /// **'The new channel will reuse the permissions from {channelName}.'**
+  String channelDuplicateHelper(String channelName);
+
+  /// Helper text under the name field in the duplicate channel sheet when the source is a voice channel. channelName is the source channel name with a leading #.
+  ///
+  /// In en, this message translates to:
+  /// **'The new voice channel will reuse the permissions, user limit, and bitrate from {channelName}.'**
+  String channelDuplicateVoiceHelper(String channelName);
+
+  /// Guild channel menu action that opens a sheet to move the channel into another category or out of any category.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to category'**
+  String get channelMenuMoveToCategory;
+
+  /// Option in the move to category sheet that moves the channel out of its category.
+  ///
+  /// In en, this message translates to:
+  /// **'No category'**
+  String get channelMenuNoCategory;
+
+  /// Dialog title shown when a channel cannot be moved because the target category is full.
+  ///
+  /// In en, this message translates to:
+  /// **'Category full'**
+  String get channelMoveCategoryFullTitle;
+
+  /// Dialog body shown when a category cannot accept another channel because the per-category limit is reached.
+  ///
+  /// In en, this message translates to:
+  /// **'This category already contains the maximum of {maxChannelsPerCategory} channels.'**
+  String channelMoveCategoryFullMessage(int maxChannelsPerCategory);
+
   /// Developer tool action that forgets a local mature-content gate acknowledgement.
   ///
   /// In en, this message translates to:
@@ -14667,6 +14727,36 @@ abstract class FluxerLocalizations {
   /// **'Invite revoked'**
   String get groupDmInviteRevoked;
 
+  /// Group DM member action and confirm title for removing the selected member from the group.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from group'**
+  String get groupDmRemoveFromGroup;
+
+  /// Confirm dialog body before removing a member from a group DM.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {userName} from the group?'**
+  String groupDmRemoveFromGroupConfirm(String userName);
+
+  /// Confirm button that removes the selected member from a group DM.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get groupDmRemoveFromGroupAction;
+
+  /// Toast confirming the selected member was removed from the group DM.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from group'**
+  String get groupDmRemovedFromGroup;
+
+  /// Error shown when removing a member from a group DM fails.
+  ///
+  /// In en, this message translates to:
+  /// **'{userName} is still in the group. Try again in a moment.'**
+  String groupDmRemoveFromGroupFailed(String userName);
+
   /// Mobile group invite row subtitle.
   ///
   /// In en, this message translates to:
@@ -14768,6 +14858,18 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Open settings'**
   String get chatAttachmentLibraryPermissionSettings;
+
+  /// Explains limited photo library access in the attachment gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Only photos and videos you chose to share are shown here.'**
+  String get chatAttachmentLibraryLimitedBody;
+
+  /// Opens the system picker to change which photos the app can access.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage'**
+  String get chatAttachmentLibraryLimitedManage;
 
   /// Screen reader label for a chat message row.
   ///
@@ -16959,11 +17061,11 @@ abstract class FluxerLocalizations {
   /// **'Performance reporting'**
   String get advancedPerformanceReportingTitle;
 
-  /// Advanced settings section description for crash and performance reporting.
+  /// Advanced settings section description for opt-in crash and performance reporting, which is off until the user turns it on. Keep the name Fluxer as is. Fluxer is the company that runs the error tracker.
   ///
   /// In en, this message translates to:
-  /// **'Help improve echowire by sharing anonymous crash and performance data.'**
-  String advancedPerformanceReportingSectionDescription(String productName);
+  /// **'Help Fluxer fix bugs in this app by sharing crash and performance data. This is off by default.'**
+  String get advancedCrashReportingSectionDescription;
 
   /// Toggle label for opting into crash and performance reporting.
   ///
@@ -16971,11 +17073,11 @@ abstract class FluxerLocalizations {
   /// **'Send crash and performance reports'**
   String get advancedPerformanceReportingLabel;
 
-  /// Toggle description explaining anonymous self-hosted performance reporting.
+  /// Toggle description for crash and performance reporting. Reports always go to the error tracker run by Fluxer, the company, never to the instance the user is signed in to, and leave out instance names, IDs and message content. Keep the name Fluxer as is.
   ///
   /// In en, this message translates to:
-  /// **'All reported data is anonymous and is sent only to echowire\'s own monitoring service — no third-party providers are used.'**
-  String advancedPerformanceReportingDescription(String productName);
+  /// **'Reports go to Fluxer\'s error tracker, whichever instance you\'re signed in to. They don\'t include instance names, IDs or message content.'**
+  String get advancedCrashReportingDescription;
 
   /// Button label that opens a dedicated advanced settings modal.
   ///
@@ -25434,102 +25536,6 @@ abstract class FluxerLocalizations {
   /// **'Rename category'**
   String get favoritesRenameCategory;
 
-  /// Title for the captcha verification modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Verify you\'re human'**
-  String get captchaTitle;
-
-  /// Explanatory text in the captcha modal body.
-  ///
-  /// In en, this message translates to:
-  /// **'We need to make sure you\'re not a bot. Please complete the verification below.'**
-  String get captchaDescription;
-
-  /// Link to switch from Turnstile to hCaptcha provider.
-  ///
-  /// In en, this message translates to:
-  /// **'Having issues? Try hCaptcha instead'**
-  String get captchaSwitchToHcaptcha;
-
-  /// Link to switch from hCaptcha to Turnstile provider.
-  ///
-  /// In en, this message translates to:
-  /// **'Try Turnstile instead'**
-  String get captchaSwitchToTurnstile;
-
-  /// Captcha required for phone verification.
-  ///
-  /// In en, this message translates to:
-  /// **'A browser check is required before phone verification. Try again from the sign-in page or contact support.'**
-  String get phoneCaptchaRequired;
-
-  /// Settings search keyword for the Pickles cat sprite setting.
-  ///
-  /// In en, this message translates to:
-  /// **'cat'**
-  String get advancedSettingShowNekoKeywordCat;
-
-  /// Settings search keyword: the former name of Pickles, the cat sprite, kept so the old name still finds the setting.
-  ///
-  /// In en, this message translates to:
-  /// **'Neko'**
-  String get advancedSettingShowNekoKeywordNeko;
-
-  /// Button that opens the picker for adding someone to a thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Add member'**
-  String get threadsAddMember;
-
-  /// Label of the search field in the thread add member picker.
-  ///
-  /// In en, this message translates to:
-  /// **'Search members'**
-  String get threadsAddMemberSearchLabel;
-
-  /// Shown when the thread add member search finds nobody.
-  ///
-  /// In en, this message translates to:
-  /// **'No members match that search.'**
-  String get threadsAddMemberNoResults;
-
-  /// Toast confirming someone was added to a thread.
-  ///
-  /// In en, this message translates to:
-  /// **'Member added'**
-  String get threadsMemberAddedToast;
-
-  /// Group DM member action and confirm title for removing the selected member from the group.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove from group'**
-  String get groupDmRemoveFromGroup;
-
-  /// Confirm dialog body before removing a member from a group DM.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove {userName} from the group?'**
-  String groupDmRemoveFromGroupConfirm(String userName);
-
-  /// Confirm button that removes the selected member from a group DM.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove'**
-  String get groupDmRemoveFromGroupAction;
-
-  /// Toast confirming the selected member was removed from the group DM.
-  ///
-  /// In en, this message translates to:
-  /// **'Removed from group'**
-  String get groupDmRemovedFromGroup;
-
-  /// Error shown when removing a member from a group DM fails.
-  ///
-  /// In en, this message translates to:
-  /// **'{userName} is still in the group. Try again in a moment.'**
-  String groupDmRemoveFromGroupFailed(String userName);
-
   /// Title of the dialog shown when accepting a friend request fails.
   ///
   /// In en, this message translates to:
@@ -26537,6 +26543,84 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Checkout is blocked for this account.'**
   String get premiumCheckoutBlockedBodySelfHosted;
+
+  /// No description provided for @advancedPerformanceReportingSectionDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Help improve echowire by sharing anonymous crash and performance data.'**
+  String get advancedPerformanceReportingSectionDescription;
+
+  /// No description provided for @advancedPerformanceReportingDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'All reported data is anonymous and is sent only to echowire\'s own monitoring service — no third-party providers are used.'**
+  String get advancedPerformanceReportingDescription;
+
+  /// Title for the captcha verification modal.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify you\'re human'**
+  String get captchaTitle;
+
+  /// Explanatory text in the captcha modal body.
+  ///
+  /// In en, this message translates to:
+  /// **'We need to make sure you\'re not a bot. Please complete the verification below.'**
+  String get captchaDescription;
+
+  /// Link to switch from Turnstile to hCaptcha provider.
+  ///
+  /// In en, this message translates to:
+  /// **'Having issues? Try hCaptcha instead'**
+  String get captchaSwitchToHcaptcha;
+
+  /// Link to switch from hCaptcha to Turnstile provider.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Turnstile instead'**
+  String get captchaSwitchToTurnstile;
+
+  /// Captcha required for phone verification.
+  ///
+  /// In en, this message translates to:
+  /// **'A browser check is required before phone verification. Try again from the sign-in page or contact support.'**
+  String get phoneCaptchaRequired;
+
+  /// Settings search keyword for the Pickles cat sprite setting.
+  ///
+  /// In en, this message translates to:
+  /// **'cat'**
+  String get advancedSettingShowNekoKeywordCat;
+
+  /// Settings search keyword: the former name of Pickles, the cat sprite, kept so the old name still finds the setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Neko'**
+  String get advancedSettingShowNekoKeywordNeko;
+
+  /// Button that opens the picker for adding someone to a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Add member'**
+  String get threadsAddMember;
+
+  /// Label of the search field in the thread add member picker.
+  ///
+  /// In en, this message translates to:
+  /// **'Search members'**
+  String get threadsAddMemberSearchLabel;
+
+  /// Shown when the thread add member search finds nobody.
+  ///
+  /// In en, this message translates to:
+  /// **'No members match that search.'**
+  String get threadsAddMemberNoResults;
+
+  /// Toast confirming someone was added to a thread.
+  ///
+  /// In en, this message translates to:
+  /// **'Member added'**
+  String get threadsMemberAddedToast;
 }
 
 class _FluxerLocalizationsDelegate

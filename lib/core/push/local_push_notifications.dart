@@ -20,6 +20,7 @@ import 'package:fluxer_app/core/push/push_notification_payload.dart';
 import 'package:fluxer_app/core/push/push_notification_reply.dart';
 import 'package:fluxer_app/core/push/push_notification_reply_background.dart';
 import 'package:fluxer_app/core/push/push_notification_sound.dart';
+import 'package:fluxer_app/core/push/push_notification_sound_settings.dart';
 import 'package:fluxer_app/core/push/push_notification_time.dart';
 
 export 'package:fluxer_app/core/push/android_push_channels.dart'
@@ -171,6 +172,24 @@ final class LocalPushNotifications {
         description: kAndroidPushChannelDescription,
         importance: Importance.high,
         sound: kPushNotificationMessageAndroidSound,
+      ),
+    );
+    await android.createNotificationChannel(
+      const AndroidNotificationChannel(
+        kAndroidPushSilentMessageChannelId,
+        kAndroidPushSilentMessageChannelName,
+        description: kAndroidPushChannelDescription,
+        importance: Importance.high,
+        playSound: false,
+      ),
+    );
+    await android.createNotificationChannel(
+      const AndroidNotificationChannel(
+        kAndroidPushSilentDirectMessageChannelId,
+        kAndroidPushSilentDirectMessageChannelName,
+        description: kAndroidPushChannelDescription,
+        importance: Importance.high,
+        playSound: false,
       ),
     );
   }
@@ -331,9 +350,12 @@ final class LocalPushNotifications {
     final List<String?> media = await Future.wait<String?>(<Future<String?>>[
       _downloadOptional(
         pushAuthorAvatarUrl(payload),
-        maxEdge: kPushAvatarMaxEdge,
+        downloadPushNotificationAvatar,
       ),
-      _downloadOptional(pushAttachmentImageUrl(payload)),
+      _downloadOptional(
+        pushAttachmentImageUrl(payload),
+        downloadPushNotificationImage,
+      ),
     ]);
     final String senderName = resolvePushSenderName(title);
     final PushConversationLine line = PushConversationLine(
@@ -374,7 +396,9 @@ final class LocalPushNotifications {
     if (lines.isEmpty) {
       return;
     }
-    final PushConversationLine latest = lines.last;
+    final List<PushConversationLine> shownLines =
+        pushConversationLinesWithExistingMedia(lines);
+    final PushConversationLine latest = shownLines.last;
     final String displayTitle = resolvePushNotificationDisplayTitle(
       payload,
       title: title,
@@ -384,17 +408,17 @@ final class LocalPushNotifications {
     replyPayload['message_id'] = latest.messageId;
     replyPayload[kLocalNotificationMessageIdKey] = latest.messageId;
     final String payloadJson = jsonEncode(replyPayload);
+    final bool soundEnabled = await isPushNotificationSoundEnabled(payload);
     final AndroidNotificationDetails androidDetails =
         buildAndroidConversationNotificationDetails(
-          androidChannelId: androidPushChannelId(payload),
-          androidChannelName: androidPushChannelName(payload),
           payload: payload,
-          lines: lines,
+          lines: shownLines,
           title: title,
           badgeCount: badgeCount,
           whenMillis: whenMillis,
           conversationTag: conversationTag,
           alert: alert,
+          soundEnabled: soundEnabled,
         );
     final bool shown = await _showAndroidConversationNotification(
       notificationId: notificationId,
@@ -405,11 +429,9 @@ final class LocalPushNotifications {
     );
     if (!shown) {
       final List<PushConversationLine> plainLines =
-          pushConversationLinesWithoutMedia(lines);
+          pushConversationLinesWithoutMedia(shownLines);
       final AndroidNotificationDetails plainDetails =
           buildAndroidConversationNotificationDetails(
-            androidChannelId: androidPushChannelId(payload),
-            androidChannelName: androidPushChannelName(payload),
             payload: payload,
             lines: plainLines,
             title: title,
@@ -417,6 +439,7 @@ final class LocalPushNotifications {
             whenMillis: whenMillis,
             conversationTag: conversationTag,
             alert: alert,
+            soundEnabled: soundEnabled,
           );
       final bool retryShown = await _showAndroidConversationNotification(
         notificationId: notificationId,
@@ -687,13 +710,13 @@ final class LocalPushNotifications {
     }
   }
 
-  Future<String?> _downloadOptional(String? url, {int? maxEdge}) async {
+  Future<String?> _downloadOptional(
+    String? url,
+    Future<String?> Function(String url) download,
+  ) async {
     if (url == null) {
       return null;
     }
-    if (maxEdge == null) {
-      return downloadPushNotificationImage(url);
-    }
-    return downloadPushNotificationImage(url, maxEdge: maxEdge);
+    return download(url);
   }
 }

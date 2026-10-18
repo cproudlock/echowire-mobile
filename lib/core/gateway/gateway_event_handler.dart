@@ -167,6 +167,7 @@ class GatewayEventHandler {
     this.onInviteDelete,
     this.onGuildPermissionsChanged,
     this.onGuildPermissionsEvict,
+    this.onGuildRemove,
     this.onChannelPermissionChanged,
     this.onChannelDelete,
     this.onSavedMessageCreate,
@@ -245,6 +246,7 @@ class GatewayEventHandler {
   final InviteDeleteCallback? onInviteDelete;
   final GuildCallback? onGuildPermissionsChanged;
   final GuildCallback? onGuildPermissionsEvict;
+  final GuildCallback? onGuildRemove;
   final ChannelCallback? onChannelPermissionChanged;
   final ChannelCallback? onChannelDelete;
   final SavedMessageCreateCallback? onSavedMessageCreate;
@@ -805,10 +807,6 @@ class GatewayEventHandler {
     final readStatesByChannelId = <String, GatewayReadState>{
       for (final readState in event.readStates) readState.id: readState,
     };
-    final hasUnavailableGuilds = event.rawGuilds.any(
-      (guild) => guild['unavailable'] as bool? ?? false,
-    );
-
     final List<String> prunedGuildIds = <String>[];
     final List<String> prunedChannelIds = <String>[];
     final List<VoiceState> readyVoiceStates = <VoiceState>[];
@@ -1156,7 +1154,6 @@ class GatewayEventHandler {
               for (final ChannelResponse ch in event.privateChannels) ch.id,
             });
         await database.messageDao.deleteMessagesForChannels(closedDmIds);
-        await database.readStateDao.deleteReadStatesForChannels(closedDmIds);
         prunedChannelIds.addAll(closedDmIds);
       }
 
@@ -1253,7 +1250,6 @@ class GatewayEventHandler {
             stickyUnreadMessageId: sticky,
             version: rs.version,
             flags: rs.flags,
-            missingSince: existing?.missingSince,
           );
         }
         await database.readStateDao.upsertReadStates(readStateCompanions);
@@ -1354,9 +1350,6 @@ class GatewayEventHandler {
     _lastReadyUserId = event.user.id;
     _hasCommittedReady = true;
     final hydratedSettings = event.userSettings;
-    if (!hasUnavailableGuilds) {
-      unawaited(readStateRepository?.cleanupStaleReadStates());
-    }
     _forgetPrunedChannels(prunedChannelIds);
     _emit(() {
       for (final guildId in prunedGuildIds) {
@@ -2281,8 +2274,10 @@ class GatewayEventHandler {
     _invalidateMentionCacheForChannel(channelId, guildId: event.guildId);
     unawaited(database.messageDao.deleteMessagesForChannel(channelId));
     unawaited(_deleteChannelRows(channelId));
-    readStateWriteBatcher?.discard(channelId);
-    unawaited(database.readStateDao.deleteReadState(channelId));
+    if (event.guildId != null) {
+      readStateWriteBatcher?.discard(channelId);
+      unawaited(database.readStateDao.deleteReadState(channelId));
+    }
     unawaited(_deleteThreadsForParent(channelId));
   }
 
@@ -2867,6 +2862,7 @@ class GatewayEventHandler {
   Future<void> _removeGuildLocally(String guildId) async {
     await removeGuildFromLocalDb(database, guildId);
     _emit(() => onGuildPermissionsEvict?.call(guildId));
+    _emit(() => onGuildRemove?.call(guildId));
   }
 
   void _handleRelationshipUpsert(RelationshipResponse relationship) {

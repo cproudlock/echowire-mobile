@@ -4865,6 +4865,14 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   }
 
   @override
+  String get lookAndFeelOpenCommunitiesToLastChannelLabel =>
+      'Open communities to your last channel';
+
+  @override
+  String get lookAndFeelOpenCommunitiesToLastChannelDescription =>
+      'Tapping a community takes you straight to the last channel you viewed there. Swipe right to see its channel list.';
+
+  @override
   String get lookAndFeelChannelListSectionTitle => 'Kanal Listesi';
 
   @override
@@ -6039,6 +6047,12 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String get voiceStopWatchingCurrentStreamTooltip =>
       'Mevcut akışı izlemeyi durdur';
+
+  @override
+  String get voiceScreenShareEnterFullscreenTooltip => 'Full screen';
+
+  @override
+  String get voiceScreenShareExitFullscreenTooltip => 'Exit full screen';
 
   @override
   String get voiceOwnScreenShareTitle => 'Yayın yapıyorsunuz';
@@ -8175,6 +8189,30 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get channelMenuDuplicateChannel => 'Kanalı çoğalt';
 
   @override
+  String channelDuplicateHelper(String channelName) {
+    return 'The new channel will reuse the permissions from $channelName.';
+  }
+
+  @override
+  String channelDuplicateVoiceHelper(String channelName) {
+    return 'The new voice channel will reuse the permissions, user limit, and bitrate from $channelName.';
+  }
+
+  @override
+  String get channelMenuMoveToCategory => 'Move to category';
+
+  @override
+  String get channelMenuNoCategory => 'No category';
+
+  @override
+  String get channelMoveCategoryFullTitle => 'Category full';
+
+  @override
+  String channelMoveCategoryFullMessage(int maxChannelsPerCategory) {
+    return 'This category already contains the maximum of $maxChannelsPerCategory channels.';
+  }
+
+  @override
   String get channelMenuResetMatureContentAgreeState =>
       'Yetişkin içeriği anlaşması durumunu sıfırla';
 
@@ -8940,6 +8978,25 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get groupDmInviteRevoked => 'Davet iptal edildi';
 
   @override
+  String get groupDmRemoveFromGroup => 'Remove from group';
+
+  @override
+  String groupDmRemoveFromGroupConfirm(String userName) {
+    return 'Remove $userName from the group?';
+  }
+
+  @override
+  String get groupDmRemoveFromGroupAction => 'Remove';
+
+  @override
+  String get groupDmRemovedFromGroup => 'Removed from group';
+
+  @override
+  String groupDmRemoveFromGroupFailed(String userName) {
+    return '$userName is still in the group. Try again in a moment.';
+  }
+
+  @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return '$name tarafından oluşturuldu. $time sonra sona eriyor.';
   }
@@ -9003,6 +9060,13 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get chatAttachmentLibraryPermissionSettings => 'Ayarları aç';
+
+  @override
+  String get chatAttachmentLibraryLimitedBody =>
+      'Only photos and videos you chose to share are shown here.';
+
+  @override
+  String get chatAttachmentLibraryLimitedManage => 'Manage';
 
   @override
   String messageAccessibilityLabel(String author, String summary) {
@@ -10274,18 +10338,16 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get advancedPerformanceReportingTitle => 'Performans raporlaması';
 
   @override
-  String advancedPerformanceReportingSectionDescription(String productName) {
-    return 'Anonim çökme ve performans verilerini paylaşarak $productName\'ı geliştirmeye yardımcı olun.';
-  }
+  String get advancedCrashReportingSectionDescription =>
+      'Help Fluxer fix bugs in this app by sharing crash and performance data. This is off by default.';
 
   @override
   String get advancedPerformanceReportingLabel =>
       'Çökme ve performans raporları gönder';
 
   @override
-  String advancedPerformanceReportingDescription(String productName) {
-    return 'Raporlanan tüm veriler anonimdir ve yalnızca $productName\'ın kendi izleme hizmetine gönderilir — üçüncü taraf sağlayıcı kullanılmaz.';
-  }
+  String get advancedCrashReportingDescription =>
+      'Reports go to Fluxer\'s error tracker, whichever instance you\'re signed in to. They don\'t include instance names, IDs or message content.';
 
   @override
   String get advancedSettingsConfigure => 'Yapılandır';
@@ -15362,61 +15424,6 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get favoritesRenameCategory => 'Kategoriyi yeniden adlandır';
 
   @override
-  String get captchaTitle => 'İnsan olduğunuzu doğrulayın';
-
-  @override
-  String get captchaDescription =>
-      'Bot olmadığınızdan emin olmamız gerekiyor. Lütfen aşağıdaki doğrulamayı tamamlayın.';
-
-  @override
-  String get captchaSwitchToHcaptcha =>
-      'Sorun mu yaşıyorsunuz? Bunun yerine hCaptcha\'yı deneyin';
-
-  @override
-  String get captchaSwitchToTurnstile => 'Bunun yerine Turnstile\'ı deneyin';
-
-  @override
-  String get phoneCaptchaRequired =>
-      'Telefon doğrulamadan önce bir tarayıcı kontrolü gerekiyor. Giriş sayfasından tekrar deneyin veya destekle iletişime geçin.';
-
-  @override
-  String get advancedSettingShowNekoKeywordCat => 'Kedi';
-
-  @override
-  String get advancedSettingShowNekoKeywordNeko => 'Neko';
-
-  @override
-  String get threadsAddMember => 'Add member';
-
-  @override
-  String get threadsAddMemberSearchLabel => 'Search members';
-
-  @override
-  String get threadsAddMemberNoResults => 'No members match that search.';
-
-  @override
-  String get threadsMemberAddedToast => 'Member added';
-
-  @override
-  String get groupDmRemoveFromGroup => 'Remove from group';
-
-  @override
-  String groupDmRemoveFromGroupConfirm(String userName) {
-    return 'Remove $userName from the group?';
-  }
-
-  @override
-  String get groupDmRemoveFromGroupAction => 'Remove';
-
-  @override
-  String get groupDmRemovedFromGroup => 'Removed from group';
-
-  @override
-  String groupDmRemoveFromGroupFailed(String userName) {
-    return '$userName is still in the group. Try again in a moment.';
-  }
-
-  @override
   String get friendAcceptFailedTitle => 'Couldn\'t accept friend request';
 
   @override
@@ -16032,4 +16039,48 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String get premiumCheckoutBlockedBodySelfHosted =>
       'Checkout is blocked for this account.';
+
+  @override
+  String get advancedPerformanceReportingSectionDescription =>
+      'Help improve echowire by sharing anonymous crash and performance data.';
+
+  @override
+  String get advancedPerformanceReportingDescription =>
+      'All reported data is anonymous and is sent only to echowire\'s own monitoring service — no third-party providers are used.';
+
+  @override
+  String get captchaTitle => 'İnsan olduğunuzu doğrulayın';
+
+  @override
+  String get captchaDescription =>
+      'Bot olmadığınızdan emin olmamız gerekiyor. Lütfen aşağıdaki doğrulamayı tamamlayın.';
+
+  @override
+  String get captchaSwitchToHcaptcha =>
+      'Sorun mu yaşıyorsunuz? Bunun yerine hCaptcha\'yı deneyin';
+
+  @override
+  String get captchaSwitchToTurnstile => 'Bunun yerine Turnstile\'ı deneyin';
+
+  @override
+  String get phoneCaptchaRequired =>
+      'Telefon doğrulamadan önce bir tarayıcı kontrolü gerekiyor. Giriş sayfasından tekrar deneyin veya destekle iletişime geçin.';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Kedi';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
 }

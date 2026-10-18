@@ -22,14 +22,16 @@ import 'package:fluxer_app/core/push/fcm/fcm_entrypoint.dart';
 import 'package:fluxer_app/core/push/relay_consent/push_relay_consent_provider.dart';
 import 'package:fluxer_app/core/push/services/apple_push_service.dart';
 import 'package:fluxer_app/core/push/services/unified_push_service.dart';
+import 'package:fluxer_app/core/zoom/fluxer_app_zoom.dart';
 import 'package:fluxer_app/features/auth/providers/auth_providers.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/messages/message_sticker_image.dart';
 import 'package:fluxer_app/features/settings/providers/haptics_preferences_provider.dart';
+import 'package:fluxer_app/features/settings/providers/open_communities_to_last_channel_provider.dart';
+import 'package:fluxer_app/features/ui/input/fluxer_clipboard_scope.dart';
 import 'package:fluxer_app/features/ui/input/text_editing_shortcuts.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:image_picker_android/image_picker_android.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
-import 'package:measure_flutter/measure_flutter.dart';
 import 'package:window_manager/window_manager.dart';
 
 Future<void> _showDesktopWindow() async {
@@ -48,15 +50,13 @@ void _configureImagePicker() {
 }
 
 void _runFluxerApp(ProviderContainer container) {
-  Widget app = const FluxerApp();
-  if (AppBuildConfig.hasObservabilityConfig) {
-    app = MeasureWidget(child: app);
-  }
-  runApp(UncontrolledProviderScope(container: container, child: app));
+  runApp(
+    UncontrolledProviderScope(container: container, child: const FluxerApp()),
+  );
 }
 
 Future<void> _bootstrapFluxer(List<String> args) async {
-  WidgetsFlutterBinding.ensureInitialized();
+  FluxerAppZoomBinding.ensureInitialized();
   unawaited(ApplePushService.installReplyHandler());
   assertPushProviderBuildConfig();
   if (Platform.isAndroid &&
@@ -68,6 +68,9 @@ Future<void> _bootstrapFluxer(List<String> args) async {
 
   if (Platform.isAndroid) {
     installImeEditingShortcutHandler();
+  }
+  if (Platform.isIOS) {
+    installNativePasteHandler();
   }
   configureFluxerMobileDetection();
   configureFluxerImageCache();
@@ -90,6 +93,7 @@ Future<void> _bootstrapFluxer(List<String> args) async {
         container.read(observabilityReportingProvider.notifier).load(),
         container.read(pushRelayConsentProvider.notifier).load(),
         container.read(hapticsPreferencesProvider.notifier).load(),
+        container.read(openCommunitiesToLastChannelProvider.notifier).load(),
         loadMessageStickerAspectRatios(),
       ]);
       await FluxerObservability.instance.traceAsync(
@@ -184,7 +188,6 @@ Future<void> main(List<String> args) async {
         library: 'Flutter zone',
       );
       FluxerObservability.instance.forceFlush();
-      Error.throwWithStackTrace(error, stack);
     },
   );
 }

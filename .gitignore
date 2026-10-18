@@ -74,6 +74,7 @@ vendor/
 
 # Local secrets ledger (never commit)
 .secrets
+/ios/Flutter/MeasureSecrets.*.xcconfig
 ios/build/
 
 # --- standards baseline (managed by standards-bootstrap) ---

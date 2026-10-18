@@ -37,6 +37,7 @@ class UserSettingsDesktopNavEntry {
     this.isLogout = false,
     this.isJoinFluxerLabs = false,
     this.isGiveFeedback = false,
+    this.isWhatsNew = false,
   });
 
   const UserSettingsDesktopNavEntry.separator([UserSettingsNavGroup? group])
@@ -61,6 +62,9 @@ class UserSettingsDesktopNavEntry {
   const UserSettingsDesktopNavEntry.giveFeedback()
     : this._(icon: PhosphorIconsFill.chatTeardropText, isGiveFeedback: true);
 
+  const UserSettingsDesktopNavEntry.whatsNew()
+    : this._(icon: PhosphorIconsFill.megaphone, isWhatsNew: true);
+
   final UserSettingsNavGroup? group;
   final UserSettingsSection? section;
   final IconData? icon;
@@ -69,6 +73,7 @@ class UserSettingsDesktopNavEntry {
   final bool isLogout;
   final bool isJoinFluxerLabs;
   final bool isGiveFeedback;
+  final bool isWhatsNew;
 
   SettingsSidebarItem toSidebarItem(FluxerLocalizations l10n) {
     if (isSeparator) {
@@ -92,6 +97,9 @@ class UserSettingsDesktopNavEntry {
     if (isGiveFeedback) {
       return SettingsSidebarItem(l10n.userSettingsGiveFeedback, icon: icon);
     }
+    if (isWhatsNew) {
+      return SettingsSidebarItem(l10n.userSettingsNavWhatsNew, icon: icon);
+    }
     return SettingsSidebarItem(
       userSettingsSectionLabel(l10n, section!),
       icon: icon,
@@ -108,6 +116,9 @@ class UserSettingsDesktopNavEntry {
     }
     if (isGiveFeedback) {
       return l10n.userSettingsGiveFeedback;
+    }
+    if (isWhatsNew) {
+      return l10n.userSettingsNavWhatsNew;
     }
     return userSettingsSectionLabel(l10n, section!);
   }
@@ -223,13 +234,6 @@ const _userSettingsDesktopNavStaffOnly = [
   ),
 ];
 
-const _userSettingsDesktopNavWhatsNew = [
-  UserSettingsDesktopNavEntry.link(
-    UserSettingsSection.whatsNew,
-    icon: PhosphorIconsFill.megaphone,
-  ),
-];
-
 const _userSettingsDesktopNavAppLicenses = [
   UserSettingsDesktopNavEntry.link(
     UserSettingsSection.appLicenses,
@@ -267,7 +271,7 @@ List<UserSettingsDesktopNavEntry> buildUserSettingsDesktopNav({
     ),
   ..._userSettingsDesktopNavAfterLanguageAndTime,
   if (AppBuildConfig.isCanary) ..._userSettingsDesktopNavStaffOnly,
-  ..._userSettingsDesktopNavWhatsNew,
+  const UserSettingsDesktopNavEntry.whatsNew(),
   if (showGiveFeedback) const UserSettingsDesktopNavEntry.giveFeedback(),
   if (showJoinFluxerLabs) const UserSettingsDesktopNavEntry.joinFluxerLabs(),
   ..._userSettingsDesktopNavAppLicenses,
@@ -344,6 +348,7 @@ List<FluxerSettingsNavGroup> buildUserSettingsMobileNavGroups({
   required FluxerLocalizations l10n,
   required void Function(UserSettingsSection section) onOpenSection,
   required VoidCallback onOpenAppLogs,
+  required VoidCallback onOpenWhatsNew,
   required VoidCallback onJoinFluxerLabs,
   required VoidCallback onGiveFeedback,
   required VoidCallback onLogout,
@@ -429,7 +434,11 @@ List<FluxerSettingsNavGroup> buildUserSettingsMobileNavGroups({
       ),
     FluxerSettingsNavGroup(
       items: [
-        link(UserSettingsSection.whatsNew, PhosphorIconsFill.megaphone),
+        FluxerSettingsNavItem(
+          label: l10n.userSettingsNavWhatsNew,
+          icon: PhosphorIconsFill.megaphone,
+          onTap: onOpenWhatsNew,
+        ),
         if (showGiveFeedback)
           FluxerSettingsNavItem(
             label: l10n.userSettingsGiveFeedback,

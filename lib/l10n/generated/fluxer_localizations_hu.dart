@@ -4895,6 +4895,14 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
+  String get lookAndFeelOpenCommunitiesToLastChannelLabel =>
+      'Open communities to your last channel';
+
+  @override
+  String get lookAndFeelOpenCommunitiesToLastChannelDescription =>
+      'Tapping a community takes you straight to the last channel you viewed there. Swipe right to see its channel list.';
+
+  @override
   String get lookAndFeelChannelListSectionTitle => 'Csatornalista';
 
   @override
@@ -6074,6 +6082,12 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get voiceStopWatchingCurrentStreamTooltip =>
       'Leállítja az aktuális stream megtekintését';
+
+  @override
+  String get voiceScreenShareEnterFullscreenTooltip => 'Full screen';
+
+  @override
+  String get voiceScreenShareExitFullscreenTooltip => 'Exit full screen';
 
   @override
   String get voiceOwnScreenShareTitle => 'Te közvetítesz';
@@ -8231,6 +8245,30 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get channelMenuDuplicateChannel => 'Csatorna duplikálása';
 
   @override
+  String channelDuplicateHelper(String channelName) {
+    return 'The new channel will reuse the permissions from $channelName.';
+  }
+
+  @override
+  String channelDuplicateVoiceHelper(String channelName) {
+    return 'The new voice channel will reuse the permissions, user limit, and bitrate from $channelName.';
+  }
+
+  @override
+  String get channelMenuMoveToCategory => 'Move to category';
+
+  @override
+  String get channelMenuNoCategory => 'No category';
+
+  @override
+  String get channelMoveCategoryFullTitle => 'Category full';
+
+  @override
+  String channelMoveCategoryFullMessage(int maxChannelsPerCategory) {
+    return 'This category already contains the maximum of $maxChannelsPerCategory channels.';
+  }
+
+  @override
   String get channelMenuResetMatureContentAgreeState =>
       'Felnőtt tartalomra vonatkozó megállapodás állapotának visszaállítása';
 
@@ -8996,6 +9034,25 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get groupDmInviteRevoked => 'Meghívó visszavonva';
 
   @override
+  String get groupDmRemoveFromGroup => 'Remove from group';
+
+  @override
+  String groupDmRemoveFromGroupConfirm(String userName) {
+    return 'Remove $userName from the group?';
+  }
+
+  @override
+  String get groupDmRemoveFromGroupAction => 'Remove';
+
+  @override
+  String get groupDmRemovedFromGroup => 'Removed from group';
+
+  @override
+  String groupDmRemoveFromGroupFailed(String userName) {
+    return '$userName is still in the group. Try again in a moment.';
+  }
+
+  @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return 'Létrehozta: $name. Lejár: $time.';
   }
@@ -9061,6 +9118,13 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get chatAttachmentLibraryPermissionSettings =>
       'Beállítások megnyitása';
+
+  @override
+  String get chatAttachmentLibraryLimitedBody =>
+      'Only photos and videos you chose to share are shown here.';
+
+  @override
+  String get chatAttachmentLibraryLimitedManage => 'Manage';
 
   @override
   String messageAccessibilityLabel(String author, String summary) {
@@ -10348,18 +10412,16 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get advancedPerformanceReportingTitle => 'Teljesítményjelentés';
 
   @override
-  String advancedPerformanceReportingSectionDescription(String productName) {
-    return 'Segíts a $productName fejlesztésében névtelen hiba- és teljesítményadatok megosztásával.';
-  }
+  String get advancedCrashReportingSectionDescription =>
+      'Help echowire fix bugs in this app by sharing crash and performance data. This is off by default.';
 
   @override
   String get advancedPerformanceReportingLabel =>
       'Küldj hiba- és teljesítményjelentéseket';
 
   @override
-  String advancedPerformanceReportingDescription(String productName) {
-    return 'Az összes jelentett adat névtelen, és csak a $productName saját felügyeleti szolgáltatásába kerül – nem használunk harmadik féltől származó szolgáltatókat.';
-  }
+  String get advancedCrashReportingDescription =>
+      'Reports go to echowire\'s error tracker, whichever instance you\'re signed in to. They don\'t include instance names, IDs or message content.';
 
   @override
   String get advancedSettingsConfigure => 'Konfigurálás';
@@ -15486,61 +15548,6 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get favoritesRenameCategory => 'Kategória átnevezése';
 
   @override
-  String get captchaTitle => 'Igazold, hogy ember vagy';
-
-  @override
-  String get captchaDescription =>
-      'Biztosítanunk kell, hogy nem vagy bot. Kérjük, végezd el az alábbi ellenőrzést.';
-
-  @override
-  String get captchaSwitchToHcaptcha =>
-      'Problémáid vannak? Próbáld meg az hCaptcha-t';
-
-  @override
-  String get captchaSwitchToTurnstile => 'Próbáld meg a Turnstile-t';
-
-  @override
-  String get phoneCaptchaRequired =>
-      'A telefonszám ellenőrzése előtt böngészőellenőrzés szükséges. Próbálja újra a bejelentkezési oldalról, vagy lépjen kapcsolatba az ügyfélszolgálattal.';
-
-  @override
-  String get advancedSettingShowNekoKeywordCat => 'Macska';
-
-  @override
-  String get advancedSettingShowNekoKeywordNeko => 'Neko';
-
-  @override
-  String get threadsAddMember => 'Add member';
-
-  @override
-  String get threadsAddMemberSearchLabel => 'Search members';
-
-  @override
-  String get threadsAddMemberNoResults => 'No members match that search.';
-
-  @override
-  String get threadsMemberAddedToast => 'Member added';
-
-  @override
-  String get groupDmRemoveFromGroup => 'Remove from group';
-
-  @override
-  String groupDmRemoveFromGroupConfirm(String userName) {
-    return 'Remove $userName from the group?';
-  }
-
-  @override
-  String get groupDmRemoveFromGroupAction => 'Remove';
-
-  @override
-  String get groupDmRemovedFromGroup => 'Removed from group';
-
-  @override
-  String groupDmRemoveFromGroupFailed(String userName) {
-    return '$userName is still in the group. Try again in a moment.';
-  }
-
-  @override
   String get friendAcceptFailedTitle => 'Couldn\'t accept friend request';
 
   @override
@@ -16156,4 +16163,48 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get premiumCheckoutBlockedBodySelfHosted =>
       'Checkout is blocked for this account.';
+
+  @override
+  String get advancedPerformanceReportingSectionDescription =>
+      'Help improve echowire by sharing anonymous crash and performance data.';
+
+  @override
+  String get advancedPerformanceReportingDescription =>
+      'All reported data is anonymous and is sent only to echowire\'s own monitoring service — no third-party providers are used.';
+
+  @override
+  String get captchaTitle => 'Igazold, hogy ember vagy';
+
+  @override
+  String get captchaDescription =>
+      'Biztosítanunk kell, hogy nem vagy bot. Kérjük, végezd el az alábbi ellenőrzést.';
+
+  @override
+  String get captchaSwitchToHcaptcha =>
+      'Problémáid vannak? Próbáld meg az hCaptcha-t';
+
+  @override
+  String get captchaSwitchToTurnstile => 'Próbáld meg a Turnstile-t';
+
+  @override
+  String get phoneCaptchaRequired =>
+      'A telefonszám ellenőrzése előtt böngészőellenőrzés szükséges. Próbálja újra a bejelentkezési oldalról, vagy lépjen kapcsolatba az ügyfélszolgálattal.';
+
+  @override
+  String get advancedSettingShowNekoKeywordCat => 'Macska';
+
+  @override
+  String get advancedSettingShowNekoKeywordNeko => 'Neko';
+
+  @override
+  String get threadsAddMember => 'Add member';
+
+  @override
+  String get threadsAddMemberSearchLabel => 'Search members';
+
+  @override
+  String get threadsAddMemberNoResults => 'No members match that search.';
+
+  @override
+  String get threadsMemberAddedToast => 'Member added';
 }

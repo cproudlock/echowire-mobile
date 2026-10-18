@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:fluxer_app/core/observability/fluxer_observability.dart';
 import 'package:fluxer_app/core/observability/measure_screen_name.dart';
 import 'package:measure_flutter/measure_flutter.dart';
 
@@ -16,13 +17,13 @@ class FluxerMeasureNavigatorObserver extends NavigatorObserver {
 
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    _trackScreenView(route.settings.name, route, AnimationStatus.completed);
+    _trackScreenView(_routeScreenName(route), route, AnimationStatus.completed);
   }
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     _trackScreenView(
-      previousRoute?.settings.name,
+      previousRoute == null ? null : _routeScreenName(previousRoute),
       route,
       AnimationStatus.dismissed,
     );
@@ -31,10 +32,22 @@ class FluxerMeasureNavigatorObserver extends NavigatorObserver {
   @override
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
     _trackScreenView(
-      newRoute?.settings.name,
+      newRoute == null ? null : _routeScreenName(newRoute),
       newRoute,
       AnimationStatus.completed,
     );
+  }
+
+  String? _routeScreenName(Route<dynamic> route) {
+    final String? name = route.settings.name;
+    if (name != null && name.isNotEmpty) {
+      return name;
+    }
+    final Object? arguments = route.settings.arguments;
+    if (arguments is String && arguments.isNotEmpty) {
+      return arguments;
+    }
+    return null;
   }
 
   void _trackScreenView(
@@ -94,6 +107,9 @@ class FluxerMeasureNavigatorObserver extends NavigatorObserver {
   }
 
   void _track(String name, int timestamp) {
+    if (!FluxerObservability.instance.isEnabled) {
+      return;
+    }
     _measure.trackScreenViewEvent(
       name: name,
       userTriggered: false,

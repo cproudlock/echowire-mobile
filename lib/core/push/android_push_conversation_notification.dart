@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluxer_app/core/push/android_push_channels.dart';
 import 'package:fluxer_app/core/push/android_push_conversation_history.dart';
@@ -44,6 +46,28 @@ List<PushConversationLine> pushConversationLinesWithoutMedia(
           senderKey: line.senderKey,
           body: line.body,
           timestampMs: line.timestampMs,
+        ),
+      )
+      .toList(growable: false);
+}
+
+List<PushConversationLine> pushConversationLinesWithExistingMedia(
+  List<PushConversationLine> lines, {
+  bool Function(String path)? fileExists,
+}) {
+  final bool Function(String path) exists =
+      fileExists ?? (String path) => File(path).existsSync();
+  String? existing(String? path) => path != null && exists(path) ? path : null;
+  return lines
+      .map(
+        (PushConversationLine line) => PushConversationLine(
+          messageId: line.messageId,
+          senderName: line.senderName,
+          senderKey: line.senderKey,
+          body: line.body,
+          timestampMs: line.timestampMs,
+          avatarPath: existing(line.avatarPath),
+          imagePath: existing(line.imagePath),
         ),
       )
       .toList(growable: false);
@@ -135,26 +159,25 @@ MessagingStyleInformation buildPushMessagingStyle({
 }
 
 AndroidNotificationDetails buildAndroidConversationNotificationDetails({
-  required String androidChannelId,
-  required String androidChannelName,
   required Map<String, String> payload,
   required List<PushConversationLine> lines,
   required String conversationTag,
   required bool alert,
+  bool soundEnabled = true,
   String? title,
   int? badgeCount,
   int? whenMillis,
 }) {
   final PushConversationLine? latest = lines.isEmpty ? null : lines.last;
-  final AndroidNotificationSound? androidSound = alert
+  final AndroidNotificationSound? androidSound = alert && soundEnabled
       ? resolvePushNotificationAndroidSound(payload)
       : null;
   final FilePathAndroidBitmap? largeIcon = latest?.avatarPath == null
       ? null
       : FilePathAndroidBitmap(latest!.avatarPath!);
   return AndroidNotificationDetails(
-    androidChannelId,
-    androidChannelName,
+    androidPushChannelId(payload, soundEnabled: soundEnabled),
+    androidPushChannelName(payload, soundEnabled: soundEnabled),
     channelDescription: kAndroidPushChannelDescription,
     importance: Importance.high,
     priority: Priority.high,

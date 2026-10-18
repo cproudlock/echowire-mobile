@@ -49,6 +49,23 @@ class ChannelRepository {
     );
   }
 
+  Future<Channel> createChannel({
+    required String guildId,
+    required ChannelCreateRequest body,
+  }) async {
+    final ChannelResponse response = await _client.guilds.createGuildChannel(
+      guildId: guildId,
+      body: body,
+    );
+    final db.ChannelsCompanion companion = channelFromSdk(response, guildId);
+    await _db.channelDao.upsertChannels(<db.ChannelsCompanion>[companion]);
+    final db.Channel? row = await _db.channelDao.getChannelById(response.id);
+    if (row == null) {
+      throw StateError('Created channel ${response.id} was not stored');
+    }
+    return Channel.fromRow(row);
+  }
+
   Future<Channel> updateChannelOverview({
     required Channel channel,
     required ChannelOverviewFormState current,
@@ -154,11 +171,11 @@ class ChannelRepository {
         '/guilds/$guildId/channels',
         data: buildChannelMoveRequestBody(operation),
       );
-    } on DioException catch (e) {
+    } on DioException {
       if (rollbackChannels != null) {
         await applyLocalChannels(guildId, rollbackChannels);
       }
-      throw Exception(e.response?.statusMessage ?? 'Failed to move channel');
+      rethrow;
     }
   }
 }

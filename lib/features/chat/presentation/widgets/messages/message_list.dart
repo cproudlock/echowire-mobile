@@ -64,8 +64,8 @@ import 'package:fluxer_app/features/chat/presentation/'
     'widgets/messages/message_tile_cache.dart';
 import 'package:fluxer_app/features/chat/presentation/'
     'widgets/messages/system_message.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/messages/unread_dividers.dart';
 import 'package:fluxer_app/features/chat/providers/channel/channel_message_permissions_provider.dart';
-import 'package:fluxer_app/features/chat/providers/chat_wallpaper_provider.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_read_viewport_provider.dart';
 import 'package:fluxer_app/features/chat/providers/core/chat_view_model.dart';
 import 'package:fluxer_app/features/chat/providers/core/message_pagination_coordinator.dart';
@@ -76,7 +76,6 @@ import 'package:fluxer_app/features/chat/utils/messages/message_action_permissio
 import 'package:fluxer_app/features/chat/utils/messages/message_grouping_utils.dart';
 import 'package:fluxer_app/features/chat/utils/messages/message_page_sync.dart';
 import 'package:fluxer_app/features/chat/utils/messages/pinned_system_message_navigation.dart';
-import 'package:fluxer_app/features/chat/wallpaper/chat_wallpaper.dart';
 import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
 import 'package:fluxer_app/features/dm/domain/dm_conversation.dart';
 import 'package:fluxer_app/features/dm/presentation/widgets/group_dm_welcome_section.dart';
@@ -110,7 +109,6 @@ import 'package:fluxer_app/shared/gestures/defer_horizontal_drag_while_coasting.
 import 'package:fluxer_app/shared/markdown/message_markdown_settings.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:fluxer_app/shared/utils/chat_context_utils.dart';
-import 'package:fluxer_app/shared/utils/locale_upper_case.dart';
 import 'package:fluxer_app/shared/utils/snowflake_time.dart';
 import 'package:fluxer_app/shared/utils/user_date_formatting.dart';
 import 'package:fluxer_dart/export.dart';
@@ -119,8 +117,6 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 part 'message_list_settings_layer.dart';
 
-const _kUnreadDividerHeight = 16.0;
-const _kUnreadDateDividerHeight = 20.0;
 const _kMessageListScrollCacheExtent = 1200.0;
 const _kMessageListCompactScrollCacheExtent = 400.0;
 const _kOlderRevealRowsPerFrame = 2;
@@ -1197,11 +1193,12 @@ class _MessageListState extends ConsumerState<MessageList> {
     if (!_scrollController.hasClients) {
       return;
     }
-    final double delta = _scrollController.position.viewportDimension * 0.85;
+    final double delta =
+        _scrollController.listPosition!.viewportDimension * 0.85;
     final double target = (_scrollController.offset + (up ? -delta : delta))
         .clamp(
-          _scrollController.position.minScrollExtent,
-          _scrollController.position.maxScrollExtent,
+          _scrollController.listPosition!.minScrollExtent,
+          _scrollController.listPosition!.maxScrollExtent,
         );
     _scrollController.animateTo(
       target,
@@ -1261,7 +1258,7 @@ class _MessageListState extends ConsumerState<MessageList> {
       if (renderObject is! RenderBox || !renderObject.hasSize) {
         return;
       }
-      final ScrollPosition position = _scrollController.position;
+      final ScrollPosition position = _scrollController.listPosition!;
       final RenderAbstractViewport viewport = RenderAbstractViewport.of(
         renderObject,
       );
@@ -1421,7 +1418,7 @@ class _MessageListState extends ConsumerState<MessageList> {
         if (half <= 0.5) {
           return;
         }
-        final ScrollPosition position = _scrollController.position;
+        final ScrollPosition position = _scrollController.listPosition!;
         final double corrected = _anchorEdge == MessageListAnchorEdge.before
             ? position.pixels + half
             : position.pixels - half;
@@ -1432,8 +1429,13 @@ class _MessageListState extends ConsumerState<MessageList> {
     });
   }
 
+  String _streamTileKeyFor(String messageId) {
+    final String? groupKey = _builtStreamIndex.groupOfMessage(messageId);
+    return groupKey == null ? 'msg-$messageId' : 'group-$groupKey';
+  }
+
   RenderBox? _streamTileBox(String messageId) {
-    final String target = 'msg-$messageId';
+    final String target = _streamTileKeyFor(messageId);
     RenderBox? found;
     _forEachStreamTile((String keyValue, Element element) {
       if (keyValue != target) {
@@ -1453,18 +1455,19 @@ class _MessageListState extends ConsumerState<MessageList> {
     if (messageIds.isEmpty) {
       return const <String, RenderBox>{};
     }
-    final Set<String> remaining = messageIds.toSet();
+    final Map<String, List<String>> remaining = <String, List<String>>{};
+    for (final String id in messageIds) {
+      (remaining[_streamTileKeyFor(id)] ??= <String>[]).add(id);
+    }
     final Map<String, RenderBox> found = <String, RenderBox>{};
     _forEachStreamTile((String keyValue, Element element) {
-      if (keyValue.startsWith('msg-')) {
-        final String id = keyValue.substring(4);
-        if (remaining.contains(id)) {
-          final RenderObject? renderObject = element.renderObject;
-          if (renderObject is RenderBox && renderObject.hasSize) {
-            found[id] = renderObject;
-            remaining.remove(id);
-          }
+      final List<String>? ids = remaining[keyValue];
+      final RenderObject? renderObject = element.renderObject;
+      if (ids != null && renderObject is RenderBox && renderObject.hasSize) {
+        for (final String id in ids) {
+          found[id] = renderObject;
         }
+        remaining.remove(keyValue);
       }
       return remaining.isEmpty;
     });
@@ -1472,7 +1475,7 @@ class _MessageListState extends ConsumerState<MessageList> {
   }
 
   BuildContext? _findStreamTileContext(String messageId) {
-    final String target = 'msg-$messageId';
+    final String target = _streamTileKeyFor(messageId);
     BuildContext? found;
     _forEachStreamTile((String keyValue, Element element) {
       if (keyValue == target) {
@@ -1491,7 +1494,7 @@ class _MessageListState extends ConsumerState<MessageList> {
       return false;
     }
     final BuildContext? root =
-        _scrollController.position.context.notificationContext;
+        _scrollController.listPosition!.context.notificationContext;
     if (root == null) {
       return false;
     }
@@ -1531,7 +1534,7 @@ class _MessageListState extends ConsumerState<MessageList> {
         if (state.hasMoreNewerMessages) {
           return;
         }
-        final ScrollPosition position = _scrollController.position;
+        final ScrollPosition position = _scrollController.listPosition!;
         if (position.maxScrollExtent > 0 ||
             position.pixels < position.maxScrollExtent - 0.5) {
           return;
@@ -1702,7 +1705,8 @@ class _MessageListState extends ConsumerState<MessageList> {
       return;
     }
     if (_scrollController.hasClients) {
-      _lastViewportDimension ??= _scrollController.position.viewportDimension;
+      _lastViewportDimension ??=
+          _scrollController.listPosition!.viewportDimension;
     }
     if (_tailFollowOwnsScroll()) {
       return;
@@ -1713,10 +1717,7 @@ class _MessageListState extends ConsumerState<MessageList> {
   }
 
   bool _tailFollowOwnsScroll() {
-    if (!_scrollController.hasClients) {
-      return false;
-    }
-    final ScrollPosition position = _scrollController.position;
+    final ScrollPosition? position = _scrollController.listPosition;
     return position is MessageListScrollPosition && position.isFollowingTail;
   }
 
@@ -1982,7 +1983,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     if (!_scrollController.hasClients) {
       return;
     }
-    if (_scrollController.position.isScrollingNotifier.value) {
+    if (_scrollController.listPosition!.isScrollingNotifier.value) {
       _setDeferHorizontalWhileCoasting(true);
     }
   }
@@ -1990,14 +1991,14 @@ class _MessageListState extends ConsumerState<MessageList> {
   bool get _isUserDrivenScroll =>
       _userDragActive ||
       (_scrollController.hasClients &&
-          _scrollController.position.userScrollDirection !=
+          _scrollController.listPosition!.userScrollDirection !=
               ScrollDirection.idle);
 
   void _publishDemandGeometry() {
     if (!_anchorResolved || !_scrollController.hasClients) {
       return;
     }
-    final ScrollPosition position = _scrollController.position;
+    final ScrollPosition position = _scrollController.listPosition!;
     final ChatViewState state = ref.read(chatViewModelProvider);
     _demandSource.updateGeometry(
       distanceToOlderEdge: _centerLeadingDistance(position),
@@ -2047,7 +2048,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     if (ref.read(chatViewModelProvider).hasMoreNewerMessages) {
       return;
     }
-    final ScrollPosition position = _scrollController.position;
+    final ScrollPosition position = _scrollController.listPosition!;
     final double tail = _loadedTailExtent(position);
     if (position.pixels <= tail + kMessageListMetricsEpsilon) {
       return;
@@ -2073,7 +2074,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     if (!_pin.pinned && !_tailFollowOwnsScroll()) {
       return;
     }
-    final ScrollPosition position = _scrollController.position;
+    final ScrollPosition position = _scrollController.listPosition!;
     final double tail = _loadedTailExtent(position);
     if (position.pixels > tail + kMessageListMetricsEpsilon) {
       if (_liveTailFollowAnimated &&
@@ -2107,7 +2108,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     if (!_isUserDrivenScroll || !_scrollController.hasClients) {
       return;
     }
-    final ScrollPosition position = _scrollController.position;
+    final ScrollPosition position = _scrollController.listPosition!;
     if (_leadingFillerExtent > 0 && _centerLeadingDistance(position) < 0) {
       _demandSource.onOverscrollTowardEdge(PaginationEdge.older);
     }
@@ -2273,7 +2274,7 @@ class _MessageListState extends ConsumerState<MessageList> {
         _demandSource.onScrollDelta(_towardOlderDelta(delta));
         if (_isUserDrivenScroll &&
             _scrollController.hasClients &&
-            _centerTrailingDistance(_scrollController.position) > 8) {
+            _centerTrailingDistance(_scrollController.listPosition!) > 8) {
           _pin.pinned = false;
           _followDisarmed = true;
         }
@@ -2332,7 +2333,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     }
     final ChatViewState state = ref.read(chatViewModelProvider);
     final double distanceFromLiveTail = _centerTrailingDistance(
-      _scrollController.position,
+      _scrollController.listPosition!,
     );
     if (_followDisarmed) {
       _pin.pinned = !state.hasMoreNewerMessages && distanceFromLiveTail <= 8;
@@ -2400,7 +2401,7 @@ class _MessageListState extends ConsumerState<MessageList> {
         !_scrollController.hasClients ||
         _activePointers > 0 ||
         _userDragActive ||
-        _scrollController.position.isScrollingNotifier.value) {
+        _scrollController.listPosition!.isScrollingNotifier.value) {
       return;
     }
     _detachedTrimPending = false;
@@ -2474,7 +2475,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     final double splitY = anchorNewer ? rows.lastBottom : rows.firstTop;
     final double fraction = ((splitY - rows.viewportTop) / rows.viewportHeight)
         .clamp(0.0, 1.0);
-    _scrollController.position.correctPixels(
+    _scrollController.listPosition!.correctPixels(
       rows.viewportTop + fraction * rows.viewportHeight - splitY,
     );
     setState(() {
@@ -2490,13 +2491,13 @@ class _MessageListState extends ConsumerState<MessageList> {
 
   _AttachedRows? _measureAttachedRows(ChatViewState state) {
     final BuildContext? scrollableContext =
-        _scrollController.position.context.notificationContext;
+        _scrollController.listPosition!.context.notificationContext;
     final RenderObject? viewportRender = scrollableContext?.findRenderObject();
     if (viewportRender is! RenderBox || !viewportRender.hasSize) {
       return null;
     }
     final double viewportTop = viewportRender.localToGlobal(Offset.zero).dy;
-    final double viewportH = _scrollController.position.viewportDimension;
+    final double viewportH = _scrollController.listPosition!.viewportDimension;
     final int? Function(String id) windowIndexOf;
     if (identical(_builtStreamIndex.messages, state.messages)) {
       windowIndexOf = _builtStreamIndex.windowIndexOf;
@@ -2517,7 +2518,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     double firstTop = 0;
     double lastBottom = 0;
     final BuildContext? scrollRoot =
-        _scrollController.position.context.notificationContext;
+        _scrollController.listPosition!.context.notificationContext;
     if (scrollRoot == null) {
       return null;
     }
@@ -2660,7 +2661,7 @@ class _MessageListState extends ConsumerState<MessageList> {
       0.0,
       1.0,
     );
-    _scrollController.position.correctPixels(
+    _scrollController.listPosition!.correctPixels(
       viewportTop + fraction * viewportHeight - splitY,
     );
     setState(() {
@@ -2831,7 +2832,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     }
     return isNearTrailingEdge(
       distanceFromTrailingEdge: _centerTrailingDistance(
-        _scrollController.position,
+        _scrollController.listPosition!,
       ),
     );
   }
@@ -2962,7 +2963,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [_buildUnreadSeparator(context), child],
+      children: [const UnreadSeparator(), child],
     );
   }
 
@@ -2991,7 +2992,7 @@ class _MessageListState extends ConsumerState<MessageList> {
       return;
     }
     final bool jumpOwnsViewport = !ignoreJumpTarget && _isJumpOwningViewport();
-    final ScrollPosition position = _scrollController.position;
+    final ScrollPosition position = _scrollController.listPosition!;
     final double distanceFromTrailingEdge = _centerTrailingDistance(position);
     if (!jumpOwnsViewport) {
       _pinWhenRestingAtLiveTail(
@@ -3036,7 +3037,7 @@ class _MessageListState extends ConsumerState<MessageList> {
         _schedulePinnedTailGlue(ignorePin: true);
         return;
       }
-      final ScrollPosition position = _scrollController.position;
+      final ScrollPosition position = _scrollController.listPosition!;
       final double approachStart =
           _loadedTailExtent(position) -
           position.viewportDimension * _kJumpToPresentApproachFraction;
@@ -3063,7 +3064,9 @@ class _MessageListState extends ConsumerState<MessageList> {
       return false;
     }
     return !isBeyondJumpToBottomThreshold(
-      distanceFromBottom: _centerTrailingDistance(_scrollController.position),
+      distanceFromBottom: _centerTrailingDistance(
+        _scrollController.listPosition!,
+      ),
     );
   }
 
@@ -3136,7 +3139,7 @@ class _MessageListState extends ConsumerState<MessageList> {
         final List<Message> messages = ref.read(chatViewModelProvider).messages;
         _tailGlueRowId = messages.isEmpty ? null : messages.last.id;
         _jumpToLiveTailExtent(
-          _scrollController.position,
+          _scrollController.listPosition!,
           instantGlue: scheduledIgnorePin,
         );
         if (!_tailFollowOwnsScroll()) {
@@ -3251,13 +3254,13 @@ class _MessageListState extends ConsumerState<MessageList> {
     final bool approach =
         animate && _liveTailFollowAnimated && _scrollController.hasClients;
     if (approach &&
-        _centerTrailingDistance(_scrollController.position) <=
-            _scrollController.position.viewportDimension) {
+        _centerTrailingDistance(_scrollController.listPosition!) <=
+            _scrollController.listPosition!.viewportDimension) {
       _schedulePinnedTailGlue();
       return;
     }
     final double approachLead = approach
-        ? _scrollController.position.viewportDimension *
+        ? _scrollController.listPosition!.viewportDimension *
               _kJumpToPresentApproachFraction
         : 0;
     _reanchor(
@@ -3283,7 +3286,7 @@ class _MessageListState extends ConsumerState<MessageList> {
     if (!_scrollController.hasClients) {
       return;
     }
-    final ScrollPosition position = _scrollController.position;
+    final ScrollPosition position = _scrollController.listPosition!;
     if (position is! MessageListScrollPosition) {
       position.jumpTo(_loadedTailExtent(position));
       _finishTailGlueSideEffects();
@@ -3677,7 +3680,7 @@ class _MessageListState extends ConsumerState<MessageList> {
           return const SizedBox.shrink();
         }
         if (item.dividerHasUnread) {
-          return _buildUnreadDateSeparator(context, item.dividerDate!);
+          return UnreadDateSeparator(date: item.dividerDate!);
         }
         return _buildDateSeparator(context, item.dividerDate!);
       case ChannelStreamType.messageGroupBlocked:
@@ -3694,6 +3697,9 @@ class _MessageListState extends ConsumerState<MessageList> {
           item.type,
           item.messages.length,
           isRevealed,
+          item.showUnreadDividerBefore,
+          streamOwnsUnreadBoundary,
+          visualUnreadId,
           highlightedMessageId,
           replyingToMessageId,
           leadingSpacing,
@@ -3886,7 +3892,7 @@ class _MessageListState extends ConsumerState<MessageList> {
       return Column(
         children: [
           if (isUnreadBoundary)
-            _buildUnreadDateSeparator(context, message.timestamp)
+            UnreadDateSeparator(date: message.timestamp)
           else
             _buildDateSeparator(context, message.timestamp),
           child,
@@ -3894,7 +3900,7 @@ class _MessageListState extends ConsumerState<MessageList> {
       );
     }
     if (isUnreadBoundary) {
-      return Column(children: [_buildUnreadSeparator(context), child]);
+      return Column(children: [const UnreadSeparator(), child]);
     }
     if (leadingGroupSpacing > 0) {
       return Column(
@@ -3906,86 +3912,6 @@ class _MessageListState extends ConsumerState<MessageList> {
       );
     }
     return child;
-  }
-
-  Widget _buildUnreadSeparator(BuildContext context) {
-    final Color danger = context.colors.statusDanger;
-    return SizedBox(
-      height: _kUnreadDividerHeight,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Row(
-          children: [
-            Expanded(child: _buildUnreadLine(danger)),
-            _buildUnreadBadge(context, danger, height: _kUnreadDividerHeight),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildUnreadDateSeparator(BuildContext context, DateTime date) {
-    final Color danger = context.colors.statusDanger;
-    final String formatted = formatUserFullDate(
-      date.toLocal(),
-      Localizations.localeOf(context).toString(),
-    );
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: SizedBox(
-        height: _kUnreadDateDividerHeight,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Row(
-              children: [
-                Expanded(child: _buildUnreadLine(danger)),
-                _buildUnreadBadge(
-                  context,
-                  danger,
-                  height: _kUnreadDateDividerHeight,
-                ),
-              ],
-            ),
-            _UnreadDateLabel(formatted: formatted, danger: danger),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildUnreadLine(Color color) {
-    return Container(height: 2, color: color.withValues(alpha: 0.4));
-  }
-
-  Widget _buildUnreadBadge(
-    BuildContext context,
-    Color color, {
-    required double height,
-  }) {
-    return Container(
-      height: height,
-      alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.9),
-        borderRadius: BorderRadius.circular(3),
-      ),
-      child: Text(
-        localeUpperCase(
-          context,
-          FluxerLocalizations.of(context).chatUnreadDividerNew,
-        ),
-        maxLines: 1,
-        style: context.textStyles.smallText.copyWith(
-          color: Colors.white.withValues(alpha: 0.9),
-          fontSize: 10,
-          fontWeight: FontWeight.w700,
-          height: 1,
-          letterSpacing: 0.5,
-        ),
-      ),
-    );
   }
 
   Widget _buildDateSeparator(BuildContext context, DateTime date) {
@@ -4004,45 +3930,6 @@ class _MessageListState extends ConsumerState<MessageList> {
           ),
           Expanded(child: Divider(color: context.colors.borderColor)),
         ],
-      ),
-    );
-  }
-}
-
-class _UnreadDateLabel extends ConsumerWidget {
-  const _UnreadDateLabel({required this.formatted, required this.danger});
-
-  final String formatted;
-  final Color danger;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final bool useOpaqueFill = ref.watch(
-      chatWallpaperProvider.select(
-        (ChatWallpaperSnapshot snapshot) => snapshot.resolved.isThemeBackground,
-      ),
-    );
-    return ColoredBox(
-      color: useOpaqueFill ? context.colors.chatBackground : Colors.transparent,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Text(
-          formatted,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: context.textStyles.smallText.copyWith(
-            color: danger,
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
-            height: 1,
-            letterSpacing: 0,
-            shadows: useOpaqueFill
-                ? null
-                : const <Shadow>[
-                    Shadow(color: Color(0xCC000000), blurRadius: 4),
-                  ],
-          ),
-        ),
       ),
     );
   }
@@ -4072,6 +3959,20 @@ class _LiveTailScrollController extends ScrollController {
 
   final bool Function() holdTrailingEdge;
   double armedInitialOffset = 0;
+
+  ScrollPosition? get listPosition {
+    if (!hasClients) {
+      return null;
+    }
+    final List<ScrollPosition> attached = positions.toList(growable: false);
+    if (attached.isEmpty) {
+      return null;
+    }
+    if (attached.length == 1) {
+      return attached.first;
+    }
+    return attached.last;
+  }
 
   @override
   ScrollPosition createScrollPosition(

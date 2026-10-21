@@ -5809,6 +5809,9 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   }
 
   @override
+  String get shellResizeSidebar => 'Resize sidebar';
+
+  @override
   String get voiceConnectionTitle => 'חיבור קולי';
 
   @override
@@ -10028,6 +10031,38 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'לא ניתן היה להפעיל התראות. אפשר הרשאת התראות כדי להמשיך.';
 
   @override
+  String get notificationsPushDeliveryProviderLabel => 'Push provider';
+
+  @override
+  String get notificationsPushDeliveryDistributorLabel => 'Distributor';
+
+  @override
+  String get notificationsPushDeliveryDistributorNone => 'Not selected';
+
+  @override
+  String get notificationsPushDeliveryDistributorSheetTitle =>
+      'Choose distributor';
+
+  @override
+  String get notificationsPushDeliveryDistributorPickAccessibility =>
+      'Change push distributor';
+
+  @override
+  String get notificationsPushDeliveryGatewayLabel => 'Gateway';
+
+  @override
+  String get notificationsPushDeliveryRelayLabel => 'echowire push relay';
+
+  @override
+  String get notificationsPushDeliveryRelayInUse => 'In use';
+
+  @override
+  String get notificationsPushDeliveryRelayOff => 'Off';
+
+  @override
+  String get notificationsPushDeliveryRelayNotUsed => 'Not used';
+
+  @override
   String get notificationsPushRelaySectionTitle => 'ממסר התראות דחיפה';
 
   @override
@@ -10203,6 +10238,28 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get advancedCrashReportingDescription =>
       'Reports go to echowire\'s error tracker, whichever instance you\'re signed in to. They don\'t include instance names, IDs or message content.';
+
+  @override
+  String get observabilityReportingConsentTitle => 'Help fix crashes';
+
+  @override
+  String get observabilityReportingConsentSubtitle =>
+      'echowire closed unexpectedly. Sharing anonymous crash and error data helps us fix issues faster.';
+
+  @override
+  String get observabilityReportingConsentBody =>
+      'Reports include crash logs, errors and basic performance data. They are not shared with third parties and you can turn this off at any time.';
+
+  @override
+  String observabilityReportingConsentEnableLater(String reportingToggle) {
+    return 'To enable later, open Settings → Advanced → $reportingToggle.';
+  }
+
+  @override
+  String get observabilityReportingConsentAgree => 'Send crash reports';
+
+  @override
+  String get observabilityReportingConsentDecline => 'Don\'t want to enable';
 
   @override
   String get advancedSettingsConfigure => 'הגדרות מתקדמות';

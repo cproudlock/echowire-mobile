@@ -12524,7 +12524,7 @@
     "@notificationsPushDeliveryGatewayLabel": {
         "description": "Label for the UnifiedPush gateway host on notification settings."
     },
-    "notificationsPushDeliveryRelayLabel": "Fluxer Push relay",
+    "notificationsPushDeliveryRelayLabel": "echowire push relay",
     "@notificationsPushDeliveryRelayLabel": {
         "description": "Label for Fluxer Push relay status on notification settings."
     },
@@ -12772,7 +12772,7 @@
     "@observabilityReportingConsentTitle": {
         "description": "Title of the post-crash opt-in sheet for crash and error reporting."
     },
-    "observabilityReportingConsentSubtitle": "Fluxer closed unexpectedly. Sharing anonymous crash and error data helps us fix issues faster.",
+    "observabilityReportingConsentSubtitle": "echowire closed unexpectedly. Sharing anonymous crash and error data helps us fix issues faster.",
     "@observabilityReportingConsentSubtitle": {
         "description": "Subtitle on the post-crash crash reporting opt-in sheet. Keep the name Fluxer as is."
     },

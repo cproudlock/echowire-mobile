@@ -9261,7 +9261,7 @@
     "@notificationsPushDeliveryGatewayLabel": {
         "description": "Label for the UnifiedPush gateway host on notification settings."
     },
-    "notificationsPushDeliveryRelayLabel": "Fluxer Push relay",
+    "notificationsPushDeliveryRelayLabel": "echowire push relay",
     "@notificationsPushDeliveryRelayLabel": {
         "description": "Label for Fluxer Push relay status on notification settings."
     },

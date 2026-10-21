@@ -16812,7 +16812,7 @@ abstract class FluxerLocalizations {
   /// Label for Fluxer Push relay status on notification settings.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Push relay'**
+  /// **'echowire push relay'**
   String get notificationsPushDeliveryRelayLabel;
 
   /// Fluxer relay is active for this device.
@@ -17154,7 +17154,7 @@ abstract class FluxerLocalizations {
   /// Subtitle on the post-crash crash reporting opt-in sheet. Keep the name Fluxer as is.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer closed unexpectedly. Sharing anonymous crash and error data helps us fix issues faster.'**
+  /// **'echowire closed unexpectedly. Sharing anonymous crash and error data helps us fix issues faster.'**
   String get observabilityReportingConsentSubtitle;
 
   /// Body copy on the post-crash crash reporting opt-in sheet explaining what is collected.

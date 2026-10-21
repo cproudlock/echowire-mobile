@@ -10181,7 +10181,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
   String get notificationsPushDeliveryGatewayLabel => 'Gateway';
 
   @override
-  String get notificationsPushDeliveryRelayLabel => 'Fluxer Push relay';
+  String get notificationsPushDeliveryRelayLabel => 'echowire push relay';
 
   @override
   String get notificationsPushDeliveryRelayInUse => 'In use';
@@ -10377,7 +10377,7 @@ class FluxerLocalizationsNb extends FluxerLocalizations {
 
   @override
   String get observabilityReportingConsentSubtitle =>
-      'Fluxer closed unexpectedly. Sharing anonymous crash and error data helps us fix issues faster.';
+      'echowire closed unexpectedly. Sharing anonymous crash and error data helps us fix issues faster.';
 
   @override
   String get observabilityReportingConsentBody =>

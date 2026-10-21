@@ -12,6 +12,7 @@ import 'package:fluxer_app/core/push/push_notification_permission.dart';
 import 'package:fluxer_app/core/push/push_service.dart';
 import 'package:fluxer_app/core/push/relay_consent/push_relay_consent_provider.dart';
 import 'package:fluxer_app/core/push/relay_registration.dart';
+import 'package:fluxer_app/core/push/services/apple_push_service.dart';
 import 'package:fluxer_app/core/push/web_push/web_push_key_store.dart';
 import 'package:fluxer_app/core/push/web_push/web_push_registration.dart';
 import 'package:fluxer_app/core/push/web_push/web_push_relay.dart';
@@ -27,6 +28,7 @@ class ApnsMobileDeviceRegistration extends _$ApnsMobileDeviceRegistration {
   static const int _tokenPollAttempts = 30;
   static const Duration _tokenPollDelay = Duration(milliseconds: 200);
   String? _lastRegisteredUserId;
+  bool _apnsSandbox = kDebugMode;
   String? _lastRegisteredRelayUrl;
   String? _lastRegisteredPublicKey;
   String? _unregisteredWithoutConsentKey;
@@ -69,18 +71,20 @@ class ApnsMobileDeviceRegistration extends _$ApnsMobileDeviceRegistration {
     return 0;
   }
 
-  static RegisterMobileDeviceRequestProviderEnvironmentProviderEnvironment
+  RegisterMobileDeviceRequestProviderEnvironmentProviderEnvironment
   get _registerProviderEnvironment {
-    return kDebugMode
+    return _apnsSandbox
         ? RegisterMobileDeviceRequestProviderEnvironmentProviderEnvironment
               .development
         : RegisterMobileDeviceRequestProviderEnvironmentProviderEnvironment
               .production;
   }
 
-  static UnregisterMobileDeviceRequestProviderEnvironmentProviderEnvironment
+  String get _environmentName => _apnsSandbox ? 'development' : 'production';
+
+  UnregisterMobileDeviceRequestProviderEnvironmentProviderEnvironment
   get _unregisterProviderEnvironment {
-    return kDebugMode
+    return _apnsSandbox
         ? UnregisterMobileDeviceRequestProviderEnvironmentProviderEnvironment
               .development
         : UnregisterMobileDeviceRequestProviderEnvironmentProviderEnvironment
@@ -160,7 +164,8 @@ class ApnsMobileDeviceRegistration extends _$ApnsMobileDeviceRegistration {
       );
       return;
     }
-    const String environmentName = kDebugMode ? 'development' : 'production';
+    _apnsSandbox = await ApplePushService.apnsUsesSandbox();
+    final String environmentName = _environmentName;
     // Echowire: while the relay is disabled, register the raw APNs token our
     // gateway sends to directly, and leave the legacy registration alone.
     // See relay_registration.dart.
@@ -290,6 +295,7 @@ class ApnsMobileDeviceRegistration extends _$ApnsMobileDeviceRegistration {
     if (!_shouldRunOnThisPlatform) {
       return;
     }
+    _apnsSandbox = await ApplePushService.apnsUsesSandbox();
     final String? hex = await ref.read(pushServiceProvider).getToken();
     if (hex == null || hex.isEmpty) {
       return;
@@ -302,7 +308,7 @@ class ApnsMobileDeviceRegistration extends _$ApnsMobileDeviceRegistration {
         _lastRegisteredRelayUrl ??
         apnsRelayUrl(
           appId: AppBuildConfig.mobilePushAppId,
-          environment: kDebugMode ? 'development' : 'production',
+          environment: _environmentName,
           deviceTokenHex: hex,
         );
     try {

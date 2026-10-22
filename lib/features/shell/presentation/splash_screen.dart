@@ -6,10 +6,12 @@ import 'package:fluxer_app/core/api/service_unavailable.dart';
 import 'package:fluxer_app/core/constants/external_urls.dart';
 import 'package:fluxer_app/core/instance/instance_compatibility_messages.dart';
 import 'package:fluxer_app/core/instance/instance_discovery_service.dart';
+import 'package:fluxer_app/core/instance/instance_runtime_config.dart';
 import 'package:fluxer_app/core/providers/active_instance_compatibility_provider.dart';
 import 'package:fluxer_app/core/providers/active_instance_provider.dart';
 import 'package:fluxer_app/core/providers/app_startup_provider.dart';
 import 'package:fluxer_app/core/providers/gateway_ready_provider.dart';
+import 'package:fluxer_app/core/providers/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/providers/splash_exit_allowed_provider.dart';
 import 'package:fluxer_app/core/providers/well_known_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
@@ -211,14 +213,19 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     _cancelSplashTimers();
     _pulseController.stop();
 
-    final bool useLogoZoomTransition =
-        !_enteredForAccountSwitch &&
-        ref.read(
-          appearancePreferencesProvider.select(
-            (AppearancePreferencesState state) =>
-                state.mobileSplashZoomAnimation,
-          ),
-        );
+    final bool useLogoZoomTransition = splashRevealUsesLogoZoom(
+      enteredForAccountSwitch: _enteredForAccountSwitch,
+      zoomPreference: ref.read(
+        appearancePreferencesProvider.select(
+          (AppearancePreferencesState state) => state.mobileSplashZoomAnimation,
+        ),
+      ),
+      instanceMarkUrl: ref.read(
+        instanceRuntimeConfigProvider.select(
+          (InstanceRuntimeConfig config) => config.compactMarkUrl,
+        ),
+      ),
+    );
     ref
         .read(splashRevealZoomProvider.notifier)
         .setZoom(value: useLogoZoomTransition);

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/app.dart';
@@ -71,6 +72,7 @@ Future<void> _bootstrapFluxer(List<String> args) async {
   if (Platform.isAndroid &&
       PushProviderGuard.isUnifiedPush &&
       args.contains('--unifiedpush-bg')) {
+    DartPluginRegistrant.ensureInitialized();
     await UnifiedPushService.ensureBackgroundInitialized();
     return;
   }

@@ -420,6 +420,16 @@ Path _parseSplashRevealSvgPath(String source) {
   return path;
 }
 
+/// The zoom exit paints the stock Fluxer symbol, so an instance that ships its
+/// own mark (echowire does) gets the fade exit, which draws the instance mark.
+bool splashRevealUsesLogoZoom({
+  required bool enteredForAccountSwitch,
+  required bool zoomPreference,
+  required String? instanceMarkUrl,
+}) {
+  return !enteredForAccountSwitch && zoomPreference && instanceMarkUrl == null;
+}
+
 double splashRevealFadePhaseProgress(double progress) {
   if (progress <= SplashRevealOverlay.pulseEndFraction) {
     return 0;

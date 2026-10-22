@@ -193,4 +193,51 @@ void main() {
       }
     });
   });
+
+  group('splashRevealUsesLogoZoom', () {
+    test(
+      'zooms the stock symbol only for an instance without its own mark',
+      () {
+        expect(
+          splashRevealUsesLogoZoom(
+            enteredForAccountSwitch: false,
+            zoomPreference: true,
+            instanceMarkUrl: null,
+          ),
+          isTrue,
+        );
+      },
+    );
+
+    test('fades instead when the instance ships its own mark', () {
+      expect(
+        splashRevealUsesLogoZoom(
+          enteredForAccountSwitch: false,
+          zoomPreference: true,
+          instanceMarkUrl:
+              'https://echowire.org/web/android-chrome-512x512.png',
+        ),
+        isFalse,
+      );
+    });
+
+    test('honours the preference and account switches', () {
+      expect(
+        splashRevealUsesLogoZoom(
+          enteredForAccountSwitch: false,
+          zoomPreference: false,
+          instanceMarkUrl: null,
+        ),
+        isFalse,
+      );
+      expect(
+        splashRevealUsesLogoZoom(
+          enteredForAccountSwitch: true,
+          zoomPreference: true,
+          instanceMarkUrl: null,
+        ),
+        isFalse,
+      );
+    });
+  });
 }

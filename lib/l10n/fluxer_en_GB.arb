@@ -9791,7 +9791,7 @@
     "@notificationsPushDeliveryGatewayLabel": {
         "description": "Label for the UnifiedPush gateway host on notification settings."
     },
-    "notificationsPushDeliveryRelayLabel": "Fluxer Push relay",
+    "notificationsPushDeliveryRelayLabel": "echowire push relay",
     "@notificationsPushDeliveryRelayLabel": {
         "description": "Label for Fluxer Push relay status on notification settings."
     },
@@ -9811,7 +9811,7 @@
     "@notificationsPushRelaySectionTitle": {
         "description": "Notification settings section title for the Fluxer push relay."
     },
-    "notificationsPushRelaySectionDescription": "{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.",
+    "notificationsPushRelaySectionDescription": "{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the echowire relay.",
     "@notificationsPushRelaySectionDescription": {
         "description": "Notification settings section description explaining why the push relay exists.",
         "placeholders": {
@@ -9820,7 +9820,7 @@
             }
         }
     },
-    "notificationsPushRelayConsentLabel": "Use the Fluxer push relay",
+    "notificationsPushRelayConsentLabel": "Use the echowire push relay",
     "@notificationsPushRelayConsentLabel": {
         "description": "Toggle label for agreeing to the Fluxer push relay on this device."
     },
@@ -9832,7 +9832,7 @@
     "@pushRelayConsentTitle": {
         "description": "Title of the one-time Fluxer push relay consent sheet."
     },
-    "pushRelayConsentDescription": "{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.",
+    "pushRelayConsentDescription": "{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the echowire relay.",
     "@pushRelayConsentDescription": {
         "description": "Subtitle of the push relay consent sheet explaining why the relay exists.",
         "placeholders": {
@@ -14749,7 +14749,7 @@
     "storePlutoniumProfileBody": "Get an animated avatar and banner, a subscriber badge, the four-digit tag you want after your username*, and a separate profile for each community.",
     "storePlutoniumFilesTitle": "Send files up to 500 MB",
     "storePlutoniumFilesBody": "Share full-length videos and big files without shrinking them first. Free accounts can send up to 25 MB.",
-    "storePlutoniumCompareTitle": "Compare Free and Plutonium",
+    "storePlutoniumCompareTitle": "Compare Free and Reverb",
     "storePlutoniumCompareMobileNote": "Not all of these features are in the mobile app. Some are only available on desktop.",
     "storePlutoniumNotAvailable": "Not available",
     "storePlutoniumAvailable": "Available",
@@ -14770,11 +14770,11 @@
     "storePlutoniumCompareThemes": "Custom themes for the app",
     "storePlutoniumVideoFree": "Up to 720p at 30 FPS",
     "storePlutoniumVideoPlutonium": "Up to 4K at 60 FPS",
-    "storePlutoniumTagFootnote": "You can only pick a tag that nobody else with the same username already has. Usernames aren't case sensitive, so Mina#4821 and mina#4821 count as the same. The #0000 tag is reserved for Fluxer Visionary members.",
+    "storePlutoniumTagFootnote": "You can only pick a tag that nobody else with the same username already has. Usernames aren't case sensitive, so Mina#4821 and mina#4821 count as the same. The #0000 tag is reserved for echowire Visionary members.",
     "storePlutoniumLearnVisionary": "Learn more about Visionary.",
-    "storePlutoniumDonatePrompt": "Just want to support Fluxer's open source development? ",
+    "storePlutoniumDonatePrompt": "Just want to support echowire's open source development? ",
     "storePlutoniumDonateLink": "Donate instead.",
-    "storePlutoniumHighlightsLead": "Subscribing funds Fluxer and unlocks",
+    "storePlutoniumHighlightsLead": "Subscribing funds echowire and unlocks",
     "storePlutoniumHighlightEmoji": "Custom emoji and stickers in any chat",
     "storePlutoniumHighlightProfile": "Animated profile, badge, and custom 4-digit number",
     "storePlutoniumHighlightFiles": "Uploads up to 500 MB",
@@ -14783,7 +14783,7 @@
     "storePlutoniumHighlightsMore": "And more",
     "storePlutoniumRenewsThroughPlay": "Renews automatically through Google Play until you cancel.",
     "storePlutoniumRenewsThroughAppStore": "Renews automatically through the App Store until you cancel.",
-    "storePlutoniumAlreadySubscribed": "You already have a Fluxer Plutonium subscription.",
+    "storePlutoniumAlreadySubscribed": "You already have an echowire Reverb subscription.",
     "storePlutoniumSavePercent": "Save {percent}%",
     "@storePlutoniumSavePercent": {
         "placeholders": {
@@ -14792,7 +14792,7 @@
             }
         }
     },
-    "storePlutoniumWaiting": "Purchase received. Plutonium will show here once it activates.",
+    "storePlutoniumWaiting": "Purchase received. Reverb will show here once it activates.",
     "storePlutoniumUnavailable": "Subscriptions in the app aren't available on this device yet.",
     "storePlutoniumVisionaryStatus": "Visionary already includes permanent access, so a recurring subscription isn't needed.",
     "userSettingsNavShortcuts": "Shortcuts",
@@ -15896,7 +15896,7 @@
     "@homeQuickActionDms": {
         "description": "Home screen quick action that opens Direct Messages."
     },
-    "assistantNeedsLogin": "Open Fluxer and sign in first.",
+    "assistantNeedsLogin": "Open echowire and sign in first.",
     "@assistantNeedsLogin": {
         "description": "Siri/Shortcuts result when the user is logged out."
     },
@@ -15904,7 +15904,7 @@
     "@assistantNotInVoice": {
         "description": "Siri/Shortcuts result when mute or leave runs with no live call."
     },
-    "assistantNotFound": "Fluxer could not find that.",
+    "assistantNotFound": "echowire could not find that.",
     "@assistantNotFound": {
         "description": "Siri/Shortcuts result when a friend, channel, or community cannot be resolved."
     },
@@ -15912,7 +15912,7 @@
     "@assistantDmsDisabled": {
         "description": "Siri/Shortcuts result when DM actions are blocked by instance config."
     },
-    "assistantFailed": "Fluxer could not complete that.",
+    "assistantFailed": "echowire could not complete that.",
     "@assistantFailed": {
         "description": "Siri/Shortcuts fallback when an assistant command fails."
     },
@@ -15929,7 +15929,7 @@
             }
         }
     },
-    "assistantOkOpened": "Opening Fluxer.",
+    "assistantOkOpened": "Opening echowire.",
     "applicationsTitle": "Applications",
     "@applicationsTitle": {
         "description": "Title for the developer Applications settings tab."

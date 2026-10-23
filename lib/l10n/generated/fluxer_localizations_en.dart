@@ -25619,7 +25619,7 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
       'Share full-length videos and big files without shrinking them first. Free accounts can send up to 25 MB.';
 
   @override
-  String get storePlutoniumCompareTitle => 'Compare Free and Plutonium';
+  String get storePlutoniumCompareTitle => 'Compare Free and Reverb';
 
   @override
   String get storePlutoniumCompareMobileNote =>
@@ -25693,21 +25693,21 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
 
   @override
   String get storePlutoniumTagFootnote =>
-      'You can only pick a tag that nobody else with the same username already has. Usernames aren\'t case sensitive, so Mina#4821 and mina#4821 count as the same. The #0000 tag is reserved for Fluxer Visionary members.';
+      'You can only pick a tag that nobody else with the same username already has. Usernames aren\'t case sensitive, so Mina#4821 and mina#4821 count as the same. The #0000 tag is reserved for echowire Visionary members.';
 
   @override
   String get storePlutoniumLearnVisionary => 'Learn more about Visionary.';
 
   @override
   String get storePlutoniumDonatePrompt =>
-      'Just want to support Fluxer\'s open source development? ';
+      'Just want to support echowire\'s open source development? ';
 
   @override
   String get storePlutoniumDonateLink => 'Donate instead.';
 
   @override
   String get storePlutoniumHighlightsLead =>
-      'Subscribing funds Fluxer and unlocks';
+      'Subscribing funds echowire and unlocks';
 
   @override
   String get storePlutoniumHighlightEmoji =>
@@ -25744,7 +25744,7 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
 
   @override
   String get storePlutoniumAlreadySubscribed =>
-      'You already have a Fluxer Plutonium subscription.';
+      'You already have an echowire Reverb subscription.';
 
   @override
   String storePlutoniumSavePercent(int percent) {
@@ -25753,7 +25753,7 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
 
   @override
   String get storePlutoniumWaiting =>
-      'Purchase received. Plutonium will show here once it activates.';
+      'Purchase received. Reverb will show here once it activates.';
 
   @override
   String get storePlutoniumUnavailable =>
@@ -26215,7 +26215,7 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
   String get notificationsPushDeliveryGatewayLabel => 'Gateway';
 
   @override
-  String get notificationsPushDeliveryRelayLabel => 'Fluxer Push relay';
+  String get notificationsPushDeliveryRelayLabel => 'echowire push relay';
 
   @override
   String get notificationsPushDeliveryRelayInUse => 'In use';
@@ -26231,11 +26231,12 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
 
   @override
   String notificationsPushRelaySectionDescription(String pushProvider) {
-    return '$pushProvider only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.';
+    return '$pushProvider only delivers push notifications through their own service, so pushes for this device pass through the echowire relay.';
   }
 
   @override
-  String get notificationsPushRelayConsentLabel => 'Use the Fluxer push relay';
+  String get notificationsPushRelayConsentLabel =>
+      'Use the echowire push relay';
 
   @override
   String get notificationsPushRelayConsentDescription =>
@@ -26246,7 +26247,7 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
 
   @override
   String pushRelayConsentDescription(String pushProvider) {
-    return '$pushProvider only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.';
+    return '$pushProvider only delivers push notifications through their own service, so pushes for this device pass through the echowire relay.';
   }
 
   @override
@@ -30755,20 +30756,20 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
   String get homeQuickActionDms => 'DMs';
 
   @override
-  String get assistantNeedsLogin => 'Open Fluxer and sign in first.';
+  String get assistantNeedsLogin => 'Open echowire and sign in first.';
 
   @override
   String get assistantNotInVoice => 'You\'re not in a call.';
 
   @override
-  String get assistantNotFound => 'Fluxer could not find that.';
+  String get assistantNotFound => 'echowire could not find that.';
 
   @override
   String get assistantDmsDisabled =>
       'Direct messages are disabled on this instance.';
 
   @override
-  String get assistantFailed => 'Fluxer could not complete that.';
+  String get assistantFailed => 'echowire could not complete that.';
 
   @override
   String get assistantOkMuted => 'Muted.';
@@ -30791,7 +30792,7 @@ class FluxerLocalizationsEnGb extends FluxerLocalizationsEn {
   }
 
   @override
-  String get assistantOkOpened => 'Opening Fluxer.';
+  String get assistantOkOpened => 'Opening echowire.';
 
   @override
   String get assistantOkMessageSent => 'Message sent.';
@@ -41685,7 +41686,7 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
       'Share full-length videos and big files without shrinking them first. Free accounts can send up to 25 MB.';
 
   @override
-  String get storePlutoniumCompareTitle => 'Compare Free and Plutonium';
+  String get storePlutoniumCompareTitle => 'Compare Free and Reverb';
 
   @override
   String get storePlutoniumCompareMobileNote =>
@@ -41810,7 +41811,7 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
 
   @override
   String get storePlutoniumAlreadySubscribed =>
-      'You already have a echowire Plutonium subscription.';
+      'You already have an echowire Reverb subscription.';
 
   @override
   String storePlutoniumSavePercent(int percent) {
@@ -41819,7 +41820,7 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
 
   @override
   String get storePlutoniumWaiting =>
-      'Purchase received. Plutonium will show here once it activates.';
+      'Purchase received. Reverb will show here once it activates.';
 
   @override
   String get storePlutoniumUnavailable =>
@@ -42297,11 +42298,12 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
 
   @override
   String notificationsPushRelaySectionDescription(String pushProvider) {
-    return '$pushProvider only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.';
+    return '$pushProvider only delivers push notifications through their own service, so pushes for this device pass through the echowire relay.';
   }
 
   @override
-  String get notificationsPushRelayConsentLabel => 'Use the Fluxer push relay';
+  String get notificationsPushRelayConsentLabel =>
+      'Use the echowire push relay';
 
   @override
   String get notificationsPushRelayConsentDescription =>
@@ -42312,7 +42314,7 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
 
   @override
   String pushRelayConsentDescription(String pushProvider) {
-    return '$pushProvider only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.';
+    return '$pushProvider only delivers push notifications through their own service, so pushes for this device pass through the echowire relay.';
   }
 
   @override
@@ -42432,7 +42434,7 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
   String get appIconOptionSweden => 'Sweden';
 
   @override
-  String get appIconOptionGreyscale => 'Greyscale';
+  String get appIconOptionGreyscale => 'Grayscale';
 
   @override
   String get appIconOptionRainbow => 'Rainbow';
@@ -42447,7 +42449,7 @@ class FluxerLocalizationsEnUs extends FluxerLocalizationsEn {
   String get appIconOptionDefaultBrutalist => 'Brutalist';
 
   @override
-  String get appIconOptionGreyscaleBrutalist => 'Greyscale brutalist';
+  String get appIconOptionGreyscaleBrutalist => 'Grayscale brutalist';
 
   @override
   String get appIconUnsupported =>

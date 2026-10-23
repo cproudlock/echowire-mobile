@@ -9281,7 +9281,7 @@
     "@notificationsPushRelaySectionTitle": {
         "description": "Notification settings section title for the Fluxer push relay."
     },
-    "notificationsPushRelaySectionDescription": "{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.",
+    "notificationsPushRelaySectionDescription": "{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the echowire relay.",
     "@notificationsPushRelaySectionDescription": {
         "description": "Notification settings section description explaining why the push relay exists.",
         "placeholders": {
@@ -9290,7 +9290,7 @@
             }
         }
     },
-    "notificationsPushRelayConsentLabel": "Use the Fluxer push relay",
+    "notificationsPushRelayConsentLabel": "Use the echowire push relay",
     "@notificationsPushRelayConsentLabel": {
         "description": "Toggle label for agreeing to the Fluxer push relay on this device."
     },
@@ -9302,7 +9302,7 @@
     "@pushRelayConsentTitle": {
         "description": "Title of the one-time Fluxer push relay consent sheet."
     },
-    "pushRelayConsentDescription": "{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the Fluxer relay.",
+    "pushRelayConsentDescription": "{pushProvider} only delivers push notifications through their own service, so pushes for this device pass through the echowire relay.",
     "@pushRelayConsentDescription": {
         "description": "Subtitle of the push relay consent sheet explaining why the relay exists.",
         "placeholders": {
@@ -17567,7 +17567,7 @@
     "storePlutoniumProfileBody": "Get an animated avatar and banner, a subscriber badge, the four-digit tag you want after your username*, and a separate profile for each community.",
     "storePlutoniumFilesTitle": "Send files up to 500 MB",
     "storePlutoniumFilesBody": "Share full-length videos and big files without shrinking them first. Free accounts can send up to 25 MB.",
-    "storePlutoniumCompareTitle": "Compare Free and Plutonium",
+    "storePlutoniumCompareTitle": "Compare Free and Reverb",
     "storePlutoniumCompareMobileNote": "Not all of these features are in the mobile app. Some are only available on desktop.",
     "storePlutoniumNotAvailable": "Not available",
     "storePlutoniumAvailable": "Available",
@@ -17605,7 +17605,7 @@
     "@storePlutoniumRestorePurchases": {
         "description": "Button on the iOS Plutonium store page that restores App Store subscriptions bought with the same Apple ID."
     },
-    "storePlutoniumAlreadySubscribed": "You already have a echowire Plutonium subscription.",
+    "storePlutoniumAlreadySubscribed": "You already have an echowire Reverb subscription.",
     "storePlutoniumSavePercent": "Save {percent}%",
     "@storePlutoniumSavePercent": {
         "placeholders": {
@@ -17614,7 +17614,7 @@
             }
         }
     },
-    "storePlutoniumWaiting": "Purchase received. Plutonium will show here once it activates.",
+    "storePlutoniumWaiting": "Purchase received. Reverb will show here once it activates.",
     "storePlutoniumUnavailable": "Subscriptions in the app aren't available on this device yet.",
     "storePlutoniumVisionaryStatus": "Visionary already includes permanent access, so a recurring subscription isn't needed.",
     "userSettingsNavAppIcon": "App icon",
@@ -17657,7 +17657,7 @@
     "@appIconOptionSweden": {
         "description": "App icon option for the Sweden flag alternate icon."
     },
-    "appIconOptionGreyscale": "Greyscale",
+    "appIconOptionGreyscale": "Grayscale",
     "@appIconOptionGreyscale": {
         "description": "App icon option for the greyscale alternate icon."
     },
@@ -17677,7 +17677,7 @@
     "@appIconOptionDefaultBrutalist": {
         "description": "App icon option for the default brutalist alternate icon."
     },
-    "appIconOptionGreyscaleBrutalist": "Greyscale brutalist",
+    "appIconOptionGreyscaleBrutalist": "Grayscale brutalist",
     "@appIconOptionGreyscaleBrutalist": {
         "description": "App icon option for the greyscale brutalist alternate icon."
     },

@@ -7827,7 +7827,7 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   String channelSettingsSlowmodeDescription(
     String bypassSlowmodePermissionLabel,
   ) {
-    return 'Wait between messages. \"$bypassSlowmodePermissionLabel\" can bypass it.';
+    return 'Wait between messages. Members with \"$bypassSlowmodePermissionLabel\" can bypass this.';
   }
 
   @override
@@ -10424,6 +10424,13 @@ class FluxerLocalizationsEn extends FluxerLocalizations {
   @override
   String get advancedSettingMobileSplashZoomAnimationDescription =>
       'Zoom the logo out when leaving the splash screen';
+
+  @override
+  String get advancedSettingSplashQuotesLabel => 'Splash screen quotes';
+
+  @override
+  String get advancedSettingSplashQuotesDescription =>
+      'Show a random quote on the splash screen. Won\'t sync across devices.';
 
   @override
   String get advancedSettingKeyboardHintsLabel => 'Keyboard hints';

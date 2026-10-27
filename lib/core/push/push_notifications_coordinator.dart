@@ -28,7 +28,7 @@ import 'package:fluxer_app/core/push/unified_push/unified_push_mobile_device_reg
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preferences_store.dart';
 import 'package:fluxer_app/features/settings/providers/preferences/sound_preferences_provider.dart';
-import 'package:fluxer_app/features/voice/utils/voice_call_ring.dart';
+import 'package:fluxer_app/features/voice/utils/callkit/call_ring.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'push_notifications_coordinator.g.dart';

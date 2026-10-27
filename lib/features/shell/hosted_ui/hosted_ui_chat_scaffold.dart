@@ -5,7 +5,7 @@ import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/shell/hosted_ui/hosted_ui_back_button.dart';
 import 'package:fluxer_app/features/shell/hosted_ui/iphone_duo_hosted_ui.dart';
 import 'package:fluxer_app/features/shell/navigation/shell_chat_back.dart';
-import 'package:fluxer_app/features/voice/utils/voice_phone_call_layout.dart';
+import 'package:fluxer_app/features/voice/utils/pip/phone_call_layout.dart';
 import 'package:fluxer_app/material_ui.dart';
 
 class HostedUiChatScaffold extends ConsumerWidget {

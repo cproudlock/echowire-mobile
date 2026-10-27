@@ -22,7 +22,7 @@ import 'package:fluxer_app/features/settings/utils/sound/sound_sfx_playback.dart
 import 'package:fluxer_app/features/settings/utils/sound/sound_type_utils.dart';
 import 'package:fluxer_app/features/settings/utils/sound/sound_volume_utils.dart';
 import 'package:fluxer_app/features/voice/providers/pending_incoming_voice_calls_provider.dart';
-import 'package:fluxer_app/features/voice/utils/voice_callkit_policy.dart';
+import 'package:fluxer_app/features/voice/utils/callkit/callkit_policy.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'fluxer_sfx_provider.g.dart';

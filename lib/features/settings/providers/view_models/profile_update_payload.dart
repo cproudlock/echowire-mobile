@@ -1,20 +1,5 @@
 part of 'user_settings_view_model.dart';
 
-List<String> _decodeHiddenProfileBadgesJson(String? json) {
-  if (json == null || json.isEmpty) {
-    return const <String>[];
-  }
-  try {
-    final Object? decoded = jsonDecode(json);
-    if (decoded is! List) {
-      return const <String>[];
-    }
-    return decoded.whereType<String>().toList(growable: false);
-  } on Object {
-    return const <String>[];
-  }
-}
-
 JsonNullable<T> _patchField<T>(bool include, T? value) {
   if (include) {
     return JsonNullable.of(value);

@@ -985,6 +985,175 @@ class UserSettingsViewState {
   }
 }
 
+typedef _WatchedUserFields = ({
+  String username,
+  String displayName,
+  String discriminator,
+  String? avatar,
+  int? avatarColor,
+  String? bio,
+  String? pronouns,
+  int? accentColor,
+  String? banner,
+  bool? premiumBadgeHidden,
+  bool? premiumBadgeMasked,
+  bool? premiumBadgeTimestampHidden,
+  bool? premiumBadgeSequenceHidden,
+  bool? operatorPassBadgeHidden,
+  bool? operatorPassBadgeTimestampHidden,
+  bool? operatorPassBadgeCountHidden,
+  List<String> hiddenProfileBadges,
+});
+
+List<String> _decodeHiddenProfileBadgesJson(String? json) {
+  if (json == null || json.isEmpty) {
+    return const <String>[];
+  }
+  try {
+    final Object? decoded = jsonDecode(json);
+    if (decoded is! List) {
+      return const <String>[];
+    }
+    return decoded.whereType<String>().toList(growable: false);
+  } on Object {
+    return const <String>[];
+  }
+}
+
+_WatchedUserFields? _watchedUserFieldsFromUser(User? user) {
+  if (user == null) {
+    return null;
+  }
+  return (
+    username: user.username,
+    displayName: user.globalName ?? user.username,
+    discriminator: user.discriminator,
+    avatar: user.avatar,
+    avatarColor: user.avatarColor,
+    bio: user.bio,
+    pronouns: user.pronouns,
+    accentColor: user.accentColor,
+    banner: user.banner,
+    premiumBadgeHidden: user.premiumBadgeHidden,
+    premiumBadgeMasked: user.premiumBadgeMasked,
+    premiumBadgeTimestampHidden: user.premiumBadgeTimestampHidden,
+    premiumBadgeSequenceHidden: user.premiumBadgeSequenceHidden,
+    operatorPassBadgeHidden: user.operatorPassBadgeHidden,
+    operatorPassBadgeTimestampHidden: user.operatorPassBadgeTimestampHidden,
+    operatorPassBadgeCountHidden: user.operatorPassBadgeCountHidden,
+    hiddenProfileBadges: _decodeHiddenProfileBadgesJson(
+      user.hiddenProfileBadgesJson,
+    ),
+  );
+}
+
+bool _optionalBoolWouldChange(bool? incoming, bool current) =>
+    incoming != null && incoming != current;
+
+bool _watchedUserFieldsDifferFromState(
+  UserSettingsViewState state,
+  _WatchedUserFields fields,
+) {
+  if (state.username != fields.username) {
+    return true;
+  }
+  if (state.displayName != fields.displayName) {
+    return true;
+  }
+  if (state.discriminator != fields.discriminator) {
+    return true;
+  }
+  if (state.avatar != fields.avatar) {
+    return true;
+  }
+  if (state.avatarColor != fields.avatarColor) {
+    return true;
+  }
+  if (state.bio != fields.bio) {
+    return true;
+  }
+  if (state.pronouns != fields.pronouns) {
+    return true;
+  }
+  if (state.accentColor != fields.accentColor) {
+    return true;
+  }
+  if (state.banner != fields.banner) {
+    return true;
+  }
+  if (_optionalBoolWouldChange(
+    fields.premiumBadgeHidden,
+    state.premiumBadgeHidden,
+  )) {
+    return true;
+  }
+  if (_optionalBoolWouldChange(
+    fields.premiumBadgeMasked,
+    state.premiumBadgeMasked,
+  )) {
+    return true;
+  }
+  if (_optionalBoolWouldChange(
+    fields.premiumBadgeTimestampHidden,
+    state.premiumBadgeTimestampHidden,
+  )) {
+    return true;
+  }
+  if (_optionalBoolWouldChange(
+    fields.premiumBadgeSequenceHidden,
+    state.premiumBadgeSequenceHidden,
+  )) {
+    return true;
+  }
+  if (_optionalBoolWouldChange(
+    fields.operatorPassBadgeHidden,
+    state.operatorPassBadgeHidden,
+  )) {
+    return true;
+  }
+  if (_optionalBoolWouldChange(
+    fields.operatorPassBadgeTimestampHidden,
+    state.operatorPassBadgeTimestampHidden,
+  )) {
+    return true;
+  }
+  if (_optionalBoolWouldChange(
+    fields.operatorPassBadgeCountHidden,
+    state.operatorPassBadgeCountHidden,
+  )) {
+    return true;
+  }
+  return !profileBadgeKeyListsEqual(
+    state.hiddenProfileBadges,
+    fields.hiddenProfileBadges,
+  );
+}
+
+UserSettingsViewState _withWatchedUserFields(
+  UserSettingsViewState state,
+  _WatchedUserFields fields,
+) {
+  return state.copyWith(
+    username: fields.username,
+    displayName: fields.displayName,
+    discriminator: fields.discriminator,
+    avatar: fields.avatar,
+    avatarColor: fields.avatarColor,
+    bio: fields.bio,
+    pronouns: fields.pronouns,
+    accentColor: fields.accentColor,
+    banner: fields.banner,
+    premiumBadgeHidden: fields.premiumBadgeHidden,
+    premiumBadgeMasked: fields.premiumBadgeMasked,
+    premiumBadgeTimestampHidden: fields.premiumBadgeTimestampHidden,
+    premiumBadgeSequenceHidden: fields.premiumBadgeSequenceHidden,
+    operatorPassBadgeHidden: fields.operatorPassBadgeHidden,
+    operatorPassBadgeTimestampHidden: fields.operatorPassBadgeTimestampHidden,
+    operatorPassBadgeCountHidden: fields.operatorPassBadgeCountHidden,
+    hiddenProfileBadges: fields.hiddenProfileBadges,
+  );
+}
+
 @Riverpod(keepAlive: true)
 class UserSettingsViewModel extends _$UserSettingsViewModel {
   @override
@@ -1052,58 +1221,14 @@ class UserSettingsViewModel extends _$UserSettingsViewModel {
     final db = ref.read(fluxerDatabaseProvider);
     final subscription = db.userDao
         .watchUserById(userId)
-        .map(
-          (user) => user == null
-              ? null
-              : (
-                  username: user.username,
-                  displayName: user.globalName ?? user.username,
-                  discriminator: user.discriminator,
-                  avatar: user.avatar,
-                  avatarColor: user.avatarColor,
-                  bio: user.bio,
-                  pronouns: user.pronouns,
-                  accentColor: user.accentColor,
-                  banner: user.banner,
-                  premiumBadgeHidden: user.premiumBadgeHidden,
-                  premiumBadgeMasked: user.premiumBadgeMasked,
-                  premiumBadgeTimestampHidden: user.premiumBadgeTimestampHidden,
-                  premiumBadgeSequenceHidden: user.premiumBadgeSequenceHidden,
-                  operatorPassBadgeHidden: user.operatorPassBadgeHidden,
-                  operatorPassBadgeTimestampHidden:
-                      user.operatorPassBadgeTimestampHidden,
-                  operatorPassBadgeCountHidden:
-                      user.operatorPassBadgeCountHidden,
-                  hiddenProfileBadges: _decodeHiddenProfileBadgesJson(
-                    user.hiddenProfileBadgesJson,
-                  ),
-                ),
-        )
+        .map(_watchedUserFieldsFromUser)
         .distinct()
         .listen((fields) {
-          if (fields == null) {
+          if (fields == null ||
+              !_watchedUserFieldsDifferFromState(state, fields)) {
             return;
           }
-          state = state.copyWith(
-            username: fields.username,
-            displayName: fields.displayName,
-            discriminator: fields.discriminator,
-            avatar: fields.avatar,
-            avatarColor: fields.avatarColor,
-            bio: fields.bio,
-            pronouns: fields.pronouns,
-            accentColor: fields.accentColor,
-            banner: fields.banner,
-            premiumBadgeHidden: fields.premiumBadgeHidden,
-            premiumBadgeMasked: fields.premiumBadgeMasked,
-            premiumBadgeTimestampHidden: fields.premiumBadgeTimestampHidden,
-            premiumBadgeSequenceHidden: fields.premiumBadgeSequenceHidden,
-            operatorPassBadgeHidden: fields.operatorPassBadgeHidden,
-            operatorPassBadgeTimestampHidden:
-                fields.operatorPassBadgeTimestampHidden,
-            operatorPassBadgeCountHidden: fields.operatorPassBadgeCountHidden,
-            hiddenProfileBadges: fields.hiddenProfileBadges,
-          );
+          state = _withWatchedUserFields(state, fields);
         });
     ref.onDispose(subscription.cancel);
   }

@@ -41,19 +41,19 @@ import 'package:fluxer_app/features/voice/providers/voice_screen_share_fullscree
 import 'package:fluxer_app/features/voice/providers/voice_screen_share_watch_tile_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
-import 'package:fluxer_app/features/voice/utils/voice_call_grid_stage_insets.dart';
-import 'package:fluxer_app/features/voice/utils/voice_grid_layout/voice_focus_layout_metrics.dart';
-import 'package:fluxer_app/features/voice/utils/voice_grid_layout/voice_grid_layout.dart';
-import 'package:fluxer_app/features/voice/utils/voice_grid_layout/voice_hangout_layout.dart';
-import 'package:fluxer_app/features/voice/utils/voice_grid_layout/voice_participant_consolidation.dart';
-import 'package:fluxer_app/features/voice/utils/voice_grid_speaking_order.dart';
-import 'package:fluxer_app/features/voice/utils/voice_participant_tile_id.dart';
-import 'package:fluxer_app/features/voice/utils/voice_participant_track_resolver.dart';
-import 'package:fluxer_app/features/voice/utils/voice_pip_morph.dart';
-import 'package:fluxer_app/features/voice/utils/voice_screen_share_fullscreen.dart';
-import 'package:fluxer_app/features/voice/utils/voice_stream_info.dart';
-import 'package:fluxer_app/features/voice/utils/voice_video_subscription.dart';
-import 'package:fluxer_app/features/voice/utils/voice_watched_video_tile.dart';
+import 'package:fluxer_app/features/voice/utils/grid_layout/call_grid_stage_insets.dart';
+import 'package:fluxer_app/features/voice/utils/grid_layout/focus_layout_metrics.dart';
+import 'package:fluxer_app/features/voice/utils/grid_layout/grid_layout.dart';
+import 'package:fluxer_app/features/voice/utils/grid_layout/grid_speaking_order.dart';
+import 'package:fluxer_app/features/voice/utils/grid_layout/hangout_layout.dart';
+import 'package:fluxer_app/features/voice/utils/grid_layout/participant_consolidation.dart';
+import 'package:fluxer_app/features/voice/utils/grid_layout/participant_tile_id.dart';
+import 'package:fluxer_app/features/voice/utils/media/participant_track_resolver.dart';
+import 'package:fluxer_app/features/voice/utils/media/stream_info.dart';
+import 'package:fluxer_app/features/voice/utils/media/video_subscription.dart';
+import 'package:fluxer_app/features/voice/utils/media/watched_video_tile.dart';
+import 'package:fluxer_app/features/voice/utils/pip/pip_morph.dart';
+import 'package:fluxer_app/features/voice/utils/screen_share/screen_share_fullscreen.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/guild_user_display_provider.dart';
@@ -62,6 +62,9 @@ import 'package:fluxer_app/shared/utils/guild_user_display.dart';
 import 'package:fluxer_dart/gateway.dart';
 import 'package:livekit_client/livekit_client.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+
+const double _tileHudButtonExtent = 34;
+const double _tileHudButtonGap = 8;
 
 const Duration _kTileMoveDuration = Duration(milliseconds: 260);
 const Curve _kTileMoveCurve = Curves.easeOutCubic;
@@ -558,64 +561,74 @@ class _VoiceChannelParticipantGridState
     ref.read(voiceScreenShareWatchTileProvider.notifier).unwatch(tileId);
   }
 
-  void _onTileTap(_VoiceGridTileItem item, bool isFocusMain) {
+  bool _isOwnScreenShareTile(_VoiceGridTileItem item) {
+    if (item.source != VoiceParticipantTileSource.screenShare) {
+      return false;
+    }
+    final String? localConnectionId = ref
+        .read(voiceSessionProvider)
+        .activeConnectionId;
+    return localConnectionId != null &&
+        item.data.voice.connectionId == localConnectionId;
+  }
+
+  bool _tileOpensFullscreen(_VoiceGridTileItem item) {
+    return voiceTileTapOpensFullscreen(
+      source: item.source,
+      selfVideo: item.data.voice.selfVideo,
+      isOwnScreenShare: _isOwnScreenShareTile(item),
+    );
+  }
+
+  bool _isCurrentFullscreenTile(
+    _VoiceGridTileItem item, {
+    required bool isFocusMain,
+  }) {
     final Set<String> watchedTileIds = ref.read(
       voiceScreenShareWatchTileProvider,
     );
-    final bool screenShareExpanded = _screenShareExpanded(watchedTileIds);
-    final bool inGridMode =
-        ref.read(voiceCallLayoutProvider).mode == VoiceCallLayoutMode.grid;
-
-    if (inGridMode) {
-      if (item.source == VoiceParticipantTileSource.screenShare) {
-        _watchStream(item);
-      }
-      if (!screenShareExpanded) {
-        ref.read(voiceCallLayoutProvider.notifier).pin(item.tileId);
-      }
-      _revealOverlay();
-      return;
+    if (!resolveVoiceScreenShareExpanded(
+      watchedTileIds: watchedTileIds,
+      landscape: MediaQuery.orientationOf(context) == Orientation.landscape,
+      prefs: ref.read(voiceScreenShareFullscreenProvider),
+    )) {
+      return false;
     }
+    final String? expandedTileId = ref
+        .read(voiceScreenShareFullscreenProvider)
+        .expandedTileId;
+    if (expandedTileId != null) {
+      return expandedTileId == item.tileId;
+    }
+    return _tileOpensFullscreen(item) && isFocusMain;
+  }
 
-    if (item.source == VoiceParticipantTileSource.screenShare) {
-      final bool alreadyWatching = watchedTileIds.contains(item.tileId);
-      _watchStream(item);
-      if (isFocusMain && alreadyWatching && screenShareExpanded) {
-        if (isHandheldVoiceOverlay(context)) {
-          _toggleCallOverlay();
-        } else {
-          _revealOverlay();
-        }
-        return;
-      }
-      if (isFocusMain && alreadyWatching && isHandheldVoiceOverlay(context)) {
+  void _openTileFullscreen(
+    _VoiceGridTileItem item, {
+    required bool isFocusMain,
+  }) {
+    if (_isCurrentFullscreenTile(item, isFocusMain: isFocusMain)) {
+      if (isHandheldVoiceOverlay(context)) {
         _toggleCallOverlay();
-        return;
-      }
-      if (isFocusMain && alreadyWatching) {
-        ref
-            .read(voiceCallLayoutProvider.notifier)
-            .setMode(VoiceCallLayoutMode.grid);
-        return;
-      }
-      if (!isFocusMain) {
-        ref.read(voiceCallLayoutProvider.notifier).pin(item.tileId);
+      } else {
         _revealOverlay();
       }
       return;
     }
-    if (isFocusMain && isHandheldVoiceOverlay(context)) {
-      _toggleCallOverlay();
+    if (item.source == VoiceParticipantTileSource.screenShare) {
+      _watchStream(item);
+    }
+    ref
+        .read(voiceScreenShareFullscreenProvider.notifier)
+        .expandTile(item.tileId);
+  }
+
+  void _onTileTap(_VoiceGridTileItem item, bool isFocusMain) {
+    if (_tileOpensFullscreen(item)) {
+      _openTileFullscreen(item, isFocusMain: isFocusMain);
       return;
     }
-    if (isFocusMain) {
-      ref
-          .read(voiceCallLayoutProvider.notifier)
-          .setMode(VoiceCallLayoutMode.grid);
-      return;
-    }
-    ref.read(voiceCallLayoutProvider.notifier).pin(item.tileId);
-    _revealOverlay();
+    _onBackgroundTap();
   }
 
   @override
@@ -817,6 +830,41 @@ class _VoiceChannelParticipantGridState
     }
 
     final bool focus = layout.mode == VoiceCallLayoutMode.focus;
+    final _VoiceGridTileItem? fullscreenStage = _fullscreenStageTile(
+      tiles: tiles,
+      watchedTileIds: watchedTileIds,
+      screenShareExpanded: screenShareExpanded,
+      layout: layout,
+      pinned: pinned,
+      me: me,
+    );
+    if (fullscreenStage != null) {
+      return _wrapLayoutSurface(
+        maxWidth: maxWidth,
+        maxHeight: maxHeight,
+        child: Padding(
+          padding: stageInsets,
+          child: _buildFocus(
+            context: context,
+            maxWidth: innerWidth,
+            maxHeight: innerHeight,
+            mainTile: fullscreenStage,
+            secondary: <_VoiceGridTileItem>[
+              for (final _VoiceGridTileItem tile in tiles)
+                if (tile.tileId != fullscreenStage.tileId) tile,
+            ],
+            watchedTileIds: watchedTileIds,
+            screenShareExpanded: screenShareExpanded,
+            compact: compact,
+            media: media,
+            me: me,
+            localConnectionId: localConnectionId,
+            baseUrl: baseUrl,
+            l10n: l10n,
+          ),
+        ),
+      );
+    }
     final bool useCompact = compact && !focus && pinned == null;
     if (!useCompact) {
       _placedTiles.clear();
@@ -1029,6 +1077,68 @@ class _VoiceChannelParticipantGridState
         ),
       ),
     );
+  }
+
+  _VoiceGridTileItem? _fullscreenStageTile({
+    required List<_VoiceGridTileItem> tiles,
+    required Set<String> watchedTileIds,
+    required bool screenShareExpanded,
+    required VoiceCallLayoutState layout,
+    required _VoiceGridTileItem? pinned,
+    required String? me,
+  }) {
+    if (!screenShareExpanded || tiles.isEmpty) {
+      return null;
+    }
+    bool supports(_VoiceGridTileItem tile) {
+      return voiceFocusMainSupportsVideoFullscreen(
+        source: tile.source,
+        voice: tile.data.voice,
+        isWatching: watchedTileIds.contains(tile.tileId),
+      );
+    }
+
+    _VoiceGridTileItem? matchId(String? tileId, {bool explicit = false}) {
+      if (tileId == null) {
+        return null;
+      }
+      for (final _VoiceGridTileItem tile in tiles) {
+        if (tile.tileId == tileId && (explicit || supports(tile))) {
+          return tile;
+        }
+      }
+      return null;
+    }
+
+    final _VoiceGridTileItem? explicit = matchId(
+      ref.read(voiceScreenShareFullscreenProvider).expandedTileId,
+      explicit: true,
+    );
+    if (explicit != null) {
+      return explicit;
+    }
+    final _VoiceGridTileItem? pinnedStage = matchId(pinned?.tileId);
+    if (pinnedStage != null) {
+      return pinnedStage;
+    }
+    if (layout.mode == VoiceCallLayoutMode.focus) {
+      final _VoiceGridTileItem auto = _autoMainTile(
+        tiles,
+        watchedTileIds: watchedTileIds,
+        me: me,
+      );
+      if (supports(auto)) {
+        return auto;
+      }
+    }
+    for (final _VoiceGridTileItem tile in tiles) {
+      if (tile.source == VoiceParticipantTileSource.screenShare &&
+          watchedTileIds.contains(tile.tileId) &&
+          supports(tile)) {
+        return tile;
+      }
+    }
+    return null;
   }
 
   _VoiceGridTileItem _autoMainTile(
@@ -2018,17 +2128,15 @@ class _VoiceChannelParticipantGridState
     final bool featured = tile.tileId == _featuredTileId;
     final bool hostFeatured = featured && voicePipHostsFeatured(_pipPhase);
     final bool hideFeatured = featured && voicePipHidesFeaturedTile(_pipPhase);
-    final bool pauseRemoteCameras =
-        tile.source == VoiceParticipantTileSource.camera &&
-        me != tile.data.userId &&
-        shouldPauseRemoteCamerasForScreenShareFullscreen(
-          isWatchingScreenShare: isWatchingScreenShare,
-          screenShareExpanded: screenShareExpanded,
-        );
     final bool isOwnScreenShare =
         tile.source == VoiceParticipantTileSource.screenShare &&
         localConnectionId != null &&
         tile.data.voice.connectionId == localConnectionId;
+    final String? expandedTileId = ref.watch(
+      voiceScreenShareFullscreenProvider.select(
+        (VoiceScreenShareFullscreenPrefs prefs) => prefs.expandedTileId,
+      ),
+    );
     final bool screenShareFullscreenExpanded = voiceTileVideoFullscreenExpanded(
       screenShareExpanded: screenShareExpanded,
       source: tile.source,
@@ -2036,7 +2144,17 @@ class _VoiceChannelParticipantGridState
       isWatching: isActiveScreenShare,
       isFocusMain: isFocusMain,
       isOwnScreenShare: isOwnScreenShare,
+      tileId: tile.tileId,
+      expandedTileId: expandedTileId,
     );
+    final bool pauseRemoteCameras =
+        tile.source == VoiceParticipantTileSource.camera &&
+        me != tile.data.userId &&
+        !screenShareFullscreenExpanded &&
+        shouldPauseRemoteCamerasForScreenShareFullscreen(
+          isWatchingScreenShare: isWatchingScreenShare,
+          screenShareExpanded: screenShareExpanded,
+        );
     final Widget card = _VoiceParticipantCard(
       data: tile.data,
       guildId: widget.guildId,
@@ -2059,7 +2177,9 @@ class _VoiceChannelParticipantGridState
             tile.source == VoiceParticipantTileSource.screenShare,
       ),
       onTap: () => _onTileTap(tile, isFocusMain),
-      onWatch: () => _watchStream(tile),
+      onWatch: () => _openTileFullscreen(tile, isFocusMain: isFocusMain),
+      onOpenFullscreen: () =>
+          _openTileFullscreen(tile, isFocusMain: isFocusMain),
       onStopWatching: () => _stopWatching(tile.tileId),
       onContextMenu: (Offset position) =>
           _showParticipantMenu(context, ref, tile, position: position),
@@ -2287,6 +2407,7 @@ class _VoiceParticipantCard extends ConsumerWidget {
     required this.streamPreviewUrl,
     required this.onTap,
     required this.onWatch,
+    required this.onOpenFullscreen,
     required this.onStopWatching,
     required this.onContextMenu,
     required this.l10n,
@@ -2315,6 +2436,7 @@ class _VoiceParticipantCard extends ConsumerWidget {
   final String? streamPreviewUrl;
   final VoidCallback onTap;
   final VoidCallback onWatch;
+  final VoidCallback onOpenFullscreen;
   final VoidCallback onStopWatching;
   final void Function(Offset position) onContextMenu;
   final FluxerLocalizations l10n;
@@ -2484,6 +2606,25 @@ class _VoiceParticipantCard extends ConsumerWidget {
                             voiceTileMetricsForSize(
                               Size(hudFrame.width, hudFrame.height),
                             );
+                        final bool showPinButton = !isFilmstrip;
+                        final bool showTileFullscreenButton =
+                            !isFilmstrip &&
+                            voiceTileTapOpensFullscreen(
+                              source: tileSource,
+                              selfVideo: voice.selfVideo,
+                              isOwnScreenShare: isOwnScreenShareTile,
+                            );
+                        final double tileHudTrailingInset =
+                            (showPinButton ? _tileHudButtonExtent : 0) +
+                            (showTileFullscreenButton
+                                ? _tileHudButtonGap + _tileHudButtonExtent
+                                : 0);
+                        final bool tilePinned = ref.watch(
+                          voiceCallLayoutProvider.select(
+                            (VoiceCallLayoutState state) =>
+                                state.pinnedTileId == tileId,
+                          ),
+                        );
                         return Stack(
                           fit: StackFit.expand,
                           children: <Widget>[
@@ -2550,40 +2691,9 @@ class _VoiceParticipantCard extends ConsumerWidget {
                                               ),
                                             ),
                                           ),
-                                        if (!isFilmstrip &&
-                                            !isOwnScreenShareTile &&
-                                            (screenShareFullscreenExpanded ||
-                                                (tileSource ==
-                                                        VoiceParticipantTileSource
-                                                            .screenShare &&
-                                                    isActiveScreenShare) ||
-                                                (tileSource ==
-                                                        VoiceParticipantTileSource
-                                                            .camera &&
-                                                    voice.selfVideo &&
-                                                    isFocusMain)))
-                                          Positioned(
-                                            right: metrics.inset,
-                                            bottom: metrics.inset,
-                                            child: _ScreenShareFullscreenButton(
-                                              expanded:
-                                                  screenShareFullscreenExpanded,
-                                              onToggle: () {
-                                                ref
-                                                    .read(
-                                                      voiceScreenShareFullscreenProvider
-                                                          .notifier,
-                                                    )
-                                                    .toggle(
-                                                      currentlyExpanded:
-                                                          screenShareFullscreenExpanded,
-                                                    );
-                                              },
-                                            ),
-                                          ),
                                         Positioned(
                                           left: 8,
-                                          right: 8,
+                                          right: 8 + tileHudTrailingInset,
                                           bottom: 8,
                                           child: _VoiceParticipantNameplate(
                                             l10n: l10n,
@@ -2591,6 +2701,58 @@ class _VoiceParticipantCard extends ConsumerWidget {
                                             display: display,
                                           ),
                                         ),
+                                        if (showPinButton ||
+                                            showTileFullscreenButton)
+                                          Positioned(
+                                            right: metrics.inset,
+                                            bottom: metrics.inset,
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                                if (showPinButton)
+                                                  _PinTileButton(
+                                                    pinned: tilePinned,
+                                                    onPressed: () {
+                                                      final VoiceCallLayout
+                                                      layout = ref.read(
+                                                        voiceCallLayoutProvider
+                                                            .notifier,
+                                                      );
+                                                      if (tilePinned) {
+                                                        layout.unpin();
+                                                      } else {
+                                                        layout.pin(tileId);
+                                                      }
+                                                    },
+                                                  ),
+                                                if (showPinButton &&
+                                                    showTileFullscreenButton)
+                                                  const SizedBox(
+                                                    width: _tileHudButtonGap,
+                                                  ),
+                                                if (showTileFullscreenButton)
+                                                  _ScreenShareFullscreenButton(
+                                                    expanded:
+                                                        screenShareFullscreenExpanded,
+                                                    onToggle: () {
+                                                      final VoiceScreenShareFullscreen
+                                                      fullscreen = ref.read(
+                                                        voiceScreenShareFullscreenProvider
+                                                            .notifier,
+                                                      );
+                                                      if (screenShareFullscreenExpanded) {
+                                                        fullscreen.toggle(
+                                                          currentlyExpanded:
+                                                              true,
+                                                        );
+                                                      } else {
+                                                        onOpenFullscreen();
+                                                      }
+                                                    },
+                                                  ),
+                                              ],
+                                            ),
+                                          ),
                                       ],
                                     ),
                                   ),
@@ -3000,6 +3162,40 @@ class _WatchStreamOverlay extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _PinTileButton extends StatelessWidget {
+  const _PinTileButton({required this.pinned, required this.onPressed});
+
+  final bool pinned;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final FluxerLocalizations l10n = FluxerLocalizations.of(context);
+    final String tooltip = pinned
+        ? l10n.voiceParticipantMenuUnfocus
+        : l10n.voiceParticipantMenuFocus;
+    return Tooltip(
+      message: tooltip,
+      child: Material(
+        color: context.colors.backgroundSecondary,
+        borderRadius: BorderRadius.circular(999),
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(999),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: PhosphorIcon(
+              pinned ? PhosphorIconsFill.pushPin : PhosphorIconsBold.pushPin,
+              size: 18,
+              color: context.colors.textPrimary,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

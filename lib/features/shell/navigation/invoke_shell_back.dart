@@ -11,7 +11,7 @@ import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/shell/providers/drawer/reveal_side_provider.dart';
 import 'package:fluxer_app/features/shell/providers/layout/shell_manual_gesture_block_provider.dart';
 import 'package:fluxer_app/features/shell/providers/layout/shell_popup_overlay_provider.dart';
-import 'package:fluxer_app/features/voice/utils/voice_phone_call_layout.dart';
+import 'package:fluxer_app/features/voice/utils/pip/phone_call_layout.dart';
 import 'package:fluxer_app/material_ui.dart';
 
 void invokeShellBack(BuildContext context, WidgetRef ref) {

@@ -88,9 +88,9 @@ import 'package:fluxer_app/features/voice/providers/voice_channel_participants_p
 import 'package:fluxer_app/features/voice/providers/voice_p2p_mode_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
-import 'package:fluxer_app/features/voice/utils/voice_connection_actions.dart';
-import 'package:fluxer_app/features/voice/utils/voice_e2ee_display.dart';
-import 'package:fluxer_app/features/voice/utils/voice_p2p_mode.dart';
+import 'package:fluxer_app/features/voice/utils/connection/connection_actions.dart';
+import 'package:fluxer_app/features/voice/utils/e2ee/e2ee_display.dart';
+import 'package:fluxer_app/features/voice/utils/e2ee/p2p_mode.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/external_links/external_link_handler.dart';

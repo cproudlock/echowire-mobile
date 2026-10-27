@@ -15,8 +15,8 @@ import 'package:fluxer_app/features/voice/providers/voice_channel_participants_p
 import 'package:fluxer_app/features/voice/providers/voice_pip_providers.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
-import 'package:fluxer_app/features/voice/utils/voice_participant_tile_id.dart';
-import 'package:fluxer_app/features/voice/utils/voice_participant_track_resolver.dart';
+import 'package:fluxer_app/features/voice/utils/grid_layout/participant_tile_id.dart';
+import 'package:fluxer_app/features/voice/utils/media/participant_track_resolver.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/gateway.dart';
 import 'package:livekit_client/livekit_client.dart';

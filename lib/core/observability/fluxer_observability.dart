@@ -17,7 +17,7 @@ import 'package:fluxer_app/core/observability/measure_trace.dart';
 import 'package:fluxer_app/core/observability/measure_version_metadata.dart';
 import 'package:fluxer_app/core/providers/app_runtime_info.dart';
 import 'package:fluxer_app/core/talker.dart';
-import 'package:fluxer_app/features/voice/utils/voice_lifecycle_breadcrumb.dart';
+import 'package:fluxer_app/features/voice/utils/lifecycle/lifecycle_breadcrumb.dart';
 import 'package:measure_flutter/measure_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

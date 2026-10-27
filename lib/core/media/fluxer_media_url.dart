@@ -21,18 +21,19 @@ abstract final class FluxerMediaUrl {
   // the version query makes phones fetch the new files instead of the old ones.
   static const int defaultAvatarVersion = 2;
 
-  static String? defaultAvatar({required String userId}) {
+  static String? defaultAvatar({required String userId, String? staticCdn}) {
     if (userId.isEmpty) {
       return null;
     }
+    final String cdn = staticCdn ?? fluxerStaticCdn;
     final int? index = _decimalMod(userId, defaultAvatarCount);
     if (index != null) {
-      return '$fluxerStaticCdn/avatars/$index.png?v=$defaultAvatarVersion';
+      return '$cdn/avatars/$index.png?v=$defaultAvatarVersion';
     }
     try {
       final BigInt bigIndex =
           BigInt.parse(userId) % BigInt.from(defaultAvatarCount);
-      return '$fluxerStaticCdn/avatars/$bigIndex.png?v=$defaultAvatarVersion';
+      return '$cdn/avatars/$bigIndex.png?v=$defaultAvatarVersion';
     } on FormatException {
       return null;
     }

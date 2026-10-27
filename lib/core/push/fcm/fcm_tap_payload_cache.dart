@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:fluxer_app/core/push/push_notification_path_resolver.dart';
-import 'package:fluxer_app/core/push/push_notification_payload.dart';
+import 'package:fluxer_app/core/push/notification/path_resolver.dart';
+import 'package:fluxer_app/core/push/notification/payload.dart';
 import 'package:path_provider/path_provider.dart';
 
 const String _cacheFileName = 'fcm_tap_payloads.json';

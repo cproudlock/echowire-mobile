@@ -12,7 +12,7 @@ import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/profile/providers/user_presence_provider.dart';
-import 'package:fluxer_app/features/settings/providers/voice_settings_provider.dart';
+import 'package:fluxer_app/features/settings/providers/preferences/voice_settings_provider.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/ui/button/fluxer_button.dart';
 import 'package:fluxer_app/features/ui/button/fluxer_button_size.dart';
@@ -20,6 +20,7 @@ import 'package:fluxer_app/features/ui/spinner/fluxer_loading_spinner.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/features/ui/voice/fluxer_live_badge.dart';
 import 'package:fluxer_app/features/ui/voice/voice_channel_participant_layouts.dart';
+import 'package:fluxer_app/features/ui/voice/voice_fullscreen_video_zoom.dart';
 import 'package:fluxer_app/features/ui/voice/voice_participant_media_tile.dart';
 import 'package:fluxer_app/features/ui/voice/voice_speaking_ring.dart';
 import 'package:fluxer_app/features/ui/voice/voice_tile_metrics.dart';
@@ -2064,6 +2065,7 @@ class _VoiceChannelParticipantGridState
           _showParticipantMenu(context, ref, tile, position: position),
       l10n: l10n,
       screenShareFullscreenExpanded: screenShareFullscreenExpanded,
+      tileId: tile.tileId,
       omitVideoTrack:
           omitVideoTrack || hostFeatured || !_isConnected || pauseRemoteCameras,
       edgeToEdge: edgeToEdge,
@@ -2289,6 +2291,7 @@ class _VoiceParticipantCard extends ConsumerWidget {
     required this.onContextMenu,
     required this.l10n,
     required this.screenShareFullscreenExpanded,
+    required this.tileId,
     this.omitVideoTrack = false,
     this.extraDeviceCount = 0,
     this.edgeToEdge = false,
@@ -2316,6 +2319,7 @@ class _VoiceParticipantCard extends ConsumerWidget {
   final void Function(Offset position) onContextMenu;
   final FluxerLocalizations l10n;
   final bool screenShareFullscreenExpanded;
+  final String tileId;
   final bool omitVideoTrack;
 
   @override
@@ -2374,29 +2378,33 @@ class _VoiceParticipantCard extends ConsumerWidget {
         : (avatarArgb == null
               ? context.colors.brandPrimary
               : Color(0xFF000000 | avatarArgb));
-    final Widget mediaTile = VoiceParticipantMediaTile(
-      media: media,
-      userId: data.userId,
-      currentUserId: currentUserId,
-      localConnectionId: localConnectionId,
-      voice: voice,
-      display: display,
-      backgroundColor: cardColor,
-      user: user,
-      tileSource: tileSource,
-      isActiveScreenShare: isActiveScreenShare,
-      fillContainer: fillContainer,
-      videoCornerRadius: edgeToEdge ? 0 : 12,
-      streamPreviewUrl: streamPreviewUrl,
-      isTileFocused: isFocusMain,
-      pauseOwnScreenSharePreviewOnUnfocus: pauseOwnPreview,
-      mirrorCamera: mirrorCamera,
-      omitVideoTrack: omitVideoTrack,
-      subscribeQuality: voiceCameraSubscribeQuality(
-        isFilmstrip: isFilmstrip,
-        isFocusMain: isFocusMain || (isActiveScreenShare && !isFilmstrip),
-        tileWidth: tileWidth,
-        tileHeight: tileHeight,
+    final Widget mediaTile = VoiceFullscreenVideoZoom(
+      key: ValueKey<String>('voice-fullscreen-zoom-$tileId'),
+      enabled: screenShareFullscreenExpanded,
+      child: VoiceParticipantMediaTile(
+        media: media,
+        userId: data.userId,
+        currentUserId: currentUserId,
+        localConnectionId: localConnectionId,
+        voice: voice,
+        display: display,
+        backgroundColor: cardColor,
+        user: user,
+        tileSource: tileSource,
+        isActiveScreenShare: isActiveScreenShare,
+        fillContainer: fillContainer,
+        videoCornerRadius: edgeToEdge ? 0 : 12,
+        streamPreviewUrl: streamPreviewUrl,
+        isTileFocused: isFocusMain,
+        pauseOwnScreenSharePreviewOnUnfocus: pauseOwnPreview,
+        mirrorCamera: mirrorCamera,
+        omitVideoTrack: omitVideoTrack,
+        subscribeQuality: voiceCameraSubscribeQuality(
+          isFilmstrip: isFilmstrip,
+          isFocusMain: isFocusMain || (isActiveScreenShare && !isFilmstrip),
+          tileWidth: tileWidth,
+          tileHeight: tileHeight,
+        ),
       ),
     );
     final StringBuffer semantics = StringBuffer(display);

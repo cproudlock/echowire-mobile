@@ -1,7 +1,7 @@
 import 'package:fluxer_app/core/instance/instance_endpoints.dart';
 import 'package:fluxer_app/core/router/route_names.dart';
 import 'package:fluxer_app/core/utils/channel_jump_link.dart';
-import 'package:fluxer_app/features/guilds/utils/invite_link_parser.dart';
+import 'package:fluxer_app/features/guilds/utils/invites/invite_link_parser.dart';
 
 /// The scheme we write into links. Stays `fluxer` until builds that register `echowire` are what
 /// people have installed; see docs/adr/0011-echowire-url-scheme.md in the server repo.

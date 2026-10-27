@@ -29,7 +29,7 @@ final RegExp _leak = RegExp('(?<![A-Za-z0-9_])Fluxer(?![A-Z0-9_])');
 const Set<String> _arbAllowedKeys = <String>{'userSettingsJoinFluxerLabs'};
 
 // Files that still carry upstream text but are unreachable. The guild
-// membership nag bar is switched off in nagbar_conditions_provider.dart, so
+// membership nag bar is switched off in nagbar/nagbar_providers.dart, so
 // its 'Fluxer HQ' constant never reaches a screen; the file stays as upstream
 // wrote it so a sync merges cleanly.
 const Set<String> _allowedFiles = <String>{

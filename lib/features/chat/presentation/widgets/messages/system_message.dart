@@ -18,7 +18,7 @@ import 'package:fluxer_app/features/settings/providers/view_models/user_settings
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/ui/tappable/fluxer_gesture_detector.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
-import 'package:fluxer_app/features/voice/utils/voice_connection_actions.dart';
+import 'package:fluxer_app/features/voice/utils/connection/connection_actions.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/guild_user_display_provider.dart';

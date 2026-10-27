@@ -19,8 +19,8 @@ import 'package:fluxer_app/features/voice/providers/voice_participant_volume_pro
 import 'package:fluxer_app/features/voice/providers/voice_screen_share_watch_tile_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_stream_audio_provider.dart';
-import 'package:fluxer_app/features/voice/utils/voice_participant_menu_capabilities.dart';
-import 'package:fluxer_app/features/voice/utils/voice_participant_moderation.dart';
+import 'package:fluxer_app/features/voice/utils/participant/participant_menu_capabilities.dart';
+import 'package:fluxer_app/features/voice/utils/participant/participant_moderation.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_dart/gateway.dart';

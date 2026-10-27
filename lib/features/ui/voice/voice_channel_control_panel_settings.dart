@@ -15,8 +15,8 @@ import 'package:fluxer_app/features/voice/providers/voice_channel_text_chat_prov
 import 'package:fluxer_app/features/voice/providers/voice_noise_filter_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_p2p_mode_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
-import 'package:fluxer_app/features/voice/utils/voice_p2p_mode.dart';
-import 'package:fluxer_app/features/voice/utils/voice_speaker_route.dart';
+import 'package:fluxer_app/features/voice/utils/audio/speaker_route.dart';
+import 'package:fluxer_app/features/voice/utils/e2ee/p2p_mode.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:livekit_client/livekit_client.dart';

@@ -14,11 +14,11 @@ import 'package:fluxer_app/features/voice/providers/voice_channel_participants_p
 import 'package:fluxer_app/features/voice/providers/voice_screen_share_watch_tile_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
-import 'package:fluxer_app/features/voice/utils/voice_participant_tile_id.dart';
-import 'package:fluxer_app/features/voice/utils/voice_participant_track_resolver.dart';
-import 'package:fluxer_app/features/voice/utils/voice_pip_featured_selector.dart';
-import 'package:fluxer_app/features/voice/utils/voice_pip_morph.dart';
-import 'package:fluxer_app/features/voice/utils/voice_pip_visibility.dart';
+import 'package:fluxer_app/features/voice/utils/grid_layout/participant_tile_id.dart';
+import 'package:fluxer_app/features/voice/utils/media/participant_track_resolver.dart';
+import 'package:fluxer_app/features/voice/utils/pip/pip_featured_selector.dart';
+import 'package:fluxer_app/features/voice/utils/pip/pip_morph.dart';
+import 'package:fluxer_app/features/voice/utils/pip/pip_visibility.dart';
 
 class VoicePipPlacement extends Notifier<Offset?> {
   @override

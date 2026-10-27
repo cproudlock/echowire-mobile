@@ -16,13 +16,13 @@ import 'package:fluxer_app/features/voice/providers/voice_call_overlay_provider.
 import 'package:fluxer_app/features/voice/providers/voice_pip_providers.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
-import 'package:fluxer_app/features/voice/utils/voice_participant_tile_id.dart';
-import 'package:fluxer_app/features/voice/utils/voice_phone_call_layout.dart';
-import 'package:fluxer_app/features/voice/utils/voice_pip_morph.dart';
-import 'package:fluxer_app/features/voice/utils/voice_pip_snap.dart';
-import 'package:fluxer_app/features/voice/utils/voice_pip_subscribe.dart';
-import 'package:fluxer_app/features/voice/utils/voice_pip_visibility.dart';
-import 'package:fluxer_app/features/voice/utils/voice_session_navigation.dart';
+import 'package:fluxer_app/features/voice/utils/connection/session_navigation.dart';
+import 'package:fluxer_app/features/voice/utils/grid_layout/participant_tile_id.dart';
+import 'package:fluxer_app/features/voice/utils/pip/phone_call_layout.dart';
+import 'package:fluxer_app/features/voice/utils/pip/pip_morph.dart';
+import 'package:fluxer_app/features/voice/utils/pip/pip_snap.dart';
+import 'package:fluxer_app/features/voice/utils/pip/pip_subscribe.dart';
+import 'package:fluxer_app/features/voice/utils/pip/pip_visibility.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/fluxer_haptics.dart';
 

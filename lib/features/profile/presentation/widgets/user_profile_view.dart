@@ -45,7 +45,7 @@ import 'package:fluxer_app/features/profile/utils/profile_menu_capabilities.dart
 import 'package:fluxer_app/features/settings/presentation/user_settings_modal.dart';
 import 'package:fluxer_app/features/settings/providers/view_models/user_settings_view_model.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
-import 'package:fluxer_app/features/voice/utils/call_actions.dart';
+import 'package:fluxer_app/features/voice/utils/callkit/call_actions.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/user_profile.dart';

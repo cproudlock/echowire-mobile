@@ -47,8 +47,8 @@ import 'package:fluxer_app/features/voice/providers/voice_priority_speaker_provi
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/tts/fluxer_tts_provider.dart';
 import 'package:fluxer_app/features/voice/tts/tts_locale_utils.dart';
-import 'package:fluxer_app/features/voice/utils/incoming_voice_call_actions.dart';
-import 'package:fluxer_app/features/voice/utils/voice_push_to_talk_utils.dart';
+import 'package:fluxer_app/features/voice/utils/audio/push_to_talk_utils.dart';
+import 'package:fluxer_app/features/voice/utils/callkit/incoming_call_actions.dart';
 import 'package:fluxer_app/l10n/app_locale_provider.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/utils/clipboard_utils.dart';

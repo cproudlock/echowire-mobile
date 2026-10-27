@@ -13,9 +13,9 @@ import 'package:fluxer_app/features/voice/presentation/widgets/voice_audio_proce
 import 'package:fluxer_app/features/voice/presentation/widgets/voice_change_audio_output_row.dart';
 import 'package:fluxer_app/features/voice/providers/voice_media_devices_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_video_quality_provider.dart';
-import 'package:fluxer_app/features/voice/utils/screen_share_presets.dart';
-import 'package:fluxer_app/features/voice/utils/voice_camera_platform.dart';
-import 'package:fluxer_app/features/voice/utils/voice_speaker_route.dart';
+import 'package:fluxer_app/features/voice/utils/audio/speaker_route.dart';
+import 'package:fluxer_app/features/voice/utils/media/camera_platform.dart';
+import 'package:fluxer_app/features/voice/utils/screen_share/screen_share_presets.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:livekit_client/livekit_client.dart';

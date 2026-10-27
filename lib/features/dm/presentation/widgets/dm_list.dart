@@ -53,7 +53,7 @@ import 'package:fluxer_app/features/settings/providers/view_models/user_settings
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/shell/presentation/sidebar_drawer.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
-import 'package:fluxer_app/features/voice/utils/call_actions.dart';
+import 'package:fluxer_app/features/voice/utils/callkit/call_actions.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/pages/add_friend_page.dart';

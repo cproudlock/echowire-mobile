@@ -7,8 +7,8 @@ import 'package:fluxer_app/features/shell/navigation/shell_transition_policy.dar
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/shell/presentation/sidebar_drawer.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_sheet_motion.dart';
-import 'package:fluxer_app/features/voice/utils/voice_phone_call_layout.dart';
-import 'package:fluxer_app/features/voice/utils/voice_pip_morph.dart';
+import 'package:fluxer_app/features/voice/utils/pip/phone_call_layout.dart';
+import 'package:fluxer_app/features/voice/utils/pip/pip_morph.dart';
 import 'package:go_router/go_router.dart';
 
 ValueKey<String> guildChatPageKey(String guildId) =>

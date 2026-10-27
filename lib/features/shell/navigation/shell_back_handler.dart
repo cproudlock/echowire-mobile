@@ -13,7 +13,7 @@ import 'package:fluxer_app/features/shell/navigation/drawer_navigation_coordinat
 import 'package:fluxer_app/features/shell/navigation/shell_back_resolver.dart';
 import 'package:fluxer_app/features/shell/navigation/shell_chat_leave_path.dart';
 import 'package:fluxer_app/features/shell/utils/shell_popup_navigation.dart';
-import 'package:fluxer_app/features/voice/utils/voice_session_navigation.dart';
+import 'package:fluxer_app/features/voice/utils/connection/session_navigation.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:go_router/go_router.dart';
 

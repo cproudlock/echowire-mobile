@@ -18,7 +18,7 @@ import 'package:fluxer_app/features/voice/presentation/sheets/voice_channel_join
 import 'package:fluxer_app/features/voice/providers/voice_join_eligibility_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
-import 'package:fluxer_app/features/voice/utils/voice_connection_actions.dart';
+import 'package:fluxer_app/features/voice/utils/connection/connection_actions.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 

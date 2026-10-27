@@ -6,7 +6,7 @@ import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/shell/hosted_ui/iphone_duo_hosted_ui.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/threads/providers/thread_entered_from_parent_provider.dart';
-import 'package:fluxer_app/features/voice/utils/voice_phone_call_layout.dart';
+import 'package:fluxer_app/features/voice/utils/pip/phone_call_layout.dart';
 import 'package:fluxer_app/material_ui.dart';
 
 bool shellShowsConcurrentChannelList(BuildContext context) {

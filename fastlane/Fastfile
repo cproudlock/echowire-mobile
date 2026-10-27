@@ -623,6 +623,38 @@ platform :ios do
   end
 end
 
+def play_store_beta_release_notes
+  tag = fetchRequiredEnvironmentValue("BETA_RELEASE_TAG")
+  repository = fetchOptionalEnvironmentValue("GITHUB_REPOSITORY", "fluxerapp/flutter_client")
+  server_url = fetchOptionalEnvironmentValue("GITHUB_SERVER_URL", "https://github.com")
+  "Review full release notes here: #{server_url}/#{repository}/releases/tag/#{tag}"
+end
+
+platform :android do
+  desc "Upload beta FCM app bundle to Google Play"
+  lane :upload_beta_fcm_aab do
+    aab_glob = File.join(project_root_path, "build/app/outputs/bundle/betaFcmRelease/*.aab")
+    aab_path = Dir.glob(aab_glob).first
+    if aab_path.nil? || !File.exist?(aab_path)
+      UI.user_error!("Beta FCM AAB not found (expected #{aab_glob})")
+    end
+
+    upload_to_play_store(
+      package_name: "com.fluxer",
+      aab: aab_path,
+      track: fetchOptionalEnvironmentValue("PLAY_STORE_TRACK", "beta"),
+      json_key_data: fetchRequiredEnvironmentValue("SUPPLY_JSON_KEY_DATA"),
+      release_notes: {
+        "en-US" => play_store_beta_release_notes
+      },
+      skip_upload_apk: true,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+end
+
 platform :mac do
   desc "Build canary macOS archive and upload to TestFlight (com.fluxer.lite.canary)"
   lane :testflight_canary do

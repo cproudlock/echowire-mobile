@@ -2012,6 +2012,29 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get emojiPickerTitle => 'Emoji';
 
   @override
+  String get profileBadgesSettingsTitle => 'Badges';
+
+  @override
+  String get profileBadgesSettingsDescription =>
+      'Choose which badges other people see on your profile.';
+
+  @override
+  String get profileBadgesSettingsEmpty => 'You don\'t have any badges yet.';
+
+  @override
+  String get profileBadgesSettingsLoadFailed =>
+      'Your badges couldn\'t be loaded.';
+
+  @override
+  String profileBadgesShowOnProfile(String badgeLabel) {
+    return 'Show $badgeLabel on your profile';
+  }
+
+  @override
+  String get profileBadgesVisionaryNumberNote =>
+      'Shown only when your Visionary badge is visible and not masked.';
+
+  @override
   String get plutoniumBadgePrivacyTitle => 'Soukromí odznaku Plutonia';
 
   @override
@@ -6194,6 +6217,11 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String get voiceScreenShareExitFullscreenTooltip =>
       'Ukončit režim celé obrazovky';
+
+  @override
+  String voiceVideoZoomLevel(String scale) {
+    return 'Zoom $scale';
+  }
 
   @override
   String get voiceOwnScreenShareTitle => 'Vysíláte';

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fluxer_app/core/api/session_authorization_header.dart';
-import 'package:fluxer_app/core/push/push_notification_reply.dart';
+import 'package:fluxer_app/core/push/notification/reply.dart';
 import 'package:fluxer_app/core/talker.dart';
 
 enum ForeignCallRingStop { decline, ignore }

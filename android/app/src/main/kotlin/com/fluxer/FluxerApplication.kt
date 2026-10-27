@@ -48,6 +48,7 @@ class FluxerApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         createNotificationChannels()
+        UploadKeepAliveService.stop(this)
         val meta =
             packageManager
                 .getApplicationInfo(packageName, PackageManager.GET_META_DATA)

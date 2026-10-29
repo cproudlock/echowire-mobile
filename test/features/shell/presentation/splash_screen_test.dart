@@ -200,6 +200,38 @@ void main() {
     await releaseTestWidgetTree(tester);
   });
 
+  testWidgets('hydration wait exits the splash with animations disabled', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      pumpFluxerApp(
+        overrides: _splashOverrides(<Override>[
+          fluxerDatabaseProvider.overrideWithValue(_database),
+          appStartupProvider.overrideWith(_ReadyAppStartup.new),
+          gatewayReadyProvider.overrideWith(_ReadyGateway.new),
+          authStateProvider.overrideWith(_Authenticated.new),
+          appearancePreferencesProvider.overrideWithValue(
+            const AppearancePreferencesState(),
+          ),
+          unreadDmChannelsProvider.overrideWithValue(const UnreadDmState()),
+        ]),
+        child: const SplashScreen(),
+      ),
+    );
+    await tester.pump();
+    final ProviderContainer container = ProviderScope.containerOf(
+      tester.element(find.byType(SplashScreen)),
+    );
+    container.read(guildReadStateReadyProvider.notifier).markReady();
+    await tester.pump();
+    expect(container.read(splashExitAllowedProvider), isFalse);
+
+    await tester.pump(const Duration(seconds: 2));
+    await tester.pump();
+    expect(container.read(splashExitAllowedProvider), isTrue);
+    await releaseTestWidgetTree(tester);
+  });
+
   testWidgets('503 startup shows outage copy and status links', (tester) async {
     await tester.pumpWidget(
       pumpFluxerApp(

@@ -421,6 +421,12 @@ List<Widget> buildMessageActionMenuGroups({
             label: l10n.retry,
             onTap: () => onAction(MessageAction.retry),
           ),
+          if (message.content.isNotEmpty)
+            FluxerBottomSheetMenuItem(
+              icon: PhosphorIconsFill.copy,
+              label: l10n.chatMessageCopyText,
+              onTap: () => onAction(MessageAction.copyText),
+            ),
         ],
       ),
       FluxerMenuGroup(

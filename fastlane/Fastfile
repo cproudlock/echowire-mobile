@@ -12,6 +12,9 @@ end
 
 def github_hosted_xcode_app_paths
   [
+    "/Applications/Xcode_27.1.app",
+    "/Applications/Xcode_27.1.0.app",
+    "/Applications/Xcode_27.1_Release_Candidate.app",
     "/Applications/Xcode_27.app",
     "/Applications/Xcode_27.0.app",
     "/Applications/Xcode.app",
@@ -31,8 +34,8 @@ def select_required_xcode
   end
   unless xcode_app && File.directory?(xcode_app)
     UI.user_error!(
-      "Could not find Xcode 27. On GitHub Actions use runs-on: xcode-27 and set " \
-      "DEVELOPER_DIR to /Applications/Xcode_27.app/Contents/Developer, or set XCODE_PATH locally."
+      "Could not find Xcode 27.1 (iPhone Duo). On GitHub Actions use runs-on: xcode-27 and set " \
+      "DEVELOPER_DIR to /Applications/Xcode_27.1.app/Contents/Developer, or set XCODE_PATH locally."
     )
   end
   xcode_select(xcode_app)

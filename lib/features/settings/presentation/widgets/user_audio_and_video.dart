@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/settings/presentation/widgets/voice_mic_test_section.dart';
@@ -11,6 +12,7 @@ import 'package:fluxer_app/features/voice/domain/voice_output_route.dart';
 import 'package:fluxer_app/features/voice/domain/voice_settings_state.dart';
 import 'package:fluxer_app/features/voice/presentation/widgets/voice_audio_processing_options.dart';
 import 'package:fluxer_app/features/voice/presentation/widgets/voice_change_audio_output_row.dart';
+import 'package:fluxer_app/features/voice/presentation/widgets/voice_output_route_radio_group.dart';
 import 'package:fluxer_app/features/voice/providers/voice_media_devices_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_video_quality_provider.dart';
 import 'package:fluxer_app/features/voice/utils/audio/speaker_route.dart';
@@ -122,6 +124,8 @@ class _UserAudioAndVideoState extends ConsumerState<UserAudioAndVideo> {
     final bool showCameraDevicePicker = !isMobileVoiceCameraPlatform();
     final bool useNativeVoiceAudioRoutePicker =
         showNativeVoiceAudioRoutePicker();
+    final bool useAndroidVoiceOutputRouteRadio =
+        defaultTargetPlatform == TargetPlatform.android && canSwitchSpeaker;
 
     return SingleChildScrollView(
       controller: widget.scrollController,
@@ -137,6 +141,8 @@ class _UserAudioAndVideoState extends ConsumerState<UserAudioAndVideo> {
             children: [
               if (useNativeVoiceAudioRoutePicker)
                 const VoiceChangeAudioOutputSettingsRow()
+              else if (useAndroidVoiceOutputRouteRadio)
+                const VoiceOutputRouteSettingsControl()
               else ...<Widget>[
                 FluxerSelect<String>(
                   label: l10n.audioAndVideoInputDeviceLabel,

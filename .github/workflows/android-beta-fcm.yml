@@ -178,7 +178,10 @@ jobs:
           BETA_RELEASE_TAG: ${{ steps.beta_version_name.outputs.tag_name }}
           PLAY_STORE_TRACK: beta
           SUPPLY_JSON_KEY_DATA: ${{ secrets.SUPPLY_JSON_KEY_DATA }}
-        run: bundle exec fastlane android upload_beta_fcm_aab
+        run: |
+          if ! bundle exec fastlane android upload_beta_fcm_aab; then
+            echo "::warning::Google Play upload failed. APK/AAB artifacts will still be uploaded."
+          fi
 
       - name: Upload beta APK artifacts
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
@@ -193,5 +196,5 @@ jobs:
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
           name: beta-fcm-aab
-          path: build/app/outputs/bundle/betaFcmRelease/*.aab
+          path: build/app/outputs/bundle/betaFcmRelease/app-beta-fcm-release.aab
           if-no-files-found: error

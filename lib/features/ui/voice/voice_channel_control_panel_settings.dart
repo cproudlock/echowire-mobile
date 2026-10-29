@@ -5,10 +5,10 @@ import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/settings/providers/preferences/voice_settings_provider.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
-import 'package:fluxer_app/features/voice/domain/voice_output_route.dart';
 import 'package:fluxer_app/features/voice/domain/voice_settings_state.dart';
 import 'package:fluxer_app/features/voice/presentation/sheets/voice_channel_chat_sheet.dart';
 import 'package:fluxer_app/features/voice/presentation/widgets/voice_change_audio_output_row.dart';
+import 'package:fluxer_app/features/voice/presentation/widgets/voice_output_route_radio_group.dart';
 import 'package:fluxer_app/features/voice/providers/voice_call_display_preferences_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_call_layout_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_channel_text_chat_provider.dart';
@@ -124,16 +124,6 @@ class VoiceChannelControlPanelSettings extends ConsumerWidget {
         (ref.watch(channelByIdProvider(channelId)).value?.rtcP2p ?? false);
     final bool showSwitchToStandard = isP2pCall && !isPinnedP2pChannel;
     final bool canSwitchSpeaker = AudioManager.instance.canSwitchSpeakerphone;
-    final Set<VoiceOutputRoute> availableRoutes = ref.watch(
-      voiceAvailableOutputRoutesProvider,
-    );
-    final VoiceOutputRoute selectedRoute = resolveVoiceOutputRoute(
-      preference: settings.outputRoute,
-      available: availableRoutes,
-    );
-    final bool showRoutePicker = availableRoutes.contains(
-      VoiceOutputRoute.headset,
-    );
     return Padding(
       key: kVoiceControlPanelSettingsKey,
       padding: EdgeInsets.fromLTRB(layout.s4, layout.s2, layout.s4, layout.s6),
@@ -187,76 +177,13 @@ class VoiceChannelControlPanelSettings extends ConsumerWidget {
             SizedBox(height: layout.s4),
           ],
           FluxerListSection(
-            header: l10n.voiceCallViewModeLabel,
-            children: <Widget>[
-              Padding(
-                key: kVoiceControlPanelViewModeKey,
-                padding: EdgeInsets.all(layout.s4),
-                child: FluxerRadioGroup<VoiceCallLayoutMode>(
-                  value: callLayout.mode,
-                  onChanged: callLayoutNotifier.setMode,
-                  items: <FluxerRadioItem<VoiceCallLayoutMode>>[
-                    FluxerRadioItem(
-                      value: VoiceCallLayoutMode.grid,
-                      label: l10n.voiceCallViewModeGrid,
-                    ),
-                    FluxerRadioItem(
-                      value: VoiceCallLayoutMode.focus,
-                      label: l10n.voiceCallViewModeFocus,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: layout.s4),
-          FluxerListSection(
             header: l10n.voicePanelSettingsSectionTitle,
             children: <Widget>[
               if (showNativeVoiceAudioRoutePicker())
                 const VoiceChangeAudioOutputPanelRow()
-              else if (canSwitchSpeaker && showRoutePicker)
-                Padding(
-                  key: kVoiceControlPanelUseEarpieceKey,
-                  padding: EdgeInsets.all(layout.s4),
-                  child: FluxerRadioGroup<VoiceOutputRoute>(
-                    value: selectedRoute,
-                    onChanged: (VoiceOutputRoute route) {
-                      unawaited(settingsNotifier.setOutputRoute(route));
-                    },
-                    items: <FluxerRadioItem<VoiceOutputRoute>>[
-                      if (availableRoutes.contains(VoiceOutputRoute.speaker))
-                        FluxerRadioItem(
-                          value: VoiceOutputRoute.speaker,
-                          label: l10n.voiceOutputRouteSpeaker,
-                        ),
-                      if (availableRoutes.contains(VoiceOutputRoute.earpiece))
-                        FluxerRadioItem(
-                          value: VoiceOutputRoute.earpiece,
-                          label: l10n.voiceOutputRouteEarpiece,
-                        ),
-                      FluxerRadioItem(
-                        value: VoiceOutputRoute.headset,
-                        label: l10n.voiceOutputRouteHeadset,
-                      ),
-                    ],
-                  ),
-                )
               else if (canSwitchSpeaker)
-                VoicePanelSettingSwitchRow(
-                  key: kVoiceControlPanelUseEarpieceKey,
-                  icon: PhosphorIconsFill.deviceMobile,
-                  label: l10n.voicePanelUseEarpieceLabel,
-                  value: selectedRoute == VoiceOutputRoute.earpiece,
-                  onChanged: (bool value) {
-                    unawaited(
-                      settingsNotifier.setOutputRoute(
-                        value
-                            ? VoiceOutputRoute.earpiece
-                            : VoiceOutputRoute.speaker,
-                      ),
-                    );
-                  },
+                const VoiceOutputRouteRadioGroup(
+                  controlKey: kVoiceControlPanelUseEarpieceKey,
                 ),
               VoicePanelSettingSwitchRow(
                 key: kVoiceControlPanelOnlyShowVideosKey,
@@ -289,6 +216,30 @@ class VoiceChannelControlPanelSettings extends ConsumerWidget {
                     ),
                   );
                 },
+              ),
+            ],
+          ),
+          SizedBox(height: layout.s4),
+          FluxerListSection(
+            header: l10n.voiceCallViewModeLabel,
+            children: <Widget>[
+              Padding(
+                key: kVoiceControlPanelViewModeKey,
+                padding: EdgeInsets.all(layout.s4),
+                child: FluxerRadioGroup<VoiceCallLayoutMode>(
+                  value: callLayout.mode,
+                  onChanged: callLayoutNotifier.setMode,
+                  items: <FluxerRadioItem<VoiceCallLayoutMode>>[
+                    FluxerRadioItem(
+                      value: VoiceCallLayoutMode.grid,
+                      label: l10n.voiceCallViewModeGrid,
+                    ),
+                    FluxerRadioItem(
+                      value: VoiceCallLayoutMode.focus,
+                      label: l10n.voiceCallViewModeFocus,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

@@ -70,7 +70,7 @@ class _VoiceMicTestSectionState extends ConsumerState<VoiceMicTestSection> {
       voiceSettingsApplicatorProvider,
     );
     try {
-      await applicator.applySpeakerOutput(settings: settings);
+      await applicator.applySpeakerOutput(settings: settings, holdRoute: false);
       await _configureOutputDevice(settings.outputDeviceId);
       final LocalAudioTrack track = await _createMicTestTrack(
         applicator: applicator,

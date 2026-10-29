@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:adaptive_platform_ui/adaptive_platform_ui.dart';
+import 'package:cupertino_ui/cupertino_ui.dart'
+    show CupertinoTheme, CupertinoThemeData;
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/assistant/assistant_binding.dart';
@@ -187,17 +189,29 @@ class _FluxerAppState extends ConsumerState<FluxerApp> {
               child: FluxerAppTextScale(child: content),
             );
             final ThemeData materialTheme = Theme.of(context);
-            return AdaptiveToolbarHost(
-              child: IphoneDuoAppBackground(
-                child: AnnotatedRegion<SystemUiOverlayStyle>(
-                  value:
-                      materialTheme.appBarTheme.systemOverlayStyle ??
-                      fluxerSystemUiOverlayStyle(
-                        brightness: materialTheme.brightness,
-                        navigationBarColor:
-                            materialTheme.scaffoldBackgroundColor,
-                      ),
-                  child: NativePasteShortcuts(child: scaled),
+            final CupertinoThemeData cupertinoTheme = CupertinoTheme.of(context)
+                .copyWith(
+                  brightness: materialTheme.brightness,
+                  scaffoldBackgroundColor:
+                      materialTheme.scaffoldBackgroundColor,
+                );
+            return Material(
+              type: MaterialType.transparency,
+              child: CupertinoTheme(
+                data: cupertinoTheme,
+                child: AdaptiveToolbarHost(
+                  child: IphoneDuoAppBackground(
+                    child: AnnotatedRegion<SystemUiOverlayStyle>(
+                      value:
+                          materialTheme.appBarTheme.systemOverlayStyle ??
+                          fluxerSystemUiOverlayStyle(
+                            brightness: materialTheme.brightness,
+                            navigationBarColor:
+                                materialTheme.scaffoldBackgroundColor,
+                          ),
+                      child: NativePasteShortcuts(child: scaled),
+                    ),
+                  ),
                 ),
               ),
             );

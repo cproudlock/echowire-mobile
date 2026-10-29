@@ -179,12 +179,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   }
 
   void _scheduleExitReveal() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) {
-        return;
-      }
-      _maybeStartExitReveal();
-    });
+    WidgetsBinding.instance
+      ..addPostFrameCallback((_) {
+        if (!mounted) {
+          return;
+        }
+        _maybeStartExitReveal();
+      })
+      ..ensureVisualUpdate();
   }
 
   void _maybeStartExitReveal() {

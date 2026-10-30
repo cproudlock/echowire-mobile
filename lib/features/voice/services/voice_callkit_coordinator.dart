@@ -184,6 +184,7 @@ class VoiceCallKitCoordinatorLogic {
         if (!shouldReapplySpeakerOutputOnPreferenceChange(
           isInVoice: voice.isInVoice,
           speakerPreferenceChanged: previous?.outputRoute != next.outputRoute,
+          isAndroid: Platform.isAndroid,
         )) {
           return;
         }

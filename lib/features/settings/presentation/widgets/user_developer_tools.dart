@@ -251,15 +251,16 @@ class _UserDeveloperToolsState extends ConsumerState<UserDeveloperTools> {
   }
 
   Future<void> _showObservabilityReportingConsentSheet() async {
+    final ObservabilityReporting reporting = ref.read(
+      observabilityReportingProvider.notifier,
+    );
+    final ObservabilityReportingPromptDismissed dismissed = ref.read(
+      observabilityReportingPromptDismissedProvider.notifier,
+    );
     final bool? optedIn = await showObservabilityReportingConsentSheet(context);
-    if (!mounted) {
-      return;
-    }
     await recordObservabilityReportingConsentSheetResult(
-      reporting: ref.read(observabilityReportingProvider.notifier),
-      dismissed: ref.read(
-        observabilityReportingPromptDismissedProvider.notifier,
-      ),
+      reporting: reporting,
+      dismissed: dismissed,
       optedIn: optedIn,
     );
   }

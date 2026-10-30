@@ -227,7 +227,10 @@ class _VoiceChannelParticipantGridState
     _placedTiles.clear();
     _placedRects.clear();
     _departingTileIds.clear();
-    _tileKeys.clear();
+  }
+
+  Key _tileKey(String tileId) {
+    return _tileKeys.putIfAbsent(tileId, GlobalKey.new);
   }
 
   @override
@@ -870,7 +873,6 @@ class _VoiceChannelParticipantGridState
       _placedTiles.clear();
       _placedRects.clear();
       _departingTileIds.clear();
-      _tileKeys.clear();
     }
     if (useCompact) {
       final List<_VoiceGridTileItem> cameras = <_VoiceGridTileItem>[];
@@ -1290,7 +1292,7 @@ class _VoiceChannelParticipantGridState
           children: <Widget>[
             _placedGridTile(
               context: context,
-              tileKey: ValueKey<String>(pinnedTile.tileId),
+              tileKey: _tileKey(pinnedTile.tileId),
               tile: pinnedTile,
               rect: pinnedRect,
               departing: false,
@@ -1412,7 +1414,7 @@ class _VoiceChannelParticipantGridState
           for (int i = 0; i < ordered.length; i++)
             _placedGridTile(
               context: context,
-              tileKey: ValueKey<String>(ordered[i].tileId),
+              tileKey: _tileKey(ordered[i].tileId),
               tile: ordered[i],
               rect: rects[i],
               departing: false,
@@ -1545,9 +1547,7 @@ class _VoiceChannelParticipantGridState
       for (int i = 0; i < tiles.length && i < rects.length; i++)
         _placedGridTile(
           context: context,
-          tileKey: compactLayout == null
-              ? ValueKey<String>(tiles[i].tileId)
-              : _tileKeys.putIfAbsent(tiles[i].tileId, GlobalKey.new),
+          tileKey: _tileKey(tiles[i].tileId),
           tile: tiles[i],
           rect: rects[i],
           departing: false,
@@ -1576,7 +1576,7 @@ class _VoiceChannelParticipantGridState
         positioned.add(
           _placedGridTile(
             context: context,
-            tileKey: _tileKeys.putIfAbsent(tileId, GlobalKey.new),
+            tileKey: _tileKey(tileId),
             tile: tile,
             rect: rect,
             departing: true,

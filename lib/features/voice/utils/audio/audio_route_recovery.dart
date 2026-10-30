@@ -1,3 +1,5 @@
+import 'package:fluxer_app/features/voice/domain/voice_settings_state.dart';
+
 const Duration kVoiceAudioRouteRecoveryDebounce = Duration(milliseconds: 800);
 
 bool shouldRecoverVoiceAudioOnDeviceChange({
@@ -7,14 +9,71 @@ bool shouldRecoverVoiceAudioOnDeviceChange({
   return isConnected && hasLiveKitRoom;
 }
 
+bool isExplicitVoiceDeviceId(String deviceId) {
+  return deviceId != kDefaultVoiceDeviceId && deviceId.isNotEmpty;
+}
+
+bool shouldReapplyMobileVoiceOutputOnDeviceChange({
+  required bool isIos,
+  required bool isAndroid,
+  required bool outputChanged,
+}) {
+  if (!outputChanged) {
+    return false;
+  }
+  if (isAndroid) {
+    return false;
+  }
+  return isIos;
+}
+
+bool shouldReapplyDesktopAudioOutputOnDeviceChange({
+  required bool isDesktop,
+  required bool outputChanged,
+  required String configuredOutputDeviceId,
+  required Set<String> availableOutputDeviceIds,
+}) {
+  if (!isDesktop || !outputChanged) {
+    return false;
+  }
+  if (!isExplicitVoiceDeviceId(configuredOutputDeviceId)) {
+    return false;
+  }
+  return availableOutputDeviceIds.contains(configuredOutputDeviceId);
+}
+
+bool shouldClearMissingDesktopOutputDevice({
+  required bool isDesktop,
+  required bool outputChanged,
+  required String configuredOutputDeviceId,
+  required Set<String> availableOutputDeviceIds,
+}) {
+  if (!isDesktop || !outputChanged) {
+    return false;
+  }
+  if (!isExplicitVoiceDeviceId(configuredOutputDeviceId)) {
+    return false;
+  }
+  return !availableOutputDeviceIds.contains(configuredOutputDeviceId);
+}
+
 bool shouldRefreshMicrophoneOnAudioRouteChange({
   required bool isIos,
+  required bool isAndroid,
   required bool isForeground,
+  required String configuredInputDeviceId,
+  required Set<String> availableInputDeviceIds,
 }) {
-  if (!isIos) {
-    return true;
+  if (isAndroid) {
+    return false;
   }
-  return isForeground;
+  if (isIos) {
+    return isForeground;
+  }
+  if (!isExplicitVoiceDeviceId(configuredInputDeviceId)) {
+    return false;
+  }
+  return !availableInputDeviceIds.contains(configuredInputDeviceId);
 }
 
 bool didAudioDeviceIdsChange({

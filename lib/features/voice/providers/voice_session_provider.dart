@@ -3157,6 +3157,7 @@ class VoiceSession extends _$VoiceSession {
     _isRecoveringAudioRoute = false;
     unawaited(_mediaDeviceChangeSubscription?.cancel());
     _mediaDeviceChangeSubscription = null;
+    unawaited(clearNativeVoiceOutputRouteHold());
   }
 
   Set<String> _audioInputDeviceIds(List<MediaDevice> devices) {
@@ -3226,19 +3227,51 @@ class VoiceSession extends _$VoiceSession {
 
     final VoiceSettingsState settings = ref.read(voiceSettingsProvider);
     final VoiceSettingsApplicator applicator = _voiceSettingsApplicator();
+    final bool isAndroid = Platform.isAndroid;
+    final bool isIos = Platform.isIOS;
+    final bool isMobile = isAndroid || isIos;
+    final bool isDesktop = !isMobile;
 
     _isRecoveringAudioRoute = true;
     try {
-      if (outputChanged) {
+      if (shouldReapplyMobileVoiceOutputOnDeviceChange(
+        isIos: isIos,
+        isAndroid: isAndroid,
+        outputChanged: outputChanged,
+      )) {
         await _runAudioRouteRecoveryStep(
           'applySpeakerOutput',
           () => applicator.applySpeakerOutput(settings: settings),
         );
+      } else if (shouldReapplyDesktopAudioOutputOnDeviceChange(
+        isDesktop: isDesktop,
+        outputChanged: outputChanged,
+        configuredOutputDeviceId: settings.outputDeviceId,
+        availableOutputDeviceIds: outputIds,
+      )) {
+        await _runAudioRouteRecoveryStep(
+          'applyDesktopAudioOutput',
+          () => _applyAudioOutputDevice(settings.outputDeviceId),
+        );
+      } else if (shouldClearMissingDesktopOutputDevice(
+        isDesktop: isDesktop,
+        outputChanged: outputChanged,
+        configuredOutputDeviceId: settings.outputDeviceId,
+        availableOutputDeviceIds: outputIds,
+      )) {
+        await _runAudioRouteRecoveryStep('clearDesktopAudioOutput', () async {
+          await ref
+              .read(voiceSettingsProvider.notifier)
+              .setOutputDeviceId(kDefaultVoiceDeviceId);
+        });
       }
       if (inputChanged &&
           shouldRefreshMicrophoneOnAudioRouteChange(
-            isIos: Platform.isIOS,
+            isIos: isIos,
+            isAndroid: isAndroid,
             isForeground: ref.read(appUiForegroundProvider),
+            configuredInputDeviceId: settings.inputDeviceId,
+            availableInputDeviceIds: inputIds,
           ) &&
           _shouldPublishMicrophone()) {
         await _runAudioRouteRecoveryStep('refreshMicrophone', () async {
@@ -3380,6 +3413,7 @@ class VoiceSession extends _$VoiceSession {
         isInVoice: state.isInVoice,
         speakerPreferenceChanged:
             previous != null && previous.outputRoute != next.outputRoute,
+        isAndroid: Platform.isAndroid,
       )) {
         _scheduleSpeakerOutputRetry();
       }

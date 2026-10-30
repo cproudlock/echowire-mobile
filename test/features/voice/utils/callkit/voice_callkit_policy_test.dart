@@ -734,6 +734,7 @@ void main() {
         shouldReapplySpeakerOutputOnPreferenceChange(
           isInVoice: true,
           speakerPreferenceChanged: true,
+          isAndroid: false,
         ),
         isTrue,
       );
@@ -743,6 +744,7 @@ void main() {
         shouldReapplySpeakerOutputOnPreferenceChange(
           isInVoice: true,
           speakerPreferenceChanged: false,
+          isAndroid: false,
         ),
         isFalse,
       );
@@ -752,6 +754,17 @@ void main() {
         shouldReapplySpeakerOutputOnPreferenceChange(
           isInVoice: false,
           speakerPreferenceChanged: true,
+          isAndroid: false,
+        ),
+        isFalse,
+      );
+    });
+    test('skips on Android where native route hold owns reapply', () {
+      expect(
+        shouldReapplySpeakerOutputOnPreferenceChange(
+          isInVoice: true,
+          speakerPreferenceChanged: true,
+          isAndroid: true,
         ),
         isFalse,
       );

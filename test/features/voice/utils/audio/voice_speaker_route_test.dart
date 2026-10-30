@@ -62,4 +62,37 @@ void main() {
       expect(route, VoiceOutputRoute.earpiece);
     });
   });
+
+  group('applyNativeVoiceOutputRoute', () {
+    test('passes hold when setting route on Android', () async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      Object? arguments;
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, (MethodCall call) async {
+            if (call.method == 'setRoute') {
+              arguments = call.arguments;
+            }
+            return null;
+          });
+      await applyNativeVoiceOutputRoute(VoiceOutputRoute.earpiece, hold: true);
+      expect(arguments, isA<Map<Object?, Object?>>());
+      final Map<Object?, Object?> args = arguments! as Map<Object?, Object?>;
+      expect(args['route'], 'earpiece');
+      expect(args['hold'], isTrue);
+    });
+  });
+
+  group('clearNativeVoiceOutputRouteHold', () {
+    test('invokes clearRouteHold on Android', () async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      String? method;
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, (MethodCall call) async {
+            method = call.method;
+            return null;
+          });
+      await clearNativeVoiceOutputRouteHold();
+      expect(method, 'clearRouteHold');
+    });
+  });
 }

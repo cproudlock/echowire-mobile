@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:fluxer_app/core/limits/instance_limit_provider.dart';
 import 'package:fluxer_app/core/limits/limit_key.dart';
@@ -547,25 +548,40 @@ class VoiceSettingsApplicator {
     await track.restartTrack(options);
   }
 
+  Future<void> _applyLiveKitOutputRoutePreference(
+    VoiceOutputRoute route,
+  ) async {
+    try {
+      switch (route) {
+        case VoiceOutputRoute.speaker:
+          await AudioManager.instance.setSpeakerOutputPreferred(
+            true,
+            force: true,
+          );
+        case VoiceOutputRoute.headset:
+        case VoiceOutputRoute.earpiece:
+          await AudioManager.instance.setSpeakerOutputPreferred(false);
+      }
+    } on Object catch (_) {}
+  }
+
   Future<void> applySpeakerOutput({
     required VoiceSettingsState settings,
+    bool holdRoute = true,
   }) async {
-    if (AudioManager.instance.canSwitchSpeakerphone) {
-      final Set<VoiceOutputRoute> available =
-          await readAvailableVoiceOutputRoutes();
-      final VoiceOutputRoute route = effectiveVoiceOutputRoute(
-        preference: settings.outputRoute,
-        available: available,
-      );
-      final bool speaker = liveKitPrefersSpeaker(route);
-      try {
-        await AudioManager.instance.setSpeakerOutputPreferred(
-          speaker,
-          force: speaker,
-        );
-      } on Object catch (_) {}
-      await applyNativeVoiceOutputRoute(route);
+    if (!AudioManager.instance.canSwitchSpeakerphone) {
+      return;
     }
+    final Set<VoiceOutputRoute> available =
+        await readAvailableVoiceOutputRoutes();
+    final VoiceOutputRoute route = resolveVoiceOutputRoute(
+      preference: settings.outputRoute,
+      available: available,
+    );
+    await _applyLiveKitOutputRoutePreference(route);
+    final bool nativeHold =
+        defaultTargetPlatform == TargetPlatform.android && holdRoute;
+    await applyNativeVoiceOutputRoute(route, hold: nativeHold);
   }
 
   String? _resolveDeviceId(String deviceId) {

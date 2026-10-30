@@ -24,7 +24,10 @@ bool showNativeVoiceAudioRoutePicker() {
   return defaultTargetPlatform == TargetPlatform.iOS;
 }
 
-Future<void> applyNativeVoiceOutputRoute(VoiceOutputRoute route) async {
+Future<void> applyNativeVoiceOutputRoute(
+  VoiceOutputRoute route, {
+  bool hold = false,
+}) async {
   if (defaultTargetPlatform != TargetPlatform.android &&
       defaultTargetPlatform != TargetPlatform.iOS) {
     return;
@@ -32,8 +35,19 @@ Future<void> applyNativeVoiceOutputRoute(VoiceOutputRoute route) async {
   try {
     await _voiceSpeakerRouteChannel.invokeMethod<void>(
       'setRoute',
-      <String, Object>{'route': route.name},
+      <String, Object>{'route': route.name, 'hold': hold},
     );
+  } on Object {
+    return;
+  }
+}
+
+Future<void> clearNativeVoiceOutputRouteHold() async {
+  if (defaultTargetPlatform != TargetPlatform.android) {
+    return;
+  }
+  try {
+    await _voiceSpeakerRouteChannel.invokeMethod<void>('clearRouteHold');
   } on Object {
     return;
   }

@@ -251,7 +251,11 @@ bool shouldApplySpeakerOutputWhileInVoice({
 bool shouldReapplySpeakerOutputOnPreferenceChange({
   required bool isInVoice,
   required bool speakerPreferenceChanged,
+  required bool isAndroid,
 }) {
+  if (isAndroid) {
+    return false;
+  }
   return isInVoice && speakerPreferenceChanged;
 }
 

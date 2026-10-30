@@ -249,7 +249,11 @@ class _ShellRouteListenersState extends ConsumerState<ShellRouteListeners> {
       });
       return;
     }
-    ref.read(pushRelayConsentPromptProvider.notifier).beginPresentation();
+    if (!ref
+        .read(pushRelayConsentPromptProvider.notifier)
+        .beginPresentation()) {
+      return;
+    }
     unawaited(_presentPushRelayConsent(rootContext));
   }
 
@@ -328,7 +332,11 @@ class _ShellRouteListenersState extends ConsumerState<ShellRouteListeners> {
       });
       return;
     }
-    ref.read(observabilityReportingPromptProvider.notifier).beginPresentation();
+    if (!ref
+        .read(observabilityReportingPromptProvider.notifier)
+        .beginPresentation()) {
+      return;
+    }
     unawaited(_presentObservabilityReportingConsent(rootContext));
   }
 
@@ -338,18 +346,19 @@ class _ShellRouteListenersState extends ConsumerState<ShellRouteListeners> {
     final ObservabilityReportingPrompt promptNotifier = ref.read(
       observabilityReportingPromptProvider.notifier,
     );
+    final ObservabilityReporting reporting = ref.read(
+      observabilityReportingProvider.notifier,
+    );
+    final ObservabilityReportingPromptDismissed dismissed = ref.read(
+      observabilityReportingPromptDismissedProvider.notifier,
+    );
     try {
       final bool? optedIn = await showObservabilityReportingConsentSheet(
         rootContext,
       );
-      if (!mounted) {
-        return;
-      }
       await recordObservabilityReportingConsentSheetResult(
-        reporting: ref.read(observabilityReportingProvider.notifier),
-        dismissed: ref.read(
-          observabilityReportingPromptDismissedProvider.notifier,
-        ),
+        reporting: reporting,
+        dismissed: dismissed,
         optedIn: optedIn,
       );
     } finally {

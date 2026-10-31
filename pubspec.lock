@@ -1077,6 +1077,13 @@ packages:
       url: "https://github.com/fluxerapp/flutter-webrtc"
     source: git
     version: "1.6.3"
+  fluxer_android_host:
+    dependency: "direct main"
+    description:
+      path: "packages/fluxer_android_host"
+      relative: true
+    source: path
+    version: "0.0.1"
   fluxer_android_notifications:
     dependency: "direct main"
     description:

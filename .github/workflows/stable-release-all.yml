@@ -8,6 +8,11 @@ permissions:
   contents: read
 
 jobs:
+  draft-release:
+    name: Draft stable release
+    uses: ./.github/workflows/_draft-stable-release.yml
+    secrets: inherit
+
   ios-app-store:
     name: iOS App Store build
     uses: ./.github/workflows/ios-production-release.yml

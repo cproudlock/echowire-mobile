@@ -41,12 +41,14 @@ runs:
         unique=()
         for file in "${subjects[@]}"; do
           duplicate=0
-          for existing in "${unique[@]}"; do
-            if [ "$existing" = "$file" ]; then
-              duplicate=1
-              break
-            fi
-          done
+          if ((${#unique[@]} > 0)); then
+            for existing in "${unique[@]}"; do
+              if [ "$existing" = "$file" ]; then
+                duplicate=1
+                break
+              fi
+            done
+          fi
           if [ "$duplicate" -eq 0 ]; then
             unique+=("$file")
           fi

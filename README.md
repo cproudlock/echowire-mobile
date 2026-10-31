@@ -31,17 +31,15 @@ Join here: [Join Link](https://fluxer.gg/fluxer-labs)
 > [!CAUTION]
 > The Fluxer Flutter Android mobile client is still in beta so things can be broken. There is currently no set release date for the app, but you can join our public beta!.
 
-**Apple App Store**: *Coming once out of beta* (join the TestFlight for now).
-
-**Google Play Store**: Join the [Early access](https://play.google.com/store/apps/details?id=com.fluxer)
-
-**Accrescent (GrapheneOS)**: This is something we are interested in doing after the beta and they allow app submissions again.
-
-**F-Droid**: *Coming once out of beta*
-
-**iOS TestFlight**: Join with the [TestFlight link](https://testflight.apple.com/join/PKZR6pK9). **Currently broken due to a bug on Apple's side, We have contacted support**
-
-**Obtainium**: Download OSS and FCM builds automatically directly from the Github builds. [Find out more here](#auto-updates-with-obtainium).
+| Platform | Channel | Status | Get it |
+| --- | --- | --- | --- |
+| iOS | App Store | After beta | — |
+| iOS | TestFlight | Unavailable (Apple-side bug, support contacted) | [Join TestFlight](https://testflight.apple.com/join/PKZR6pK9) |
+| Android | Google Play | Early access | [Early access](https://play.google.com/store/apps/details?id=com.fluxer) |
+| Android | GitHub APK | Beta | [Releases](https://github.com/fluxerapp/flutter_client/releases) (FCM/OSS below) |
+| Android | Obtainium | Beta | [Auto-updates from GitHub](#auto-updates-with-obtainium) |
+| Android | F-Droid | After beta | — |
+| Android | Accrescent | Planned after beta (when submissions reopen) | — |
 
 ### Android (APK)
 
@@ -49,7 +47,7 @@ Download the latest **beta** build from [GitHub releases](https://github.com/flu
 
 **Most phones (Samsung, Pixel, etc.):** install the **FCM** APK. Look for `betafcm` in the name, e.g. `app-arm64-v8a-betafcm-release.apk`. Not sure which file? Pick the one with `arm64-v8a`, or the universal `app-betafcm-release.apk`.
 
-**Degoogled phones (GrapheneOS, no Google apps):** install the **OSS** APK (`betaoss`) and set up [UnifiedPush](https://unifiedpush.org) (e.g. ntfy).
+**Degoogled phones (GrapheneOS, no Google apps):** install the **OSS** APK (`betaoss`) and set up [UnifiedPush](https://unifiedpush.org) (e.g. Sunup).
 
 #### Auto-updates with Obtainium
 

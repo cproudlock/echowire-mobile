@@ -16,22 +16,14 @@
 
 # Fluxer Flutter Client
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center" valign="middle">
-        <a href="https://github.com/fluxerapp/flutter_client/releases">
-          <img src="./docs/media/badge_github.png" alt="Get it on GitHub" height="58">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://play.google.com/store/apps/details?id=com.fluxer&amp;referrer=utm_source%3Dgithub-android-readme">
-          <img src="./docs/media/badge_google_play.png" alt="Download at https://play.google.com/store/apps/details?id=com.fluxer" height="58">
-        </a>
-      </td>
-    </tr>
-  </table>
-</div>
+<p align="center">
+  <a href="https://github.com/fluxerapp/flutter_client/releases">
+    <img src="./docs/media/badge_github.png" alt="Get it on GitHub" height="58" align="middle">
+  </a>
+  <a href="https://play.google.com/store/apps/details?id=com.fluxer&amp;referrer=utm_source%3Dgithub-android-readme">
+    <img src="./docs/media/badge_google_play.png" alt="Download at https://play.google.com/store/apps/details?id=com.fluxer" height="58" align="middle">
+  </a>
+</p>
 
 This is the repo for the official Fluxer mobile / tablet app powered by Flutter (desktop is in the works also but mobile is the main focus currently).
 

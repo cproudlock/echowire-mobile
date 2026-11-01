@@ -10,18 +10,18 @@ void main() {
     test('uses the media proxy when a hash is present', () {
       expect(
         assistantFriendAvatarUrl(userId: '1', hash: 'deadbeef'),
-        'https://fluxerusercontent.com/avatars/1/deadbeef.webp?size=160',
+        'https://echowire.org/media/avatars/1/deadbeef.webp?size=160',
       );
     });
 
     test('falls back to the default avatar', () {
       expect(
         assistantFriendAvatarUrl(userId: '7', hash: null),
-        'https://fluxerstatic.com/avatars/1.png?v=2',
+        'https://echowire.org/avatars/1.png?v=2',
       );
       expect(
         assistantFriendAvatarUrl(userId: '7', hash: ''),
-        'https://fluxerstatic.com/avatars/1.png?v=2',
+        'https://echowire.org/avatars/1.png?v=2',
       );
     });
 

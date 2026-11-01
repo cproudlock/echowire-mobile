@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fluxer_app/core/instance/instance_constants.dart';
 import 'package:fluxer_app/core/system_permissions/system_permission_kind.dart';
 import 'package:fluxer_app/core/theme/fluxer_layout_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_text_theme.dart';
@@ -61,7 +62,11 @@ void main() {
       );
       expect(find.text(l10n.systemPermissionSettingsTitle), findsOneWidget);
       expect(
-        find.text(l10n.systemPermissionMicrophoneMessage('Fluxer')),
+        find.text(
+          l10n.systemPermissionMicrophoneMessage(
+            InstanceConstants.defaultProductName,
+          ),
+        ),
         findsOneWidget,
       );
       expect(

@@ -178,7 +178,7 @@ void main() {
         'icon': 'https://cdn.example/icon.png',
         'author_id': '7',
       }, endpoints: endpoints),
-      'https://fluxerstatic.com/avatars/1.png',
+      'https://echowire.org/avatars/1.png?v=2',
     );
   });
 
@@ -188,20 +188,20 @@ void main() {
       pushAuthorAvatarUrl(<String, String>{
         'author_id': '7',
       }, endpoints: endpoints),
-      'https://fluxerstatic.com/avatars/1.png',
+      'https://echowire.org/avatars/1.png?v=2',
     );
     expect(
       pushAuthorAvatarUrl(<String, String>{
-        'icon': 'https://fluxerstatic.com/avatars/3.png',
+        'icon': 'https://echowire.org/avatars/3.png',
       }, endpoints: endpoints),
-      'https://fluxerstatic.com/avatars/3.png',
+      'https://echowire.org/avatars/3.png',
     );
     expect(
       pushNotificationStaticImageUrl(
-        'https://fluxerstatic.com/avatars/2.png',
+        'https://echowire.org/avatars/2.png',
         size: 160,
       ),
-      'https://fluxerstatic.com/avatars/2.png',
+      'https://echowire.org/avatars/2.png',
     );
     expect(
       pushAuthorIdFromAvatarUrl(
@@ -220,19 +220,19 @@ void main() {
       pushAuthorAvatarUrl(<String, String>{
         'author_id': '7',
       }, endpoints: endpoints),
-      'https://static.selfhosted.test/avatars/1.png',
+      'https://static.selfhosted.test/avatars/1.png?v=2',
     );
     expect(
       pushAuthorAvatarUrl(<String, String>{
         'author_avatar_url':
-            'https://fluxerusercontent.com/avatars/1/deadbeef.webp?size=160',
+            'https://echowire.org/media/avatars/1/deadbeef.webp?size=160',
       }, endpoints: endpoints),
       'https://media.selfhosted.test/avatars/1/deadbeef.webp?format=png&animated=false&size=160',
     );
     expect(
       pushAttachmentImageUrl(<String, String>{
         'has_media': 'true',
-        'image_url': 'https://fluxerusercontent.com/attachments/1/preview.webp',
+        'image_url': 'https://echowire.org/media/attachments/1/preview.webp',
       }, endpoints: endpoints),
       'https://media.selfhosted.test/attachments/1/preview.webp',
     );

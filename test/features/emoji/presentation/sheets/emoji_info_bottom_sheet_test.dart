@@ -6,6 +6,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fluxer_app/core/instance/instance_constants.dart';
 import 'package:fluxer_app/core/router/route_state_providers.dart';
 import 'package:fluxer_app/core/theme/fluxer_layout_theme.dart';
 import 'package:fluxer_app/core/theme/fluxer_text_theme.dart';
@@ -102,7 +103,11 @@ void main() {
 
     expect(find.text(':${entry.primaryName}:'), findsOneWidget);
     expect(
-      find.text(testL10n.emojiInfoDefaultDescription('Fluxer')),
+      find.text(
+        testL10n.emojiInfoDefaultDescription(
+          InstanceConstants.defaultProductName,
+        ),
+      ),
       findsOneWidget,
     );
   });

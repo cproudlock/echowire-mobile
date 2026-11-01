@@ -189,7 +189,7 @@ void main() {
     test('includes lossless quality by default', () {
       expect(
         FluxerMediaUrl.customEmoji(id: '123'),
-        'https://fluxerusercontent.com/emojis/123.webp?quality=lossless',
+        'https://echowire.org/media/emojis/123.webp?quality=lossless',
       );
     });
 
@@ -201,7 +201,7 @@ void main() {
       );
       expect(
         actual,
-        'https://fluxerusercontent.com/emojis/123.webp'
+        'https://echowire.org/media/emojis/123.webp'
         '?animated=true&quality=lossless&size=48',
       );
     });

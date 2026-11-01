@@ -9,6 +9,7 @@ import 'package:fluxer_app/core/push/apns/apns_mobile_device_registration.dart';
 import 'package:fluxer_app/core/push/push_message.dart';
 import 'package:fluxer_app/core/push/push_service.dart';
 import 'package:fluxer_app/core/push/relay_consent/push_relay_consent_prompt_provider.dart';
+import 'package:fluxer_app/core/push/relay_registration.dart';
 import 'package:fluxer_app/core/push/web_push/web_push_relay.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_dart/export.dart';
@@ -83,6 +84,37 @@ void main() {
       expect(container.read(pushRelayConsentPromptProvider), isTrue);
     },
     variant: TargetPlatformVariant.only(TargetPlatform.iOS),
+    skip: !kEchowireWebPushRegistrationEnabled,
+  );
+
+  testWidgets(
+    'with the relay off, a device registers its raw APNs token once',
+    (WidgetTester tester) async {
+      final _RecordingUsersApi users = _RecordingUsersApi();
+      final ProviderContainer container = ProviderContainer(
+        overrides: [
+          fluxerClientProvider.overrideWithValue(_FakeClient(users)),
+          pushServiceProvider.overrideWithValue(_FakePushService()),
+          isActiveInstanceOfficialProvider.overrideWithValue(false),
+        ],
+      );
+      addTearDown(container.dispose);
+      container.read(fluxerAuthTokenProvider.notifier).setToken('token');
+      container.read(authStateProvider.notifier).setAuthenticated(value: true);
+      container.read(currentUserIdProvider.notifier).set('user-1');
+
+      final ApnsMobileDeviceRegistration registration = container.read(
+        apnsMobileDeviceRegistrationProvider.notifier,
+      );
+      await registration.sync();
+      await registration.sync();
+
+      expect(users.registeredTokens, <String>['ab']);
+      expect(users.unregisteredTokens, isEmpty);
+      expect(container.read(pushRelayConsentPromptProvider), isFalse);
+    },
+    variant: TargetPlatformVariant.only(TargetPlatform.iOS),
+    skip: kEchowireWebPushRegistrationEnabled,
   );
 }
 
@@ -106,7 +138,11 @@ class _RecordingUsersApi implements UsersApi {
     required RegisterMobileDeviceRequest body,
   }) {
     registeredTokens.add(body.token);
-    throw UnimplementedError();
+    return Future<RegisterMobileDeviceResponse>.value(
+      const RegisterMobileDeviceResponse(
+        deviceId: '0123456789abcdef0123456789abcdef',
+      ),
+    );
   }
 
   @override

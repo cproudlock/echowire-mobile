@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.view.KeyEvent
 import com.hiennv.flutter_callkit_incoming.CallkitEventCallback
 import com.hiennv.flutter_callkit_incoming.FlutterCallkitIncomingPlugin
-import com.ryanheise.audioservice.AudioServiceActivity
 import io.flutter.embedding.engine.FlutterEngine
 
-class MainActivity : AudioServiceActivity() {
+class MainActivity : MainActivityBase() {
     private val imeEditingShortcutBridge = ImeEditingShortcutBridge()
-    private var voiceTaskRemovedBridge: VoiceTaskRemovedBridge? = null
     private var ownsMainEngine = false
 
     private val callkitEventCallback = object : CallkitEventCallback {
@@ -39,6 +37,7 @@ class MainActivity : AudioServiceActivity() {
     override fun onDestroy() {
         val ownedEngine = ownsMainEngine
         ownsMainEngine = false
+        VoiceTaskRemovedRegistry.bridge = null
         FlutterCallkitIncomingPlugin.unregisterEventCallback(callkitEventCallback)
         super.onDestroy()
         if (ownedEngine) {
@@ -46,9 +45,8 @@ class MainActivity : AudioServiceActivity() {
         }
     }
 
-    override fun onTaskRemoved(rootIntent: Intent) {
-        voiceTaskRemovedBridge?.onAppTaskRemoved()
-        super.onTaskRemoved(rootIntent)
+    override fun onFluxerAppTaskRemoved() {
+        VoiceTaskRemovedRegistry.notifyAppTaskRemoved(applicationContext)
     }
 
     override fun popSystemNavigator(): Boolean = moveTaskToBack(true)
@@ -68,8 +66,9 @@ class MainActivity : AudioServiceActivity() {
         PhysicalKeyboardBridge(applicationContext).register(flutterEngine)
         NotificationReplyBridge(applicationContext).register(flutterEngine)
         VoiceSpeakerRouteBridge(this).register(flutterEngine)
-        voiceTaskRemovedBridge = VoiceTaskRemovedBridge(applicationContext).also {
-            it.register(flutterEngine)
+        VoiceTaskRemovedBridge(applicationContext).also { bridge ->
+            bridge.register(flutterEngine)
+            VoiceTaskRemovedRegistry.bridge = bridge
         }
         AppRestartBridge(this).register(flutterEngine)
         UploadKeepAliveBridge(applicationContext).register(flutterEngine)

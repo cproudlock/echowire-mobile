@@ -7,6 +7,7 @@ import com.hiennv.flutter_callkit_incoming.CallkitNotificationService
 import com.hiennv.flutter_callkit_incoming.FlutterCallkitIncomingPlugin
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
+import java.util.concurrent.atomic.AtomicBoolean
 
 private const val CHANNEL_NAME = "fluxer_app/voice_task_removed"
 private const val METHOD_NOTIFY_TASK_REMOVED = "notifyTaskRemoved"
@@ -16,13 +17,33 @@ internal const val VOICE_TASK_REMOVED_CHANNEL_NAME = CHANNEL_NAME
 internal const val VOICE_TASK_REMOVED_NOTIFY_METHOD = METHOD_NOTIFY_TASK_REMOVED
 
 internal fun endActiveCallKitSessionsForAppTaskRemoved(context: Context) {
+    val appContext = context.applicationContext
     try {
         FlutterCallkitIncomingPlugin.getInstance()?.endAllCalls()
     } catch (_: Throwable) {
     }
     try {
-        CallkitNotificationService.stopService(context)
+        CallkitNotificationService.stopService(appContext)
     } catch (_: Throwable) {
+    }
+}
+
+object VoiceTaskRemovedRegistry {
+    private val handled = AtomicBoolean(false)
+
+    @Volatile
+    var bridge: VoiceTaskRemovedBridge? = null
+
+    fun notifyAppTaskRemoved(context: Context) {
+        if (!handled.compareAndSet(false, true)) {
+            return
+        }
+        val activeBridge = bridge
+        if (activeBridge != null) {
+            activeBridge.onAppTaskRemoved(skipNativeCleanup = false)
+        } else {
+            endActiveCallKitSessionsForAppTaskRemoved(context.applicationContext)
+        }
     }
 }
 
@@ -40,14 +61,16 @@ class VoiceTaskRemovedBridge(
             )
     }
 
-    fun onAppTaskRemoved() {
+    fun onAppTaskRemoved(skipNativeCleanup: Boolean = false) {
         val channel = methodChannel
         val appContext = context.applicationContext
         if (channel == null) {
-            endActiveCallKitSessionsForAppTaskRemoved(appContext)
+            if (!skipNativeCleanup) {
+                endActiveCallKitSessionsForAppTaskRemoved(appContext)
+            }
             return
         }
-        var cleanedUp = false
+        var cleanedUp = skipNativeCleanup
         fun runNativeCleanupOnce() {
             if (cleanedUp) {
                 return

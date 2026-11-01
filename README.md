@@ -34,6 +34,7 @@ Join here: [Join Link](https://fluxer.gg/fluxer-labs)
 | Platform | Channel | Status | Get it |
 | --- | --- | --- | --- |
 | iOS | App Store | Soon | — |
+| iOS | AltStore PAL | Soon | — |
 | iOS | TestFlight | Unavailable (Apple-side bug, support contacted) | [Join TestFlight](https://testflight.apple.com/join/PKZR6pK9) |
 | Android | Google Play | Early Access (Beta) | [Download](https://play.google.com/store/apps/details?id=com.fluxer) |
 | Android | GitHub APK | Beta | [Releases](https://github.com/fluxerapp/flutter_client/releases) (FCM/OSS below) |

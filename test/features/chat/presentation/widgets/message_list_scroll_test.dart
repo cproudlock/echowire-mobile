@@ -6308,10 +6308,10 @@ class _AnchorChatViewModel extends InstrumentedChatViewModel {
   _AnchorChatViewModel(super.initialState, {this.restoredAnchor});
 
   // Scroll anchor injected for restoration assertions.
-  // ignore: avoid_public_notifier_properties
+  // ignore: riverpod_lint/avoid_public_notifier_properties
   ChannelScrollAnchor? restoredAnchor;
   // Hook for reading the live anchor from the message list.
-  // ignore: avoid_public_notifier_properties
+  // ignore: riverpod_lint/avoid_public_notifier_properties
   ChannelScrollAnchor? Function()? captureAnchor;
 
   @override

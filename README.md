@@ -18,6 +18,9 @@
 
 <div align="center">
 
+[<img src="./docs/media/badge_github.png"
+    alt="Get it on GitHub"
+    width="32%">](https://github.com/fluxerapp/flutter_client/releases)
 [<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Download at https://play.google.com/store/apps/details?id=com.fluxer" width="32%">](https://play.google.com/store/apps/details?id=com.fluxer&referrer=utm_source%3Dgithub-android-readme)
 
 </div>

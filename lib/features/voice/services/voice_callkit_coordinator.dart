@@ -47,6 +47,10 @@ part 'voice_callkit_coordinator.g.dart';
 
 const MethodChannel _iosVoipCallKit = MethodChannel('fluxer_app/voip_callkit');
 
+const MethodChannel _androidVoiceTaskRemovedChannel = MethodChannel(
+  'fluxer_app/voice_task_removed',
+);
+
 VoiceCallKitVoiceSnapshot _voiceCallKitVoiceSnapshot(VoiceSessionState state) {
   return (
     isInVoice: state.isInVoice,
@@ -90,8 +94,19 @@ class VoiceCallKitCoordinatorLogic {
   final Set<String> _handledEndIds = <String>{};
   Timer? _audioSessionRecoveryTimer;
   final List<Timer> _speakerReapplyTimers = <Timer>[];
+  String? _interruptedChannelIdPendingLeave;
 
   void init() {
+    if (Platform.isAndroid) {
+      _androidVoiceTaskRemovedChannel.setMethodCallHandler((
+        MethodCall call,
+      ) async {
+        if (call.method != 'notifyTaskRemoved') {
+          return;
+        }
+        await _enqueueSync(_handleAppTaskRemoved);
+      });
+    }
     _ref.listen<PendingForeignCallJoin?>(pendingForeignCallJoinProvider, (
       PendingForeignCallJoin? _,
       PendingForeignCallJoin? next,
@@ -155,6 +170,7 @@ class VoiceCallKitCoordinatorLogic {
         _scheduleSync(() async {
           await _flushForeignCallJoin();
           await _endRingsMissingFromGateway();
+          await _leaveInterruptedVoiceSessionIfNeeded();
         });
       })
       ..listen<bool>(appUiForegroundProvider, (bool? previous, bool next) {
@@ -167,6 +183,9 @@ class VoiceCallKitCoordinatorLogic {
         Map<String, VoiceState>? previous,
         Map<String, VoiceState> next,
       ) {
+        if (_interruptedChannelIdPendingLeave != null) {
+          _scheduleSync(_leaveInterruptedVoiceSessionIfNeeded);
+        }
         if (_sessions.isEmpty) {
           return;
         }
@@ -195,6 +214,9 @@ class VoiceCallKitCoordinatorLogic {
   }
 
   void dispose() {
+    if (Platform.isAndroid) {
+      _androidVoiceTaskRemovedChannel.setMethodCallHandler(null);
+    }
     _cancelAudioSessionRecovery();
     _cancelSpeakerOutputReapply();
     unawaited(_eventSubscription?.cancel());
@@ -622,7 +644,11 @@ class VoiceCallKitCoordinatorLogic {
     final String? interruptedChannelId = Platform.isAndroid
         ? await takeInterruptedVoiceCallChannelId()
         : null;
+    _interruptedChannelIdPendingLeave = interruptedChannelId;
     await _adoptNativeCalls(interruptedChannelId: interruptedChannelId);
+    if (interruptedChannelId != null && _ref.read(gatewayReadyProvider)) {
+      _scheduleSync(_leaveInterruptedVoiceSessionIfNeeded);
+    }
   }
 
   Future<List<CallKitParams>> _reportedCalls() async {
@@ -1068,6 +1094,87 @@ class VoiceCallKitCoordinatorLogic {
     });
     _publishIncomingHold();
     await _exitCallKitAudioOwnership();
+  }
+
+  Future<void> _handleAppTaskRemoved() async {
+    final VoiceCallKitVoiceSnapshot voice = _voiceCallKitVoiceSnapshot(
+      _ref.read(voiceSessionProvider),
+    );
+    if (!shouldHandleAndroidAppTaskRemoved(
+      isInVoice: voice.isInVoice,
+      hasTrackedCallKitSessions: !_sessions.isEmpty,
+    )) {
+      return;
+    }
+    talker.info('[VoiceCallKit] app task removed, tearing down voice');
+    await _runProgrammaticCallKitEnd(() async {
+      if (shouldLeaveVoiceOnAndroidTaskRemoved(isInVoice: voice.isInVoice)) {
+        try {
+          await _ref.read(voiceSessionProvider.notifier).leaveVoice(
+            endCall: false,
+          );
+        } on Object catch (error) {
+          talker.warning('[VoiceCallKit] leaveVoice on task removed: $error');
+        }
+      }
+      await clearVoiceCallInProgress();
+      try {
+        if (!Platform.isIOS) {
+          await FlutterCallkitIncoming.endAllCalls();
+        }
+      } on Object catch (error) {
+        talker.warning('[VoiceCallKit] endAllCalls on task removed: $error');
+      }
+      _sessions.clearAll();
+      _pendingRingsSeen.clear();
+    });
+    await _exitCallKitAudioOwnership();
+  }
+
+  Future<void> _leaveInterruptedVoiceSessionIfNeeded() async {
+    final String? interruptedChannelId = _interruptedChannelIdPendingLeave;
+    if (interruptedChannelId == null) {
+      return;
+    }
+    if (!_ref.read(gatewayReadyProvider)) {
+      return;
+    }
+    final VoiceCallKitVoiceSnapshot voice = _voiceCallKitVoiceSnapshot(
+      _ref.read(voiceSessionProvider),
+    );
+    final bool selfInChannelOnServer = selfVoiceStateInChannel(
+      voiceStates: _ref.read(voiceStatesMapProvider).values,
+      currentUserId: _ref.read(currentUserIdProvider),
+      channelId: interruptedChannelId,
+    );
+    if (!shouldLeaveVoiceForInterruptedSession(
+      interruptedChannelId: interruptedChannelId,
+      voice: voice,
+      selfInChannelOnServer: selfInChannelOnServer,
+    )) {
+      if (!voice.isInVoice && !selfInChannelOnServer) {
+        _interruptedChannelIdPendingLeave = null;
+      }
+      return;
+    }
+    talker.info(
+      '[VoiceCallKit] leaving interrupted voice session '
+      '(channelId=$interruptedChannelId)',
+    );
+    final bool left = await _ref
+        .read(voiceSessionProvider.notifier)
+        .leaveInterruptedGatewayVoice(interruptedChannelId);
+    if (!left) {
+      return;
+    }
+    _interruptedChannelIdPendingLeave = null;
+    try {
+      await _endAllCallKitSessions();
+    } on Object catch (error) {
+      talker.warning(
+        '[VoiceCallKit] end CallKit after interrupted session: $error',
+      );
+    }
   }
 
   Future<void> _endAllCallKitSessions() async {

@@ -11,6 +11,7 @@ import io.flutter.embedding.engine.FlutterEngine
 
 class MainActivity : AudioServiceActivity() {
     private val imeEditingShortcutBridge = ImeEditingShortcutBridge()
+    private var voiceTaskRemovedBridge: VoiceTaskRemovedBridge? = null
     private var ownsMainEngine = false
 
     private val callkitEventCallback = object : CallkitEventCallback {
@@ -45,6 +46,11 @@ class MainActivity : AudioServiceActivity() {
         }
     }
 
+    override fun onTaskRemoved(rootIntent: Intent?) {
+        voiceTaskRemovedBridge?.onAppTaskRemoved()
+        super.onTaskRemoved(rootIntent)
+    }
+
     override fun popSystemNavigator(): Boolean = moveTaskToBack(true)
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
@@ -62,6 +68,9 @@ class MainActivity : AudioServiceActivity() {
         PhysicalKeyboardBridge(applicationContext).register(flutterEngine)
         NotificationReplyBridge(applicationContext).register(flutterEngine)
         VoiceSpeakerRouteBridge(this).register(flutterEngine)
+        voiceTaskRemovedBridge = VoiceTaskRemovedBridge(applicationContext).also {
+            it.register(flutterEngine)
+        }
         AppRestartBridge(this).register(flutterEngine)
         UploadKeepAliveBridge(applicationContext).register(flutterEngine)
         imeEditingShortcutBridge.register(flutterEngine)

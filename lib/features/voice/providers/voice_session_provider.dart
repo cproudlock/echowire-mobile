@@ -2097,6 +2097,38 @@ class VoiceSession extends _$VoiceSession {
     }
   }
 
+  Future<bool> leaveInterruptedGatewayVoice(String channelId) async {
+    if (channelId.isEmpty) {
+      return false;
+    }
+    if (state.isInVoice && state.channelId == channelId) {
+      await leaveVoice(endCall: false);
+      return true;
+    }
+    final String? userId = ref.read(currentUserIdProvider);
+    if (userId == null) {
+      return false;
+    }
+    VoiceState? selfOnServer;
+    for (final VoiceState voiceState in ref.read(voiceStatesMapProvider).values) {
+      if (voiceState.userId == userId && voiceState.channelId == channelId) {
+        selfOnServer = voiceState;
+        break;
+      }
+    }
+    if (selfOnServer == null) {
+      return false;
+    }
+    final String? connectionId = selfOnServer.connectionId;
+    final String? guildId = selfOnServer.guildId;
+    if (connectionId != null && guildId != null) {
+      _sendVoiceDisconnectState(guildId: guildId, connectionId: connectionId);
+    } else {
+      _sendVoiceLeaveChannelState(guildId: guildId);
+    }
+    return true;
+  }
+
   Future<void> _finishRequestedEndCall() async {
     if (!_endCallRequested) {
       return;

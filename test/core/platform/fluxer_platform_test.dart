@@ -75,14 +75,14 @@ void main() {
   });
 
   group('buildFluxerClientUserAgent', () {
-    test('uses Fluxer Linux label for linux mobile platform', () {
+    test('uses Echowire Linux label for linux mobile platform', () {
       expect(
         buildFluxerClientUserAgent(
           clientPlatform: 'linux',
           clientVersion: '1.0.0',
           releaseChannel: 'beta',
         ),
-        'Fluxer Linux/1.0.0 (beta)',
+        'Echowire Linux/1.0.0 (beta)',
       );
     });
   });

@@ -239,21 +239,36 @@ String alignPushMediaUrlWithInstance(
   final Uri defaultMedia = Uri.parse(InstanceEndpoints.defaultMedia);
   final Uri defaultStatic = Uri.parse(InstanceEndpoints.defaultStaticCdn);
   if (_pushMediaHostsMatch(uri, defaultMedia)) {
-    return _replaceUriAuthority(uri, mediaBase).toString();
+    return _rebaseUri(uri, from: defaultMedia, to: mediaBase).toString();
   }
   if (_pushMediaHostsMatch(uri, defaultStatic)) {
     final Uri staticBase = Uri.parse(endpoints.staticCdn);
-    return _replaceUriAuthority(uri, staticBase).toString();
+    return _rebaseUri(uri, from: defaultStatic, to: staticBase).toString();
   }
   return raw;
 }
 
-Uri _replaceUriAuthority(Uri source, Uri authority) {
+Uri _rebaseUri(Uri source, {required Uri from, required Uri to}) {
+  final String fromPath = _trimTrailingSlashes(from.path);
+  String path = source.path;
+  if (fromPath.isNotEmpty &&
+      (path == fromPath || path.startsWith('$fromPath/'))) {
+    path = path.substring(fromPath.length);
+  }
   return source.replace(
-    scheme: authority.scheme,
-    host: authority.host,
-    port: authority.hasPort ? authority.port : null,
+    scheme: to.scheme,
+    host: to.host,
+    port: to.hasPort ? to.port : null,
+    path: '${_trimTrailingSlashes(to.path)}$path',
   );
+}
+
+String _trimTrailingSlashes(String value) {
+  int end = value.length;
+  while (end > 0 && value.codeUnitAt(end - 1) == 0x2F) {
+    end--;
+  }
+  return value.substring(0, end);
 }
 
 bool _pushMediaHostsMatch(Uri left, Uri right) {

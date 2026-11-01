@@ -17,7 +17,7 @@ void main() {
     expect(
       policy.shouldTrackHttpRequest(
         instance: official,
-        requestUri: Uri.parse('https://fluxer.com/api/v1/users/@me'),
+        requestUri: Uri.parse('https://echowire.org/api/v1/users/@me'),
       ),
       isTrue,
     );
@@ -30,19 +30,36 @@ void main() {
     );
   });
 
-  test('isOfficialFluxerInstance includes canary defaults', () {
-    const InstanceConfigSnapshot canary = InstanceConfigSnapshot(
-      apiBaseUrl: 'https://canary.fluxer.com/api/v1',
-      gatewayUrl: 'wss://gateway.canary.fluxer.com',
-      displayDomain: 'canary.fluxer.com',
+  test('isOfficialFluxerInstance accepts the official echowire hosts', () {
+    const InstanceConfigSnapshot www = InstanceConfigSnapshot(
+      apiBaseUrl: 'https://www.echowire.org/api/v1',
+      gatewayUrl: 'wss://www.echowire.org/gateway',
+      displayDomain: 'www.echowire.org',
     );
-    expect(policy.isOfficialFluxerInstance(canary), isTrue);
+    expect(policy.isOfficialFluxerInstance(official), isTrue);
+    expect(policy.isOfficialFluxerInstance(www), isTrue);
     expect(
       policy.shouldTrackHttpRequest(
-        instance: canary,
-        requestUri: Uri.parse('https://canary.fluxer.com/api/v1/guilds'),
+        instance: www,
+        requestUri: Uri.parse('https://www.echowire.org/api/v1/guilds'),
       ),
       isTrue,
+    );
+  });
+
+  test('a Fluxer-hosted instance is not official for this fork', () {
+    const InstanceConfigSnapshot fluxerHosted = InstanceConfigSnapshot(
+      apiBaseUrl: 'https://fluxer.com/api/v1',
+      gatewayUrl: 'wss://gateway.fluxer.com',
+      displayDomain: 'fluxer.com',
+    );
+    expect(policy.isOfficialFluxerInstance(fluxerHosted), isFalse);
+    expect(
+      policy.shouldTrackHttpRequest(
+        instance: fluxerHosted,
+        requestUri: Uri.parse('https://fluxer.com/api/v1/guilds'),
+      ),
+      isFalse,
     );
   });
 }

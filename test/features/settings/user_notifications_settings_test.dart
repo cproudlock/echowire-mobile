@@ -191,7 +191,7 @@ void main() {
       find.text('Your existing notification sound settings will be preserved.'),
       findsOneWidget,
     );
-    expect(find.text('Fluxer Push relay'), findsOneWidget);
+    expect(find.text('echowire push relay'), findsOneWidget);
     expect(find.text('Firebase Cloud Messaging'), findsOneWidget);
     expect(find.text('In use'), findsOneWidget);
   });

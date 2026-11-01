@@ -36,10 +36,8 @@ const String _authorId = '123456789012345678';
 const String _guildId = 'g1';
 const String _globalAvatarHash = 'global_avatar_hash';
 
-String get _defaultAvatarUrl {
-  final index = BigInt.parse(_authorId) % BigInt.from(6);
-  return 'https://fluxerstatic.com/avatars/$index.png';
-}
+String get _defaultAvatarUrl =>
+    FluxerMediaUrl.defaultAvatar(userId: _authorId)!;
 
 String get _globalAvatarUrl => FluxerMediaUrl.userAvatar(
   userId: _authorId,

@@ -226,11 +226,8 @@ void main() {
           'chat.example.com',
         );
 
-        expect(snapshot.apiBaseUrl, InstanceConstants.defaultApiBaseUrl);
-        expect(
-          snapshot.displayDomain,
-          InstanceConstants.defaultInstanceInputUrl,
-        );
+        expect(snapshot.apiBaseUrl, 'https://fluxer.com/api/v1');
+        expect(snapshot.displayDomain, 'fluxer.com');
       },
     );
   });

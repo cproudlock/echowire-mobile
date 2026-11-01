@@ -155,14 +155,14 @@ void main() {
   });
 
   group('normalizeInviteDeepLinkUri', () {
-    test('maps fluxer.gg short links to invite paths', () {
+    test('maps echowire.org short links to invite paths', () {
       expect(
-        normalizeInviteDeepLinkUri(Uri.parse('https://fluxer.gg/abcd')).path,
+        normalizeInviteDeepLinkUri(Uri.parse('https://echowire.org/abcd')).path,
         '/invite/abcd',
       );
       expect(
         normalizeInviteDeepLinkUri(
-          Uri.parse('https://fluxer.gg/invite/abcd'),
+          Uri.parse('https://echowire.org/invite/abcd'),
         ).path,
         '/invite/abcd',
       );
@@ -174,10 +174,21 @@ void main() {
       );
     });
 
-    test('allows fluxer.gg short links through isAllowedDeepLinkPath', () {
+    test('allows echowire.org short links through isAllowedDeepLinkPath', () {
+      expect(
+        isAllowedDeepLinkPath(Uri.parse('https://echowire.org/abcd')),
+        isTrue,
+      );
+    });
+
+    test('does not treat fluxer.gg as a short link host', () {
+      expect(
+        normalizeInviteDeepLinkUri(Uri.parse('https://fluxer.gg/abcd')).path,
+        '/abcd',
+      );
       expect(
         isAllowedDeepLinkPath(Uri.parse('https://fluxer.gg/abcd')),
-        isTrue,
+        isFalse,
       );
     });
   });

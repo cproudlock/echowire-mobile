@@ -9,14 +9,37 @@ permissions:
   attestations: write
 
 jobs:
+  allocate-android-build-number:
+    name: Allocate Android build number
+    runs-on: ubuntu-latest
+    environment: release-builds
+    outputs:
+      build_number: ${{ steps.android_build_number.outputs.build_number }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - name: Fetch Android build number from Nodus
+        id: android_build_number
+        env:
+          NODUS_CI_TOKEN: ${{ secrets.NODUS_CI_TOKEN }}
+          NODUS_APP: fluxer
+        run: bash .github/scripts/fetch_nodus_android_build_number.sh
+
   android-fcm:
     name: Android FCM build
+    needs: allocate-android-build-number
     uses: ./.github/workflows/android-canary-fcm.yml
+    with:
+      android_build_number: ${{ needs.allocate-android-build-number.outputs.build_number }}
     secrets: inherit
 
   android-oss:
     name: Android OSS build
+    needs: allocate-android-build-number
     uses: ./.github/workflows/android-canary-oss.yml
+    with:
+      android_build_number: ${{ needs.allocate-android-build-number.outputs.build_number }}
     secrets: inherit
 
   # ios-testflight:
@@ -34,6 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: release-builds
     needs:
+      - allocate-android-build-number
       - android-fcm
       - android-oss
     env:
@@ -68,8 +92,8 @@ jobs:
       - name: Register GitHub Actions run with Nodus
         env:
           NODUS_VERSION: ${{ steps.version.outputs.version }}
-          NODUS_ANDROID_BUILD_FCM: ${{ needs.android-fcm.outputs.build_number }}
-          NODUS_ANDROID_BUILD_OSS: ${{ needs.android-oss.outputs.build_number }}
+          NODUS_ANDROID_BUILD_FCM: ${{ needs.allocate-android-build-number.outputs.build_number }}
+          NODUS_ANDROID_BUILD_OSS: ${{ needs.allocate-android-build-number.outputs.build_number }}
         run: bash .github/scripts/register_nodus_release.sh
 
       - name: Upload FCM APKs to Nodus

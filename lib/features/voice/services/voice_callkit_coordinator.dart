@@ -1110,9 +1110,9 @@ class VoiceCallKitCoordinatorLogic {
     await _runProgrammaticCallKitEnd(() async {
       if (shouldLeaveVoiceOnAndroidTaskRemoved(isInVoice: voice.isInVoice)) {
         try {
-          await _ref.read(voiceSessionProvider.notifier).leaveVoice(
-            endCall: false,
-          );
+          await _ref
+              .read(voiceSessionProvider.notifier)
+              .leaveVoice(endCall: false);
         } on Object catch (error) {
           talker.warning('[VoiceCallKit] leaveVoice on task removed: $error');
         }

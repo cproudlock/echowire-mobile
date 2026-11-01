@@ -3,6 +3,15 @@ name: Android Canary FCM Build
 on:
   workflow_dispatch:
   workflow_call:
+    inputs:
+      android_build_number:
+        description: Pre-allocated Nodus Android versionCode for this release
+        required: false
+        type: string
+    outputs:
+      build_number:
+        description: Android versionCode allocated by Nodus
+        value: ${{ jobs.build-canary.outputs.build_number }}
 
 permissions:
   contents: read
@@ -14,6 +23,8 @@ jobs:
     name: Build canary APK
     runs-on: macos-26
     environment: release-builds
+    outputs:
+      build_number: ${{ steps.android_build_number.outputs.build_number }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
@@ -150,7 +161,7 @@ jobs:
         run: tool/measure/write_native_measure_config.sh
 
       - name: Build canary split APKs
-        run: flutter build apk --release --split-per-abi --flavor canaryFcm --build-number ${{ steps.android_build_number.outputs.build_number }} --dart-define-from-file=tool/dart_defines/canary.json --dart-define=PUSH_PROVIDER=fcm --dart-define=BUILD_TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)" --dart-define=CANARY_NUMBER=${{ steps.android_build_number.outputs.build_number }}
+        run: flutter build apk --release --split-per-abi --flavor canaryFcm --build-number ${{ steps.android_build_number.outputs.build_number }} -P force-version-code-ignoring-abi=true --dart-define-from-file=tool/dart_defines/canary.json --dart-define=PUSH_PROVIDER=fcm --dart-define=BUILD_TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)" --dart-define=CANARY_NUMBER=${{ steps.android_build_number.outputs.build_number }}
 
       - name: Build canary combined APK
         run: flutter build apk --release --flavor canaryFcm --build-number ${{ steps.android_build_number.outputs.build_number }} --dart-define-from-file=tool/dart_defines/canary.json --dart-define=PUSH_PROVIDER=fcm --dart-define=BUILD_TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)" --dart-define=CANARY_NUMBER=${{ steps.android_build_number.outputs.build_number }}

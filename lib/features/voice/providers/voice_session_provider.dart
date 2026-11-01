@@ -351,6 +351,7 @@ class VoiceSession extends _$VoiceSession {
       _sendVoiceDisconnectState(guildId: guildId, connectionId: connectionId);
       await _prepareVoiceMediaTeardownBeforeRoomDisconnect();
       await _disconnectAndDisposeRoom(roomToDisconnect, reason: reason);
+      await _releaseAndroidRouteIfCurrent(generation + 1);
     }
     state = state.copyWith(
       isConnecting: false,
@@ -1519,7 +1520,6 @@ class VoiceSession extends _$VoiceSession {
       }
       return;
     }
-    final VoiceSettingsState voiceSettings = ref.read(voiceSettingsProvider);
     final Room room = Room(roomOptions: roomOptions);
     _managedLiveKitRoom = room;
     if (attempt != _connectGeneration) {
@@ -1558,11 +1558,7 @@ class VoiceSession extends _$VoiceSession {
       timeouts: useE2ee ? _kE2eeConnectTimeouts : Timeouts.defaultTimeouts,
     );
     _armLiveKitConnectWatchdog(attempt);
-    final VoiceSettingsApplicator applicator = _voiceSettingsApplicator(
-      channelId: resolvedChannelId,
-    );
     try {
-      await applicator.applySpeakerOutput(settings: voiceSettings);
       await restoreAutomaticAudioSessionAfterMesh();
       await room.connect(
         event.endpoint,
@@ -2218,7 +2214,12 @@ class VoiceSession extends _$VoiceSession {
     if (roomToDisconnect == null) {
       return;
     }
-    unawaited(_disconnectAndDisposeRoom(roomToDisconnect));
+    final int generation = _connectGeneration;
+    unawaited(
+      _disconnectAndDisposeRoom(roomToDisconnect).whenComplete(() {
+        unawaited(_releaseAndroidRouteIfCurrent(generation));
+      }),
+    );
   }
 
   Future<void> _prepareVoiceMediaTeardownBeforeRoomDisconnect() async {
@@ -2305,11 +2306,19 @@ class VoiceSession extends _$VoiceSession {
     }
   }
 
+  Future<void> _releaseAndroidRouteIfCurrent(int generation) async {
+    if (generation != _connectGeneration) {
+      return;
+    }
+    await clearNativeVoiceOutputRouteHold();
+  }
+
   Future<void> _disconnectRoomOnly({
     String? guildId,
     String? connectionId,
     bool skipGatewayDisconnect = false,
   }) async {
+    final int generation = _connectGeneration;
     _detachMediaDeviceChangeListener();
     _detachRoomEventsListener();
     _detachLocalParticipantListener();
@@ -2345,6 +2354,7 @@ class VoiceSession extends _$VoiceSession {
     if (roomToDisconnect != null) {
       await _disconnectAndDisposeRoom(roomToDisconnect);
     }
+    await _releaseAndroidRouteIfCurrent(generation);
   }
 
   void _sendVoiceDisconnectState({

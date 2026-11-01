@@ -24,6 +24,17 @@ class VoiceSpeakerRouteTest {
     }
 
     @Test
+    fun onlySamsungPinsSpeakerWithCommunicationDevice() {
+        assertTrue(routesSpeakerWithCommunicationDevice("samsung"))
+        assertTrue(routesSpeakerWithCommunicationDevice("Samsung", "samsung"))
+        assertTrue(routesSpeakerWithCommunicationDevice("Google", "samsung"))
+        assertFalse(routesSpeakerWithCommunicationDevice("Google"))
+        assertFalse(routesSpeakerWithCommunicationDevice("Xiaomi"))
+        assertFalse(routesSpeakerWithCommunicationDevice("OnePlus"))
+        assertFalse(routesSpeakerWithCommunicationDevice(null))
+    }
+
+    @Test
     fun listsHeadsetWhenAHeadsetTypeIsPresent() {
         assertEquals(
             listOf("speaker", "earpiece", "headset"),

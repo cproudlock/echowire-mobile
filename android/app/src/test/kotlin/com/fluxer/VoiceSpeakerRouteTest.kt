@@ -24,45 +24,6 @@ class VoiceSpeakerRouteTest {
     }
 
     @Test
-    fun fallsBackOnlyWhenSpeakerDeviceIsRejected() {
-        assertTrue(
-            needsSpeakerphoneFallback(
-                route = VoiceOutputRoute.Speaker,
-                sdkAtLeast31 = true,
-                availableTypes = setOf(
-                    AudioDeviceInfo.TYPE_BUILTIN_EARPIECE,
-                    AudioDeviceInfo.TYPE_BUILTIN_SPEAKER,
-                ),
-                communicationDeviceAccepted = false,
-            ),
-        )
-        assertFalse(
-            needsSpeakerphoneFallback(
-                route = VoiceOutputRoute.Speaker,
-                sdkAtLeast31 = true,
-                availableTypes = setOf(AudioDeviceInfo.TYPE_BUILTIN_SPEAKER),
-                communicationDeviceAccepted = true,
-            ),
-        )
-        assertFalse(
-            needsSpeakerphoneFallback(
-                route = VoiceOutputRoute.Earpiece,
-                sdkAtLeast31 = true,
-                availableTypes = setOf(AudioDeviceInfo.TYPE_BUILTIN_EARPIECE),
-                communicationDeviceAccepted = false,
-            ),
-        )
-        assertFalse(
-            needsSpeakerphoneFallback(
-                route = VoiceOutputRoute.Headset,
-                sdkAtLeast31 = false,
-                availableTypes = emptySet(),
-                communicationDeviceAccepted = false,
-            ),
-        )
-    }
-
-    @Test
     fun listsHeadsetWhenAHeadsetTypeIsPresent() {
         assertEquals(
             listOf("speaker", "earpiece", "headset"),
@@ -128,8 +89,32 @@ class VoiceSpeakerRouteTest {
     }
 
     @Test
-    fun activeRouteMatchesSpeakerOnCommunicationDevice() {
+    fun speakerIsActiveWhenSpeakerphoneIsOnAndDeviceIsClear() {
         assertTrue(
+            activeCommunicationDeviceTypeMatchesRoute(
+                route = VoiceOutputRoute.Speaker,
+                activeDeviceType = null,
+                speakerphoneOn = true,
+                sdkAtLeast31 = true,
+            ),
+        )
+        assertTrue(
+            activeCommunicationDeviceTypeMatchesRoute(
+                route = VoiceOutputRoute.Speaker,
+                activeDeviceType = AudioDeviceInfo.TYPE_BUILTIN_SPEAKER,
+                speakerphoneOn = true,
+                sdkAtLeast31 = true,
+            ),
+        )
+        assertFalse(
+            activeCommunicationDeviceTypeMatchesRoute(
+                route = VoiceOutputRoute.Speaker,
+                activeDeviceType = AudioDeviceInfo.TYPE_BUILTIN_EARPIECE,
+                speakerphoneOn = true,
+                sdkAtLeast31 = true,
+            ),
+        )
+        assertFalse(
             activeCommunicationDeviceTypeMatchesRoute(
                 route = VoiceOutputRoute.Speaker,
                 activeDeviceType = AudioDeviceInfo.TYPE_BUILTIN_SPEAKER,

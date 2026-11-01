@@ -18,11 +18,11 @@
 
 <div align="center">
   <a href="https://github.com/fluxerapp/flutter_client/releases">
-    <img src="./docs/media/badge_github.png" alt="Get it on GitHub" height="44">
+    <img src="./docs/media/badge_github.png" alt="Get it on GitHub" width="200">
   </a>
   &nbsp;
   <a href="https://play.google.com/store/apps/details?id=com.fluxer&amp;referrer=utm_source%3Dgithub-android-readme">
-    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Download at https://play.google.com/store/apps/details?id=com.fluxer" height="44">
+    <img src="./docs/media/badge_google_play.png" alt="Download at https://play.google.com/store/apps/details?id=com.fluxer" width="200">
   </a>
 </div>
 

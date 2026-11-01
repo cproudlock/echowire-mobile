@@ -46,7 +46,7 @@ class MainActivity : AudioServiceActivity() {
         }
     }
 
-    override fun onTaskRemoved(rootIntent: Intent?) {
+    override fun onTaskRemoved(rootIntent: Intent) {
         voiceTaskRemovedBridge?.onAppTaskRemoved()
         super.onTaskRemoved(rootIntent)
     }

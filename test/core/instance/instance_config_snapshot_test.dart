@@ -25,6 +25,8 @@ void main() {
       expect(snapshot.apiBaseUrl, 'https://fluxer.com/api/v1');
       expect(snapshot.gatewayUrl, 'wss://gateway.fluxer.com');
       expect(snapshot.displayDomain, 'fluxer.com');
+      expect(snapshot.termsUrl, InstanceConstants.defaultTermsUrl);
+      expect(snapshot.privacyUrl, InstanceConstants.defaultPrivacyUrl);
     });
 
     test('an echowire server resolves to its own api and gateway', () {

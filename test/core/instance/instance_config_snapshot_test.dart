@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/instance/instance_config_snapshot.dart';
+import 'package:fluxer_app/core/instance/instance_constants.dart';
 import 'package:fluxer_app/core/instance/instance_endpoint_normalizer.dart';
 import 'package:fluxer_app/core/instance/instance_endpoints.dart';
 import 'package:fluxer_app/core/instance/well_known_compat.dart';
@@ -25,6 +26,8 @@ void main() {
       expect(snapshot.apiBaseUrl, 'https://fluxer.com/api/v1');
       expect(snapshot.gatewayUrl, 'wss://gateway.fluxer.com');
       expect(snapshot.displayDomain, 'fluxer.com');
+      expect(snapshot.termsUrl, InstanceConstants.defaultTermsUrl);
+      expect(snapshot.privacyUrl, InstanceConstants.defaultPrivacyUrl);
     });
 
     test('an echowire server resolves to its own api and gateway', () {

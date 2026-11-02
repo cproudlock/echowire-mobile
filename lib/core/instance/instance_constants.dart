@@ -14,6 +14,9 @@ abstract final class InstanceConstants {
   static const String canaryApiBaseUrl = 'https://echowire.org/api/v1';
   static const String canaryInstanceInputUrl = 'echowire.org';
   static const String defaultMarketingBaseUrl = 'https://echowire.org';
+  // Echowire: upstream added these as the fallback legal links for a hosted instance with none configured; ours point at our own pages.
+  static const String defaultTermsUrl = 'https://echowire.org/terms';
+  static const String defaultPrivacyUrl = 'https://echowire.org/privacy';
   static const String defaultProductName = 'echowire';
   // Echowire: upstream defaults this to its own premium name; the fallback shown before an
   // instance reports its branding is ours.

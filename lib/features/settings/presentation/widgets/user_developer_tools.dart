@@ -268,6 +268,9 @@ class _UserDeveloperToolsState extends ConsumerState<UserDeveloperTools> {
   @override
   Widget build(BuildContext context) {
     final layout = context.layout;
+    final bool observabilityAvailable = observabilityReportingIsAvailable(
+      ref.watch(fluxerObservabilityProvider),
+    );
 
     return SingleChildScrollView(
       controller: widget.scrollController,
@@ -322,34 +325,35 @@ class _UserDeveloperToolsState extends ConsumerState<UserDeveloperTools> {
               ),
             ],
           ),
-          FluxerSettingsSection(
-            sectionId: 'developer-tools-measure-crash',
-            title: 'Crash reporting test',
-            description:
-                'Throws an uncaught exception after 2 seconds. Talker always '
-                "logs it. echowire's error tracker gets it only when crash and "
-                'performance reports are on. Show consent sheet opens the '
-                'post-crash opt-in UI with the same side effects as production.',
-            children: [
-              Wrap(
-                spacing: layout.s2,
-                runSpacing: layout.s2,
-                children: [
-                  FluxerButton.primary(
-                    onPressed: _sendTestCrashToMeasure,
-                    label: 'Send test error',
-                    fitContent: true,
-                  ),
-                  FluxerButton.secondary(
-                    onPressed: () =>
-                        unawaited(_showObservabilityReportingConsentSheet()),
-                    label: 'Show consent sheet',
-                    fitContent: true,
-                  ),
-                ],
-              ),
-            ],
-          ),
+          if (observabilityAvailable)
+            FluxerSettingsSection(
+              sectionId: 'developer-tools-measure-crash',
+              title: 'Crash reporting test',
+              description:
+                  'Throws an uncaught exception after 2 seconds. Talker always '
+                  "logs it. echowire's error tracker gets it only when crash and "
+                  'performance reports are on. Show consent sheet opens the '
+                  'post-crash opt-in UI with the same side effects as production.',
+              children: [
+                Wrap(
+                  spacing: layout.s2,
+                  runSpacing: layout.s2,
+                  children: [
+                    FluxerButton.primary(
+                      onPressed: _sendTestCrashToMeasure,
+                      label: 'Send test error',
+                      fitContent: true,
+                    ),
+                    FluxerButton.secondary(
+                      onPressed: () =>
+                          unawaited(_showObservabilityReportingConsentSheet()),
+                      label: 'Show consent sheet',
+                      fitContent: true,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           FluxerSettingsSection(
             sectionId: 'developer-tools-reconnect-banner',
             title: 'Gateway reconnect banner',

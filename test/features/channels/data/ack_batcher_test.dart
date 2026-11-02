@@ -251,9 +251,12 @@ void main() {
     },
   );
 
-  test('foreground batching uses shorter delay than background', () async {
+  test('foreground batching keeps the batch delay', () async {
     final adapter = _BulkAckAdapter();
-    final batcher = AckBatcher(client: _client(adapter));
+    final batcher = AckBatcher(
+      client: _client(adapter),
+      batchDelay: const Duration(milliseconds: 80),
+    );
     addTearDown(batcher.dispose);
 
     batcher
@@ -265,11 +268,104 @@ void main() {
         hadMentions: false,
       );
 
-    await Future<void>.delayed(const Duration(milliseconds: 400));
+    await Future<void>.delayed(const Duration(milliseconds: 40));
     expect(adapter.recordedBatches, isEmpty);
 
-    await Future<void>.delayed(const Duration(milliseconds: 500));
+    await Future<void>.delayed(const Duration(milliseconds: 80));
     expect(adapter.recordedBatches, hasLength(1));
+  });
+
+  test('an older ack does not replace a newer queued id', () async {
+    final adapter = _BulkAckAdapter();
+    final batcher = AckBatcher(
+      client: _client(adapter),
+      batchDelay: const Duration(milliseconds: 80),
+    );
+    addTearDown(batcher.dispose);
+
+    batcher
+      ..queue(
+        channelId: 'c-1',
+        messageId: '200',
+        immediate: false,
+        hadMentions: false,
+      )
+      ..queue(
+        channelId: 'c-1',
+        messageId: '100',
+        immediate: true,
+        hadMentions: false,
+      );
+
+    await Future<void>.delayed(const Duration(milliseconds: 30));
+    expect(adapter.recordedBatches, isEmpty);
+
+    await Future<void>.delayed(const Duration(milliseconds: 80));
+    expect(adapter.recordedBatches, hasLength(1));
+    expect(adapter.recordedBatches.single.single['message_id'], '200');
+  });
+
+  test('a due ack does not flush a channel still waiting', () async {
+    final adapter = _BulkAckAdapter();
+    final batcher = AckBatcher(
+      client: _client(adapter),
+      batchDelay: const Duration(milliseconds: 120),
+    );
+    addTearDown(batcher.dispose);
+
+    batcher
+      ..queue(
+        channelId: 'due',
+        messageId: '1',
+        immediate: true,
+        hadMentions: false,
+      )
+      ..queue(
+        channelId: 'waiting',
+        messageId: '2',
+        immediate: false,
+        hadMentions: false,
+      );
+
+    await Future<void>.delayed(const Duration(milliseconds: 40));
+    expect(adapter.recordedBatches, hasLength(1));
+    expect(adapter.recordedBatches.single.single['channel_id'], 'due');
+
+    await Future<void>.delayed(const Duration(milliseconds: 120));
+    expect(adapter.recordedBatches, hasLength(2));
+    expect(adapter.recordedBatches.last.single['channel_id'], 'waiting');
+  });
+
+  test('cancelIfCovered drops a covered ack and keeps a newer one', () async {
+    final adapter = _BulkAckAdapter();
+    final batcher = AckBatcher(
+      client: _client(adapter),
+      batchDelay: const Duration(seconds: 5),
+    );
+    addTearDown(batcher.dispose);
+
+    batcher
+      ..queue(
+        channelId: 'c-1',
+        messageId: '200',
+        immediate: false,
+        hadMentions: false,
+      )
+      ..cancelIfCovered('c-1', '200');
+    await batcher.flushPending(force: true);
+    expect(adapter.recordedBatches, isEmpty);
+
+    batcher
+      ..queue(
+        channelId: 'c-1',
+        messageId: '300',
+        immediate: false,
+        hadMentions: false,
+      )
+      ..cancelIfCovered('c-1', '200');
+    await batcher.flushPending(force: true);
+    expect(adapter.recordedBatches, hasLength(1));
+    expect(adapter.recordedBatches.single.single['message_id'], '300');
   });
 
   group('transient failures', () {

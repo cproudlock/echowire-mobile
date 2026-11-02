@@ -2110,7 +2110,8 @@ class VoiceSession extends _$VoiceSession {
       return false;
     }
     VoiceState? selfOnServer;
-    for (final VoiceState voiceState in ref.read(voiceStatesMapProvider).values) {
+    for (final VoiceState voiceState
+        in ref.read(voiceStatesMapProvider).values) {
       if (voiceState.userId == userId && voiceState.channelId == channelId) {
         selfOnServer = voiceState;
         break;

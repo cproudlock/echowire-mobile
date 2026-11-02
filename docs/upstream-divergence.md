@@ -142,3 +142,20 @@ tests (`coalesces multiple acks into a single bulk HTTP after the delay`, `chunk
 into multiple HTTPs`) fail deterministically in this environment. The fork treats entries due within 5 ms as
 due. If a later upstream sync rewrites `_drainDueEntries`, check those two tests first; drop the constant
 once upstream makes the flush tolerant itself.
+
+## Legal link defaults (2026-11-02)
+
+Upstream 70c6cc0cd moved the premium purchase terms and privacy links to the instance: the instance
+discovery document supplies them, and `InstanceConstants.defaultTermsUrl` and `defaultPrivacyUrl` are the
+fallback for a hosted instance that configures none (a self-hosted instance with none shows no links). The fork
+keeps its own values for those two constants, `https://echowire.org/terms` and `https://echowire.org/privacy`,
+like every other default in that file. echowire.org itself configures both URLs in its discovery document, so
+the fallback does not apply to it. One consequence: a Fluxer-hosted instance that advertises no legal URLs would
+show echowire pages in this app. If that matters, give the constants a hosted-instance variant.
+
+## Release workflows (2026-11-02)
+
+`beta-release-all.yml` and `canary-release-all.yml` stay the fork's Android-only versions. Upstream's newer
+versions allocate the Android build number from its Nodus service (needs `NODUS_CI_TOKEN`) and sync the version
+to its beta branch with its CI app; the fork builds from `pubspec.yaml` and has neither. The F-Droid lane
+(`android-fdroid-build-check.yml`, dispatch only) and its store metadata came in unchanged and are not used.

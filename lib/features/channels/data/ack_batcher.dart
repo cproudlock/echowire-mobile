@@ -13,6 +13,7 @@ const Duration kAckBatchDelay = Duration(seconds: 3);
 const int kAckBatchSize = 100;
 const Duration kAckRetryBaseDelay = Duration(seconds: 5);
 const Duration kAckRetryMaxDelay = Duration(seconds: 60);
+const Duration kAckDueTolerance = Duration(milliseconds: 5);
 
 typedef _SentAck = ({String channelId, String messageId});
 
@@ -183,7 +184,7 @@ class AckBatcher {
   }
 
   Future<void> _drainDueEntries({required bool force}) async {
-    final now = clock.now();
+    final now = clock.now().add(kAckDueTolerance);
     final hasDue =
         force || _pending.values.any((e) => !e.deadline.isAfter(now));
     if (!hasDue) {

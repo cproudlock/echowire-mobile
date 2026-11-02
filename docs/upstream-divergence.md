@@ -131,3 +131,14 @@ These are not about threads; the full rules are in the maintainer notes
   wholesale, resolve the conflict hunk and run `flutter pub get`. `dart_sdk` merged upstream's
   `8995c90` ("parse responses that omit required fields") into the `echowire` branch, pointer
   `51ba6f4`; the fork's forum-field and channel-type guard tests still pass there.
+
+## Ack batcher due tolerance
+
+`lib/features/channels/data/ack_batcher.dart` (`kAckDueTolerance`, one constant and one line in
+`_drainDueEntries`): upstream's 2026-11-02 ack batching change (`70fc7129e`) flushes only entries whose
+own deadline has passed, and the flush timer is set to the earliest deadline. Acks queued a few
+microseconds apart can then land in separate flushes when the timer fires slightly early, so two upstream
+tests (`coalesces multiple acks into a single bulk HTTP after the delay`, `chunks more than batchSize acks
+into multiple HTTPs`) fail deterministically in this environment. The fork treats entries due within 5 ms as
+due. If a later upstream sync rewrites `_drainDueEntries`, check those two tests first; drop the constant
+once upstream makes the flush tolerant itself.

@@ -147,6 +147,9 @@ class _AppUiLifecycleObserverState extends ConsumerState<AppUiLifecycleObserver>
     unawaited(
       AppMediaAudioSession.instance.setForeground(foreground: isForeground),
     );
+    if (isForeground) {
+      unawaited(AppMediaAudioSession.instance.syncForegroundSession());
+    }
   }
 
   /// Marks the gateway session AFK while the app is backgrounded.

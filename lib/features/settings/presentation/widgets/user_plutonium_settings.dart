@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/premium/current_user_entitlements_provider.dart';
+import 'package:fluxer_app/core/providers/app/account_user_id.dart';
 import 'package:fluxer_app/core/providers/instance/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/settings/domain/user_settings_section.dart';
@@ -77,7 +78,9 @@ class _UserPlutoniumSettingsState extends ConsumerState<UserPlutoniumSettings> {
     final UserSettingsViewState settings = ref.watch(
       userSettingsViewModelProvider,
     );
-    final UserPrivateResponse? user = ref.watch(currentUserPrivateReadProvider);
+    final UserPrivateResponse? user = ref.watch(
+      currentUserPrivateReadProvider(watchAccountUserId(ref)),
+    );
     final bool purchaseDisabled =
         settings.isKnownUnclaimed || !(user?.verified ?? false);
     final String? purchaseDisabledMessage = settings.isKnownUnclaimed
@@ -89,7 +92,7 @@ class _UserPlutoniumSettingsState extends ConsumerState<UserPlutoniumSettings> {
     final PremiumSubscriptionStatus status = computePremiumSubscriptionStatus(
       premiumState: premiumState,
       effectiveIsPremium: ref
-          .watch(currentUserEntitlementsProvider)
+          .watch(currentUserEntitlementsProvider(readAccountUserId(ref)))
           .isEffectivelyPremium,
       userPrivate: user,
     );
@@ -125,6 +128,21 @@ class _UserPlutoniumSettingsState extends ConsumerState<UserPlutoniumSettings> {
       currency: giftCurrency,
       locale: locale,
     );
+    final PriceDistributionResponse? distribution = priceIds.distribution;
+    final Widget? distributionNote = distribution == null
+        ? null
+        : Text(
+            l10n.premiumDistributionPriceNote(
+              formatBasisPointsPercent(
+                basisPoints: distribution.rateBps,
+                locale: locale,
+              ),
+            ),
+            textAlign: TextAlign.center,
+            style: textStyles.bodySmall.copyWith(
+              color: colors.textPrimaryMuted,
+            ),
+          );
     final bool showPurchaseGrid =
         !status.shouldShowPremiumCard || status.canStartSubscription;
     final PremiumManageAction? manage = _manageAction(status);
@@ -251,6 +269,10 @@ class _UserPlutoniumSettingsState extends ConsumerState<UserPlutoniumSettings> {
                               purchaseDisabled: purchaseDisabled,
                             ),
                     ),
+                    if (distributionNote != null) ...[
+                      SizedBox(height: layout.s2),
+                      distributionNote,
+                    ],
                     if (status.isGiftSubscription && !_isGiftMode) ...[
                       SizedBox(height: layout.s2),
                       Text(
@@ -301,6 +323,10 @@ class _UserPlutoniumSettingsState extends ConsumerState<UserPlutoniumSettings> {
                         purchaseDisabled: purchaseDisabled,
                       ),
                     ),
+                    if (distributionNote != null) ...[
+                      SizedBox(height: layout.s2),
+                      distributionNote,
+                    ],
                   ],
                 ],
               ),

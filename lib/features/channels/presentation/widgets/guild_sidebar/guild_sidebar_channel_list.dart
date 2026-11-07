@@ -129,7 +129,7 @@ class _GuildSidebarChannelListState
   void _refreshGuildPermissions() {
     unawaited(
       ref
-          .read(guildPermissionsProvider.notifier)
+          .read(guildPermissionsProvider(readAccountUserId(ref)).notifier)
           .refreshPermissions(widget.guildId),
     );
   }
@@ -444,7 +444,12 @@ class _GuildSidebarChannelListState
     final bool showMembersEntry =
         !isMobileLayout(context) &&
         hasMembersPagePermission(
-          ref.watch(guildPermissionsProvider)[widget.guildId] ?? 0,
+          ref.watch(
+            guildPermissionsProvider(watchAccountUserId(ref)).select(
+              (Map<String, int> permissions) =>
+                  permissions[widget.guildId] ?? 0,
+            ),
+          ),
         );
     final bool isMembersSelected = ref.watch(
       routeStateProvider.select(

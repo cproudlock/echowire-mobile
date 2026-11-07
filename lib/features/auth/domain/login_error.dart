@@ -7,6 +7,7 @@ enum LoginError {
   unableToSendResetLink,
   unableToResetPassword,
   passkeyNoCredentials,
+  passkeyNoCredentialsForAccount,
   passkeyDeviceNotSupported,
   passkeyDomainNotAssociated,
   passkeyTimeout,
@@ -14,4 +15,5 @@ enum LoginError {
   ssoCancelled,
   ssoFailed,
   serviceUnavailable,
+  verificationFailed,
 }

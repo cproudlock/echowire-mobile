@@ -17,6 +17,8 @@ abstract final class InstanceConstants {
   // Echowire: upstream added these as the fallback legal links for a hosted instance with none configured; ours point at our own pages.
   static const String defaultTermsUrl = 'https://echowire.org/terms';
   static const String defaultPrivacyUrl = 'https://echowire.org/privacy';
+  // Echowire: upstream's help center link; ours is our own help page.
+  static const String helpCenterUrl = 'https://echowire.org/help';
   static const String defaultProductName = 'echowire';
   // Echowire: upstream defaults this to its own premium name; the fallback shown before an
   // instance reports its branding is ours.

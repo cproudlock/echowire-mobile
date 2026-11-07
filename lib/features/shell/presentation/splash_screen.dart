@@ -9,6 +9,7 @@ import 'package:fluxer_app/core/instance/instance_discovery_service.dart';
 import 'package:fluxer_app/core/instance/instance_runtime_config.dart';
 import 'package:fluxer_app/core/providers/app/app_startup_provider.dart';
 import 'package:fluxer_app/core/providers/app/splash_exit_allowed_provider.dart';
+import 'package:fluxer_app/core/providers/app/startup_gateway_fallback_provider.dart';
 import 'package:fluxer_app/core/providers/gateway/gateway_ready_provider.dart';
 import 'package:fluxer_app/core/providers/instance/active_instance_compatibility_provider.dart';
 import 'package:fluxer_app/core/providers/instance/active_instance_provider.dart';
@@ -108,6 +109,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
         }
         return;
       }
+      if (_isRetryingServiceUnavailable(startup)) {
+        _activateServiceUnavailableUi(scheduleRetry: false);
+      }
       _ensureSplashTimers();
       _cancelSplashIfReady();
       _scheduleExitReveal();
@@ -139,10 +143,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     _outageRetryTimer = null;
   }
 
+  bool _shellDataReady() =>
+      ref.read(gatewayReadyProvider) ||
+      ref.read(startupGatewayFallbackProvider) ==
+          StartupGatewayFallback.cachedShell;
+
   void _cancelSplashIfReady() {
     final AsyncValue<void> startup = ref.read(appStartupProvider);
-    final bool gatewayReady = ref.read(gatewayReadyProvider);
-    if (startup is AsyncData<void> && gatewayReady) {
+    if (startup is AsyncData<void> && _shellDataReady()) {
       _cancelSplashTimers();
     }
   }
@@ -196,7 +204,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     _revealComplete ??= ref.read(splashRevealCompleteProvider.notifier);
     final AsyncValue<void> startup = ref.read(appStartupProvider);
     if (startup is! AsyncData<void> ||
-        !ref.read(gatewayReadyProvider) ||
+        !_shellDataReady() ||
         ref.read(accountManagerProvider).isSwitching) {
       return;
     }
@@ -299,7 +307,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     });
   }
 
-  void _activateServiceUnavailableUi() {
+  bool _isRetryingServiceUnavailable(AsyncValue<void> startup) {
+    final Object? error = startup.error;
+    return startup.isLoading &&
+        error != null &&
+        isHttpServiceUnavailable(error);
+  }
+
+  void _activateServiceUnavailableUi({bool scheduleRetry = true}) {
     _serviceUnavailableOutage = true;
     _statusPrefetchTimer?.cancel();
     _statusTimer?.cancel();
@@ -311,7 +326,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
       setState(() {});
     }
     unawaited(ref.read(serviceStatusIncidentReadProvider.notifier).refresh());
-    _scheduleOutageRetry();
+    if (scheduleRetry) {
+      _scheduleOutageRetry();
+    }
   }
 
   void _clearServiceUnavailableUi() {
@@ -378,7 +395,19 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
           );
     final bool isStartupComplete = startup is AsyncData<void>;
     final bool isGatewayReady = ref.watch(gatewayReadyProvider);
-    final bool isReady = isStartupComplete && isGatewayReady;
+    final StartupGatewayFallback gatewayFallback = ref.watch(
+      startupGatewayFallbackProvider,
+    );
+    final bool isReady =
+        isStartupComplete &&
+        (isGatewayReady ||
+            gatewayFallback == StartupGatewayFallback.cachedShell);
+    final bool showUnreachable =
+        isStartupComplete &&
+        !isReady &&
+        gatewayFallback == StartupGatewayFallback.unreachable &&
+        !serviceUnavailable &&
+        !showCompatibilityIssue;
     ref
       ..listen<bool>(
         accountManagerProvider.select(
@@ -393,6 +422,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
         },
       )
       ..listen<bool>(gatewayReadyProvider, (bool? previous, bool _) {
+        _cancelSplashIfReady();
+        _scheduleExitReveal();
+      })
+      ..listen<StartupGatewayFallback>(startupGatewayFallbackProvider, (
+        StartupGatewayFallback? previous,
+        StartupGatewayFallback _,
+      ) {
         _cancelSplashIfReady();
         _scheduleExitReveal();
       })
@@ -416,6 +452,12 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
         if (next is AsyncError<dynamic> &&
             isHttpServiceUnavailable(next.error)) {
           _activateServiceUnavailableUi();
+          return;
+        }
+        if (_isRetryingServiceUnavailable(next)) {
+          if (!_serviceUnavailableOutage) {
+            _activateServiceUnavailableUi(scheduleRetry: false);
+          }
           return;
         }
         if (next is AsyncError<dynamic>) {
@@ -471,7 +513,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
         !isOfficialInstance &&
         !serviceUnavailable &&
         !showStartupError &&
-        !showCompatibilityIssue;
+        !showCompatibilityIssue &&
+        !showUnreachable;
     final TextStyle footerPromptStyle = context.textStyles.bodySmall.copyWith(
       fontSize: 13,
       height: 1.4,
@@ -524,36 +567,39 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                                 ),
                               )
                             else if (!_exitRevealStarted)
-                              AnimatedBuilder(
-                                animation: _pulseController,
-                                builder: (BuildContext context, Widget? child) {
-                                  const double startScale = 0.4;
-                                  const double endScale = 1.4;
-                                  final double scale =
-                                      startScale +
-                                      (endScale - startScale) *
-                                          Curves.easeOut.transform(
-                                            _pulseController.value,
-                                          );
-                                  final double opacity =
-                                      (1 -
-                                          Curves.easeIn.transform(
-                                            _pulseController.value,
-                                          )) *
-                                      0.5;
-                                  return Transform.scale(
-                                    scale: scale,
-                                    child: Container(
-                                      width: _logoHeight,
-                                      height: _logoHeight,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: context.colors.brandPrimary
-                                            .withValues(alpha: opacity),
-                                      ),
-                                    ),
-                                  );
-                                },
+                              RepaintBoundary(
+                                child: AnimatedBuilder(
+                                  animation: _pulseController,
+                                  builder:
+                                      (BuildContext context, Widget? child) {
+                                        const double startScale = 0.4;
+                                        const double endScale = 1.4;
+                                        final double scale =
+                                            startScale +
+                                            (endScale - startScale) *
+                                                Curves.easeOut.transform(
+                                                  _pulseController.value,
+                                                );
+                                        final double opacity =
+                                            (1 -
+                                                Curves.easeIn.transform(
+                                                  _pulseController.value,
+                                                )) *
+                                            0.5;
+                                        return Transform.scale(
+                                          scale: scale,
+                                          child: Container(
+                                            width: _logoHeight,
+                                            height: _logoHeight,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: context.colors.brandPrimary
+                                                  .withValues(alpha: opacity),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                ),
                               ),
                             if (!_exitRevealStarted)
                               ExcludeSemantics(
@@ -597,6 +643,15 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                                       ),
                                     ],
                                   )
+                                : showUnreachable
+                                ? Text(
+                                    strings.splashGatewayUnreachable(
+                                      displayDomain,
+                                    ),
+                                    style: context.textStyles.smallText
+                                        .copyWith(color: _splashQuoteText),
+                                    textAlign: TextAlign.center,
+                                  )
                                 : showStartupError || showCompatibilityIssue
                                 ? Text(
                                     statusText,
@@ -621,7 +676,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                       ),
                       if (serviceUnavailable ||
                           showStartupError ||
-                          showCompatibilityIssue)
+                          showCompatibilityIssue ||
+                          showUnreachable)
                         _fadeExitContent(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -680,7 +736,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                                   linkStyle: footerLinkStyle,
                                 ),
                                 if (!serviceUnavailable &&
-                                    !showStartupError) ...[
+                                    !showStartupError &&
+                                    !showUnreachable) ...[
                                   const SizedBox(height: 12),
                                   const OfflineAccountSwitcherLink(),
                                 ],

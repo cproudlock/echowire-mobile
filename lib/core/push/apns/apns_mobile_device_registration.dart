@@ -18,6 +18,7 @@ import 'package:fluxer_app/core/push/web_push/web_push_registration.dart';
 import 'package:fluxer_app/core/push/web_push/web_push_relay.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/talker.dart';
+import 'package:fluxer_app/features/shell/providers/nagbar/push_notification_permission_status_provider.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -62,6 +63,14 @@ class ApnsMobileDeviceRegistration extends _$ApnsMobileDeviceRegistration {
       })
       ..listen<bool>(pushRelayConsentProvider, (bool? previous, bool next) {
         if (next && previous == false) {
+          unawaited(sync());
+        }
+      })
+      ..listen<AsyncValue<bool>>(pushNotificationPermissionGrantedProvider, (
+        AsyncValue<bool>? previous,
+        AsyncValue<bool> next,
+      ) {
+        if ((next.value ?? false) && !(previous?.value ?? false)) {
           unawaited(sync());
         }
       });
@@ -132,7 +141,7 @@ class ApnsMobileDeviceRegistration extends _$ApnsMobileDeviceRegistration {
       return;
     }
     _logApnsInfo('sync started for user $userId');
-    final bool granted = await requestPushNotificationPermission();
+    final bool granted = await isPushNotificationPermissionGranted();
     if (!granted) {
       _logApnsWarning('sync aborted: notification permission not granted');
       return;

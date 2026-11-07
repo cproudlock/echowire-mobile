@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/database/daos/favorite_channels_dao.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/permissions/channel_permission_cache_provider.dart';
+import 'package:fluxer_app/core/providers/app/account_user_id.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/channels/domain/channel_unread_state.dart';
 import 'package:fluxer_app/features/channels/domain/hide_muted_channels_filter.dart';
@@ -13,6 +14,7 @@ import 'package:fluxer_app/features/channels/providers/channel_mute_provider.dar
 import 'package:fluxer_app/features/channels/providers/channel_typing_provider.dart';
 import 'package:fluxer_app/features/channels/providers/unread_provider.dart';
 import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
+import 'package:fluxer_app/features/dm/domain/dm_conversation.dart';
 import 'package:fluxer_app/features/dm/presentation/widgets/group_dm_avatar.dart';
 import 'package:fluxer_app/features/favorites/domain/resolved_favorite_entry.dart';
 import 'package:fluxer_app/features/favorites/presentation/widgets/favorites_category_context_menu.dart';
@@ -425,7 +427,7 @@ class _FavoriteChannelTile extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           semanticLabel: navigationItemSemanticLabel(
             l10n: FluxerLocalizations.of(context),
-            name: entry.displayName,
+            name: entry.displayName(FluxerLocalizations.of(context)),
             isSelected: isSelected,
             hasUnread: showUnreadIndicator,
             mentionCount: mentionCount,
@@ -445,7 +447,7 @@ class _FavoriteChannelTile extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      entry.displayName,
+                      entry.displayName(FluxerLocalizations.of(context)),
                       style: context.textStyles.username.copyWith(
                         color: textColor,
                       ),
@@ -494,7 +496,10 @@ class _FavoriteLeadingIcon extends ConsumerWidget {
         );
       }
       return FluxerAvatar.userPresence(
-        fallbackText: dm.displayName,
+        fallbackText: dmConversationDisplayName(
+          FluxerLocalizations.of(context),
+          dm,
+        ),
         userId: dm.recipientId,
         imageUrl: dm.recipientAvatar == null
             ? null
@@ -512,7 +517,9 @@ class _FavoriteLeadingIcon extends ConsumerWidget {
     final guild = entry.guild;
     if (channel != null && guild != null) {
       final int? cachedPermissionBits = ref.watch(
-        channelPermissionCacheProvider.select((m) => m[channel.id]),
+        channelPermissionCacheProvider(
+          watchAccountUserId(ref),
+        ).select((m) => m[channel.id]),
       );
       return SizedBox.square(
         dimension: _avatarSize,
@@ -555,7 +562,9 @@ class _FavoriteLeadingIcon extends ConsumerWidget {
     }
     if (channel != null) {
       final int? cachedPermissionBits = ref.watch(
-        channelPermissionCacheProvider.select((m) => m[channel.id]),
+        channelPermissionCacheProvider(
+          watchAccountUserId(ref),
+        ).select((m) => m[channel.id]),
       );
       return SizedBox.square(
         dimension: _avatarSize,

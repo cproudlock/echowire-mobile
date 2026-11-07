@@ -14,7 +14,6 @@ import 'package:fluxer_app/core/providers/gateway/gateway_connection_provider.da
 import 'package:fluxer_app/core/providers/instance/well_known_provider.dart';
 import 'package:fluxer_app/features/chat/utils/media/media_kit_player_lifecycle.dart';
 import 'package:fluxer_app/features/profile/providers/user_settings_status_provider.dart';
-import 'package:fluxer_app/features/voice/services/voice_wakelock_coordinator.dart';
 import 'package:fluxer_app/l10n/app_locale_provider.dart';
 import 'package:fluxer_app/shared/external_links/external_url_launcher.dart';
 import 'package:fluxer_app/shared/utils/emoji/emoji_sprite_sheet.dart';
@@ -201,7 +200,6 @@ class _AppUiLifecycleObserverState extends ConsumerState<AppUiLifecycleObserver>
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(voiceWakelockCoordinatorProvider);
     return widget.child;
   }
 }

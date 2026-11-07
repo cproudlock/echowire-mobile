@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/gateway/providers/gateway_event_providers.dart';
+import 'package:fluxer_app/core/providers/app/account_user_id.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
+import 'package:fluxer_app/features/friends/providers/blocked_user_ids_provider.dart';
 import 'package:fluxer_app/features/profile/utils/profile_menu_capabilities.dart';
 import 'package:fluxer_app/features/settings/providers/preferences/voice_settings_provider.dart';
 import 'package:fluxer_app/features/ui/voice/voice_participant_media_tile.dart';
@@ -128,7 +130,10 @@ Future<VoiceParticipantMenuCapabilities> _pumpCapabilities(
   late VoiceParticipantMenuCapabilities capabilities;
   await tester.pumpWidget(
     ProviderScope(
-      overrides: overrides,
+      overrides: <Override>[
+        ...overrides,
+        blockedUserIdsProvider.overrideWithValue(const <String>{}),
+      ],
       child: Consumer(
         builder: (BuildContext context, WidgetRef ref, Widget? child) {
           capabilities = buildVoiceParticipantMenuCapabilities(
@@ -248,6 +253,7 @@ void main() {
           voiceSessionProvider.overrideWith(_ConnectedSelfVoiceSession.new),
           voiceCallLayoutProvider.overrideWith(VoiceCallLayout.new),
           voiceSettingsProvider.overrideWith(VoiceSettings.new),
+          blockedUserIdsProvider.overrideWithValue(const <String>{}),
         ],
         child: Consumer(
           builder: (BuildContext context, WidgetRef ref, Widget? child) {
@@ -275,10 +281,13 @@ void main() {
         voiceSessionProvider.overrideWith(_DisconnectedVoiceSession.new),
         voiceCallLayoutProvider.overrideWith(VoiceCallLayout.new),
         voiceSettingsProvider.overrideWith(VoiceSettings.new),
+        blockedUserIdsProvider.overrideWithValue(const <String>{}),
       ],
     );
     addTearDown(container.dispose);
-    container.read(voiceStatesMapProvider.notifier).update(initialVoice);
+    container
+        .read(voiceStatesMapProvider(readAccountUserId(container)).notifier)
+        .update(initialVoice);
 
     late VoiceParticipantMenuCapabilities capabilities;
     await tester.pumpWidget(
@@ -300,7 +309,7 @@ void main() {
     expect(capabilities.isCommunityMuted, isFalse);
 
     container
-        .read(voiceStatesMapProvider.notifier)
+        .read(voiceStatesMapProvider(readAccountUserId(container)).notifier)
         .update(_voiceState(mute: true, deaf: false));
     await tester.pump();
 

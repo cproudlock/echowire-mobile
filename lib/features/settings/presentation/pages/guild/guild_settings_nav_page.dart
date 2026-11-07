@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/providers/app/account_user_id.dart';
 import 'package:fluxer_app/core/providers/instance/instance_runtime_config_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
@@ -16,8 +17,6 @@ import 'package:fluxer_app/features/shell/hosted_ui/hosted_ui_background_bleed.d
 import 'package:fluxer_app/features/shell/hosted_ui/iphone_duo_hosted_ui.dart';
 import 'package:fluxer_app/features/ui/bottom_sheet/fluxer_bottom_sheet.dart';
 import 'package:fluxer_app/features/ui/settings/fluxer_settings_nav_list.dart';
-import 'package:fluxer_app/features/ui/toast/fluxer_toast.dart';
-import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
 import 'package:go_router/go_router.dart';
@@ -41,7 +40,9 @@ class _GuildSettingsNavPageState extends ConsumerState<GuildSettingsNavPage> {
       if (!mounted) {
         return;
       }
-      ref.read(guildSyncProvider.notifier).syncIfNeeded(widget.guildId);
+      ref
+          .read(guildSyncProvider(readAccountUserId(ref)).notifier)
+          .syncIfNeeded(widget.guildId);
     });
   }
 
@@ -78,6 +79,7 @@ class _GuildSettingsNavPageState extends ConsumerState<GuildSettingsNavPage> {
           title: Text(l10n.guildSettingsCommunitySettings),
           leading: showsInAppShellBackButton(context)
               ? IconButton(
+                  tooltip: l10n.back,
                   icon: const PhosphorIcon(PhosphorIconsBold.arrowLeft),
                   onPressed: () => context.pop(),
                 )
@@ -138,18 +140,11 @@ class _GuildSettingsNavPageState extends ConsumerState<GuildSettingsNavPage> {
         flushGroup();
         currentCategory = category;
       }
-      final bool isComingSoon = isGuildSettingsTabComingSoon(tab);
       currentItems.add(
         FluxerSettingsNavItem(
           label: guildSettingsTabTitle(l10n, tab),
           icon: guildSettingsTabIcon(tab),
           onTap: () => context.push(guildSettingsTabPath(guildId, tab)),
-          isDisabled: isComingSoon,
-          onDisabledTap: () {
-            ref
-                .read(toastProvider.notifier)
-                .show(FluxerToast(message: l10n.comingSoon));
-          },
         ),
       );
     }

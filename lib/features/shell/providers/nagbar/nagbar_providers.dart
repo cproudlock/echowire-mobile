@@ -1,10 +1,11 @@
-import 'package:fluxer_app/core/constants/policy_constants.dart';
 import 'package:fluxer_app/core/premium/should_show_premium_commerce_provider.dart';
+import 'package:fluxer_app/core/providers/app/account_user_id.dart';
 import 'package:fluxer_app/core/providers/instance/well_known_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preference_field.dart';
 import 'package:fluxer_app/core/synced_preferences/engine/synced_preferences_dirty.dart';
 import 'package:fluxer_app/features/settings/providers/view_models/user_settings_view_model.dart';
+import 'package:fluxer_app/features/settings/utils/commerce/user_settings_billing_nav.dart';
 import 'package:fluxer_app/features/shell/domain/nagbar_conditions.dart';
 import 'package:fluxer_app/features/shell/domain/nagbar_dismissals_state.dart';
 import 'package:fluxer_app/features/shell/domain/nagbar_state.dart';
@@ -95,6 +96,17 @@ class NagbarDismissals extends _$NagbarDismissals {
 const Duration kPremiumGracePeriod = Duration(days: 3);
 const Duration kPremiumExpiredWindow = Duration(days: 30);
 
+DateTime? premiumGraceEnd({
+  required String? premiumUntil,
+  required String? premiumGraceEndsAt,
+}) {
+  final DateTime? explicit = DateTime.tryParse(premiumGraceEndsAt ?? '');
+  if (explicit != null) {
+    return explicit;
+  }
+  return DateTime.tryParse(premiumUntil ?? '')?.add(kPremiumGracePeriod);
+}
+
 @Riverpod(keepAlive: true)
 Future<NagbarConditions> nagbarConditions(Ref ref) async {
   ref.watch(scheduledMaintenanceDismissalReadProvider);
@@ -103,12 +115,14 @@ Future<NagbarConditions> nagbarConditions(Ref ref) async {
     userSettingsViewModelProvider,
   );
   final UserPrivateResponse? privateUser = ref.watch(
-    currentUserPrivateReadProvider,
+    currentUserPrivateReadProvider(readAccountUserId(ref)),
   );
   final ServiceStatusMaintenance? maintenance = ref.watch(
     serviceStatusMaintenanceReadProvider,
   );
   final bool showPremiumCommerce = ref.watch(shouldShowPremiumCommerceProvider);
+  final bool billingNavVisible = ref.watch(premiumBillingNavVisibleProvider);
+  final bool giftNavVisible = ref.watch(premiumGiftBillingNavVisibleProvider);
   final AsyncValue<WellKnownFluxerResponse> wellKnown = ref.watch(
     wellKnownProvider,
   );
@@ -131,12 +145,14 @@ Future<NagbarConditions> nagbarConditions(Ref ref) async {
       emailsEnabled && settings.needsKnownEmailVerification;
   final bool canShowPremiumGracePeriod = _canShowPremiumGracePeriod(
     settings: settings,
+    premiumGraceEndsAt: privateUser?.premiumGraceEndsAt,
     dismissals: dismissals,
     showPremiumCommerce: showPremiumCommerce,
     isSelfHosted: isSelfHosted,
   );
   final bool canShowPremiumExpired = _canShowPremiumExpired(
     settings: settings,
+    premiumGraceEndsAt: privateUser?.premiumGraceEndsAt,
     dismissals: dismissals,
     showPremiumCommerce: showPremiumCommerce,
     isSelfHosted: isSelfHosted,
@@ -146,12 +162,14 @@ Future<NagbarConditions> nagbarConditions(Ref ref) async {
     settings: settings,
     dismissals: dismissals,
     showPremiumCommerce: showPremiumCommerce,
+    billingNavVisible: billingNavVisible,
     isSelfHosted: isSelfHosted,
   );
   final bool canShowGiftInventory = _canShowGiftInventory(
     privateUser: privateUser,
     dismissals: dismissals,
     showPremiumCommerce: showPremiumCommerce,
+    giftNavVisible: giftNavVisible,
     isSelfHosted: isSelfHosted,
   );
   final bool canShowVisionaryMfa = _canShowVisionaryMfa(
@@ -173,10 +191,6 @@ Future<NagbarConditions> nagbarConditions(Ref ref) async {
   );
   return NagbarConditions(
     canShowCorruptedInstallation: false,
-    canShowTermsAcceptance: _needsTermsAcceptance(
-      privateUser: privateUser,
-      isSelfHosted: isSelfHosted,
-    ),
     canShowScheduledMaintenance: canShowScheduledMaintenance,
     userIsUnclaimed: userIsUnclaimed,
     userNeedsVerification: userNeedsVerification,
@@ -206,12 +220,6 @@ Future<List<NagbarState>> visibleNagbars(Ref ref) async {
       type: NagbarType.corruptedInstallation,
       priority: -10,
       visible: conditions.canShowCorruptedInstallation,
-      dismissible: false,
-    ),
-    NagbarState(
-      type: NagbarType.termsAcceptance,
-      priority: -5,
-      visible: conditions.canShowTermsAcceptance,
       dismissible: false,
     ),
     NagbarState(
@@ -314,44 +322,9 @@ Future<List<NagbarState>> visibleNagbars(Ref ref) async {
   return selectVisibleNagbars(nagbars);
 }
 
-bool _needsTermsAcceptance({
-  required UserPrivateResponse? privateUser,
-  required bool isSelfHosted,
-}) {
-  if (privateUser == null || isSelfHosted) {
-    return false;
-  }
-  if (kTermsOfServiceLastUpdated == null && kPrivacyPolicyLastUpdated == null) {
-    return false;
-  }
-  final DateTime? termsAgreedAt = _parseDate(privateUser.termsAgreedAt);
-  final DateTime? privacyAgreedAt = _parseDate(privateUser.privacyAgreedAt);
-  final bool termsOutdated =
-      kTermsOfServiceLastUpdated != null &&
-      (termsAgreedAt == null ||
-          termsAgreedAt.toUtc().toIso8601String().compareTo(
-                kTermsOfServiceLastUpdated!,
-              ) <
-              0);
-  final bool privacyOutdated =
-      kPrivacyPolicyLastUpdated != null &&
-      (privacyAgreedAt == null ||
-          privacyAgreedAt.toUtc().toIso8601String().compareTo(
-                kPrivacyPolicyLastUpdated!,
-              ) <
-              0);
-  return termsOutdated || privacyOutdated;
-}
-
-DateTime? _parseDate(String? value) {
-  if (value == null || value.isEmpty) {
-    return null;
-  }
-  return DateTime.tryParse(value);
-}
-
 bool _canShowPremiumGracePeriod({
   required UserSettingsViewState settings,
+  required String? premiumGraceEndsAt,
   required NagbarDismissalsState dismissals,
   required bool showPremiumCommerce,
   required bool isSelfHosted,
@@ -368,16 +341,20 @@ bool _canShowPremiumGracePeriod({
     return false;
   }
   final DateTime? expiryDate = DateTime.tryParse(premiumUntil);
-  if (expiryDate == null) {
+  final DateTime? graceEndDate = premiumGraceEnd(
+    premiumUntil: premiumUntil,
+    premiumGraceEndsAt: premiumGraceEndsAt,
+  );
+  if (expiryDate == null || graceEndDate == null) {
     return false;
   }
   final DateTime now = DateTime.now().toUtc();
-  final DateTime graceEndDate = expiryDate.add(kPremiumGracePeriod);
   return now.isAfter(expiryDate) && !now.isAfter(graceEndDate);
 }
 
 bool _canShowPremiumExpired({
   required UserSettingsViewState settings,
+  required String? premiumGraceEndsAt,
   required NagbarDismissalsState dismissals,
   required bool showPremiumCommerce,
   required bool isSelfHosted,
@@ -394,11 +371,14 @@ bool _canShowPremiumExpired({
     return false;
   }
   final DateTime? expiryDate = DateTime.tryParse(premiumUntil);
-  if (expiryDate == null) {
+  final DateTime? graceEndDate = premiumGraceEnd(
+    premiumUntil: premiumUntil,
+    premiumGraceEndsAt: premiumGraceEndsAt,
+  );
+  if (expiryDate == null || graceEndDate == null) {
     return false;
   }
   final DateTime now = DateTime.now().toUtc();
-  final DateTime graceEndDate = expiryDate.add(kPremiumGracePeriod);
   final DateTime expiredStateEndDate = expiryDate.add(kPremiumExpiredWindow);
   return now.isAfter(graceEndDate) && !now.isAfter(expiredStateEndDate);
 }
@@ -408,9 +388,11 @@ bool _canShowPremiumOnboarding({
   required UserSettingsViewState settings,
   required NagbarDismissalsState dismissals,
   required bool showPremiumCommerce,
+  required bool billingNavVisible,
   required bool isSelfHosted,
 }) {
   if (!showPremiumCommerce ||
+      !billingNavVisible ||
       isSelfHosted ||
       dismissals.premiumOnboardingDismissed) {
     return false;
@@ -428,9 +410,11 @@ bool _canShowGiftInventory({
   required UserPrivateResponse? privateUser,
   required NagbarDismissalsState dismissals,
   required bool showPremiumCommerce,
+  required bool giftNavVisible,
   required bool isSelfHosted,
 }) {
   if (!showPremiumCommerce ||
+      !giftNavVisible ||
       isSelfHosted ||
       dismissals.giftInventoryDismissed) {
     return false;

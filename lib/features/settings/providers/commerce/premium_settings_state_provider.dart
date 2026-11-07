@@ -1,5 +1,7 @@
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
+import 'package:fluxer_app/core/build/app_build_config.dart';
 import 'package:fluxer_app/core/premium/current_user_entitlements_provider.dart';
+import 'package:fluxer_app/core/providers/app/account_user_id.dart';
 import 'package:fluxer_dart/export.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,9 +15,13 @@ class PremiumSettingsState extends _$PremiumSettingsState {
   Future<PremiumStateResponse?> build() async {
     final client = ref.watch(fluxerClientProvider);
     try {
-      final PremiumStateResponse state = await client.premium.getPremiumState();
+      final PremiumStateResponse state = await client.premium.getPremiumState(
+        distribution: AppBuildConfig.distribution,
+      );
       ref
-          .read(currentUserEntitlementsProvider.notifier)
+          .read(
+            currentUserEntitlementsProvider(readAccountUserId(ref)).notifier,
+          )
           .applyPremiumState(state);
       return state;
     } on Object {
@@ -32,7 +38,10 @@ class PremiumSettingsState extends _$PremiumSettingsState {
       () => ref
           .read(fluxerClientProvider)
           .premium
-          .getPremiumState(countryCode: countryCode),
+          .getPremiumState(
+            countryCode: countryCode,
+            distribution: AppBuildConfig.distribution,
+          ),
     );
     if (!ref.mounted || serial != _refreshSerial) {
       return;
@@ -40,7 +49,9 @@ class PremiumSettingsState extends _$PremiumSettingsState {
     final PremiumStateResponse? response = result.asData?.value;
     if (response != null) {
       ref
-          .read(currentUserEntitlementsProvider.notifier)
+          .read(
+            currentUserEntitlementsProvider(readAccountUserId(ref)).notifier,
+          )
           .applyPremiumState(response);
     }
     if (silent && result.hasError) {

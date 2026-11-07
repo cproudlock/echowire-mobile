@@ -6,8 +6,6 @@ import 'package:fluxer_app/core/push/push_message.dart';
 // Echowire: fallback title shown when a push payload carries none.
 const String kWebPushDefaultTitle = 'echowire';
 
-const String kWebPushDefaultBody = 'New message';
-
 const Set<String> _kPayloadSkipKeys = <String>{'title', 'body', 'aps', 'data'};
 
 PushMessage mapWebPushEnvelope(String raw, {required String fallbackId}) {
@@ -21,7 +19,7 @@ PushMessage mapWebPushEnvelope(String raw, {required String fallbackId}) {
   return PushMessage(
     id: fallbackId,
     title: kWebPushDefaultTitle,
-    body: raw.isEmpty ? kWebPushDefaultBody : raw,
+    body: raw.isEmpty ? null : raw,
     payload: const <String, String>{},
   );
 }
@@ -69,7 +67,7 @@ PushMessage _mapJsonPayload(Map<String, Object?> json, String fallbackId) {
   return PushMessage(
     id: id,
     title: title ?? kWebPushDefaultTitle,
-    body: body ?? kWebPushDefaultBody,
+    body: body,
     payload: enrichPushPayload(payload),
   );
 }

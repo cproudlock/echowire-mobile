@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/gateway/providers/gateway_event_providers.dart';
 import 'package:fluxer_app/core/permissions/channel_permission_cache_provider.dart';
+import 'package:fluxer_app/core/providers/app/account_user_id.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/accessibility/domain/text_scale.dart';
@@ -30,12 +31,14 @@ import 'package:fluxer_app/features/forum/presentation/widgets/forum_mobile_head
 import 'package:fluxer_app/features/forum/providers/forum_header_search_provider.dart';
 import 'package:fluxer_app/features/guilds/domain/guild.dart';
 import 'package:fluxer_app/features/guilds/providers/guild_list_view_model.dart';
+import 'package:fluxer_app/features/mature_content/providers/mature_content_agreements_provider.dart';
 import 'package:fluxer_app/features/settings/providers/preferences/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/shell/navigation/invoke_shell_back.dart';
 import 'package:fluxer_app/features/shell/navigation/shell_chat_back.dart';
 import 'package:fluxer_app/features/shell/presentation/responsive_layout.dart';
 import 'package:fluxer_app/features/threads/presentation/thread_header_buttons.dart';
 import 'package:fluxer_app/features/threads/presentation/thread_menu_sheet.dart';
+import 'package:fluxer_app/features/threads/utils/thread_title.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_state.dart';
@@ -278,8 +281,11 @@ class ChannelHeader extends ConsumerWidget {
     );
     final bool forumHandheldHeader =
         (channel?.isThreadOnly ?? false) && isForumHandheldLayout(context);
+    final bool matureGateUp =
+        channel != null && watchMatureContentGateUp(ref, channel.id);
     final bool forumSearchExpanded =
         forumHandheldHeader &&
+        !matureGateUp &&
         ref.watch(forumHeaderSearchProvider(channelId)).expanded;
 
     final Color headerBackground = shellChannelHeaderBackgroundColor(context);
@@ -316,7 +322,9 @@ class ChannelHeader extends ConsumerWidget {
                     : Semantics(
                         key: const ValueKey<String>('channel-title'),
                         button: true,
-                        label: 'Open channel details',
+                        label: FluxerLocalizations.of(
+                          context,
+                        ).channelHeaderOpenDetails,
                         child: InkWell(
                           onTap: () => _openDetails(
                             context,
@@ -456,7 +464,10 @@ class ChannelHeader extends ConsumerWidget {
                       ),
                     ),
                   ],
-                  if (showMessageActions && dm == null && channel != null)
+                  if (showMessageActions &&
+                      dm == null &&
+                      channel != null &&
+                      !matureGateUp)
                     if (forumHandheldHeader) ...<Widget>[
                       FluxerButton.circle(
                         icon: PhosphorIconsBold.slidersHorizontal,
@@ -540,11 +551,13 @@ class ChannelHeader extends ConsumerWidget {
     }
     if (channel != null) {
       final int? effectivePermissionBits = ref.watch(
-        channelPermissionCacheProvider.select((m) => m[channel.id]),
+        channelPermissionCacheProvider(
+          watchAccountUserId(ref),
+        ).select((m) => m[channel.id]),
       );
       final VoiceSessionState voice = ref.watch(voiceSessionProvider);
       final Map<String, VoiceState> voiceStates = ref.watch(
-        voiceStatesMapProvider,
+        voiceStatesMapProvider(readAccountUserId(ref)),
       );
       final bool isVoiceChannel = channel.type == ChannelType.guildVoice;
       final Guild? guild = ref
@@ -624,7 +637,20 @@ class ChannelHeader extends ConsumerWidget {
           channelGuildId: channel?.guildId,
           isDm: dm != null,
         ),
-        nickname: channel?.name ?? dm?.displayName,
+        nickname:
+            (channel == null
+                ? null
+                : readThreadTitleText(
+                    ref,
+                    channel,
+                    FluxerLocalizations.of(context),
+                  )) ??
+            (dm == null
+                ? null
+                : dmConversationDisplayName(
+                    FluxerLocalizations.of(context),
+                    dm,
+                  )),
       );
     }
     if (!context.mounted) {

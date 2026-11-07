@@ -16,12 +16,15 @@ import 'package:fluxer_app/core/permissions/channel_effective_permissions.dart';
 import 'package:fluxer_app/core/permissions/channel_permission_cache_provider.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
 import 'package:fluxer_app/core/permissions/thread_permissions.dart';
+import 'package:fluxer_app/core/providers/app/account_user_id.dart';
 import 'package:fluxer_app/core/providers/app/app_ui_lifecycle_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/providers/gateway/gateway_connection_provider.dart';
 import 'package:fluxer_app/core/providers/gateway/gateway_ready_provider.dart';
 import 'package:fluxer_app/core/providers/gateway/gateway_session_recovery_provider.dart';
 import 'package:fluxer_app/core/providers/instance/instance_runtime_config_provider.dart';
+import 'package:fluxer_app/core/push/apns/apns_mobile_device_registration.dart';
+import 'package:fluxer_app/core/push/notification/permission.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/utils/message_mention_resolver.dart';
@@ -89,6 +92,7 @@ import 'package:fluxer_app/features/dm/providers/dm_providers.dart';
 import 'package:fluxer_app/features/guilds/services/guild_verification.dart';
 import 'package:fluxer_app/features/settings/providers/preferences/advanced_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/preferences/chat_preferences_provider.dart';
+import 'package:fluxer_app/features/shell/providers/nagbar/push_notification_permission_status_provider.dart';
 import 'package:fluxer_app/features/ui/input/inline_token_clipboard.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 import 'package:fluxer_app/l10n/app_locale_provider.dart';
@@ -1396,7 +1400,9 @@ class ChatViewModel extends _$ChatViewModel {
   }
 
   bool _isMessageUploadSessionActive(String clientNonce) {
-    return ref.read(messageUploadSessionsProvider).containsKey(clientNonce);
+    return ref
+        .read(messageUploadSessionsProvider(readAccountUserId(ref)))
+        .containsKey(clientNonce);
   }
 
   void _commitDeliveredOptimisticSend({
@@ -1430,7 +1436,9 @@ class ChatViewModel extends _$ChatViewModel {
       return messages;
     }
     final Set<String> existingIds = messages.map((Message m) => m.id).toSet();
-    final sessions = ref.read(messageUploadSessionsProvider);
+    final sessions = ref.read(
+      messageUploadSessionsProvider(readAccountUserId(ref)),
+    );
     final List<Message> inFlight = <Message>[];
     final List<String> staleNonces = <String>[];
     for (final MapEntry<String, Message> entry
@@ -5076,6 +5084,9 @@ class ChatViewModel extends _$ChatViewModel {
             favoriteMemeId: favoriteMemeId,
             tts: tts,
           );
+          if (consumed) {
+            unawaited(_askForPushPermissionAfterSend());
+          }
         } finally {
           if (!consumed && claimNonce != null) {
             _returnClaim(claimNonce);
@@ -5085,6 +5096,27 @@ class ChatViewModel extends _$ChatViewModel {
     } finally {
       _preparingSendKeys.remove(key);
     }
+  }
+
+  Future<void> _askForPushPermissionAfterSend() async {
+    final bool asked;
+    try {
+      asked = await requestPushNotificationPermissionAfterFirstSend();
+    } on Object catch (error, stackTrace) {
+      talker.warning(
+        '[ChatViewModel] push permission after send failed',
+        error,
+        stackTrace,
+      );
+      return;
+    }
+    if (!asked || !ref.mounted) {
+      return;
+    }
+    ref
+      ..invalidate(pushNotificationPermissionGrantedProvider)
+      ..invalidate(pushNotificationRequiresSystemSettingsProvider);
+    unawaited(ref.read(apnsMobileDeviceRegistrationProvider.notifier).sync());
   }
 
   Future<void> _afterPreparingSends(Future<void> Function() prepare) {
@@ -5107,7 +5139,7 @@ class ChatViewModel extends _$ChatViewModel {
       return null;
     }
     final CloudUploadController uploads = ref.read(
-      cloudUploadControllerProvider(channelId).notifier,
+      cloudUploadControllerProvider(readAccountUserId(ref), channelId).notifier,
     );
     final String nonce = clientNonceGenerator.next();
     return uploads.claimForMessage(nonce).isEmpty ? null : nonce;
@@ -5115,13 +5147,18 @@ class ChatViewModel extends _$ChatViewModel {
 
   void _returnClaim(String nonce) {
     final MessageUploadSession? session = ref.read(
-      messageUploadSessionsProvider,
+      messageUploadSessionsProvider(readAccountUserId(ref)),
     )[nonce];
     if (session == null) {
       return;
     }
     ref
-        .read(cloudUploadControllerProvider(session.channelId).notifier)
+        .read(
+          cloudUploadControllerProvider(
+            readAccountUserId(ref),
+            session.channelId,
+          ).notifier,
+        )
         .returnClaim(nonce);
   }
 
@@ -5184,7 +5221,7 @@ class ChatViewModel extends _$ChatViewModel {
         ? currentUser!.globalName!
         : currentUser?.username ?? 'You';
     final CloudUploadController uploadNotifier = ref.read(
-      cloudUploadControllerProvider(channelId).notifier,
+      cloudUploadControllerProvider(readAccountUserId(ref), channelId).notifier,
     );
     final String clientNonce = clientNonceGenerator.next();
     final FileUploadValidationResult validation = await uploadNotifier
@@ -5201,7 +5238,11 @@ class ChatViewModel extends _$ChatViewModel {
     final String? replyToId = state.replyingTo?.id;
     final bool replyMention = state.replyMentioning;
     final List<PendingAttachment> claimed =
-        ref.read(messageUploadSessionsProvider)[clientNonce]?.attachments ??
+        ref
+            .read(
+              messageUploadSessionsProvider(readAccountUserId(ref)),
+            )[clientNonce]
+            ?.attachments ??
         const <PendingAttachment>[];
     if (claimed.isEmpty) {
       return;
@@ -5278,7 +5319,11 @@ class ChatViewModel extends _$ChatViewModel {
       return false;
     }
     if (claimNonce != null &&
-        ref.read(messageUploadSessionsProvider)[claimNonce]?.channelId !=
+        ref
+                .read(
+                  messageUploadSessionsProvider(readAccountUserId(ref)),
+                )[claimNonce]
+                ?.channelId !=
             channelId) {
       return false;
     }
@@ -5295,7 +5340,11 @@ class ChatViewModel extends _$ChatViewModel {
     final String? currentUserId = ref.read(currentUserIdProvider);
     final List<PendingAttachment> pendingAttachments = claimNonce == null
         ? const <PendingAttachment>[]
-        : ref.read(messageUploadSessionsProvider)[claimNonce]?.attachments ??
+        : ref
+                  .read(
+                    messageUploadSessionsProvider(readAccountUserId(ref)),
+                  )[claimNonce]
+                  ?.attachments ??
               const <PendingAttachment>[];
     if (!hasVisibleContent(text) &&
         stickerIds.isEmpty &&
@@ -5322,7 +5371,9 @@ class ChatViewModel extends _$ChatViewModel {
           );
       if (permissionOutcome.shouldCache) {
         ref
-            .read(channelPermissionCacheProvider.notifier)
+            .read(
+              channelPermissionCacheProvider(readAccountUserId(ref)).notifier,
+            )
             .cacheEffectiveBits(
               channelId: channelId,
               outcome: permissionOutcome,
@@ -5387,7 +5438,7 @@ class ChatViewModel extends _$ChatViewModel {
         : currentUser?.username ?? 'You';
     final String clientNonce = claimNonce ?? clientNonceGenerator.next();
     final CloudUploadController uploadNotifier = ref.read(
-      cloudUploadControllerProvider(channelId).notifier,
+      cloudUploadControllerProvider(readAccountUserId(ref), channelId).notifier,
     );
     final bool hasPendingAttachments = pendingAttachments.isNotEmpty;
     final FluxerLocalizations l10n = ref.read(appLocalizationsProvider);
@@ -5560,7 +5611,9 @@ class ChatViewModel extends _$ChatViewModel {
   }) async {
     final int fileCount =
         ref
-            .read(messageUploadSessionsProvider)[clientNonce]
+            .read(
+              messageUploadSessionsProvider(readAccountUserId(ref)),
+            )[clientNonce]
             ?.attachments
             .length ??
         1;
@@ -5719,7 +5772,12 @@ class ChatViewModel extends _$ChatViewModel {
     }
     _retrySendOptions.remove(local.id);
     ref
-        .read(cloudUploadControllerProvider(local.channelId).notifier)
+        .read(
+          cloudUploadControllerProvider(
+            readAccountUserId(ref),
+            local.channelId,
+          ).notifier,
+        )
         .removeMessageUpload(nonce);
   }
 
@@ -6037,7 +6095,12 @@ class ChatViewModel extends _$ChatViewModel {
       _clearInFlightOptimisticSend(nonce);
       _untrackLocalSend(nonce);
       ref
-          .read(cloudUploadControllerProvider(message.channelId).notifier)
+          .read(
+            cloudUploadControllerProvider(
+              readAccountUserId(ref),
+              message.channelId,
+            ).notifier,
+          )
           .cancelMessageUpload(nonce);
     }
     _retrySendOptions.remove(message.id);
@@ -6209,7 +6272,12 @@ class ChatViewModel extends _$ChatViewModel {
       _retrySendOptions.remove(optimisticMessageId);
       _sendsAwaitingReconnect.remove(optimisticMessageId);
       ref
-          .read(cloudUploadControllerProvider(local.channelId).notifier)
+          .read(
+            cloudUploadControllerProvider(
+              readAccountUserId(ref),
+              local.channelId,
+            ).notifier,
+          )
           .removeMessageUpload(nonce);
       _clearInFlightOptimisticSend(nonce);
       _commitDeliveredOptimisticSend(
@@ -6268,7 +6336,10 @@ class ChatViewModel extends _$ChatViewModel {
         favoriteMemeId: options?.favoriteMemeId,
         optimisticMessageId: message.id,
         uploadNotifier: ref.read(
-          cloudUploadControllerProvider(message.channelId).notifier,
+          cloudUploadControllerProvider(
+            readAccountUserId(ref),
+            message.channelId,
+          ).notifier,
         ),
         messageFlags: message.flags,
         tts: options?.tts ?? false,

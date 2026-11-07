@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/gateway/providers/gateway_event_providers.dart';
+import 'package:fluxer_app/core/providers/app/account_user_id.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
+import 'package:fluxer_app/features/friends/providers/blocked_user_ids_provider.dart';
 import 'package:fluxer_app/features/profile/utils/profile_menu_capabilities.dart';
 import 'package:fluxer_app/features/settings/providers/preferences/voice_settings_provider.dart';
 import 'package:fluxer_app/features/voice/domain/voice_media_participant.dart';
@@ -77,7 +79,9 @@ VoiceState watchTargetVoiceState(
 ) {
   final VoiceState fallback = target.participant.voice;
   return ref.watch(
-    voiceStatesMapProvider.select((Map<String, VoiceState> map) {
+    voiceStatesMapProvider(watchAccountUserId(ref)).select((
+      Map<String, VoiceState> map,
+    ) {
       final String? connectionId = fallback.connectionId;
       if (connectionId != null) {
         for (final VoiceState voiceState in map.values) {
@@ -188,11 +192,15 @@ VoiceParticipantMenuCapabilities buildVoiceParticipantMenuCapabilities({
   final int volumePercent =
       settings.participantVolumes[userId] ?? kDefaultVoiceVolumePercent;
   final bool isLocallyMuted = settings.participantLocalMutes[userId] ?? false;
+  final bool isBlocked = ref.watch(
+    blockedUserIdsProvider.select((Set<String> ids) => ids.contains(userId)),
+  );
   final bool showVolume =
       !isCurrentUser &&
       isViewerInVoice &&
       !target.isScreenShareTile &&
-      !isOwnDevice;
+      !isOwnDevice &&
+      !isBlocked;
   final bool showDisplayPreferences = isCurrentUser && isViewerInVoice;
   final bool prioritizeSpeakingParticipants =
       settings.prioritizeSpeakingParticipants;

@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/premium/should_show_premium_commerce_provider.dart';
 import 'package:fluxer_app/core/providers/instance/well_known_provider.dart';
+import 'package:fluxer_app/core/router/fluxer_router.dart';
 import 'package:fluxer_app/features/settings/providers/view_models/user_settings_view_model.dart';
+import 'package:fluxer_app/features/settings/utils/commerce/user_settings_billing_nav.dart';
 import 'package:fluxer_app/features/shell/data/scheduled_maintenance_dismissal_storage.dart';
 import 'package:fluxer_app/features/shell/domain/nagbar_conditions.dart';
 import 'package:fluxer_app/features/shell/domain/nagbar_dismissals_state.dart';
@@ -162,6 +164,52 @@ void main() {
 
       expect(conditions.canShowScheduledMaintenance, isTrue);
     });
+
+    test(
+      'shows the gift inventory bar only where the gift section exists',
+      () async {
+        for (final bool giftNav in <bool>[false, true]) {
+          final ProviderContainer container = _container(
+            privateUser: _privateUser(hasUnreadGiftInventory: true),
+            billingNav: true,
+            giftNav: giftNav,
+          );
+          addTearDown(container.dispose);
+          await container.read(wellKnownProvider.future);
+
+          final NagbarConditions conditions = await container.read(
+            nagbarConditionsProvider.future,
+          );
+
+          expect(conditions.canShowGiftInventory, giftNav);
+        }
+      },
+    );
+
+    test('uses the server grace end instead of three days', () async {
+      final DateTime now = DateTime.now().toUtc();
+      final ProviderContainer container = _container(
+        settings: _defaultSettings().copyWith(
+          premiumUntil: now
+              .subtract(const Duration(days: 10))
+              .toIso8601String(),
+        ),
+        privateUser: _privateUser(
+          premiumGraceEndsAt: now
+              .add(const Duration(days: 6))
+              .toIso8601String(),
+        ),
+      );
+      addTearDown(container.dispose);
+      await container.read(wellKnownProvider.future);
+
+      final NagbarConditions conditions = await container.read(
+        nagbarConditionsProvider.future,
+      );
+
+      expect(conditions.canShowPremiumGracePeriod, isTrue);
+      expect(conditions.canShowPremiumExpired, isFalse);
+    });
   });
 
   group('visibleNagbarsProvider', () {
@@ -212,7 +260,6 @@ NagbarConditions _emptyConditions({
 }) {
   return NagbarConditions(
     canShowCorruptedInstallation: false,
-    canShowTermsAcceptance: false,
     canShowScheduledMaintenance: canShowScheduledMaintenance,
     userIsUnclaimed: userIsUnclaimed,
     userNeedsVerification: userNeedsVerification,
@@ -234,7 +281,10 @@ NagbarConditions _emptyConditions({
 
 ProviderContainer _container({
   UserSettingsViewState? settings,
+  UserPrivateResponse? privateUser,
   bool selfHosted = false,
+  bool billingNav = false,
+  bool giftNav = false,
   ServiceStatusMaintenance? maintenance,
 }) {
   final MapScheduledMaintenanceDismissalStorage dismissalStorage =
@@ -248,9 +298,12 @@ ProviderContainer _container({
       nagbarDismissalsProvider.overrideWith(
         () => _FixedNagbarDismissals(const NagbarDismissalsState()),
       ),
-      currentUserPrivateReadProvider.overrideWith(
-        () => _FixedCurrentUserPrivate(null),
-      ),
+      currentUserIdProvider.overrideWithValue('1'),
+      currentUserPrivateReadProvider(
+        '1',
+      ).overrideWith(() => _FixedCurrentUserPrivate(privateUser)),
+      premiumBillingNavVisibleProvider.overrideWithValue(billingNav),
+      premiumGiftBillingNavVisibleProvider.overrideWithValue(giftNav),
       serviceStatusMaintenanceReadProvider.overrideWith(
         () => _FixedMaintenance(maintenance),
       ),
@@ -282,6 +335,60 @@ UserSettingsViewState _defaultSettings() {
     trustedDomains: <String>[],
     email: 'user@example.com',
     verified: true,
+  );
+}
+
+UserPrivateResponse _privateUser({
+  bool hasUnreadGiftInventory = false,
+  String? premiumGraceEndsAt,
+}) {
+  return UserPrivateResponse(
+    hasVerifiedPhone: false,
+    username: 'user',
+    discriminator: '0001',
+    globalName: null,
+    avatar: null,
+    avatarColor: null,
+    privacyAgreedAt: null,
+    termsAgreedAt: null,
+    pendingBulkMessageDeletion: null,
+    flags: 0,
+    unreadGiftInventoryCount: hasUnreadGiftInventory ? 1 : 0,
+    isStaff: false,
+    acls: const [],
+    traits: const [],
+    email: 'user@example.com',
+    hasUnreadGiftInventory: hasUnreadGiftInventory,
+    hasEverPurchased: true,
+    id: '1',
+    bio: null,
+    pronouns: null,
+    accentColor: null,
+    banner: null,
+    hasDismissedPremiumOnboarding: true,
+    bannerColor: null,
+    mfaEnabled: false,
+    nsfwAllowed: true,
+    verified: true,
+    premiumType: null,
+    premiumSince: null,
+    premiumUntil: null,
+    premiumWillCancel: false,
+    premiumBillingCycle: null,
+    premiumLifetimeSequence: null,
+    premiumGraceEndsAt: premiumGraceEndsAt,
+    premiumDiscriminator: false,
+    requiredActions: const [],
+    premiumBadgeMasked: false,
+    premiumBadgeTimestampHidden: false,
+    premiumBadgeSequenceHidden: false,
+    premiumPurchaseDisabled: false,
+    premiumEnabledOverride: false,
+    passwordLastChangedAt: null,
+    lastVoiceActivitySharingChangeAt: null,
+    premiumBadgeHidden: false,
+    premiumPerksDisabled: false,
+    hiddenProfileBadges: const <String>[],
   );
 }
 
@@ -413,7 +520,7 @@ class _FixedCurrentUserPrivate extends CurrentUserPrivateRead {
   final UserPrivateResponse? _user;
 
   @override
-  UserPrivateResponse? build() => _user;
+  UserPrivateResponse? build(String accountUserId) => _user;
 }
 
 class _FixedMaintenance extends ServiceStatusMaintenanceRead {

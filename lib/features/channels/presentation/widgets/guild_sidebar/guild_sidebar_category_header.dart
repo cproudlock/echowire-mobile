@@ -110,7 +110,9 @@ class _CategoryHeader extends ConsumerWidget {
       guildId,
       category.id,
     );
-    final String? mutedHint = isMuted ? formatMutedHintText(muteConfig) : null;
+    final String? mutedHint = isMuted
+        ? formatMutedHintText(muteConfig, l10n)
+        : null;
     final bool developerMode = ref
         .read(userSettingsViewModelProvider)
         .developerMode;
@@ -118,7 +120,7 @@ class _CategoryHeader extends ConsumerWidget {
         .read(matureContentAgreementsProvider.notifier)
         .hasAgreedToCategory(category.id);
     final int? cachedPermissionBits = ref.read(
-      channelPermissionCacheProvider,
+      channelPermissionCacheProvider(readAccountUserId(ref)),
     )[category.id];
     final int? permissionBits =
         cachedPermissionBits ??
@@ -150,7 +152,7 @@ class _CategoryHeader extends ConsumerWidget {
       l10n: l10n,
       state: menuState,
     );
-    if (isMobileLayout(context)) {
+    if (!usesDesktopPointerUi(context)) {
       return FluxerBottomSheet.showScrollable<void>(
         context,
         title: category.name,

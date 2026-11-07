@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:drift/drift.dart' show Value;
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart' show StateProvider;
 import 'package:flutter_test/flutter_test.dart';
@@ -10,6 +9,7 @@ import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/permissions/channel_effective_permissions.dart';
 import 'package:fluxer_app/core/permissions/channel_permission_cache_provider.dart';
 import 'package:fluxer_app/core/permissions/permission.dart';
+import 'package:fluxer_app/core/providers/app/account_user_id.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/providers/gateway/gateway_connection_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
@@ -457,12 +457,20 @@ void main() {
         addTearDown(container.dispose);
 
         await container
-            .read(channelPermissionCacheProvider.notifier)
+            .read(
+              channelPermissionCacheProvider(
+                readAccountUserId(container),
+              ).notifier,
+            )
             .rebuildChannel(channelId);
 
         expect(
           container
-              .read(channelPermissionCacheProvider.notifier)
+              .read(
+                channelPermissionCacheProvider(
+                  readAccountUserId(container),
+                ).notifier,
+              )
               .getChannelBits(channelId),
           isNotNull,
         );
@@ -511,12 +519,20 @@ void main() {
         addTearDown(container.dispose);
 
         await container
-            .read(channelPermissionCacheProvider.notifier)
+            .read(
+              channelPermissionCacheProvider(
+                readAccountUserId(container),
+              ).notifier,
+            )
             .rebuildChannel(channelId);
 
         expect(
           container
-              .read(channelPermissionCacheProvider.notifier)
+              .read(
+                channelPermissionCacheProvider(
+                  readAccountUserId(container),
+                ).notifier,
+              )
               .getChannelBits(channelId),
           isNull,
         );
@@ -618,6 +634,80 @@ void main() {
         expect(hasPermission(outcome.value, Permission.sendMessages), isTrue);
       },
     );
+
+    test('reflects role and member writes after an earlier resolve', () async {
+      final FluxerDatabase db = openTestDatabase();
+      const String guildId = 'guild_1';
+      const String channelId = 'channel_1';
+      const String userId = 'user_1';
+      await db.guildDao.upsertServer(
+        ServersCompanion.insert(id: guildId, name: 'Guild'),
+      );
+      await db.channelDao.upsertChannel(
+        ChannelsCompanion.insert(id: channelId, guildId: guildId, name: 'a'),
+      );
+      await db.roleDao.upsertRoles([
+        RolesCompanion.insert(
+          id: guildId,
+          guildId: guildId,
+          name: '@everyone',
+          permissions: Value(Permission.sendMessages.value.toString()),
+        ),
+      ]);
+      await db.memberDao.upsertMember(
+        MembersCompanion.insert(userId: userId, guildId: guildId),
+      );
+
+      final ProviderContainer container = ProviderContainer(
+        overrides: [
+          fluxerDatabaseProvider.overrideWithValue(db),
+          guildListViewModelProvider.overrideWith(_EmptyGuildListViewModel.new),
+          userSettingsViewModelProvider.overrideWith(
+            () => _FixedUserSettingsViewModel(userId),
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
+
+      Future<bool> canSend() async {
+        final ChannelPermissionBitsOutcome outcome = await container.read(
+          FutureProvider.autoDispose<ChannelPermissionBitsOutcome>(
+            (Ref ref) => computeEffectiveGuildChannelPermissionBitsOutcome(
+              ref: ref,
+              channelId: channelId,
+            ),
+          ).future,
+        );
+        return hasPermission(outcome.value, Permission.sendMessages);
+      }
+
+      expect(await canSend(), isTrue);
+
+      await db.roleDao.upsertRoles([
+        RolesCompanion.insert(
+          id: guildId,
+          guildId: guildId,
+          name: '@everyone',
+          permissions: const Value('0'),
+        ),
+        RolesCompanion.insert(
+          id: 'speaker',
+          guildId: guildId,
+          name: 'speaker',
+          permissions: Value(Permission.sendMessages.value.toString()),
+        ),
+      ]);
+      expect(await canSend(), isFalse);
+
+      await db.memberDao.upsertMember(
+        MembersCompanion.insert(
+          userId: userId,
+          guildId: guildId,
+          roleIdsJson: Value(jsonEncode(<String>['speaker'])),
+        ),
+      );
+      expect(await canSend(), isTrue);
+    });
 
     test(
       'resolves view-only send deny from local rows while guild list is empty',
@@ -828,10 +918,18 @@ void main() {
       addTearDown(container.dispose);
 
       await container
-          .read(channelPermissionCacheProvider.notifier)
+          .read(
+            channelPermissionCacheProvider(
+              readAccountUserId(container),
+            ).notifier,
+          )
           .rebuildChannel(channelId);
       final int? bits = container
-          .read(channelPermissionCacheProvider.notifier)
+          .read(
+            channelPermissionCacheProvider(
+              readAccountUserId(container),
+            ).notifier,
+          )
           .getChannelBits(channelId);
       expect(bits, isNotNull);
 
@@ -891,10 +989,18 @@ void main() {
       addTearDown(container.dispose);
 
       await container
-          .read(channelPermissionCacheProvider.notifier)
+          .read(
+            channelPermissionCacheProvider(
+              readAccountUserId(container),
+            ).notifier,
+          )
           .rebuildChannel(channelId);
       final int? bits = container
-          .read(channelPermissionCacheProvider.notifier)
+          .read(
+            channelPermissionCacheProvider(
+              readAccountUserId(container),
+            ).notifier,
+          )
           .getChannelBits(channelId);
       expect(bits, isNotNull);
 
@@ -1030,7 +1136,11 @@ void main() {
       addTearDown(container.dispose);
 
       container
-          .read(channelPermissionCacheProvider.notifier)
+          .read(
+            channelPermissionCacheProvider(
+              readAccountUserId(container),
+            ).notifier,
+          )
           .cacheEffectiveBits(
             channelId: channelId,
             outcome: (
@@ -1219,7 +1329,7 @@ void main() {
           userSettingsViewModelProvider.overrideWith(
             () => _FixedUserSettingsViewModel(userId),
           ),
-          guildSyncProvider.overrideWith(() => guildSync),
+          guildSyncProvider(userId).overrideWith(() => guildSync),
         ],
       );
       addTearDown(container.dispose);
@@ -1245,7 +1355,11 @@ void main() {
         );
 
         container
-            .read(channelPermissionCacheProvider.notifier)
+            .read(
+              channelPermissionCacheProvider(
+                readAccountUserId(container),
+              ).notifier,
+            )
             .cacheEffectiveBits(
               channelId: 'channel_other',
               outcome: (

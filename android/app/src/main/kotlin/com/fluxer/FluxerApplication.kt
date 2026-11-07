@@ -11,6 +11,7 @@ import android.content.pm.PackageManager
 import android.media.AudioAttributes
 import android.net.Uri
 import android.os.Build
+import com.fluxer.notifications.NotificationCancelPlugin
 
 private const val DATA_TRANSPORT_ALARM_RECEIVER =
     "com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
@@ -48,6 +49,9 @@ class FluxerApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         createNotificationChannels()
+        NotificationCancelPlugin.onMessengerAttached = { context, messenger ->
+            NotificationReplyBridge(context).register(messenger)
+        }
         UploadKeepAliveService.stop(this)
         val meta =
             packageManager

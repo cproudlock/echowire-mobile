@@ -200,9 +200,6 @@ class VoiceChannelControlBarContent extends ConsumerWidget {
     final bool isDeafened = selfVs?.selfDeaf ?? false;
     final bool isVideoOn = selfVs?.selfVideo ?? false;
     final bool isScreenSharing = selfVs?.selfStream ?? false;
-    final bool joinCameraGranted = ref.watch(
-      voiceSessionProvider.select((VoiceSessionState s) => s.joinCameraGranted),
-    );
     final bool canScreenShare =
         this.canScreenShare ??
         ref
@@ -265,7 +262,7 @@ class VoiceChannelControlBarContent extends ConsumerWidget {
         tooltip: l10n.voiceControlVideo,
         icon: PhosphorIconsFill.videoCamera,
         toggled: isVideoOn,
-        onPressed: isConnected && joinCameraGranted
+        onPressed: isConnected
             ? () {
                 onControlPressed(() {
                   unawaited(
@@ -379,7 +376,7 @@ class _VoiceControlCircle extends StatefulWidget {
     required this.tooltip,
     required this.icon,
     required this.onPressed,
-    this.toggled = false,
+    this.toggled,
   });
 
   final double size;
@@ -387,7 +384,7 @@ class _VoiceControlCircle extends StatefulWidget {
   final String tooltip;
   final PhosphorIconData icon;
   final VoidCallback? onPressed;
-  final bool toggled;
+  final bool? toggled;
 
   @override
   State<_VoiceControlCircle> createState() => _VoiceControlCircleState();
@@ -436,6 +433,7 @@ class _VoiceControlCircleState extends State<_VoiceControlCircle> {
       enabled: enabled,
       child: Tooltip(
         message: widget.tooltip,
+        excludeFromSemantics: true,
         child: FluxerGestureDetector(
           behavior: HitTestBehavior.opaque,
           onTapDown: (_) => _setPressed(true),

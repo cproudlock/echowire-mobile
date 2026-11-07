@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -316,11 +317,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Přihlášením souhlasíte s <terms>Podmínkami služby</terms> a <privacy>Zásadami ochrany osobních údajů</privacy>.',
+      'both': 'Přihlášením souhlasíte s <terms>Podmínkami služby</terms> a <privacy>Zásadami ochrany osobních údajů</privacy>.',
       'terms': 'Přihlášením souhlasíte s <terms>Podmínkami služby</terms>.',
-      'other':
-          'Přihlášením souhlasíte s <privacy>Zásadami ochrany osobních údajů</privacy>.',
+      'other': 'Přihlášením souhlasíte s <privacy>Zásadami ochrany osobních údajů</privacy>.',
     });
     return '$_temp0';
   }
@@ -873,8 +872,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Souhlasím s <terms>Podmínkami služby</terms> a <privacy>Zásadami ochrany osobních údajů</privacy>',
+      'both': 'Souhlasím s <terms>Podmínkami služby</terms> a <privacy>Zásadami ochrany osobních údajů</privacy>',
       'terms': 'Souhlasím s <terms>Podmínkami služby</terms>',
       'other': 'Souhlasím s <privacy>Zásadami ochrany osobních údajů</privacy>',
     });
@@ -4064,10 +4062,8 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Tímto se odhlásí vybraná zařízení z vašeho účtu. Na těchto zařízeních se budete muset znovu přihlásit.',
-      one:
-          'Tímto se odhlásí vybrané zařízení z vašeho účtu. Na tomto zařízení se budete muset znovu přihlásit.',
+      other: 'Tímto se odhlásí vybraná zařízení z vašeho účtu. Na těchto zařízeních se budete muset znovu přihlásit.',
+      one: 'Tímto se odhlásí vybrané zařízení z vašeho účtu. Na tomto zařízení se budete muset znovu přihlásit.',
     );
     return '$_temp0';
   }
@@ -4543,6 +4539,14 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       'Kvůli zákonům o obsahu pro dospělé v místě, kde se nacházíte, zde obsah pro dospělé není k dispozici.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'Zpráva v kanálu 18+';
 
   @override
@@ -4552,6 +4556,10 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Věkové rozmezí sdílené vaším Apple Account je pod 13 let. echowire je určen jen lidem ve věku 13 let a starším.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Pokračovat';
@@ -4589,6 +4597,14 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Pokud zde chcete vybrat „Zobrazit“, otevřete echowire na webu nebo v aplikaci pro počítač, v nastavení přejděte do „Soukromí“ a zapněte „Povolit obsah 18+ na iPhonu a iPadu“.';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -5125,8 +5141,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count komunit je dočasně nedostupných kvůli poruše časového kondenzátoru.',
-      one:
-          '1 komunita je dočasně nedostupná kvůli poruše časového kondenzátoru.',
+      one: '1 komunita je dočasně nedostupná kvůli poruše časového kondenzátoru.',
     );
     return '$_temp0';
   }
@@ -6077,8 +6092,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       locale: localeName,
       other:
           'K tomuto hlasovému kanálu jste již připojeni z $count dalších zařízení. Co chcete udělat?',
-      one:
-          'K tomuto hlasovému kanálu jste již připojeni z 1 dalšího zařízení. Co chcete udělat?',
+      one: 'K tomuto hlasovému kanálu jste již připojeni z 1 dalšího zařízení. Co chcete udělat?',
     );
     return '$_temp0';
   }
@@ -6364,6 +6378,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Sluchátka';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Změnit výstup zvuku';
@@ -9898,11 +9915,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Zakoupením souhlasíte s <terms>Podmínkami služby</terms> a <privacy>Zásadami ochrany osobních údajů</privacy>.',
+      'both': 'Zakoupením souhlasíte s <terms>Podmínkami služby</terms> a <privacy>Zásadami ochrany osobních údajů</privacy>.',
       'terms': 'Zakoupením souhlasíte s <terms>Podmínkami služby</terms>.',
-      'other':
-          'Zakoupením souhlasíte s <privacy>Zásadami ochrany osobních údajů</privacy>.',
+      'other': 'Zakoupením souhlasíte s <privacy>Zásadami ochrany osobních údajů</privacy>.',
     });
     return '$_temp0';
   }
@@ -9910,11 +9925,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Zakoupením jste souhlasili s <terms>Podmínkami služby</terms> a <privacy>Zásadami ochrany osobních údajů</privacy>.',
+      'both': 'Zakoupením jste souhlasili s <terms>Podmínkami služby</terms> a <privacy>Zásadami ochrany osobních údajů</privacy>.',
       'terms': 'Zakoupením jste souhlasili s <terms>Podmínkami služby</terms>.',
-      'other':
-          'Zakoupením jste souhlasili s <privacy>Zásadami ochrany osobních údajů</privacy>.',
+      'other': 'Zakoupením jste souhlasili s <privacy>Zásadami ochrany osobních údajů</privacy>.',
     });
     return '$_temp0';
   }
@@ -9922,8 +9935,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '<terms>Podmínky služby</terms> a <privacy>Zásady ochrany osobních údajů</privacy>',
+      'both': '<terms>Podmínky služby</terms> a <privacy>Zásady ochrany osobních údajů</privacy>',
       'terms': '<terms>Podmínky služby</terms>',
       'other': '<privacy>Zásady ochrany osobních údajů</privacy>',
     });

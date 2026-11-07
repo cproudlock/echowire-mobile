@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -317,10 +318,8 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Prisijungdami sutinkate su <terms>Paslaugų teikimo sąlygomis</terms> ir <privacy>Privatumo politika</privacy>.',
-      'terms':
-          'Prisijungdami sutinkate su <terms>Paslaugų teikimo sąlygomis</terms>.',
+      'both': 'Prisijungdami sutinkate su <terms>Paslaugų teikimo sąlygomis</terms> ir <privacy>Privatumo politika</privacy>.',
+      'terms': 'Prisijungdami sutinkate su <terms>Paslaugų teikimo sąlygomis</terms>.',
       'other':
           'Prisijungdami sutinkate su <privacy>Privatumo politika</privacy>.',
     });
@@ -876,8 +875,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Sutinku su <terms>Paslaugų teikimo sąlygomis</terms> ir <privacy>Privatumo politika</privacy>',
+      'both': 'Sutinku su <terms>Paslaugų teikimo sąlygomis</terms> ir <privacy>Privatumo politika</privacy>',
       'terms': 'Sutinku su <terms>Paslaugų teikimo sąlygomis</terms>',
       'other': 'Sutinku su <privacy>Privatumo politika</privacy>',
     });
@@ -4085,10 +4083,8 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Tai atjungtų pasirinktus įrenginius nuo jūsų paskyros. Jums reikės vėl prisijungti prie tų įrenginių.',
-      one:
-          'Tai atjungtų pasirinktą įrenginį nuo jūsų paskyros. Jums reikės vėl prisijungti prie to įrenginio.',
+      other: 'Tai atjungtų pasirinktus įrenginius nuo jūsų paskyros. Jums reikės vėl prisijungti prie tų įrenginių.',
+      one: 'Tai atjungtų pasirinktą įrenginį nuo jūsų paskyros. Jums reikės vėl prisijungti prie to įrenginio.',
     );
     return '$_temp0';
   }
@@ -4563,6 +4559,14 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
       'Dėl jūsų buvimo vietoje galiojančių suaugusiesiems skirto turinio įstatymų šis turinys iš čia nepasiekiamas.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'Žinutė 18+ kanale';
 
   @override
@@ -4572,6 +4576,10 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Jūsų Apple Account bendrinamas amžiaus intervalas yra mažesnis nei 13 metų. echowire skirtas tik 13 metų ir vyresniems asmenims.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Tęsti';
@@ -4611,6 +4619,14 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Norėdami čia pasirinkti „Rodyti“, atidarykite echowire žiniatinklyje arba kompiuteryje, nustatymuose eikite į „Privatumas“ ir įjunkite „Leisti 18+ turinį iPhone ir iPad įrenginiuose“.';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -5150,8 +5166,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count bendruomenės laikinai nepasiekiamos dėl srauto kondensatoriaus gedimo.',
-      one:
-          '1 bendruomenė laikinai nepasiekiama dėl srauto kondensatoriaus gedimo.',
+      one: '1 bendruomenė laikinai nepasiekiama dėl srauto kondensatoriaus gedimo.',
     );
     return '$_temp0';
   }
@@ -6145,8 +6160,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
       locale: localeName,
       other:
           'Jūs jau esate prisijungę prie šio balso kanalo iš $count kitų įrenginių. Ką norėtumėte daryti?',
-      one:
-          'Jūs jau esate prisijungę prie šio balso kanalo iš 1 kito įrenginio. Ką norėtumėte daryti?',
+      one: 'Jūs jau esate prisijungę prie šio balso kanalo iš 1 kito įrenginio. Ką norėtumėte daryti?',
     );
     return '$_temp0';
   }
@@ -6432,6 +6446,9 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Ausinės';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Keisti garso išvestį';
@@ -9973,8 +9990,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Pirkdami sutinkate su <terms>Paslaugų teikimo sąlygomis</terms> ir <privacy>Privatumo politika</privacy>.',
+      'both': 'Pirkdami sutinkate su <terms>Paslaugų teikimo sąlygomis</terms> ir <privacy>Privatumo politika</privacy>.',
       'terms':
           'Pirkdami sutinkate su <terms>Paslaugų teikimo sąlygomis</terms>.',
       'other': 'Pirkdami sutinkate su <privacy>Privatumo politika</privacy>.',
@@ -9985,8 +10001,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Pirkdami sutikote su <terms>Paslaugų teikimo sąlygomis</terms> ir <privacy>Privatumo politika</privacy>.',
+      'both': 'Pirkdami sutikote su <terms>Paslaugų teikimo sąlygomis</terms> ir <privacy>Privatumo politika</privacy>.',
       'terms':
           'Pirkdami sutikote su <terms>Paslaugų teikimo sąlygomis</terms>.',
       'other': 'Pirkdami sutikote su <privacy>Privatumo politika</privacy>.',
@@ -9997,8 +10012,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '<terms>Paslaugų teikimo sąlygos</terms> ir <privacy>Privatumo politika</privacy>',
+      'both': '<terms>Paslaugų teikimo sąlygos</terms> ir <privacy>Privatumo politika</privacy>',
       'terms': '<terms>Paslaugų teikimo sąlygos</terms>',
       'other': '<privacy>Privatumo politika</privacy>',
     });

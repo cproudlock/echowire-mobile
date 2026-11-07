@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -312,8 +313,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Dengan masuk, Anda menyetujui <terms>Ketentuan layanan</terms> dan <privacy>Kebijakan privasi</privacy>.',
+      'both': 'Dengan masuk, Anda menyetujui <terms>Ketentuan layanan</terms> dan <privacy>Kebijakan privasi</privacy>.',
       'terms':
           'Dengan masuk, Anda menyetujui <terms>Ketentuan layanan</terms>.',
       'other':
@@ -868,8 +868,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Saya menyetujui <terms>Ketentuan layanan</terms> dan <privacy>Kebijakan privasi</privacy>',
+      'both': 'Saya menyetujui <terms>Ketentuan layanan</terms> dan <privacy>Kebijakan privasi</privacy>',
       'terms': 'Saya menyetujui <terms>Ketentuan layanan</terms>',
       'other': 'Saya menyetujui <privacy>Kebijakan privasi</privacy>',
     });
@@ -4030,10 +4029,8 @@ class FluxerLocalizationsId extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Ini akan mengeluarkan perangkat yang dipilih dari akun Anda. Anda perlu masuk lagi di perangkat tersebut.',
-      one:
-          'Ini akan mengeluarkan perangkat yang dipilih dari akun Anda. Anda perlu masuk lagi di perangkat tersebut.',
+      other: 'Ini akan mengeluarkan perangkat yang dipilih dari akun Anda. Anda perlu masuk lagi di perangkat tersebut.',
+      one: 'Ini akan mengeluarkan perangkat yang dipilih dari akun Anda. Anda perlu masuk lagi di perangkat tersebut.',
     );
     return '$_temp0';
   }
@@ -4504,6 +4501,14 @@ class FluxerLocalizationsId extends FluxerLocalizations {
       'Karena undang-undang tentang konten dewasa di wilayahmu, konten dewasa tidak tersedia dari sini.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'Pesan di saluran 18+';
 
   @override
@@ -4513,6 +4518,10 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Rentang usia yang dibagikan oleh Apple Account-mu di bawah 13 tahun. echowire hanya untuk orang berusia 13 tahun ke atas.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Lanjutkan';
@@ -4551,6 +4560,14 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Untuk memilih \"Tampilkan\" di sini, buka echowire di web atau desktop, buka \"Privasi\" di pengaturanmu, lalu aktifkan \"Izinkan konten 18+ di iPhone dan iPad\".';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -5084,8 +5101,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count komunitas tidak tersedia sementara karena malfungsi kapasitor fluks.',
-      one:
-          '1 komunitas tidak tersedia sementara karena malfungsi kapasitor fluks.',
+      one: '1 komunitas tidak tersedia sementara karena malfungsi kapasitor fluks.',
     );
     return '$_temp0';
   }
@@ -6034,8 +6050,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
       locale: localeName,
       other:
           'Anda sudah terhubung ke saluran suara ini dari $count perangkat lain. Apa yang ingin Anda lakukan?',
-      one:
-          'Anda sudah terhubung ke saluran suara ini dari 1 perangkat lain. Apa yang ingin Anda lakukan?',
+      one: 'Anda sudah terhubung ke saluran suara ini dari 1 perangkat lain. Apa yang ingin Anda lakukan?',
     );
     return '$_temp0';
   }
@@ -6322,6 +6337,9 @@ class FluxerLocalizationsId extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Headphone';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Ubah output audio';
@@ -9848,12 +9866,10 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Dengan membeli, Anda menyetujui <terms>Ketentuan layanan</terms> dan <privacy>Kebijakan privasi</privacy>.',
+      'both': 'Dengan membeli, Anda menyetujui <terms>Ketentuan layanan</terms> dan <privacy>Kebijakan privasi</privacy>.',
       'terms':
           'Dengan membeli, Anda menyetujui <terms>Ketentuan layanan</terms>.',
-      'other':
-          'Dengan membeli, Anda menyetujui <privacy>Kebijakan privasi</privacy>.',
+      'other': 'Dengan membeli, Anda menyetujui <privacy>Kebijakan privasi</privacy>.',
     });
     return '$_temp0';
   }
@@ -9861,12 +9877,9 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Dengan membeli, Anda telah menyetujui <terms>Ketentuan layanan</terms> dan <privacy>Kebijakan privasi</privacy>.',
-      'terms':
-          'Dengan membeli, Anda telah menyetujui <terms>Ketentuan layanan</terms>.',
-      'other':
-          'Dengan membeli, Anda telah menyetujui <privacy>Kebijakan privasi</privacy>.',
+      'both': 'Dengan membeli, Anda telah menyetujui <terms>Ketentuan layanan</terms> dan <privacy>Kebijakan privasi</privacy>.',
+      'terms': 'Dengan membeli, Anda telah menyetujui <terms>Ketentuan layanan</terms>.',
+      'other': 'Dengan membeli, Anda telah menyetujui <privacy>Kebijakan privasi</privacy>.',
     });
     return '$_temp0';
   }
@@ -9874,8 +9887,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '<terms>Ketentuan layanan</terms> dan <privacy>Kebijakan privasi</privacy>',
+      'both': '<terms>Ketentuan layanan</terms> dan <privacy>Kebijakan privasi</privacy>',
       'terms': '<terms>Ketentuan layanan</terms>',
       'other': '<privacy>Kebijakan privasi</privacy>',
     });
@@ -15616,8 +15628,7 @@ class FluxerLocalizationsId extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count saluran mengikuti saluran ini. Mengubahnya menjadi saluran teks akan menghapus pengikut tersebut.',
-      one:
-          '1 saluran mengikuti saluran ini. Mengubahnya menjadi saluran teks akan menghapus pengikut tersebut.',
+      one: '1 saluran mengikuti saluran ini. Mengubahnya menjadi saluran teks akan menghapus pengikut tersebut.',
     );
     return '$_temp0';
   }

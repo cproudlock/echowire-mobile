@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/features/settings/providers/preferences/voice_settings_provider.dart';
 import 'package:fluxer_app/features/voice/domain/voice_output_route.dart';
 import 'package:fluxer_app/features/voice/domain/voice_settings_state.dart';
@@ -15,6 +16,13 @@ const MethodChannel _voiceSpeakerRouteChannel = MethodChannel(
 const EventChannel _voiceSpeakerRouteEventsChannel = EventChannel(
   'fluxer_app/voice_speaker_route_events',
 );
+
+const List<Duration> _kVoiceRouteLogDelays = <Duration>[
+  Duration(milliseconds: 1500),
+  Duration(seconds: 10),
+];
+
+final List<Timer> _voiceRouteLogTimers = <Timer>[];
 
 bool showNativeVoiceAudioRoutePicker() {
   return defaultTargetPlatform == TargetPlatform.iOS;
@@ -36,12 +44,45 @@ Future<void> applyNativeVoiceOutputRoute(
   } on Object {
     return;
   }
+  if (hold && defaultTargetPlatform == TargetPlatform.android) {
+    _scheduleVoiceRouteLogs(route);
+  }
+}
+
+void _cancelVoiceRouteLogs() {
+  for (final Timer timer in _voiceRouteLogTimers) {
+    timer.cancel();
+  }
+  _voiceRouteLogTimers.clear();
+}
+
+void _scheduleVoiceRouteLogs(VoiceOutputRoute route) {
+  _cancelVoiceRouteLogs();
+  for (final Duration delay in _kVoiceRouteLogDelays) {
+    _voiceRouteLogTimers.add(
+      Timer(delay, () => unawaited(_logVoiceRoute(route, delay))),
+    );
+  }
+}
+
+Future<void> _logVoiceRoute(VoiceOutputRoute route, Duration delay) async {
+  try {
+    final String? diagnostics = await _voiceSpeakerRouteChannel
+        .invokeMethod<String>('routeDiagnostics');
+    talker.info(
+      '[VoiceRoute] requested=${route.name} '
+      'after=${delay.inMilliseconds}ms $diagnostics',
+    );
+  } on Object catch (error) {
+    talker.warning('[VoiceRoute] diagnostics failed: $error');
+  }
 }
 
 Future<void> clearNativeVoiceOutputRouteHold() async {
   if (defaultTargetPlatform != TargetPlatform.android) {
     return;
   }
+  _cancelVoiceRouteLogs();
   try {
     await _voiceSpeakerRouteChannel.invokeMethod<void>('clearRouteHold');
   } on Object {
@@ -126,6 +167,19 @@ Future<Set<VoiceOutputRoute>> readAvailableVoiceOutputRoutes() async {
   }
 }
 
+Future<String?> readBluetoothVoiceDeviceName() async {
+  if (defaultTargetPlatform != TargetPlatform.android) {
+    return null;
+  }
+  try {
+    return await _voiceSpeakerRouteChannel.invokeMethod<String>(
+      'bluetoothDeviceName',
+    );
+  } on Object {
+    return null;
+  }
+}
+
 class VoiceIosNativeRouteSync extends Notifier<VoiceActiveOutputRoute?> {
   @override
   VoiceActiveOutputRoute? build() {
@@ -203,4 +257,34 @@ final NotifierProvider<VoiceAvailableOutputRoutes, Set<VoiceOutputRoute>>
 voiceAvailableOutputRoutesProvider =
     NotifierProvider<VoiceAvailableOutputRoutes, Set<VoiceOutputRoute>>(
       VoiceAvailableOutputRoutes.new,
+    );
+
+class VoiceBluetoothDeviceName extends Notifier<String?> {
+  @override
+  String? build() {
+    final StreamSubscription<List<MediaDevice>> subscription = Hardware
+        .instance
+        .onDeviceChange
+        .stream
+        .listen((_) {
+          unawaited(_refresh());
+        });
+    ref.onDispose(subscription.cancel);
+    unawaited(_refresh());
+    return null;
+  }
+
+  Future<void> _refresh() async {
+    final String? name = await readBluetoothVoiceDeviceName();
+    if (!ref.mounted) {
+      return;
+    }
+    state = name;
+  }
+}
+
+final NotifierProvider<VoiceBluetoothDeviceName, String?>
+voiceBluetoothDeviceNameProvider =
+    NotifierProvider<VoiceBluetoothDeviceName, String?>(
+      VoiceBluetoothDeviceName.new,
     );

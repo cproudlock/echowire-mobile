@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -315,12 +316,9 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Al iniciar sesión, aceptas los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>.',
-      'terms':
-          'Al iniciar sesión, aceptas los <terms>Términos del servicio</terms>.',
-      'other':
-          'Al iniciar sesión, aceptas la <privacy>Política de privacidad</privacy>.',
+      'both': 'Al iniciar sesión, aceptas los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>.',
+      'terms': 'Al iniciar sesión, aceptas los <terms>Términos del servicio</terms>.',
+      'other': 'Al iniciar sesión, aceptas la <privacy>Política de privacidad</privacy>.',
     });
     return '$_temp0';
   }
@@ -876,8 +874,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Acepto los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>',
+      'both': 'Acepto los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>',
       'terms': 'Acepto los <terms>Términos del servicio</terms>',
       'other': 'Acepto la <privacy>Política de privacidad</privacy>',
     });
@@ -4093,10 +4090,8 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Esto cerrará la sesión de los dispositivos seleccionados en tu cuenta. Deberás iniciar sesión de nuevo en esos dispositivos.',
-      one:
-          'Esto cerrará la sesión del dispositivo seleccionado en tu cuenta. Deberás iniciar sesión de nuevo en ese dispositivo.',
+      other: 'Esto cerrará la sesión de los dispositivos seleccionados en tu cuenta. Deberás iniciar sesión de nuevo en esos dispositivos.',
+      one: 'Esto cerrará la sesión del dispositivo seleccionado en tu cuenta. Deberás iniciar sesión de nuevo en ese dispositivo.',
     );
     return '$_temp0';
   }
@@ -4575,6 +4570,14 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
       'Debido a las leyes sobre contenido para adultos de tu ubicación, el contenido para adultos no está disponible desde aquí.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'Mensaje en un canal 18+';
 
   @override
@@ -4584,6 +4587,10 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'El rango de edad que comparte tu Apple Account es inferior a 13 años. echowire es solo para personas de 13 años o más.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Continuar';
@@ -4622,6 +4629,14 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Para elegir «Mostrar» aquí, abre echowire en la web o en el escritorio, ve a «Privacidad» en tus ajustes y activa «Permitir contenido 18+ en iPhone y iPad».';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -5162,8 +5177,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count comunidades no están disponibles temporalmente debido a un mal funcionamiento del condensador de flujo.',
-      one:
-          '1 comunidad no está disponible temporalmente debido a un mal funcionamiento del condensador de flujo.',
+      one: '1 comunidad no está disponible temporalmente debido a un mal funcionamiento del condensador de flujo.',
     );
     return '$_temp0';
   }
@@ -6120,8 +6134,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
       locale: localeName,
       other:
           'Ya estás conectado a este canal de voz desde $count dispositivos más. ¿Qué quieres hacer?',
-      one:
-          'Ya estás conectado a este canal de voz desde 1 dispositivo más. ¿Qué quieres hacer?',
+      one: 'Ya estás conectado a este canal de voz desde 1 dispositivo más. ¿Qué quieres hacer?',
     );
     return '$_temp0';
   }
@@ -6410,6 +6423,9 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Auriculares';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Cambiar salida de audio';
@@ -9959,8 +9975,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Al comprar, aceptas los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>.',
+      'both': 'Al comprar, aceptas los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>.',
       'terms': 'Al comprar, aceptas los <terms>Términos del servicio</terms>.',
       'other':
           'Al comprar, aceptas la <privacy>Política de privacidad</privacy>.',
@@ -9971,8 +9986,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Al comprar, aceptaste los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>.',
+      'both': 'Al comprar, aceptaste los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>.',
       'terms':
           'Al comprar, aceptaste los <terms>Términos del servicio</terms>.',
       'other':
@@ -9984,8 +9998,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '<terms>Condiciones del servicio</terms> y <privacy>Política de privacidad</privacy>',
+      'both': '<terms>Condiciones del servicio</terms> y <privacy>Política de privacidad</privacy>',
       'terms': '<terms>Condiciones del servicio</terms>',
       'other': '<privacy>Política de privacidad</privacy>',
     });
@@ -15808,8 +15821,7 @@ class FluxerLocalizationsEs extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count canales siguen a este canal. Al convertirlo en un canal de texto, se eliminan esos seguimientos.',
-      one:
-          '1 canal sigue a este canal. Al convertirlo en un canal de texto, se elimina ese seguimiento.',
+      one: '1 canal sigue a este canal. Al convertirlo en un canal de texto, se elimina ese seguimiento.',
     );
     return '$_temp0';
   }
@@ -17482,12 +17494,9 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Al iniciar sesión, aceptas los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>.',
-      'terms':
-          'Al iniciar sesión, aceptas los <terms>Términos del servicio</terms>.',
-      'other':
-          'Al iniciar sesión, aceptas la <privacy>Política de privacidad</privacy>.',
+      'both': 'Al iniciar sesión, aceptas los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>.',
+      'terms': 'Al iniciar sesión, aceptas los <terms>Términos del servicio</terms>.',
+      'other': 'Al iniciar sesión, aceptas la <privacy>Política de privacidad</privacy>.',
     });
     return '$_temp0';
   }
@@ -18044,8 +18053,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Acepto los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>',
+      'both': 'Acepto los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>',
       'terms': 'Acepto los <terms>Términos del servicio</terms>',
       'other': 'Acepto la <privacy>Política de privacidad</privacy>',
     });
@@ -21259,10 +21267,8 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Esto cerrará la sesión de los dispositivos seleccionados en tu cuenta. Deberás iniciar sesión de nuevo en esos dispositivos.',
-      one:
-          'Esto cerrará la sesión del dispositivo seleccionado en tu cuenta. Deberás iniciar sesión de nuevo en ese dispositivo.',
+      other: 'Esto cerrará la sesión de los dispositivos seleccionados en tu cuenta. Deberás iniciar sesión de nuevo en esos dispositivos.',
+      one: 'Esto cerrará la sesión del dispositivo seleccionado en tu cuenta. Deberás iniciar sesión de nuevo en ese dispositivo.',
     );
     return '$_temp0';
   }
@@ -22329,8 +22335,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
       locale: localeName,
       other:
           '$count comunidades no están disponibles temporalmente debido a un mal funcionamiento del condensador de flujo.',
-      one:
-          '1 comunidad no está disponible temporalmente debido a un mal funcionamiento del condensador de flujo.',
+      one: '1 comunidad no está disponible temporalmente debido a un mal funcionamiento del condensador de flujo.',
     );
     return '$_temp0';
   }
@@ -23289,8 +23294,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
       locale: localeName,
       other:
           'Ya estás conectado a este canal de voz desde $count dispositivos más. ¿Qué quieres hacer?',
-      one:
-          'Ya estás conectado a este canal de voz desde 1 dispositivo más. ¿Qué quieres hacer?',
+      one: 'Ya estás conectado a este canal de voz desde 1 dispositivo más. ¿Qué quieres hacer?',
     );
     return '$_temp0';
   }
@@ -27129,8 +27133,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Al comprar, aceptas los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>.',
+      'both': 'Al comprar, aceptas los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>.',
       'terms': 'Al comprar, aceptas los <terms>Términos del servicio</terms>.',
       'other':
           'Al comprar, aceptas la <privacy>Política de privacidad</privacy>.',
@@ -27141,8 +27144,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Al comprar, aceptaste los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>.',
+      'both': 'Al comprar, aceptaste los <terms>Términos del servicio</terms> y la <privacy>Política de privacidad</privacy>.',
       'terms':
           'Al comprar, aceptaste los <terms>Términos del servicio</terms>.',
       'other':
@@ -27154,8 +27156,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '<terms>Términos del servicio</terms> y <privacy>Política de privacidad</privacy>',
+      'both': '<terms>Términos del servicio</terms> y <privacy>Política de privacidad</privacy>',
       'terms': '<terms>Términos del servicio</terms>',
       'other': '<privacy>Política de privacidad</privacy>',
     });
@@ -32974,8 +32975,7 @@ class FluxerLocalizationsEs419 extends FluxerLocalizationsEs {
       locale: localeName,
       other:
           '$count canales siguen a este canal. Al convertirlo en un canal de texto, se eliminan esos seguimientos.',
-      one:
-          '1 canal sigue a este canal. Al convertirlo en un canal de texto, se elimina ese seguimiento.',
+      one: '1 canal sigue a este canal. Al convertirlo en un canal de texto, se elimina ese seguimiento.',
     );
     return '$_temp0';
   }

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -313,12 +314,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'A bejelentkezéssel elfogadod a <terms>Szolgáltatási feltételeket</terms> és az <privacy>Adatvédelmi irányelveket</privacy>.',
-      'terms':
-          'A bejelentkezéssel elfogadod a <terms>Szolgáltatási feltételeket</terms>.',
-      'other':
-          'A bejelentkezéssel elfogadod az <privacy>Adatvédelmi irányelveket</privacy>.',
+      'both': 'A bejelentkezéssel elfogadod a <terms>Szolgáltatási feltételeket</terms> és az <privacy>Adatvédelmi irányelveket</privacy>.',
+      'terms': 'A bejelentkezéssel elfogadod a <terms>Szolgáltatási feltételeket</terms>.',
+      'other': 'A bejelentkezéssel elfogadod az <privacy>Adatvédelmi irányelveket</privacy>.',
     });
     return '$_temp0';
   }
@@ -873,8 +871,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Elfogadom a <terms>Szolgáltatási feltételeket</terms> és az <privacy>Adatvédelmi irányelveket</privacy>',
+      'both': 'Elfogadom a <terms>Szolgáltatási feltételeket</terms> és az <privacy>Adatvédelmi irányelveket</privacy>',
       'terms': 'Elfogadom a <terms>Szolgáltatási feltételeket</terms>',
       'other': 'Elfogadom az <privacy>Adatvédelmi irányelveket</privacy>',
     });
@@ -4066,10 +4063,8 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Ez kijelentkezteti a kijelölt eszközöket a fiókodból. Újra be kell jelentkezned azokon az eszközökön.',
-      one:
-          'Ez kijelentkezteti a kijelölt eszközt a fiókodból. Újra be kell jelentkezned azon az eszközön.',
+      other: 'Ez kijelentkezteti a kijelölt eszközöket a fiókodból. Újra be kell jelentkezned azokon az eszközökön.',
+      one: 'Ez kijelentkezteti a kijelölt eszközt a fiókodból. Újra be kell jelentkezned azon az eszközön.',
     );
     return '$_temp0';
   }
@@ -4547,6 +4542,14 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'A tartózkodási helyeden érvényes, felnőtt tartalomra vonatkozó jogszabályok miatt a felnőtt tartalom innen nem érhető el.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'Üzenet egy 18+ csatornában';
 
   @override
@@ -4556,6 +4559,10 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Az Apple Account által megosztott korcsoport 13 év alatti. A echowire csak 13 éves és idősebb személyeknek szól.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Tovább';
@@ -4593,6 +4600,14 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Ha itt a „Megjelenítés” lehetőséget szeretnéd választani, nyisd meg a echowiret a weben vagy asztali gépen, a beállításaidban lépj az „Adatvédelem” részre, és kapcsold be a „18+ tartalom engedélyezése iPhone-on és iPaden” lehetőséget.';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -5132,8 +5147,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count közösség átmenetileg nem elérhető egy fluxus kondenzátor meghibásodása miatt.',
-      one:
-          '1 közösség átmenetileg nem elérhető egy fluxus kondenzátor meghibásodása miatt.',
+      one: '1 közösség átmenetileg nem elérhető egy fluxus kondenzátor meghibásodása miatt.',
     );
     return '$_temp0';
   }
@@ -6085,8 +6099,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       locale: localeName,
       other:
           'Már $count másik eszközről csatlakoztál ehhez a hangcsatornához. Mit szeretnél tenni?',
-      one:
-          'Már 1 másik eszközről csatlakoztál ehhez a hangcsatornához. Mit szeretnél tenni?',
+      one: 'Már 1 másik eszközről csatlakoztál ehhez a hangcsatornához. Mit szeretnél tenni?',
     );
     return '$_temp0';
   }
@@ -6374,6 +6387,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Fejhallgató';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Hangkimenet módosítása';
@@ -9922,12 +9938,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'A vásárlással elfogadod a <terms>Szolgáltatási feltételeket</terms> és az <privacy>Adatvédelmi irányelveket</privacy>.',
-      'terms':
-          'A vásárlással elfogadod a <terms>Szolgáltatási feltételeket</terms>.',
-      'other':
-          'A vásárlással elfogadod az <privacy>Adatvédelmi irányelveket</privacy>.',
+      'both': 'A vásárlással elfogadod a <terms>Szolgáltatási feltételeket</terms> és az <privacy>Adatvédelmi irányelveket</privacy>.',
+      'terms': 'A vásárlással elfogadod a <terms>Szolgáltatási feltételeket</terms>.',
+      'other': 'A vásárlással elfogadod az <privacy>Adatvédelmi irányelveket</privacy>.',
     });
     return '$_temp0';
   }
@@ -9935,12 +9948,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'A vásárlással elfogadtad a <terms>Szolgáltatási feltételeket</terms> és az <privacy>Adatvédelmi irányelveket</privacy>.',
-      'terms':
-          'A vásárlással elfogadtad a <terms>Szolgáltatási feltételeket</terms>.',
-      'other':
-          'A vásárlással elfogadtad az <privacy>Adatvédelmi irányelveket</privacy>.',
+      'both': 'A vásárlással elfogadtad a <terms>Szolgáltatási feltételeket</terms> és az <privacy>Adatvédelmi irányelveket</privacy>.',
+      'terms': 'A vásárlással elfogadtad a <terms>Szolgáltatási feltételeket</terms>.',
+      'other': 'A vásárlással elfogadtad az <privacy>Adatvédelmi irányelveket</privacy>.',
     });
     return '$_temp0';
   }
@@ -9948,8 +9958,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '<terms>Szolgáltatási feltételek</terms> és <privacy>Adatvédelmi irányelvek</privacy>',
+      'both': '<terms>Szolgáltatási feltételek</terms> és <privacy>Adatvédelmi irányelvek</privacy>',
       'terms': '<terms>Szolgáltatási feltételek</terms>',
       'other': '<privacy>Adatvédelmi irányelvek</privacy>',
     });
@@ -15758,8 +15767,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count csatorna követi ezt a csatornát. Szöveges csatornává alakítva megszűnnek ezek a követések.',
-      one:
-          '1 csatorna követi ezt a csatornát. Szöveges csatornává alakítva megszűnik ez a követés.',
+      one: '1 csatorna követi ezt a csatornát. Szöveges csatornává alakítva megszűnik ez a követés.',
     );
     return '$_temp0';
   }

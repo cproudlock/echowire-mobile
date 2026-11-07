@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -312,11 +313,9 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Kirjautumalla sisään hyväksyt <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>.',
+      'both': 'Kirjautumalla sisään hyväksyt <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>.',
       'terms': 'Kirjautumalla sisään hyväksyt <terms>käyttöehdot</terms>.',
-      'other':
-          'Kirjautumalla sisään hyväksyt <privacy>tietosuojakäytännön</privacy>.',
+      'other': 'Kirjautumalla sisään hyväksyt <privacy>tietosuojakäytännön</privacy>.',
     });
     return '$_temp0';
   }
@@ -869,8 +868,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Hyväksyn <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>',
+      'both': 'Hyväksyn <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>',
       'terms': 'Hyväksyn <terms>käyttöehdot</terms>',
       'other': 'Hyväksyn <privacy>tietosuojakäytännön</privacy>',
     });
@@ -4054,10 +4052,8 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Tämä kirjaa valitut laitteet ulos tililtäsi. Sinun on kirjauduttava uudelleen sisään kyseisillä laitteilla.',
-      one:
-          'Tämä kirjaa valitun laitteen ulos tililtäsi. Sinun on kirjauduttava uudelleen sisään kyseisellä laitteella.',
+      other: 'Tämä kirjaa valitut laitteet ulos tililtäsi. Sinun on kirjauduttava uudelleen sisään kyseisillä laitteilla.',
+      one: 'Tämä kirjaa valitun laitteen ulos tililtäsi. Sinun on kirjauduttava uudelleen sisään kyseisellä laitteella.',
     );
     return '$_temp0';
   }
@@ -4532,6 +4528,14 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
       'Sijaintisi aikuissisältöä koskevien lakien vuoksi aikuissisältö ei ole saatavilla siellä, missä olet.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'Viesti 18+-kanavalla';
 
   @override
@@ -4541,6 +4545,10 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Apple Accountisi jakama ikäryhmä on alle 13 vuotta. echowire on tarkoitettu vain 13 vuotta täyttäneille.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Jatka';
@@ -4578,6 +4586,14 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Jos haluat valita täällä ”Näytä”, avaa echowire verkossa tai työpöytäsovelluksessa, siirry asetuksissa kohtaan ”Tietosuoja” ja ota käyttöön ”Salli 18+-sisältö iPhonessa ja iPadissa”.';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -5112,8 +5128,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count yhteisöä ei ole väliaikaisesti käytettävissä flux capacitor -vian vuoksi.',
-      one:
-          '1 yhteisö ei ole väliaikaisesti käytettävissä flux capacitor -vian vuoksi.',
+      one: '1 yhteisö ei ole väliaikaisesti käytettävissä flux capacitor -vian vuoksi.',
     );
     return '$_temp0';
   }
@@ -6068,8 +6083,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
       locale: localeName,
       other:
           'Olet jo yhdistetty tähän äänikanavaan $count muusta laitteesta. Mitä haluat tehdä?',
-      one:
-          'Olet jo yhdistetty tähän äänikanavaan 1 muusta laitteesta. Mitä haluat tehdä?',
+      one: 'Olet jo yhdistetty tähän äänikanavaan 1 muusta laitteesta. Mitä haluat tehdä?',
     );
     return '$_temp0';
   }
@@ -6354,6 +6368,9 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Kuulokkeet';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Vaihda äänilähtöä';
@@ -9876,8 +9893,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Ostamalla hyväksyt <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>.',
+      'both': 'Ostamalla hyväksyt <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>.',
       'terms': 'Ostamalla hyväksyt <terms>käyttöehdot</terms>.',
       'other': 'Ostamalla hyväksyt <privacy>tietosuojakäytännön</privacy>.',
     });
@@ -9887,8 +9903,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Ostamalla hyväksyit <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>.',
+      'both': 'Ostamalla hyväksyit <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>.',
       'terms': 'Ostamalla hyväksyit <terms>käyttöehdot</terms>.',
       'other': 'Ostamalla hyväksyit <privacy>tietosuojakäytännön</privacy>.',
     });
@@ -15651,8 +15666,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count kanavaa seuraa tätä kanavaa. Jos muunnat sen tekstikanavaksi, seurannat poistuvat.',
-      one:
-          '1 kanava seuraa tätä kanavaa. Jos muunnat sen tekstikanavaksi, seuranta poistuu.',
+      one: '1 kanava seuraa tätä kanavaa. Jos muunnat sen tekstikanavaksi, seuranta poistuu.',
     );
     return '$_temp0';
   }

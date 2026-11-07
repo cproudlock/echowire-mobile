@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -313,8 +314,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'בהתחברות, אתה מסכים ל<terms>תנאי השירות</terms> ול<privacy>מדיניות הפרטיות</privacy>.',
+      'both': 'בהתחברות, אתה מסכים ל<terms>תנאי השירות</terms> ול<privacy>מדיניות הפרטיות</privacy>.',
       'terms': 'בהתחברות, אתה מסכים ל<terms>תנאי השירות</terms>.',
       'other': 'בהתחברות, אתה מסכים ל<privacy>מדיניות הפרטיות</privacy>.',
     });
@@ -864,8 +864,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'אני מסכים/ה ל<terms>תנאי השירות</terms> ול<privacy>מדיניות הפרטיות</privacy>',
+      'both': 'אני מסכים/ה ל<terms>תנאי השירות</terms> ול<privacy>מדיניות הפרטיות</privacy>',
       'terms': 'אני מסכים/ה ל<terms>תנאי השירות</terms>',
       'other': 'אני מסכים/ה ל<privacy>מדיניות הפרטיות</privacy>',
     });
@@ -4002,10 +4001,8 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'פעולה זו תנתק את המכשירים הנבחרים מהחשבון שלך. תצטרך להתחבר שוב במכשירים אלו.',
-      one:
-          'פעולה זו תנתק את המכשיר הנבחר מהחשבון שלך. תצטרך להתחבר שוב במכשיר זה.',
+      other: 'פעולה זו תנתק את המכשירים הנבחרים מהחשבון שלך. תצטרך להתחבר שוב במכשירים אלו.',
+      one: 'פעולה זו תנתק את המכשיר הנבחר מהחשבון שלך. תצטרך להתחבר שוב במכשיר זה.',
     );
     return '$_temp0';
   }
@@ -4474,6 +4471,14 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'בגלל חוקים בנושא תוכן למבוגרים במקום שבו אתה נמצא, תוכן למבוגרים אינו זמין מכאן.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'הודעה בערוץ 18+';
 
   @override
@@ -4482,6 +4487,10 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'טווח הגילאים שמשותף על ידי ה-Apple Account שלך הוא מתחת ל-13. echowire מיועד רק לבני 13 ומעלה.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'המשך';
@@ -4519,6 +4528,14 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'כדי לבחור כאן \"הצגה\", פתח את echowire בדפדפן או במחשב, עבור אל \"פרטיות\" בהגדרות והפעל את \"אפשר תוכן 18+ ב-iPhone וב-iPad\".';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -6271,6 +6288,9 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'אוזניות';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'שינוי פלט שמע';
@@ -9725,8 +9745,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'ברכישה, אתה מסכים ל<terms>תנאי השירות</terms> ול<privacy>מדיניות הפרטיות</privacy>.',
+      'both': 'ברכישה, אתה מסכים ל<terms>תנאי השירות</terms> ול<privacy>מדיניות הפרטיות</privacy>.',
       'terms': 'ברכישה, אתה מסכים ל<terms>תנאי השירות</terms>.',
       'other': 'ברכישה, אתה מסכים ל<privacy>מדיניות הפרטיות</privacy>.',
     });
@@ -9736,8 +9755,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'ברכישה, הסכמת ל<terms>תנאי השירות</terms> ול<privacy>מדיניות הפרטיות</privacy>.',
+      'both': 'ברכישה, הסכמת ל<terms>תנאי השירות</terms> ול<privacy>מדיניות הפרטיות</privacy>.',
       'terms': 'ברכישה, הסכמת ל<terms>תנאי השירות</terms>.',
       'other': 'ברכישה, הסכמת ל<privacy>מדיניות הפרטיות</privacy>.',
     });
@@ -15391,8 +15409,7 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count ערוצים עוקבים אחר ערוץ זה. המרתו לערוץ טקסט תסיר את המעקבים האלה.',
-      two:
-          'שני ערוצים עוקבים אחר ערוץ זה. המרתו לערוץ טקסט תסיר את המעקבים האלה.',
+      two: 'שני ערוצים עוקבים אחר ערוץ זה. המרתו לערוץ טקסט תסיר את המעקבים האלה.',
       one: 'ערוץ אחד עוקב אחר ערוץ זה. המרתו לערוץ טקסט תסיר את המעקב הזה.',
     );
     return '$_temp0';

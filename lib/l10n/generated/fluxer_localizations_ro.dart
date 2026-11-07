@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -315,12 +316,9 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Conectându-te, ești de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.',
-      'terms':
-          'Conectându-te, ești de acord cu <terms>Termenii serviciului</terms>.',
-      'other':
-          'Conectându-te, ești de acord cu <privacy>Politica de confidențialitate</privacy>.',
+      'both': 'Conectându-te, ești de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.',
+      'terms': 'Conectându-te, ești de acord cu <terms>Termenii serviciului</terms>.',
+      'other': 'Conectându-te, ești de acord cu <privacy>Politica de confidențialitate</privacy>.',
     });
     return '$_temp0';
   }
@@ -877,8 +875,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Sunt de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>',
+      'both': 'Sunt de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>',
       'terms': 'Sunt de acord cu <terms>Termenii serviciului</terms>',
       'other':
           'Sunt de acord cu <privacy>Politica de confidențialitate</privacy>',
@@ -4079,10 +4076,8 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Aceasta va deconecta dispozitivele selectate din contul tău. Va trebui să te conectezi din nou pe acele dispozitive.',
-      one:
-          'Aceasta va deconecta dispozitivul selectat din contul tău. Va trebui să te conectezi din nou pe acel dispozitiv.',
+      other: 'Aceasta va deconecta dispozitivele selectate din contul tău. Va trebui să te conectezi din nou pe acele dispozitive.',
+      one: 'Aceasta va deconecta dispozitivul selectat din contul tău. Va trebui să te conectezi din nou pe acel dispozitiv.',
     );
     return '$_temp0';
   }
@@ -4557,6 +4552,14 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Din cauza legilor privind conținutul matur din zona ta, conținutul matur nu este disponibil de aici.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'Mesaj într-un canal 18+';
 
   @override
@@ -4566,6 +4569,10 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Intervalul de vârstă partajat de Apple Account este sub 13 ani. echowire este doar pentru persoane de 13 ani sau mai mult.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Continuă';
@@ -4603,6 +4610,14 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Pentru a alege „Afișare” aici, deschide echowire pe web sau pe desktop, mergi la „Confidențialitate” în setări și activează „Permite conținut 18+ pe iPhone și iPad”.';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -5139,8 +5154,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count comunități sunt temporar indisponibile din cauza unei defecțiuni a condensatorului de flux.',
-      one:
-          '1 comunitate este temporar indisponibilă din cauza unei defecțiuni a condensatorului de flux.',
+      one: '1 comunitate este temporar indisponibilă din cauza unei defecțiuni a condensatorului de flux.',
     );
     return '$_temp0';
   }
@@ -6094,8 +6108,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       locale: localeName,
       other:
           'Te-ai conectat deja la acest canal vocal de pe $count alte dispozitive. Ce dorești să faci?',
-      one:
-          'Te-ai conectat deja la acest canal vocal de pe 1 alt dispozitiv. Ce dorești să faci?',
+      one: 'Te-ai conectat deja la acest canal vocal de pe 1 alt dispozitiv. Ce dorești să faci?',
     );
     return '$_temp0';
   }
@@ -6383,6 +6396,9 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Căști';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Schimbă ieșirea audio';
@@ -9932,12 +9948,9 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Prin cumpărare, ești de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.',
-      'terms':
-          'Prin cumpărare, ești de acord cu <terms>Termenii serviciului</terms>.',
-      'other':
-          'Prin cumpărare, ești de acord cu <privacy>Politica de confidențialitate</privacy>.',
+      'both': 'Prin cumpărare, ești de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.',
+      'terms': 'Prin cumpărare, ești de acord cu <terms>Termenii serviciului</terms>.',
+      'other': 'Prin cumpărare, ești de acord cu <privacy>Politica de confidențialitate</privacy>.',
     });
     return '$_temp0';
   }
@@ -9945,12 +9958,9 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Prin cumpărare, ai fost de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.',
-      'terms':
-          'Prin cumpărare, ai fost de acord cu <terms>Termenii serviciului</terms>.',
-      'other':
-          'Prin cumpărare, ai fost de acord cu <privacy>Politica de confidențialitate</privacy>.',
+      'both': 'Prin cumpărare, ai fost de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.',
+      'terms': 'Prin cumpărare, ai fost de acord cu <terms>Termenii serviciului</terms>.',
+      'other': 'Prin cumpărare, ai fost de acord cu <privacy>Politica de confidențialitate</privacy>.',
     });
     return '$_temp0';
   }
@@ -9958,8 +9968,7 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '<terms>Termeni și condiții</terms> și <privacy>Politica de confidențialitate</privacy>',
+      'both': '<terms>Termeni și condiții</terms> și <privacy>Politica de confidențialitate</privacy>',
       'terms': '<terms>Termeni și condiții</terms>',
       'other': '<privacy>Politica de confidențialitate</privacy>',
     });

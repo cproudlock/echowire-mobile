@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -304,8 +305,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '로그인하면 <terms>이용약관</terms> 및 <privacy>개인정보처리방침</privacy>에 동의하는 것으로 간주됩니다.',
+      'both': '로그인하면 <terms>이용약관</terms> 및 <privacy>개인정보처리방침</privacy>에 동의하는 것으로 간주됩니다.',
       'terms': '로그인하면 <terms>이용약관</terms>에 동의하는 것으로 간주됩니다.',
       'other': '로그인하면 <privacy>개인정보처리방침</privacy>에 동의하는 것으로 간주됩니다.',
     });
@@ -4359,6 +4359,14 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
       '회원님이 있는 지역의 성인 콘텐츠 관련 법률로 인해 이곳에서는 성인 콘텐츠를 이용할 수 없습니다.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => '18+ 채널의 메시지';
 
   @override
@@ -4367,6 +4375,10 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       '회원님의 Apple Account에서 공유한 연령대가 13세 미만입니다. echowire는 13세 이상만 이용할 수 있습니다.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => '계속하기';
@@ -4404,6 +4416,14 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       '여기에서 \"표시\"를 선택하려면 웹이나 데스크톱에서 echowire를 열고 설정의 \"개인정보 보호\"로 이동한 다음 \"iPhone 및 iPad에서 18+ 콘텐츠 허용\"을(를) 켜세요.';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -6096,6 +6116,9 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => '헤드폰';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => '오디오 출력 변경';
@@ -9457,8 +9480,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '구매하면 <terms>이용약관</terms> 및 <privacy>개인정보처리방침</privacy>에 동의하는 것으로 간주됩니다.',
+      'both': '구매하면 <terms>이용약관</terms> 및 <privacy>개인정보처리방침</privacy>에 동의하는 것으로 간주됩니다.',
       'terms': '구매하면 <terms>이용약관</terms>에 동의하는 것으로 간주됩니다.',
       'other': '구매하면 <privacy>개인정보처리방침</privacy>에 동의하는 것으로 간주됩니다.',
     });

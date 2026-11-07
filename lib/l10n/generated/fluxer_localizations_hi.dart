@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -312,8 +313,7 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'साइन इन करके, आप <terms>सेवा की शर्तों</terms> और <privacy>गोपनीयता नीति</privacy> से सहमत होते हैं।',
+      'both': 'साइन इन करके, आप <terms>सेवा की शर्तों</terms> और <privacy>गोपनीयता नीति</privacy> से सहमत होते हैं।',
       'terms':
           'साइन इन करके, आप <terms>सेवा की शर्तों</terms> से सहमत होते हैं।',
       'other':
@@ -865,8 +865,7 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'मैं <terms>सेवा की शर्तों</terms> और <privacy>गोपनीयता नीति</privacy> से सहमत हूँ',
+      'both': 'मैं <terms>सेवा की शर्तों</terms> और <privacy>गोपनीयता नीति</privacy> से सहमत हूँ',
       'terms': 'मैं <terms>सेवा की शर्तों</terms> से सहमत हूँ',
       'other': 'मैं <privacy>गोपनीयता नीति</privacy> से सहमत हूँ',
     });
@@ -4029,10 +4028,8 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'यह चयनित डिवाइसों को आपके खाते से लॉग आउट कर देगा। आपको उन डिवाइसों पर फिर से लॉग इन करना होगा।',
-      one:
-          'यह चयनित डिवाइस को आपके खाते से लॉग आउट कर देगा। आपको उस डिवाइस पर फिर से लॉग इन करना होगा।',
+      other: 'यह चयनित डिवाइसों को आपके खाते से लॉग आउट कर देगा। आपको उन डिवाइसों पर फिर से लॉग इन करना होगा।',
+      one: 'यह चयनित डिवाइस को आपके खाते से लॉग आउट कर देगा। आपको उस डिवाइस पर फिर से लॉग इन करना होगा।',
     );
     return '$_temp0';
   }
@@ -4506,6 +4503,14 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
       'आपके क्षेत्र के वयस्क सामग्री कानूनों के कारण, वयस्क सामग्री यहाँ से उपलब्ध नहीं है।';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => '18+ चैनल में मैसेज';
 
   @override
@@ -4515,6 +4520,10 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'आपके Apple Account द्वारा शेयर की गई आयु सीमा 13 से कम है। echowire सिर्फ़ 13 साल और उससे ज़्यादा उम्र के लोगों के लिए है।';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'आगे बढ़ें';
@@ -4552,6 +4561,14 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'यहाँ \"दिखाएँ\" चुनने के लिए, वेब या डेस्कटॉप पर echowire खोलें, अपनी सेटिंग्स में \"गोपनीयता\" पर जाएँ और \"iPhone और iPad पर 18+ सामग्री की अनुमति दें\" चालू करें।';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -5084,8 +5101,7 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count समुदाय फ़्लक्स कैपेसिटर में खराबी के कारण अस्थायी रूप से अनुपलब्ध हैं।',
-      one:
-          '1 समुदाय फ़्लक्स कैपेसिटर में खराबी के कारण अस्थायी रूप से अनुपलब्ध है।',
+      one: '1 समुदाय फ़्लक्स कैपेसिटर में खराबी के कारण अस्थायी रूप से अनुपलब्ध है।',
     );
     return '$_temp0';
   }
@@ -6034,8 +6050,7 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
       locale: localeName,
       other:
           'आप पहले से ही $count अन्य डिवाइस से इस वॉयस चैनल से जुड़े हुए हैं। आप क्या करना चाहेंगे?',
-      one:
-          'आप पहले से ही 1 अन्य डिवाइस से इस वॉयस चैनल से जुड़े हुए हैं। आप क्या करना चाहेंगे?',
+      one: 'आप पहले से ही 1 अन्य डिवाइस से इस वॉयस चैनल से जुड़े हुए हैं। आप क्या करना चाहेंगे?',
     );
     return '$_temp0';
   }
@@ -6319,6 +6334,9 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'हेडफ़ोन';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'ऑडियो आउटपुट बदलें';
@@ -9840,8 +9858,7 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'खरीदारी करके, आप <terms>सेवा की शर्तों</terms> और <privacy>गोपनीयता नीति</privacy> से सहमत होते हैं।',
+      'both': 'खरीदारी करके, आप <terms>सेवा की शर्तों</terms> और <privacy>गोपनीयता नीति</privacy> से सहमत होते हैं।',
       'terms':
           'खरीदारी करके, आप <terms>सेवा की शर्तों</terms> से सहमत होते हैं।',
       'other':
@@ -9853,8 +9870,7 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'खरीदारी करके, आप <terms>सेवा की शर्तों</terms> और <privacy>गोपनीयता नीति</privacy> से सहमत हुए।',
+      'both': 'खरीदारी करके, आप <terms>सेवा की शर्तों</terms> और <privacy>गोपनीयता नीति</privacy> से सहमत हुए।',
       'terms': 'खरीदारी करके, आप <terms>सेवा की शर्तों</terms> से सहमत हुए।',
       'other': 'खरीदारी करके, आप <privacy>गोपनीयता नीति</privacy> से सहमत हुए।',
     });
@@ -15594,8 +15610,7 @@ class FluxerLocalizationsHi extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count चैनल इस चैनल को फ़ॉलो करते हैं। इसे टेक्स्ट चैनल में बदलने से वे फ़ॉलो हट जाएँगे।',
-      one:
-          '1 चैनल इस चैनल को फ़ॉलो करता है। इसे टेक्स्ट चैनल में बदलने से वह फ़ॉलो हट जाएगा।',
+      one: '1 चैनल इस चैनल को फ़ॉलो करता है। इसे टेक्स्ट चैनल में बदलने से वह फ़ॉलो हट जाएगा।',
     );
     return '$_temp0';
   }

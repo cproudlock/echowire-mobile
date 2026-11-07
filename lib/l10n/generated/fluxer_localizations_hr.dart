@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -314,8 +315,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Prijavom prihvaćate <terms>Uvjete pružanja usluge</terms> i <privacy>Pravila privatnosti</privacy>.',
+      'both': 'Prijavom prihvaćate <terms>Uvjete pružanja usluge</terms> i <privacy>Pravila privatnosti</privacy>.',
       'terms': 'Prijavom prihvaćate <terms>Uvjete pružanja usluge</terms>.',
       'other': 'Prijavom prihvaćate <privacy>Pravila privatnosti</privacy>.',
     });
@@ -873,8 +873,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Slažem se s <terms>Uvjetima pružanja usluge</terms> i <privacy>Pravilima privatnosti</privacy>',
+      'both': 'Slažem se s <terms>Uvjetima pružanja usluge</terms> i <privacy>Pravilima privatnosti</privacy>',
       'terms': 'Slažem se s <terms>Uvjetima pružanja usluge</terms>',
       'other': 'Slažem se s <privacy>Pravilima privatnosti</privacy>',
     });
@@ -4064,10 +4063,8 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Ovo će odjaviti odabrane uređaje s vašeg računa. Morat ćete se ponovno prijaviti na tim uređajima.',
-      one:
-          'Ovo će odjaviti odabrani uređaj s vašeg računa. Morat ćete se ponovno prijaviti na tom uređaju.',
+      other: 'Ovo će odjaviti odabrane uređaje s vašeg računa. Morat ćete se ponovno prijaviti na tim uređajima.',
+      one: 'Ovo će odjaviti odabrani uređaj s vašeg računa. Morat ćete se ponovno prijaviti na tom uređaju.',
     );
     return '$_temp0';
   }
@@ -4540,6 +4537,14 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
       'Zbog zakona o sadržaju za odrasle na vašem području sadržaj za odrasle nije dostupan s vaše lokacije.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'Poruka u kanalu 18+';
 
   @override
@@ -4549,6 +4554,10 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Dobni raspon koji dijeli vaš Apple Account je ispod 13 godina. echowire je namijenjen samo osobama od 13 i više godina.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Nastavi';
@@ -4586,6 +4595,14 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Da biste ovdje odabrali „Prikaži“, otvorite echowire na webu ili na računalu, idite na „Privatnost“ u postavkama i uključite „Dopusti sadržaj 18+ na iPhoneu i iPadu“.';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -6078,8 +6095,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
       locale: localeName,
       other:
           'Već ste povezani na ovaj glasovni kanal s $count drugih uređaja. Što želite učiniti?',
-      one:
-          'Već ste povezani na ovaj glasovni kanal s 1 drugog uređaja. Što želite učiniti?',
+      one: 'Već ste povezani na ovaj glasovni kanal s 1 drugog uređaja. Što želite učiniti?',
     );
     return '$_temp0';
   }
@@ -6363,6 +6379,9 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Slušalice';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Promijeni audioizlaz';
@@ -9890,8 +9909,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Kupnjom prihvaćate <terms>Uvjete pružanja usluge</terms> i <privacy>Pravila privatnosti</privacy>.',
+      'both': 'Kupnjom prihvaćate <terms>Uvjete pružanja usluge</terms> i <privacy>Pravila privatnosti</privacy>.',
       'terms': 'Kupnjom prihvaćate <terms>Uvjete pružanja usluge</terms>.',
       'other': 'Kupnjom prihvaćate <privacy>Pravila privatnosti</privacy>.',
     });
@@ -9901,8 +9919,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Kupnjom ste prihvatili <terms>Uvjete pružanja usluge</terms> i <privacy>Pravila privatnosti</privacy>.',
+      'both': 'Kupnjom ste prihvatili <terms>Uvjete pružanja usluge</terms> i <privacy>Pravila privatnosti</privacy>.',
       'terms': 'Kupnjom ste prihvatili <terms>Uvjete pružanja usluge</terms>.',
       'other': 'Kupnjom ste prihvatili <privacy>Pravila privatnosti</privacy>.',
     });
@@ -9912,8 +9929,7 @@ class FluxerLocalizationsHr extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '<terms>Uvjeti pružanja usluge</terms> i <privacy>Pravila privatnosti</privacy>',
+      'both': '<terms>Uvjeti pružanja usluge</terms> i <privacy>Pravila privatnosti</privacy>',
       'terms': '<terms>Uvjeti pružanja usluge</terms>',
       'other': '<privacy>Pravila privatnosti</privacy>',
     });

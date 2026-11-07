@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -312,12 +313,10 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Khi đăng nhập, bạn đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>.',
+      'both': 'Khi đăng nhập, bạn đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>.',
       'terms':
           'Khi đăng nhập, bạn đồng ý với <terms>Điều khoản dịch vụ</terms>.',
-      'other':
-          'Khi đăng nhập, bạn đồng ý với <privacy>Chính sách quyền riêng tư</privacy>.',
+      'other': 'Khi đăng nhập, bạn đồng ý với <privacy>Chính sách quyền riêng tư</privacy>.',
     });
     return '$_temp0';
   }
@@ -869,8 +868,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Tôi đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>',
+      'both': 'Tôi đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>',
       'terms': 'Tôi đồng ý với <terms>Điều khoản dịch vụ</terms>',
       'other': 'Tôi đồng ý với <privacy>Chính sách quyền riêng tư</privacy>',
     });
@@ -4025,10 +4023,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Thao tác này sẽ đăng xuất các thiết bị đã chọn khỏi tài khoản của bạn. Bạn sẽ cần đăng nhập lại trên các thiết bị đó.',
-      one:
-          'Thao tác này sẽ đăng xuất thiết bị đã chọn khỏi tài khoản của bạn. Bạn sẽ cần đăng nhập lại trên thiết bị đó.',
+      other: 'Thao tác này sẽ đăng xuất các thiết bị đã chọn khỏi tài khoản của bạn. Bạn sẽ cần đăng nhập lại trên các thiết bị đó.',
+      one: 'Thao tác này sẽ đăng xuất thiết bị đã chọn khỏi tài khoản của bạn. Bạn sẽ cần đăng nhập lại trên thiết bị đó.',
     );
     return '$_temp0';
   }
@@ -4502,6 +4498,14 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       'Do luật về nội dung người lớn tại nơi bạn ở, nội dung người lớn không khả dụng từ đây.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'Tin nhắn trong kênh 18+';
 
   @override
@@ -4511,6 +4515,10 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Khoảng độ tuổi mà Apple Account của bạn chia sẻ là dưới 13 tuổi. echowire chỉ dành cho người từ 13 tuổi trở lên.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Tiếp tục';
@@ -4549,6 +4557,14 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Để chọn \"Hiển thị\" tại đây, hãy mở echowire trên web hoặc trên máy tính, vào \"Quyền riêng tư\" trong phần cài đặt và bật \"Cho phép nội dung 18+ trên iPhone và iPad\".';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -6034,8 +6050,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       locale: localeName,
       other:
           'Bạn đã kết nối với kênh thoại này từ $count thiết bị khác. Bạn muốn làm gì?',
-      one:
-          'Bạn đã kết nối với kênh thoại này từ 1 thiết bị khác. Bạn muốn làm gì?',
+      one: 'Bạn đã kết nối với kênh thoại này từ 1 thiết bị khác. Bạn muốn làm gì?',
     );
     return '$_temp0';
   }
@@ -6323,6 +6338,9 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Tai nghe';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Đổi đầu ra âm thanh';
@@ -9847,11 +9865,9 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Khi mua, bạn đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>.',
+      'both': 'Khi mua, bạn đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>.',
       'terms': 'Khi mua, bạn đồng ý với <terms>Điều khoản dịch vụ</terms>.',
-      'other':
-          'Khi mua, bạn đồng ý với <privacy>Chính sách quyền riêng tư</privacy>.',
+      'other': 'Khi mua, bạn đồng ý với <privacy>Chính sách quyền riêng tư</privacy>.',
     });
     return '$_temp0';
   }
@@ -9859,11 +9875,9 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Khi mua, bạn đã đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>.',
+      'both': 'Khi mua, bạn đã đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>.',
       'terms': 'Khi mua, bạn đã đồng ý với <terms>Điều khoản dịch vụ</terms>.',
-      'other':
-          'Khi mua, bạn đã đồng ý với <privacy>Chính sách quyền riêng tư</privacy>.',
+      'other': 'Khi mua, bạn đã đồng ý với <privacy>Chính sách quyền riêng tư</privacy>.',
     });
     return '$_temp0';
   }
@@ -9871,8 +9885,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '<terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>',
+      'both': '<terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>',
       'terms': '<terms>Điều khoản dịch vụ</terms>',
       'other': '<privacy>Chính sách quyền riêng tư</privacy>',
     });
@@ -15624,8 +15637,7 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count kênh đang theo dõi kênh này. Việc chuyển đổi kênh này thành kênh văn bản sẽ xóa các lượt theo dõi đó.',
-      one:
-          '1 kênh đang theo dõi kênh này. Việc chuyển đổi kênh này thành kênh văn bản sẽ xóa lượt theo dõi đó.',
+      one: '1 kênh đang theo dõi kênh này. Việc chuyển đổi kênh này thành kênh văn bản sẽ xóa lượt theo dõi đó.',
     );
     return '$_temp0';
   }

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -320,8 +321,7 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'بتسجيل الدخول، فإنك توافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>.',
+      'both': 'بتسجيل الدخول، فإنك توافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>.',
       'terms': 'بتسجيل الدخول، فإنك توافق على <terms>شروط الخدمة</terms>.',
       'other':
           'بتسجيل الدخول، فإنك توافق على <privacy>سياسة الخصوصية</privacy>.',
@@ -876,8 +876,7 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'أوافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>',
+      'both': 'أوافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>',
       'terms': 'أوافق على <terms>شروط الخدمة</terms>',
       'other': 'أوافق على <privacy>سياسة الخصوصية</privacy>',
     });
@@ -4049,10 +4048,8 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'سيؤدي هذا إلى تسجيل خروج الأجهزة المحددة من حسابك. ستحتاج إلى تسجيل الدخول مرة أخرى على تلك الأجهزة.',
-      one:
-          'سيؤدي هذا إلى تسجيل خروج الجهاز المحدد من حسابك. ستحتاج إلى تسجيل الدخول مرة أخرى على هذا الجهاز.',
+      other: 'سيؤدي هذا إلى تسجيل خروج الأجهزة المحددة من حسابك. ستحتاج إلى تسجيل الدخول مرة أخرى على تلك الأجهزة.',
+      one: 'سيؤدي هذا إلى تسجيل خروج الجهاز المحدد من حسابك. ستحتاج إلى تسجيل الدخول مرة أخرى على هذا الجهاز.',
     );
     return '$_temp0';
   }
@@ -4520,6 +4517,14 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
       'بسبب قوانين المحتوى للبالغين في المكان الذي توجد فيه، المحتوى للبالغين غير متاح من هنا.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'رسالة في قناة 18+';
 
   @override
@@ -4528,6 +4533,10 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'الفئة العمرية التي يشاركها Apple Account الخاص بك أقل من 13 عامًا. echowire مخصص فقط للأشخاص الذين تبلغ أعمارهم 13 عامًا فأكثر.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'متابعة';
@@ -4565,6 +4574,14 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'لاختيار «إظهار» هنا، افتح echowire على الويب أو على سطح المكتب، وانتقل إلى «الخصوصية» في إعداداتك وفعّل «السماح بمحتوى 18+ على iPhone وiPad».';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -6324,6 +6341,9 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'سماعات الرأس';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'تغيير مخرج الصوت';
@@ -9800,8 +9820,7 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'بإتمام الشراء، فإنك توافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>.',
+      'both': 'بإتمام الشراء، فإنك توافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>.',
       'terms': 'بإتمام الشراء، فإنك توافق على <terms>شروط الخدمة</terms>.',
       'other':
           'بإتمام الشراء، فإنك توافق على <privacy>سياسة الخصوصية</privacy>.',
@@ -9812,8 +9831,7 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'بإتمام الشراء، فقد وافقت على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>.',
+      'both': 'بإتمام الشراء، فقد وافقت على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>.',
       'terms': 'بإتمام الشراء، فقد وافقت على <terms>شروط الخدمة</terms>.',
       'other':
           'بإتمام الشراء، فقد وافقت على <privacy>سياسة الخصوصية</privacy>.',
@@ -15522,10 +15540,8 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
           '$count قناة تتابع هذه القناة. تحويلها إلى قناة نصية يزيل هذه المتابعات.',
       few:
           '$count قنوات تتابع هذه القناة. تحويلها إلى قناة نصية يزيل هذه المتابعات.',
-      two:
-          'قناتان تتابعان هذه القناة. تحويلها إلى قناة نصية يزيل هاتين المتابعتين.',
-      one:
-          'قناة واحدة تتابع هذه القناة. تحويلها إلى قناة نصية يزيل هذه المتابعة.',
+      two: 'قناتان تتابعان هذه القناة. تحويلها إلى قناة نصية يزيل هاتين المتابعتين.',
+      one: 'قناة واحدة تتابع هذه القناة. تحويلها إلى قناة نصية يزيل هذه المتابعة.',
       zero: 'لا توجد قنوات تتابع هذه القناة.',
     );
     return '$_temp0';

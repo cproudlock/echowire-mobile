@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -312,12 +313,9 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Giriş yaparak <terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
-      'terms':
-          'Giriş yaparak <terms>Hizmet Şartları</terms>\'nı kabul etmiş olursunuz.',
-      'other':
-          'Giriş yaparak <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
+      'both': 'Giriş yaparak <terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
+      'terms': 'Giriş yaparak <terms>Hizmet Şartları</terms>\'nı kabul etmiş olursunuz.',
+      'other': 'Giriş yaparak <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
     });
     return '$_temp0';
   }
@@ -870,8 +868,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '<terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul ediyorum',
+      'both': '<terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul ediyorum',
       'terms': '<terms>Hizmet Şartları</terms>\'nı kabul ediyorum',
       'other': '<privacy>Gizlilik Politikası</privacy>\'nı kabul ediyorum',
     });
@@ -4039,10 +4036,8 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          'Bu, seçilen cihazları hesabından çıkaracaktır. O cihazlarda tekrar giriş yapman gerekecek.',
-      one:
-          'Bu, seçilen cihazı hesabından çıkaracaktır. O cihazda tekrar giriş yapman gerekecek.',
+      other: 'Bu, seçilen cihazları hesabından çıkaracaktır. O cihazlarda tekrar giriş yapman gerekecek.',
+      one: 'Bu, seçilen cihazı hesabından çıkaracaktır. O cihazda tekrar giriş yapman gerekecek.',
     );
     return '$_temp0';
   }
@@ -4513,6 +4508,14 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       'Bulunduğunuz yerdeki yetişkin içerik yasaları nedeniyle yetişkinlere uygun içerik buradan kullanılamıyor.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => '18+ kanalındaki mesaj';
 
   @override
@@ -4521,6 +4524,10 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Apple Account\'unuzun paylaştığı yaş aralığı 13\'ün altında. echowire yalnızca 13 yaş ve üzerindeki kişiler içindir.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Devam et';
@@ -4560,6 +4567,14 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Burada “Göster” seçeneğini seçmek için echowire\'ı web\'de veya masaüstünde açın, ayarlarınızda “Gizlilik” bölümüne gidin ve “iPhone ve iPad\'de 18+ içeriğe izin ver” seçeneğini açın.';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -5097,8 +5112,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count topluluk, akı kapasitörü arızası nedeniyle geçici olarak kullanılamıyor.',
-      one:
-          '1 topluluk, akı kapasitörü arızası nedeniyle geçici olarak kullanılamıyor.',
+      one: '1 topluluk, akı kapasitörü arızası nedeniyle geçici olarak kullanılamıyor.',
     );
     return '$_temp0';
   }
@@ -6047,8 +6061,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       locale: localeName,
       other:
           'Bu sesli kanala zaten $count başka cihazdan bağlısınız. Ne yapmak istersiniz?',
-      one:
-          'Bu sesli kanala zaten 1 başka cihazdan bağlısınız. Ne yapmak istersiniz?',
+      one: 'Bu sesli kanala zaten 1 başka cihazdan bağlısınız. Ne yapmak istersiniz?',
     );
     return '$_temp0';
   }
@@ -6335,6 +6348,9 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Kulaklık';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Ses çıkışını değiştir';
@@ -9852,12 +9868,9 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Satın alarak <terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
-      'terms':
-          'Satın alarak <terms>Hizmet Şartları</terms>\'nı kabul etmiş olursunuz.',
-      'other':
-          'Satın alarak <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
+      'both': 'Satın alarak <terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
+      'terms': 'Satın alarak <terms>Hizmet Şartları</terms>\'nı kabul etmiş olursunuz.',
+      'other': 'Satın alarak <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
     });
     return '$_temp0';
   }
@@ -9865,12 +9878,10 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          'Satın alırken <terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul ettiniz.',
+      'both': 'Satın alırken <terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul ettiniz.',
       'terms':
           'Satın alırken <terms>Hizmet Şartları</terms>\'nı kabul ettiniz.',
-      'other':
-          'Satın alırken <privacy>Gizlilik Politikası</privacy>\'nı kabul ettiniz.',
+      'other': 'Satın alırken <privacy>Gizlilik Politikası</privacy>\'nı kabul ettiniz.',
     });
     return '$_temp0';
   }
@@ -9878,8 +9889,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both':
-          '<terms>Hizmet Şartları</terms> ve <privacy>Gizlilik politikası</privacy>',
+      'both': '<terms>Hizmet Şartları</terms> ve <privacy>Gizlilik politikası</privacy>',
       'terms': '<terms>Hizmet Şartları</terms>',
       'other': '<privacy>Gizlilik politikası</privacy>',
     });
@@ -15612,8 +15622,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count kanal bu kanalı takip ediyor. Bu kanalı bir metin kanalına dönüştürmek, bu takipleri kaldırır.',
-      one:
-          '1 kanal bu kanalı takip ediyor. Bu kanalı bir metin kanalına dönüştürmek, bu takibi kaldırır.',
+      one: '1 kanal bu kanalı takip ediyor. Bu kanalı bir metin kanalına dönüştürmek, bu takibi kaldırır.',
     );
     return '$_temp0';
   }

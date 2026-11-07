@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -314,9 +313,12 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Mit der Anmeldung akzeptierst du die <terms>Nutzungsbedingungen</terms> und die <privacy>Datenschutzerklärung</privacy>.',
-      'terms': 'Mit der Anmeldung akzeptierst du die <terms>Nutzungsbedingungen</terms>.',
-      'other': 'Mit der Anmeldung akzeptierst du die <privacy>Datenschutzerklärung</privacy>.',
+      'both':
+          'Mit der Anmeldung akzeptierst du die <terms>Nutzungsbedingungen</terms> und die <privacy>Datenschutzerklärung</privacy>.',
+      'terms':
+          'Mit der Anmeldung akzeptierst du die <terms>Nutzungsbedingungen</terms>.',
+      'other':
+          'Mit der Anmeldung akzeptierst du die <privacy>Datenschutzerklärung</privacy>.',
     });
     return '$_temp0';
   }
@@ -874,7 +876,8 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Ich stimme den <terms>Nutzungsbedingungen</terms> und der <privacy>Datenschutzerklärung</privacy> zu',
+      'both':
+          'Ich stimme den <terms>Nutzungsbedingungen</terms> und der <privacy>Datenschutzerklärung</privacy> zu',
       'terms': 'Ich stimme den <terms>Nutzungsbedingungen</terms> zu',
       'other': 'Ich stimme der <privacy>Datenschutzerklärung</privacy> zu',
     });
@@ -4079,8 +4082,10 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Dadurch werden die ausgewählten Geräte von deinem Account abgemeldet. Du musst dich auf diesen Geräten erneut anmelden.',
-      one: 'Dadurch wird das ausgewählte Gerät von deinem Account abgemeldet. Du musst dich auf diesem Gerät erneut anmelden.',
+      other:
+          'Dadurch werden die ausgewählten Geräte von deinem Account abgemeldet. Du musst dich auf diesen Geräten erneut anmelden.',
+      one:
+          'Dadurch wird das ausgewählte Gerät von deinem Account abgemeldet. Du musst dich auf diesem Gerät erneut anmelden.',
     );
     return '$_temp0';
   }
@@ -5165,7 +5170,8 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count Communitys sind aufgrund einer Störung des Fluxkondensators vorübergehend nicht verfügbar.',
-      one: '1 Community ist aufgrund einer Störung des Fluxkondensators vorübergehend nicht verfügbar.',
+      one:
+          '1 Community ist aufgrund einer Störung des Fluxkondensators vorübergehend nicht verfügbar.',
     );
     return '$_temp0';
   }
@@ -6126,7 +6132,8 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       locale: localeName,
       other:
           'Du bist bereits von $count anderen Geräten mit diesem Sprachkanal verbunden. Was möchtest du tun?',
-      one: 'Du bist bereits von 1 anderen Gerät mit diesem Sprachkanal verbunden. Was möchtest du tun?',
+      one:
+          'Du bist bereits von 1 anderen Gerät mit diesem Sprachkanal verbunden. Was möchtest du tun?',
     );
     return '$_temp0';
   }
@@ -9981,10 +9988,12 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Mit dem Kauf stimmst du den <terms>Nutzungsbedingungen</terms> und der <privacy>Datenschutzerklärung</privacy> zu.',
+      'both':
+          'Mit dem Kauf stimmst du den <terms>Nutzungsbedingungen</terms> und der <privacy>Datenschutzerklärung</privacy> zu.',
       'terms':
           'Mit dem Kauf stimmst du den <terms>Nutzungsbedingungen</terms> zu.',
-      'other': 'Mit dem Kauf stimmst du der <privacy>Datenschutzerklärung</privacy> zu.',
+      'other':
+          'Mit dem Kauf stimmst du der <privacy>Datenschutzerklärung</privacy> zu.',
     });
     return '$_temp0';
   }
@@ -9992,9 +10001,12 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Mit dem Kauf hast du den <terms>Nutzungsbedingungen</terms> und der <privacy>Datenschutzerklärung</privacy> zugestimmt.',
-      'terms': 'Mit dem Kauf hast du den <terms>Nutzungsbedingungen</terms> zugestimmt.',
-      'other': 'Mit dem Kauf hast du der <privacy>Datenschutzerklärung</privacy> zugestimmt.',
+      'both':
+          'Mit dem Kauf hast du den <terms>Nutzungsbedingungen</terms> und der <privacy>Datenschutzerklärung</privacy> zugestimmt.',
+      'terms':
+          'Mit dem Kauf hast du den <terms>Nutzungsbedingungen</terms> zugestimmt.',
+      'other':
+          'Mit dem Kauf hast du der <privacy>Datenschutzerklärung</privacy> zugestimmt.',
     });
     return '$_temp0';
   }
@@ -10002,7 +10014,8 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': '<terms>Nutzungsbedingungen</terms> und <privacy>Datenschutzerklärung</privacy>',
+      'both':
+          '<terms>Nutzungsbedingungen</terms> und <privacy>Datenschutzerklärung</privacy>',
       'terms': '<terms>Nutzungsbedingungen</terms>',
       'other': '<privacy>Datenschutzerklärung</privacy>',
     });
@@ -15805,7 +15818,8 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count Kanäle folgen diesem Kanal. Wenn du ihn in einen Textkanal umwandelst, werden diese Verknüpfungen entfernt.',
-      one: '1 Kanal folgt diesem Kanal. Wenn du ihn in einen Textkanal umwandelst, wird diese Verknüpfung entfernt.',
+      one:
+          '1 Kanal folgt diesem Kanal. Wenn du ihn in einen Textkanal umwandelst, wird diese Verknüpfung entfernt.',
     );
     return '$_temp0';
   }

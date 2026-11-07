@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -313,10 +312,12 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Khi đăng nhập, bạn đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>.',
+      'both':
+          'Khi đăng nhập, bạn đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>.',
       'terms':
           'Khi đăng nhập, bạn đồng ý với <terms>Điều khoản dịch vụ</terms>.',
-      'other': 'Khi đăng nhập, bạn đồng ý với <privacy>Chính sách quyền riêng tư</privacy>.',
+      'other':
+          'Khi đăng nhập, bạn đồng ý với <privacy>Chính sách quyền riêng tư</privacy>.',
     });
     return '$_temp0';
   }
@@ -868,7 +869,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Tôi đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>',
+      'both':
+          'Tôi đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>',
       'terms': 'Tôi đồng ý với <terms>Điều khoản dịch vụ</terms>',
       'other': 'Tôi đồng ý với <privacy>Chính sách quyền riêng tư</privacy>',
     });
@@ -4023,8 +4025,10 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Thao tác này sẽ đăng xuất các thiết bị đã chọn khỏi tài khoản của bạn. Bạn sẽ cần đăng nhập lại trên các thiết bị đó.',
-      one: 'Thao tác này sẽ đăng xuất thiết bị đã chọn khỏi tài khoản của bạn. Bạn sẽ cần đăng nhập lại trên thiết bị đó.',
+      other:
+          'Thao tác này sẽ đăng xuất các thiết bị đã chọn khỏi tài khoản của bạn. Bạn sẽ cần đăng nhập lại trên các thiết bị đó.',
+      one:
+          'Thao tác này sẽ đăng xuất thiết bị đã chọn khỏi tài khoản của bạn. Bạn sẽ cần đăng nhập lại trên thiết bị đó.',
     );
     return '$_temp0';
   }
@@ -6050,7 +6054,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       locale: localeName,
       other:
           'Bạn đã kết nối với kênh thoại này từ $count thiết bị khác. Bạn muốn làm gì?',
-      one: 'Bạn đã kết nối với kênh thoại này từ 1 thiết bị khác. Bạn muốn làm gì?',
+      one:
+          'Bạn đã kết nối với kênh thoại này từ 1 thiết bị khác. Bạn muốn làm gì?',
     );
     return '$_temp0';
   }
@@ -9865,9 +9870,11 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Khi mua, bạn đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>.',
+      'both':
+          'Khi mua, bạn đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>.',
       'terms': 'Khi mua, bạn đồng ý với <terms>Điều khoản dịch vụ</terms>.',
-      'other': 'Khi mua, bạn đồng ý với <privacy>Chính sách quyền riêng tư</privacy>.',
+      'other':
+          'Khi mua, bạn đồng ý với <privacy>Chính sách quyền riêng tư</privacy>.',
     });
     return '$_temp0';
   }
@@ -9875,9 +9882,11 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Khi mua, bạn đã đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>.',
+      'both':
+          'Khi mua, bạn đã đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>.',
       'terms': 'Khi mua, bạn đã đồng ý với <terms>Điều khoản dịch vụ</terms>.',
-      'other': 'Khi mua, bạn đã đồng ý với <privacy>Chính sách quyền riêng tư</privacy>.',
+      'other':
+          'Khi mua, bạn đã đồng ý với <privacy>Chính sách quyền riêng tư</privacy>.',
     });
     return '$_temp0';
   }
@@ -9885,7 +9894,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': '<terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>',
+      'both':
+          '<terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy>',
       'terms': '<terms>Điều khoản dịch vụ</terms>',
       'other': '<privacy>Chính sách quyền riêng tư</privacy>',
     });
@@ -15637,7 +15647,8 @@ class FluxerLocalizationsVi extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count kênh đang theo dõi kênh này. Việc chuyển đổi kênh này thành kênh văn bản sẽ xóa các lượt theo dõi đó.',
-      one: '1 kênh đang theo dõi kênh này. Việc chuyển đổi kênh này thành kênh văn bản sẽ xóa lượt theo dõi đó.',
+      one:
+          '1 kênh đang theo dõi kênh này. Việc chuyển đổi kênh này thành kênh văn bản sẽ xóa lượt theo dõi đó.',
     );
     return '$_temp0';
   }

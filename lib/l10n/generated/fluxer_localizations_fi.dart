@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -313,9 +312,11 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Kirjautumalla sisään hyväksyt <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>.',
+      'both':
+          'Kirjautumalla sisään hyväksyt <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>.',
       'terms': 'Kirjautumalla sisään hyväksyt <terms>käyttöehdot</terms>.',
-      'other': 'Kirjautumalla sisään hyväksyt <privacy>tietosuojakäytännön</privacy>.',
+      'other':
+          'Kirjautumalla sisään hyväksyt <privacy>tietosuojakäytännön</privacy>.',
     });
     return '$_temp0';
   }
@@ -868,7 +869,8 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Hyväksyn <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>',
+      'both':
+          'Hyväksyn <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>',
       'terms': 'Hyväksyn <terms>käyttöehdot</terms>',
       'other': 'Hyväksyn <privacy>tietosuojakäytännön</privacy>',
     });
@@ -4052,8 +4054,10 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Tämä kirjaa valitut laitteet ulos tililtäsi. Sinun on kirjauduttava uudelleen sisään kyseisillä laitteilla.',
-      one: 'Tämä kirjaa valitun laitteen ulos tililtäsi. Sinun on kirjauduttava uudelleen sisään kyseisellä laitteella.',
+      other:
+          'Tämä kirjaa valitut laitteet ulos tililtäsi. Sinun on kirjauduttava uudelleen sisään kyseisillä laitteilla.',
+      one:
+          'Tämä kirjaa valitun laitteen ulos tililtäsi. Sinun on kirjauduttava uudelleen sisään kyseisellä laitteella.',
     );
     return '$_temp0';
   }
@@ -5128,7 +5132,8 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count yhteisöä ei ole väliaikaisesti käytettävissä flux capacitor -vian vuoksi.',
-      one: '1 yhteisö ei ole väliaikaisesti käytettävissä flux capacitor -vian vuoksi.',
+      one:
+          '1 yhteisö ei ole väliaikaisesti käytettävissä flux capacitor -vian vuoksi.',
     );
     return '$_temp0';
   }
@@ -6083,7 +6088,8 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
       locale: localeName,
       other:
           'Olet jo yhdistetty tähän äänikanavaan $count muusta laitteesta. Mitä haluat tehdä?',
-      one: 'Olet jo yhdistetty tähän äänikanavaan 1 muusta laitteesta. Mitä haluat tehdä?',
+      one:
+          'Olet jo yhdistetty tähän äänikanavaan 1 muusta laitteesta. Mitä haluat tehdä?',
     );
     return '$_temp0';
   }
@@ -9893,7 +9899,8 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Ostamalla hyväksyt <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>.',
+      'both':
+          'Ostamalla hyväksyt <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>.',
       'terms': 'Ostamalla hyväksyt <terms>käyttöehdot</terms>.',
       'other': 'Ostamalla hyväksyt <privacy>tietosuojakäytännön</privacy>.',
     });
@@ -9903,7 +9910,8 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Ostamalla hyväksyit <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>.',
+      'both':
+          'Ostamalla hyväksyit <terms>käyttöehdot</terms> ja <privacy>tietosuojakäytännön</privacy>.',
       'terms': 'Ostamalla hyväksyit <terms>käyttöehdot</terms>.',
       'other': 'Ostamalla hyväksyit <privacy>tietosuojakäytännön</privacy>.',
     });
@@ -15666,7 +15674,8 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count kanavaa seuraa tätä kanavaa. Jos muunnat sen tekstikanavaksi, seurannat poistuvat.',
-      one: '1 kanava seuraa tätä kanavaa. Jos muunnat sen tekstikanavaksi, seuranta poistuu.',
+      one:
+          '1 kanava seuraa tätä kanavaa. Jos muunnat sen tekstikanavaksi, seuranta poistuu.',
     );
     return '$_temp0';
   }

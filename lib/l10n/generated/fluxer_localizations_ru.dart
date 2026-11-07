@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -319,9 +318,12 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Входя в аккаунт, вы принимаете <terms>Условия использования</terms> и <privacy>Политику конфиденциальности</privacy>.',
-      'terms': 'Входя в аккаунт, вы принимаете <terms>Условия использования</terms>.',
-      'other': 'Входя в аккаунт, вы принимаете <privacy>Политику конфиденциальности</privacy>.',
+      'both':
+          'Входя в аккаунт, вы принимаете <terms>Условия использования</terms> и <privacy>Политику конфиденциальности</privacy>.',
+      'terms':
+          'Входя в аккаунт, вы принимаете <terms>Условия использования</terms>.',
+      'other':
+          'Входя в аккаунт, вы принимаете <privacy>Политику конфиденциальности</privacy>.',
     });
     return '$_temp0';
   }
@@ -877,7 +879,8 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Я принимаю <terms>Условия использования</terms> и <privacy>Политику конфиденциальности</privacy>',
+      'both':
+          'Я принимаю <terms>Условия использования</terms> и <privacy>Политику конфиденциальности</privacy>',
       'terms': 'Я принимаю <terms>Условия использования</terms>',
       'other': 'Я принимаю <privacy>Политику конфиденциальности</privacy>',
     });
@@ -4080,8 +4083,10 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Это приведет к выходу с выбранных устройств из твоего аккаунта. Тебе придется снова войти на этих устройствах.',
-      one: 'Это приведет к выходу с выбранного устройства из твоего аккаунта. Тебе придется снова войти на этом устройстве.',
+      other:
+          'Это приведет к выходу с выбранных устройств из твоего аккаунта. Тебе придется снова войти на этих устройствах.',
+      one:
+          'Это приведет к выходу с выбранного устройства из твоего аккаунта. Тебе придется снова войти на этом устройстве.',
     );
     return '$_temp0';
   }
@@ -6124,7 +6129,8 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
       locale: localeName,
       other:
           'Вы уже подключены к этому голосовому каналу с $count других устройств. Что вы хотите сделать?',
-      one: 'Вы уже подключены к этому голосовому каналу с 1 другого устройства. Что вы хотите сделать?',
+      one:
+          'Вы уже подключены к этому голосовому каналу с 1 другого устройства. Что вы хотите сделать?',
     );
     return '$_temp0';
   }
@@ -9967,9 +9973,12 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Совершая покупку, вы принимаете <terms>Условия использования</terms> и <privacy>Политику конфиденциальности</privacy>.',
-      'terms': 'Совершая покупку, вы принимаете <terms>Условия использования</terms>.',
-      'other': 'Совершая покупку, вы принимаете <privacy>Политику конфиденциальности</privacy>.',
+      'both':
+          'Совершая покупку, вы принимаете <terms>Условия использования</terms> и <privacy>Политику конфиденциальности</privacy>.',
+      'terms':
+          'Совершая покупку, вы принимаете <terms>Условия использования</terms>.',
+      'other':
+          'Совершая покупку, вы принимаете <privacy>Политику конфиденциальности</privacy>.',
     });
     return '$_temp0';
   }
@@ -9977,10 +9986,12 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Совершив покупку, вы приняли <terms>Условия использования</terms> и <privacy>Политику конфиденциальности</privacy>.',
+      'both':
+          'Совершив покупку, вы приняли <terms>Условия использования</terms> и <privacy>Политику конфиденциальности</privacy>.',
       'terms':
           'Совершив покупку, вы приняли <terms>Условия использования</terms>.',
-      'other': 'Совершив покупку, вы приняли <privacy>Политику конфиденциальности</privacy>.',
+      'other':
+          'Совершив покупку, вы приняли <privacy>Политику конфиденциальности</privacy>.',
     });
     return '$_temp0';
   }
@@ -9988,7 +9999,8 @@ class FluxerLocalizationsRu extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': '<terms>Условия использования</terms> и <privacy>Политика конфиденциальности</privacy>',
+      'both':
+          '<terms>Условия использования</terms> и <privacy>Политика конфиденциальности</privacy>',
       'terms': '<terms>Условия использования</terms>',
       'other': '<privacy>Политика конфиденциальности</privacy>',
     });

@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -321,7 +320,8 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'بتسجيل الدخول، فإنك توافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>.',
+      'both':
+          'بتسجيل الدخول، فإنك توافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>.',
       'terms': 'بتسجيل الدخول، فإنك توافق على <terms>شروط الخدمة</terms>.',
       'other':
           'بتسجيل الدخول، فإنك توافق على <privacy>سياسة الخصوصية</privacy>.',
@@ -876,7 +876,8 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'أوافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>',
+      'both':
+          'أوافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>',
       'terms': 'أوافق على <terms>شروط الخدمة</terms>',
       'other': 'أوافق على <privacy>سياسة الخصوصية</privacy>',
     });
@@ -4048,8 +4049,10 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'سيؤدي هذا إلى تسجيل خروج الأجهزة المحددة من حسابك. ستحتاج إلى تسجيل الدخول مرة أخرى على تلك الأجهزة.',
-      one: 'سيؤدي هذا إلى تسجيل خروج الجهاز المحدد من حسابك. ستحتاج إلى تسجيل الدخول مرة أخرى على هذا الجهاز.',
+      other:
+          'سيؤدي هذا إلى تسجيل خروج الأجهزة المحددة من حسابك. ستحتاج إلى تسجيل الدخول مرة أخرى على تلك الأجهزة.',
+      one:
+          'سيؤدي هذا إلى تسجيل خروج الجهاز المحدد من حسابك. ستحتاج إلى تسجيل الدخول مرة أخرى على هذا الجهاز.',
     );
     return '$_temp0';
   }
@@ -9820,7 +9823,8 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'بإتمام الشراء، فإنك توافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>.',
+      'both':
+          'بإتمام الشراء، فإنك توافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>.',
       'terms': 'بإتمام الشراء، فإنك توافق على <terms>شروط الخدمة</terms>.',
       'other':
           'بإتمام الشراء، فإنك توافق على <privacy>سياسة الخصوصية</privacy>.',
@@ -9831,7 +9835,8 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'بإتمام الشراء، فقد وافقت على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>.',
+      'both':
+          'بإتمام الشراء، فقد وافقت على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy>.',
       'terms': 'بإتمام الشراء، فقد وافقت على <terms>شروط الخدمة</terms>.',
       'other':
           'بإتمام الشراء، فقد وافقت على <privacy>سياسة الخصوصية</privacy>.',
@@ -15540,8 +15545,10 @@ class FluxerLocalizationsAr extends FluxerLocalizations {
           '$count قناة تتابع هذه القناة. تحويلها إلى قناة نصية يزيل هذه المتابعات.',
       few:
           '$count قنوات تتابع هذه القناة. تحويلها إلى قناة نصية يزيل هذه المتابعات.',
-      two: 'قناتان تتابعان هذه القناة. تحويلها إلى قناة نصية يزيل هاتين المتابعتين.',
-      one: 'قناة واحدة تتابع هذه القناة. تحويلها إلى قناة نصية يزيل هذه المتابعة.',
+      two:
+          'قناتان تتابعان هذه القناة. تحويلها إلى قناة نصية يزيل هاتين المتابعتين.',
+      one:
+          'قناة واحدة تتابع هذه القناة. تحويلها إلى قناة نصية يزيل هذه المتابعة.',
       zero: 'لا توجد قنوات تتابع هذه القناة.',
     );
     return '$_temp0';

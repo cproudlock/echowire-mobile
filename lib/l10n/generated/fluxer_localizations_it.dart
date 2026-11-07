@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -316,7 +315,8 @@ class FluxerLocalizationsIt extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Accedendo, accetti i <terms>Termini di servizio</terms> e l\'<privacy>Informativa sulla privacy</privacy>.',
+      'both':
+          'Accedendo, accetti i <terms>Termini di servizio</terms> e l\'<privacy>Informativa sulla privacy</privacy>.',
       'terms': 'Accedendo, accetti i <terms>Termini di servizio</terms>.',
       'other':
           'Accedendo, accetti l\'<privacy>Informativa sulla privacy</privacy>.',
@@ -870,7 +870,8 @@ class FluxerLocalizationsIt extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Accetto i <terms>Termini di servizio</terms> e l\'<privacy>Informativa sulla privacy</privacy>',
+      'both':
+          'Accetto i <terms>Termini di servizio</terms> e l\'<privacy>Informativa sulla privacy</privacy>',
       'terms': 'Accetto i <terms>Termini di servizio</terms>',
       'other': 'Accetto l\'<privacy>Informativa sulla privacy</privacy>',
     });
@@ -4069,8 +4070,10 @@ class FluxerLocalizationsIt extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Questo disconnetterà i dispositivi selezionati dal tuo account. Dovrai accedere di nuovo su quei dispositivi.',
-      one: 'Questo disconnetterà il dispositivo selezionato dal tuo account. Dovrai accedere di nuovo su quel dispositivo.',
+      other:
+          'Questo disconnetterà i dispositivi selezionati dal tuo account. Dovrai accedere di nuovo su quei dispositivi.',
+      one:
+          'Questo disconnetterà il dispositivo selezionato dal tuo account. Dovrai accedere di nuovo su quel dispositivo.',
     );
     return '$_temp0';
   }
@@ -5149,7 +5152,8 @@ class FluxerLocalizationsIt extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count community non sono temporaneamente disponibili a causa di un malfunzionamento del condensatore di flusso.',
-      one: '1 community non è temporaneamente disponibile a causa di un malfunzionamento del condensatore di flusso.',
+      one:
+          '1 community non è temporaneamente disponibile a causa di un malfunzionamento del condensatore di flusso.',
     );
     return '$_temp0';
   }
@@ -6104,7 +6108,8 @@ class FluxerLocalizationsIt extends FluxerLocalizations {
       locale: localeName,
       other:
           'Sei già connesso a questo canale vocale da $count altri dispositivi. Cosa desideri fare?',
-      one: 'Sei già connesso a questo canale vocale da 1 altro dispositivo. Cosa desideri fare?',
+      one:
+          'Sei già connesso a questo canale vocale da 1 altro dispositivo. Cosa desideri fare?',
     );
     return '$_temp0';
   }
@@ -9937,9 +9942,11 @@ class FluxerLocalizationsIt extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Con l\'acquisto, accetti i <terms>Termini di servizio</terms> e l\'<privacy>Informativa sulla privacy</privacy>.',
+      'both':
+          'Con l\'acquisto, accetti i <terms>Termini di servizio</terms> e l\'<privacy>Informativa sulla privacy</privacy>.',
       'terms': 'Con l\'acquisto, accetti i <terms>Termini di servizio</terms>.',
-      'other': 'Con l\'acquisto, accetti l\'<privacy>Informativa sulla privacy</privacy>.',
+      'other':
+          'Con l\'acquisto, accetti l\'<privacy>Informativa sulla privacy</privacy>.',
     });
     return '$_temp0';
   }
@@ -9947,9 +9954,12 @@ class FluxerLocalizationsIt extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Con l\'acquisto, hai accettato i <terms>Termini di servizio</terms> e l\'<privacy>Informativa sulla privacy</privacy>.',
-      'terms': 'Con l\'acquisto, hai accettato i <terms>Termini di servizio</terms>.',
-      'other': 'Con l\'acquisto, hai accettato l\'<privacy>Informativa sulla privacy</privacy>.',
+      'both':
+          'Con l\'acquisto, hai accettato i <terms>Termini di servizio</terms> e l\'<privacy>Informativa sulla privacy</privacy>.',
+      'terms':
+          'Con l\'acquisto, hai accettato i <terms>Termini di servizio</terms>.',
+      'other':
+          'Con l\'acquisto, hai accettato l\'<privacy>Informativa sulla privacy</privacy>.',
     });
     return '$_temp0';
   }
@@ -9957,7 +9967,8 @@ class FluxerLocalizationsIt extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': '<terms>Termini di servizio</terms> e <privacy>Informativa sulla privacy</privacy>',
+      'both':
+          '<terms>Termini di servizio</terms> e <privacy>Informativa sulla privacy</privacy>',
       'terms': '<terms>Termini di servizio</terms>',
       'other': '<privacy>Informativa sulla privacy</privacy>',
     });
@@ -15749,7 +15760,8 @@ class FluxerLocalizationsIt extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count canali seguono questo canale. Se lo converti in un canale testuale, quei canali smetteranno di seguirlo.',
-      one: '1 canale segue questo canale. Se lo converti in un canale testuale, quel canale smetterà di seguirlo.',
+      one:
+          '1 canale segue questo canale. Se lo converti in un canale testuale, quel canale smetterà di seguirlo.',
     );
     return '$_temp0';
   }

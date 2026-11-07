@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -314,7 +313,8 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'С влизането приемаш <terms>Условията за ползване</terms> и <privacy>Политиката за поверителност</privacy>.',
+      'both':
+          'С влизането приемаш <terms>Условията за ползване</terms> и <privacy>Политиката за поверителност</privacy>.',
       'terms': 'С влизането приемаш <terms>Условията за ползване</terms>.',
       'other':
           'С влизането приемаш <privacy>Политиката за поверителност</privacy>.',
@@ -873,7 +873,8 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Съгласен съм с <terms>Условията за ползване</terms> и <privacy>Политиката за поверителност</privacy>',
+      'both':
+          'Съгласен съм с <terms>Условията за ползване</terms> и <privacy>Политиката за поверителност</privacy>',
       'terms': 'Съгласен съм с <terms>Условията за ползване</terms>',
       'other': 'Съгласен съм с <privacy>Политиката за поверителност</privacy>',
     });
@@ -4065,8 +4066,10 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Това ще излезе от избраните устройства от профила ви. Ще трябва да влезете отново на тези устройства.',
-      one: 'Това ще излезе от избраното устройство от профила ви. Ще трябва да влезете отново на това устройство.',
+      other:
+          'Това ще излезе от избраните устройства от профила ви. Ще трябва да влезете отново на тези устройства.',
+      one:
+          'Това ще излезе от избраното устройство от профила ви. Ще трябва да влезете отново на това устройство.',
     );
     return '$_temp0';
   }
@@ -5153,7 +5156,8 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count общности временно не са достъпни поради неизправност на флукс кондензатора.',
-      one: '1 общност временно не е достъпна поради неизправност на флукс кондензатора.',
+      one:
+          '1 общност временно не е достъпна поради неизправност на флукс кондензатора.',
     );
     return '$_temp0';
   }
@@ -6113,7 +6117,8 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
       locale: localeName,
       other:
           'Вече сте свързани към този гласов канал от $count други устройства. Какво искате да направите?',
-      one: 'Вече сте свързани към този гласов канал от 1 друго устройство. Какво искате да направите?',
+      one:
+          'Вече сте свързани към този гласов канал от 1 друго устройство. Какво искате да направите?',
     );
     return '$_temp0';
   }
@@ -9962,7 +9967,8 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'С покупката приемаш <terms>Условията за ползване</terms> и <privacy>Политиката за поверителност</privacy>.',
+      'both':
+          'С покупката приемаш <terms>Условията за ползване</terms> и <privacy>Политиката за поверителност</privacy>.',
       'terms': 'С покупката приемаш <terms>Условията за ползване</terms>.',
       'other':
           'С покупката приемаш <privacy>Политиката за поверителност</privacy>.',
@@ -9973,7 +9979,8 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'С покупката си прие <terms>Условията за ползване</terms> и <privacy>Политиката за поверителност</privacy>.',
+      'both':
+          'С покупката си прие <terms>Условията за ползване</terms> и <privacy>Политиката за поверителност</privacy>.',
       'terms': 'С покупката си прие <terms>Условията за ползване</terms>.',
       'other':
           'С покупката си прие <privacy>Политиката за поверителност</privacy>.',
@@ -9984,7 +9991,8 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': '<terms>Общи условия</terms> и <privacy>Политика за поверителност</privacy>',
+      'both':
+          '<terms>Общи условия</terms> и <privacy>Политика за поверителност</privacy>',
       'terms': '<terms>Общи условия</terms>',
       'other': '<privacy>Политика за поверителност</privacy>',
     });
@@ -15819,7 +15827,8 @@ class FluxerLocalizationsBg extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count канала следват този канал. Ако го преобразувате в текстов канал, тези следвания ще бъдат премахнати.',
-      one: '1 канал следва този канал. Ако го преобразувате в текстов канал, това следване ще бъде премахнато.',
+      one:
+          '1 канал следва този канал. Ако го преобразувате в текстов канал, това следване ще бъде премахнато.',
     );
     return '$_temp0';
   }

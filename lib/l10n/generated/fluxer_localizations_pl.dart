@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -319,8 +318,10 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Logując się, akceptujesz <terms>Warunki korzystania z usługi</terms> i <privacy>Politykę prywatności</privacy>.',
-      'terms': 'Logując się, akceptujesz <terms>Warunki korzystania z usługi</terms>.',
+      'both':
+          'Logując się, akceptujesz <terms>Warunki korzystania z usługi</terms> i <privacy>Politykę prywatności</privacy>.',
+      'terms':
+          'Logując się, akceptujesz <terms>Warunki korzystania z usługi</terms>.',
       'other':
           'Logując się, akceptujesz <privacy>Politykę prywatności</privacy>.',
     });
@@ -877,7 +878,8 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Akceptuję <terms>Warunki korzystania z usługi</terms> i <privacy>Politykę prywatności</privacy>',
+      'both':
+          'Akceptuję <terms>Warunki korzystania z usługi</terms> i <privacy>Politykę prywatności</privacy>',
       'terms': 'Akceptuję <terms>Warunki korzystania z usługi</terms>',
       'other': 'Akceptuję <privacy>Politykę prywatności</privacy>',
     });
@@ -4083,8 +4085,10 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Spowoduje to wylogowanie zaznaczonych urządzeń z Twojego konta. Będziesz musiał/a ponownie zalogować się na tych urządzeniach.',
-      one: 'Spowoduje to wylogowanie zaznaczonego urządzenia z Twojego konta. Będziesz musiał/a ponownie zalogować się na tym urządzeniu.',
+      other:
+          'Spowoduje to wylogowanie zaznaczonych urządzeń z Twojego konta. Będziesz musiał/a ponownie zalogować się na tych urządzeniach.',
+      one:
+          'Spowoduje to wylogowanie zaznaczonego urządzenia z Twojego konta. Będziesz musiał/a ponownie zalogować się na tym urządzeniu.',
     );
     return '$_temp0';
   }
@@ -5167,7 +5171,8 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count społeczności są tymczasowo niedostępne z powodu awarii stabilizatora strumienia.',
-      one: '1 społeczność jest tymczasowo niedostępna z powodu awarii stabilizatora strumienia.',
+      one:
+          '1 społeczność jest tymczasowo niedostępna z powodu awarii stabilizatora strumienia.',
     );
     return '$_temp0';
   }
@@ -6127,7 +6132,8 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
       locale: localeName,
       other:
           'Już jesteś połączony(a) z tym kanałem głosowym z $count innych urządzeń. Co chcesz zrobić?',
-      one: 'Już jesteś połączony(a) z tym kanałem głosowym z 1 innego urządzenia. Co chcesz zrobić?',
+      one:
+          'Już jesteś połączony(a) z tym kanałem głosowym z 1 innego urządzenia. Co chcesz zrobić?',
     );
     return '$_temp0';
   }
@@ -9968,7 +9974,8 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Kupując, akceptujesz <terms>Warunki korzystania z usługi</terms> i <privacy>Politykę prywatności</privacy>.',
+      'both':
+          'Kupując, akceptujesz <terms>Warunki korzystania z usługi</terms> i <privacy>Politykę prywatności</privacy>.',
       'terms':
           'Kupując, akceptujesz <terms>Warunki korzystania z usługi</terms>.',
       'other': 'Kupując, akceptujesz <privacy>Politykę prywatności</privacy>.',
@@ -9979,9 +9986,12 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Dokonując zakupu, zaakceptowano <terms>Warunki korzystania z usługi</terms> i <privacy>Politykę prywatności</privacy>.',
-      'terms': 'Dokonując zakupu, zaakceptowano <terms>Warunki korzystania z usługi</terms>.',
-      'other': 'Dokonując zakupu, zaakceptowano <privacy>Politykę prywatności</privacy>.',
+      'both':
+          'Dokonując zakupu, zaakceptowano <terms>Warunki korzystania z usługi</terms> i <privacy>Politykę prywatności</privacy>.',
+      'terms':
+          'Dokonując zakupu, zaakceptowano <terms>Warunki korzystania z usługi</terms>.',
+      'other':
+          'Dokonując zakupu, zaakceptowano <privacy>Politykę prywatności</privacy>.',
     });
     return '$_temp0';
   }
@@ -9989,7 +9999,8 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': '<terms>Warunki korzystania z usługi</terms> i <privacy>Polityka prywatności</privacy>',
+      'both':
+          '<terms>Warunki korzystania z usługi</terms> i <privacy>Polityka prywatności</privacy>',
       'terms': '<terms>Warunki korzystania z usługi</terms>',
       'other': '<privacy>Polityka prywatności</privacy>',
     });

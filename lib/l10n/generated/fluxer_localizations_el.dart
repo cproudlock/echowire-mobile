@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -314,8 +313,10 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Συνδεόμενοι, αποδέχεστε τους <terms>Όρους παροχής υπηρεσιών</terms> και την <privacy>Πολιτική απορρήτου</privacy>.',
-      'terms': 'Συνδεόμενοι, αποδέχεστε τους <terms>Όρους παροχής υπηρεσιών</terms>.',
+      'both':
+          'Συνδεόμενοι, αποδέχεστε τους <terms>Όρους παροχής υπηρεσιών</terms> και την <privacy>Πολιτική απορρήτου</privacy>.',
+      'terms':
+          'Συνδεόμενοι, αποδέχεστε τους <terms>Όρους παροχής υπηρεσιών</terms>.',
       'other':
           'Συνδεόμενοι, αποδέχεστε την <privacy>Πολιτική απορρήτου</privacy>.',
     });
@@ -874,7 +875,8 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Συμφωνώ με τους <terms>Όρους παροχής υπηρεσιών</terms> και την <privacy>Πολιτική απορρήτου</privacy>',
+      'both':
+          'Συμφωνώ με τους <terms>Όρους παροχής υπηρεσιών</terms> και την <privacy>Πολιτική απορρήτου</privacy>',
       'terms': 'Συμφωνώ με τους <terms>Όρους παροχής υπηρεσιών</terms>',
       'other': 'Συμφωνώ με την <privacy>Πολιτική απορρήτου</privacy>',
     });
@@ -4090,8 +4092,10 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Αυτό θα αποσυνδέσει τις επιλεγμένες συσκευές από τον λογαριασμό σας. Θα χρειαστεί να συνδεθείτε ξανά σε αυτές τις συσκευές.',
-      one: 'Αυτό θα αποσυνδέσει την επιλεγμένη συσκευή από τον λογαριασμό σας. Θα χρειαστεί να συνδεθείτε ξανά σε αυτήν τη συσκευή.',
+      other:
+          'Αυτό θα αποσυνδέσει τις επιλεγμένες συσκευές από τον λογαριασμό σας. Θα χρειαστεί να συνδεθείτε ξανά σε αυτές τις συσκευές.',
+      one:
+          'Αυτό θα αποσυνδέσει την επιλεγμένη συσκευή από τον λογαριασμό σας. Θα χρειαστεί να συνδεθείτε ξανά σε αυτήν τη συσκευή.',
     );
     return '$_temp0';
   }
@@ -5179,7 +5183,8 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count κοινότητες είναι προσωρινά μη διαθέσιμες λόγω δυσλειτουργίας πυκνωτή ροής.',
-      one: '1 κοινότητα είναι προσωρινά μη διαθέσιμη λόγω δυσλειτουργίας πυκνωτή ροής.',
+      one:
+          '1 κοινότητα είναι προσωρινά μη διαθέσιμη λόγω δυσλειτουργίας πυκνωτή ροής.',
     );
     return '$_temp0';
   }
@@ -6138,7 +6143,8 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
       locale: localeName,
       other:
           'Είστε ήδη συνδεδεμένοι σε αυτό το φωνητικό κανάλι από $count άλλες συσκευές. Τι θέλετε να κάνετε;',
-      one: 'Είστε ήδη συνδεδεμένοι σε αυτό το φωνητικό κανάλι από 1 άλλη συσκευή. Τι θέλετε να κάνετε;',
+      one:
+          'Είστε ήδη συνδεδεμένοι σε αυτό το φωνητικό κανάλι από 1 άλλη συσκευή. Τι θέλετε να κάνετε;',
     );
     return '$_temp0';
   }
@@ -9997,8 +10003,10 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Με την αγορά, αποδέχεστε τους <terms>Όρους παροχής υπηρεσιών</terms> και την <privacy>Πολιτική απορρήτου</privacy>.',
-      'terms': 'Με την αγορά, αποδέχεστε τους <terms>Όρους παροχής υπηρεσιών</terms>.',
+      'both':
+          'Με την αγορά, αποδέχεστε τους <terms>Όρους παροχής υπηρεσιών</terms> και την <privacy>Πολιτική απορρήτου</privacy>.',
+      'terms':
+          'Με την αγορά, αποδέχεστε τους <terms>Όρους παροχής υπηρεσιών</terms>.',
       'other':
           'Με την αγορά, αποδέχεστε την <privacy>Πολιτική απορρήτου</privacy>.',
     });
@@ -10008,9 +10016,12 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Με την αγορά, αποδεχτήκατε τους <terms>Όρους παροχής υπηρεσιών</terms> και την <privacy>Πολιτική απορρήτου</privacy>.',
-      'terms': 'Με την αγορά, αποδεχτήκατε τους <terms>Όρους παροχής υπηρεσιών</terms>.',
-      'other': 'Με την αγορά, αποδεχτήκατε την <privacy>Πολιτική απορρήτου</privacy>.',
+      'both':
+          'Με την αγορά, αποδεχτήκατε τους <terms>Όρους παροχής υπηρεσιών</terms> και την <privacy>Πολιτική απορρήτου</privacy>.',
+      'terms':
+          'Με την αγορά, αποδεχτήκατε τους <terms>Όρους παροχής υπηρεσιών</terms>.',
+      'other':
+          'Με την αγορά, αποδεχτήκατε την <privacy>Πολιτική απορρήτου</privacy>.',
     });
     return '$_temp0';
   }
@@ -10018,7 +10029,8 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': '<terms>Όροι παροχής υπηρεσιών</terms> και <privacy>Πολιτική απορρήτου</privacy>',
+      'both':
+          '<terms>Όροι παροχής υπηρεσιών</terms> και <privacy>Πολιτική απορρήτου</privacy>',
       'terms': '<terms>Όροι παροχής υπηρεσιών</terms>',
       'other': '<privacy>Πολιτική απορρήτου</privacy>',
     });
@@ -15856,7 +15868,8 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count κανάλια παρακολουθούν αυτό το κανάλι. Η μετατροπή του σε κανάλι κειμένου καταργεί αυτές τις παρακολουθήσεις.',
-      one: '1 κανάλι παρακολουθεί αυτό το κανάλι. Η μετατροπή του σε κανάλι κειμένου καταργεί αυτήν την παρακολούθηση.',
+      one:
+          '1 κανάλι παρακολουθεί αυτό το κανάλι. Η μετατροπή του σε κανάλι κειμένου καταργεί αυτήν την παρακολούθηση.',
     );
     return '$_temp0';
   }

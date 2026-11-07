@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -316,9 +315,12 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Conectându-te, ești de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.',
-      'terms': 'Conectându-te, ești de acord cu <terms>Termenii serviciului</terms>.',
-      'other': 'Conectându-te, ești de acord cu <privacy>Politica de confidențialitate</privacy>.',
+      'both':
+          'Conectându-te, ești de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.',
+      'terms':
+          'Conectându-te, ești de acord cu <terms>Termenii serviciului</terms>.',
+      'other':
+          'Conectându-te, ești de acord cu <privacy>Politica de confidențialitate</privacy>.',
     });
     return '$_temp0';
   }
@@ -875,7 +877,8 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Sunt de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>',
+      'both':
+          'Sunt de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>',
       'terms': 'Sunt de acord cu <terms>Termenii serviciului</terms>',
       'other':
           'Sunt de acord cu <privacy>Politica de confidențialitate</privacy>',
@@ -4076,8 +4079,10 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Aceasta va deconecta dispozitivele selectate din contul tău. Va trebui să te conectezi din nou pe acele dispozitive.',
-      one: 'Aceasta va deconecta dispozitivul selectat din contul tău. Va trebui să te conectezi din nou pe acel dispozitiv.',
+      other:
+          'Aceasta va deconecta dispozitivele selectate din contul tău. Va trebui să te conectezi din nou pe acele dispozitive.',
+      one:
+          'Aceasta va deconecta dispozitivul selectat din contul tău. Va trebui să te conectezi din nou pe acel dispozitiv.',
     );
     return '$_temp0';
   }
@@ -5154,7 +5159,8 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count comunități sunt temporar indisponibile din cauza unei defecțiuni a condensatorului de flux.',
-      one: '1 comunitate este temporar indisponibilă din cauza unei defecțiuni a condensatorului de flux.',
+      one:
+          '1 comunitate este temporar indisponibilă din cauza unei defecțiuni a condensatorului de flux.',
     );
     return '$_temp0';
   }
@@ -6108,7 +6114,8 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       locale: localeName,
       other:
           'Te-ai conectat deja la acest canal vocal de pe $count alte dispozitive. Ce dorești să faci?',
-      one: 'Te-ai conectat deja la acest canal vocal de pe 1 alt dispozitiv. Ce dorești să faci?',
+      one:
+          'Te-ai conectat deja la acest canal vocal de pe 1 alt dispozitiv. Ce dorești să faci?',
     );
     return '$_temp0';
   }
@@ -9948,9 +9955,12 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Prin cumpărare, ești de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.',
-      'terms': 'Prin cumpărare, ești de acord cu <terms>Termenii serviciului</terms>.',
-      'other': 'Prin cumpărare, ești de acord cu <privacy>Politica de confidențialitate</privacy>.',
+      'both':
+          'Prin cumpărare, ești de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.',
+      'terms':
+          'Prin cumpărare, ești de acord cu <terms>Termenii serviciului</terms>.',
+      'other':
+          'Prin cumpărare, ești de acord cu <privacy>Politica de confidențialitate</privacy>.',
     });
     return '$_temp0';
   }
@@ -9958,9 +9968,12 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Prin cumpărare, ai fost de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.',
-      'terms': 'Prin cumpărare, ai fost de acord cu <terms>Termenii serviciului</terms>.',
-      'other': 'Prin cumpărare, ai fost de acord cu <privacy>Politica de confidențialitate</privacy>.',
+      'both':
+          'Prin cumpărare, ai fost de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.',
+      'terms':
+          'Prin cumpărare, ai fost de acord cu <terms>Termenii serviciului</terms>.',
+      'other':
+          'Prin cumpărare, ai fost de acord cu <privacy>Politica de confidențialitate</privacy>.',
     });
     return '$_temp0';
   }
@@ -9968,7 +9981,8 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': '<terms>Termeni și condiții</terms> și <privacy>Politica de confidențialitate</privacy>',
+      'both':
+          '<terms>Termeni și condiții</terms> și <privacy>Politica de confidențialitate</privacy>',
       'terms': '<terms>Termeni și condiții</terms>',
       'other': '<privacy>Politica de confidențialitate</privacy>',
     });

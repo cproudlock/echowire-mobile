@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -313,9 +312,12 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Giriş yaparak <terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
-      'terms': 'Giriş yaparak <terms>Hizmet Şartları</terms>\'nı kabul etmiş olursunuz.',
-      'other': 'Giriş yaparak <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
+      'both':
+          'Giriş yaparak <terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
+      'terms':
+          'Giriş yaparak <terms>Hizmet Şartları</terms>\'nı kabul etmiş olursunuz.',
+      'other':
+          'Giriş yaparak <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
     });
     return '$_temp0';
   }
@@ -868,7 +870,8 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String registerConsentLinks(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': '<terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul ediyorum',
+      'both':
+          '<terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul ediyorum',
       'terms': '<terms>Hizmet Şartları</terms>\'nı kabul ediyorum',
       'other': '<privacy>Gizlilik Politikası</privacy>\'nı kabul ediyorum',
     });
@@ -4036,8 +4039,10 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Bu, seçilen cihazları hesabından çıkaracaktır. O cihazlarda tekrar giriş yapman gerekecek.',
-      one: 'Bu, seçilen cihazı hesabından çıkaracaktır. O cihazda tekrar giriş yapman gerekecek.',
+      other:
+          'Bu, seçilen cihazları hesabından çıkaracaktır. O cihazlarda tekrar giriş yapman gerekecek.',
+      one:
+          'Bu, seçilen cihazı hesabından çıkaracaktır. O cihazda tekrar giriş yapman gerekecek.',
     );
     return '$_temp0';
   }
@@ -5112,7 +5117,8 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count topluluk, akı kapasitörü arızası nedeniyle geçici olarak kullanılamıyor.',
-      one: '1 topluluk, akı kapasitörü arızası nedeniyle geçici olarak kullanılamıyor.',
+      one:
+          '1 topluluk, akı kapasitörü arızası nedeniyle geçici olarak kullanılamıyor.',
     );
     return '$_temp0';
   }
@@ -6061,7 +6067,8 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       locale: localeName,
       other:
           'Bu sesli kanala zaten $count başka cihazdan bağlısınız. Ne yapmak istersiniz?',
-      one: 'Bu sesli kanala zaten 1 başka cihazdan bağlısınız. Ne yapmak istersiniz?',
+      one:
+          'Bu sesli kanala zaten 1 başka cihazdan bağlısınız. Ne yapmak istersiniz?',
     );
     return '$_temp0';
   }
@@ -9868,9 +9875,12 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Satın alarak <terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
-      'terms': 'Satın alarak <terms>Hizmet Şartları</terms>\'nı kabul etmiş olursunuz.',
-      'other': 'Satın alarak <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
+      'both':
+          'Satın alarak <terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
+      'terms':
+          'Satın alarak <terms>Hizmet Şartları</terms>\'nı kabul etmiş olursunuz.',
+      'other':
+          'Satın alarak <privacy>Gizlilik Politikası</privacy>\'nı kabul etmiş olursunuz.',
     });
     return '$_temp0';
   }
@@ -9878,10 +9888,12 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreementPast(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': 'Satın alırken <terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul ettiniz.',
+      'both':
+          'Satın alırken <terms>Hizmet Şartları</terms>\'nı ve <privacy>Gizlilik Politikası</privacy>\'nı kabul ettiniz.',
       'terms':
           'Satın alırken <terms>Hizmet Şartları</terms>\'nı kabul ettiniz.',
-      'other': 'Satın alırken <privacy>Gizlilik Politikası</privacy>\'nı kabul ettiniz.',
+      'other':
+          'Satın alırken <privacy>Gizlilik Politikası</privacy>\'nı kabul ettiniz.',
     });
     return '$_temp0';
   }
@@ -9889,7 +9901,8 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String instanceLegalLinksList(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': '<terms>Hizmet Şartları</terms> ve <privacy>Gizlilik politikası</privacy>',
+      'both':
+          '<terms>Hizmet Şartları</terms> ve <privacy>Gizlilik politikası</privacy>',
       'terms': '<terms>Hizmet Şartları</terms>',
       'other': '<privacy>Gizlilik politikası</privacy>',
     });
@@ -15622,7 +15635,8 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       locale: localeName,
       other:
           '$count kanal bu kanalı takip ediyor. Bu kanalı bir metin kanalına dönüştürmek, bu takipleri kaldırır.',
-      one: '1 kanal bu kanalı takip ediyor. Bu kanalı bir metin kanalına dönüştürmek, bu takibi kaldırır.',
+      one:
+          '1 kanal bu kanalı takip ediyor. Bu kanalı bir metin kanalına dönüştürmek, bu takibi kaldırır.',
     );
     return '$_temp0';
   }

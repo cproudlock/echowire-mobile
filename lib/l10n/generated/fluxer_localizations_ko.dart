@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'fluxer_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -305,7 +304,8 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': '로그인하면 <terms>이용약관</terms> 및 <privacy>개인정보처리방침</privacy>에 동의하는 것으로 간주됩니다.',
+      'both':
+          '로그인하면 <terms>이용약관</terms> 및 <privacy>개인정보처리방침</privacy>에 동의하는 것으로 간주됩니다.',
       'terms': '로그인하면 <terms>이용약관</terms>에 동의하는 것으로 간주됩니다.',
       'other': '로그인하면 <privacy>개인정보처리방침</privacy>에 동의하는 것으로 간주됩니다.',
     });
@@ -9480,7 +9480,8 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   @override
   String premiumDisclaimerAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
-      'both': '구매하면 <terms>이용약관</terms> 및 <privacy>개인정보처리방침</privacy>에 동의하는 것으로 간주됩니다.',
+      'both':
+          '구매하면 <terms>이용약관</terms> 및 <privacy>개인정보처리방침</privacy>에 동의하는 것으로 간주됩니다.',
       'terms': '구매하면 <terms>이용약관</terms>에 동의하는 것으로 간주됩니다.',
       'other': '구매하면 <privacy>개인정보처리방침</privacy>에 동의하는 것으로 간주됩니다.',
     });

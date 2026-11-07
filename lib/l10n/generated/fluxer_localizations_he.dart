@@ -4474,6 +4474,14 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
       'בגלל חוקים בנושא תוכן למבוגרים במקום שבו אתה נמצא, תוכן למבוגרים אינו זמין מכאן.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'הודעה בערוץ 18+';
 
   @override
@@ -4482,6 +4490,10 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'טווח הגילאים שמשותף על ידי ה-Apple Account שלך הוא מתחת ל-13. echowire מיועד רק לבני 13 ומעלה.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'המשך';
@@ -4519,6 +4531,14 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'כדי לבחור כאן \"הצגה\", פתח את echowire בדפדפן או במחשב, עבור אל \"פרטיות\" בהגדרות והפעל את \"אפשר תוכן 18+ ב-iPhone וב-iPad\".';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -6271,6 +6291,9 @@ class FluxerLocalizationsHe extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'אוזניות';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'שינוי פלט שמע';

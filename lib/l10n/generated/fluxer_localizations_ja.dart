@@ -4360,6 +4360,14 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
       'お住まいの地域の成人向けコンテンツに関する法律により、この場所からは成人向けコンテンツを利用できません。';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => '18歳以上向けチャンネルのメッセージ';
 
   @override
@@ -4368,6 +4376,10 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Apple Accountで共有された年齢層は13歳未満です。echowireは13歳以上の方のみご利用いただけます。';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => '続行';
@@ -4405,6 +4417,14 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'ここで「表示」を選ぶには、ウェブまたはデスクトップでechowireを開き、設定の「プライバシー」で「iPhoneとiPadで18歳以上向けコンテンツを許可」をオンにしてください。';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -6101,6 +6121,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'ヘッドホン';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'オーディオ出力を変更';

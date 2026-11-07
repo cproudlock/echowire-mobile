@@ -4513,6 +4513,14 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       'Bulunduğunuz yerdeki yetişkin içerik yasaları nedeniyle yetişkinlere uygun içerik buradan kullanılamıyor.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => '18+ kanalındaki mesaj';
 
   @override
@@ -4521,6 +4529,10 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Apple Account\'unuzun paylaştığı yaş aralığı 13\'ün altında. echowire yalnızca 13 yaş ve üzerindeki kişiler içindir.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Devam et';
@@ -4560,6 +4572,14 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Burada “Göster” seçeneğini seçmek için echowire\'ı web\'de veya masaüstünde açın, ayarlarınızda “Gizlilik” bölümüne gidin ve “iPhone ve iPad\'de 18+ içeriğe izin ver” seçeneğini açın.';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -6335,6 +6355,9 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Kulaklık';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Ses çıkışını değiştir';

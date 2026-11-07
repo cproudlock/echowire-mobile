@@ -4564,6 +4564,14 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
       'Ze względu na przepisy dotyczące treści dla dorosłych obowiązujące w Twojej lokalizacji treści dla dorosłych nie są tu dostępne.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'Wiadomość na kanale 18+';
 
   @override
@@ -4573,6 +4581,10 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Przedział wiekowy udostępniony przez Twoje Apple Account to poniżej 13 lat. echowire jest przeznaczony wyłącznie dla osób w wieku 13 lat i starszych.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Kontynuuj';
@@ -4613,6 +4625,14 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Aby wybrać tutaj opcję „Pokaż”, otwórz echowire w przeglądarce lub na komputerze, przejdź do sekcji „Prywatność” w ustawieniach i włącz opcję „Zezwól na treści 18+ na iPhonie i iPadzie”.';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -6401,6 +6421,9 @@ class FluxerLocalizationsPl extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Słuchawki';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Zmień wyjście audio';

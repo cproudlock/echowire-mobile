@@ -8,6 +8,10 @@ import android.media.AudioManager
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.telecom.CallAudioState
+import android.telecom.Connection
+import com.hiennv.flutter_callkit_incoming.CallkitConnection
+import com.hiennv.flutter_callkit_incoming.getDataActiveCalls
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -19,11 +23,17 @@ internal enum class VoiceOutputRoute {
     Speaker,
     Earpiece,
     Headset,
+    Bluetooth,
 }
 
-internal val headsetCommunicationDeviceTypes: List<Int> = listOf(
+internal val bluetoothCommunicationDeviceTypes: List<Int> = listOf(
     AudioDeviceInfo.TYPE_BLUETOOTH_SCO,
     AudioDeviceInfo.TYPE_BLE_HEADSET,
+    AudioDeviceInfo.TYPE_BLE_SPEAKER,
+    AudioDeviceInfo.TYPE_HEARING_AID,
+)
+
+internal val headsetCommunicationDeviceTypes: List<Int> = listOf(
     AudioDeviceInfo.TYPE_WIRED_HEADSET,
     AudioDeviceInfo.TYPE_WIRED_HEADPHONES,
     AudioDeviceInfo.TYPE_USB_HEADSET,
@@ -33,6 +43,7 @@ internal fun voiceOutputRouteFromName(name: String?): VoiceOutputRoute {
     return when (name) {
         "earpiece" -> VoiceOutputRoute.Earpiece
         "headset" -> VoiceOutputRoute.Headset
+        "bluetooth" -> VoiceOutputRoute.Bluetooth
         else -> VoiceOutputRoute.Speaker
     }
 }
@@ -46,6 +57,7 @@ internal fun communicationDeviceTypeForRoute(
         VoiceOutputRoute.Speaker -> listOf(AudioDeviceInfo.TYPE_BUILTIN_SPEAKER)
         VoiceOutputRoute.Earpiece -> listOf(AudioDeviceInfo.TYPE_BUILTIN_EARPIECE)
         VoiceOutputRoute.Headset -> headsetCommunicationDeviceTypes
+        VoiceOutputRoute.Bluetooth -> bluetoothCommunicationDeviceTypes
     }
     for (type in preferredTypes) {
         if (type in available) {
@@ -63,30 +75,6 @@ internal fun communicationDeviceForRoute(
     return devices.firstOrNull { it.type == type }
 }
 
-internal fun activeCommunicationDeviceTypeMatchesRoute(
-    route: VoiceOutputRoute,
-    activeDeviceType: Int?,
-    speakerphoneOn: Boolean,
-    sdkAtLeast31: Boolean,
-): Boolean {
-    if (!sdkAtLeast31) {
-        return when (route) {
-            VoiceOutputRoute.Speaker -> speakerphoneOn
-            VoiceOutputRoute.Earpiece, VoiceOutputRoute.Headset -> !speakerphoneOn
-        }
-    }
-    return when (route) {
-        VoiceOutputRoute.Speaker ->
-            speakerphoneOn && activeDeviceType != AudioDeviceInfo.TYPE_BUILTIN_EARPIECE &&
-                (activeDeviceType == null ||
-                    activeDeviceType == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER)
-        VoiceOutputRoute.Earpiece ->
-            activeDeviceType == AudioDeviceInfo.TYPE_BUILTIN_EARPIECE
-        VoiceOutputRoute.Headset ->
-            activeDeviceType != null && activeDeviceType in headsetCommunicationDeviceTypes
-    }
-}
-
 internal fun speakerphoneOnForRoute(route: VoiceOutputRoute): Boolean {
     return route == VoiceOutputRoute.Speaker
 }
@@ -102,16 +90,52 @@ private fun String?.equalsSamsung(): Boolean {
     return this?.equals("samsung", ignoreCase = true) == true
 }
 
+internal fun routeFollowUpDelaysMs(
+    manufacturer: String?,
+    brand: String? = null,
+): List<Long> {
+    return if (routesSpeakerWithCommunicationDevice(manufacturer, brand)) {
+        listOf(ROUTE_FOLLOW_UP_MS, 1000L, 2500L, 5000L)
+    } else {
+        listOf(ROUTE_FOLLOW_UP_MS)
+    }
+}
+
+internal fun telecomRouteForVoiceOutput(route: VoiceOutputRoute): Int {
+    return when (route) {
+        VoiceOutputRoute.Speaker -> CallAudioState.ROUTE_SPEAKER
+        VoiceOutputRoute.Earpiece -> CallAudioState.ROUTE_EARPIECE
+        VoiceOutputRoute.Headset -> CallAudioState.ROUTE_WIRED_HEADSET
+        VoiceOutputRoute.Bluetooth -> CallAudioState.ROUTE_BLUETOOTH
+    }
+}
+
+internal fun telecomRouteRequestNeeded(
+    target: Int,
+    currentRoute: Int?,
+    supportedRouteMask: Int?,
+    force: Boolean,
+): Boolean {
+    if (supportedRouteMask != null && supportedRouteMask and target == 0) {
+        return false
+    }
+    return force || currentRoute != target
+}
+
 internal fun availableVoiceOutputRouteNames(
     outputTypes: Set<Int>,
     hasEarpiece: Boolean,
 ): List<String> {
     val names = mutableListOf("speaker")
-    if (AudioDeviceInfo.TYPE_BUILTIN_EARPIECE in outputTypes || hasEarpiece) {
+    val wiredConnected = outputTypes.any { it in headsetCommunicationDeviceTypes }
+    if (!wiredConnected && (AudioDeviceInfo.TYPE_BUILTIN_EARPIECE in outputTypes || hasEarpiece)) {
         names.add("earpiece")
     }
-    if (outputTypes.any { it in headsetCommunicationDeviceTypes }) {
+    if (wiredConnected) {
         names.add("headset")
+    }
+    if (outputTypes.any { it in bluetoothCommunicationDeviceTypes }) {
+        names.add("bluetooth")
     }
     return names
 }
@@ -122,6 +146,7 @@ class VoiceSpeakerRouteBridge(
     private val context: Context = activity.applicationContext
     private val mainHandler = Handler(Looper.getMainLooper())
     private var routeFollowUp: Runnable? = null
+    private var telecomOwnsRoute = false
 
     fun register(flutterEngine: FlutterEngine) {
         MethodChannel(
@@ -145,15 +170,27 @@ class VoiceSpeakerRouteBridge(
                     setVoiceCallVolumeKeys(true)
                     scheduleRouteFollowUp(audioManager, route)
                 }
-                applyVoiceOutputRoute(audioManager, route)
+                applyRoute(audioManager, route, force = true)
                 result.success(null)
             }
             "clearRouteHold" -> {
                 clearRouteHold(audioManager)
                 result.success(null)
             }
+            "routeDiagnostics" -> {
+                result.success(
+                    voiceRouteDiagnostics(
+                        audioManager,
+                        telecomCallConnections(context),
+                        telecomOwnsRoute,
+                    ),
+                )
+            }
             "availableRoutes" -> {
                 result.success(availableVoiceOutputRouteNames(outputTypes(audioManager), hasEarpiece()))
+            }
+            "bluetoothDeviceName" -> {
+                result.success(bluetoothDeviceName(audioManager))
             }
             else -> result.notImplemented()
         }
@@ -161,6 +198,7 @@ class VoiceSpeakerRouteBridge(
 
     private fun clearRouteHold(audioManager: AudioManager) {
         cancelRouteFollowUp()
+        telecomOwnsRoute = false
         setVoiceCallVolumeKeys(false)
         releaseCallSpeaker(audioManager)
         val work = Runnable { releaseCallSpeaker(audioManager) }
@@ -168,10 +206,43 @@ class VoiceSpeakerRouteBridge(
         mainHandler.postDelayed(work, ROUTE_FOLLOW_UP_MS)
     }
 
-    private fun scheduleRouteFollowUp(audioManager: AudioManager, route: VoiceOutputRoute) {
-        val work = Runnable { applyVoiceOutputRoute(audioManager, route) }
+    private fun scheduleRouteFollowUp(
+        audioManager: AudioManager,
+        route: VoiceOutputRoute,
+        delaysMs: List<Long> = routeFollowUpDelaysMs(Build.MANUFACTURER, Build.BRAND),
+    ) {
+        val delayMs = delaysMs.firstOrNull() ?: return
+        val work = Runnable {
+            applyRoute(audioManager, route)
+            scheduleRouteFollowUp(audioManager, route, delaysMs.drop(1))
+        }
         routeFollowUp = work
-        mainHandler.postDelayed(work, ROUTE_FOLLOW_UP_MS)
+        mainHandler.postDelayed(work, delayMs)
+    }
+
+    private fun applyRoute(
+        audioManager: AudioManager,
+        route: VoiceOutputRoute,
+        force: Boolean = false,
+    ) {
+        val connections = if (routesSpeakerWithCommunicationDevice(Build.MANUFACTURER, Build.BRAND)) {
+            telecomCallConnections(context)
+        } else {
+            emptyList()
+        }
+        if (connections.isEmpty()) {
+            telecomOwnsRoute = false
+            applyVoiceOutputRoute(audioManager, route)
+            return
+        }
+        val handingOff = !telecomOwnsRoute
+        if (handingOff) {
+            telecomOwnsRoute = true
+            releaseCallSpeaker(audioManager)
+        }
+        for (connection in connections) {
+            applyTelecomCallRoute(connection, route, force = force || handingOff)
+        }
     }
 
     private fun cancelRouteFollowUp() {
@@ -205,12 +276,25 @@ internal fun outputTypes(audioManager: AudioManager): Set<Int> {
     return emptySet()
 }
 
+internal fun bluetoothDeviceName(audioManager: AudioManager): String? {
+    val devices = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        audioManager.availableCommunicationDevices
+    } else {
+        audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS).toList()
+    }
+    return communicationDeviceForRoute(VoiceOutputRoute.Bluetooth, devices)
+        ?.productName
+        ?.toString()
+        ?.takeIf { it.isNotBlank() }
+}
+
 internal fun applyVoiceOutputRoute(audioManager: AudioManager, route: VoiceOutputRoute) {
     audioManager.mode = AudioManager.MODE_IN_COMMUNICATION
     val speakerphoneOn = speakerphoneOnForRoute(route)
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
         @Suppress("DEPRECATION")
         audioManager.isSpeakerphoneOn = speakerphoneOn
+        setBluetoothSco(audioManager, route == VoiceOutputRoute.Bluetooth)
         return
     }
     if (route == VoiceOutputRoute.Speaker &&
@@ -224,18 +308,78 @@ internal fun applyVoiceOutputRoute(audioManager: AudioManager, route: VoiceOutpu
         audioManager.isSpeakerphoneOn = true
         return
     }
-    @Suppress("DEPRECATION")
-    audioManager.isSpeakerphoneOn = speakerphoneOn
     val device = communicationDeviceForRoute(
         route,
         audioManager.availableCommunicationDevices,
-    ) ?: return
-    if (audioManager.communicationDevice?.id == device.id) {
-        return
+    )
+    if (device != null && audioManager.communicationDevice?.id != device.id) {
+        if (!audioManager.setCommunicationDevice(device)) {
+            audioManager.clearCommunicationDevice()
+        }
     }
-    audioManager.setCommunicationDevice(device)
     @Suppress("DEPRECATION")
     audioManager.isSpeakerphoneOn = speakerphoneOn
+}
+
+@Suppress("DEPRECATION")
+private fun setBluetoothSco(audioManager: AudioManager, enabled: Boolean) {
+    if (audioManager.isBluetoothScoOn == enabled) {
+        return
+    }
+    if (enabled) {
+        audioManager.startBluetoothSco()
+    } else {
+        audioManager.stopBluetoothSco()
+    }
+}
+
+internal fun telecomCallConnections(context: Context): List<CallkitConnection> {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+        return emptyList()
+    }
+    return getDataActiveCalls(context).mapNotNull { CallkitConnection.find(it.id) }
+}
+
+@Suppress("DEPRECATION")
+internal fun applyTelecomCallRoute(
+    connection: CallkitConnection,
+    route: VoiceOutputRoute,
+    force: Boolean,
+) {
+    val state = connection.callAudioState
+    val target = telecomRouteForVoiceOutput(route)
+    if (telecomRouteRequestNeeded(target, state?.route, state?.supportedRouteMask, force)) {
+        connection.setAudioRoute(target)
+    }
+}
+
+@Suppress("DEPRECATION")
+internal fun voiceRouteDiagnostics(
+    audioManager: AudioManager,
+    connections: List<CallkitConnection>,
+    telecomOwnsRoute: Boolean,
+): String {
+    val communicationDevice = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        when (val type = audioManager.communicationDevice?.type) {
+            null -> "none"
+            AudioDeviceInfo.TYPE_BUILTIN_SPEAKER -> "speaker"
+            AudioDeviceInfo.TYPE_BUILTIN_EARPIECE -> "earpiece"
+            else -> "type$type"
+        }
+    } else {
+        "unsupported"
+    }
+    val telecomCalls = connections.joinToString(prefix = "[", postfix = "]") { connection ->
+        val state = connection.callAudioState
+        val route = state?.let { CallAudioState.audioRouteToString(it.route) } ?: "unknown"
+        "${Connection.stateToString(connection.state)}/$route"
+    }
+    return "mode=${audioManager.mode} " +
+        "commDevice=$communicationDevice " +
+        "speakerphoneOn=${audioManager.isSpeakerphoneOn} " +
+        "telecomOwnsRoute=$telecomOwnsRoute " +
+        "telecomCalls=$telecomCalls " +
+        "build=${Build.DISPLAY}"
 }
 
 internal fun releaseCallSpeaker(audioManager: AudioManager) {
@@ -243,6 +387,8 @@ internal fun releaseCallSpeaker(audioManager: AudioManager) {
     audioManager.isSpeakerphoneOn = false
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         audioManager.clearCommunicationDevice()
+    } else {
+        setBluetoothSco(audioManager, false)
     }
     audioManager.mode = AudioManager.MODE_NORMAL
     @Suppress("DEPRECATION")

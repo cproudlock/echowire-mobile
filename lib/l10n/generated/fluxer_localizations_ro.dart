@@ -4557,6 +4557,14 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
       'Din cauza legilor privind conținutul matur din zona ta, conținutul matur nu este disponibil de aici.';
 
   @override
+  String get matureContentInstallFromPlayBody =>
+      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
+
+  @override
+  String get matureContentVerifyInPlayBody =>
+      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
+
+  @override
   String get matureMessageHiddenPreview => 'Mesaj într-un canal 18+';
 
   @override
@@ -4566,6 +4574,10 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBody =>
       'Intervalul de vârstă partajat de Apple Account este sub 13 ani. echowire este doar pentru persoane de 13 ani sau mai mult.';
+
+  @override
+  String get ageRangeUnderMinimumBodyGoogle =>
+      'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
 
   @override
   String get matureContentProceedButton => 'Continuă';
@@ -4603,6 +4615,14 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
   @override
   String get sensitiveContentAppLockedHint =>
       'Pentru a alege „Afișare” aici, deschide echowire pe web sau pe desktop, mergi la „Confidențialitate” în setări și activează „Permite conținut 18+ pe iPhone și iPad”.';
+
+  @override
+  String get sensitiveContentInstallFromPlayHint =>
+      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+
+  @override
+  String get sensitiveContentVerifyInPlayHint =>
+      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -6383,6 +6403,9 @@ class FluxerLocalizationsRo extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteHeadset => 'Căști';
+
+  @override
+  String get voiceOutputRouteBluetooth => 'Bluetooth';
 
   @override
   String get voiceChangeAudioOutputLabel => 'Schimbă ieșirea audio';

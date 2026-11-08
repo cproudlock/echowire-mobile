@@ -279,8 +279,8 @@ void main() {
           'chat.example.com',
         );
 
-        expect(snapshot.apiBaseUrl, 'https://fluxer.com/api/v1');
-        expect(snapshot.displayDomain, 'fluxer.com');
+        expect(snapshot.apiBaseUrl, 'https://echowire.org/api/v1');
+        expect(snapshot.displayDomain, 'echowire.org');
       },
     );
 
@@ -341,17 +341,17 @@ Map<String, dynamic> buildOfficialDiscovery({int apiCodeVersion = 1}) {
   return <String, dynamic>{
     'api_code_version': apiCodeVersion,
     'endpoints': <String, dynamic>{
-      'api': 'https://fluxer.com/api',
-      'api_client': 'https://fluxer.com/api/v1',
-      'api_public': 'https://fluxer.com/api',
-      'gateway': 'wss://gateway.fluxer.com',
+      'api': 'https://echowire.org/api',
+      'api_client': 'https://echowire.org/api/v1',
+      'api_public': 'https://echowire.org/api',
+      'gateway': 'wss://echowire.org/gateway',
       'media': 'https://fluxerusercontent.com',
       'static_cdn': 'https://fluxerstatic.com',
-      'marketing': 'https://fluxer.com',
+      'marketing': 'https://echowire.org',
       'admin': 'https://admin.fluxer.com',
       'invite': 'https://fluxer.gg',
       'gift': 'https://fluxer.gift',
-      'webapp': 'https://web.fluxer.com',
+      'webapp': 'https://echowire.org',
     },
     'captcha': <String, dynamic>{
       'provider': 'none',

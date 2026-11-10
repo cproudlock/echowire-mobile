@@ -194,6 +194,5 @@ void main() {
       expect(find.byKey(const Key('toast-leading')), findsOneWidget);
       expect(find.byIcon(PhosphorIconsBold.warning), findsNothing);
     });
-
   });
 }

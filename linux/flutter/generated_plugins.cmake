@@ -20,6 +20,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   sentry_flutter
   super_native_extensions
   url_launcher_linux
+  webcrypto
   window_manager
   window_to_front
 )

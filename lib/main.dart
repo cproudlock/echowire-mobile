@@ -9,6 +9,7 @@ import 'package:fluxer_app/core/audio/app_media_audio_session.dart';
 import 'package:fluxer_app/core/audio/chat_attachment/chat_attachment_audio_entrypoint.dart';
 import 'package:fluxer_app/core/bootstrap/flutter_error_ui.dart';
 import 'package:fluxer_app/core/bootstrap/image_cache_config.dart';
+import 'package:fluxer_app/core/bootstrap/startup_first_frame_gate.dart';
 import 'package:fluxer_app/core/bootstrap/touch_resampling_config.dart';
 import 'package:fluxer_app/core/build/app_build_config.dart';
 import 'package:fluxer_app/core/build/push_provider_assert.dart';
@@ -21,9 +22,11 @@ import 'package:fluxer_app/core/observability/measure_log_redaction.dart';
 import 'package:fluxer_app/core/observability/observability_reporting_provider.dart';
 import 'package:fluxer_app/core/observability/reporting_consent/app_foreground_session_watchdog.dart';
 import 'package:fluxer_app/core/observability/reporting_consent/observability_reporting_prompt_coordinator.dart';
+import 'package:fluxer_app/core/observability/startup_timeline.dart';
 import 'package:fluxer_app/core/platform/bundled_root_certificates.dart';
 import 'package:fluxer_app/core/platform/fluxer_platform.dart';
 import 'package:fluxer_app/core/providers/app/app_startup_provider.dart';
+import 'package:fluxer_app/core/providers/app/shell_cache.dart';
 import 'package:fluxer_app/core/providers/app/splash_exit_allowed_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/providers/instance/active_instance_provider.dart';
@@ -58,6 +61,8 @@ void _configureImagePicker() {
     implementation.useAndroidPhotoPicker = true;
   }
 }
+
+const Duration _kCachedLaunchFirstFrameLimit = Duration(milliseconds: 1500);
 
 Future<void> _bootstrapStep(String name, Future<void> Function() step) async {
   try {
@@ -104,13 +109,17 @@ void _runFluxerApp(ProviderContainer container) {
 Future<void> _bootstrapFluxer(List<String> args) async {
   FluxerAppZoomBinding.ensureInitialized();
   registerBundledLicenses();
-  await trustBundledRootCertificates();
+  final Future<void> rootCertificates = _bootstrapStep(
+    'app.bootstrap.root_certificates',
+    trustBundledRootCertificates,
+  );
   unawaited(ApplePushService.installReplyHandler());
   assertPushProviderBuildConfig();
   if (Platform.isAndroid &&
       PushProviderGuard.isUnifiedPush &&
       args.contains('--unifiedpush-bg')) {
     DartPluginRegistrant.ensureInitialized();
+    await rootCertificates;
     await UnifiedPushService.ensureBackgroundInitialized();
     return;
   }
@@ -146,6 +155,7 @@ Future<void> _bootstrapFluxer(List<String> args) async {
     );
   }
   await Future.wait<void>([
+    rootCertificates,
     () async {
       await _bootstrapStep(
         'app.bootstrap.foreground_session',
@@ -203,6 +213,11 @@ Future<void> _bootstrapFluxer(List<String> args) async {
     });
   }
 
+  if ((Platform.isAndroid || Platform.isIOS) &&
+      await isShellCacheMarkedFresh()) {
+    StartupFirstFrameGate.hold(limit: _kCachedLaunchFirstFrameLimit);
+  }
+
   _bootstrapChatAttachmentAudioAfterSplashReveal(container);
   unawaited(
     FluxerObservability.instance.traceAsync('app.startup.provider', () async {
@@ -217,9 +232,15 @@ Future<void> _bootstrapFluxer(List<String> args) async {
     'app.run',
     () => _runFluxerApp(container),
   );
+  unawaited(
+    WidgetsBinding.instance.waitUntilFirstFrameRasterized.then(
+      (_) => StartupTimeline.instance.markFirstFrame(),
+    ),
+  );
 }
 
 Future<void> main(List<String> args) async {
+  StartupTimeline.instance.start();
   await runZonedGuarded<Future<void>>(
     () async {
       await _bootstrapFluxer(args);

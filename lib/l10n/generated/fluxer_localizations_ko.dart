@@ -270,6 +270,11 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   }
 
   @override
+  String nagbarGuildMfaRequirement(String communityName) {
+    return 'Moderation actions in $communityName require two-factor authentication. Enable 2FA to kick, ban, time out, or delete messages here.';
+  }
+
+  @override
   String nagbarJoinCommunity(String communityName) {
     return '$communityName에 참여하기';
   }
@@ -4359,14 +4364,6 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
       '회원님이 있는 지역의 성인 콘텐츠 관련 법률로 인해 이곳에서는 성인 콘텐츠를 이용할 수 없습니다.';
 
   @override
-  String get matureContentInstallFromPlayBody =>
-      'Your age can\'t be verified on this copy of echowire because it wasn\'t installed from Google Play. To verify your age and view this content, install echowire from Google Play.';
-
-  @override
-  String get matureContentVerifyInPlayBody =>
-      'Google Play needs to verify your age before this content can be shown. Open the Play Store to finish verifying, then return to echowire.';
-
-  @override
   String get matureMessageHiddenPreview => '18+ 채널의 메시지';
 
   @override
@@ -4379,6 +4376,36 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   @override
   String get ageRangeUnderMinimumBodyGoogle =>
       'The age range shared by your Google Account is under 13. echowire is only for people aged 13 and over.';
+
+  @override
+  String get ageRangeUnlockBody =>
+      'Where you are, the law says a date of birth you type in isn\'t enough for mature content, and you can use the age range on your Apple Account to unlock it. echowire only gets the age range if it\'s 18 or over. An age range under 18 stays on this device.';
+
+  @override
+  String get ageRangeUnlockBodyGoogle =>
+      'Where you are, the law says a date of birth you type in isn\'t enough for mature content, and you can use the age range on your Google Account to unlock it. echowire only gets the age range if it\'s 18 or over. An age range under 18 stays on this device.';
+
+  @override
+  String get ageRangeUnlockHelpLink => 'How unlocking mature content works';
+
+  @override
+  String get ageRangeUnlockButton => 'Unlock mature content';
+
+  @override
+  String get ageRangeUnlockUnderAdult =>
+      'Mature content stays off because the age range on your Apple Account is under 18. The age range stays on this device and isn\'t sent to echowire.';
+
+  @override
+  String get ageRangeUnlockUnderAdultGoogle =>
+      'Mature content stays off because the age range on your Google Account is under 18. The age range stays on this device and isn\'t sent to echowire.';
+
+  @override
+  String get ageRangeUnlockFailed =>
+      'echowire couldn\'t unlock mature content. Please try again later.';
+
+  @override
+  String get ageRangeUnlockDateOfBirthRequired =>
+      'Your account needs a date of birth before echowire can use your age range.';
 
   @override
   String get matureContentProceedButton => '계속하기';
@@ -4419,11 +4446,11 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get sensitiveContentInstallFromPlayHint =>
-      'This copy of echowire wasn\'t installed from Google Play, so it can\'t verify your age. To verify your age here, install echowire from Google Play.';
+      'Unlocking mature content with your Google Account needs the copy of echowire from Google Play.';
 
   @override
-  String get sensitiveContentVerifyInPlayHint =>
-      'Google Play hasn\'t verified your age yet. Open the Play Store to finish verifying, then return to echowire.';
+  String get sensitiveContentFinishInPlayHint =>
+      'Google Play needs one more step before it can share an age range. Open the Play Store to finish it, then come back and press \"Unlock mature content\" again.';
 
   @override
   String chatUploadingAttachmentsSummary(int count) {
@@ -5974,6 +6001,105 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get voiceCallControlsSheetLabel => '음성 통화 컨트롤';
 
   @override
+  String get voiceCallBarOpenCallHint => 'Opens the call';
+
+  @override
+  String get voiceParticipantSpeaking => 'Speaking';
+
+  @override
+  String get voiceParticipantOptionsAction => 'Participant options';
+
+  @override
+  String voiceParticipantOtherDevicesLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Show $count more devices',
+      one: 'Show 1 more device',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get voicePipReturnToCallLabel => 'Return to call';
+
+  @override
+  String voiceAnnounceUserJoined(String name) {
+    return '$name joined';
+  }
+
+  @override
+  String voiceAnnounceUserLeft(String name) {
+    return '$name left';
+  }
+
+  @override
+  String voiceAnnounceUsersJoined(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count people joined',
+      one: '1 person joined',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String voiceAnnounceUsersLeft(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count people left',
+      one: '1 person left',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get voiceAnnounceSomeone => 'Someone';
+
+  @override
+  String get voiceAnnounceConnected => 'Connected to voice';
+
+  @override
+  String get voiceAnnounceReconnecting => 'Reconnecting to voice';
+
+  @override
+  String get voiceAnnounceReconnected => 'Reconnected to voice';
+
+  @override
+  String get voiceAnnounceDisconnected => 'Disconnected from voice';
+
+  @override
+  String get voiceAnnounceMoved => 'Now in a different voice channel';
+
+  @override
+  String get voiceAnnounceServerMuted => 'A moderator muted you';
+
+  @override
+  String get voiceAnnounceServerUnmuted => 'A moderator unmuted you';
+
+  @override
+  String get voiceAnnounceServerDeafened => 'A moderator deafened you';
+
+  @override
+  String get voiceAnnounceServerUndeafened => 'A moderator undeafened you';
+
+  @override
+  String get voiceAnnounceMicMuted => 'Microphone muted';
+
+  @override
+  String get voiceAnnounceMicUnmuted => 'Microphone unmuted';
+
+  @override
+  String get accessibilityAnnounceCallJoinsAndLeavesLabel =>
+      'Announce call joins and leaves';
+
+  @override
+  String get accessibilityAnnounceCallJoinsAndLeavesDescription =>
+      'Let screen readers say who joins or leaves the voice call you\'re in. Connection changes and moderator actions are always announced.';
+
+  @override
   String get voiceConnectionDisconnected => '연결 끊김';
 
   @override
@@ -6119,6 +6245,15 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get voiceOutputRouteBluetooth => 'Bluetooth';
+
+  @override
+  String get voiceOutputRouteBluetoothLe => 'Bluetooth LE';
+
+  @override
+  String get voiceOutputRouteHearingAid => 'Hearing aid';
+
+  @override
+  String get voiceOutputRouteUsb => 'USB headset';
 
   @override
   String get voiceChangeAudioOutputLabel => '오디오 출력 변경';
@@ -10373,6 +10508,14 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get pushRelayConsentDecline => '나중에';
+
+  @override
+  String pushRelayConsentDeclinedToast(String settingLabel) {
+    return 'Push notifications stay off for this account on this device. You can turn them on later with \"$settingLabel\" in notification settings.';
+  }
+
+  @override
+  String get pushRelayConsentDeclinedToastAction => 'Open settings';
 
   @override
   String get userSettingsNavLanguageAndTime => '언어 및 시간';
@@ -15654,6 +15797,21 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get errorUnexpectedTryAgain => '예기치 않은 오류가 발생했습니다. 다시 시도해 주세요.';
+
+  @override
+  String get errorTwoFactorRequiredTitle =>
+      'Two-factor authentication required';
+
+  @override
+  String get errorTwoFactorRequiredMessage =>
+      'This community requires two-factor authentication for moderation actions. Set up 2FA on your account to continue.';
+
+  @override
+  String get errorTwoFactorRequiredSetUp => 'Set up 2FA';
+
+  @override
+  String get memberRolesUpdateFailed =>
+      'Couldn\'t update this member\'s roles. Try again.';
 
   @override
   String get errorMessagingPausedTitle => '메시지 기능이 잠시 멈춰 있어요';

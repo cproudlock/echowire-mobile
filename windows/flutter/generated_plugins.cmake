@@ -26,6 +26,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   share_plus
   super_native_extensions
   url_launcher_windows
+  webcrypto
   window_manager
   window_to_front
 )

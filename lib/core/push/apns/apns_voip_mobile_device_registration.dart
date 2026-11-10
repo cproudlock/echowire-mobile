@@ -169,6 +169,7 @@ class ApnsVoipMobileDeviceRegistration
     if (!await ensurePushRelayConsent(
       ref,
       relayUrl,
+      userId: userId,
       allowPrompt: await isPushNotificationPermissionGranted(),
     )) {
       talker.warning(

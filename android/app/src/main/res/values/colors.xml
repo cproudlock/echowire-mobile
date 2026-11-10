@@ -3,4 +3,6 @@
     <color name="ic_launcher_background">#0B0D1A</color>
     <!-- Echowire: upstream's launch background is its own navy; ours matches the launcher icon background. -->
     <color name="launch_background">#0B0D1A</color>
+    <color name="splash_brand">#413CDD</color>
+    <color name="splash_symbol">#FFFFFF</color>
 </resources>

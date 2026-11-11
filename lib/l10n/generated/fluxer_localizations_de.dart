@@ -316,6 +316,17 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   String get logInWithPasskey => 'Mit einem Passkey anmelden';
 
   @override
+  String get signInWithBrowser => 'Sign in with your browser';
+
+  @override
+  String get signInWithBrowserPasskeyHint =>
+      'To use a passkey on this instance, sign in with your browser.';
+
+  @override
+  String get browserSignInFailed =>
+      'Couldn\'t sign in with your browser. Try again.';
+
+  @override
   String loginLegalAgreement(String links) {
     String _temp0 = intl.Intl.selectLogic(links, {
       'both':
@@ -4934,6 +4945,14 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
   @override
   String get lookAndFeelSyncThemeAcrossDevicesSystemDescription =>
       'Das Systemdesign deaktiviert die Synchronisierung automatisch, um deine Systemeinstellungen auf diesem Gerät zu verfolgen.';
+
+  @override
+  String get lookAndFeelUseSystemDynamicColorsLabel =>
+      'Use Material You colors';
+
+  @override
+  String get lookAndFeelUseSystemDynamicColorsDescription =>
+      'Tint the theme with your device\'s system colors.';
 
   @override
   String get lookAndFeelThemeSyncFailed =>
@@ -17297,6 +17316,277 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
       'Käufe sind für diesen Account gesperrt.';
 
   @override
+  String splashGatewayUnreachable(String domain) {
+    return 'Keine Verbindung zu $domain. Prüfe deine Internetverbindung und versuche es erneut.';
+  }
+
+  @override
+  String get appLockSettingTitle => 'App lock';
+
+  @override
+  String get appLockConfigure => 'Configure';
+
+  @override
+  String get appLockSettingDescription =>
+      'echowire asks for your PIN after it has been in the background for the time you choose. App lock applies to every account on this device.';
+
+  @override
+  String get appLockTimeoutLabel => 'Lock after';
+
+  @override
+  String get appLockTimeoutImmediately => 'Immediately';
+
+  @override
+  String get appLockTimeoutThirtySeconds => '30 seconds';
+
+  @override
+  String get appLockTimeoutOneMinute => '1 minute';
+
+  @override
+  String get appLockTimeoutFiveMinutes => '5 minutes';
+
+  @override
+  String get appLockTimeoutFifteenMinutes => '15 minutes';
+
+  @override
+  String get appLockTimeoutOneHour => '1 hour';
+
+  @override
+  String get appLockTurnOff => 'Turn off app lock';
+
+  @override
+  String get appLockTurnOffConfirmTitle => 'Turn off app lock?';
+
+  @override
+  String get appLockTurnOffConfirmBody =>
+      'echowire will open without asking for your PIN.';
+
+  @override
+  String get appLockEnterCurrentPinTitle => 'Enter your PIN';
+
+  @override
+  String appLockEnterCurrentPinSubtitle(int digits) {
+    return 'Enter your current $digits-digit PIN to continue.';
+  }
+
+  @override
+  String get appLockSetPinTitle => 'Set a PIN';
+
+  @override
+  String appLockCreatePinSubtitle(int digits) {
+    return 'Choose a $digits-digit PIN.';
+  }
+
+  @override
+  String get appLockConfirmPinSubtitle => 'Enter the PIN again to confirm';
+
+  @override
+  String get appLockPinMismatch => 'The PINs don\'t match. Try again.';
+
+  @override
+  String get appLockTooManyAttemptsShort =>
+      'Too many attempts. Wait before trying again.';
+
+  @override
+  String get appLockUnlockTitle => 'Unlock echowire';
+
+  @override
+  String appLockUnlockSubtitlePin(int digits) {
+    return 'Enter your $digits-digit PIN';
+  }
+
+  @override
+  String appLockCooldownMessage(String time) {
+    return 'Too many attempts. Try again in $time.';
+  }
+
+  @override
+  String get appLockWrongPin => 'Incorrect PIN';
+
+  @override
+  String get appLockForgotPin => 'Forgot PIN? Sign out';
+
+  @override
+  String get appLockSignOutConfirmTitle => 'Sign out and turn off app lock?';
+
+  @override
+  String get appLockSignOutConfirmBody =>
+      'Every account on this device will be signed out and app lock will be turned off.';
+
+  @override
+  String get appLockBiometricReason => 'Unlock echowire';
+
+  @override
+  String get appLockPinFieldLabel => 'PIN';
+
+  @override
+  String get appLockBiometricFailed => 'That didn\'t match. Try again.';
+
+  @override
+  String get appLockBiometricFaceId => 'Face ID';
+
+  @override
+  String get appLockBiometricFaceUnlock => 'face unlock';
+
+  @override
+  String get appLockBiometricFingerprint => 'fingerprint';
+
+  @override
+  String get appLockBiometricTouchId => 'Touch ID';
+
+  @override
+  String get appLockBiometricGeneric => 'biometrics';
+
+  @override
+  String appLockUseBiometric(String method) {
+    return 'Use $method';
+  }
+
+  @override
+  String appLockUnlockSubtitleWithBiometric(String method) {
+    return 'Use $method or enter your PIN';
+  }
+
+  @override
+  String appLockBiometricSwitchLabel(String method) {
+    return 'Unlock with $method';
+  }
+
+  @override
+  String get appLockSetPinButton => 'Set PIN';
+
+  @override
+  String get appLockChangePinButton => 'Change PIN';
+
+  @override
+  String get appLockRowDescription => 'Require a PIN to open echowire';
+
+  @override
+  String appLockRowDescriptionEnabled(String duration) {
+    return 'On. Locks after $duration in the background.';
+  }
+
+  @override
+  String get appLockRowDescriptionEnabledImmediately =>
+      'On. Locks as soon as you leave echowire.';
+
+  @override
+  String appLockRowDescriptionWithBiometric(String method) {
+    return 'Require a PIN or $method to open echowire';
+  }
+
+  @override
+  String get appLockBiometricSwitchHint => 'Your PIN still works too';
+
+  @override
+  String appLockBiometricEither(String first, String second) {
+    return '$first or $second';
+  }
+
+  @override
+  String get voiceDiagnosticsCopy => 'Copy voice diagnostics';
+
+  @override
+  String get voiceDiagnosticsCopyDescription =>
+      'Share with the developers to help fix call issues';
+
+  @override
+  String get voiceDiagnosticsCopied => 'Copied voice diagnostics to clipboard';
+
+  @override
+  String get voiceDiagnosticsInCallHint => 'In a call';
+
+  @override
+  String get oxygenUpdateAvailable => 'Update available';
+
+  @override
+  String get oxygenUpdating => 'Updating…';
+
+  @override
+  String desktopTrayShow(String productName) {
+    return 'Show $productName';
+  }
+
+  @override
+  String desktopTrayHide(String productName) {
+    return 'Hide $productName';
+  }
+
+  @override
+  String get desktopTrayOpenSettings => 'Open settings';
+
+  @override
+  String get desktopTrayStatus => 'Status';
+
+  @override
+  String get desktopTrayAccounts => 'Accounts';
+
+  @override
+  String get desktopTrayMuteMic => 'Mute microphone';
+
+  @override
+  String get desktopTrayUnmuteMic => 'Unmute microphone';
+
+  @override
+  String get desktopTrayDeafen => 'Deafen';
+
+  @override
+  String get desktopTrayUndeafen => 'Undeafen';
+
+  @override
+  String desktopTrayDisconnectFrom(String channel) {
+    return 'Disconnect from $channel';
+  }
+
+  @override
+  String get desktopTrayDisconnectVoice => 'Disconnect from voice';
+
+  @override
+  String get desktopTrayCheckForUpdates => 'Check for updates';
+
+  @override
+  String desktopTrayUpdateNow(String productName) {
+    return 'Update $productName now';
+  }
+
+  @override
+  String get desktopTrayCopyBuildInfo => 'Copy build info';
+
+  @override
+  String desktopTrayRestart(String productName) {
+    return 'Restart $productName';
+  }
+
+  @override
+  String desktopTrayQuit(String productName) {
+    return 'Quit $productName';
+  }
+
+  @override
+  String get userSettingsNavDesktop => 'Desktop';
+
+  @override
+  String get desktopSettingsWindowSectionTitle => 'Desktop window';
+
+  @override
+  String get desktopSettingsShowTrayIcon => 'Show system tray icon';
+
+  @override
+  String get desktopSettingsShowMenuBarIcon => 'Show menu bar icon';
+
+  @override
+  String get desktopSettingsMinimizeToTray => 'Minimize to tray';
+
+  @override
+  String get desktopSettingsMinimizeToMenuBar => 'Minimize to menu bar';
+
+  @override
+  String get desktopSettingsCloseToTray => 'Close to tray';
+
+  @override
+  String get desktopSettingsCloseToMenuBar => 'Close to menu bar';
+
+  @override
   String get advancedPerformanceReportingSectionDescription =>
       'Help improve echowire by sharing anonymous crash and performance data.';
 
@@ -17340,9 +17630,4 @@ class FluxerLocalizationsDe extends FluxerLocalizations {
 
   @override
   String get threadsMemberAddedToast => 'Member added';
-
-  @override
-  String splashGatewayUnreachable(String domain) {
-    return 'Keine Verbindung zu $domain. Prüfe deine Internetverbindung und versuche es erneut.';
-  }
 }

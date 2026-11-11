@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
+import 'package:fluxer_app/core/app_lock/app_lock_controller.dart';
 import 'package:fluxer_app/core/audio/app_media_audio_session.dart';
 import 'package:fluxer_app/core/bootstrap/image_cache_config.dart';
 import 'package:fluxer_app/core/providers/app/local_day_provider.dart';
@@ -99,6 +100,7 @@ class _AppUiLifecycleObserverState extends ConsumerState<AppUiLifecycleObserver>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
+    ref.read(appLockControllerProvider.notifier).onLifecycleChanged(state);
     _syncLifecycle(state);
   }
 

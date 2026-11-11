@@ -6,7 +6,6 @@
 // guard test in test/build/conditional_compilation_test.dart fails if it is replaced.
 import 'dart:io';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluxer_app/core/build/push_provider_guard.dart';
 import 'package:fluxer_app/core/push/fcm/fcm_android_system_notification_cancel_bridge.dart';
@@ -16,6 +15,7 @@ import 'package:fluxer_app/core/push/fcm/fcm_tap_payload_cache.dart';
 import 'package:fluxer_fcm/fcm_background_handler.dart';
 import 'package:fluxer_fcm/fcm_push_message.dart';
 import 'package:fluxer_fcm/fluxer_fcm_bootstrap.dart';
+import 'package:fluxer_fcm/fluxer_fcm_firebase.dart';
 
 @pragma('vm:entry-point')
 Future<void> fcmBackgroundMessageHandlerEntry(RemoteMessage message) async {

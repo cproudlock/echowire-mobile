@@ -6,7 +6,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'fluxer_localizations_ar.dart';
+import 'fluxer_localizations_art.dart';
+import 'fluxer_localizations_be.dart';
 import 'fluxer_localizations_bg.dart';
+import 'fluxer_localizations_bn.dart';
+import 'fluxer_localizations_ca.dart';
 import 'fluxer_localizations_cs.dart';
 import 'fluxer_localizations_da.dart';
 import 'fluxer_localizations_de.dart';
@@ -14,6 +18,7 @@ import 'fluxer_localizations_el.dart';
 import 'fluxer_localizations_en.dart';
 import 'fluxer_localizations_es.dart';
 import 'fluxer_localizations_fi.dart';
+import 'fluxer_localizations_fil.dart';
 import 'fluxer_localizations_fr.dart';
 import 'fluxer_localizations_he.dart';
 import 'fluxer_localizations_hi.dart';
@@ -24,12 +29,16 @@ import 'fluxer_localizations_it.dart';
 import 'fluxer_localizations_ja.dart';
 import 'fluxer_localizations_ko.dart';
 import 'fluxer_localizations_lt.dart';
+import 'fluxer_localizations_lv.dart';
 import 'fluxer_localizations_nb.dart';
 import 'fluxer_localizations_nl.dart';
 import 'fluxer_localizations_pl.dart';
 import 'fluxer_localizations_pt.dart';
 import 'fluxer_localizations_ro.dart';
 import 'fluxer_localizations_ru.dart';
+import 'fluxer_localizations_sk.dart';
+import 'fluxer_localizations_sl.dart';
+import 'fluxer_localizations_sq.dart';
 import 'fluxer_localizations_sv.dart';
 import 'fluxer_localizations_th.dart';
 import 'fluxer_localizations_tr.dart';
@@ -125,7 +134,11 @@ abstract class FluxerLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
     Locale('ar'),
+    Locale('art'),
+    Locale('be'),
     Locale('bg'),
+    Locale('bn'),
+    Locale('ca'),
     Locale('cs'),
     Locale('da'),
     Locale('de'),
@@ -135,6 +148,7 @@ abstract class FluxerLocalizations {
     Locale('es'),
     Locale('es', '419'),
     Locale('fi'),
+    Locale('fil'),
     Locale('fr'),
     Locale('he'),
     Locale('hi'),
@@ -145,6 +159,7 @@ abstract class FluxerLocalizations {
     Locale('ja'),
     Locale('ko'),
     Locale('lt'),
+    Locale('lv'),
     Locale('nb'),
     Locale('nl'),
     Locale('pl'),
@@ -152,6 +167,9 @@ abstract class FluxerLocalizations {
     Locale('pt', 'BR'),
     Locale('ro'),
     Locale('ru'),
+    Locale('sk'),
+    Locale('sl'),
+    Locale('sq'),
     Locale('sv'),
     Locale('th'),
     Locale('tr'),
@@ -584,6 +602,24 @@ abstract class FluxerLocalizations {
   /// **'Log in with a passkey'**
   String get logInWithPasskey;
 
+  /// Button on the iOS sign-in and verification screens for a self-hosted instance. It opens the instance's web sign-in in a browser sheet, where the user can use a passkey, and signs the app in when they finish.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with your browser'**
+  String get signInWithBrowser;
+
+  /// Short note under the Sign in with your browser button on iOS for a self-hosted instance, where passkeys only work in the browser.
+  ///
+  /// In en, this message translates to:
+  /// **'To use a passkey on this instance, sign in with your browser.'**
+  String get signInWithBrowserPasskeyHint;
+
+  /// Error on the sign-in screen when signing in through the browser sheet fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t sign in with your browser. Try again.'**
+  String get browserSignInFailed;
+
   /// Sentence under the sign-in button. Keep the <terms> and <privacy> tags around the words that open each document, and inflect those words to fit the sentence. 'both' shows both links, 'terms' only the terms of service, 'other' only the privacy policy.
   ///
   /// In en, this message translates to:
@@ -761,7 +797,7 @@ abstract class FluxerLocalizations {
   /// Shown on the sign-in verification screen on iOS for a self-hosted instance when a passkey is the account's only verification method.
   ///
   /// In en, this message translates to:
-  /// **'Passkeys from this instance don\'t work in this app, and your account has no other verification method. Sign in on the web instead.'**
+  /// **'Passkeys from this instance don\'t work in this app, and your account has no other verification method. Sign in with your browser instead.'**
   String get mfaPasskeyUnavailable;
 
   /// Link to switch to WebAuthn from code entry.
@@ -7843,6 +7879,18 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'System theme automatically disables sync to track your system\'s preference on this device.'**
   String get lookAndFeelSyncThemeAcrossDevicesSystemDescription;
+
+  /// Label for the Android toggle that tints the app theme with the system's Material You (dynamic) colors.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Material You colors'**
+  String get lookAndFeelUseSystemDynamicColorsLabel;
+
+  /// Description for the Material You dynamic colors toggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tint the theme with your device\'s system colors.'**
+  String get lookAndFeelUseSystemDynamicColorsDescription;
 
   /// Toast message shown when the server PATCH for a theme change or sync toggle fails.
   ///
@@ -28066,6 +28114,468 @@ abstract class FluxerLocalizations {
   /// **'Checkout is blocked for this account.'**
   String get premiumCheckoutBlockedBodySelfHosted;
 
+  /// Shown on the splash screen when the app can't connect to the instance at launch and there is no cached content to show. A Retry button follows. domain is the instance host, for example fluxer.com.
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t connect to {domain}. Check your internet connection and try again.'**
+  String splashGatewayUnreachable(String domain);
+
+  /// App lock: appLockSettingTitle
+  ///
+  /// In en, this message translates to:
+  /// **'App lock'**
+  String get appLockSettingTitle;
+
+  /// App lock: appLockConfigure
+  ///
+  /// In en, this message translates to:
+  /// **'Configure'**
+  String get appLockConfigure;
+
+  /// App lock: appLockSettingDescription
+  ///
+  /// In en, this message translates to:
+  /// **'echowire asks for your PIN after it has been in the background for the time you choose. App lock applies to every account on this device.'**
+  String get appLockSettingDescription;
+
+  /// App lock: appLockTimeoutLabel
+  ///
+  /// In en, this message translates to:
+  /// **'Lock after'**
+  String get appLockTimeoutLabel;
+
+  /// App lock: appLockTimeoutImmediately
+  ///
+  /// In en, this message translates to:
+  /// **'Immediately'**
+  String get appLockTimeoutImmediately;
+
+  /// App lock: appLockTimeoutThirtySeconds
+  ///
+  /// In en, this message translates to:
+  /// **'30 seconds'**
+  String get appLockTimeoutThirtySeconds;
+
+  /// App lock: appLockTimeoutOneMinute
+  ///
+  /// In en, this message translates to:
+  /// **'1 minute'**
+  String get appLockTimeoutOneMinute;
+
+  /// App lock: appLockTimeoutFiveMinutes
+  ///
+  /// In en, this message translates to:
+  /// **'5 minutes'**
+  String get appLockTimeoutFiveMinutes;
+
+  /// App lock: appLockTimeoutFifteenMinutes
+  ///
+  /// In en, this message translates to:
+  /// **'15 minutes'**
+  String get appLockTimeoutFifteenMinutes;
+
+  /// App lock: appLockTimeoutOneHour
+  ///
+  /// In en, this message translates to:
+  /// **'1 hour'**
+  String get appLockTimeoutOneHour;
+
+  /// App lock: appLockTurnOff
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off app lock'**
+  String get appLockTurnOff;
+
+  /// App lock: appLockTurnOffConfirmTitle
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off app lock?'**
+  String get appLockTurnOffConfirmTitle;
+
+  /// App lock: appLockTurnOffConfirmBody
+  ///
+  /// In en, this message translates to:
+  /// **'echowire will open without asking for your PIN.'**
+  String get appLockTurnOffConfirmBody;
+
+  /// App lock: appLockEnterCurrentPinTitle
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your PIN'**
+  String get appLockEnterCurrentPinTitle;
+
+  /// App lock: appLockEnterCurrentPinSubtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your current {digits}-digit PIN to continue.'**
+  String appLockEnterCurrentPinSubtitle(int digits);
+
+  /// App lock: appLockSetPinTitle
+  ///
+  /// In en, this message translates to:
+  /// **'Set a PIN'**
+  String get appLockSetPinTitle;
+
+  /// App lock: appLockCreatePinSubtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a {digits}-digit PIN.'**
+  String appLockCreatePinSubtitle(int digits);
+
+  /// App lock: appLockConfirmPinSubtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the PIN again to confirm'**
+  String get appLockConfirmPinSubtitle;
+
+  /// App lock: appLockPinMismatch
+  ///
+  /// In en, this message translates to:
+  /// **'The PINs don\'t match. Try again.'**
+  String get appLockPinMismatch;
+
+  /// App lock: appLockTooManyAttemptsShort
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts. Wait before trying again.'**
+  String get appLockTooManyAttemptsShort;
+
+  /// App lock: appLockUnlockTitle
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock echowire'**
+  String get appLockUnlockTitle;
+
+  /// App lock: appLockUnlockSubtitlePin
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your {digits}-digit PIN'**
+  String appLockUnlockSubtitlePin(int digits);
+
+  /// App lock: appLockCooldownMessage
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts. Try again in {time}.'**
+  String appLockCooldownMessage(String time);
+
+  /// App lock: appLockWrongPin
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect PIN'**
+  String get appLockWrongPin;
+
+  /// App lock: appLockForgotPin
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot PIN? Sign out'**
+  String get appLockForgotPin;
+
+  /// App lock: appLockSignOutConfirmTitle
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out and turn off app lock?'**
+  String get appLockSignOutConfirmTitle;
+
+  /// App lock: appLockSignOutConfirmBody
+  ///
+  /// In en, this message translates to:
+  /// **'Every account on this device will be signed out and app lock will be turned off.'**
+  String get appLockSignOutConfirmBody;
+
+  /// App lock: appLockBiometricReason
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock echowire'**
+  String get appLockBiometricReason;
+
+  /// App lock: appLockPinFieldLabel
+  ///
+  /// In en, this message translates to:
+  /// **'PIN'**
+  String get appLockPinFieldLabel;
+
+  /// App lock: appLockBiometricFailed
+  ///
+  /// In en, this message translates to:
+  /// **'That didn\'t match. Try again.'**
+  String get appLockBiometricFailed;
+
+  /// App lock: appLockBiometricFaceId
+  ///
+  /// In en, this message translates to:
+  /// **'Face ID'**
+  String get appLockBiometricFaceId;
+
+  /// App lock: appLockBiometricFaceUnlock
+  ///
+  /// In en, this message translates to:
+  /// **'face unlock'**
+  String get appLockBiometricFaceUnlock;
+
+  /// App lock: appLockBiometricFingerprint
+  ///
+  /// In en, this message translates to:
+  /// **'fingerprint'**
+  String get appLockBiometricFingerprint;
+
+  /// App lock: appLockBiometricTouchId
+  ///
+  /// In en, this message translates to:
+  /// **'Touch ID'**
+  String get appLockBiometricTouchId;
+
+  /// App lock: appLockBiometricGeneric
+  ///
+  /// In en, this message translates to:
+  /// **'biometrics'**
+  String get appLockBiometricGeneric;
+
+  /// App lock: appLockUseBiometric
+  ///
+  /// In en, this message translates to:
+  /// **'Use {method}'**
+  String appLockUseBiometric(String method);
+
+  /// App lock: appLockUnlockSubtitleWithBiometric
+  ///
+  /// In en, this message translates to:
+  /// **'Use {method} or enter your PIN'**
+  String appLockUnlockSubtitleWithBiometric(String method);
+
+  /// App lock: appLockBiometricSwitchLabel
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock with {method}'**
+  String appLockBiometricSwitchLabel(String method);
+
+  /// App lock: appLockSetPinButton
+  ///
+  /// In en, this message translates to:
+  /// **'Set PIN'**
+  String get appLockSetPinButton;
+
+  /// App lock: appLockChangePinButton
+  ///
+  /// In en, this message translates to:
+  /// **'Change PIN'**
+  String get appLockChangePinButton;
+
+  /// App lock: appLockRowDescription
+  ///
+  /// In en, this message translates to:
+  /// **'Require a PIN to open echowire'**
+  String get appLockRowDescription;
+
+  /// App lock: settings row description while app lock is on
+  ///
+  /// In en, this message translates to:
+  /// **'On. Locks after {duration} in the background.'**
+  String appLockRowDescriptionEnabled(String duration);
+
+  /// App lock: settings row description while app lock is on with no delay
+  ///
+  /// In en, this message translates to:
+  /// **'On. Locks as soon as you leave echowire.'**
+  String get appLockRowDescriptionEnabledImmediately;
+
+  /// App lock: appLockRowDescriptionWithBiometric
+  ///
+  /// In en, this message translates to:
+  /// **'Require a PIN or {method} to open echowire'**
+  String appLockRowDescriptionWithBiometric(String method);
+
+  /// App lock: appLockBiometricSwitchHint
+  ///
+  /// In en, this message translates to:
+  /// **'Your PIN still works too'**
+  String get appLockBiometricSwitchHint;
+
+  /// App lock: appLockBiometricEither
+  ///
+  /// In en, this message translates to:
+  /// **'{first} or {second}'**
+  String appLockBiometricEither(String first, String second);
+
+  /// Action label that copies voice call diagnostics as JSON to the clipboard so they can be shared with the developers.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy voice diagnostics'**
+  String get voiceDiagnosticsCopy;
+
+  /// Subtitle under the copy voice diagnostics row in the voice call controls sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Share with the developers to help fix call issues'**
+  String get voiceDiagnosticsCopyDescription;
+
+  /// Toast shown after voice diagnostics JSON was copied to the clipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied voice diagnostics to clipboard'**
+  String get voiceDiagnosticsCopied;
+
+  /// Muted hint next to the copy voice diagnostics action when the user is currently connected to a voice call.
+  ///
+  /// In en, this message translates to:
+  /// **'In a call'**
+  String get voiceDiagnosticsInCallHint;
+
+  /// Tooltip and accessible label on the channel header updater icon in the desktop app. Clicking it downloads the update, then restarts the app.
+  ///
+  /// In en, this message translates to:
+  /// **'Update available'**
+  String get oxygenUpdateAvailable;
+
+  /// Tooltip and accessible label on the channel header updater icon in the desktop app while an update the user started is downloading. The app restarts by itself when it is done.
+  ///
+  /// In en, this message translates to:
+  /// **'Updating…'**
+  String get oxygenUpdating;
+
+  /// Desktop tray/menu bar menu item that shows the hidden app window.
+  ///
+  /// In en, this message translates to:
+  /// **'Show {productName}'**
+  String desktopTrayShow(String productName);
+
+  /// Desktop tray/menu bar menu item that hides the app window.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide {productName}'**
+  String desktopTrayHide(String productName);
+
+  /// Desktop tray/menu bar menu item that opens user settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings'**
+  String get desktopTrayOpenSettings;
+
+  /// Desktop tray/menu bar submenu label for changing the user's presence status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get desktopTrayStatus;
+
+  /// Desktop tray/menu bar submenu label for switching between signed-in accounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Accounts'**
+  String get desktopTrayAccounts;
+
+  /// Desktop tray/menu bar menu item shown while in voice to mute the microphone.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute microphone'**
+  String get desktopTrayMuteMic;
+
+  /// Desktop tray/menu bar menu item shown while in voice to unmute the microphone.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute microphone'**
+  String get desktopTrayUnmuteMic;
+
+  /// Desktop tray/menu bar menu item shown while in voice to deafen.
+  ///
+  /// In en, this message translates to:
+  /// **'Deafen'**
+  String get desktopTrayDeafen;
+
+  /// Desktop tray/menu bar menu item shown while in voice to undeafen.
+  ///
+  /// In en, this message translates to:
+  /// **'Undeafen'**
+  String get desktopTrayUndeafen;
+
+  /// Desktop tray/menu bar menu item that leaves the named voice channel.
+  ///
+  /// In en, this message translates to:
+  /// **'Disconnect from {channel}'**
+  String desktopTrayDisconnectFrom(String channel);
+
+  /// Desktop tray/menu bar menu item that leaves voice when the channel name is unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Disconnect from voice'**
+  String get desktopTrayDisconnectVoice;
+
+  /// Desktop tray/menu bar menu item that checks for an app update.
+  ///
+  /// In en, this message translates to:
+  /// **'Check for updates'**
+  String get desktopTrayCheckForUpdates;
+
+  /// Desktop tray/menu bar menu item shown when an update is ready; installs it and restarts.
+  ///
+  /// In en, this message translates to:
+  /// **'Update {productName} now'**
+  String desktopTrayUpdateNow(String productName);
+
+  /// Desktop tray/menu bar menu item that copies app version and build details to the clipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy build info'**
+  String get desktopTrayCopyBuildInfo;
+
+  /// Desktop tray/menu bar menu item that restarts the app.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart {productName}'**
+  String desktopTrayRestart(String productName);
+
+  /// Desktop tray/menu bar menu item that fully quits the app.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit {productName}'**
+  String desktopTrayQuit(String productName);
+
+  /// User settings navigation item for desktop app window and tray behavior.
+  ///
+  /// In en, this message translates to:
+  /// **'Desktop'**
+  String get userSettingsNavDesktop;
+
+  /// Section title in desktop settings for window and tray behavior.
+  ///
+  /// In en, this message translates to:
+  /// **'Desktop window'**
+  String get desktopSettingsWindowSectionTitle;
+
+  /// Desktop setting toggle on Windows and Linux that shows the app icon in the system tray.
+  ///
+  /// In en, this message translates to:
+  /// **'Show system tray icon'**
+  String get desktopSettingsShowTrayIcon;
+
+  /// Desktop setting toggle on macOS that shows the app icon in the menu bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Show menu bar icon'**
+  String get desktopSettingsShowMenuBarIcon;
+
+  /// Desktop setting toggle on Windows and Linux; minimizing hides the window to the system tray.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimize to tray'**
+  String get desktopSettingsMinimizeToTray;
+
+  /// Desktop setting toggle on macOS; minimizing hides the window to the menu bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimize to menu bar'**
+  String get desktopSettingsMinimizeToMenuBar;
+
+  /// Desktop setting toggle on Windows and Linux; closing the window keeps the app running in the system tray.
+  ///
+  /// In en, this message translates to:
+  /// **'Close to tray'**
+  String get desktopSettingsCloseToTray;
+
+  /// Desktop setting toggle on macOS; closing the window keeps the app running in the menu bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Close to menu bar'**
+  String get desktopSettingsCloseToMenuBar;
+
   /// No description provided for @advancedPerformanceReportingSectionDescription.
   ///
   /// In en, this message translates to:
@@ -28143,12 +28653,6 @@ abstract class FluxerLocalizations {
   /// In en, this message translates to:
   /// **'Member added'**
   String get threadsMemberAddedToast;
-
-  /// Shown on the splash screen when the app can't connect to the instance at launch and there is no cached content to show. A Retry button follows. domain is the instance host, for example fluxer.com.
-  ///
-  /// In en, this message translates to:
-  /// **'Can\'t connect to {domain}. Check your internet connection and try again.'**
-  String splashGatewayUnreachable(String domain);
 }
 
 class _FluxerLocalizationsDelegate
@@ -28165,7 +28669,11 @@ class _FluxerLocalizationsDelegate
   @override
   bool isSupported(Locale locale) => <String>[
     'ar',
+    'art',
+    'be',
     'bg',
+    'bn',
+    'ca',
     'cs',
     'da',
     'de',
@@ -28173,6 +28681,7 @@ class _FluxerLocalizationsDelegate
     'en',
     'es',
     'fi',
+    'fil',
     'fr',
     'he',
     'hi',
@@ -28183,12 +28692,16 @@ class _FluxerLocalizationsDelegate
     'ja',
     'ko',
     'lt',
+    'lv',
     'nb',
     'nl',
     'pl',
     'pt',
     'ro',
     'ru',
+    'sk',
+    'sl',
+    'sq',
     'sv',
     'th',
     'tr',
@@ -28248,8 +28761,16 @@ FluxerLocalizations lookupFluxerLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'ar':
       return FluxerLocalizationsAr();
+    case 'art':
+      return FluxerLocalizationsArt();
+    case 'be':
+      return FluxerLocalizationsBe();
     case 'bg':
       return FluxerLocalizationsBg();
+    case 'bn':
+      return FluxerLocalizationsBn();
+    case 'ca':
+      return FluxerLocalizationsCa();
     case 'cs':
       return FluxerLocalizationsCs();
     case 'da':
@@ -28264,6 +28785,8 @@ FluxerLocalizations lookupFluxerLocalizations(Locale locale) {
       return FluxerLocalizationsEs();
     case 'fi':
       return FluxerLocalizationsFi();
+    case 'fil':
+      return FluxerLocalizationsFil();
     case 'fr':
       return FluxerLocalizationsFr();
     case 'he':
@@ -28284,6 +28807,8 @@ FluxerLocalizations lookupFluxerLocalizations(Locale locale) {
       return FluxerLocalizationsKo();
     case 'lt':
       return FluxerLocalizationsLt();
+    case 'lv':
+      return FluxerLocalizationsLv();
     case 'nb':
       return FluxerLocalizationsNb();
     case 'nl':
@@ -28296,6 +28821,12 @@ FluxerLocalizations lookupFluxerLocalizations(Locale locale) {
       return FluxerLocalizationsRo();
     case 'ru':
       return FluxerLocalizationsRu();
+    case 'sk':
+      return FluxerLocalizationsSk();
+    case 'sl':
+      return FluxerLocalizationsSl();
+    case 'sq':
+      return FluxerLocalizationsSq();
     case 'sv':
       return FluxerLocalizationsSv();
     case 'th':

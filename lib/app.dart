@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:adaptive_platform_ui/adaptive_platform_ui.dart';
 import 'package:cupertino_ui/cupertino_ui.dart'
     show CupertinoTheme, CupertinoThemeData;
@@ -7,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/age/declared_age_range_lock.dart';
 import 'package:fluxer_app/core/assistant/assistant_binding.dart';
+import 'package:fluxer_app/core/desktop/window/desktop_main_window.dart';
 import 'package:fluxer_app/core/instance/account_identity_sync.dart';
 import 'package:fluxer_app/core/platform/fluxer_platform.dart';
 import 'package:fluxer_app/core/providers/app/app_ui_lifecycle_provider.dart';
@@ -23,6 +22,7 @@ import 'package:fluxer_app/features/accessibility/domain/text_scale.dart';
 import 'package:fluxer_app/features/accessibility/presentation/reduced_motion_scope.dart';
 import 'package:fluxer_app/features/accessibility/providers/effective_motion_preferences_provider.dart';
 import 'package:fluxer_app/features/accessibility/providers/screen_reader_active_provider.dart';
+import 'package:fluxer_app/features/app_lock/presentation/app_lock_gate.dart';
 import 'package:fluxer_app/features/recovery_kit/presentation/recovery_kit_gate.dart';
 import 'package:fluxer_app/features/settings/providers/preferences/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/shell/hosted_ui/iphone_duo_app_background.dart';
@@ -125,7 +125,7 @@ class _FluxerAppState extends ConsumerState<FluxerApp> {
       instanceRuntimeConfigProvider.select((config) => config.productName),
     );
     if (isFluxerDesktopOs) {
-      unawaited(windowManager.setTitle(productName));
+      desktopMainWindow?.title = productName;
     }
 
     return FluxerAppZoomScope(
@@ -194,7 +194,7 @@ class _FluxerAppState extends ConsumerState<FluxerApp> {
             );
             final Widget scaled = ReducedMotionScope(
               enabled: disableAnimations,
-              child: FluxerAppTextScale(child: content),
+              child: FluxerAppTextScale(child: AppLockGate(child: content)),
             );
             final ThemeData materialTheme = Theme.of(context);
             final CupertinoThemeData cupertinoTheme = CupertinoTheme.of(context)

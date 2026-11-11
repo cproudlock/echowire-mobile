@@ -11,6 +11,7 @@
 #include <connectivity_plus/connectivity_plus_windows_plugin.h>
 #include <desktop_drop/desktop_drop_plugin.h>
 #include <desktop_webview_window/desktop_webview_window_plugin.h>
+#include <dynamic_color/dynamic_color_plugin_c_api.h>
 #include <file_selector_windows/file_selector_windows.h>
 #include <flutter_inappwebview_windows/flutter_inappwebview_windows_plugin_c_api.h>
 #include <flutter_secure_storage_windows/flutter_secure_storage_windows_plugin.h>
@@ -19,6 +20,7 @@
 #include <gal/gal_plugin_c_api.h>
 #include <irondash_engine_context/irondash_engine_context_plugin_c_api.h>
 #include <livekit_client/live_kit_plugin.h>
+#include <local_auth_windows/local_auth_plugin.h>
 #include <media_kit_libs_windows_video/media_kit_libs_windows_video_plugin_c_api.h>
 #include <media_kit_video/media_kit_video_plugin_c_api.h>
 #include <passkeys_windows/passkeys_windows_plugin.h>
@@ -30,7 +32,6 @@
 #include <super_native_extensions/super_native_extensions_plugin_c_api.h>
 #include <url_launcher_windows/url_launcher_windows.h>
 #include <webcrypto/webcrypto_plugin.h>
-#include <window_manager/window_manager_plugin.h>
 #include <window_to_front/window_to_front_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
@@ -44,6 +45,8 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
       registry->GetRegistrarForPlugin("DesktopDropPlugin"));
   DesktopWebviewWindowPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("DesktopWebviewWindowPlugin"));
+  DynamicColorPluginCApiRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("DynamicColorPluginCApi"));
   FileSelectorWindowsRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("FileSelectorWindows"));
   FlutterInappwebviewWindowsPluginCApiRegisterWithRegistrar(
@@ -60,6 +63,8 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
       registry->GetRegistrarForPlugin("IrondashEngineContextPluginCApi"));
   LiveKitPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("LiveKitPlugin"));
+  LocalAuthPluginRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("LocalAuthPlugin"));
   MediaKitLibsWindowsVideoPluginCApiRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("MediaKitLibsWindowsVideoPluginCApi"));
   MediaKitVideoPluginCApiRegisterWithRegistrar(
@@ -82,8 +87,6 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
       registry->GetRegistrarForPlugin("UrlLauncherWindows"));
   WebcryptoPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("WebcryptoPlugin"));
-  WindowManagerPluginRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("WindowManagerPlugin"));
   WindowToFrontPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("WindowToFrontPlugin"));
 }

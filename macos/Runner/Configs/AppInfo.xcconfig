@@ -7,7 +7,7 @@
 PRODUCT_NAME = echowire
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.fluxer.lite
+PRODUCT_BUNDLE_IDENTIFIER = com.fluxer.oxygen
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2026 Fluxer Platform AB. All rights reserved.

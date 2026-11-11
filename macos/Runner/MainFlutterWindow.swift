@@ -1,8 +1,9 @@
 import Cocoa
 import FlutterMacOS
-import window_manager
 
 class MainFlutterWindow: NSWindow {
+  private var hasHiddenAtLaunch = false
+
   override func awakeFromNib() {
     let flutterViewController = FlutterViewController()
     let windowFrame = self.frame
@@ -12,9 +13,7 @@ class MainFlutterWindow: NSWindow {
     self.titlebarAppearsTransparent = true
     self.titleVisibility = .hidden
     self.styleMask.insert(.fullSizeContentView)
-    self.standardWindowButton(.closeButton)?.isHidden = true
-    self.standardWindowButton(.miniaturizeButton)?.isHidden = true
-    self.standardWindowButton(.zoomButton)?.isHidden = true
+    self.tabbingMode = .disallowed
 
     RegisterGeneratedPlugins(registry: flutterViewController)
 
@@ -23,6 +22,9 @@ class MainFlutterWindow: NSWindow {
 
   override public func order(_ place: NSWindow.OrderingMode, relativeTo otherWin: Int) {
     super.order(place, relativeTo: otherWin)
-    hiddenWindowAtLaunch()
+    if !hasHiddenAtLaunch {
+      hasHiddenAtLaunch = true
+      setIsVisible(false)
+    }
   }
 }

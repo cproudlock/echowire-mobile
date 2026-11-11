@@ -423,6 +423,18 @@
     "@logInWithPasskey": {
         "description": "Secondary login using a passkey."
     },
+    "signInWithBrowser": "Sign in with your browser",
+    "@signInWithBrowser": {
+        "description": "Button on the iOS sign-in and verification screens for a self-hosted instance. It opens the instance's web sign-in in a browser sheet, where the user can use a passkey, and signs the app in when they finish."
+    },
+    "signInWithBrowserPasskeyHint": "To use a passkey on this instance, sign in with your browser.",
+    "@signInWithBrowserPasskeyHint": {
+        "description": "Short note under the Sign in with your browser button on iOS for a self-hosted instance, where passkeys only work in the browser."
+    },
+    "browserSignInFailed": "Couldn't sign in with your browser. Try again.",
+    "@browserSignInFailed": {
+        "description": "Error on the sign-in screen when signing in through the browser sheet fails."
+    },
     "loginLegalAgreement": "{links, select, both{By signing in, you agree to the <terms>Terms of service</terms> and <privacy>Privacy policy</privacy>.} terms{By signing in, you agree to the <terms>Terms of service</terms>.} other{By signing in, you agree to the <privacy>Privacy policy</privacy>.}}",
     "@loginLegalAgreement": {
         "description": "Sentence under the sign-in button. Keep the <terms> and <privacy> tags around the words that open each document, and inflect those words to fit the sentence. 'both' shows both links, 'terms' only the terms of service, 'other' only the privacy policy.",
@@ -564,7 +576,7 @@
     "@mfaTryAnotherMethod": {
         "description": "Link to switch to a different MFA method."
     },
-    "mfaPasskeyUnavailable": "Passkeys from this instance don't work in this app, and your account has no other verification method. Sign in on the web instead.",
+    "mfaPasskeyUnavailable": "Passkeys from this instance don't work in this app, and your account has no other verification method. Sign in with your browser instead.",
     "@mfaPasskeyUnavailable": {
         "description": "Shown on the sign-in verification screen on iOS for a self-hosted instance when a passkey is the account's only verification method."
     },
@@ -6256,6 +6268,14 @@
     "lookAndFeelSyncThemeAcrossDevicesSystemDescription": "System theme automatically disables sync to track your system's preference on this device.",
     "@lookAndFeelSyncThemeAcrossDevicesSystemDescription": {
         "description": "Description shown under the sync toggle when System theme is active and the toggle is therefore disabled."
+    },
+    "lookAndFeelUseSystemDynamicColorsLabel": "Use Material You colors",
+    "@lookAndFeelUseSystemDynamicColorsLabel": {
+        "description": "Label for the Android toggle that tints the app theme with the system's Material You (dynamic) colors."
+    },
+    "lookAndFeelUseSystemDynamicColorsDescription": "Tint the theme with your device's system colors.",
+    "@lookAndFeelUseSystemDynamicColorsDescription": {
+        "description": "Description for the Material You dynamic colors toggle."
     },
     "lookAndFeelThemeSyncFailed": "Couldn't sync theme to your account. Please try again.",
     "@lookAndFeelThemeSyncFailed": {
@@ -12622,16 +12642,6 @@
         "description": "Note next to the subscription plans when the user still has gifted Plutonium time left."
     },
     "premiumComparisonFeatureColumn": "Feature",
-    "@premiumDisclaimerPurchase": {
-        "placeholders": {
-            "terms": {
-                "type": "String"
-            },
-            "privacy": {
-                "type": "String"
-            }
-        }
-    },
     "premiumDisclaimerRefund": "Self-serve refunds available within 3 days of payment, once every 30 days. Refunding a subscription cancels it. EU/EEA buyers waive the 14-day right of withdrawal at checkout to access content immediately. Use the in-app refund button instead of a chargeback. Chargebacks can permanently restrict your account. Stripe handles payment securely. We never see your full card number.",
     "premiumTermsOfService": "Terms of service",
     "premiumPrivacyPolicy": "Privacy policy",
@@ -20212,6 +20222,403 @@
     "@premiumCheckoutBlockedBodySelfHosted": {
         "description": "Body of the checkout error dialog when checkout is blocked, on a self-hosted instance."
     },
+    "splashGatewayUnreachable": "Can't connect to {domain}. Check your internet connection and try again.",
+    "@splashGatewayUnreachable": {
+        "description": "Shown on the splash screen when the app can't connect to the instance at launch and there is no cached content to show. A Retry button follows. domain is the instance host, for example fluxer.com.",
+        "placeholders": {
+            "domain": {
+                "type": "String",
+                "example": "fluxer.com"
+            }
+        }
+    },
+    "appLockSettingTitle": "App lock",
+    "@appLockSettingTitle": {
+        "description": "App lock: appLockSettingTitle"
+    },
+    "appLockConfigure": "Configure",
+    "@appLockConfigure": {
+        "description": "App lock: appLockConfigure"
+    },
+    "appLockSettingDescription": "Fluxer asks for your PIN after it has been in the background for the time you choose. App lock applies to every account on this device.",
+    "@appLockSettingDescription": {
+        "description": "App lock: appLockSettingDescription"
+    },
+    "appLockTimeoutLabel": "Lock after",
+    "@appLockTimeoutLabel": {
+        "description": "App lock: appLockTimeoutLabel"
+    },
+    "appLockTimeoutImmediately": "Immediately",
+    "@appLockTimeoutImmediately": {
+        "description": "App lock: appLockTimeoutImmediately"
+    },
+    "appLockTimeoutThirtySeconds": "30 seconds",
+    "@appLockTimeoutThirtySeconds": {
+        "description": "App lock: appLockTimeoutThirtySeconds"
+    },
+    "appLockTimeoutOneMinute": "1 minute",
+    "@appLockTimeoutOneMinute": {
+        "description": "App lock: appLockTimeoutOneMinute"
+    },
+    "appLockTimeoutFiveMinutes": "5 minutes",
+    "@appLockTimeoutFiveMinutes": {
+        "description": "App lock: appLockTimeoutFiveMinutes"
+    },
+    "appLockTimeoutFifteenMinutes": "15 minutes",
+    "@appLockTimeoutFifteenMinutes": {
+        "description": "App lock: appLockTimeoutFifteenMinutes"
+    },
+    "appLockTimeoutOneHour": "1 hour",
+    "@appLockTimeoutOneHour": {
+        "description": "App lock: appLockTimeoutOneHour"
+    },
+    "appLockTurnOff": "Turn off app lock",
+    "@appLockTurnOff": {
+        "description": "App lock: appLockTurnOff"
+    },
+    "appLockTurnOffConfirmTitle": "Turn off app lock?",
+    "@appLockTurnOffConfirmTitle": {
+        "description": "App lock: appLockTurnOffConfirmTitle"
+    },
+    "appLockTurnOffConfirmBody": "Fluxer will open without asking for your PIN.",
+    "@appLockTurnOffConfirmBody": {
+        "description": "App lock: appLockTurnOffConfirmBody"
+    },
+    "appLockEnterCurrentPinTitle": "Enter your PIN",
+    "@appLockEnterCurrentPinTitle": {
+        "description": "App lock: appLockEnterCurrentPinTitle"
+    },
+    "appLockEnterCurrentPinSubtitle": "Enter your current {digits}-digit PIN to continue.",
+    "@appLockEnterCurrentPinSubtitle": {
+        "description": "App lock: appLockEnterCurrentPinSubtitle",
+        "placeholders": {
+            "digits": {
+                "type": "int"
+            }
+        }
+    },
+    "appLockSetPinTitle": "Set a PIN",
+    "@appLockSetPinTitle": {
+        "description": "App lock: appLockSetPinTitle"
+    },
+    "appLockCreatePinSubtitle": "Choose a {digits}-digit PIN.",
+    "@appLockCreatePinSubtitle": {
+        "description": "App lock: appLockCreatePinSubtitle",
+        "placeholders": {
+            "digits": {
+                "type": "int"
+            }
+        }
+    },
+    "appLockConfirmPinSubtitle": "Enter the PIN again to confirm",
+    "@appLockConfirmPinSubtitle": {
+        "description": "App lock: appLockConfirmPinSubtitle"
+    },
+    "appLockPinMismatch": "The PINs don't match. Try again.",
+    "@appLockPinMismatch": {
+        "description": "App lock: appLockPinMismatch"
+    },
+    "appLockTooManyAttemptsShort": "Too many attempts. Wait before trying again.",
+    "@appLockTooManyAttemptsShort": {
+        "description": "App lock: appLockTooManyAttemptsShort"
+    },
+    "appLockUnlockTitle": "Unlock Fluxer",
+    "@appLockUnlockTitle": {
+        "description": "App lock: appLockUnlockTitle"
+    },
+    "appLockUnlockSubtitlePin": "Enter your {digits}-digit PIN",
+    "@appLockUnlockSubtitlePin": {
+        "description": "App lock: appLockUnlockSubtitlePin",
+        "placeholders": {
+            "digits": {
+                "type": "int"
+            }
+        }
+    },
+    "appLockCooldownMessage": "Too many attempts. Try again in {time}.",
+    "@appLockCooldownMessage": {
+        "description": "App lock: appLockCooldownMessage",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "appLockWrongPin": "Incorrect PIN",
+    "@appLockWrongPin": {
+        "description": "App lock: appLockWrongPin"
+    },
+    "appLockForgotPin": "Forgot PIN? Sign out",
+    "@appLockForgotPin": {
+        "description": "App lock: appLockForgotPin"
+    },
+    "appLockSignOutConfirmTitle": "Sign out and turn off app lock?",
+    "@appLockSignOutConfirmTitle": {
+        "description": "App lock: appLockSignOutConfirmTitle"
+    },
+    "appLockSignOutConfirmBody": "Every account on this device will be signed out and app lock will be turned off.",
+    "@appLockSignOutConfirmBody": {
+        "description": "App lock: appLockSignOutConfirmBody"
+    },
+    "appLockBiometricReason": "Unlock Fluxer",
+    "@appLockBiometricReason": {
+        "description": "App lock: appLockBiometricReason"
+    },
+    "appLockPinFieldLabel": "PIN",
+    "@appLockPinFieldLabel": {
+        "description": "App lock: appLockPinFieldLabel"
+    },
+    "appLockBiometricFailed": "That didn't match. Try again.",
+    "@appLockBiometricFailed": {
+        "description": "App lock: appLockBiometricFailed"
+    },
+    "appLockBiometricFaceId": "Face ID",
+    "@appLockBiometricFaceId": {
+        "description": "App lock: appLockBiometricFaceId"
+    },
+    "appLockBiometricFaceUnlock": "face unlock",
+    "@appLockBiometricFaceUnlock": {
+        "description": "App lock: appLockBiometricFaceUnlock"
+    },
+    "appLockBiometricFingerprint": "fingerprint",
+    "@appLockBiometricFingerprint": {
+        "description": "App lock: appLockBiometricFingerprint"
+    },
+    "appLockBiometricTouchId": "Touch ID",
+    "@appLockBiometricTouchId": {
+        "description": "App lock: appLockBiometricTouchId"
+    },
+    "appLockBiometricGeneric": "biometrics",
+    "@appLockBiometricGeneric": {
+        "description": "App lock: appLockBiometricGeneric"
+    },
+    "appLockUseBiometric": "Use {method}",
+    "@appLockUseBiometric": {
+        "description": "App lock: appLockUseBiometric",
+        "placeholders": {
+            "method": {
+                "type": "String"
+            }
+        }
+    },
+    "appLockUnlockSubtitleWithBiometric": "Use {method} or enter your PIN",
+    "@appLockUnlockSubtitleWithBiometric": {
+        "description": "App lock: appLockUnlockSubtitleWithBiometric",
+        "placeholders": {
+            "method": {
+                "type": "String"
+            }
+        }
+    },
+    "appLockBiometricSwitchLabel": "Unlock with {method}",
+    "@appLockBiometricSwitchLabel": {
+        "description": "App lock: appLockBiometricSwitchLabel",
+        "placeholders": {
+            "method": {
+                "type": "String"
+            }
+        }
+    },
+    "appLockSetPinButton": "Set PIN",
+    "@appLockSetPinButton": {
+        "description": "App lock: appLockSetPinButton"
+    },
+    "appLockChangePinButton": "Change PIN",
+    "@appLockChangePinButton": {
+        "description": "App lock: appLockChangePinButton"
+    },
+    "appLockRowDescription": "Require a PIN to open Fluxer",
+    "@appLockRowDescription": {
+        "description": "App lock: appLockRowDescription"
+    },
+    "appLockRowDescriptionEnabled": "On. Locks after {duration} in the background.",
+    "@appLockRowDescriptionEnabled": {
+        "description": "App lock: settings row description while app lock is on",
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "appLockRowDescriptionEnabledImmediately": "On. Locks as soon as you leave Fluxer.",
+    "@appLockRowDescriptionEnabledImmediately": {
+        "description": "App lock: settings row description while app lock is on with no delay"
+    },
+    "appLockRowDescriptionWithBiometric": "Require a PIN or {method} to open Fluxer",
+    "@appLockRowDescriptionWithBiometric": {
+        "description": "App lock: appLockRowDescriptionWithBiometric",
+        "placeholders": {
+            "method": {
+                "type": "String"
+            }
+        }
+    },
+    "appLockBiometricSwitchHint": "Your PIN still works too",
+    "@appLockBiometricSwitchHint": {
+        "description": "App lock: appLockBiometricSwitchHint"
+    },
+    "appLockBiometricEither": "{first} or {second}",
+    "@appLockBiometricEither": {
+        "description": "App lock: appLockBiometricEither",
+        "placeholders": {
+            "first": {
+                "type": "String"
+            },
+            "second": {
+                "type": "String"
+            }
+        }
+    },
+    "voiceDiagnosticsCopy": "Copy voice diagnostics",
+    "@voiceDiagnosticsCopy": {
+        "description": "Action label that copies voice call diagnostics as JSON to the clipboard so they can be shared with the developers."
+    },
+    "voiceDiagnosticsCopyDescription": "Share with the developers to help fix call issues",
+    "@voiceDiagnosticsCopyDescription": {
+        "description": "Subtitle under the copy voice diagnostics row in the voice call controls sheet."
+    },
+    "voiceDiagnosticsCopied": "Copied voice diagnostics to clipboard",
+    "@voiceDiagnosticsCopied": {
+        "description": "Toast shown after voice diagnostics JSON was copied to the clipboard."
+    },
+    "voiceDiagnosticsInCallHint": "In a call",
+    "@voiceDiagnosticsInCallHint": {
+        "description": "Muted hint next to the copy voice diagnostics action when the user is currently connected to a voice call."
+    },
+    "oxygenUpdateAvailable": "Update available",
+    "@oxygenUpdateAvailable": {
+        "description": "Tooltip and accessible label on the channel header updater icon in the desktop app. Clicking it downloads the update, then restarts the app."
+    },
+    "oxygenUpdating": "Updating…",
+    "@oxygenUpdating": {
+        "description": "Tooltip and accessible label on the channel header updater icon in the desktop app while an update the user started is downloading. The app restarts by itself when it is done."
+    },
+    "desktopTrayShow": "Show {productName}",
+    "@desktopTrayShow": {
+        "description": "Desktop tray/menu bar menu item that shows the hidden app window.",
+        "placeholders": {
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "desktopTrayHide": "Hide {productName}",
+    "@desktopTrayHide": {
+        "description": "Desktop tray/menu bar menu item that hides the app window.",
+        "placeholders": {
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "desktopTrayOpenSettings": "Open settings",
+    "@desktopTrayOpenSettings": {
+        "description": "Desktop tray/menu bar menu item that opens user settings."
+    },
+    "desktopTrayStatus": "Status",
+    "@desktopTrayStatus": {
+        "description": "Desktop tray/menu bar submenu label for changing the user's presence status."
+    },
+    "desktopTrayAccounts": "Accounts",
+    "@desktopTrayAccounts": {
+        "description": "Desktop tray/menu bar submenu label for switching between signed-in accounts."
+    },
+    "desktopTrayMuteMic": "Mute microphone",
+    "@desktopTrayMuteMic": {
+        "description": "Desktop tray/menu bar menu item shown while in voice to mute the microphone."
+    },
+    "desktopTrayUnmuteMic": "Unmute microphone",
+    "@desktopTrayUnmuteMic": {
+        "description": "Desktop tray/menu bar menu item shown while in voice to unmute the microphone."
+    },
+    "desktopTrayDeafen": "Deafen",
+    "@desktopTrayDeafen": {
+        "description": "Desktop tray/menu bar menu item shown while in voice to deafen."
+    },
+    "desktopTrayUndeafen": "Undeafen",
+    "@desktopTrayUndeafen": {
+        "description": "Desktop tray/menu bar menu item shown while in voice to undeafen."
+    },
+    "desktopTrayDisconnectFrom": "Disconnect from {channel}",
+    "@desktopTrayDisconnectFrom": {
+        "description": "Desktop tray/menu bar menu item that leaves the named voice channel.",
+        "placeholders": {
+            "channel": {
+                "type": "String"
+            }
+        }
+    },
+    "desktopTrayDisconnectVoice": "Disconnect from voice",
+    "@desktopTrayDisconnectVoice": {
+        "description": "Desktop tray/menu bar menu item that leaves voice when the channel name is unknown."
+    },
+    "desktopTrayCheckForUpdates": "Check for updates",
+    "@desktopTrayCheckForUpdates": {
+        "description": "Desktop tray/menu bar menu item that checks for an app update."
+    },
+    "desktopTrayUpdateNow": "Update {productName} now",
+    "@desktopTrayUpdateNow": {
+        "description": "Desktop tray/menu bar menu item shown when an update is ready; installs it and restarts.",
+        "placeholders": {
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "desktopTrayCopyBuildInfo": "Copy build info",
+    "@desktopTrayCopyBuildInfo": {
+        "description": "Desktop tray/menu bar menu item that copies app version and build details to the clipboard."
+    },
+    "desktopTrayRestart": "Restart {productName}",
+    "@desktopTrayRestart": {
+        "description": "Desktop tray/menu bar menu item that restarts the app.",
+        "placeholders": {
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "desktopTrayQuit": "Quit {productName}",
+    "@desktopTrayQuit": {
+        "description": "Desktop tray/menu bar menu item that fully quits the app.",
+        "placeholders": {
+            "productName": {
+                "type": "String"
+            }
+        }
+    },
+    "userSettingsNavDesktop": "Desktop",
+    "@userSettingsNavDesktop": {
+        "description": "User settings navigation item for desktop app window and tray behavior."
+    },
+    "desktopSettingsWindowSectionTitle": "Desktop window",
+    "@desktopSettingsWindowSectionTitle": {
+        "description": "Section title in desktop settings for window and tray behavior."
+    },
+    "desktopSettingsShowTrayIcon": "Show system tray icon",
+    "@desktopSettingsShowTrayIcon": {
+        "description": "Desktop setting toggle on Windows and Linux that shows the app icon in the system tray."
+    },
+    "desktopSettingsShowMenuBarIcon": "Show menu bar icon",
+    "@desktopSettingsShowMenuBarIcon": {
+        "description": "Desktop setting toggle on macOS that shows the app icon in the menu bar."
+    },
+    "desktopSettingsMinimizeToTray": "Minimize to tray",
+    "@desktopSettingsMinimizeToTray": {
+        "description": "Desktop setting toggle on Windows and Linux; minimizing hides the window to the system tray."
+    },
+    "desktopSettingsMinimizeToMenuBar": "Minimize to menu bar",
+    "@desktopSettingsMinimizeToMenuBar": {
+        "description": "Desktop setting toggle on macOS; minimizing hides the window to the menu bar."
+    },
+    "desktopSettingsCloseToTray": "Close to tray",
+    "@desktopSettingsCloseToTray": {
+        "description": "Desktop setting toggle on Windows and Linux; closing the window keeps the app running in the system tray."
+    },
+    "desktopSettingsCloseToMenuBar": "Close to menu bar",
+    "@desktopSettingsCloseToMenuBar": {
+        "description": "Desktop setting toggle on macOS; closing the window keeps the app running in the menu bar."
+    },
     "advancedPerformanceReportingSectionDescription": "Help improve echowire by sharing anonymous crash and performance data.",
     "advancedPerformanceReportingDescription": "All reported data is anonymous and is sent only to echowire's own monitoring service — no third-party providers are used.",
     "captchaTitle": "Verify you're human",
@@ -20257,15 +20664,5 @@
     "threadsMemberAddedToast": "Member added",
     "@threadsMemberAddedToast": {
         "description": "Toast confirming someone was added to a thread."
-    },
-    "splashGatewayUnreachable": "Can't connect to {domain}. Check your internet connection and try again.",
-    "@splashGatewayUnreachable": {
-        "description": "Shown on the splash screen when the app can't connect to the instance at launch and there is no cached content to show. A Retry button follows. domain is the instance host, for example fluxer.com.",
-        "placeholders": {
-            "domain": {
-                "type": "String",
-                "example": "fluxer.com"
-            }
-        }
     }
 }

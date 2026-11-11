@@ -353,6 +353,11 @@ List<UserSettingsDesktopNavEntry> buildUserSettingsDesktopNav({
       UserSettingsSection.appIcon,
       leading: SettingsFluxerLogoIcon(),
     ),
+  if (isFluxerDesktopOs)
+    const UserSettingsDesktopNavEntry.link(
+      UserSettingsSection.desktop,
+      icon: PhosphorIconsFill.desktop,
+    ),
   ..._userSettingsDesktopNavAfterLanguageAndTime,
   if (showAppLogs) const UserSettingsDesktopNavEntry.appLogs(),
   if (AppBuildConfig.isCanary) ..._userSettingsDesktopNavStaffOnly,
@@ -513,6 +518,8 @@ List<FluxerSettingsNavGroup> buildUserSettingsMobileNavGroups({
             leading: leadingForUserSettingsSection(UserSettingsSection.appIcon),
             onTap: () => onOpenSection(UserSettingsSection.appIcon),
           ),
+        if (isFluxerDesktopOs)
+          link(UserSettingsSection.desktop, PhosphorIconsFill.desktop),
         link(UserSettingsSection.advanced, PhosphorIconsFill.gear),
       ],
     ),

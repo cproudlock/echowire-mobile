@@ -123,7 +123,7 @@ final class LocalPushNotifications {
             : null,
         windows: defaultTargetPlatform == TargetPlatform.windows
             ? const WindowsInitializationSettings(
-                appName: 'Fluxer Oxygen',
+                appName: 'echowire',
                 appUserModelId: 'com.fluxer.oxygen',
                 guid: '02357f68-878d-4d1b-b915-7d7a1ac79a85',
               )

@@ -16363,7 +16363,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get appLockSettingDescription =>
-      'Fluxer asks for your PIN after it has been in the background for the time you choose. App lock applies to every account on this device.';
+      'echowire asks for your PIN after it has been in the background for the time you choose. App lock applies to every account on this device.';
 
   @override
   String get appLockTimeoutLabel => 'Lock after';
@@ -16394,7 +16394,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get appLockTurnOffConfirmBody =>
-      'Fluxer will open without asking for your PIN.';
+      'echowire will open without asking for your PIN.';
 
   @override
   String get appLockEnterCurrentPinTitle => 'Enter your PIN';
@@ -16423,7 +16423,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
       'Too many attempts. Wait before trying again.';
 
   @override
-  String get appLockUnlockTitle => 'Unlock Fluxer';
+  String get appLockUnlockTitle => 'Unlock echowire';
 
   @override
   String appLockUnlockSubtitlePin(int digits) {
@@ -16449,7 +16449,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
       'Every account on this device will be signed out and app lock will be turned off.';
 
   @override
-  String get appLockBiometricReason => 'Unlock Fluxer';
+  String get appLockBiometricReason => 'Unlock echowire';
 
   @override
   String get appLockPinFieldLabel => 'PIN';
@@ -16494,7 +16494,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get appLockChangePinButton => 'Change PIN';
 
   @override
-  String get appLockRowDescription => 'Require a PIN to open Fluxer';
+  String get appLockRowDescription => 'Require a PIN to open echowire';
 
   @override
   String appLockRowDescriptionEnabled(String duration) {
@@ -16503,11 +16503,11 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get appLockRowDescriptionEnabledImmediately =>
-      'On. Locks as soon as you leave Fluxer.';
+      'On. Locks as soon as you leave echowire.';
 
   @override
   String appLockRowDescriptionWithBiometric(String method) {
-    return 'Require a PIN or $method to open Fluxer';
+    return 'Require a PIN or $method to open echowire';
   }
 
   @override

@@ -20240,7 +20240,7 @@
     "@appLockConfigure": {
         "description": "App lock: appLockConfigure"
     },
-    "appLockSettingDescription": "Fluxer asks for your PIN after it has been in the background for the time you choose. App lock applies to every account on this device.",
+    "appLockSettingDescription": "echowire asks for your PIN after it has been in the background for the time you choose. App lock applies to every account on this device.",
     "@appLockSettingDescription": {
         "description": "App lock: appLockSettingDescription"
     },
@@ -20280,7 +20280,7 @@
     "@appLockTurnOffConfirmTitle": {
         "description": "App lock: appLockTurnOffConfirmTitle"
     },
-    "appLockTurnOffConfirmBody": "Fluxer will open without asking for your PIN.",
+    "appLockTurnOffConfirmBody": "echowire will open without asking for your PIN.",
     "@appLockTurnOffConfirmBody": {
         "description": "App lock: appLockTurnOffConfirmBody"
     },
@@ -20322,7 +20322,7 @@
     "@appLockTooManyAttemptsShort": {
         "description": "App lock: appLockTooManyAttemptsShort"
     },
-    "appLockUnlockTitle": "Unlock Fluxer",
+    "appLockUnlockTitle": "Unlock echowire",
     "@appLockUnlockTitle": {
         "description": "App lock: appLockUnlockTitle"
     },
@@ -20360,7 +20360,7 @@
     "@appLockSignOutConfirmBody": {
         "description": "App lock: appLockSignOutConfirmBody"
     },
-    "appLockBiometricReason": "Unlock Fluxer",
+    "appLockBiometricReason": "Unlock echowire",
     "@appLockBiometricReason": {
         "description": "App lock: appLockBiometricReason"
     },
@@ -20427,7 +20427,7 @@
     "@appLockChangePinButton": {
         "description": "App lock: appLockChangePinButton"
     },
-    "appLockRowDescription": "Require a PIN to open Fluxer",
+    "appLockRowDescription": "Require a PIN to open echowire",
     "@appLockRowDescription": {
         "description": "App lock: appLockRowDescription"
     },
@@ -20440,11 +20440,11 @@
             }
         }
     },
-    "appLockRowDescriptionEnabledImmediately": "On. Locks as soon as you leave Fluxer.",
+    "appLockRowDescriptionEnabledImmediately": "On. Locks as soon as you leave echowire.",
     "@appLockRowDescriptionEnabledImmediately": {
         "description": "App lock: settings row description while app lock is on with no delay"
     },
-    "appLockRowDescriptionWithBiometric": "Require a PIN or {method} to open Fluxer",
+    "appLockRowDescriptionWithBiometric": "Require a PIN or {method} to open echowire",
     "@appLockRowDescriptionWithBiometric": {
         "description": "App lock: appLockRowDescriptionWithBiometric",
         "placeholders": {

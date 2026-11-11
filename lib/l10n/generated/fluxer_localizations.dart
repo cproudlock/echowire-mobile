@@ -28135,7 +28135,7 @@ abstract class FluxerLocalizations {
   /// App lock: appLockSettingDescription
   ///
   /// In en, this message translates to:
-  /// **'Fluxer asks for your PIN after it has been in the background for the time you choose. App lock applies to every account on this device.'**
+  /// **'echowire asks for your PIN after it has been in the background for the time you choose. App lock applies to every account on this device.'**
   String get appLockSettingDescription;
 
   /// App lock: appLockTimeoutLabel
@@ -28195,7 +28195,7 @@ abstract class FluxerLocalizations {
   /// App lock: appLockTurnOffConfirmBody
   ///
   /// In en, this message translates to:
-  /// **'Fluxer will open without asking for your PIN.'**
+  /// **'echowire will open without asking for your PIN.'**
   String get appLockTurnOffConfirmBody;
 
   /// App lock: appLockEnterCurrentPinTitle
@@ -28243,7 +28243,7 @@ abstract class FluxerLocalizations {
   /// App lock: appLockUnlockTitle
   ///
   /// In en, this message translates to:
-  /// **'Unlock Fluxer'**
+  /// **'Unlock echowire'**
   String get appLockUnlockTitle;
 
   /// App lock: appLockUnlockSubtitlePin
@@ -28285,7 +28285,7 @@ abstract class FluxerLocalizations {
   /// App lock: appLockBiometricReason
   ///
   /// In en, this message translates to:
-  /// **'Unlock Fluxer'**
+  /// **'Unlock echowire'**
   String get appLockBiometricReason;
 
   /// App lock: appLockPinFieldLabel
@@ -28363,7 +28363,7 @@ abstract class FluxerLocalizations {
   /// App lock: appLockRowDescription
   ///
   /// In en, this message translates to:
-  /// **'Require a PIN to open Fluxer'**
+  /// **'Require a PIN to open echowire'**
   String get appLockRowDescription;
 
   /// App lock: settings row description while app lock is on
@@ -28375,13 +28375,13 @@ abstract class FluxerLocalizations {
   /// App lock: settings row description while app lock is on with no delay
   ///
   /// In en, this message translates to:
-  /// **'On. Locks as soon as you leave Fluxer.'**
+  /// **'On. Locks as soon as you leave echowire.'**
   String get appLockRowDescriptionEnabledImmediately;
 
   /// App lock: appLockRowDescriptionWithBiometric
   ///
   /// In en, this message translates to:
-  /// **'Require a PIN or {method} to open Fluxer'**
+  /// **'Require a PIN or {method} to open echowire'**
   String appLockRowDescriptionWithBiometric(String method);
 
   /// App lock: appLockBiometricSwitchHint

@@ -680,7 +680,9 @@ class AuthRepository {
           );
       final String? pollSecret = response.pollSecret;
       if (response.code.isEmpty || pollSecret == null || pollSecret.isEmpty) {
-        throw const AuthFailure('Unexpected handoff response from Fluxer API.');
+        throw const AuthFailure(
+          'Unexpected handoff response from echowire API.',
+        );
       }
       return (code: response.code, pollSecret: pollSecret);
     } on DioException catch (error) {

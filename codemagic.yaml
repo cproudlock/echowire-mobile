@@ -34,7 +34,8 @@ workflows:
         APP_STORE_APPLE_TEAM_ID: "34589PFK6A"
       flutter: stable
       xcode: latest
-      cocoapods: default
+      # The Xcode project is object version 70; CocoaPods 1.16.2 (the default) cannot read it.
+      cocoapods: 1.17.0
     scripts:
       # packages/fluxer_markdown_native is a Rust crate built through Dart's
       # native-assets hook, so every step that runs dart/flutter needs cargo and

@@ -12,6 +12,7 @@ import 'package:fluxer_app/features/auth/providers/auth_instance_snapshot_provid
 import 'package:fluxer_app/features/auth/providers/auth_providers.dart';
 import 'package:fluxer_app/features/auth/providers/login_view_model.dart';
 import 'package:fluxer_app/features/auth/providers/passkey_error.dart';
+import 'package:fluxer_app/l10n/app_locale_provider.dart';
 import 'package:passkeys/exceptions.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

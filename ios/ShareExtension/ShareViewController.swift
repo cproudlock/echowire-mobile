@@ -1,6 +1,5 @@
-import UIKit
+import receive_sharing_intent
 
-// RSIShareViewController is vendored into this target (see RSIShareViewController.swift).
 class ShareViewController: RSIShareViewController {
     override func shouldAutoRedirect() -> Bool {
         return true

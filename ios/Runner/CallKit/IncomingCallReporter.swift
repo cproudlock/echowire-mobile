@@ -96,15 +96,6 @@ final class IncomingCallReporter: NSObject, CXProviderDelegate {
             result(ringing)
           }
         }
-      case "isExternalCallActive":
-        let fluxerOwnsVoice =
-          (call.arguments as? [String: Any])?["fluxerOwnsVoice"] as? Bool ?? false
-        self.queue.async {
-          let active = self.isExternalCallActive(fluxerOwnsVoice: fluxerOwnsVoice)
-          DispatchQueue.main.async {
-            result(active)
-          }
-        }
       case "currentCalls":
         self.queue.async {
           let payload = self.currentCallsPayload()
@@ -475,13 +466,6 @@ final class IncomingCallReporter: NSObject, CXProviderDelegate {
     return CXCallObserver().calls.contains { call in
       !call.hasEnded && !call.isOutgoing && !call.hasConnected
     }
-  }
-
-  private func isExternalCallActive(fluxerOwnsVoice: Bool) -> Bool {
-    if fluxerOwnsVoice {
-      return false
-    }
-    return CXCallObserver().calls.contains { !$0.hasEnded }
   }
 
   private func end(id: String?) {

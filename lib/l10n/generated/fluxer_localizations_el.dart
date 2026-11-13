@@ -295,9 +295,6 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   String get nagbarEnableNotifications => 'Ενεργοποίηση ειδοποιήσεων';
 
   @override
-  String get welcomeBack => 'Καλώς ήρθες ξανά';
-
-  @override
   String get email => 'Email';
 
   @override
@@ -364,6 +361,19 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
 
   @override
   String get register => 'Εγγραφή';
+
+  @override
+  String loginHeading(String productName) {
+    return 'Sign in to $productName';
+  }
+
+  @override
+  String loginNewAccountPrompt(String productName) {
+    return 'New to $productName? ';
+  }
+
+  @override
+  String get loginCreateAccountLink => 'Create an account';
 
   @override
   String get orDivider => 'Ή';
@@ -847,9 +857,6 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   @override
   String get unclaimedAccountDescriptionUsername =>
       'Ο λογαριασμός σας δεν έχει διεκδικηθεί ακόμη. Χωρίς όνομα χρήστη και κωδικό πρόσβασης, δεν θα μπορείτε να συνδεθείτε από άλλες συσκευές και μπορεί να χάσετε την πρόσβαση στον λογαριασμό σας. Διεκδικήστε τώρα τον λογαριασμό σας για να τον ασφαλίσετε.';
-
-  @override
-  String get addFriendUsernameOnlyHint => 'Όνομα χρήστη';
 
   @override
   String get registerTitle => 'Δημιουργία λογαριασμού';
@@ -1380,6 +1387,9 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   String get incomingVoiceCallTitle => 'Εισερχόμενη φωνητική κλήση';
 
   @override
+  String get incomingVoiceCallSubtitle => 'Voice call';
+
+  @override
   String get incomingVoiceCallAccept => 'Απάντηση';
 
   @override
@@ -1562,9 +1572,6 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
 
   @override
   String get addFriendSheetTitle => 'Προσθήκη φίλου';
-
-  @override
-  String get addFriendUsernameHint => 'Όνομα χρήστη#0000';
 
   @override
   String get addFriendUsernameLabel => 'Όνομα χρήστη φίλου';
@@ -5131,6 +5138,11 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   }
 
   @override
+  String lookAndFeelPixelsAccessibleValue(int value) {
+    return '$value pixels';
+  }
+
+  @override
   String get lookAndFeelMessageDisplayModeLabel =>
       'Λειτουργία εμφάνισης μηνυμάτων';
 
@@ -7527,6 +7539,16 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   String get notificationUnknownSender => 'Άγνωστο';
 
   @override
+  String notificationAttachmentPreview(String filename) {
+    return 'Attachment: $filename';
+  }
+
+  @override
+  String notificationStickerPreview(String name) {
+    return 'Sticker: $name';
+  }
+
+  @override
   String get chatMessageForward => 'Προώθηση';
 
   @override
@@ -7946,6 +7968,12 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
 
   @override
   String get chatMessagesLoadError => 'Δεν ήταν δυνατή η φόρτωση μηνυμάτων.';
+
+  @override
+  String get dmEmptyStateTitle => 'No messages yet';
+
+  @override
+  String get dmEmptyStateBody => 'Send a message to start the conversation.';
 
   @override
   String get chatMessagesFailedToLoad => 'Τα μηνύματα δεν φορτώθηκαν';
@@ -9765,11 +9793,6 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return 'Δημιουργήθηκε από τον/την $name. Λήγει σε $time.';
-  }
-
-  @override
-  String channelWelcomeHeading(String channelName) {
-    return 'Καλώς ήρθατε στο $channelName';
   }
 
   @override
@@ -11945,6 +11968,33 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
   @override
   String get quickSwitcherEmptyHint =>
       'Δοκιμάστε ένα διαφορετικό όνομα ή χρησιμοποιήστε προθέματα @ / # / ! / * για να φιλτράρετε τα αποτελέσματα.';
+
+  @override
+  String get quickSwitcherTitle => 'Quick switcher';
+
+  @override
+  String quickSwitcherFooterPrefixHint(
+    String peoplePrefix,
+    String textChannelPrefix,
+    String voiceChannelPrefix,
+    String communityPrefix,
+  ) {
+    return 'Start searches with $peoplePrefix $textChannelPrefix $voiceChannelPrefix $communityPrefix to narrow down results.';
+  }
+
+  @override
+  String get discoverySidebarApps => 'Apps';
+
+  @override
+  String get discoverySidebarThemes => 'Themes';
+
+  @override
+  String get discoverySidebarComingSoon => 'Coming soon';
+
+  @override
+  String discoverySidebarComingSoonItem(String itemLabel) {
+    return '$itemLabel, coming soon';
+  }
 
   @override
   String get quickSwitcherSectionPeople => 'Άτομα';
@@ -16380,6 +16430,23 @@ class FluxerLocalizationsEl extends FluxerLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String forumPostNewMessagesShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new',
+      one: '1 new',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostHasNewMessagesShort => 'New';
+
+  @override
+  String get forumPostHasNewMessages => 'New messages';
 
   @override
   String get forumPostReact => 'Προσθήκη της προεπιλεγμένης αντίδρασης';

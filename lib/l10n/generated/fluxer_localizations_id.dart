@@ -294,9 +294,6 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   String get nagbarEnableNotifications => 'Aktifkan notifikasi';
 
   @override
-  String get welcomeBack => 'Selamat datang kembali';
-
-  @override
   String get email => 'Estonia';
 
   @override
@@ -363,6 +360,19 @@ class FluxerLocalizationsId extends FluxerLocalizations {
 
   @override
   String get register => 'Daftar';
+
+  @override
+  String loginHeading(String productName) {
+    return 'Sign in to $productName';
+  }
+
+  @override
+  String loginNewAccountPrompt(String productName) {
+    return 'New to $productName? ';
+  }
+
+  @override
+  String get loginCreateAccountLink => 'Create an account';
 
   @override
   String get orDivider => 'ATAU';
@@ -840,9 +850,6 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   @override
   String get unclaimedAccountDescriptionUsername =>
       'Akun Anda belum diklaim. Tanpa nama pengguna dan kata sandi, Anda tidak akan dapat masuk dari perangkat lain dan Anda bisa kehilangan akses ke akun Anda. Klaim akun Anda sekarang untuk mengamankannya.';
-
-  @override
-  String get addFriendUsernameOnlyHint => 'Nama pengguna';
 
   @override
   String get registerTitle => 'Buat akun';
@@ -1359,6 +1366,9 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   String get incomingVoiceCallTitle => 'Panggilan suara masuk';
 
   @override
+  String get incomingVoiceCallSubtitle => 'Voice call';
+
+  @override
   String get incomingVoiceCallAccept => 'Terima';
 
   @override
@@ -1533,9 +1543,6 @@ class FluxerLocalizationsId extends FluxerLocalizations {
 
   @override
   String get addFriendSheetTitle => 'Tambah teman';
-
-  @override
-  String get addFriendUsernameHint => 'Nama pengguna#0000';
 
   @override
   String get addFriendUsernameLabel => 'Nama pengguna teman';
@@ -5053,6 +5060,11 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   }
 
   @override
+  String lookAndFeelPixelsAccessibleValue(int value) {
+    return '$value pixels';
+  }
+
+  @override
   String get lookAndFeelMessageDisplayModeLabel => 'Mode tampilan pesan';
 
   @override
@@ -7429,6 +7441,16 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   String get notificationUnknownSender => 'Tidak diketahui';
 
   @override
+  String notificationAttachmentPreview(String filename) {
+    return 'Attachment: $filename';
+  }
+
+  @override
+  String notificationStickerPreview(String name) {
+    return 'Sticker: $name';
+  }
+
+  @override
   String get chatMessageForward => 'Teruskan';
 
   @override
@@ -7843,6 +7865,12 @@ class FluxerLocalizationsId extends FluxerLocalizations {
 
   @override
   String get chatMessagesLoadError => 'Tidak dapat memuat pesan.';
+
+  @override
+  String get dmEmptyStateTitle => 'No messages yet';
+
+  @override
+  String get dmEmptyStateBody => 'Send a message to start the conversation.';
 
   @override
   String get chatMessagesFailedToLoad => 'Pesan gagal dimuat';
@@ -9637,11 +9665,6 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return 'Dibuat oleh $name. Kedaluwarsa dalam $time.';
-  }
-
-  @override
-  String channelWelcomeHeading(String channelName) {
-    return 'Selamat datang di $channelName';
   }
 
   @override
@@ -11778,6 +11801,33 @@ class FluxerLocalizationsId extends FluxerLocalizations {
   @override
   String get quickSwitcherEmptyHint =>
       'Coba nama lain atau gunakan awalan @ / # / ! / * untuk memfilter hasil.';
+
+  @override
+  String get quickSwitcherTitle => 'Quick switcher';
+
+  @override
+  String quickSwitcherFooterPrefixHint(
+    String peoplePrefix,
+    String textChannelPrefix,
+    String voiceChannelPrefix,
+    String communityPrefix,
+  ) {
+    return 'Start searches with $peoplePrefix $textChannelPrefix $voiceChannelPrefix $communityPrefix to narrow down results.';
+  }
+
+  @override
+  String get discoverySidebarApps => 'Apps';
+
+  @override
+  String get discoverySidebarThemes => 'Themes';
+
+  @override
+  String get discoverySidebarComingSoon => 'Coming soon';
+
+  @override
+  String discoverySidebarComingSoonItem(String itemLabel) {
+    return '$itemLabel, coming soon';
+  }
 
   @override
   String get quickSwitcherSectionPeople => 'Orang';
@@ -16149,6 +16199,23 @@ class FluxerLocalizationsId extends FluxerLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String forumPostNewMessagesShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new',
+      one: '1 new',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostHasNewMessagesShort => 'New';
+
+  @override
+  String get forumPostHasNewMessages => 'New messages';
 
   @override
   String get forumPostReact => 'Tambahkan reaksi default';

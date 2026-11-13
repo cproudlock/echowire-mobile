@@ -295,9 +295,6 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   String get nagbarEnableNotifications => 'Enable notifications';
 
   @override
-  String get welcomeBack => 'Welcome back';
-
-  @override
   String get email => 'Email';
 
   @override
@@ -364,6 +361,19 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
 
   @override
   String get register => 'Register';
+
+  @override
+  String loginHeading(String productName) {
+    return 'Sign in to $productName';
+  }
+
+  @override
+  String loginNewAccountPrompt(String productName) {
+    return 'New to $productName? ';
+  }
+
+  @override
+  String get loginCreateAccountLink => 'Create an account';
 
   @override
   String get orDivider => 'OR';
@@ -513,34 +523,34 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   String get statusDontClear => 'Don\'t clear';
 
   @override
-  String get statusFor10Seconds => 'For 10 seconds';
+  String get statusFor10Seconds => '10 সেকেন্ডের জন্য';
 
   @override
-  String get statusClearAfter10Seconds => '10 seconds';
+  String get statusClearAfter10Seconds => '10 সেকেন্ড';
 
   @override
-  String get statusClearAfter15Minutes => '15 minutes';
+  String get statusClearAfter15Minutes => '15 মিনিট';
 
   @override
-  String get statusClearAfter30Minutes => '30 minutes';
+  String get statusClearAfter30Minutes => '30 মিনিট (আধঘন্টা)';
 
   @override
-  String get statusClearAfter1Hour => '1 hour';
+  String get statusClearAfter1Hour => '1 ঘণ্টা';
 
   @override
-  String get statusClearAfter3Hours => '3 hours';
+  String get statusClearAfter3Hours => '3 ঘণ্টা';
 
   @override
-  String get statusClearAfter4Hours => '4 hours';
+  String get statusClearAfter4Hours => '4 ঘণ্টা';
 
   @override
-  String get statusClearAfter8Hours => '8 hours';
+  String get statusClearAfter8Hours => '8 ঘণ্টা';
 
   @override
-  String get statusClearAfter24Hours => '24 hours';
+  String get statusClearAfter24Hours => '24 ঘণ্টা (1 দিন)';
 
   @override
-  String get statusClearAfter3Days => '3 days';
+  String get statusClearAfter3Days => '3 দিন';
 
   @override
   String get statusDndDescription =>
@@ -586,13 +596,13 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   String get suspendedClosedTitle => 'Account closed';
 
   @override
-  String get suspendedWhatHappened => 'What happened';
+  String get suspendedWhatHappened => 'কী ঘটেছে';
 
   @override
-  String get suspendedWhy => 'Why';
+  String get suspendedWhy => 'কেন করা হয়েছে';
 
   @override
-  String get suspendedHowWeDecided => 'How we decided';
+  String get suspendedHowWeDecided => 'কিভাবে আমরা সিদ্ধান্ত নিলাম';
 
   @override
   String get suspendedHowToAppeal => 'How to appeal';
@@ -843,9 +853,6 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
       'Your account is not yet claimed. Without a username and password, you won\'t be able to sign in from other devices and you could lose access to your account. Claim your account now to secure it.';
 
   @override
-  String get addFriendUsernameOnlyHint => 'Username';
-
-  @override
   String get registerTitle => 'Create an account';
 
   @override
@@ -865,22 +872,22 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
       'A 4-digit tag will be added automatically to ensure uniqueness';
 
   @override
-  String get registerDateOfBirth => 'Date of birth';
+  String get registerDateOfBirth => 'জন্মতারিখ';
 
   @override
-  String get registerDateOfBirthDone => 'Done';
+  String get registerDateOfBirthDone => 'হয়ে গেছে';
 
   @override
   String get registerDateOfBirthNotSet => 'Not set';
 
   @override
-  String get registerMonth => 'Month';
+  String get registerMonth => 'মাস';
 
   @override
-  String get registerDay => 'Day';
+  String get registerDay => 'দিন';
 
   @override
-  String get registerYear => 'Year';
+  String get registerYear => 'বছর';
 
   @override
   String registerConsentLinks(String links) {
@@ -1368,6 +1375,9 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   String get incomingVoiceCallTitle => 'Incoming voice call';
 
   @override
+  String get incomingVoiceCallSubtitle => 'Voice call';
+
+  @override
   String get incomingVoiceCallAccept => 'Accept';
 
   @override
@@ -1430,28 +1440,28 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   }
 
   @override
-  String get dmMuteFor15Min => 'For 15 minutes';
+  String get dmMuteFor15Min => '15 মিনিটের জন্য';
 
   @override
-  String get dmMuteFor30Min => 'For 30 minutes';
+  String get dmMuteFor30Min => '30 মিনিটের (আধঘন্টার) জন্য';
 
   @override
-  String get dmMuteFor1Hour => 'For 1 hour';
+  String get dmMuteFor1Hour => '1 ঘণ্টার জন্য';
 
   @override
-  String get dmMuteFor3Hours => 'For 3 hours';
+  String get dmMuteFor3Hours => '3 ঘণ্টার জন্য';
 
   @override
-  String get dmMuteFor4Hours => 'For 4 hours';
+  String get dmMuteFor4Hours => '4 ঘণ্টার জন্য';
 
   @override
-  String get dmMuteFor8Hours => 'For 8 hours';
+  String get dmMuteFor8Hours => '8 ঘণ্টার জন্য';
 
   @override
-  String get dmMuteFor24Hours => 'For 24 hours';
+  String get dmMuteFor24Hours => '24 ঘণ্টার (একদিনের) জন্য';
 
   @override
-  String get dmMuteFor3Days => 'For 3 days';
+  String get dmMuteFor3Days => '3 দিনের জন্য';
 
   @override
   String get dmMuteForever => 'Until I turn it back on';
@@ -1550,9 +1560,6 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   String get addFriendSheetTitle => 'Add friend';
 
   @override
-  String get addFriendUsernameHint => 'Username#0000';
-
-  @override
   String get addFriendUsernameLabel => 'Friend\'s username';
 
   @override
@@ -1563,7 +1570,7 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
 
   @override
   String get addFriendInvalidUsername =>
-      'Enter a valid username (Username#0000).';
+      'Enter a username, then # and the 4-digit tag.';
 
   @override
   String get addFriendOutgoingSuccess => 'Friend request sent';
@@ -3774,58 +3781,58 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   String get durationPermanent => 'Permanent';
 
   @override
-  String get duration60Seconds => '60 seconds';
+  String get duration60Seconds => '60 সেকেন্ড (1 মিনিট)';
 
   @override
-  String get duration5Minutes => '5 minutes';
+  String get duration5Minutes => '5 মিনিট';
 
   @override
-  String get duration10Minutes => '10 minutes';
+  String get duration10Minutes => '10 মিনিট';
 
   @override
-  String get duration1Hour => '1 hour';
+  String get duration1Hour => '1 ঘণ্টা';
 
   @override
-  String get duration12Hours => '12 hours';
+  String get duration12Hours => '12 ঘণ্টা';
 
   @override
-  String get duration1Day => '1 day';
+  String get duration1Day => '1 দিন';
 
   @override
-  String get duration3Days => '3 days';
+  String get duration3Days => '3 দিন';
 
   @override
-  String get duration5Days => '5 days';
+  String get duration5Days => '5 দিন';
 
   @override
-  String get duration1Week => '1 week';
+  String get duration1Week => '1 সপ্তাহ';
 
   @override
-  String get duration2Weeks => '2 weeks';
+  String get duration2Weeks => '2 সপ্তাহ';
 
   @override
-  String get duration1Month => '1 month';
+  String get duration1Month => '1 মাস';
 
   @override
   String get durationCustom => 'Custom…';
 
   @override
   String typingIndicatorOne(String name) {
-    return '$name is typing...';
+    return '$name লিখছেন…';
   }
 
   @override
   String typingIndicatorTwo(String name1, String name2) {
-    return '$name1 and $name2 are typing...';
+    return '$name1 আর $name2 লিখছেন…';
   }
 
   @override
   String typingIndicatorThree(String name1, String name2, String name3) {
-    return '$name1, $name2 and $name3 are typing...';
+    return '$name1, $name2 আর $name3 লিখছেন…';
   }
 
   @override
-  String get typingIndicatorMultiple => 'Several people are typing...';
+  String get typingIndicatorMultiple => 'অনেকে লিখছেন…';
 
   @override
   String get typingIndicatorHandful =>
@@ -5052,6 +5059,11 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   }
 
   @override
+  String lookAndFeelPixelsAccessibleValue(int value) {
+    return '$value pixels';
+  }
+
+  @override
   String get lookAndFeelMessageDisplayModeLabel => 'Message display mode';
 
   @override
@@ -5136,7 +5148,7 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
       'When enabled, shortcut badges are hidden in tooltip popups.';
 
   @override
-  String get lookAndFeelGuildSidebarTitle => 'Guild sidebar';
+  String get lookAndFeelGuildSidebarTitle => 'Community list';
 
   @override
   String get lookAndFeelGuildSidebarDescription =>
@@ -5187,7 +5199,7 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
 
   @override
   String lookAndFeelCollapseDMsDescription(String productName) {
-    return 'When enabled, unread DMs in the guild sidebar are collapsed into a folder on the echowire button. Click the echowire button while on the DMs page to expand or collapse the folder.';
+    return 'When enabled, unread DMs in the community list are collapsed into a folder on the echowire button. Click the echowire button while on the DMs page to expand or collapse the folder.';
   }
 
   @override
@@ -7410,6 +7422,16 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   String get notificationUnknownSender => 'Unknown';
 
   @override
+  String notificationAttachmentPreview(String filename) {
+    return 'Attachment: $filename';
+  }
+
+  @override
+  String notificationStickerPreview(String name) {
+    return 'Sticker: $name';
+  }
+
+  @override
   String get chatMessageForward => 'Forward';
 
   @override
@@ -7825,6 +7847,12 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
 
   @override
   String get chatMessagesLoadError => 'Couldn\'t load messages.';
+
+  @override
+  String get dmEmptyStateTitle => 'No messages yet';
+
+  @override
+  String get dmEmptyStateBody => 'Send a message to start the conversation.';
 
   @override
   String get chatMessagesFailedToLoad => 'Messages failed to load';
@@ -9602,13 +9630,8 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   }
 
   @override
-  String channelWelcomeHeading(String channelName) {
-    return 'Welcome to $channelName';
-  }
-
-  @override
   String channelWelcomeDescription(String channelName) {
-    return 'This is the start of $channelName.';
+    return 'There are no older messages in $channelName.';
   }
 
   @override
@@ -10340,7 +10363,7 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
 
   @override
   String get storePlutoniumHighlightProfile =>
-      'Animated profile, badge, and custom 4-digit number';
+      'Animated profile and badge, and a custom tag number';
 
   @override
   String get storePlutoniumHighlightFiles => 'Uploads up to 500 MB';
@@ -10933,7 +10956,7 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   String get pushRelayConsentDeclinedToastAction => 'Open settings';
 
   @override
-  String get userSettingsNavLanguageAndTime => 'Language & time';
+  String get userSettingsNavLanguageAndTime => 'ভাষা ও সময়';
 
   @override
   String get languageAndTimeLanguageSectionTitle => 'Interface language';
@@ -11726,6 +11749,33 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
       'Try a different name or use @ / # / ! / * prefixes to filter results.';
 
   @override
+  String get quickSwitcherTitle => 'Quick switcher';
+
+  @override
+  String quickSwitcherFooterPrefixHint(
+    String peoplePrefix,
+    String textChannelPrefix,
+    String voiceChannelPrefix,
+    String communityPrefix,
+  ) {
+    return 'Start searches with $peoplePrefix $textChannelPrefix $voiceChannelPrefix $communityPrefix to narrow down results.';
+  }
+
+  @override
+  String get discoverySidebarApps => 'Apps';
+
+  @override
+  String get discoverySidebarThemes => 'Themes';
+
+  @override
+  String get discoverySidebarComingSoon => 'Coming soon';
+
+  @override
+  String discoverySidebarComingSoonItem(String itemLabel) {
+    return '$itemLabel, coming soon';
+  }
+
+  @override
   String get quickSwitcherSectionPeople => 'People';
 
   @override
@@ -12200,14 +12250,14 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   String get friendsPageTitle => 'My friends';
 
   @override
-  String get friendsActiveNowTitle => 'Active now';
+  String get friendsActiveNowTitle => 'In voice now';
 
   @override
-  String get friendsActiveNowEmptyTitle => 'It\'s quiet for now...';
+  String get friendsActiveNowEmptyTitle => 'Nobody is in a voice channel';
 
   @override
   String get friendsActiveNowEmptyBody =>
-      'When friends are active in voice channels, their activity will appear here.';
+      'Friends who join a voice channel will show up here.';
 
   @override
   String get friendsTabOnline => 'Online';
@@ -12251,7 +12301,7 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
   String get friendsEmptyAllTitle => 'No friends yet';
 
   @override
-  String get friendsEmptyAllBody => 'Where we\'re going, we need more friends.';
+  String get friendsEmptyAllBody => 'Add a friend with their username and tag.';
 
   @override
   String get friendsEmptyPendingTitle => 'No pending requests';
@@ -16054,6 +16104,23 @@ class FluxerLocalizationsBn extends FluxerLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String forumPostNewMessagesShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new',
+      one: '1 new',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostHasNewMessagesShort => 'New';
+
+  @override
+  String get forumPostHasNewMessages => 'New messages';
 
   @override
   String get forumPostReact => 'Add the default reaction';

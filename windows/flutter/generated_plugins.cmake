@@ -27,8 +27,10 @@ list(APPEND FLUTTER_PLUGIN_LIST
   sentry_flutter
   share_plus
   super_native_extensions
+  tray_manager
   url_launcher_windows
   webcrypto
+  window_manager
   window_to_front
 )
 

@@ -33,11 +33,13 @@ import 'package:fluxer_app/features/ui/input/fluxer_clipboard_scope.dart';
 import 'package:fluxer_app/features/ui/toast/fluxer_toast_overlay.dart';
 import 'package:fluxer_app/features/voice/presentation/widgets/incoming_voice_call_layer.dart';
 import 'package:fluxer_app/features/voice/presentation/widgets/pip/voice_pip_layer.dart';
+import 'package:fluxer_app/features/voice/presentation/widgets/pip/voice_system_pip_view.dart';
 import 'package:fluxer_app/features/voice/presentation/widgets/voice_call_accessibility_layer.dart';
 import 'package:fluxer_app/l10n/app_locale_provider.dart';
 import 'package:fluxer_app/l10n/fluxer_localizations_delegates.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
 import 'package:fluxer_app/material_ui.dart';
+import 'package:fluxer_app/shared/providers/input_modality_provider.dart';
 import 'package:fluxer_app/shared/widgets/beta_banner.dart';
 import 'package:fluxer_app/shared/widgets/input_modality_listener.dart';
 import 'package:foldable/foldable.dart';
@@ -125,7 +127,7 @@ class _FluxerAppState extends ConsumerState<FluxerApp> {
       instanceRuntimeConfigProvider.select((config) => config.productName),
     );
     if (isFluxerDesktopOs) {
-      desktopMainWindow?.title = productName;
+      setDesktopMainWindowTitle(productName);
     }
 
     return FluxerAppZoomScope(
@@ -194,7 +196,13 @@ class _FluxerAppState extends ConsumerState<FluxerApp> {
             );
             final Widget scaled = ReducedMotionScope(
               enabled: disableAnimations,
-              child: FluxerAppTextScale(child: AppLockGate(child: content)),
+              child: FluxerAppTextScale(
+                child: DesktopPointerUiScope(
+                  child: isFluxerNativeAndroid
+                      ? VoiceSystemPipHost(child: AppLockGate(child: content))
+                      : AppLockGate(child: content),
+                ),
+              ),
             );
             final ThemeData materialTheme = Theme.of(context);
             final CupertinoThemeData cupertinoTheme = CupertinoTheme.of(context)

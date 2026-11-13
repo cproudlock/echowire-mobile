@@ -15,8 +15,10 @@ import 'package:fluxer_app/core/providers/app/app_memory_trim.dart';
 import 'package:fluxer_app/core/providers/app/local_day_provider.dart';
 import 'package:fluxer_app/core/providers/gateway/gateway_connection_provider.dart';
 import 'package:fluxer_app/core/providers/instance/well_known_provider.dart';
+import 'package:fluxer_app/features/profile/providers/user_settings_status_provider.dart';
 import 'package:fluxer_app/l10n/app_locale_provider.dart';
 import 'package:fluxer_app/shared/external_links/external_url_launcher.dart';
+import 'package:fluxer_dart/gateway.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_ui_lifecycle_provider.g.dart';

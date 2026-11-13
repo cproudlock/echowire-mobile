@@ -90,8 +90,9 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('Sign in to Fluxer'), findsOneWidget);
-    expect(find.text('New to Fluxer? '), findsOneWidget);
+    // Echowire: the official default instance is echowire, not Fluxer.
+    expect(find.text('Sign in to echowire'), findsOneWidget);
+    expect(find.text('New to echowire? '), findsOneWidget);
     expect(find.text('Create an account'), findsOneWidget);
     expect(find.text('Welcome back'), findsNothing);
     expect(find.text('Register'), findsNothing);

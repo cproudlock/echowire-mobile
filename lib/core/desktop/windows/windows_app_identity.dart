@@ -54,9 +54,9 @@ String windowsNotificationActivatorGuidFor(AppBuildEnvironment environment) {
 @visibleForTesting
 String windowsAppDisplayNameFor(AppBuildEnvironment environment) {
   return switch (environment) {
-    AppBuildEnvironment.stable => 'Fluxer Oxygen',
-    AppBuildEnvironment.beta => 'Fluxer Oxygen Beta',
-    AppBuildEnvironment.canary => 'Fluxer Oxygen Canary',
+    AppBuildEnvironment.stable => 'echowire',
+    AppBuildEnvironment.beta => 'echowire Beta',
+    AppBuildEnvironment.canary => 'echowire Canary',
   };
 }
 

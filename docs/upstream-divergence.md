@@ -159,3 +159,8 @@ show echowire pages in this app. If that matters, give the constants a hosted-in
 versions allocate the Android build number from its Nodus service (needs `NODUS_CI_TOKEN`) and sync the version
 to its beta branch with its CI app; the fork builds from `pubspec.yaml` and has neither. The F-Droid lane
 (`android-fdroid-build-check.yml`, dispatch only) and its store metadata came in unchanged and are not used.
+
+## Windows app identity names and official-instance test copy (2026-11-14)
+
+- `lib/core/desktop/windows/windows_app_identity.dart` (`windowsAppDisplayNameFor`): upstream's helper returns 'Fluxer Oxygen', 'Fluxer Oxygen Beta' and 'Fluxer Oxygen Canary' for the Windows notification app name. The fork returns 'echowire', 'echowire Beta' and 'echowire Canary', as the hardcoded Windows initialization settings it replaced did, and because `brand_guard_test.dart` rejects the upstream name in any `lib/` string. The app user model id and activator GUID stay upstream's (identifiers, not display text). `windows/runner/main.cpp` likewise keeps our window title 'echowire' on upstream's new structure.
+- `test/features/mature_content/presentation/widgets/mature_content_channel_gate_test.dart`: the web opt-in copy test passes the official instance's web address and expects the host in the text. Upstream uses `https://web.fluxer.app` and expects 'fluxer.com'. The fork's official instance is `echowire.org` (`InstanceConstants.defaultInstanceInputUrl`), so the test passes `https://echowire.org` and expects 'echowire.org'. Expect this kind of fixture drift whenever upstream adds a test with its own instance names.

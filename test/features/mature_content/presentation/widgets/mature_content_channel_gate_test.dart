@@ -63,14 +63,14 @@ void main() {
   testWidgets('shows web opt-in copy without proceed on iOS', (tester) async {
     await tester.pumpWidget(
       _buildTestApp(
-        overrides: webOptInOverrides('https://web.fluxer.app'),
+        overrides: webOptInOverrides('https://echowire.org'),
         child: const MatureContentChannelGate(channelId: 'channel-1'),
       ),
     );
     await tester.pumpAndSettle();
     expect(find.text('Mature channel'), findsOneWidget);
     expect(
-      find.textContaining('channels at fluxer.com in your browser'),
+      find.textContaining('channels at echowire.org in your browser'),
       findsOneWidget,
     );
     expect(find.text('Proceed'), findsNothing);

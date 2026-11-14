@@ -282,9 +282,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get nagbarEnableNotifications => '开启通知';
 
   @override
-  String get welcomeBack => '欢迎回来';
-
-  @override
   String get email => '邮箱';
 
   @override
@@ -347,6 +344,19 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get register => '注册';
+
+  @override
+  String loginHeading(String productName) {
+    return 'Sign in to $productName';
+  }
+
+  @override
+  String loginNewAccountPrompt(String productName) {
+    return 'New to $productName? ';
+  }
+
+  @override
+  String get loginCreateAccountLink => 'Create an account';
 
   @override
   String get orDivider => '或';
@@ -799,9 +809,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   @override
   String get unclaimedAccountDescriptionUsername =>
       '您的账户尚未认领。没有用户名和密码，您将无法从其他设备登录，并可能丢失账户访问权限。立即认领您的账户以确保其安全。';
-
-  @override
-  String get addFriendUsernameOnlyHint => '用户名';
 
   @override
   String get registerTitle => '创建账户';
@@ -1290,6 +1297,9 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get incomingVoiceCallTitle => '来电';
 
   @override
+  String get incomingVoiceCallSubtitle => 'Voice call';
+
+  @override
   String get incomingVoiceCallAccept => '接听';
 
   @override
@@ -1460,9 +1470,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get addFriendSheetTitle => '添加好友';
-
-  @override
-  String get addFriendUsernameHint => '用户名#0000';
 
   @override
   String get addFriendUsernameLabel => '好友的用户名';
@@ -4798,6 +4805,11 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   }
 
   @override
+  String lookAndFeelPixelsAccessibleValue(int value) {
+    return '$value pixels';
+  }
+
+  @override
   String get lookAndFeelMessageDisplayModeLabel => '消息显示模式';
 
   @override
@@ -7001,6 +7013,16 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get notificationUnknownSender => '未知';
 
   @override
+  String notificationAttachmentPreview(String filename) {
+    return 'Attachment: $filename';
+  }
+
+  @override
+  String notificationStickerPreview(String name) {
+    return 'Sticker: $name';
+  }
+
+  @override
   String get chatMessageForward => '转发';
 
   @override
@@ -7390,6 +7412,12 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get chatMessagesLoadError => '无法加载消息。';
+
+  @override
+  String get dmEmptyStateTitle => 'No messages yet';
+
+  @override
+  String get dmEmptyStateBody => 'Send a message to start the conversation.';
 
   @override
   String get chatMessagesFailedToLoad => '消息加载失败';
@@ -9061,11 +9089,6 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return '由 $name 创建。将在 $time 后过期。';
-  }
-
-  @override
-  String channelWelcomeHeading(String channelName) {
-    return '欢迎来到 $channelName';
   }
 
   @override
@@ -11036,6 +11059,33 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get quickSwitcherEmptyHint => '尝试输入其他名称，或使用 @ / # / ! / * 前缀筛选结果。';
+
+  @override
+  String get quickSwitcherTitle => 'Quick switcher';
+
+  @override
+  String quickSwitcherFooterPrefixHint(
+    String peoplePrefix,
+    String textChannelPrefix,
+    String voiceChannelPrefix,
+    String communityPrefix,
+  ) {
+    return 'Start searches with $peoplePrefix $textChannelPrefix $voiceChannelPrefix $communityPrefix to narrow down results.';
+  }
+
+  @override
+  String get discoverySidebarApps => 'Apps';
+
+  @override
+  String get discoverySidebarThemes => 'Themes';
+
+  @override
+  String get discoverySidebarComingSoon => 'Coming soon';
+
+  @override
+  String discoverySidebarComingSoonItem(String itemLabel) {
+    return '$itemLabel, coming soon';
+  }
 
   @override
   String get quickSwitcherSectionPeople => '用户';
@@ -15141,6 +15191,23 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   }
 
   @override
+  String forumPostNewMessagesShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new',
+      one: '1 new',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostHasNewMessagesShort => 'New';
+
+  @override
+  String get forumPostHasNewMessages => 'New messages';
+
+  @override
   String get forumPostReact => '添加默认反应';
 
   @override
@@ -16582,9 +16649,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get nagbarEnableNotifications => '開啟通知';
 
   @override
-  String get welcomeBack => '歡迎回來';
-
-  @override
   String get email => '電子郵件';
 
   @override
@@ -17088,9 +17152,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   @override
   String get unclaimedAccountDescriptionUsername =>
       '您的帳戶尚未領取。沒有使用者名稱和密碼，您將無法從其他裝置登入，並且可能會遺失帳戶存取權。立即領取您的帳戶以確保安全。';
-
-  @override
-  String get addFriendUsernameOnlyHint => '使用者名稱';
 
   @override
   String get registerTitle => '建立帳戶';
@@ -17749,9 +17810,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get addFriendSheetTitle => '新增朋友';
-
-  @override
-  String get addFriendUsernameHint => '使用者名稱#0000';
 
   @override
   String get addFriendUsernameLabel => '朋友的使用者名稱';
@@ -25201,11 +25259,6 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return '由 $name 建立。將於 $time 過期。';
-  }
-
-  @override
-  String channelWelcomeHeading(String channelName) {
-    return '歡迎來到 $channelName';
   }
 
   @override

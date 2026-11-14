@@ -298,9 +298,6 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get nagbarEnableNotifications => 'Zapnout oznámení';
 
   @override
-  String get welcomeBack => 'Vítejte zpět';
-
-  @override
   String get email => 'E-mail';
 
   @override
@@ -366,6 +363,19 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get register => 'Registrovat';
+
+  @override
+  String loginHeading(String productName) {
+    return 'Sign in to $productName';
+  }
+
+  @override
+  String loginNewAccountPrompt(String productName) {
+    return 'New to $productName? ';
+  }
+
+  @override
+  String get loginCreateAccountLink => 'Create an account';
 
   @override
   String get orDivider => 'NEBO';
@@ -844,9 +854,6 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String get unclaimedAccountDescriptionUsername =>
       'Váš účet ještě není uplatněn. Bez uživatelského jména a hesla se nebudete moci přihlásit z jiných zařízení a můžete ztratit přístup ke svému účtu. Uplatněte svůj účet nyní a zabezpečte ho.';
-
-  @override
-  String get addFriendUsernameOnlyHint => 'Uživatelské jméno';
 
   @override
   String get registerTitle => 'Vytvořit účet';
@@ -1376,6 +1383,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get incomingVoiceCallTitle => 'Příchozí hlasový hovor';
 
   @override
+  String get incomingVoiceCallSubtitle => 'Voice call';
+
+  @override
   String get incomingVoiceCallAccept => 'Přijmout';
 
   @override
@@ -1559,9 +1569,6 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get addFriendSheetTitle => 'Přidat přítele';
-
-  @override
-  String get addFriendUsernameHint => 'Uživatelské jméno#0000';
 
   @override
   String get addFriendUsernameLabel => 'Uživatelské jméno přítele';
@@ -5094,6 +5101,11 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   }
 
   @override
+  String lookAndFeelPixelsAccessibleValue(int value) {
+    return '$value pixels';
+  }
+
+  @override
   String get lookAndFeelMessageDisplayModeLabel => 'Režim zobrazení zpráv';
 
   @override
@@ -7480,6 +7492,16 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get notificationUnknownSender => 'Neznámý';
 
   @override
+  String notificationAttachmentPreview(String filename) {
+    return 'Attachment: $filename';
+  }
+
+  @override
+  String notificationStickerPreview(String name) {
+    return 'Sticker: $name';
+  }
+
+  @override
   String get chatMessageForward => 'Přeposlat';
 
   @override
@@ -7897,6 +7919,12 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get chatMessagesLoadError => 'Nepodařilo se načíst zprávy.';
+
+  @override
+  String get dmEmptyStateTitle => 'No messages yet';
+
+  @override
+  String get dmEmptyStateBody => 'Send a message to start the conversation.';
 
   @override
   String get chatMessagesFailedToLoad => 'Zprávy se nepodařilo načíst';
@@ -9686,11 +9714,6 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return 'Vytvořil $name. Vyprší za $time.';
-  }
-
-  @override
-  String channelWelcomeHeading(String channelName) {
-    return 'Vítejte v kanálu $channelName';
   }
 
   @override
@@ -11833,6 +11856,33 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   @override
   String get quickSwitcherEmptyHint =>
       'Zkuste jiné jméno nebo použijte předpony @ / # / ! / * k filtrování výsledků.';
+
+  @override
+  String get quickSwitcherTitle => 'Quick switcher';
+
+  @override
+  String quickSwitcherFooterPrefixHint(
+    String peoplePrefix,
+    String textChannelPrefix,
+    String voiceChannelPrefix,
+    String communityPrefix,
+  ) {
+    return 'Start searches with $peoplePrefix $textChannelPrefix $voiceChannelPrefix $communityPrefix to narrow down results.';
+  }
+
+  @override
+  String get discoverySidebarApps => 'Apps';
+
+  @override
+  String get discoverySidebarThemes => 'Themes';
+
+  @override
+  String get discoverySidebarComingSoon => 'Coming soon';
+
+  @override
+  String discoverySidebarComingSoonItem(String itemLabel) {
+    return '$itemLabel, coming soon';
+  }
 
   @override
   String get quickSwitcherSectionPeople => 'Lidé';
@@ -16209,6 +16259,23 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String forumPostNewMessagesShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new',
+      one: '1 new',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostHasNewMessagesShort => 'New';
+
+  @override
+  String get forumPostHasNewMessages => 'New messages';
 
   @override
   String get forumPostReact => 'Přidat výchozí reakci';

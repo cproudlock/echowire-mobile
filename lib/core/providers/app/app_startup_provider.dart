@@ -9,6 +9,7 @@ import 'package:fluxer_app/core/api/service_unavailable.dart';
 import 'package:fluxer_app/core/build/push_provider_guard.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart';
 import 'package:fluxer_app/core/deep_links/deep_link_handler.dart';
+import 'package:fluxer_app/core/desktop/notifications/desktop_message_notification_binding.dart';
 import 'package:fluxer_app/core/experiments/experiments_provider.dart';
 import 'package:fluxer_app/core/gateway/gateway_presence_coordinator.dart';
 import 'package:fluxer_app/core/gateway/providers/gateway_event_providers.dart';
@@ -64,6 +65,7 @@ import 'package:fluxer_app/features/ui/toast/toast_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_p2p_consent_provider.dart';
 import 'package:fluxer_app/features/voice/providers/voice_session_provider.dart';
 import 'package:fluxer_app/features/voice/services/voice_callkit_coordinator.dart';
+import 'package:fluxer_app/features/voice/services/voice_system_pip_coordinator.dart';
 import 'package:fluxer_app/features/voice/services/voice_wakelock_coordinator.dart';
 import 'package:fluxer_app/features/voice/tts/fluxer_tts_provider.dart';
 import 'package:fluxer_app/l10n/app_locale_provider.dart';
@@ -94,9 +96,11 @@ void authenticatedSessionBindings(Ref ref) {
     ..read(pushTrayBackgroundListenerProvider)
     ..read(fluxerSfxIncomingRingBindingProvider)
     ..read(fluxerMessageSfxBindingProvider)
+    ..read(desktopMessageNotificationBindingProvider)
     ..read(fluxerTtsBindingProvider)
     ..read(voiceCallKitCoordinatorProvider)
     ..read(voiceWakelockCoordinatorProvider)
+    ..read(voiceSystemPipCoordinatorProvider)
     ..read(gatewayPresenceCoordinatorProvider)
     ..read(guildListSyncProvider)
     ..read(slowmodeSyncProvider)

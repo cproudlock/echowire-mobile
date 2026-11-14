@@ -286,9 +286,6 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get nagbarEnableNotifications => '알림 켜기';
 
   @override
-  String get welcomeBack => '다시 오신 것을 환영합니다';
-
-  @override
   String get email => '이메일';
 
   @override
@@ -352,6 +349,19 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get register => '등록';
+
+  @override
+  String loginHeading(String productName) {
+    return 'Sign in to $productName';
+  }
+
+  @override
+  String loginNewAccountPrompt(String productName) {
+    return 'New to $productName? ';
+  }
+
+  @override
+  String get loginCreateAccountLink => 'Create an account';
 
   @override
   String get orDivider => '또는';
@@ -814,9 +824,6 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   @override
   String get unclaimedAccountDescriptionUsername =>
       '계정을 아직 등록하지 않으셨습니다. 사용자 이름과 비밀번호가 없으면 다른 기기에서 로그인할 수 없으며 계정에 액세스하지 못할 수 있습니다. 지금 계정을 등록하여 안전하게 보호하세요.';
-
-  @override
-  String get addFriendUsernameOnlyHint => '사용자 이름';
 
   @override
   String get registerTitle => '계정 만들기';
@@ -1316,6 +1323,9 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get incomingVoiceCallTitle => '수신 음성 통화';
 
   @override
+  String get incomingVoiceCallSubtitle => 'Voice call';
+
+  @override
   String get incomingVoiceCallAccept => '수락';
 
   @override
@@ -1489,9 +1499,6 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get addFriendSheetTitle => '친구 추가';
-
-  @override
-  String get addFriendUsernameHint => '사용자이름#0000';
 
   @override
   String get addFriendUsernameLabel => '친구의 사용자 이름';
@@ -4888,6 +4895,11 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   }
 
   @override
+  String lookAndFeelPixelsAccessibleValue(int value) {
+    return '$value pixels';
+  }
+
+  @override
   String get lookAndFeelMessageDisplayModeLabel => '메시지 표시 모드';
 
   @override
@@ -7153,6 +7165,16 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get notificationUnknownSender => '알 수 없음';
 
   @override
+  String notificationAttachmentPreview(String filename) {
+    return 'Attachment: $filename';
+  }
+
+  @override
+  String notificationStickerPreview(String name) {
+    return 'Sticker: $name';
+  }
+
+  @override
   String get chatMessageForward => '전달';
 
   @override
@@ -7552,6 +7574,12 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get chatMessagesLoadError => '메시지를 불러올 수 없습니다.';
+
+  @override
+  String get dmEmptyStateTitle => 'No messages yet';
+
+  @override
+  String get dmEmptyStateBody => 'Send a message to start the conversation.';
 
   @override
   String get chatMessagesFailedToLoad => '메시지를 불러오지 못했습니다';
@@ -9253,11 +9281,6 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return '$name님이 만들었으며, $time 후에 만료됩니다.';
-  }
-
-  @override
-  String channelWelcomeHeading(String channelName) {
-    return '$channelName에 오신 것을 환영합니다';
   }
 
   @override
@@ -11277,6 +11300,33 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   @override
   String get quickSwitcherEmptyHint =>
       '다른 이름을 시도하거나 @ / # / ! / * 접두사를 사용하여 결과를 필터링하세요.';
+
+  @override
+  String get quickSwitcherTitle => 'Quick switcher';
+
+  @override
+  String quickSwitcherFooterPrefixHint(
+    String peoplePrefix,
+    String textChannelPrefix,
+    String voiceChannelPrefix,
+    String communityPrefix,
+  ) {
+    return 'Start searches with $peoplePrefix $textChannelPrefix $voiceChannelPrefix $communityPrefix to narrow down results.';
+  }
+
+  @override
+  String get discoverySidebarApps => 'Apps';
+
+  @override
+  String get discoverySidebarThemes => 'Themes';
+
+  @override
+  String get discoverySidebarComingSoon => 'Coming soon';
+
+  @override
+  String discoverySidebarComingSoonItem(String itemLabel) {
+    return '$itemLabel, coming soon';
+  }
 
   @override
   String get quickSwitcherSectionPeople => '사람';
@@ -15459,6 +15509,23 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String forumPostNewMessagesShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new',
+      one: '1 new',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostHasNewMessagesShort => 'New';
+
+  @override
+  String get forumPostHasNewMessages => 'New messages';
 
   @override
   String get forumPostReact => '기본 반응 추가';

@@ -295,9 +295,6 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
   String get nagbarEnableNotifications => 'Ativar notificações';
 
   @override
-  String get welcomeBack => 'Bem-vindo(a) de volta';
-
-  @override
   String get email => 'E-mail';
 
   @override
@@ -364,6 +361,19 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
 
   @override
   String get register => 'Registrar';
+
+  @override
+  String loginHeading(String productName) {
+    return 'Sign in to $productName';
+  }
+
+  @override
+  String loginNewAccountPrompt(String productName) {
+    return 'New to $productName? ';
+  }
+
+  @override
+  String get loginCreateAccountLink => 'Create an account';
 
   @override
   String get orDivider => 'OU';
@@ -844,9 +854,6 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
   @override
   String get unclaimedAccountDescriptionUsername =>
       'Sua conta ainda não foi reivindicada. Sem um nome de usuário e senha, você não poderá fazer login em outros dispositivos e poderá perder o acesso à sua conta. Reivindique sua conta agora para protegê-la.';
-
-  @override
-  String get addFriendUsernameOnlyHint => 'Nome de usuário';
 
   @override
   String get registerTitle => 'Criar uma conta';
@@ -1376,6 +1383,9 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
   String get incomingVoiceCallTitle => 'Chamada de voz recebida';
 
   @override
+  String get incomingVoiceCallSubtitle => 'Voice call';
+
+  @override
   String get incomingVoiceCallAccept => 'Aceitar';
 
   @override
@@ -1557,9 +1567,6 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
 
   @override
   String get addFriendSheetTitle => 'Adicionar amigo';
-
-  @override
-  String get addFriendUsernameHint => 'NomeDeUsuário#0000';
 
   @override
   String get addFriendUsernameLabel => 'Nome de usuário do amigo';
@@ -5094,6 +5101,11 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
   }
 
   @override
+  String lookAndFeelPixelsAccessibleValue(int value) {
+    return '$value pixels';
+  }
+
+  @override
   String get lookAndFeelMessageDisplayModeLabel =>
       'Modo de exibição de mensagens';
 
@@ -7480,6 +7492,16 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
   String get notificationUnknownSender => 'Desconhecido';
 
   @override
+  String notificationAttachmentPreview(String filename) {
+    return 'Attachment: $filename';
+  }
+
+  @override
+  String notificationStickerPreview(String name) {
+    return 'Sticker: $name';
+  }
+
+  @override
   String get chatMessageForward => 'Encaminhar';
 
   @override
@@ -7898,6 +7920,12 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
 
   @override
   String get chatMessagesLoadError => 'Não foi possível carregar mensagens.';
+
+  @override
+  String get dmEmptyStateTitle => 'No messages yet';
+
+  @override
+  String get dmEmptyStateBody => 'Send a message to start the conversation.';
 
   @override
   String get chatMessagesFailedToLoad => 'Falha ao carregar as mensagens';
@@ -9696,11 +9724,6 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
   @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return 'Criado por $name. Expira em $time.';
-  }
-
-  @override
-  String channelWelcomeHeading(String channelName) {
-    return 'Bem-vindo(a) a $channelName';
   }
 
   @override
@@ -11869,6 +11892,33 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
   @override
   String get quickSwitcherEmptyHint =>
       'Tente um nome diferente ou use os prefixos @ / # / ! / * para filtrar resultados.';
+
+  @override
+  String get quickSwitcherTitle => 'Quick switcher';
+
+  @override
+  String quickSwitcherFooterPrefixHint(
+    String peoplePrefix,
+    String textChannelPrefix,
+    String voiceChannelPrefix,
+    String communityPrefix,
+  ) {
+    return 'Start searches with $peoplePrefix $textChannelPrefix $voiceChannelPrefix $communityPrefix to narrow down results.';
+  }
+
+  @override
+  String get discoverySidebarApps => 'Apps';
+
+  @override
+  String get discoverySidebarThemes => 'Themes';
+
+  @override
+  String get discoverySidebarComingSoon => 'Coming soon';
+
+  @override
+  String discoverySidebarComingSoonItem(String itemLabel) {
+    return '$itemLabel, coming soon';
+  }
 
   @override
   String get quickSwitcherSectionPeople => 'Pessoas';
@@ -16271,6 +16321,23 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
   }
 
   @override
+  String forumPostNewMessagesShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new',
+      one: '1 new',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostHasNewMessagesShort => 'New';
+
+  @override
+  String get forumPostHasNewMessages => 'New messages';
+
+  @override
   String get forumPostReact => 'Adicionar a reação padrão';
 
   @override
@@ -17843,9 +17910,6 @@ class FluxerLocalizationsPtBr extends FluxerLocalizationsPt {
   String get nagbarEnableNotifications => 'Ativar notificações';
 
   @override
-  String get welcomeBack => 'Bem-vindo(a) de volta';
-
-  @override
   String get email => 'E-mail';
 
   @override
@@ -18380,9 +18444,6 @@ class FluxerLocalizationsPtBr extends FluxerLocalizationsPt {
   @override
   String get unclaimedAccountDescriptionUsername =>
       'Sua conta ainda não foi reivindicada. Sem um nome de usuário e senha, você não poderá fazer login em outros dispositivos e poderá perder o acesso à sua conta. Reivindique sua conta agora para protegê-la.';
-
-  @override
-  String get addFriendUsernameOnlyHint => 'Nome de usuário';
 
   @override
   String get registerTitle => 'Criar uma conta';
@@ -19093,9 +19154,6 @@ class FluxerLocalizationsPtBr extends FluxerLocalizationsPt {
 
   @override
   String get addFriendSheetTitle => 'Adicionar amigo';
-
-  @override
-  String get addFriendUsernameHint => 'NomeDeUsuário#0000';
 
   @override
   String get addFriendUsernameLabel => 'Nome de usuário do amigo';
@@ -27076,11 +27134,6 @@ class FluxerLocalizationsPtBr extends FluxerLocalizationsPt {
   @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return 'Criado por $name. Expira em $time.';
-  }
-
-  @override
-  String channelWelcomeHeading(String channelName) {
-    return 'Bem-vindo(a) a $channelName';
   }
 
   @override

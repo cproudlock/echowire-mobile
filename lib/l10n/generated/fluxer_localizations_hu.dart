@@ -295,9 +295,6 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get nagbarEnableNotifications => 'Értesítések engedélyezése';
 
   @override
-  String get welcomeBack => 'Üdv újra';
-
-  @override
   String get email => 'E-mail';
 
   @override
@@ -364,6 +361,19 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get register => 'Regisztráció';
+
+  @override
+  String loginHeading(String productName) {
+    return 'Sign in to $productName';
+  }
+
+  @override
+  String loginNewAccountPrompt(String productName) {
+    return 'New to $productName? ';
+  }
+
+  @override
+  String get loginCreateAccountLink => 'Create an account';
 
   @override
   String get orDivider => 'VAGY';
@@ -844,9 +854,6 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get unclaimedAccountDescriptionUsername =>
       'A fiókod még nincs igényelve. Felhasználónév és jelszó nélkül nem tudsz bejelentkezni más eszközökről, és elveszítheted a hozzáférést a fiókodhoz. Igényeld a fiókodat most, hogy biztosítsd.';
-
-  @override
-  String get addFriendUsernameOnlyHint => 'Felhasználónév';
 
   @override
   String get registerTitle => 'Fiók létrehozása';
@@ -1371,6 +1378,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get incomingVoiceCallTitle => 'Bejövő hanghívás';
 
   @override
+  String get incomingVoiceCallSubtitle => 'Voice call';
+
+  @override
   String get incomingVoiceCallAccept => 'Elfogadás';
 
   @override
@@ -1546,9 +1556,6 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get addFriendSheetTitle => 'Barát hozzáadása';
-
-  @override
-  String get addFriendUsernameHint => 'Felhasználónév#0000';
 
   @override
   String get addFriendUsernameLabel => 'Barát felhasználóneve';
@@ -5100,6 +5107,11 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   }
 
   @override
+  String lookAndFeelPixelsAccessibleValue(int value) {
+    return '$value pixels';
+  }
+
+  @override
   String get lookAndFeelMessageDisplayModeLabel =>
       'Üzenetek megjelenítési módja';
 
@@ -7487,6 +7499,16 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get notificationUnknownSender => 'Ismeretlen';
 
   @override
+  String notificationAttachmentPreview(String filename) {
+    return 'Attachment: $filename';
+  }
+
+  @override
+  String notificationStickerPreview(String name) {
+    return 'Sticker: $name';
+  }
+
+  @override
   String get chatMessageForward => 'Továbbítás';
 
   @override
@@ -7905,6 +7927,12 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get chatMessagesLoadError => 'Nem sikerült betölteni az üzeneteket.';
+
+  @override
+  String get dmEmptyStateTitle => 'No messages yet';
+
+  @override
+  String get dmEmptyStateBody => 'Send a message to start the conversation.';
 
   @override
   String get chatMessagesFailedToLoad => 'Az üzenetek betöltése sikertelen';
@@ -9706,11 +9734,6 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return 'Létrehozta: $name. Lejár: $time.';
-  }
-
-  @override
-  String channelWelcomeHeading(String channelName) {
-    return 'Üdvözlünk a(z) $channelName csatornában';
   }
 
   @override
@@ -11881,6 +11904,33 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   @override
   String get quickSwitcherEmptyHint =>
       'Próbálkozz más névvel, vagy használj @ / # / ! / * előtagokat az eredmények szűréséhez.';
+
+  @override
+  String get quickSwitcherTitle => 'Quick switcher';
+
+  @override
+  String quickSwitcherFooterPrefixHint(
+    String peoplePrefix,
+    String textChannelPrefix,
+    String voiceChannelPrefix,
+    String communityPrefix,
+  ) {
+    return 'Start searches with $peoplePrefix $textChannelPrefix $voiceChannelPrefix $communityPrefix to narrow down results.';
+  }
+
+  @override
+  String get discoverySidebarApps => 'Apps';
+
+  @override
+  String get discoverySidebarThemes => 'Themes';
+
+  @override
+  String get discoverySidebarComingSoon => 'Coming soon';
+
+  @override
+  String discoverySidebarComingSoonItem(String itemLabel) {
+    return '$itemLabel, coming soon';
+  }
 
   @override
   String get quickSwitcherSectionPeople => 'Személyek';
@@ -16290,6 +16340,23 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String forumPostNewMessagesShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new',
+      one: '1 new',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostHasNewMessagesShort => 'New';
+
+  @override
+  String get forumPostHasNewMessages => 'New messages';
 
   @override
   String get forumPostReact => 'Alapértelmezett reakció hozzáadása';

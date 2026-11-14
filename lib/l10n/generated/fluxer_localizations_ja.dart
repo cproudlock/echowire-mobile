@@ -285,9 +285,6 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get nagbarEnableNotifications => '通知をオンにする';
 
   @override
-  String get welcomeBack => 'おかえりなさい';
-
-  @override
   String get email => 'メールアドレス';
 
   @override
@@ -351,6 +348,19 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get register => '登録';
+
+  @override
+  String loginHeading(String productName) {
+    return 'Sign in to $productName';
+  }
+
+  @override
+  String loginNewAccountPrompt(String productName) {
+    return 'New to $productName? ';
+  }
+
+  @override
+  String get loginCreateAccountLink => 'Create an account';
 
   @override
   String get orDivider => 'または';
@@ -813,9 +823,6 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   @override
   String get unclaimedAccountDescriptionUsername =>
       'アカウントはまだ請求されていません。ユーザー名とパスワードがないと、他のデバイスからサインインできなくなり、アカウントへのアクセスを失う可能性があります。今すぐアカウントを請求して保護してください。';
-
-  @override
-  String get addFriendUsernameOnlyHint => 'ユーザー名';
 
   @override
   String get registerTitle => 'アカウントを作成';
@@ -1316,6 +1323,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get incomingVoiceCallTitle => '着信ボイスコール';
 
   @override
+  String get incomingVoiceCallSubtitle => 'Voice call';
+
+  @override
   String get incomingVoiceCallAccept => '応答';
 
   @override
@@ -1489,9 +1499,6 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get addFriendSheetTitle => 'フレンドを追加';
-
-  @override
-  String get addFriendUsernameHint => 'ユーザー名#0000';
 
   @override
   String get addFriendUsernameLabel => 'フレンドのユーザー名';
@@ -4887,6 +4894,11 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   }
 
   @override
+  String lookAndFeelPixelsAccessibleValue(int value) {
+    return '$value pixels';
+  }
+
+  @override
   String get lookAndFeelMessageDisplayModeLabel => 'メッセージ表示モード';
 
   @override
@@ -7161,6 +7173,16 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get notificationUnknownSender => '不明';
 
   @override
+  String notificationAttachmentPreview(String filename) {
+    return 'Attachment: $filename';
+  }
+
+  @override
+  String notificationStickerPreview(String name) {
+    return 'Sticker: $name';
+  }
+
+  @override
   String get chatMessageForward => '転送する';
 
   @override
@@ -7560,6 +7582,12 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get chatMessagesLoadError => 'メッセージを読み込めませんでした。';
+
+  @override
+  String get dmEmptyStateTitle => 'No messages yet';
+
+  @override
+  String get dmEmptyStateBody => 'Send a message to start the conversation.';
 
   @override
   String get chatMessagesFailedToLoad => 'メッセージの読み込みに失敗しました';
@@ -9259,11 +9287,6 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   @override
   String groupDmInviteCreatedByExpires(String name, String time) {
     return '$nameさんが作成しました。$time後に期限切れです。';
-  }
-
-  @override
-  String channelWelcomeHeading(String channelName) {
-    return '$channelNameへようこそ';
   }
 
   @override
@@ -11288,6 +11311,33 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   @override
   String get quickSwitcherEmptyHint =>
       '別の名前を試すか、@ / # / ! / * プレフィックスを使用して結果を絞り込みます。';
+
+  @override
+  String get quickSwitcherTitle => 'Quick switcher';
+
+  @override
+  String quickSwitcherFooterPrefixHint(
+    String peoplePrefix,
+    String textChannelPrefix,
+    String voiceChannelPrefix,
+    String communityPrefix,
+  ) {
+    return 'Start searches with $peoplePrefix $textChannelPrefix $voiceChannelPrefix $communityPrefix to narrow down results.';
+  }
+
+  @override
+  String get discoverySidebarApps => 'Apps';
+
+  @override
+  String get discoverySidebarThemes => 'Themes';
+
+  @override
+  String get discoverySidebarComingSoon => 'Coming soon';
+
+  @override
+  String discoverySidebarComingSoonItem(String itemLabel) {
+    return '$itemLabel, coming soon';
+  }
 
   @override
   String get quickSwitcherSectionPeople => 'ユーザー';
@@ -15478,6 +15528,23 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String forumPostNewMessagesShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new',
+      one: '1 new',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get forumPostHasNewMessagesShort => 'New';
+
+  @override
+  String get forumPostHasNewMessages => 'New messages';
 
   @override
   String get forumPostReact => 'デフォルトのリアクションを追加';

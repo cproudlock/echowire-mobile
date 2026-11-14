@@ -63,6 +63,11 @@ workflows:
         # oss profile, which would also drop store billing. Mirrors upstream's ios-*-testflight
         # workflows. The committed tree is already this state, so the step is idempotent.
         script: dart run tool/configure_build.dart --profile=ios-store
+      - name: Stub unifiedpush_linux (nativeapi does not compile)
+        # nativeapi 0.5.x (pulled in by unifiedpush_linux) fails the kernel_snapshot step of the iOS
+        # archive (WindowManager.hide, Isolate.create). Upstream resolves unifiedpush_linux to a local
+        # stub for Android and macOS builds; do the same here, before pub get.
+        script: bash tool/apply_macos_pub_overrides.sh
       - name: Flutter pub get
         script: flutter pub get
       - name: Generate code (build_runner)

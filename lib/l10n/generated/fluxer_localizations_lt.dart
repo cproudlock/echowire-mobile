@@ -4566,8 +4566,9 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
       'Ši suaugusiems skirta bendruomenė nepasiekiama jūsų paskyrai.';
 
   @override
-  String get matureContentIosWebOptInBody =>
-      'Įjunkite amžiaus ribojimą turinčias bendruomenes ir kanalus svetainėje fluxer.com naršyklėje arba kompiuterio programėlėje. Iki tol jie lieka paslėpti iOS programėlėje.';
+  String matureContentIosWebOptInInstanceBody(String webAddress) {
+    return 'Turn on age-restricted communities and channels at $webAddress in your browser or in the desktop app. They stay hidden in the iOS app until you do.';
+  }
 
   @override
   String get matureCategoryUnavailableBody =>

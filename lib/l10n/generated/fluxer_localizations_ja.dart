@@ -4363,8 +4363,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
       'この年齢制限のあるコミュニティは、あなたのアカウントでは利用できません。';
 
   @override
-  String get matureContentIosWebOptInBody =>
-      '年齢制限のあるコミュニティとチャンネルは、ブラウザでfluxer.comにアクセスするか、デスクトップアプリで有効にしてください。有効にするまで、iOSアプリでは非表示のままです。';
+  String matureContentIosWebOptInInstanceBody(String webAddress) {
+    return 'Turn on age-restricted communities and channels at $webAddress in your browser or in the desktop app. They stay hidden in the iOS app until you do.';
+  }
 
   @override
   String get matureCategoryUnavailableBody =>

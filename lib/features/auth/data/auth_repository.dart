@@ -232,7 +232,7 @@ class AuthRepository {
     if (row == null) {
       return null;
     }
-    return _resolveSessionForUserId(userId);
+    return await _resolveSessionForUserId(userId);
   }
 
   Future<void> migrateLegacyTokens() async {
@@ -348,7 +348,7 @@ class AuthRepository {
     }
     await _db.authSessionDao.removeSession(userId);
     await _tokenStorage.deleteToken(userId);
-    await _db.clearUserData();
+    await _db.clearUserData(userId);
   }
 
   Future<IpAuthPollResult> pollIpAuthorization(String ticket) async {
@@ -476,7 +476,7 @@ class AuthRepository {
     if (row == null) {
       return null;
     }
-    return resolveInstanceSnapshotForUser(row.userId);
+    return await resolveInstanceSnapshotForUser(row.userId);
   }
 
   String _resolveDisplayDomain(String? instanceSnapshotJson) {

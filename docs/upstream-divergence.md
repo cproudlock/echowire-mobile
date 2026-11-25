@@ -91,11 +91,15 @@ These are not about threads; the full rules are in the maintainer notes
   (`lib/core/deep_links/deep_link_path_policy.dart` and its test, the second Android
   intent filter, `ios/Runner/Info.plist`).
 - Version: `pubspec.yaml` `version:` is hand-managed; a Play version code burns on upload.
-- `sentry_flutter` is pinned to 9.26.0 (see the comment in `pubspec.yaml`).
+- `sentry_flutter` is pinned to 10.6.0 (see the comment in `pubspec.yaml`). It was 9.26.0 until the
+  2026-11-24 sync, where upstream's `speak` (jni ^1.1.0) could not resolve next to the 9.x line (jni 0.14.2).
 - Upstream nav entries that point at upstream's own properties are hidden: Fluxer Labs
   (`userSettingsShowJoinFluxerLabsNav`) and Give feedback (`userSettingsShowGiveFeedbackNav`) in
   `lib/features/settings/presentation/user_settings_nav.dart`. This fork has no equivalent
   community or feedback portal. If upstream renames either helper the settings modal fails to compile.
+  The Labs section of the Operator Pass settings (`user_operator_pass_section.dart`) follows the same
+  Labs switch, so its two English strings (`operatorPassLabsTitle`, `operatorPassLabsDescription`) are
+  dead text and sit on the brand guard allow list.
 - Brand sweep (user-visible upstream text): the splash quotes that named Fluxer
   (`lib/features/shell/utils/splash_quotes.dart`, four entries each credited to a named
   person) are removed, not reworded; the second `appName` in `voice_callkit_params.dart`,

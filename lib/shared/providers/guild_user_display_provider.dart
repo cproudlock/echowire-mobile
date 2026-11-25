@@ -8,7 +8,9 @@ import 'package:fluxer_app/features/channels/providers/channel_providers.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_app/features/dm/domain/dm_channel_types.dart';
 import 'package:fluxer_app/features/friends/providers/friend_providers.dart';
+import 'package:fluxer_app/features/members/providers/guild_roles_provider.dart';
 import 'package:fluxer_app/features/members/providers/member_providers.dart';
+import 'package:fluxer_app/features/profile/providers/user_presence_provider.dart';
 import 'package:fluxer_app/shared/services/guild_member_hydration_service.dart';
 import 'package:fluxer_app/shared/utils/chat_context_utils.dart';
 import 'package:fluxer_app/shared/utils/guild_user_display.dart';
@@ -103,13 +105,6 @@ GuildUserDisplay? watchGuildScopedUserDisplay({
   return async.value;
 }
 
-final StreamProviderFamily<db.User?, String> _userRowProvider = StreamProvider
-    .autoDispose
-    .family<db.User?, String>(
-      (ref, userId) =>
-          ref.watch(fluxerDatabaseProvider).userDao.watchUserById(userId),
-    );
-
 final StreamProviderFamily<Map<String, String>, String>
 _dmChannelNicksProvider = StreamProvider.autoDispose
     .family<Map<String, String>, String>(
@@ -149,7 +144,7 @@ class GuildUserDisplayWarmer {
     final List<ProviderSubscription<Future<Object?>>> next =
         <ProviderSubscription<Future<Object?>>>[
           for (final String userId in userIds.toSet()) ...[
-            ref.listen(_userRowProvider(userId).future, _ignoreChange),
+            ref.listen(userRowProvider(userId).future, _ignoreChange),
             ref.listen(friendNicknameProvider(userId).future, _ignoreChange),
             if (inGuild)
               ref.listen(
@@ -157,6 +152,8 @@ class GuildUserDisplayWarmer {
                 _ignoreChange,
               ),
           ],
+          if (inGuild)
+            ref.listen(guildRolesByIdProvider(guildId).future, _ignoreChange),
         ];
     try {
       await Future.wait(
@@ -238,12 +235,12 @@ AsyncValue<GuildUserDisplay?> _combine(
 }) {
   final (String userId, String? guildId) = args;
   ref.watch(
-    _userRowProvider(userId).select(
+    userRowProvider(userId).select(
       (AsyncValue<db.User?> async) =>
           async.value == null ? null : _userProfileSignature(async.value!),
     ),
   );
-  final AsyncValue<db.User?> userAsync = ref.read(_userRowProvider(userId));
+  final AsyncValue<db.User?> userAsync = ref.read(userRowProvider(userId));
   if (guildId != null && guildId.isNotEmpty) {
     ref.watch(
       memberRowByGuildProvider((userId, guildId)).select(

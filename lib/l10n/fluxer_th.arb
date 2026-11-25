@@ -56,10 +56,6 @@
     "@splashIncidentHistory": {
         "description": "Link label to incident history when no active incident."
     },
-    "welcomeBack": "ยินดีต้อนรับกลับ",
-    "@welcomeBack": {
-        "description": "Greeting on the login screen; usable wherever returning users are welcomed."
-    },
     "email": "อีเมล",
     "@email": {
         "description": "Generic label for an email field."
@@ -5893,15 +5889,6 @@
     "@personalNotesSubtitle": {
         "description": "Subtitle on the personal notes welcome empty state."
     },
-    "channelWelcomeHeading": "ยินดีต้อนรับสู่ {channelName}",
-    "@channelWelcomeHeading": {
-        "description": "Heading on the start-of-channel welcome shown at the top of a guild channel's loaded message history and as its empty state. {channelName} already includes the leading # (e.g. #general).",
-        "placeholders": {
-            "channelName": {
-                "type": "String"
-            }
-        }
-    },
     "channelWelcomeDescription": "นี่คือจุดเริ่มต้นของ {channelName}",
     "@channelWelcomeDescription": {
         "description": "Body text on the start-of-channel welcome. {channelName} already includes the leading # (e.g. #general).",
@@ -6755,6 +6742,10 @@
     "guildNavbarInvitesPaused": "การเชิญถูกระงับชั่วคราวในชุมชนนี้",
     "@guildNavbarInvitesPaused": {
         "description": "Guild tooltip when invites are disabled."
+    },
+    "guildNavbarInvitesPausedRaid": "ระงับคำเชิญชั่วคราวหลังจากการโจมตีที่น่าสงสัย",
+    "@guildNavbarInvitesPausedRaid": {
+        "description": "Guild tooltip when invites are paused after a suspected raid."
     },
     "guildNavbarDurationNever": "ไม่หมดอายุ",
     "@guildNavbarDurationNever": {
@@ -11857,10 +11848,6 @@
     "@embedGiftClaim": {
         "description": "Primary button on a redeemable gift embed."
     },
-    "embedGiftClaimed": "รับของขวัญแล้ว",
-    "@embedGiftClaimed": {
-        "description": "Disabled button label after a gift is claimed."
-    },
     "embedGiftClaimAccount": "ยืนยันบัญชีเพื่อรับของขวัญ",
     "@embedGiftClaimAccount": {
         "description": "Button on a gift embed for unclaimed accounts."
@@ -11872,10 +11859,6 @@
     "embedGiftUnknownSubtitle": "รหัสของขวัญนี้ไม่ถูกต้องหรือถูกใช้ไปแล้ว",
     "@embedGiftUnknownSubtitle": {
         "description": "Subtitle when a gift code cannot be resolved."
-    },
-    "embedGiftUnavailable": "ไม่สามารถส่งของขวัญได้",
-    "@embedGiftUnavailable": {
-        "description": "Disabled button when a gift cannot be claimed."
     },
     "giftAcceptClaimSubscription": "รับของขวัญของคุณเพื่อเปิดใช้งานการสมัครสมาชิก {productName} ของคุณ!",
     "@giftAcceptClaimSubscription": {

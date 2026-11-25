@@ -252,10 +252,6 @@
     "@nagbarEnableNotifications": {
         "description": "Push notification permission nagbar CTA."
     },
-    "welcomeBack": "Chào mừng bạn trở lại",
-    "@welcomeBack": {
-        "description": "Greeting on the login screen; usable wherever returning users are welcomed."
-    },
     "email": "Email",
     "@email": {
         "description": "Generic label for an email field."
@@ -1188,10 +1184,6 @@
     "@embedGiftClaim": {
         "description": "Primary button on a redeemable gift embed."
     },
-    "embedGiftClaimed": "Đã nhận quà",
-    "@embedGiftClaimed": {
-        "description": "Disabled button label after a gift is claimed."
-    },
     "embedGiftClaimAccount": "Đăng ký tài khoản để đổi quà",
     "@embedGiftClaimAccount": {
         "description": "Button on a gift embed for unclaimed accounts."
@@ -1203,10 +1195,6 @@
     "embedGiftUnknownSubtitle": "Mã quà tặng này không hợp lệ hoặc đã được nhận.",
     "@embedGiftUnknownSubtitle": {
         "description": "Subtitle when a gift code cannot be resolved."
-    },
-    "embedGiftUnavailable": "Không có quà tặng",
-    "@embedGiftUnavailable": {
-        "description": "Disabled button when a gift cannot be claimed."
     },
     "giftAcceptClaimSubscription": "Nhận quà của bạn để kích hoạt gói đăng ký {productName} của bạn!",
     "@giftAcceptClaimSubscription": {
@@ -10286,15 +10274,6 @@
             }
         }
     },
-    "channelWelcomeHeading": "Chào mừng bạn đến với {channelName}",
-    "@channelWelcomeHeading": {
-        "description": "Heading on the start-of-channel welcome shown at the top of a guild channel's loaded message history and as its empty state. {channelName} already includes the leading # (e.g. #general).",
-        "placeholders": {
-            "channelName": {
-                "type": "String"
-            }
-        }
-    },
     "channelWelcomeDescription": "Đây là phần bắt đầu của {channelName}.",
     "@channelWelcomeDescription": {
         "description": "Body text on the start-of-channel welcome. {channelName} already includes the leading # (e.g. #general).",
@@ -12641,6 +12620,10 @@
     "guildNavbarInvitesPaused": "Lời mời hiện đang bị tạm dừng trong cộng đồng này",
     "@guildNavbarInvitesPaused": {
         "description": "Guild tooltip when invites are disabled."
+    },
+    "guildNavbarInvitesPausedRaid": "Đã tạm dừng lời mời sau khi nghi ngờ có cuộc tấn công",
+    "@guildNavbarInvitesPausedRaid": {
+        "description": "Guild tooltip when invites are paused after a suspected raid."
     },
     "guildNavbarDurationNever": "không bao giờ",
     "@guildNavbarDurationNever": {

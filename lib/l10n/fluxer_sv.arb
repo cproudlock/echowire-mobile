@@ -56,10 +56,6 @@
     "@splashIncidentHistory": {
         "description": "Link label to incident history when no active incident."
     },
-    "welcomeBack": "Välkommen tillbaka",
-    "@welcomeBack": {
-        "description": "Greeting on the login screen; usable wherever returning users are welcomed."
-    },
     "email": "E-postadress",
     "@email": {
         "description": "Generic label for an email field."
@@ -5893,15 +5889,6 @@
     "@personalNotesSubtitle": {
         "description": "Subtitle on the personal notes welcome empty state."
     },
-    "channelWelcomeHeading": "Välkommen till {channelName}",
-    "@channelWelcomeHeading": {
-        "description": "Heading on the start-of-channel welcome shown at the top of a guild channel's loaded message history and as its empty state. {channelName} already includes the leading # (e.g. #general).",
-        "placeholders": {
-            "channelName": {
-                "type": "String"
-            }
-        }
-    },
     "channelWelcomeDescription": "Det här är början på {channelName}.",
     "@channelWelcomeDescription": {
         "description": "Body text on the start-of-channel welcome. {channelName} already includes the leading # (e.g. #general).",
@@ -6755,6 +6742,10 @@
     "guildNavbarInvitesPaused": "Inbjudningar är för närvarande pausade i den här communityn",
     "@guildNavbarInvitesPaused": {
         "description": "Guild tooltip when invites are disabled."
+    },
+    "guildNavbarInvitesPausedRaid": "Inbjudningar är pausade efter en misstänkt räd",
+    "@guildNavbarInvitesPausedRaid": {
+        "description": "Guild tooltip when invites are paused after a suspected raid."
     },
     "guildNavbarDurationNever": "aldrig",
     "@guildNavbarDurationNever": {
@@ -11857,10 +11848,6 @@
     "@embedGiftClaim": {
         "description": "Primary button on a redeemable gift embed."
     },
-    "embedGiftClaimed": "Gåva hämtad",
-    "@embedGiftClaimed": {
-        "description": "Disabled button label after a gift is claimed."
-    },
     "embedGiftClaimAccount": "Logga in för att lösa in",
     "@embedGiftClaimAccount": {
         "description": "Button on a gift embed for unclaimed accounts."
@@ -11872,10 +11859,6 @@
     "embedGiftUnknownSubtitle": "Den här presentkoden är ogiltig eller har redan lösts in.",
     "@embedGiftUnknownSubtitle": {
         "description": "Subtitle when a gift code cannot be resolved."
-    },
-    "embedGiftUnavailable": "Gåvan är inte tillgänglig",
-    "@embedGiftUnavailable": {
-        "description": "Disabled button when a gift cannot be claimed."
     },
     "giftAcceptClaimSubscription": "Hämta din gåva för att aktivera din {productName}-prenumeration!",
     "@giftAcceptClaimSubscription": {

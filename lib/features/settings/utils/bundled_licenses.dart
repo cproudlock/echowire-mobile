@@ -20,6 +20,8 @@ List<BundledLicense> bundledLicenses(TargetPlatform platform) {
       asset: 'assets/licenses/serde.txt',
     ),
     (packages: <String>['WebRTC'], asset: 'assets/licenses/webrtc.txt'),
+    (packages: <String>['RNNoise'], asset: 'assets/licenses/rnnoise.txt'),
+    (packages: <String>['SpeexDSP'], asset: 'assets/licenses/speexdsp.txt'),
     if (apple) ...<BundledLicense>[
       (packages: <String>['libmpv'], asset: 'assets/licenses/libmpv.txt'),
       (
@@ -34,10 +36,6 @@ List<BundledLicense> bundledLicenses(TargetPlatform platform) {
       ),
       (packages: <String>['KSCrash'], asset: 'assets/licenses/kscrash.txt'),
       (packages: <String>['Measure'], asset: 'assets/licenses/measure.txt'),
-      (
-        packages: <String>['super_native_extensions Rust crates'],
-        asset: 'assets/licenses/super-native-extensions.txt',
-      ),
       (
         packages: <String>['Jitsi broadcast extension'],
         asset: 'assets/licenses/jitsi-broadcast-extension.txt',

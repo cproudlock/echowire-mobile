@@ -56,10 +56,6 @@
     "@splashIncidentHistory": {
         "description": "Link label to incident history when no active incident."
     },
-    "welcomeBack": "أهلاً بعودتك",
-    "@welcomeBack": {
-        "description": "Greeting on the login screen; usable wherever returning users are welcomed."
-    },
     "email": "البريد الإلكتروني",
     "@email": {
         "description": "Generic label for an email field."
@@ -5893,15 +5889,6 @@
     "@personalNotesSubtitle": {
         "description": "Subtitle on the personal notes welcome empty state."
     },
-    "channelWelcomeHeading": "مرحباً بك في {channelName}",
-    "@channelWelcomeHeading": {
-        "description": "Heading on the start-of-channel welcome shown at the top of a guild channel's loaded message history and as its empty state. {channelName} already includes the leading # (e.g. #general).",
-        "placeholders": {
-            "channelName": {
-                "type": "String"
-            }
-        }
-    },
     "channelWelcomeDescription": "هذه بداية {channelName}.",
     "@channelWelcomeDescription": {
         "description": "Body text on the start-of-channel welcome. {channelName} already includes the leading # (e.g. #general).",
@@ -6755,6 +6742,10 @@
     "guildNavbarInvitesPaused": "الدعوات متوقفة حاليًا في هذا المجتمع",
     "@guildNavbarInvitesPaused": {
         "description": "Guild tooltip when invites are disabled."
+    },
+    "guildNavbarInvitesPausedRaid": "تم إيقاف الدعوات مؤقتًا بعد اشتباه في هجوم",
+    "@guildNavbarInvitesPausedRaid": {
+        "description": "Guild tooltip when invites are paused after a suspected raid."
     },
     "guildNavbarDurationNever": "أبدًا",
     "@guildNavbarDurationNever": {
@@ -11857,10 +11848,6 @@
     "@embedGiftClaim": {
         "description": "Primary button on a redeemable gift embed."
     },
-    "embedGiftClaimed": "تم استلام الهدية",
-    "@embedGiftClaimed": {
-        "description": "Disabled button label after a gift is claimed."
-    },
     "embedGiftClaimAccount": "المطالبة بالحساب للاسترداد",
     "@embedGiftClaimAccount": {
         "description": "Button on a gift embed for unclaimed accounts."
@@ -11872,10 +11859,6 @@
     "embedGiftUnknownSubtitle": "رمز الهدية هذا غير صالح أو تمت المطالبة به بالفعل.",
     "@embedGiftUnknownSubtitle": {
         "description": "Subtitle when a gift code cannot be resolved."
-    },
-    "embedGiftUnavailable": "الهدية غير متاحة",
-    "@embedGiftUnavailable": {
-        "description": "Disabled button when a gift cannot be claimed."
     },
     "giftAcceptClaimSubscription": "طالب هديتك لتفعيل اشتراك {productName} الخاص بك!",
     "@giftAcceptClaimSubscription": {

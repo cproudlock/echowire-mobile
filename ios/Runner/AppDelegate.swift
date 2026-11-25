@@ -16,7 +16,7 @@ import flutter_callkit_incoming
     VoipRegistry.shared.start()
     let result = super.application(application, didFinishLaunchingWithOptions: launchOptions)
     UNUserNotificationCenter.current().delegate = self
-    ApplePushBridge.shared.registerReplyCategory()
+    ApplePushBridge.shared.registerMessageCategory()
     // echowire: AssistantAppShortcuts is not in our Xcode target, so upstream's
     // call to it is omitted. See feat/ios-assistant.
     startMeasureIfEnabled()
@@ -144,6 +144,13 @@ import flutter_callkit_incoming
       )
       return
     }
+    if response.actionIdentifier == PushNotificationPayload.messageMarkReadActionId {
+      ApplePushBridge.shared.handleNotificationMarkRead(
+        userInfo: response.notification.request.content.userInfo,
+        completion: completionHandler
+      )
+      return
+    }
     if response.actionIdentifier == CallkitNotificationManager.CALLBACK_ACTION {
       let data = response.notification.request.content.userInfo as? [String: Any]
       SwiftFlutterCallkitIncomingPlugin.sharedInstance?.sendCallbackEvent(data)
@@ -174,7 +181,7 @@ import flutter_callkit_incoming
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
     VoipRegistry.shared.register(messenger: engineBridge.applicationRegistrar.messenger())
     ApplePushBridge.shared.register(engineBridge: engineBridge)
-    ApplePushBridge.shared.registerReplyCategory()
+    ApplePushBridge.shared.registerMessageCategory()
     // echowire: AssistantBridge is not in our Xcode target; the other two are.
     PhysicalKeyboardBridge.shared.register(engineBridge: engineBridge)
     NativePasteBridge.shared.register(engineBridge: engineBridge)
@@ -216,7 +223,7 @@ import flutter_callkit_incoming
   }
 
   func didDeactivateAudioSession(_ audioSession: AVAudioSession) {
-    CallAudioSession.deactivate(audioSession)
+    CallAudioSession.deactivate(audioSession, hasLiveCalls: VoipRegistry.shared.hasLiveCalls())
   }
 
   func providerDidReset() {}

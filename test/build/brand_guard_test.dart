@@ -24,9 +24,14 @@ final List<RegExp> _allowed = <RegExp>[
 // digit or underscore right after it means a type or constant name.
 final RegExp _leak = RegExp('(?<![A-Za-z0-9_])Fluxer(?![A-Z0-9_])');
 
-// ARB keys whose English value is dead text: the nav items are hidden by
-// userSettingsShowJoinFluxerLabsNav (see docs/upstream-divergence.md).
-const Set<String> _arbAllowedKeys = <String>{'userSettingsJoinFluxerLabs'};
+// ARB keys whose English value is dead text: the nav item and the Operator
+// Pass Labs section are hidden by userSettingsShowJoinFluxerLabsNav (see
+// docs/upstream-divergence.md).
+const Set<String> _arbAllowedKeys = <String>{
+  'userSettingsJoinFluxerLabs',
+  'operatorPassLabsTitle',
+  'operatorPassLabsDescription',
+};
 
 // Files that still carry upstream text but are unreachable. The guild
 // membership nag bar is switched off in nagbar/nagbar_providers.dart, so

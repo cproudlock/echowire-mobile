@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fluxer_fcm/fcm_background_budget.dart';
 import 'package:fluxer_fcm/fcm_message_mapper.dart';
 
 void main() {
@@ -15,5 +18,24 @@ void main() {
     );
     expect(extractFcmCiphertext(input.data), 'ciphertext');
     expect(mapRemoteMessage(input).payload.keys, <String>['p']);
+  });
+
+  test(
+    'a stalled background handler returns once its budget is spent',
+    () async {
+      final Stopwatch stopwatch = Stopwatch()..start();
+      await runFcmBackgroundWithinBudget(
+        () => Completer<void>().future,
+        budget: const Duration(milliseconds: 50),
+      );
+      expect(stopwatch.elapsed, lessThan(const Duration(seconds: 5)));
+    },
+  );
+
+  test('background handler errors never escape to the plugin', () async {
+    await expectLater(
+      runFcmBackgroundWithinBudget(() async => throw StateError('boom')),
+      completes,
+    );
   });
 }

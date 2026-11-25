@@ -55,7 +55,6 @@ class AppUiForeground extends _$AppUiForeground {
   }
 
   // Keep the notifier API stable for tests and lifecycle call sites.
-  // ignore: avoid_positional_boolean_parameters
   void setResumed(bool value) {
     if (state == value) {
       return;
@@ -77,6 +76,7 @@ class AppUiLifecycleObserver extends ConsumerStatefulWidget {
 class _AppUiLifecycleObserverState extends ConsumerState<AppUiLifecycleObserver>
     with WidgetsBindingObserver {
   Timer? _localDayTimer;
+  Timer? _backgroundTrimTimer;
   bool _desktopWindowHidden = false;
 
   @override
@@ -98,6 +98,7 @@ class _AppUiLifecycleObserverState extends ConsumerState<AppUiLifecycleObserver>
   @override
   void dispose() {
     _localDayTimer?.cancel();
+    _backgroundTrimTimer?.cancel();
     if (isFluxerDesktopOs) {
       desktopMainWindow.removeListener(_onDesktopWindowChanged);
     }
@@ -144,7 +145,13 @@ class _AppUiLifecycleObserverState extends ConsumerState<AppUiLifecycleObserver>
     }
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.hidden) {
-      trimFluxerAppMemory(ref, aggressive: false);
+      pauseFluxerAppMedia();
+      _backgroundTrimTimer ??= Timer(kBackgroundMemoryTrimDelay, () {
+        _backgroundTrimTimer = null;
+        if (mounted) {
+          trimFluxerAppMemory(ref, aggressive: false);
+        }
+      });
       if (Platform.isAndroid) {
         unawaited(DynamicAppIconFlutterPlus.applyPendingIcon());
       }
@@ -163,6 +170,8 @@ class _AppUiLifecycleObserverState extends ConsumerState<AppUiLifecycleObserver>
     ref.read(appUiForegroundProvider.notifier).setResumed(isForeground);
     _syncAfkPresence(state);
     if (isForeground) {
+      _backgroundTrimTimer?.cancel();
+      _backgroundTrimTimer = null;
       _syncLocalDay();
     } else {
       _localDayTimer?.cancel();
@@ -223,6 +232,7 @@ class _AppUiLifecycleObserverState extends ConsumerState<AppUiLifecycleObserver>
       return;
     }
     ref.read(localDayProvider.notifier).sync();
+    ref.read(relativeTimeTickProvider.notifier).tick();
     _localDayTimer = Timer(nextLocalDayCheckDelay(clock.now()), _syncLocalDay);
   }
 

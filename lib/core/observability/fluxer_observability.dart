@@ -133,7 +133,7 @@ class FluxerObservability {
     MeasureTraceKind kind = MeasureTraceKind.app,
   }) async {
     if (kind == MeasureTraceKind.network) {
-      return body();
+      return await body();
     }
     final StackTrace startStack = StackTrace.current;
     final Span? span = startSpan(
@@ -143,7 +143,7 @@ class FluxerObservability {
       stackTrace: startStack,
     );
     if (span == null) {
-      return body();
+      return await body();
     }
     final Stopwatch stopwatch = Stopwatch()..start();
     SpanStatus status = SpanStatus.ok;

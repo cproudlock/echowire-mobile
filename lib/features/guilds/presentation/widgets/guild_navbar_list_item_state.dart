@@ -104,127 +104,138 @@ class _GuildListItemState extends State<_GuildListItem> {
     final iconUrl = activeAnimatedIconUrl ?? widget.iconUrl;
     final hasImage = iconUrl != null && !widget.isUnavailable;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: GuildNavbarIconShape.itemSpacingOf(context) / 2,
-      ),
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.center,
-        children: [
-          const SizedBox(width: kGuildNavbarWidth),
-          PositionedDirectional(
-            start: 0,
-            top: 0,
-            bottom: 0,
-            child: Center(
-              child: GuildNavbarPill(
-                height: widget.isSelected
-                    ? GuildNavbarPill.selectedHeight
-                    : _isHovered
-                    ? GuildNavbarPill.hoverHeight
-                    : _displayHasUnread
-                    ? GuildNavbarPill.unreadHeight
-                    : 0,
+    final String? guildId = widget.guild?.id;
+    return ChannelHoverPreload(
+      enabled: !widget.isSelected && !widget.isUnavailable && guildId != null,
+      resolveChannelId: (WidgetRef ref) => guildId == null
+          ? null
+          : ref.read(guildLastChannelMemoryProvider).peekLastChannel(guildId),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: GuildNavbarIconShape.itemSpacingOf(context) / 2,
+        ),
+        child: Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
+            const SizedBox(width: kGuildNavbarWidth),
+            PositionedDirectional(
+              start: 0,
+              top: 0,
+              bottom: 0,
+              child: Center(
+                child: GuildNavbarPill(
+                  height: widget.isSelected
+                      ? GuildNavbarPill.selectedHeight
+                      : _isHovered
+                      ? GuildNavbarPill.hoverHeight
+                      : _displayHasUnread
+                      ? GuildNavbarPill.unreadHeight
+                      : 0,
+                ),
               ),
             ),
-          ),
-          _RightTooltip(
-            backgroundColor: widget.isUnavailable
-                ? context.colors.statusDanger
-                : null,
-            borderColor: widget.isUnavailable
-                ? context.colors.statusDanger
-                : null,
-            content: widget.guild != null
-                ? _GuildTooltipContent(
-                    guild: widget.guild!,
-                    unavailableCount: widget.unavailableCount,
-                    permissions: widget.permissions,
-                    isMuted: widget.isMuted,
-                    muteEndTime: widget.muteEndTime,
-                  )
-                : _TooltipLabel(label: widget.label),
-            child: MouseRegion(
-              onEnter: (_) => setState(() => _isHovered = true),
-              onExit: (_) => setState(() => _isHovered = false),
-              child: Semantics(
-                button: true,
-                selected: widget.isSelected,
-                label: _guildSemanticLabel(l10n),
-                child: FluxerGestureDetector(
-                  behavior: widget.opaqueHitTarget
-                      ? HitTestBehavior.opaque
-                      : null,
-                  onTap: widget.onTap,
-                  onTapDown: (_) => _setPressed(true),
-                  onTapUp: (_) => _setPressed(false),
-                  onTapCancel: () => _setPressed(false),
-                  onSecondaryTapUp: widget.guild != null
-                      ? (details) => unawaited(
-                          _showContextMenu(context, details.globalPosition),
-                        )
-                      : null,
-                  onLongPress:
-                      widget.guild != null && widget.enableLongPressMenu
-                      ? () => unawaited(showActionSheet())
-                      : null,
-                  child: SizedBox(
-                    width: widget.opaqueHitTarget
-                        ? kGuildNavbarWidth
-                        : GuildNavbarIconShape.sizeOf(context),
-                    height: GuildNavbarIconShape.sizeOf(context),
-                    child: Center(
-                      child: SizedBox.square(
-                        dimension: GuildNavbarIconShape.sizeOf(context),
-                        child: Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            Center(
-                              child: GuildNavbarIconShape(
-                                isActive: isActive,
-                                hasImage: hasImage,
-                                isUnavailable: widget.isUnavailable,
-                                child: _buildIconFace(
-                                  context,
-                                  iconUrl: iconUrl,
-                                  activeAnimatedIconUrl: activeAnimatedIconUrl,
-                                ),
-                              ),
-                            ),
-                            if (!widget.isUnavailable &&
-                                _displayMentionCount > 0)
-                              PositionedDirectional(
-                                bottom: GuildNavbarPill.badgeInset,
-                                end: GuildNavbarPill.badgeInset,
-                                child: FluxerBadgeEntrance(
-                                  child: FluxerBadge.count(
-                                    count: _displayMentionCount,
-                                    cutoutColor:
-                                        context.colors.serverSidebarBackground,
+            _RightTooltip(
+              backgroundColor: widget.isUnavailable
+                  ? context.colors.statusDanger
+                  : null,
+              borderColor: widget.isUnavailable
+                  ? context.colors.statusDanger
+                  : null,
+              content: widget.guild != null
+                  ? _GuildTooltipContent(
+                      guild: widget.guild!,
+                      unavailableCount: widget.unavailableCount,
+                      permissions: widget.permissions,
+                      isMuted: widget.isMuted,
+                      muteEndTime: widget.muteEndTime,
+                    )
+                  : _TooltipLabel(label: widget.label),
+              child: MouseRegion(
+                onEnter: (_) => setState(() => _isHovered = true),
+                onExit: (_) => setState(() => _isHovered = false),
+                child: Semantics(
+                  button: true,
+                  selected: widget.isSelected,
+                  label: _guildSemanticLabel(l10n),
+                  child: FluxerGestureDetector(
+                    behavior: widget.opaqueHitTarget
+                        ? HitTestBehavior.opaque
+                        : null,
+                    onTap: widget.onTap,
+                    onTapDown: (_) => _setPressed(true),
+                    onTapUp: (_) => _setPressed(false),
+                    onTapCancel: () => _setPressed(false),
+                    onSecondaryTapUp: widget.guild != null
+                        ? (details) => unawaited(
+                            _showContextMenu(context, details.globalPosition),
+                          )
+                        : null,
+                    onLongPress:
+                        widget.guild != null && widget.enableLongPressMenu
+                        ? () => unawaited(showActionSheet())
+                        : null,
+                    child: SizedBox(
+                      width: widget.opaqueHitTarget
+                          ? kGuildNavbarWidth
+                          : GuildNavbarIconShape.sizeOf(context),
+                      height: GuildNavbarIconShape.sizeOf(context),
+                      child: Center(
+                        child: SizedBox.square(
+                          dimension: GuildNavbarIconShape.sizeOf(context),
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Center(
+                                child: GuildNavbarIconShape(
+                                  isActive: isActive,
+                                  hasImage: hasImage,
+                                  isUnavailable: widget.isUnavailable,
+                                  child: _buildIconFace(
+                                    context,
+                                    iconUrl: iconUrl,
+                                    activeAnimatedIconUrl:
+                                        activeAnimatedIconUrl,
                                   ),
                                 ),
                               ),
-                            if (!widget.isUnavailable &&
-                                widget.voiceActivity != VoiceActivityType.none)
-                              PositionedDirectional(
-                                top: _ringBadgeOffset(context),
-                                end: _ringBadgeOffset(context),
-                                child: _VoiceActivityBadge(
-                                  type: widget.voiceActivity,
+                              if (!widget.isUnavailable &&
+                                  _displayMentionCount > 0)
+                                PositionedDirectional(
+                                  bottom: GuildNavbarPill.badgeInset,
+                                  end: GuildNavbarPill.badgeInset,
+                                  child: FluxerBadgeEntrance(
+                                    child: FluxerBadge.count(
+                                      count: _displayMentionCount,
+                                      cutoutColor: context
+                                          .colors
+                                          .serverSidebarBackground,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            if (!widget.isUnavailable &&
-                                !widget.isSelected &&
-                                widget.invitesPaused &&
-                                _displayMentionCount == 0 &&
-                                widget.voiceActivity == VoiceActivityType.none)
-                              PositionedDirectional(
-                                bottom: _ringBadgeOffset(context),
-                                end: _ringBadgeOffset(context),
-                                child: const _PauseBadge(),
-                              ),
-                          ],
+                              if (!widget.isUnavailable &&
+                                  widget.voiceActivity !=
+                                      VoiceActivityType.none)
+                                PositionedDirectional(
+                                  top: _ringBadgeOffset(context),
+                                  end: _ringBadgeOffset(context),
+                                  child: _VoiceActivityBadge(
+                                    type: widget.voiceActivity,
+                                  ),
+                                ),
+                              if (!widget.isUnavailable &&
+                                  !widget.isSelected &&
+                                  widget.invitesPaused &&
+                                  _displayMentionCount == 0 &&
+                                  widget.voiceActivity ==
+                                      VoiceActivityType.none)
+                                PositionedDirectional(
+                                  bottom: _ringBadgeOffset(context),
+                                  end: _ringBadgeOffset(context),
+                                  child: const _PauseBadge(),
+                                ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -232,8 +243,8 @@ class _GuildListItemState extends State<_GuildListItem> {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -846,46 +857,41 @@ class _GuildListItemState extends State<_GuildListItem> {
       builder: (sheetContext, close) {
         final layout = sheetContext.layout;
 
-        final isMutualDmsDisabled = guild.features.contains(
-          'DISABLE_MUTUAL_DMS',
+        final memberDmsDisabled = hasGuildFeature(
+          guild.features,
+          GuildFeatures.memberDmsDisabled,
         );
 
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: layout.s4),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          child: FluxerMenuGroup(
             children: [
-              if (isMutualDmsDisabled) ...[
-                FluxerWarningAlert(message: l10n.privacyMutualDmsDisabled),
-                SizedBox(height: layout.s4),
-              ],
-              FluxerMenuGroup(
-                children: [
-                  ValueListenableBuilder<bool>(
-                    valueListenable: isDmsAllowed,
-                    builder: (_, allowed, _) => FluxerToggleSwitch(
-                      label: l10n.privacyDirectMessages,
-                      description: l10n.privacyDirectMessagesDescription,
-                      value: allowed,
-                      onChanged: (allowed) {
-                        isDmsAllowed.value = allowed;
-                        widget.onToggleDms?.call(allowed: allowed);
-                      },
-                    ),
-                  ),
-                  ValueListenableBuilder<bool>(
-                    valueListenable: isBotDmsAllowed,
-                    builder: (_, allowed, _) => FluxerToggleSwitch(
-                      label: l10n.privacyBotDirectMessages,
-                      description: l10n.privacyBotDirectMessagesDescription,
-                      value: allowed,
-                      onChanged: (allowed) {
-                        isBotDmsAllowed.value = allowed;
-                        widget.onToggleBotDms?.call(allowed: allowed);
-                      },
-                    ),
-                  ),
-                ],
+              ValueListenableBuilder<bool>(
+                valueListenable: isDmsAllowed,
+                builder: (_, allowed, _) => FluxerToggleSwitch(
+                  label: l10n.privacyDirectMessages,
+                  description: memberDmsDisabled
+                      ? l10n.privacyMutualDmsDisabled
+                      : l10n.privacyDirectMessagesDescription,
+                  value: allowed && !memberDmsDisabled,
+                  enabled: !memberDmsDisabled,
+                  onChanged: (allowed) {
+                    isDmsAllowed.value = allowed;
+                    widget.onToggleDms?.call(allowed: allowed);
+                  },
+                ),
+              ),
+              ValueListenableBuilder<bool>(
+                valueListenable: isBotDmsAllowed,
+                builder: (_, allowed, _) => FluxerToggleSwitch(
+                  label: l10n.privacyBotDirectMessages,
+                  description: l10n.privacyBotDirectMessagesDescription,
+                  value: allowed,
+                  onChanged: (allowed) {
+                    isBotDmsAllowed.value = allowed;
+                    widget.onToggleBotDms?.call(allowed: allowed);
+                  },
+                ),
               ),
             ],
           ),

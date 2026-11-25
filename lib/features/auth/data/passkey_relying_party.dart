@@ -14,11 +14,11 @@ Future<T> withPasskeyRelyingParty<T>({
 }) async {
   final String? rpId = preferredPasskeyRpId(apiBaseUrl);
   if (rpId == null) {
-    return attempt(null);
+    return await attempt(null);
   }
   try {
     return await attempt(rpId);
   } on NoCredentialsAvailableException {
-    return attempt(null);
+    return await attempt(null);
   }
 }

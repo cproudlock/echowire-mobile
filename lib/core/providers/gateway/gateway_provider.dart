@@ -398,9 +398,23 @@ Raw<StreamSubscription<GatewayEvent>?> gatewayEventListener(Ref ref) {
             )
             .rebuildGuild(guildId),
       );
-      ref
-        ..invalidate(effectiveGuildChannelPermissionBitsProvider)
-        ..invalidate(channelLocalGuildChannelPermissionBitsProvider);
+      unawaited(() async {
+        final channels = await db.channelDao.getChannels(
+          guildId,
+          includeThreads: true,
+        );
+        ifMounted(() {
+          for (final channel in channels) {
+            ref
+              ..invalidate(
+                effectiveGuildChannelPermissionBitsProvider(channel.id),
+              )
+              ..invalidate(
+                channelLocalGuildChannelPermissionBitsProvider(channel.id),
+              );
+          }
+        });
+      }());
     }),
     onGuildPermissionsEvict: (guildId) => ifMounted(() {
       ref
@@ -416,6 +430,16 @@ Raw<StreamSubscription<GatewayEvent>?> gatewayEventListener(Ref ref) {
     }),
     onGuildRemove: (guildId) => ifMounted(() {
       DrawerNavigationCoordinator.leaveDeletedGuild(ref.container, guildId);
+    }),
+    onThreadGuildsReady: (active, unavailable) => ifMounted(() {
+      ref
+          .read(threadGuildsProvider(readAccountUserId(ref)).notifier)
+          .handleReady(active, unavailable);
+    }),
+    onGuildThreadsActive: (guildId, {required active}) => ifMounted(() {
+      ref
+          .read(threadGuildsProvider(readAccountUserId(ref)).notifier)
+          .setActive(guildId, active: active);
     }),
     onChannelPermissionChanged: (channelId) => ifMounted(() {
       unawaited(

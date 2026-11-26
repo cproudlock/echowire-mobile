@@ -119,6 +119,11 @@ Future<void> showFcmBackgroundNotification(FcmPushMessage message) async {
       plugin: plugin,
       messageIds: messageIds,
       excludeNotificationId: id,
+      systemNotificationTags: fcmSystemNotificationTags(
+        payload: message.payload,
+        localNotificationId: id,
+        localTag: channelTag,
+      ),
       showLocalNotification: () async {
         await plugin.show(
           id: id,

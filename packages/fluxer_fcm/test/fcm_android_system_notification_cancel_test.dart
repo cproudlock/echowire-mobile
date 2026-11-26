@@ -46,4 +46,37 @@ void main() {
       expect(fcmSystemNotificationCancelIds(<String>['']), isEmpty);
     });
   });
+
+  group('fcmSystemNotificationTags', () {
+    test('targets the server tag the system copy is posted under', () {
+      final Iterable<String> tags = fcmSystemNotificationTags(
+        payload: <String, String>{'tag': 'channel:1:2'},
+        localNotificationId: 22164616,
+        localTag: 'channel:1',
+      );
+      expect(tags, <String>['channel:1:2']);
+    });
+
+    test('is empty without a tag', () {
+      expect(
+        fcmSystemNotificationTags(
+          payload: const <String, String>{},
+          localNotificationId: 5,
+          localTag: 'channel:1',
+        ),
+        isEmpty,
+      );
+    });
+
+    test('never targets the local notification itself', () {
+      expect(
+        fcmSystemNotificationTags(
+          payload: <String, String>{'tag': 'channel:1'},
+          localNotificationId: kFcmSystemNotificationId,
+          localTag: 'channel:1',
+        ),
+        isEmpty,
+      );
+    });
+  });
 }

@@ -49,7 +49,18 @@ workflows:
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --profile minimal
           fi
           source "$HOME/.cargo/env"
-          rustup target add aarch64-apple-darwin aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios
+          APPLE_TARGETS="aarch64-apple-darwin aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios"
+          rustup target add $APPLE_TARGETS
+          # The crate builds inside fluxer/, whose rust-toolchain.toml pins its own
+          # toolchain (1.98.1 on 2026-11-25). Targets are per toolchain, so add them
+          # there too, or cargo fails with "can't find crate for core" on memchr,
+          # itoa, serde_core, zmij.
+          PINNED=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' fluxer/rust-toolchain.toml)
+          if [ -n "$PINNED" ]; then
+            rustup toolchain install "$PINNED" --profile minimal
+            rustup target add --toolchain "$PINNED" $APPLE_TARGETS
+            (cd fluxer && cargo --version && rustup target list --installed)
+          fi
           echo "export PATH=\"$HOME/.cargo/bin:\$PATH\"" >> ~/.zshrc
           echo 'PATH=$HOME/.cargo/bin:$PATH' >> "$CM_ENV"
           cargo --version

@@ -45,7 +45,13 @@ class ApnsMobileDeviceRegistration extends _$ApnsMobileDeviceRegistration {
       ..listen<String?>(fluxerAuthTokenProvider, (_, _) {
         unawaited(sync());
       })
-      ..listen<bool>(authStateProvider, (_, _) {
+      ..listen<bool>(authStateProvider, (_, bool next) {
+        // Echowire: the server drops this device's subscription when the
+        // session ends; forget the "already registered" memo with it so a
+        // sign-in to the same account in the same process registers again.
+        if (!next) {
+          _forgetRegistration();
+        }
         unawaited(sync());
       })
       ..listen<String?>(currentUserIdProvider, (
@@ -300,10 +306,26 @@ class ApnsMobileDeviceRegistration extends _$ApnsMobileDeviceRegistration {
     }
   }
 
+  void _forgetRegistration() {
+    _lastRegisteredUserId = null;
+    _lastRegisteredRelayUrl = null;
+    _lastRegisteredPublicKey = null;
+  }
+
   Future<void> unregisterCurrentToken() async {
     if (!_shouldRunOnThisPlatform) {
       return;
     }
+    try {
+      await _unregisterCurrentTokenOnServer();
+    } finally {
+      // Echowire: forget even when the call was skipped or failed; the server
+      // revokes the subscription with the session anyway.
+      _forgetRegistration();
+    }
+  }
+
+  Future<void> _unregisterCurrentTokenOnServer() async {
     _apnsSandbox = await ApplePushService.apnsUsesSandbox();
     final String? hex = await ref.read(pushServiceProvider).getToken();
     if (hex == null || hex.isEmpty) {

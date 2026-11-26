@@ -65,7 +65,14 @@ class FcmMobileDeviceRegistration extends _$FcmMobileDeviceRegistration {
       ..listen<String?>(fluxerAuthTokenProvider, (_, _) {
         unawaited(sync());
       })
-      ..listen<bool>(authStateProvider, (_, _) {
+      ..listen<bool>(authStateProvider, (_, bool next) {
+        // Echowire: the server drops this device's subscription when the
+        // session ends, so the in-memory "already registered" memo must go
+        // with it, or signing back in to the same account in the same process
+        // skips registration and the account gets no pushes until a restart.
+        if (!next) {
+          _forgetRegistration();
+        }
         unawaited(sync());
       })
       ..listen<String?>(currentUserIdProvider, (
@@ -424,10 +431,27 @@ class FcmMobileDeviceRegistration extends _$FcmMobileDeviceRegistration {
     });
   }
 
+  void _forgetRegistration() {
+    _lastRegisteredUserId = null;
+    _lastRegisteredRelayUrl = null;
+    _lastRegisteredPublicKey = null;
+  }
+
   Future<void> unregisterCurrentToken() async {
     if (!_shouldRun) {
       return;
     }
+    try {
+      await _unregisterCurrentTokenOnServer();
+    } finally {
+      // Echowire: forget even when the call was skipped or failed. The server
+      // revokes the subscription with the session anyway, and a stale memo is
+      // what stopped re-registration after a sign-out and sign-in.
+      _forgetRegistration();
+    }
+  }
+
+  Future<void> _unregisterCurrentTokenOnServer() async {
     final String? token = await ref.read(pushServiceProvider).getToken();
     if (token == null || token.isEmpty) {
       return;

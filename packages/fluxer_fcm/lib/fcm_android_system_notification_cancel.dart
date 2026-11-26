@@ -45,6 +45,51 @@ Iterable<int> fcmSystemNotificationCancelIds(Iterable<String> messageIds) {
   return ids;
 }
 
+/// Echowire: our server sends raw FCM messages with a `notification` block and
+/// `android.notification.tag` set, so Android posts its own copy under that tag
+/// with id 0. A cancel by id alone never reaches it and every message showed
+/// twice (system copy plus our local one). The tag is mirrored in the data
+/// payload as `tag`. Returns the tags to cancel with id 0, leaving out the local
+/// notification itself.
+const int kFcmSystemNotificationId = 0;
+
+Iterable<String> fcmSystemNotificationTags({
+  required Map<String, String> payload,
+  required int localNotificationId,
+  String? localTag,
+}) {
+  final Set<String> tags = <String>{};
+  final String? tag = payload['tag'];
+  if (tag != null && tag.isNotEmpty) {
+    tags.add(tag);
+  }
+  if (localNotificationId == kFcmSystemNotificationId && localTag != null) {
+    tags.remove(localTag);
+  }
+  return tags;
+}
+
+Future<void> cancelFcmTaggedSystemNotifications(
+  FlutterLocalNotificationsPlugin plugin, {
+  required Iterable<String> tags,
+}) async {
+  if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) {
+    return;
+  }
+  for (final String tag in tags) {
+    try {
+      await plugin.cancel(id: kFcmSystemNotificationId, tag: tag);
+    } on Object catch (error, stackTrace) {
+      if (kDebugMode) {
+        debugPrint(
+          '[FcmSystemNotificationCancel] cancel tag=$tag failed: '
+          '$error\n$stackTrace',
+        );
+      }
+    }
+  }
+}
+
 Future<void> cancelFcmSystemNotificationDuplicates(
   FlutterLocalNotificationsPlugin plugin, {
   required Iterable<String> messageIds,
@@ -75,6 +120,7 @@ Future<void> deduplicateFcmSystemNotifications({
   required Iterable<String> messageIds,
   required int excludeNotificationId,
   required Future<void> Function() showLocalNotification,
+  Iterable<String> systemNotificationTags = const <String>[],
 }) async {
   await FcmSystemNotificationCancelHooks.tryCancelDuplicates(
     messageIds: messageIds,
@@ -85,5 +131,9 @@ Future<void> deduplicateFcmSystemNotifications({
     plugin,
     messageIds: messageIds,
     excludeNotificationId: excludeNotificationId,
+  );
+  await cancelFcmTaggedSystemNotifications(
+    plugin,
+    tags: systemNotificationTags,
   );
 }
